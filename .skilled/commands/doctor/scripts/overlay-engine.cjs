@@ -5061,9 +5061,13 @@ function layoutMoves(manifest, ctx) {
 // read gets no move. A path that resolves out of the overlay folder counts as
 // ready, so relayout's own containment check, which resolves the same way,
 // refuses the run instead of a missing copy out there slipping past it while
-// the rest of the moves go ahead.
+// the rest of the moves go ahead. An absolute path inside the overlay folder
+// is never ready: apply joins it onto the folder while relayout moves the copy
+// it resolves to, so a copy at the joined path would send relayout to move a
+// different file than the one apply reads.
 function layoutCopyReady(ctx, entry, field) {
   if (!isWithin(ctx.overlayRoot, path.resolve(ctx.overlayRoot, entry[field]))) return true;
+  if (path.isAbsolute(entry[field])) return false;
   const copy = path.join(ctx.overlayRoot, entry[field]);
   // A trailing slash would make lstat follow a link at the folder's end.
   if (field === 'source' && (entry.scope === 'directory' || entry.scope === 'skill-root')) return isDirectory(path.resolve(copy));

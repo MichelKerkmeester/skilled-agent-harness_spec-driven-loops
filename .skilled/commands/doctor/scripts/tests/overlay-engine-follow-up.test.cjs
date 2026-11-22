@@ -1608,6 +1608,28 @@ for (const spelling of UNREADABLE_SPELLINGS) {
   });
 }
 
+// An absolute source joined onto the overlay folder can land on a second copy,
+// while relayout moves the copy the absolute path resolves to, so a status
+// that read the joined copy would send relayout to move the other one.
+test('an absolute file source whose joined path also holds a copy gets no layout line, and relayout moves nothing', (t) => {
+  const fixture = createWrongKindSourceFixture(t, WRONG_KIND_SOURCES[1]);
+  const absolute = path.join(fixture.overlayDir, 'custom/note.md');
+  writeFile(fixture.overlayDir, 'custom/note.md', 'overlay note\n');
+  writeFile(fixture.overlayDir, absolute, 'joined note\n');
+  fixture.manifest.overlays[0].source = absolute;
+  writeManifest(fixture);
+  const before = snapshotFolder(fixture.overlayDir);
+
+  const status = fixture.run(['status']);
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.deepEqual(layoutLines(status.output), [], status.output);
+  assert.equal(relayout.code, 0, relayout.output);
+  assert.equal(relayout.output.trim(), '0 moved');
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/up/tool.md')), false);
+});
+
 // An overlay folder beside the tree is named `../<name>` by the setting file.
 // Its backup keeps each moved copy at its path inside that folder, since the
 // folder's label climbs out of the tree and cannot be a folder in the run.
