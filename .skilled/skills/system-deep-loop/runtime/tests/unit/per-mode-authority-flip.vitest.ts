@@ -4,7 +4,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -265,6 +265,27 @@ describe('AuthorityRegistry', () => {
       const registry = new AuthorityRegistry(root);
       writeFileSync(join(root, 'authority-flip-transaction.lock'), 'not-json');
       await expect(registry.withTransactionLock(async () => 'should-not-run')).rejects.toThrow(AuthorityFlipError);
+    });
+  });
+
+  describe('clearing a prepared transition', () => {
+    it('removes the marker and treats an already-absent marker as cleared', () => {
+      const root = temporaryRoot('clear-pending');
+      const registry = new AuthorityRegistry(root);
+      writeFileSync(join(root, `authority-flip-prepare-${MODE}.json`), '{}');
+
+      registry.clearPendingTransition(MODE);
+      expect(existsSync(join(root, `authority-flip-prepare-${MODE}.json`))).toBe(false);
+      expect(() => registry.clearPendingTransition(MODE)).not.toThrow();
+    });
+
+    it('surfaces an unlink failure other than an absent marker', () => {
+      const root = temporaryRoot('clear-pending-unremovable');
+      const registry = new AuthorityRegistry(root);
+      // A directory at the marker path makes unlink fail with EPERM or EISDIR, never ENOENT.
+      mkdirSync(join(root, `authority-flip-prepare-${MODE}.json`));
+
+      expect(() => registry.clearPendingTransition(MODE)).toThrow();
     });
   });
 });

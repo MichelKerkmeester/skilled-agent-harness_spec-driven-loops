@@ -16,6 +16,7 @@ import {
 } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
+import { fsyncPath, makeTempPath } from './fs-durability.js';
 import { processAlive } from './loop-lock.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -76,22 +77,6 @@ function canonicalizeJson(value: unknown, isRoot = false): unknown {
 
 function isJsonRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
-
-function fsyncPath(path: string): void {
-  let fd: number | undefined;
-  try {
-    fd = openSync(path, 'r');
-    fsyncSync(fd);
-  } finally {
-    if (typeof fd === 'number') {
-      closeSync(fd);
-    }
-  }
-}
-
-function makeTempPath(targetPath: string): string {
-  return `${targetPath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
 }
 
 function serializeState(data: unknown): string {

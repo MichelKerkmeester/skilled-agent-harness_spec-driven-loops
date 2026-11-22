@@ -1,5 +1,5 @@
 {
-  "count": 1237,
+  "count": 1254,
   "mode": "readme",
   "results": [
     {
@@ -3968,6 +3968,346 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing--post-review/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-21--two-stage-replay--compiled/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--app-running-rerun/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/mcp-servers/aside-cli/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 66,
+          "line_number": 66,
+          "message": "Bare URL outside a link target; wrap it as [title](url).",
+          "severity": "warning",
+          "type": "render_bare_url"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/mcp-servers/aside-mcp/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 83,
+          "line_number": 83,
+          "message": "Bare URL outside a link target; wrap it as [title](url).",
+          "severity": "warning",
+          "type": "render_bare_url"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--attach-probe--aside-browser/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/examples/README.md",
+      "return_code": 0,
+      "total_issues": 2,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 383,
+          "line_number": 383,
+          "message": "Consecutive bold labels \"Directory Version\" and \"Last Updated\" join into one paragraph; separate them or use list items.",
+          "severity": "warning",
+          "type": "render_bold_label_join"
+        },
+        {
+          "auto_fixable": false,
+          "line": 384,
+          "line_number": 384,
+          "message": "Consecutive bold labels \"Last Updated\" and \"Maintained By\" join into one paragraph; separate them or use list items.",
+          "severity": "warning",
+          "type": "render_bold_label_join"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/shared/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/mcp-code-mode/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -4089,141 +4429,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-aside-devtools/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-aside-devtools/examples/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md",
-      "return_code": 0,
-      "total_issues": 1,
-      "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 66,
-          "line_number": 66,
-          "message": "Bare URL outside a link target; wrap it as [title](url).",
-          "severity": "warning",
-          "type": "render_bare_url"
-        }
-      ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md",
-      "return_code": 0,
-      "total_issues": 1,
-      "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 83,
-          "line_number": 83,
-          "message": "Bare URL outside a link target; wrap it as [title](url).",
-          "severity": "warning",
-          "type": "render_bare_url"
-        }
-      ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md",
-      "return_code": 0,
-      "total_issues": 2,
-      "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 383,
-          "line_number": 383,
-          "message": "Consecutive bold labels \"Directory Version\" and \"Last Updated\" join into one paragraph; separate them or use list items.",
-          "severity": "warning",
-          "type": "render_bold_label_join"
-        },
-        {
-          "auto_fixable": false,
-          "line": 384,
-          "line_number": 384,
-          "message": "Consecutive bold labels \"Last Updated\" and \"Maintained By\" join into one paragraph; separate them or use list items.",
-          "severity": "warning",
-          "type": "render_bold_label_join"
-        }
-      ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -7351,6 +7556,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-deep-loop/runtime/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

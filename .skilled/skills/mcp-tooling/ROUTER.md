@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.13.0
+version: 1.8.14.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,9 +21,9 @@ Open this page once the hub has named a mode, and before you open any packet fil
 
 This is mcp-tooling's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a workflow
-mode in [`hub-router.json`](hub-router.json) (`mcp-chrome-devtools`,
-`mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`,
-`mcp-figma`, `mcp-refero`, or `mcp-mobbin`); this doc maps a request's
+mode in [`hub-router.json`](hub-router.json) (`mcp-click-up`,
+`mcp-obsidian`, `mcp-notion`, `mcp-figma`, `mcp-refero`, or
+`mcp-mobbin`); this doc maps a request's
 tool-bridge intent to the exact packet-local leaf resources that mode
 should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where `<packet>` is the mode's
@@ -41,25 +41,17 @@ emits leaf paths, and this router never re-decides the mode.
 
 A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
 this") names no mode, so it fires no intent and falls back to the hub default
-(disambiguation) — the router does not silently default to `mcp-chrome-devtools`
+(disambiguation) — the router does not silently default to any one mode
 on genuine ambiguity. Provider-neutral design-research phrasing ("screen
 examples") is deliberately absent below so a request naming neither Refero nor
 Mobbin defers between the two transports rather than fanning out to both.
 
-- **mcp-chrome-devtools leaves** — the CDP command patterns (screenshot/HAR/
-  console/network/performance-trace flows) and the session-management guide a
-  request to debug a live browser, capture a HAR or console/network evidence,
-  run a Lighthouse or performance trace, or drive Chrome DevTools over CDP
-  loads.
 - **mcp-click-up leaves** — the `cupt` CLI command reference and the MCP
   tool-surface guide a request to work a ClickUp queue — mark tasks done, add
   notes, log time, or run bulk task operations — loads.
 - **mcp-obsidian leaves** — the dual CLI command reference and the cyanheads
   MCP tool catalog a request to manage an Obsidian vault or markdown notes
   through `notesmd-cli`, the official `obsidian` CLI, or MCP loads.
-- **mcp-aside-devtools leaves** — the Aside CLI command reference and the
-  MCP-wiring guide a request to hand a browser task to the agentic Aside runtime
-  (sign in, click through a flow autonomously, capture REPL evidence) loads.
 - **mcp-notion leaves** — the 24-tool MCP catalog and the direct-API gap
   reference a request to create or query Notion pages and data sources, read or
   write page markdown, or reach a capability the MCP does not expose (file
@@ -91,10 +83,8 @@ a canonical typed pair.
 DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
-    "CHROME_DEVTOOLS": {"weight": 4, "keywords": ["chrome devtools", "browser debug", "inspect the dom", "lighthouse", "bdg", "cdp", "cdp domain", "screenshot capture", "network requests", "har export", "performance trace", "chrome-devtools", "mcp-chrome-devtools", "console errors", "capture browser screenshots", "chrome_devtools_live", "chrome devtools live", "chrome live manual", "remote debugging", "chrome autoconnect", "my own chrome", "signed-in chrome", "logged in chrome"]},
     "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks", "mcp-click-up", "click-up", "process queue", "clickup goals", "complete task", "add note to task", "tag task", "start timer", "stop timer", "mark task done", "clickup login", "log in to clickup", "logged in to clickup", "clickup oauth", "clickup approval", "approve clickup", "clickup readiness check", "clickup mcp"]},
     "OBSIDIAN":        {"weight": 4, "keywords": ["obsidian", "mcp-obsidian", "obsidian vault", "notesmd-cli", "obsidian mcp", "note management", "markdown notes", "create note", "vault search", "backlinks", "daily note", "knowledge base", "note crud", "health-md", "health md", "health.md", "health data", "apple health", "health chart", "health visualization", "iconic", "iconic rulebook", "icon rules", "icon automation", "file icons", "folder icons", "icon color", "iconic data json", "iconic ruleset", "excalidraw", "excalidraw.md", "drawing note", "embedded drawing", "whiteboard", "drawing script", "minimal theme", "css theme", "theme snippet", "style settings", "appearance", "snippets"]},
-    "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through", "natural language browser", "aside account", "capture repl evidence", "repl evidence capture"]},
     "NOTION":          {"weight": 4, "keywords": ["notion", "notion mcp", "notion api", "notion page", "notion token", "ntn_", "notion database", "notion data source", "query notion", "notion property", "notion relation", "notion rollup", "notion formula", "notion markdown", "notion search"]},
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "figma mcp", "figma daemon", "export from figma", "design file", "connect to figma", "figma variables", "figma export"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products", "real app screen search", "ui screens from real apps", "design inspiration search", "user flow references"]},
@@ -102,10 +92,6 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "CHROME_DEVTOOLS": [
-        "mcp-chrome-devtools/references/cdp-patterns.md",
-        "mcp-chrome-devtools/references/session-management.md"
-    ],
     "CLICK_UP": [
         "mcp-click-up/references/cupt-commands.md",
         "mcp-click-up/references/mcp-tools.md"
@@ -113,10 +99,6 @@ RESOURCE_MAP = {
     "OBSIDIAN": [
         "mcp-obsidian/references/obsidian-cli-commands.md",
         "mcp-obsidian/references/mcp-tools.md"
-    ],
-    "ASIDE_DEVTOOLS": [
-        "mcp-aside-devtools/references/aside-cli-reference.md",
-        "mcp-aside-devtools/references/mcp-wiring.md"
     ],
     "NOTION": [
         "mcp-notion/references/mcp-tools.md",
@@ -150,8 +132,8 @@ RESOURCE_MAP = {
   discovery fixtures, env templates) load on demand inside the packet, not on the
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target tool
-  (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`,
-  `mcp-notion`, `mcp-figma`, `mcp-refero`, or `mcp-mobbin`) before loading
+  (`mcp-click-up`, `mcp-obsidian`, `mcp-notion`, `mcp-figma`, `mcp-refero`,
+  or `mcp-mobbin`) before loading
   anything.
 
 ---
@@ -168,7 +150,7 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 
 ### Two-Axis Model
 
-- `packetKind: workflow` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
+- `packetKind: workflow` — `mcp-click-up`, `mcp-obsidian`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
 - `packetKind: transport` — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` bridge external read or export surfaces and remain `mutatesWorkspace:false` in this workspace.
 - Design transports never decide design on their own. Figma, Refero, and Mobbin pair with `sk-design-md-generator` for measured references.
 

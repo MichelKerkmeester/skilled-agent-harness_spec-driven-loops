@@ -20,7 +20,7 @@ This folder contains the shared helpers for tests that invoke CommonJS runtime s
 
 | File | Responsibility |
 |---|---|
-| `completed-lineage-state.cjs` | Writes the state rows and one ledger frame of a finished lineage, so a stub executor passes the runner's checks. Callable with `require` or as `node completed-lineage-state.cjs <lineageDir> [research\|review ...]`. |
+| `completed-lineage-state.cjs` | Writes the state rows and one ledger frame of a finished lineage, so a stub executor passes the runner's checks. Callable with `require` or as `node completed-lineage-state.cjs <lineageDir> [research\|review ...]`, which prints usage and exits 2 when `<lineageDir>` is missing. |
 | `gateway-backed-lineage.ts` | Builds shell and Node snippets that let a stub executor append its state rows through the real `append-mode-event.cjs` gateway. Also exports `resolveRepositoryRoot`. |
 | `legacy-real-log.ts` | Reads the captured legacy research, review and journal JSONL logs and lists the records a compatibility decision blocks as `unknown-legacy-record`. |
 | `spawn-cjs.ts` | Spawns a CommonJS runtime entry point and captures its process result for assertions. Also builds the hermetic child environment (`createHermeticEnv`). |
@@ -52,7 +52,7 @@ The helpers are the test harness seam between runtime scripts and process-level 
 .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/unit/spawn-cjs.vitest.ts tests/unit/hermetic-env.vitest.ts
 ```
 
-Expected result: `Test Files  2 passed (2)`. These suites exercise `spawn-cjs.ts` directly. No type check covers this folder, because the runtime [`../../tsconfig.json`](../../tsconfig.json) includes only the library sources and excludes every test file.
+Expected result: `Test Files  2 passed (2)`. These suites exercise `spawn-cjs.ts` directly. The default `npm run typecheck` does not cover this folder, because the runtime [`../../tsconfig.json`](../../tsconfig.json) includes only the library sources. The opt-in `npm run typecheck:tests` checks it through [`../../tsconfig.tests.json`](../../tsconfig.tests.json). That check is not part of `typecheck` or CI, and it still reports errors.
 
 ---
 

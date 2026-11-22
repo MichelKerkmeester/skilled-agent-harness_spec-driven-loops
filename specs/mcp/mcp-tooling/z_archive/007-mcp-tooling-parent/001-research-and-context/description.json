@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
+  "description": "Phase 002 architecture decisions depend on current, re-verified facts about three live bridge skills and their referrers",
+  "keywords": [
+    "phase",
+    "architecture",
+    "decisions",
+    "depend",
+    "current",
+    "re-verified",
+    "facts",
+    "about",
+    "three",
+    "live",
+    "bridge",
+    "skills",
+    "referrers"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.682Z",
+  "specId": "001",
+  "folderSlug": "research-and-context",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

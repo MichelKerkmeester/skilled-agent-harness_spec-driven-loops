@@ -7,6 +7,7 @@ import type { EventReadResult } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
   LegacyProjectionFormat,
+  LegacyProjectionJsonObject,
   LegacyProjectionSurfaceContract,
 } from './legacy-projection-types.js';
 
@@ -43,11 +44,11 @@ export function foldLegacyProjectionSurface(
 }
 
 function foldOneArtifact(
-  contract: LegacyProjectionContract<any>,
+  contract: LegacyProjectionContract<LegacyProjectionJsonObject>,
   events: readonly EventReadResult[],
   encoder: TextEncoder,
 ): FoldedSurfaceArtifact {
-  let state: any = contract.base.state;
+  let state: LegacyProjectionJsonObject = contract.base.state;
   for (const event of events) {
     state = contract.reduce(state, event);
   }

@@ -26,6 +26,8 @@ Applies verified ledger events into one atomic projection generation, so a bundl
 | `transactional-projection-store.ts` | Fenced document store that is the transaction boundary for projections and pointers |
 | `transactional-projection-types.ts` | Bundle, snapshot and reduce-context type contracts |
 
+`prepareEvent` in `transactional-projection-engine.ts` runs to about 170 lines. It was reviewed and kept whole: it builds each projection generation that replay must reproduce, so a split risks changing that output with no defect to fix. The checklists set no length limit, and no defect was found in it.
+
 ---
 
 ## 3. CONSUMERS

@@ -121,7 +121,7 @@ What the second defect does and does not block. The `## Packet Purpose` section 
 - The live phase parents that state a purpose under a heading other than `### Purpose` - phase 007 widens the reader for them, so their text needs no edit.
 - The phase maps of `004-decisions-and-notes-system` and `003-install-scripts-doctor-realignment`, which still hold `[Phase N scope]` and `[Criteria TBD]` rows - a separate cleanup, and the Purpose rewrite does not depend on it.
 - The unfilled Problem Statement and Purpose of the four children of `003-install-scripts-doctor-realignment` and of `004-decisions-and-notes-system/001-decisions-system-analysis` - child docs, not parent purposes.
-- The archived `specs/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md`, which also holds the scaffold sentence - archived packets are not resumed.
+- The archived `specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md`, which also holds the scaffold sentence - archived packets are not resumed.
 - The `mcp_enrichment` value in the presentation file's `Source:` row - no step in either resume asset produces it (`context_source` at `speckit-resume-auto.yaml:176` lists `handover|continuity|spec_docs|ripgrep_context|ripgrep_anchor`), and the presentation file is the owner of that row.
 - The stray backslash a JSON-escaped path can leave on a matched folder in `detectSpecFolder` - it exists for `.opencode/specs/` paths today and no report names it.
 

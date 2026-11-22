@@ -61,6 +61,11 @@ void import('./executor-audit.js').then(
   () => undefined,
 );
 
+// A null gateway is an accepted degraded mode: when neither path can load the
+// module, the failure row skips the gateway and falls back to a plain JSONL
+// append, and containment itself still runs. The rejection and the failed
+// require stay silent so a loader that cannot require `.ts` does not add
+// stderr to every run.
 function loadGatewayAppend(): GatewayAppendModule | null {
   if (gatewayAppendModule !== null || gatewayRequireFailed) return gatewayAppendModule;
   try {
@@ -637,7 +642,7 @@ function spawnGit(input: {
       };
     } catch (error: unknown) {
       // A synchronous spawn failure cannot be lock contention; keep the fail-open result.
-      return { ok: false, stdout: '', stderr: (error as Error).message };
+      return { ok: false, stdout: '', stderr: (error instanceof Error ? error.message : String(error)) };
     }
     if (outcome.ok) return outcome;
     if (!isIndexLockContention(outcome.stderr)) return outcome;
@@ -757,7 +762,7 @@ function diffAgainstHeldBytes(input: {
     if (!diff.ok) return { ok: false, error: 'git diff <scratch index> -- <path> failed' };
     return { ok: true, diff: diff.stdout };
   } catch (error: unknown) {
-    return { ok: false, error: (error as Error).message };
+    return { ok: false, error: (error instanceof Error ? error.message : String(error)) };
   } finally {
     if (scratchDir !== '') {
       try {
@@ -969,7 +974,7 @@ function ensureContainedDirectory(directory: string, root: ContainmentRoot): Con
         // Losing the create to another maker is not a failure: the level is judged by what is on
         // disk now, exactly as a directory that was already there is.
         if (lstatSync(next, { throwIfNoEntry: false }) === undefined) {
-          return { ok: false, kind: 'failed', reason: (error as Error).message };
+          return { ok: false, kind: 'failed', reason: (error instanceof Error ? error.message : String(error)) };
         }
       }
     }
@@ -1000,7 +1005,7 @@ function openContainedRead(source: string, root: ContainmentRoot): ContainedResu
   try {
     return { ok: true, value: openSync(source, constants.O_RDONLY | constants.O_NOFOLLOW) };
   } catch (error: unknown) {
-    return { ok: false, kind: 'failed', reason: (error as Error).message };
+    return { ok: false, kind: 'failed', reason: (error instanceof Error ? error.message : String(error)) };
   }
 }
 
@@ -1011,7 +1016,7 @@ function readContainedFile(source: string, root: ContainmentRoot): ContainedResu
   try {
     return { ok: true, value: readFileSync(opened.value) };
   } catch (error: unknown) {
-    return { ok: false, kind: 'failed', reason: (error as Error).message };
+    return { ok: false, kind: 'failed', reason: (error instanceof Error ? error.message : String(error)) };
   } finally {
     closeSync(opened.value);
   }
@@ -1044,7 +1049,7 @@ function openContainedWrite(
   try {
     return { ok: true, value: openSync(destination, flags) };
   } catch (error: unknown) {
-    return { ok: false, kind: 'failed', reason: (error as Error).message };
+    return { ok: false, kind: 'failed', reason: (error instanceof Error ? error.message : String(error)) };
   }
 }
 
@@ -1504,7 +1509,7 @@ function captureRevertPatch(input: {
   try {
     writeFileSync(opened.value, stdout, 'utf8');
   } catch (error: unknown) {
-    return { path: null, error: `patch write failed: ${(error as Error).message}` };
+    return { path: null, error: `patch write failed: ${(error instanceof Error ? error.message : String(error))}` };
   } finally {
     closeSync(opened.value);
   }
@@ -1560,7 +1565,7 @@ function writeQuarantineFile(
     write(opened.value);
     return null;
   } catch (error: unknown) {
-    return (error as Error).message;
+    return (error instanceof Error ? error.message : String(error));
   } finally {
     closeSync(opened.value);
   }
@@ -1633,7 +1638,7 @@ function quarantineOnePath(input: {
       }
     } catch (error: unknown) {
       // A deleted or dangling path has nothing to copy; its hash and its patches still stand.
-      fail(`content copy failed: ${(error as Error).message}`);
+      fail(`content copy failed: ${(error instanceof Error ? error.message : String(error))}`);
     } finally {
       closeSync(source.value);
     }
@@ -1686,6 +1691,24 @@ function quarantineOnePath(input: {
   return entry;
 }
 
+interface QuarantineViolationsInput {
+  repoRoot: string;
+  artifactDir: string;
+  /** Repo-relative POSIX path of the artifact dir, prefixed onto the returned directory path. */
+  artifactRelPosix: string;
+  /** The guarded violations; a path that is not here is not quarantined. */
+  violations: ContainmentViolation[];
+  /** Pre-dispatch baseline: only a path whose bytes it holds gets a `patch-baseline/` diff. */
+  preDispatchDirtyPaths?: DirtyPathEntry[];
+  /** Absolute directory the entries' `baselineContentPath` values were captured under. */
+  baselineContentRoot?: string;
+  /** The iteration this pass belongs to; part of the pass directory's name. */
+  iteration?: number;
+  /** Which dispatch of `iteration` this pass is; part of the pass directory's name when set. */
+  attempt?: number;
+  env?: NodeJS.ProcessEnv;
+}
+
 /**
  * Write what each guarded path left behind into `<artifactDir>/containment/quarantine/<pass>/`,
  * one directory per containment pass: `manifest.json`, the current bytes under `content/`, the
@@ -1707,23 +1730,7 @@ function quarantineOnePath(input: {
  * owns its lineage directory can leave a symlink where the quarantine belongs: a refused
  * destination is named on the result and nothing is written through it.
  */
-export function quarantineViolations(input: {
-  repoRoot: string;
-  artifactDir: string;
-  /** Repo-relative POSIX path of the artifact dir, prefixed onto the returned directory path. */
-  artifactRelPosix: string;
-  /** The guarded violations; a path that is not here is not quarantined. */
-  violations: ContainmentViolation[];
-  /** Pre-dispatch baseline: only a path whose bytes it holds gets a `patch-baseline/` diff. */
-  preDispatchDirtyPaths?: DirtyPathEntry[];
-  /** Absolute directory the entries' `baselineContentPath` values were captured under. */
-  baselineContentRoot?: string;
-  /** The iteration this pass belongs to; part of the pass directory's name. */
-  iteration?: number;
-  /** Which dispatch of `iteration` this pass is; part of the pass directory's name when set. */
-  attempt?: number;
-  env?: NodeJS.ProcessEnv;
-}): QuarantineResult {
+export function quarantineViolations(input: QuarantineViolationsInput): QuarantineResult {
   const pass = passSegment(input);
   const quarantineDir = join(input.artifactDir, PASS_QUARANTINE_DIR, pass);
   const prefix = input.artifactRelPosix === '' ? '' : `${input.artifactRelPosix}/`;
@@ -1797,6 +1804,23 @@ export function quarantineViolations(input: {
   return { dirPath, entries, refused };
 }
 
+interface RevertOutOfScopeViolationsOptions {
+  repoRoot: string;
+  violations: ContainmentViolation[];
+  env?: NodeJS.ProcessEnv;
+  /** Remedy for a path that exists in HEAD; the default leaves the working tree untouched. */
+  mode?: 'preserve' | 'restore';
+  /**
+   * The pre-dispatch baseline; consulted only by 'restore', only to pick a path's target.
+   *
+   * Omitting it keeps the previous behaviour verbatim -- every in-HEAD path comes from HEAD --
+   * so a caller with a baseline can opt in per call, exactly as it opts into 'restore' itself.
+   */
+  preDispatchDirtyPaths?: DirtyPathEntry[];
+  /** Absolute directory the entry's `baselineContentPath` values were captured under. */
+  baselineContentRoot?: string;
+}
+
 /**
  * Apply the configured remedy to the given out-of-scope violating paths, WITHOUT ever
  * irreversibly deleting a file. `mode` selects that remedy and defaults to 'preserve',
@@ -1835,22 +1859,7 @@ export function quarantineViolations(input: {
  * unrecoverable -- under 'preserve' too, since preserving a path that is already gone is not
  * an action that can be taken.
  */
-export function revertOutOfScopeViolations(opts: {
-  repoRoot: string;
-  violations: ContainmentViolation[];
-  env?: NodeJS.ProcessEnv;
-  /** Remedy for a path that exists in HEAD; the default leaves the working tree untouched. */
-  mode?: 'preserve' | 'restore';
-  /**
-   * The pre-dispatch baseline; consulted only by 'restore', only to pick a path's target.
-   *
-   * Omitting it keeps the previous behaviour verbatim -- every in-HEAD path comes from HEAD --
-   * so a caller with a baseline can opt in per call, exactly as it opts into 'restore' itself.
-   */
-  preDispatchDirtyPaths?: DirtyPathEntry[];
-  /** Absolute directory the entry's `baselineContentPath` values were captured under. */
-  baselineContentRoot?: string;
-}): ContainmentRevertResult {
+export function revertOutOfScopeViolations(opts: RevertOutOfScopeViolationsOptions): ContainmentRevertResult {
   const mode = opts.mode ?? 'preserve';
   const baselineByPath = new Map((opts.preDispatchDirtyPaths ?? []).map((entry) => [toPosix(entry.path), entry]));
   const reverted: ContainmentRevertAction[] = [];
@@ -1906,7 +1915,7 @@ export function revertOutOfScopeViolations(opts: {
                   path: violation.path,
                   action: 'restored_from_baseline',
                   ok: false,
-                  error: `baseline restore failed: ${(error as Error).message}`,
+                  error: `baseline restore failed: ${(error instanceof Error ? error.message : String(error))}`,
                 });
               } finally {
                 closeSync(opened.value);
@@ -1968,7 +1977,7 @@ export function revertOutOfScopeViolations(opts: {
               path: violation.path,
               action: 'restored_from_baseline',
               ok: false,
-              error: `baseline restore failed: ${(error as Error).message}`,
+              error: `baseline restore failed: ${(error instanceof Error ? error.message : String(error))}`,
             });
           } finally {
             closeSync(opened.value);
@@ -1980,15 +1989,17 @@ export function revertOutOfScopeViolations(opts: {
   return { reverted };
 }
 
-/** Build the JSONL event payload appended to the loop state log on a violation. */
-export function buildContainmentViolationEvent(input: {
+interface ContainmentViolationEventInput {
   iteration?: number;
   label?: string;
   violations: ContainmentViolation[];
   revertResult: ContainmentRevertResult;
   /** Outcome of the pre-revert patch capture; omitted when no revert was attempted. */
   patch?: { path: string | null; error?: string };
-}): ContainmentViolationEvent {
+}
+
+/** Build the JSONL event payload appended to the loop state log on a violation. */
+export function buildContainmentViolationEvent(input: ContainmentViolationEventInput): ContainmentViolationEvent {
   const destroyed = input.revertResult.reverted
     .filter((a) => a.action === 'restored_from_head')
     .map((a) => a.path);

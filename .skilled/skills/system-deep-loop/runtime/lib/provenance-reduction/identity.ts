@@ -74,6 +74,12 @@ export function normalizeSourceBucketId(modelFamily: string): string {
   return `model-family:${normalized}`;
 }
 
+/** Order strings by UTF-16 code unit so digests and replay fingerprints never follow the host locale. */
+export function compareCodeUnits(left: string, right: string): number {
+  if (left === right) return 0;
+  return left < right ? -1 : 1;
+}
+
 /** Hash a value through the runtime's bounded canonical JSON representation. */
 export function stableDigest(value: unknown): string {
   return sha256Bytes(canonicalBytes(value));

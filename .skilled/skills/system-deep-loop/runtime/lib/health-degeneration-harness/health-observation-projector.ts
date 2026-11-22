@@ -6,6 +6,7 @@ import { canonicalBytes, canonicalJson, sha256Bytes } from '../event-envelope/in
 import { HealthPolicyRegistry } from './health-policy.js';
 import { ModeHealthAdapterRegistry } from './health-adapters.js';
 import {
+  BASIS_POINTS,
   HealthAggregateStates,
   HealthHarnessError,
   HealthHarnessErrorCodes,
@@ -13,6 +14,7 @@ import {
   HealthResponseActions,
   HealthSeverities,
   HealthSignalKinds,
+  MAX_IDENTITY_CHARS,
 } from './health-harness-types.js';
 
 import type { JsonObject, JsonValue } from '../event-envelope/index.js';
@@ -188,7 +190,7 @@ function healthyWindowStreakForScope(
 }
 
 function identity(value: unknown, field: string): string {
-  if (typeof value !== 'string' || value.trim() === '' || value.length > 4_096) {
+  if (typeof value !== 'string' || value.trim() === '' || value.length > MAX_IDENTITY_CHARS) {
     throw new HealthHarnessError(
       HealthHarnessErrorCodes.INVALID_INPUT,
       `${field} must be a bounded non-empty identity`,
@@ -771,7 +773,7 @@ function budgetCandidate(
   const decisions = matchingDecisions.slice(-policy.budgetDecisionWindow);
   const pressure = decisions.filter((entry) => PRESSURE_KINDS.has(entry.pressureKind));
   if (decisions.length === 0 || pressure.length === 0) return null;
-  const pressureRatioBps = Math.floor((pressure.length * 10_000) / decisions.length);
+  const pressureRatioBps = Math.floor((pressure.length * BASIS_POINTS) / decisions.length);
   const pressureQualified = pressure.length >= policy.budgetPressureCount
     || (
       decisions.length >= policy.minimumComparableSamples

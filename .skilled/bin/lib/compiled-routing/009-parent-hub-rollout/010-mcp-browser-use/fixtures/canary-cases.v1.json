@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 1,
+  "cases": [
+    {
+      "id": "chrome-devtools-debug-screenshot",
+      "prompt": "debug this page with chrome devtools and take a screenshot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "chrome-devtools-har-export",
+      "prompt": "export a HAR of this page load",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "chrome-devtools-lighthouse",
+      "prompt": "run a lighthouse audit on this page",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "chrome-devtools-single",
+      "prompt": "chrome devtools",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "aside-signed-in-form",
+      "prompt": "use aside to fill this form in my signed-in account",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-aside-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "aside-signed-in-replay",
+      "prompt": "replay this signed-in checkout step by step and save the evidence",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-aside-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "aside-devtools-single",
+      "prompt": "aside browser",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-aside-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "bladebro-attach-checkout",
+      "prompt": "use bladebro to attach to my open browser and finish the checkout flow",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-bladebro"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-bladebro"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "bladebro-already-open-browser",
+      "prompt": "in the browser I already have open, work out how to finish this signup",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-bladebro"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-bladebro"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "named-tools-bundle",
+      "prompt": "compare chrome devtools and bladebro on this page",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": [
+        "mcp-chrome-devtools",
+        "mcp-bladebro"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools",
+          "mcp-bladebro"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "generic-browser-automation-defer",
+      "prompt": "browser automation for this site",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "hub-identity-defer",
+      "prompt": "what does mcp-browser-use route through its hub-router",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-reject",
+      "prompt": "forbidden browser operation",
+      "constraints": [
+        "forbidden"
+      ],
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "chrome-devtools-bare-devtools-console",
+      "prompt": "Open DevTools and inspect the console logs.",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "chrome-devtools-http-403-forbidden",
+      "prompt": "debug the 403 Forbidden network requests in chrome devtools",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    }
+  ],
+  "advisorCases": [
+    {
+      "id": "live-match",
+      "state": "live",
+      "drift": false,
+      "contributes": true
+    },
+    {
+      "id": "stale",
+      "state": "stale",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "absent",
+      "state": "absent",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "projection-drift",
+      "state": "live",
+      "drift": true,
+      "contributes": false
+    }
+  ]
+}

@@ -48,7 +48,7 @@ function requireBasisPoints(value: number, field: string, allowZero = true): num
     || value < (allowZero ? 0 : 1)
     || value > BASIS_POINTS
   ) {
-    throw new RangeError(`${field} must be between ${allowZero ? 0 : 1} and 10000`);
+    throw new RangeError(`${field} must be between ${allowZero ? 0 : 1} and ${BASIS_POINTS}`);
   }
   return value;
 }

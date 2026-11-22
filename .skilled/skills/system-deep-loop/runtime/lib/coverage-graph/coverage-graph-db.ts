@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { existsSync, mkdirSync, readFileSync, statSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import Database from 'better-sqlite3';
@@ -317,9 +317,23 @@ let readOnlyPresent = false;
  *
  * @param dbDir - Directory for the database file.
  * @returns The initialized Database instance.
+ * @throws Error when the open connection is read-only or belongs to another directory, since handing
+ *   it back would send writes to the wrong database or, for an absent file, to an in-memory copy.
  */
 export function initDb(dbDir: string): Database.Database {
-  if (db) return db;
+  if (db) {
+    if (readOnly) {
+      throw new Error('Coverage graph database is open read-only; call closeDb() before initDb() to write.');
+    }
+    const requestedPath = join(resolve(dbDir), DB_FILENAME);
+    if (dbPath !== null && resolve(dbPath) !== requestedPath) {
+      throw new Error(
+        `Coverage graph database is already open at ${dbPath}, a different directory from ${requestedPath}; `
+          + 'call closeDb() before initDb() to switch.',
+      );
+    }
+    return db;
+  }
 
   try {
     mkdirSync(dbDir, { recursive: true });
@@ -373,6 +387,17 @@ export function initDb(dbDir: string): Database.Database {
   }
 }
 
+// SQLite file-header bytes holding the file-format write and read versions, where 1 is rollback
+// and 2 is WAL. Setting both to rollback lets an in-memory copy of a WAL file open without its side files.
+const SQLITE_HEADER_WRITE_VERSION_OFFSET = 18;
+const SQLITE_HEADER_READ_VERSION_OFFSET = 19;
+const SQLITE_ROLLBACK_JOURNAL_VERSION = 1;
+
+/** Result of a read-only open: whether the database file existed on disk. */
+export interface ReadOnlyOpenResult {
+  present: boolean;
+}
+
 // The ambient declaration types only the writable constructor, so the
 // read-only open names the options overload it omits.
 const ReadOnlyDatabase = Database as unknown as new (
@@ -389,7 +414,7 @@ const ReadOnlyDatabase = Database as unknown as new (
  * @param dbDir - Directory for the database file.
  * @returns Whether the on-disk database file was present.
  */
-export function openReadOnlyDb(dbDir: string = COVERAGE_GRAPH_DATABASE_DIR): { present: boolean } {
+export function openReadOnlyDb(dbDir: string = COVERAGE_GRAPH_DATABASE_DIR): ReadOnlyOpenResult {
   if (db && readOnly) return { present: readOnlyPresent };
 
   if (db) {
@@ -405,10 +430,9 @@ export function openReadOnlyDb(dbDir: string = COVERAGE_GRAPH_DATABASE_DIR): { p
     if (!existsSync(`${path}-wal`) && !existsSync(`${path}-shm`)) {
       // A path open of a WAL-mode file recreates its -wal and -shm side files on the first
       // query; the patched copy opens from memory in rollback mode without touching disk.
-      // Header bytes 18 and 19 are the file-format write and read versions, where 1 is rollback and 2 is WAL.
       const buffer = readFileSync(path);
-      buffer[18] = 1;
-      buffer[19] = 1;
+      buffer[SQLITE_HEADER_WRITE_VERSION_OFFSET] = SQLITE_ROLLBACK_JOURNAL_VERSION;
+      buffer[SQLITE_HEADER_READ_VERSION_OFFSET] = SQLITE_ROLLBACK_JOURNAL_VERSION;
       db = new ReadOnlyDatabase(buffer, { readonly: true });
     } else {
       db = new ReadOnlyDatabase(path, { readonly: true, fileMustExist: true });

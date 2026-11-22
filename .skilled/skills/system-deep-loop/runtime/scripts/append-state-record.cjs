@@ -20,6 +20,7 @@
 // against a malformed interpolation) rather than silently corrupting the log.
 
 const fs = require('fs');
+const path = require('path');
 
 /**
  * Replace the record's timestamp with the moment it was actually appended,
@@ -73,6 +74,60 @@ function iterationRecordRefusal(record) {
     : 'iteration record is missing an integer iteration';
 }
 
+/**
+ * Where a path really lands once symlinks are followed, for a path that may not
+ * exist yet.
+ *
+ * The append creates its target, so a missing leaf is normal and is resolved
+ * through its parent. A dangling symlink leaf is followed to the location it
+ * names, because appending through it would create that file wherever it points.
+ *
+ * @param {string} absolutePath - Absolute candidate path.
+ * @returns {string} The physical location the append would write to.
+ */
+function canonicalLocation(absolutePath) {
+  try {
+    return fs.realpathSync(absolutePath);
+  } catch {
+    let parentReal;
+    try {
+      parentReal = fs.realpathSync(path.dirname(absolutePath));
+    } catch {
+      return absolutePath;
+    }
+    const leaf = path.join(parentReal, path.basename(absolutePath));
+    let linkTarget;
+    try {
+      linkTarget = path.resolve(parentReal, fs.readlinkSync(leaf));
+    } catch {
+      return leaf;
+    }
+    try {
+      return path.join(fs.realpathSync(path.dirname(linkTarget)), path.basename(linkTarget));
+    } catch {
+      return linkTarget;
+    }
+  }
+}
+
+/**
+ * The target must land inside the working directory the caller runs from. The
+ * deep-loop workflows run from the workspace root and name state logs under it,
+ * so a target that resolves elsewhere, directly or through a symlink, is a bad
+ * interpolation or an escape, and appending there would write an arbitrary file.
+ *
+ * @param {string} target - The caller-named state-log path.
+ * @returns {string|null} The refusal reason, or null when the target is contained.
+ */
+function targetContainmentRefusal(target) {
+  const root = fs.realpathSync(process.cwd());
+  const physical = canonicalLocation(path.resolve(root, target));
+  const relative = path.relative(root, physical);
+  const escapes = relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative);
+  if (relative !== '' && !escapes) return null;
+  return `target ${target} resolves outside the working directory (${root})`;
+}
+
 function main() {
   const args = process.argv.slice(2);
   const target = args[0];
@@ -87,6 +142,11 @@ function main() {
     process.stderr.write(`append-state-record.cjs: unknown option: ${token}\n`);
     process.stderr.write('usage: append-state-record.cjs <state-log-path> (record on stdin)\n');
     process.exit(2);
+  }
+  const escape = targetContainmentRefusal(target);
+  if (escape) {
+    process.stderr.write(`append-state-record: ${escape}; refusing to append\n`);
+    process.exit(1);
   }
 
   let buf = '';

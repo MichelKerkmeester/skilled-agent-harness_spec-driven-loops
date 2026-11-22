@@ -1,0 +1,7 @@
+scenario_id,kind,gold_mode,prompt,advisor_top,advisor_confidence,advisor_passes,mcp_tooling_above_threshold,route_action,route_selection_kind,route_target,stage1,stage2,verdict
+MBU-R-01,mode,mcp-chrome-devtools,debug this page with chrome devtools and take a screenshot,mcp-browser-use,0.95,true,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-R-02,mode,mcp-aside-devtools,use aside to fill this form in my signed-in account,mcp-browser-use,0.9308,true,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-R-03,mode,mcp-bladebro,use bladebro to attach to my open browser and finish the checkout flow,mcp-browser-use,0.9242,true,false,route,single,mcp-bladebro,true,true,PASS
+MBU-T-01,tie-break,mcp-aside-devtools,replay this signed-in checkout step by step and save the evidence,mcp-browser-use,0.8255,true,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-T-02,tie-break,mcp-bladebro,"in the browser I already have open, work out how to finish this signup",mcp-browser-use,0.8299,true,false,route,single,mcp-bladebro,true,true,PASS
+MBU-T-03,tie-break,mcp-chrome-devtools,export a HAR of this page load,mcp-browser-use,0.9161,true,false,route,single,mcp-chrome-devtools,true,true,PASS

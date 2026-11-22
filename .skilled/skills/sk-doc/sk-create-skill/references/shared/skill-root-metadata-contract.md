@@ -8,7 +8,7 @@ trigger_phrases:
   - "hub versus standalone skill class"
 importance_tier: normal
 contextType: implementation
-version: 1.2.10.0
+version: 1.2.11.0
 ---
 
 # Skill Root Metadata Contract
@@ -52,7 +52,7 @@ Classification deliberately ignores every other file, including generated output
 
 | Class | Roots |
 | --- | --- |
-| **H** (7) | `cli-classifier`, `cli-external-orchestration`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `system-deep-loop` |
+| **H** (8) | `cli-classifier`, `cli-external-orchestration`, `mcp-browser-use`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `system-deep-loop` |
 | **S** (6) | `cli-orca`, `mcp-code-mode`, `sk-git`, `sk-prompt`, `system-skill-advisor`, `system-spec-kit` |
 
 ---

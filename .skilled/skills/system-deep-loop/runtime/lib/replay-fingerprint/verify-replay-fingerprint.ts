@@ -67,6 +67,9 @@ interface LocatedAttestation {
 // 2. FAILURE HELPERS
 // ───────────────────────────────────────────────────────────────────
 
+// Longest digest text a failure result echoes back, for the expected and the actual digest alike.
+const FAILURE_DIGEST_MAX_LENGTH = 96;
+
 function requestedVersion(value: unknown): number | null {
   return Number.isSafeInteger(value) && (value as number) > 0
     ? value as number
@@ -84,8 +87,8 @@ function failureResult<TState extends JsonObject>(
     rangeEndSequence: input.rangeEndSequence,
     fingerprintVersion: requestedVersion(input.fingerprintVersion),
     component: error.component,
-    expectedDigest: error.expectedDigest?.slice(0, 96) ?? null,
-    actualDigest: error.actualDigest?.slice(0, 96) ?? null,
+    expectedDigest: error.expectedDigest?.slice(0, FAILURE_DIGEST_MAX_LENGTH) ?? null,
+    actualDigest: error.actualDigest?.slice(0, FAILURE_DIGEST_MAX_LENGTH) ?? null,
     earliestDivergence: Object.freeze({
       sequence: error.sequence,
       hop: error.hop,

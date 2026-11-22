@@ -27,6 +27,8 @@ Works out which parts of a run can safely happen at the same time. Each shipped 
 | `stable-digest.ts` | Canonical stringify and sha256 digest helpers with stable key ordering |
 | `types.ts` | Resource kind, edge, schedule and workstream type contracts |
 
+`derivedConflictEdges` in `graph.ts` runs to about 210 lines. It was reviewed and kept whole: its edges decide the canonical artifact bytes, so a split risks changing that output with no defect to fix. The checklists set no length limit, and no defect was found in it.
+
 ---
 
 ## 3. CONSUMERS

@@ -7,7 +7,7 @@ trigger_phrases:
   - "score executor reliability"
   - "laplace smoothing success probability"
   - "demotion threshold check"
-version: 1.4.0.5
+version: 1.4.1.0
 ---
 
 # Bayesian scorer
@@ -25,6 +25,8 @@ This feature belongs to the scoring group and is catalogued as F010 in the `runt
 ## 2. HOW IT WORKS
 
 Smoothed success scoring and demotion threshold checks.
+
+The scorer has no production caller. It is a test-only primitive, and its unit test is the only code that imports it.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 

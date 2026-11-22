@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
+  "spec_folder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
+  "parent_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing corpus and holdouts",
+      "six mode holdout coverage",
+      "chrome vs aside boundary",
+      "hub routing blind holdouts",
+      "scorer baseline recapture",
+      "routing corpus holdouts plan",
+      "blind holdout authoring plan",
+      "scorer baseline recapture plan",
+      "routing corpus holdouts tasks",
+      "blind holdout tasks",
+      "scorer baseline tasks",
+      "routing corpus holdouts summary"
+    ],
+    "key_topics": [
+      "routing",
+      "corpus",
+      "holdouts",
+      "six",
+      "mode",
+      "holdout",
+      "coverage",
+      "chrome",
+      "aside",
+      "boundary",
+      "hub",
+      "blind"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Holdout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub grew from three modes to six, but the blind-holdout suite in `hubrouting/` covered only mcp-chrome-devtools (MT-H01) and mcp-figma (MT-H02), so routing regressions in the four other modes had no blind detection",
+    "created_at": "2026-07-16T12:58:36Z",
+    "last_save_at": "2026-11-21T07:55:09.605Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ee361d474c2e1b901eaf1aa8bad89dc0e202ff00ac19e8f536b38eb84d695886",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "801d6aa5c32a957f626511f66303c93a0e420e0b98dff760d9dc49635cceaf01",
+      "plan.md": "87184ce8770b24eb42af13083de702ed24ada3d1e70c2ac45779e26753b430d1",
+      "tasks.md": "b3461e63c06f9c6af0c60e86070cb24f9bcc843933d9fca0c3f6f40c9d2aff47",
+      "implementation-summary.md": "3094c1b0b3ea96cede5017696e0a93ef31071c1c6374d77b395513eb1d1242b6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

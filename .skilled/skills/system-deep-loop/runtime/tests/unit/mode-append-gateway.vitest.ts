@@ -1180,3 +1180,48 @@ describe('mode append gateway', () => {
     })).toBe(join(process.cwd(), '.skilled/skills/.state/authority'));
   });
 });
+
+describe('appendModeEvent unreadable prior ledger', () => {
+  function appendOptions(harness: ReturnType<typeof createTestHarness>, authorityRoot: string) {
+    return {
+      mode: 'deep-research' as const,
+      runDirectory: harness.rootDirectory,
+      eventRecord: createTestEvent(harness.registry, 1),
+      authorityRoot,
+      policy: {
+        policyId: 'fixture-capability-policy',
+        policyVersion: 1,
+        policyDigest: '0'.repeat(64),
+      },
+      policyRegistry: harness.policies,
+      authorizationGateway: harness.gateway,
+      ledger: harness.ledger,
+      binding: createTestBinding(),
+    };
+  }
+
+  it('appends when the prior-event read succeeds', async () => {
+    const harness = createTestHarness(temporaryRoot('prior-read-ok'));
+    const result = await appendModeEvent(appendOptions(harness, temporaryRoot('prior-read-ok-auth')));
+
+    expect(result.ok).toBe(true);
+    expect(await harness.ledger.readVerifiedEvents()).toHaveLength(1);
+  });
+
+  it('refuses with a typed append outcome and leaves the ledger untouched when the prior-event read fails', async () => {
+    const harness = createTestHarness(temporaryRoot('prior-read-fails'));
+    const readVerifiedEvents = harness.ledger.readVerifiedEvents.bind(harness.ledger);
+    harness.ledger.readVerifiedEvents = () => Promise.reject(new Error('ledger frame 1 failed verification'));
+
+    const result = await appendModeEvent(appendOptions(harness, temporaryRoot('prior-read-fails-auth')));
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.phase).toBe('append');
+      expect(result.code).toBe(ModeAppendGatewayErrorCodes.APPEND_FAILED);
+      expect(result.reason).toContain('ledger frame 1 failed verification');
+    }
+    harness.ledger.readVerifiedEvents = readVerifiedEvents;
+    expect(await harness.ledger.readVerifiedEvents()).toHaveLength(0);
+  });
+});

@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # mcp-code-mode
@@ -162,13 +162,15 @@ Stay with the runtime's own tools for everything else. Read, Write, Edit, Grep, 
 
 ### Related Skills
 
-The [mcp-tooling](../mcp-tooling/SKILL.md) hub dispatches eight modes. Three of them run on Code Mode as their backend.
+The [mcp-tooling](../mcp-tooling/SKILL.md) hub dispatches six modes. Three of them run on Code Mode as their backend.
 
 | Mode | What it runs through Code Mode |
 |---|---|
 | [mcp-notion](../mcp-tooling/mcp-notion/SKILL.md) | Notion workspace operations over the official Notion MCP |
 | [mcp-refero](../mcp-tooling/mcp-refero/SKILL.md) | Read-only UI reference search |
 | [mcp-mobbin](../mcp-tooling/mcp-mobbin/SKILL.md) | Read-only app and screen research |
+
+The [mcp-browser-use](../mcp-browser-use/SKILL.md) hub dispatches three browser modes: Chrome DevTools, Aside and Bladebro. Each uses its CLI when installed and reaches its MCP server through Code Mode when the CLI is missing or the task needs an MCP-only capability.
 
 ---
 

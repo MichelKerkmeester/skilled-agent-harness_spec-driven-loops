@@ -264,7 +264,7 @@ export function createDeepReviewDeltasProjectionContract(
   return {
     surfaceId: 'review-deltas',
     ledgerId,
-    buildArtifacts(events: readonly EventReadResult[]): readonly LegacyProjectionContract<any>[] {
+    buildArtifacts(events: readonly EventReadResult[]): readonly LegacyProjectionContract<LegacyProjectionJsonObject>[] {
       if (!PARTITION_BY_ITERATION) {
         return [buildIterationArtifact(
           1, null,

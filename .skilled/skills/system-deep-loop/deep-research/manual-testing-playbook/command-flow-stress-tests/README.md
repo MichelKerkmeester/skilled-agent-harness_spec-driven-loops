@@ -1,7 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-research CP-04x/05x scenarios"
 description: "Sandboxed scenarios validating the /deep:research command-level entrypoint separately from the leaf iteration body."
-version: 1.15.2.0
+version: 1.15.4.0
 ---
 
 # Command-Flow Stress Tests
@@ -20,7 +20,7 @@ Six scenarios, CP-046 to CP-051, plus the sandbox setup script. All six enter th
 
 ---
 
-## 3. SCENARIO CONTRACT
+## 3. CONTENTS
 
 Each scenario is one Markdown file named for its topic. Its sections follow the per-feature order: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES and SOURCE METADATA. The table lists each file with its CP ID and the claim it proves.
 
@@ -38,7 +38,7 @@ Each scenario is one Markdown file named for its topic. Its sections follow the 
 
 ## 4. TEST ENVIRONMENTS
 
-Scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`. Provision the shared fixture tree with `setup-cp-sandbox.sh` before the first run, as the root playbook index directs. The script builds `/tmp/cp-deep-research-sandbox` by default and takes `--sandbox-dir PATH` to build it elsewhere.
+Scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`. Provision the shared fixture tree with `setup-cp-sandbox.sh` before the first run, as the root playbook index directs. The script builds `/tmp/cp-deep-research-sandbox` by default and takes `--sandbox-dir PATH` to build it elsewhere under `/tmp/`. Because it deletes that path first, it refuses `/tmp` itself, any `.` or `..` segment and a path that resolves outside `/tmp` through a symlink, with exit code 2.
 
 ---
 

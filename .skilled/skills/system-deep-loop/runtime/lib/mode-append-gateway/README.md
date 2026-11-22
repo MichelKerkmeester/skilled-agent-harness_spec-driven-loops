@@ -65,7 +65,7 @@ options: mode, runDirectory, eventRecord, policy, ledger, ...
 | `ENVELOPE_INVALID` | Part of the vocabulary only, declared for an event record that does not match the mode ledger schema. No stage returns it today |
 | `STATE_LOG_UNATTRIBUTED` | Phase `provenance`: the research or review state log opens with a config row while the ledger holds no `run_initialized` event, so the row was written outside the gateway. Nothing is appended |
 | `AUTHORIZATION_DENIED` | The transition gateway declined the request |
-| `APPEND_FAILED` | Fenced append raised a head conflict, fence error or storage error, or the retry budget ran out |
+| `APPEND_FAILED` | Fenced append raised a head conflict, fence error or storage error, or the retry budget ran out. Also returned in phase `append` when the ledger cannot be read before stage 3b, so the provenance and idempotency checks never run on missing data. Nothing is appended, and the reason carries the read error |
 | `IDEMPOTENCY_CONFLICT` | Phase `append`: the event's idempotency key already names a ledger event of a different kind, or a same-kind event with other content. Nothing is appended, and the reason names the key |
 | `PROJECTION_FAILED` | The projection refresh ran and did not succeed after the append was durable |
 

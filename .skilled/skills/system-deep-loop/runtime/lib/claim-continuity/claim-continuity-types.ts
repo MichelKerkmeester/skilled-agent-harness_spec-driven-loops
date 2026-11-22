@@ -24,6 +24,9 @@ import type {
 
 export const CLAIM_CONTINUITY_SCHEMA_VERSION = 1;
 
+/** Longest run, claim or match identity string the claim-continuity surfaces accept. */
+export const CLAIM_IDENTITY_MAX_LENGTH = 512;
+
 export const ClaimLifecycleStates = {
   PROPOSED: 'proposed',
   ACTIVE: 'active',

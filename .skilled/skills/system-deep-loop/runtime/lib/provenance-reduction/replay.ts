@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { canonicalJson } from '../event-envelope/index.js';
-import { stableDigest } from './identity.js';
+import { compareCodeUnits, stableDigest } from './identity.js';
 
 import type {
   AdjudicationAudit,
@@ -126,16 +126,18 @@ export function replayProvenanceLedger(
   }
   const policyRecord = recordOf(policy.policy);
   const orderedDispositions = dispositions.sort((left, right) => (
-    left.candidateId.localeCompare(right.candidateId)
+    compareCodeUnits(left.candidateId, right.candidateId)
   ));
   const orderedRegistrations = registrations.sort((left, right) => (
-    requiredString(left.resultEnvelopeId, 'resultEnvelopeId')
-      .localeCompare(requiredString(right.resultEnvelopeId, 'resultEnvelopeId'))
+    compareCodeUnits(
+      requiredString(left.resultEnvelopeId, 'resultEnvelopeId'),
+      requiredString(right.resultEnvelopeId, 'resultEnvelopeId'),
+    )
   ));
   return Object.freeze({
     acceptedCandidateIds: Object.freeze(acceptedCandidateIds.sort()),
     adjudications: Object.freeze(adjudications.sort((left, right) => (
-      left.semanticEquivalenceKey.localeCompare(right.semanticEquivalenceKey)
+      compareCodeUnits(left.semanticEquivalenceKey, right.semanticEquivalenceKey)
     ))),
     conflictIds: Object.freeze(conflictIds.sort()),
     dedupGroupIds: Object.freeze(dedupGroupIds.sort()),
@@ -147,7 +149,7 @@ export function replayProvenanceLedger(
     policyId: requiredString(policyRecord.policyId, 'policyId'),
     policyVersion: Number(policyRecord.policyVersion),
     schedules: Object.freeze(schedules.sort((left, right) => (
-      left.sourceBucketId.localeCompare(right.sourceBucketId)
+      compareCodeUnits(left.sourceBucketId, right.sourceBucketId)
     ))),
     sourceRegistrationDigest: stableDigest(orderedRegistrations),
   });

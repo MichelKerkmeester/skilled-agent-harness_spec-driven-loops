@@ -82,7 +82,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
-      "sha256": "1b22e0533cac584cde76b2c1d0d304cf256913be2bf930f675fec1a6de7cb5bb",
+      "sha256": "83523379ee7037ffdc4b041315c9cc1442acd0fd7a6d28f6d4c963b3a05774c6",
       "section": "full"
     }
   ],

@@ -87,21 +87,17 @@ interface MutableEdge {
 // 4. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
-function compareText(left: string, right: string): number {
-  return compareStableText(left, right);
-}
-
 function uniqueSorted(values: readonly string[]): readonly string[] {
-  return [...new Set(values)].sort(compareText);
+  return [...new Set(values)].sort(compareStableText);
 }
 
 function compareCanonicalResources(left: CanonicalResource, right: CanonicalResource): number {
-  const canonicalOrder = compareText(left.canonical_id, right.canonical_id);
+  const canonicalOrder = compareStableText(left.canonical_id, right.canonical_id);
   if (canonicalOrder !== 0) return canonicalOrder;
-  const identityOrder = compareText(left.identity, right.identity);
+  const identityOrder = compareStableText(left.identity, right.identity);
   return identityOrder !== 0
     ? identityOrder
-    : compareText(stableStringify(left), stableStringify(right));
+    : compareStableText(stableStringify(left), stableStringify(right));
 }
 
 function normalizeSourcePath(sourcePath: string): string {
@@ -146,9 +142,9 @@ function exactNodeSetProblems(values: readonly string[]): {
     seen.add(value);
   }
   return {
-    duplicates: [...duplicates].sort(compareText),
+    duplicates: [...duplicates].sort(compareStableText),
     missing: PHASE_013_WORKSTREAMS.filter((value) => !seen.has(value)),
-    extra: [...seen].filter((value) => !expected.has(value)).sort(compareText),
+    extra: [...seen].filter((value) => !expected.has(value)).sort(compareStableText),
   };
 }
 
@@ -173,7 +169,7 @@ function validateDeclarations(declarations: readonly ModeResourceDeclaration[]):
   const renamed = declarations
     .filter((declaration) => declaration.modeSlug !== declaration.id)
     .map((declaration) => `${declaration.id}->${declaration.modeSlug}`)
-    .sort(compareText);
+    .sort(compareStableText);
   if (problems.duplicates.length + problems.missing.length + problems.extra.length + renamed.length > 0) {
     throw new WriteSetGraphValidationError(
       WriteSetGraphErrorCodes.INVALID_MODE_DECLARATIONS,
@@ -296,7 +292,7 @@ function generatedSources(
   }
 
   return {
-    sources: [...byPath.values()].sort((left, right) => compareText(left.path, right.path)),
+    sources: [...byPath.values()].sort((left, right) => compareStableText(left.path, right.path)),
     issues,
   };
 }
@@ -393,7 +389,7 @@ function addEdge(
   },
 ): void {
   const isDirected = input.edgeType === 'hard-order';
-  const [from, to] = isDirected || compareText(input.from, input.to) <= 0
+  const [from, to] = isDirected || compareStableText(input.from, input.to) <= 0
     ? [input.from, input.to]
     : [input.to, input.from];
   const key = edgeKey(from, to, input.edgeType);
@@ -456,8 +452,8 @@ function derivedConflictEdges(nodes: readonly GraphNode[]): {
           .filter((rightCanonicalId) => pathResourceOverlap(leftCanonicalId, rightCanonicalId))
           .map((rightCanonicalId) => [leftCanonicalId, rightCanonicalId] as const))
         .sort(([leftA, rightA], [leftB, rightB]) => {
-          const leftOrder = compareText(leftA, leftB);
-          return leftOrder !== 0 ? leftOrder : compareText(rightA, rightB);
+          const leftOrder = compareStableText(leftA, leftB);
+          return leftOrder !== 0 ? leftOrder : compareStableText(rightA, rightB);
         });
 
       for (const [leftCanonicalId, rightCanonicalId] of overlapping) {
@@ -691,14 +687,14 @@ function finalizeEdges(edges: ReadonlyMap<string, MutableEdge>): readonly Confli
     to: edge.to,
     edge_type: edge.edgeType,
     edge_origin: edge.edgeOrigin,
-    resources: [...edge.resources].sort(compareText),
+    resources: [...edge.resources].sort(compareStableText),
     serialization: edge.serialization,
     reason: edge.reason,
     evidence: [...edge.evidence.values()].sort((left, right) => {
-      const pathOrder = compareText(left.source_path, right.source_path);
-      return pathOrder !== 0 ? pathOrder : compareText(left.detail, right.detail);
+      const pathOrder = compareStableText(left.source_path, right.source_path);
+      return pathOrder !== 0 ? pathOrder : compareStableText(left.detail, right.detail);
     }),
-  })).sort((left, right) => compareText(left.id, right.id));
+  })).sort((left, right) => compareStableText(left.id, right.id));
 }
 
 function dependencyCycleIssue(nodes: readonly GraphNode[], edges: readonly ConflictEdge[]): GraphValidationIssue | null {
@@ -711,16 +707,16 @@ function dependencyCycleIssue(nodes: readonly GraphNode[], edges: readonly Confl
   const ready = [...incoming.entries()]
     .filter(([, count]) => count === 0)
     .map(([nodeId]) => nodeId)
-    .sort(compareText);
+    .sort(compareStableText);
   let visited = 0;
   while (ready.length > 0) {
     const nodeId = ready.shift() as string;
     visited += 1;
-    for (const target of (outgoing.get(nodeId) ?? []).sort(compareText)) {
+    for (const target of (outgoing.get(nodeId) ?? []).sort(compareStableText)) {
       const next = (incoming.get(target) ?? 0) - 1;
       incoming.set(target, next);
       if (next === 0) ready.push(target);
-      ready.sort(compareText);
+      ready.sort(compareStableText);
     }
   }
   if (visited === nodes.length) return null;
@@ -745,8 +741,8 @@ function independentAssertion(
     right: REVIEW_NODE_ID,
     assertion: 'independent-if-resource-disjoint',
     validated: conflicts.length === 0,
-    conflict_edge_ids: conflicts.map((edge) => edge.id).sort(compareText),
-    evidence: [research.source_digest, review.source_digest].sort(compareText),
+    conflict_edge_ids: conflicts.map((edge) => edge.id).sort(compareStableText),
+    evidence: [research.source_digest, review.source_digest].sort(compareStableText),
     reason: conflicts.length === 0
       ? 'The current canonical resource sets are disjoint for mutable access.'
       : 'Actual resource conflicts override the independence assertion.',
@@ -757,8 +753,8 @@ function deduplicateIssues(issues: readonly GraphValidationIssue[]): readonly Gr
   const byKey = new Map<string, GraphValidationIssue>();
   for (const issue of issues) byKey.set(stableStringify(issue), issue);
   return [...byKey.values()].sort((left, right) => {
-    const codeOrder = compareText(left.code, right.code);
-    return codeOrder !== 0 ? codeOrder : compareText(left.message, right.message);
+    const codeOrder = compareStableText(left.code, right.code);
+    return codeOrder !== 0 ? codeOrder : compareStableText(left.message, right.message);
   });
 }
 
@@ -783,7 +779,7 @@ export function deriveWriteSetConflictGraph(input: GraphBuildInput): WriteSetCon
   }
 
   const nodes = [...input.declarations]
-    .sort((left, right) => compareText(left.id, right.id))
+    .sort((left, right) => compareStableText(left.id, right.id))
     .map((declaration) => {
       const result = canonicalizeNode(declaration, sourceResult.sources, aliases);
       issues.push(...result.issues);

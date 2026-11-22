@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing",
+  "description": "Every divider the hosted ClickUp MCP writes into a doc page gets an empty line under it",
+  "keywords": [
+    "every",
+    "divider",
+    "hosted",
+    "clickup",
+    "mcp",
+    "writes",
+    "doc",
+    "page",
+    "gets",
+    "empty",
+    "line"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.648Z",
+  "specId": "003",
+  "folderSlug": "clickup-doc-divider-spacing",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "clickup-figma"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

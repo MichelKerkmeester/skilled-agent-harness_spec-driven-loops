@@ -22,8 +22,10 @@
 .skilled/skills/cli-external-orchestration/manual-testing-playbook
 .skilled/skills/mcp-code-mode/manual-testing-playbook
 .skilled/skills/mcp-tooling/manual-testing-playbook
-.skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook
-.skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook
+.skilled/skills/mcp-browser-use/manual-testing-playbook
+.skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook
+.skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook
+.skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook
 .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook
 .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook
 .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook

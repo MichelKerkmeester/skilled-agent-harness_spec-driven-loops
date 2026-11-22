@@ -990,16 +990,18 @@ export function assertExecutorWebSearchCapability(
   });
 }
 
+interface ExecutorConfigSources {
+  cli?: Partial<ExecutorConfig>;
+  file?: Partial<ExecutorConfig>;
+}
+
 /**
  * Resolve an executor configuration by merging CLI and file sources.
  *
  * @param sources - CLI and file partial configs (CLI takes precedence).
  * @returns Validated ExecutorConfig.
  */
-export function resolveExecutorConfig(sources: {
-  cli?: Partial<ExecutorConfig>;
-  file?: Partial<ExecutorConfig>;
-}): ExecutorConfig {
+export function resolveExecutorConfig(sources: ExecutorConfigSources): ExecutorConfig {
   const merged = {
     ...(sources.file ?? {}),
     ...(sources.cli ?? {}),

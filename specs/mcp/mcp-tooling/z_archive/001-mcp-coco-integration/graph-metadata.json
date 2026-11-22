@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/001-mcp-coco-integration",
+  "spec_folder": "mcp/mcp-tooling/z_archive/001-mcp-coco-integration",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cocoindex",
+      "semantic code search",
+      "coco-index integration",
+      "code search mcp",
+      "cocoindex_code",
+      "coco-index plan",
+      "semantic code search plan",
+      "cocoindex_code mcp config",
+      "cocoindex tasks",
+      "coco-index tasks",
+      "cocoindex_code tasks",
+      "semantic search tasks"
+    ],
+    "key_topics": [
+      "cocoindex",
+      "semantic",
+      "code",
+      "search",
+      "coco-index",
+      "integration",
+      "mcp",
+      "plan",
+      "config",
+      "tasks",
+      "opencode",
+      "capability"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".opencode/agents/context.md",
+      "scratch/cross-cli-auto-usage-test-results.md",
+      ".claude/agents/context.md",
+      ".codex/agents/context.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-cli-auto-usage-test-results.md",
+        "kind": "doc",
+        "path": "scratch/cross-cli-auto-usage-test-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adoption Boosting",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Install",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Code Search Protocol",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Server Registration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode had no semantic code search capability",
+    "created_at": "2026-04-12T09:02:50.170Z",
+    "last_save_at": "2026-11-21T07:55:09.400Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:9b37e0e864096aee5fd2cff081bc49541fb449a2ca92e0d1850a80b9640c9981",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "53c2470cb25559d67ad84f3f07132c7b8194b8b429e37a4d368060a95f27df26",
+      "plan.md": "d005fce4c9faba4160b2f4b71a1d6fba7a48548c9e8eedff76de545b84a1ab45",
+      "tasks.md": "b3528e408c4aecaa432f3950def4f5be43cc01ce794a9c05afc1bf6704b397c0",
+      "implementation-summary.md": "4a3313b99da3a3c1677479b3733d2d8b57fdd7a4ce394d4137f0c3d630ca99a7",
+      "research/research.md": "c19163b2133a063265c9d7301e330bfaa1487eb70d54930c08874bf75f870824"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -69,7 +69,8 @@ interface EvaluationDecision {
 // 2. EVIDENCE PROJECTION
 // ───────────────────────────────────────────────────────────────────
 
-function compareText(left: string, right: string): number {
+/** Order strings by UTF-16 code unit so ledger order and receipts never follow the host locale. */
+export function compareText(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
 }
 

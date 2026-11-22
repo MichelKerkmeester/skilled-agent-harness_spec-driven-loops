@@ -34,7 +34,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | File | Responsibility |
 |---|---|
 | `append-mode-event.cjs` | Appends a validated mode event through the authorized gateway and refreshes the mode's state projection. In review mode it also records a bare `type:"iteration"` record and projects it back. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote rides beside it as `claimedTimestamp`. A legacy research or review row's event id, idempotency key, producer and epoch are minted by the gateway, never taken from the row. A reused key with other content exits 2 and writes the reason to stderr. |
-| `append-state-record.cjs` | Appends a validated state record, read from stdin, to the state log named as its one argument. It restamps `timestamp` with the append time and keeps a differing claimed time as `reportedTimestamp`. It refuses an iteration record without a positive integer `iteration`. A missing, flag-shaped or surplus target exits 2. An empty record, invalid JSON or a refused iteration record exits 1. |
+| `append-state-record.cjs` | Appends a validated state record, read from stdin, to the state log named as its one argument. It restamps `timestamp` with the append time and keeps a differing claimed time as `reportedTimestamp`. It refuses an iteration record without a positive integer `iteration`. It refuses a target that resolves outside the working directory, directly or through a symlink, before anything is written. A missing, flag-shaped or surplus target exits 2. An escaping target, an empty record, invalid JSON or a refused iteration record exits 1. |
 | `check-contract-drift.cjs` | Checks command and runtime contract surfaces for drift. |
 | `check-documentation-drift.cjs` | Checks the hub README, mode READMEs and the benchmark report index against the mode registry for stale links and counts. |
 | `check-direct-append.cjs` | Detects a write to a legacy state file that bypassed the gateway, once a mode's authority has moved. |
@@ -66,7 +66,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `synthesis-closeout.cjs` | Checks a finished research or review synthesis against its iteration state, including lineage logs, and stages the completion event for the gateway. |
 | `terminal-gates.cjs` | Computes a stopping review's three terminal gates, `evidence`, `scope` and `coverage`, from its config, state log and finding registry, each row carrying a digest of the summary it was decided from. A failed gate is reported, not an error. An absent registry file means no recorded findings. Takes `--config-path`, `--state-log` and `[--registry-path]`, prints JSON and exits 2 on any error. |
 | `upsert.cjs` | Stores graph nodes, edges and iteration events. |
-| `workflow-steps.cjs` | Carries the multi-line step programs the research and review workflows once ran inline as `node -e` bodies, one subcommand each, so a workflow step makes one plain call: `prior-lineage`, `extend-research`, `extend-review`, `generation`, `run-open-research`, `run-open-review`, `max-duration`, `replay-legacy-review` and `refuse-single-vibe`. |
+| `workflow-steps.cjs` | Carries the multi-line step programs the research and review workflows once ran inline as `node -e` bodies, one subcommand each, so a workflow step makes one plain call: `prior-lineage`, `extend-research`, `extend-review`, `generation`, `run-open-research`, `run-open-review`, `max-duration`, `replay-legacy-review` and `refuse-single-vibe`. A malformed state-log line is skipped with a warning on stderr, and a read failure other than a missing file fails the step. |
 | `verify-authority.cjs` | Read-only verifier that reads each mode's `authority-<mode>.json` record straight from disk, independent of the flip runner. A missing record is reported as source `default` and an unparsable one as `malformed`. Takes `[--authority-root <path>]` and prints JSON with `allOnLedger`. Exits 0 when every mode is on the ledger with the dark writer, 2 when one is not and 1 on a script error. |
 | `verify-iteration.cjs` | Validates iteration artifacts and their required evidence. |
 
@@ -97,6 +97,8 @@ Cite every finding as path:line.
 Scripts are the command boundary between mode workflow YAML and the runtime spine. They normalize input, call the appropriate library module or run the logic they carry, preserve structured output and map failures to stable exit behavior.
 
 Fan-out scripts additionally own subprocess coordination and salvage. State and graph ownership remains in the library modules and database layer.
+
+`fanout-run.cjs`, `reduce-state.cjs`, `convergence.cjs` and `fanout-merge.cjs` are a reviewed exception to single responsibility. Each carries several concerns in one file, and `fanout-run.cjs` holds budget, Vibe, status-table and watchdog logic side by side. Their exports are imported widely across the test suite and other scripts, so a split would move a wide surface with no defect behind it. A concern moves into `../lib/` when a change touches that concern.
 
 ---
 

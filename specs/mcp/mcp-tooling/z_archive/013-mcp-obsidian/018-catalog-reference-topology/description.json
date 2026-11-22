@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+  "description": "The mcp-obsidian feature catalog spreads 25 cards over 14 narrowly named directories, making navigation heavier than the surface warrants",
+  "keywords": [
+    "mcp-obsidian",
+    "feature",
+    "catalog",
+    "spreads",
+    "cards",
+    "narrowly",
+    "named",
+    "directories",
+    "navigation",
+    "heavier",
+    "surface",
+    "warrants"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.795Z",
+  "specId": "018",
+  "folderSlug": "catalog-reference-topology",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

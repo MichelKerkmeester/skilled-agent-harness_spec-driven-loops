@@ -191,17 +191,17 @@ validate_spec_folder_name() {
     fi
 }
 
-# A declared sub-track: a non-numbered direct child of a track root, with no
-# spec.md of its own and a description.json that names its level "sub-track".
-# The declaration is what makes it a container, and an archive folder is never
-# one. A missing description, an unreadable one or a missing node all leave the
-# folder undeclared rather than promoting it.
+# A declared sub-track: a non-numbered direct child of a track root, or of a
+# declared level-1 sub-track, with no spec.md of its own and a description.json
+# that names its level "sub-track". Two levels is the limit. The declaration is
+# what makes it a container, and an archive folder is never one. A missing
+# description, an unreadable one or a missing node all leave the folder
+# undeclared rather than promoting it.
 is_declared_subtrack() {
     local folder="$1"
     local specs_root="$2"
     local name track
     [[ -d "$folder" && ! -L "$folder" ]] || return 1
-    [[ "$(dirname "$(dirname "$folder")")" == "$specs_root" ]] || return 1
     name="$(basename "$folder")"
     track="$(basename "$(dirname "$folder")")"
     [[ "$name" != z_* && "$name" != .* && "$name" != node_modules && "$track" != z_* && "$track" != .* && "$track" != node_modules ]] || return 1
@@ -213,6 +213,12 @@ is_declared_subtrack() {
     [[ ! -f "$folder/spec.md" && ! -f "$(dirname "$folder")/spec.md" ]] || return 1
     [[ ! -L "$folder/description.json" ]] || return 1
     [[ -f "$folder/description.json" ]] || return 1
+    # The cheap name and file checks run first, so a packet beside a sub-track
+    # never costs the parent's declaration read below.
+    if [[ "$(dirname "$(dirname "$folder")")" != "$specs_root" ]]; then
+        [[ "$(dirname "$(dirname "$(dirname "$folder")")")" == "$specs_root" ]] || return 1
+        is_declared_subtrack "$(dirname "$folder")" "$specs_root" || return 1
+    fi
     node -e '
 const fs = require("fs");
 try {
@@ -224,9 +230,10 @@ process.exit(1);
 }
 
 # The track a folder belongs to for its metadata refresh: the track name for a
-# packet directly under specs/<track>/, and "<track>/<sub>" for a packet directly
-# under a declared sub-track. A phase nested in a packet belongs to no track
-# level: its parent's list is left alone, as before.
+# packet directly under specs/<track>/, and the sub-track's id, "<track>/<sub>"
+# or "<track>/<sub>/<inner>", for a packet directly under a declared sub-track.
+# A phase nested in a packet belongs to no track level: its parent's list is
+# left alone, as before.
 track_of() {
     local folder="$1"
     local specs_root="$2"
@@ -241,7 +248,7 @@ track_of() {
         return 0
     fi
     if is_declared_subtrack "$parent" "$specs_root"; then
-        printf '%s/%s' "$(basename "$(dirname "$parent")")" "$(basename "$parent")"
+        printf '%s' "${parent#"$specs_root"/}"
     fi
 }
 
@@ -261,18 +268,19 @@ is_packet_home() {
     local first="${relative%%/*}"
     [[ "$first" != "z_archive" && "$first" != .* ]] || return 1
     [[ "$relative" == */* ]] || return 0
-    local segments=() segment index=0
+    local segments=() segment sub_levels=0 below_packet=false container="$specs_root/$first"
     IFS=/ read -r -a segments <<< "${relative#*/}"
     for segment in "${segments[@]}"; do
         [[ -n "$segment" ]] || return 1
         if [[ "$segment" =~ ^[0-9]{3} ]]; then
-            index=$((index + 1))
+            below_packet=true
             continue
         fi
-        # A sub-track sits directly in its track, so only the first segment below
-        # the track may be one.
-        if (( index == 0 )) && is_declared_subtrack "$specs_root/$first/$segment" "$specs_root"; then
-            index=$((index + 1))
+        # Sub-tracks sit directly in their track or level-1 sub-track, so only
+        # the first two segments below the track may be one, before any packet.
+        if ! $below_packet && (( sub_levels < 2 )) && is_declared_subtrack "$container/$segment" "$specs_root"; then
+            container="$container/$segment"
+            sub_levels=$((sub_levels + 1))
             continue
         fi
         return 1
@@ -305,17 +313,19 @@ refresh_track_root() {
     fi
 }
 
-# A declared sub-track's identity carries its track, "<track>/<sub>", so a move
-# inside it refreshes both levels: either list that disagrees with the disk is
-# repaired in the same step. A flat track refreshes the one level it always did.
+# A declared sub-track's identity carries every level above it, "<track>/<sub>"
+# or "<track>/<sub>/<inner>", so a move inside it refreshes each level: any list
+# that disagrees with the disk is repaired in the same step. A flat track
+# refreshes the one level it always did.
 refresh_track_levels() {
     local specs_root="$1"
     local track="$2"
     [[ -n "$track" ]] || return 0
     refresh_track_root "$specs_root" "$track"
-    if [[ "$track" == */* ]]; then
-        refresh_track_root "$specs_root" "${track%%/*}"
-    fi
+    while [[ "$track" == */* ]]; do
+        track="${track%/*}"
+        refresh_track_root "$specs_root" "$track"
+    done
 }
 
 # A packet records where it lives: description.json specFolder, the graph
@@ -375,9 +385,10 @@ refuse_mixed_track_restore() {
     local from_id to_id track track_dir sub sub_id="" name
 
     track="$(track_of "$destination" "$specs_root")"
-    # A packet already inside a sub-track has no track level above it that could
-    # become mixed, so the preflight has no mixed-track verdict to give.
-    [[ -n "$track" && "$track" != */* ]] || return 0
+    # A packet inside a level-2 sub-track has no level below it that could make
+    # its home mixed, so the preflight has no mixed-track verdict to give. A track
+    # or a level-1 sub-track can be.
+    [[ -n "$track" && "$track" != */*/* ]] || return 0
 
     track_dir="$specs_root/$track"
     for sub in "$track_dir"/*/; do
@@ -643,11 +654,17 @@ archive_dirs() {
             continue
         fi
         archive_dirs_under "$track"
-        # A declared sub-track keeps its own archive one level below the track.
-        local sub
+        # A declared sub-track keeps its own archive one level below the track,
+        # and a level-2 sub-track one level below that.
+        local sub inner
         for sub in "$track"/*/; do
             sub="${sub%/}"
-            is_declared_subtrack "$sub" specs && archive_dirs_under "$sub"
+            is_declared_subtrack "$sub" specs || continue
+            archive_dirs_under "$sub"
+            for inner in "$sub"/*/; do
+                inner="${inner%/}"
+                is_declared_subtrack "$inner" specs && archive_dirs_under "$inner"
+            done
         done
     done
 }

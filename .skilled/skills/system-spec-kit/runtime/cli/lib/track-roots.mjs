@@ -16,6 +16,12 @@
 // sub-track is skipped, because its files belong to another repository. A
 // non-numbered folder without the declaration is reported and never promoted.
 //
+// A level-1 sub-track may in turn hold declared sub-tracks, "<track>/<sub>/<inner>",
+// read the same way and listed in their level-1 parent's children. Two levels is
+// the limit: a declared folder inside a level-2 sub-track is reported and never
+// read. Inside a level-1 sub-track only declared folders are acted on, so a tree
+// with one level reports exactly what it reported before nesting existed.
+//
 // A track is read from the working tree or from a commit. The commit view
 // exists for the pre-push gate: in a shared checkout the working tree carries
 // other sessions' unfinished packets, and the pushed commit is what matters.
@@ -31,6 +37,9 @@ export const SPEC_LEAF_SEGMENT_PATTERN = /^\d{3}(?:[-_].+)?$/;
 const GRAPH_METADATA = 'graph-metadata.json';
 const DESCRIPTION = 'description.json';
 const SUB_TRACK_LEVEL = 'sub-track';
+/** How many declared sub-track levels a track may hold. */
+export const MAX_SUB_TRACK_DEPTH = 2;
+const NESTED_TOO_DEEP = 'declared sub-track nested past two sub-track levels, not read';
 
 // An archive folder (z_*) holds packets that are done, so it is never a track
 // or a sub-track at either level.
@@ -83,6 +92,78 @@ function numberedChildren(directory) {
     .sort();
 }
 
+/** The declaration in a working-tree folder, or null; a linked description never counts. */
+function readWorkingTreeDescription(folder) {
+  // A commit stores a linked description as its link text, which never parses,
+  // so a link is refused here too and both views reach the same answer.
+  const descriptionPath = path.join(folder, DESCRIPTION);
+  const linked = fs.lstatSync(descriptionPath, { throwIfNoEntry: false })?.isSymbolicLink() === true;
+  return linked ? null : parseObject(readOptionalText(descriptionPath) ?? '');
+}
+
+// A packet that moved into a sub-track can leave its ignored files behind under
+// the old flat name. Git never sees that folder, so it is reported here and not
+// counted as a packet.
+function reportStrandedNumbered(container, containerPath, diagnostics) {
+  if (!container.children.some((child) => !SPEC_LEAF_SEGMENT_PATTERN.test(child))) return;
+  for (const entry of fs.readdirSync(containerPath, { withFileTypes: true })) {
+    if (!entry.isDirectory() || !SPEC_LEAF_SEGMENT_PATTERN.test(entry.name)) continue;
+    if (fs.existsSync(path.join(containerPath, entry.name, 'spec.md'))) continue;
+    diagnostics.push(`${container.name}/${entry.name}: numbered folder without spec.md beside sub-tracks`);
+  }
+}
+
+/**
+ * Read the declared sub-tracks directly inside a container at `depth` (1 inside a
+ * track, 2 inside a level-1 sub-track). At depth 1 every non-numbered folder is
+ * judged and reported; deeper, only a declared folder is acted on, so a level-1
+ * sub-track's other contents stay as silent as they always were.
+ */
+function readWorkingTreeSubTracks(container, containerPath, depth, tracks, diagnostics) {
+  const candidates = fs.readdirSync(containerPath, { withFileTypes: true })
+    .filter((entry) => isCandidateTrackName(entry.name))
+    .sort(byFolderName);
+  for (const entry of candidates) {
+    const id = `${container.name}/${entry.name}`;
+    const subPath = path.join(containerPath, entry.name);
+    if (depth > 1) {
+      if (!entry.isDirectory() && !entry.isSymbolicLink()) continue;
+      if (entry.isSymbolicLink() || !isDeclaredSubTrack(readWorkingTreeDescription(subPath))) continue;
+      if (depth > MAX_SUB_TRACK_DEPTH) {
+        diagnostics.push(`${id}: ${NESTED_TOO_DEEP}`);
+        continue;
+      }
+    }
+    if (entry.isSymbolicLink()) {
+      diagnostics.push(`${id}: symlinked folder skipped, not followed`);
+      continue;
+    }
+    // Real directories only, as in a commit, where a file or a link is not
+    // a container. A folder that does not declare itself stays a diagnostic.
+    if (!entry.isDirectory()) continue;
+    if (!isDeclaredSubTrack(readWorkingTreeDescription(subPath))) {
+      diagnostics.push(`${id}: undeclared folder ignored`);
+      continue;
+    }
+    if (fs.existsSync(path.join(subPath, 'spec.md'))) {
+      diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
+      continue;
+    }
+    container.children.push(entry.name);
+    const subTrack = {
+      name: id,
+      metadataPath: path.join(subPath, GRAPH_METADATA),
+      rawMetadata: readOptionalText(path.join(subPath, GRAPH_METADATA)),
+      children: numberedChildren(subPath),
+      symlinked: false,
+    };
+    tracks.push(subTrack);
+    readWorkingTreeSubTracks(subTrack, subPath, depth + 1, tracks, diagnostics);
+  }
+  reportStrandedNumbered(container, containerPath, diagnostics);
+  container.children.sort(compareNames);
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. WORKING-TREE VIEW
 // ───────────────────────────────────────────────────────────────────
@@ -123,53 +204,7 @@ export function readWorkingTreeTracks(specsRoot) {
       symlinked: fs.lstatSync(trackPath).isSymbolicLink(),
     };
     tracks.push(track);
-
-    const containers = fs.readdirSync(trackPath, { withFileTypes: true })
-      .filter((entry) => isCandidateTrackName(entry.name))
-      .sort(byFolderName);
-    for (const entry of containers) {
-      const id = `${name}/${entry.name}`;
-      if (entry.isSymbolicLink()) {
-        diagnostics.push(`${id}: symlinked folder skipped, not followed`);
-        continue;
-      }
-      // Real directories only, as in a commit, where a file or a link is not
-      // a container. A folder that does not declare itself stays a diagnostic.
-      if (!entry.isDirectory()) continue;
-      const subPath = path.join(trackPath, entry.name);
-      // A commit stores a linked description as its link text, which never parses,
-      // so a link is refused here too and both views reach the same answer.
-      const descriptionPath = path.join(subPath, DESCRIPTION);
-      const linkedDescription = fs.lstatSync(descriptionPath, { throwIfNoEntry: false })?.isSymbolicLink() === true;
-      const description = linkedDescription ? null : parseObject(readOptionalText(descriptionPath) ?? '');
-      if (!isDeclaredSubTrack(description)) {
-        diagnostics.push(`${id}: undeclared folder ignored`);
-        continue;
-      }
-      if (fs.existsSync(path.join(subPath, 'spec.md'))) {
-        diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
-        continue;
-      }
-      track.children.push(entry.name);
-      tracks.push({
-        name: id,
-        metadataPath: path.join(subPath, GRAPH_METADATA),
-        rawMetadata: readOptionalText(path.join(subPath, GRAPH_METADATA)),
-        children: numberedChildren(subPath),
-        symlinked: false,
-      });
-    }
-    // A packet that moved into a sub-track can leave its ignored files behind
-    // under the old flat name. Git never sees that folder, so it is reported
-    // here and not counted as a packet.
-    if (track.children.some((child) => !SPEC_LEAF_SEGMENT_PATTERN.test(child))) {
-      for (const entry of fs.readdirSync(trackPath, { withFileTypes: true })) {
-        if (!entry.isDirectory() || !SPEC_LEAF_SEGMENT_PATTERN.test(entry.name)) continue;
-        if (fs.existsSync(path.join(trackPath, entry.name, 'spec.md'))) continue;
-        diagnostics.push(`${name}/${entry.name}: numbered folder without spec.md beside sub-tracks`);
-      }
-    }
-    track.children.sort(compareNames);
+    readWorkingTreeSubTracks(track, trackPath, 1, tracks, diagnostics);
   }
 
   tracks.sort(byFolderName);
@@ -231,6 +266,56 @@ function numberedTreeChildren(repoTop, rev, treePath, entries) {
     .sort();
 }
 
+/** The declaration in a commit folder listing, or null. */
+function readCommitDescription(repoTop, listing) {
+  const description = listing.find((item) => item.name === DESCRIPTION && item.type === 'blob');
+  return description ? parseObject(readBlob(repoTop, description.object)) : null;
+}
+
+/**
+ * The commit side of readWorkingTreeSubTracks: the same depth rule, read from
+ * the tree listing of the container. A link is never followed at any depth.
+ */
+function readCommitSubTracks(source, container, inside, depth, tracks, diagnostics) {
+  const { repoTop, rev, specsPath } = source;
+  const candidates = inside.filter((item) => isCandidateTrackName(item.name)).sort(byFolderName);
+  for (const sub of candidates) {
+    const id = `${container.name}/${sub.name}`;
+    if (depth === 1 && sub.mode === '120000') {
+      diagnostics.push(`${id}: symlinked folder skipped, not followed`);
+      continue;
+    }
+    if (sub.type !== 'tree') continue;
+    const subTreePath = `${specsPath}/${id}`;
+    const subInside = lsTree(repoTop, rev, subTreePath);
+    const declared = isDeclaredSubTrack(readCommitDescription(repoTop, subInside));
+    if (!declared) {
+      if (depth === 1) diagnostics.push(`${id}: undeclared folder ignored`);
+      continue;
+    }
+    if (depth > MAX_SUB_TRACK_DEPTH) {
+      diagnostics.push(`${id}: ${NESTED_TOO_DEEP}`);
+      continue;
+    }
+    if (subInside.some((item) => item.name === 'spec.md' && item.type === 'blob')) {
+      diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
+      continue;
+    }
+    container.children.push(sub.name);
+    const subMetadata = subInside.find((item) => item.name === GRAPH_METADATA && item.type === 'blob');
+    const subTrack = {
+      name: id,
+      metadataPath: `${subTreePath}/${GRAPH_METADATA}`,
+      rawMetadata: subMetadata ? readBlob(repoTop, subMetadata.object) : null,
+      children: numberedTreeChildren(repoTop, rev, subTreePath, subInside),
+      symlinked: false,
+    };
+    tracks.push(subTrack);
+    readCommitSubTracks(source, subTrack, subInside, depth + 1, tracks, diagnostics);
+  }
+  container.children.sort(compareNames);
+}
+
 /**
  * List the track roots in a commit's specs directory, like the working-tree view.
  * A symlinked track is a single link entry in the commit, holding none of the
@@ -265,37 +350,7 @@ export function readCommitTracks(specsRoot, rev) {
       symlinked: false,
     };
     tracks.push(track);
-
-    const containers = inside.filter((item) => isCandidateTrackName(item.name)).sort(byFolderName);
-    for (const sub of containers) {
-      const id = `${entry.name}/${sub.name}`;
-      if (sub.mode === '120000') {
-        diagnostics.push(`${id}: symlinked folder skipped, not followed`);
-        continue;
-      }
-      if (sub.type !== 'tree') continue;
-      const subInside = lsTree(repoTop, rev, `${specsPath}/${entry.name}/${sub.name}`);
-      const description = subInside.find((item) => item.name === DESCRIPTION && item.type === 'blob');
-      const declared = isDeclaredSubTrack(description ? parseObject(readBlob(repoTop, description.object)) : null);
-      if (!declared) {
-        diagnostics.push(`${id}: undeclared folder ignored`);
-        continue;
-      }
-      if (subInside.some((item) => item.name === 'spec.md' && item.type === 'blob')) {
-        diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
-        continue;
-      }
-      track.children.push(sub.name);
-      const subMetadata = subInside.find((item) => item.name === GRAPH_METADATA && item.type === 'blob');
-      tracks.push({
-        name: id,
-        metadataPath: `${specsPath}/${entry.name}/${sub.name}/${GRAPH_METADATA}`,
-        rawMetadata: subMetadata ? readBlob(repoTop, subMetadata.object) : null,
-        children: numberedTreeChildren(repoTop, rev, `${specsPath}/${entry.name}/${sub.name}`, subInside),
-        symlinked: false,
-      });
-    }
-    track.children.sort(compareNames);
+    readCommitSubTracks({ repoTop, rev, specsPath }, track, inside, 1, tracks, diagnostics);
   }
 
   tracks.sort(byFolderName);

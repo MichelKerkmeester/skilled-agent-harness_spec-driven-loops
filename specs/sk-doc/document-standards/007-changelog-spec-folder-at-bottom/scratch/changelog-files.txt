@@ -140,7 +140,7 @@
 ./.skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.9.0.md
 ./.skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.10.0.md
 ./.skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.4.1.md
-./specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/changelog/changelog-124-root.md
+./specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/changelog/changelog-124-root.md
 ./.skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.6.0.md
 ./.skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md
 ./.skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.2.0.md
@@ -148,7 +148,7 @@
 ./.skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.4.0.md
 ./.skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.8.0.md
 ./.skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.5.0.md
-./specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/changelog/changelog-148-root.md
+./specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/changelog/changelog-148-root.md
 ./.skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.1.0.md
 ./.skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.10.0.md
 ./.skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.0.0.md

@@ -116,10 +116,14 @@ export interface AuthorityCompareAndSwapInput {
 }
 
 /**
- * Every durable fact `compareAndSwap` needs to finish a forward transition,
- * captured before the ledger append so a crash between the append and the
- * registry publish can be completed or aborted from disk alone — without
- * requiring the original caller's request object to be replayed.
+ * Every durable fact needed to finish a forward transition, captured before
+ * the ledger append so a crash between the append and the registry publish
+ * can be completed or aborted from disk alone — without requiring the
+ * original caller's request object to be replayed. The registry keeps only
+ * the marker lifecycle: `preparePendingTransition` writes it,
+ * `readPendingTransition` reads and verifies a leftover one, and
+ * `clearPendingTransition` removes it once the transition is completed or
+ * aborted. The registry itself does not perform the swap.
  */
 export interface AuthorityPendingTransition extends AuthorityCompareAndSwapInput {
   readonly preparedAt: string;
@@ -326,8 +330,9 @@ export class AuthorityRegistry {
   public clearPendingTransition(mode: CutoverCertificateMode): void {
     try {
       unlinkSync(this.#pendingTransitionPath(mode));
-    } catch {
-      // Already absent; nothing to clear.
+    } catch (error: unknown) {
+      // An absent marker is already cleared; any other failure leaves the marker in place.
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
     }
   }
 }

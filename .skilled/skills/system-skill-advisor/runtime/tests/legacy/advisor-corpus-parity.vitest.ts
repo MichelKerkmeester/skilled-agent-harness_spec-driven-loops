@@ -173,8 +173,13 @@ describe('advisor 196-prompt corpus regression-protection parity', () => {
       // 117 -> 118 and 112 -> 113: the Python reference now drops a pasted
       // earlier reply before scoring, as the native scorer does, so the
       // pasted-reply row reaches its gold on both.
-      expect(pythonCorrect).toBe(118);
-      expect(hookPreservedPythonCorrect).toBe(113);
+      // 118 -> 119 and 113 -> 114: the browser-debugging boosts in the Python
+      // reference now name mcp-browser-use, the hub that owns the browser modes,
+      // so one browser row reaches its gold there. The native scorer keeps it
+      // too, because the Code Mode bonus no longer lifts the transport over an
+      // MCP the prompt names. The accepted regression list is unchanged.
+      expect(pythonCorrect).toBe(119);
+      expect(hookPreservedPythonCorrect).toBe(114);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

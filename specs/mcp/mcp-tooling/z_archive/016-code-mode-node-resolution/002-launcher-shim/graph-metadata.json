@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
+  "spec_folder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
+  "parent_id": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code mode launcher shim",
+      "mcp launcher exec",
+      "orphan sweeper process identity",
+      "isolated-vm segfault guard",
+      "code mode launcher plan",
+      "launcher exec handoff design",
+      "code mode launcher tasks",
+      "code mode launcher summary",
+      "launcher shim shipped"
+    ],
+    "key_topics": [
+      "code",
+      "mode",
+      "launcher",
+      "shim",
+      "mcp",
+      "exec",
+      "orphan",
+      "sweeper",
+      "process",
+      "identity",
+      "isolated-vm",
+      "segfault"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/mcp-code-mode-launcher.cjs",
+      ".opencode/bin/mcp-code-mode-launcher.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Host",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Handoff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
+    "created_at": "2026-08-28T16:11:20Z",
+    "last_save_at": "2026-11-21T07:55:10.481Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eff1ec17ae93816f3b95a813a1e0bbce3dea8a5d4e8e1cb7f49dc67da6f73824",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "80242adc477845be77f7bbe90594b44145253d4de49ec6fc84af48fa3673ad15",
+      "plan.md": "1a25e792619380c16dfd3f7933a88ff6b6e035725dbe584f6f2c6d85360eaab7",
+      "tasks.md": "1e1b76b6d456f6c34b89b08330f1fdcdcc7ee8192f7d1296cee3e5136087b334",
+      "implementation-summary.md": "0affe48ec887bc05f37ae576a533a513d840ce8984ad53f84e559646e390b7ad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

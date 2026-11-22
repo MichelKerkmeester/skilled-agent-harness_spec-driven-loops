@@ -29,6 +29,22 @@
             }
         },
         {
+            "name": "bladebro",
+            "call_template_type": "mcp",
+            "config": {
+                "mcpServers": {
+                    "bladebro": {
+                        "transport": "stdio",
+                        "command": "bladebro",
+                        "args": [
+                            "mcp"
+                        ],
+                        "env": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "chrome_devtools_1",
             "call_template_type": "mcp",
             "config": {

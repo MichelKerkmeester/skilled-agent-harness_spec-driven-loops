@@ -12,7 +12,7 @@ const ROLLOUT = path.resolve(__dirname, '..', 'lib', 'compiled-routing', '009-pa
 const MAX_BUNDLE_MODES = 4;
 const MAX_RULES_PER_HUB = 5000;
 
-for (const hub of ['001-sk-code', '003-mcp-tooling', '009-sk-design']) {
+for (const hub of ['001-sk-code', '003-mcp-tooling', '009-sk-design', '010-mcp-browser-use']) {
   test(`${hub} keeps its composition rules inside the bounds`, () => {
     const loaded = require(path.join(ROLLOUT, hub, 'harness', 'build-artifacts.cjs')).loadSnapshot();
     const snapshot = loaded.snapshot || loaded;

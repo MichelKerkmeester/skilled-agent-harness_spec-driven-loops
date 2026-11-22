@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli",
+  "description": "The official `obsidian` binary is already registered on this machine at `/usr/local/bin/obsidian`, symlinked into the desktop app bundle",
+  "keywords": [
+    "official",
+    "obsidian",
+    "binary",
+    "already",
+    "registered",
+    "machine",
+    "usr",
+    "local",
+    "bin",
+    "symlinked",
+    "desktop",
+    "app",
+    "bundle"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.657Z",
+  "specId": "001",
+  "folderSlug": "official-obsidian-cli",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

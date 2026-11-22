@@ -260,9 +260,10 @@ export class ReplayFingerprintError extends Error {
       sequence?: number | null;
       hop?: number | null;
       stage?: string;
+      cause?: unknown;
     }> = {},
   ) {
-    super(message);
+    super(message, details.cause === undefined ? undefined : { cause: details.cause });
     this.name = 'ReplayFingerprintError';
     this.code = code;
     this.component = component;

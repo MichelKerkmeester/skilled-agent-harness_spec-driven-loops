@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-code-mode",
+  "spec_folder": "mcp/mcp-code-mode",
+  "parent_id": "mcp",
+  "children_ids": [
+    "mcp/mcp-code-mode/001-code-mode-fresh-clone-build",
+    "mcp/mcp-code-mode/002-clickup-hosted-route-fix",
+    "mcp/mcp-code-mode/003-code-mode-js-yaml-override"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "mcp/mcp-code-mode"
+    ],
+    "causal_summary": "Container folder for mcp/mcp-code-mode."
+  }
+}

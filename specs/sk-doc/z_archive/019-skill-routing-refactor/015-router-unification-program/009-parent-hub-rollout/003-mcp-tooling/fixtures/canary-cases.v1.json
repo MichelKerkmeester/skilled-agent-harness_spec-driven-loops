@@ -78,36 +78,6 @@
       }
     },
     {
-      "id": "chrome-devtools-single",
-      "prompt": "chrome devtools",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "mcp-chrome-devtools"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "mcp-chrome-devtools"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "aside-devtools-single",
-      "prompt": "aside browser",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "mcp-aside-devtools"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "mcp-aside-devtools"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "mobbin-single",
       "prompt": "mobbin mcp",
       "expectedAction": "route",

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "tests/**/*.ts",
+    "../deep-research/scripts/divergent-research-pivot.ts",
+    "../deep-review/scripts/divergent-review-pivot.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

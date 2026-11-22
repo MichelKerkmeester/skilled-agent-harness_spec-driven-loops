@@ -237,7 +237,7 @@ test('the guard refuses an edit to a vendored file no overlay owns, and leaves t
 
   const rootFile = fixture.run(['--guard', 'REPO RULES.md']);
   assert.equal(rootFile.code, 1, rootFile.output);
-  assert.ok(rootFile.stdout.includes(ENGINE_COMMAND + ' apply --adopt "REPO RULES.md", then edit skilled-overlays/root/REPO RULES.md'),
+  assert.ok(rootFile.stdout.includes(ENGINE_COMMAND + " apply --adopt 'REPO RULES.md', then edit skilled-overlays/root/REPO RULES.md"),
     rootFile.stdout);
 
   // An owned path keeps the message it had before the setting existed.
@@ -527,7 +527,7 @@ test('pre-commit refuses a staged vendored change no overlay owns, and passes ow
   ]);
   assert.ok(refused.stdout.includes('  Next: put it back: git -C ' + fixture.tree +
     ' restore --staged --worktree -- .skilled/skills/hub/SKILL.md'), refused.stdout);
-  assert.ok(refused.stdout.includes(`  Next: from ${fixture.tree}: ${ENGINE_COMMAND} apply --adopt "REPO RULES.md"`), refused.stdout);
+  assert.ok(refused.stdout.includes(`  Next: from ${fixture.tree}: ${ENGINE_COMMAND} apply --adopt 'REPO RULES.md'`), refused.stdout);
 
   // A commit that moves the pin is a re-pin, which ran its own drift scan.
   const manifest = readJson(fixture.manifestPath);
@@ -692,7 +692,7 @@ test('a staged re-pin names each listed root file upstream changed, owned or not
   assert.ok(report.lines.some((line) => line.startsWith('root-file REPO RULES.md changed upstream and no overlay owns it; ' +
     'carry the change over by hand')), report.lines.join('\n'));
   // The path holds a space, so the command the line names quotes it.
-  assert.ok(report.lines.some((line) => line.includes(ENGINE_COMMAND + ' apply --adopt "REPO RULES.md" ')), report.lines.join('\n'));
+  assert.ok(report.lines.some((line) => line.includes(ENGINE_COMMAND + " apply --adopt 'REPO RULES.md' ")), report.lines.join('\n'));
   // README.md changed upstream too, but the manifest does not name it as a root file.
   assert.equal(report.lines.some((line) => line.startsWith('root-file README.md')), false);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'REPO RULES.md'), 'utf8'), OLD_ENTRIES['REPO RULES.md']);

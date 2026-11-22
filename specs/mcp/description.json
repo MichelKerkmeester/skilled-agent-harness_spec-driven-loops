@@ -1,0 +1,12 @@
+{
+  "specFolder": "mcp",
+  "description": "Track folder for MCP packets: the Code Mode server, the mcp-tooling hub and its integrations, and the browser-use hub.",
+  "keywords": ["mcp", "code-mode", "mcp-tooling", "mcp-browser-use", "track"],
+  "lastUpdated": "2026-11-21T00:00:00.000Z",
+  "specId": "mcp",
+  "folderSlug": "mcp",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

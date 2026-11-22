@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "description": "mcp-browser-use hub: Bladebro, Aside and Chrome DevTools browser modes",
+  "keywords": [
+    "mcp-browser-use",
+    "hub",
+    "bladebro",
+    "aside",
+    "chrome",
+    "devtools",
+    "browser",
+    "modes"
+  ],
+  "lastUpdated": "2026-11-21T23:07:38.012Z",
+  "specId": "001",
+  "folderSlug": "mcp-browser-use-hub",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "21-11-26_13-34__manual-context-save.md",
+    "21-11-26_16-58__built-the-mcp-browser-use-compiled-engine-ran.md",
+    "21-11-26_23-48__deep-review-fan-out-vibe-deepseek-flash-claude2.md",
+    "22-11-26_00-07__remediated-the-deep-review-three-p1s-fixed.md"
+  ]
+}

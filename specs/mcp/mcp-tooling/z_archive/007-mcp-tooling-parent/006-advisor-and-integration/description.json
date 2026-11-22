@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/006-advisor-and-integration",
+  "description": "After phases 004-005 the content lives under the hub, but the advisor still sees three graph identities and every external referrer still points at",
+  "keywords": [
+    "phases",
+    "content",
+    "lives",
+    "hub",
+    "advisor",
+    "still",
+    "sees",
+    "three",
+    "graph",
+    "identities",
+    "every",
+    "external",
+    "referrer",
+    "points"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.690Z",
+  "specId": "006",
+  "folderSlug": "advisor-and-integration",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

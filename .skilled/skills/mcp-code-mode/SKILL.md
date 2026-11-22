@@ -315,6 +315,6 @@ Then load task-specific resources from `references/`, templates from `assets/`, 
 
 Scripts: `scripts/install.sh`, `scripts/update.sh`, `scripts/doctor.sh`, `scripts/validate_config.py`.
 
-Related skills: `mcp-tooling`, whose modes (for example `mcp-chrome-devtools` for browser debugging) reach their MCP servers through Code Mode.
+Related skills: `mcp-tooling` and `mcp-browser-use`, whose modes (for example `mcp-chrome-devtools` for browser debugging) reach their MCP servers through Code Mode.
 
 Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).

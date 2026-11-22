@@ -1,0 +1,8 @@
+{"prompt": "as an aside, can you tidy this paragraph", "top3": [], "mcp_tooling_passing": false}
+{"prompt": "set that aside and fix the failing unit test first", "top3": [["sk-code", 0.9022, true], ["mcp-browser-use", 0.82, true], ["sk-doc", 0.82, true]], "mcp_tooling_passing": false}
+{"prompt": "convert this ruby rb file to python", "top3": [["sk-code", 0.8933, true]], "mcp_tooling_passing": false}
+{"prompt": "write a lighthouse keeper short story", "top3": [["sk-doc", 0.82, true], ["system-spec-kit", 0.82, true], ["mcp-browser-use", 0.82, true]], "mcp_tooling_passing": true}
+{"prompt": "click through rate dropped, analyse the csv", "top3": [["mcp-code-mode", 0.5571, true], ["sk-code", 0.5433, true]], "mcp_tooling_passing": false}
+{"prompt": "make the checkout flow stealthier in the copy, less salesy", "top3": [["sk-code", 0.569, true], ["system-spec-kit", 0.539, true]], "mcp_tooling_passing": false}
+{"prompt": "summarise the performance trace review notes in the spec", "top3": [["sk-code", 0.9262, true], ["mcp-browser-use", 0.8878, true], ["sk-doc", 0.82, true]], "mcp_tooling_passing": true}
+{"prompt": "export a har file parser in typescript", "top3": [["sk-code", 0.9233, true], ["mcp-browser-use", 0.9129, true], ["mcp-tooling", 0.6064, true]], "mcp_tooling_passing": true}

@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp/mcp-tooling/mcp-obsidian",
+  "description": "Container folder for mcp/mcp-tooling/mcp-obsidian.",
+  "keywords": [
+    "mcp",
+    "obsidian"
+  ],
+  "lastUpdated": "2026-11-21T07:55:05.199Z",
+  "specId": "mcp/mcp-tooling/mcp-obsidian",
+  "folderSlug": "mcp-obsidian",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

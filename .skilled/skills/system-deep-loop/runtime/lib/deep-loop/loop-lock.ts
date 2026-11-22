@@ -140,6 +140,9 @@ function normalizeLoopLockData(data: LoopLockData): LoopLockData {
   return normalized;
 }
 
+// Kept local rather than imported from fs-durability: this module also loads
+// under native type stripping, which cannot resolve a `.js` sibling specifier,
+// so it carries no relative runtime imports.
 function fsyncPath(path: string): void {
   let fd: number | undefined;
   try {
@@ -743,13 +746,20 @@ export function refreshLoopLock(
     rmSync(claimPath, { force: true });
     claimed = false;
     return true;
-  } finally {
+  } catch (error: unknown) {
     if (claimed) {
       try {
         restoreClaimedLoopLock(lockPath, claimPath);
-      } catch {
+      } catch (restoreError: unknown) {
+        // A failed restore leaves no lock at lockPath and the record stranded at claimPath, so the
+        // caller must see both failures rather than only the one that started the unwind.
+        throw new AggregateError(
+          [error, restoreError],
+          `Failed to restore deep-loop lock ${lockPath} from ${claimPath} after a refresh failure`,
+        );
       }
     }
+    throw error;
   }
 }
 

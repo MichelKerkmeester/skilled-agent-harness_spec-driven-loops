@@ -856,3 +856,104 @@ test('manual first launch ignores a seed for a claimed or outside note', (t) => 
   assert.equal(outsideRecord.env.hasGoalPacket, false, 'a path outside the handoffs directory');
   assert.deepEqual(outsideRecord.args, [claimSeedFor(outsideNote)]);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOAL PACKET IN A LINKED WORKTREE
+// ─────────────────────────────────────────────────────────────────────────────
+
+function git(cwd, args) {
+  const result = spawnSync('git', [
+    '-c', 'user.name=test', '-c', 'user.email=test@example.invalid', '-c', 'core.hooksPath=/dev/null',
+    ...args,
+  ], { cwd, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+}
+
+// The packet and the budget manifest exist only in a real linked worktree, never in the
+// repository the wrapper runs from, and the note names that worktree as the goal's root.
+function writeWorktreeGoalNote(sandbox, handoffPath) {
+  git(sandbox.repoRoot, ['init', '--quiet']);
+  git(sandbox.repoRoot, ['commit', '--quiet', '--allow-empty', '--no-verify', '-m', 'init']);
+  const added = path.join(sandbox.root, 'wt-goal');
+  git(sandbox.repoRoot, ['worktree', 'add', '--quiet', '-b', 'wt-goal', added]);
+  const worktree = fs.realpathSync(added);
+  fs.mkdirSync(path.join(worktree, GOAL_PACKET), { recursive: true });
+  fs.writeFileSync(path.join(worktree, GOAL_PACKET, 'goal.md'), GOAL_TEXT);
+  const manifestPath = path.join(worktree, BUDGET_MANIFEST);
+  fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
+  fs.writeFileSync(manifestPath, JSON.stringify({ goalDurableBudget: { errorChars: 4000 } }));
+  fs.writeFileSync(
+    handoffPath,
+    `---\nstatus: open\nspec_folder: \ngoal_packet: ${GOAL_PACKET}\ngoal_root: ${worktree}\n---\n`,
+  );
+  return worktree;
+}
+
+test('a Claude hop sets the goal of a packet that lives only in a linked worktree', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeWorktreeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude', '--model', 'opus', '--name', 'Work']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, ['--model', 'opus', `/goal ${GOAL_SLICE}`, '--name', 'Work (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_CLAIM_SEED, `${SEED} ${handoffPath}`);
+  assert.deepEqual(warningLines(result), []);
+});
+
+test('a seeded Claude first launch sets the goal of a packet in a linked worktree', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    SYSTEM_SESSION_HANDOVER_ENABLED: '1',
+  });
+  writeWorktreeGoalNote(sandbox, handoffPath);
+  const seed = `${SEED} ${handoffPath}`;
+
+  const result = runWrapper(sandbox, ['claude', '--model', 'opus', seed]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 1);
+  assert.deepEqual(records[0].args, ['--model', 'opus', `/goal ${GOAL_SLICE}`]);
+  assert.equal(records[0].env.SKILLED_LOOP_CLAIM_SEED, seed);
+  assert.deepEqual(warningLines(result), []);
+});
+
+// Any other receiver binds the packet path against its own checkout, where an older copy of
+// the same packet can sit, so the wrapper leaves the packet out and says why.
+test('a Pi hop leaves out a packet that lives only in a linked worktree', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const worktree = writeWorktreeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['pi', '--model', 'm1']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[1].env.hasGoalPacket, false);
+  const lines = warningLines(result);
+  assert.equal(lines.length, 1);
+  assert.ok(lines[0].includes(`only in the linked worktree ${worktree}`), lines[0]);
+});
+
+test('a seeded Pi first launch leaves out a packet that lives only in a linked worktree', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    SYSTEM_SESSION_HANDOVER_ENABLED: '1',
+  });
+  writeWorktreeGoalNote(sandbox, handoffPath);
+  const seed = `${SEED} ${handoffPath}`;
+
+  const result = runWrapper(sandbox, ['pi', '--model', 'm1', seed]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 1);
+  assert.deepEqual(records[0].args, ['--model', 'm1', seed]);
+  assert.equal(records[0].env.hasGoalPacket, false);
+  assert.equal(warningLines(result).length, 1);
+});

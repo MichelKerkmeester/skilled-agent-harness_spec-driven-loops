@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 017 left four P2s in the overlay engine's cache handling and its README role, and an apply that turns a folder into a file or a link still fails",
     "created_at": "2026-11-21T07:47:43Z",
-    "last_save_at": "2026-11-21T17:28:54.612Z",
+    "last_save_at": "2026-11-22T01:54:53.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79a9db2839145b9225cdb3eed5f5dd11038751d9b90e733e12bdf058d2c694ed",
+    "source_fingerprint": "sha256:6f5fd7e47acbe8f5a5ef4d2c07cea09a89ecd34c83c9346adce4cc37e6515bbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f2eefeeed138430836e67fcf0868445221691b59b66cedc242887ded330256e8",
       "plan.md": "c0e4149538af4d3ea5a3102335348f1d072661a5e33d8436d16e24bad24685ce",
-      "tasks.md": "142f18cb1d66e2764d147c7c748dc96a6ddd756eb4fcdacf401790a32d7e6346",
-      "implementation-summary.md": "509821f96252dc02f0aa1f9e80781cfaac1a5cd9276d19e11076bfb9f1f9c7bd"
+      "tasks.md": "26a62a20c7319aff5528f573112013f25ff3a7ea51591ef646c1ad5efeb6b1f5",
+      "implementation-summary.md": "e98ca6b2c6e1786079b3f149e3a1b21a4ae7262eabfc6da7baa3ad896f4ed13a"
     },
     "last_active_at": null
   }

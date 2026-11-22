@@ -338,7 +338,7 @@ function readFirstJsonlRow(path: string): Record<string, unknown> | null {
  */
 function findUnattributedStateLog(
   options: AppendModeEventOptions,
-  priorEvents: readonly VerifiedLedgerEvent[] | null,
+  priorEvents: readonly VerifiedLedgerEvent[],
 ): string | null {
   const runOpenStem = RUN_OPEN_STEM_BY_MODE[options.mode];
   if (!runOpenStem) return null;
@@ -348,8 +348,6 @@ function findUnattributedStateLog(
 
   const firstRow = readFirstJsonlRow(resolve(options.runDirectory, contract.relativePath));
   if (firstRow === null || firstRow.type !== 'config') return null;
-  // An unreadable ledger is the append phase's failure to report.
-  if (priorEvents === null) return null;
 
   const ledgerOpenedRun = priorEvents.some((verified) => {
     const payload = verified.event.effective.envelope.payload as Record<string, unknown> | undefined;
@@ -386,10 +384,10 @@ type IdempotencyLookup =
  */
 function findIdempotentReplay(
   event: EventWritePreflight,
-  priorEvents: readonly VerifiedLedgerEvent[] | null,
+  priorEvents: readonly VerifiedLedgerEvent[],
 ): IdempotencyLookup {
   const key = event?.identity?.idempotencyKey;
-  if (!key || priorEvents === null) return { kind: 'new' };
+  if (!key) return { kind: 'new' };
   const existing = priorEvents.find(
     (verified) => verified.event.effective.envelope.idempotency_key === key,
   );
@@ -471,7 +469,7 @@ export async function appendModeEvent(
 ): Promise<AppendModeEventOutcome> {
   const now = options.now ?? (() => new Date());
 
-  // Phase 1: Bind execution-time facts from the environment
+  // Stage `binding`: bind execution-time facts from the environment
   let binding: ResolvedCutoverBinding;
   try {
     binding = options.binding ?? resolveCutoverBinding({
@@ -489,7 +487,7 @@ export async function appendModeEvent(
     };
   }
 
-  // Phase 2: Resolve and verify authority admission from the durable root
+  // Stage `authority`: resolve and verify authority admission from the durable root
   const authorityRoot = options.authorityRoot ?? resolveAuthorityRoot();
 
   if (!AUTHORITY_FLIP_MODE_ORDER.includes(options.mode as CutoverCertificateMode)) {
@@ -534,7 +532,9 @@ export async function appendModeEvent(
     };
   }
 
-  // Phase 3: Event Preflight / Envelope verification
+  // Stage `provenance`: event preflight before the append, whose refusals report
+  // as `provenance` (unattributed state log) or `append` (unreadable ledger,
+  // idempotency conflict)
   const event = options.eventRecord;
 
   // Resolve exact registered policy digest if available from policy registry
@@ -553,12 +553,20 @@ export async function appendModeEvent(
     // If not found in registry, retain caller-provided policy reference to fail closed
   }
 
-  // Both pre-append checks read the ledger once.
-  let priorEvents: readonly VerifiedLedgerEvent[] | null;
+  // Both pre-append checks read the ledger once. An unreadable ledger is
+  // refused here: appending past it would skip the provenance and
+  // idempotency checks that the read exists to feed.
+  let priorEvents: readonly VerifiedLedgerEvent[];
   try {
     priorEvents = await options.ledger.readVerifiedEvents();
-  } catch {
-    priorEvents = null;
+  } catch (error: unknown) {
+    return {
+      ok: false,
+      phase: 'append',
+      reason: `Ledger ${options.ledger.ledgerId} could not be read before the append: `
+        + (error instanceof Error ? error.message : String(error)),
+      code: ModeAppendGatewayErrorCodes.APPEND_FAILED,
+    };
   }
 
   const unattributedStateLog = findUnattributedStateLog(options, priorEvents);
@@ -582,7 +590,8 @@ export async function appendModeEvent(
   }
   const idempotentReplay = idempotency.kind === 'replay';
 
-  // Phase 4 & 5: Authorize and Append with bounded retry for concurrent writers
+  // Stages `authorization` and `append`: authorize, then append with bounded
+  // retry for concurrent writers
   const maxRetries = idempotentReplay ? 0 : 10;
   let receipt: DurableAppendReceipt | null = idempotency.kind === 'replay' ? idempotency.receipt : null;
 
@@ -662,7 +671,7 @@ export async function appendModeEvent(
     };
   }
 
-  // Phase 5: Refresh the legacy projection
+  // Stage `projection`: refresh the legacy projection
   let projectionRefreshed = false;
   let projectionError: string | null = null;
   // Distinguishes "the projection engine ran and did not succeed" (a real

@@ -618,17 +618,19 @@ describe('relocate refusals', () => {
     expect(snapshot()).toEqual(before);
   });
 
-  it('refuses a destination two sub-track levels deep and changes nothing', () => {
+  it('refuses a destination three sub-track levels deep and changes nothing', () => {
     track('epsilon', ['epsilon/001-a'], ['epsilon/sub']);
     declaredSubtrack('epsilon/sub');
     declaredSubtrack('epsilon/sub/deep');
+    declaredSubtrack('epsilon/sub/deep/deeper');
     commitFixture();
     const before = snapshot();
 
-    const result = relocate(['--from', 'epsilon/001-a', '--to', 'epsilon/sub/deep/001-a', '--apply']);
+    const result = relocate(['--from', 'epsilon/001-a', '--to', 'epsilon/sub/deep/deeper/001-a', '--apply']);
 
     expect(result.status, result.stdout + result.stderr).toBe(2);
     expect(result.stderr).toContain('relocate: refused:');
+    expect(result.stderr).toContain('deeper than two sub-track levels');
     expect(snapshot()).toEqual(before);
   });
 

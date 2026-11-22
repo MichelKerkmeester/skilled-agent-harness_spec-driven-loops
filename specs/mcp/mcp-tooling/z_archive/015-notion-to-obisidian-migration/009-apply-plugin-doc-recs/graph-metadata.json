@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+  "spec_folder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+  "parent_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 apply plugin doc recs",
+      "mcp-obsidian plugin docs remediation",
+      "notion bases wrong keys fix",
+      "meta-bind now() bug fix",
+      "015 apply plugin doc recs plan",
+      "mcp-obsidian docs remediation plan",
+      "015 apply plugin doc recs tasks",
+      "015 apply plugin doc recs summary"
+    ],
+    "key_topics": [
+      "apply",
+      "plugin",
+      "doc",
+      "recs",
+      "mcp-obsidian",
+      "docs",
+      "remediation",
+      "notion",
+      "bases",
+      "wrong",
+      "keys",
+      "meta-bind"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      ".claude/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Priority",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "YAML",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped `mcp-obsidian` plugin docs carried real correctness defects the 006 research surfaced: advanced-canvas told the AI to never author cross-portal edges (a now-resolved, operation-blocking `VERIFY`); every notion-bases `database.md` column key was a wrong guess the plugin silently ignores, and the mandatory `notion-bases: true` marker was documented nowhere; meta-bind taught a `=now()` timestamp the plugin has no function for; claudian instructed operators to author `.claude/mcp.json`, a file Claudian deletes; dataview stated two facts (inline-field multiline, fixed DQL command order)",
+    "created_at": "2026-08-22T17:53:35.681Z",
+    "last_save_at": "2026-11-21T07:55:10.408Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1d6da1109e4a3963bcac3f69ea231e4a5d3988048e87ac25401facffb58dc993",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "57c1939b657c80d34a5d635119d4a7166f18a8f7193d002bd90ada2cf417f42f",
+      "plan.md": "cd4aaeb06821b2bc86603749c001aa6ed4c32b8e8bd5f1ee46dd4efa14938418",
+      "tasks.md": "b98b39c15c11d23dc28d75a91a4a423bab2057fb596a995e2e80b1ea06759cf0",
+      "implementation-summary.md": "dc8bd41f87ce7bc675f65d779a06c0cc2d562a21806164a067352bfa99f47f77"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

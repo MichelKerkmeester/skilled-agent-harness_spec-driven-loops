@@ -528,6 +528,40 @@ describe('evidence completion and deterministic resume', () => {
     expect(folded.snapshot.leaves[0]).toMatchObject({ classification: 'unreadable' });
   });
 
+  it('rethrows programmer errors instead of reporting them as an unreadable ledger', async () => {
+    const target = harness('programmer-error');
+    const dispatch = await appendDispatch(target);
+    const foldInput = {
+      expectedLeaves: [{ dispatchId: dispatch.dispatch_id, leafId: dispatch.leaf_id, retryPolicyEligible: true }],
+      ledger: target.ledger,
+      registryVersion: 'result-envelope-registry@1',
+      resolver: resolverFor([HASH_A]),
+    };
+    const failingResolver = async (): Promise<null> => {
+      throw new TypeError('resolver bug');
+    };
+    await recordLeafResult({
+      context: context(2), dispatchReceiptId: dispatch.receipt_id,
+      facts: facts(), registry: target.registry, writer: target.writer,
+    });
+    await expect(foldResumeProgress({ ...foldInput, resolver: failingResolver }))
+      .rejects.toThrow('resolver bug');
+
+    const verified = await target.ledger.readVerifiedEvents();
+    Object.defineProperty(target.ledger, 'readVerifiedEvents', {
+      value: async () => verified.map((event, index) => (index === 0 ? event : {
+        ...event,
+        event: { ...event.event, registryDigest: 'f'.repeat(64) },
+      })),
+    });
+    const disagreeing = await foldResumeProgress(foldInput);
+    expect(disagreeing.snapshot).toMatchObject({ integrity: 'unreadable', eligible_dispatch_ids: [] });
+    expect(disagreeing.snapshot.leaves[0]).toMatchObject({
+      classification: 'unreadable',
+      reason_code: 'LEDGER_VERIFICATION_FAILED',
+    });
+  });
+
   it('recovers an injected torn append and reconstructs the committed prefix deterministically', async () => {
     let crashArmed = false;
     let target: Harness | null = null;

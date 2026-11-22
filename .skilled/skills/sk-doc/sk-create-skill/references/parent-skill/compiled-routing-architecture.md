@@ -9,7 +9,7 @@ trigger_phrases:
   - "default-on hubs cohort"
 importance_tier: important
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Compiled-Routing Architecture For Parent Hubs
@@ -25,7 +25,7 @@ Open this when you are deciding whether a parent hub may serve compiled routing,
 Two routers coexist for a parent hub:
 
 - The **prose smart-router** — the hub's `SMART ROUTING` section plus its root `ROUTER.md`, read and reasoned over by the acting agent at request time. The section is short prose that points at `ROUTER.md`, not the routing logic itself. Every hub has both, and `create-skill` scaffolds them.
-- The **compiled router** — a precompiled decision table over a hub's `hub-router.json` + `mode-registry.json`, evaluated by a small deterministic engine instead of prose reasoning. It only serves the seven proven hubs in Section 2, is flag-gated (`SPECKIT_COMPILED_ROUTING`) and cohort-gated (`DEFAULT_ON_HUBS`), additive on top of the prose router, and fails closed to it on any gap, error, or ineligible hub.
+- The **compiled router** — a precompiled decision table over a hub's `hub-router.json` + `mode-registry.json`, evaluated by a small deterministic engine instead of prose reasoning. It only serves the eight proven hubs in Section 2, is flag-gated (`SPECKIT_COMPILED_ROUTING`) and cohort-gated (`DEFAULT_ON_HUBS`), additive on top of the prose router, and fails closed to it on any gap, error, or ineligible hub.
 
 ### When to Use
 
@@ -41,7 +41,7 @@ Two routers coexist for a parent hub:
 
 ## 2. WHICH SKILLS THE ROUTER SERVES
 
-The compiled router serves exactly **seven parent hubs**, enumerated as `HUB_CHILD` in `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`:
+The compiled router serves exactly **eight parent hubs**, enumerated as `HUB_CHILD` in `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`:
 
 | Hub | Shadow-child |
 | --- | --- |
@@ -52,6 +52,7 @@ The compiled router serves exactly **seven parent hubs**, enumerated as `HUB_CHI
 | `cli-classifier` | `009-parent-hub-rollout/008-cli-classifier` |
 | `sk-doc` | `009-parent-hub-rollout/007-sk-doc` |
 | `sk-design` | `009-parent-hub-rollout/009-sk-design` |
+| `mcp-browser-use` | `009-parent-hub-rollout/010-mcp-browser-use` |
 
 This same hub set is independently pinned in `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json`, the promoted runtime's own inventory of every file the compiled router is allowed to depend on.
 
@@ -79,7 +80,7 @@ A hub earns the **`compiled-serving`** verdict when its compiled decision matche
 
 The bar for any new hub changed with the harness that replaced it. `.skilled/bin/compiled-route-admission.cjs` runs each hub's compiled decision against the routing gold its playbook already authors: the expected workflow mode and leaf resources, where every gold mode must be routed and negative, `UNKNOWN` or `defer` gold counts any compiled route as a failure. A `clarify` counts as a non-route. A hub outside the default-on cohort must also meet the coverage floors: at least one scored scenario for every declared workflow mode, and at least one negative or `defer` scenario. The admitted hubs get the same coverage measurement as a report. CI runs the check warn-only in the Routing Registry Drift Guard workflow.
 
-Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, the seven hubs in Section 2 carry that verdict and are in the cohort (verify directly in `014-runtime-engine/lib/resolve.cjs`).
+Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, the eight hubs in Section 2 carry that verdict and are in the cohort (verify directly in `014-runtime-engine/lib/resolve.cjs`).
 
 **A naming collision worth knowing:** `compiled-route-status.cjs` (a live per-hub probe, distinct from the retired Lane C harness) emits its own `causeCode: 'compiled-serving'` meaning "this hub is being served compiled right now, under the current flag and manifest." That is a request-time gate check, not a coverage judgment — a hub can hold the Lane C parity verdict `compiled-serving` while the live probe reports something else entirely, for example if the flag is forced off. Section 6 depends on keeping these two apart.
 
@@ -112,7 +113,7 @@ What this proves: the hub's own router files are internally self-consistent and 
 | --- | --- | --- |
 | Engine | No shadow-child directory exists yet | Hand-built under `009-parent-hub-rollout/00N-<hub>/`, registered in `HUB_CHILD` |
 | Manifest | `servingAuthority: "legacy"`, `shadowOnly: true` | `servingAuthority: "compiled"`, re-minted to the shadow-child hash |
-| Coverage proof | None — no scenarios were evaluated | Parity with legacy for the seven admitted hubs; the admission check in Section 4 for a new hub |
+| Coverage proof | None — no scenarios were evaluated | Parity with legacy for the eight admitted hubs; the admission check in Section 4 for a new hub |
 | Runtime effect | None; the front door always returns the legacy sentinel for this hub | Live, once the hub also joins `DEFAULT_ON_HUBS` (or the flag is forced on) |
 | Owned by | `create-skill` | The hub's own coverage build-out, then the runtime-engine cohort change (Section 5) |
 

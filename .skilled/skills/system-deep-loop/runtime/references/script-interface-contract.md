@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # Deep Loop Runtime Script Interface Contract
@@ -45,7 +45,7 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 ### Loader Contract
 
 - Scripts are Node executables with `#!/usr/bin/env node`.
-- Line 2 is `'use strict';`.
+- `'use strict';` follows the module header and its prose block, the first statement in the file.
 - Scripts resolve `system-spec-kit/runtime/cli/node_modules/tsx/dist/loader.mjs`.
 - If `DEEP_LOOP_TSX_LOADED !== '1'`, the script spawns Node with `--import <tsx-loader>` and original args.
 - The child receives cwd, env plus `DEEP_LOOP_TSX_LOADED=1`, and stdin when stdin is not a TTY.
@@ -57,6 +57,7 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 - Failure uses `status: "error"`, `error`, and `code`.
 - Script errors may write diagnostic stack JSON to stderr.
 - Workflow YAML should parse stdout, not stderr.
+- Existing stderr prefixes are frozen, because tests match on them. A new stderr line uses `[script-name] message`.
 
 ### Read-Only Mode
 
@@ -74,6 +75,40 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 | 1 | Script error | Unexpected runtime failure or uncategorized exception. |
 | 2 | DB error | SQLite or DB lifecycle failure. |
 | 3 | Input validation error | Missing args, invalid loop type, invalid query type, malformed JSON, or unexpected positional args. |
+
+### Per-Script Exit Codes
+
+The matrix above is the `classifyExitCode` set in `scripts/lib/cli-guards.cjs`, which also maps `EACCES`, `EPERM` and `ENOTDIR` to 2. Only some scripts use it. The others pick their own codes, listed here as the code sets them. These codes are public surface, since workflow YAML and tests read them, so they are documented rather than converged. A script that re-execs itself through the TSX loader exits with its child's status, and with 1 when the child has none.
+
+| Script | Exit codes |
+|---|---|
+| `convergence.cjs`, `query.cjs`, `status.cjs`, `upsert.cjs` | The 0/1/2/3 matrix. A failed `convergence.cjs --record-blocked-stop` exits with the append gateway's code, or 1 when the record step throws, after the decision is printed. |
+| `fanout-run.cjs` | 0 when every lineage succeeded, 2 when some failed and 3 when all failed. `--stop` exits 2 when a lineage survived or a stop was refused. A thrown error goes through the 0/1/2/3 matrix, so 3 means either input validation or all lineages failed. A forwarded signal exits 130 for `SIGINT`, 129 for `SIGHUP` and 143 for `SIGTERM`. |
+| `fanout-merge.cjs`, `loop-lock.cjs` | 3 on input validation, 1 on any other error. Neither uses the classifier, so neither exits 2. |
+| `append-mode-event.cjs` | 2 when authority is denied, the cutover binding cannot be resolved or the gateway refuses the append, such as a reused key with other content. 1 when the event JSON cannot be read or on a runtime error, 3 on input validation. A signal ends the re-exec with 130 for `SIGINT` and 143 for `SIGTERM`. |
+| `append-state-record.cjs` | 2 for a missing, flag-shaped or surplus target. 1 for an escaping target, an empty record, invalid JSON or a refused iteration record. |
+| `dispatch-iteration.cjs` | 64 for a usage error, an unknown or `native` executor, a missing executor binary or an artifact dir outside the git worktree. 3 when the recursion guard refuses the dispatch. Otherwise the executor's own exit status. |
+| `divergent-pivot.cjs` | 64 for a usage error, 1 for any other thrown error. |
+| `iteration-graph-upsert.cjs` | 64 for a usage error. 0 when the iteration has no graph events and no finding rows. Otherwise the exit status of `upsert.cjs`, with 1 when it has none. |
+| `loop-heartbeat.cjs` | 64 for a usage error. |
+| `run-now-sentinel.cjs` | 64 for a usage error. Otherwise the status of `append-mode-event.cjs` draining the staged events, raised to 1 when staging failed and the drain returned 0. |
+| `reduce-state.cjs` | 2 on state corruption. 3 on a bad argument, a missing spec folder, input validation or any other reducer failure. |
+| `workflow-steps.cjs` | 2 for an unknown subcommand, a failing step program, `refuse-single-vibe` and a gateway refusal during `replay-legacy-review`. 1 when `prior-lineage` cannot read an existing old config. See the source for each step's own paths. |
+| `verify-iteration.cjs` | 2 for a usage error, 1 when the iteration fails verification. |
+| `review-verdict.cjs`, `terminal-gates.cjs`, `frontier-admit.cjs` | 2 on any error. |
+| `synthesis-closeout.cjs` | 2 when a research synthesis fails its completeness invariant, 1 on any other error. |
+| `score-fanout-pairs.cjs` | 2 for a usage error, a missing `--out` or a pair sheet or labels file that cannot be written, read or parsed. 1 for any other thrown error. |
+| `codex-dispatch.cjs` | 2 for an unknown option, 1 when the Codex dispatch returns a non-zero status. |
+| `check-contract-drift.cjs` | 2 when drift is found, 1 on a script error. |
+| `check-documentation-drift.cjs` | 1 when checks report errors. 2 for an unknown option or a fatal facts error. |
+| `check-direct-append.cjs` | 2 when the legacy file is missing, the watermark is unreadable or a direct append is detected. 1 for a bad argument or a runtime error. A signal ends the re-exec with 130 for `SIGINT` and 143 for `SIGTERM`. |
+| `check-protocol-append-sites.cjs`, `check-projection-coverage.cjs` | 2 on violations or an unknown option, 1 on a script error. |
+| `check-ledger-stem-producers.cjs` | 2 on violations, 1 on a bad argument or a script error. |
+| `verify-authority.cjs` | 2 when a mode is not on the ledger with the dark writer, 1 for a bad argument or a script error. A signal ends the re-exec with 130 for `SIGINT` and 143 for `SIGTERM`. |
+| `render-command-contract.cjs` | 2 when `--compare` finds a difference, 1 on any other error. |
+| `compile-command-contracts.cjs` | 1 on any error. |
+
+Every script exits 0 on success.
 
 ### Required Namespace Args
 

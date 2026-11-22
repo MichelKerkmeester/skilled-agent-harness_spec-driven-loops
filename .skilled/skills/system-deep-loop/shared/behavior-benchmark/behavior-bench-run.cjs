@@ -140,6 +140,37 @@ function markerMatches(marker, text) {
   return text.includes(marker);
 }
 
+/**
+ * Find the first `/regex/` marker in a scenario contract that cannot compile.
+ * The matcher treats a compile failure as a miss, so a typo would otherwise score
+ * as an absent marker with no diagnostic; checking up front turns it into a
+ * contract error before any leg runs.
+ *
+ * @param {Object} contract - Parsed scenario contract.
+ * @returns {string|null} A diagnostic naming the field and marker, or null when every regex marker compiles.
+ */
+function invalidRegexMarker(contract) {
+  const deleg = contract.expected_delegation || {};
+  const fields = [
+    ['expected_presentation_markers', contract.expected_presentation_markers],
+    ['expected_delegation.expected_targets', deleg.expected_targets],
+    ['expected_delegation.forbidden_targets', deleg.forbidden_targets],
+  ];
+  for (const [field, markers] of fields) {
+    if (!Array.isArray(markers)) continue;
+    for (const marker of markers) {
+      const re = typeof marker === 'string' ? /^\/(.+)\/([a-z]*)$/.exec(marker) : null;
+      if (!re) continue;
+      try {
+        new RegExp(re[1], re[2].includes('i') ? re[2] : re[2] + 'i');
+      } catch (error) {
+        return 'invalid regex marker in ' + field + ': ' + marker + ' (' + error.message + ')';
+      }
+    }
+  }
+  return null;
+}
+
 function targetMatcherMatches(marker, text) {
   if (typeof marker !== 'string') return false;
   if (/^\/(.+)\/([a-z]*)$/.test(marker)) return markerMatches(marker, text);
@@ -1200,7 +1231,12 @@ function parseArgs(argv) {
 async function runOnce(args) {
   const contract = parseScenario(args.scenario);
   if (!contract) {
-    console.error('behavior-bench-run: unparseable scenario: ' + args.scenario);
+    console.error('[behavior-bench-run] unparseable scenario: ' + args.scenario);
+    return EXIT_CONTRACT;
+  }
+  const markerError = invalidRegexMarker(contract);
+  if (markerError) {
+    console.error('[behavior-bench-run] ' + markerError + ' in ' + args.scenario);
     return EXIT_CONTRACT;
   }
   const isV2 = isV2Contract(contract);
@@ -1220,11 +1256,11 @@ async function runOnce(args) {
     try {
       parsed = JSON.parse(process.env.BEHAVIOR_BENCH_SPAWN_JSON);
     } catch {
-      console.error('behavior-bench-run: unparseable BEHAVIOR_BENCH_SPAWN_JSON');
+      console.error('[behavior-bench-run] unparseable BEHAVIOR_BENCH_SPAWN_JSON');
       return EXIT_CONTRACT;
     }
     if (!Array.isArray(parsed) || parsed.length === 0) {
-      console.error('behavior-bench-run: BEHAVIOR_BENCH_SPAWN_JSON must be a non-empty array');
+      console.error('[behavior-bench-run] BEHAVIOR_BENCH_SPAWN_JSON must be a non-empty array');
       return EXIT_CONTRACT;
     }
     spawnArray = [...parsed, contract.prompt];
@@ -1232,11 +1268,11 @@ async function runOnce(args) {
     try {
       spawnArray = buildSpawnArgs(args.leg, contract);
     } catch (error) {
-      console.error('behavior-bench-run: ' + error.message);
+      console.error('[behavior-bench-run] ' + error.message);
       return EXIT_CONTRACT;
     }
     if (!spawnArray) {
-      console.error('behavior-bench-run: unknown leg: ' + args.leg);
+      console.error('[behavior-bench-run] unknown leg: ' + args.leg);
       return EXIT_CONTRACT;
     }
   }
@@ -1246,7 +1282,7 @@ async function runOnce(args) {
     try {
       baseline = JSON.parse(fs.readFileSync(args.baseline, 'utf8'));
     } catch {
-      console.error('behavior-bench-run: unparseable baseline: ' + args.baseline);
+      console.error('[behavior-bench-run] unparseable baseline: ' + args.baseline);
       return EXIT_CONTRACT;
     }
   }
@@ -1487,7 +1523,7 @@ async function runOnce(args) {
   const resultPath = resultFilePath(outDir, contract.id, args.leg, sampleIndex, sampleCount);
   fs.writeFileSync(resultPath, JSON.stringify(result, null, 2) + '\n');
 
-  console.log('behavior-bench-run: ' + contract.id + ' / ' + args.leg + ' -> ' + bucket);
+  console.log('[behavior-bench-run] ' + contract.id + ' / ' + args.leg + ' -> ' + bucket);
   return bucket === 'env_error' ? EXIT_ENV : EXIT_OK;
 }
 
@@ -1496,7 +1532,12 @@ async function runSamples(args) {
 
   const contract = parseScenario(args.scenario);
   if (!contract) {
-    console.error('behavior-bench-run: unparseable scenario: ' + args.scenario);
+    console.error('[behavior-bench-run] unparseable scenario: ' + args.scenario);
+    return EXIT_CONTRACT;
+  }
+  const markerError = invalidRegexMarker(contract);
+  if (markerError) {
+    console.error('[behavior-bench-run] ' + markerError + ' in ' + args.scenario);
     return EXIT_CONTRACT;
   }
   const isV2 = isV2Contract(contract);
@@ -1513,7 +1554,7 @@ async function runSamples(args) {
     try {
       sampleResult = JSON.parse(fs.readFileSync(sampleResultPath, 'utf8'));
     } catch {
-      console.error('behavior-bench-run: missing sample result: ' + sampleResultPath);
+      console.error('[behavior-bench-run] missing sample result: ' + sampleResultPath);
       return EXIT_INTERNAL;
     }
     samples.push(summarizeSampleResult(sampleResult, sampleResultPath));
@@ -1558,7 +1599,7 @@ async function runSamples(args) {
   const aggregatePath = resultFilePath(outDir, contract.id, args.leg, null, 1);
   fs.writeFileSync(aggregatePath, JSON.stringify(aggregate, null, 2) + '\n');
   console.log(
-    'behavior-bench-run: ' + contract.id + ' / ' + args.leg +
+    '[behavior-bench-run] ' + contract.id + ' / ' + args.leg +
     ' -> samples ' + samples.length + '/' + args.samples +
     ' stable=' + String(stability.stable)
   );
@@ -1569,18 +1610,18 @@ async function main() {
   const argv = process.argv.slice(2);
   const args = parseArgs(argv);
   if (args.error) {
-    console.error('behavior-bench-run: ' + args.error);
+    console.error('[behavior-bench-run] ' + args.error);
     process.exit(EXIT_CONTRACT);
   }
   if (!args.scenario || !args.leg || !args.outDir) {
-    console.error('behavior-bench-run: --scenario, --leg and --out-dir are required');
+    console.error('[behavior-bench-run] --scenario, --leg and --out-dir are required');
     process.exit(EXIT_CONTRACT);
   }
   try {
     const code = await runSamples(args);
     process.exit(code);
   } catch (err) {
-    console.error('behavior-bench-run: internal failure:', err);
+    console.error('[behavior-bench-run] internal failure:', err);
     process.exit(EXIT_INTERNAL);
   }
 }

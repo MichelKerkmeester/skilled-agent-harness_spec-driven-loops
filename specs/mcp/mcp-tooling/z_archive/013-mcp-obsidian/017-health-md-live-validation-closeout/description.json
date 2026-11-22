@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
+  "description": "Phases 14-16 ship remediated docs, assets, and a scenario — but none of it has run against a real vault",
+  "keywords": [
+    "phases",
+    "ship",
+    "remediated",
+    "docs",
+    "assets",
+    "scenario",
+    "none",
+    "run",
+    "against",
+    "real",
+    "vault"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.792Z",
+  "specId": "017",
+  "folderSlug": "health-md-live-validation-closeout",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.15.0
+version: 1.6.16.0
 ---
 
 # Folder Structure Reference
@@ -95,14 +95,19 @@ Format: `NNN-topic-name`
 
 ### Sub-Track Folders
 
-A track may hold one optional level of named sub-tracks between itself and its packets:
+A track may hold up to two optional levels of named sub-tracks between itself and its packets:
 
 ```
 specs/<track>/
-├── <NNN>-<slug>/                  # packet filed directly in the track
 ├── <sub-track>/
 │   ├── 001-<slug>/                # numbering restarts inside the sub-track
-│   └── 002-<slug>/
+│   ├── 002-<slug>/
+│   └── z_archive/
+├── <sub-track>/
+│   ├── <inner-sub-track>/         # a level-2 sub-track
+│   │   ├── 001-<slug>/            # numbering restarts again
+│   │   └── z_archive/
+│   └── z_archive/
 └── z_archive/
 ```
 
@@ -110,16 +115,16 @@ A sub-track is declared, not inferred. All of these hold:
 
 | Part | Requirement |
 |---|---|
-| Shape | Direct child of a track root, name not `NNN-*`, no `spec.md` |
-| `description.json` | `"level": "sub-track"` and `specFolder` set to `<track>/<sub-track>`. `specId` is not required: the description producers write only `specFolder`, and no reader derives a sub-track identity from `specId`. |
-| `graph-metadata.json` | Track-root shape: `packet_id` `<track>/<sub-track>`, `parent_id` the track, `children_ids` its immediate numbered packets |
-| Track registration | The sub-track id appears in the track's `graph-metadata.json` `children_ids` |
+| Shape | Direct child of a track root (level 1) or of a declared level-1 sub-track (level 2), name not `NNN-*`, no `spec.md` |
+| `description.json` | `"level": "sub-track"` and `specFolder` set to `<track>/<sub-track>`, or `<track>/<sub-track>/<inner>` at level 2. `specId` is not required: the description producers write only `specFolder`, and no reader derives a sub-track identity from `specId`. |
+| `graph-metadata.json` | Track-root shape: `packet_id` the sub-track id, `parent_id` the folder it sits in (the track, or `<track>/<sub-track>` at level 2), `children_ids` its immediate children |
+| Registration | The sub-track id appears in its parent's `graph-metadata.json` `children_ids`: the track's for level 1, the level-1 sub-track's for level 2 |
 
-Numbering continues per folder, so each sub-track numbers its own packets from `001`. One level is supported: a sub-track holds numbered packets, not another sub-track. A declared folder that contains `spec.md` gets the diagnostic `declared folder has spec.md and cannot be a sub-track`, and `create.sh` refuses it.
+Numbering continues per folder, so each sub-track numbers its own packets from `001`. Two levels are supported. A track or a level-1 sub-track holds numbered packets or declared sub-tracks, never both. A level-2 sub-track holds only numbered packets: a declared folder inside one gets the diagnostic `declared sub-track nested past two sub-track levels, not read`, `create.sh` refuses a `--track` value with more than three segments, and `relocate.mjs` refuses a destination or a declaration three sub-track levels deep. A declared folder that contains `spec.md` gets the diagnostic `declared folder has spec.md and cannot be a sub-track`, and `create.sh` refuses it.
 
-A track's `children_ids` lists its direct numbered packets and its declared sub-tracks. A sub-track's `children_ids` lists only its own immediate numbered packets. A numbered phase parent counts as one entry, and its phases stay its own children.
+A track's `children_ids` lists its direct numbered packets and its declared sub-tracks. A level-1 sub-track's `children_ids` lists its immediate numbered packets or its declared level-2 sub-tracks. A level-2 sub-track's `children_ids` lists only its own immediate numbered packets. A numbered phase parent counts as one entry, and its phases stay its own children.
 
-A sub-track has its own `z_archive/`. Any `z_` folder inside a track or sub-track is never a sub-track and is never discovered as content. A non-numbered folder without the declaration gets one diagnostic and is never promoted. A symlinked sub-track is skipped with one diagnostic in both the working-tree and the commit view. The sweep treats these diagnostics as advisory and does not change its exit code. `create.sh` uses sub-track diagnostics to explain invalid `--track` values and exits with status 1.
+A sub-track has its own `z_archive/` at either level. Any `z_` folder inside a track or sub-track is never a sub-track and is never discovered as content. A non-numbered folder without the declaration directly in a track gets one diagnostic and is never promoted. Inside a level-1 sub-track only a declared folder is read, so its other folders stay silent, as they were before level 2 existed. A symlinked sub-track is skipped with one diagnostic in both the working-tree and the commit view. The sweep treats these diagnostics as advisory and does not change its exit code. `create.sh` uses sub-track diagnostics to explain invalid `--track` values and exits with status 1.
 
 ### When to Propose a Sub-Track
 

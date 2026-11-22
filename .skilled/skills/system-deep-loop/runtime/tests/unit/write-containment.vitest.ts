@@ -2731,6 +2731,38 @@ describe('write-containment — every component of a guarded path is contained, 
     // Nothing landed on the other side of the link: no manifest, no bytes, no patch.
     expect(readdirSync(targetDir)).toEqual([]);
   });
+
+  it.each([
+    ['an Error', new Error('pass directory create failed'), 'pass directory create failed'],
+    ['a non-Error value', 'pass directory create failed as a string', 'pass directory create failed as a string'],
+  ])('names the create failure on the result when the create throws %s', (_label, thrown, expected) => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    const violations = detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths: preDispatch });
+
+    const passDir = join(artifactDir, 'containment', 'quarantine', '1');
+    beforeDirectoryCreate = (target: string) => {
+      if (resolve(target) === passDir) throw thrown;
+    };
+
+    let quarantine: ReturnType<typeof quarantineViolations>;
+    try {
+      quarantine = quarantineViolations({
+        repoRoot: root,
+        artifactDir,
+        artifactRelPosix: 'artifact',
+        violations,
+        preDispatchDirtyPaths: preDispatch,
+        iteration: 1,
+      });
+    } finally {
+      beforeDirectoryCreate = null;
+    }
+
+    expect(quarantine.dirPath).toBeNull();
+    expect(quarantine.error).toBe(`quarantine dir unavailable: ${expected}`);
+  });
 });
 
 // A path someone was already editing before the dispatch began is the one place a second writer

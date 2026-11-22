@@ -9,7 +9,8 @@
     "system-speckit/spec-folder-tooling/003-upgrade-level-anchor-insert",
     "system-speckit/spec-folder-tooling/004-create-path-track-refresh",
     "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
-    "system-speckit/spec-folder-tooling/006-remove-nested-changelog"
+    "system-speckit/spec-folder-tooling/006-remove-nested-changelog",
+    "system-speckit/spec-folder-tooling/007-nested-subtracks"
   ],
   "manual": {
     "depends_on": [],

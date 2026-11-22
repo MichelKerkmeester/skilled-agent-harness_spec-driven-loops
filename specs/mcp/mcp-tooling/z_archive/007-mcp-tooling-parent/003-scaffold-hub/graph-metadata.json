@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
+  "spec_folder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
+  "parent_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling hub scaffold",
+      "mode-registry hub-router scaffold",
+      "thin routing skill.md",
+      "additive hub skeleton",
+      "phase 003 scaffold-hub",
+      "mcp-tooling hub scaffold plan",
+      "additive hub skeleton plan",
+      "mode-registry hub-router create",
+      "phase 003 plan",
+      "mcp-tooling hub scaffold tasks",
+      "additive hub skeleton tasks",
+      "phase 003 tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "hub",
+      "scaffold",
+      "mode-registry",
+      "hub-router",
+      "thin",
+      "routing",
+      "skill",
+      "additive",
+      "skeleton",
+      "phase",
+      "scaffold-hub"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/description.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 004-005 need a hub skeleton to move content INTO, but that skeleton does not exist yet",
+    "created_at": "2026-07-09T20:18:23Z",
+    "last_save_at": "2026-11-21T07:55:09.535Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c88657f68c62b0165d2313a6b318d1d1135a58cb9284ca495defaf95c149d0be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "68a215f7d25f2db9a99a877f55b90157dec075bff856402da5fc5049b88a5bf6",
+      "plan.md": "2f9a23aff45330566e1418336585ff655967cca278427b195a5d331114c135b4",
+      "tasks.md": "ac0c4431ed950f13bf86e2bd6bba9081b87389fb64ef8beb44fb4c270a299aee",
+      "implementation-summary.md": "7935cf9135e69d5b5e4ac9a02aa80b1b89a45e8e66c16a483f5f1ea5f4a21068"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

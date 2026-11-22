@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
+  "spec_folder": "mcp/mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
+  "parent_id": "mcp/mcp-tooling/z_archive/008-mcp-aside",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "aside inventory parity",
+      "aside doc truth",
+      "aside registered manual",
+      "aside feature catalog",
+      "aside parity plan",
+      "aside doc truth plan",
+      "registered state flip plan",
+      "aside parity tasks",
+      "aside doc truth tasks",
+      "aside parity summary",
+      "aside doc truth summary",
+      "aside registered state"
+    ],
+    "key_topics": [
+      "aside",
+      "inventory",
+      "parity",
+      "doc",
+      "truth",
+      "registered",
+      "manual",
+      "feature",
+      "catalog",
+      "plan",
+      "state",
+      "flip"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "utcp-aside-manual.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-wiring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-mode-discovery.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Flip",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `aside` UTCP manual is now registered in `.utcpconfig.json`, but the `mcp-aside-devtools` packet still documents registration as a \"later phase\" in roughly 30 places, gates its Code Mode discovery scenario on non-registration, and ships a doctor that treats manual absence as expected",
+    "created_at": "2026-07-16T12:58:30Z",
+    "last_save_at": "2026-11-21T07:55:09.670Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e11443bb9b31186fdb33ff368dbdec0827d810a3da74aac580f1ec45e7981352",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e10b37bf1093b8d4c7701cdefccd59071187dbfa0c8f7dad8eca68d4e96a916b",
+      "plan.md": "8bf8de60e3b6384223050fe14c1cd3c7f8b1a6f303904311ce901a7766727497",
+      "tasks.md": "84ed3ceeead118bc868da8cc83f01ecd00f16fba0e3e93d54d474809ec71862a",
+      "implementation-summary.md": "05b758d1d9d71d5f4d3398d34799abd85f58752eb5177394ff2612f1676ffaac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

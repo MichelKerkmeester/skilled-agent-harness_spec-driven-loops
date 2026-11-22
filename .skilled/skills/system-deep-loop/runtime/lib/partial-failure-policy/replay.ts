@@ -15,6 +15,7 @@ import {
   isPolicyEvaluationReceipt,
   isPolicyShadowComparisonReceipt,
 } from './ledger-events.js';
+import { compareText } from './evaluator.js';
 import { isTerminalFailureEnvelope } from './failure.js';
 
 import type { VerifiedLedgerEvent } from '../authorized-ledger/index.js';
@@ -181,14 +182,14 @@ export function replayPartialFailureLedger(
     finalEvaluation,
     integrityReasonCodes: Object.freeze([...integrityReasonCodes].sort()),
     lateResults: Object.freeze([...lateResults.values()].sort(
-      (left, right) => left.late_result_id.localeCompare(right.late_result_id),
+      (left, right) => compareText(left.late_result_id, right.late_result_id),
     )),
     latestEvaluation,
     shadowComparisons: Object.freeze([...shadowComparisons.values()].sort(
-      (left, right) => left.comparison_id.localeCompare(right.comparison_id),
+      (left, right) => compareText(left.comparison_id, right.comparison_id),
     )),
     terminalFailures: Object.freeze([...failures.values()].sort(
-      (left, right) => left.failure_id.localeCompare(right.failure_id),
+      (left, right) => compareText(left.failure_id, right.failure_id),
     )),
   });
 }

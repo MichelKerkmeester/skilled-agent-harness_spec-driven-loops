@@ -44,6 +44,7 @@ const EXPECTED_CLASSES = {
   'cli-external-orchestration': contract.CLASS_HUB,
   'cli-orca': contract.CLASS_STANDALONE,
   'mcp-code-mode': contract.CLASS_STANDALONE,
+  'mcp-browser-use': contract.CLASS_HUB,
   'mcp-tooling': contract.CLASS_HUB,
   'sk-code': contract.CLASS_HUB,
   'sk-design': contract.CLASS_HUB,

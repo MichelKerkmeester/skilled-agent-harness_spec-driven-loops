@@ -3627,16 +3627,20 @@ function reduceResearchState(specFolder, options = {}) {
 
 if (require.main === module) {
   const args = process.argv.slice(2);
+  // --create-missing-anchors is a compatibility no-op: nothing here reads it, but it stays
+  // accepted so a caller that still passes it does not hit the unknown-flag exit 3 below.
   const knownFlags = new Set([
     '--artifact-dir', '--lenient', '--create-missing-anchors', '--emit-resource-map',
     '--fanout-resource-map-only', '--require-existing-state',
   ]);
+  // Built from knownFlags so the usage line can never drift from the flags the parser accepts.
+  const valueFlags = new Set(['--artifact-dir']);
+  const usageFlags = [...knownFlags].map((flag) => (valueFlags.has(flag) ? `[${flag} <path>]` : `[${flag}]`));
+  const usageLine = `Usage: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> ${usageFlags.join(' ')}\n`;
   const unknownFlag = args.find((arg) => arg.startsWith('--') && !knownFlags.has(arg));
   if (unknownFlag) {
     process.stderr.write(`[deep-research] Unknown option: ${unknownFlag}\n`);
-    process.stderr.write(
-      'Usage: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--emit-resource-map]\n',
-    );
+    process.stderr.write(usageLine);
     process.exit(3);
   }
   const lenient = args.includes('--lenient');
@@ -3655,9 +3659,7 @@ if (require.main === module) {
   const specFolder = positional[0];
 
   if (!specFolder) {
-    process.stderr.write(
-      'Usage: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--emit-resource-map]\n',
-    );
+    process.stderr.write(usageLine);
     process.exit(1);
   }
 

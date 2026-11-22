@@ -60,6 +60,7 @@ const HUBS = [
   'cli-classifier',
   'sk-doc',
   'sk-design',
+  'mcp-browser-use',
 ];
 
 // Diverse probes maximize the branches (route/clarify/defer) the engine walks,

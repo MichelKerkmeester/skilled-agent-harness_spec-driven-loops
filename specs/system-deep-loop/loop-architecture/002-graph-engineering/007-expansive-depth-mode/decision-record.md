@@ -104,6 +104,7 @@ _memory:
 | Q068 | Fix both live-run stop bugs and the pre-dispatch containment gap for an artifact dir outside the worktree. | Not stated. | None | commits 61112481bc3, a20a1d96a05, 978b74e8df7 |
 | Q069 | Add an opt-in switch to the Claude-under-Claude recursion guard, read from the typo "nypass" and the follow-up. | Not stated. | None | commit 3c8df597438 (SPECKIT_ALLOW_HOST_SESSION_EXECUTOR), scratch/dogfood-round8.md Round 11 replay |
 | Q070 | Take all four round 11 leftovers in a last fix round: the audit row's model, Claude id masking, usage errors and signals plus doc drift. | Not stated. | None | round 12 commits 4e5216729f9, 8fc35a98984, 09076dd4e0f, 0d1725f86e5 |
+| Q071 | The literal answer to the Claude check, a typo for bypass, which the follow-up question clarified into an opt-in switch rather than a detached end-run around the guard. | Not stated. The follow-up answer is Q069. | None | Q069, commit 3c8df597438 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1490,6 +1491,25 @@ Signals + docs drift
 Answer:
 ```text
 Audit row's model, "Usage error, not stack trace", Mask Claude uuid/request_id, Signals + docs drift
+```
+
+### Q071
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_014ghbHrSCr8tzXKDKUzzViy:1 -->
+
+Question:
+```text
+The Claude single-executor iteration never ran. The guard against Claude spawning Claude refused it under this session (exit 3), so the stdout log, the cost sidecar and containment for Claude are unproven live. It only works from a shell outside Claude. How do you want to cover it?
+```
+
+Options:
+```text
+I'll run it in a plain terminal (Recommended)
+Leave it unproven
+```
+
+Answer:
+```text
+nypass
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -349,6 +349,7 @@ function writeNegControlHelper(helperPath: string): void {
   const helper = `import { createDeepReviewProjectionsProjectionContract } from ${JSON.stringify(CONTRACT_PATH.replace(/\\.ts$/, '.js'))};
 import { foldLegacyProjectionSurface } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'legacy-projections', 'legacy-projection-surface-fold.js'))};
 import type { EventReadResult } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'event-envelope', 'index.js'))};
+import type { LedgerHead } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'authorized-ledger', 'index.js'))};
 const TS = ${JSON.stringify(FIXED_TS)};
 function ev(stem: string, scope: Record<string, unknown>, data: Record<string, unknown>): EventReadResult {
   return { effective: { envelope: { event_type: 'x', occurred_at: TS, payload: { stem, scope, data } } } } as unknown as EventReadResult;
@@ -358,8 +359,8 @@ const events: EventReadResult[] = [
   ev('deep_review.evidence_observed', { runId: 'r', sessionId: 's', generation: 1, iterationId: 'i', dimensionId: 'd', candidateId: 'c1', evidenceId: 'e1' }, { locator: {}, observationKind: 'inspection', rawResultDigest: 'x', sourceDigest: 'x', contentDigest: 'x', toolFingerprint: 'x', analyzerFingerprint: 'x', independentEvidenceClass: 'p', causalProximityStatus: 'direct', stabilityStatus: 'stable', relevanceStatus: 'relevant', supersedesEvidenceEventId: null }),
 ];
 const surface = createDeepReviewProjectionsProjectionContract();
-const head = { ledgerId: 'deep-review-ledger', sequence: 0, recordHash: '0'.repeat(64) };
-const folded = foldLegacyProjectionSurface(surface, events, head as any);
+const head: LedgerHead = { ledgerId: 'deep-review-ledger', sequence: 0, recordHash: '0'.repeat(64) };
+const folded = foldLegacyProjectionSurface(surface, events, head);
 const registry = JSON.parse(new TextDecoder().decode(folded[0].bytes));
 const findingsCount = registry.findings.length;
 const evidenceCount = registry.evidence.length;

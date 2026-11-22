@@ -1,0 +1,3 @@
+native-default-gate: ['mcp-browser-use', 'sk-code']
+native-default-gate: ['mcp-browser-use']
+native-default-gate: ['mcp-browser-use']

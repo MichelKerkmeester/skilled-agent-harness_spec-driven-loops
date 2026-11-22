@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management",
+  "description": "No `mcp-click-up` skill exists in `.opencode/skills/`",
+  "keywords": [
+    "mcp-click-up",
+    "skill",
+    "exists",
+    "opencode",
+    "skills"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.677Z",
+  "specId": "004",
+  "folderSlug": "mcp-click-up-task-management",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -20,6 +20,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
+      "006-sk-code-and-readme-alignment operator decisions",
       "sk code and readme alignment implementation summary"
     ],
     "key_topics": [
@@ -44,11 +45,10 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "runtime/tests/_support/README.md",
-      ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md",
-      "benchmark/reports/README.md",
-      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md"
     ],
     "entities": [
       {
@@ -82,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -91,12 +97,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "runtime/tests/_support/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate-playbook-package.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
         "source": "derived"
       },
       {
@@ -198,8 +198,8 @@
     ],
     "causal_summary": "A developer opening a system-deep-loop code folder meets READMEs that miss files, name moved paths and fail the sk-doc code-folder validator, and exported TypeScript functions, classes and interfaces that carry no TSDoc although the sk-code TypeScript checklist requires it at P1",
     "created_at": "2026-11-21T18:32:25Z",
-    "last_save_at": "2026-11-21T19:30:32.200Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-22T05:40:11.384Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,15 +207,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a59222fc0022ebcef561d55035e9bb56ef20b1d0e2895f412f258bb72210cb93",
+    "source_fingerprint": "sha256:acc6f6483a4a76961a1108c5c96e16ae63b5cd923527b5a752473195280e26e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a581cd7cdd1183968b29db8f43771d7e4d6af328d00bb00fe54996b18597c015",
+      "spec.md": "ce71ca5e4d5b97560a19b98ab6c2bc5db3a9c15e4fb011d02e691ab0c53fba4a",
       "plan.md": "87fba6a7a94c1087e256c75ad875049fd2999b66713bc580d4e15afa39da1fd7",
-      "tasks.md": "dedf52327c4676eff36b3529a945357733a3cae017aaec7e3d940ea2c4e4ff70",
-      "implementation-summary.md": "bd208516af7c5ae43c6c0d5091e0d8793765eb34b5ff9cd2e53550e8c26c8fb4"
+      "tasks.md": "84e9cb12b41d8327ebf3286cf68c9b1561844e24ed1bb752890b1d1db83319d8",
+      "decision-record.md": "6496e06bb43445cd607d819edd3d9e77b6332168d83e0fcf536082eeb5c64cee",
+      "implementation-summary.md": "7f1c0f08bf23d16965fb91c9046596c2a4b5b29559d64ff0bfbe7706212054fe"
     },
     "last_active_at": null
   }

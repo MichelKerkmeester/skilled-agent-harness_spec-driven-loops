@@ -122,7 +122,7 @@ State to route mapping used by the selector:
 | `AuthorityRegistry.withTransactionLock(operation)` | Method | Serialize one transition across the registry root and release the lock even when the operation throws |
 | `AuthorityRegistry.preparePendingTransition(input, preparedAt)` | Method | Persist the exact compare-and-swap input before the ledger append |
 | `AuthorityRegistry.readPendingTransition(mode)` | Method | Read a leftover prepared transition, or `null` when none is outstanding |
-| `AuthorityRegistry.clearPendingTransition(mode)` | Method | Clear the prepared marker once the transition is completed or aborted |
+| `AuthorityRegistry.clearPendingTransition(mode)` | Method | Clear the prepared marker once the transition is completed or aborted. An absent marker counts as cleared, and any other unlink failure is thrown |
 | `isValidAuthorityRecord(value)` | Function | Recompute the record digest and confirm the record's own binding |
 | `selectAuthorityRoute(record, expectation)` | Function | Resolve one route, shadow route, admission flag, state and epoch, or deny with a reason code |
 | `AuthorityFlipError` | Class | Fail-closed error carrying a reason code and scalar details, never a raw state payload |

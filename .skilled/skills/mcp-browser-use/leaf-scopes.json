@@ -1,0 +1,10 @@
+[
+  {
+    "workflowMode": "mcp-chrome-devtools",
+    "leafScopes": [
+      "assets",
+      "references",
+      "feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md"
+    ]
+  }
+]

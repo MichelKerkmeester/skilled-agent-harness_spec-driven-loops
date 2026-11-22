@@ -26,6 +26,8 @@ Runtime primitives that replace ad hoc fan-out failure handling in `system-deep-
 | `types.ts` | Policy mode, verdict, decision-boundary and admitted-set contracts |
 | `index.ts` | Public API barrel |
 
+`evaluatePartialFailurePolicy` and `projectEvidence` in `evaluator.ts` each run to about 150 lines. They were reviewed and kept whole: the verdict they produce is recorded and must replay deterministically, so a split risks changing it with no defect to fix. The checklists set no length limit, and no defect was found in either.
+
 ---
 
 ## 3. CONSUMERS

@@ -50,7 +50,8 @@ Each skill name links to its own README. One-line descriptions reflect current b
 
 | Skill | What it does |
 |---|---|
-| [`mcp-tooling`](mcp-tooling/README.md) | Parent hub of MCP bridges and transports: browser debugging (`mcp-chrome-devtools`), ClickUp tasks (`mcp-click-up`), Obsidian notes (`mcp-obsidian`), Figma design (`mcp-figma`), AI-browser orchestration (`mcp-aside-devtools`), plus read-only design references (`mcp-mobbin`, `mcp-refero`) |
+| [`mcp-browser-use`](mcp-browser-use/README.md) | Parent hub for browser work: Chrome DevTools inspection, debugging, Lighthouse and traces (`mcp-chrome-devtools`), deterministic signed-in REPL proof (`mcp-aside-devtools`) and stealth or agentic browsing (`mcp-bladebro`) |
+| [`mcp-tooling`](mcp-tooling/README.md) | Parent hub of MCP bridges and transports: ClickUp tasks (`mcp-click-up`), Obsidian notes (`mcp-obsidian`), Notion workspaces (`mcp-notion`), Figma design (`mcp-figma`), plus read-only design references (`mcp-mobbin`, `mcp-refero`) |
 | [`mcp-code-mode`](mcp-code-mode/README.md) | MCP orchestration via TypeScript execution: use Code Mode for ALL external MCP tool calls — ~98% context reduction, type-safe |
 
 ### sk-*: Code, Docs, Git and Prompts

@@ -384,7 +384,7 @@ function applyReservationDisposal(
   }
   for (const scopeId of reservation.scopePath) {
     const scope = scopes(state)[scopeId];
-    if (!scope) throw new TypeError('Reservation references a missing scope');
+    if (!scope) throw new TypeError(`Reservation ${reservation.reservationId} references missing scope ${scopeId}`);
     changeDimension(
       scope.balances.tokens,
       -disposedDelta.tokens.count,
@@ -418,7 +418,7 @@ function assertScopePath(state: BudgetProjection, scopePath: readonly string[]):
   if (scopePath.length === 0) throw new TypeError('Budget scope path must not be empty');
   for (const [index, scopeId] of scopePath.entries()) {
     const scope = scopes(state)[scopeId];
-    if (!scope) throw new TypeError('Budget scope path contains a missing scope');
+    if (!scope) throw new TypeError(`Budget scope path contains missing scope ${scopeId}`);
     const envelope = envelopeFromScope(scope);
     const expectedParent = index === 0 ? null : scopePath[index - 1];
     if (envelope.scope.parentScopeId !== expectedParent) {
@@ -441,7 +441,7 @@ export function budgetScopePath(
     const scope: BudgetScopeProjection | undefined = (
       state.scopes as unknown as Record<string, BudgetScopeProjection>
     )[current];
-    if (!scope) throw new TypeError('Budget scope is missing from the projection');
+    if (!scope) throw new TypeError(`Budget scope ${current} is missing from the projection`);
     path.unshift(current);
     current = envelopeFromScope(scope).scope.parentScopeId;
   }
@@ -564,7 +564,7 @@ function reservationForPayload(
 ): BudgetReservationProjection {
   const reservationId = requireString(payload.data.reservationId, 'data.reservationId');
   const reservation = reservations(state)[reservationId];
-  if (!reservation) throw new TypeError('Budget reservation does not exist');
+  if (!reservation) throw new TypeError(`Budget reservation ${reservationId} does not exist`);
   if (
     reservation.scopeId !== payload.scope_id
     || canonicalJson(reservation.scopePath) !== canonicalJson(payload.scope_path)

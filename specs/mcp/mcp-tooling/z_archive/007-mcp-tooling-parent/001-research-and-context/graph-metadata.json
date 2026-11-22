@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
+  "spec_folder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
+  "parent_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling parent research",
+      "research gate",
+      "mcp bridge referrer inventory",
+      "mcp-figma transport fold-in",
+      "phase 001 research-and-context",
+      "mcp-tooling parent plan",
+      "research gate plan",
+      "mcp bridge referrer inventory plan",
+      "figma transport eligibility",
+      "phase 001 plan",
+      "mcp-tooling parent tasks",
+      "research gate tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "parent",
+      "research",
+      "gate",
+      "mcp",
+      "bridge",
+      "referrer",
+      "inventory",
+      "mcp-figma",
+      "transport",
+      "fold-in",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".claude/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Snapshot",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Referrer Inventory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 architecture decisions depend on current, re-verified facts about three live bridge skills and their referrers",
+    "created_at": "2026-07-09T20:18:21Z",
+    "last_save_at": "2026-11-21T07:55:09.515Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:25f7209a72629a706c1f424a296d48e7fbf703b7c9b9c304a732e8d2051d57b7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6c5c2b6a99bc68d17b66ad9214acc64f3d9bb5dd7a12abb584881e1bc0682529",
+      "plan.md": "4d08e0f4790dedb82cdfc05158acaf92f58e7d5100fb91bd88e3f29b355629c0",
+      "tasks.md": "e329f9e73e69b0890b27849ddf09333836c022c9f41a6af43482db9aa8d78ae1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

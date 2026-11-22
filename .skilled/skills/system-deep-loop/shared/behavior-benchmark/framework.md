@@ -92,7 +92,7 @@ rather than guessing their shape.
 | `invocation` | object | `{ "kind": "command" \| "natural", "command": string \| null }`. `command` is null for natural-language entries. |
 | `fixture` | string | Repo-relative directory that absorbs all writes for the run. |
 | `expected_interaction` | enum | `autonomous` \| `question_halt` \| `fail_fast`. |
-| `expected_presentation_markers` | array | Literal strings or `/regex/` (optionally `/regex/flags`; case-insensitivity always applied) the visible output must contain. |
+| `expected_presentation_markers` | array | Literal strings or `/regex/` (optionally `/regex/flags`; case-insensitivity always applied) the visible output must contain. A `/regex/` marker or target that does not compile is a contract error and exits 2. |
 | `expected_delegation` | object | `{ "evidence_kind": enum, "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool, "expected_targets": array, "forbidden_targets": array }`. `evidence_kind` (optional, default `task_dispatch`) selects how delegation is measured. Target arrays apply only to schema-v2 `direct_dispatch`. |
 | `budget_ms` | int | Per-scenario hard budget (see BUDGET POLICY for how it is derived). |
 | `artifacts_required` | bool (optional) | Declares whether the run owes new fixture artifacts. Defaults to `min_task_events > 0`; set `false` on inline-reporting hand-off cells. |

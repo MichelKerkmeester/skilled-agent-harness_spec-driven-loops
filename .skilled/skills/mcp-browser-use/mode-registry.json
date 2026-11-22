@@ -1,0 +1,124 @@
+{
+  "skill": "mcp-browser-use",
+  "version": "1.1.0.0",
+  "resourceContractVersion": 1,
+  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode, packetKind, backendKind) and the advisorRouting projection for mcp-browser-use. The hub reads this file to resolve a mode. The advisor routes the single identity mcp-browser-use and the hub picks the mode. Every mode routes by hub membership (routingClass metadata), so no mode carries an advisor map entry.",
+  "discriminator": {
+    "workflowMode": "Public hub and mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+    "packetKind": "The axis discriminator. Every mode in this hub is a workflow packet, because each one can change local state through its own tool surface.",
+    "backendKind": "Which backend runs the mode. Every mode in this hub uses cli-plus-mcp: a CLI for the fast path and Code Mode MCP for multi-tool integration."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the mode. Every mode here is metadata, which means resolved by hub membership. The advisor routes the single identity mcp-browser-use and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
+    "packetSkillName": "The packet SKILL.md name. For mcp-browser-use the packet folder is its packetSkillName for every mode, so no mode has a folder and name mismatch.",
+    "grandfatheredFolderMismatch": "True only when a packet folder differs from its packetSkillName on purpose. Every mode here uses folder equal to packetSkillName, so the flag is false throughout.",
+    "command": "The bound slash command for the mode. No mode has a dedicated command, so command is null on every entry."
+  },
+  "modes": [
+    {
+      "workflowMode": "mcp-chrome-devtools",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-chrome-devtools",
+      "packetSkillName": "mcp-chrome-devtools",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "chrome devtools",
+        "browser debug",
+        "lighthouse",
+        "bdg",
+        "cdp"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-aside-devtools",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-aside-devtools",
+      "packetSkillName": "mcp-aside-devtools",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "aside",
+        "aside browser",
+        "aside cli",
+        "aside mcp",
+        "aside repl",
+        "aside daemon",
+        "aside account",
+        "capture repl evidence",
+        "repl evidence capture",
+        "deterministic signed-in proof"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-bladebro",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-bladebro",
+      "packetSkillName": "mcp-bladebro",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "bladebro",
+        "bladebro cli",
+        "bladebro mcp",
+        "stealth browser",
+        "rb attach",
+        "rb status"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    }
+  ]
+}

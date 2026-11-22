@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
+  "description": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole",
+  "keywords": [
+    "fold-in",
+    "functionally",
+    "complete",
+    "benchmarked",
+    "canon-clean",
+    "until",
+    "strict",
+    "parent-hub",
+    "check",
+    "passes",
+    "zero",
+    "warnings",
+    "whole"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.693Z",
+  "specId": "008",
+  "folderSlug": "cutover-and-rollout",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

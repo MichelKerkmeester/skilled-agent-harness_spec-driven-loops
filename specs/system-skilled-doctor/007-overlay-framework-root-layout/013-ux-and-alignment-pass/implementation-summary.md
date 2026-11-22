@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass"
-    last_updated_at: "2026-11-21T17:50:00Z"
+    last_updated_at: "2026-11-22T01:55:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded the push of 13eae0c562b and Barter's re-pin onto it"
-    next_safe_action: "None: a later phase takes the route-parity pathspecs and the layout-link limits"
+    recent_action: "Fixed the second final review findings 2, 3 and 5, reviewed until APPROVED"
+    next_safe_action: "None: a later phase takes the open limits"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
@@ -144,6 +144,73 @@ The remote accepted the push but listed bypassed branch rules: changes must go t
 | `64f987869333` | docs(specs): record the re-pin onto Skilled 13eae0c |
 
 The three ai-speckit commits are not pushed.
+
+### Final review fixes
+
+An independent final review of this phase and the re-pin came back APPROVED, with seven P2 findings. Finding 6, the `Next:` lines in Barter's setup scripts, is Barter's to fix. The other six were fixed on `worktrees/508-overlay-final-review-fixes`. `origin/main` equalled local main `d5a077770d1` when the worktree was made, so no merge came first. Each engine fix started with a test that failed on the old code, and workers editing the engine ran one at a time, each dispatch on `model: "opus"`.
+
+| Finding | Fix | Commits |
+|---------|-----|---------|
+| 1. Apply crashed with `EISDIR` where a directory entry ships a file over an empty or cache-only live folder | An explicit flag marks a destination deleted as another shape, so an empty walk no longer stands in for it | `5e41eb36d13` |
+| 2. `status` said `upstream removed up/tool.md; rebase the overlay` for a pinned entry under a missing layout link, while `apply` wrote it | `status` plans an entry under a missing link again at the link's landing in the tree, and prints a refusal there as a header line followed by the landing's own lines. A clean landing waits on the link, and a link that leads outside the tree is never read through | `bebeb569c76`, `4a2f8de4ba9`, `719334ea54e`, `abd8d8da74c`, `55d2531bb29` |
+| 3. An owned path with capitals was never replaced by a layout link on a case-insensitive volume | The key is folded only for the overlap test, with a fallback to a recorded spelling that differs only in case | `8ab99ee8106` |
+| 4. `repin --rollback` on a `backup.json` that is not JSON printed a bare parser error | The parse is wrapped, and the refusal names the file and the parse reason and reuses the unsupported-shape `Next:` line | `b4164bd2ffa` |
+| 5. A `Next:` line joined two commands with `and`, and `shellPath` left `!` unescaped | `&&` joins the commands, and `shellPath` single-quotes any path that is not plain. The re-pin's `rollback:` line and the status `apply --capture` hint now quote through it too | `e7244e53648`, `7bf4c8d755d` |
+| 7. Limitation 2 was stale | Limitation 2 is closed and limitation 10 reworded, below | This record |
+
+The review rounds over `d5a077770d1..` found more, all in the code this round touched or next to it:
+
+| Round | Range end | Result | Fixed in |
+|-------|-----------|--------|----------|
+| 1 | `bebeb569c76` | REQUESTED_CHANGES: 2 P1 and 3 P2. One P1 was a regression: status rewrote problem text by substring, printing `upsupream changed up`. The other was finding 2's own shape with a landing outside the tree | The P1s in `4a2f8de4ba9` and `719334ea54e`, the one more attempt the stop rule allows. Two P2s that predate the range in `782260a8dbb` (a bare `EEXIST` where a directory entry ships a folder over a file) and `d8b2394c74b` (a keep-aside `mv` through a link apply took back) |
+| 2 | `d8b2394c74b` | REQUESTED_CHANGES: 1 P1 and 4 P2. The P1 came from `782260a8dbb`: the engine's own file in other case read as a user's | `5a6f2e211c3` for the P1, the one more attempt. `abd8d8da74c`, `bf96e413a15` and `55d2531bb29` for two P2s. The other two predate the range and are limitations 3 and 11 |
+| 3 | `55d2531bb29` | APPROVED, 4 P2 | `aba8f76e97f` (a dev and inode match before an owned delete) and `efb78facf91` (an overlay source that is a folder is refused, not crashed on). The other two predate the range and are limitations 3 and 11 |
+| 4 | `efb78facf91` | APPROVED, 3 P2. Two predate the range and are limitations 3 and 11. The third, also older, was `apply --relayout` moving a file entry's folder source, which status now suggested | `2bc90699714`: a missing or wrong-kind copy gets no `LAYOUT` line, and relayout leaves it |
+| 5 | `2bc90699714` and the docs pass | REQUESTED_CHANGES: 2 P1 in the uncommitted docs (pasting and case ownership were overclaimed) and 3 P2. One P2 came from `2bc90699714`: a missing source that escapes the overlay folder no longer stopped relayout | The docs corrected before their commit. `11f7d0cd5a0` for the escape. The link-source P2 predates the range and is limitation 12 |
+| 6 | `11f7d0cd5a0` and the docs | APPROVED, 1 P2 from `11f7d0cd5a0`: readiness resolved paths differently from the planner for `.`, an absolute in-folder source and a trailing slash | `7a73d77c143` judges readiness on the path apply reads |
+| 7 | `7a73d77c143` | APPROVED, no P0 or P1, 1 P2 (an absolute source with a second copy planted under that path, which the round-6 engine also mishandles) | `6e3d67828c9`: an absolute source inside the overlay folder gets no move. Docs committed in `1d21d8466d8` |
+| 8 | `6e3d67828c9` | APPROVED, no findings | - |
+
+No fix needed a revert under the stop rule: each P1 cleared on its one more attempt. The final verdict is round 8's `Review status: APPROVED`.
+
+| Gate | Base `d5a077770d1` | Branch tip |
+|------|--------------------|------------|
+| Overlay engine suites | 466 pass | 517 pass, 0 fail |
+| Other doctor tests | 1132 pass | 1132 pass, 0 fail |
+| Overlay guard | 35 | 35 |
+| Git hook suites | pre-commit 176, pre-push 59, commit-msg 48, prepare-commit-msg 87, message contract 19, autostash guard 14 | the same, 0 fail |
+| Trigger index check | exit 0 | exit 0 |
+| Strict recursive validation of the 007 parent | 18 of 18 `RESULT: PASSED` | 18 of 18 `RESULT: PASSED` |
+
+### Second final review fixes
+
+A second independent final review, on Opus, came back APPROVED with four P2 findings and one P2 nit. Finding 4, Barter's `init-repository.sh` mode, is Barter's to fix. The others were fixed on `worktrees/511-overlay-opus-review-fixes`, with the hook work on `worktrees/512-hook-tracked-source-path` merged into it as `611b9c1ea37`. `origin/main` equalled local main `e0f7e0a11d3` when 511 was made. By the time 512 was made, main had fast-forwarded to `b619b087eed`, a trigger-index rebuild, which reached 511 through the hook merge, so no origin merge was needed. Each fix started with a test that failed on the old code, except `330d75d1a54`, which returns pre-commit's gate pathspecs to main's behaviour and adds no test. Every worker ran on `model: "opus"` at medium effort.
+
+| Finding | Fix | Commits |
+|---------|-----|---------|
+| 1. An owned folder with capitals read as unowned when it became a layout link | Already fixed by `8ab99ee8106`. The suite's "a folder the engine wrote at a name with capitals becomes the layout link there" runs the review's own trigger, a directory entry `Tool` swapped for the link `Tool -> target`, and passes. No new commit | - |
+| 2. A replaced folder that became a file over a `retained` path, or over a directory entry's `protectedPaths` entry, looped between `apply` and `status` | Planning refuses it before any write, with exit 1 and the state file untouched, and names the manifest change. `status` gives the same refusal. A replace path that itself became a file is covered too | `6bb2b1c659d`, `88032876cfb` |
+| 3. The git hooks printed a path through the link when the source root is a link into a vendored tree | The shared trust block sets `SOURCE_REL`, the source root after its links resolve less the physical repo root, before the root can be replaced. Every printed restore, `chmod` and installer path uses it. pre-commit's gate pathspecs stay on the logical spelling, see limitation 14 | `d85d6e763c1`, `330d75d1a54`, `7961ada26d7`, `0a1806a09df` |
+| 5. Some remedies named no command or a bare manifest name, and two restores copied from the index | `git restore --source=HEAD --staged --worktree`, the manifest quoted through `shellPath`, and a runnable `status` or `apply --capture` rerun. The manifest refusals rerun `status`, because they fire from many subcommands. Three `repin.exclude` lines that end in `then rerun the re-pin` are left as they were | `e22fda5b1e6` |
+
+| Round | Range end | Result | Fixed in |
+|-------|-----------|--------|----------|
+| 1 | `611b9c1ea37` | REQUESTED_CHANGES: 1 P1 and 2 P2. The P1 came from `d85d6e763c1`: spelling pre-commit's gate pathspecs from the resolved root turned the contract gate on in a vendored consumer, where it crashed with exit 128. One P2 was a replace path that itself became a file, the other the same gate change blocking a consumer whose toolchain is not built | `330d75d1a54` for the P1 and the second P2, the one more attempt. `88032876cfb` for the first P2 |
+| 2 | `88032876cfb` | APPROVED, 2 P2: pre-commit's own restore lines still printed the link spelling, and the trust-block comment said `SOURCE_REL` was a pathspec | `7961ada26d7` |
+| 3 | `7961ada26d7` | APPROVED, 1 P2: pre-push's four restore lines still printed the path through the link. The review also confirmed that two older pre-commit lines a worker flagged cannot run in a consumer | `0a1806a09df` |
+| 4 | `0a1806a09df` | APPROVED, no findings | - |
+
+No fix needed a revert under the stop rule: the one P1 cleared on its one more attempt. The final verdict is round 4's `Review status: APPROVED`.
+
+| Gate | Base `e0f7e0a11d3` | Branch tip |
+|------|--------------------|------------|
+| Overlay engine suites | 517 pass | 526 pass, 0 fail |
+| Other doctor tests | 1132 pass | 1132 pass, 0 fail |
+| Overlay guard | 35 | 35 |
+| Git hook suites | source-root-selection 56, pre-commit 176, pre-push 59, commit-msg 48, prepare-commit-msg 87, message contract 19, autostash guard 14, bounded-git 36, gate-config 25, mass-deletion guard 12 | source-root-selection 74, the others the same, 0 fail |
+| Trigger index check | exit 0 | exit 0 |
+| Strict recursive validation of the 007 parent | 18 of 18 `RESULT: PASSED` | 18 of 18 `RESULT: PASSED` |
+
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -191,7 +258,7 @@ Each count below was read on the branch tip and again on the merged main `058e60
 ## Known Limitations
 
 1. **The alignment asset fixes are not in git.** The alignment commands and their assets are operator-local and gitignored, so handoff items 3, 5 and 6 live only in the main checkout. Copy `.skilled/commands/assets/local-skilled-alignment/` aside before you reset that checkout.
-2. **Barter's overlaid git hooks need a rebase.** Barter overlays the git hooks whole, and this phase rewords their `Next:` lines. The next re-pin shows them as `upstream-moved`, so take the upstream wording when you rebase them.
+2. **Closed: Barter's overlaid git hooks needed a rebase.** Barter overlays the git hooks whole, and this phase rewords their `Next:` lines. Barter's re-pin onto `13eae0c562b` took the upstream wording: its packet 043 records `pre-push` and its test rebased.
 3. **An entry whose destination is the layout link path itself stays out of sync.** `status` reports its files out of sync after every apply. The base engine does the same. Point the entry at a folder under the link instead.
 4. **Two dangling-link remedies do not end in sync.** When a folder above a layout link's target is itself a dangling link, the `mkdir -p` in the `Next:` line fails. Fix that dangling folder by hand, then run `apply`. When the dangling target is itself a manifest layout link, set the manifest right rather than moving that link aside.
 5. **A keep-aside move can overwrite an earlier `.keep`.** Every keep-aside `Next:` line moves `<path>` to `<path>.keep`. If that name is taken, rename the old `.keep` first.
@@ -199,5 +266,9 @@ Each count below was read on the branch tip and again on the merged main `058e60
 7. **A dangling user link under a made layout link crashes apply.** With `realdir/x -> ../nowhere` and an entry at `up/x/tool`, apply exits 2 with `ENOENT` after it makes the links and leaves them standing. Remove or fix the dangling link, then run `apply`.
 8. **A moved link that another link reads through gets the moved-link refusal only.** When `inner` moves to a folder that does not exist while `up -> inner` has an entry under it, the refusal is the moved-link one, not the missing-target one, and its `Next:` line may not name a link under `up`. Make the new target first, then follow the `Next:` line.
 9. **The pre-push route-parity gate never fires in Barter.** Its pathspecs are literal `.skilled/...` paths. In a vendored tree whose `.skilled` is a link they match nothing, so the gate always passes there. The fix belongs in Skilled's pre-push hook, in a later phase.
-10. **Limitations 1 to 8 stay open.** The push and re-pin changed none of them. A later phase takes the layout-link limits 3 to 8.
+10. **Limitations 1, 3 to 9, 11, 12 and 14 stay open, and limitations 2 and 13 are closed.** The push changed none of limitations 1 and 3 to 9, and the final review fixes left them as they were. Limitations 11 to 13 came out of the final review's rounds. Limitations 11 and 12 predate its range. Limitation 13 was an edge of a check that range added, and it is fixed. A later phase takes the layout-link limits 3 to 8, 11 and 12.
+11. **Status judges only planner refusals for an entry under a missing layout link.** It plans the entry again at the link's landing, but it leaves the live-edit check to `apply`. A user's file at the landing, such as a file where a directory entry writes a folder, makes `status` say `fix: apply` while `apply` refuses, writes nothing and takes the link back. A landing outside the tree behaves the same way, because `status` never reads there. Follow `apply`'s `BLOCKED` line.
+12. **Relayout moves a source that is a link as the link itself.** A copy such as `custom/link.md -> real.md` is moved to its layout path as the link, so it dangles there, and `status` then reads `canonical copy is missing` for it. A link that leads out of the overlay folder is also read by `status` and moved by relayout. The base engine does the same. Replace such a link with the file it points at before you run `apply --relayout`.
+13. **Closed: an absolute overlay source could read one copy and move another.** For a `file` entry whose source was an absolute path inside the overlay folder, `status` judged the copy at that path joined onto the overlay folder, while relayout moved the copy the absolute path names. Since `6e3d67828c9` such a source gets no `LAYOUT` line and no relayout move. Keep manifest sources relative.
+14. **pre-commit's skill-authoring and contract-recompile gates never fire in a vendored consumer.** Their pathspecs are the logical `.skilled/...` spelling, which matches nothing when `.skilled` is a link, as on main. Spelling them from the resolved root turned both gates on there, and the contract gate then staged its output through the link and crashed, so that change was taken back. Turning these gates on for consumers, together with limitation 9, belongs to a later phase.
 <!-- /ANCHOR:limitations -->

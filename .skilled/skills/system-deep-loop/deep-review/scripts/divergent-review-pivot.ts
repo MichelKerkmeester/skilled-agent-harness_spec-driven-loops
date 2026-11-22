@@ -2,14 +2,22 @@
 // MODULE: Review Divergent Pivot Inputs
 // ───────────────────────────────────────────────────────────────────
 
-import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
 
 import type {
   PivotCandidate,
 } from '../../runtime/lib/deep-loop/pivot-candidates.ts';
 import { derivePivotId } from '../../runtime/lib/deep-loop/divergent-pivot.ts';
+import {
+  fingerprint,
+  isRecord,
+  normalizedKey,
+  normalizeText,
+  readJson,
+  readJsonl,
+  readPivotEvents,
+  uniqueCandidates,
+} from '../../runtime/lib/deep-loop/divergent-pivot-io.ts';
 
 import type {
   PivotConfigInput,
@@ -77,42 +85,6 @@ interface PivotSeatDispatchContext {
 // 2. INPUT HELPERS
 // ───────────────────────────────────────────────────────────────────
 
-function isRecord(value: unknown): value is JsonRecord {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
-
-function normalizeText(value: unknown): string {
-  return typeof value === 'string' ? value.replace(/\s+/gu, ' ').trim() : '';
-}
-
-function normalizedKey(value: unknown): string {
-  return normalizeText(value).normalize('NFKC').toLowerCase();
-}
-
-function readJson(path: string): JsonRecord {
-  const parsed = JSON.parse(readFileSync(path, 'utf8')) as unknown;
-  if (!isRecord(parsed)) throw new TypeError(`${path} must contain a JSON object.`);
-  return parsed;
-}
-
-function readJsonl(path: string): JsonRecord[] {
-  if (!existsSync(path)) return [];
-  return readFileSync(path, 'utf8')
-    .split(/\r?\n/u)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line, index) => {
-      try {
-        const parsed = JSON.parse(line) as unknown;
-        if (!isRecord(parsed)) throw new TypeError('record must be a JSON object');
-        return parsed;
-      } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : String(error);
-        throw new Error(`Invalid JSONL at ${path}:${index + 1}: ${message}`);
-      }
-    });
-}
-
 function extractSection(markdown: string, headings: readonly string[]): string {
   for (const heading of headings) {
     const escaped = heading.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
@@ -127,12 +99,6 @@ function extractSection(markdown: string, headings: readonly string[]): string {
 
 function readStringList(value: unknown): string[] {
   return Array.isArray(value) ? value.map(normalizeText).filter(Boolean) : [];
-}
-
-function fingerprint(title: string, focus: string): string {
-  return createHash('sha256')
-    .update(`${normalizedKey(title)}|${normalizedKey(focus)}`)
-    .digest('hex');
 }
 
 function candidateFromSeed(seed: ReviewCandidateSeed): PivotCandidate {
@@ -163,25 +129,6 @@ function priorCandidate(text: string, source: string, evidenceRef: string): Pivo
     relevanceRationale: 'This direction is already current, swept, ruled out, or previously selected.',
     scopeGrounded: true,
   });
-}
-
-function uniqueCandidates(candidates: readonly PivotCandidate[]): PivotCandidate[] {
-  const seen = new Set<string>();
-  return candidates.filter((candidate) => {
-    const key = `${candidate.id}|${normalizedKey(candidate.fingerprint)}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
-function readPivotEvents(artifactRoot: string): JsonRecord[] {
-  const pivotsRoot = join(artifactRoot, 'divergent', 'pivots');
-  if (!existsSync(pivotsRoot)) return [];
-  return readdirSync(pivotsRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .sort((left, right) => left.name.localeCompare(right.name))
-    .flatMap((entry) => readJsonl(join(pivotsRoot, entry.name, 'council', 'state.jsonl')));
 }
 
 // A scope entry reads as a path when it has no whitespace and carries a path

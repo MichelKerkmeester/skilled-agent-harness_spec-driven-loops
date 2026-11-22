@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c433761125a6dd979551ebbc7fd8f85f9a83c80042ce45042a995fafbe412c75",
+  "manifestHash": "6a29e7ba6bb568e38edfc0737c51e1a7dd7677a68249084f2f4bfcd9ec5544ad",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -175,6 +175,9 @@
     ],
     "001 local embeddings foundation rollup": [
       "001-local-embeddings-foundation rollup"
+    ],
+    "001 mcp browser use hub operator decisions": [
+      "001-mcp-browser-use-hub operator decisions"
     ],
     "001 memory commands 001 inventory extract": [
       "001-memory-commands 001-inventory-extract"
@@ -1849,6 +1852,9 @@
     "006 setup guide operator decisions": [
       "006-setup-guide operator decisions"
     ],
+    "006 sk code and readme alignment operator decisions": [
+      "006-sk-code-and-readme-alignment operator decisions"
+    ],
     "006 sk code audit remediation operator decisions": [
       "006-sk-code-audit-remediation operator decisions"
     ],
@@ -1899,6 +1905,9 @@
     ],
     "006 test cycle speed operator decisions": [
       "006-test-cycle-speed operator decisions"
+    ],
+    "006 verification operator decisions": [
+      "006-verification operator decisions"
     ],
     "007 agent alignment follow ups operator decisions": [
       "007-agent-alignment-follow-ups operator decisions"
@@ -12193,6 +12202,9 @@
     "allocator stale lock": [
       "allocator stale lock"
     ],
+    "allow a declared sub track to hold declared": [
+      "allow a declared sub track to hold declared"
+    ],
     "allow single lineage acceptance": [
       "allow-single-lineage acceptance"
     ],
@@ -15799,6 +15811,54 @@
     "black cell tasks": [
       "black cell tasks"
     ],
+    "bladebro browser lanes": [
+      "bladebro browser lanes"
+    ],
+    "bladebro browser mode": [
+      "bladebro browser mode"
+    ],
+    "bladebro cli reference": [
+      "bladebro cli reference"
+    ],
+    "bladebro code mode manual": [
+      "bladebro code mode manual"
+    ],
+    "bladebro doctor": [
+      "bladebro doctor"
+    ],
+    "bladebro five tools": [
+      "bladebro five tools"
+    ],
+    "bladebro install": [
+      "bladebro install"
+    ],
+    "bladebro mcp wiring": [
+      "bladebro mcp wiring"
+    ],
+    "bladebro mode goal": [
+      "bladebro mode goal"
+    ],
+    "bladebro mode implementation summary": [
+      "bladebro mode implementation summary"
+    ],
+    "bladebro mode packet": [
+      "bladebro mode packet"
+    ],
+    "bladebro mode plan": [
+      "bladebro-mode plan"
+    ],
+    "bladebro mode tasks": [
+      "bladebro-mode tasks"
+    ],
+    "bladebro placeholder": [
+      "bladebro placeholder"
+    ],
+    "bladebro real browser": [
+      "bladebro real browser"
+    ],
+    "bladebro research charter": [
+      "bladebro research charter"
+    ],
     "blank line removals": [
       "blank line removals"
     ],
@@ -16483,6 +16543,12 @@
     "browser first page write": [
       "browser-first page write"
     ],
+    "browser hub routing": [
+      "browser hub routing"
+    ],
+    "browser hub shared helpers": [
+      "browser hub shared helpers"
+    ],
     "browser launch fails": [
       "browser launch fails"
     ],
@@ -16494,6 +16560,15 @@
     ],
     "browser tests in ci": [
       "browser tests in ci"
+    ],
+    "browser use hub": [
+      "browser use hub"
+    ],
+    "browser use hub research": [
+      "browser use hub research"
+    ],
+    "browser use skill hub": [
+      "browser use skill hub"
     ],
     "bucket contents": [
       "bucket contents"
@@ -20113,6 +20188,9 @@
     ],
     "chrome devtools 2 manual": [
       "chrome_devtools_2 manual"
+    ],
+    "chrome devtools aside bladebro": [
+      "chrome devtools aside bladebro"
     ],
     "chrome devtools autoconnect": [
       "chrome devtools autoconnect"
@@ -32292,6 +32370,9 @@
     ],
     "core template marker tasks": [
       "core template marker tasks"
+    ],
+    "core web vitals": [
+      "core web vitals"
     ],
     "core workflow": [
       "core workflow"
@@ -57622,6 +57703,9 @@
     "goal not carried": [
       "goal not carried"
     ],
+    "goal not carried worktree": [
+      "goal not carried worktree"
+    ],
     "goal objective check": [
       "goal objective check"
     ],
@@ -57681,6 +57765,9 @@
     ],
     "goal packet handoff note field": [
       "goal_packet handoff note field"
+    ],
+    "goal packet in a linked worktree": [
+      "goal packet in a linked worktree"
     ],
     "goal packet tree check": [
       "goal packet tree check"
@@ -57867,6 +57954,9 @@
     ],
     "goal rollback": [
       "goal rollback"
+    ],
+    "goal root worktree": [
+      "goal_root worktree"
     ],
     "goal rubric closure": [
       "goal rubric closure"
@@ -61940,8 +62030,18 @@
     "hub scaffold and mode migration tasks": [
       "hub scaffold and mode migration tasks"
     ],
+    "hub scaffold goal": [
+      "hub scaffold goal"
+    ],
+    "hub scaffold implementation summary": [
+      "hub scaffold implementation summary"
+    ],
+    "hub scaffold plan": [
+      "hub-scaffold plan"
+    ],
     "hub scaffold tasks": [
-      "hub scaffold tasks"
+      "hub scaffold tasks",
+      "hub-scaffold tasks"
     ],
     "hub signal retirement": [
       "hub signal retirement"
@@ -67150,6 +67250,12 @@
     "lighter advisor launcher tasks": [
       "lighter advisor launcher tasks"
     ],
+    "lighthouse audit": [
+      "lighthouse audit"
+    ],
+    "lighthouse catalog leaf": [
+      "lighthouse catalog leaf"
+    ],
     "lightweight command line default": [
       "lightweight command-line default"
     ],
@@ -69421,6 +69527,9 @@
     "mcp aside devtools 1 1 9 0": [
       "mcp-aside-devtools 1.1.9.0"
     ],
+    "mcp aside devtools benchmark reports": [
+      "mcp-aside-devtools benchmark reports"
+    ],
     "mcp aside devtools implementation summary": [
       "mcp aside devtools implementation summary"
     ],
@@ -69486,6 +69595,75 @@
     ],
     "mcp benchmarks discoverability": [
       "mcp benchmarks discoverability"
+    ],
+    "mcp bladebro 1 0 0 0": [
+      "mcp-bladebro 1.0.0.0"
+    ],
+    "mcp bladebro 1 1 0 0": [
+      "mcp-bladebro 1.1.0.0"
+    ],
+    "mcp bladebro benchmark reports": [
+      "mcp-bladebro benchmark reports"
+    ],
+    "mcp bladebro router": [
+      "mcp-bladebro router"
+    ],
+    "mcp bladebro routing": [
+      "mcp-bladebro routing"
+    ],
+    "mcp bladebro v1 0 0 0": [
+      "mcp-bladebro v1.0.0.0"
+    ],
+    "mcp bladebro v1 1 0 0": [
+      "mcp-bladebro v1.1.0.0"
+    ],
+    "mcp browser use": [
+      "mcp-browser-use"
+    ],
+    "mcp browser use 1 0 0 0": [
+      "mcp-browser-use 1.0.0.0"
+    ],
+    "mcp browser use 1 1 0 0": [
+      "mcp-browser-use 1.1.0.0"
+    ],
+    "mcp browser use advisor routing": [
+      "mcp-browser-use advisor routing"
+    ],
+    "mcp browser use benchmark reports": [
+      "mcp-browser-use benchmark reports"
+    ],
+    "mcp browser use browser hub": [
+      "mcp-browser-use browser hub"
+    ],
+    "mcp browser use hub": [
+      "mcp-browser-use hub"
+    ],
+    "mcp browser use hub phase parent spec": [
+      "mcp browser use hub phase parent spec"
+    ],
+    "mcp browser use hub scaffold": [
+      "mcp-browser-use hub scaffold"
+    ],
+    "mcp browser use playbooks": [
+      "mcp-browser-use playbooks"
+    ],
+    "mcp browser use relocation closure": [
+      "mcp-browser-use relocation closure"
+    ],
+    "mcp browser use router": [
+      "mcp-browser-use router"
+    ],
+    "mcp browser use routing": [
+      "mcp-browser-use routing"
+    ],
+    "mcp browser use shared tier": [
+      "mcp-browser-use shared tier"
+    ],
+    "mcp browser use v1 0 0 0": [
+      "mcp-browser-use v1.0.0.0"
+    ],
+    "mcp browser use v1 1 0 0": [
+      "mcp-browser-use v1.1.0.0"
     ],
     "mcp child restart needed": [
       "mcp child restart needed"
@@ -69556,11 +69734,17 @@
     "mcp chrome devtools 1 0 24 0": [
       "mcp-chrome-devtools 1.0.24.0"
     ],
+    "mcp chrome devtools 1 0 25 0": [
+      "mcp-chrome-devtools 1.0.25.0"
+    ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
     ],
     "mcp chrome devtools 1 0 8 0": [
       "mcp-chrome-devtools 1.0.8.0"
+    ],
+    "mcp chrome devtools benchmark reports": [
+      "mcp-chrome-devtools benchmark reports"
     ],
     "mcp chrome devtools frontmatter alignment": [
       "mcp-chrome-devtools frontmatter alignment"
@@ -69648,6 +69832,9 @@
     ],
     "mcp chrome devtools v1 0 24 0": [
       "mcp-chrome-devtools v1.0.24.0"
+    ],
+    "mcp chrome devtools v1 0 25 0": [
+      "mcp-chrome-devtools v1.0.25.0"
     ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
@@ -71284,6 +71471,9 @@
     "mcp tooling 1 1 0 0": [
       "mcp-tooling 1.1.0.0"
     ],
+    "mcp tooling 1 10 0 0": [
+      "mcp-tooling 1.10.0.0"
+    ],
     "mcp tooling 1 2 0 0": [
       "mcp-tooling 1.2.0.0"
     ],
@@ -71485,6 +71675,9 @@
     "mcp tooling routing canon tasks": [
       "mcp tooling routing canon tasks"
     ],
+    "mcp tooling six modes": [
+      "mcp-tooling six modes"
+    ],
     "mcp tooling smart routing": [
       "mcp-tooling smart routing"
     ],
@@ -71493,6 +71686,9 @@
     ],
     "mcp tooling v1 1 0 0": [
       "mcp-tooling v1.1.0.0"
+    ],
+    "mcp tooling v1 10 0 0": [
+      "mcp-tooling v1.10.0.0"
     ],
     "mcp tooling v1 2 0 0": [
       "mcp-tooling v1.2.0.0"
@@ -75667,11 +75863,11 @@
     "mode projection contracts tasks": [
       "mode projection contracts tasks"
     ],
-    "mode registry json eight modes": [
-      "mode-registry.json eight modes"
-    ],
     "mode registry json entry": [
       "mode-registry.json entry"
+    ],
+    "mode registry json six modes": [
+      "mode-registry.json six modes"
     ],
     "mode registry mode and packet list": [
       "mode-registry mode and packet list"
@@ -75687,6 +75883,21 @@
     ],
     "mode registry task list": [
       "mode registry task list"
+    ],
+    "mode relocation acceptance criteria": [
+      "mode relocation acceptance criteria"
+    ],
+    "mode relocation goal": [
+      "mode relocation goal"
+    ],
+    "mode relocation implementation summary": [
+      "mode relocation implementation summary"
+    ],
+    "mode relocation plan": [
+      "mode-relocation plan"
+    ],
+    "mode relocation tasks": [
+      "mode-relocation tasks"
     ],
     "mode roster table": [
       "mode roster table"
@@ -76224,6 +76435,9 @@
     ],
     "move a spec packet": [
       "move a spec packet"
+    ],
+    "move chrome devtools and aside modes": [
+      "move chrome devtools and aside modes"
     ],
     "move containment primitive": [
       "move containment primitive"
@@ -76998,6 +77212,21 @@
     ],
     "nested spec folder paths": [
       "nested spec folder paths"
+    ],
+    "nested subtracks": [
+      "nested subtracks"
+    ],
+    "nested subtracks acceptance criteria": [
+      "nested subtracks acceptance criteria"
+    ],
+    "nested subtracks implementation summary": [
+      "nested subtracks implementation summary"
+    ],
+    "nested subtracks plan": [
+      "nested subtracks plan"
+    ],
+    "nested subtracks tasks": [
+      "nested subtracks tasks"
     ],
     "nested workflow packet": [
       "nested workflow packet"
@@ -83531,6 +83760,9 @@
     "performance regression capture": [
       "performance regression capture"
     ],
+    "performance trace": [
+      "performance trace"
+    ],
     "periodic refreshownerlease": [
       "periodic refreshOwnerLease"
     ],
@@ -84247,6 +84479,9 @@
     ],
     "phase 1 render checks and gate": [
       "phase 1 render checks and gate"
+    ],
+    "phase 1 research": [
+      "phase 1 research"
     ],
     "phase 1 residue check and cleanup tool": [
       "phase 1 residue check and cleanup tool"
@@ -85250,6 +85485,9 @@
     "phase 2 hooks readme voice": [
       "phase 2 hooks readme voice"
     ],
+    "phase 2 hub scaffold": [
+      "phase 2 hub scaffold"
+    ],
     "phase 2 hub surface removal": [
       "phase 2 hub surface removal"
     ],
@@ -85868,6 +86106,9 @@
     "phase 3 mint locator at prepare": [
       "phase 3 mint locator at prepare"
     ],
+    "phase 3 mode relocation": [
+      "phase 3 mode relocation"
+    ],
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
     ],
@@ -86083,6 +86324,9 @@
     ],
     "phase 4 battery misses": [
       "phase 4 battery misses"
+    ],
+    "phase 4 bladebro mode": [
+      "phase 4 bladebro mode"
     ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
@@ -86489,6 +86733,9 @@
     "phase 5 router sync guard": [
       "phase 5 router sync guard"
     ],
+    "phase 5 routing and surfaces": [
+      "phase 5 routing and surfaces"
+    ],
     "phase 5 rule amendments": [
       "phase 5 rule amendments"
     ],
@@ -86596,6 +86843,9 @@
     ],
     "phase 56 command folder guard and readme baseline": [
       "phase 56 command folder guard and readme baseline"
+    ],
+    "phase 56 worktree goal carry": [
+      "phase 56 worktree goal carry"
     ],
     "phase 57 v4 0 0 13 reliability fixes": [
       "phase 57 v4 0 0 13 reliability fixes"
@@ -86824,6 +87074,9 @@
     ],
     "phase 6 tasks": [
       "phase 6 tasks"
+    ],
+    "phase 6 verification": [
+      "phase 6 verification"
     ],
     "phase 6 vibe runtime folder and mirrors": [
       "phase 6 vibe runtime folder and mirrors"
@@ -99859,6 +100112,9 @@
     "research gate tasks": [
       "research gate tasks"
     ],
+    "research goal": [
+      "research goal"
+    ],
     "research graph event contract": [
       "research graph event contract"
     ],
@@ -100044,6 +100300,9 @@
     ],
     "research pivot council": [
       "research pivot council"
+    ],
+    "research plan": [
+      "research plan"
     ],
     "research plan tasks": [
       "research plan tasks"
@@ -104092,6 +104351,18 @@
     ],
     "routing and release alignment tasks": [
       "routing and release alignment tasks"
+    ],
+    "routing and surfaces goal": [
+      "routing and surfaces goal"
+    ],
+    "routing and surfaces implementation summary": [
+      "routing and surfaces implementation summary"
+    ],
+    "routing and surfaces plan": [
+      "routing-and-surfaces plan"
+    ],
+    "routing and surfaces tasks": [
+      "routing-and-surfaces tasks"
     ],
     "routing baseline recapture": [
       "routing-baseline-recapture"
@@ -125233,6 +125504,9 @@
     "sub track implementation plan": [
       "sub-track implementation plan"
     ],
+    "sub track inside a sub track": [
+      "sub-track inside a sub-track"
+    ],
     "sub track parity verification": [
       "sub-track parity verification"
     ],
@@ -130431,6 +130705,9 @@
     "three bridge modes": [
       "three bridge modes"
     ],
+    "three browser modes": [
+      "three browser modes"
+    ],
     "three ci check repair tasks": [
       "three ci check repair tasks"
     ],
@@ -132221,6 +132498,9 @@
     ],
     "two launcher test flag flip implementation plan": [
       "two-launcher test flag flip implementation plan"
+    ],
+    "two level sub tracks": [
+      "two level sub-tracks"
     ],
     "two lineage devin research": [
       "two lineage devin research"
@@ -135274,6 +135554,9 @@
     "verification fixes tasks": [
       "verification fixes tasks"
     ],
+    "verification goal": [
+      "verification goal"
+    ],
     "verification implementation summary": [
       "verification implementation summary"
     ],
@@ -137896,6 +138179,21 @@
     ],
     "worktree git hooks coverage": [
       "worktree git hooks coverage"
+    ],
+    "worktree goal carry": [
+      "worktree goal carry"
+    ],
+    "worktree goal carry goal": [
+      "worktree goal carry goal"
+    ],
+    "worktree goal carry implementation summary": [
+      "worktree goal carry implementation summary"
+    ],
+    "worktree goal carry plan": [
+      "worktree goal carry plan"
+    ],
+    "worktree goal carry tasks": [
+      "worktree goal carry tasks"
     ],
     "worktree guard hook": [
       "worktree guard hook"

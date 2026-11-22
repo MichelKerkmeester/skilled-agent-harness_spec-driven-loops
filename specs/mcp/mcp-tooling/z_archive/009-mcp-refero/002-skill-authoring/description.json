@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
+  "description": "The `refero` UTCP manual is reachable through Code Mode but has no skill surface: no SKILL.md contract, no documented tool inventory, no routing",
+  "keywords": [
+    "refero",
+    "utcp",
+    "manual",
+    "reachable",
+    "code",
+    "mode",
+    "skill",
+    "surface",
+    "contract",
+    "documented",
+    "tool",
+    "inventory",
+    "routing"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.714Z",
+  "specId": "002",
+  "folderSlug": "skill-authoring",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "009-mcp-refero"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,130 @@
+✔ prepare carries a Claude goal whose packet lives only in a linked worktree (487.596792ms)
+✖ prepare refuses a worktree goal headline that two linked worktrees carry (203.887041ms)
+✔ consume and claim drop a goal_root that is not a linked worktree of this repository (425.805208ms)
+✖ prepare finds a worktree the log names only before its last 16 MiB (664.714083ms)
+✖ prepare keeps the claimed worktree goal ahead of a primary copy with the same headline (141.297375ms)
+✖ prepare keeps the claimed worktree goal when the log also names a second worktree with it (214.663709ms)
+✖ a worktree git marks prunable is neither searched nor trusted as a goal_root (192.171292ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2375.383583
+
+✖ failing tests:
+
+test at .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4022:1
+✖ prepare refuses a worktree goal headline that two linked worktrees carry (203.887041ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^\[session-handover\] goal not carried: the active goal headline appears in more than one packet\n$/. Input:
+  
+  '[session-handover] goal not carried: the active goal headline appears in 2 packets\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/509-handover-worktree-goal-carry/.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4033:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '[session-handover] goal not carried: the active goal headline appears in 2 packets\n',
+    expected: /^\[session-handover\] goal not carried: the active goal headline appears in more than one packet\n$/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4093:1
+✖ prepare finds a worktree the log names only before its last 16 MiB (664.714083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '[session-handover] goal not carried: the active goal names no packet this hand-over can find\n'
+  - ''
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/509-handover-worktree-goal-carry/.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4121:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '[session-handover] goal not carried: the active goal names no packet this hand-over can find\n',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4125:1
+✖ prepare keeps the claimed worktree goal ahead of a primary copy with the same headline (141.297375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      packet: 'specs/mcp/001-worktree-only-hub',
+  +   root: undefined
+  -   root: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-handover-cli-hMrCzs/wt-hub'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/509-handover-worktree-goal-carry/.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4141:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { packet: 'specs/mcp/001-worktree-only-hub', root: undefined },
+    expected: { packet: 'specs/mcp/001-worktree-only-hub', root: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-handover-cli-hMrCzs/wt-hub' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4144:1
+✖ prepare keeps the claimed worktree goal when the log also names a second worktree with it (214.663709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '[session-handover] goal not carried: the active goal headline appears in 2 packets\n'
+  - ''
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/509-handover-worktree-goal-carry/.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4159:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '[session-handover] goal not carried: the active goal headline appears in 2 packets\n',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4163:1
+✖ a worktree git marks prunable is neither searched nor trusted as a goal_root (192.171292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + ''
+  - '[session-handover] goal not carried: the active goal names no packet this hand-over can find\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/509-handover-worktree-goal-carry/.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:4176:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '[session-handover] goal not carried: the active goal names no packet this hand-over can find\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

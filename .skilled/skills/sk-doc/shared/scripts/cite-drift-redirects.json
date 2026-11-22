@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "e660cab41953ef534250849a9ce9255eb7f7b67c",
-    "renameRecords": 590990,
+    "commit": "b0b3c8d9bf10db5c811396ade69c4ae39ed13d28",
+    "renameRecords": 591947,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -202,7 +202,7 @@
     },
     {
       "from": ".opencode/skills/mcp-chrome-devtools/",
-      "to": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/",
+      "to": ".opencode/skills/mcp-browser-use/mcp-chrome-devtools/",
       "records": 80,
       "agreement": 1
     },
@@ -4141,6 +4141,12 @@
       "to": "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/",
       "records": 51,
       "agreement": 0.9807
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/",
+      "to": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/",
+      "records": 723,
+      "agreement": 1
     },
     {
       "from": "specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/",

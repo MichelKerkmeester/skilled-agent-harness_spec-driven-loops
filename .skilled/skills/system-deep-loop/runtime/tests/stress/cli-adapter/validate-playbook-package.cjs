@@ -117,7 +117,14 @@ function listRegisteredTests() {
       .trim();
     throw new Error(`Vitest test discovery failed${detail ? `:\n${detail}` : ''}`);
   }
-  return result.stdout.split(/\r?\n/u).flatMap((line) => {
+  return parseVitestList(result.stdout);
+}
+
+/** Parse `vitest list` output into the tests under the stress directory, one entry per test line. */
+function parseVitestList(stdout) {
+  return stdout.split(/\r?\n/u).flatMap((rawLine) => {
+    // A config with vitest projects prints each test behind its project name, as in `[serial] `.
+    const line = rawLine.replace(/^\[[^\]]+\] /u, '');
     if (!line.startsWith(TEST_DIRECTORY)) return [];
     const parts = line.split(' > ');
     if (parts.length < 2) return [];
@@ -328,7 +335,11 @@ async function validate() {
 // 5. ENTRY POINT
 // ─────────────────────────────────────────────────────────────────────────────
 
-validate().catch((error) => {
-  process.stderr.write(`[validate-playbook-package] ${error.stack ?? error.message}\n`);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  validate().catch((error) => {
+    process.stderr.write(`[validate-playbook-package] ${error.stack ?? error.message}\n`);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { parseVitestList };

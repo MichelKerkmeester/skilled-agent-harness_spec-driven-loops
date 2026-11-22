@@ -312,12 +312,12 @@ function resolveReplayInputs<TState extends JsonObject>(
       reducerRegistry = component.bindReplayInputs?.(
         Object.freeze(values),
       ) as TypedReducerRegistry<TState>;
-    } catch {
+    } catch (error: unknown) {
       throw new ReplayFingerprintError(
         ReplayFingerprintErrorCodes.REPLAY_COMPONENT_UNREGISTERED,
         'reducer',
         'Registered reducer could not bind the resolved replay inputs',
-        { stage: 'replay-input-binding' },
+        { stage: 'replay-input-binding', cause: error },
       );
     }
     if (!(reducerRegistry instanceof TypedReducerRegistry)) {

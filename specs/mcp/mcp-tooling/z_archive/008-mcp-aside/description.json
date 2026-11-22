@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside",
+  "description": "The `mcp-tooling` parent hub bridges Chrome DevTools debugging (`mcp-chrome-devtools`), ClickUp orchestration (`mcp-click-up`), and a Figma Desktop",
+  "keywords": [
+    "mcp-tooling",
+    "parent",
+    "hub",
+    "bridges",
+    "chrome",
+    "devtools",
+    "debugging",
+    "mcp-chrome-devtools",
+    "clickup",
+    "orchestration",
+    "mcp-click-up",
+    "figma",
+    "desktop"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.710Z",
+  "specId": "008",
+  "folderSlug": "mcp-aside",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-07-26_13-06__converted-008-mcp-aside-into-a-4-phase-packet-and.md"
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 1 research",
+      "browser use hub research",
+      "bladebro research charter",
+      "research plan",
+      "research tasks",
+      "research goal",
+      "research implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "research",
+      "browser",
+      "hub",
+      "bladebro",
+      "charter",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "program"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-config.json",
+      ".skilled/commands/deep/research.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+      "research/iterations/iteration-001.md",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The program has to choose a hub contract, mode names, a CLI-versus-Code-Mode rule and a migration scope before it builds anything, and none of those is settled",
+    "created_at": "2026-11-21T08:11:40Z",
+    "last_save_at": "2026-11-21T12:34:51.599Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:85d155f521855a5eeb9f4c1f4d51d9af04e1fda6c694c319b9c07f764526a2a5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6e3233d7404234cbc98fd5fcae27a1493455c653eaa70538248297993e09fb7c",
+      "plan.md": "13f407b0e5bca1c4b66e15f4a7c28b9c57e4e5c3f1002bec269bc1dd4ba2c90e",
+      "tasks.md": "a2d272153e930dd6834553a66531ef03bb07bea3ba04405d7e1b9bb6bafddd24",
+      "implementation-summary.md": "7eb7e1c166b295120b22993f8d09536f25e9c369d2e973f76f751d519c1b6764",
+      "research/research.md": "d347556871766784663a6696eef467f7c92b38b3a86bdb81e39a3c7c26640197"
+    },
+    "last_active_at": null
+  }
+}

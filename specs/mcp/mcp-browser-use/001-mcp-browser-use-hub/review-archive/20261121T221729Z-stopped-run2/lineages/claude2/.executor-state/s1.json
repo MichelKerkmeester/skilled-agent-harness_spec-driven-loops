@@ -1,0 +1,11 @@
+{"replace":{
+"3. REVIEW DIMENSIONS (remaining)":"<!-- MACHINE-OWNED: START -->\n- [x] D1 Correctness, Logic errors, off-by-one, wrong return types, broken invariants\n- [ ] D2 Security, Injection, auth bypass, secrets exposure, unsafe deserialization\n- [ ] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity\n- [ ] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost\n<!-- MACHINE-OWNED: END -->\n",
+"6. COMPLETED DIMENSIONS":"<!-- MACHINE-OWNED: START -->\n| Dimension | Verdict | Iteration | Summary |\n|-----------|---------|-----------|---------|\n| D1 Correctness | PASS | 1 | Router fresh and live; two P2 scoring defects (forbidden substring reject, nested-alias double count). |\n<!-- MACHINE-OWNED: END -->\n",
+"7. RUNNING FINDINGS":"<!-- MACHINE-OWNED: START -->\n- **P0 (Critical):** 0 active\n- **P1 (Major):** 0 active\n- **P2 (Minor):** 2 active\n- **Delta this iteration:** +0 P0, +0 P1, +2 P2\n<!-- MACHINE-OWNED: END -->\n",
+"12. NEXT FOCUS":"<!-- MACHINE-OWNED: START -->\n- Dimension: security\n- Focus area: Bladebro mode docs and install path, .utcp_config.json, mcp-chrome-devtools/scripts/install.sh, check-mcp-mutation-class.sh + manifest, pre-commit hook edits\n<!-- MACHINE-OWNED: END -->\n"
+},
+"append":{
+"8. WHAT WORKED":"- Probing the live router in-process via harness loadSnapshot()+evaluateRoute with crafted prompts turned scoring doubts into confirmed cases (iteration 1)",
+"9. WHAT FAILED":"- Running skill_advisor.py with a bare prompt did not yield parseable JSON; stage-one runtime probing deferred (iteration 1)",
+"11. RULED OUT DIRECTIONS":"- Stale compiled policy: hash recomputed equals live manifest (iteration 1, evidence: compiled-route-guard.cjs exit 0)"
+}}

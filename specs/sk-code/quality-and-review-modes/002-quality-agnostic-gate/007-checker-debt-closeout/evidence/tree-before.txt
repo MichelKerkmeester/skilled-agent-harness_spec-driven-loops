@@ -4,7 +4,7 @@ specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cros
 specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs:10:  * Per ADR-002 in decision-record.md: dispatcher pivoted from cli-opencode [ADR reference]
 specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs:47: // Per ADR-003: dispatch surface routed by model. [ADR reference]
 specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs:57: // Reference scores from prior runs on SWE-1.6 (113/003 + 113/005/v2) [packet/phase reference]
-specs/mcp-tooling/z_archive/011-routing-remediation/scratch/replay-driver.cjs:11:  * the same row shape as the Phase 0 pre-fix capture. [bounded generic artifact label]
+specs/mcp/mcp-tooling/z_archive/011-routing-remediation/scratch/replay-driver.cjs:11:  * the same row shape as the Phase 0 pre-fix capture. [bounded generic artifact label]
 specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment/improvement/pre-promote-backup/.codex__agents__deep-research.toml:4: # Phase 008 ADR-003: structural graph routing is provisioned via the shared [ADR reference]
 specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment/improvement/pre-promote-backup/.codex__agents__deep-review.toml:4: # Phase 008 ADR-003: structural graph routing is provisioned via the shared [ADR reference]
 specs/sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal/strip_toc_anchors.py:4: Shared transform for spec packet 117-skill-anchor-toc-removal. [packet number reference]

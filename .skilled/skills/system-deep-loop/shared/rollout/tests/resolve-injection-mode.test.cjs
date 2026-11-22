@@ -23,6 +23,18 @@ function withConfig(modeMap, run) {
   }
 }
 
+function withRawConfig(rawText, run) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'command-injection-rollout-'));
+  const configPath = path.join(root, 'command-injection-rollout.json');
+
+  try {
+    if (rawText !== null) fs.writeFileSync(configPath, rawText, 'utf8');
+    run(configPath);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+}
+
 function testDefaultFallback() {
   withConfig({}, (configPath) => {
     assert.equal(resolveInjectionMode('deep/review', { configPath, env: {} }), 'fallback');
@@ -64,9 +76,32 @@ function testEnvOverridePrecedence() {
   });
 }
 
+// A missing config file is the unconfigured rollout posture, so it still resolves to fallback.
+function testMissingConfigFallsBack() {
+  withRawConfig(null, (configPath) => {
+    assert.equal(resolveInjectionMode('deep/review', { configPath, env: {} }), 'fallback');
+  });
+}
+
+// A config file that exists but cannot be read as a JSON object is an operator error.
+// Swallowing it would quietly resolve every command to fallback, so it must surface.
+function testMalformedConfigThrows() {
+  withRawConfig('{ "deep/review": "fix", }\n', (configPath) => {
+    assert.throws(
+      () => resolveInjectionMode('deep/review', { configPath, env: {} }),
+      (error) => error.message.startsWith('[command-injection-rollout]') && error.message.includes(configPath),
+    );
+  });
+  withRawConfig('["deep/review"]\n', (configPath) => {
+    assert.throws(() => resolveInjectionMode('deep/review', { configPath, env: {} }), /must hold a JSON object/);
+  });
+}
+
 testDefaultFallback();
 testJsonOverride();
 testEvidenceBearingJsonEntry();
 testEnvOverridePrecedence();
+testMissingConfigFallsBack();
+testMalformedConfigThrows();
 
-console.log('[command-injection-rollout] resolve-injection-mode tests passed (9 assertions)');
+console.log('[command-injection-rollout] resolve-injection-mode tests passed (12 assertions)');

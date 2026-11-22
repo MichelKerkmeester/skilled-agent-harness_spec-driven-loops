@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp/mcp-code-mode",
+  "description": "Container folder for mcp/mcp-code-mode.",
+  "keywords": [
+    "mcp",
+    "code",
+    "mode"
+  ],
+  "lastUpdated": "2026-11-21T07:55:05.197Z",
+  "specId": "mcp/mcp-code-mode",
+  "folderSlug": "mcp-code-mode",
+  "parentChain": [
+    "mcp"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -632,18 +632,24 @@ export function prepareSalvageEvent(
   }, registry);
 }
 
+interface RecoverySourceEffect {
+  readonly attempt: number;
+  readonly evidenceDigest: string;
+  readonly eventDigest: string;
+  readonly eventId: string;
+  readonly retryDecision: LeafRecoveryPayload['retry_decision'];
+  readonly terminalStatus: LeafRecoveryPayload['terminal_status'];
+  readonly verdict: LeafRecoveryPayload['verdict'];
+}
+
+interface ObservedRecoverySourceEffect extends RecoverySourceEffect {
+  readonly observedAt: string;
+}
+
 /** Builds a recovery payload that links a dispatch receipt to the source effect event it recovers from. */
 export function buildRecoveryPayload(
   dispatchReceiptId: string,
-  source: Readonly<{
-    attempt: number;
-    evidenceDigest: string;
-    eventDigest: string;
-    eventId: string;
-    retryDecision: LeafRecoveryPayload['retry_decision'];
-    terminalStatus: LeafRecoveryPayload['terminal_status'];
-    verdict: LeafRecoveryPayload['verdict'];
-  }>,
+  source: RecoverySourceEffect,
   replayFingerprint: string,
   authorityEpoch: number,
 ): LeafRecoveryPayload {
@@ -670,7 +676,7 @@ export function buildRecoveryPayload(
 /** Builds the recovery payload and prepares its ledger write under the given context and correlation id. */
 export function prepareRecoveryEvent(
   dispatchReceiptId: string,
-  source: Parameters<typeof buildRecoveryPayload>[1] & { observedAt: string },
+  source: ObservedRecoverySourceEffect,
   replayFingerprint: string,
   context: ResultEventContext,
   correlationId: string,

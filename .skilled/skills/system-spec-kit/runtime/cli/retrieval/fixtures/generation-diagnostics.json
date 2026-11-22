@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7129,
-    "ok": 20318,
+    "missing-frontmatter": 7178,
+    "ok": 20383,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29075,
+  "documentsScanned": 29189,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c433761125a6dd979551ebbc7fd8f85f9a83c80042ce45042a995fafbe412c75",
+  "manifestHash": "6a29e7ba6bb568e38edfc0737c51e1a7dd7677a68249084f2f4bfcd9ec5544ad",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45896,
+      "ok": 45995,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -8477,6 +8477,661 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing--post-review/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing--post-review/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-21--two-stage-replay--compiled/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-21--two-stage-replay--compiled/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/aside-browser-automation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/bladebro-stealth-browser.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/holdout-agentic-browser.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/holdout-browser-inspect.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/lighthouse-performance-audit.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--app-running-rerun/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/agent-task/direct-task.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/cli-lifecycle/account-status.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/cli-lifecycle/help-fixture.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/cli-lifecycle/install-version.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/console-network-capture.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/cookies-storage.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/dom-query-inspection.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/navigation-multi-tab.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/performance-timing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/screenshot-pdf-capture.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-repl.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/install.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/mcp.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/negative.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/repl.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/task.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/troubleshoot.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/mcp-transport/mcp-handshake.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/mcp-transport/tools-list-discovery.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/mcp-transport/unbound-profile-error.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/console-probe.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/network-probe.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/recovery-and-failure/dead-mcp-process.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/recovery-and-failure/missing-binary.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/repl-evidence/repl-open-tab.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--attach-probe--aside-browser/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/agent-browser/see-content.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/agent-browser/see-model-and-click.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/agent-browser/tabs-and-run-plan.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/agent-browser/vision-marks.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/mcp-lane/mcp-tools-and-code-mode.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/preflight-and-install/host-preflight.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/preflight-and-install/native-binary-digest.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/preflight-and-install/npm-install.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/preflight-and-install/version-and-doctor.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/lane-on-clone.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/lane-status-and-selection.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/real-mode-reads.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/lane-off-and-stop.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/feature-catalog.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/live-instance.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"chrome devtools live\""
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/install-version.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-stop.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/status-json.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/console-and-network/console-list.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/console-and-network/cookies-retrieval.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/console-and-network/har-export.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/dom-and-screenshot/eval-javascript.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/dom-and-screenshot/query-selector.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/dom-and-screenshot/screenshot-capture.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/automation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/cli.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-cli.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/install.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/mcp.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/negative.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/troubleshoot.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/chrome-devtools-1-navigate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/close-and-select-page.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/dual-instance-parallel.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/multi-tab-same-instance.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/page-context-isolation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/protocol-discovery/describe-page-domain.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/protocol-discovery/list-cdp-domains.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/protocol-discovery/search-cdp-method.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/cleanup-leak.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/invalid-url.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/missing-browser.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -8874,18 +9529,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/aside-browser-automation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/clickup-task-management.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -8893,18 +9536,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/figma-transport.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/holdout-agentic-browser.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/holdout-browser-inspect.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -8965,415 +9596,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/direct-task.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/cli-lifecycle/account-status.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/cli-lifecycle/help-fixture.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/cli-lifecycle/install-version.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/devtools-parity/console-network-capture.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/devtools-parity/cookies-storage.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/devtools-parity/dom-query-inspection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/devtools-parity/navigation-multi-tab.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/devtools-parity/performance-timing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/devtools-parity/screenshot-pdf-capture.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-repl.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/install.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/mcp.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/negative.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/repl.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/task.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/troubleshoot.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/mcp-handshake.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/tools-list-discovery.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/unbound-profile-error.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/console-probe.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/network-probe.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/recovery-and-failure/dead-mcp-process.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/recovery-and-failure/missing-binary.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/repl-evidence/repl-open-tab.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/live-instance.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"chrome devtools live\""
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/install-version.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-stop.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/status-json.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/console-and-network/console-list.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/console-and-network/cookies-retrieval.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/console-and-network/har-export.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/dom-and-screenshot/eval-javascript.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/dom-and-screenshot/query-selector.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/dom-and-screenshot/screenshot-capture.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/automation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/cli.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-cli.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/install.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/mcp.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/negative.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/troubleshoot.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/chrome-devtools-1-navigate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/close-and-select-page.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/dual-instance-parallel.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/multi-tab-same-instance.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/mcp-parallel-instances/page-context-isolation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/protocol-discovery/describe-page-domain.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/protocol-discovery/list-cdp-domains.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/protocol-discovery/search-cdp-method.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/cleanup-leak.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/invalid-url.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/missing-browser.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -36870,6 +37092,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -37017,6 +37251,66 @@
       "path": "specs/hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise/resume-prompt.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -58682,6 +58976,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -58726,55 +59028,123 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/deep-research-ledger",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/z_archive",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/deltas",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/dispatch-receipts",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/z_archive",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/locks-and-fencing-v1",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/prompts",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/z_archive",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/z_archive",
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T221729Z-stopped-run2/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-code-mode/001-code-mode-fresh-clone-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-code-mode/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/clickup-figma/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -67595,6 +67965,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/scratch",
       "reason": "excluded directory"
     },
     {

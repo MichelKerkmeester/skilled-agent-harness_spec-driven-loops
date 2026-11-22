@@ -548,6 +548,7 @@ export class BlindedAdjudicationService {
             ),
           });
         } catch {
+          // A malformed authorizer result fails closed as unauthorized.
           authorization = null;
         }
       }

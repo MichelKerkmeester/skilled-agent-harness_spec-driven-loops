@@ -11,6 +11,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const { spawnSync } = require('node:child_process');
 
 const engine = require('../overlay-engine.cjs');
 const {
@@ -24,9 +25,9 @@ const {
 const ENGINE = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
 
 // The quoting the engine promises: bare when the path is plain, otherwise in
-// double quotes with the shell's special characters escaped.
+// single quotes, which stop every expansion, with an embedded quote as '\''.
 function quoted(value) {
-  return /^[A-Za-z0-9._\/-]+$/.test(value) ? value : '"' + value.replace(/(["\\$`])/g, '\\$1') + '"';
+  return /^[A-Za-z0-9._\/-]+$/.test(value) ? value : "'" + value.replace(/'/g, "'\\''") + "'";
 }
 
 function createFixture(t, overlays, layoutLinks = []) {
@@ -46,6 +47,40 @@ function createFixture(t, overlays, layoutLinks = []) {
   fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
   return fixture;
 }
+
+test('a printed path survives a shell round trip whatever characters it holds', () => {
+  const paths = ['/plain/dir/file.md', '/a b/c', '/bang !dir/x', '/dollar $HOME/x', '/dq "x"/y',
+    "/sq it's/x", '/tick `id`/x', '/back \\slash/x', "/all !$\"'`\\ mixed"];
+  assert.equal(engine.shellPath('/plain/dir/file.md'), '/plain/dir/file.md');
+  for (const value of paths) {
+    const printed = spawnSync('sh', ['-c', 'printf %s ' + engine.shellPath(value)], { encoding: 'utf8' });
+    assert.equal(printed.status, 0, printed.stderr);
+    assert.equal(printed.stdout, value);
+  }
+});
+
+test('a path with a bang is single-quoted in a keep-aside Next line, so an interactive shell does not expand it', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'my !dir/tool' }]);
+  writeFile(fixture.tree, 'my !dir/tool/user.md', 'user work\n');
+  assert.match(fixture.tree, /^[A-Za-z0-9._\/-]+$/);
+  const result = fixture.run(['apply']);
+  assert.notEqual(result.code, 0, result.output);
+  const moved = `${fixture.tree}/my !dir/tool`;
+  const expected = `  Next: mv '${moved}' '${moved}.keep', then from ${fixture.tree}: ${ENGINE} apply`;
+  assert.ok(result.output.split('\n').includes(expected), result.output);
+});
+
+test('a layout link to a file names the move aside and the mkdir as one pasteable command', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'up/tool.md' }],
+    [{ path: 'up', target: 'real' }]);
+  writeFile(fixture.tree, 'real', 'a file where the folder belongs\n');
+  assert.match(fixture.tree, /^[A-Za-z0-9._\/-]+$/);
+  const result = fixture.run(['apply']);
+  assert.notEqual(result.code, 0, result.output);
+  const real = path.join(fixture.tree, 'real');
+  assert.ok(result.output.includes(`Next: mv ${real} ${real}.keep && mkdir -p ${real}, or point the layout link up `),
+    result.output);
+});
 
 test('an unowned folder in the way names a quoted absolute mv and the folder to rerun apply from', (t) => {
   const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'my tool' }]);
@@ -158,4 +193,111 @@ test('a stuck Python cache folder with a space in its path names a quoted absolu
   } finally {
     fs.chmodSync(cacheDir, 0o755);
   }
+});
+
+test('a rollback line names a root with a space and a quote so a shell reads it back as that root', () => {
+  const root = "/tmp/a b'c";
+  const line = engine.rollbackCommand({ root }, '20261121T000000Z-abc123');
+  const prefix = `rollback: ${ENGINE} repin --rollback 20261121T000000Z-abc123 --root `;
+  assert.ok(line.startsWith(prefix), line);
+  const printed = spawnSync('sh', ['-c', 'printf %s ' + line.slice(prefix.length)], { encoding: 'utf8' });
+  assert.equal(printed.status, 0, printed.stderr);
+  assert.equal(printed.stdout, root);
+});
+
+test('the capture fix for a live edit at a path with a space quotes that path', (t) => {
+  const fixture = createSyncFixture(t);
+  assert.equal(fixture.run(['apply']).code, 0);
+  writeFile(fixture.tree, 'directory-live/my file.md', 'hand edit\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.ok(status.output.includes(`fix: ${ENGINE} apply --capture 'directory-live/my file.md'`), status.output);
+});
+
+// A refusal reached from every command reruns the read-only check, and names
+// the manifest by its quoted absolute path, so the line works from any folder.
+function statusRerun(fixture) {
+  return `then from ${quoted(fixture.tree)}: ${ENGINE} status`;
+}
+
+function manifestPath(fixture) {
+  return quoted(engine.createContext(fixture.tree).manifestPath);
+}
+
+test('a state file of an unsupported shape is restored from HEAD, index and worktree both', (t) => {
+  const fixture = createSyncFixture(t);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const statePath = engine.createContext(fixture.tree).statePath;
+  fs.writeFileSync(statePath, '[]');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: restore the state file from git: git -C ${quoted(fixture.tree)} restore --source=HEAD --staged --worktree -- ` +
+    quoted(path.relative(fixture.tree, statePath));
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a capture whose overlay copy is gone restores that copy from HEAD, index and worktree both', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'tool' }]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  fs.rmSync(path.join(fixture.overlayDir, 'files/tool.md'));
+  const captured = fixture.run(['apply', '--capture', 'tool']);
+  assert.notEqual(captured.code, 0, captured.output);
+  const source = path.join(fixture.overlayDir, 'files/tool.md');
+  assert.ok(captured.output.includes(`  Next: restore the overlay copy (git -C ${quoted(fixture.tree)} restore --source=HEAD ` +
+    `--staged --worktree -- ${quoted(path.relative(fixture.tree, source))}) or copy tool to ${quoted(source)}`), captured.output);
+});
+
+test('two overlays on one destination name the quoted manifest and the status rerun', (t) => {
+  const fixture = createFixture(t, [
+    { id: 'one', scope: 'file', source: 'files/tool.md', destination: 'tool' },
+    { id: 'two', scope: 'file', source: 'bundle/a.md', destination: 'tool' },
+  ]);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: keep tool in one of those two entries in ${manifestPath(fixture)}, ${statusRerun(fixture)}`;
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a protectedPaths refusal names the quoted manifest and the status rerun', (t) => {
+  const cases = [
+    ['../outside.txt', 'write it in MANIFEST as a path relative to entry bundle, such as "config/token.txt", '],
+    ['.env.local', 'remove it from protectedPaths of entry bundle in MANIFEST (a .env file is refused without it), '],
+  ];
+  for (const [value, next] of cases) {
+    const fixture = createFixture(t, [{ id: 'bundle', scope: 'directory', source: 'bundle', destination: 'bundle-live',
+      protectedPaths: [value] }]);
+    const status = fixture.run(['status']);
+    assert.equal(status.code, 2, status.output);
+    const expected = '  Next: ' + next.replace('MANIFEST', manifestPath(fixture)) + statusRerun(fixture);
+    assert.ok(status.output.split('\n').includes(expected), value + ': ' + status.output);
+  }
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'tool',
+    protectedPaths: ['x.txt'] }]);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: move protectedPaths of entry tool in ${manifestPath(fixture)} onto a directory or skill-root entry, ` +
+    `or make it a list, ${statusRerun(fixture)}`;
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a repin list that is not a list names the quoted manifest and the status rerun', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'tool' }]);
+  fixture.manifest.repin = { runtimeFolders: '.claude' };
+  writeManifest(fixture);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: set "repin": {"runtimeFolders": ["<path>"]} in ${manifestPath(fixture)}, each path relative to the tree, ` +
+    statusRerun(fixture);
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a capture of a live destination that is no longer a file prints the capture command to rerun', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'my tool' }]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  fs.rmSync(path.join(fixture.tree, 'my tool'));
+  writeFile(fixture.tree, 'my tool/inner.md', 'a folder now\n');
+  const captured = fixture.run(['apply', '--capture', 'my tool']);
+  assert.notEqual(captured.code, 0, captured.output);
+  const expected = `  Next: once 'my tool' is a regular file again, from ${quoted(fixture.tree)}: ${ENGINE} apply --capture 'my tool'`;
+  assert.ok(captured.output.split('\n').includes(expected), captured.output);
 });

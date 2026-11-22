@@ -476,6 +476,25 @@ describe('provenance-balanced reduction', () => {
     expect(result.output.items.every((entry) => entry.effectiveSourceCount === 1)).toBe(true);
   });
 
+  it('orders source buckets by UTF-16 code unit whatever the process locale', async () => {
+    // Collation puts '_' before '-' before '.', code-unit order puts '-' before '.' before '_'.
+    const families = ['model_x', 'model.x', 'model-x'];
+    const envelopes = families.map((_, index) => successfulEnvelope(`f-${index}`));
+    const candidates = families.map((family, index) => candidate(
+      envelopes[index],
+      family,
+      { namespace: 'n', stableId: `f-${index}`, type: 'claim' },
+      { value: index },
+    ));
+    const result = await reduceProvenance(input(envelopes, candidates, families));
+    const expected = ['model-x', 'model.x', 'model_x'].map(normalizeSourceBucketId);
+
+    expect(result.receipt.schedules.map((entry) => entry.sourceBucketId)).toEqual(expected);
+    expect(replayProvenanceLedger(result.ledger).schedules.map((entry) => entry.sourceBucketId))
+      .toEqual(expected);
+    expect(replayProvenanceReduction(result).replayFingerprint).toBe(result.receipt.replayFingerprint);
+  });
+
   it('preserves minority work and defers quota exhaustion instead of erasing it', async () => {
     const envelopes = [
       successfulEnvelope('sol-1'),
@@ -633,6 +652,61 @@ describe('provenance-balanced reduction', () => {
     expect(inconclusive.output.items).toHaveLength(2);
     expect(missing.output.items).toHaveLength(2);
     expect(missing.receipt.adjudications[0].status).toBe('failed-closed');
+  });
+
+  it('binds the actual fail-closed cause into the adjudication replay fingerprint', async () => {
+    const envelopes = [successfulEnvelope('sol'), successfulEnvelope('luna')];
+    const contested = (judgeContents: readonly (string | null)[]) => [
+      candidate(
+        envelopes[0],
+        'SOL',
+        { namespace: 'claim', stableId: 'alpha', type: 'claim' },
+        { answer: 'alpha' },
+        { judgeContent: judgeContents[0], semanticEquivalenceKey: 'semantic-1' },
+      ),
+      candidate(
+        envelopes[1],
+        'LUNA',
+        { namespace: 'claim', stableId: 'beta', type: 'claim' },
+        { answer: 'beta' },
+        { judgeContent: judgeContents[1], semanticEquivalenceKey: 'semantic-1' },
+      ),
+    ];
+    const expectedFingerprint = (
+      audit: { readonly candidateDigests: readonly string[] },
+      failClosedReason: string,
+    ) => sha256Bytes(canonicalBytes({
+      candidateDigests: [...audit.candidateDigests],
+      failClosedReason,
+      semanticKey: 'semantic-1',
+    }));
+    const rejectingPort: BlindedMergePort = {
+      async adjudicate() {
+        throw new Error('adjudication service unavailable');
+      },
+    };
+
+    const rejected = await reduceProvenance(input(
+      envelopes,
+      contested(['Alpha evidence', 'Beta evidence']),
+      ['SOL', 'LUNA'],
+      { adjudicator: rejectingPort },
+    ));
+    const rejectedAudit = rejected.receipt.adjudications[0];
+    expect(rejectedAudit.status).toBe('failed-closed');
+    expect(rejectedAudit.candidateDigests).toHaveLength(2);
+    expect(rejectedAudit.replayFingerprint).toBe(expectedFingerprint(rejectedAudit, 'adjudicator-rejected'));
+
+    const missingContent = await reduceProvenance(input(
+      envelopes,
+      contested([null, 'Beta evidence']),
+      ['SOL', 'LUNA'],
+      { adjudicator: rejectingPort },
+    ));
+    const missingAudit = missingContent.receipt.adjudications[0];
+    expect(missingAudit.status).toBe('failed-closed');
+    expect(missingAudit.candidateDigests).toHaveLength(1);
+    expect(missingAudit.replayFingerprint).toBe(expectedFingerprint(missingAudit, 'judge-content-missing'));
   });
 
   it('records full fleet categories and never labels degraded survivors full-fleet', async () => {

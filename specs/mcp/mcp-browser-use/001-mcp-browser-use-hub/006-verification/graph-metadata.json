@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 6 verification",
+      "mcp-browser-use playbooks",
+      "verification plan",
+      "verification tasks",
+      "verification goal",
+      "006-verification operator decisions",
+      "verification implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "verification",
+      "mcp-browser-use",
+      "playbooks",
+      "plan",
+      "tasks",
+      "goal",
+      "006-verification",
+      "operator",
+      "decisions",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/mcp-browser-use/hub-router.json",
+      ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md",
+      ".skilled/skills/mcp-browser-use/README.md",
+      ".skilled/commands/local-skilled-alignment.md",
+      ".skilled/commands/create/assets/create-benchmark-auto.yaml",
+      ".skilled/skills/mcp-tooling/benchmark/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-regression-cases.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "uninstall-and-data-root.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-skilled-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-skilled-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-benchmark-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-benchmark-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Chrome",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Chrome DevTools and Aside have playbooks, but they test the packets where they sat before 003",
+    "created_at": "2026-11-21T08:11:47Z",
+    "last_save_at": "2026-11-22T05:52:16.446Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:03ddf2440db29139d5ee0013049b81d198e8f28c4ba54f329bbf85bc839cce09",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b703baed26cdffd383b145cdb20101e44143f4c87bfd130bf887cf66343d7885",
+      "plan.md": "ba1b6840e91fb1b2c66caf5a19b7ec6022bc92ba4826b19f4108694beba861ac",
+      "tasks.md": "28fbd93c8b26da4213709d65e47ed24983331bcc53cfb999a3b93f1286315ff2",
+      "decision-record.md": "4f1e2d25fee9fae600458365d9747742d931569a00401dddb11f5dd1c3bccae6",
+      "implementation-summary.md": "98fdf2e35a7b73f8b0951ead6ebe7deae7b16b95e824909fae60922de0a5a72d"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 3 mode relocation",
+      "move chrome devtools and aside modes",
+      "mode-relocation plan",
+      "mode-relocation tasks",
+      "mode relocation acceptance criteria",
+      "mcp-browser-use relocation closure",
+      "mode relocation goal",
+      "mode relocation implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "mode",
+      "relocation",
+      "move",
+      "chrome",
+      "devtools",
+      "aside",
+      "modes",
+      "mode-relocation",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+      ".skilled/commands/doctor/scripts/tests/check-mcp-mutation-class.test.sh",
+      ".skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/bin/tests/mcp-installers.test.cjs",
+      "runtime/cli/retrieval/README.md",
+      "observability/smart-router-measurement.ts",
+      ".skilled/skills/README.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/mcp-browser-use/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-mcp-mutation-class.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-mcp-mutation-class.test.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/tests/check-mcp-mutation-class.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-mutation-class-manifest.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-installers.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/mcp-installers.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-measurement.ts",
+        "kind": "code",
+        "path": "observability/smart-router-measurement.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Chrome",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Chrome DevTools and Aside packets live under `.skilled/skills/mcp-tooling/`",
+    "created_at": "2026-11-21T08:11:42Z",
+    "last_save_at": "2026-11-21T18:38:28.187Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c3287c3f3ed0d91783ae5d441e529c6148569dce55595769ace376fd30afe54",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e3ec9d11211fb846f91b56331772445d439dc28cc097c4b21e18a406de26c68b",
+      "plan.md": "d21636df2c46e76910b397445b0ba4811225f522c3c20a1e9c5ecaf04d939db5",
+      "tasks.md": "3dba41a6d3385a7573fa5d40b9731d6b134f0ba0d7e1ed9c363252eef3145aab",
+      "implementation-summary.md": "ef76dd7ffed6c57e81fe6328636e97ee5f1939e850daed141b3784b55509ecab"
+    },
+    "last_active_at": null
+  }
+}
