@@ -14,7 +14,8 @@
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers",
-    "mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note"
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic"
   ],
   "manual": {
     "depends_on": [],
@@ -69,7 +70,7 @@
       "009-sk-code-browser-evidence/goal.md",
       "010-mcp-tooling-browser-pointers/goal.md",
       "011-bdg-eval-port-note/goal.md",
-      "001-research/research/deep-research-state.jsonl"
+      "012-browser-hub-doc-topic/goal.md"
     ],
     "entities": [
       {
@@ -100,12 +101,6 @@
         "name": "check-mcp-mutation-class.sh",
         "kind": "script",
         "path": ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "001-research/research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -207,7 +202,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-23T15:30:14.938Z",
+    "last_save_at": "2026-11-23T18:56:33.478Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +210,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:df836ced2ec1291816540ef7e477d74c3bd23076adc25c5921aa94b98ace8655",
+    "source_fingerprint": "sha256:363b15f0f3fa19ee161701fee9e15dfa11c3cf7581189c29b991b169994f4379",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df216ec88e5374adb35fed03038a75f9ab9733020f336f425189ba859e289946",
+      "spec.md": "62295ad3957cd3993892d2d44bcc649aeea43321f0f00f987fe09969331fa3ec",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
-    "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification",
-    "last_active_at": "2026-11-21T23:07:38.037Z"
+    "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",
+    "last_active_at": "2026-11-23T18:56:18.815Z"
   }
 }

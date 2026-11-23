@@ -1,5 +1,5 @@
 {
-  "manifestHash": "faf339b5f4b81b06d1eb5a43875ef7c7ce553332edec4e6c8528f1574c3e2d8e",
+  "manifestHash": "9071463b2a73213ab41482066315798eef1fe9b426f05d24926b3b99b01d0af7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -523,6 +523,9 @@
     ],
     "002 deprecate coco index rollup": [
       "002-deprecate-coco-index rollup"
+    ],
+    "002 devin lane operator decisions": [
+      "002-devin-lane operator decisions"
     ],
     "002 doctor update orchestrator changelog index": [
       "002-doctor-update-orchestrator changelog index"
@@ -3067,6 +3070,9 @@
     ],
     "012 blast radius uplift": [
       "012 blast radius uplift"
+    ],
+    "012 browser hub doc topic operator decisions": [
+      "012-browser-hub-doc-topic operator decisions"
     ],
     "012 causal traversal bfs plan": [
       "012-causal-traversal-bfs plan"
@@ -12031,6 +12037,9 @@
     "alignment lane result parser tasks": [
       "alignment lane result parser tasks"
     ],
+    "alignment lane runner phase parent spec": [
+      "alignment lane runner phase parent spec"
+    ],
     "alignment mode removed": [
       "alignment mode removed"
     ],
@@ -16866,6 +16875,21 @@
     ],
     "browser hub changelog topology": [
       "browser hub changelog topology"
+    ],
+    "browser hub doc topic": [
+      "browser hub doc topic"
+    ],
+    "browser hub doc topic goal": [
+      "browser hub doc topic goal"
+    ],
+    "browser hub doc topic implementation summary": [
+      "browser hub doc topic implementation summary"
+    ],
+    "browser hub doc topic plan": [
+      "browser hub doc topic plan"
+    ],
+    "browser hub doc topic tasks": [
+      "browser hub doc topic tasks"
     ],
     "browser hub routing": [
       "browser hub routing"
@@ -23492,6 +23516,9 @@
     ],
     "cli devin 17 skill audit": [
       "cli-devin 17-skill audit"
+    ],
+    "cli devin alignment lane": [
+      "cli-devin alignment lane"
     ],
     "cli devin benchmark index": [
       "cli-devin benchmark index"
@@ -42440,6 +42467,18 @@
     ],
     "devin injection screen": [
       "devin injection screen"
+    ],
+    "devin lane": [
+      "devin lane"
+    ],
+    "devin lane implementation summary": [
+      "devin lane implementation summary"
+    ],
+    "devin lane plan": [
+      "devin lane plan"
+    ],
+    "devin lane tasks": [
+      "devin lane tasks"
     ],
     "devin live follow": [
       "devin live follow"
@@ -70205,6 +70244,9 @@
     "mcp browser use browser hub": [
       "mcp-browser-use browser hub"
     ],
+    "mcp browser use doc alignment topic": [
+      "mcp-browser-use doc alignment topic"
+    ],
     "mcp browser use hub": [
       "mcp-browser-use hub"
     ],
@@ -85485,6 +85527,9 @@
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
     ],
+    "phase 12 browser hub doc topic": [
+      "phase 12 browser hub doc topic"
+    ],
     "phase 12 catalog and playbook alignment": [
       "phase 12 catalog and playbook alignment"
     ],
@@ -86117,6 +86162,9 @@
     ],
     "phase 2 deepseek harness persona probe": [
       "phase 2 deepseek harness persona probe"
+    ],
+    "phase 2 devin lane": [
+      "phase 2 devin lane"
     ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
@@ -105803,6 +105851,9 @@
     ],
     "run javascript in browser cli": [
       "run javascript in browser cli"
+    ],
+    "run lanes cjs changes": [
+      "run-lanes.cjs changes"
     ],
     "run lanes findings object": [
       "run-lanes findings object"

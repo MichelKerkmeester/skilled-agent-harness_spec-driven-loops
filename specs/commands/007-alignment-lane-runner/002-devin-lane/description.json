@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "commands/007-alignment-lane-runner/002-devin-lane",
+  "description": "Phase 2: devin-lane",
+  "keywords": [
+    "phase",
+    "devin-lane"
+  ],
+  "lastUpdated": "2026-11-23T18:56:04.167Z",
+  "specId": "002",
+  "folderSlug": "devin-lane",
+  "parentChain": [
+    "commands",
+    "007-alignment-lane-runner"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-11-26_19-56__manual-context-save.md"
+  ]
+}

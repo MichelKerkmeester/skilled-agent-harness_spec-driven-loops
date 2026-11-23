@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "commands/006-alignment-lane-result-parser"
+    packet_pointer: "commands/007-alignment-lane-runner/001-alignment-lane-result-parser"
     last_updated_at: "2026-11-14T19:05:00Z"
     last_updated_by: "builder"
     recent_action: "Completed the parser change and its tests"

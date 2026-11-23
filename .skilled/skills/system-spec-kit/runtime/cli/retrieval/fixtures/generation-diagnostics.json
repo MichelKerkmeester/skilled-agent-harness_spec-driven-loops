@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7233,
-    "ok": 20561,
+    "ok": 20573,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29422,
+  "documentsScanned": 29434,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "faf339b5f4b81b06d1eb5a43875ef7c7ce553332edec4e6c8528f1574c3e2d8e",
+  "manifestHash": "9071463b2a73213ab41482066315798eef1fe9b426f05d24926b3b99b01d0af7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46319,
+      "ok": 46336,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -58046,7 +58046,15 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/commands/006-alignment-lane-result-parser/scratch",
+      "path": "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/007-alignment-lane-runner/002-devin-lane/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/007-alignment-lane-runner/scratch",
       "reason": "excluded directory"
     },
     {
@@ -59427,6 +59435,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/scratch",
       "reason": "excluded directory"
     },
     {

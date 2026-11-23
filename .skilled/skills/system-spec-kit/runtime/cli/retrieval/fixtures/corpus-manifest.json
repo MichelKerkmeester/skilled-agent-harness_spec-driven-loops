@@ -1,5 +1,5 @@
 {
-  "corpusHash": "988b5796cd8e209ba9f55cb401712990c3a5940c0c67f8109905d9d027725f33",
+  "corpusHash": "b83ff7c5edffad8af13ded2cf5f4117080380fea868855179e2c9e199208e514",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29422,
+  "includedPathCount": 29434,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11596,12 +11596,18 @@
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/spec.md",
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/tasks.md",
     "specs/commands/005-doctor-symlink-install/spec.md",
-    "specs/commands/006-alignment-lane-result-parser/acceptance-criteria.md",
-    "specs/commands/006-alignment-lane-result-parser/goal.md",
-    "specs/commands/006-alignment-lane-result-parser/implementation-summary.md",
-    "specs/commands/006-alignment-lane-result-parser/plan.md",
-    "specs/commands/006-alignment-lane-result-parser/spec.md",
-    "specs/commands/006-alignment-lane-result-parser/tasks.md",
+    "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/acceptance-criteria.md",
+    "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/goal.md",
+    "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/implementation-summary.md",
+    "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/plan.md",
+    "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/spec.md",
+    "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/tasks.md",
+    "specs/commands/007-alignment-lane-runner/002-devin-lane/decision-record.md",
+    "specs/commands/007-alignment-lane-runner/002-devin-lane/implementation-summary.md",
+    "specs/commands/007-alignment-lane-runner/002-devin-lane/plan.md",
+    "specs/commands/007-alignment-lane-runner/002-devin-lane/spec.md",
+    "specs/commands/007-alignment-lane-runner/002-devin-lane/tasks.md",
+    "specs/commands/007-alignment-lane-runner/spec.md",
     "specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/acceptance-criteria.md",
     "specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/decision-record.md",
     "specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/implementation-summary.md",
@@ -13427,6 +13433,12 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/plan.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/spec.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/decision-record.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/tasks.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/decision-record.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
@@ -29454,7 +29466,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "faf339b5f4b81b06d1eb5a43875ef7c7ce553332edec4e6c8528f1574c3e2d8e",
+  "manifestHash": "9071463b2a73213ab41482066315798eef1fe9b426f05d24926b3b99b01d0af7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32661,7 +32673,15 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/commands/006-alignment-lane-result-parser/scratch",
+      "path": "specs/commands/007-alignment-lane-runner/001-alignment-lane-result-parser/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/007-alignment-lane-runner/002-devin-lane/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/007-alignment-lane-runner/scratch",
       "reason": "excluded directory"
     },
     {
@@ -34042,6 +34062,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/scratch",
       "reason": "excluded directory"
     },
     {

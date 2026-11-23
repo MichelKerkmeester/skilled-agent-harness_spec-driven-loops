@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",
+  "description": "Phase 12: browser-hub-doc-topic",
+  "keywords": [
+    "phase",
+    "browser-hub-doc-topic"
+  ],
+  "lastUpdated": "2026-11-23T18:56:18.770Z",
+  "specId": "012",
+  "folderSlug": "browser-hub-doc-topic",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-11-26_19-56__manual-context-save.md"
+  ]
+}
