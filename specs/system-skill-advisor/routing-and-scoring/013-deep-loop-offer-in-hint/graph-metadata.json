@@ -45,7 +45,8 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts",
       ".skilled/hooks/injection-contract.md",
-      "scratch/behaviour/F6-1.md"
+      "scratch/behaviour/F6-1.md",
+      "scratch/behaviour/F6-5.md"
     ],
     "entities": [
       {
@@ -112,6 +113,12 @@
         "name": "F6-1.md",
         "kind": "doc",
         "path": "scratch/behaviour/F6-1.md",
+        "source": "derived"
+      },
+      {
+        "name": "F6-5.md",
+        "kind": "doc",
+        "path": "scratch/behaviour/F6-5.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor brief names a deep-loop command as `system-deep-loop → /deep:review (ask)` and nothing more",
     "created_at": "2026-11-23T16:22:57Z",
-    "last_save_at": "2026-11-23T16:50:45.440Z",
+    "last_save_at": "2026-11-23T17:27:55.207Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2bdd0f4764432a0111dc860afc15ec4165902f9af43003d0bc1f3257f1aa11e2",
+    "source_fingerprint": "sha256:833867dbd79b9a70bc94505f3b77f28f23327871ec4f2da49041960167d173dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f67bd1893c3e4e888416e5cb8f188aa55f83103bb971da182333b11bba1c05b3",
+      "spec.md": "fde2c97aa64d2ac56f18f04803d291548f7c9c8d07960860ca9cb411fad2e653",
       "plan.md": "7efbc044423a3b735d64704334dcd31f4fde77654da5e31a1585836d37706b3c",
-      "tasks.md": "491746e82186e8a03a9981abcac7690038384a63e2c27ddf0e206947fb5018e0",
-      "decision-record.md": "2061bdb361d55171ff829872fc3139ebd83e1ec8e7212c169117adca8dea3959",
-      "implementation-summary.md": "854ff3835c9532e5239d88b00f5afcd486614d9c1eb6d2740ecd4f3f6d35a408"
+      "tasks.md": "f0fc79fc52febb320a7b39f6128bce9eecaa5650b6f196be7fd54e078ae09cfe",
+      "decision-record.md": "b061a568451a15574f66aadce83be1d1a062c22de3737f9c263bcc956ffb0e74",
+      "implementation-summary.md": "fd8e2af8a20a01036ed0bddb3f23ab6f7f6adb20b4dfd4b71301ba3033a27a33"
     },
     "last_active_at": null
   }

@@ -37,6 +37,8 @@ _memory:
 | Q001 | Open a new follow-up packet that puts the deep-loop offer options in the advisor brief, with nothing built until the plan is approved. | Not stated. | None | spec.md, plan.md, tasks.md |
 | Q002 | Approve the plan and build it in worktree 527, including four F6 behaviour runs. | Not stated. | None | tasks.md T001 to T009 |
 | Q003 | Name offer options only for the two deep-loop commands and leave every other ask command label unchanged. | Not stated. | None | spec.md Out of Scope, render.ts |
+| Q004 | Mark option A recommended in the brief and sample F6 four more times. | Not stated. | None | T010, render.ts |
+| Q005 | Merge 013 to main and push once it is settled, then remove worktree 527. | Not stated. | None | worktree 527 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -102,6 +104,45 @@ Add a generic hint
 Answer:
 ```text
 Deep-loop only (Recommended)
+```
+
+### Q004
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01NJooULPAY3w2XE4bAGbTjQ:0 -->
+
+Question:
+```text
+Packet 013 is built and tested: the brief now reads `/deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop)`, and the advisor suite passes 2624 of 2624. But in four F6 runs, 0 sessions asked the full three-option offer (before: 1 of 4). Every session asked for the review target first. Two named options from the brief: one recommended :auto, the other recommended :confirm. The other two defaulted to :confirm. What next?
+```
+
+Options:
+```text
+Reword and resample (Recommended)
+Keep as is and merge
+Revert the brief change
+```
+
+Answer:
+```text
+Reword and resample (Recommended)
+```
+
+### Q005
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01NJooULPAY3w2XE4bAGbTjQ:1 -->
+
+Question:
+```text
+When 013 is settled, should its commits go to main? Worktree 527 holds three 013 commits (plan, brief change, F6 record). The 012 commit is already on main.
+```
+
+Options:
+```text
+Merge and push when settled (Recommended)
+Ask me again first
+```
+
+Answer:
+```text
+Merge and push when settled (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

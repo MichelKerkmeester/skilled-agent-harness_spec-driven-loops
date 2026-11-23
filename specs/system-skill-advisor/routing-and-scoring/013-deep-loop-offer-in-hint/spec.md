@@ -91,7 +91,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The brief head for a `/deep:research` or `/deep:review` command with policy word `ask` names options A, B and C, with A the command plus `:auto` and B the command plus `:confirm`. | The Measured Behavior command prints `system-deep-loop → /deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop)` in its first line, and the golden test for `/deep:research` expects the research names. |
+| REQ-001 | The brief head for a `/deep:research` or `/deep:review` command with policy word `ask` names options A, B and C, with A the command plus `:auto` and B the command plus `:confirm`. | The Measured Behavior command prints `system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop)` in its first line, and the golden test for `/deep:research` expects the research names. |
 | REQ-002 | Every other command label renders as before. | `npx vitest run` in the advisor runtime reports 0 failed, and the golden heads for `/doctor:git hooks (ask)` and every non-deep row are unchanged in the diff. |
 | REQ-003 | A child session keeps the `parent-named only` label with no options. | A test renders a `/deep:review` recommendation with `childSession: true` and expects `(parent-named only)` with no `A ` option text. |
 
