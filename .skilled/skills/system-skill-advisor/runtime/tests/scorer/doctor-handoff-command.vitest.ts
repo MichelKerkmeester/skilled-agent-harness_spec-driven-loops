@@ -120,6 +120,15 @@ describe('doctor hand-off command', () => {
     expect(ids.slice(0, 2)).toEqual(['system-deep-loop', 'command-doctor-deep-loop']);
   });
 
+  // The deep-loop doctor reads a deep run's state, so a prompt that shares its
+  // keywords but names no deep run gets no passing doctor row.
+  it.each([
+    'research why the model needed more iterations to converge',
+    'research why the model needed iterations to converge',
+  ])('passes no deep-loop doctor row when no deep run is named: %s', (prompt) => {
+    expect(passingDoctorIds(prompt)).not.toContain('command-doctor-deep-loop');
+  });
+
   // The helper stands beside the skills for a tool that never appears. The row
   // is a tune prompt, so its wording may be read here after the split check.
   it('offers the helper beside the skills for a tool that does not show up', () => {

@@ -687,6 +687,44 @@ describe('command attach on a deep-loop prompt', () => {
     expect(isStuckRunComplaint(prompt)).toBe(false);
   });
 
+  // Convergence and a coverage graph name a deep run only beside its noun.
+  it.each([
+    'my k-means convergence is stuck, help me debug the code',
+    'why is the coverage graph empty in my jest report',
+  ])('withholds the doctor when convergence or a coverage graph names no deep run: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'resume the review loop on the auth module', '/deep:review'],
+    ['research', 'extend the research loop on cache eviction', '/deep:research'],
+    ['research', 'run deep research to explain why the last CI run failed', '/deep:research'],
+    ['research', 'run 10 research iterations on LLM caching so I can write an article about it', '/deep:research'],
+    ['review', 'what is a deep review? run one on the auth module', '/deep:review'],
+  ])('offers the %s command on a continued run or an explicit run beside another reading: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it.each([
+    ['run 5 research iterations on review tooling', '/deep:research'],
+    ['I would like a deep loop reviewing the session store', '/deep:review'],
+  ])('names the mode the loop unit or an -ing cue names on a deferred route: %s', (prompt, command) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  it.each([
+    ['review', 'audit the first 2 iterations for drift'],
+    ['review', 'review this PR in one iteration'],
+    ['review', 'review why the build failed after 3 iterations'],
+    ['research', 'research 3 rounds of the clinical trial results'],
+    ['research', 'research why the model needed more iterations to converge'],
+    ['review', 'set up a review loop for PR approvals in GitHub'],
+    ['review', 'run tests until the review loop passes'],
+    ['review', 'write a blog post about how to run a deep review'],
+  ])('withholds the %s command on a count, a loop name or a run ask that asks for no run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
   it('reads no deferred mode for a hub other than the deep loop', () => {
     expect(attachCommand('sk-doc', { action: 'defer' }, 'run 5 iterations of review')).toBeUndefined();
   });
