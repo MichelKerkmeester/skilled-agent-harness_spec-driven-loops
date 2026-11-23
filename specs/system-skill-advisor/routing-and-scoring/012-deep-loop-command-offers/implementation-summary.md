@@ -8,31 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T09:35:16Z"
+    last_updated_at: "2026-11-23T16:22:15Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed negated run asks and rounds-of-review scope; added offer flags to both deep hints"
-    next_safe_action: "Commit worktree 522 through sk-git when the operator asks, then close the earlier note"
+    recent_action: "Reran the pre-change corpus capture at 2ef3895f753 and recorded it in T003"
+    next_safe_action: "None; the packet is closed"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
-    blockers:
-      - "acceptance-criteria.md rows still Unmet from earlier rounds"
+    blockers: []
     key_files:
-      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      - ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
-      - ".skilled/commands/deep/research.md"
-      - ".skilled/commands/deep/review.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/corpus-before.json"
     session_dedup:
-      fingerprint: "sha256:ed7b946f01a8d67757861c8b82afd7ac188ebd3ba5da180a7ed674f999f68fb6"
+      fingerprint: "sha256:50632de60e5e2728d7c265ff655474d02a98eea6125995904ab4383810a5eedb"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
-      workspace: "/Users/michelkerkmeester/worktrees/public/522-deep-loop-offer-review-fixes"
-      savedAt: "2026-11-23T09:35:16Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/527-deep-loop-offer-in-hint"
+      savedAt: "2026-11-23T16:22:15Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -51,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-deep-loop-command-offers |
-| **Completed** | 2026-11-22 |
+| **Completed** | 2026-11-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -152,6 +148,11 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Fourth round: live probes | 31 review-fix probes and 14 G and R probes all match their expected outcome (`scratch/probes/review-fix-r4.json`, `review-fix-g-r4.json`), and the 31 are unchanged from `review-fix-final.json` |
 | Fourth round: deep-loop runtime `npm test` | 222 files, 4039 passed, 11 skipped, 0 failed. A first run alongside other work failed one 15 ms timing test in `fanout-pool.vitest.ts`, which passed 3 of 3 alone and in the full rerun |
 | Fourth round: corpora and drift | Command-routing baseline and scorer eval baseline recaptured without `--write`: 0 differences apart from the capture SHA. Contract drift, documentation drift, mirror sync (260) and command catalog mirror all OK |
+| Closure pass: spec-baseline probe | `scratch/probes/results-after.json`, 69 lines, all `exit 0 live`. Every gain, no-gain, keep and negative row matches `acceptance-criteria.md`. Stage-one rows: R2 tops `system-spec-kit` with `/deep:research` second, V2, V4 and H10 top the hub with `/deep:review`, H7 with `/deep:research`. N9 and H3b carry no deep command |
+| Closure pass: advisor suite | `npm run build` exit 0, then 180 files, 2619 passed, 4 skipped, 0 failed. Three depth words gained gate cases ("thoroughly", "exhaustive", "deep dive"), and the two gate files report 294 passed. Mirror sync passes 260 mirrors, and command references resolve across 84 asset files |
+| Closure pass: corpus | Recapture equals the committed baseline apart from the capture fields. Over the 35 rows that existed before the packet, `false_offer` 0 and `false_offer_attached` 0, as before the code change. Over the 22 new silent rows, `false_offer` 0, and one attached offer: `nm-system-deep-loop-05` (V7) carries `/create:manual-testing-playbook` |
+| Closure pass: alias replay | K2 tops the hub on the research route. Out-of-domain replays in `scratch/probes/results-ac017-ood.json`: three stay off the hub, and "write a memo on multi-round research funding for the grant committee" tops it with no command (ADR-002, accepted: the alias stays) |
+| Final rerun on `958fa817187` | Advisor `npm run build` exit 0, then 180 files, 2622 passed, 4 skipped, 0 failed. The 69 spec-baseline probes, rerun in the worktree and in the primary checkout (`scratch/probes/results-final-958fa81-worktree.json`, `results-final-958fa81-primary.json`), keep every gain, stage-one, lose and `/deep:*` line, with policy `ask` on each. One negative row differs per checkout, with no command in either: in the worktree H5 tops `sk-doc` over `sk-code` by 0.000004, and in the primary checkout N12 tops the operator's private `local-webflow` skill. No advisor code changed after the committed rerun. Mirrors PASS 260, command references OK |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -167,7 +168,7 @@ The operator then asked for the remaining open items to be fixed (decision D10).
 - **Several passes:** review over several passes now gets `/deep:review`.
 - **Stuck runs:** a complaint about a stuck, non-converging or stale run now gets `/doctor:deep-loop`.
 - **Explain questions:** an explain question no longer gets a run-policy doctor row.
-- **Behaviour run:** done. Three plan-mode operator turns on F3, F5 and F6 each opened with the offer: one turn that asks the spec-folder and run questions together, with a recommended option A carrying the composed command.
+- **Behaviour run:** done. F3 and F5 asked the offer, and F6 asked it on 1 of 4 runs after the routing-step edit (limitation 5). The earlier plan-mode operator turns on F3, F5 and F6 each opened with the offer: one turn that asks the spec-folder and run questions together, with a recommended option A carrying the composed command.
 
 A second round, also on "fix open", fixed both phrasings that still missed:
 - **Review called "code":** "give the scheduler code many passes of review" now gets `/deep:review`. Naming the target "code" had scored the code skill twice.
@@ -201,4 +202,7 @@ What stays open:
    - "Dig into how hospitals de-identify patient records …, and spend eight iterations on it" gets no recommendation: "dig into" is not read as a research cue.
    - It is reported, not tuned, so the rows stay blind.
 2. **The argument hints are over the soft budget.** Both hints now list every offer flag (Q013), so `validate_document.py` warns that each is over 140 characters. The warning is soft, and no failure from a long hint is recorded.
+3. **"Write a memo on" is not read as writing about a topic.** "write a memo on iterative research funding for the grant committee" gets `/deep:research pol=ask`, and so does the same memo on "deep research funding", which was a loop ask before this packet. No guard is added for one phrasing.
+4. **The multi-round research alias also catches a memo about research funding.** The operator kept it for K2 (ADR-002), so that memo can surface the hub as a skill suggestion with no command.
+5. **The F6 session asks the offer only some of the time.** Three `claude -p` runs on "extend the finished deep review by 3 iterations" each stopped before spending, but none asked the offer with options A, B and C. The plan-mode run (`scratch/behaviour/F6-plan-mode.md`, $0.22) composed `/deep:review <packet> :auto --extend=3` and wrote a plan for approval. The run outside plan mode (`scratch/behaviour/F6.md`, $0.18) asked the spec-folder question and named `--extend=3` as the command it would run, after reading only the flag table. Step 0 of both command documents now names the three options, and the flag table sends a composed flag into option A. The run after that edit (`scratch/behaviour/F6-after-step0.md`, $0.16) asked which review was meant before it opened the command document, so the edit was never read. The session acts on the brief's `ask` alone, and the offer format lives one document away from it. Three more samples after the edit split: sample 1 (`scratch/behaviour/F6-sample-1.md`, $0.20) loaded `/deep:review` and asked the offer with `--extend=3` in the recommended option A, while samples 2 and 3 ($0.11 and $0.17) asked which review was meant first, since about 30 finished reviews exist. So 1 of 4 runs since the edit asked the offer, and the operator accepted AC-008 as met with that rate disclosed. The earlier F6 recording answered another prompt ("8 more") and is kept as `scratch/behaviour/F6-other-prompt.md`.
 <!-- /ANCHOR:limitations -->

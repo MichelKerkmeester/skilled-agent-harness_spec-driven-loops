@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "a18bf4ea9c73894961e39a7b89bfeed3b5d04e436efe2d9d579e86c399295991",
+      "sha256": "c4e8da7f551be63f5ff776291609caf7842d4bb9782bdc03786d9355d31671b8",
       "section": "full"
     },
     {

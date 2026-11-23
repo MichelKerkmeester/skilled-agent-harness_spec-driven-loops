@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.9.0
+version: 1.1.10.0
 ---
 
 # mcp-refero
@@ -155,7 +155,7 @@ Breadth is fine while you research. Compare several records and their metadata b
 
 Reach for this packet when you want Refero evidence: a visual style for a direction, a real screen for a pattern or state, a flow for a multi-step process or company and domain research through screen and flow metadata. Reach for it too when the `refero` wiring or its auth state needs a read-only report.
 
-Skip it when the work is the design judgment itself. Skip Mobbin research for `mcp-mobbin`, Figma work for `mcp-figma`, browser automation and previews for `mcp-chrome-devtools` and generic app coding for `sk-code`. Never use it to change files. The allowed surface is Read, Bash, Grep, Glob and the Code Mode call.
+Skip it when the work is the design judgment itself. Skip Mobbin research for `mcp-mobbin`, Figma work for `mcp-figma`, browser automation and previews for the `mcp-browser-use` hub and generic app coding for `sk-code`. Never use it to change files. The allowed surface is Read, Bash, Grep, Glob and the Code Mode call.
 
 ### Related Skills
 
@@ -165,7 +165,7 @@ Skip it when the work is the design judgment itself. Skip Mobbin research for `m
 | `mcp-code-mode` | The substrate. Manuals, `{manual}.{manual}_{tool}` naming, discovery and the error envelope all come from Code Mode. |
 | `mcp-mobbin` | The sibling transport for Mobbin research, covering real app screens, flows and website sections. This packet covers web styles, plus screens and flows from web or iOS. |
 | `mcp-figma` | Figma Desktop work: component renders, token exports and explicit-path local exports. No surface overlap with Refero. |
-| `mcp-chrome-devtools` | Browser inspection and preview, never a design-reference search surface. |
+| `mcp-browser-use` | Browser inspection and preview through any installed browser mode, never a design-reference search surface. |
 | `sk-code` | Owns adapting a design decision into application code and verifying it. |
 
 ---

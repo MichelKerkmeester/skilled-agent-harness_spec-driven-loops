@@ -1,5 +1,5 @@
 {
-  "corpusHash": "221c5ff12894a04be0756bca7426c8298597cad695851f968cfddaf232f9e384",
+  "corpusHash": "988b5796cd8e209ba9f55cb401712990c3a5940c0c67f8109905d9d027725f33",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29393,
+  "includedPathCount": 29422,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2239,6 +2239,7 @@
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.24.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.25.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.26.0.md",
+    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.27.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.8.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/examples/README.md",
@@ -2490,6 +2491,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.21.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.22.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.23.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.24.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.5.0.md",
@@ -2690,6 +2692,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.3.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -2743,6 +2746,7 @@
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.5.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.6.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.7.0.md",
+    ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.8.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/element-intent-query.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/platform-flow-research.md",
@@ -2978,6 +2982,7 @@
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.6.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.8.0.md",
+    ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.9.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/funnel-styles-screens-flows.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/metadata-first-lookup.md",
@@ -3066,6 +3071,12 @@
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router/findings-and-recommendations.md",
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router/skill-benchmark-report.md",
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router/source.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/README.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/source.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/README.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/source.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/README.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/source.md",
     ".skilled/skills/sk-code/benchmark/reports/README.md",
     ".skilled/skills/sk-code/benchmark/reports/baseline/README.md",
     ".skilled/skills/sk-code/benchmark/reports/baseline/failed-runs.md",
@@ -3136,6 +3147,7 @@
     ".skilled/skills/sk-code/changelog/v3.12.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.3.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3200,6 +3212,7 @@
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
     ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md",
@@ -7108,6 +7121,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
@@ -13403,6 +13417,16 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/plan.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/spec.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/tasks.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/decision-record.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
@@ -20440,6 +20464,11 @@
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -29425,7 +29454,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "82be0d4ff7b5316398322e7855684d51582b568bbef466b01a0bb45608efa252",
+  "manifestHash": "faf339b5f4b81b06d1eb5a43875ef7c7ce553332edec4e6c8528f1574c3e2d8e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34008,6 +34037,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T221729Z-stopped-run2/lineages",
       "reason": "excluded directory"
     },
@@ -38545,6 +38582,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/scratch",
       "reason": "excluded directory"
     },
     {

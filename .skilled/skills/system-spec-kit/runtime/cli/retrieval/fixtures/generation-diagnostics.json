@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7226,
-    "ok": 20539,
+    "missing-frontmatter": 7233,
+    "ok": 20561,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29393,
+  "documentsScanned": 29422,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "82be0d4ff7b5316398322e7855684d51582b568bbef466b01a0bb45608efa252",
+  "manifestHash": "faf339b5f4b81b06d1eb5a43875ef7c7ce553332edec4e6c8528f1574c3e2d8e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46275,
+      "ok": 46319,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -11071,6 +11071,42 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-code/benchmark/reports/baseline/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -11348,6 +11384,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -59380,6 +59422,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T221729Z-stopped-run2/lineages",
       "reason": "excluded directory"
     },
@@ -63917,6 +63967,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/scratch",
       "reason": "excluded directory"
     },
     {

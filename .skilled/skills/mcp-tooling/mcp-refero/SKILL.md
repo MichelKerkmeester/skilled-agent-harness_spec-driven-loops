@@ -3,7 +3,7 @@ name: mcp-refero
 description: "Refero MCP transport: read-only UI reference search via Code Mode, paired with sk-design-md-generator for a Style Reference."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.8.0
+version: 1.1.9.0
 user-invocable: true
 ---
 
@@ -52,7 +52,7 @@ Pair any design-affecting use with `sk-design-md-generator` for a measured Style
 **Skip this skill when:**
 - The work is the design judgment itself (palette, type, layout, taste verdicts, accessibility or readiness calls). This packet is only an evidence transport and issues no such verdict.
 - The task is app or screen research through Mobbin. That is `mcp-mobbin` (the sibling Mobbin transport, not this packet).
-- The task is browser automation, live-page inspection, or visual preview of a built page. That is `mcp-chrome-devtools`.
+- The task is browser automation, live-page inspection, or visual preview of a built page. That is the `mcp-browser-use` hub.
 - The work is generic app coding with no design-reference input: use `sk-code`.
 - The user asks to change this repo's files, the `.utcp_config.json` manual, or auth state. This transport forbids Write/Edit/Task and never mutates the workspace.
 
@@ -273,7 +273,7 @@ Scripts: `scripts/doctor.sh` (read-only, non-interactive diagnostics; optional e
 
 Examples: `examples/` carries worked Code Mode walkthroughs (the full styles -> screens -> flows funnel, a metadata-first lookup, and a screen-image fetch), each opening with the mandatory `tool_info` confirmation and marking OAuth-gated steps SKIP-valid.
 
-Related skills: `sk-design-md-generator` (the measured Style Reference pairing — extracted design tokens), `mcp-code-mode` (the substrate), `mcp-figma` (the sibling Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design-md-generator` (the measured Style Reference pairing — extracted design tokens), `mcp-code-mode` (the substrate), `mcp-figma` (the sibling Figma transport), `mcp-browser-use` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 

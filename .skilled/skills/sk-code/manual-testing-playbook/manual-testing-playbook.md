@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.22.0
+version: 1.5.23.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -216,7 +216,7 @@ Per-feature files: see `language-sub-detection/`.
 
 ---
 
-## 9. ROUTING DISAMBIGUATION (`RD-002..RD-005`)
+## 9. ROUTING DISAMBIGUATION (`RD-002..RD-006`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -224,6 +224,7 @@ Per-feature files: see `language-sub-detection/`.
 | `RD-003` | Plain Frontend Requests Reach the Frontend Surface | Verify everyday frontend requests return a route that includes sk-code-frontend | `fix the responsive grid layout on the pricing page` | save the 13 prompts → replay each through `compiled-route.cjs --hub sk-code` → count the routes that name sk-code-frontend | 13 route lines, each with a target whose workflowMode is sk-code-frontend | `/tmp/skc-RD003-routes.txt` | PASS iff the count is 13 | If the guard reports a stale manifest, refresh it and replay. Otherwise add a phrase of two or more words to the matching frontend class and INTENT_SIGNALS rows. Never edit a prompt |
 | `RD-004` | A UI Review Bundles the Frontend Surface | Verify a UI component review returns the review mode first and the frontend surface second | `review my react component for accessibility issues` | route probe → list the workflowMode of each target in order | selectionKind surfaceBundle, with sk-code-review first and sk-code-frontend second | `/tmp/skc-RD004-route.txt` | PASS iff the route holds exactly those two targets in that order | If sk-code-frontend is missing, add one phrase to the code-frontend-review class. If it is the only target, two frontend phrases matched, so remove the broader one |
 | `RD-005` | Non-Frontend Requests Stay Off the Frontend Surface | Verify requests that share a word with frontend work but concern other code never return sk-code-frontend | `add left padding to the binary buffer before hashing` | save the 8 prompts → replay each through `compiled-route.cjs --hub sk-code` → count the routes that name sk-code-frontend | 8 decision lines, none naming sk-code-frontend | `/tmp/skc-RD005-routes.txt` | PASS iff the count is 0 | List the frontend keywords with no space and no hyphen, and replace each with a phrase of two or more words. If the list is empty, narrow the phrase that matched |
+| `RD-006` | Frontend Completion Carries Browser Evidence | Verify a finished frontend change reports browser evidence from the `mcp-browser-use` hub, or NOT RUN with the reason, in a session the agent owns | `Use sk-code to change the Pricing heading in index.html from black to dark blue (#1e3a8a), then tell me when it is done.` | Claude Code conversation runner → answer any documentation, signed-in or browser-mode question → check the scratch files, the transcript's own tool calls and the reply | heading is #1e3a8a; reply names a screenshot and the console after a `bdg`, `bladebro` or Chrome DevTools MCP call, or says NOT RUN; no Aside, `chrome_devtools_live`, `--autoConnect` or `bladebro rb` call | `/tmp/skc-rd006-evidence/matrix.md`, `/tmp/skc-rd006-evidence/claude-code/result.json`, the turn's history and check output | PASS iff the color changed, no signed-in browser was opened and the reply carries browser evidence or NOT RUN | If the reply has neither, check the `sk-code-frontend` row in `ROUTER.md` §5; the scenario runs with `--no-sandbox`, because Chrome cannot start inside the runner's macOS sandbox, and it skips without that flag |
 
 Per-feature files: see `routing-disambiguation/`.
 
@@ -337,7 +338,7 @@ Behavior the manual playbook alone covers:
 ---
 
 ## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
-The Catalog Entry column names the feature-catalog document that owns the behavior, as a path relative to `.skilled/skills/sk-code/`. `none` marks a scenario whose behavior the catalog does not inventory: the design-restraint behaviors (DR-001, DR-002, DR-004), the dist-staleness hook wiring (TH-001) and the runtime-neutral post-edit quality router all live in references and hook code the catalog does not list as features, so no catalog entry applies to them.
+The Catalog Entry column names the feature-catalog document that owns the behavior, as a path relative to `.skilled/skills/sk-code/`. `none` marks a scenario whose behavior the catalog does not inventory: the design-restraint behaviors (DR-001, DR-002, DR-004), the dist-staleness hook wiring (TH-001), the runtime-neutral post-edit quality router and the frontend browser-evidence check (RD-006) all live in references, routers and hook code the catalog does not list as features, so no catalog entry applies to them.
 
 | Category | Feature ID | Per-Feature File | Catalog Entry | Critical Path |
 |---|---|---|---|---|
@@ -354,6 +355,7 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Routing Disambiguation | RD-003 | [routing-disambiguation/frontend-reach.md](routing-disambiguation/frontend-reach.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Routing Disambiguation | RD-004 | [routing-disambiguation/frontend-review-bundle.md](routing-disambiguation/frontend-review-bundle.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Routing Disambiguation | RD-005 | [routing-disambiguation/frontend-negative-probes.md](routing-disambiguation/frontend-negative-probes.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
+| Routing Disambiguation | RD-006 | [routing-disambiguation/frontend-browser-evidence-conversation.md](routing-disambiguation/frontend-browser-evidence-conversation.md) | none | No |
 | Skill Advisor Integration | SA-001 | [skill-advisor-integration/advisor-probe-battery.md](skill-advisor-integration/advisor-probe-battery.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | Yes |
 | Design Restraint | DR-001 | [design-restraint/design-restraint-ladder.md](design-restraint/design-restraint-ladder.md) | none | No |
 | Design Restraint | DR-002 | [design-restraint/implementer-anti-stall.md](design-restraint/implementer-anti-stall.md) | none | No |
@@ -363,4 +365,4 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | `feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md` | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | none | No |
 
-**Operator scenarios**: 21, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 9 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 30 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.
+**Operator scenarios**: 22, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 9 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 31 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.

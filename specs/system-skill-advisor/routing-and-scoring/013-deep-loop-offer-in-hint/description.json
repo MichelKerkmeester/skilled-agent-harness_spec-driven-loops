@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint",
+  "description": "Carry the deep-loop offer in the advisor hint",
+  "keywords": [
+    "carry",
+    "deep-loop",
+    "offer",
+    "advisor",
+    "hint"
+  ],
+  "lastUpdated": "2026-11-23T17:59:06.903Z",
+  "specId": "013",
+  "folderSlug": "deep-loop-offer-in-hint",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "23-11-26_17-25__opened-the-follow-up-packet-that-puts-the-three.md",
+    "23-11-26_17-50__built-the-brief-change-passed-the-full-advisor.md",
+    "23-11-26_17-50__built-the-brief-change-passed-the-full-advisor.md",
+    "23-11-26_18-27__marked-option-a-recommended-in-the-brief-and.md",
+    "23-11-26_18-59__closed-the-packet-with-the-brief-change-kept-and.md"
+  ]
+}

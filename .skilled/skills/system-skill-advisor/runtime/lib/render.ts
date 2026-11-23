@@ -111,6 +111,10 @@ const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 const ROUTE_ONLY_SHADOW_ID = 'shadow.route-only.advisor.v1';
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 const PARENT_NAMED_POLICY = 'parent-named only';
+// A deep-loop command asks before it runs, and its offer has three fixed
+// options. A session that asks for the target before opening the command doc
+// never learns them, so the brief names them beside the policy word.
+const DEEP_LOOP_OFFER_COMMANDS: ReadonlySet<string> = new Set(['/deep:research', '/deep:review']);
 export const ROUTE_ONLY_ESTIMATED_BYTES = 43;
 const MAX_SHADOW_ROUTE_ONLY_LOG = 256;
 
@@ -238,8 +242,11 @@ function commandLabel(recommendation: RenderableRecommendation, childSession: bo
     ? row.mutating
     : Object.values(COMMAND_ROWS).find((candidate) => candidate.command === commandPart)?.mutating;
   const policyPart = policyWord(policy, mutating, childSession);
-  return policyPart === null
-    ? `${ownerPart} → ${commandPart}`
+  if (policyPart === null) {
+    return `${ownerPart} → ${commandPart}`;
+  }
+  return policyPart === 'ask' && DEEP_LOOP_OFFER_COMMANDS.has(commandPart)
+    ? `${ownerPart} → ${commandPart} (ask: A ${commandPart}:auto (Recommended), B ${commandPart}:confirm, C no loop)`
     : `${ownerPart} → ${commandPart} (${policyPart})`;
 }
 

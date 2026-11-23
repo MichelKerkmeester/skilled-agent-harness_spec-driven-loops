@@ -8,9 +8,10 @@ trigger_phrases:
   - "bdg session not starting"
   - "cdp method not found"
   - "jq parse error bdg output"
+  - "session target not found"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Troubleshooting Guide
@@ -465,6 +466,42 @@ ps aux | grep bdg
    fi
 
    bdg https://example.com 2>&1
+   ```
+
+---
+
+### Issue: `bdg dom eval` reports "Session target not found"
+
+**Symptoms** (bdg 0.6.10, session started with `-p` on a port other than 9222):
+```bash
+$ bdg dom eval 'document.title'
+Error: Session target not found (tab may have been closed)
+Start a new session with: bdg <url>
+```
+
+The command exits with code 83, and the tab is still open. Adding `-p <port>` to `dom eval`, before or after `dom`, gives the same error. Screenshots, console reads and `bdg cdp` keep working in the same session.
+
+**Cause**: in 0.6.10, `dom eval` looks for the session's tab on port 9222 and never reads the port the session was started on. A session on another port has no tab there, so the lookup fails.
+
+**Diagnosis**:
+```bash
+# The port the session runs on
+jq '.port' ~/.bdg/session.meta.json
+```
+
+**Solutions**:
+
+1. **Start the session on the default port when 9222 is free**:
+   ```bash
+   bdg stop 2>&1
+   bdg https://example.com 2>&1   # no -p, so the session uses 9222
+   bdg dom eval 'document.title' 2>&1
+   ```
+
+2. **Read page values through `bdg cdp` when 9222 is taken**, for example by another Chrome. It works on any session port:
+   ```bash
+   bdg cdp Runtime.evaluate --params '{"expression":"getComputedStyle(document.querySelector(\"h1\")).color","returnByValue":true}' \
+     | jq -r '.result.result.value'
    ```
 
 ---

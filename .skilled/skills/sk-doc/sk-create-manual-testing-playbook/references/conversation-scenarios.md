@@ -9,7 +9,7 @@ trigger_phrases:
   - "conversation script schema"
 importance_tier: normal
 contextType: implementation
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Manual Testing Playbook Conversation Scenarios
@@ -164,6 +164,7 @@ Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `se
 - Each `launch_setup` command has the same 120 seconds and runs in the scratch project with the script's `env`, `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` and `CONVERSATION_RUNTIME`, plus `VIBE_HOME` on Vibe.
 - Exit 77 skips the runtime with its first non-empty output line as the blocker.
 - The runner sets `CONVERSATION_REPO_ROOT` and `CONVERSATION_RUNTIME` for every `setup` command too, so setup can copy project files from the repository without any variable set by hand.
+- The runner sets `CONVERSATION_SANDBOX` for every `setup`, `launch_setup` and `check` command to the mode it records in `result.json`: `seatbelt`, `codex-workspace-write`, `off` or `unavailable`.
 - `CONVERSATION_REPO_ROOT` is the repository the run snapshots, which `--repo-root` can point at a worktree.
 
 Use `--seed N` to replay random delays declared as `[min, max]`. The runner records the seed in `result.json`. Use `--overwrite` to replace existing per-runtime evidence folders. Without it, the runner refuses a non-empty runtime folder. A Vibe run leaves its private home beside the scratch project, because the session journal in it is the only copy, and `result.json` records that path as `vibe_home`. Use `--remove-home` to delete the home once the subject has stopped, including the read-only plugin files Vibe extracts; `vibe_home_removed` then reads `true`.
@@ -171,6 +172,8 @@ Use `--seed N` to replay random delays declared as `[min, max]`. The runner reco
 Before and after each runtime run, the runner hashes the repository's `specs/` folder and its watched `.skilled/skills/.state/` subfolders by path, size and SHA-256. The watched subfolder is `decision-capture` by default. Set `CONVERSATION_WATCH` to a comma-separated list of subfolder names to watch others. A difference fails that runtime as `REPO_CHANGED` and keeps both snapshots in its evidence folder.
 
 On macOS the runner starts Claude Code, OpenCode, Pi and Devin through `/usr/bin/sandbox-exec` with a profile that denies writes under the repository root, under the checkout the runner lives in and under the git common dir. Codex is not wrapped, because it keeps its own `--sandbox workspace-write` and one seatbelt profile cannot be applied inside another. `--no-sandbox` turns the wrapper off. Each runtime's `result.json` gains a `sandbox` key holding `seatbelt`, `codex-workspace-write`, `off` or `unavailable`. When `sandbox-exec` is missing or the host is not macOS, the value is `unavailable` and the runner writes one stderr line saying the subject runs unsandboxed. The snapshot check still runs either way.
+
+Chrome sets up its own macOS sandbox when it starts and cannot do that inside the seatbelt, so a browser the subject starts there crashes, and a browser daemon such as Bladebro relaunches it in a loop. A scenario whose subject may open a browser skips in setup when `CONVERSATION_SANDBOX` is `seatbelt` and is run with `--no-sandbox`. Its setup records which browser daemons were already running, and its check stops the ones the run started from an `EXIT` trap, so they stop whether the check passes or fails.
 
 ---
 

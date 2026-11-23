@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # mcp-click-up
@@ -216,7 +216,7 @@ The two surfaces are not interchangeable. `cupt add` creates a task but sends on
 | Skill | Relationship |
 |---|---|
 | `mcp-code-mode` | Owns the Code Mode call path. This skill names the ClickUp tools you call inside it. |
-| `mcp-chrome-devtools` | Structural sibling. It routes a fast CLI and an MCP path by operation, the same shape this skill follows. |
+| `mcp-browser-use` | The browser hub. Its Chrome DevTools mode routes a fast CLI and an MCP path by operation, the same shape this skill follows, and its Aside and Chrome DevTools modes drive the signed-in doc page writes. |
 
 ---
 

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "82be0d4ff7b5316398322e7855684d51582b568bbef466b01a0bb45608efa252",
+  "manifestHash": "faf339b5f4b81b06d1eb5a43875ef7c7ce553332edec4e6c8528f1574c3e2d8e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3277,6 +3277,9 @@
     ],
     "013 daemon restart reindex": [
       "013 daemon restart reindex"
+    ],
+    "013 deep loop offer in hint operator decisions": [
+      "013-deep-loop-offer-in-hint operator decisions"
     ],
     "013 deep review": [
       "013 deep review"
@@ -15274,11 +15277,32 @@
     "bdg dom eval": [
       "bdg dom eval"
     ],
+    "bdg dom eval port note": [
+      "bdg dom eval port note"
+    ],
+    "bdg dom eval session target not found": [
+      "bdg dom eval session target not found"
+    ],
     "bdg dom query": [
       "bdg dom query"
     ],
     "bdg dom screenshot": [
       "bdg dom screenshot"
+    ],
+    "bdg eval port note": [
+      "bdg eval port note"
+    ],
+    "bdg eval port note goal": [
+      "bdg eval port note goal"
+    ],
+    "bdg eval port note implementation summary": [
+      "bdg eval port note implementation summary"
+    ],
+    "bdg eval port note plan": [
+      "bdg eval port note plan"
+    ],
+    "bdg eval port note tasks": [
+      "bdg eval port note tasks"
     ],
     "bdg example scripts": [
       "bdg example scripts"
@@ -15294,6 +15318,9 @@
     ],
     "bdg network har export": [
       "bdg network har export"
+    ],
+    "bdg non default port eval": [
+      "bdg non default port eval"
     ],
     "bdg performance metrics": [
       "bdg performance metrics"
@@ -17945,6 +17972,9 @@
     ],
     "carried forward question filter": [
       "carried forward question filter"
+    ],
+    "carry the deep loop offer in the advisor": [
+      "carry the deep loop offer in the advisor"
     ],
     "cartesian plots use a taller frame": [
       "cartesian plots use a taller frame"
@@ -21682,6 +21712,9 @@
     ],
     "claude code review prompt template": [
       "claude code review prompt template"
+    ],
+    "claude code review your answers": [
+      "claude code review your answers"
     ],
     "claude code session handover on by default": [
       "claude code session handover on by default"
@@ -25767,6 +25800,9 @@
     ],
     "clickup auth failed": [
       "clickup auth failed"
+    ],
+    "clickup browser hub": [
+      "clickup browser hub"
     ],
     "clickup cli": [
       "clickup cli"
@@ -37957,6 +37993,18 @@
     ],
     "deep loop modes and commands tasks": [
       "deep loop modes and commands tasks"
+    ],
+    "deep loop offer in hint": [
+      "deep loop offer in hint"
+    ],
+    "deep loop offer in hint implementation summary": [
+      "deep loop offer in hint implementation summary"
+    ],
+    "deep loop offer in hint plan": [
+      "deep loop offer in hint plan"
+    ],
+    "deep loop offer in hint tasks": [
+      "deep loop offer in hint tasks"
     ],
     "deep loop package topology": [
       "deep-loop package topology"
@@ -55085,6 +55133,9 @@
     "front proxy utf8 frame corruption": [
       "front proxy utf8 frame corruption"
     ],
+    "frontend completion browser evidence rule": [
+      "frontend completion browser evidence rule"
+    ],
     "frontend content": [
       "frontend content"
     ],
@@ -70262,6 +70313,9 @@
     "mcp chrome devtools 1 0 26 0": [
       "mcp-chrome-devtools 1.0.26.0"
     ],
+    "mcp chrome devtools 1 0 27 0": [
+      "mcp-chrome-devtools 1.0.27.0"
+    ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
     ],
@@ -70364,6 +70418,9 @@
     "mcp chrome devtools v1 0 26 0": [
       "mcp-chrome-devtools v1.0.26.0"
     ],
+    "mcp chrome devtools v1 0 27 0": [
+      "mcp-chrome-devtools v1.0.27.0"
+    ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
     ],
@@ -70460,6 +70517,9 @@
     "mcp click up 1 2 23 0": [
       "mcp-click-up 1.2.23.0"
     ],
+    "mcp click up 1 2 24 0": [
+      "mcp-click-up 1.2.24.0"
+    ],
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
     ],
@@ -70480,6 +70540,9 @@
     ],
     "mcp click up 1 2 9 0": [
       "mcp-click-up 1.2.9.0"
+    ],
+    "mcp click up browser hub pointer": [
+      "mcp-click-up browser hub pointer"
     ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
@@ -70573,6 +70636,9 @@
     ],
     "mcp click up v1 2 23 0": [
       "mcp-click-up v1.2.23.0"
+    ],
+    "mcp click up v1 2 24 0": [
+      "mcp-click-up v1.2.24.0"
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
@@ -71098,6 +71164,12 @@
     "mcp figma 1 2 3 0": [
       "mcp-figma 1.2.3.0"
     ],
+    "mcp figma 1 2 4 0": [
+      "mcp-figma 1.2.4.0"
+    ],
+    "mcp figma browser hub pointer": [
+      "mcp-figma browser hub pointer"
+    ],
     "mcp figma implementation summary": [
       "mcp figma implementation summary"
     ],
@@ -71166,6 +71238,9 @@
     ],
     "mcp figma v1 2 3 0": [
       "mcp-figma v1.2.3.0"
+    ],
+    "mcp figma v1 2 4 0": [
+      "mcp-figma v1.2.4.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -71284,6 +71359,12 @@
     "mcp mobbin 1 1 7 0": [
       "mcp-mobbin 1.1.7.0"
     ],
+    "mcp mobbin 1 1 8 0": [
+      "mcp-mobbin 1.1.8.0"
+    ],
+    "mcp mobbin browser hub pointer": [
+      "mcp-mobbin browser hub pointer"
+    ],
     "mcp mobbin delivered outcome pitch": [
       "mcp-mobbin delivered-outcome pitch"
     ],
@@ -71334,6 +71415,9 @@
     ],
     "mcp mobbin v1 1 7 0": [
       "mcp-mobbin v1.1.7.0"
+    ],
+    "mcp mobbin v1 1 8 0": [
+      "mcp-mobbin v1.1.8.0"
     ],
     "mcp mutation regex blind": [
       "mcp mutation regex blind"
@@ -71692,6 +71776,12 @@
     "mcp refero 1 1 8 0": [
       "mcp-refero 1.1.8.0"
     ],
+    "mcp refero 1 1 9 0": [
+      "mcp-refero 1.1.9.0"
+    ],
+    "mcp refero browser hub pointer": [
+      "mcp-refero browser hub pointer"
+    ],
     "mcp refero design transport": [
       "mcp-refero design transport"
     ],
@@ -71739,6 +71829,9 @@
     ],
     "mcp refero v1 1 8 0": [
       "mcp-refero v1.1.8.0"
+    ],
+    "mcp refero v1 1 9 0": [
+      "mcp-refero v1.1.9.0"
     ],
     "mcp remote mobbin": [
       "mcp-remote mobbin"
@@ -72130,6 +72223,21 @@
     ],
     "mcp tooling benchmark reports": [
       "mcp-tooling benchmark reports"
+    ],
+    "mcp tooling browser pointers": [
+      "mcp tooling browser pointers"
+    ],
+    "mcp tooling browser pointers goal": [
+      "mcp tooling browser pointers goal"
+    ],
+    "mcp tooling browser pointers implementation summary": [
+      "mcp tooling browser pointers implementation summary"
+    ],
+    "mcp tooling browser pointers plan": [
+      "mcp tooling browser pointers plan"
+    ],
+    "mcp tooling browser pointers tasks": [
+      "mcp tooling browser pointers tasks"
     ],
     "mcp tooling changelog retrofit": [
       "mcp-tooling changelog retrofit"
@@ -76198,6 +76306,9 @@
     ],
     "mobbin rate limit": [
       "mobbin rate limit"
+    ],
+    "mobbin refero figma browser hub": [
+      "mobbin refero figma browser hub"
     ],
     "mobbin registered manual": [
       "mobbin registered manual"
@@ -85170,6 +85281,9 @@
     "phase 10 hub registration and routing": [
       "phase 10 hub registration and routing"
     ],
+    "phase 10 mcp tooling browser pointers": [
+      "phase 10 mcp tooling browser pointers"
+    ],
     "phase 10 mixed track sweep guard": [
       "phase 10 mixed track sweep guard"
     ],
@@ -85256,6 +85370,9 @@
     ],
     "phase 11 authoring speed research": [
       "phase 11 authoring speed research"
+    ],
+    "phase 11 bdg eval port note": [
+      "phase 11 bdg eval port note"
     ],
     "phase 11 ci health followups": [
       "phase 11 ci health followups"
@@ -109618,6 +109735,9 @@
     "session surface hint": [
       "session surface hint"
     ],
+    "session target not found": [
+      "session target not found"
+    ],
     "session teardown sweep": [
       "session teardown sweep"
     ],
@@ -111686,6 +111806,9 @@
     ],
     "sk code 3 12 3 0": [
       "sk-code 3.12.3.0"
+    ],
+    "sk code 3 12 4 0": [
+      "sk-code 3.12.4.0"
     ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
@@ -113934,6 +114057,9 @@
     "sk code v3 12 3 0": [
       "sk-code v3.12.3.0"
     ],
+    "sk code v3 12 4 0": [
+      "sk-code v3.12.4.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -115154,6 +115280,9 @@
     "sk create manual testing playbook 1 3 1 0": [
       "sk-create-manual-testing-playbook 1.3.1.0"
     ],
+    "sk create manual testing playbook 1 3 2 0": [
+      "sk-create-manual-testing-playbook 1.3.2.0"
+    ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
     ],
@@ -115228,6 +115357,9 @@
     ],
     "sk create manual testing playbook v1 3 1 0": [
       "sk-create-manual-testing-playbook v1.3.1.0"
+    ],
+    "sk create manual testing playbook v1 3 2 0": [
+      "sk-create-manual-testing-playbook v1.3.2.0"
     ],
     "sk create quality control": [
       "sk create quality control"
