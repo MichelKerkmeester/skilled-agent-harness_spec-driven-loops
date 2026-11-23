@@ -348,6 +348,33 @@ function refusals() {
   );
   assert.match(fs.readFileSync(setupAfter, 'utf8'), /setup-created\.txt/);
 
+  // Setup and checks learn the sandbox mode, so a scenario can skip a browser that cannot start inside it.
+  const sandboxProbe = writeScenario(dir, 'sandbox-probe.md', {
+    runtimes: ['claude-code'],
+    setup: ['printf %s "$CONVERSATION_SANDBOX" > sandbox-at-setup'],
+    turns: [{
+      send: 'hello',
+      delay_ms: 0,
+      check: 'test "$(cat sandbox-at-setup)" = "$CONVERSATION_SANDBOX" && printf "sandbox=%s\\n" "$CONVERSATION_SANDBOX"',
+    }],
+  });
+  for (const [flags, expected] of [[['--no-sandbox'], 'off'], [[], null]]) {
+    const probeOut = path.join(dir, `sandbox-probe-out-${expected || 'default'}`);
+    const probe = runCli([
+      '--scenario', sandboxProbe,
+      '--runtime', 'fake',
+      '--out', probeOut,
+      '--repo-root', repo,
+      '--scratch', path.join(dir, `sandbox-probe-scratch-${expected || 'default'}`),
+      ...flags,
+    ]);
+    assert.strictEqual(probe.code, 0, probe.stderr);
+    const probeResult = readResult(probeOut, 'fake');
+    const observed = fs.readFileSync(path.join(probeOut, 'fake', 'checkpoints.tsv'), 'utf8');
+    assert.match(observed, new RegExp(`sandbox=${expected || probeResult.sandbox}`), 'setup and check see the recorded sandbox mode');
+    if (expected) assert.strictEqual(probeResult.sandbox, expected);
+  }
+
   const escapingSetup = writeScenario(dir, 'escaping-setup.md', {
     runtimes: ['claude-code'],
     setup: ['ln -s /tmp specs'],
@@ -1343,6 +1370,15 @@ function adapterScreens() {
   // The review screen is confirmed by the confirm step, never by the answer keys.
   const review = readQuestionScreen('claude-code-review.txt');
   assert(adapter.confirmDetect.test(review), 'review screen is confirmed');
+  assert(
+    adapter.confirmDetect.test(readQuestionScreen('claude-code-review-unprompted.txt')),
+    'a review screen without the submit question is confirmed',
+  );
+  assert.strictEqual(
+    adapter.parseQuestion(readQuestionScreen('claude-code-review-unprompted.txt')),
+    null,
+    'a review screen without the submit question is not a question',
+  );
   assert.deepStrictEqual(adapter.confirm, [{ key: 'Enter' }]);
   assert(!adapter.confirmDetect.test(readQuestionScreen('claude-code.txt')), 'a question is not a review');
   assert.deepStrictEqual(

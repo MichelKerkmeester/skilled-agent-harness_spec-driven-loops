@@ -1535,7 +1535,8 @@ const ADAPTERS = {
     startup: [keyStep('Down'), keyStep('Enter')],
     startupDetect: /Yes, I trust this folder/,
     confirm: [keyStep('Enter')],
-    confirmDetect: /Ready to submit your answers\?[\s\S]*❯ 1\. Submit answers/,
+    // Older builds ask "Ready to submit your answers?"; newer ones show only "Review your answers".
+    confirmDetect: /(?:Ready to submit your answers\?|Review your answers)[\s\S]*❯ 1\. Submit answers/,
     parseQuestion: parseClaudeQuestion,
     answerKeys: claudeAnswerKeys,
   }),
@@ -2085,6 +2086,7 @@ function checkScratch(options) {
  */
 async function prepareScratch(options) {
   const { scratch, repoRoot, runtime, setup, ctx } = options;
+  const sandbox = sandboxMode(runtime, Boolean(options.noSandbox));
   if (!scratch) return refuse('SCRATCH_MISSING', '--scratch is required');
 
   const scratchPath = resolveThroughExistingAncestor(scratch);
@@ -2143,7 +2145,13 @@ async function prepareScratch(options) {
       command,
       cwd: project,
       // Setup builds the project from the repository, so it needs the same roots a check gets.
-      env: { ...process.env, CONVERSATION_REPO_ROOT: repoRoot, CONVERSATION_RUNTIME: runtime },
+      // The sandbox mode lets a scenario skip work that cannot run inside the seatbelt, such as a browser.
+      env: {
+        ...process.env,
+        CONVERSATION_REPO_ROOT: repoRoot,
+        CONVERSATION_RUNTIME: runtime,
+        CONVERSATION_SANDBOX: sandbox,
+      },
       timeoutMs: SETUP_TIMEOUT_MS,
       children: setupChildren,
     });
@@ -2917,6 +2925,7 @@ async function runCheck(ctx, turn, dir) {
     CONVERSATION_RUN_DIR: ctx.outDir,
     CONVERSATION_TURN_DIR: dir,
     CONVERSATION_RUNTIME: ctx.runtime,
+    CONVERSATION_SANDBOX: ctx.sandbox,
   };
   const outcome = await runBoundedCommand({
     command: turn.check,
@@ -3189,6 +3198,7 @@ async function runLaunchSetup(ctx) {
     CONVERSATION_REPO_ROOT: ctx.repoRoot,
     CONVERSATION_RUN_DIR: ctx.outDir,
     CONVERSATION_RUNTIME: ctx.runtime,
+    CONVERSATION_SANDBOX: ctx.sandbox,
   };
   const log = [];
   let outcome = { ok: true, blocker: null };
@@ -3739,6 +3749,7 @@ async function main(argv) {
       repoRoot,
       runtime: entry.runtime,
       setup: script.setup || [],
+      noSandbox: opts.noSandbox,
     });
     // A refused setup leaves the evidence folder empty, so a rerun is not refused for reusing it.
     if (!guard.ok) {

@@ -24,6 +24,9 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-11-23 | [`2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/`](./2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/README.md) | Claude Code 2.1.330, claude-opus-5-5, --no-sandbox | 1 PASS | **PASS** | `source.md` in the run folder |
+| 2026-11-23 | [`2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/`](./2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/README.md) | Claude Code 2.1.330, claude-opus-5-5 | 1 FAIL | **FAIL** | `source.md` in the run folder |
+| 2026-11-23 | [`2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/`](./2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/README.md) | Claude Code 2.1.330, claude-opus-5-5 | 1 FAIL | **FAIL** | `source.md` in the run folder |
 | 2026-07-10 | [`2026-07-10--router-baseline--router/`](./2026-07-10--router-baseline--router/) | router | 30 PASS | **PASS** 85/100 | not recorded |
 | 2026-07-10 | [`2026-07-10--live-mode-b--live/`](./2026-07-10--live-mode-b--live/) | live | 18 PASS, 12 FAIL | **CONDITIONAL** 66/100 | not recorded |
 | 2026-06-02 | [`2026-06-02--d4r-live--live/`](./2026-06-02--d4r-live--live/) | live | 5 PASS | **PASS** 88/100 | not recorded |

@@ -8,7 +8,7 @@ trigger_phrases:
   - "figma to code review"
 importance_tier: important
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Frontend Practice
@@ -133,3 +133,4 @@ Load this core first. Web intents add the web layer and the one web topic file t
 - [ ] Figma informs appearance and states without dictating code structure, and the verdict is PASS or explains why it is INCOMPLETE.
 - [ ] Non-essential motion respects the user's reduced-motion setting, and assistive-technology checks are recorded.
 - [ ] Text and controls meet the contrast target on supported themes, and dark mode is checked only where the mode supports it.
+- [ ] The changed page is opened through the `mcp-browser-use` hub in whichever browser mode the user has installed (Chrome DevTools, Aside or Bladebro), in a browser session the agent owns: the completion report gives a screenshot at the affected viewport and the console showing no new errors, or NOT RUN with the reason. The user's signed-in browser is opened only when the user asks.

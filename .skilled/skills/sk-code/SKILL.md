@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.12.3.0
+version: 3.12.4.0
 metadata:
   family: sk-code
 ---
@@ -151,6 +151,7 @@ After adding or removing a surface, run `/doctor:sk-code setup`. It checks the h
 - **ALWAYS** keep the implement/debug/verify workflow doctrine as one shared source under `shared/references/`, symlinked into each surface, and never fork per-surface copies.
 - **ALWAYS** keep `ROUTER.md` `RESOURCE_MAP` keys aligned with its intent keys and packet leaves aligned with `leaf-manifest.json`.
 - **ALWAYS** keep hub-shared map inputs explicit in `SHARED_CONTROL_RESOURCES`, because they are control resources and never typed leaves.
+- **ALWAYS** meet the changed surface's row in `ROUTER.md` §5 before reporting a change complete, however small the change. For a changed stylesheet, markup or component file, read `.skilled/skills/mcp-browser-use/SKILL.md` to find an installed browser mode, open the page through it in a browser session the agent owns, and report a screenshot and the console. Its modes are command-line tools as well as MCP servers, so check for `bdg` and `bladebro` with `command -v` before concluding none is installed. Aside runs on the user's signed-in account, so use it only when the user asks. When none can run, write the words NOT RUN and the reason.
 
 ### ⛔ NEVER
 - **NEVER** add a `graph-metadata.json` inside a mode packet or `shared/`.
