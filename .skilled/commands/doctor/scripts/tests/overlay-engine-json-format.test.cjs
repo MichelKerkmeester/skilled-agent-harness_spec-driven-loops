@@ -244,3 +244,14 @@ test('a file with mixed line endings gets the ending most of its lines use', () 
   const output = engine.applyJsonOperations(text, spec, { canReplaceExisting: true });
   assert.equal(output, '{\r\n  "x": 1,\n  "z": {\n    "a": 1\n  }\n}\n');
 });
+
+test('one stray shallow line does not set the indent unit', () => {
+  const engine = require('../overlay-engine.cjs');
+  const text = '{\n  "a": [\n    1,\n 2\n  ],\n  "z": 1\n}\n';
+  const spec = {
+    style: { indent: 2, primitiveArrays: 'multiline' },
+    operations: [{ op: 'set', path: ['z'], value: { b: { c: 1 } } }],
+  };
+  const output = engine.applyJsonOperations(text, spec, { canReplaceExisting: true });
+  assert.equal(output, '{\n  "a": [\n    1,\n 2\n  ],\n  "z": {\n    "b": {\n      "c": 1\n    }\n  }\n}\n');
+});
