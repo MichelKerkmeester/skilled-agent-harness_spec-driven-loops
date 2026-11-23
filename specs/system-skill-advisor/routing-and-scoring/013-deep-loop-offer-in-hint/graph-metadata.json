@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint",
+  "parent_id": "system-skill-advisor/routing-and-scoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop offer in hint",
+      "carry the deep loop offer in the advisor",
+      "deep loop offer in hint plan",
+      "deep loop offer in hint tasks",
+      "013-deep-loop-offer-in-hint operator decisions",
+      "deep loop offer in hint implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "offer",
+      "hint",
+      "carry",
+      "advisor",
+      "plan",
+      "tasks",
+      "013-deep-loop-offer-in-hint",
+      "operator",
+      "decisions",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts",
+      ".skilled/hooks/injection-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-brief-golden.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor brief names a deep-loop command as `system-deep-loop → /deep:review (ask)` and nothing more",
+    "created_at": "2026-11-23T16:22:57Z",
+    "last_save_at": "2026-11-23T16:25:34.647Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9ab0b1b8c6d0d578a94728b07b6a72d377d9aaf52ebcbb784dd3ba638e87c09",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e3b00faa9266856197fd523a76ef5c85f0976db896bc3aec0c6855a58f25033a",
+      "plan.md": "7efbc044423a3b735d64704334dcd31f4fde77654da5e31a1585836d37706b3c",
+      "tasks.md": "ba6dcd9e4da42758cff7d1580cda5705861c72a93dc64853aad97a3fe26ca7b8",
+      "decision-record.md": "41f932c33e04801ed42df2b856389563c36c1e64a6c38a6998f6d32991ce2f94",
+      "implementation-summary.md": "4e424a4868ed15b118e9dbd39fa1850fb81d8c47b691943aac745b703836bd95"
+    },
+    "last_active_at": null
+  }
+}

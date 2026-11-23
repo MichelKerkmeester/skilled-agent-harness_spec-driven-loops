@@ -15,7 +15,8 @@
     "system-skill-advisor/routing-and-scoring/009-git-history-lift",
     "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan",
     "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups",
-    "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
+    "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+    "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint"
   ],
   "manual": {
     "depends_on": [],
