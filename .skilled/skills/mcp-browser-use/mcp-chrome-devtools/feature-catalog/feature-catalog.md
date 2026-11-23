@@ -1,7 +1,7 @@
 ---
 title: "mcp-chrome-devtools: Feature Catalog"
-description: "Unified feature inventory for the mcp-chrome-devtools skill: the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 26 exposed tools, dual isolated instances plus a live instance in the user's own Chrome)."
-version: 1.0.4.0
+description: "Unified feature inventory for the mcp-chrome-devtools skill: the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 29 exposed tools, dual isolated instances plus a live instance in the user's own Chrome)."
+version: 1.0.5.0
 ---
 
 # mcp-chrome-devtools: Feature Catalog
@@ -17,14 +17,14 @@ The mcp-chrome-devtools skill routes browser debugging between two complementary
 - **bdg CLI** (`npm install -g browser-debugger-cli@alpha`) — the primary surface. Direct, fast, token-efficient terminal access to the Chrome DevTools Protocol: 300+ CDP methods across 53 domains, self-documenting via `--list` / `--describe` / `--search`, Unix-pipe composable. One global session lifecycle (`bdg <url>` / `bdg status` / `bdg stop`) with no session selector, so sessions run sequentially.
 - **Chrome DevTools MCP via Code Mode**: the fallback for multi-tool integration and parallel browsers. Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) are registered in `.utcp_config.json`, each launching `chrome-devtools-mcp` over stdio via `npx` with `--isolated=true`, invoked through `call_tool_chain()` with the naming `{instance}.{instance}_{tool_name}`. A third manual, `chrome_devtools_live`, runs with `--autoConnect` and attaches to the user's own Chrome for signed-in work.
 
-> **Verification note.** MCP tool names are a subset of CDP (26 exposed tools per `../INSTALL-GUIDE.md` §10) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of all three manuals lives in `../assets/utcp-chrome-devtools-manuals.md`.
+> **Verification note.** MCP tool names are a subset of CDP (29 exposed tools from `tools/list` on the pinned chrome-devtools-mcp@0.26.0) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of all three manuals lives in `../assets/utcp-chrome-devtools-manuals.md`.
 
 Routing is **capability-based**: prefer the CLI when it fits (SKILL.md Rule "Check CLI availability first"), and use MCP when browser work must chain with other Code Mode tools or run in parallel isolated instances.
 
 | Metric | Value |
 |--------|-------|
 | CLI CDP surface | 300+ methods across 53 domains (self-discovered, never hardcoded) |
-| MCP exposed tools | 26 (via Code Mode; confirm names with discovery) |
+| MCP exposed tools | 29 (via Code Mode; confirm names with discovery) |
 | CLI install | `npm install -g browser-debugger-cli@alpha` |
 | MCP manuals | `chrome_devtools_1` + `chrome_devtools_2` in `.utcp_config.json`, both `--isolated=true`, plus `chrome_devtools_live` with `--autoConnect` for signed-in work in the user's own Chrome |
 | MCP invocation | `chrome_devtools_N.chrome_devtools_N_<tool_name>` via `call_tool_chain()` |
@@ -47,7 +47,7 @@ See [`cli-bdg-lifecycle/install-version.md`](cli-bdg-lifecycle/install-version.m
 See [`cli-bdg-lifecycle/session-start.md`](cli-bdg-lifecycle/session-start.md)
 
 ### Session status
-`bdg status` — JSON session state (`state`, `url`); verify active before any CDP command.
+`bdg status --json` — JSON session state (`active`, plus a nested `url`); verify active before any CDP command.
 
 See [`cli-bdg-lifecycle/session-status.md`](cli-bdg-lifecycle/session-status.md)
 
@@ -104,7 +104,7 @@ See [`dom-and-screenshot/eval-javascript.md`](dom-and-screenshot/eval-javascript
 See [`dom-and-screenshot/screenshot-capture.md`](dom-and-screenshot/screenshot-capture.md)
 
 ### Viewport emulation
-`bdg cdp Emulation.setDeviceMetricsOverride '<json>'` — emulate device sizes for responsive testing.
+`bdg cdp Emulation.setDeviceMetricsOverride --params '<json>'` — emulate device sizes for responsive testing.
 
 See [`dom-and-screenshot/viewport-emulation.md`](dom-and-screenshot/viewport-emulation.md)
 
@@ -115,12 +115,12 @@ See [`dom-and-screenshot/viewport-emulation.md`](dom-and-screenshot/viewport-emu
 3 features covering console log retrieval, cookie operations, and network trace export.
 
 ### Console logs
-`bdg console --list` — JSON array of console messages; pipe to `jq` to filter errors.
+`bdg console --list --json`: a JSON object with the messages under `.messages`. Filter errors with `jq '.messages[] | select(.type == "error")'`.
 
 See [`console-and-network/console-logs.md`](console-and-network/console-logs.md)
 
 ### Cookie management
-`bdg network getCookies` and `bdg cdp Network.setCookie '<json>'` — read and inject cookies (requires `Network.enable`).
+`bdg network getCookies` and `bdg cdp Network.setCookie --params '<json>'` — read and inject cookies (requires `Network.enable`).
 
 See [`console-and-network/cookie-management.md`](console-and-network/cookie-management.md)
 
@@ -141,7 +141,7 @@ See [`console-and-network/har-export.md`](console-and-network/har-export.md)
 See [`mcp-parallel-instances/code-mode-invocation.md`](mcp-parallel-instances/code-mode-invocation.md)
 
 ### Dual-instance parallel
-`chrome_devtools_1` + `chrome_devtools_2` via `Promise.all` — two isolated browser processes running simultaneously.
+`chrome_devtools_1` and `chrome_devtools_2`: two isolated browser processes driven from one `call_tool_chain()`. The calls run one after another, not concurrently.
 
 See [`mcp-parallel-instances/dual-instance-parallel.md`](mcp-parallel-instances/dual-instance-parallel.md)
 
@@ -200,7 +200,7 @@ See [`automation-and-performance/ci-integration.md`](automation-and-performance/
 
 ## 8. RECOVERY AND TROUBLESHOOTING
 
-5 features covering the documented failure modes and their recoveries.
+5 features covering the documented failure modes and their recoveries. One more failure mode lives in the Eval JavaScript entry. In bdg 0.6.10, `bdg dom eval` on a session port other than 9222 exits 83 with `Session target not found` (see [`dom-and-screenshot/eval-javascript.md`](dom-and-screenshot/eval-javascript.md)).
 
 ### Missing browser
 `CHROME_PATH` env var — clear failure and fix when Chrome/Chromium cannot be found.

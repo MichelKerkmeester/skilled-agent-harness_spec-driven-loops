@@ -15,7 +15,8 @@
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note",
-    "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic"
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs"
   ],
   "manual": {
     "depends_on": [],
@@ -202,7 +203,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-23T18:56:33.478Z",
+    "last_save_at": "2026-11-23T21:29:16.636Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +211,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:363b15f0f3fa19ee161701fee9e15dfa11c3cf7581189c29b991b169994f4379",
+    "source_fingerprint": "sha256:b0f557d9495594845e9aeaf5a2037168c8a0a5b167d58b09fd078cfce34641fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62295ad3957cd3993892d2d44bcc649aeea43321f0f00f987fe09969331fa3ec",
+      "spec.md": "64a83f120f71e4a9e541fc2a6c9486faa7a2d5ab5b5b3f190f228e20e64da57e",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
     "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",

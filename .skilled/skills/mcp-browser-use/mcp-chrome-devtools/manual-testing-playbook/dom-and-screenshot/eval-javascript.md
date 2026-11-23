@@ -1,7 +1,7 @@
 ---
 title: "BDG-009 -- Eval JavaScript"
 description: "This scenario validates JavaScript evaluation in the active page for `BDG-009`. It focuses on confirming `bdg dom eval \"document.title\"` returns the page title string."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BDG-009 -- Eval JavaScript
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `BDG-009` and confirm th
 - Objective: Verify `bdg dom eval "document.title"` returns a non-empty string containing "Example".
 - Real user request: `"What's the title of this page?"`
 - Prompt: `Run JavaScript on https://example.com and confirm the title is Example Domain.`
-- Expected execution process: assumes active session on `https://example.com` (BDG-002 prerequisite); run a single eval.
+- Expected execution process: assumes active session on `https://example.com` (BDG-002 prerequisite) on port 9222. Confirm the port, then run a single eval. In bdg 0.6.10, `dom eval` fails on any other session port.
 - Expected signals: `bdg dom eval "document.title"` exits 0; result is a non-empty string containing "Example".
 - Desired user-visible outcome: A short report quoting the title string with a PASS verdict.
 - Pass/fail: PASS if both signals hold; FAIL if eval errors, returns empty, returns the wrong type, or the title text mismatches.
@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `BDG-009` and confirm th
 
 ### Commands
 
-1. Precondition: BDG-002 has started a session against `https://example.com`; verify with `bash: bdg status 2>&1 | grep -i example.com`
+1. Precondition: BDG-002 has started a session against `https://example.com`. Verify with `bash: bdg status 2>&1 | grep -i example.com`. Then confirm the session port is 9222 with `bash: bdg status --json | jq '.port'`. A session started with `-p` on another port fails step 2 with exit 83, a known bdg 0.6.10 defect.
 2. `bash: bdg dom eval "document.title" 2>&1`
 3. `bash: bdg dom eval "document.title" 2>&1 | grep -i Example`
 
@@ -64,6 +64,7 @@ Capture session status, raw eval output, and the grep match output.
 
 1. If eval returns `undefined` or errors: confirm session is alive via `bdg status 2>&1` and the page has finished loading with `bdg dom eval "document.readyState"` — if not `complete`, the eval ran before parse finished.
 2. If eval returns a value but the grep misses: dump the raw output with `bdg dom eval "JSON.stringify({title: document.title, url: location.href})"` and verify the URL is actually `example.com` — the active session may have navigated elsewhere (cross-reference BDG-008 for selector-level confirmation).
+3. If eval exits 83 with `Session target not found` while the tab is still open: check the port with `bdg status --json | jq '.port'`. In bdg 0.6.10, `dom eval` only finds the tab on port 9222. Restart the session without `-p` when 9222 is free, or read the title with `bdg cdp Runtime.evaluate --params '{"expression":"document.title","returnByValue":true}'`. See `references/troubleshooting.md` §6.
 
 ### Optional Supplemental Checks
 
@@ -84,6 +85,7 @@ Capture session status, raw eval output, and the grep match output.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md` | bdg dom eval reference |
+| `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md` §6 | `Session target not found` on a session port other than 9222 |
 
 ---
 

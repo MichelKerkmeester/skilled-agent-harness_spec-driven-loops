@@ -5,7 +5,7 @@ trigger_phrases:
   - "aside examples"
   - "aside example scripts"
   - "aside workflow scripts"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Aside Devtools - Example Scripts
@@ -48,7 +48,7 @@ Each script is a working workflow and an honest capability boundary: it exercise
 **Purpose:** Deterministic evidence workflow: open a tab, capture a screenshot, verify the artifact by PNG magic bytes.
 
 ```bash
-./repl-evidence-capture.sh                          # https://example.com → /tmp/aside-evidence
+./repl-evidence-capture.sh                          # https://example.com → /tmp/aside-evidence (fails on 1.26.626.1517, see below)
 ./repl-evidence-capture.sh https://example.org ./<evidence-dir>
 ```
 
@@ -59,7 +59,9 @@ Each script is a working workflow and an honest capability boundary: it exercise
 
 **Honest boundaries:** bound-page result shapes are untested territory; the script gates on the artifact, not the response. A "not bound to a browser profile" error is a binding state, not an auth failure.
 
-**Exit codes:** `0` artifact verified; `1` any step or verification failed.
+**Status on Aside 1.26.626.1517: the script fails its file check.** Steps 1 and 2 run as two separate `aside repl` processes, and each starts with `page` null. The REPL also redirects the `/tmp` screenshot path into its session folder and removes the file when it exits. So the shell check in step 3 finds no file and the script exits 1. An `aside repl` error exits 0, so the step 2 failure branch does not fire either. Until the script changes, use the one-evaluation form in [`manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md`](../manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md) (ASD-007), which writes to `./tmp/` and reads the file back with `fs`.
+
+**Exit codes (the script's contract):** `0` artifact verified; `1` any step or verification failed. On 1.26.626.1517 it exits `1`.
 
 ---
 
@@ -92,7 +94,7 @@ command -v aside && aside --version 2>&1 && aside --help 2>&1 > /tmp/aside-help-
 
 ### Fixture-first flag usage
 
-The command surface is version-pinned. Capture `aside --help` for the installed version before scripting flags: especially around the unresolved `-m provider/model` vs `--model`/`--provider` spelling.
+The command surface is version-pinned. Capture `aside --help` for the installed version before scripting flags. On 1.26.626.1517 it defines both `-m, --model` (which also accepts `provider/model`) and `-p, --provider`.
 
 ### Artifact-evidence standard
 

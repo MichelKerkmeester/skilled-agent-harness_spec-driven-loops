@@ -5,7 +5,7 @@ trigger_phrases:
   - "browser tests in ci"
   - "ci visual regression pipeline"
   - "bdg pipeline integration"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CI Integration
@@ -16,11 +16,13 @@ version: 1.0.0.0
 
 All three example scripts return semantic exit codes, so a CI job chains them under `set -e`: baseline capture, animation assertions, then the viewport matrix — failing the pipeline on the first assertion miss.
 
+The viewport matrix also fails on a console error, read from `bdg console --list --json` (see `examples/README.md` §3.3).
+
 ---
 
 ## 2. HOW IT WORKS
 
-The scripts use configurable thresholds for automated validation and timestamped output for historical comparison. Every script installs a trap so `bdg stop` runs on exit, and CI environments add security flags (`--disable-gpu --disable-dev-shm-usage --remote-debugging-address=127.0.0.1`) via `CHROME_FLAGS`.
+The scripts use configurable thresholds for automated validation and timestamped output for historical comparison. Each script calls `bdg stop` inline rather than through a trap, and CI environments add security flags (`--disable-gpu --disable-dev-shm-usage --remote-debugging-address=127.0.0.1`) via `CHROME_FLAGS`.
 
 ---
 

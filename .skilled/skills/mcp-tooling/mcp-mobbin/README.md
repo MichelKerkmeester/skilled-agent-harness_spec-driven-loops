@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.10.0
+version: 1.1.11.0
 ---
 
 # mcp-mobbin
@@ -66,7 +66,7 @@ Expect exit 0 with `OK    'mobbin' manual registered in .utcp_config.json` and `
 **Step 2: Confirm the callable.**
 
 ```typescript
-const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" })
+const info = tool_info({ tool_name: "mobbin.mobbin_search_screens" })
 ```
 
 Expect a schema for `mobbin.mobbin_search_screens`. Discovery works before OAuth. Fail closed on any drift from the fixture baseline.
@@ -76,7 +76,7 @@ Expect a schema for `mobbin.mobbin_search_screens`. Discovery works before OAuth
 ```typescript
 call_tool_chain({
   code: `
-    const result = await mobbin.mobbin_search_screens({
+    const result = mobbin.mobbin_search_screens({
       query: "iOS banking app onboarding identity verification",
       platform: "ios",
       limit: 5

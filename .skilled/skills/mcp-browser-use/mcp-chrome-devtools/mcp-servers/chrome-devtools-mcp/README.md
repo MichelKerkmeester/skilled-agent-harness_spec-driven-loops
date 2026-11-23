@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools mcp server"
   - "chrome_devtools_1 server"
   - "chrome devtools code mode"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # chrome-devtools-mcp
@@ -23,7 +23,7 @@ version: 1.0.4.0
 | **Use it for** | Confirming how the Chrome DevTools MCP fallback is configured. There is no local package to install. |
 | **Invoke with** | Code Mode `call_tool_chain()` with `chrome_devtools_N.chrome_devtools_N_<tool_name>`. |
 | **Works on** | `npx chrome-devtools-mcp` over stdio, launched by Code Mode on demand: with `--isolated=true` for the two isolated manuals, and with `--autoConnect` for the live one. |
-| **Produces** | 26 exposed browser tools (navigation, screenshots, console, viewport, clicks, page management) per registered instance. |
+| **Produces** | 29 exposed browser tools (navigation, screenshots, console, network, input, viewport and emulation, performance traces, Lighthouse, page management) per registered instance. |
 
 ### Why This Package Exists
 
@@ -31,7 +31,7 @@ mcp-chrome-devtools routes multi-tool and parallel-browser work, the surfaces th
 
 ### What It Does
 
-Two manuals, `chrome_devtools_1` and `chrome_devtools_2`, as registered in `.utcp_config.json`, each launch the server over stdio via `npx` with `--isolated=true`, so each instance owns an independent browser process with isolated cookie/storage state. That is what enables parallel browser testing (e.g. production vs staging simultaneously) with no session conflicts. A third manual, `chrome_devtools_live`, launches the same server with `--autoConnect` and attaches to the user's own Chrome for signed-in work, as `../../feature-catalog/mcp-parallel-instances/live-instance.md` describes. Your AI client sees only the 4 Code Mode tools instead of the 26 Chrome DevTools tools natively (~78k tokens avoided).
+Two manuals, `chrome_devtools_1` and `chrome_devtools_2`, as registered in `.utcp_config.json`, each launch the server over stdio via `npx` with `--isolated=true`, so each instance owns an independent browser process with isolated cookie/storage state. That is what enables parallel browser testing (e.g. production vs staging simultaneously) with no session conflicts. A third manual, `chrome_devtools_live`, launches the same server with `--autoConnect` and attaches to the user's own Chrome for signed-in work, as `../../feature-catalog/mcp-parallel-instances/live-instance.md` describes. Your AI client sees only the 4 Code Mode tools instead of the 29 Chrome DevTools tools natively (~78k tokens avoided).
 
 ---
 
@@ -47,10 +47,12 @@ Expected in the Skilled repository: all three entries, matching the snapshot in 
 
 **Step 2: Confirm tools through Code Mode.**
 
-```typescript
-const tools = await list_tools();
-console.log(tools.filter(t => t.includes('chrome_devtools')));
-// Expected: chrome_devtools_1_navigate_page, chrome_devtools_1_take_screenshot, ...
+Call Code Mode's `list_tools` tool from your AI client. It is an MCP tool, not a function inside `call_tool_chain` code.
+
+```
+list_tools()
+// Expected: chrome_devtools_1.chrome_devtools_1.navigate_page, chrome_devtools_1.chrome_devtools_1.take_screenshot, ...
+// 29 names per instance
 ```
 
 Never hardcode a tool name without confirming it via discovery first.
@@ -59,8 +61,8 @@ Never hardcode a tool name without confirming it via discovery first.
 
 ```typescript
 call_tool_chain(`
-  await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
-  const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+  chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
+  const screenshot = chrome_devtools_1.chrome_devtools_1_take_screenshot({});
   return screenshot;
 `)
 ```

@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside deterministic browser"
   - "aside screenshot evidence"
   - "aside snapshot"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Repl (deterministic evidence lane over aside repl)
@@ -21,7 +21,7 @@ The capability is MUTATING on the browser side (tabs and navigation) and writes 
 
 ## 2. HOW IT WORKS
 
-Advertised and probe-confirmed helpers on `1.26.626.1517` include `openTab(url)`, `closeTab`, `snapshot(page, options?)`, `page.screenshot(options)`, locator screenshots, `page.pdf`, `annotatedScreenshot`, plus `fetch`, `sleep`, `fs`, `pwd`, `path`, and `Buffer`; the sandbox is ES2023+ with no `import`/`require`. A round trip like `aside repl "await openTab('https://example.com')"` confirms binary, account context, and browser wiring in one step. The packaged evidence script chains open-snapshot-screenshot and validates the PNG magic bytes: `bash examples/repl-evidence-capture.sh <url> <output-dir>`.
+Advertised and probe-confirmed helpers on `1.26.626.1517` include `openTab(url)`, `closeTab`, `snapshot(page, options?)`, `page.screenshot(options)`, locator screenshots, `page.pdf`, `annotatedScreenshot`, plus `fetch`, `sleep`, `fs`, `pwd`, `path`, and `Buffer`; the sandbox is ES2023+ with no `import`/`require`. A round trip like `aside repl "await openTab('https://example.com'); console.log(page.url())"` confirms binary, account context, and browser wiring in one step. Each `aside repl` call starts a new process with `page` null, and the REPL confines file writes to its session folder. A `/tmp` path is redirected there and the file is gone once the REPL exits. So open the tab, write the screenshot to `./tmp/` and read it back with the `fs` global in one evaluation, as ASD-007 does. The packaged script `examples/repl-evidence-capture.sh` splits these steps across two `aside repl` calls and checks a `/tmp` path from the shell afterwards, so it fails its file check on 1.26.626.1517.
 
 Constraints: a REPL call can report "not bound to a browser profile" — a binding state, not an auth failure (see the troubleshoot domain). Keep a single writer per account/profile, capture stderr with `2>&1`, and redact cookies, credentials, private DOM, and request headers/bodies from saved evidence.
 
@@ -35,7 +35,7 @@ Constraints: a REPL call can report "not bound to a browser profile" — a bindi
 |---|---|---|
 | `references/aside-cli-reference.md` | Shared | REPL invocation form and helper boundary rules |
 | `references/session-management.md` | Shared | REPL persistence layer and single-writer posture |
-| `examples/repl-evidence-capture.sh` | Example | Open-snapshot-screenshot chain with PNG-magic validation |
+| `examples/repl-evidence-capture.sh` | Example | Older open-then-screenshot script with a shell PNG-magic check; it does not hold on 1.26.626.1517 |
 
 ### Validation And Tests
 

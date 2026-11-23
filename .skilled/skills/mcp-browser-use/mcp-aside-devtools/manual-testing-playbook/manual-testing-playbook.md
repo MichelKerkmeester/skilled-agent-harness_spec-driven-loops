@@ -1,7 +1,7 @@
 ---
 title: "MCP Aside Devtools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-aside-devtools skill."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # MCP Aside Devtools: Manual Testing Playbook
@@ -402,7 +402,7 @@ Verify the workflow reports a clear CLI_MISSING state with the official install 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, simulate a missing aside binary with a restricted PATH through the doctor script against the local machine. Verify the diagnosis names the missing binary and reports the official installer as operator-invoked guidance only. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bash: PATH=/usr/bin:/bin bash scripts/doctor.sh` reports "aside not on PATH"; Step 2: output includes the official curl install command as guidance; Step 3: nothing was installed or modified.
+Expected signals: Step 1: `bash: PATH=/usr/bin:/bin bash .skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh` reports "aside not on PATH"; Step 2: output includes the official curl install command as guidance; Step 3: nothing was installed or modified.
 
 #### Test Execution
 > **Feature File:** [ASD-014](recovery-and-failure/missing-binary.md)

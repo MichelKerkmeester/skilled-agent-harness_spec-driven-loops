@@ -1,7 +1,7 @@
 ---
 title: "Aside CLI Installation Guide"
 description: "Install the Aside AI-browser CLI on macOS, sign in, understand the permission tiers and verify the Aside MCP wiring for Code Mode."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Aside CLI Installation Guide
@@ -122,7 +122,7 @@ Provider tiers (Settings > AI > Providers):
 ### Step 5: Smoke test
 
 ```bash
-aside repl "openTab('https://example.com')" 2>&1
+aside repl "await openTab('https://example.com'); console.log(page.url())" 2>&1
 ```
 
 A working REPL round trip confirms binary, account context, and browser wiring. If the result reports an unbound browser profile, see the troubleshooting reference — that is a binding state, not an auth failure.

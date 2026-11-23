@@ -5,7 +5,7 @@ trigger_phrases:
   - "multi viewport test"
   - "responsive design validation cli"
   - "cross device screenshots"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Multi-Viewport Testing
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`./multi-viewport-test.sh [url] [selector] [trigger-class]` tests page rendering across desktop (1920x1080), laptop (1366x768), tablet (768x1024), mobile (375x667), and mobile large (414x896), capturing per-viewport screenshots, metrics, and console logs. Exit `0` when no viewport has console errors.
+`./multi-viewport-test.sh [url] [selector] [trigger-class]` tests page rendering across desktop (1920x1080), laptop (1366x768), tablet (768x1024), mobile (375x667), and mobile large (414x896), capturing per-viewport screenshots, metrics and console logs. A missing selector exits `1`. Each viewport is set with `bdg cdp Emulation.setDeviceMetricsOverride --params '<json>'`, and a console error read from `bdg console --list --json` fails that viewport (see `examples/README.md` §3.3).
 
 ---
 

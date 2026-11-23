@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.52.0
+version: 2.2.53.0
 ---
 
 # sk-code
@@ -45,7 +45,7 @@ The hub holds two kinds of packet. A workflow mode acts on your change. A surfac
 
 ### Where It Stops
 
-`sk-doc` owns documentation quality. `sk-git` owns the git workflow. `system-spec-kit` owns spec folders and their validation. A measured style reference comes from `sk-design-md-generator` before the frontend surface implements it. Browser evidence comes from `mcp-chrome-devtools`. This hub reviews in one pass. `deep-review` owns the iterative loop.
+`sk-doc` owns documentation quality. `sk-git` owns the git workflow. `system-spec-kit` owns spec folders and their validation. A measured style reference comes from `sk-design-md-generator` before the frontend surface implements it. Browser evidence comes from the `mcp-browser-use` hub, in whichever browser mode is installed. This hub reviews in one pass. `deep-review` owns the iterative loop.
 
 ---
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside code mode"
   - "aside tools list"
   - "aside utcp manual"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mcp (stdio transport and Code Mode composition)
@@ -23,7 +23,7 @@ The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; by
 
 Discovery first, always: `initialize` then `tools/list` against the spawned process (`bash examples/mcp-handshake-probe.sh` does both and reports the inventory), and — post-registration — Code Mode `search_tools()`/`list_tools()`/`tool_info()` on every intended callable. Because `tools.listChanged: true`, save the discovered schema as a versioned fixture and never hardcode tool names. Once discovery-confirmed, invoke inside `call_tool_chain()` with try/catch, explicit timeouts (the `repl` tool advertises 120 s), and cleanup in `finally`; verify artifacts independently of the tool response.
 
-Constraints: a fresh `aside mcp` process is transport-healthy but browser-unbound — `listBrowserTabs()` fails with a binding error, not an auth error, and the supported binding procedure is **UNKNOWN**. There are no first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools. Exactly one manual is registered; the dual-manual layout is an unresolved open question blocked on a multi-client isolation test. **UNKNOWN**: which permission mode (`Read only`/`Guard`/`Full access`) `aside mcp` inherits.
+Constraints: on 1.26.626.1517 with the Aside app running and signed in, a fresh `aside mcp` process is bound and `listBrowserTabs()` returns tabs. Earlier versions left a fresh process browser-unbound, and `listBrowserTabs()` failed with a binding error, not an auth error. When that error appears, the supported binding procedure is **UNKNOWN**. There are no first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools. Exactly one manual is registered; the dual-manual layout is an unresolved open question blocked on a multi-client isolation test. **UNKNOWN**: which permission mode (`Read only`/`Guard`/`Full access`) `aside mcp` inherits.
 
 ---
 

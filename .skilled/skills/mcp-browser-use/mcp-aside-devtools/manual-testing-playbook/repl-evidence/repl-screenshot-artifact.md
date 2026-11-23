@@ -1,7 +1,7 @@
 ---
 title: "ASD-007 -- Screenshot artifact verification"
 description: "This scenario validates REPL screenshot evidence for `ASD-007`. It focuses on writing a real PNG via `page.screenshot` into the session folder and verifying it by existence, size, and magic bytes inside the same REPL process."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # ASD-007 -- Screenshot artifact verification
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `ASD-007` and confirm th
 ### Expected
 
 - Step 2: prints one JSON line with `size` > 0 and `magic` equal to `89504e47`, plus the session folder in `dir`; no error line and no `[WARN] Use <session>/tmp instead of /tmp` line. Exit 0 alone is not a pass signal, because an `aside repl` error still exits 0.
-- The `./tmp/` path is the form the REPL tool description and the redirect warning point to; it has not yet passed a live run on Aside 1.26.626.1517, so record the outcome as installed-version evidence.
+- The `./tmp/` path is the form the REPL tool description and the redirect warning point to; it holds on Aside 1.26.626.1517, where ASD-007 verified the PNG by magic bytes.
 
 ### Evidence
 

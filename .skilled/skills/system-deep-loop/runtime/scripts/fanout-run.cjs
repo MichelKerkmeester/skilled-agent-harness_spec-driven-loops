@@ -4028,6 +4028,7 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // gpt-6-luna-max-priority is dispatch-verified on 3000.11.1; gpt-6-luna-max is
 // list-verified only.
 const DEVIN_ALLOWED_MODELS = new Set([
+  'deepseek-v4-1-flash-1017-max',
   'deepseek-v4-1-flash-high',
   'deepseek-v4-1-flash-max',
   'deepseek-v4-flash-max',

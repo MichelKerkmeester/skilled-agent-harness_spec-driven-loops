@@ -47,7 +47,7 @@ log "== mcp-chrome-devtools doctor (read-only) =="
 # Platform and runtime
 case "$(uname -s)" in Darwin) ok "Platform: macOS";; *) warn "Platform: $(uname -s) (unsupported/unverified)";; esac
 if command -v node >/dev/null 2>&1; then
-  nm="$(node_major)"; { [ -n "$nm" ] && [ "$nm" -ge 18 ] 2>/dev/null && ok "Node $(node -v)"; } || warn "Node $(node -v 2>/dev/null || echo none) (<18)"
+  nm="$(node_major)"; { [ -n "$nm" ] && [ "$nm" -ge 20 ] 2>/dev/null && ok "Node $(node -v)"; } || warn "Node $(node -v 2>/dev/null || echo none) (<20, bdg needs 20+)"
 else warn "Node not found"; fi
 command -v npm >/dev/null 2>&1 && ok "npm $(npm -v)" || warn "npm not found"
 

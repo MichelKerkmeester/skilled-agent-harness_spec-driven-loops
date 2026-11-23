@@ -10,7 +10,7 @@ trigger_phrases:
   - "browser session state persistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Advanced Session Management
@@ -235,7 +235,7 @@ check_session_health
 
 ### Sequential Session Labeling (No True Concurrency)
 
-Live `bdg 0.6.10 --help` exposes one global `status` / `stop` lifecycle with no session-id, name, or selector option. A locally-tracked bash label does not select a specific bdg session: every `bdg status` / `bdg stop` call still targets the single active session, so two "tracked" sessions started back to back are not actually isolated from each other, and the second `bdg <url>` replaces the first. Label sessions for reporting only, and fully finish one (start, verify, use, stop) before starting the next. For true parallel browser control, use the `mcp-browser-use/mcp-chrome-devtools` MCP surface's multiple registered instances (see `SKILL.md`) instead of the `bdg` CLI.
+Live `bdg 0.6.10 --help` exposes one global `status` / `stop` lifecycle with no session-id, name, or selector option. A locally-tracked bash label does not select a specific bdg session: every `bdg status` / `bdg stop` call still targets the single active session, so two "tracked" sessions started back to back are not actually isolated from each other, and a second `bdg <url>` fails with `Error: Session already running`. Label sessions for reporting only, and fully finish one (start, verify, use, stop) before starting the next. For true parallel browser control, use the `mcp-browser-use/mcp-chrome-devtools` MCP surface's multiple registered instances (see `SKILL.md`) instead of the `bdg` CLI.
 
 ```bash
 #!/bin/bash
@@ -303,7 +303,7 @@ process_url() {
 
   # Capture data
   bdg dom screenshot "$SCRATCH/${filename}.png" 2>&1
-  bdg console --list 2>&1 > "$SCRATCH/${filename}-console.json"
+  bdg console --list --json 2>/dev/null > "$SCRATCH/${filename}-console.json"
   bdg network har "$SCRATCH/${filename}.har" 2>&1
 
   # Cleanup
@@ -371,7 +371,8 @@ save_session_state() {
   echo "Saving session state..."
 
   local state=$(bdg status --json 2>&1)
-  local cookies=$(bdg network getCookies 2>&1)
+  # --json is required: plain getCookies prints text that --argjson cannot parse
+  local cookies=$(bdg network getCookies --json 2>/dev/null)
   local url=$(bdg cdp Page.getNavigationHistory 2>&1 | \
     jq -r '.result.entries[-1].url')
 
@@ -405,7 +406,7 @@ restore_session_state() {
 
   # Restore cookies
   echo "$cookies" | jq -r '.[] | @json' | while read cookie; do
-    bdg cdp Network.setCookie "$cookie" 2>&1 > /dev/null
+    bdg cdp Network.setCookie --params "$cookie" 2>&1 > /dev/null
   done
 
   echo "✓ Session state restored"
@@ -659,8 +660,8 @@ batch_operations() {
 # Usage
 batch_operations "https://example.com" \
   "bdg dom screenshot ${TMPDIR:-/tmp}/page.png" \
-  "bdg console --list > ${TMPDIR:-/tmp}/console.json" \
-  "bdg network getCookies | jq 'map({name, domain})' > ${TMPDIR:-/tmp}/cookie-names.json" \
+  "bdg console --list --json > ${TMPDIR:-/tmp}/console.json" \
+  "bdg network getCookies --json | jq 'map({name, domain})' > ${TMPDIR:-/tmp}/cookie-names.json" \
   "bdg network har ${TMPDIR:-/tmp}/network.har"
 ```
 

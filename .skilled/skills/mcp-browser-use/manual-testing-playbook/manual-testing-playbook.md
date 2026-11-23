@@ -1,7 +1,7 @@
 ---
 title: "mcp-browser-use: Manual Testing Playbook"
 description: "Operator index for mcp-browser-use hub routing across its three browser modes, two blind holdouts and the defer contract."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # mcp-browser-use: Manual Testing Playbook
@@ -59,7 +59,7 @@ The playbook holds 7 routing scenarios in one category. Five came over from the 
 
 ### Result persistence
 
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `.skilled/skills/mcp-browser-use/benchmark/reports/<dated-run-label>/`. The latest recorded run is `2026-11-21--manual-testing-playbook--hub-routing`.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `.skilled/skills/mcp-browser-use/benchmark/reports/<dated-run-label>/`. The latest recorded run is `2026-11-21--manual-testing-playbook--hub-routing--post-review`.
 
 ---
 

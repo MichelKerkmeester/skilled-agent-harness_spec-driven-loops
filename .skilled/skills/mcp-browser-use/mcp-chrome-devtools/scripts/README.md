@@ -1,7 +1,7 @@
 ---
 title: "scripts: Chrome DevTools MCP Setup and Diagnostics"
 description: "Install and read-only diagnostic scripts for the mcp-chrome-devtools transport, the Chrome DevTools mode of the mcp-browser-use hub."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # scripts: Chrome DevTools MCP Setup and Diagnostics
@@ -18,7 +18,7 @@ version: 1.0.1.0
 
 | File | Purpose |
 |------|---------|
-| `install.sh` | Installs `browser-debugger-cli@alpha` globally via npm, detects the local Chrome, Chromium, or Edge path, optionally writes `CHROME_PATH` to the shell profile with `--add-profile`, and verifies the `bdg` command with `bdg --version` and `bdg --list`. |
+| `install.sh` | Installs `browser-debugger-cli@alpha` globally via npm and looks for a Chrome or Chromium binary at common macOS, Linux and WSL paths. It checks no Edge path. It requires Node.js 20 or higher, which bdg 0.6.10 needs. With `--add-profile` and a browser found away from the default location, it writes `CHROME_PATH` to the shell profile. It then confirms `bdg` resolves, runs `bdg --version` and counts the CDP domains with `bdg cdp --list`. |
 | `doctor.sh` | Read-only diagnostics. Reports the platform, Node and npm versions, whether `bdg` resolves directly or via `npx --no-install`, whether a Chrome, Chromium, or Edge binary is found at common paths, and whether a `chrome_devtools` manual is registered in `.utcp_config.json`. Changes nothing and installs nothing. |
 
 ---
@@ -32,7 +32,7 @@ bash .skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/doctor.sh
 bash .skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh --verbose
 ```
 
-Expected result: `doctor.sh` prints a checklist with no red `✗` lines. `install.sh` exits 0 after `bdg --version` and `bdg --list` succeed.
+Expected result: `doctor.sh` prints a checklist with no red `✗` lines. `install.sh` exits 0 once `bdg` resolves on `PATH` and logs `CDP domains available: 53` for bdg 0.6.10. The same count comes from `bdg cdp --list | jq '.count'`.
 
 ---
 

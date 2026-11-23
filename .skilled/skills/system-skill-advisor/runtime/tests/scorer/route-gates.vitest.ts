@@ -90,6 +90,21 @@ describe('read-only prompt about captured decisions', () => {
   });
 });
 
+describe('read-only prompt that attaches to the operator\'s own Chrome', () => {
+  it('lifts the browser hub when the prompt names the own-Chrome attach', () => {
+    expect(readOnlyRouteAllowed('attach to my own chrome and inspect the signed-in dashboard.', skill('mcp-browser-use'))).toBe(true);
+    expect(readOnlyRouteAllowed('attach with chrome_devtools_live and inspect the signed-in dashboard.', skill('mcp-browser-use'))).toBe(true);
+  });
+
+  it('keeps the browser hub floored on a signed-in page with no browser named', () => {
+    expect(readOnlyRouteAllowed('inspect the signed-in dashboard and explain the revenue drop.', skill('mcp-browser-use'))).toBe(false);
+  });
+
+  it('keeps the browser hub floored on a question about Chrome itself', () => {
+    expect(readOnlyRouteAllowed('explain what my logged-in chrome profiles sync between devices.', skill('mcp-browser-use'))).toBe(false);
+  });
+});
+
 describe('read-only prompt about the trigger index', () => {
   it('lets spec-kit answer an explain prompt about a trigger-index lookup', () => {
     expect(readOnlyRouteAllowed('explain which run-output files the trigger index omits.', skill('system-spec-kit'))).toBe(true);

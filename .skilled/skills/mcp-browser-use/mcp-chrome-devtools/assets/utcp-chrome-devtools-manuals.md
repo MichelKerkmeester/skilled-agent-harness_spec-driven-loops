@@ -9,7 +9,7 @@ trigger_phrases:
   - "chrome devtools code mode snapshot"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Chrome DevTools Code Mode Manuals - registered-state snapshot
@@ -131,8 +131,8 @@ Discover first, then call through Code Mode's `call_tool_chain()`, closing pages
 ```typescript
 call_tool_chain(`
   try {
-    await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
-    const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+    chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
+    const screenshot = chrome_devtools_1.chrome_devtools_1_take_screenshot({});
     return screenshot;
   } finally {
     // close pages so no browser instance leaks

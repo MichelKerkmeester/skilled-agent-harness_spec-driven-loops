@@ -1,11 +1,11 @@
 ---
 title: "Session Status"
-description: "bdg status — JSON session state with state and url fields."
+description: "bdg status --json: session JSON with an active flag, plus session detail when a session runs."
 trigger_phrases:
   - "bdg status"
   - "check browser session state"
   - "session health check"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Session Status
@@ -14,7 +14,7 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-`bdg status 2>&1` returns valid JSON describing the current session, including `state` and `url` fields. Session states are `inactive`, `starting`, `active`, and `error`.
+`bdg status --json 2>&1` returns valid JSON describing the current session. Plain `bdg status` prints text. The JSON has no `state` key. It always carries `version` and `active`. With no session it is `{"version":"0.6.10","active":false}`. An active session adds detail such as `port`, `targetId` and a nested page `url`.
 
 ---
 

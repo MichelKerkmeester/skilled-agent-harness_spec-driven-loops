@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # mcp-code-mode
@@ -68,7 +68,7 @@ It returns the TypeScript interface for that one tool, with the parameters and t
 ```typescript
 call_tool_chain({
   code: `
-    const screens = await mobbin.mobbin_search_screens({
+    const screens = mobbin.mobbin_search_screens({
       query: "iOS banking onboarding",
       platform: "ios",
       limit: 5
@@ -78,7 +78,7 @@ call_tool_chain({
 })
 ```
 
-It returns `{ success: true, result, logs }`. `result` holds what your code returned and `logs` holds every `console.log` line from the block. A failed call returns `{ success: false, error }`.
+It returns `{ success: true, result, logs }`. `result` holds what your code returned and `logs` holds every `console.log` line from the block. An error inside your code does not flip `success`. You still get `success: true`, with `result: null` and a `logs` line that starts with `[ERROR] Code execution failed:`. So check `logs` for `[ERROR]` before you trust `success`.
 
 **Step 5: Check the install when a call fails for no visible reason.**
 

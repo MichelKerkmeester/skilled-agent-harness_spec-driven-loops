@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside multi tab"
   - "aside attach browser tab"
 last_updated: "2026-07-17"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Navigation and Multi-Tab Management (DevTools parity)
@@ -53,7 +53,7 @@ await closeTab(p2); // if you close the last tab, page becomes null
 
 Viewport emulation is INFERRED from the Playwright `page` API (fixture proves `page` is a real `Page`), not from a per-method online enumeration — confirm the result shape on first bound-session run.
 
-Constraints: `attachBrowserTab`/`attachActiveBrowserTab` require a bound browser profile — a fresh `aside mcp` process is unbound (`listBrowserTabs()` throws "not bound to a browser profile"); that is a binding state, not auth. Use `openTab()` when no relevant tab exists, when the operator asks for a new page, and for every mutating step. `openTab()` opens a background tab the user never sees, while that tab still reports itself visible and focused, so key presses land in it and the user's own tabs stay as they were. `chrome.tabs.create` is refused. Never attach to the user's active tab for a mutating step, and close only the tab you opened. Measured behavior: `../../references/session-management.md`, "Working beside the user".
+Constraints: `attachBrowserTab`/`attachActiveBrowserTab` require a bound browser profile. On 1.26.626.1517 with the app running and signed in, a fresh `aside mcp` process is bound. Earlier versions left it unbound, and `listBrowserTabs()` threw "not bound to a browser profile"; that is a binding state, not auth. Use `openTab()` when no relevant tab exists, when the operator asks for a new page, and for every mutating step. `openTab()` opens a background tab the user never sees, while that tab still reports itself visible and focused, so key presses land in it and the user's own tabs stay as they were. `chrome.tabs.create` is refused. Never attach to the user's active tab for a mutating step, and close only the tab you opened. Measured behavior: `../../references/session-management.md`, "Working beside the user".
 
 ---
 

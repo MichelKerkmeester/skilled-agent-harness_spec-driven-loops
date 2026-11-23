@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg network cookies"
   - "get browser cookies cli"
   - "set cookie cdp"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Cookie Management
@@ -14,7 +14,7 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-`bdg network getCookies 2>&1` returns the cookie array (empty is valid); `bdg cdp Network.setCookie '{"name":"auth_token","value":"...","domain":"example.com","secure":true,"httpOnly":true}' 2>&1` injects one. Delete via `Network.deleteCookies`, clear all via `Network.clearBrowserCookies`.
+`bdg network getCookies --json 2>&1` returns the cookie array (empty is valid); `bdg cdp Network.setCookie --params '{"name":"auth_token","value":"...","domain":"example.com","secure":true,"httpOnly":true}' 2>&1` injects one. Delete via `Network.deleteCookies`, clear all via `Network.clearBrowserCookies`.
 
 Cookie values are live session secrets (SKILL.md ALWAYS rule 7). Print names and domains, not values, with `jq 'map({name, domain})'`. Inject a throwaway value, never a real session token. Redact cookie values before quoting any output in a reply, report or file.
 
