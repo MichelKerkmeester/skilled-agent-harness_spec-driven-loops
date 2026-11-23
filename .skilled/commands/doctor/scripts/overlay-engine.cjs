@@ -1224,14 +1224,13 @@ function documentLayout(text, style) {
   // container, the most common one winning, so a stray line at an odd depth
   // does not set it. A line such as `{"x": {` or `[{` opens two at once and
   // nests one or two steps by habit, so such lines never set it. Without a
-  // one-container line, the unit is the shallowest indent two or more lines
-  // share, so one stray line does not set it either, then the shallowest.
+  // one-container line, the shallowest indent any line carries is the unit.
   const steps = new Map();
-  const leads = new Map();
+  let shallowest = null;
   const lines = text.split(/\r?\n/);
   for (let index = 0; index < lines.length; index += 1) {
     const lead = /^[ \t]*/.exec(lines[index])[0];
-    if (lead && lines[index].trim() !== '') leads.set(lead, (leads.get(lead) || 0) + 1);
+    if (lead && lines[index].trim() !== '' && (shallowest === null || lead.length < shallowest.length)) shallowest = lead;
     if (index + 1 >= lines.length || !/[[{]\s*$/.test(lines[index])) continue;
     const bare = lines[index].replace(/"(?:[^"\\]|\\.)*"/g, '');
     if ((bare.match(/[[{]/g) || []).length - (bare.match(/[\]}]/g) || []).length !== 1) continue;
@@ -1245,11 +1244,7 @@ function documentLayout(text, style) {
     const best = detected === null ? 0 : steps.get(detected);
     if (count > best || (count === best && step.length < detected.length)) detected = step;
   }
-  if (detected === null) {
-    const byDepth = [...leads].sort(([left], [right]) => left.length - right.length);
-    const shared = byDepth.find(([, count]) => count > 1);
-    detected = shared ? shared[0] : (byDepth[0] ? byDepth[0][0] : null);
-  }
+  if (detected === null) detected = shallowest;
   if (detected) return { unit: detected, eol };
   if (typeof style.indent === 'string' && /^[ \t]+$/.test(style.indent)) return { unit: style.indent, eol };
   if (Number.isInteger(style.indent) && style.indent > 0) return { unit: ' '.repeat(style.indent), eol };

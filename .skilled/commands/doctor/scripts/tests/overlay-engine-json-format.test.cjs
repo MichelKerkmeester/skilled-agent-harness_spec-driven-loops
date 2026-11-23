@@ -271,13 +271,13 @@ test('a container opened on its parent line does not halve the indent unit', () 
   assert.equal(nested, '[{\n  "z": {\n    "b": 1\n  }\n}]\n');
 });
 
-test('a stray line does not set the unit in a file whose lines all open two containers', () => {
+test('a container opened deeper on the first line keeps its unit with no sibling at the outer level', () => {
   const engine = require('../overlay-engine.cjs');
-  const text = '[{\n    "a": 1,\n  "b": 2,\n    "z": 1\n}]\n';
+  const text = '{"x": {\n    "y": 1,\n    "w": 2\n  }\n}\n';
   const spec = {
     style: { indent: 2, primitiveArrays: 'multiline' },
-    operations: [{ op: 'set', path: [0, 'z'], value: { b: 1 } }],
+    operations: [{ op: 'set', path: ['x', 'w'], value: { b: 1 } }],
   };
   const output = engine.applyJsonOperations(text, spec, { canReplaceExisting: true });
-  assert.equal(output, '[{\n    "a": 1,\n  "b": 2,\n    "z": {\n        "b": 1\n    }\n}]\n');
+  assert.equal(output, '{"x": {\n    "y": 1,\n    "w": {\n      "b": 1\n    }\n  }\n}\n');
 });
