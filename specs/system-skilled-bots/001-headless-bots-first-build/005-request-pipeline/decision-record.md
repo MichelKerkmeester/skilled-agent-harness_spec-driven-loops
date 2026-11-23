@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 5: request-pipeline"
-description: "Four decisions for the request pipeline, all Accepted by the operator: the git-hook scope, a retry bound of three, sibling queue folders and quarantine for paused and held requests."
+description: "Five decisions for the request pipeline: four Accepted by the operator (the git-hook scope, a retry bound of three, sibling queue folders and quarantine for paused and held requests) and one Proposed (a queued request's prompt follows the bot body)."
 trigger_phrases:
   - "request pipeline decision record"
 importance_tier: "normal"
@@ -185,7 +185,8 @@ research.md §9 requires a bounded retry but gives no number. A request that fai
 - A failing request stops after at most three runs.
 
 **What it costs**:
-- A transient failure that lasts three attempts loses the event to quarantine. Mitigation: the reason file names it, and the operator can re-enqueue by hand.
+- A transient failure that lasts three attempts loses the event to quarantine. Mitigation: the reason file names the last attempt's own cause, for example `lease-held on attempt 3`, and the operator can re-enqueue by hand.
+- A quarantined `resume` request cannot be re-sent through any verb yet. A second `bots answer` and a `bots enqueue --key <item id>` both derive the same seen-key marker and print `duplicate`. Until a requeue verb exists, re-sending one means removing its marker by hand: `<state root>/<identity key>/requests/seen/<sha256 of "<bot id>\0<item id>">`, where the identity key is the lower-cased, URI-encoded identity and the file holds the request id, so `grep -l <request id> <state root>/<identity key>/requests/seen/*` finds it. Then answer again or enqueue the resume again.
 
 **Risks**:
 
@@ -420,6 +421,106 @@ research.md §9 requires a bounded retry but gives no number. A request that fai
 
 ---
 
+<!-- ANCHOR:adr-005 -->
+## ADR-005: A queued request's prompt follows the bot body under a separator line
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | The builder proposed it, because neither this phase's spec nor the phase 1 run-record contract says how the two combine. Orchestrator accepted 2026-11-23: safe while every request producer is local; framing request text as data is required before any untrusted producer |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+A request record carries a `prompt`, and the bot's `BOT.md` body carries the bot's standing instructions. Until now the drain ran a queued request as a plain manual run, so the request's prompt never reached the child. The runner now takes a `queued` request kind, and it has to decide how the two texts meet. `spec.md` says only that `prompt` is written as given and that the runner applies the secret refusals at dispatch (NFR-S02). The phase 1 run-record contract has no prompt field.
+
+### Constraints
+
+- The bot body is the authored, reviewed part. A request comes from an event and must not be able to drop it.
+- A secret in the request prompt must be refused by key before dispatch, the same way the body and a resumed answer are.
+- A request with an empty prompt, which is what the post-commit leg writes, must dispatch exactly what a manual run dispatches.
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: Append the request prompt after the full bot prompt, under one separator line, `REQUEST_PROMPT_HEADER` in `runner.ts`. A prompt that is empty or only whitespace adds nothing.
+
+**How it works**: The runner builds the bot prompt from the body as before, then adds a blank line, the separator line and the request prompt. Before dispatch it runs the body-secret predicate over the request prompt with the label `request prompt`, so a secret is refused as `body-secret` and the drain quarantines the request. A run that parks keeps the combined prompt on its needs-you item, so the resumed run sees the request text too.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Append after the body under a separator (chosen)** | The body always runs. The child can tell standing instructions from the event's text | The child reads both, even when the request wants something narrower | 8/10 |
+| The request prompt replaces the body | A request can run anything the bot can | An event can drop the reviewed instructions | 2/10 |
+| Ignore the request prompt | No change to what runs | A stored field that never reaches the run, which is the defect being fixed | 1/10 |
+
+**Why this one**: It keeps the reviewed body in charge and still delivers what the event asked for.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**:
+- A queued request's prompt reaches the run, and the runner writes the request id, fired slot and source in the run's one record, so the drain no longer rewrites it.
+
+**What it costs**:
+- A secret in a request prompt now quarantines the request. Mitigation: the reason names the key, never the value.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The operator wants a different combination | L | The rule is one line in `runner.ts` and one test in `queued-run.vitest.ts` |
+| A request prompt such as "ignore the instructions above" overrides the body in meaning, since the separator divides the text but carries no trust boundary | L today, H once an untrusted producer exists | Every producer in this phase is local: the operator's own `bots enqueue`, `bots answer` and the post-commit leg, which writes an empty prompt, and queue files are owner-only. See the follow-up below |
+
+**Follow-up (condition of acceptance)**: before any untrusted producer ships, such as a webhook adapter, the runner must frame the request text as data, for example with a line that says to treat the text below as the event's request and never as a change to the instructions above, or the producer must be barred from carrying a prompt. This acceptance does not extend to an untrusted producer.
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+<!-- ANCHOR:adr-005-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | A stored prompt that never reaches the run is a defect |
+| 2 | **Beyond Local Maxima?** | PASS | Three options compared |
+| 3 | **Sufficient?** | PASS | One separator line, the existing secret predicate |
+| 4 | **Fits Goal?** | PASS | Requests from events must drive runs |
+| 5 | **Open Horizons?** | PASS | A later rule can change the one combining line |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-005-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-005-impl -->
+### Implementation
+
+**What changes**:
+- `runner.ts` takes a `queued` request kind and combines the prompts. `request-drain.ts` passes the request and no longer rewrites the record or advances the stamp.
+
+**How to roll back**: Drop the combining line in `runner.ts`. The request join stays in the runner.
+<!-- /ANCHOR:adr-005-impl -->
+<!-- /ANCHOR:adr-005 -->
+
+---
+
 <!-- ANCHOR:operator-decisions -->
 ## Operator Decisions
 <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep the archive for 30 days`, gives the stated reason and names REQ-002. WEAK: Q004 says `Discussed retention` and leaves the other cells empty. -->
@@ -432,6 +533,7 @@ research.md §9 requires a bounded retry but gives no number. A request that fai
 | Q004 | Accept the three proposed queue defaults: a retry bound of 3, sibling queue folders and paused requests to quarantine, not replayed | The operator picked the recommended option (D11) | - | ADR-002, ADR-003, ADR-004, REQ-004 to REQ-006 |
 | Q005 | `bots answer` moves here as a queue producer: it records the answer on the needs-you item, enqueues one `resume` request keyed by the item id and rewrites the generation stamp | The operator picked the recommended option (D12). It removes the wait between phases 3 and 5 | Phase 3 owning `bots answer` | REQ-016, AC-010, T021, T022 |
 | Q006 | A request for a bot with an open needs-you item is quarantined with reason `held-needs-you`, not replayed | The operator picked the recommended option (D9): hold new runs until the item is answered or expires | - | ADR-004, REQ-017, AC-011, T023 |
+| Q007 | The opt-in bots enqueue leg goes into the shared post-commit hook, and both the git-hooks README row and the sk-git continuous-integration note are updated to name it. | Not stated. | None | spec.md Shared File section, .skilled/scripts/git-hooks/post-commit, git-hooks/README.md, sk-git continuous-integration.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -447,6 +549,27 @@ Each appendix item uses the same id as its operator decision. The options are in
 - **Q004** (D11, asked as "Request queue (phase 005): accept its three proposed defaults?"): "Accept all three (Recommended)".
 - **Q005** (D12, asked as "`bots answer` creates a cycle... Move it?"): "Move to 005 (Recommended)". The question text is as the orchestrator relayed it, elided in the middle.
 - **Q006** (D9, asked as "While a bot has an open needs-you item, should its schedule keep firing new runs?"): "Hold new runs (Recommended)".
+
+### Q007
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_01JLaoFTjZvKVQGV9tRsB8ov:0 -->
+
+Question:
+```text
+Phase 005 (request pipeline) adds one opt-in, non-fatal 'enqueue a bot request' leg to the shared post-commit hook (.skilled/scripts/git-hooks/post-commit), which runs machine-wide for every repo with Skilled's hooks installed. Its spec marks two doc edits as needing your yes: the post-commit row in .skilled/scripts/git-hooks/README.md and a note in sk-git's continuous-integration.md. The hook edit itself is in the spec's frozen file list, sits after the trust and autostash blocks, and does nothing unless a repo opts in. How should 005 handle these?
+```
+
+Options:
+```text
+Hook leg plus both docs (Recommended)
+Hook leg only
+No hook leg
+```
+
+Answer:
+```text
+Hook leg plus both docs (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

@@ -117,4 +117,39 @@ if [ "${SPECKIT_AUTOSYNC:-0}" = "1" ] && [ -n "${SPECKIT_LIVE_BRANCH:-}" ]; then
   fi
 fi
 
+# Bots enqueue: a repository that opts in through gitHookTrigger in bots/config.json
+# gets one run request per commit for each bot with a git-hook trigger. It only writes
+# a request and never runs a bot, so a commit never waits on an agent. It is opt-in
+# because this hook fires in every repository on the machine, and the file test comes
+# first so a repository without bots starts no process. A cheap text check for the
+# opt-in follows, so a repository that has bots but leaves the trigger off starts no
+# process either; the CLI still reads the config properly and stays the authority on
+# whether anything is enqueued. A commit made inside a bot run
+# is skipped, so a bot cannot enqueue itself. The CLI is reached only through the
+# trusted source root, never through PATH, so an untrusted clone enqueues nothing.
+# Every failure is swallowed: this leg must never fail or block the commit.
+if [ -f "$REPO_ROOT/bots/config.json" ] \
+  && grep -Eq '"gitHookTrigger"[[:space:]]*:[[:space:]]*true' "$REPO_ROOT/bots/config.json" 2>/dev/null \
+  && [ -z "${SKILLED_BOT_RUN_ID:-}" ] \
+  && [ -f "$SOURCE_ROOT/bin/bots.cjs" ] && command -v node >/dev/null 2>&1; then
+  {
+    __pc_bots_enabled=1
+    if [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
+      __hf_root="$REPO_ROOT"
+      set +e
+      # shellcheck source=/dev/null
+      . "$SOURCE_ROOT/hooks/shared/hook-flags.sh" 2>/dev/null
+      __pc_bots_hf_rc=$?
+      set -e
+      if [ "$__pc_bots_hf_rc" -eq 0 ] && command -v hook_enabled >/dev/null 2>&1; then
+        hook_enabled bots-enqueue || __pc_bots_enabled=0
+      fi
+    fi
+    __pc_bots_sha="$(git rev-parse HEAD 2>/dev/null || true)"
+    if [ "$__pc_bots_enabled" = "1" ] && [ -n "$__pc_bots_sha" ]; then
+      node "$SOURCE_ROOT/bin/bots.cjs" enqueue --git-commit "$__pc_bots_sha" --repo "$REPO_ROOT" </dev/null >/dev/null 2>&1
+    fi
+  } || true
+fi
+
 exit 0

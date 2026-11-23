@@ -7,9 +7,10 @@
 // nobody is watching. This checker audits a repository's bots/ folder
 // before anything installs it, and it imports the very predicates the
 // runner and installer use: the definition parser, the config reader, the
-// identity resolver, the executor bounds, the cron translator and the label
-// grammar. It restates no field rule, so it cannot pass a file the runtime
-// would refuse. It only reads.
+// identity resolver, the executor bounds, the cron translator, the label
+// grammar, the worktree shared-path resolver and the delivery channel list.
+// It restates no field rule, so it cannot pass a file the runtime would
+// refuse. It only reads.
 //
 // Usage:
 //   node bot-check.cjs <checkout-root> [--strict]
@@ -48,6 +49,9 @@ const HARD_INVARIANTS = Object.freeze([
   'identity-missing',
   'config.identity-invalid',
   'isolation-undeclared',
+  'definition.isolation-invalid',
+  'worktree-shared-paths-unresolved',
+  'delivery-channel-unknown',
   'reserved-id',
 ]);
 
@@ -66,14 +70,16 @@ async function loadRuntime() {
   const runtimeRequire = createRequire(join(RUNTIME_DIR, 'package.json'));
   const { tsImport } = runtimeRequire('tsx/esm/api');
   const lib = (name) => tsImport(join(RUNTIME_DIR, 'lib', `${name}.ts`), __filename);
-  const [definition, repoConfig, identity, translator, label] = await Promise.all([
+  const [definition, repoConfig, identity, translator, label, isolation, delivery] = await Promise.all([
     lib('definition'),
     lib('repo-config'),
     lib('identity'),
     lib('cron-translator'),
     lib('label'),
+    lib('isolation'),
+    lib('delivery'),
   ]);
-  return { definition, repoConfig, identity, translator, label };
+  return { definition, repoConfig, identity, translator, label, isolation, delivery };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -119,6 +125,14 @@ async function runCheck(checkoutRoot, options = {}) {
     fail(`config.${config.reason}`, describe('bots/config.json', config));
   } else {
     pass('config', 'bots/config.json reads cleanly');
+  }
+
+  // A declared shared-path list is policy every worktree run would link, so
+  // it must resolve even before any bot asks for a worktree.
+  if (config.ok && config.value.worktreeSharedPaths !== undefined) {
+    const shared = runtime.isolation.resolveSharedPaths({ checkoutRoot: root, config: config.value, env });
+    if (shared.ok) pass('worktree-shared-paths', `bots/config.json lists ${shared.value.paths.length} shared paths`);
+    else fail(shared.reason, describe('bots/config.json', shared));
   }
 
   let identity = null;
@@ -177,6 +191,21 @@ async function runCheck(checkoutRoot, options = {}) {
       const isolation = runtime.definition.resolveIsolation(bot, config.value);
       if (isolation.ok) pass('isolation', `${shown}: ${isolation.value}`);
       else fail(isolation.reason, `${shown}: declare isolation in BOT.md or defaultIsolation in bots/config.json`);
+      if (isolation.ok && isolation.value === 'worktree') {
+        const shared = runtime.isolation.resolveSharedPaths({ checkoutRoot: root, config: config.value, env });
+        if (shared.ok) pass('worktree-shared-paths', `${shown}: links ${shared.value.paths.length} shared paths from ${shared.value.source}`);
+        else fail(shared.reason, describe(shown, shared));
+      }
+    }
+
+    if (bot.delivery.mode === 'targets') {
+      const targets = [...bot.delivery.targets, ...(bot.delivery.onFailure ?? [])];
+      const unknown = targets.filter((target) => !runtime.delivery.parseTarget(target).known);
+      if (unknown.length > 0) {
+        fail('delivery-channel-unknown', `${shown}: ${unknown.join(', ')} names no channel; known: ${runtime.delivery.DELIVERY_CHANNELS.join(', ')}`);
+      } else if (targets.length > 0) {
+        pass('delivery', `${shown}: ${targets.length} target(s) on known channels`);
+      }
     }
 
     if (bot.trigger.kind === 'cron') {

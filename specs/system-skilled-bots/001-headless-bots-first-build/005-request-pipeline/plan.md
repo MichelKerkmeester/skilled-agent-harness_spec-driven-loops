@@ -37,15 +37,15 @@ Three new modules under `.skilled/skills/system-skilled-bots/runtime/lib/` build
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 1 has built the state-root layout and the `gitHookTrigger` reader its spec names (phase 1 ADR-009)
-- [ ] Phase 3 `bots run <id>` works end to end and returns an outcome class
+- [x] Phase 1 has built the state-root layout and the `gitHookTrigger` reader its spec names (phase 1 ADR-009)
+- [x] Phase 3 `bots run <id>` works end to end and returns an outcome class
 - [x] ADR-001 has an operator answer: Accepted, every checkout
 - [x] ADR-002 to ADR-004 have an operator answer: Accepted by operator decision D11
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` exits 0, and `bash .skilled/scripts/git-hooks/tests/source-root-selection.test.sh`, `bash .skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh` and `bash .skilled/scripts/git-hooks/tests/gate-config.test.sh` exit 0 after the hook edit
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` exits 0, and `bash .skilled/scripts/git-hooks/tests/source-root-selection.test.sh`, `bash .skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh` and `bash .skilled/scripts/git-hooks/tests/gate-config.test.sh` exit 0 after the hook edit
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -132,8 +132,8 @@ The one command: `npm --prefix .skilled/skills/system-skilled-bots/runtime test`
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 1 `001-contracts-and-state-root` | Internal | Red (not built) | No state-root path, no identity, no `gitHookTrigger` reader |
-| Phase 3 `003-manual-runner` | Internal | Red (not built) | Drain has nothing to dispatch to |
+| Phase 1 `001-contracts-and-state-root` | Internal | Green (committed) | No state-root path, no identity, no `gitHookTrigger` reader |
+| Phase 3 `003-manual-runner` | Internal | Green (committed) | Drain has nothing to dispatch to |
 | Node.js `fs.rename` and exclusive create (`wx`) | External | Green | None. Both are in the standard library |
 | `.skilled/hooks/shared/hook-flags.sh` | Internal | Green (exists) | The leg loses its off switch and stays opt-in only |
 <!-- /ANCHOR:dependencies -->

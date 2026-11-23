@@ -1,0 +1,22 @@
+PASS: conflicting rebase --autostash is anchored at its stash object
+
+[1;33m⚠️  AUTOSTASH DETECTED[0m  stash@{0}  (cc93f77fd870)
+   If this entry is still present after the operation finishes, your uncommitted
+   work was NOT re-applied — recover it, do not run git stash drop/clear first.
+   Recover:  git stash pop stash@{0}     (on conflict: resolve, then commit immediately)
+   Safety:   anchored at refs/autostash-rescue/cc93f77fd870 (survives a dropped stash)
+
+PASS: post-commit anchors a leftover autostash
+PASS: post-commit warns when the guard library is missing
+PASS: post-commit names the installer under the fixture's source root, from the repository root
+PASS: post-rewrite warns when the guard library is missing
+PASS: post-rewrite names the installer under the fixture's source root, from the repository root
+PASS: post-merge warns when the guard library is missing
+PASS: post-merge names the installer under the fixture's source root, from the repository root
+PASS: an autosync commit warns about a missing kill switch
+PASS: an autosync commit warns about a missing publisher
+PASS: the missing kill switch restore runs from the worktree root
+PASS: the unreadable kill switch chmod runs from the worktree root
+PASS: the guard anchors a leftover autostash through a linked source root
+PASS: the alert log lands under .skilled/logs
+--- autostash-orphan-guard: 14 passed, 0 failed ---

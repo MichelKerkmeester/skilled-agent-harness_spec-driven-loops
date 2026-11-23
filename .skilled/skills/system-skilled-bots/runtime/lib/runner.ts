@@ -15,7 +15,13 @@
 // waits for the answer. The run's one result event goes through the deep-loop
 // append gateway, so a failed write is retried by re-sending the same event,
 // never by dispatching the run again. A throw anywhere inside the run still
-// ends in exactly one record, so no run can vanish without a trace.
+// ends in exactly one record, so no run can vanish without a trace. A bot
+// that declares `isolation: worktree` gets its own tree just before dispatch,
+// after every refusal but the executor's own; a refusal after the tree exists
+// finishes it, or returns a resumed tree to waiting, before its record. The tree
+// is removed or kept before the terminal record, so the record and the notice
+// both say which. Delivery starts only once the terminal record is written,
+// and a failed send never changes the run's outcome.
 
 import { spawnSync } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
@@ -32,8 +38,10 @@ import {
   stopHeartbeat,
 } from '../../../system-deep-loop/runtime/lib/deep-loop/loop-lock.js';
 import { readDefinition } from './definition.js';
+import { deliverRecord, resolveDeliveryEntries } from './delivery.js';
 import {
   buildBotPrompt,
+  checkoutLine,
   collectKnownSecrets,
   commonEnv,
   dispatchHeadless,
@@ -45,13 +53,15 @@ import {
   VIBE_RUN_UNFINISHED,
 } from './dispatch.js';
 import { resolveIdentity } from './identity.js';
+import { createBotWorktree, finishBotWorktree, inspectWorktree, reopenBotWorktree } from './isolation.js';
 import { buildResumedPrompt, holdForBot, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
 import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { openResultLedger, resultEventKey, sendResultEvent } from './result-ledger.js';
-import { AWAITING_DECISION, RESULT_EVENT_UNRECORDED, writeRunRecord } from './run-record.js';
+import { AWAITING_DECISION, readRunRecord, RESULT_EVENT_UNRECORDED, writeRunRecord } from './run-record.js';
 import {
   ensureIdentityState,
+  generationStampFile,
   identityStatePaths,
   isSafeSegment,
   receiptFolder,
@@ -60,15 +70,18 @@ import {
   sharedStatePaths,
   STATE_DIR_MODE,
   userStateRoot,
+  writeGenerationStamp,
 } from './state-root.js';
 import { readSwitch } from './switches.js';
 
 import type { ExecutorKind } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
-import type { BotDefinition } from './definition.js';
+import type { BotDefinition, Delivery } from './definition.js';
+import type { DeliverySenders } from './delivery.js';
 import type { CommandBuilder } from './dispatch.js';
+import type { BotWorktree } from './isolation.js';
 import type { NeedsYouItem } from './needs-you.js';
 import type { RepoConfig, Result } from './repo-config.js';
-import type { EvidenceLocations, FailureClass, HonoredPosture, RunRecord } from './run-record.js';
+import type { EvidenceLocations, FailureClass, HonoredPosture, RunRecord, WorktreeEvidence } from './run-record.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -114,6 +127,10 @@ export const REFUSAL_CAUSES = Object.freeze({
   'body-secret': { reason: 'body-secret', class: 'author' },
   'read-only-unconfined': { reason: 'read-only-unconfined', class: 'environment' },
   'result-ledger-unbound': { reason: 'result-ledger-unbound', class: 'environment' },
+  'worktree-refused': { reason: 'worktree-refused', class: 'operator' },
+  'worktree-setup-failed': { reason: 'worktree-setup-failed', class: 'environment' },
+  'parked-worktree-missing': { reason: 'parked-worktree-missing', class: 'operator' },
+  'resume-posture-changed': { reason: 'resume-posture-changed', class: 'author' },
 } as const satisfies Record<string, { reason: string; class: FailureClass | null }>);
 
 export type RefusalCause = keyof typeof REFUSAL_CAUSES;
@@ -125,10 +142,18 @@ const LEASE_MARGIN_MS = 60_000;
 const MINUTE_MS = 60_000;
 const WORKFLOW = 'system-skilled-bots';
 
-/** A manual run, or the run that resumes a parked one after its answer. */
+/**
+ * A manual run, a run drained from the request queue, or the run that resumes
+ * a parked one after its answer. A queued run carries its request's join
+ * fields so the runner writes them in the run's one record.
+ */
 export type RunRequest =
   | { kind: 'manual' }
+  | { kind: 'queued'; requestId: string; source: string; firedSlot: string | null; prompt: string }
   | { kind: 'resume'; requestId: string; itemId: string };
+
+/** The line that sets a queued request's own prompt apart from the bot body it follows. */
+export const REQUEST_PROMPT_HEADER = '--- Request prompt: added by the queued request that started this run ---';
 
 export interface RunBotInput {
   /** The repository checkout that holds `bots/`. */
@@ -144,6 +169,10 @@ export interface RunBotInput {
   guard?: { ancestryCmdlines?: string[]; statePaths?: string[] };
   /** How long one budget minute lasts; only tests shorten it. */
   minuteMs?: number;
+  /** Replaces sk-git's worktree numbering script; only tests point it at a stub. */
+  namingScript?: string;
+  /** Replaces the real delivery channel senders; tests always pass stubs. */
+  senders?: DeliverySenders;
 }
 
 export type RunOutcome =
@@ -176,11 +205,15 @@ interface RecordSeed {
   definitionDigest: string;
   requestId: string | null;
   resumedItemId: string | null;
+  /** Absent in a lease side file written before queued runs carried a slot. */
+  firedSlot?: string | null;
   source: string;
   dispatchedAt: string;
   declared: BotDefinition['budget'];
   posture: HonoredPosture;
   evidence: EvidenceLocations;
+  /** The definition's delivery fields; null when the definition did not parse. */
+  delivery?: Delivery | null;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -230,31 +263,12 @@ export function leaseFile(stateRoot: string, identity: string, key: string): str
   return join(identityStatePaths(stateRoot, identity).leases, `${digest}.lock`);
 }
 
-/** The generation stamp a status reader compares to know its index is stale. */
-export function generationStampFile(stateRoot: string, identity: string): string {
-  return join(identityStatePaths(stateRoot, identity).base, 'generation.json');
-}
-
 /**
- * Advance the generation stamp by temp file and rename. Called after each
- * terminal record and each needs-you item, and by any verb that changes an item.
- *
- * @returns The new generation number.
+ * The generation stamp lives with the state paths so delivery, which the
+ * runner imports, can advance it too; it is re-exported here for the verbs
+ * that already read it from the runner.
  */
-export function writeGenerationStamp(stateRoot: string, identity: string, now: Date = new Date()): number {
-  ensureIdentityState(stateRoot, identity);
-  const path = generationStampFile(stateRoot, identity);
-  let previous = 0;
-  try {
-    const parsed = JSON.parse(readFileSync(path, 'utf8')) as { generation?: unknown };
-    if (typeof parsed.generation === 'number' && Number.isSafeInteger(parsed.generation)) previous = parsed.generation;
-  } catch {
-    previous = 0;
-  }
-  const generation = previous + 1;
-  writeStateAtomic(path, { generation, writtenAt: now.toISOString() });
-  return generation;
-}
+export { generationStampFile, writeGenerationStamp };
 
 /** A sortable, filename-safe run id. */
 export function newRunId(now: Date = new Date()): string {
@@ -311,7 +325,7 @@ function buildRecord(
       requestId: seed.requestId,
       leaseNonce: extra.leaseNonce,
       resultEventId: extra.resultEventId,
-      firedSlot: null,
+      firedSlot: seed.firedSlot ?? null,
       resumedItemId: seed.resumedItemId,
     },
     dispatch: {
@@ -335,7 +349,7 @@ function buildRecord(
     posture: seed.posture,
     exit,
     evidence: seed.evidence,
-    delivery: [{ channel: 'local-only', target: 'local', state: 'not-attempted', evidence: null }],
+    delivery: resolveDeliveryEntries(seed.delivery ?? null, exit),
   };
 }
 
@@ -383,17 +397,31 @@ function refusalRecord(
 /**
  * Close the record of a run whose lease was reclaimed, but only once its
  * owner process is proved gone and only if it left no record of its own.
+ * A killed run's worktree is never removed here: it may hold half-made work,
+ * so it is kept and its reason recorded.
+ *
+ * @returns The closed run's id, or null when nothing was closed.
  */
-function closeKilledRun(stateRoot: string, lease: string, reclaimedPid: number): void {
+function closeKilledRun(stateRoot: string, lease: string, reclaimedPid: number, env: NodeJS.ProcessEnv): string | null {
   const sidePath = `${lease}.run.json`;
   let side: LeaseSideFile;
   try {
     side = JSON.parse(readFileSync(sidePath, 'utf8')) as LeaseSideFile;
   } catch {
-    return;
+    return null;
   }
-  if (side.ownerPid !== reclaimedPid || processAlive(side.ownerPid)) return;
-  if (existsSync(recordFile(stateRoot, side.seed.identity, side.seed.runId))) return;
+  if (side.ownerPid !== reclaimedPid || processAlive(side.ownerPid)) return null;
+  if (existsSync(recordFile(stateRoot, side.seed.identity, side.seed.runId))) return null;
+  const tree = side.seed.evidence.worktree;
+  if (tree !== undefined && tree !== null && tree.disposition === 'active' && side.seed.evidence.worktreePath !== null) {
+    const verdict = inspectWorktree(
+      side.seed.checkoutRoot,
+      { ...tree, path: side.seed.evidence.worktreePath, branch: side.seed.evidence.branch ?? '', baseCommit: tree.baseCommit ?? '' },
+      env,
+    );
+    const detail = [tree.detail, verdict.detail].filter((part): part is string => part !== null && part !== '').join('; ');
+    side.seed.evidence.worktree = { ...tree, disposition: 'kept', keptReason: verdict.keptReason ?? 'killed', detail: detail === '' ? null : detail };
+  }
   writeTerminal(
     stateRoot,
     buildRecord(
@@ -403,6 +431,44 @@ function closeKilledRun(stateRoot: string, lease: string, reclaimedPid: number):
     ),
   );
   rmSync(sidePath, { force: true });
+  return side.seed.runId;
+}
+
+/** The record's view of a tree in use by its run. */
+function activeTreeEvidence(tree: BotWorktree, postureSource: WorktreeEvidence['postureSource']): WorktreeEvidence {
+  return {
+    postureSource,
+    baseCommit: tree.baseCommit,
+    links: tree.links,
+    createdDirs: tree.createdDirs,
+    setupMs: tree.setupMs,
+    disposition: 'active',
+    keptReason: null,
+    detail: [
+      `base from ${tree.baseSource ?? 'unknown'}`,
+      ...(tree.skipped.length > 0 ? [`not linked: ${tree.skipped.map((entry) => `${entry.path} (${entry.why})`).join(', ')}`] : []),
+    ].join('; '),
+  };
+}
+
+/**
+ * Send a terminal record's queued notices. A delivery failure is the
+ * delivery's own outcome, recorded on its entry, and never the run's.
+ */
+function deliverTerminal(input: RunBotInput, stateRoot: string, identity: string, runId: string | null): void {
+  if (runId === null || !existsSync(recordFile(stateRoot, identity, runId))) return;
+  try {
+    deliverRecord({
+      stateRoot,
+      identity,
+      runId,
+      env: input.env ?? process.env,
+      checkoutRoot: input.checkoutRoot,
+      ...(input.senders !== undefined ? { senders: input.senders } : {}),
+    });
+  } catch {
+    // An entry left claimed by a throw reads as an uncertain send; it is never retried.
+  }
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -436,6 +502,65 @@ function declaredPosture(definition: BotDefinition | null, config: RepoConfig): 
     sandbox: definition?.posture.sandbox ?? null,
     executorKind: definition?.runtime.kind ?? 'unknown',
     model: typeof definition?.runtime.model === 'string' ? definition.runtime.model : null,
+  };
+}
+
+/** The kept reason of a tree its run left for the run that resumes it. */
+const AWAITING_DECISION_KEPT_REASON = AWAITING_DECISION;
+
+/** What a resume learns from the record of the run it continues. */
+interface ParkedTree {
+  tree: BotWorktree;
+  postureSource: WorktreeEvidence['postureSource'];
+}
+
+/**
+ * Decide which tree a resumed run works in, from the parked run's own
+ * record and never from the definition alone: the parked work is wherever
+ * that run left it. A worktree bot whose parked run kept no tree, or a
+ * shared bot whose parked run kept one, is refused, because either way the
+ * resume would work somewhere the parked work is not.
+ *
+ * @returns The parked tree, null for a resume that works in the checkout, or a refusal.
+ */
+function parkedTreeFor(
+  context: BotContext,
+  item: NeedsYouItem,
+  wantsTree: boolean,
+): { ok: true; value: ParkedTree | null } | { ok: false; cause: RefusalCause; detail: string } {
+  const parked = readRunRecord(context.stateRoot, context.identity, item.runId);
+  if (!parked.ok) {
+    // Without the parked record nothing says where the parked work is, so only a shared resume may go on.
+    if (!wantsTree) return { ok: true, value: null };
+    return { ok: false, cause: 'parked-worktree-missing', detail: `the parked run's record does not read (${parked.reason})` };
+  }
+  const { evidence } = parked.value.record;
+  const kept = evidence.worktree ?? null;
+  if (kept === null) {
+    if (!wantsTree) return { ok: true, value: null };
+    return { ok: false, cause: 'resume-posture-changed', detail: 'the parked run used no worktree; the definition now declares one' };
+  }
+  if (!wantsTree) {
+    return { ok: false, cause: 'resume-posture-changed', detail: `the parked run worked in ${evidence.worktreePath ?? 'a worktree'}; the definition no longer declares one` };
+  }
+  if (kept.disposition !== 'kept' || kept.keptReason !== AWAITING_DECISION_KEPT_REASON || evidence.worktreePath === null || evidence.branch === null) {
+    return { ok: false, cause: 'parked-worktree-missing', detail: `the parked run's tree was ${kept.disposition}${kept.keptReason !== null ? ` (${kept.keptReason})` : ''}, not kept for its answer` };
+  }
+  return {
+    ok: true,
+    value: {
+      postureSource: kept.postureSource,
+      tree: {
+        path: evidence.worktreePath,
+        branch: evidence.branch,
+        baseSource: null,
+        baseCommit: kept.baseCommit ?? '',
+        links: kept.links,
+        createdDirs: kept.createdDirs,
+        skipped: [],
+        setupMs: 0,
+      },
+    },
   };
 }
 
@@ -523,25 +648,31 @@ export async function runBot(input: RunBotInput): Promise<RunOutcome> {
     botId: input.botId,
     runId,
     definitionDigest,
-    requestId: request.kind === 'resume' ? request.requestId : null,
+    requestId: request.kind === 'manual' ? null : request.requestId,
     resumedItemId: request.kind === 'resume' ? request.itemId : null,
-    source: request.kind,
+    firedSlot: request.kind === 'queued' ? request.firedSlot : null,
+    source: request.kind === 'queued' ? request.source : request.kind,
     dispatchedAt: new Date().toISOString(),
     declared: definition?.budget ?? { maxIterations: 0, maxDurationMinutes: 0, timeoutSeconds: 0 },
     posture: declaredPosture(definition, context.config),
     evidence,
+    delivery: definition?.delivery ?? null,
   };
 
   // From here on a run has a seed, so a throw anywhere still ends in one record.
+  let outcome: RunOutcome;
   try {
     mkdirSync(evidence.ledgerDir as string, { recursive: true, mode: STATE_DIR_MODE });
     // The audited runner reads its state log before appending a failure row, so it must exist.
     appendFileSync(join(evidence.ledgerDir as string, 'state.jsonl'), '');
     observe(seed, 'started', 'running', { mode: request.kind });
-    return await runSeeded(input, context, request, minuteMs, seed, definition, parsed);
+    outcome = await runSeeded(input, context, request, minuteMs, seed, definition, parsed);
   } catch (error: unknown) {
-    return closeThrownRun(context.stateRoot, seed, null, error);
+    outcome = closeThrownRun(context.stateRoot, seed, null, error);
   }
+  // The terminal record is on disk before the first send starts.
+  deliverTerminal(input, context.stateRoot, context.identity, outcome.runId);
+  return outcome;
 }
 
 /**
@@ -647,7 +778,10 @@ async function runSeeded(
 
   // The lease is held from here, so every exit path below releases it.
   try {
-    if (acquired.reclaimed !== undefined) closeKilledRun(context.stateRoot, lease, acquired.reclaimed.ownerPid);
+    if (acquired.reclaimed !== undefined) {
+      const closed = closeKilledRun(context.stateRoot, lease, acquired.reclaimed.ownerPid, env);
+      deliverTerminal(input, context.stateRoot, context.identity, closed);
+    }
     writeStateAtomic(sidePath, { ownerPid: process.pid, acquireNonce: nonce, seed } satisfies LeaseSideFile);
     startHeartbeat({ lockPath: lease, ownerPid: process.pid, ...(nonce !== null ? { acquireNonce: nonce } : {}) });
 
@@ -671,6 +805,8 @@ async function runSeeded(
     if (resumeItem !== null) {
       texts.push(['question', resumeItem.question], ['answer', resumeItem.answer?.text ?? '']);
     }
+    const requestPrompt = request.kind === 'queued' && request.prompt.trim() !== '' ? request.prompt : null;
+    if (requestPrompt !== null) texts.push(['request prompt', requestPrompt]);
     for (const [label, text] of texts) {
       const match = findSecretLiteral(text, known);
       if (match !== null) {
@@ -679,11 +815,7 @@ async function runSeeded(
     }
 
     const kind = posture.value.executor.kind as ExecutorKind;
-    let prompt = buildBotPrompt({
-      body: definition.body,
-      specFolder,
-      checkoutRoot: runsOutsideCheckout(kind) ? context.checkoutRoot : null,
-    });
+    let prompt: string | null = null;
     if (resumeItem !== null) {
       const resumed = buildResumedPrompt(resumeItem);
       if (!resumed.ok) return refusalRecord(context.stateRoot, seed, 'resume-item-invalid', resumed.reason, resumeItem.id, nonce);
@@ -706,13 +838,82 @@ async function runSeeded(
       );
     }
 
+    // The tree is made after every refusal but the executor's own, which finishes it.
+    let tree: BotWorktree | null = null;
+    const wantsTree = posture.value.posture.isolation === 'worktree';
+    const parkedTree = resumeItem !== null ? parkedTreeFor(context, resumeItem, wantsTree) : null;
+    if (parkedTree !== null && !parkedTree.ok) {
+      return refusalRecord(context.stateRoot, seed, parkedTree.cause, parkedTree.detail, resumeItem?.id ?? null, nonce);
+    }
+    if (parkedTree !== null && parkedTree.value !== null) {
+      // A resume continues the parked work, so it works in the parked tree and never makes a fresh one.
+      const parkedHandle = parkedTree.value.tree;
+      const reopened = reopenBotWorktree(context.checkoutRoot, parkedHandle, env);
+      if (!reopened.ok) {
+        return refusalRecord(context.stateRoot, seed, 'parked-worktree-missing', reopened.detail ?? reopened.reason, resumeItem?.id ?? null, nonce);
+      }
+      if (prompt !== null && runsOutsideCheckout(kind) && !prompt.includes(checkoutLine(parkedHandle.path))) {
+        // A child that starts outside the checkout reads files only through the
+        // path its prompt names. The parked prompt must name the tree this run
+        // works in, built by the same line builder; one that names another folder,
+        // or none, is refused rather than handed to a child with a stale path.
+        // The check runs before the record takes the tree, so the tree stays kept.
+        return refusalRecord(context.stateRoot, seed, 'resume-item-invalid', 'the parked prompt does not name the parked tree as its checkout', resumeItem?.id ?? null, nonce);
+      }
+      tree = parkedHandle;
+      seed.evidence = {
+        ...seed.evidence,
+        worktreePath: tree.path,
+        branch: tree.branch,
+        worktree: { ...activeTreeEvidence(tree, parkedTree.value.postureSource), detail: `resumed the tree kept by run ${resumeItem?.runId ?? 'unknown'}` },
+      };
+      writeStateAtomic(sidePath, { ownerPid: process.pid, acquireNonce: nonce, seed } satisfies LeaseSideFile);
+      observe(seed, 'worktree', 'running', { branch: tree.branch, resumed: true });
+    } else if (wantsTree) {
+      const postureSource = definition.posture.isolation !== null ? 'definition' : 'repository-default';
+      const made = createBotWorktree({
+        checkoutRoot: context.checkoutRoot,
+        skilledTree: context.skilledTree,
+        botId: input.botId,
+        config: context.config,
+        env,
+        ...(input.namingScript !== undefined ? { namingScript: input.namingScript } : {}),
+      });
+      if (!made.ok) {
+        const detail = `${made.reason}${made.detail !== undefined ? `: ${made.detail}` : ''}`;
+        if (made.kept === null) return refusalRecord(context.stateRoot, seed, 'worktree-refused', detail, null, nonce);
+        seed.evidence = {
+          ...seed.evidence,
+          worktreePath: made.kept.path,
+          branch: made.kept.branch,
+          worktree: { ...activeTreeEvidence(made.kept, postureSource), disposition: 'kept', keptReason: 'half-provisioned', detail },
+        };
+        return refusalRecord(context.stateRoot, seed, 'worktree-setup-failed', detail, null, nonce);
+      }
+      tree = made.value;
+      seed.evidence = { ...seed.evidence, worktreePath: tree.path, branch: tree.branch, worktree: activeTreeEvidence(tree, postureSource) };
+      // A run killed from here on is closed by whoever reclaims the lease, so the side file must name the tree.
+      writeStateAtomic(sidePath, { ownerPid: process.pid, acquireNonce: nonce, seed } satisfies LeaseSideFile);
+      observe(seed, 'worktree', 'running', { branch: tree.branch, setup_ms: tree.setupMs });
+    }
+    const workDir = tree?.path ?? context.checkoutRoot;
+
     mkdirSync(evidence.receiptDir as string, { recursive: true, mode: STATE_DIR_MODE });
     seed.dispatchedAt = new Date().toISOString();
     observe(seed, 'dispatching', 'running', { model: posture.value.posture.model, sandbox: posture.value.posture.sandbox });
+    if (prompt === null) {
+      prompt = buildBotPrompt({
+        body: definition.body,
+        specFolder,
+        checkoutRoot: runsOutsideCheckout(kind) ? workDir : null,
+      });
+      // The request adds to the bot's standing instructions and never replaces them.
+      if (requestPrompt !== null) prompt = [prompt, '', REQUEST_PROMPT_HEADER, requestPrompt].join('\n');
+    }
     const outcome = dispatchHeadless({
       executor: posture.value.executor,
       prompt,
-      cwd: context.checkoutRoot,
+      cwd: workDir,
       runId,
       parentEnv: env,
       boundSeconds,
@@ -727,6 +928,19 @@ async function runSeeded(
     // The builder resolved the agent a read-only OpenCode child would run and found a
     // write action left open, so no child was started: a refusal, not a failed run.
     if (outcome.reason === READ_ONLY_UNCONFINED) {
+      // The tree was made before the builder could refuse, and no child touched it.
+      // A resumed tree goes back to waiting with its item; a fresh one is finished
+      // by the normal rules, so a refusal never leaves a tree recorded as active.
+      if (tree !== null && seed.evidence.worktree) {
+        if (parkedTree !== null && parkedTree.value !== null) {
+          seed.evidence.worktree = { ...seed.evidence.worktree, disposition: 'kept', keptReason: AWAITING_DECISION_KEPT_REASON };
+        } else {
+          const finished = finishBotWorktree(context.checkoutRoot, tree, env);
+          const detail = [seed.evidence.worktree.detail, finished.detail].filter((part): part is string => part !== null && part !== '').join('; ');
+          seed.evidence.worktree = { ...seed.evidence.worktree, disposition: finished.disposition, keptReason: finished.keptReason, detail: detail === '' ? null : detail };
+        }
+        observe(seed, 'worktree', seed.evidence.worktree.disposition, { reason: seed.evidence.worktree.keptReason });
+      }
       return refusalRecord(context.stateRoot, seed, 'read-only-unconfined', outcome.detail, null, nonce);
     }
 
@@ -801,6 +1015,16 @@ async function runSeeded(
       result = { kind: 'failed', reason: exit.reason, class: 'hub', runId, recordPath: null, recursionGuard: false };
       observe(seed, 'result-event-unrecorded', 'stopped', { detail: sent.reason, attempts: sent.attempts });
     }
+    if (tree !== null && seed.evidence.worktree && exit.needsYouItemId !== null) {
+      // The answer resumes this run in this same tree, so the tree waits with the item.
+      seed.evidence.worktree = { ...seed.evidence.worktree, disposition: 'kept', keptReason: AWAITING_DECISION_KEPT_REASON };
+      observe(seed, 'worktree', 'kept', { reason: AWAITING_DECISION_KEPT_REASON });
+    } else if (tree !== null && seed.evidence.worktree) {
+      const finished = finishBotWorktree(context.checkoutRoot, tree, env);
+      const detail = [seed.evidence.worktree.detail, finished.detail].filter((part): part is string => part !== null && part !== '').join('; ');
+      seed.evidence.worktree = { ...seed.evidence.worktree, disposition: finished.disposition, keptReason: finished.keptReason, detail: detail === '' ? null : detail };
+      observe(seed, 'worktree', finished.disposition, { reason: finished.keptReason });
+    }
     observe(seed, 'terminal', 'stopped', {
       reason: exit.reason,
       duration_ms: outcome.elapsedMs,
@@ -817,6 +1041,11 @@ async function runSeeded(
     );
     return { ...result, recordPath };
   } catch (error: unknown) {
+    const tree = seed.evidence.worktree;
+    if (tree !== undefined && tree !== null && tree.disposition === 'active') {
+      // A throw may land mid-edit, so the tree is kept for the operator, never removed.
+      seed.evidence.worktree = { ...tree, disposition: 'kept', keptReason: 'runner-error', detail: null };
+    }
     return closeThrownRun(context.stateRoot, seed, nonce, error);
   } finally {
     stopHeartbeat();

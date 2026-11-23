@@ -10,7 +10,7 @@ trigger_phrases:
   - "ide always shows current work"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Continuous Integration - Always-Current Live Branch
@@ -110,6 +110,8 @@ Publishing is automatic. The versioned `post-commit` git hook calls `git-sync.sh
 The launch wrapper wires this up per session: it resolves the live branch from the primary checkout, bases the new session worktree on it, and exports `SPECKIT_LIVE_BRANCH` + `SPECKIT_AUTOSYNC`. Orchestrated children inherit those env vars and correctly publish their own commits from inside the same worktree.
 
 The autosync block composes with — it does not replace — the hook's existing code-graph invalidation and memory-drift behavior.
+
+The same hook also carries a separate leg for bots. It is opt-in per repository: it acts only when `bots/config.json` sets `gitHookTrigger` to `true`, the repository passes the hook trust check and the commit was not made inside a bot run. It then calls `$SOURCE_ROOT/bin/bots.cjs enqueue --git-commit <sha>`, which writes one run request per bot with a git-hook trigger. It never runs a bot and never publishes anything. Unlike the autosync leg it is not limited to linked worktrees. It is fully non-fatal, and `SYSTEM_BOTS_ENQUEUE_DISABLED=1` switches it off.
 
 ### Gate map
 

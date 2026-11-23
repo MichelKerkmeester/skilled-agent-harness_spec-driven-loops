@@ -59,13 +59,13 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] Two `bots drain` processes started together against one request leave exactly one run record that joins that request, over 50 rounds of the race test
-- [ ] `bots enqueue` run twice with the same source and event id but different prompts, and two `resume` enqueues for one needs-you item, each print `duplicate` on the second call and leave one run record after `bots drain`
-- [ ] After `bots drain` over a malformed definition, a failing precheck, a disabled bot, a paused bot and a bot with an open needs-you item, `ls -A` of the watched folder prints nothing and the quarantine folder holds five requests, the last two with reasons `paused` and `held-needs-you`
-- [ ] A commit in a trusted fixture repository with commit triggers on enqueues one request and exits 0, and the same commit in an untrusted clone enqueues nothing
-- [ ] In a fixture repository with no remote and no `identity` in `bots/config.json`, `bots enqueue` exits non-zero and the state root holds no new file, and after `identity` is set the same enqueue writes one request
-- [ ] `bots answer <item-id> "yes"` run twice on one open item leaves one `resume` request, and the item reads `answered` with that request id
-- [ ] `rg -n 'launchctl|\.plist'` over the `request-*.ts` files and the post-commit hook prints nothing
+- [x] Two `bots drain` processes started together against one request leave exactly one run record that joins that request, over 50 rounds of the race test
+- [x] `bots enqueue` run twice with the same source and event id but different prompts, and two `resume` enqueues for one needs-you item, each print `duplicate` on the second call and leave one run record after `bots drain`
+- [x] After `bots drain` over a malformed definition, a failing precheck, a disabled bot, a paused bot and a bot with an open needs-you item, `ls -A` of the watched folder prints nothing and the quarantine folder holds five requests, the last two with reasons `paused` and `held-needs-you`
+- [x] A commit in a trusted fixture repository with commit triggers on enqueues one request and exits 0, and the same commit in an untrusted clone enqueues nothing
+- [x] In a fixture repository with no remote and no `identity` in `bots/config.json`, `bots enqueue` exits non-zero and the state root holds no new file, and after `identity` is set the same enqueue writes one request
+- [x] `bots answer <item-id> "yes"` run twice on one open item leaves one `resume` request, and the item reads `answered` with that request id
+- [x] `rg -n 'launchctl|\.plist'` over the `request-*.ts` files and the post-commit hook prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -83,10 +83,20 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | Criteria drawn from spec.md section 5 and acceptance-criteria.md |
+| Race, 50 rounds | Done | `race.vitest.ts`: one joined record per round, lost claim in 49 of 50 rounds (`scratch/race-run.txt`) |
+| Dedupe and resume dedupe | Done | `dedupe.vitest.ts`: the second `bots enqueue` prints `bots: duplicate <id>`, one record after drain. `answer.vitest.ts`: two `bots answer` calls are two resume enqueues, the second prints `duplicate` (line 42) and one run joins after drain (line 56) |
+| Five quarantines | Done | `quarantine.vitest.ts`: `inbox/` empty, five reasons including `paused` and `held-needs-you` |
+| Hook leg | Done | `post-commit-leg.test.sh` 27 passed. The three existing hook tests 74, 14 and 25 passed before and after |
+| Identity refusal | Done | `identity-refusal.vitest.ts`: non-zero exit, empty state root, then one request once `identity` is set |
+| `bots answer` twice | Done | `answer.vitest.ts`: one `resume` request, item `answered` with that request id, stamp moved once |
+| Expiry | Done | `answer.vitest.ts`: with `needsYou.expiryDays: 2` the item reads `expired` at its expiry instant and `bots answer` refuses it |
+| Scheduler search | Done | `rg -n 'launchctl\|\.plist'` over `request-*.ts`, `answer.ts` and the hook printed nothing, exit 1 |
+| Whole suite and typecheck | Done | 28 files, 250 passed, exit 0. Typecheck exit 0 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Request join written by the runner | The runner takes a `queued` request kind and writes the request id, fired slot and source in the run's one record; the drain no longer rewrites it. A request's prompt follows the bot body under a separator, ADR-005, Accepted while every producer is local |
 | Criteria merged | spec.md section 5 lists eight success criteria. The two dedupe criteria (SC-002, SC-005) are one criterion here, and the hold quarantine (SC-008) joins the quarantine criterion (SC-003), to stay within seven |
 <!-- /ANCHOR:log -->

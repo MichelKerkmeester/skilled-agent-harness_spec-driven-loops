@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 4: worktree-isolation-and-delivery"
-description: "Proposed decisions for phase 4: first delivery channels, how the runner calls sk-git worktree mechanics, provisioning, mid-edit death and end-of-run removal."
+description: "Decisions for phase 4: first delivery channels, how the runner calls sk-git worktree mechanics, provisioning, mid-edit death, end-of-run removal, the delivery state names and the deviations the build made."
 trigger_phrases:
   - "worktree isolation and delivery decision record"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery"
-    last_updated_at: "2026-11-22T10:48:30Z"
-    last_updated_by: "spec-writer"
-    recent_action: "Wrote five proposed decisions for worktree isolation and delivery"
-    next_safe_action: "Operator decides ADR-001, then confirm ADR-002 to ADR-005"
+    last_updated_at: "2026-11-23T08:40:00Z"
+    last_updated_by: "phase-builder"
+    recent_action: "Added ADR-008 for the parked worktree resume and the ignored-path trade-off in ADR-004"
+    next_safe_action: "Orchestrator reviews and commits the phase"
     blockers: []
     key_files: []
     session_dedup:
@@ -36,9 +36,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
-| **Deciders** | Operator (operator-owned decision, recommendation from the phase advice) |
+| **Deciders** | Operator, through the frozen decision D1 in `goal.md` |
 
 ---
 
@@ -109,7 +109,7 @@ The `BOT.md` delivery fields allow a target list, a failure override and a local
 | 4 | **Fits Goal?** | PASS | Delivery is in this phase's scope (research.md §15 step 5) |
 | 5 | **Open Horizons?** | PASS | The record shape takes any later channel |
 
-**Checks Summary**: 5/5 PASS, as judged by the spec writer. The operator confirms when the status leaves Proposed.
+**Checks Summary**: 5/5 PASS, as judged by the spec writer. Accepted through the frozen decisions in `goal.md`.
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---
@@ -134,9 +134,9 @@ The `BOT.md` delivery fields allow a target list, a failure override and a local
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
-| **Deciders** | Phase spec writer, operator to confirm |
+| **Deciders** | Operator, through the frozen decision D2 in `goal.md` |
 
 ---
 
@@ -207,7 +207,7 @@ sk-git forbids an agent from choosing between a worktree and the current branch 
 | 4 | **Fits Goal?** | PASS | Isolation is this phase's core |
 | 5 | **Open Horizons?** | PASS | A Hermes backend can read the same field |
 
-**Checks Summary**: 5/5 PASS, as judged by the spec writer. The operator confirms when the status leaves Proposed.
+**Checks Summary**: 5/5 PASS, as judged by the spec writer. Accepted through the frozen decisions in `goal.md`.
 <!-- /ANCHOR:adr-002-five-checks -->
 
 ---
@@ -232,9 +232,9 @@ sk-git forbids an agent from choosing between a worktree and the current branch 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
-| **Deciders** | Phase spec writer, operator to confirm |
+| **Deciders** | Operator, through the frozen decision D3 in `goal.md` |
 
 ---
 
@@ -306,7 +306,7 @@ A fresh worktree has no dependency trees and fails in ways that read as broken c
 | 4 | **Fits Goal?** | PASS | Provisioning is in scope |
 | 5 | **Open Horizons?** | PASS | The list can be replaced per repository |
 
-**Checks Summary**: 5/5 PASS, as judged by the spec writer. The operator confirms when the status leaves Proposed.
+**Checks Summary**: 5/5 PASS, as judged by the spec writer. Accepted through the frozen decisions in `goal.md`.
 <!-- /ANCHOR:adr-003-five-checks -->
 
 ---
@@ -330,9 +330,9 @@ A fresh worktree has no dependency trees and fails in ways that read as broken c
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
-| **Deciders** | Phase spec writer, operator to confirm |
+| **Deciders** | Operator, through the frozen decision D4 in `goal.md` |
 
 ---
 
@@ -354,7 +354,9 @@ A run killed while editing leaves a dirty tree. The reaper keeps such a tree on 
 
 **We propose**: Keep the tree, write it in the run record as kept with the reason `dirty`, `unmerged` or `half-provisioned`, and name it in the delivery message.
 
-**How it works**: On every exit path isolation checks `git status --porcelain --untracked-files=all` and the branch's ancestry before removal. Any non-clean result keeps the tree and writes the reason. The delivery body names the path and branch so the operator can open it.
+**How it works**: On every exit path isolation checks `git status --porcelain --untracked-files=all` and the branch's ancestry before removal. Any non-clean result keeps the tree and writes the reason. The delivery body names the path and branch so the operator can open it. A folder isolation made to hold links is listed too: an entry in it that is neither a recorded link nor a recorded folder keeps the tree as `dirty` with its links intact, because git status cannot see inside those folders (`.skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:621`).
+
+**Trade-off, ignored paths**: The inspection does not pass `--ignored`, so content in a gitignored path is not treated as work. A tree whose only changes sit in ignored paths reads as clean and is removed with that content. A bot that must keep output writes it to a tracked path, or puts it in its delivery. Counting ignored content as work would keep nearly every tree, because dependency and build folders are ignored by design.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -403,7 +405,7 @@ A run killed while editing leaves a dirty tree. The reaper keeps such a tree on 
 | 4 | **Fits Goal?** | PASS | Named by the phase advice |
 | 5 | **Open Horizons?** | PASS | A later reclaimer reads the same reason field |
 
-**Checks Summary**: 5/5 PASS, as judged by the spec writer. The operator confirms when the status leaves Proposed.
+**Checks Summary**: 5/5 PASS, as judged by the spec writer. Accepted through the frozen decisions in `goal.md`.
 <!-- /ANCHOR:adr-004-five-checks -->
 
 ---
@@ -428,9 +430,9 @@ A run killed while editing leaves a dirty tree. The reaper keeps such a tree on 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
-| **Deciders** | Phase spec writer, operator to confirm |
+| **Deciders** | Operator, through the frozen decision D3 in `goal.md` |
 
 ---
 
@@ -452,7 +454,7 @@ The scheduled reclaimer is build step 10 and out of this packet (research.md §1
 
 **We propose**: At the end of a run, remove the tree only when it is clean, has no commits beyond its base and has no stash. Leave every other tree to the operator and the reaper.
 
-**How it works**: After delivery, isolation checks the three conditions, unlinks the recorded links and removes the tree and branch without force. A refusal from git keeps the tree and writes the refusal as the kept reason.
+**How it works**: After the result event and before the terminal record, isolation checks the three conditions, unlinks the recorded links and removes the tree and branch without force. A refusal from git keeps the tree and writes the refusal as the kept reason. The first draft placed this step after delivery; ADR-007 moved it so the notice can say whether the tree was kept.
 <!-- /ANCHOR:adr-005-decision -->
 
 ---
@@ -501,7 +503,7 @@ The scheduled reclaimer is build step 10 and out of this packet (research.md §1
 | 4 | **Fits Goal?** | PASS | Removal is in scope (AC-002) |
 | 5 | **Open Horizons?** | PASS | The step 10 reclaimer can replace it |
 
-**Checks Summary**: 5/5 PASS, as judged by the spec writer. The operator confirms when the status leaves Proposed.
+**Checks Summary**: 5/5 PASS, as judged by the spec writer. Accepted through the frozen decisions in `goal.md`.
 <!-- /ANCHOR:adr-005-five-checks -->
 
 ---
@@ -518,12 +520,317 @@ The scheduled reclaimer is build step 10 and out of this packet (research.md §1
 
 ---
 
+<!-- ANCHOR:adr-006 -->
+## ADR-006: Delivery states are named queued and claimed, not pending and delivering
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Phase builder, under the orchestrator's instruction to take the spec's names |
+
+---
+
+<!-- ANCHOR:adr-006-context -->
+### Context
+
+The delivery model comes from Hermes' cron delivery queue, which claims each row at most once and marks an uncertain send `unknown` (`~/.hermes/hermes-agent/cron/delivery_queue.py:5`). Hermes stores its two in-flight states as `pending` and `delivering`. research.md §10 names them `queued` and `claimed`. A delivery record must use one pair before the first one is written.
+
+### Constraints
+
+- research.md §10 forbids a sixth vocabulary: delivery states already exist in the run record contract.
+- Phase 1's run record already validates the states `queued`, `claimed`, `delivered`, `failed`, `unknown`, `not-attempted` and `attempted` (`.skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:55`).
+<!-- /ANCHOR:adr-006-context -->
+
+---
+
+<!-- ANCHOR:adr-006-decision -->
+### Decision
+
+**We chose**: `queued` and `claimed`, then `delivered`, `failed` or `unknown`, plus `not-attempted` and `attempted`.
+
+**How it works**: The sources agree, so no tie-break was needed. spec.md section 3 names `queued`, `claimed`, `delivered`, `failed` and `unknown`. research.md §10 names the same five. This decision record named no state before this entry, and the phase 1 contract already holds the same list. `delivery.ts` imports the states from the run record type and never restates them. Hermes' `pending` and `delivering` map one to one onto `queued` and `claimed`.
+<!-- /ANCHOR:adr-006-decision -->
+
+---
+
+<!-- ANCHOR:adr-006-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **queued and claimed** | Matches the spec, research.md and the phase 1 contract | Differs from the Hermes source names | 9/10 |
+| pending and delivering | Matches Hermes word for word | Needs a contract change and disagrees with the spec | 3/10 |
+
+**Why this one**: Every document in this packet already uses it, and the contract validates it.
+<!-- /ANCHOR:adr-006-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-006-consequences -->
+### Consequences
+
+**What improves**:
+- One vocabulary across the spec, the record and the code.
+
+**What it costs**:
+- A reader who knows Hermes must map two names. Mitigation: this record names the mapping.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later Hermes backend writes its own names into a record | L | The record validator refuses any state outside the list |
+<!-- /ANCHOR:adr-006-consequences -->
+
+---
+
+<!-- ANCHOR:adr-006-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | A record cannot be written without a state name |
+| 2 | **Beyond Local Maxima?** | PASS | Two naming sets compared |
+| 3 | **Sufficient?** | PASS | Uses the existing contract list |
+| 4 | **Fits Goal?** | PASS | Delivery records are in scope |
+| 5 | **Open Horizons?** | PASS | The mapping lets a Hermes backend translate |
+
+**Checks Summary**: 5/5 PASS.
+<!-- /ANCHOR:adr-006-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-006-impl -->
+### Implementation
+
+**What changes**:
+- `delivery.ts` writes `queued`, then `claimed`, then the outcome state.
+
+**How to roll back**: Not applicable: no record was ever written with the other names.
+<!-- /ANCHOR:adr-006-impl -->
+<!-- /ANCHOR:adr-006 -->
+
+---
+
+<!-- ANCHOR:adr-007 -->
+## ADR-007: Deviations the build made from the plan
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Phase builder; each item is the most conservative reading of an open point, for the orchestrator's review |
+
+---
+
+<!-- ANCHOR:adr-007-context -->
+### Context
+
+Building against the phase 3 code showed five places where the plan and the code did not line up, or where the spec left a choice open.
+
+### Constraints
+
+- The runner's rule that every stop before dispatch is a refusal, never a failure (`.skilled/skills/system-skilled-bots/runtime/lib/runner.ts:7`).
+- The phase 3 and phase 2 tests pin exact record and fixture shapes.
+<!-- /ANCHOR:adr-007-context -->
+
+---
+
+<!-- ANCHOR:adr-007-decision -->
+### Decision
+
+**We chose**:
+1. **Removal before delivery.** The plan's data flow removed the tree after delivery. REQ-003 needs the notice to say whether the tree was kept, which is only known after the check. The runner now finishes the tree after the result event and before the terminal record, and delivery reads the outcome from the record. NFR-P02 still holds: the terminal record is written before any send.
+2. **The refusal lived in `posture.ts`.** Phase 3's refusal of `isolation: worktree` sat in `posture.ts`, not `runner.ts`. The build changed `posture.ts` to honor both values and retargeted the two phase 3 tests that asserted the old refusal.
+3. **Setup problems are refusals.** A base inside the checkout or an unresolved shared-path list is the refusal `worktree-refused` (class operator). A failed or half-provisioned create is the refusal `worktree-setup-failed` (class environment), and the tree is kept. The spec's "environment-class failure" is kept as the class.
+4. **An unconfigured base is refused.** The base is `SPECKIT_WORKTREE_BASE`, else `speckit.worktreeBase` git config, read the way the numbering script reads them. With neither set, the run is refused (`worktree-refused`, detail `worktree-base-unconfigured`) instead of falling back to the script's in-checkout `.worktrees`. A base inside the checkout, the main checkout or the Skilled tree is refused too. A first build used a default under the user-level state root. A dry run of `.skilled/bin/worktree-reaper.sh --numbered` against three such trees printed `reason=not a numbered branch and folder pair` for each one, because the reaper's pair check (`.skilled/skills/sk-git/scripts/worktree-naming.sh:190`) only accepts a tree whose parent is the configured base. Such a tree could never be reclaimed by the path ADR-004 names. With `speckit.worktreeBase` set, the same dry run printed `verdict=would-reap ... reason=idle` for the clean tree and `verdict=keep` for the dirty and unmerged ones. A base taken from the environment can be reaped only from a shell that sets the same variable, so git config is the documented route, and the record's worktree detail names the base source.
+5. **"Resolves" for REQ-009.** A shared-path list resolves when every entry is a relative path with no `..` segment. The list comes from `worktreeSharedPaths` in `bots/config.json`, then `SPECKIT_WORKTREE_SHARED_PATHS`, then the launcher's default, read from its text. The checker checks a declared config list even when no bot uses a worktree, and checks the resolved list for every worktree bot. The negative fixtures live beside the checker's other fixtures in `scripts/fixtures/`, because the checker test requires one fixture per hard invariant there.
+<!-- /ANCHOR:adr-007-decision -->
+
+---
+
+<!-- ANCHOR:adr-007-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **The five choices above** | Each keeps an existing invariant or test and errs toward keeping a tree | Touches files outside the Files to Change table | 8/10 |
+| Follow the plan literally | No deviation to explain | The notice could not report a kept tree, and the default base would land inside the checkout | 3/10 |
+
+**Why this one**: Each choice is the conservative reading, and each is named here for review.
+<!-- /ANCHOR:adr-007-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-007-consequences -->
+### Consequences
+
+**What improves**:
+- The notice names a kept tree with its reason and branch.
+- No bot tree can land inside a checkout, and every bot tree sits where the reaper's numbered lane can judge it.
+
+**What it costs**:
+- Files outside the table changed: `posture.ts`, `repo-config.ts`, `state-root.ts`, `run-record.ts` and six phase 1 to 3 test files. Each change is additive or retargets an assertion this phase made false.
+- A repository must set `speckit.worktreeBase` before its first worktree bot runs.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The parallel request-pipeline build edits one of the shared files | M | Every edit is small and additive, and the whole suite passes with both builds present |
+<!-- /ANCHOR:adr-007-consequences -->
+
+---
+
+<!-- ANCHOR:adr-007-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Each item resolves a mismatch the build hit |
+| 2 | **Beyond Local Maxima?** | PASS | The literal plan was weighed |
+| 3 | **Sufficient?** | PASS | No new module beyond the two planned |
+| 4 | **Fits Goal?** | PASS | Every item serves a goal criterion |
+| 5 | **Open Horizons?** | PASS | The step 10 reclaimer can read the same kept reasons |
+
+**Checks Summary**: 5/5 PASS, as judged by the builder.
+<!-- /ANCHOR:adr-007-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-007-impl -->
+### Implementation
+
+**What changes**:
+- `runner.ts`, `posture.ts`, `isolation.ts`, `bot-check.cjs` and the contract additions named above.
+
+**How to roll back**: Revert the phase's commit. The runner then refuses `isolation: worktree` again.
+<!-- /ANCHOR:adr-007-impl -->
+<!-- /ANCHOR:adr-007 -->
+
+---
+
+<!-- ANCHOR:adr-008 -->
+## ADR-008: A parked worktree run keeps its tree, and its resume works in that tree
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Orchestrator, option (a) of the phase review's resume finding |
+
+---
+
+<!-- ANCHOR:adr-008-context -->
+### Context
+
+A run that asks the operator a question parks as `awaiting-decision`, and the answer comes back as a resume run. The first build finished a parked run's tree like any other: removed when clean, kept when dirty. The resume then made a fresh tree from HEAD and reused the parked prompt. So a resume never continued the parked work, and a Vibe child, which starts outside the checkout, was handed the parked prompt's checkout line naming a tree that was gone or was not its own. A negative control showed it: a worktree bot that edits a file and parks, once answered, resumed in a new tree without the edit and failed (`specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/scratch/resume-negative-control.txt:12`).
+
+### Constraints
+
+- The run's lease key never holds a tree path, so the parked tree must be found from the parked run, not from the lease.
+- A kept tree must stay where the reaper's numbered lane can judge it (ADR-007 item 4).
+- Never hand a child a stored absolute path from a different tree.
+<!-- /ANCHOR:adr-008-context -->
+
+---
+
+<!-- ANCHOR:adr-008-decision -->
+### Decision
+
+**We chose**: A run that parks keeps its tree with the kept reason `awaiting-decision`, and the resume dispatches into that same tree.
+
+**How it works**:
+- **Park.** When the run's exit names a needs-you item, the tree is not inspected or removed. The record keeps it with reason `awaiting-decision`, and the record's evidence carries the path, branch, base commit, links and the folders made for them (`.skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1004`). This holds when the result event fails to record too, because that exit still names the item. A run whose item could not be written finishes its tree by the normal rules.
+- **Resume.** The resume reads the parked run's record through the item's run id and takes the tree from there (`.skilled/skills/system-skilled-bots/runtime/lib/runner.ts:525`). It checks that the path still exists and is still a worktree of the checkout on the same branch (`.skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:576`), then dispatches into it without making a new one, and rewrites the lease side file so a killed resume still keeps the tree.
+- **Checkout line.** For a child that starts outside the checkout, the parked prompt must hold the line that `checkoutLine` builds for the tree the resume works in (`.skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:306`, `.skilled/skills/system-skilled-bots/runtime/lib/runner.ts:854`). The resume works in the parked tree, so that is the parked line. A prompt that names another folder, or none, is refused as `resume-item-invalid`. The check runs before the resume's record takes the tree, so a refused resume leaves the tree kept as `awaiting-decision`.
+- **End.** The resume finishes the tree at its end with the normal clean, dirty and unmerged rules. Its base commit is the parked run's, so the parked edits keep it as `dirty`. A resume that parks again keeps the same tree as `awaiting-decision` again.
+
+**Edge cases**:
+- **The kept tree is gone**, or is no longer a worktree of the checkout on its branch: the resume is refused as `parked-worktree-missing` (class operator), and no fresh tree is made.
+- **The parked run's record does not read**: a worktree bot's resume is refused as `parked-worktree-missing`. A shared bot's resume goes on in the checkout, as before.
+- **The posture changed between park and answer**: a worktree bot whose parked run used no tree, or a shared bot whose parked run kept one, is refused as `resume-posture-changed` (class author). Either way the resume would work where the parked work is not.
+- **The item expires unanswered**: nothing resumes, and the tree stays kept under `awaiting-decision` for the reaper and the operator.
+<!-- /ANCHOR:adr-008-decision -->
+
+---
+
+<!-- ANCHOR:adr-008-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **(a) Keep the parked tree and resume in it** | The resume continues the parked work, and the child's checkout line names the tree it runs in | A tree waits on disk until the answer, or until the reaper after expiry | 9/10 |
+| (b) Refuse every resume of a worktree bot | No new state to carry | An answered question can never continue, which defeats the needs-you queue for worktree bots | 3/10 |
+| Resume in a fresh tree from HEAD | No waiting tree | Loses the parked edits, the defect this record fixes | 1/10 |
+
+**Why this one**: It is the only option where "continue the work from where that run stopped" is true.
+<!-- /ANCHOR:adr-008-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-008-consequences -->
+### Consequences
+
+**What improves**:
+- A resumed worktree run sees the parked edits and works in the tree its record names.
+- A Vibe child's checkout line always names the tree it works in.
+
+**What it costs**:
+- A parked tree stays on disk until its answer is resumed, or until the reaper takes it after expiry. Mitigation: the record and the notice name it as kept with reason `awaiting-decision`.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The operator removes a parked tree before answering | L | The resume is refused as `parked-worktree-missing`, never run in a fresh tree |
+| The reaper's numbered lane takes a clean parked tree, one where the bot asked before editing, once it has been idle 48 hours, which is before a default 7-day item expires | L | The resume is refused as `parked-worktree-missing`, never run in a fresh tree. The operator who wants a slow answer keeps the reaper off that tree or answers within two days |
+<!-- /ANCHOR:adr-008-consequences -->
+
+---
+
+<!-- ANCHOR:adr-008-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The negative control failed on the first build |
+| 2 | **Beyond Local Maxima?** | PASS | Three options compared |
+| 3 | **Sufficient?** | PASS | No new item field: the parked run's record already holds the tree |
+| 4 | **Fits Goal?** | PASS | Needs-you items open for worktree bots in this phase |
+| 5 | **Open Horizons?** | PASS | A later reclaimer reads the same kept reason |
+
+**Checks Summary**: 5/5 PASS.
+<!-- /ANCHOR:adr-008-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-008-impl -->
+### Implementation
+
+**What changes**:
+- `runner.ts` keeps a parked run's tree and resumes in it, with two new refusal causes. `isolation.ts` gains the check that a parked tree is still a worktree. `dispatch.ts` builds the checkout line in one function.
+
+**How to roll back**: Revert the change. A parked run's tree is then finished at once again, and a resume makes a fresh tree.
+<!-- /ANCHOR:adr-008-impl -->
+<!-- /ANCHOR:adr-008 -->
+
+---
+
 <!-- ANCHOR:operator-decisions -->
 ## Operator Decisions
 <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep the archive for 30 days`, gives the stated reason and names REQ-002. WEAK: Q004 says `Discussed retention` and leaves the other cells empty. -->
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
+| Q001 | One real macOS desktop notice through the bots desktop channel is approved to close AC-012. | Not stated. | None | AC-012, T022, scratch/live-desktop-notice-result.txt |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -532,6 +839,26 @@ The scheduled reclaimer is build step 10 and out of this packet (research.md §1
 ## Appendix: Verbatim Operator Answers
 
 Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
+
+### Q001
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_01EXfqZjJ9CctLiGR1hpYbo8:0 -->
+
+Question:
+```text
+Phase 004 (worktree isolation and delivery) needs one live check to close AC-012. It shows a single real macOS notification titled 'Skilled bot live-check' through the bots desktop channel (osascript) and prints the recorded state. No bot runs, no model is called and nothing leaves this machine. May I run it once?
+```
+
+Options:
+```text
+Run it once (Recommended)
+Not now
+```
+
+Answer:
+```text
+Run it once (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

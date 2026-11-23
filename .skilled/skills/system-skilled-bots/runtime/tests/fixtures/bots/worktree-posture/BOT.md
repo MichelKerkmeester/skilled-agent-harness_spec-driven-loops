@@ -4,4 +4,4 @@ trigger: {kind: manual}
 runtime: {kind: cli-codex}
 isolation: worktree
 ---
-Refused: this runner honors shared isolation only.
+Runs in its own numbered worktree outside the checkout.

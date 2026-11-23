@@ -1,0 +1,37 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+ ❯ tests/isolation.vitest.ts (24 tests | 1 failed | 23 skipped) 944ms
+     × finishes its fresh tree when a read-only OpenCode run is refused before any child starts 913ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/isolation.vitest.ts > worktree runs through the runner > finishes its fresh tree when a read-only OpenCode run is refused before any child starts
+AssertionError: expected { postureSource: 'definition', …(7) } to match object { disposition: 'removed', …(1) }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "disposition": "removed",
++   "disposition": "active",
+    "keptReason": null,
+  }
+
+ ❯ tests/isolation.vitest.ts:444:49
+    442|     const read = readRunRecord(world.stateRoot, IDENTITY, outcome.runI…
+    443|     if (!read.ok) throw new Error(read.reason);
+    444|     expect(read.value.record.evidence.worktree).toMatchObject({ dispos…
+       |                                                 ^
+    445|     expect(worktreePaths(world.checkoutRoot)).toEqual([world.checkoutR…
+    446|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 23 skipped (24)
+   Start at  08:39:04
+   Duration  1.32s (transform 222ms, setup 0ms, import 315ms, tests 944ms, environment 0ms)
+

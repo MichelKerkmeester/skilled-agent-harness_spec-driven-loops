@@ -1,0 +1,33 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 56 bytes, not echoed
+[executor-audit] child stdout 130 bytes, not echoed
+ ❯ tests/isolation.vitest.ts (18 tests | 1 failed | 17 skipped) 1848ms
+     × resumes in the parked tree, where the parked edit still is 1821ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/isolation.vitest.ts > a parked worktree run and its resume > resumes in the parked tree, where the parked edit still is
+AssertionError: {"kind":"failed","reason":"crash","class":"environment","runId":"20261123T071344Z-b131d333","recordPath":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-state-QZhQbq/system-skilled-bots/acme%2Ftool/records/20261123T071344Z-b131d333.json","recursionGuard":false}: expected 'failed' to be 'completed' // Object.is equality
+
+Expected: "completed"
+Received: "failed"
+
+ ❯ tests/isolation.vitest.ts:507:51
+    505|     expect(existsSync(join(tree, 'parked.md'))).toBe(true);
+    506|
+    507|     expect(resumed.kind, JSON.stringify(resumed)).toBe('completed');
+       |                                                   ^
+    508|     expect(stubCwd(world, resumed.runId as string)).toBe(tree);
+    509|     expect(parkedRecord.evidence.worktree).toMatchObject({ disposition…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 17 skipped (18)
+   Start at  08:13:42
+   Duration  2.16s (transform 188ms, setup 0ms, import 256ms, tests 1.85s, environment 0ms)
+
+exit=1

@@ -133,6 +133,34 @@ export interface EvidenceLocations {
   observabilityStream: string | null;
   worktreePath: string | null;
   branch: string | null;
+  /** What became of the bot worktree; present only for a run that made one. */
+  worktree?: WorktreeEvidence | null;
+}
+
+/** Where a bot worktree stands: still in use by its run, removed, or kept for the operator. */
+export const WORKTREE_DISPOSITIONS = ['active', 'removed', 'kept'] as const;
+
+export type WorktreeDisposition = (typeof WORKTREE_DISPOSITIONS)[number];
+
+/**
+ * The bot worktree a run used. The path and branch stay in the evidence
+ * locations; this adds what a later reader needs to trust a removal or to
+ * find a kept tree's reason.
+ */
+export interface WorktreeEvidence {
+  /** Where the isolation answer came from, so a repository default never turns a bot into a worktree bot unseen. */
+  postureSource: 'definition' | 'repository-default';
+  /** The commit the tree was branched from; "unchanged" means its tip still equals it. */
+  baseCommit: string | null;
+  /** Absolute paths of every link made in the tree, unlinked before any removal. */
+  links: string[];
+  /** Absolute paths of folders made in the tree to hold links, in creation order. */
+  createdDirs: string[];
+  setupMs: number | null;
+  disposition: WorktreeDisposition;
+  /** Why a tree was kept: dirty, unmerged, stashed, half-provisioned, killed, or a refused removal step. */
+  keptReason: string | null;
+  detail: string | null;
 }
 
 export interface DeliveryEntry {
@@ -140,6 +168,8 @@ export interface DeliveryEntry {
   target: string;
   state: DeliveryState;
   evidence: string | null;
+  /** The needs-you item a notice announces; absent for a run's own delivery. */
+  itemId?: string;
 }
 
 export interface RunRecord {
@@ -246,9 +276,31 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
     return { ok: false, reason: 'record-field-invalid', detail: 'request.resumedItemId' };
   }
 
+  const worktree = record.evidence.worktree as unknown;
+  if (worktree !== undefined && worktree !== null) {
+    if (
+      !isPlainObject(worktree)
+      || !WORKTREE_DISPOSITIONS.includes(worktree.disposition as WorktreeDisposition)
+      || !Array.isArray(worktree.links)
+      || !Array.isArray(worktree.createdDirs)
+      || !isNullableString(worktree.keptReason)
+    ) {
+      return { ok: false, reason: 'record-field-invalid', detail: 'evidence.worktree' };
+    }
+    if (worktree.disposition === 'kept' && (typeof worktree.keptReason !== 'string' || worktree.keptReason === '')) {
+      return { ok: false, reason: 'worktree-kept-without-reason' };
+    }
+    if (typeof record.evidence.worktreePath !== 'string' || typeof record.evidence.branch !== 'string') {
+      return { ok: false, reason: 'record-field-missing', detail: 'evidence.worktreePath' };
+    }
+  }
+
   for (const [index, entry] of record.delivery.entries()) {
     if (!isPlainObject(entry) || !DELIVERY_STATES.includes(entry.state as DeliveryState)) {
       return { ok: false, reason: 'record-field-invalid', detail: `delivery[${index}].state` };
+    }
+    if (entry.itemId !== undefined && (typeof entry.itemId !== 'string' || !isSafeSegment(entry.itemId))) {
+      return { ok: false, reason: 'record-field-invalid', detail: `delivery[${index}].itemId` };
     }
   }
 

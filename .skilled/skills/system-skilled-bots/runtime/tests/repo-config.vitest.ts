@@ -78,6 +78,18 @@ describe('readRepoConfig', () => {
     );
     expect(reason({ needsYou: { expiryDays: 0 } })).toBe('needsYou.expiryDays-invalid');
     expect(reason({ retention: { keepForever: 1 } })).toBe('unknown-key');
+    expect(reason({ worktreeSharedPaths: 'node_modules' })).toBe('worktreeSharedPaths-invalid');
+    expect(reason({ worktreeSharedPaths: [''] })).toBe('worktreeSharedPaths-invalid');
+  });
+
+  it('reads a worktree shared-path list only when the file sets one', () => {
+    const root = tempDir();
+    writeConfig(root, { worktreeSharedPaths: ['node_modules', 'dist'] });
+    const result = readRepoConfig(root);
+    expect(result.ok && result.value.worktreeSharedPaths).toEqual(['node_modules', 'dist']);
+    writeConfig(root, {});
+    const absent = readRepoConfig(root);
+    expect(absent.ok && 'worktreeSharedPaths' in absent.value).toBe(false);
   });
 
   it('accepts a declared owner/name identity for a repository with no remote', () => {

@@ -1,0 +1,106 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+ ❯ tests/queued-run.vitest.ts (3 tests | 3 failed) 2385ms
+     × dispatches the request prompt after the bot body 891ms
+     × refuses a request prompt that holds a secret value, without dispatching 744ms
+     × leaves the run record and the generation stamp as the runner wrote them 749ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/queued-run.vitest.ts > queued run > dispatches the request prompt after the bot body
+AssertionError: expected 'You are a non-interactive bot run: AI…' to contain 'QUEUED-PROMPT-TEXT-91c2'
+
+- Expected
++ Received
+
+- QUEUED-PROMPT-TEXT-91c2
++ You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.
++ Bound spec folder: specs/demo/001-tidy. Treat it as the answer to the spec folder question.
++ If you reach a decision only a person can make, print one line that starts with [NEEDS-DECISION] followed by the question, then optionally one [OPTION] line per choice, and stop. Do not guess.
++
++ Tidy the notes folder. FIXTURE-PROMPT-TEXT-7f3a
+
+ ❯ tests/queued-run.vitest.ts:37:26
+     35|     const runId = drained.value.lines[0]?.runId as string;
+     36|     const seen = stubReceipt(world, runId);
+     37|     expect(seen?.prompt).toContain('QUEUED-PROMPT-TEXT-91c2');
+       |                          ^
+     38|     expect(seen?.prompt.indexOf('FIXTURE-PROMPT-TEXT-7f3a')).toBeLessT…
+     39|     const [record] = records(world);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/queued-run.vitest.ts > queued run > refuses a request prompt that holds a secret value, without dispatching
+AssertionError: expected { …(4) } to match object { outcome: 'quarantined', …(1) }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "outcome": "quarantined",
+-   "reason": "body-secret",
++   "outcome": "ran",
++   "reason": null,
+  }
+
+ ❯ tests/queued-run.vitest.ts:49:36
+     47|     const drained = await drain(world);
+     48|     if (!drained.ok) throw new Error(drained.reason);
+     49|     expect(drained.value.lines[0]).toMatchObject({ outcome: 'quarantin…
+       |                                    ^
+     50|     expect(records(world)[0]?.exit.refusal?.detail).toContain('PLANTED…
+     51|     expect(JSON.stringify(records(world))).not.toContain('queued-secre…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/queued-run.vitest.ts > queued run > leaves the run record and the generation stamp as the runner wrote them
+AssertionError: expected '{\n  "schemaVersion": 1,\n  "identity…' to be '{\n  "schemaVersion": 1,\n  "identity…' // Object.is equality
+
+- Expected
++ Received
+
+@@ -6,18 +6,18 @@
+      "botId": "manual-ok",
+      "runId": "20261123T064158Z-5808774c",
+      "definitionDigest": "sha256:1b2f271370bb8b9917756b191f91ba82c5a8860094b5680f54a10499985c8d90"
+    },
+    "request": {
+-     "requestId": null,
++     "requestId": "rq-f42bd8f29eaacbda74706d76fb1d232c",
+      "leaseNonce": "7982-1795416118805-6b40a40a-c0f1-4e69-899b-6d80cf70b844",
+      "resultEventId": "20261123T064158Z-5808774c:result",
+-     "firedSlot": null,
++     "firedSlot": "2026-11-23T10:00:00Z",
+      "resumedItemId": null
+    },
+    "dispatch": {
+-     "source": "manual",
++     "source": "webhook",
+      "scheduledAt": null,
+      "dispatchedAt": "2026-11-23T06:41:58.873Z",
+      "latenessSeconds": null,
+      "latenessClass": null,
+      "skippedSlots": null
+
+ ❯ tests/queued-run.vitest.ts:75:40
+     73|     const path = recordFile(world.stateRoot, IDENTITY, runId);
+     74|     expect(seen).not.toBeNull();
+     75|     expect(readFileSync(path, 'utf8')).toBe(seen!.record);
+       |                                        ^
+     76|     expect(statSync(path).mtimeMs).toBe(seen!.mtimeMs);
+     77|     expect(readFileSync(generationStampFile(world.stateRoot, IDENTITY)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  07:41:56
+   Duration  2.74s (transform 203ms, setup 0ms, import 291ms, tests 2.38s, environment 0ms)
+
+exit 1

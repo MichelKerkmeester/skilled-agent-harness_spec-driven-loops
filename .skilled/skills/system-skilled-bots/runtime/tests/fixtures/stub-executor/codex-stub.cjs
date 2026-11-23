@@ -19,10 +19,10 @@ const prompt = fs.readFileSync(0, 'utf8');
 const runId = process.env.SKILLED_BOT_RUN_ID || 'no-run-marker';
 
 fs.mkdirSync(path.join(home, 'stub-receipts'), { recursive: true });
-fs.writeFileSync(
-  path.join(home, 'stub-receipts', `${runId}.json`),
-  JSON.stringify({ pid: process.pid, argv: process.argv.slice(2), cwd: process.cwd(), env: process.env, prompt }),
-);
+// Written through a rename so a test polling for the receipt never parses a half-written file.
+const receiptPath = path.join(home, 'stub-receipts', `${runId}.json`);
+fs.writeFileSync(`${receiptPath}.tmp`, JSON.stringify({ pid: process.pid, argv: process.argv.slice(2), cwd: process.cwd(), env: process.env, prompt }));
+fs.renameSync(`${receiptPath}.tmp`, receiptPath);
 
 function directive(name) {
   const line = prompt.split('\n').find((entry) => entry.startsWith(`STUB:${name}`));
@@ -65,6 +65,26 @@ const sleep = directive('sleep');
 if (sleep !== null) sleepSeconds(Number(sleep), false);
 const sleepUnlessFlag = directive('sleep-unless-flag');
 if (sleepUnlessFlag !== null) sleepSeconds(Number(sleepUnlessFlag), true);
+
+// STUB:park-edit=<file> edits its working folder and asks; once the prompt
+// carries an answer it requires that edit to still be there, the way a
+// resumed run continues parked work, and exits 7 when it is gone.
+const parkEdit = directive('park-edit');
+if (parkEdit !== null) {
+  const edited = path.join(process.cwd(), parkEdit);
+  if (!prompt.split('\n').some((line) => line.startsWith('Answer: '))) {
+    fs.writeFileSync(edited, 'parked work\n');
+    process.stdout.write(`edited ${parkEdit}\n[NEEDS-DECISION] Keep the parked edit?\n`);
+    process.exit(0);
+  }
+  if (!fs.existsSync(edited)) {
+    process.stdout.write(`parked edit ${parkEdit} missing from ${process.cwd()}\n`);
+    process.exit(7);
+  }
+  fs.writeFileSync(`${edited}.resumed`, 'continued\n');
+  process.stdout.write(`continued ${parkEdit}\nstub done\n`);
+  process.exit(0);
+}
 
 if (directive('decide-empty') !== null) process.stdout.write('[NEEDS-DECISION] \n');
 const decide = directive('decide');

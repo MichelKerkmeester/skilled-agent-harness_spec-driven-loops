@@ -44,10 +44,10 @@ const home = process.env.HOME || '/nonexistent';
 const runId = process.env.SKILLED_BOT_RUN_ID || 'no-run-marker';
 
 fs.mkdirSync(path.join(home, 'stub-receipts'), { recursive: true });
-fs.writeFileSync(
-  path.join(home, 'stub-receipts', `${runId}.json`),
-  JSON.stringify({ pid: process.pid, argv: args, cwd: process.cwd(), env: process.env, prompt }),
-);
+// Written through a rename so a test polling for the receipt never parses a half-written file.
+const receiptPath = path.join(home, 'stub-receipts', `${runId}.json`);
+fs.writeFileSync(`${receiptPath}.tmp`, JSON.stringify({ pid: process.pid, argv: args, cwd: process.cwd(), env: process.env, prompt }));
+fs.renameSync(`${receiptPath}.tmp`, receiptPath);
 
 function directive(name) {
   const line = prompt.split('\n').find((entry) => entry.startsWith(`STUB:${name}`));

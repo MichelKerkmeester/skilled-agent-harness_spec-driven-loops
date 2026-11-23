@@ -178,3 +178,25 @@ describe('awaiting-decision exit', () => {
     expect(writeRunRecord(stateRoot, broken)).toEqual({ ok: false, reason: 'record-field-invalid', detail: 'exit.refusal' });
   });
 });
+
+describe('worktree evidence', () => {
+  it('round-trips a kept tree with its reason, and refuses a kept tree with none', () => {
+    const { stateRoot, runFolder } = setup();
+    const worktree = {
+      postureSource: 'definition' as const,
+      baseCommit: 'abc123',
+      links: ['/work/acme/tool-wt/r1/node_modules'],
+      createdDirs: [],
+      setupMs: 120,
+      disposition: 'kept' as const,
+      keptReason: 'dirty',
+      detail: 'notes.txt',
+    };
+    const kept = { ...fullRecord(runFolder), evidence: { ...fullRecord(runFolder).evidence, worktree } };
+    expect(writeRunRecord(stateRoot, kept).ok).toBe(true);
+    const read = readRunRecord(stateRoot, IDENTITY, 'r1');
+    expect(read.ok && read.value.record.evidence.worktree).toEqual(worktree);
+    const silent = { ...kept, evidence: { ...kept.evidence, worktree: { ...worktree, keptReason: null } } };
+    expect(writeRunRecord(stateRoot, silent)).toEqual({ ok: false, reason: 'worktree-kept-without-reason' });
+  });
+});

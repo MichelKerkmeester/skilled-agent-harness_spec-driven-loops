@@ -99,7 +99,7 @@ export function stubReceipt(world: BotWorld, runId: string): { env: Record<strin
 /** How many times the stub ran in a world. */
 export function stubRunCount(world: BotWorld): number {
   const dir = join(world.home, 'stub-receipts');
-  return existsSync(dir) ? readdirSync(dir).length : 0;
+  return existsSync(dir) ? readdirSync(dir).filter((name) => name.endsWith('.json')).length : 0;
 }
 
 /** Run the bots CLI as its own process and collect its exit and output. */

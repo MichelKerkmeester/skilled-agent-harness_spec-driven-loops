@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery"
-    last_updated_at: "2026-11-22T16:57:30Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-23T07:40:00Z"
+    last_updated_by: "phase-builder"
+    recent_action: "Met all six completion criteria with evidence"
+    next_safe_action: "Review and commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-004-worktree-isolation-and-delivery"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -59,12 +59,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `bots run <id>` on a worktree fixture bot leaves a terminal run record whose evidence locations hold a worktree path outside `git rev-parse --show-toplevel` and a `worktrees/NNN-slug` branch
-- [ ] After a clean worktree run is removed, `ls` of each linked dependency folder in the main checkout prints the same entry count it printed before the run
-- [ ] A run killed mid-edit leaves its worktree on disk, and `git worktree list` still shows it
-- [ ] The delivery tests exit 0, with a forced-uncertain send that leaves one record with state `unknown` and a send counter of 1, and a needs-you case that sends one notice per target across two delivery passes
-- [ ] The definition checker exits non-zero on the negative worktree fixture and prints the worktree invariant id
-- [ ] `rg -n 'launchctl bootstrap|\.plist' .skilled/skills/system-skilled-bots/runtime/lib` prints nothing
+- [x] `bots run <id>` on a worktree fixture bot leaves a terminal run record whose evidence locations hold a worktree path outside `git rev-parse --show-toplevel` and a `worktrees/NNN-slug` branch
+- [x] After a clean worktree run is removed, `ls` of each linked dependency folder in the main checkout prints the same entry count it printed before the run
+- [x] A run killed mid-edit leaves its worktree on disk, and `git worktree list` still shows it
+- [x] The delivery tests exit 0, with a forced-uncertain send that leaves one record with state `unknown` and a send counter of 1, and a needs-you case that sends one notice per target across two delivery passes
+- [x] The definition checker exits non-zero on the negative worktree fixture and prints the worktree invariant id
+- [x] `rg -n 'launchctl bootstrap|\.plist' .skilled/skills/system-skilled-bots/runtime/lib` prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,10 +82,19 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | Criteria drawn from spec.md section 5 and acceptance-criteria.md |
+| Criterion 1 | Met | `bots run worktree-posture` (stub executor) exit 0; record `worktreePath` outside the toplevel, branch `worktrees/001-bot-worktree-posture` |
+| Criterion 2 | Met | Removal case: the fake `node_modules` lists alpha, beta and gamma before and after |
+| Criterion 3 | Met | Kill case: record kept with reason `dirty`; the tree is still in `git worktree list` |
+| Criterion 4 | Met | `delivery.vitest.ts` 10 passed: forced-uncertain leaves one `unknown`, counter 1; needs-you sends 2 for 2 targets and 0 on the second pass |
+| Criterion 5 | Met | Checker on `scripts/fixtures/worktree-shared-paths-unresolved` exit 1, `FAIL: worktree-shared-paths-unresolved: ...` |
+| Criterion 6 | Met | `rg` printed nothing, rc=1 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Worktree base | An unconfigured base is refused; the reaper judges only trees under the configured base (ADR-007 item 4). Settled in spec.md as the `speckit.worktreeBase` route |
+| Parked worktree resume | A parked run keeps its tree as `awaiting-decision` and its resume works in that tree, or is refused as `parked-worktree-missing` (ADR-008, AC-013) |
+| Delivery state names | `queued` and `claimed`, sources agree (ADR-006) |
+| Live desktop notice | AC-012 Met: run once with operator approval on 2026-11-23, state `attempted`, `osascript exit 0` (`scratch/live-desktop-notice-result.txt`) |
 <!-- /ANCHOR:log -->

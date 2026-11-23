@@ -1,0 +1,29 @@
+PASS: a commit in an opted-in trusted repository exits 0
+PASS: it enqueues one request
+PASS: the request names the git-commit source
+PASS: the request keys on the commit SHA
+PASS: a commit in a linked worktree exits 0
+PASS: the linked worktree's commit enqueues one more request
+PASS: a commit inside a bot run exits 0
+PASS: a commit inside a bot run enqueues nothing
+PASS: a commit with the leg switched off exits 0
+PASS: the off switch enqueues nothing
+PASS: a commit with no node on PATH exits 0
+PASS: with no node on PATH nothing is enqueued
+PASS: a commit in an opted-out repository exits 0
+PASS: an opted-out repository enqueues nothing
+PASS: a commit in a repository with no bots config exits 0
+PASS: a repository with no bots config starts no node process
+PASS: a repository with no bots config prints nothing on stderr
+PASS: a repository with no bots config enqueues nothing
+PASS: the clone does not inherit the trust setting
+PASS: a commit in an untrusted clone exits 0
+PASS: an untrusted clone enqueues nothing
+PASS: an untrusted clone's planted CLI does not run
+PASS: a bots command on PATH is never called
+PASS: a commit in an opted-in repository with no identity exits 0
+PASS: an unknown identity writes no file under the state root
+PASS: no row wrote a run record
+PASS: no row took a bot lease
+
+post-commit-leg: 27 passed, 0 failed

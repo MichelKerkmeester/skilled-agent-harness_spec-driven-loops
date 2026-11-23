@@ -26,13 +26,44 @@ const USAGE = [
   '  pause <id>     hold a bot\'s runs after the lease until resumed',
   '  resume <id>    lift a pause (not the resume of a parked run)',
   '  inbox          list open and expired needs-you items',
+  '  enqueue <id> --source <name> (--event-id <id> | --key <key>)',
+  '                 [--prompt <text>] [--origin <text>] [--fired-slot <slot>]',
+  '                 queue one run request; an event sent twice is a duplicate',
+  '  enqueue --git-commit <sha>',
+  '                 queue one request per bot with a git-hook trigger, when',
+  '                 bots/config.json sets gitHookTrigger (the post-commit hook)',
+  '  drain          claim every queued request once, run it, and route the outcome',
+  '  answer <item-id> <text>',
+  '                 answer a needs-you item and queue the run that continues it',
   '',
   'exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision',
 ].join('\n');
 
-const VERBS_WITH_ID = new Set(['run', 'disable', 'enable', 'pause', 'resume']);
-const VERBS = new Set([...VERBS_WITH_ID, 'inbox']);
-const OPTIONS_WITH_VALUE = new Set(['--repo', '--skilled-tree']);
+const COMMON_OPTIONS = ['repo', 'skilled-tree'];
+const ENQUEUE_OPTIONS = ['source', 'event-id', 'key', 'prompt', 'origin', 'fired-slot', 'git-commit'];
+// How many positional arguments each verb takes, and the options it accepts beyond the common ones.
+const VERB_SPECS = {
+  run: { ids: 1, options: [] },
+  disable: { ids: 1, options: [] },
+  enable: { ids: 1, options: [] },
+  pause: { ids: 1, options: [] },
+  resume: { ids: 1, options: [] },
+  inbox: { ids: 0, options: [] },
+  enqueue: { ids: 1, options: ENQUEUE_OPTIONS },
+  drain: { ids: 0, options: [] },
+  answer: { ids: 2, options: [] },
+};
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS]);
+// Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash.
+// A value that is itself one of this CLI's flags still means the value was left out.
+const FREE_TEXT_OPTIONS = new Set(['prompt', 'origin', 'key']);
+
+function missingValue(name, value) {
+  if (value === undefined) return true;
+  if (!value.startsWith('-')) return false;
+  if (!FREE_TEXT_OPTIONS.has(name)) return true;
+  return value === '--' || value === '-h' || value === '--help' || (value.startsWith('--') && KNOWN_OPTIONS.has(value.slice(2)));
+}
 
 function usageExit(message) {
   if (message) process.stderr.write(`bots: ${message}\n`);
@@ -40,29 +71,62 @@ function usageExit(message) {
   return 2;
 }
 
+function checkEnqueue(options, ids) {
+  if (options['git-commit'] !== undefined) {
+    const extra = ENQUEUE_OPTIONS.find((name) => name !== 'git-commit' && options[name] !== undefined);
+    if (extra) return `--git-commit takes no --${extra}`;
+    if (ids.length > 0) return 'enqueue --git-commit takes no bot id';
+    return null;
+  }
+  if (ids.length !== 1) return 'enqueue needs a bot id';
+  if (options.source === undefined) return 'enqueue needs --source';
+  if (options['event-id'] === undefined && options.key === undefined) return 'enqueue needs --event-id or --key';
+  return null;
+}
+
 function parseArgs(argv) {
   const options = {};
   const positional = [];
+  let optionsDone = false;
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
-    if (token === '--help' || token === '-h') return { help: true };
-    if (OPTIONS_WITH_VALUE.has(token)) {
+    if (!optionsDone && token === '--') {
+      optionsDone = true;
+      continue;
+    }
+    if (!optionsDone && (token === '--help' || token === '-h')) return { help: true };
+    if (!optionsDone && token.startsWith('-')) {
+      const name = token.startsWith('--') ? token.slice(2) : '';
+      if (!KNOWN_OPTIONS.has(name)) return { error: `unknown option: ${token}` };
       const value = argv[i + 1];
-      if (value === undefined || value.startsWith('-')) return { error: `option ${token} needs a value` };
-      options[token.slice(2)] = value;
+      if (missingValue(name, value)) return { error: `option ${token} needs a value` };
+      options[name] = value;
       i += 1;
       continue;
     }
-    if (token.startsWith('-')) return { error: `unknown option: ${token}` };
     positional.push(token);
   }
-  const [verb, id, ...extra] = positional;
+  const [verb, ...ids] = positional;
   if (!verb) return { error: 'no verb given' };
-  if (!VERBS.has(verb)) return { error: `unknown verb: ${verb}` };
-  if (VERBS_WITH_ID.has(verb) && !id) return { error: `${verb} needs a bot id` };
-  if (!VERBS_WITH_ID.has(verb) && id) return { error: `${verb} takes no id` };
-  if (extra.length > 0) return { error: `unexpected argument: ${extra[0]}` };
-  return { verb, id, options };
+  const spec = VERB_SPECS[verb];
+  if (!spec) return { error: `unknown verb: ${verb}` };
+  const misplaced = Object.keys(options).find((name) => !COMMON_OPTIONS.includes(name) && !spec.options.includes(name));
+  if (misplaced) return { error: `${verb} takes no --${misplaced}` };
+  if (verb === 'enqueue') {
+    const problem = checkEnqueue(options, ids);
+    if (problem) return { error: problem };
+    return { verb, id: ids[0], args: ids.slice(1), options };
+  }
+  if (verb === 'answer') {
+    if (ids.length === 0) return { error: 'answer needs an item id and the answer text' };
+    if (ids.length === 1 || ids[1].trim() === '') return { error: 'answer needs the answer text' };
+    if (ids.length > 2) return { error: `unexpected argument: ${ids[2]}` };
+    return { verb, id: ids[0], args: [ids[1]], options };
+  }
+  if (spec.ids === 1 && !ids[0]) return { error: `${verb} needs a bot id` };
+  if (spec.ids === 0 && ids.length > 0) return { error: `${verb} takes no id` };
+  if (ids.length > spec.ids) return { error: `unexpected argument: ${ids[spec.ids]}` };
+  return { verb, id: ids[0], args: [], options };
 }
 
 function checkoutRootFrom(repoOption) {
@@ -77,8 +141,104 @@ async function loadRuntime() {
   const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
   register();
   const load = (name) => import(pathToFileURL(path.join(RUNTIME, 'lib', `${name}.ts`)).href);
-  const [runner, switches, needsYou] = await Promise.all([load('runner'), load('switches'), load('needs-you')]);
-  return { runner, switches, needsYou };
+  const [runner, switches, needsYou, queue, drain, answer] = await Promise.all([
+    load('runner'),
+    load('switches'),
+    load('needs-you'),
+    load('request-queue'),
+    load('request-drain'),
+    load('answer'),
+  ]);
+  return { runner, switches, needsYou, queue, drain, answer };
+}
+
+// Refusals that mean the request itself was written wrong, as opposed to a repository that cannot enqueue.
+const REQUEST_SHAPE_REASONS = new Set([
+  'event-id-missing',
+  'source-invalid',
+  'workflow-id-invalid',
+  'request-field-invalid',
+  'request-kind-invalid',
+]);
+
+function describeRefusal(result) {
+  const detail = result.detail ? `: ${result.detail}` : '';
+  if (result.reason === 'identity-unknown') {
+    return `bots: identity-unknown: this repository has no identity; set "identity": "owner/name" in bots/config.json, or add an origin remote`;
+  }
+  return `bots: ${result.reason}${detail}`;
+}
+
+function printEnqueued(prefix, result) {
+  const { status, requestId } = result.value;
+  process.stdout.write(`bots: ${prefix}${status === 'duplicate' ? 'duplicate' : 'enqueued'} ${requestId}\n`);
+}
+
+function enqueueVerb(rt, parsed, checkoutRoot) {
+  const { options } = parsed;
+  if (options['git-commit'] !== undefined) {
+    const result = rt.queue.enqueueCommit(checkoutRoot, options['git-commit']);
+    if (!result.ok) {
+      process.stderr.write(`${describeRefusal(result)}\n`);
+      return rt.runner.EXIT_CODES.refused;
+    }
+    let refused = false;
+    for (const { botId, result: one } of result.value) {
+      if (one.ok) {
+        printEnqueued(`${botId} `, one);
+      } else {
+        refused = true;
+        process.stderr.write(`${describeRefusal(one)} (${botId})\n`);
+      }
+    }
+    return refused ? rt.runner.EXIT_CODES.refused : 0;
+  }
+  const result = rt.queue.enqueueFromCheckout(checkoutRoot, {
+    kind: 'run',
+    workflowId: parsed.id,
+    source: options.source,
+    eventId: options['event-id'] ?? null,
+    key: options.key ?? null,
+    prompt: options.prompt ?? '',
+    origin: options.origin ?? null,
+    firedSlot: options['fired-slot'] ?? null,
+  });
+  if (!result.ok) {
+    process.stderr.write(`${describeRefusal(result)}\n`);
+    return REQUEST_SHAPE_REASONS.has(result.reason) ? 2 : rt.runner.EXIT_CODES.refused;
+  }
+  printEnqueued('', result);
+  return 0;
+}
+
+async function drainVerb(rt, checkoutRoot, skilledTree) {
+  const result = await rt.drain.drainQueue({ checkoutRoot, skilledTree });
+  if (!result.ok) {
+    process.stderr.write(`${describeRefusal(result)}\n`);
+    return result.reason === 'drain-stopped' ? rt.runner.EXIT_CODES.runFailure : rt.runner.EXIT_CODES.refused;
+  }
+  const { lines, claimedAtStart, remaining } = result.value;
+  for (const name of claimedAtStart) {
+    process.stderr.write(`bots: ${name} was already claimed when this pass began; it is not redispatched\n`);
+  }
+  for (const line of lines) process.stdout.write(`${rt.drain.formatDrainLine(line)}\n`);
+  if (remaining > 0) {
+    process.stderr.write(`bots: ${remaining} request(s) remain in the watched folder for the next pass\n`);
+    return rt.runner.EXIT_CODES.runFailure;
+  }
+  return 0;
+}
+
+function answerVerb(rt, parsed, checkoutRoot) {
+  const result = rt.answer.answerItem({ checkoutRoot, itemId: parsed.id, text: parsed.args[0] });
+  if (!result.ok) {
+    process.stderr.write(`${describeRefusal(result)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const { status, requestId, itemId } = result.value;
+  const sent = status === 'duplicate' ? 'duplicate: already queued' : 'enqueued';
+  process.stdout.write(`bots: item ${itemId} answered; resume request ${requestId} ${sent}\n`);
+  return 0;
 }
 
 function describeOutcome(id, outcome) {
@@ -106,9 +266,14 @@ async function main(argv) {
   }
   if (parsed.error) return usageExit(parsed.error);
 
-  const { runner, switches, needsYou } = await loadRuntime();
+  const rt = await loadRuntime();
+  const { runner, switches, needsYou } = rt;
   const checkoutRoot = checkoutRootFrom(parsed.options.repo);
   const skilledTree = path.resolve(parsed.options['skilled-tree'] || DEFAULT_SKILLED_TREE);
+
+  if (parsed.verb === 'enqueue') return enqueueVerb(rt, parsed, checkoutRoot);
+  if (parsed.verb === 'drain') return drainVerb(rt, checkoutRoot, skilledTree);
+  if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot);
 
   if (parsed.verb === 'run') {
     const outcome = await runner.runBot({ checkoutRoot, skilledTree, botId: parsed.id });

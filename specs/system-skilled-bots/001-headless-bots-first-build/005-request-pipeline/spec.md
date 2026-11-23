@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-22 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -117,6 +117,7 @@ The skill folder exists and is empty. The post-commit hook has 120 lines and no 
 | `.skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts` | Create | Queue folder layout, atomic enqueue, seen-key marker, atomic claim, retry and quarantine moves |
 | `.skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts` | Create | Claim each request, hand it to the phase 3 runner and route the outcome |
 | `.skilled/skills/system-skilled-bots/runtime/lib/answer.ts` | Create | `bots answer`: check the item, run the body-secret predicate, record the answer, enqueue one `resume` request and rewrite the stamp |
+| `.skilled/skills/system-skilled-bots/runtime/lib/runner.ts` | Modify (created in phase 3) | A `queued` request kind, so the runner writes the request join in its one record and dispatches the request prompt after the bot prompt |
 | `.skilled/bin/bots.cjs` | Modify (created in phase 3) | Add the `enqueue`, `drain` and `answer` verbs |
 | `.skilled/scripts/git-hooks/post-commit` | Modify | One opt-in, non-fatal enqueue leg after the trust block. Shared file: see Shared File below |
 | `.skilled/skills/system-skilled-bots/runtime/tests/` | Create | Race, duplicate, quarantine and retry tests as `*.vitest.ts` files run by vitest, plus the hook test script |
@@ -267,6 +268,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - What is the retry bound? Answered by the operator: 3 attempts. See ADR-002, Accepted (operator decision D11).
 - How does the post-commit leg find the `bots` CLI in a consumer repository that trusts its hooks with `skilled.trustRepoHooks=true` and carries a vendored tree? Not settled by the research. Phase 1's packaging layout and phase 8's re-pin test must answer it.
 - Where do requests for a paused bot go? Holding them in the watched folder would respawn the phase 6 agent. Answered by the operator: quarantine with reason `paused`, never replayed. See ADR-004, Accepted (operator decision D11). A held bot follows the same rule with reason `held-needs-you` (D9).
+- Should the runner take a queued request kind? Answered in a follow-up fix: yes. The runner takes a `queued` request kind carrying the request id, source, fired slot and prompt, and writes `request.requestId`, `request.firedSlot` and `dispatch.source` in the run's one record. The drain no longer rewrites the record or advances the stamp.
+- How does a queued request's prompt combine with the bot body? Neither this spec nor the phase 1 run-record contract says. Built the conservative way: the request prompt follows the bot prompt under one separator line, an empty prompt adds nothing, and the body-secret predicate runs over it before dispatch. Decision: ADR-005, Accepted by the orchestrator on 2026-11-23 while every request producer is local; framing request text as data is required before any untrusted producer ships.
+- Should two runner refusals depart from ADR-002's rule that a refusal is never retried? Open, raised in the build, built the conservative way pending an answer. `lease-held` is retried and counts toward the bound, because a held lease means another run of the bot is in progress. `identity-unknown` and `run-folder-refused` before a run id stop the drain pass and put the request back unchanged, because they would refuse every request alike and quarantining them would empty the queue for a setup fault. Quarantining both, as ADR-002 reads, is a change of two lines in `request-drain.ts`.
+- What do the §9 fields `origin` and `delivery` hold? Open. research.md is not in this checkout, so the build stores both as an optional string, written as given, and `workflowId` as the bot id.
 <!-- /ANCHOR:questions -->
 
 ---

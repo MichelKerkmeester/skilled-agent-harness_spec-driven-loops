@@ -38,6 +38,9 @@ const DEFECTS: Record<string, string> = {
   'no-identity': 'identity-missing',
   'identity-invalid': 'config.identity-invalid',
   'isolation-undeclared': 'isolation-undeclared',
+  'isolation-invalid': 'definition.isolation-invalid',
+  'worktree-shared-paths-unresolved': 'worktree-shared-paths-unresolved',
+  'delivery-channel-unknown': 'delivery-channel-unknown',
   'reserved-id': 'reserved-id',
 };
 
@@ -179,6 +182,20 @@ describe('bot-check.cjs', () => {
     const before = tree(repo);
     run(repo);
     expect(tree(repo)).toEqual(before);
+  });
+
+  it('allows a worktree bot only while its shared-path list resolves', () => {
+    const repo = copyFixture('clean');
+    const bot = join(repo, 'bots', 'nightly-digest', 'BOT.md');
+    writeFileSync(bot, readFileSync(bot, 'utf8').replace('isolation: shared', 'isolation: worktree'));
+    expect(run(repo).lines).toContainEqual(expect.stringMatching(/^PASS: worktree-shared-paths: .* from launcher$/));
+
+    const unresolved = spawnSync(process.execPath, [CHECKER, repo], {
+      env: { ...isolatedEnv(), SPECKIT_WORKTREE_SHARED_PATHS: '/abs/node_modules' },
+      encoding: 'utf8',
+    });
+    expect(unresolved.status).toBe(1);
+    expect(unresolved.stdout).toMatch(/^FAIL: worktree-shared-paths-unresolved: bots\/nightly-digest\/BOT\.md: /m);
   });
 
   it('exits 2 on an unknown option', () => {

@@ -208,9 +208,9 @@ describe('refusals before dispatch', () => {
     expect(leases(world)).toEqual([]);
   });
 
-  it('refuses an unhonorable posture and worktree isolation before dispatch', async () => {
+  it('refuses an unhonorable posture before dispatch', async () => {
     const world = botWorld();
-    for (const bot of ['worktree-posture', 'weak-write']) {
+    for (const bot of ['weak-write']) {
       const outcome = await runBot(world.input(bot));
       expect(outcome).toMatchObject({ kind: 'refused', cause: 'posture-refused' });
       expect(record(world, outcome).exit).toMatchObject({ reason: 'posture-refused', class: 'author' });

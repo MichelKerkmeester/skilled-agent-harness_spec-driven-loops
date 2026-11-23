@@ -7,6 +7,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { defaultRepoConfig } from '../lib/repo-config.js';
 import {
+  deliveryClaimFolder,
   ensureIdentityState,
   identityStatePaths,
   installFile,
@@ -77,6 +78,13 @@ describe('user-level layout', () => {
     expect(() => recordFile(stateRoot, IDENTITY, '../escape')).toThrow('run-id-invalid');
     expect(() => receiptFolder(stateRoot, IDENTITY, '../escape')).toThrow('run-id-invalid');
     expect(() => installFile(stateRoot, IDENTITY, '.hidden')).toThrow('bot-id-invalid');
+  });
+
+  it('names the delivery claim folder without creating it', () => {
+    const stateRoot = tempDir();
+    const base = identityStatePaths(stateRoot, IDENTITY).base;
+    expect(deliveryClaimFolder(stateRoot, IDENTITY)).toBe(join(base, 'deliveries'));
+    expect(existsSync(join(base, 'deliveries'))).toBe(false);
   });
 });
 

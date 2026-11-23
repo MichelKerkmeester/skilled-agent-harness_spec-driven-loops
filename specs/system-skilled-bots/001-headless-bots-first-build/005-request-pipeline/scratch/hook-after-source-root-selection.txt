@@ -1,0 +1,76 @@
+PASS: scripts/git-hooks/pre-commit carries the selection block once
+PASS: scripts/git-hooks/pre-commit yields a non-empty reference block
+PASS: scripts/git-hooks/pre-push carries the selection block once
+PASS: scripts/git-hooks/pre-push matches the reference block
+PASS: scripts/git-hooks/prepare-commit-msg carries the selection block once
+PASS: scripts/git-hooks/prepare-commit-msg matches the reference block
+PASS: scripts/git-hooks/post-commit carries the selection block once
+PASS: scripts/git-hooks/post-commit matches the reference block
+PASS: scripts/git-hooks/post-merge carries the selection block once
+PASS: scripts/git-hooks/post-merge matches the reference block
+PASS: scripts/git-hooks/post-rewrite carries the selection block once
+PASS: scripts/git-hooks/post-rewrite matches the reference block
+PASS: bin/check-git-hooks.sh carries the selection block once
+PASS: bin/check-git-hooks.sh matches the reference block
+PASS: scripts/install-git-hooks.sh carries the selection block once
+PASS: scripts/install-git-hooks.sh matches the reference block
+PASS: scripts/git-hooks/pre-commit names no single root to build a path
+PASS: scripts/git-hooks/pre-push names no single root to build a path
+PASS: scripts/git-hooks/prepare-commit-msg names no single root to build a path
+PASS: scripts/git-hooks/post-commit names no single root to build a path
+PASS: scripts/git-hooks/post-merge names no single root to build a path
+PASS: scripts/git-hooks/post-rewrite names no single root to build a path
+PASS: bin/check-git-hooks.sh names no single root to build a path
+PASS: scripts/install-git-hooks.sh names no single root to build a path
+PASS: scripts/git-hooks/commit-msg names no single root to build a path
+PASS: scripts/git-hooks/lib/autostash-orphan-guard.sh names no single root to build a path
+PASS: scripts/git-hooks/lib/mass-deletion-guard.sh names no single root to build a path
+PASS: both roots carry the sentinel: .skilled wins
+PASS: only .skilled exists: .skilled
+PASS: only .opencode exists: .opencode
+PASS: an empty .skilled placeholder does not win
+PASS: a directory of per-entry links still prefers the real root
+PASS: a repository without the toolchain is not treated as one
+PASS: outside any repository nothing is treated as the toolchain
+PASS: pre-commit yields a non-empty trust block
+PASS: pre-commit carries the trust block once
+PASS: pre-commit matches the reference trust block
+PASS: prepare-commit-msg carries the trust block once
+PASS: prepare-commit-msg matches the reference trust block
+PASS: post-commit carries the trust block once
+PASS: post-commit matches the reference trust block
+PASS: post-merge carries the trust block once
+PASS: post-merge matches the reference trust block
+PASS: post-rewrite carries the trust block once
+PASS: post-rewrite matches the reference trust block
+PASS: pre-push carries the trust block once
+PASS: pre-push matches the reference trust block
+PASS: the hooks' own checkout is trusted
+PASS: a worktree of the hooks' checkout is trusted
+PASS: another repository is not trusted
+PASS: an environment-scope opt-in does not count
+PASS: a local-config opt-in is trusted
+PASS: an untrusted clone's planted guard library does not run
+PASS: the same library runs once the repository opts in
+PASS: a guard planted under .skilled-untrusted does not run
+PASS: an allocator planted under .skilled-untrusted does not run
+PASS: post-commit names the tracked hook-flags.sh to restore
+PASS: post-commit names the tracked installer
+PASS: post-merge names the tracked installer
+PASS: post-rewrite names the tracked installer
+PASS: post-commit names the tracked hook-flags.sh to make readable
+PASS: the chmod path resolves from the repository root
+PASS: pre-commit prints a restore line for hook-flags.sh
+PASS: pre-commit names the tracked hook-flags.sh to restore
+PASS: pre-commit prints a restore line for check-comment-hygiene.sh
+PASS: pre-commit names the tracked check-comment-hygiene.sh to restore
+PASS: pre-commit prints a restore line for template-phrase-lint.mjs
+PASS: pre-commit names the tracked template-phrase-lint.mjs to restore
+PASS: pre-push prints a restore line for mass-deletion-guard.sh
+PASS: pre-push names the tracked mass-deletion-guard.sh to restore
+PASS: pre-push prints a restore line for worktree-naming.sh
+PASS: pre-push names the tracked worktree-naming.sh to restore
+PASS: pre-push prints a restore line for compiled-route-guard.cjs
+PASS: pre-push names the tracked compiled-route-guard.cjs to restore
+
+--- source-root-selection: 74 passed, 0 failed ---

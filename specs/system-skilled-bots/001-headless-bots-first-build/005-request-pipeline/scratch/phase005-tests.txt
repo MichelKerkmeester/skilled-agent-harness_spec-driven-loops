@@ -1,0 +1,18 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+
+ Test Files  9 passed (9)
+      Tests  22 passed (22)
+   Start at  07:16:56
+   Duration  54.68s (transform 1.92s, setup 0ms, import 2.79s, tests 77.64s, environment 0ms)
+

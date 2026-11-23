@@ -1,18 +1,20 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery",
   "description": "Phase 4: worktree-isolation-and-delivery",
   "keywords": [
     "phase",
     "worktree-isolation-and-delivery"
   ],
-  "lastUpdated": "2026-11-22T10:48:30.515Z",
+  "lastUpdated": "2026-11-23T07:42:57.012Z",
   "specId": "004",
   "folderSlug": "worktree-isolation-and-delivery",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-11-26_08-42__phase-004-built-live-desktop-notice-run-first.md"
+  ]
 }

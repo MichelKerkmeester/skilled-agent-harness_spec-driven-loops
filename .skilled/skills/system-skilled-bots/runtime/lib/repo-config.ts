@@ -51,6 +51,11 @@ export interface RepoConfig {
   gitHookTrigger: boolean;
   needsYou: NeedsYouConfig;
   retention: RetentionConfig;
+  /**
+   * Checkout-relative paths a bot worktree links from the main checkout,
+   * replacing the launcher's default list. Absent when the file does not set it.
+   */
+  worktreeSharedPaths?: string[];
 }
 
 /** The shape of sk-code's repository-identity.cjs, imported and never copied. */
@@ -90,6 +95,7 @@ const TOP_LEVEL_KEYS = new Set([
   'gitHookTrigger',
   'needsYou',
   'retention',
+  'worktreeSharedPaths',
 ]);
 
 // ───────────────────────────────────────────────────────────────────
@@ -199,6 +205,16 @@ export function parseRepoConfig(raw: unknown): Result<RepoConfig> {
     const block = readPositiveIntegerBlock('retention', raw.retention, DEFAULT_RETENTION);
     if (!block.ok) return block;
     config.retention = block.value;
+  }
+
+  // Shape only here: whether each entry resolves is the isolation module's
+  // rule, so the checker can name that rule's own invariant.
+  if ('worktreeSharedPaths' in raw) {
+    const paths = raw.worktreeSharedPaths;
+    if (!Array.isArray(paths) || paths.some((path) => typeof path !== 'string' || path.trim() === '')) {
+      return invalid('worktreeSharedPaths', 'expected a list of non-empty strings');
+    }
+    config.worktreeSharedPaths = [...paths] as string[];
   }
 
   return { ok: true, value: config };

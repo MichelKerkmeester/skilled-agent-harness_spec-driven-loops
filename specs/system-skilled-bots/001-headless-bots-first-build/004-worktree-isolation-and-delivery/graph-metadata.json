@@ -39,7 +39,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,9 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
-      ".skilled/bin/worktree-reaper.sh",
-      ".skilled/bin/worktree-session.sh"
+      ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/isolation.vitest.ts",
+      "scratch/live-desktop-notice.sh",
+      "scratch/resume-negative-control.txt",
+      "scratch/review-fix-suite-1.txt"
     ],
     "entities": [
       {
@@ -96,21 +106,81 @@
         "source": "derived"
       },
       {
-        "name": "worktree-naming.sh",
-        "kind": "script",
-        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "name": "isolation.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
         "source": "derived"
       },
       {
-        "name": "worktree-reaper.sh",
-        "kind": "script",
-        "path": ".skilled/bin/worktree-reaper.sh",
+        "name": "delivery.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
         "source": "derived"
       },
       {
-        "name": "worktree-session.sh",
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "posture.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repo-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "isolation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/isolation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "live-desktop-notice.sh",
         "kind": "script",
-        "path": ".skilled/bin/worktree-session.sh",
+        "path": "scratch/live-desktop-notice.sh",
+        "source": "derived"
+      },
+      {
+        "name": "resume-negative-control.txt",
+        "kind": "file",
+        "path": "scratch/resume-negative-control.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-fix-suite-1.txt",
+        "kind": "file",
+        "path": "scratch/review-fix-suite-1.txt",
         "source": "derived"
       },
       {
@@ -126,82 +196,22 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Runner",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After phase 3 a bot that edits files must run in the operator's shared checkout, because the runner refuses `isolation: worktree` as a posture it cannot honor yet",
     "created_at": "2026-11-22T10:48:29Z",
-    "last_save_at": "2026-11-22T17:00:02.619Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-23T07:51:40.601Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5bc4b3151a5a21e2063ca351fc01b3aca23c65ff91039d96097d34e7a28ca3f",
+    "source_fingerprint": "sha256:d1b13b27c1279639ffbc279f8e656169ba9c279f4f54085c328f67551c0fc33d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "21162453fea9f635f8cfee888f03fa9b969c70acf35bd0197ac5d9ae54fbefb1",
-      "plan.md": "f4db3dd36e7cf0e51334eacab7d07c986af8f8b02a337d807e119cfc2bfc08a1",
-      "tasks.md": "5e1b455138ab4b89ebdea74b6ae9d6d9ea251eead8ccbad4d0a65e3c062f2b0d",
-      "decision-record.md": "9a47f602fdbe091594e15b1c07c7bfadf002343c5e8d6bf0505e914334105adb",
-      "implementation-summary.md": "0af6e8e129cab44ec2ba5da29a34e16e733e6bc27b9d3bea23b38b433f86171e"
+      "spec.md": "902a1ba45ce014afb63f1342fb374f8c9430d4cd95460fd5ab14b400b288c2d5",
+      "plan.md": "0a1a4e977162d6965a20854560ab016abbe1b5301ee3e70d1341619f98db5543",
+      "tasks.md": "9a84008b0617ec606bff6c81614d77dafd1d918880fb3e6c12359738a96ce3ef",
+      "decision-record.md": "a3f87f0ab4d1d8a5b56169003d914a816c7d4d2ddcfde7f65e1950f5bdb25b56",
+      "implementation-summary.md": "b3bd4dd67c3adab2ca9ab8977772e2408c8470d33aa534c8a91064298ea7192e"
     },
     "last_active_at": null
   }

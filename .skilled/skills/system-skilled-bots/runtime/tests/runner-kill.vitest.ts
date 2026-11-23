@@ -31,12 +31,12 @@ describe('a run killed mid-dispatch', () => {
     const first = startCli(world, ['run', 'slow']);
     await waitFor(() => {
       try {
-        return readdirSync(receipts).length === 1;
+        return readdirSync(receipts).filter((name) => name.endsWith('.json')).length === 1;
       } catch {
         return false;
       }
     });
-    const firstRunId = (readdirSync(receipts)[0] as string).replace(/\.json$/, '');
+    const firstRunId = (readdirSync(receipts).filter((name) => name.endsWith('.json'))[0] as string).replace(/\.json$/, '');
     const stubPid = stubReceipt(world, firstRunId)?.pid;
     if (stubPid !== undefined) orphans.push(stubPid);
 

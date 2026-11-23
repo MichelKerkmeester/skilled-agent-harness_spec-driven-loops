@@ -173,9 +173,47 @@ export function receiptFolder(stateRoot: string, identity: string, runId: string
   return join(identityStatePaths(stateRoot, identity).receipts, segmentOrThrow('run-id', runId));
 }
 
+/**
+ * The folder of delivery claim files of one identity. A send is claimed by
+ * creating its file exclusively, so two passes over one run can never both
+ * send. Kept apart from the identity folders ensureIdentityState makes, so
+ * only an identity that has delivered anything grows one. Creates nothing.
+ */
+export function deliveryClaimFolder(stateRoot: string, identity: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'deliveries');
+}
+
 /** The install record of one bot. Throws `bot-id-invalid` on an unsafe id. */
 export function installFile(stateRoot: string, identity: string, botId: string): string {
   return join(identityStatePaths(stateRoot, identity).installs, `${segmentOrThrow('bot-id', botId)}.json`);
+}
+
+/** The generation stamp a status reader compares to know its index is stale. */
+export function generationStampFile(stateRoot: string, identity: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'generation.json');
+}
+
+/**
+ * Advance the generation stamp by temp file and rename. Every writer that
+ * changes a record or an item calls this, so a status index keyed on the
+ * stamp never misses a change. It lives here, beside the paths, so the
+ * runner and the modules the runner imports share one function.
+ *
+ * @returns The new generation number.
+ */
+export function writeGenerationStamp(stateRoot: string, identity: string, now: Date = new Date()): number {
+  ensureIdentityState(stateRoot, identity);
+  const path = generationStampFile(stateRoot, identity);
+  let previous = 0;
+  try {
+    const parsed = JSON.parse(readFileSync(path, 'utf8')) as { generation?: unknown };
+    if (typeof parsed.generation === 'number' && Number.isSafeInteger(parsed.generation)) previous = parsed.generation;
+  } catch {
+    previous = 0;
+  }
+  const generation = previous + 1;
+  writeStateAtomic(path, { generation, writtenAt: now.toISOString() });
+  return generation;
 }
 
 // ───────────────────────────────────────────────────────────────────

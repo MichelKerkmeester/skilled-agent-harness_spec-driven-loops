@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-22 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -227,10 +227,13 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Which delivery channels ship first? Recommended: local-only and the desktop notice. Operator decision, ADR-001.
-- Does a bot worktree link the shared paths or run a full `provision` install? Recommended: links, ADR-003.
-- Does the runner remove a clean, unchanged worktree at the end of the run, or leave every tree to the reaper? Recommended: remove when clean and unchanged, ADR-005.
-- What does the record and the notice say when a run dies mid-edit? Recommended: keep the tree and report it, ADR-004.
+- Which delivery channels ship first? Decision: local-only and the desktop notice (ADR-001, goal D1).
+- Does a bot worktree link the shared paths or run a full `provision` install? Decision: links (ADR-003, goal D3).
+- Does the runner remove a clean, unchanged worktree at the end of the run, or leave every tree to the reaper? Decision: remove when clean and unchanged, before the terminal record so the notice can name a kept tree (ADR-005, ADR-007).
+- What does the record and the notice say when a run dies mid-edit? Decision: keep the tree and report it with its reason (ADR-004, goal D4).
+- Where does a bot tree's base come from, given that the reaper judges only a tree whose parent is the configured base? Decision: settled by ADR-007 item 4. The base is `SPECKIT_WORKTREE_BASE`, else `git config speckit.worktreeBase`, the route the reaper also reads; an unconfigured base is refused, and the Risks row's state-root default is not used.
+- What does "resolves" mean in REQ-009? Decision: settled as built (ADR-007 item 5). A shared-path list resolves when every entry is a relative path with no `..` segment, taken from `worktreeSharedPaths` in `bots/config.json`, then `SPECKIT_WORKTREE_SHARED_PATHS`, then the launcher's default.
+- What happens to a worktree run that parks, and to its resume? Decision: the parked run keeps its tree as `awaiting-decision`, and the resume works in that tree or is refused, never in a fresh one (ADR-008).
 <!-- /ANCHOR:questions -->
 
 ---

@@ -76,17 +76,16 @@ export function kindsHonoring(sandbox: SandboxMode): ExecutorKind[] {
  * Check a definition's declared posture against its executor kind.
  *
  * @returns The honored posture and executor config, or a refusal such as
- *   `isolation-worktree-unsupported`, `executor-kind-native` or `posture-unhonorable`.
+ *   `isolation-undeclared`, `executor-kind-native` or `posture-unhonorable`.
  */
 export function validatePosture(
   definition: Pick<BotDefinition, 'posture' | 'runtime' | 'budget'>,
   config: Pick<RepoConfig, 'defaultIsolation' | 'allowedExecutorKinds'>,
 ): Result<PostureVerdict> {
+  // Both isolation values are honored; the runner turns `worktree` into a
+  // real tree after this check. Only an undeclared answer is refused here.
   const isolation = resolveIsolation(definition, config);
   if (!isolation.ok) return isolation;
-  if (isolation.value !== 'shared') {
-    return { ok: false, reason: 'isolation-worktree-unsupported', detail: 'this runner honors isolation: shared only' };
-  }
 
   const kind = definition.runtime.kind;
   if (!isExecutorKind(kind)) return { ok: false, reason: 'executor-kind-unknown', detail: kind };
@@ -132,7 +131,7 @@ export function validatePosture(
   return {
     ok: true,
     value: {
-      posture: { isolation: 'shared', sandbox, executorKind: kind, model: executor.model },
+      posture: { isolation: isolation.value, sandbox, executorKind: kind, model: executor.model },
       executor,
     },
   };

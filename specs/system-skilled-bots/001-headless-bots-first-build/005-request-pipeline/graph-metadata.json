@@ -39,7 +39,7 @@
       "durable"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/bin/bots.cjs",
       ".skilled/scripts/git-hooks/README.md",
       ".skilled/skills/sk-git/references/continuous-integration.md",
-      ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
-      ".skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh",
-      ".skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh",
-      ".skilled/bin/compiled-route.cjs",
-      ".skilled/scripts/install-git-hooks.sh",
-      ".skilled/scripts/git-hooks/tests/gate-config.test.sh",
-      ".skilled/skills/sk-git/SKILL.md",
-      ".skilled/skills/sk-git/assets/commit-message-template.md",
-      ".skilled/skills/sk-git/changelog/v1.5.1.0.md",
-      ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
-      ".skilled/skills/sk-git/feature-catalog/session-lifecycle/continuous-integration-autosync.md"
+      "scratch/post-commit-leg.txt",
+      "scratch/phase005-tests.txt",
+      "scratch/race-run.txt",
+      "scratch/race-mutation-control.txt",
+      "scratch/bots-suite-after.txt"
     ],
     "entities": [
       {
@@ -106,6 +106,42 @@
         "source": "derived"
       },
       {
+        "name": "request-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-queue.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-drain.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/scripts/git-hooks/README.md",
@@ -118,69 +154,33 @@
         "source": "derived"
       },
       {
-        "name": "source-root-selection.test.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "autostash-orphan-guard.test.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "autostash-orphan-guard.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route.cjs",
+        "name": "post-commit-leg.txt",
         "kind": "file",
-        "path": ".skilled/bin/compiled-route.cjs",
+        "path": "scratch/post-commit-leg.txt",
         "source": "derived"
       },
       {
-        "name": "install-git-hooks.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/install-git-hooks.sh",
+        "name": "phase005-tests.txt",
+        "kind": "file",
+        "path": "scratch/phase005-tests.txt",
         "source": "derived"
       },
       {
-        "name": "gate-config.test.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/git-hooks/tests/gate-config.test.sh",
+        "name": "race-run.txt",
+        "kind": "file",
+        "path": "scratch/race-run.txt",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/SKILL.md",
+        "name": "race-mutation-control.txt",
+        "kind": "file",
+        "path": "scratch/race-mutation-control.txt",
         "source": "derived"
       },
       {
-        "name": "commit-message-template.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/assets/commit-message-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.5.1.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/changelog/v1.5.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "continuous-integration-autosync.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/feature-catalog/session-lifecycle/continuous-integration-autosync.md",
+        "name": "bots-suite-after.txt",
+        "kind": "file",
+        "path": "scratch/bots-suite-after.txt",
         "source": "derived"
       },
       {
@@ -196,13 +196,13 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,8 +210,8 @@
     ],
     "causal_summary": "After phase 3 a bot runs only when someone types `bots run <id>`",
     "created_at": "2026-11-22T10:48:30Z",
-    "last_save_at": "2026-11-22T17:00:04.361Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-23T07:42:43.598Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aedcb51fe557617daf29a28927bad21ef6059eb0ef07b0b0c37f41e1fae53058",
+    "source_fingerprint": "sha256:03483af4d0fcaf6a0af3cb067a1a57cf647f621b7e85e17664159067b586fb7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3cac6850f4d9c82e2c3a8fbc48046cef53d731ea6ee00a0e83a6d464d94bf4bf",
-      "plan.md": "9ed954731a12dd9973b1742d5c5c4d2f136ad39154494ab421937d0c95d2a890",
-      "tasks.md": "43d4a4bf218aa5dbbe770f2841bf7eaa42dc9e83bafe9f538960574109d4113f",
-      "decision-record.md": "6e4a97c5735bdca0f740edd507bce47761806ab02e6778d2820ffc32d3e8e152",
-      "implementation-summary.md": "d637486c2c35a9eac8e2c8945d1f6426ea2ff4164d6dabc15521c2335000cee2"
+      "spec.md": "de74f5832a7b52537a2425791f171aa9888dc587197422a3a23cd37ad82fb38d",
+      "plan.md": "14893b0076598bb44ecca3d8851c4dd5de6d8af6ba3c3a3cf5d39e64bbeba314",
+      "tasks.md": "d044ca21cbc6c6c759f870b65a9270862feebe1e90c9c9cbf9f494c25b7d55cf",
+      "decision-record.md": "ec27d5cbc14df66bf3b096537357d2017986f32ce03d12a3a6a76d8694250489",
+      "implementation-summary.md": "6a666516e9b7decc01f0b0a19ff182ef943fe057aec98c6bf6c80481395e6121"
     },
     "last_active_at": null
   }

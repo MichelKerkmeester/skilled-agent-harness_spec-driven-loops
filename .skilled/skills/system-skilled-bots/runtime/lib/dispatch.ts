@@ -299,6 +299,15 @@ export function findSecretLiteral(text: string, known: KnownSecrets): SecretMatc
 // ───────────────────────────────────────────────────────────────────
 
 /**
+ * The prompt line that tells a child starting outside the checkout where it
+ * is. Built in one place so a resumed run can swap the parked folder's line
+ * for the one it runs in, by exact text and never by a pattern.
+ */
+export function checkoutLine(checkoutRoot: string): string {
+  return `The repository checkout is ${checkoutRoot}. You start outside it, so read every repository file through that absolute path; a relative path resolves somewhere else.`;
+}
+
+/**
  * The prompt one bot run is dispatched with. The exemption and the decision
  * rule sit in the prompt as well as the environment, because a child that
  * stops to ask and exits 0 would otherwise read as a clean run.
@@ -314,9 +323,7 @@ export function buildBotPrompt(input: {
     input.specFolder === null
       ? 'Bound spec folder: none. Write no spec documents.'
       : `Bound spec folder: ${input.specFolder}. Treat it as the answer to the spec folder question.`,
-    ...(input.checkoutRoot !== undefined && input.checkoutRoot !== null
-      ? [`The repository checkout is ${input.checkoutRoot}. You start outside it, so read every repository file through that absolute path; a relative path resolves somewhere else.`]
-      : []),
+    ...(input.checkoutRoot !== undefined && input.checkoutRoot !== null ? [checkoutLine(input.checkoutRoot)] : []),
     `If you reach a decision only a person can make, print one line that starts with ${DECISION_MARKER.trim()} followed by the question, then optionally one ${OPTION_MARKER.trim()} line per choice, and stop. Do not guess.`,
     '',
     input.body,

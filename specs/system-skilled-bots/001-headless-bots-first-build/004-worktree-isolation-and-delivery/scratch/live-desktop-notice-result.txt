@@ -1,0 +1,1 @@
+{"state":"attempted","evidence":"osascript exit 0"}

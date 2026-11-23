@@ -1,0 +1,27 @@
+PASS: local off sets the skip variable
+PASS: local off prints its source
+PASS: global false sets the skip variable
+PASS: global off names global config
+PASS: value 'OFF' reads as off
+PASS: value 'No' reads as off
+PASS: value '0' reads as off
+PASS: an unset key leaves the gate on, silently
+PASS: on leaves the gate on
+PASS: an unknown value leaves the gate on
+PASS: local on overrides global off
+PASS: command-scope off is ignored
+PASS: command-scope on cannot re-enable a local off
+PASS: an env skip already set stays quiet
+PASS: remotePush is not persistable
+PASS: massDeletion is not persistable
+PASS: pre-commit ignores a pre-push gate
+PASS: pre-push applies its own gate
+PASS: every hook skip or approval variable has a registry row
+PASS: every registry row names a variable a hook reads
+PASS: every row's variable is read by the hook it names
+PASS: registry keys are unique
+PASS: the linked hook prints the notice
+PASS: the switched-off hook leaves the message unstamped
+PASS: a repository without the toolchain prints no gate notice
+
+gate-config: 25 passed, 0 failed

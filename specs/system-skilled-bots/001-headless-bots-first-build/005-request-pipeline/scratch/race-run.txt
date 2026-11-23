@@ -1,0 +1,13 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+stdout | tests/race.vitest.ts > drain race > leaves exactly one run record joined to the request in each of 50 rounds
+drain race: lost claim reported in 49 of 50 rounds
+
+ ✓ tests/race.vitest.ts > drain race > leaves exactly one run record joined to the request in each of 50 rounds 34429ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  07:05:09
+   Duration  34.74s (transform 187ms, setup 0ms, import 258ms, tests 34.43s, environment 0ms)
+

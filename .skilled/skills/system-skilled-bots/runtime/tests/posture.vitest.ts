@@ -57,10 +57,10 @@ describe('posture matrix', () => {
     }
   });
 
-  it('refuses worktree isolation and undeclared isolation before any kind is weighed', () => {
+  it('honors worktree isolation and refuses undeclared isolation before any kind is weighed', () => {
     expect(validatePosture(definition('cli-codex', null, 'worktree'), defaultRepoConfig())).toMatchObject({
-      ok: false,
-      reason: 'isolation-worktree-unsupported',
+      ok: true,
+      value: { posture: { isolation: 'worktree' } },
     });
     expect(validatePosture(definition('cli-codex', null, null), defaultRepoConfig())).toMatchObject({
       ok: false,

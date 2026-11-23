@@ -37,14 +37,14 @@ Two new modules plug into the phase 3 runner. `isolation.ts` allocates a numbere
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 3 is closed: `rg -n 'Closeable:\*\* Yes' ../003-manual-runner/acceptance-criteria.md` prints one line
-- [ ] The run record and `BOT.md` fields for worktree path, branch and delivery exist in phase 1's contract: `rg -n 'worktree|delivery' ../001-contracts-and-state-root/spec.md` prints matches
-- [ ] ADR-001 to ADR-005 in `decision-record.md` are no longer Proposed
+- [x] Phase 3 is closed: `rg -n 'Closeable:\*\* Yes' ../003-manual-runner/acceptance-criteria.md` prints one line
+- [x] The run record and `BOT.md` fields for worktree path, branch and delivery exist in phase 1's contract: `rg -n 'worktree|delivery' ../001-contracts-and-state-root/spec.md` prints matches
+- [x] ADR-001 to ADR-005 in `decision-record.md` are no longer Proposed
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `npx vitest run runtime/tests/isolation.vitest.ts runtime/tests/delivery.vitest.ts` from the skill root exits 0 with no skipped test
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met (AC-012, the live desktop notice, awaits operator approval)
+- [x] `npx vitest run runtime/tests/isolation.vitest.ts runtime/tests/delivery.vitest.ts` from the skill root exits 0 with no skipped test (run from `runtime/`: 27 passed)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -62,7 +62,7 @@ Runner plug-in modules. The runner keeps its §8 order and calls isolation befor
 - **Checker worktree invariant**: refuses a definition the isolation module would have to refuse at run time, so the author learns before the first fire.
 
 ### Data Flow
-The runner takes the lease, then reads the honored posture. For `worktree` it calls `isolation.ts`, which runs `worktree-naming.sh create <slug> --no-provision` with the base set outside the checkout, links the shared paths and returns the path and branch. The runner dispatches the child with that path as its working directory, writes the result event and the terminal run record with the worktree fields, then hands the record to `delivery.ts`. Delivery resolves targets, writes each delivery record as `queued`, claims it, sends once and writes `delivered`, `failed`, `unknown` or `attempted`. Last, isolation removes the tree if it is clean and unchanged, or marks it kept with a reason. The lease is released on every path, and its key never holds the worktree path.
+The runner takes the lease, then reads the honored posture. For `worktree` it calls `isolation.ts`, which runs `worktree-naming.sh create <slug> <base commit> --no-provision` with the configured base set outside the checkout (an unconfigured base is refused), links the shared paths and returns the path and branch. The runner dispatches the child with that path as its working directory and writes the result event. Isolation then removes the tree if it is clean and unchanged, or marks it kept with a reason, so the terminal run record and the notice both carry the outcome (ADR-007). The runner writes the terminal record with the worktree fields, then hands it to `delivery.ts`. Delivery resolves targets, writes each delivery record as `queued`, claims it, sends once and writes `delivered`, `failed`, `unknown` or `attempted`. The lease is released on every path, and its key never holds the worktree path.
 <!-- /ANCHOR:architecture -->
 
 ---
