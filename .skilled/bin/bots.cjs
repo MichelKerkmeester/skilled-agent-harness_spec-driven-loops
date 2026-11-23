@@ -44,15 +44,21 @@ const USAGE = [
   '                 remove a schedule and sweep this repository\'s orphaned ones',
   '  answer <item-id> <text>',
   '                 answer a needs-you item and queue the run that continues it',
+  '  status [--json] [--rebuild] [--all] [--unregister <owner/name>]',
+  '                 show every installed bot, its last run and delivery, and open',
+  '                 needs-you items, from the status index; --rebuild rebuilds the',
+  '                 index from run records, --unregister hides an identity\'s rows',
+  '                 and deletes nothing, --all shows hidden identities too',
   '',
   'exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision',
 ].join('\n');
 
 const COMMON_OPTIONS = ['repo', 'skilled-tree'];
 // Options that are switches and take no value.
-const FLAG_OPTIONS = new Set(['scheduled']);
+const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all']);
 const SCHEDULE_ACTIONS = ['install', 'uninstall'];
 const ENQUEUE_OPTIONS = ['source', 'event-id', 'key', 'prompt', 'origin', 'fired-slot', 'git-commit'];
+const STATUS_OPTIONS = ['rebuild', 'json', 'all', 'unregister'];
 // How many positional arguments each verb takes, and the options it accepts beyond the common ones.
 const VERB_SPECS = {
   run: { ids: 1, options: ['schedule-index'] },
@@ -65,10 +71,11 @@ const VERB_SPECS = {
   drain: { ids: 0, options: ['scheduled'] },
   answer: { ids: 2, options: [] },
   schedule: { ids: 2, options: [] },
+  status: { ids: 0, options: STATUS_OPTIONS },
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
-const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, 'schedule-index', ...FLAG_OPTIONS]);
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', ...FLAG_OPTIONS]);
 // Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash.
 // A value that is itself one of this CLI's flags still means the value was left out.
 const FREE_TEXT_OPTIONS = new Set(['prompt', 'origin', 'key']);
@@ -163,12 +170,16 @@ function checkoutRootFrom(repoOption) {
   return top.status === 0 ? top.stdout.trim() : start;
 }
 
+function runtimeModule(name) {
+  return import(pathToFileURL(path.join(RUNTIME, 'lib', `${name}.ts`)).href);
+}
+
 async function loadRuntime() {
   // A global loader, not a namespaced import: the runtime requires the deep-loop
   // CommonJS scripts, which a namespaced loader cannot resolve.
   const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
   register();
-  const load = (name) => import(pathToFileURL(path.join(RUNTIME, 'lib', `${name}.ts`)).href);
+  const load = runtimeModule;
   const [runner, switches, needsYou, queue, drain, answer, installer] = await Promise.all([
     load('runner'),
     load('switches'),
@@ -325,6 +336,57 @@ function scheduleVerb(rt, parsed, checkoutRoot, skilledTree) {
   return 0;
 }
 
+// The status modules are loaded here and nowhere else, so a native SQLite binding
+// that fails to load can only break status, never a kill switch such as disable.
+async function statusVerb(rt, parsed, checkoutRoot, resolveEnv) {
+  const { options } = parsed;
+  let status;
+  let repoConfig;
+  let stateRootModule;
+  try {
+    [status, repoConfig, stateRootModule] = await Promise.all([runtimeModule('status'), runtimeModule('repo-config'), runtimeModule('state-root')]);
+  } catch (error) {
+    process.stderr.write(`bots: the status modules did not load: ${error instanceof Error ? error.message : String(error)}\n`);
+    return rt.runner.EXIT_CODES.runFailure;
+  }
+  const config = repoConfig.readRepoConfig(checkoutRoot);
+  if (!config.ok) {
+    process.stderr.write(`${describeRefusal(config)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  // The state root the installed jobs use, resolved under the job's environment like every other verb.
+  const stateRoot = stateRootModule.userStateRoot(config.value, resolveEnv);
+  const input = { stateRoot, env: process.env, includeRetired: options.all === true };
+  const indexFailure = (result) => {
+    process.stderr.write(`bots: ${result.reason}${result.detail ? `: ${result.detail}` : ''}\n`);
+    return rt.runner.EXIT_CODES.runFailure;
+  };
+  if (options.unregister !== undefined) {
+    const result = status.unregisterIdentity({ ...input, identity: options.unregister });
+    if (!result.ok) return result.reason === 'identity-invalid' ? usageExit(`--unregister takes owner/name: ${options.unregister}`) : indexFailure(result);
+    const { identity, createdFile } = result.value;
+    process.stdout.write(`bots: ${identity} unregistered: its rows are hidden from status; nothing was deleted\n`);
+    if (createdFile) process.stdout.write('bots: no registered-roots file existed, so this wrote the first one\n');
+    return 0;
+  }
+  const info = options.json === true ? process.stderr : process.stdout;
+  if (options.rebuild === true) {
+    const built = status.rebuildStatusIndex(input);
+    if (!built.ok) return indexFailure(built);
+    const { runs, items, skipped } = built.value;
+    info.write(`bots: rebuilt ${built.value.path}: ${runs} run row(s), ${items} item row(s)\n`);
+    for (const file of skipped) process.stderr.write(`bots: ${file} did not read and was left out\n`);
+  }
+  const report = status.statusReport(input);
+  if (!report.ok) return indexFailure(report);
+  if (options.json === true) {
+    process.stdout.write(`${JSON.stringify(report.value, null, 2)}\n`);
+  } else {
+    for (const line of status.formatStatus(report.value)) process.stdout.write(`${line}\n`);
+  }
+  return 0;
+}
+
 function describeOutcome(id, outcome) {
   switch (outcome.kind) {
     case 'completed':
@@ -366,6 +428,7 @@ async function main(argv) {
   if (parsed.verb === 'enqueue') return enqueueVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'drain') return drainVerb(rt, checkoutRoot, skilledTree, parsed.options.scheduled === true, resolveEnv);
   if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
+  if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
 
   if (parsed.verb === 'run') {
     const index = parsed.options['schedule-index'];

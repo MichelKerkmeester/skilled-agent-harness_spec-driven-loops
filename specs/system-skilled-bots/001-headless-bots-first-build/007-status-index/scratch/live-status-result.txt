@@ -1,0 +1,55 @@
+date: 2026-11-23T11:55:26Z
+macOS: 27.0.1 (26A434)
+worktree: /Users/michelkerkmeester/worktrees/public/system-skilled-bots
+skilled tree: /Users/michelkerkmeester/MEGA/Development/Skilled
+--- 1. install held disabled (never enabled)
+$ bots schedule install tick
+  render	0
+  lint	0
+  disable	0	first-install
+  bootout	-	not loaded; nothing to boot out
+  move	0	/Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-status-probe.tick.0.plist
+  bootstrap	5	held (first-install): Bootstrap failed: 5: Input/output error
+Try re-running the command as root for richer errors.
+  print	1	not loaded: held disabled
+  read-back	0
+bots: installed com.skilled.bots.local_2fbots-status-probe.tick.0 at /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-status-probe.tick.0.plist
+bots: held disabled (first-install); nothing fires until: bots enable tick
+bots: next fire: UNKNOWN
+bots: check: ok
+exit=0
+label: com.skilled.bots.local_2fbots-status-probe.tick.0
+print while held: exit=113 (113 means not loaded)
+--- 2. bots status
+$ bots status
+index built 2026-11-23T11:55:27.881Z (/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-status-live-AHOytw/state/index/status.sqlite)
+never-run	local/bots-status-probe	tick	/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-status-live-AHOytw/consumer	no run
+exit=0
+status --json exit=0
+{
+  "state": "never-run",
+  "installed": true,
+  "labels": [
+    "com.skilled.bots.local_2fbots-status-probe.tick.0"
+  ],
+  "launchd": [
+    {
+      "label": "com.skilled.bots.local_2fbots-status-probe.tick.0",
+      "presence": "not-loaded",
+      "state": "not loaded",
+      "runs": 0,
+      "lastExitCode": null
+    }
+  ]
+}
+row check exit=0 (expect 0: installed and never-run)
+--- 3. uninstall
+$ bots schedule uninstall tick
+  delete	0	com.skilled.bots.local_2fbots-status-probe.tick.0
+bots: removed com.skilled.bots.local_2fbots-status-probe.tick.0
+bots: com.skilled.bots.local_2fbots-status-probe.tick.0 stays in the scheduler's disabled list (harmless with no job file)
+bots: run folders and run records were left in place
+exit=0
+job files left: 0 (expect 0)
+scratch left for inspection: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-status-live-AHOytw
+DONE

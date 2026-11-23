@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 5 a bot runs only when someone types `bots run` or `bots drain`",
     "created_at": "2026-11-22T10:48:31Z",
-    "last_save_at": "2026-11-23T10:46:15.403Z",
+    "last_save_at": "2026-11-23T11:18:02.378Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,7 +222,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fdd03e631d77499a13f6bc7ba6f2864786b276dd9c67691aa89f695d2879de9a",
+    "source_fingerprint": "sha256:b28cd156ed60576dd158d5da9fce368162aaf37774b94184c6fc22944093af0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "574f164af362fab2f61548a796d3b07f3a2cb2e37d5ffa670f4608232206dd8c",

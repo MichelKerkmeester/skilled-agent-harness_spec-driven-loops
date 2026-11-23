@@ -1,0 +1,43 @@
+M1 run row rewritten on re-index => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 25 passed (26)
+M2 unreadable checkout judged missing =>       Tests  26 passed (26)
+M3 status refreshes an existing index => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  4 failed | 22 passed (26)
+M4 run folder link not refused =>       Tests  26 passed (26)
+M5 relink with two candidate clones => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 25 passed (26)
+M6 rebuild skips retention => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  3 failed | 23 passed (26)
+M7 run folder judged by existsSync => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  2 failed | 24 passed (26)
+M8 item retention counts open items => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 25 passed (26)
+M9 retired identity still shown => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  2 failed | 24 passed (26)
+M10 nested state lines read => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  2 failed | 24 passed (26)
+--- after adding the locked-parent case
+M2 unreadable checkout judged missing (rerun) => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 26 passed (27)
+M4b link and real-path guards both removed => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 26 passed (27)
+M11 identity runs-folder tail check removed =>       Tests  27 passed (27)
+M11b both identity tail checks removed => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 8 passed (9)
+--- review fixes, 2026-11-23
+R1 (P1-2) unregister builds a missing index with retention => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 32 passed (33)
+R2 (P1-3) answered items with a pending resume prunable => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 32 passed (33)
+R3 (P1-4) unreadable checkout falls back to the default bounds => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 32 passed (33)
+R4 (P1-1) rebuild ignores the retired list in the file => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  2 failed | 31 passed (33)
+R5 (P1-5) plain status does not refresh item rows => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 32 passed (33)
+R6 (P2-6) open item's run folder prunable => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 32 passed (33)
+R7a sanity (no behavior change, expect pass) =>       Tests  33 passed (33)
+R7 (P2-8) files deleted during the build, before the rename => ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  2 failed | 31 passed (33)
+R1b (P1-2) unregister on a missing index runs rebuildIndex => fails 'unregisters over a missing index without building it': expected [ 'n3' ] to deeply equal [ 'n1', 'n2', 'n3' ]

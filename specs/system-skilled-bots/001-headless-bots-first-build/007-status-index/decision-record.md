@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 7: status-index"
-description: "Five decisions for the status index: the SQLite binding, the retention numbers and needs-you item retention (both accepted by the operator), the index key with relink and the stale signal."
+description: "Five decisions for the status index: the SQLite binding (accepted on Q003), the retention numbers and needs-you item retention (both accepted by the operator), the index key with relink and the stale signal."
 trigger_phrases:
   - "status index decision record"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/007-status-index"
-    last_updated_at: "2026-11-22T10:48:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Accepted ADR-005 on operator decision D10 and recorded D9 and D10"
-    next_safe_action: "Get the operator answer on ADR-001 before T002"
+    last_updated_at: "2026-11-23T11:20:00Z"
+    last_updated_by: "implement-007-status-index"
+    recent_action: "Recorded operator answers Q004, Q005 and Q006 from the first review"
+    next_safe_action: "The orchestrator runs the live status check after the second review"
     blockers: []
     key_files: []
     session_dedup:
@@ -36,9 +36,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-11-22 |
-| **Deciders** | Build owner. Needs operator confirmation |
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Operator, through the question tool on 2026-11-23 (Q003): the install of `better-sqlite3@^12.11.1` into the bots runtime was approved |
 
 ---
 
@@ -58,7 +58,7 @@ The index needs SQLite in WAL mode (research.md §12). The repository already ru
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We propose**: declare `better-sqlite3` at the same range, `^12.11.1`, in the hub's own runtime `package.json`.
+**We chose**: declare `better-sqlite3` at the same range, `^12.11.1`, in the hub's own runtime `package.json`. The operator approved the install on 2026-11-23 (Q003), and `npm install better-sqlite3@^12.11.1` resolved 12.11.1.
 
 **How it works**: The index opens one `Database` and sets `journal_mode = WAL`, `busy_timeout = 5000` and `synchronous = FULL`. The last two follow Hermes, because the coverage graph does not set them (research.md §12).
 <!-- /ANCHOR:adr-001-decision -->
@@ -523,6 +523,10 @@ The operator chose a decision queue for runs that need a human. A run that needs
 |----|---------|-----|------------|------------|
 | Q001 | Closed needs-you items are bounded by `retention.closedNeedsYouPerIdentity` in `bots/config.json`, default 200 | Operator answer D10, 2026-11-22. The operator picked the recommended option | ADR-005's Proposed status | ADR-005, REQ-014, AC-014, T022 |
 | Q002 | A bot with an open needs-you item is held, and status shows it as `held` | Operator answer D9, 2026-11-22. The operator picked the recommended option. Phase 3 owns the hold | - | ADR-005, REQ-016, AC-016, T024 |
+| Q003 | Install `better-sqlite3@^12.11.1` into the bots runtime, the same range as the deep-loop and advisor runtimes | Operator answer, 2026-11-23. The operator picked the recommended option | ADR-001's Proposed status | ADR-001, REQ-005, AC-008, T002, T003 |
+| Q004 | Retirements are stored in a file the rebuild reads: the existing registered-roots file under the state root, rewritten by temp file and rename. A deleted and rebuilt index keeps an identity hidden | Operator answer to a LOGIC-SYNC, 2026-11-23: a retirement kept only in the index broke REQ-001's delete-and-rebuild parity. The operator picked the recommended option | The first build's index-only retirement | REQ-001, REQ-007, AC-009, T012 |
+| Q005 | Plain `bots status` refreshes the needs-you item rows of a stale identity from its item files, so an answer clears `held` without `--rebuild`. Run rows still wait for a rebuild | Operator answer to a LOGIC-SYNC, 2026-11-23: AC-016 expected `held` to clear on answer, while status read only the index. The operator picked the recommended option | REQ-001's reading that status reads only the index, for item rows of a stale identity | REQ-001, REQ-016, AC-016, T024 |
+| Q006 | The live status check on one real held-disabled label may run after the fixes pass review; the orchestrator runs it | Operator answer, 2026-11-23. The operator picked the recommended option | - | AC-005, T017, `scratch/live-status-check.sh` |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -534,6 +538,10 @@ Each appendix item uses the same id as its operator decision. The options are in
 
 - **Q001** (D10, asked as "How should the needs-you expiry and history be configured?"): "Both configurable (Recommended)".
 - **Q002** (D9, asked as "While a bot has an open needs-you item, should its schedule keep firing new runs?"): "Hold new runs (Recommended)".
+- **Q003** (asked as "Can I do this install?", about adding `better-sqlite3@^12.11.1` to the bots runtime): "Yes, install it (Recommended)". The other option offered was "No, find another way".
+- **Q004** (asked as "Which truth prevails?", about where retirements are kept): "Store it in a file (Recommended)". The other option offered was "Amend REQ-001".
+- **Q005** (asked as "Which way?", about AC-016 and clearing `held`): "Fix the code (Recommended)". The other option offered was "Amend AC-016".
+- **Q006** (asked as "Can I run it after the fixes pass review?", about the live status check): "Yes, run it (Recommended)". The other option offered was "No".
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

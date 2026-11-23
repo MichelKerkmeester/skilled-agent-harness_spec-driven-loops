@@ -1,0 +1,9 @@
+$ rg -n "bootstrap|\.plist" lib/status*.ts lib/launchctl-print.ts
+exit=1
+$ rg -n "launchctl\(|spawnSync|execFile|writeFile" lib/status*.ts lib/launchctl-print.ts
+lib/launchctl-print.ts:108:  const result = resolved.launchctl(['print', `${resolved.domain}/${label}`]);
+exit=0
+$ rg -n "[—]" (em dash) in new files
+exit=1
+$ rg -n "REQ-|ADR-|T0[0-9][0-9]|CHK-|specs/" new code
+exit=1

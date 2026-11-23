@@ -1,0 +1,2 @@
+rebuild 1000 records ms 38 true
+status over 1000 rows ms 3 10

@@ -39,7 +39,7 @@
       "durable"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,9 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/launchctl-print.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/package.json",
-      ".skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs",
-      ".skilled/bin/worktree-reaper.sh"
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/better-sqlite3.d.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/status-support.ts",
+      "scratch/live-status-check.sh",
+      "scratch/live-status-result.txt"
     ],
     "entities": [
       {
@@ -96,25 +106,91 @@
         "source": "derived"
       },
       {
+        "name": "status-index.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launchctl-print.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/launchctl-print.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status-index.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "package.json",
         "kind": "config",
         "path": ".skilled/skills/system-skilled-bots/runtime/package.json",
         "source": "derived"
       },
       {
-        "name": "repository-identity.cjs",
+        "name": "bots.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs",
+        "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
-        "name": "worktree-reaper.sh",
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "installer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "better-sqlite3.d.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/better-sqlite3.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status-support.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/status-support.ts",
+        "source": "derived"
+      },
+      {
+        "name": "live-status-check.sh",
         "kind": "script",
-        "path": ".skilled/bin/worktree-reaper.sh",
+        "path": "scratch/live-status-check.sh",
+        "source": "derived"
+      },
+      {
+        "name": "live-status-result.txt",
+        "kind": "file",
+        "path": "scratch/live-status-result.txt",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -130,77 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Predecessor",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Derived",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phases 3 and 6, bots run by hand and on launchd, but nothing answers \"what is installed, what ran and did it deliver\"",
     "created_at": "2026-11-22T10:48:32Z",
-    "last_save_at": "2026-11-22T17:00:07.436Z",
+    "last_save_at": "2026-11-23T11:56:21.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9359554adedd0067b138047e0a9929abe51e96d2b617c73744f805dd2eb7da27",
+    "source_fingerprint": "sha256:8a043fe60039225a1497cb2c7242dbb3026c13a3606bb1cb2fb98629e3340c91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2df5551ba835759f08044438aa31ca5f2317d11ba08219fae241378561f61469",
+      "spec.md": "bbba6af3ff1eea87b9e3e5a9d9389e96786b5db2a24d042ef2478604069c80b7",
       "plan.md": "708599bd3ba9d858d10414bbc944c60e5931e9e614c4c6a4a6c696b081b5db2c",
-      "tasks.md": "935f07bfb1d9bd994819cfbaa6692c7f96d8fa8778eeaf0604b8144999e4344a",
-      "decision-record.md": "fe6431f6c670f3ed8a61774b0f851e197a7e8138fff73ee930ad11d7e8ae18be",
-      "implementation-summary.md": "0ede20f4d3e6df6b0b5819c4d8ad4b377a4d2819c9fadafc9bf0aa9c2910304b"
+      "tasks.md": "0451eec8f49122c12e18516ade552e6f2db197f4c44c076f2e2c71b5826aef8f",
+      "decision-record.md": "b797b00f235cafb0a00b2fdd726638f858adaa8a694f40de3a8eb7799ce42920",
+      "implementation-summary.md": "3c63eade13d2bf32c864a4f1d7da2e0e12c75834ef8ed7027e33eb40e1b13d36"
     },
     "last_active_at": null
   }

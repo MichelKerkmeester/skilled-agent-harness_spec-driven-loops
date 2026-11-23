@@ -31,6 +31,8 @@ contextType: "general"
 ## 2. TIMELINE
 
 **2026-11-22:** Phase docs written from research.md §12 and §16 Q8. Outcome: four decisions proposed, none accepted, nothing built.
+
+**2026-11-23:** The operator approved the `better-sqlite3` install (Q003). The index, the print reader and `bots status` were built and tested. Outcome: 15 of 16 acceptance rows Met; the live check on a real label waits on the operator.
 <!-- /ANCHOR:timeline -->
 
 ---

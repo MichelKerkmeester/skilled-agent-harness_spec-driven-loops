@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/007-status-index` |
 | **Parent Spec** | ../spec.md |
@@ -247,6 +247,13 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Answered by phase 1: the run record lives user-level at `<state root>/<identity>/records/<run id>.json`, never inside the run folder. A rebuild keeps a gone run's row from the record.
 - Answered by the operator (D10): keep 200 closed needs-you items per identity through `retention.closedNeedsYouPerIdentity`. ADR-005, Accepted.
 - Answered by phase 6: the install record is `<state root>/<identity>/installs/<bot-id>.json`. This phase reads it for REQ-015.
+- Answered by the operator (Q003, 2026-11-23): `better-sqlite3@^12.11.1` is installed in the bots runtime. ADR-001 is Accepted.
+- Open, found during the build: the runner writes the generation stamp after each record but does not add the run to the index. Plain `bots status` therefore reports `stale` after every run until `--rebuild`. The index exposes `indexRunRecord` and `indexNeedsYouItem` for the runner, which is outside this phase's files. Status never rebuilds an existing index's run rows on its own, so a stale read always says so.
+- Answered by the operator (Q004, 2026-11-23): retirements are stored in the registered-roots file under the state root, rewritten by temp file and rename, and every build reads them, so a deleted and rebuilt index keeps an identity hidden. When no registered-roots file exists yet, `--unregister` writes the first one and says so; that is the one case where the state root's file count grows.
+- Answered by the operator (Q005, 2026-11-23): plain `bots status` replaces the needs-you item rows of a stale identity from its item files, so an answer clears `held` without `--rebuild`. This is the one read status makes beyond the index, `launchctl print`, the install records and the registered roots; it never opens a run folder.
+- Answered in the build: retention never prunes an answered item whose resume has not run (no resume request recorded yet, or its request still in `requests/inbox/` or `requests/claimed/`), nor the run folder of a run an open or such an item names. An identity whose checkout cannot be read gets no retention at all, rather than the defaults.
+- Answered: phase 006's closure line now reads `**Closeable:** Yes`, and T001 prints three lines.
+- Follow-up for ADR-002: run records under `<state root>/<identity>/records/` are never pruned. Index rows and run folders are bounded, but the records a rebuild reads grow without bound, and a rebuild reads all of them. A record bound needs its own decision, because records are the source a rebuild restores rows from.
 <!-- /ANCHOR:questions -->
 
 ---

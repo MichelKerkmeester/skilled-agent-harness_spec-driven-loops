@@ -66,9 +66,16 @@ export interface SharedStatePaths {
   authority: string;
 }
 
-/** The registered-roots file: every checkout path seen for each identity. */
+/** The registered-roots file: every checkout path seen for each identity, and the identities retired from status. */
 interface RegisteredRootsFile {
   roots: Record<string, string[]>;
+  retired?: Record<string, RetiredIdentity>;
+}
+
+/** An identity `bots status --unregister` retired. Its rows are hidden; nothing of it is deleted. */
+export interface RetiredIdentity {
+  identity: string;
+  retiredAt: string;
 }
 
 const SAFE_SEGMENT = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
@@ -216,6 +223,15 @@ export function agentLogFile(stateRoot: string, identity: string, label: string)
   return join(identityStatePaths(stateRoot, identity).base, 'agent-logs', `${segmentOrThrow('label', label)}.log`);
 }
 
+/**
+ * The status index file, inside the shared index folder. The folder is made
+ * with every identity's state; the file is derived and may be deleted and
+ * rebuilt at any time. Creates nothing.
+ */
+export function statusIndexFile(stateRoot: string): string {
+  return join(sharedStatePaths(stateRoot).index, 'status.sqlite');
+}
+
 /** The generation stamp a status reader compares to know its index is stale. */
 export function generationStampFile(stateRoot: string, identity: string): string {
   return join(identityStatePaths(stateRoot, identity).base, 'generation.json');
@@ -253,10 +269,44 @@ export function writeGenerationStamp(stateRoot: string, identity: string, now: D
  * read or parse failure throws, so a damaged file is never read as empty.
  */
 export function readRegisteredRoots(stateRoot: string): Record<string, string[]> {
+  return readRootsFile(stateRoot).roots;
+}
+
+function readRootsFile(stateRoot: string): Required<RegisteredRootsFile> {
   const path = sharedStatePaths(stateRoot).registeredRoots;
-  if (!existsSync(path)) return {};
+  if (!existsSync(path)) return { roots: {}, retired: {} };
   const parsed = JSON.parse(readFileSync(path, 'utf8')) as RegisteredRootsFile;
-  return parsed.roots ?? {};
+  return { roots: parsed.roots ?? {}, retired: parsed.retired ?? {} };
+}
+
+/**
+ * The retired identities, keyed by identity key. They live in the
+ * registered-roots file, beside the roots they retire, so a deleted and
+ * rebuilt status index still hides them. Throws on a damaged file, like
+ * readRegisteredRoots.
+ */
+export function readRetiredIdentities(stateRoot: string): Record<string, RetiredIdentity> {
+  return readRootsFile(stateRoot).retired;
+}
+
+/**
+ * Retire an identity from status by temp file and rename of the
+ * registered-roots file. Nothing else is written or deleted. Retiring an
+ * identity already retired keeps its first time, so the file is unchanged.
+ *
+ * @returns Whether the registered-roots file existed before this call.
+ */
+export function retireIdentityRoots(stateRoot: string, identity: string, now: Date = new Date()): { fileExisted: boolean } {
+  const path = sharedStatePaths(stateRoot).registeredRoots;
+  const fileExisted = existsSync(path);
+  const file = readRootsFile(stateRoot);
+  const key = identityKey(identity);
+  if (file.retired[key] === undefined) {
+    mkdirSync(stateRoot, { recursive: true, mode: STATE_DIR_MODE });
+    file.retired[key] = { identity, retiredAt: now.toISOString() };
+    writeStateAtomic(path, file satisfies RegisteredRootsFile);
+  }
+  return { fileExisted };
 }
 
 /**
@@ -267,13 +317,16 @@ export function readRegisteredRoots(stateRoot: string): Record<string, string[]>
  */
 export function registerRoot(stateRoot: string, identity: string, checkoutRoot: string): string[] {
   mkdirSync(stateRoot, { recursive: true, mode: STATE_DIR_MODE });
-  const roots = readRegisteredRoots(stateRoot);
+  const file = readRootsFile(stateRoot);
+  const roots = file.roots;
   const real = realpathSync(checkoutRoot);
   const key = identityKey(identity);
   const list = roots[key] ?? [];
   if (!list.includes(real)) {
     roots[key] = [...list, real];
-    writeStateAtomic(sharedStatePaths(stateRoot).registeredRoots, { roots } satisfies RegisteredRootsFile);
+    // The retired list shares the file, so it is written back unchanged.
+    const next: RegisteredRootsFile = Object.keys(file.retired).length > 0 ? { roots, retired: file.retired } : { roots };
+    writeStateAtomic(sharedStatePaths(stateRoot).registeredRoots, next);
   }
   return roots[key] ?? list;
 }

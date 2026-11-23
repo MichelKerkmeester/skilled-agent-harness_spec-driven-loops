@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Skilled has agents, commands and three installed schedulers",
     "created_at": "2026-11-22T10:48:25Z",
-    "last_save_at": "2026-11-23T08:31:05.876Z",
+    "last_save_at": "2026-11-23T11:56:36.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:216c7524ca759ec5a753f5dc5c644d892605eaf72154362cec0e2886b5da49a9",
+    "source_fingerprint": "sha256:b1397de18121333f188582b6218d8a3b6c2798df18042d31a0e8021a7f738de1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2cdd628835d959316140436ec0f54af36f62f5f4052a62b0e2546f8a4c4d577",

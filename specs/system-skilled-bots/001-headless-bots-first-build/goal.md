@@ -112,6 +112,7 @@ and findings belong here.
 | 004 to 008 | Pending | Waiting on their dependencies |
 | 003-manual-runner | Done | Third review APPROVED; live codex run, OpenCode (3 fixtures) and Vibe probes passed; committed 555101d8c23 and pushed; 7 operator decisions recorded in its decision-record.md |
 | 004 and 005 | Done | 004 second review APPROVED, 005 review APPROVED; live desktop notice attempted; suite 264 passed; hook tests 74/14/25/28 passed |
+| Phase 006 launchd installer | Done | d2f75c66184 pushed; 322/322 tests, typecheck 0, validate PASSED, 18/18 AC Met; live install passed twice (held, one fire with slot and lateness, drain, uninstall); five review rounds, operator answers Q004 to Q008 |
 
 ### Deviations and findings
 

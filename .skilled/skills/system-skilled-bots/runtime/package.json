@@ -12,6 +12,7 @@
     "test": "vitest run --no-coverage"
   },
   "dependencies": {
+    "better-sqlite3": "^12.11.1",
     "tsx": "4.22.4",
     "yaml": "2.9.1"
   },

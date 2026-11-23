@@ -608,6 +608,18 @@ function jobRepo(job: Record<string, unknown> | null): string | null {
   return at >= 0 && typeof args[at + 1] === 'string' ? (args[at + 1] as string) : null;
 }
 
+/**
+ * The checkout one installed hub job runs against, read from its job file's
+ * `--repo`. A reader that shows installed jobs takes the path from here
+ * rather than from the label, which is built from an identity that can drift.
+ *
+ * @returns The `--repo` path, or null when the job file is absent or does not read.
+ */
+export function jobCheckout(label: string, seams?: Partial<InstallerSeams>): string | null {
+  const resolved = seamsFor({ seams });
+  return jobRepo(readJobFile(resolved, plistPathFor(resolved, label)));
+}
+
 /** One hub job file in the agents folder that runs against a given checkout. */
 interface CheckoutJob {
   label: string;

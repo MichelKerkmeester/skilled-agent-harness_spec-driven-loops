@@ -96,7 +96,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-002, AC-005, AC-008 and AC-009 wait on the orchestrator's live install, run with the operator's yes from `scratch/live-install.sh`.
+Every row is Met, the live rows by the two live install runs of 2026-11-23 recorded in `scratch/live-install-result.txt` and `scratch/live-install-result-xdg.txt`.
 <!-- /ANCHOR:closure -->
