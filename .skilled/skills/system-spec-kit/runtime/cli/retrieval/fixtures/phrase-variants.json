@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b35fba8d1d6199b864c6f92252db94f87caed25c5c57173693d32d4b3354bf90",
+  "manifestHash": "8f24e0e13883906c7d92a28e22762646942bff212e67a58d62b20f26c425cb5c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -523,6 +523,9 @@
     ],
     "002 deprecate coco index rollup": [
       "002-deprecate-coco-index rollup"
+    ],
+    "002 devin lane operator decisions": [
+      "002-devin-lane operator decisions"
     ],
     "002 doctor update orchestrator changelog index": [
       "002-doctor-update-orchestrator changelog index"
@@ -3068,6 +3071,9 @@
     "012 blast radius uplift": [
       "012 blast radius uplift"
     ],
+    "012 browser hub doc topic operator decisions": [
+      "012-browser-hub-doc-topic operator decisions"
+    ],
     "012 causal traversal bfs plan": [
       "012-causal-traversal-bfs plan"
     ],
@@ -4028,6 +4034,9 @@
     ],
     "016 epic second review": [
       "016 epic second review"
+    ],
+    "016 epic third review": [
+      "016 epic third review"
     ],
     "016 findings remediation": [
       "016 findings remediation"
@@ -6801,6 +6810,9 @@
     ],
     "028 review remediation schema concurrency": [
       "028 review remediation schema concurrency"
+    ],
+    "028 second epic review fixes operator decisions": [
+      "028-second-epic-review-fixes operator decisions"
     ],
     "028 semantic edge layer": [
       "028 semantic edge layer"
@@ -12025,6 +12037,9 @@
     "alignment lane result parser tasks": [
       "alignment lane result parser tasks"
     ],
+    "alignment lane runner phase parent spec": [
+      "alignment lane runner phase parent spec"
+    ],
     "alignment mode removed": [
       "alignment mode removed"
     ],
@@ -16860,6 +16875,21 @@
     ],
     "browser hub changelog topology": [
       "browser hub changelog topology"
+    ],
+    "browser hub doc topic": [
+      "browser hub doc topic"
+    ],
+    "browser hub doc topic goal": [
+      "browser hub doc topic goal"
+    ],
+    "browser hub doc topic implementation summary": [
+      "browser hub doc topic implementation summary"
+    ],
+    "browser hub doc topic plan": [
+      "browser hub doc topic plan"
+    ],
+    "browser hub doc topic tasks": [
+      "browser hub doc topic tasks"
     ],
     "browser hub routing": [
       "browser hub routing"
@@ -23486,6 +23516,9 @@
     ],
     "cli devin 17 skill audit": [
       "cli-devin 17-skill audit"
+    ],
+    "cli devin alignment lane": [
+      "cli-devin alignment lane"
     ],
     "cli devin benchmark index": [
       "cli-devin benchmark index"
@@ -42434,6 +42467,18 @@
     ],
     "devin injection screen": [
       "devin injection screen"
+    ],
+    "devin lane": [
+      "devin lane"
+    ],
+    "devin lane implementation summary": [
+      "devin lane implementation summary"
+    ],
+    "devin lane plan": [
+      "devin lane plan"
+    ],
+    "devin lane tasks": [
+      "devin lane tasks"
     ],
     "devin live follow": [
       "devin live follow"
@@ -70199,6 +70244,9 @@
     "mcp browser use browser hub": [
       "mcp-browser-use browser hub"
     ],
+    "mcp browser use doc alignment topic": [
+      "mcp-browser-use doc alignment topic"
+    ],
     "mcp browser use hub": [
       "mcp-browser-use hub"
     ],
@@ -85479,6 +85527,9 @@
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
     ],
+    "phase 12 browser hub doc topic": [
+      "phase 12 browser hub doc topic"
+    ],
     "phase 12 catalog and playbook alignment": [
       "phase 12 catalog and playbook alignment"
     ],
@@ -86112,6 +86163,9 @@
     "phase 2 deepseek harness persona probe": [
       "phase 2 deepseek harness persona probe"
     ],
+    "phase 2 devin lane": [
+      "phase 2 devin lane"
+    ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
     ],
@@ -86609,6 +86663,9 @@
     ],
     "phase 28 review scope recording": [
       "phase 28 review scope recording"
+    ],
+    "phase 28 second epic review fixes": [
+      "phase 28 second epic review fixes"
     ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
@@ -89190,6 +89247,9 @@
     ],
     "pi context decisions epic review": [
       "pi context decisions epic review"
+    ],
+    "pi context decisions epic review generation 3": [
+      "pi context decisions epic review generation 3"
     ],
     "pi context decisions packet closeout": [
       "pi-context-decisions packet closeout"
@@ -105792,6 +105852,9 @@
     "run javascript in browser cli": [
       "run javascript in browser cli"
     ],
+    "run lanes cjs changes": [
+      "run-lanes.cjs changes"
+    ],
     "run lanes findings object": [
       "run-lanes findings object"
     ],
@@ -108629,6 +108692,21 @@
     ],
     "second client reaps starting daemon": [
       "second client reaps starting daemon"
+    ],
+    "second epic review fixes": [
+      "second epic review fixes"
+    ],
+    "second epic review fixes acceptance criteria": [
+      "second epic review fixes acceptance criteria"
+    ],
+    "second epic review fixes implementation summary": [
+      "second epic review fixes implementation summary"
+    ],
+    "second epic review fixes plan": [
+      "second epic review fixes plan"
+    ],
+    "second epic review fixes tasks": [
+      "second epic review fixes tasks"
     ],
     "second family design review": [
       "second family design review"

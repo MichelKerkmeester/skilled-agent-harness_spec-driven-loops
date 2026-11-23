@@ -13,8 +13,18 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, unlinkSync, writeFileSync } from 'node:fs';
+import { createHash, randomBytes } from 'node:crypto';
+import {
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  renameSync,
+  statSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -65,10 +75,28 @@ function isChildSession(payload, env) {
   return typeof parent === 'string' && parent.trim() !== '';
 }
 
-function headReceiptDir(env = process.env) {
+function headReceiptBase(env = process.env) {
   const configured = env[STATE_DIR_ENV]?.trim();
-  const base = configured ? resolve(configured) : join(tmpdir(), 'speckit-advisor');
-  return join(base, HEAD_RECEIPT_SUBDIR);
+  return configured ? resolve(configured) : join(tmpdir(), 'speckit-advisor');
+}
+
+function headReceiptDir(env = process.env) {
+  return join(headReceiptBase(env), HEAD_RECEIPT_SUBDIR);
+}
+
+// The default base sits in the temp directory, which other users can share. A
+// symlinked base or folder could point the receipts at a path another user
+// controls, so both must be real folders this user owns and no one else can
+// write to, the rule the route-receipt store holds its folder to.
+function ownedReceiptFolder(env = process.env) {
+  const uid = typeof process.getuid === 'function' ? process.getuid() : null;
+  for (const path of [headReceiptBase(env), headReceiptDir(env)]) {
+    const stat = lstatSync(path);
+    if (stat.isSymbolicLink() || !stat.isDirectory()) return false;
+    if (uid !== null && stat.uid !== uid) return false;
+    if ((stat.mode & 0o077) !== 0) return false;
+  }
+  return true;
 }
 
 function headReceiptPath(sessionId, env = process.env) {
@@ -78,7 +106,10 @@ function headReceiptPath(sessionId, env = process.env) {
 
 function readHeadReceipt(sessionId, env = process.env) {
   try {
-    return readFileSync(headReceiptPath(sessionId, env), 'utf8');
+    if (!ownedReceiptFolder(env)) return '';
+    const target = headReceiptPath(sessionId, env);
+    if (!lstatSync(target).isFile()) return '';
+    return readFileSync(target, 'utf8');
   } catch {
     return '';
   }
@@ -96,15 +127,30 @@ function evictOldestReceipts(directory) {
   for (const entry of oldest) unlinkSync(join(directory, entry.name));
 }
 
+// The receipt is written to a fresh temp file and renamed over the target, so a
+// symlink planted at the target is replaced rather than written through.
 function writeHeadReceipt(sessionId, head, env = process.env) {
+  let tempPath = null;
   try {
     const directory = headReceiptDir(env);
     mkdirSync(directory, { recursive: true, mode: 0o700 });
+    if (!ownedReceiptFolder(env)) return;
     const target = headReceiptPath(sessionId, env);
     if (!existsSync(target)) evictOldestReceipts(directory);
-    writeFileSync(target, head, { mode: 0o600 });
+    tempPath = join(directory, `.${process.pid}-${randomBytes(6).toString('hex')}.tmp`);
+    writeFileSync(tempPath, head, { flag: 'wx', mode: 0o600 });
+    renameSync(tempPath, target);
+    tempPath = null;
   } catch {
     // A receipt that cannot be written only costs a repeated head next turn.
+  } finally {
+    if (tempPath) {
+      try {
+        unlinkSync(tempPath);
+      } catch {
+        // The temp file never landed.
+      }
+    }
   }
 }
 

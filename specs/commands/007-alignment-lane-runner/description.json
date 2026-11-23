@@ -1,0 +1,30 @@
+{
+  "specFolder": "commands/007-alignment-lane-runner",
+  "description": "Changes to the private alignment lane runner, run-lanes.cjs, shared by /local-skilled-alignment and /local-doc-alignment: its result parser and the ex",
+  "keywords": [
+    "changes",
+    "private",
+    "alignment",
+    "lane",
+    "runner",
+    "run-lanes",
+    "cjs",
+    "shared",
+    "local-skilled-alignment",
+    "local-doc-alignment",
+    "result",
+    "parser",
+    "executor",
+    "kinds",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-11-23T18:09:13.132Z",
+  "specId": "007",
+  "folderSlug": "alignment-lane-runner",
+  "parentChain": [
+    "commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

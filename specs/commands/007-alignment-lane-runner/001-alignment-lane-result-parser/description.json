@@ -1,5 +1,5 @@
 {
-  "specFolder": "commands/006-alignment-lane-result-parser",
+  "specFolder": "commands/007-alignment-lane-runner/001-alignment-lane-result-parser",
   "description": "Plan a robust last-findings-object parser for the private alignment lane runner",
   "keywords": [
     "plan",
@@ -12,10 +12,11 @@
     "runner"
   ],
   "lastUpdated": "2026-11-14T17:02:14.273Z",
-  "specId": "006",
+  "specId": "001",
   "folderSlug": "alignment-lane-result-parser",
   "parentChain": [
-    "commands"
+    "commands",
+    "007-alignment-lane-runner"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

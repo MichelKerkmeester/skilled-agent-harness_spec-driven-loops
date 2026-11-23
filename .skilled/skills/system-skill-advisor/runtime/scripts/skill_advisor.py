@@ -4607,7 +4607,7 @@ _WRITING_ABOUT_TOPIC_RE = re.compile(
 )
 _LOOP_SUBJECT = r"(?:[\w'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)\b"
 _LOOP_QUESTION_RE = re.compile(
-    r"\b(?:how|why|when|what) (?:does|do|is|are|did|makes) " + _LOOP_SUBJECT
+    r"\b(?:how|why|when|what) (?:does|do|is|are|did|makes|doesn't|don't|isn't|aren't|didn't|won't|can't) " + _LOOP_SUBJECT
     + r"|\bhow many (?:[\w'-]+ ){0,2}?(?:does|do|is|are|did|will|would|should|can) " + _LOOP_SUBJECT
     + r"|\b(?:explain|describe) (?:how|what|why|when) " + _LOOP_SUBJECT
 )

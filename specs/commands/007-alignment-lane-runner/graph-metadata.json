@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/007-alignment-lane-runner",
+  "spec_folder": "commands/007-alignment-lane-runner",
+  "parent_id": null,
+  "children_ids": [
+    "commands/007-alignment-lane-runner/001-alignment-lane-result-parser",
+    "commands/007-alignment-lane-runner/002-devin-lane"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment lane runner phase parent spec",
+      "run-lanes.cjs changes"
+    ],
+    "key_topics": [
+      "alignment",
+      "lane",
+      "runner",
+      "phase",
+      "parent",
+      "spec",
+      "run-lanes",
+      "cjs",
+      "changes",
+      "two",
+      "private",
+      "commands"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/executors.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-lanes.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-lanes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executors.json",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-skilled-alignment/executors.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two private alignment commands, `/local-skilled-alignment` and `/local-doc-alignment`, send their review lanes and critic through one runner, `.skilled/commands/assets/local-skilled-alignment/run-lanes.cjs`",
+    "created_at": "2026-11-23T18:09:13Z",
+    "last_save_at": "2026-11-23T18:56:33.468Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7b6bb33949e297e71434975e2d47c731e0662b9baf387cc6a596b28d9754c6e2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "adcde89444dd084b519e5888e1d532bda75abf69c39f372162596df008f6c933"
+    },
+    "last_active_child_id": "commands/007-alignment-lane-runner/002-devin-lane",
+    "last_active_at": "2026-11-23T18:56:04.219Z"
+  }
+}

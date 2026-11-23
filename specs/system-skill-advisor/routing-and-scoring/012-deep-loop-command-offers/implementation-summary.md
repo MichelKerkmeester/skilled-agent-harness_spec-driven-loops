@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
     last_updated_at: "2026-11-23T19:23:01Z"
     last_updated_by: "generate-context"
-    recent_action: "Validated the packet after the fresh-review build"
-    next_safe_action: "Run the merge of origin/main and push to main"
+    recent_action: "Merged origin/main and reran every gate on the merged tree"
+    next_safe_action: "None: the packet is complete"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
@@ -162,6 +162,9 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Fresh-review round: prompt hook | Every REQ-015 to REQ-019 prompt and control gives its stated result (`scratch/probes/fresh-review-hook.txt`) |
 | Fresh-review round: suites | `npm run build` exit 0, then 180 files, 2696 passed, 4 skipped, 0 failed (baseline 2624). Python `pass=130, fail=0` with 98 fixture cases. TypeScript and Python predicates agree on 227 prompts |
 | Fresh-review round: probes and corpus | 69 probes `exit 0 live`, 0 changes against `results-final-958fa81-worktree.json` (`scratch/probes/results-fresh-review.json`). Corpus `false_offer` 0 of 57. One holdout refusal row stopped carrying a command, so the baseline was rewritten with `--write` |
+| Merge of origin/main | Main brought `a299bbcba42`, which edited the same gate. Its curly-apostrophe helper `lowerFolded`, its negated loop questions ("why doesn't my deep review converge") and its exported `LOOP_WANT_LEADS` were kept beside this round's `hasLoopAsk` and "how many" questions, in TypeScript and Python. Its new test, which wants a shared run case for every loop word, failed on this round's `deep-research` spelling, so the case `hyphen-deep-research` was added. The trigger index and its three fixtures were regenerated, not hand-merged (`--check` exit 0) |
+| Merged tree: suites | `npm run build` exit 0, then 180 files, 2735 passed, 4 skipped, 0 failed. Python `pass=130, fail=0` with 118 fixture cases. TypeScript and Python predicates agree on 227 prompts |
+| Merged tree: probes | 69 probes `exit 0 live`, 0 changes against `results-final-958fa81-worktree.json`, so main introduced no probe change |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -222,6 +225,6 @@ What stays open:
 3. **"Write a memo on" is not read as writing about a topic.** "write a memo on iterative research funding for the grant committee" gets `/deep:research pol=ask`, and so does the same memo on "deep research funding", which was a loop ask before this packet. No guard is added for one phrasing.
 4. **The multi-round research alias also catches a memo about research funding.** The operator kept it for K2 (ADR-002), so that memo can surface the hub as a skill suggestion with no command.
 5. **The F6 session asks the offer only some of the time.** Three `claude -p` runs on "extend the finished deep review by 3 iterations" each stopped before spending, but none asked the offer with options A, B and C. The plan-mode run (`scratch/behaviour/F6-plan-mode.md`, $0.22) composed `/deep:review <packet> :auto --extend=3` and wrote a plan for approval. The run outside plan mode (`scratch/behaviour/F6.md`, $0.18) asked the spec-folder question and named `--extend=3` as the command it would run, after reading only the flag table. Step 0 of both command documents now names the three options, and the flag table sends a composed flag into option A. The run after that edit (`scratch/behaviour/F6-after-step0.md`, $0.16) asked which review was meant before it opened the command document, so the edit was never read. The session acts on the brief's `ask` alone, and the offer format lives one document away from it. Three more samples after the edit split: sample 1 (`scratch/behaviour/F6-sample-1.md`, $0.20) loaded `/deep:review` and asked the offer with `--extend=3` in the recommended option A, while samples 2 and 3 ($0.11 and $0.17) asked which review was meant first, since about 30 finished reviews exist. So 1 of 4 runs since the edit asked the offer, and AC-008 is recorded as waived under ADR-003 with that rate disclosed. The earlier F6 recording answered another prompt ("8 more") and is kept as `scratch/behaviour/F6-other-prompt.md`.
-6. **A typed command on a stuck run.** "my deep review run is stuck, /deep:review again" gets `/doctor:deep-loop` from `attachCommand` and no run row from the Python gate, but the typed-command path still puts `/deep:review (ask)` on the head. The typed command is the reader's own choice, so it was left to outrank the diagnosis.
+6. **A typed command on a stuck run.** "my deep review run is stuck, /deep:review again" gets `/doctor:deep-loop` from `attachCommand` and no run row from the Python gate, but the typed-command path still puts `/deep:review (ask)` on the head. The typed command is the reader's own choice, so it was left to outrank the diagnosis. The operator confirmed that choice on 2026-11-23.
 7. **Known misses of the word rules.** "Skip the deep review on this branch" is not read as a refusal, because "skip" also opens requests. "multi-pass compiler design review" offers the loop again, since three words may now stand before the loop's noun.
 <!-- /ANCHOR:limitations -->

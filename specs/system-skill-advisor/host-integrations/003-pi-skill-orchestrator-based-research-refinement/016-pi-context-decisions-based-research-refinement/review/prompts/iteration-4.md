@@ -14,12 +14,12 @@ This prompt pack renders the per-iteration context for the `@deep-review` LEAF a
 STATE SUMMARY (auto-generated):
 Iteration: 4 of 5
 Dimension: maintainability
-Prior Findings: P0=0 P1=0 P2=4
+Prior Findings: P0=0 P1=0 P2=5
 Dimension Coverage: correctness, security, traceability (3/4)
 Traceability: core=partial overlay=pending
 Resource Map Coverage: resource-map.md not present; skipping coverage gate.
 Coverage Age: 0
-Last 2 ratios: 1.0 -> 0.75
+Last 2 ratios: 0.5 -> 0.6
 Stuck count: 0
 Provisional Verdict: PENDING hasAdvisories=false
 
@@ -140,7 +140,13 @@ Review Scope Files: - specs/system-skill-advisor/host-integrations/003-pi-skill-
 - .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
 - .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
 - README.md
-Prior Findings: P0=0 P1=0 P2=4
+- specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/spec.md
+- specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/plan.md
+- specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/tasks.md
+- specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md
+- specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/implementation-summary.md
+- .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-subprocess.vitest.ts
+Prior Findings: P0=0 P1=0 P2=5
 
 ## PIVOT LINEAGE
 
@@ -158,7 +164,7 @@ Load `.skilled/skills/sk-code/sk-code-review/references/review-core.md` before f
 ## REVIEW DIMENSIONS
 
 correctness, security, traceability, maintainability
-Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): Review the code and docs the whole epic shipped across phases 001 to 027 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, and the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.
+Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): Review the code and docs the whole epic shipped across phases 001 to 028 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload) and phase 028's fixes for the second review's six P2 findings (subprocess stdin guard, curly-apostrophe fold and ITERATION_COUNT comment in both offer-gate runtimes, child 007 to 010 statuses, receipt-guard catalog sources, 027 AC-006). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.
 
 ## TRACEABILITY PROTOCOLS
 

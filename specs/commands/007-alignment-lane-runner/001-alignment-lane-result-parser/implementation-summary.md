@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "commands/006-alignment-lane-result-parser"
+    packet_pointer: "commands/007-alignment-lane-runner/001-alignment-lane-result-parser"
     last_updated_at: "2026-11-14T19:05:00Z"
     last_updated_by: "builder"
     recent_action: "Replaced the findings scan and added four parser cases"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-alignment-lane-result-parser |
+| **Spec Folder** | 001-alignment-lane-result-parser |
 | **Completed** | 2026-11-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

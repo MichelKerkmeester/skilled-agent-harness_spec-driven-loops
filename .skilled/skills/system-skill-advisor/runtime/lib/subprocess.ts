@@ -247,6 +247,10 @@ function runSpawnAttempt(args: {
       return;
     }
 
+    // A child that exits before it reads the prompt closes the pipe, and the
+    // write then fails with EPIPE. Without a listener that error is thrown out of
+    // the caller; the close handler below already reports the failed exit.
+    child.stdin?.on('error', () => undefined);
     child.stdin?.write(args.prompt);
     child.stdin?.end();
     const timer = setTimeout(() => {

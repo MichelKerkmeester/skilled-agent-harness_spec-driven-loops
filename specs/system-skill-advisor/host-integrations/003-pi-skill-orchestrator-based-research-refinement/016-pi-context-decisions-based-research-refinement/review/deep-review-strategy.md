@@ -1,15 +1,19 @@
 ---
-title: "Deep Review Strategy: 016 epic, generation 2"
-description: "Live strategy for the second five-pass review of the whole 016 pi-context-decisions epic."
+title: Deep Review Strategy Template
+description: Runtime template copied to review/ during initialization to track review progress, dimension coverage, findings, and outcomes across iterations.
 trigger_phrases:
-  - "016 epic review strategy"
+  - "deep review strategy template"
+  - "review dimension tracking"
+  - "exhausted review approaches"
+  - "review session tracking"
 importance_tier: normal
 contextType: planning
+version: 1.11.1.0
 ---
 
-# Deep Review Strategy - 016 Epic, Generation 2
+# Deep Review Strategy - 016 Epic, Generation 3
 
-Live strategy for the second five-pass review of the whole 016 epic.
+Live strategy for the third five-pass review of the whole 016 epic, run after phase 028 fixed the second review's six P2 findings.
 
 ## 1. OVERVIEW
 
@@ -28,7 +32,7 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 ---
 
 ## 2. TOPIC
-Review of the whole 016 pi-context-decisions epic, phases 001 to 027, as the code stands at HEAD `ea73ab54056`. Target type: spec-folder. Focus: Review the code and docs the whole epic shipped across phases 001 to 027 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, and the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.
+Review of the whole 016 pi-context-decisions epic, phases 001 to 028, as the code stands at HEAD. Target type: spec-folder. Focus: Review the code and docs the whole epic shipped across phases 001 to 028 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload) and phase 028's fixes for the second review's six P2 findings (subprocess stdin guard, curly-apostrophe fold and ITERATION_COUNT comment in both offer-gate runtimes, child 007 to 010 statuses, receipt-guard catalog sources, 027 AC-006). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.
 
 ---
 
@@ -38,9 +42,10 @@ Review of the whole 016 pi-context-decisions epic, phases 001 to 027, as the cod
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
-- Not a re-review of the Nov 19 run's findings as such; that run is archived under `review-archive/2026-11-23T05-50-33Z/`.
+- Not a re-review of the earlier runs as such; they are archived under `review-archive/2026-11-23T05-50-33Z/` (generation 1) and `review-archive/2026-11-23T09-35-19Z/` (generation 2). Generation 2's six P2s are claims to recheck at HEAD, not findings to carry.
 - Not the cut or research-only items in the epic spec (R1, R4, R6, R7, R8, N5, N6, N7).
 - Not code outside the files the epic touched, except where a finding needs a caller or callee read.
+- Not the deep-loop skill's own tooling (the reducer-generated resource map), which belongs to another packet.
 - No fixes: the review target is read-only.
 
 ---
@@ -63,99 +68,119 @@ Review of the whole 016 pi-context-decisions epic, phases 001 to 027, as the cod
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
 - P1 (Required): 0
-- P2 (Suggestions): 6
+- P2 (Suggestions): 7
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
-- Reading code paths end to end then running the targeted vitest and pytest suites over the shared fixtures gave proof beyond the packet tables (iteration 1)
-- Comparing each spawn site against its sibling (CLI fallback vs subprocess.ts) exposed the one missing guard; exact-key allowlist diff plus the drift test settled env parity (iteration 2)
-- Rerunning each AC row's own grep or test command verbatim at HEAD, plus a status grep over every child spec.md, surfaced drift that strict validation passes (iteration 3)
-- Loading the TS gate under Node type stripping beside the Python module and running both on off-fixture prompts gave a direct parity check and exposed shared defects (iteration 4)
-- Rerunning each carried finding's grep, read or probe at HEAD confirmed all six P2s. A verbatim-slice fuzz of the strip (14,013 probes) found 0 TS/Python diffs (iteration 5)
+- Probing both offer gates with hand-written prompts (Python on source, native via dist) surfaced a shared gap the fixture misses (iteration 1)
+- Running the targeted vitest files plus the Python fixture replay confirmed the 028 fixes cheaply (iteration 1)
+- Comparing sibling state stores (route-receipt ownedFolder vs Vibe head receipt) exposed a missing folder-trust check (iteration 2)
+- A timing probe on the built dist settled the pasted-strip ReDoS question in one call (iteration 2)
+- One scripted pass over all 28 children's spec, graph and acceptance status found the stale child a named-instance fix missed (iteration 3)
+- Rerunning goal and AC commands plus validate.sh --recursive --strict (about 42 s) checked packet claims cheaply (iteration 3)
+- Grepping every caller of the exported offer-gate predicates, then probing dist and Python with a straight/curly pair, found the one predicate the fold fix missed (iteration 4)
+- Grepping the shared fixture and both test suites for each vocabulary entry exposed branches no parity case guards (iteration 4)
+- Rerunning validate.sh --recursive --strict plus the goal and 028 AC commands, and one paired-prompt probe over both runtimes, rechecked all seven P2s and settled checklist_evidence (iteration 5)
 
 ---
 
 ## 9. WHAT FAILED
-- Nothing failed; budget left bridge env parity, crash fallback, residue tool and doctor cleanup unread (iteration 1)
-- Nothing failed; doctor cleanup YAML wiring left for traceability (iteration 2)
-- Strict validation as a status oracle: it passed child 007 with a stale Planned status (iteration 3)
-- Nothing failed; the pasted-reply strip mirror was left unprobed for budget (iteration 4)
-- Importing `prompt-policy.ts` under type stripping fails (`shared/unicode-normalization.js` unresolved, no dist build), so the strip ran as a source slice. The call-site parity check was not run (iteration 5)
+- No TS runner (tsx) installed, so native probes rely on a possibly stale dist build (iteration 1)
+- macOS has no `timeout` binary; run probes without it (iteration 2)
+- Naive backtick-path resolution over catalog files flags many relative cross-links; resolve against the catalog root before reading hits (iteration 3)
+- zsh does not word-split an unquoted variable of paths; wrap multi-file greps in bash -c (iteration 4)
+- `${PIPESTATUS[0]}` after a `cd && npx vitest | tail` chain printed empty under zsh, so the goal-101 vitest exit was not captured (iteration 5)
+- Exhausted-approach entries reuse generation 2's ids (R2-P2-001, R4-P2-001, R4-P2-002 "fixed"), which collide with this run's open findings of the same ids; match by title plus file:line (iteration 5)
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### Env leak of unrelated secrets to the daemon or bridge child: ruled out, exact-key allowlists with no prefix match. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Env leak of unrelated secrets to the daemon or bridge child: ruled out, exact-key allowlists with no prefix match.
+### 003 graph status in_progress: explained by the recorded no-ship decision. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: 003 graph status in_progress: explained by the recorded no-ship decision.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Env leak of unrelated secrets to the daemon or bridge child: ruled out, exact-key allowlists with no prefix match.
+- Do NOT retry: 003 graph status in_progress: explained by the recorded no-ship decision.
 
-### Ephemeral ids in code comments of the epic's files: none found. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Ephemeral ids in code comments of the epic's files: none found.
+### A phase 028 fix regressing: ruled out by the rechecks above. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: A phase 028 fix regressing: ruled out by the rechecks above.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Ephemeral ids in code comments of the epic's files: none found.
+- Do NOT retry: A phase 028 fix regressing: ruled out by the rechecks above.
 
-### Lane weights left unnormalized after the semantic lane removal: no sum-to-one contract exists, and the catalog states the values. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Lane weights left unnormalized after the semantic lane removal: no sum-to-one contract exists, and the catalog states the values.
+### Bridge env drift between launcher and Python bridge: none beyond the documented launcher-only keys. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Bridge env drift between launcher and Python bridge: none beyond the documented launcher-only keys.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Lane weights left unnormalized after the semantic lane removal: no sum-to-one contract exists, and the catalog states the values.
+- Do NOT retry: Bridge env drift between launcher and Python bridge: none beyond the documented launcher-only keys.
 
-### Live Ollama or embedding lane code left in the advisor after phase 024: ruled out by grep; only an env-prefix scrub entry remains. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Live Ollama or embedding lane code left in the advisor after phase 024: ruled out by grep; only an env-prefix scrub entry remains.
+### Comment hygiene violations in the epic's changed code: none. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Comment hygiene violations in the epic's changed code: none.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Live Ollama or embedding lane code left in the advisor after phase 024: ruled out by grep; only an env-prefix scrub entry remains.
+- Do NOT retry: Comment hygiene violations in the epic's changed code: none.
 
-### Prompt disclosure through the process table: ruled out, every prompt-carrying spawn uses stdin. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Prompt disclosure through the process table: ruled out, every prompt-carrying spawn uses stdin.
+### Current native/Python drift on the untested vocabulary branches: none (six-prompt probe). -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Current native/Python drift on the untested vocabulary branches: none (six-prompt probe).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Prompt disclosure through the process table: ruled out, every prompt-carrying spawn uses stdin.
+- Do NOT retry: Current native/Python drift on the untested vocabulary branches: none (six-prompt probe).
 
-### Receipt store permission failure on an existing base dir: the live `$TMPDIR/speckit-advisor` tree is 0700 and owned by the user, and `mkdirSync` creates it 0700. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Receipt store permission failure on an existing base dir: the live `$TMPDIR/speckit-advisor` tree is 0700 and owned by the user, and `mkdirSync` creates it 0700.
+### Dangling cross-skill catalog links at advisor-recommend.md:31: targets exist in other skills and predate the epic. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Dangling cross-skill catalog links at advisor-recommend.md:31: targets exist in other skills and predate the epic.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Receipt store permission failure on an existing base dir: the live `$TMPDIR/speckit-advisor` tree is 0700 and owned by the user, and `mkdirSync` creates it 0700.
+- Do NOT retry: Dangling cross-skill catalog links at advisor-recommend.md:31: targets exist in other skills and predate the epic.
 
-### Residue tool deleting outside its root through a symlink or traversal: ruled out by `resolveContainedTarget`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Residue tool deleting outside its root through a symlink or traversal: ruled out by `resolveContainedTarget`.
+### Doctor lane-cleanup wiring untested: ruled out by `doctor-update-contract.test.cjs:213-328`. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Doctor lane-cleanup wiring untested: ruled out by `doctor-update-contract.test.cjs:213-328`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Residue tool deleting outside its root through a symlink or traversal: ruled out by `resolveContainedTarget`.
+- Do NOT retry: Doctor lane-cleanup wiring untested: ruled out by `doctor-update-contract.test.cjs:213-328`.
 
-### Residue tool signalling another checkout's or another user's process: ruled out by the ownership check on the script folder realpath. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Residue tool signalling another checkout's or another user's process: ruled out by the ownership check on the script folder realpath.
+### Goal criterion 104 still failing: ruled out (29 PASSED, exit 0). -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Goal criterion 104 still failing: ruled out (29 PASSED, exit 0).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Residue tool signalling another checkout's or another user's process: ruled out by the ownership check on the script folder realpath.
+- Do NOT retry: Goal criterion 104 still failing: ruled out (29 PASSED, exit 0).
 
-### Strip non-idempotence between hook and scorer: ruled out, the function loops to a fixed point [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267-273]. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Strip non-idempotence between hook and scorer: ruled out, the function loops to a fixed point [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267-273].
+### Native probes reading a stale dist: ruled out by mtime. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Native probes reading a stale dist: ruled out by mtime.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Strip non-idempotence between hook and scorer: ruled out, the function loops to a fixed point [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267-273].
+- Do NOT retry: Native probes reading a stale dist: ruled out by mtime.
 
-### TS/Python offer-gate drift beyond the shared fixture: 32 off-fixture probes agree in both copies. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: TS/Python offer-gate drift beyond the shared fixture: 32 off-fixture probes agree in both copies.
+### Native/Python drift on the 30 shared offer cases: none. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: Native/Python drift on the 30 shared offer cases: none.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: TS/Python offer-gate drift beyond the shared fixture: 32 off-fixture probes agree in both copies.
+- Do NOT retry: Native/Python drift on the 30 shared offer cases: none.
 
-### TS/Python offer-gate drift: 127 TS tests and 18 Python tests pass over the shared fixtures. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: TS/Python offer-gate drift: 127 TS tests and 18 Python tests pass over the shared fixtures.
+### R2-P2-001 (stdin write without error listener): fixed at HEAD working tree. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: R2-P2-001 (stdin write without error listener): fixed at HEAD working tree.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: TS/Python offer-gate drift: 127 TS tests and 18 Python tests pass over the shared fixtures.
+- Do NOT retry: R2-P2-001 (stdin write without error listener): fixed at HEAD working tree.
 
-### TS/Python pasted-reply strip drift on off-fixture input: 0 diffs over 14,013 probes. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: TS/Python pasted-reply strip drift on off-fixture input: 0 diffs over 14,013 probes.
+### R4-P2-001 (curly apostrophe defeats loop-run ask): fixed in both runtimes. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: R4-P2-001 (curly apostrophe defeats loop-run ask): fixed in both runtimes.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: TS/Python pasted-reply strip drift on off-fixture input: 0 diffs over 14,013 probes.
+- Do NOT retry: R4-P2-001 (curly apostrophe defeats loop-run ask): fixed in both runtimes.
 
-### Unchecked 003 tasks hiding missing evidence: they are conditional on a ship decision that was not taken. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Unchecked 003 tasks hiding missing evidence: they are conditional on a ship decision that was not taken.
+### R4-P2-002 (ITERATION_COUNT comment contradicts behavior): comment now matches probed behavior. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: R4-P2-002 (ITERATION_COUNT comment contradicts behavior): comment now matches probed behavior.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Unchecked 003 tasks hiding missing evidence: they are conditional on a ship decision that was not taken.
+- Do NOT retry: R4-P2-002 (ITERATION_COUNT comment contradicts behavior): comment now matches probed behavior.
 
-### Unmet or waived AC rows hidden in the seven AC files: none, all 117 read Met. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Unmet or waived AC rows hidden in the seven AC files: none, all 117 read Met.
+### Receipt-guard catalog naming only the Claude hook: fixed. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Receipt-guard catalog naming only the Claude hook: fixed.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Unmet or waived AC rows hidden in the seven AC files: none, all 117 read Met.
+- Do NOT retry: Receipt-guard catalog naming only the Claude hook: fixed.
+
+### ReDoS in the pasted-reply strip: ruled out by the timing probe. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: ReDoS in the pasted-reply strip: ruled out by the timing probe.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: ReDoS in the pasted-reply strip: ruled out by the timing probe.
+
+### Residue apply-mode deleting outside its roots or signalling a foreign process: ruled out by direct read of the containment and ownership guards. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Residue apply-mode deleting outside its roots or signalling a foreign process: ruled out by direct read of the containment and ownership guards.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Residue apply-mode deleting outside its roots or signalling a foreign process: ruled out by direct read of the containment and ownership guards.
+
+### Route-receipt path traversal or symlink redirection: ruled out by direct read. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Route-receipt path traversal or symlink redirection: ruled out by direct read.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Route-receipt path traversal or symlink redirection: ruled out by direct read.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -168,35 +193,32 @@ Review of the whole 016 pi-context-decisions epic, phases 001 to 027, as the cod
 
 ## 11. RULED OUT DIRECTIONS
 [Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
-- Strip non-idempotence between hook and scorer: fixed-point loop (iteration 1, evidence: runtime/lib/prompt-policy.ts:267-273)
-- TS/Python offer-gate drift: shared fixtures pass in both suites (iteration 1)
-- Receipt invalidated by directive delivery: clock moves only on lifecycle advance (iteration 1, evidence: hooks/lib/directive-lifecycle-file-store.ts:75-81)
-- Prompt in argv, env leak to daemon/bridge child, residue tool traversal or foreign-process kill (iteration 2)
-- Live Ollama/embedding lane code left after phase 024; unmet or waived AC rows in the seven AC files (iteration 3)
-- Off-fixture TS/Python gate drift (32 probes agree), unnormalized lane weights after removal, ids in epic code comments (iteration 4)
-- Off-fixture TS/Python pasted-reply strip drift (0 diffs over 14,013 probes). The unchecked 003 T009 to T014 rows are conditional on a ship decision that was not taken (iteration 5)
+- R2-P2-001, R4-P2-001, R4-P2-002 rechecked and fixed at HEAD working tree (iteration 1, evidence: subprocess.ts:249, command-attach.ts:478, skill_advisor.py:4559)
+- Native/Python drift on the 30 shared offer cases: none (iteration 1)
+- Pasted-strip ReDoS, launcher/bridge env drift, residue apply-mode escape or foreign-process signal, route-receipt traversal: all ruled out (iteration 2)
+- 003 graph in_progress (recorded no-ship decision), cross-skill catalog links at advisor-recommend.md:31 (pre-epic, targets exist), receipt-guard catalog sources (fixed): ruled out (iteration 3)
+- Comment-hygiene violations in scoped code, untested doctor lane-cleanup wiring, current native/Python drift on untested vocabulary branches: ruled out (iteration 4)
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none, the rotation is complete (5 of 5 iterations). - Focus area: synthesis. Six P2s are active and no P0 or P1. - Reason: the iteration cap has been reached, and every carried finding was confirmed at HEAD. - Carry-forward: `checklist_evidence` final partial (AC-006); `feature_catalog_code` partial (R3-P2-002); the strip call-site parity check was not run. - Required evidence: none further for this run. Review verdict: PASS
+- Dimension: none (iteration cap reached). Focus area: synthesis. - Reason: all four dimensions covered; core protocols spec_code and checklist_evidence pass; overlays feature_catalog_code and playbook_capability stay partial (advisory). - Rotation status: 4/4 dimensions covered. - Carry-forward: seven confirmed P2s; match by title plus file:line because of the id collision with generation 2. - Required evidence: none outstanding for the core gate. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
-Prior work on this target, from the epic's spec.md, decision-record.md and child packets:
-- Nov 19 five-pass review (native Opus medium) of phases 001 to 013 code: 0 P0, 0 P1, 9 P2; fixed in phase 014.
-- Phase 021: Fable 5.2 high verification, 1 P1 and 10 P2, fixed in 022.
-- Phase 024 removed the Ollama and embedding lane whole; phase 025 fixed its review P2s; phase 026 aligned the doctor surface.
-- Phase 027 fixed a fresh Fable review (rounds one and two) and an Opus high third review (`027-epic-review-fixes/evidence/opus-third-review.md`): bridge env parity, the deep-loop offer gate in TS and Python, exclusion-file reload. Known limitation: "research iterative deepening search algorithms" still ranks the loop hub first.
-- resource-map.md not present; skipping coverage gate.
+Generation 2 (archived at `review-archive/2026-11-23T09-35-19Z/`) returned FAIL from the coverage gate and one open search-ledger row (env_parity), with 0 P0, 0 P1 and 6 P2: R2-P2-001 stdin write without an error listener, R3-P2-001 children 007 to 010 still Planned, R3-P2-002 receipt-guard catalog naming only the Claude hook, R3-P2-003 027 AC-006 grep not reproducing, R4-P2-001 curly apostrophe defeating the loop-run ask, R4-P2-002 ITERATION_COUNT comment contradicting behavior. Phase 028 (`028-second-epic-review-fixes/`) claims to fix all six; verify each at HEAD. Generation 2 never recorded the agent_cross_runtime overlay.
 
 ### Bounded Context Snapshot
 
-- Target pointers: the 113 files in reviewScopeFiles (epic spec docs plus every existing non-spec file the epic's commits touched); the child packets 001 to 027 under this folder.
-- Behavior claims: each child's spec.md requirements and acceptance-criteria.md rows; the parent phase map in spec.md.
-- Reuse and conventions: TS scorer under `runtime/lib/scorer/`, Python mirror in `runtime/scripts/skill_advisor.py`, shared fixtures under `runtime/tests/fixtures/`.
-- Review risks and gaps: the scope list is derived from commit trailers, so a commit without a `Spec:` trailer is missed; deleted files are out of scope by construction.
+Populate during initialization before the first review dimension runs. Keep this pointer-based and scoped to the declared review target:
+
+- Target pointers: files, specs, symbols, or resource-map entries under review.
+- Behavior claims: acceptance criteria, public contracts, or docs to verify.
+- Reuse and conventions: existing patterns that define expected implementation shape.
+- Review risks and gaps: stale graph or memory caveats, missing files, and out-of-scope areas.
+
+Do not inline full source bodies. Do not dispatch the retired standalone context loop. Use this snapshot only to seed review dimensions and final traceability.
 
 ---
 
@@ -206,133 +228,23 @@ Prior work on this target, from the epic's spec.md, decision-record.md and child
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
-| `checklist_evidence` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
-| `skill_agent` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `agent_cross_runtime` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `feature_catalog_code` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `playbook_capability` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `spec_code` | core | pass | 3 | 028 code fixes (iter 1) and doc-side claims (iter 3) hold at HEAD |
+| `checklist_evidence` | core | pass | 5 | goal 102-106 and 028 AC-001..005 reproduce; goal 104 now 29/29 PASSED exit 0; goal 100 not rerun (daemon restart); 101 output-verified, exit not captured; R3-P2-001 is metadata drift that falsifies no checked row |
+| `skill_agent` | overlay | notApplicable | 3 | epic changed no agent definition |
+| `agent_cross_runtime` | overlay | notApplicable | 3 | no agent or agent mirror in scope; hook-adapter parity checked under spec_code |
+| `feature_catalog_code` | overlay | partial | 3 | receipt-guard entry matches; pasted-reply entry under-names sources (R3-P2-003) |
+| `playbook_capability` | overlay | partial | 3 | link resolution clean for epic changes; scenarios not executed |
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
+[Per-file coverage state table -- populated during initialization from scope discovery]
+
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md` | none | 0 | 0 | pending |
-| `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md` | none | 0 | 0 | pending |
-| `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md` | none | 0 | 0 | pending |
-| `.env.example` | none | 0 | 0 | pending |
-| `.skilled/bin/launcher-heartbeat-watchdog.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/bin/launcher-threshold-env.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/bin/system-skill-advisor-launcher.cjs` | none | 0 | 0 | pending |
-| `.skilled/changelog/skilled/v4.1.0.0.md` | none | 0 | 0 | pending |
-| `.skilled/changelog/skilled/v4.2.0.0.md` | none | 0 | 0 | pending |
-| `.skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/changelog/v1.1.1.0.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/changelog/v1.2.0.0.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-validate.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/lifecycle.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/graph-metadata.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/lib/README.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/leaf-manifest.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/weak-follow-up-route-receipt-guard.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/hub-command-attachment.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/README.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/advisor-server.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/bench/README.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration-baseline.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/database/.gitignore` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/daemon/liveness.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/bm25.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/compat/shim.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/daemon/liveness.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-observability.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/route-exclusions.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-ask-routing.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/lane-registry-env-override.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-fallback-049-005.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/runtime-lane-health.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts` | none | 0 | 0 | pending |
-| `.skilled/skills/system-skill-advisor/SKILL.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/runtime/cli/setup/README.md` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | none | 0 | 0 | pending |
-| `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | none | 0 | 0 | pending |
-| `README.md` | none | 0 | 0 | pending |
+| [path/to/file] | [D1, D3] | [N] | [0 P0, 1 P1, 2 P2] | [partial/complete] |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -344,13 +256,39 @@ Prior work on this target, from the epic's spec.md, decision-record.md and child
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=2026-11-23T05:51:03.170Z, parentSessionId=2026-11-19T04:18:26.591Z, generation=2, lineageMode=restart
+- Session lineage: sessionId=2026-11-23T09:35:31.105Z, parentSessionId=2026-11-23T05:51:03.170Z, generation=3, lineageMode=restart
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=spec_code, checklist_evidence; overlay=skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability
-- Stop policy: max-iterations
-- Started: 2026-11-23T05:51:03.170Z
+- Started: [timestamp]
 <!-- MACHINE-OWNED: END -->
+
+---
+
+## 17. EXAMPLE (POPULATED)
+
+Reference snippet showing a partially populated strategy file mid-review. Use this as a visual anchor when opening a live strategy doc.
+
+```markdown
+## 1. REVIEW CHARTER
+- Target: .skilled/skills/system-deep-loop/deep-research (skill, v1.4.0)
+- Dimensions: correctness, test-coverage, cross-runtime-parity, observability
+- Stop conditions: rolling newInfoRatio < 0.08 for 2 iterations OR all dimensions converged OR max=7 reached
+- Success criteria: zero P0 in correctness; test-coverage P0 resolved or deferred with rationale
+
+## 4. NEXT FOCUS
+- Dimension: test-coverage
+- Files: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts
+- Why: Iteration 2 surfaced a P0 (convergence-path coverage gap); needs a focused follow-up before correctness can terminate PASS.
+
+## 9. COVERAGE MATRIX
+| Dimension            | Status     | Iterations touched |
+|----------------------|------------|--------------------|
+| correctness          | converged  | 1                  |
+| test-coverage        | converging | 2, 4               |
+| cross-runtime-parity | converging | 3                  |
+| observability        | converging | 4                  |
+```

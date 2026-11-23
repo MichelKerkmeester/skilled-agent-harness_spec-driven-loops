@@ -90,6 +90,24 @@ process.stdin.on('end', () => {
   });
 });
 
+describe('runAdvisorSubprocess early child exit', () => {
+  // A prompt larger than the pipe buffer is still being written when the child
+  // exits, so the write fails with EPIPE. The call must report the failed exit
+  // instead of letting that error escape.
+  it('reports a child that exits before reading a large prompt', async () => {
+    const scriptPath = writeScript('process.exit(3);\n');
+    const result = await runAdvisorSubprocess('x'.repeat(8 * 1024 * 1024), {
+      workspaceRoot,
+      pythonBin: process.execPath,
+      scriptPath,
+      timeoutMs: 10000,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.exitCode).toBe(3);
+  });
+});
+
 describe('runAdvisorSubprocess recommendation parser', () => {
   // The hook holds a floored route back against the session's earlier route,
   // so the flag has to survive the parse.

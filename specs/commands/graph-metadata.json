@@ -9,7 +9,7 @@
     "commands/003-local-command-support",
     "commands/004-doctor-sk-skill-command",
     "commands/005-doctor-symlink-install",
-    "commands/006-alignment-lane-result-parser"
+    "commands/007-alignment-lane-runner"
   ],
   "manual": {
     "depends_on": [],

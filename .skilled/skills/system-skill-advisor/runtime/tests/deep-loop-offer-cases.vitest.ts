@@ -12,7 +12,15 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-import { asksForLoopRun, attachCommand, isStuckRunComplaint, isWritingAboutTopic } from '../lib/command-attach.js';
+import {
+  LOOP_NAMES,
+  LOOP_WANT_LEADS,
+  LOOP_WORDING,
+  asksForLoopRun,
+  attachCommand,
+  isStuckRunComplaint,
+  isWritingAboutTopic,
+} from '../lib/command-attach.js';
 
 interface OfferCase {
   readonly id: string;
@@ -47,5 +55,15 @@ describe('deep-loop offer cases shared with the Python fallback', () => {
   // gates to one answer on whether the typed command survives.
   it.each(typedCases.map((entry) => [entry.id, entry] as const))('typed: %s', (_id, entry) => {
     expect(attachCommand('system-deep-loop', REVIEW_ROUTE, entry.prompt) === '/deep:review').toBe(entry.typedReviewKept);
+  });
+
+  // The Python copy spells this vocabulary inline in its patterns, so a word
+  // added to one side and not the other passes every case that never uses it.
+  // Each entry therefore needs a case that asks for a run through it, and the
+  // Python suite reads the same cases.
+  it.each([...LOOP_WORDING, ...LOOP_NAMES, ...LOOP_WANT_LEADS])('has a run case that uses "%s"', (phrase) => {
+    const used = cases.some((entry) => entry.asksForLoopRun
+      && entry.prompt.toLowerCase().replace(/[\u2018\u2019]/g, "'").includes(phrase));
+    expect(used).toBe(true);
   });
 });

@@ -476,8 +476,15 @@ export function isPastRunRead(text: string): boolean {
 // is what marks it, so "write up the findings" after a run still asks for one.
 const WRITING_ABOUT_TOPIC = /\b(?:write|draft|compose|author|prepare|publish|outline)\b (?:[\w'-]+ ){0,3}?(?:blog(?: post)?|article|essay|newsletter(?: section| issue)?|tweet(?: thread)?|thread|post|talk|presentation|slides?|deck|tutorial|op-ed|piece|whitepaper|white paper|primer|explainer)s?\b (?:[\w'-]+ ){0,3}?(?:about|on|explaining|covering|describing|introducing|why|how)\b/;
 
+// Many keyboards type a contraction with a curly apostrophe, and the gate's
+// patterns spell it straight, so each exported test reads the text lowercased
+// and folded to the straight form.
+function lowerFolded(text: string): string {
+  return text.toLowerCase().replace(/[\u2018\u2019]/g, "'");
+}
+
 export function isWritingAboutTopic(text: string): boolean {
-  const lower = text.toLowerCase().replace(/[‘’]/g, "'");
+  const lower = lowerFolded(text);
   const writing = WRITING_ABOUT_TOPIC.exec(lower);
   return writing !== null && !explicitRunOutranks(lower, writing.index);
 }
@@ -531,7 +538,19 @@ export const COMMAND_GAP_WORDS = "(?:[a-z']+ ){0,2}";
 // clause describes, as in "we need a review loop for every PR" or "a review
 // loop that approves PRs", is that standing process too, while "a research
 // loop on cache eviction" or "a deep loop for the parser" still names a run.
-const LOOP_WANT_LEAD = "(?:i'd like|i would like|we'd like|we would like|i want|we want|i need|we need|give me|spin up)";
+export const LOOP_WANT_LEADS: readonly string[] = [
+  "i'd like",
+  'i would like',
+  "we'd like",
+  'we would like',
+  'i want',
+  'we want',
+  'i need',
+  'we need',
+  'give me',
+  'spin up',
+];
+const LOOP_WANT_LEAD = `(?:${LOOP_WANT_LEADS.map(escapePhrase).join('|')})`;
 
 // A continue, resume or extend verb asks for a run the reader already has.
 const LOOP_CONTINUE_VERB = '(?:continue|resume|extend|restart)';
@@ -609,10 +628,10 @@ function hasLoopAsk(lowered: string): boolean {
 // whose output they want read, a stuck run they want diagnosed, or a method they
 // want to write about. Both deep-loop offer paths read this one test, so the
 // routed mode and the deferred mode cannot disagree on what counts as the ask.
-// Many keyboards type the contraction with a curly apostrophe, as in "I’d like",
-// so the text is folded to the straight form first.
+// The want leads spell their contractions with a straight apostrophe, so a curly
+// one is folded first, and every exception below reads the folded text too.
 export function asksForLoopRun(prompt: string): boolean {
-  const lowered = prompt.toLowerCase().replace(/[‘’]/g, "'");
+  const lowered = lowerFolded(prompt);
   return hasLoopAsk(lowered)
     && !isPastRunRead(lowered)
     && !isStuckRunComplaint(lowered)
@@ -623,20 +642,24 @@ export function asksForLoopRun(prompt: string): boolean {
 // A question about how the loop works names it the way a request to run it
 // does, as in "how does the deep review decide it has converged". It asks for
 // the run only when it also tells the loop to start or gives an iteration count.
-// The loop has to be what the question is about, so "deep research: how do
-// vector databases handle hybrid search" still asks for a run on that topic.
+// A negated question, as in "why doesn't my deep review converge", asks about
+// the loop the same way. The loop has to be what the question is about, so
+// "deep research: how do vector databases handle hybrid search" still asks for
+// a run on that topic.
 const LOOP_SUBJECT = '(?:[\\w\'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)\\b';
 // "How many" asks about the loop's length, as in "how many passes does the deep
 // review do".
 const LOOP_QUESTION = new RegExp(
-  `\\b(?:how|why|when|what) (?:does|do|is|are|did|makes) ${LOOP_SUBJECT}`
+  `\\b(?:how|why|when|what) (?:does|do|is|are|did|makes|doesn't|don't|isn't|aren't|didn't|won't|can't) ${LOOP_SUBJECT}`
   + `|\\bhow many (?:[\\w'-]+ ){0,2}?(?:does|do|is|are|did|will|would|should|can) ${LOOP_SUBJECT}`
   + `|\\b(?:explain|describe) (?:how|what|why|when) ${LOOP_SUBJECT}`,
 );
 // Only a digit count turns the question back into a request. The spelled count
-// is left out on purpose, so a question that quotes one, as in "why does it stop
-// after ten iterations", stays the question it was before spelled counts were
-// read as a loop ask.
+// is left out on purpose, so a question about the loop that quotes one, as in
+// "why does the deep review stop after ten iterations", stays the question it
+// was before spelled counts were read as a loop ask. A question that names no
+// loop is not a loop question at all, so "why does it stop after ten
+// iterations" still reads its count as a request for a run.
 const ITERATION_COUNT = /\b\d+ (?:[a-z-]+ ){0,2}iterations?\b/;
 // A later clause that opens with a use verb on "one" or "it" asks for the loop
 // the question named, as in "what is a deep review? run one on the parser".

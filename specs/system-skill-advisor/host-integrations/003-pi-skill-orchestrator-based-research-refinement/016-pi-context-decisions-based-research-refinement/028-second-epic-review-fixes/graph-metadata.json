@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "second epic review fixes",
+      "phase 28 second epic review fixes",
+      "second epic review fixes plan",
+      "second epic review fixes tasks",
+      "second epic review fixes acceptance criteria",
+      "028-second-epic-review-fixes operator decisions",
+      "second epic review fixes implementation summary"
+    ],
+    "key_topics": [
+      "second",
+      "epic",
+      "review",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "028-second-epic-review-fixes",
+      "operator",
+      "decisions",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-subprocess.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "subprocess.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        "source": "derived"
+      },
+      {
+        "name": "subprocess-output-cap.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-subprocess.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-subprocess.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-offer-cases.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "weak-follow-up-route-receipt-guard.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-offer-cases.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-prompt-advisor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pasted-reply-stripping.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Python child that exits before it reads the prompt makes the advisor subprocess throw an uncaught `EPIPE` instead of failing open",
+    "created_at": "2026-11-23T09:26:09Z",
+    "last_save_at": "2026-11-23T18:18:19.261Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c60afeaf874ac31a9159470dab06180c350fdee12155a8bc83035d832b3c909f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d23c77db171583fdce26d6bec28ba637a0c370a4b5ef474e31759dd0232bc755",
+      "plan.md": "8697cf93e9987a8007ea82d13a21bfb8e68c61fd7b6aee80ce85235a3225978f",
+      "tasks.md": "0fd3d32e8dc5f9c5284a89891fcee3265f085b3085e8acf632acf8a59fc95a72",
+      "decision-record.md": "fb9c422d2f36c97dd79efa7a3cc19f75049a20802ca063b03a7ac55a12fdeb43",
+      "implementation-summary.md": "efd9da2bd02a2d9e69fb106021ac5aee391475faf794189cdf33d5bc84de449d"
+    },
+    "last_active_at": null
+  }
+}

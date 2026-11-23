@@ -1,23 +1,25 @@
-# Iteration 5 - Stabilization Pass (traceability)
+# Iteration 5 - Cross-Dimension Stabilization (Traceability)
 
 ## Dispatcher
 
-- Iteration 5 of 5, the last under the cap. Native `@deep-review` leaf at HEAD `ea73ab54056`.
-- Dimension: traceability, run as a cross-dimension stabilization pass, because all four dimensions were covered in iterations 1 to 4.
-- Jobs: finish the core protocol `checklist_evidence`, recheck the six open P2 findings at HEAD, then run an off-fixture differential of the pasted-reply strip (`prompt-policy.ts` against `skill_advisor.py`).
-- Operator focus: the operator asked for the epic to be judged from code and tests. This pass reran each carried finding's evidence at HEAD (greps, reads and live probes of both runtimes) instead of trusting the earlier narratives. It also fuzzed the pasted-reply strip directly, which is the one shipped surface earlier passes left unprobed.
+- Iteration 5 of 5, generation 3, sessionId `2026-11-23T09:35:31.105Z`, lineageMode `restart`. State log held 4 iteration records, so the JSONL-derived number matches the dispatch.
+- Dimension: traceability (stabilization pass). Jobs: finish core protocol `checklist_evidence`, update the overlays, and recheck the seven open P2 findings of this run at HEAD.
+- Operator focus: covered by rerunning the epic goal's criteria and phase 028's Met rows against code and tests, and by reprobing both offer-gate runtimes with paired prompts (native via the built dist, Python via source).
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:225-250`
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:276-279`
-- `.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md:14-41`
-- `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:33`
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:438-500`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4545-4600, 5020-5063`
-- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243-274`
-- Child `spec.md` and `graph-metadata.json` for 007, 008, 009 and 010
-- All seven child `acceptance-criteria.md` files, all child `tasks.md` files, and `003-follow-up-routing-benchmark/implementation-summary.md`
+- `goal.md:100-106` (epic completion criteria)
+- `028-second-epic-review-fixes/acceptance-criteria.md:52-58`
+- `027-epic-review-fixes/acceptance-criteria.md:59`
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:251`
+- `.skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts:97`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:32-34`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:277, 330, 384, 408, 492`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4504-4510, 4546, 4582`
+- `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:102, 105`
+- `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md:22, 30-31`
+- epic `spec.md:29, 65, 159-164`; `012-plan-text-and-goal-closeout/graph-metadata.json:39`; `012-plan-text-and-goal-closeout/implementation-summary.md:32`
+- children 007 to 010 `spec.md` Status rows and `graph-metadata.json` status fields
 
 ## Findings - New
 
@@ -31,54 +33,60 @@ None.
 
 ### P2 Findings
 
-None new. The six carried P2s were all rechecked, and all six are confirmed at HEAD (see the recheck below).
+None.
 
-## Prior Finding Recheck (HEAD ea73ab54056)
+## Recheck of Open P2 Findings at HEAD
 
-| ID | Outcome | Evidence at HEAD |
-|----|---------|------------------|
-| R2-P2-001 | Confirmed | `child.stdin?.write(args.prompt)` still has no stdin `error` listener [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:248], while the sibling spawn guards it [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:278]. Severity unchanged: the trigger stays narrow and is inferred, not reproduced. |
-| R3-P2-001 | Confirmed | Status is still `Planned` in the spec.md of 007, 008, 009 and 010 (lines 25, 25, 26 and 25) [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/spec.md:25]. Their `graph-metadata.json` still reads `"status": "planned"` (lines 38, 38, 39 and 39). |
-| R3-P2-002 | Confirmed, slightly wider | The overview still says "The Claude hook holds back" [SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md:16], and the Source Files tables still list no DSH file [SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md:34-41]. The Vibe adapter loads the compiled Claude handler [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:33], so Vibe also reaches the guard without being named. Codex reach is unverified, because `hooks/` has no codex directory. This is recorded as a recheck note, not a new finding. |
-| R3-P2-003 | Confirmed | `git grep -n score-outcome-rerank -- ':!specs'` exits 0 and prints `.skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md:32`. The AC row still records "The grep exited 1" [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59]. |
-| R4-P2-001 | Confirmed | `asksForLoopRun` still only lowercases [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:476], and so does `asks_for_loop_run` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4597]. Live probe in both copies: the straight-quote form returns true and the curly `I’d like a research loop on cache eviction` returns false. |
-| R4-P2-002 | Confirmed | The comment still says the spelled-count question "stays the question it was" [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:494]. Live probe: `why does it stop after ten iterations` returns true in TS and Python. The control `how many passes does it run` returns false in both. |
+Each of this run's seven P2 findings was rechecked by title and file:line. All seven are confirmed; none is downgraded or a false positive. Severity stays P2 under `review-core.md` section 2: none names a reach that breaks a stated contract or a must-fix gate.
 
-None was downgraded and none was a false positive.
+| Id (this run) | Title | HEAD evidence | Outcome |
+|---|---|---|---|
+| R1-P2-001 | Negated loop question read as a run request in both offer gates | `command-attach.ts:492`, `skill_advisor.py:4546`; probe: "why doesn't my deep review converge", the curly spelling and "why won't the deep review stop" give asks=true, stuck=false in both runtimes; the declarative "the deep review isn’t converging" gives asks=false, stuck=true. No negated-question case in the shared fixture. | Confirmed |
+| R2-P2-001 | Vibe head-receipt store trusts its folder | `prompt-advisor.mjs:102` `mkdirSync(..., mode 0o700)` and `:105` `writeFileSync(target, head, { mode: 0o600 })`; the file imports no `lstat`, uid or mode check (import line 17). | Confirmed (pre-existing, not an epic regression, per iteration 2) |
+| R3-P2-001 | Child 012 still reads in progress in two of three status fields | `012-plan-text-and-goal-closeout/graph-metadata.json:39` `"status": "in_progress"`; `implementation-summary.md:32` `completion_pct: 70`. | Confirmed |
+| R3-P2-002 | Epic Status cell stops at phase 022; completion_pct 100 while 028 is open | `spec.md:65` ends "Phase 022 fixes all eleven in worktree 489"; `spec.md:29` `completion_pct: 100`; rows 23 to 28 at `spec.md:159-164`. | Confirmed |
+| R3-P2-003 | Pasted-reply stripping catalog names one call site and one runtime | `pasted-reply-stripping.md:22` names only `scoreAdvisorPrompt`; Source Files at lines 30-31 list only `prompt-policy.ts` and `fusion.ts`. | Confirmed |
+| R4-P2-001 | Writing-about predicate does not fold curly apostrophes | `command-attach.ts:408-409` only lowercases; `skill_advisor.py:4582-4584` likewise. Probe: "write my team's blog post about how the deep review converges" gives writing=true, the curly spelling writing=false, in both runtimes. | Confirmed |
+| R4-P2-002 | Python inlines the vocabulary the native gate keeps as data; fixture tests none of the multi-pass, deep loop or other want-lead branches | Native data lists at `command-attach.ts:277` and `:330`; Python literals at `skill_advisor.py:4506-4510`; a grep of the fixture for `multi-pass`, `deep loop`, `give me a`, `spin up`, `we need a` returns nothing. | Confirmed |
+
+Duplicate check: R1-P2-001 and R4-P2-001 both sit in the offer gate but have different root causes (question grammar versus input normalization), so neither refines the other. R3-P2-001 and R3-P2-002 are separate packets' metadata.
 
 ## Traceability Checks
 
-- `checklist_evidence` (core, final): **partial**.
-  - All 117 AC data rows across the seven AC files read Met. The non-Met rows a grep counted are the header rows (line 52 or 54 of each file).
-  - The six unchecked rows in 003 (T009 to T014, `003-follow-up-routing-benchmark/tasks.md:70-80`) are all marked "Only on ship". The phase closed with a no-ship decision [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78], so leaving them unchecked is correct.
-  - No child carries a `checklist.md`.
-  - One residual keeps this at partial: AC-006's evidence cell cannot be reproduced by its own command (R3-P2-003, `027-epic-review-fixes/acceptance-criteria.md:59`). Partial is the honest final status for this protocol in this run.
+- checklist_evidence (pass, raised from partial): iteration 3 kept it partial for two reasons. (a) Goal criterion `goal.md:104` failed on in-progress 028. It now reproduces: `validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-* --recursive --strict --quiet` printed 29 `RESULT: PASSED (errors=0 warnings=0)` lines and exit 0 (the quiet output carries no folder labels, so no folder mapping is claimed beyond the count matching iteration 3's 28 plus 1). (b) R3-P2-001: that is drift in two metadata fields of child 012 whose own `spec.md` Status, tasks and Met rows are consistent; it falsifies no checked criterion or Met row, so it stays a tracked P2 and does not hold the protocol at partial. Other checked rows reproduce: `goal.md:102` (`ENV-REFERENCE.md:310`, one line), `goal.md:103` (`003-follow-up-routing-benchmark/implementation-summary.md:80`, outcome over-suppresses), `goal.md:105` (`git merge-base --is-ancestor` exit 0), `goal.md:106` (0 open tasks in 014, 015, 016). `goal.md:101`: `npx vitest run tests/hooks tests/parity tests/handlers` printed 34 files and 428 passed, 1 skipped, no failure; the exit status was not captured (zsh PIPESTATUS), so this row is output-verified only. `goal.md:100` was not rerun: it needs a daemon restart on main and would write runtime state outside the review packet. Phase 028 Met rows hold: AC-001 (`subprocess.ts:251` stdin error listener, test at `subprocess-output-cap.vitest.ts:97`), AC-002 and AC-003 (`deep-loop-offer-cases.json:32-34`), AC-004 (007 to 010 each `Status | Complete` and graph `complete`), AC-005 (`027-epic-review-fixes/acceptance-criteria.md:59`). AC-006 and AC-007 are honestly marked Unmet and Pending (`028-second-epic-review-fixes/acceptance-criteria.md:57-58`), which is the expected in-progress state.
+- feature_catalog_code (partial, unchanged): R3-P2-003 still open at `pasted-reply-stripping.md:22`.
+- playbook_capability (partial, unchanged): link resolution clean; scenarios not executed this run.
+- spec_code (pass, from iteration 3 and 4) and skill_agent, agent_cross_runtime (notApplicable, iteration 3) were not rerun.
 
 ## Integration Evidence
 
-- Vibe adapter to the shared Claude handler: `hooks/vibe/prompt-advisor.mjs:33` imports `runtime/dist/hooks/claude/user-prompt-submit.js`.
-- Route-receipt users at HEAD: `hooks/claude/user-prompt-submit.ts`, `hooks/dsh/prompt-advisor.mjs` and `hooks/lib/route-receipt.ts` (exact grep over `hooks/` and `runtime/`).
+- Validator: `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` (recursive strict).
+- Test runner: `npx vitest` in `.skilled/skills/system-skill-advisor/runtime`.
+- Offer gate probes: built `runtime/dist/runtime/lib/command-attach.js` (mtime newer than `command-attach.ts`, so not stale) and `runtime/scripts/skill_advisor.py`; probe script under `/private/tmp/claude-501/r5/`.
 
 ## Edge Cases
 
-- Module load limit: `prompt-policy.ts` cannot be imported under Node type stripping, because `./shared/unicode-normalization.js` does not resolve without a build and `runtime/dist/lib/prompt-policy.js` is absent. The differential therefore ran a verbatim slice of `prompt-policy.ts:243-274`. That slice is self-contained, since it uses only its two regexes. This proves the two strip functions agree. It does not prove both call sites pass the same text. The call-site check (the fusion.ts strip site against `skill_advisor.py:1050-1052`) was not run in this pass.
-- Iteration number: 4 iteration records were in the state log, so this is 5, which matches the dispatch.
+- Finding-id collision across generations: the strategy's Exhausted Approaches lists "R2-P2-001 ... fixed", "R4-P2-001 ... fixed" and "R4-P2-002 ... fixed". Those entries are generation 2's ids (stdin guard, curly-apostrophe ask, ITERATION_COUNT comment). This run's findings with the same ids are different and open. Synthesis must match by title plus file:line, not bare id.
+- Iteration 1's stale-dist caveat is closed: dist mtime 1795426137 is later than source mtime 1795426013.
+- Untracked files in the worktree are 028's in-progress docs and the generation-2 archive; this iteration's validate and vitest runs created nothing outside the review packet.
 
 ## Confirmed-Clean Surfaces
 
-- Pasted-reply strip mirror: 14,013 probes produced 0 TS/Python diffs, 1,223 of which changed the text. The probes were 6,013 random token mixes plus 8,000 cue-anchored mixes. They covered NBSP, U+2028/2029, U+0085, U+FEFF, U+200B, U+180E, U+3000, `ſ`, the Kelvin sign, astral characters, CRLF, repeated `Task:` markers and nested cues [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243-273] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5029-5063].
+- Phase 028 fixes for the second review's six P2s hold at HEAD (stdin listener, curly fold in the ask, spelled-count cases, 007 to 010 statuses, receipt-guard sources, 027 AC-006).
+- Epic goal criterion 104 now reproduces.
 
 ## Ruled Out
 
-- TS/Python pasted-reply strip drift on off-fixture input: 0 diffs over 14,013 probes.
-- Unchecked 003 tasks hiding missing evidence: they are conditional on a ship decision that was not taken.
+- Goal criterion 104 still failing: ruled out (29 PASSED, exit 0).
+- A phase 028 fix regressing: ruled out by the rechecks above.
+- Native probes reading a stale dist: ruled out by mtime.
 
 ## Next Focus
 
-- Dimension: none, the rotation is complete (5 of 5 iterations).
-- Focus area: synthesis. Six P2s are active and no P0 or P1.
-- Reason: the iteration cap has been reached, and every carried finding was confirmed at HEAD.
-- Carry-forward: `checklist_evidence` final partial (AC-006); `feature_catalog_code` partial (R3-P2-002); the strip call-site parity check was not run.
-- Required evidence: none further for this run.
+- Dimension: none (iteration cap reached). Focus area: synthesis.
+- Reason: all four dimensions covered; core protocols spec_code and checklist_evidence pass; overlays feature_catalog_code and playbook_capability stay partial (advisory).
+- Rotation status: 4/4 dimensions covered.
+- Carry-forward: seven confirmed P2s; match by title plus file:line because of the id collision with generation 2.
+- Required evidence: none outstanding for the core gate.
 
 Review verdict: PASS

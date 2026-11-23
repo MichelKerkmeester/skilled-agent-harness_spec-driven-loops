@@ -12,7 +12,8 @@
 
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -102,6 +103,53 @@ test('the head receipt lands in the state folder the injected environment names'
     assert.equal(await buildAdvisorPart(payload, options), head);
     assert.equal(readdirSync(join(stateDir, 'vibe-turn-start')).length, 1);
     assert.equal(await buildAdvisorPart(payload, options), '');
+  } finally {
+    rmSync(stateDir, { recursive: true, force: true });
+  }
+});
+
+// The receipt folder can sit in a temp directory other users share, so a file
+// planted at the receipt path must not redirect the write, and a folder others
+// can write to holds no receipt at all.
+test('a symlink planted at the head receipt path is replaced, never written through', async () => {
+  const stateDir = mkdtempSync(join(tmpdir(), 'vibe-advisor-receipts-'));
+  try {
+    const receiptDir = join(stateDir, 'vibe-turn-start');
+    mkdirSync(receiptDir, { mode: 0o700 });
+    const victim = join(stateDir, 'victim.txt');
+    writeFileSync(victim, 'untouched');
+    const digest = createHash('sha256').update('session-receipt-link').digest('hex').slice(0, 16);
+    symlinkSync(victim, join(receiptDir, `${digest}.head`));
+    const options = {
+      run: async () => ({ hookSpecificOutput: { additionalContext: 'Advisor: route sk-code' } }),
+      env: { SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR: stateDir },
+      isEnabled: () => true,
+    };
+
+    await buildAdvisorPart(payloadFor({ session_id: 'session-receipt-link' }), options);
+    assert.equal(readFileSync(victim, 'utf8'), 'untouched');
+  } finally {
+    rmSync(stateDir, { recursive: true, force: true });
+  }
+});
+
+test('a receipt folder other users can write to holds no head receipt', async () => {
+  const stateDir = mkdtempSync(join(tmpdir(), 'vibe-advisor-receipts-'));
+  try {
+    const receiptDir = join(stateDir, 'vibe-turn-start');
+    mkdirSync(receiptDir);
+    chmodSync(receiptDir, 0o777);
+    const head = 'Advisor: route sk-code';
+    const options = {
+      run: async () => ({ hookSpecificOutput: { additionalContext: head } }),
+      env: { SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR: stateDir },
+      isEnabled: () => true,
+    };
+    const payload = payloadFor({ session_id: 'session-receipt-open' });
+
+    assert.equal(await buildAdvisorPart(payload, options), head);
+    assert.equal(readdirSync(receiptDir).length, 0);
+    assert.equal(await buildAdvisorPart(payload, options), head);
   } finally {
     rmSync(stateDir, { recursive: true, force: true });
   }

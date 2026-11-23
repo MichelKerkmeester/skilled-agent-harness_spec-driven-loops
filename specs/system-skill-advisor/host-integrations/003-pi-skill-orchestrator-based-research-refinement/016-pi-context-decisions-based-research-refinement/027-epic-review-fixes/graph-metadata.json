@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The review found a documented calibration setting that nothing reads, two documented location settings the launcher never forwards, two opt-in switches the daemon cannot see, an eval script that imports a deleted module, unused scoring inputs, a lane cleanup that only wording checks cover, and Python boosts for the retired memory database vocabulary",
     "created_at": "2026-11-22T10:06:33Z",
-    "last_save_at": "2026-11-23T06:22:56.200Z",
+    "last_save_at": "2026-11-23T09:33:49.505Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db6e0717fe486d5cb245aa94e3abcd86b67a517594fabd6e21a4fa7a7a748194",
+    "source_fingerprint": "sha256:2595fd277e9dfd35b256588dfb117503992be968c84aeb9fb470fd74ec2f6cea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c427054228021e32f6face6a938e280127f0b650330c0443f4f49dd4a2ce40a",
