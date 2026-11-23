@@ -34,7 +34,7 @@
       "decision"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,11 +51,11 @@
       "scratch/routing-analysis.md",
       "scratch/decisions.md",
       "scratch/probes/review-fix-r4.json",
+      "scratch/probes/results-after.json",
+      "scratch/probes/results-ac017-ood.json",
       "scratch/probes/review-fix-cases.json",
-      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
-      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
-      ".skilled/commands/deep/review.md",
-      ".skilled/commands/deep/assets/deep-research-presentation.txt"
+      "scratch/behaviour/F6.md",
+      "scratch/behaviour/F6-other-prompt.md"
     ],
     "entities": [
       {
@@ -143,31 +143,43 @@
         "source": "derived"
       },
       {
+        "name": "results-after.json",
+        "kind": "config",
+        "path": "scratch/probes/results-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "results-ac017-ood.json",
+        "kind": "config",
+        "path": "scratch/probes/results-ac017-ood.json",
+        "source": "derived"
+      },
+      {
         "name": "review-fix-cases.json",
         "kind": "config",
         "path": "scratch/probes/review-fix-cases.json",
         "source": "derived"
       },
       {
-        "name": "command-attach.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "review.md",
+        "name": "F6.md",
         "kind": "doc",
-        "path": ".skilled/commands/deep/review.md",
+        "path": "scratch/behaviour/F6.md",
         "source": "derived"
       },
       {
-        "name": "deep-research-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "name": "F6-other-prompt.md",
+        "kind": "doc",
+        "path": "scratch/behaviour/F6-other-prompt.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -189,23 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Offer From",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Advisor Brief",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-23T09:35:16.613Z",
+    "last_save_at": "2026-11-23T11:20:58.552Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f74b96484df119e5c352b1ea63c0be2e28a54c5e4917c83760f1eb3c2387a29",
+    "source_fingerprint": "sha256:e88e694fb2edd8add45f8d2245a55f1f85cfbcea4df8d09cc8bbea287be66a52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e8037b7bf231424a207b8cf6e2037ac7d9f0fbd47b9362438f8e871037a0093",
+      "spec.md": "95319be3a0cd34906f8e82250065ab50de1e0871648d83bb722a2d83d731a07f",
       "plan.md": "8dc6502026e9175b1a9d7897400e21bc703efc4ed2367700dda357af45bb52ad",
-      "tasks.md": "24647c6f94485e62c0f719f71e16181ca9ebfe72bd2c56b0af978a33a82b030a",
-      "decision-record.md": "8af99b2c50bcd532759537c4b28cd1b411f399739fd894b4799bb29156c51262",
-      "implementation-summary.md": "bdd5c5a6b07bc8c462263223103ab191b6821623b0f81961d2a8def2c56aa5e3"
+      "tasks.md": "d1863d57900f1c35a6c4cead1d377c898c4b85c67665879c1aefbb098e736b96",
+      "decision-record.md": "0c0b1e8aecba93adf7e5ced2849017befc6a63728eb72a8057998996b5ae1dfc",
+      "implementation-summary.md": "99909d5e982340fd917aa6560a3d0751f57b02ac1f81e5a9e5f0c541dfb32635"
     },
     "last_active_at": null
   }
