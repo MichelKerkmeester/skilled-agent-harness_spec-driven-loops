@@ -69,9 +69,9 @@ Shell names used below. `ADV` is `.skilled/skills/system-skill-advisor/runtime`.
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: four F6 runs recorded under `scratch/behaviour/`
+- [x] All tasks marked `[x]`. Observed: T001 to T010.
+- [x] No `[B]` blocked tasks remaining. Observed: none.
+- [x] Manual verification passed: four F6 runs recorded under `scratch/behaviour/`. Observed: eight runs, `F6-1.md` to `F6-8.md`. SC-002 is unmet, and the operator closed the packet with that limitation recorded.
 <!-- /ANCHOR:completion -->
 
 ---

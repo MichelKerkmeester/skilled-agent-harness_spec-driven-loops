@@ -39,6 +39,7 @@ _memory:
 | Q003 | Name offer options only for the two deep-loop commands and leave every other ask command label unchanged. | Not stated. | None | spec.md Out of Scope, render.ts |
 | Q004 | Mark option A recommended in the brief and sample F6 four more times. | Not stated. | None | T010, render.ts |
 | Q005 | Merge 013 to main and push once it is settled, then remove worktree 527. | Not stated. | None | worktree 527 |
+| Q006 | Keep the brief change, record SC-002 as unmet with the eight-run evidence, mark the packet Complete and merge it to main. | Not stated. | None | spec.md, implementation-summary.md, render.ts |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -143,6 +144,26 @@ Ask me again first
 Answer:
 ```text
 Merge and push when settled (Recommended)
+```
+
+### Q006
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01SKd3PiJDc9tNs3fnqRkgh6:0 -->
+
+Question:
+```text
+After marking A recommended, four more F6 runs: 0 of 4 asked the full three-option offer (8 runs total, 0 full offers; packet 012's rate was 1 of 4). It did shift the mode: 3 of 4 now preferred :auto (before: 1 of 4), and one composed `/deep:review:auto --extend=3`. No session ever offered C (no loop), and every one asked for the target first. Suite is green. How should 013 close?
+```
+
+Options:
+```text
+Keep, merge, SC-002 unmet (Recommended)
+Revert the brief change
+Leave 013 open
+```
+
+Answer:
+```text
+Keep, merge, SC-002 unmet (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

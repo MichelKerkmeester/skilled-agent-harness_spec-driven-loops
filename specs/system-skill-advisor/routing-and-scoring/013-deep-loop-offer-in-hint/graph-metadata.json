@@ -33,7 +33,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -134,12 +134,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +147,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The advisor brief names a deep-loop command as `system-deep-loop → /deep:review (ask)` and nothing more",
     "created_at": "2026-11-23T16:22:57Z",
-    "last_save_at": "2026-11-23T17:27:55.207Z",
+    "last_save_at": "2026-11-23T17:59:06.903Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:833867dbd79b9a70bc94505f3b77f28f23327871ec4f2da49041960167d173dc",
+    "source_fingerprint": "sha256:39538abac584ec19177327eaf3e120a30ea76f081baf6f57b9d554af5bcdae3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fde2c97aa64d2ac56f18f04803d291548f7c9c8d07960860ca9cb411fad2e653",
+      "spec.md": "24a4e759177a90288bbc551f2b550d70f9e3662994ec372a6663790ef5d1bf6b",
       "plan.md": "7efbc044423a3b735d64704334dcd31f4fde77654da5e31a1585836d37706b3c",
-      "tasks.md": "f0fc79fc52febb320a7b39f6128bce9eecaa5650b6f196be7fd54e078ae09cfe",
-      "decision-record.md": "b061a568451a15574f66aadce83be1d1a062c22de3737f9c263bcc956ffb0e74",
-      "implementation-summary.md": "fd8e2af8a20a01036ed0bddb3f23ab6f7f6adb20b4dfd4b71301ba3033a27a33"
+      "tasks.md": "2d280f7b16b952b480673593cf2f3b3feb9301dd40f5369522e4b3a32d0ffd5d",
+      "decision-record.md": "d6659861a83c8bdaf97920f562200b07889d3c88c5de8f7703771238b873b08c",
+      "implementation-summary.md": "76ee1e8be51d2743f9525a8454f5b5672bd22760a6eb564a16a455b8b3df8fb7"
     },
     "last_active_at": null
   }
