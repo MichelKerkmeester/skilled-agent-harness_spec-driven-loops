@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "e25dbebd8d1521108b2e3253a5dfcf9fefc58b9fe58d5eccb843870225fe8667",
+      "sha256": "0da52a6d27c8b5bbe119bc46e470af3da0ed6d3266c92be436caed3082187a45",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "76c849f719cb59c4b3492b08697c890aa030045cfb309937c923cb6afd2205d3",
+      "sha256": "736a468453a01efd26e27df5bd1cd75ccec373bb774cea9274b3918e16ee4431",
       "section": "full"
     },
     {

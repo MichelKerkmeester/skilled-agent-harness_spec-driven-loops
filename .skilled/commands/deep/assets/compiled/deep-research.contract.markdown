@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "f9fd8ad964c255b838a0f3fdbdedb99176b370ff0cab4800b224014d9da1adfa",
+      "sha256": "a18bf4ea9c73894961e39a7b89bfeed3b5d04e436efe2d9d579e86c399295991",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "920c4f497745bf76f74e123c345eca3d1c501b2adc955bc92f7ffa567e542bf4",
+      "sha256": "118f27cff0b17ef6c53d51615dc7511ca56f2f7d1a26640086aacaaccbf8d1ca",
       "section": "full"
     },
     {

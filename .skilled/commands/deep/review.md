@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm."
-argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--depth-mode=default|expansive] [--frontier-max-depth=N] [--frontier-max-nodes=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
+argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--review-focus=TEXT] [--max-iterations=N] [--stop-policy=convergence|max-iterations] [--depth-mode=default|expansive] [--frontier-max-depth=N] [--frontier-max-nodes=N] [--executor=TYPE [--model=X] [--reasoning-effort=LEVEL] [--count=N]] [--concurrency=N] [--dry-run] [--restart|--lineage-mode=auto|resume|restart] [--extend=N [--extend-minutes=M]]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 

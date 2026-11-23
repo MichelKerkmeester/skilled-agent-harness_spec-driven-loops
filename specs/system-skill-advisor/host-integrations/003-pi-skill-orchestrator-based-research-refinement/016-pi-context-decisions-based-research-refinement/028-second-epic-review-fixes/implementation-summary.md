@@ -107,6 +107,7 @@ Work ran in worktree 523. The worktree first needed its skill graph built, since
 | Fold quotes once in the gate's entry function | Every exception it calls then reads the same text, so no helper can miss the fold again |
 | Guard the vocabulary from the TypeScript side | The Python copy inlines its patterns, so the check requires a shared run case per native entry, and the Python suite reads the same cases |
 | Hold the Vibe receipt folder to the route-receipt store's rule | The two stores share a base folder in the temp directory, so one ownership rule covers both |
+| Combine both sides when merging main's offer-gate rework | Main gained a rework of the same gate (negated run asks, `rounds of`, continue verbs, `set up` as its own rule) while this packet ran. The operator chose to combine them: main's logic is the base, this packet adds the quote fold, the negated questions and the exported want-lead list without `set up`, and the fixture holds both case sets |
 | Fix stale `completion_pct` through the continuity writer | The writer owns that field. 012's graph status also read a ticked line that quoted an unticked checkbox as open, so that line was reworded |
 | A child folder rather than reopening 027 | The operator chose it, and 027 keeps its closed record with only the AC-006 correction |
 <!-- /ANCHOR:decisions -->
@@ -131,6 +132,7 @@ Work ran in worktree 523. The worktree first needed its skill graph built, since
 | `node --test turn-start.test.mjs` (Vibe) | `pass 15`, `fail 0` |
 | `node --test tests/dsh-prompt-advisor.test.mjs` | `pass 20`, `fail 0` |
 | Link check | exit 0 |
+| Whole gate set again after merging `origin/main` | exit 0 on every gate, `Tests 2655 passed, 4 skipped (2659)`, no unhandled error, `PASS: DEEP-LOOP-GATE ... (cases=82)`, Vibe `pass 15` |
 | Review rerun, generation 3 | `PASS`, 0 P0, 0 P1, 7 P2, `search_debt` 0, no failed gate. All seven P2s fixed in this packet |
 <!-- /ANCHOR:verification -->
 

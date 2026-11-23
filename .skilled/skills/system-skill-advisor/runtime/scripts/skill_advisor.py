@@ -4474,20 +4474,30 @@ def _executor_lift_id(executor_id: str) -> str:
 
 _LOOP_PASS_GAP = r"(?:(?:more|extra|additional|full|deep|review|research|audit|iterative) ){0,2}"
 _LOOP_PASS_NOUN = (
-    r"(?:rounds|passes)\b(?! of (?!(?:review|research|audit|investigation|the|it|this|that|these|those|my|our)\b)[a-z])"
+    r"(?:passes\b(?! of (?!(?:review|research|audit|investigation|the|it|this|that|these|those|my|our)\b)[a-z])"
+    r"|rounds\b(?! of (?!(?:(?:the|this|that|my|our) )?(?:review|research|audit|investigation|analysis|deep)\b"
+    r"|(?:the|this|that|my|our) [a-z-]+ (?:review|research|audit|investigation|analysis)\b"
+    r"(?! (?!(?:on|of|for|in|with|to|and|then|until|so|at|across|against|over|before|after)\b)[a-z])"
+    r"|(?:it|this|that)\b(?! [a-z]))[a-z]))"
 )
 _LOOP_MULTI_PASS = r"\b(?:multiple|several|(?<!\bhow )many) " + _LOOP_PASS_GAP + _LOOP_PASS_NOUN
+# A count after a word that points back, or after "after" unless "stop" comes
+# first, names runs that already happened.
+_LOOP_COUNT_BACK_POINTER = "".join(
+    rf"(?<!\b{word} )"
+    for word in ("first", "last", "previous", "past", "prior", "earlier", "those", "these", "the", "both")
+) + r"(?<!(?<!\bstop )\bafter )"
 _LOOP_COUNT_WORDS = (
-    "".join(
-        rf"(?<!\b{word} )"
-        for word in ("first", "last", "previous", "past", "prior", "earlier", "those", "these", "the", "both")
-    )
-    + r"(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen"
+    r"(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen"
     + r"|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|(?:a )?dozen)"
 )
+_LOOP_COUNT_LEAD = (
+    _LOOP_COUNT_BACK_POINTER
+    + r"(?:[2-9]|\d{2,}|" + _LOOP_COUNT_WORDS + r"|(?:1|one)(?= (?:more|extra|additional|further)\b))"
+)
 _LOOP_COUNT = (
-    r"\b(?:\d+|one|" + _LOOP_COUNT_WORDS + r")[- ](?:[a-z-]+ ){0,2}?iterations?\b"
-    + r"|\b(?:[2-9]|\d{2,}|" + _LOOP_COUNT_WORDS + r")(?:-(?:rounds?|pass(?:es)?)\b| "
+    r"\b" + _LOOP_COUNT_LEAD + r"[- ](?:[a-z-]+ ){0,2}?iterations?\b"
+    + r"|\b" + _LOOP_COUNT_LEAD + r"(?:-(?:rounds?|pass(?:es)?)\b| "
     + _LOOP_PASS_GAP + _LOOP_PASS_NOUN + ")"
 )
 _ITERATIVE_ACTIVITY = r"(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|pass(?:es)?|rounds?|loop)"
@@ -4497,24 +4507,36 @@ _ITERATIVE_ASK = (
     + r"|\biteratively " + _ITERATIVE_VERB + r"\b"
     + r"|\b" + _ITERATIVE_VERB + r"\b(?: [\w./'-]+){0,6}? iteratively\b"
     + r"|\b(?:in|over|through) (?:(?:several|multiple|many|a few|successive|repeated) )?iterations\b"
-    + r"|\b(?:several|multiple|(?<!\bhow )many|a few|successive|repeated|more) iterations\b"
+    + r"|\b"
+    + "".join(
+        rf"(?<!\b{word} )"
+        for word in ("needed", "took", "takes", "required", "requires", "used", "ran", "had", "after")
+    )
+    + r"(?:several|multiple|(?<!\bhow )many|a few|successive|repeated|more) iterations\b"
 )
 # Iterative wording, a counted iteration or round, or more than one pass: the
 # ways a prompt asks for the loop by how the work runs rather than by its name.
 _LOOP_PASSES_ASK_RE = re.compile(_ITERATIVE_ASK + r"|" + _LOOP_MULTI_PASS + r"|" + _LOOP_COUNT)
 _LOOP_USE_VERB = r"(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)"
 _LOOP_NAME = r"(?:deep loop|research loop|review loop)"
-_LOOP_WANT_LEAD = r"(?:i'd like|i would like|we'd like|we would like|i want|we want|i need|we need|give me|set up|spin up)"
+_LOOP_WANT_LEAD = r"(?:i'd like|i would like|we'd like|we would like|i want|we want|i need|we need|give me|spin up)"
+_LOOP_CONTINUE_VERB = r"(?:continue|resume|extend|restart)"
+_LOOP_OBJECT_GAP = (
+    r"(?:(?!(?:until|while|when|whenever|unless|if|once|before|after|because|so|then|and|but|or|for|on|in|of"
+    r"|with|against|to|into|over|through|from|by|at)\b)[a-z0-9'-]+ ){0,3}"
+)
 _LOOP_REQUEST_RE = re.compile(
     r"\b(?:deep research|deep review|multi-pass"
-    + r"|" + _LOOP_USE_VERB + r" (?:[a-z0-9'-]+ ){0,3}" + _LOOP_NAME
-    + r"|" + _LOOP_WANT_LEAD + r" (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?" + _LOOP_NAME + r")\b"
+    + r"|(?:" + _LOOP_USE_VERB + r"|" + _LOOP_CONTINUE_VERB + r") " + _LOOP_OBJECT_GAP + _LOOP_NAME
+    + r"|" + _LOOP_WANT_LEAD + r" (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?" + _LOOP_NAME
+    + r"|set up (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?" + _LOOP_NAME + r"(?! (?:for|that|which|to)\b))\b"
     + r"|" + _ITERATIVE_ASK + r"|" + _LOOP_MULTI_PASS + r"|" + _LOOP_COUNT
 )
 _LOOP_RUN_SUBJECT_RE = re.compile(
     r"\b(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run)"
     r"|(?:research|review|audit)(?: (?:loop|run))? (?:i|we) (?:just )?(?:started|launched|kicked off|ran|began|set off|set up)"
-    r"|coverage graph|convergence)\b"
+    r"|(?:the|my|our|this|that) (?:research|review|audit)(?:'s)? (?:coverage graph|convergence)"
+    r"|(?:coverage graph|convergence) (?:of|for|in|on) (?:(?:the|my|our|this|that) )?(?:research|review|audit))\b"
 )
 _LOOP_RUN_SYMPTOM_RE = re.compile(
     r"\b(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|spins|spinning(?! up)"
@@ -4548,6 +4570,14 @@ _LOOP_QUESTION_RE = re.compile(
     + r"|\b(?:explain|describe) (?:how|what|why|when) " + _LOOP_SUBJECT
 )
 _LOOP_DIGIT_COUNT_RE = re.compile(r"\b\d+ (?:[a-z-]+ ){0,2}iterations?\b")
+_LOOP_RUN_BY_PRONOUN_RE = re.compile(
+    r"(?:^|[,.;!?\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*(?:run|start|launch|do|kick off) (?:one|it|another)\b"
+)
+# A use verb on a deep loop's name or on a count asks for the run in so many words.
+_EXPLICIT_RUN_ASK_RE = re.compile(
+    _LOOP_RUN_REQUESTED_RE.pattern
+    + r"|\b(?:run|start|launch|kick off|do|rerun|re-run) (?:(?:an?|another) )?(?:" + _LOOP_COUNT + r")"
+)
 _TYPED_DEEP_COMMAND_RE = re.compile(r"(?<![\w/])/deep:(research|review)\b")
 _DEEP_LOOP_RUN_ROWS = {
     "command-spec-kit-deep-research": "/deep:research",
@@ -4569,19 +4599,39 @@ def is_stuck_run_complaint(text: str) -> bool:
     )
 
 
+# A run ask with a negation within two words before it forbids the run.
+_RUN_ASK_NEGATED_RE = re.compile(r"\b(?:do not|don't|never|no need to|without)\s+(?:[\w'-]+\s+){0,2}$")
+
+
+def _explicit_run_outranks(lower: str, reading_at: int) -> bool:
+    """True when an explicit run ask comes before a reading or opens its own clause after it."""
+    for match in _EXPLICIT_RUN_ASK_RE.finditer(lower):
+        if _RUN_ASK_NEGATED_RE.search(lower[:match.start()]):
+            continue
+        if match.start() < reading_at:
+            return True
+        if re.search(r"[,.;!?\n]", lower[reading_at:match.start()]):
+            return True
+    return False
+
+
 def is_past_run_read(text: str) -> bool:
     """True when the prompt wants a finished run's output read, not a new run."""
     lower = _fold_quotes(text)
+    read_verb = _PAST_RUN_READ_VERB_RE.search(lower)
     return bool(
-        _PAST_RUN_READ_VERB_RE.search(lower)
+        read_verb
         and _PAST_RUN_OUTPUT_RE.search(lower)
         and not _RUN_CONTINUED_RE.search(lower)
+        and not _explicit_run_outranks(lower, read_verb.start())
     )
 
 
 def is_writing_about_topic(text: str) -> bool:
     """True when the prompt asks for a piece written about the loop."""
-    return bool(_WRITING_ABOUT_TOPIC_RE.search(_fold_quotes(text)))
+    lower = _fold_quotes(text)
+    writing = _WRITING_ABOUT_TOPIC_RE.search(lower)
+    return bool(writing and not _explicit_run_outranks(lower, writing.start()))
 
 
 def _is_loop_question(lower: str) -> bool:
@@ -4589,6 +4639,7 @@ def _is_loop_question(lower: str) -> bool:
         _LOOP_QUESTION_RE.search(lower)
         and not _LOOP_RUN_REQUESTED_RE.search(lower)
         and not _LOOP_DIGIT_COUNT_RE.search(lower)
+        and not _LOOP_RUN_BY_PRONOUN_RE.search(lower)
     )
 
 
