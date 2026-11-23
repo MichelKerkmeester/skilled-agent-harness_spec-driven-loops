@@ -54,7 +54,7 @@ const HEAD_CASES: readonly HeadCase[] = [
       confidence: 0.82,
       uncertainty: 0.16,
     },
-    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask) 0.82/0.16 pass.',
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask: A /deep:research:auto, B /deep:research:confirm, C no loop) 0.82/0.16 pass.',
   },
   {
     name: 'a design request names the chart mode',
@@ -161,7 +161,7 @@ const HEAD_CASES: readonly HeadCase[] = [
       confidence: 0.82,
       uncertainty: 0.16,
     },
-    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask) 0.82/0.16 pass.',
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop) 0.82/0.16 pass.',
   },
 ];
 
@@ -241,6 +241,35 @@ describe('command brief golden heads', () => {
     expect(head).toContain('use sk-doc (needs a mode)');
     expect(head).not.toContain('command-');
     expect(head).not.toContain('/create:agent');
+  });
+
+  // A dispatched child must not start or offer the loop, so it keeps the
+  // parent-named marker and never sees the options it could act on.
+  it('renders a deep-loop command in a child session without the offer options', () => {
+    const head = headOf(renderAdvisorBrief(
+      advisorResult(HEAD_CASES[1].recommendation),
+      { childSession: true },
+    ));
+
+    expect(head).toBe('Advisor: live; use system-deep-loop → /deep:research (parent-named only) 0.82/0.16 pass.');
+    expect(head).not.toContain('A /deep:research:auto');
+  });
+
+  // The offer options make the head longer, and the diagnosis companion is the
+  // line a stuck run needs, so both must still fit the default cap.
+  it('keeps the doctor companion beside a deep-loop offer at the default cap', () => {
+    const rendered = renderAdvisorBrief({
+      status: 'ok',
+      freshness: 'live',
+      recommendations: [
+        { ...HEAD_CASES[1].recommendation, command: '/deep:review', passes_threshold: true },
+        { skill: 'command-doctor-deep-loop', kind: 'command', confidence: 0.8, uncertainty: 0.2, passes_threshold: true },
+      ],
+      metrics: { tokenCap: 80 },
+    });
+
+    expect(headOf(rendered)).toContain('/deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop)');
+    expect(headOf(rendered)).toContain('\nAlso: /doctor:deep-loop');
   });
 
   it('renders both command labels under an ambiguous head', () => {

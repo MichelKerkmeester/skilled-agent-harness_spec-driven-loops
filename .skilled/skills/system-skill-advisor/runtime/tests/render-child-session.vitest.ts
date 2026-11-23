@@ -127,7 +127,7 @@ describe('child session command brief', () => {
 
     expect(rendered).toBe(baseline);
     expect(rendered).toBe(expectedBrief(
-      'Advisor: live; use system-deep-loop → /deep:research (ask) 0.85/0.20 pass.',
+      'Advisor: live; use system-deep-loop → /deep:research (ask: A /deep:research:auto, B /deep:research:confirm, C no loop) 0.85/0.20 pass.',
     ));
   });
 
