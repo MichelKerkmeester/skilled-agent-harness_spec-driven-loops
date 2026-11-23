@@ -248,6 +248,8 @@ AC-017 asks two things of the research aliases that ship. K2, "multi-round resea
 | Q021 | Sample F6 three more times before deciding how to close AC-008. | Not stated. | None | tasks.md T053, scratch/behaviour/F6-sample-1.md |
 | Q022 | Hold the push until the AC-008 choice is applied, then push everything together. | Not stated. | None | tasks.md T053 |
 | Q023 | Mark AC-008 met on F6 sample 1 and state that 1 of 4 runs since the routing-step edit asked the offer. | Not stated. | None | acceptance-criteria.md AC-008, implementation-summary.md limitation 5 |
+| Q024 | Tick each unticked task and checklist item against its own check, mark the packet Complete, then commit and push. | Not stated. | None | tasks.md, spec.md, acceptance-criteria.md |
+| Q025 | Leave the pending answers from 13 other sessions alone; each is recorded when its own packet is next saved. | Not stated. | None | none in this packet |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -665,6 +667,45 @@ Keep Unmet
 Answer:
 ```text
 Met, rate disclosed (Recommended)
+```
+
+### Q024
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01GwFmtxsW2bMNCb8sHGjLaq:0 -->
+
+Question:
+```text
+Packet 012 (deep-loop command offers) is closeable: every acceptance row is Met, Waived or Superseded and strict validation passes. But tasks.md still has T003 to T036 and the verification checklist unticked, and spec.md says In Progress. What should I do?
+```
+
+Options:
+```text
+Tick, mark Complete, push (Recommended)
+Tick and mark Complete, no push
+Leave it In Progress
+```
+
+Answer:
+```text
+Tick, mark Complete, push (Recommended)
+```
+
+### Q025
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01GwFmtxsW2bMNCb8sHGjLaq:2 -->
+
+Question:
+```text
+13 other sessions have operator answers that were never saved to a packet (for example 306ce05f with 23, f5cd4f6d with 14, 31b4908f with 13). They belong to other packets, not 012. What should happen to them?
+```
+
+Options:
+```text
+Leave them (Recommended)
+Write me a list
+```
+
+Answer:
+```text
+Leave them (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
