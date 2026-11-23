@@ -2869,6 +2869,12 @@ def test_deep_loop_offer_gate_parity():
             want = (case["asksForLoopRun"], case["stuckRun"], case["writingAbout"])
             if got != want:
                 wrong.append((case["id"], got, want))
+            if "typedReviewKept" in case:
+                kept = bool(advisor._apply_deep_loop_offer_gate(
+                    [{"skill": "command-spec-kit-deep-review"}], case["prompt"].lower()
+                ))
+                if kept != case["typedReviewKept"]:
+                    wrong.append((case["id"], "typed row kept", kept))
     except Exception as exc:
         fail_test(name, str(exc))
         return

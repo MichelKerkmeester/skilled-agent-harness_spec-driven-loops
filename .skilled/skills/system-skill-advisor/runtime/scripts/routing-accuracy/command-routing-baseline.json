@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "ec0e6a5a9dd",
+  "capturedAtSha": "a139ac3b248",
   "corpusSha256": "sha256:8092a113b3804a58bcfd403daa30d9a9cce8180670e12920bfe8bd019ee78eab",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -2124,11 +2124,11 @@
         "total": 24
       },
       "decline": {
-        "carried": 8,
+        "carried": 7,
         "total": 24,
         "byKind": {
           "refusal": {
-            "carried": 3,
+            "carried": 2,
             "total": 6
           },
           "question": {

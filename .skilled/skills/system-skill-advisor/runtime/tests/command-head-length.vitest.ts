@@ -92,10 +92,12 @@ function headViolations(head: string, command: string, policy: string | undefine
   if (head.endsWith('...')) {
     violations.push('head ends with an ellipsis');
   }
-  // A deep-loop command follows its policy word with the offer options, so the
-  // label may close after the word or continue with a colon.
+  // A deep-loop command follows its policy word with the offer options, so only
+  // a deep-loop label may continue with a colon. Every other label closes after
+  // the word, so options leaking onto another command fail here.
   const labelFound = policy !== undefined
-    && (head.includes(`${command} (${policy})`) || head.includes(`${command} (${policy}: `));
+    && (head.includes(`${command} (${policy})`)
+      || (command.startsWith('/deep:') && head.includes(`${command} (${policy}: `)));
   if (!labelFound) {
     violations.push(`${command} (${policy ?? 'no policy'}) is missing`);
   }

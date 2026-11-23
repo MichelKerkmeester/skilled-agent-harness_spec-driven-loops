@@ -19,6 +19,7 @@ interface RecommendationInput {
   readonly policy?: 'run' | 'start' | 'ask';
   readonly ownerSkillId?: string;
   readonly needsMode?: boolean;
+  readonly typed?: true;
   readonly confidence: number;
   readonly uncertainty: number;
 }
@@ -163,6 +164,34 @@ const HEAD_CASES: readonly HeadCase[] = [
     },
     expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.82/0.16 pass.',
   },
+  {
+    name: 'a typed deep-loop command with a mode suffix prints no offer options',
+    recommendation: {
+      skill: 'system-deep-loop',
+      kind: 'command',
+      command: '/deep:review',
+      policy: 'ask',
+      ownerSkillId: 'system-deep-loop',
+      typed: true,
+      confidence: 0.94,
+      uncertainty: 0.12,
+    },
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask) 0.94/0.12 pass.',
+  },
+  {
+    name: 'a typed research command prints no offer options',
+    recommendation: {
+      skill: 'system-deep-loop',
+      kind: 'command',
+      command: '/deep:research',
+      policy: 'ask',
+      ownerSkillId: 'system-deep-loop',
+      typed: true,
+      confidence: 0.84,
+      uncertainty: 0.12,
+    },
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask) 0.84/0.12 pass.',
+  },
 ];
 
 // Every recommendation is marked as passing so each case isolates the head form
@@ -270,6 +299,23 @@ describe('command brief golden heads', () => {
 
     expect(headOf(rendered)).toContain('/deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop)');
     expect(headOf(rendered)).toContain('\nAlso: /doctor:deep-loop');
+  });
+
+  // An ambiguous head renders each side through the same label, so the deep-loop
+  // side keeps its offer options beside the partner it ties with.
+  it('keeps the deep-loop offer options under an ambiguous head', () => {
+    const head = headOf(renderAdvisorBrief({
+      status: 'ok',
+      freshness: 'live',
+      recommendations: [
+        { ...HEAD_CASES[1].recommendation, command: '/deep:review', confidence: 0.95, uncertainty: 0.16, passes_threshold: true },
+        { skill: 'sk-code', confidence: 0.9, uncertainty: 0.12, passes_threshold: true },
+      ],
+      ambiguous: true,
+      metrics: { tokenCap: 120 },
+    }));
+
+    expect(head).toBe('Advisor: live; ambiguous: system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.95/0.16 vs sk-code 0.90/0.12 pass.');
   });
 
   it('renders both command labels under an ambiguous head', () => {

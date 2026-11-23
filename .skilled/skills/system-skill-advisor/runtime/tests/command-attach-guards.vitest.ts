@@ -12,6 +12,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
+  asksForLoopRun,
   attachCommand,
   commandOnlyMentioned,
   isNoEditRequest,
@@ -726,6 +727,74 @@ describe('command attach on a deep-loop prompt', () => {
     ['review', 'write a blog post about how to run a deep review'],
   ])('withholds the %s command on a count, a loop name or a run ask that asks for no run: %s', (mode, prompt) => {
     expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  // A refusal spelled out in words withholds the run the way a refused typed
+  // command does, whether it leads the loop name or follows it.
+  it.each([
+    ['research', "don't do deep research, just answer quickly"],
+    ['research', 'never run deep research on this'],
+    ['review', 'no need to run a deep review here'],
+    ['review', "I'm not asking for a deep review, just explain the bug"],
+    ['review', 'no deep review, please; explain the bug'],
+    ['review', 'a deep review is not needed, just check the diff'],
+  ])('withholds the %s command on a refused run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    'do a deep review of the parser',
+    'why not run a deep review of the parser',
+    'no, run a deep review of the parser',
+  ])('keeps the review command when nothing refuses the run: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/deep:review');
+  });
+
+  it.each([
+    ['research', 'how many iterations does deep research run by default?'],
+    ['review', 'how many passes does the deep review do'],
+  ])('offers no %s run on a question about how long the loop runs: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'run a deep-review of the auth module', '/deep:review'],
+    ['research', 'I’d like a research loop on cache eviction policies', '/deep:research'],
+    ['research', 'the deep research run is not stuck, run 5 more iterations', '/deep:research'],
+  ])('offers the %s command on a hyphen, a curly apostrophe or a denied symptom: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  it('reads a hyphenated loop name inside a path as a file name', () => {
+    expect(asksForLoopRun('update the wording in deep-review.md and system-deep-review/SKILL.md')).toBe(false);
+  });
+
+  // A loop name about the loop's own code or results, and a count that
+  // describes a subject, name what the request is about rather than a run.
+  it.each([
+    ['research', 'refactor the deep research scorer'],
+    ['review', 'fix the bugs the deep review found'],
+    ['review', 'open the review loop config'],
+    ['review', 'we need a review loop for every PR'],
+    ['review', 'I want a review loop that approves PRs automatically'],
+    ['review', 'compare 10 iterations of the model and review the results'],
+    ['research', 'research three-pass vs two-pass compilers'],
+    ['review', 'several passes of the linter failed, review the config'],
+    ['review', 'review our multi-pass compiler'],
+  ])('withholds the %s command when the loop is the subject: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'run a deep review on the parser', '/deep:review'],
+    ['research', 'do 5 research iterations on caching', '/deep:research'],
+    ['review', 'review the parser in several passes', '/deep:review'],
+    ['review', 'do a multi-pass review of the parser', '/deep:review'],
+    ['review', 'fix the parser with a deep review', '/deep:review'],
+  ])('keeps the %s command when the loop measures the work: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
   });
 
   it('reads no deferred mode for a hub other than the deep loop', () => {

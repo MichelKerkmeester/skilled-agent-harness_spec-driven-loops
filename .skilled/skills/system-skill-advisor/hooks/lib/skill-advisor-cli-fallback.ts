@@ -390,6 +390,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
     // A hub that held back its command for want of a mode keeps that signal, so
     // the head can say why no command came with it.
     ...(value.needsMode === true ? { needsMode: true } : {}),
+    // A command the reader typed already carries their choice of mode, so the
+    // head must know it was typed to leave the offer options off.
+    ...(value.typed === true ? { typed: true as const } : {}),
     // A floored route is held back against the session's earlier route, so the
     // floor has to survive the trip from the CLI.
     ...(value.confidenceFloored === true ? { confidenceFloored: true as const } : {}),

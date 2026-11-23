@@ -303,6 +303,9 @@ export const AdvisorRecommendationSchema = z.object({
   // Set only when a hub held back its command because the prompt names no
   // single mode, so the head can say so.
   needsMode: z.literal(true).optional(),
+  // Set only when the command is one the prompt typed, so the head prints the
+  // reader's own choice rather than offering a choice they already made.
+  typed: z.literal(true).optional(),
   // Set only when the confidence was raised to the task-intent floor rather
   // than earned by the recommendation's own evidence, so a hook can tell a
   // floored route from a confident one.

@@ -441,6 +441,7 @@ export function attachTypedCommand(
         command: typed.command,
         policy: typed.policy,
         ownerSkillId: typed.ownerSkillId,
+        typed: true as const,
       },
       ...output.recommendations.slice(1),
     ],

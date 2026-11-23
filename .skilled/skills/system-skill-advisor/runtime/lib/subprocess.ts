@@ -44,6 +44,8 @@ export interface AdvisorRecommendation {
   readonly ownerSkillId?: string;
   // True when a hub held back its command because the prompt names no single mode.
   readonly needsMode?: boolean;
+  // True when the command is one the prompt typed, so the head offers no choice.
+  readonly typed?: true;
   // True when the confidence sits on the task-intent floor rather than the
   // recommendation's own evidence.
   readonly confidenceFloored?: true;

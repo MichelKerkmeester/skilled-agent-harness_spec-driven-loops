@@ -4525,12 +4525,49 @@ _LOOP_OBJECT_GAP = (
     r"(?:(?!(?:until|while|when|whenever|unless|if|once|before|after|because|so|then|and|but|or|for|on|in|of"
     r"|with|against|to|into|over|through|from|by|at)\b)[a-z0-9'-]+ ){0,3}"
 )
+# A wording phrase stops at a path or a file name, so `deep-review.md` names a file.
 _LOOP_REQUEST_RE = re.compile(
-    r"\b(?:deep research|deep review|multi-pass"
-    + r"|(?:" + _LOOP_USE_VERB + r"|" + _LOOP_CONTINUE_VERB + r") " + _LOOP_OBJECT_GAP + _LOOP_NAME
+    r"(?<![\w/.-])(?:deep research|deep-research|deep review|deep-review|multi-pass)(?![\w-]|[./]\w)"
+    + r"|\b(?:(?:" + _LOOP_USE_VERB + r"|" + _LOOP_CONTINUE_VERB + r") " + _LOOP_OBJECT_GAP + _LOOP_NAME
     + r"|" + _LOOP_WANT_LEAD + r" (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?" + _LOOP_NAME
+    + r"(?! (?:that|which|for (?:every|each|all|any))\b)"
     + r"|set up (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?" + _LOOP_NAME + r"(?! (?:for|that|which|to)\b))\b"
     + r"|" + _ITERATIVE_ASK + r"|" + _LOOP_MULTI_PASS + r"|" + _LOOP_COUNT
+)
+# A loop phrase led by an edit verb, or followed by a code, file or result noun
+# or a result verb, names the request's subject rather than asking for the run.
+_LOOP_EDIT_LEAD_RE = re.compile(
+    r"\b(?:refactor|fix|edit|modify|rewrite|debug|patch|rename|tweak|tune|clean up) " + _LOOP_OBJECT_GAP + r"\Z"
+)
+_LOOP_ARTIFACT_AFTER_RE = re.compile(
+    r"(?:'s)? (?:scorer|scoring|config|configs|configuration|settings|module|script|scripts|implementation|prompt"
+    r"|prompts|template|templates|schema|runner|reducer|logic|tests|docs|documentation|yaml|json|findings|results"
+    r"|dashboard|command file|found|flagged|reported|raised|produced|surfaced|returned|generated|turned up)\b"
+)
+# A hyphen count or `multi-pass` measures the loop only when it qualifies the
+# loop's own work or ends the phrase.
+_HYPHEN_COUNT_RE = re.compile(r"-(?:pass(?:es)?|rounds?|iterations?)\Z")
+_HYPHEN_COUNT_MEASURES_LOOP_RE = re.compile(
+    r"(?:\Z|\s*[,.;:!?)\n]| (?:[a-z-]+ ){0,3}?(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|scan|sweep"
+    r"|loop|run|approach)(?:s|es)?\b| (?:on|of|over|across|through|for|at|against|with|in|into|until|and|then|to"
+    r"|please|now)\b)"
+)
+# Iterations of something that is not the loop count the subject's versions, and
+# a count that does something reports runs that already happened.
+_COUNT_NOUN_RE = re.compile(r"(?:pass(?:es)?|rounds?|iterations?)\Z")
+_ITERATIONS_OF_SUBJECT_RE = re.compile(
+    r" of (?!(?:(?:the|this|that|my|our|a|an) )?(?:deep[- ])?(?:review|research|audit|investigation|analysis|loop)\b"
+    r"|(?:it|this|that)\b|(?:the|this|that|my|our) [a-z-]+ (?:review|research|audit|investigation|analysis)\b)"
+)
+_COUNT_AS_SUBJECT_RE = re.compile(
+    r"(?: of (?:[\w'-]+ ){0,2}?[\w'-]+)? (?:failed|ran|took|were|was|had|showed|found|produced|returned|crashed"
+    r"|broke|timed out|succeeded|completed|finished|didn't|did not)\b"
+)
+# A refusal after the loop name keys on a need word, so "the run is not stuck"
+# stays a statement about the run.
+_LOOP_ASK_REFUSED_AFTER_RE = re.compile(
+    r"(?: (?:run|loop|pass|iterations?))? (?:(?:is|are|was|were) (?:not|no longer)|isn't|aren't|wasn't|weren't|not)"
+    r" (?:needed|necessary|required|wanted|warranted|called for)\b"
 )
 _LOOP_RUN_SUBJECT_RE = re.compile(
     r"\b(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run)"
@@ -4538,11 +4575,15 @@ _LOOP_RUN_SUBJECT_RE = re.compile(
     r"|(?:the|my|our|this|that) (?:research|review|audit)(?:'s)? (?:coverage graph|convergence)"
     r"|(?:coverage graph|convergence) (?:of|for|in|on) (?:(?:the|my|our|this|that) )?(?:research|review|audit))\b"
 )
+# A state word that a negation leads, as in "the run is not stuck", denies the
+# symptom. Python's lookbehind takes fixed widths, so each negation gets its own.
 _LOOP_RUN_SYMPTOM_RE = re.compile(
-    r"\b(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|spins|spinning(?! up)"
+    r"\b(?:"
+    + "".join(rf"(?<!\b{word} )" for word in ("not", "isn't", "wasn't", "aren't", "weren't", "longer", "never"))
+    + r"(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|spins|spinning(?! up)|stale|empty)"
     r"|never (?:converges?|finishes|stops|ends|fires)"
     r"|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot|without) (?:converg\w*|finish\w*|progress\w*|mov\w*|fir\w*)"
-    r"|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)|stale|empty"
+    r"|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)"
     r"|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\b"
 )
 _LOOP_RUN_REQUESTED_RE = re.compile(
@@ -4567,6 +4608,7 @@ _WRITING_ABOUT_TOPIC_RE = re.compile(
 _LOOP_SUBJECT = r"(?:[\w'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)\b"
 _LOOP_QUESTION_RE = re.compile(
     r"\b(?:how|why|when|what) (?:does|do|is|are|did|makes) " + _LOOP_SUBJECT
+    + r"|\bhow many (?:[\w'-]+ ){0,2}?(?:does|do|is|are|did|will|would|should|can) " + _LOOP_SUBJECT
     + r"|\b(?:explain|describe) (?:how|what|why|when) " + _LOOP_SUBJECT
 )
 _LOOP_DIGIT_COUNT_RE = re.compile(r"\b\d+ (?:[a-z-]+ ){0,2}iterations?\b")
@@ -4574,11 +4616,17 @@ _LOOP_RUN_BY_PRONOUN_RE = re.compile(
     r"(?:^|[,.;!?\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*(?:run|start|launch|do|kick off) (?:one|it|another)\b"
 )
 # A use verb on a deep loop's name or on a count asks for the run in so many words.
-_EXPLICIT_RUN_ASK_RE = re.compile(
-    _LOOP_RUN_REQUESTED_RE.pattern
-    + r"|\b(?:run|start|launch|kick off|do|rerun|re-run) (?:(?:an?|another) )?(?:" + _LOOP_COUNT + r")"
+_COUNTED_RUN_ASK_RE = re.compile(
+    r"\b(?:run|start|launch|kick off|do|rerun|re-run) (?:(?:an?|another) )?(?:" + _LOOP_COUNT + r")"
 )
-_TYPED_DEEP_COMMAND_RE = re.compile(r"(?<![\w/])/deep:(research|review)\b")
+_EXPLICIT_RUN_ASK_RE = re.compile(_LOOP_RUN_REQUESTED_RE.pattern + r"|" + _COUNTED_RUN_ASK_RE.pattern)
+# A typed command starts where a word, a quote or a bracket ends it, and ends at
+# a mode suffix or where its name stops, so `/deep:review.md` names a file.
+_TYPED_DEEP_COMMAND_RE = re.compile(
+    r"(?:^|(?<=[\s`'\"(*\[~>“‘«′‹]))/deep:(research|review)"
+    r"(?=(?::(?:auto|confirm|autopilot|unattended|with-(?:context|phases|research)))+(?![a-z0-9_:-])"
+    r"|(?![a-z0-9_:-]|[/.][a-z0-9_]))"
+)
 _DEEP_LOOP_RUN_ROWS = {
     "command-spec-kit-deep-research": "/deep:research",
     "command-spec-kit-deep-review": "/deep:review",
@@ -4590,17 +4638,30 @@ def _fold_quotes(text: str) -> str:
 
 
 def is_stuck_run_complaint(text: str) -> bool:
-    """True when the prompt reports a fault in an existing deep run."""
+    """True when the prompt reports a fault in an existing deep run.
+
+    A counted run ask, as in "run 5 more iterations", asks for more of the run,
+    so it cancels the stuck reading unless a refusal leads it.
+    """
     lower = _fold_quotes(text)
     return bool(
         _LOOP_RUN_SUBJECT_RE.search(lower)
         and _LOOP_RUN_SYMPTOM_RE.search(lower)
         and not _LOOP_RUN_REQUESTED_RE.search(lower)
+        and not any(
+            not _RUN_ASK_NEGATED_RE.search(lower[:match.start()])
+            for match in _COUNTED_RUN_ASK_RE.finditer(lower)
+        )
     )
 
 
-# A run ask with a negation within two words before it forbids the run.
-_RUN_ASK_NEGATED_RE = re.compile(r"\b(?:do not|don't|never|no need to|without)\s+(?:[\w'-]+\s+){0,2}$")
+# A run ask with a negation within two words before it forbids the run. A bare
+# "no" refuses only the loop name right after it, and a bare "not" is left out
+# because "why not run a deep review" proposes the run.
+_RUN_ASK_NEGATED_RE = re.compile(
+    r"(?:\b(?:do not|don't|dont|never|no need to|need not|needn't|without|not asking for|not looking for)"
+    r"\s+(?:[\w'-]+\s+){0,2}|\bno\s+)\Z"
+)
 
 
 def _explicit_run_outranks(lower: str, reading_at: int) -> bool:
@@ -4629,7 +4690,7 @@ def is_past_run_read(text: str) -> bool:
 
 def is_writing_about_topic(text: str) -> bool:
     """True when the prompt asks for a piece written about the loop."""
-    lower = text.lower()
+    lower = _fold_quotes(text)
     writing = _WRITING_ABOUT_TOPIC_RE.search(lower)
     return bool(writing and not _explicit_run_outranks(lower, writing.start()))
 
@@ -4643,11 +4704,35 @@ def _is_loop_question(lower: str) -> bool:
     )
 
 
+def _names_loop_subject(phrase: str, before: str, after: str) -> bool:
+    """True when the loop phrase is what the request is about, not what it asks for."""
+    if _LOOP_EDIT_LEAD_RE.search(before) or _LOOP_ARTIFACT_AFTER_RE.match(after):
+        return True
+    if _HYPHEN_COUNT_RE.search(phrase) and not _HYPHEN_COUNT_MEASURES_LOOP_RE.match(after):
+        return True
+    if re.search(r"iterations?\Z", phrase) and _ITERATIONS_OF_SUBJECT_RE.match(after):
+        return True
+    return bool(_COUNT_NOUN_RE.search(phrase) and _COUNT_AS_SUBJECT_RE.match(after))
+
+
+def _has_loop_ask(lower: str) -> bool:
+    """True when one loop phrase is neither refused nor the request's subject."""
+    for match in _LOOP_REQUEST_RE.finditer(lower):
+        before = lower[:match.start()]
+        after = lower[match.end():]
+        if _RUN_ASK_NEGATED_RE.search(before) or _LOOP_ASK_REFUSED_AFTER_RE.match(after):
+            continue
+        if _names_loop_subject(match.group(0), before, after):
+            continue
+        return True
+    return False
+
+
 def asks_for_loop_run(prompt: str) -> bool:
     """True when the prompt asks for a deep-loop run itself."""
-    lower = prompt.lower()
+    lower = _fold_quotes(prompt)
     return bool(
-        _LOOP_REQUEST_RE.search(lower)
+        _has_loop_ask(lower)
         and not is_past_run_read(lower)
         and not is_stuck_run_complaint(lower)
         and not is_writing_about_topic(lower)
@@ -4655,15 +4740,104 @@ def asks_for_loop_run(prompt: str) -> bool:
     )
 
 
+# The native gate reads how a prompt names a command before it trusts the name,
+# so a command the prompt refuses or asks about is not offered. This copy keeps
+# the part that the two deep-loop commands reach: both ask before they run, and
+# neither has a retired name.
+_CMD_USE_VERB = r"(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)"
+_CMD_GAP_WORDS = r"(?:[a-z']+ ){0,2}"
+_CMD_NOT_WORD = r"(?<!\bwhy )not"
+_CMD_DECLINE_LEADS = (
+    r"(?:do not|don't|dont|never|" + _CMD_NOT_WORD + r"|won't|wont|no longer|cannot|can't|no need to|need not"
+    r"|needn't) (?!(?:forget|hesitate|fail|mind)\b)" + _CMD_GAP_WORDS + _CMD_USE_VERB + " " + _CMD_GAP_WORDS,
+    r"(?:skip|skipping|without|instead of|rather than|avoid|stop|stopped|quit|" + _CMD_NOT_WORD + r") (?:(?!"
+    + _CMD_USE_VERB + r"\b)[a-z']+ ){0,2}",
+)
+_CMD_OR_LIST = (
+    r"(?:(?:the )?\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: [a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*"
+)
+_CMD_ASK_LEADS = (
+    r"(?:what does|what is|what's|what would|what will|what did|how does|how did|why does|why did|explain|describe"
+    r"|tell me what|tell me how|tell me about|tell me why|difference between|differ from|differs from|different from"
+    r"|undo what|ran|already ran|was running) (?:the )?(?:command )?",
+    r"(?:should i|should we|do i need to|when would i) " + _CMD_USE_VERB + r" (?:the )?(?:command )?",
+)
+_CMD_BARE_ASK_LEAD = r"(?:is|does|can|will|would) (?:the )?"
+_CMD_ASKED_BY_PRONOUN_RE = re.compile(
+    r"(?:^|[,.;!?\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*" + _CMD_USE_VERB + r" it\b"
+)
+_CMD_DECLINED_BY_PRONOUN_RE = re.compile(
+    r"(?:^|[,.;!?\n]|\b(?:but|and|so|though)\b) *(?:(?:please|just|then|still) )*(?:do not|don't|dont|never)"
+    r"(?: (?:actually|really|yet|ever|even))? " + _CMD_USE_VERB + r" it(?: (?:yet|now|for now|at all|please))? *(?:\Z|[,.;!?\n])"
+)
+_CMD_AS_DOCUMENT_RE = re.compile(
+    r"(?: command)?(?:'s)? (?:doc|docs|document|documentation|file|page|source|definition|markdown)\b"
+)
+_CMD_CLAUSE_SPLIT_RE = re.compile(r"(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])")
+
+
+def _fold_command_text(prompt: str) -> str:
+    text = prompt.lower()
+    text = re.sub(r"</?(?:code|kbd|samp|tt)>", "", text)
+    text = re.sub("[`*\"“”\\[\\]()~«»′‹›]", "", text)
+    text = text.replace("‘", "'").replace("’", "'")
+    text = re.sub(r"(^|[^a-z0-9])'(?=/[a-z])", r"\1", text)
+    text = re.sub(r"(/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*(?: [a-z][a-z0-9_-]*)?)'(?![a-z0-9])", r"\1", text)
+    text = re.sub(r"[^\S\n]+", " ", text)
+    return re.sub(r" *\n\s*", "\n", text)
+
+
+def _deep_command_only_mentioned(prompt: str, command: str) -> bool:
+    """True when every naming of the command refuses it or asks about it."""
+    text = _fold_command_text(prompt)
+    name = re.escape(command.lower())
+    occurrences = list(re.finditer(r"(?:^|[^a-z0-9_/])" + name + r"(?![a-z0-9_-]|[./][a-z0-9])", text))
+    if not occurrences:
+        return False
+    for occurrence in occurrences:
+        before = text[:occurrence.end()]
+        tail = text[occurrence.end():]
+        clause = _CMD_CLAUSE_SPLIT_RE.split(tail)[0]
+        if _CMD_DECLINED_BY_PRONOUN_RE.search(clause):
+            continue
+        if _CMD_ASKED_BY_PRONOUN_RE.search(clause):
+            return False
+        if (
+            _CMD_AS_DOCUMENT_RE.match(tail)
+            and not re.search(r"\bthen\b", clause)
+            and re.search(r"\b(?:the|this|that) " + name + r"\Z", before)
+        ):
+            continue
+        if any(
+            re.search(r"(?:^|[^a-z0-9_/])" + lead + _CMD_OR_LIST + name + r"\Z", before)
+            for lead in _CMD_DECLINE_LEADS + _CMD_ASK_LEADS
+        ):
+            continue
+        if not re.search(r"(?:^|[^a-z0-9_/])" + _CMD_BARE_ASK_LEAD + _CMD_OR_LIST + name + r"\Z", before):
+            return False
+        sentence = re.split(r"[.!\n]", tail, maxsplit=1)[0]
+        if "?" not in sentence and not re.search(
+            r"(?:^|[.!?\n] *)" + _CMD_BARE_ASK_LEAD + _CMD_OR_LIST + name + r"\Z", before
+        ):
+            return False
+    return True
+
+
+def _typed_deep_command(prompt_lower: str) -> Optional[str]:
+    """The /deep:* command the prompt types, the longest when it types both."""
+    typed = {f"/deep:{match.group(1)}" for match in _TYPED_DEEP_COMMAND_RE.finditer(prompt_lower)}
+    return max(typed, key=len) if typed else None
+
+
 def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str) -> List[Dict[str, Any]]:
     """Drop deep-loop run rows the prompt never asks for, as the native gate does.
 
-    A typed command asks for that command whatever else the prompt says. A piece
-    written about the loop holds the hub back too, because the hub's aliases are
-    the topic's own words.
+    A typed command asks for that command unless the prompt only refuses it or
+    asks about it. A stuck run is answered by the doctor, so it drops the run rows
+    even when one is typed. A piece written about the loop holds the hub back
+    too, because the hub's aliases are the topic's own words.
     """
-    typed_match = _TYPED_DEEP_COMMAND_RE.search(prompt_lower)
-    typed = f"/deep:{typed_match.group(1)}" if typed_match else None
+    typed = _typed_deep_command(prompt_lower)
     run_asked = asks_for_loop_run(prompt_lower)
     stuck = is_stuck_run_complaint(prompt_lower)
     writing_about = typed is None and is_writing_about_topic(prompt_lower)
@@ -4671,7 +4845,11 @@ def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str)
     for rec in ranked:
         skill = rec.get("skill")
         command = _DEEP_LOOP_RUN_ROWS.get(skill)
-        if command is not None and command != typed and (stuck or not run_asked):
+        if command is not None and (
+            stuck
+            or _deep_command_only_mentioned(prompt_lower, command)
+            or (command != typed and not run_asked)
+        ):
             continue
         if writing_about and skill == "system-deep-loop":
             continue

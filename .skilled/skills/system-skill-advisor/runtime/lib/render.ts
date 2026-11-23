@@ -245,7 +245,9 @@ function commandLabel(recommendation: RenderableRecommendation, childSession: bo
   if (policyPart === null) {
     return `${ownerPart} → ${commandPart}`;
   }
-  return policyPart === 'ask' && DEEP_LOOP_OFFER_COMMANDS.has(commandPart)
+  // A typed command, with or without a mode suffix, is the reader's own choice,
+  // so the head prints it plainly instead of offering a choice already made.
+  return policyPart === 'ask' && DEEP_LOOP_OFFER_COMMANDS.has(commandPart) && recommendation.typed !== true
     ? `${ownerPart} → ${commandPart} (ask: A ${commandPart}:auto (Recommended), B ${commandPart}:confirm, C no loop)`
     : `${ownerPart} → ${commandPart} (${policyPart})`;
 }
