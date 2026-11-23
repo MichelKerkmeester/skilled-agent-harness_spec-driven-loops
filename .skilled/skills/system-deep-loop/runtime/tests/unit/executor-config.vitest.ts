@@ -95,7 +95,7 @@ describe('executor-config', () => {
   });
 
   it('allows only the confirmed cli-mistral-vibe fields', () => {
-    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-mistral-vibe']).toEqual(['model', 'timeoutSeconds', 'liveTools']);
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-mistral-vibe']).toEqual(['model', 'sandboxMode', 'timeoutSeconds', 'liveTools']);
     expect(parseExecutorConfig({
       kind: 'cli-mistral-vibe',
       model: 'deepseek-flash',
@@ -107,13 +107,17 @@ describe('executor-config', () => {
     });
   });
 
-  it('rejects reasoningEffort and sandboxMode for cli-mistral-vibe', () => {
+  it('rejects reasoningEffort and every write-capable sandboxMode for cli-mistral-vibe', () => {
     // Vibe has no reasoning flag — thinking is pinned on the roster row — and no OS
-    // sandbox flag, so neither field may be carried.
+    // sandbox flag. Read-only narrows its tools, so that one sandbox value is carried.
     expect(() => parseExecutorConfig({ kind: 'cli-mistral-vibe', model: 'deepseek-flash', reasoningEffort: 'high' }))
       .toThrowError(/reasoningEffort.*not supported by executor kind 'cli-mistral-vibe'/);
-    expect(() => parseExecutorConfig({ kind: 'cli-mistral-vibe', model: 'deepseek-flash', sandboxMode: 'read-only' }))
-      .toThrowError(/sandboxMode.*not supported by executor kind 'cli-mistral-vibe'/);
+    expect(parseExecutorConfig({ kind: 'cli-mistral-vibe', model: 'deepseek-flash', sandboxMode: 'read-only' }).sandboxMode)
+      .toBe('read-only');
+    for (const sandboxMode of ['workspace-write', 'danger-full-access']) {
+      expect(() => parseExecutorConfig({ kind: 'cli-mistral-vibe', model: 'deepseek-flash', sandboxMode }))
+        .toThrowError(/cli-mistral-vibe accepts sandboxMode 'read-only' only/);
+    }
   });
 
   it('rejects an off-roster model for cli-mistral-vibe', () => {

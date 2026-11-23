@@ -60,7 +60,8 @@
       "005-request-pipeline/goal.md",
       "006-launchd-installer/goal.md",
       "007-status-index/goal.md",
-      "008-hub-wiring/goal.md"
+      "008-hub-wiring/goal.md",
+      ".skilled/bin/bots.cjs"
     ],
     "entities": [
       {
@@ -97,6 +98,12 @@
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
@@ -148,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "every",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -161,12 +174,6 @@
       },
       {
         "name": "one",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -200,17 +207,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Open Horizons",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled has agents, commands and three installed schedulers",
     "created_at": "2026-11-22T10:48:25Z",
-    "last_save_at": "2026-11-22T17:01:13.438Z",
+    "last_save_at": "2026-11-23T05:24:44.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +219,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:89b5af4f5dcd47cfc03d64ed3d524999c32b4a9f7b66c59a8f3e301c81feddce",
+    "source_fingerprint": "sha256:1b25980eb28a62bad5cb596115887a0b72c23521329748e2cff5769329ce6318",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2cdd628835d959316140436ec0f54af36f62f5f4052a62b0e2546f8a4c4d577",

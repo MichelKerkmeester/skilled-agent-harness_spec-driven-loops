@@ -1,0 +1,73 @@
+# vibe --help (vibe 3.1.2), captured 2026-11-22T21:15:44Z; no model call
+vibe 3.1.2
+Run the Mistral Vibe interactive CLI
+
+Usage: vibe [OPTIONS] [INITIAL_PROMPT] [COMMAND]
+
+Commands:
+  mcp     Manage MCP server configuration without starting a session
+  config  Describe Vibe's configuration without starting a session
+  help    Print this message or the help of the given subcommand(s)
+
+Arguments:
+  [INITIAL_PROMPT]  Initial prompt for the interactive session, or the prompt in headless mode
+
+Options:
+  -v, --version
+          Show version and exit
+      --workdir <CWD>
+          Change to this directory before running [env: VIBE_CWD=]
+  -c, --continue
+          Continue this terminal's last session in this folder, else the folder's most recent
+      --resume [<RESUME>]
+          Resume a session. Without SESSION_ID, shows an interactive picker
+      --setup
+          Setup API key and exit
+  -p, --prompt [<PROMPT>]
+          Run in headless (programmatic) mode: send prompt, output response, exit
+      --output <OUTPUT>
+          Output format for headless mode [default: text] [possible values: text, json, streaming]
+      --max-turns <MAX_TURNS>
+          Maximum number of assistant turns (headless mode only)
+      --max-price <MAX_PRICE>
+          Maximum cumulative cost in dollars of the run's root session and subagents (headless mode only). A model priced at 0 is free; a limit of 0 stops the run before the next call once any call has cost money
+      --max-tokens <MAX_TOKENS>
+          Maximum cumulative prompt + completion tokens of the run's root session and subagents (headless mode only)
+      --time-limit <SECONDS>
+          Interrupt the run once SECONDS have passed since start, write the export and exit 3. SIGTERM stops the run the same way
+      --prompt-file <PATH>
+          Run in programmatic mode with the prompt read from PATH, instead of -p TEXT or stdin
+      --system-prompt-file <PATH>
+          Replace Vibe's own system prompt instructions with the text in PATH (headless mode only). Project context and AGENTS.md still follow it
+      --output-dir <DIR>
+          On every exit, write export.json (Vibe version, effective config, token usage, cost, stop reason, outcome) and a copy of the session journal (session/) to DIR
+      --agent <NAME>
+          Agent to use (builtin: ask, accept-edits, smart-approve, auto-approve, or custom from ~/.vibe/agents/NAME.toml). Defaults to the 'default_agent' config setting
+      --model <ALIAS>
+          Model alias to use instead of 'active_model' (headless mode only, new sessions). Not saved as the default
+      --auto-approve
+          Approves all tool calls without prompting: a new session on a built-in mode starts the auto-approve agent instead [alias: --yolo]
+      --smart-approve
+          Classify each tool call and auto-run the safe ones, prompting only for risky ones
+      --enabled-tools <ENABLED_TOOLS>
+          Enable specific tools (headless: disables all others). Repeat the flag
+      --disabled-tools <DISABLED_TOOLS>
+          Disable specific tools after --enabled-tools filtering. Repeat the flag
+      --trust
+          Trust the working directory for this invocation only
+      --worktree [<WORKTREE>]
+          Run inside a git worktree under $VIBE_HOME/worktrees. With NAME, create (or reuse) a worktree and branch named NAME. Without NAME, create a new one named after the prompt (or a random slug). Combines with `-c`/`--resume`: the worktree is prepared first and the resume is then scoped to the worktree directory
+      --add-dir <ADD_DIR>
+          Additional working directory for file access. Repeat the flag
+      --check-upgrade
+          Check for a Vibe update now, prompt to install it, and exit
+  -h, --help
+          Print help
+
+Commands:
+  update         Check for a Vibe update now (same as --check-upgrade).
+
+# vibe config schema: builtin tool names (properties.tools keys)
+['ask_user_question', 'bash', 'bash_log_file', 'bash_output', 'bash_sessions', 'bash_stdin', 'edit', 'git_bash', 'git_bash_log_file', 'git_bash_output', 'git_bash_sessions', 'git_bash_stdin', 'grep', 'powershell', 'powershell_log_file', 'powershell_output', 'powershell_sessions', 'powershell_stdin', 'read_file', 'skill', 'task', 'todo', 'web_fetch', 'web_search', 'write_file']
+# vibe config schema: enabled_tools description
+An explicit list of tool names/patterns to enable. If set, only these tools will be active. Supports glob patterns (e.g., 'serena_*') and regex with 're:' prefix (e.g., 're:^serena_.*').

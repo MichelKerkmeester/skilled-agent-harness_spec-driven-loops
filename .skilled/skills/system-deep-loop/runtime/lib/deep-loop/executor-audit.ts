@@ -167,6 +167,9 @@ const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
   // as an orchestrated child session rather than a new top-level session.
   'SYSTEM_SPEC_GATE_ENFORCE',
   'AI_SESSION_CHILD',
+  // Set only by the bots runner, to the run id. A git hook reads it to skip a commit made
+  // inside a bot run, so a bot that commits can never enqueue itself again.
+  'SKILLED_BOT_RUN_ID',
 ]);
 
 const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
@@ -1495,6 +1498,9 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
 const DISPATCH_ENV_KEYS: Readonly<Partial<Record<ExecutorKind, readonly string[]>>> = {
   'cli-deepseek-harness': ['DSH_HOME', 'DSH_SPEC_FOLDER', 'SYSTEM_SPEC_GATE_DISABLED', 'AI_SESSION_CHILD'],
   'cli-opencode': ['OPENCODE_CONFIG_CONTENT'],
+  // The Vibe builder names a lineage-local home, which the per-kind filter drops when
+  // inherited, and turns off the session-start rebuild for a read-only lineage.
+  'cli-mistral-vibe': ['VIBE_HOME', 'SPECKIT_DIST_AUTO_REBUILD'],
 };
 
 // Check the caller-named keys at the one boundary that merges them, so no later caller can

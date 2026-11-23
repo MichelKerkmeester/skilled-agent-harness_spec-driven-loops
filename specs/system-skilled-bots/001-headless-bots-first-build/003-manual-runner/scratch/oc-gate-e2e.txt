@@ -1,0 +1,25 @@
+oc-gate-e2e 2026-11-22T22:38:02Z, real binary opencode v2.3.2
+--- plain: opencode.json={}
+[executor-audit] child stdout 0 bytes, not echoed
+bots: probe run 20261122T223802Z-3f8d76fc failed: crash (class environment)
+bots exit=1
+reached run (no model): argv run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json --auto --agent build You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you. Bound spec folder: none. Write no spec documents. If you reach a decision only a person can make, print one line that starts with [NEEDS-DECISION] followed by the question, then optionally one [OPTION] line per choice, and stop. Do not guess.  
+inline config at run: {"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+--- mcp: opencode.json={"mcp":{"demo":{"type":"local","command":["node","-e","0"],"enabled":true}}}
+[executor-audit] child stdout 0 bytes, not echoed
+bots: probe run 20261122T223804Z-8fc13028 failed: crash (class environment)
+bots exit=1
+reached run (no model): argv run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json --auto --agent build You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you. Bound spec folder: none. Write no spec documents. If you reach a decision only a person can make, print one line that starts with [NEEDS-DECISION] followed by the question, then optionally one [OPTION] line per choice, and stop. Do not guess.  
+inline config at run: {"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+--- agent-override: opencode.json={"agent":{"build":{"permission":{"bash":"allow","edit":"allow"}}}}
+[executor-audit] child stdout 0 bytes, not echoed
+bots: probe run 20261122T223806Z-18e11fdf failed: crash (class environment)
+bots exit=1
+reached run (no model): argv run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json --auto --agent build You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you. Bound spec folder: none. Write no spec documents. If you reach a decision only a person can make, print one line that starts with [NEEDS-DECISION] followed by the question, then optionally one [OPTION] line per choice, and stop. Do not guess.  
+inline config at run: {"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+--- default-agent: opencode.json={"default_agent":"plan","agent":{"plan":{"permission":{"bash":"allow","edit":"allow"}}}}
+[executor-audit] child stdout 0 bytes, not echoed
+bots: probe run 20261122T223807Z-fcb182bf failed: crash (class environment)
+bots exit=1
+reached run (no model): argv run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json --auto --agent build You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you. Bound spec folder: none. Write no spec documents. If you reach a decision only a person can make, print one line that starts with [NEEDS-DECISION] followed by the question, then optionally one [OPTION] line per choice, and stop. Do not guess.  
+inline config at run: {"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}

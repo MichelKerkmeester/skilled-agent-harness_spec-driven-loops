@@ -1,0 +1,54 @@
+negative controls, third review: new tests run against the unfixed runtime 2026-11-22T22:20:34Z
+     × names the checkout path for a child that runs outside it, and only then 2ms
+     × holds a bot when the needs-you folder exists but cannot be listed, and reads only a missing folder as empty 3ms
+     × closes a run that throws right after taking its lease with one record, and releases the lease 1699ms
+     × keeps the parked item traceable when the result event of a parked run cannot be recorded 602ms
+     × holds a bot whose needs-you folder cannot be listed, without dispatch 1436ms
+     × parks a read-only Mistral Vibe run from a private lineage folder, with only the read tools enabled 789ms
+     × fails a Mistral Vibe run that exits 0 while its export record says it did not finish 733ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/dispatch.vitest.ts > bot prompt > names the checkout path for a child that runs outside it, and only then
+AssertionError: expected [] to have a length of 1 but got +0
+- Expected
++ Received
+ FAIL  tests/needs-you.vitest.ts > needs-you item > holds a bot when the needs-you folder exists but cannot be listed, and reads only a missing folder as empty
+AssertionError: expected { items: [], unreadable: [] } to deeply equal { items: [], unreadable: [], …(1) }
+- Expected
++ Received
+ FAIL  tests/runner-hardening.vitest.ts > runner hardening > closes a run that throws right after taking its lease with one record, and releases the lease
+AssertionError: expected { kind: 'completed', …(2) } to match object { kind: 'failed', …(2) }
+- Expected
++ Received
+ FAIL  tests/runner-hardening.vitest.ts > runner hardening > keeps the parked item traceable when the result event of a parked run cannot be recorded
+AssertionError: expected { …(4) } to match object { …(2) }
+- Expected
++ Received
+ FAIL  tests/runner-hardening.vitest.ts > runner hardening > holds a bot whose needs-you folder cannot be listed, without dispatch
+AssertionError: expected { kind: 'completed', …(2) } to match object { kind: 'refused', …(1) }
+- Expected
++ Received
+ FAIL  tests/runner.vitest.ts > needs-you decisions > parks a read-only Mistral Vibe run from a private lineage folder, with only the read tools enabled
+AssertionError: expected 'You are a non-interactive bot run: AI…' to contain 'The repository checkout is /private/v…'
+- Expected
++ Received
+ FAIL  tests/runner.vitest.ts > needs-you decisions > fails a Mistral Vibe run that exits 0 while its export record says it did not finish
+AssertionError: expected { kind: 'completed', …(2) } to match object { kind: 'failed', …(2) }
+- Expected
++ Received
+ Test Files  4 failed (4)
+      Tests  7 failed | 55 passed (62)
+exit=1
+
+rerun of the lease-throw control with the fixture bot's real spec folder in the lease key (the first run computed the wrong lease path) 2026-11-22T22:21:25Z
+     × closes a run that throws right after taking its lease with one record, and releases the lease 846ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+Error: EISDIR: illegal operation on a directory, rename '<tmp>/bots-state-yzWVd8/system-skilled-bots/acme%2Ftool/leases/b5cb3715bdca210ff71ce4153c0baf2c.lock.run.json.tmp.31215.1795386086427.3kw34by6m91' -> '<tmp>/bots-state-yzWVd8/system-skilled-bots/acme%2Ftool/leases/b5cb3715bdca210ff71ce4153c0baf2c.lock.run.json'
+      Tests  1 failed | 6 skipped (7)
+exit=1
+
+mutation control: the resolver check in the OpenCode builder switched off, the refusal test rerun 2026-11-22T22:27:04Z
+     × refuses a read-only OpenCode run before dispatch when its resolved agent leaves a write action open 855ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected { kind: 'completed', …(2) } to match object { kind: 'refused', …(1) }
+      Tests  1 failed | 30 skipped (31)
+exit=1

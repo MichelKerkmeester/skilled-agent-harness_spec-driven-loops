@@ -1,0 +1,830 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Bot Runner
+// ───────────────────────────────────────────────────────────────────
+//
+// Runs one bot once, in a fixed order: disable switch, needs-you hold,
+// lease, pause switch, precheck, posture, secret check, dispatch, result.
+// Every stop before dispatch is a refusal with a named cause, never a run
+// failure, so a scheduler or queue can tell "did not start" from "broke".
+// The lease is the deep-loop loop lock, keyed by bot, repository and spec
+// target and never by a checkout path, and it is released on every exit
+// path the process survives. A run killed outright leaves a lease that the
+// pid, nonce and heartbeat rule reclaims, and only then, with the owner
+// proved gone, is the killed run's record closed as unknown. A run whose
+// child asks a question parks as a needs-you item and exits; no process
+// waits for the answer. The run's one result event goes through the deep-loop
+// append gateway, so a failed write is retried by re-sending the same event,
+// never by dispatching the run again. A throw anywhere inside the run still
+// ends in exactly one record, so no run can vanish without a trace.
+
+import { spawnSync } from 'node:child_process';
+import { createHash, randomBytes } from 'node:crypto';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { join } from 'node:path';
+
+import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import {
+  acquireLoopLock,
+  processAlive,
+  releaseLoopLock,
+  startHeartbeat,
+  stopHeartbeat,
+} from '../../../system-deep-loop/runtime/lib/deep-loop/loop-lock.js';
+import { readDefinition } from './definition.js';
+import {
+  buildBotPrompt,
+  collectKnownSecrets,
+  commonEnv,
+  dispatchHeadless,
+  finalAnswerText,
+  findSecretLiteral,
+  parseDecisionMarker,
+  READ_ONLY_UNCONFINED,
+  runsOutsideCheckout,
+  VIBE_RUN_UNFINISHED,
+} from './dispatch.js';
+import { resolveIdentity } from './identity.js';
+import { buildResumedPrompt, holdForBot, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
+import { validatePosture } from './posture.js';
+import { readRepoConfig } from './repo-config.js';
+import { openResultLedger, resultEventKey, sendResultEvent } from './result-ledger.js';
+import { AWAITING_DECISION, RESULT_EVENT_UNRECORDED, writeRunRecord } from './run-record.js';
+import {
+  ensureIdentityState,
+  identityStatePaths,
+  isSafeSegment,
+  receiptFolder,
+  recordFile,
+  resolveRunFolder,
+  sharedStatePaths,
+  STATE_DIR_MODE,
+  userStateRoot,
+} from './state-root.js';
+import { readSwitch } from './switches.js';
+
+import type { ExecutorKind } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
+import type { BotDefinition } from './definition.js';
+import type { CommandBuilder } from './dispatch.js';
+import type { NeedsYouItem } from './needs-you.js';
+import type { RepoConfig, Result } from './repo-config.js';
+import type { EvidenceLocations, FailureClass, HonoredPosture, RunRecord } from './run-record.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPES & CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
+const requireCjs = createRequire(import.meta.url);
+
+const lifecycleTaxonomy = requireCjs('../../../system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs') as {
+  STOP_REASONS: Record<string, string>;
+};
+const observability = requireCjs('../../../system-deep-loop/runtime/lib/deep-loop/observability-events.cjs') as {
+  appendObservabilityEvent: (path: string, payload: Record<string, unknown>, meta?: Record<string, unknown>) => unknown;
+};
+
+const STOP = lifecycleTaxonomy.STOP_REASONS;
+
+/** CLI exit codes. A refusal, a run failure and a parked run each have their own. */
+export const EXIT_CODES = Object.freeze({
+  completed: 0,
+  runFailure: 1,
+  usage: 2,
+  recursionGuard: 3,
+  refused: 4,
+  awaitingDecision: 5,
+});
+
+/** The causes a run can be refused for before dispatch, with the exit each records. */
+export const REFUSAL_CAUSES = Object.freeze({
+  'definition-missing': { reason: 'definition-missing', class: null },
+  'definition-malformed': { reason: 'definition-malformed', class: 'author' },
+  'identity-unknown': { reason: 'identity-unknown', class: 'operator' },
+  'run-folder-refused': { reason: 'run-folder-refused', class: 'environment' },
+  disabled: { reason: 'disabled', class: null },
+  'awaiting-decision-hold': { reason: STOP.blockedStop as string, class: null },
+  'needs-you-unreadable': { reason: STOP.blockedStop as string, class: 'operator' },
+  'needs-you-unlistable': { reason: STOP.blockedStop as string, class: 'environment' },
+  'resume-item-invalid': { reason: 'resume-item-invalid', class: 'operator' },
+  'lease-held': { reason: 'lease-held', class: null },
+  paused: { reason: STOP.userPaused as string, class: null },
+  'precheck-failed': { reason: 'precheck-failed', class: null },
+  'precheck-silent': { reason: 'precheck-silent', class: null },
+  'posture-refused': { reason: 'posture-refused', class: 'author' },
+  'body-secret': { reason: 'body-secret', class: 'author' },
+  'read-only-unconfined': { reason: 'read-only-unconfined', class: 'environment' },
+  'result-ledger-unbound': { reason: 'result-ledger-unbound', class: 'environment' },
+} as const satisfies Record<string, { reason: string; class: FailureClass | null }>);
+
+export type RefusalCause = keyof typeof REFUSAL_CAUSES;
+
+export const PRECHECK_SILENT_MARKER = '[SILENT]';
+
+const PRECHECK_TIMEOUT_MS = 60_000;
+const LEASE_MARGIN_MS = 60_000;
+const MINUTE_MS = 60_000;
+const WORKFLOW = 'system-skilled-bots';
+
+/** A manual run, or the run that resumes a parked one after its answer. */
+export type RunRequest =
+  | { kind: 'manual' }
+  | { kind: 'resume'; requestId: string; itemId: string };
+
+export interface RunBotInput {
+  /** The repository checkout that holds `bots/`. */
+  checkoutRoot: string;
+  /** The Skilled tree whose gitignored `.state` holds run folders. */
+  skilledTree: string;
+  botId: string;
+  env?: NodeJS.ProcessEnv;
+  request?: RunRequest;
+  /** Replaces the deep-loop lineage command builder. */
+  buildCommand?: CommandBuilder;
+  /** Replaces the recursion guard's process-ancestry and lockfile reads. */
+  guard?: { ancestryCmdlines?: string[]; statePaths?: string[] };
+  /** How long one budget minute lasts; only tests shorten it. */
+  minuteMs?: number;
+}
+
+export type RunOutcome =
+  | { kind: 'refused'; cause: RefusalCause; detail: string | null; runId: string | null; recordPath: string | null; itemId: string | null }
+  | { kind: 'failed'; reason: string; class: FailureClass | null; runId: string; recordPath: string | null; recursionGuard: boolean }
+  | { kind: 'completed'; runId: string; recordPath: string | null }
+  | { kind: 'awaiting-decision'; runId: string; recordPath: string | null; itemId: string };
+
+/** Everything a verb needs to find one repository's bots and state. */
+export interface BotContext {
+  checkoutRoot: string;
+  skilledTree: string;
+  config: RepoConfig;
+  identity: string;
+  stateRoot: string;
+}
+
+/** What the lease side file holds, so a reclaimer can close a killed run's record. */
+interface LeaseSideFile {
+  ownerPid: number;
+  acquireNonce: string | null;
+  seed: RecordSeed;
+}
+
+interface RecordSeed {
+  identity: string;
+  checkoutRoot: string;
+  botId: string;
+  runId: string;
+  definitionDigest: string;
+  requestId: string | null;
+  resumedItemId: string | null;
+  source: string;
+  dispatchedAt: string;
+  declared: BotDefinition['budget'];
+  posture: HonoredPosture;
+  evidence: EvidenceLocations;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONTEXT & PATHS
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Read the repository config and identity and resolve the state root.
+ *
+ * @returns The context, or a config refusal or `identity-unknown`.
+ */
+export function resolveBotContext(input: { checkoutRoot: string; skilledTree: string; env?: NodeJS.ProcessEnv }): Result<BotContext> {
+  const env = input.env ?? process.env;
+  const config = readRepoConfig(input.checkoutRoot);
+  if (!config.ok) return config;
+  const identity = resolveIdentity({ checkoutRoot: input.checkoutRoot, config: config.value, env });
+  if (!identity.ok) return identity;
+  return {
+    ok: true,
+    value: {
+      checkoutRoot: input.checkoutRoot,
+      skilledTree: input.skilledTree,
+      config: config.value,
+      identity: identity.value.identity,
+      stateRoot: userStateRoot(config.value, env),
+    },
+  };
+}
+
+/** Where a bot's definition lives: one `BOT.md` per bot under `bots/<id>/`. */
+export function definitionPath(checkoutRoot: string, botId: string): string {
+  return join(checkoutRoot, 'bots', botId, 'BOT.md');
+}
+
+/**
+ * The lease key: the workflow, the repository identity and the spec target.
+ * It never holds a checkout or worktree path, so two checkouts of one
+ * repository share one lease and a retry can never start a second tree.
+ */
+export function leaseKey(identity: string, botId: string, specFolder: string | null): string {
+  return [WORKFLOW, identity.toLowerCase(), botId, specFolder ?? '-'].join('|');
+}
+
+/** The lease file of one key, under the user-level state root. */
+export function leaseFile(stateRoot: string, identity: string, key: string): string {
+  const digest = createHash('sha256').update(key).digest('hex').slice(0, 32);
+  return join(identityStatePaths(stateRoot, identity).leases, `${digest}.lock`);
+}
+
+/** The generation stamp a status reader compares to know its index is stale. */
+export function generationStampFile(stateRoot: string, identity: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'generation.json');
+}
+
+/**
+ * Advance the generation stamp by temp file and rename. Called after each
+ * terminal record and each needs-you item, and by any verb that changes an item.
+ *
+ * @returns The new generation number.
+ */
+export function writeGenerationStamp(stateRoot: string, identity: string, now: Date = new Date()): number {
+  ensureIdentityState(stateRoot, identity);
+  const path = generationStampFile(stateRoot, identity);
+  let previous = 0;
+  try {
+    const parsed = JSON.parse(readFileSync(path, 'utf8')) as { generation?: unknown };
+    if (typeof parsed.generation === 'number' && Number.isSafeInteger(parsed.generation)) previous = parsed.generation;
+  } catch {
+    previous = 0;
+  }
+  const generation = previous + 1;
+  writeStateAtomic(path, { generation, writtenAt: now.toISOString() });
+  return generation;
+}
+
+/** A sortable, filename-safe run id. */
+export function newRunId(now: Date = new Date()): string {
+  const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+  return `${stamp}-${randomBytes(4).toString('hex')}`;
+}
+
+/** The exit code a CLI returns for an outcome. */
+export function exitCodeFor(outcome: RunOutcome): number {
+  switch (outcome.kind) {
+    case 'completed':
+      return EXIT_CODES.completed;
+    case 'refused':
+      return EXIT_CODES.refused;
+    case 'awaiting-decision':
+      return EXIT_CODES.awaitingDecision;
+    case 'failed':
+      return outcome.recursionGuard ? EXIT_CODES.recursionGuard : EXIT_CODES.runFailure;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 3. RECORDS
+// ───────────────────────────────────────────────────────────────────
+
+function evidenceFor(runFolder: string, receiptDir: string): EvidenceLocations {
+  return {
+    runFolder,
+    ledgerDir: join(runFolder, 'ledger'),
+    // Receipts record the command line, which holds the prompt for an argv
+    // kind, so they live under the user-level state root, never in the run folder.
+    receiptDir,
+    observabilityStream: join(runFolder, 'observability.jsonl'),
+    worktreePath: null,
+    branch: null,
+  };
+}
+
+function buildRecord(
+  seed: RecordSeed,
+  exit: RunRecord['exit'],
+  extra: { leaseNonce: string | null; resultEventId: string | null; iterations: number | null; elapsedMs: number | null },
+): RunRecord {
+  return {
+    schemaVersion: 1,
+    identity: {
+      repository: seed.identity,
+      repositoryPath: seed.checkoutRoot,
+      botId: seed.botId,
+      runId: seed.runId,
+      definitionDigest: seed.definitionDigest,
+    },
+    request: {
+      requestId: seed.requestId,
+      leaseNonce: extra.leaseNonce,
+      resultEventId: extra.resultEventId,
+      firedSlot: null,
+      resumedItemId: seed.resumedItemId,
+    },
+    dispatch: {
+      source: seed.source,
+      scheduledAt: null,
+      dispatchedAt: seed.dispatchedAt,
+      latenessSeconds: null,
+      latenessClass: null,
+      skippedSlots: null,
+    },
+    budget: {
+      declared: seed.declared,
+      measured: {
+        iterations: extra.iterations,
+        elapsedMinutes: extra.elapsedMs === null ? null : Math.round((extra.elapsedMs / MINUTE_MS) * 1000) / 1000,
+        // No admitted kind reports its spend to this runner yet, so the cost is unknown, never zero.
+        costUsd: null,
+        costSource: null,
+      },
+    },
+    posture: seed.posture,
+    exit,
+    evidence: seed.evidence,
+    delivery: [{ channel: 'local-only', target: 'local', state: 'not-attempted', evidence: null }],
+  };
+}
+
+function observe(seed: RecordSeed, event: string, status: string, extra: Record<string, unknown> = {}): void {
+  const stream = seed.evidence.observabilityStream;
+  if (stream === null) return;
+  try {
+    observability.appendObservabilityEvent(
+      stream,
+      { event, status, label: seed.botId, ...extra },
+      { producer: WORKFLOW, stream: 'bot-run', subject: seed.runId },
+    );
+  } catch {
+    // Liveness rows are evidence; losing one never changes the run's outcome.
+  }
+}
+
+function writeTerminal(stateRoot: string, record: RunRecord): string | null {
+  const written = writeRunRecord(stateRoot, record);
+  writeGenerationStamp(stateRoot, record.identity.repository);
+  return written.ok ? written.value : null;
+}
+
+function refusalRecord(
+  stateRoot: string,
+  seed: RecordSeed,
+  cause: RefusalCause,
+  detail: string | null,
+  itemId: string | null,
+  leaseNonce: string | null,
+): RunOutcome {
+  const { reason, class: failureClass } = REFUSAL_CAUSES[cause];
+  observe(seed, 'refused', 'stopped', { reason: cause });
+  const recordPath = writeTerminal(
+    stateRoot,
+    buildRecord(
+      seed,
+      { reason, class: failureClass, needsYouItemId: null, refusal: { cause, itemId, detail } },
+      { leaseNonce, resultEventId: null, iterations: 0, elapsedMs: null },
+    ),
+  );
+  return { kind: 'refused', cause, detail, runId: seed.runId, recordPath, itemId };
+}
+
+/**
+ * Close the record of a run whose lease was reclaimed, but only once its
+ * owner process is proved gone and only if it left no record of its own.
+ */
+function closeKilledRun(stateRoot: string, lease: string, reclaimedPid: number): void {
+  const sidePath = `${lease}.run.json`;
+  let side: LeaseSideFile;
+  try {
+    side = JSON.parse(readFileSync(sidePath, 'utf8')) as LeaseSideFile;
+  } catch {
+    return;
+  }
+  if (side.ownerPid !== reclaimedPid || processAlive(side.ownerPid)) return;
+  if (existsSync(recordFile(stateRoot, side.seed.identity, side.seed.runId))) return;
+  writeTerminal(
+    stateRoot,
+    buildRecord(
+      side.seed,
+      { reason: 'unknown', class: 'environment', needsYouItemId: null, refusal: null },
+      { leaseNonce: side.acquireNonce, resultEventId: null, iterations: null, elapsedMs: null },
+    ),
+  );
+  rmSync(sidePath, { force: true });
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 4. PRECHECK
+// ───────────────────────────────────────────────────────────────────
+
+function runPrecheck(command: string, cwd: string, env: NodeJS.ProcessEnv): { cause: 'precheck-failed' | 'precheck-silent'; detail: string } | null {
+  const run = spawnSync('/bin/sh', ['-c', command], {
+    cwd,
+    env: commonEnv(env),
+    encoding: 'utf8',
+    timeout: PRECHECK_TIMEOUT_MS,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  if (run.error !== undefined || run.status !== 0) {
+    return { cause: 'precheck-failed', detail: run.error !== undefined ? run.error.message : `exit ${String(run.status)}` };
+  }
+  if (typeof run.stdout === 'string' && run.stdout.includes(PRECHECK_SILENT_MARKER)) {
+    return { cause: 'precheck-silent', detail: `printed ${PRECHECK_SILENT_MARKER}` };
+  }
+  return null;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. RUN
+// ───────────────────────────────────────────────────────────────────
+
+function declaredPosture(definition: BotDefinition | null, config: RepoConfig): HonoredPosture {
+  return {
+    isolation: (definition?.posture.isolation ?? config.defaultIsolation) as HonoredPosture['isolation'],
+    sandbox: definition?.posture.sandbox ?? null,
+    executorKind: definition?.runtime.kind ?? 'unknown',
+    model: typeof definition?.runtime.model === 'string' ? definition.runtime.model : null,
+  };
+}
+
+function loadResumeItem(context: BotContext, botId: string, itemId: string): Result<NeedsYouItem> {
+  if (!isSafeSegment(itemId)) return { ok: false, reason: 'item-id-invalid' };
+  const item = readNeedsYouItem(context.stateRoot, context.identity, itemId);
+  if (!item.ok) return item;
+  if (item.value.botId !== botId) return { ok: false, reason: 'item-bot-mismatch' };
+  const state = needsYouState(item.value);
+  if (state !== 'answered') return { ok: false, reason: `item-${state}` };
+  return item;
+}
+
+/** The class of an error thrown inside a run: a system call failure is the environment's, anything else the runner's own. */
+function thrownClass(error: unknown): FailureClass {
+  const code = (error as NodeJS.ErrnoException | null)?.code;
+  return typeof code === 'string' && /^E[A-Z]+$/.test(code) ? 'environment' : 'hub';
+}
+
+/**
+ * Close a run that threw. A record already written for the run stands, so a
+ * run keeps exactly one record whatever point the throw came from.
+ */
+function closeThrownRun(stateRoot: string, seed: RecordSeed, leaseNonce: string | null, error: unknown): RunOutcome {
+  const failureClass = thrownClass(error);
+  const path = recordFile(stateRoot, seed.identity, seed.runId);
+  if (existsSync(path)) {
+    return { kind: 'failed', reason: 'runner-error', class: failureClass, runId: seed.runId, recordPath: path, recursionGuard: false };
+  }
+  observe(seed, 'terminal', 'stopped', { reason: 'runner-error' });
+  const recordPath = writeTerminal(
+    stateRoot,
+    buildRecord(
+      seed,
+      { reason: 'runner-error', class: failureClass, needsYouItemId: null, refusal: null },
+      { leaseNonce, resultEventId: null, iterations: null, elapsedMs: null },
+    ),
+  );
+  return { kind: 'failed', reason: 'runner-error', class: failureClass, runId: seed.runId, recordPath, recursionGuard: false };
+}
+
+/**
+ * Run one bot once.
+ *
+ * @returns The outcome: a refusal before dispatch, a run failure, a
+ *   completed run or a run parked as `awaiting-decision`.
+ */
+export async function runBot(input: RunBotInput): Promise<RunOutcome> {
+  const env = input.env ?? process.env;
+  const request: RunRequest = input.request ?? { kind: 'manual' };
+  const minuteMs = input.minuteMs ?? MINUTE_MS;
+
+  const resolved = resolveBotContext({ checkoutRoot: input.checkoutRoot, skilledTree: input.skilledTree, env });
+  if (!resolved.ok) {
+    return { kind: 'refused', cause: 'identity-unknown', detail: resolved.reason, runId: null, recordPath: null, itemId: null };
+  }
+  const context = resolved.value;
+  if (!isSafeSegment(input.botId)) {
+    return { kind: 'refused', cause: 'definition-missing', detail: 'bot-id-invalid', runId: null, recordPath: null, itemId: null };
+  }
+
+  // An unknown id has no definition digest to key a record by, so it writes none.
+  const path = definitionPath(context.checkoutRoot, input.botId);
+  let bytes: Buffer;
+  try {
+    bytes = readFileSync(path);
+  } catch {
+    return { kind: 'refused', cause: 'definition-missing', detail: path, runId: null, recordPath: null, itemId: null };
+  }
+  const definitionDigest = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
+  const parsed = readDefinition(path);
+  const definition = parsed.ok ? parsed.value : null;
+
+  const runId = newRunId();
+  const runFolder = resolveRunFolder({ skilledTree: context.skilledTree, identity: context.identity, runId });
+  if (!runFolder.ok) {
+    return { kind: 'refused', cause: 'run-folder-refused', detail: runFolder.reason, runId: null, recordPath: null, itemId: null };
+  }
+  ensureIdentityState(context.stateRoot, context.identity);
+  const evidence = evidenceFor(runFolder.value, receiptFolder(context.stateRoot, context.identity, runId));
+
+  const seed: RecordSeed = {
+    identity: context.identity,
+    checkoutRoot: context.checkoutRoot,
+    botId: input.botId,
+    runId,
+    definitionDigest,
+    requestId: request.kind === 'resume' ? request.requestId : null,
+    resumedItemId: request.kind === 'resume' ? request.itemId : null,
+    source: request.kind,
+    dispatchedAt: new Date().toISOString(),
+    declared: definition?.budget ?? { maxIterations: 0, maxDurationMinutes: 0, timeoutSeconds: 0 },
+    posture: declaredPosture(definition, context.config),
+    evidence,
+  };
+
+  // From here on a run has a seed, so a throw anywhere still ends in one record.
+  try {
+    mkdirSync(evidence.ledgerDir as string, { recursive: true, mode: STATE_DIR_MODE });
+    // The audited runner reads its state log before appending a failure row, so it must exist.
+    appendFileSync(join(evidence.ledgerDir as string, 'state.jsonl'), '');
+    observe(seed, 'started', 'running', { mode: request.kind });
+    return await runSeeded(input, context, request, minuteMs, seed, definition, parsed);
+  } catch (error: unknown) {
+    return closeThrownRun(context.stateRoot, seed, null, error);
+  }
+}
+
+/**
+ * The part of a run that follows its seed: the checks before the lease, the
+ * lease, and everything the lease guards. The caller closes a throw from here
+ * with one record; a throw once the lease is held is closed here, with the
+ * lease nonce, before the lease is released.
+ */
+async function runSeeded(
+  input: RunBotInput,
+  context: BotContext,
+  request: RunRequest,
+  minuteMs: number,
+  seed: RecordSeed,
+  definition: BotDefinition | null,
+  parsed: ReturnType<typeof readDefinition>,
+): Promise<RunOutcome> {
+  const env = input.env ?? process.env;
+  const runId = seed.runId;
+  const evidence = seed.evidence;
+  const runFolderPath = evidence.runFolder;
+
+  if (definition === null || definition.id !== input.botId) {
+    const detail = parsed.ok ? 'id-mismatch' : parsed.reason;
+    return refusalRecord(context.stateRoot, seed, 'definition-malformed', detail, null, null);
+  }
+
+  if (readSwitch(context.stateRoot, context.identity, input.botId, 'disabled') !== null) {
+    return refusalRecord(context.stateRoot, seed, 'disabled', null, null, null);
+  }
+
+  let resumeItem: NeedsYouItem | null = null;
+  if (request.kind === 'resume') {
+    const item = loadResumeItem(context, input.botId, request.itemId);
+    if (!item.ok) return refusalRecord(context.stateRoot, seed, 'resume-item-invalid', item.reason, request.itemId, null);
+    resumeItem = item.value;
+  }
+  const hold = holdForBot(context.stateRoot, context.identity, input.botId);
+  if (hold?.kind === 'open') {
+    return refusalRecord(
+      context.stateRoot,
+      seed,
+      'awaiting-decision-hold',
+      `answer it first: bots inbox lists item ${hold.item.id}`,
+      hold.item.id,
+      null,
+    );
+  }
+  if (hold?.kind === 'unlistable') {
+    return refusalRecord(
+      context.stateRoot,
+      seed,
+      'needs-you-unlistable',
+      `the needs-you folder could not be listed (${hold.code}); an open item of this bot may be in it`,
+      null,
+      null,
+    );
+  }
+  if (hold?.kind === 'unreadable') {
+    return refusalRecord(
+      context.stateRoot,
+      seed,
+      'needs-you-unreadable',
+      `needs-you item ${hold.itemIds.join(', ')} does not read and may be this bot's; repair or remove it`,
+      hold.itemIds[0] ?? null,
+      null,
+    );
+  }
+
+  const specFolder = resumeItem?.specFolder ?? definition.specFolder;
+  const budgetSeconds = (definition.budget.maxDurationMinutes * minuteMs) / 1000;
+  const boundIsBudget = budgetSeconds < definition.budget.timeoutSeconds;
+  const boundSeconds = boundIsBudget ? budgetSeconds : definition.budget.timeoutSeconds;
+
+  const key = leaseKey(context.identity, input.botId, specFolder);
+  const lease = leaseFile(context.stateRoot, context.identity, key);
+  const nowIso = new Date().toISOString();
+  // The audited spawn blocks the event loop, so no heartbeat lands during a
+  // dispatch. The lease lives past the longest possible invocation for that reason.
+  const ttlMs = Math.ceil(boundSeconds * 1000) + PRECHECK_TIMEOUT_MS + LEASE_MARGIN_MS;
+  const acquired = acquireLoopLock(lease, {
+    ownerPid: process.pid,
+    startedAtIso: nowIso,
+    ttlMs,
+    lastHeartbeatIso: nowIso,
+    packetId: key,
+    runtimeKind: 'main',
+    ownerKind: 'process',
+    phase: 'running',
+  });
+  if (!acquired.acquired) {
+    return refusalRecord(
+      context.stateRoot,
+      seed,
+      'lease-held',
+      acquired.holder === undefined ? null : `held by pid ${acquired.holder.ownerPid}`,
+      null,
+      null,
+    );
+  }
+  const nonce = acquired.lock.acquireNonce ?? null;
+  const sidePath = `${lease}.run.json`;
+
+  // The lease is held from here, so every exit path below releases it.
+  try {
+    if (acquired.reclaimed !== undefined) closeKilledRun(context.stateRoot, lease, acquired.reclaimed.ownerPid);
+    writeStateAtomic(sidePath, { ownerPid: process.pid, acquireNonce: nonce, seed } satisfies LeaseSideFile);
+    startHeartbeat({ lockPath: lease, ownerPid: process.pid, ...(nonce !== null ? { acquireNonce: nonce } : {}) });
+
+    if (readSwitch(context.stateRoot, context.identity, input.botId, 'paused') !== null) {
+      return refusalRecord(context.stateRoot, seed, 'paused', null, null, nonce);
+    }
+
+    if (definition.precheck !== null) {
+      const skipped = runPrecheck(definition.precheck, context.checkoutRoot, env);
+      if (skipped !== null) return refusalRecord(context.stateRoot, seed, skipped.cause, skipped.detail, null, nonce);
+    }
+
+    const posture = validatePosture(definition, context.config);
+    if (!posture.ok) {
+      return refusalRecord(context.stateRoot, seed, 'posture-refused', `${posture.reason}: ${posture.detail ?? ''}`.trim(), null, nonce);
+    }
+    seed.posture = posture.value.posture;
+
+    const known = collectKnownSecrets(env, context.checkoutRoot);
+    const texts: Array<[string, string]> = [['body', definition.body]];
+    if (resumeItem !== null) {
+      texts.push(['question', resumeItem.question], ['answer', resumeItem.answer?.text ?? '']);
+    }
+    for (const [label, text] of texts) {
+      const match = findSecretLiteral(text, known);
+      if (match !== null) {
+        return refusalRecord(context.stateRoot, seed, 'body-secret', `${label} holds a literal of ${match.kind} ${match.name}`, null, nonce);
+      }
+    }
+
+    const kind = posture.value.executor.kind as ExecutorKind;
+    let prompt = buildBotPrompt({
+      body: definition.body,
+      specFolder,
+      checkoutRoot: runsOutsideCheckout(kind) ? context.checkoutRoot : null,
+    });
+    if (resumeItem !== null) {
+      const resumed = buildResumedPrompt(resumeItem);
+      if (!resumed.ok) return refusalRecord(context.stateRoot, seed, 'resume-item-invalid', resumed.reason, resumeItem.id, nonce);
+      prompt = resumed.value;
+    }
+
+    const resultLedger = openResultLedger({
+      ledgerDir: evidence.ledgerDir as string,
+      authorityRoot: sharedStatePaths(context.stateRoot).authority,
+      checkoutRoot: context.checkoutRoot,
+    });
+    if (!resultLedger.ok) {
+      return refusalRecord(
+        context.stateRoot,
+        seed,
+        'result-ledger-unbound',
+        `${resultLedger.reason}${resultLedger.detail !== undefined ? `: ${resultLedger.detail}` : ''}`,
+        null,
+        nonce,
+      );
+    }
+
+    mkdirSync(evidence.receiptDir as string, { recursive: true, mode: STATE_DIR_MODE });
+    seed.dispatchedAt = new Date().toISOString();
+    observe(seed, 'dispatching', 'running', { model: posture.value.posture.model, sandbox: posture.value.posture.sandbox });
+    const outcome = dispatchHeadless({
+      executor: posture.value.executor,
+      prompt,
+      cwd: context.checkoutRoot,
+      runId,
+      parentEnv: env,
+      boundSeconds,
+      boundIsBudget,
+      stateLogPath: join(evidence.ledgerDir as string, 'state.jsonl'),
+      receiptDir: evidence.receiptDir as string,
+      stdoutLogPath: join(runFolderPath, 'stdout.log'),
+      ...(input.buildCommand !== undefined ? { buildCommand: input.buildCommand } : {}),
+      ...(input.guard !== undefined ? { guard: input.guard } : {}),
+    });
+
+    // The builder resolved the agent a read-only OpenCode child would run and found a
+    // write action left open, so no child was started: a refusal, not a failed run.
+    if (outcome.reason === READ_ONLY_UNCONFINED) {
+      return refusalRecord(context.stateRoot, seed, 'read-only-unconfined', outcome.detail, null, nonce);
+    }
+
+    // A timeout or budget stop keeps its class even when the child asked a question first,
+    // and so does a Vibe run whose own record says it did not finish.
+    const stopped = outcome.reason === 'timeout'
+      || outcome.reason === 'maxDurationReached'
+      || outcome.reason === VIBE_RUN_UNFINISHED
+      || outcome.runnerExit !== 0;
+    const answer = outcome.dispatched && !stopped ? finalAnswerText(kind, outcome.stdout) : null;
+    const signal = answer !== null ? parseDecisionMarker(answer) : { kind: 'none' as const };
+
+    let exit: RunRecord['exit'];
+    let result: RunOutcome;
+    if (signal.kind === 'question') {
+      const created = new Date();
+      const item: NeedsYouItem = {
+        id: runId,
+        runId,
+        botId: input.botId,
+        identity: context.identity,
+        question: signal.question,
+        options: signal.options,
+        createdAt: created.toISOString(),
+        expiresAt: needsYouExpiry(created, context.config.needsYou.expiryDays),
+        evidence: [evidence.runFolder, evidence.ledgerDir, evidence.receiptDir, evidence.observabilityStream].filter(
+          (entry): entry is string => entry !== null,
+        ),
+        prompt,
+        specFolder,
+        answer: null,
+        resumeRequestId: null,
+      };
+      const written = writeNeedsYouItem(context.stateRoot, item);
+      if (written.ok) {
+        writeGenerationStamp(context.stateRoot, context.identity);
+        exit = { reason: AWAITING_DECISION, class: 'operator', needsYouItemId: runId, refusal: null };
+        result = { kind: 'awaiting-decision', runId, recordPath: null, itemId: runId };
+      } else {
+        // A parked run must point at an item that exists; without one it is the runner's failure.
+        const reason = `needs-you-item-refused:${written.reason}`;
+        exit = { reason, class: 'hub', needsYouItemId: null, refusal: null };
+        result = { kind: 'failed', reason, class: 'hub', runId, recordPath: null, recursionGuard: false };
+      }
+    } else if (signal.kind === 'empty') {
+      exit = { reason: 'decision-marker-empty', class: 'author', needsYouItemId: null, refusal: null };
+      result = { kind: 'failed', reason: exit.reason, class: 'author', runId, recordPath: null, recursionGuard: false };
+    } else if (outcome.clean) {
+      exit = { reason: STOP.converged as string, class: null, needsYouItemId: null, refusal: null };
+      result = { kind: 'completed', runId, recordPath: null };
+    } else {
+      const reason = outcome.reason ?? 'error';
+      exit = { reason, class: outcome.class, needsYouItemId: null, refusal: null };
+      result = { kind: 'failed', reason, class: outcome.class, runId, recordPath: null, recursionGuard: outcome.runnerExit !== 0 };
+    }
+
+    // One result event per run, keyed by the run id. A failed write is
+    // retried by re-sending this same event; the run is never dispatched twice.
+    const event = resultLedger.value.prepare({
+      runId,
+      botId: input.botId,
+      reason: exit.reason,
+      class: exit.class,
+      needsYouItemId: exit.needsYouItemId,
+    });
+    const sent = await sendResultEvent(resultLedger.value, event);
+    let resultEventId: string | null = resultEventKey(runId);
+    if (!sent.ok) {
+      resultEventId = null;
+      // A parked run's item still holds the bot, so the failed exit keeps naming it.
+      exit = { reason: RESULT_EVENT_UNRECORDED, class: 'hub', needsYouItemId: exit.needsYouItemId, refusal: null };
+      result = { kind: 'failed', reason: exit.reason, class: 'hub', runId, recordPath: null, recursionGuard: false };
+      observe(seed, 'result-event-unrecorded', 'stopped', { detail: sent.reason, attempts: sent.attempts });
+    }
+    observe(seed, 'terminal', 'stopped', {
+      reason: exit.reason,
+      duration_ms: outcome.elapsedMs,
+      ...(outcome.detail !== null ? { detail: outcome.detail } : {}),
+    });
+    const recordPath = writeTerminal(
+      context.stateRoot,
+      buildRecord(seed, exit, {
+        leaseNonce: nonce,
+        resultEventId,
+        iterations: outcome.dispatched ? 1 : 0,
+        elapsedMs: outcome.elapsedMs,
+      }),
+    );
+    return { ...result, recordPath };
+  } catch (error: unknown) {
+    return closeThrownRun(context.stateRoot, seed, nonce, error);
+  } finally {
+    stopHeartbeat();
+    try {
+      rmSync(sidePath, { force: true });
+    } catch {
+      // A side file that cannot be removed must not keep the lease held.
+    }
+    releaseLoopLock(lease, process.pid, nonce ?? undefined);
+  }
+}

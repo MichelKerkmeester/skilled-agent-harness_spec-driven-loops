@@ -1,0 +1,63 @@
+probe: after: the builder's read-only allowlist, top level and agent.build  opencode opencode v2.3.2  2026-11-22T22:27:45Z
+OPENCODE_CONFIG_CONTENT={"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+--- repo: plain  opencode.json={}
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  edit                last rule for resource *: *:*=deny
+  shell               last rule for resource *: *:*=deny
+  subagent            last rule for resource *: *:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=deny
+  question            last rule for resource *: *:*=deny
+  demo_tool           last rule for resource *: *:*=deny
+  read                last rule for resource *: read:*=allow
+  grep                last rule for resource *: grep:*=allow
+  glob                last rule for resource *: glob:*=allow
+  list                last rule for resource *: list:*=allow
+--- repo: mcp  opencode.json={"mcp":{"demo":{"type":"local","command":["node","-e","0"],"enabled":true}}}
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  edit                last rule for resource *: *:*=deny
+  shell               last rule for resource *: *:*=deny
+  subagent            last rule for resource *: *:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=deny
+  question            last rule for resource *: *:*=deny
+  demo_tool           last rule for resource *: *:*=deny
+  read                last rule for resource *: read:*=allow
+  grep                last rule for resource *: grep:*=allow
+  glob                last rule for resource *: glob:*=allow
+  list                last rule for resource *: list:*=allow
+--- repo: agent  opencode.json={"agent":{"build":{"permission":{"bash":"allow","edit":"allow"}}}}
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny shell:*=allow edit:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  edit                last rule for resource *: *:*=deny
+  shell               last rule for resource *: *:*=deny
+  subagent            last rule for resource *: *:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=deny
+  question            last rule for resource *: *:*=deny
+  demo_tool           last rule for resource *: *:*=deny
+  read                last rule for resource *: read:*=allow
+  grep                last rule for resource *: grep:*=allow
+  glob                last rule for resource *: glob:*=allow
+  list                last rule for resource *: list:*=allow
+--- repo: agent-md  opencode.json={}
+    .opencode/agent/build.md: --- description: build override mode: primary permission:   bash: allow   edit: allow --- You build. 
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny shell:*=allow edit:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  edit                last rule for resource *: *:*=deny
+  shell               last rule for resource *: *:*=deny
+  subagent            last rule for resource *: *:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=deny
+  question            last rule for resource *: *:*=deny
+  demo_tool           last rule for resource *: *:*=deny
+  read                last rule for resource *: read:*=allow
+  grep                last rule for resource *: grep:*=allow
+  glob                last rule for resource *: glob:*=allow
+  list                last rule for resource *: list:*=allow

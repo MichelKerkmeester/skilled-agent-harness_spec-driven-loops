@@ -45,7 +45,7 @@ options: mode, runDirectory, eventRecord, policy, ledger, ...
 
   1 binding        resolveCutoverBinding, or options.binding          -> BINDING_FAILED
   2 authority      admitCanonicalWrite at the durable authority root  -> AUTHORITY_DENIED
-                   AUTHORITY_FLIP_MODE_ORDER membership checked first
+                   AUTHORITY_ADMITTED_MODES membership checked first
   3 envelope       registered policy digest resolved from the registry
   3b provenance    state log opens with a config row, ledger holds    -> STATE_LOG_UNATTRIBUTED
                    no run-open event (checked before any append)
@@ -61,7 +61,7 @@ options: mode, runDirectory, eventRecord, policy, ledger, ...
 | Error code | Returned when |
 |---|---|
 | `BINDING_FAILED` | Cutover binding could not resolve actor, capability or commit |
-| `AUTHORITY_DENIED` | The mode is outside `AUTHORITY_FLIP_MODE_ORDER`, admission is denied, or admission is closed |
+| `AUTHORITY_DENIED` | The mode is outside `AUTHORITY_ADMITTED_MODES` (the flip order plus the caller modes), admission is denied, or admission is closed |
 | `ENVELOPE_INVALID` | Part of the vocabulary only, declared for an event record that does not match the mode ledger schema. No stage returns it today |
 | `STATE_LOG_UNATTRIBUTED` | Phase `provenance`: the research or review state log opens with a config row while the ledger holds no `run_initialized` event, so the row was written outside the gateway. Nothing is appended |
 | `AUTHORIZATION_DENIED` | The transition gateway declined the request |

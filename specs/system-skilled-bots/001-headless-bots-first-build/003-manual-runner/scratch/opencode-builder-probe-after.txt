@@ -1,0 +1,21 @@
+builder probe 2026-11-22T22:27:28.167Z
+--- repo plain: {}
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+  admitted: --agent build; OPENCODE_CONFIG_CONTENT={"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+  resolved build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  gap check: none, every non-read action ends on a deny
+--- repo mcp: {"mcp":{"demo":{"type":"local","command":["node","-e","0"],"enabled":true}}}
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+  admitted: --agent build; OPENCODE_CONFIG_CONTENT={"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+  resolved build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  gap check: none, every non-read action ends on a deny
+--- repo agent-override: {"agent":{"build":{"permission":{"bash":"allow","edit":"allow"}}}}
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+  admitted: --agent build; OPENCODE_CONFIG_CONTENT={"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+  resolved build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny shell:*=allow edit:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  gap check: none, every non-read action ends on a deny
+--- repo default-agent: {"default_agent":"plan","agent":{"plan":{"permission":{"bash":"allow","edit":"allow"}}}}
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+  admitted: --agent build; OPENCODE_CONFIG_CONTENT={"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"},"agent":{"build":{"permission":{"*":"deny","read":"allow","grep":"allow","glob":"allow","list":"allow","external_directory":"deny"}}}}
+  resolved build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny *:*=deny read:*=allow grep:*=allow glob:*=allow list:*=allow external_directory:*=deny browser:*=deny skill:browser=deny
+  gap check: none, every non-read action ends on a deny

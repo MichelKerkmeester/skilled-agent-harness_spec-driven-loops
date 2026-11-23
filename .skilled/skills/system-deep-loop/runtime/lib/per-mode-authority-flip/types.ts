@@ -19,7 +19,8 @@ export const AUTHORITY_FLIP_EVENT_TYPE = 'deep-loop-authority-flip.ledger.transi
 
 export type CutoverCertificateMode =
   | 'deep-research'
-  | 'deep-review';
+  | 'deep-review'
+  | 'system-skilled-bots';
 
 /** Route a selector may hand a mode adapter; there is never more than one canonical route. */
 export type AuthorityRoute = 'legacy' | 'dark';
@@ -133,4 +134,20 @@ export type AuthoritySelectorResult =
 export const AUTHORITY_FLIP_MODE_ORDER: readonly CutoverCertificateMode[] = Object.freeze([
   'deep-research',
   'deep-review',
+]);
+
+/**
+ * Modes owned outside deep-loop that append through the mode gateway with
+ * their own registry, policy and authority root. Each holds an authority
+ * record like any mode, but none takes part in the cutover order, so the flip
+ * order, the append CLI and the verify script never see them.
+ */
+export const AUTHORITY_CALLER_MODES: readonly CutoverCertificateMode[] = Object.freeze([
+  'system-skilled-bots',
+]);
+
+/** Every mode the gateway and the selector admit: the cutover order plus the caller modes. */
+export const AUTHORITY_ADMITTED_MODES: readonly CutoverCertificateMode[] = Object.freeze([
+  ...AUTHORITY_FLIP_MODE_ORDER,
+  ...AUTHORITY_CALLER_MODES,
 ]);

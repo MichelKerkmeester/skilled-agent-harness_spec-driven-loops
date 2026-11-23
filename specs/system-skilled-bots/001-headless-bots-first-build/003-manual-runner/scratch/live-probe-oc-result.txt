@@ -1,0 +1,44 @@
+== cli-opencode (plain): bots run probe-opencode in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-probe-repo.qiBwYu
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 4935 bytes, not echoed
+bots: probe-opencode run 20261122T230829Z-5928c472 completed
+bots exit=0
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-state.GoBzad/system-skilled-bots/probe%2Fprobe-opencode/records/20261122T230829Z-5928c472.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-opencode","model":"llmgateway/deepseek-v4.1-flash-1017"} exit: {"reason":"converged","class":null,"needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+ok: the read token is in stdout.log, so the read tools ran by relative path
+note: no edit/write/patch/bash/MCP tool_use event; the model may not have tried, or the tool was not offered
+cli-opencode (plain): PASS
+== cli-opencode (mcp): bots run probe-opencode-mcp in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-probe-repo.kFwBnX
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 17078 bytes, not echoed
+bots: probe-opencode-mcp run 20261122T230840Z-6a75c83e completed
+bots exit=0
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-state.GoBzad/system-skilled-bots/probe%2Fprobe-opencode-mcp/records/20261122T230840Z-6a75c83e.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-opencode","model":"llmgateway/deepseek-v4.1-flash-1017"} exit: {"reason":"converged","class":null,"needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+ok: the read token is in stdout.log, so the read tools ran by relative path
+note: no edit/write/patch/bash/MCP tool_use event; the model may not have tried, or the tool was not offered
+cli-opencode (mcp): PASS
+== cli-opencode (agent-override): bots run probe-opencode-agent in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-probe-repo.1IJRvZ
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 13217 bytes, not echoed
+bots: probe-opencode-agent run 20261122T230853Z-ce826d5c completed
+bots exit=0
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-state.GoBzad/system-skilled-bots/probe%2Fprobe-opencode-agent/records/20261122T230853Z-ce826d5c.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-opencode","model":"llmgateway/deepseek-v4.1-flash-1017"} exit: {"reason":"converged","class":null,"needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+note: admitted; the inline agent.build rules won over the project's agent rules
+ok: the read token is in stdout.log, so the read tools ran by relative path
+note: no edit/write/patch/bash/MCP tool_use event; the model may not have tried, or the tool was not offered
+cli-opencode (agent-override): PASS
+bots state root kept at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-state.GoBzad; run folders under /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-tree.ja3HBU

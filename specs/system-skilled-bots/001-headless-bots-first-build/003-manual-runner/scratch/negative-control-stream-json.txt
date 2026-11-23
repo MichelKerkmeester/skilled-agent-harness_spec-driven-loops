@@ -1,0 +1,33 @@
+negative control: stream-json marker test against the unfixed parser, 2026-11-22T20:29:43Z
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 518 bytes, not echoed
+ ❯ tests/runner.vitest.ts (24 tests | 1 failed | 23 skipped) 537ms
+     × parks a Claude Code run whose stream-json result event carries the marker 537ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/runner.vitest.ts > needs-you decisions > parks a Claude Code run whose stream-json result event carries the marker
+AssertionError: expected 'completed' to be 'awaiting-decision' // Object.is equality
+
+Expected: "awaiting-decision"
+Received: "completed"
+
+ ❯ tests/runner.vitest.ts:266:26
+    264|     const outcome = runBot(world.input('claude-decision'));
+    265|     expect(stubRunCount(world)).toBe(1);
+    266|     expect(outcome.kind).toBe('awaiting-decision');
+       |                          ^
+    267|     if (outcome.kind !== 'awaiting-decision') throw new Error('expecte…
+    268|     const parked = readNeedsYouItem(world.stateRoot, IDENTITY, outcome…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 23 skipped (24)
+   Start at  21:29:43
+   Duration  723ms (transform 67ms, setup 0ms, import 127ms, tests 537ms, environment 0ms)
+
+exit=1

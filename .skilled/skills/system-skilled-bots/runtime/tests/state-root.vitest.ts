@@ -11,6 +11,7 @@ import {
   identityStatePaths,
   installFile,
   needsYouFile,
+  receiptFolder,
   recordFile,
   resolveRunFolder,
   runFolderPath,
@@ -54,13 +55,14 @@ describe('user-level layout', () => {
     const paths = ensureIdentityState(stateRoot, IDENTITY);
     expect(paths.base).toBe(join(stateRoot, 'acme%2Ftool'));
     expect(readdirSync(paths.requests.root).sort()).toEqual(['claimed', 'done', 'inbox', 'quarantine', 'seen', 'tmp']);
-    expect(readdirSync(paths.base).sort()).toEqual(['installs', 'leases', 'needs-you', 'records', 'requests', 'switches']);
+    expect(readdirSync(paths.base).sort()).toEqual(['installs', 'leases', 'needs-you', 'receipts', 'records', 'requests', 'switches']);
     expect(mode(stateRoot)).toBe(0o700);
     expect(mode(paths.base)).toBe(0o700);
     expect(mode(paths.requests.inbox)).toBe(0o700);
     expect(sharedStatePaths(stateRoot)).toEqual({
       index: join(stateRoot, 'index'),
       registeredRoots: join(stateRoot, 'registered-roots'),
+      authority: join(stateRoot, 'authority'),
     });
     expect(existsSync(join(stateRoot, 'index'))).toBe(true);
   });
@@ -71,7 +73,9 @@ describe('user-level layout', () => {
     expect(recordFile(stateRoot, IDENTITY, 'r1')).toBe(join(base, 'records', 'r1.json'));
     expect(needsYouFile(stateRoot, IDENTITY, 'r1')).toBe(join(base, 'needs-you', 'r1.json'));
     expect(installFile(stateRoot, IDENTITY, 'nightly')).toBe(join(base, 'installs', 'nightly.json'));
+    expect(receiptFolder(stateRoot, IDENTITY, 'r1')).toBe(join(base, 'receipts', 'r1'));
     expect(() => recordFile(stateRoot, IDENTITY, '../escape')).toThrow('run-id-invalid');
+    expect(() => receiptFolder(stateRoot, IDENTITY, '../escape')).toThrow('run-id-invalid');
     expect(() => installFile(stateRoot, IDENTITY, '.hidden')).toThrow('bot-id-invalid');
   });
 });
@@ -154,6 +158,8 @@ describe('placement guards', () => {
       paths.needsYou,
       paths.records,
       paths.installs,
+      paths.receipts,
+      receiptFolder(stateRoot, IDENTITY, 'r1'),
       ...Object.values(sharedStatePaths(stateRoot)),
       recordFile(stateRoot, IDENTITY, 'r1'),
       needsYouFile(stateRoot, IDENTITY, 'r1'),

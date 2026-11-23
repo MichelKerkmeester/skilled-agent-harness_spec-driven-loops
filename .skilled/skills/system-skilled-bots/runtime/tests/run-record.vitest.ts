@@ -8,6 +8,7 @@ import {
   AWAITING_DECISION,
   AWAITING_DECISION_STOP_REASON,
   readRunRecord,
+  RESULT_EVENT_UNRECORDED,
   writeRunRecord,
 } from '../lib/run-record.js';
 import { identityStatePaths, resolveRunFolder, userStateRoot } from '../lib/state-root.js';
@@ -150,6 +151,9 @@ describe('awaiting-decision exit', () => {
     const strayItem = fullRecord(runFolder);
     strayItem.exit = { reason: 'converged', class: null, needsYouItemId: 'r1' };
     expect(writeRunRecord(stateRoot, strayItem)).toEqual({ ok: false, reason: 'needs-you-item-without-awaiting-decision' });
+    // A parked run that then failed to record its result keeps naming the item that still holds the bot.
+    const parkedThenFailed = { ...strayItem, exit: { reason: RESULT_EVENT_UNRECORDED, class: 'hub' as const, needsYouItemId: 'r1' } };
+    expect(writeRunRecord(stateRoot, parkedThenFailed).ok).toBe(true);
   });
 
   it('maps to blockedStop in the deep-loop stop-reason taxonomy', () => {
@@ -158,5 +162,19 @@ describe('awaiting-decision exit', () => {
     ) as { STOP_REASONS: Record<string, string> };
     expect(AWAITING_DECISION_STOP_REASON).toBe('blockedStop');
     expect(Object.values(taxonomy.STOP_REASONS)).toContain(AWAITING_DECISION_STOP_REASON);
+  });
+
+  it('carries a refusal cause and a resumed item id, and rejects a malformed refusal', () => {
+    const { stateRoot, runFolder } = setup();
+    const refused = {
+      ...fullRecord(runFolder),
+      request: { ...fullRecord(runFolder).request, resumedItemId: 'parked-1' },
+      exit: { reason: 'blockedStop', class: null, needsYouItemId: null, refusal: { cause: 'awaiting-decision-hold', itemId: 'parked-1', detail: null } },
+    };
+    expect(writeRunRecord(stateRoot, refused).ok).toBe(true);
+    const read = readRunRecord(stateRoot, IDENTITY, 'r1');
+    expect(read.ok && read.value.record.exit.refusal).toEqual({ cause: 'awaiting-decision-hold', itemId: 'parked-1', detail: null });
+    const broken = { ...refused, exit: { ...refused.exit, refusal: { cause: '', itemId: null, detail: null } } };
+    expect(writeRunRecord(stateRoot, broken)).toEqual({ ok: false, reason: 'record-field-invalid', detail: 'exit.refusal' });
   });
 });

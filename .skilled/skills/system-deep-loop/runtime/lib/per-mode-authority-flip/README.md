@@ -20,7 +20,7 @@ Every helper here is pure or file-scoped. These modules consume the folder:
 
 - [`../deep-research-authority/composition.ts`](../deep-research-authority/composition.ts) reads a record with `AuthorityRegistry.read` and passes it to `selectAuthorityRoute`.
 - [`../deep-loop/fanout-effect-dispatch.ts`](../deep-loop/fanout-effect-dispatch.ts) reads records with `AuthorityRegistry.read`.
-- [`../mode-append-gateway/append-mode-event.ts`](../mode-append-gateway/append-mode-event.ts) checks the requested mode against `AUTHORITY_FLIP_MODE_ORDER`.
+- [`../mode-append-gateway/append-mode-event.ts`](../mode-append-gateway/append-mode-event.ts) checks the requested mode against `AUTHORITY_ADMITTED_MODES`: the flip order plus `AUTHORITY_CALLER_MODES`, the modes owned outside deep-loop that append through the gateway with their own registry, policy and authority root. A caller mode never joins the flip order.
 - [`../../scripts/check-direct-append.cjs`](../../scripts/check-direct-append.cjs) reads a record with `AuthorityRegistry.read`.
 - [`../../scripts/append-mode-event.cjs`](../../scripts/append-mode-event.cjs) loads `AUTHORITY_FLIP_MODE_ORDER`.
 - [`../../scripts/verify-authority.cjs`](../../scripts/verify-authority.cjs) loads `AUTHORITY_FLIP_MODE_ORDER` and reads `authority-<mode>.json` from disk itself.

@@ -116,6 +116,20 @@ const PROBE_MODEL: Record<ExecutorKind, string | null> = {
   'cli-mistral-vibe': 'deepseek-flash',
 };
 
+// Stands in for `opencode debug agents`: the inline rules laid over a catch-all allow, top
+// level first and the build agent's own rules last, the order OpenCode applies them in.
+function resolveOpencodeAgentsFromInline({ env }: { env: Record<string, string | undefined> }): unknown {
+  const inline = JSON.parse(env.OPENCODE_CONFIG_CONTENT ?? '{}') as {
+    permission?: Record<string, string>;
+    agent?: { build?: { permission?: Record<string, string> } };
+  };
+  const rules = (map: Record<string, string> = {}) => Object.entries(map).map(([action, effect]) => ({ action, resource: '*', effect }));
+  return [{
+    id: 'build',
+    permissions: [{ action: '*', resource: '*', effect: 'allow' }, ...rules(inline.permission), ...rules(inline.agent?.build?.permission)],
+  }];
+}
+
 function makeBuilder() {
   const env = stubEnv();
   const repoRoot = stubRepo();
@@ -127,6 +141,7 @@ function makeBuilder() {
       directoryRoot: repoRoot,
       repoRoot,
       lineageDir: makeTempDir('adapter-cap-lineage-'),
+      resolveOpencodeAgents: resolveOpencodeAgentsFromInline,
     });
   };
 }
@@ -226,8 +241,7 @@ describe('executor adapter capability record', () => {
   it.each(cliKinds)('%s: the fan-out builder matches binary, prompt channel, log format and resume', (kind) => {
     const record = EXECUTOR_ADAPTER_CAPABILITIES[kind];
     const build = makeBuilder();
-    // opencode refuses any mode it cannot confine, so the unconfined mode is the one it builds.
-    const built = build(kind, kind === 'cli-opencode' ? 'danger-full-access' : 'workspace-write');
+    const built = build(kind, 'workspace-write');
 
     expect(basename(built.command)).toBe(record.binary);
 
@@ -262,7 +276,7 @@ describe('executor adapter capability record', () => {
   it.each(cliKinds)('%s: a requested effort lands where the record says', (kind) => {
     const record = EXECUTOR_ADAPTER_CAPABILITIES[kind];
     const build = makeBuilder();
-    const args = build(kind, kind === 'cli-opencode' ? 'danger-full-access' : 'workspace-write', 'high').args;
+    const args = build(kind, 'workspace-write', 'high').args;
     const tokens = effortTokens(args);
 
     switch (record.effortSurface) {
@@ -306,14 +320,26 @@ describe('executor adapter capability record', () => {
         expect(flagValue('read-only', '--permission-mode'))
           .not.toBe(flagValue('danger-full-access', '--permission-mode'));
         break;
-      case 'tool-allowlist':
-        expect(argsFor('read-only')).toContain('--tools');
-        expect(argsFor('danger-full-access')).not.toContain('--tools');
+      case 'tool-allowlist': {
+        const allowlistFlag = argsFor('read-only').includes('--enabled-tools') ? '--enabled-tools' : '--tools';
+        expect(argsFor('read-only')).toContain(allowlistFlag);
+        expect(argsFor('danger-full-access')).not.toContain(allowlistFlag);
         break;
-      case 'auto-approve-flag':
-        expect(byMode['read-only']).toBeInstanceOf(Error);
-        expect(argsFor('danger-full-access')).toContain('--auto');
+      }
+      case 'permission-config': {
+        // The narrowing rides in the child's inline config; read-only also names the agent it covers.
+        const configFor = (mode: Sandbox): unknown => {
+          const built = byMode[mode];
+          if (built instanceof Error) throw built;
+          const content = (built as BuiltCommand & { env?: Record<string, string> }).env?.OPENCODE_CONFIG_CONTENT;
+          return content === undefined ? null : JSON.parse(content);
+        };
+        expect(argsFor('read-only').filter((arg) => arg !== '--agent' && arg !== 'build')).toEqual(argsFor('danger-full-access'));
+        expect(argsFor('read-only')).toContain('--agent');
+        expect(configFor('read-only')).toMatchObject({ permission: { '*': 'deny', read: 'allow' } });
+        expect(configFor('danger-full-access')).toBeNull();
         break;
+      }
       case 'none':
         expect(argsFor('read-only').filter((arg) => !arg.includes('adapter-cap-lineage-')))
           .toEqual(argsFor('danger-full-access').filter((arg) => !arg.includes('adapter-cap-lineage-')));

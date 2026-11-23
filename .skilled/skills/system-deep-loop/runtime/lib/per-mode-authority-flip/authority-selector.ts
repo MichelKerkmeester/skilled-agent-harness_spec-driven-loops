@@ -8,7 +8,7 @@
 // future wiring step can call it without changing its contract.
 
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
-import { AUTHORITY_FLIP_MODE_ORDER, AuthorityFlipStates } from './types.js';
+import { AUTHORITY_ADMITTED_MODES, AuthorityFlipStates } from './types.js';
 
 import type { JsonObject } from '../event-envelope/index.js';
 import type {
@@ -18,7 +18,7 @@ import type {
   AuthoritySelectorResult,
 } from './types.js';
 
-const MODE_SET: ReadonlySet<string> = new Set(AUTHORITY_FLIP_MODE_ORDER);
+const MODE_SET: ReadonlySet<string> = new Set(AUTHORITY_ADMITTED_MODES);
 
 function digest(value: unknown): string {
   return sha256Bytes(canonicalBytes(value as JsonObject));

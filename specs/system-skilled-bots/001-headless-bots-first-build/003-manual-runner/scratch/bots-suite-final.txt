@@ -1,0 +1,27 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 63 bytes, not echoed
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+
+ Test Files  15 passed (15)
+      Tests  164 passed (164)
+   Start at  18:20:38
+   Duration  10.21s (transform 787ms, setup 0ms, import 1.31s, tests 19.26s, environment 1ms)
+

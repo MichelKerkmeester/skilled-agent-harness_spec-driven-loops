@@ -1,0 +1,39 @@
+bots suite (read-only change) 2026-11-22T21:39:45Z
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 370 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 518 bytes, not echoed
+WARN: lineage (cli-opencode) runs with --auto and the edit, write, bash and task tools denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 913 bytes, not echoed
+[executor-audit] child stdout 73 bytes, not echoed
+[executor-audit] child stdout 63 bytes, not echoed
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+
+ Test Files  17 passed (17)
+      Tests  184 passed (184)
+   Start at  22:39:45
+   Duration  27.83s (transform 1.99s, setup 0ms, import 2.98s, tests 52.40s, environment 1ms)
+
+exit=0

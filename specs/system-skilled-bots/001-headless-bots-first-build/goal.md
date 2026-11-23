@@ -107,13 +107,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | 001-contracts-and-state-root | Done | Committed `6c3db542afa` and `652a3ed9aae` on `system-skilled-bots`. 56 tests pass, 18/18 acceptance rows Met, `validate.sh --strict` PASSED |
-| 002-schedule-predicates-and-checker | In Progress | Built by an opus-medium agent |
-| 003-manual-runner | In Progress | Built by an opus-medium agent |
+| 002-schedule-predicates-and-checker | In Progress | Review APPROVED, committed `f292a8223be` and pushed. AC-001, AC-002 and AC-011 wait on the launchd weekday probe (loaded 2026-11-22, read after 2026-11-24) |
+| 003-manual-runner | In Progress | First review REQUESTED_CHANGES (decision marker unread from JSON-output kinds). Reworked: marker read per output format, receipts moved to the state root, replay retry through the append gateway, three hardening fixes. Suite 179 passed, deep-loop 4039 passed before and after. OpenCode and Vibe read-only support in build, then re-review and the live run |
 | 004 to 008 | Pending | Waiting on their dependencies |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Operator decisions 2026-11-22 | Dispatch receipts move out of the run folder to the user-level state root. Replay retry through the deep-loop append gateway is built in phase 003. OpenCode and Mistral Vibe are supported for read-only bots through deep-loop builder tool narrowing, with one live probe per CLI. One live real-executor run of phase 003 is approved |
 | Live runs | No launchd agent is loaded, no real executor is dispatched and nothing is sent externally without the operator's explicit yes. Rows that need a live run stay Unmet with a ready-to-run script in the phase's `scratch/` |
 <!-- /ANCHOR:log -->

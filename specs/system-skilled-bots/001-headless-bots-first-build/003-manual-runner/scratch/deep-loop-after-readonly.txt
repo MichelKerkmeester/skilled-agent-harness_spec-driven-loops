@@ -1,0 +1,130 @@
+deep-loop after (read-only, final) start 2026-11-22T21:38:20Z
+deep-loop diff before run:
+ .../runtime/lib/deep-loop/executor-audit.ts        |   6 ++
+ .../runtime/lib/deep-loop/executor-config.ts       |  37 +++++---
+ .../runtime/lib/mode-append-gateway/README.md      |   4 +-
+ .../lib/mode-append-gateway/append-mode-event.ts   |   4 +-
+ .../runtime/lib/per-mode-authority-flip/README.md  |   2 +-
+ .../per-mode-authority-flip/authority-selector.ts  |   4 +-
+ .../runtime/lib/per-mode-authority-flip/index.ts   |   2 +
+ .../runtime/lib/per-mode-authority-flip/types.ts   |  19 +++-
+ .../runtime/scripts/fanout-run.cjs                 | 101 ++++++++++++++-------
+ .../stress/cli-adapter/fixtures/adapter-suite.ts   |  11 ++-
+ .../runtime/tests/unit/combo-matrix.vitest.ts      |  29 +-----
+ .../tests/unit/dispatch-iteration.vitest.ts        |  15 ++-
+ .../unit/executor-adapter-capabilities.vitest.ts   |  28 ++++--
+ .../runtime/tests/unit/executor-config.vitest.ts   |  14 ++-
+ .../runtime/tests/unit/fanout-run.vitest.ts        |  48 +++++++++-
+ 15 files changed, 223 insertions(+), 101 deletions(-)
+ M .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/README.md
+ M .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/README.md
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-selector.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts
+ M .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+ M .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/executor-adapter-capabilities.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+sha of deep-loop tree diff: ba6a4a573214
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-deep-loop/runtime
+
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 2 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":2}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"a","findingId":"F1","unknownSeverity":"P3","message":"Finding \"F1\" from lineage \"a\" carries severity \"P3\", which is outside the review severity scale (P0|P1|P2). It is unranked, sorts below every P2, and cannot raise the merged verdict; collapse it to P2 where the finding is rated."}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"openFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"openFindings","coercedCount":1}
+{"type":"lineage_reducer_provenance_unverified","severity":"warn","lineage":"lina","message":"lineage lina merged with unverified provenance: no deep-research-dashboard.md confirms the reducer wrote its registry"}
+{"type":"lineage_reducer_provenance_unverified","severity":"warn","lineage":"linb","message":"lineage linb merged with unverified provenance: no deep-research-dashboard.md confirms the reducer wrote its registry"}
+no session id scopes the dispatch_failure row, so the next refresh of the ledger-backed state log drops it
+GREEN: {"claimsCount":2,"sourcesCount":1}
+RED: {"claimsCount":0,"sourcesCount":1}
+RESTORE: {"claimsCount":2,"sourcesCount":1}
+{"ok":true,"receipt":{"ledger_id":"deep-review-ledger","sequence":1,"event_id":"event-86cba286-406a-4a83-8a39-b26deb58e63c","event_type":"deep-review.ledger.recovery-baseline","event_version":1,"stream_id":"deep-review-ledger","stream_sequence":1,"committed_at":"2026-11-22T21:39:15.952Z","canonicalEventHash":"528cf857faf7d7f01b7812a442dbb07f4850c7d7da6d8ca09e724bb88d7b92ea","recordHash":"1e07dc29bd7d5a18abe164acbe8893a877ba5906c3f0c0d9ae49cb347865b610","authorizationRef":{"audit_ledger_id":"deep-review-audit-ledger","audit_sequence":1,"audit_record_hash":"86d3cdd19848caf5d82ab9285628bf174f65cb10a3f53564cc7de2237f4753b5","decision_id":"decision-48426005-c729-4a9a-97be-ab0d157f07df","decision_digest":"1616607b3059785069c2f4af5790e3edcf2da81a6b4c4fcb4d668b87eb10c4d3","request_digest":"1756c46ea0fe989cdb355715a305b70ddc209b0703870e77da6e741f4dba8d63","policy_digest":"883e5d03486b26c23ecdb48a893d8b0db0d8e2e7125e0847705bfd4a2b1a4500","authority_epoch":1,"fence_token":1},"ledgerId":"deep-review-ledger","eventId":"event-86cba286-406a-4a83-8a39-b26deb58e63c","eventType":"deep-review.ledger.recovery-baseline","eventVersion":1,"streamId":"deep-review-ledger","streamSequence":1,"committedAt":"2026-11-22T21:39:15.952Z"},"projectionRefreshed":true,"projectionError":null}
+WARN: lineage (cli-opencode) runs with --auto and external_directory denied: file tools outside the working directory are refused, but Bash is not confined and can still write anywhere, so the lineageDir write boundary is prompt-only for Bash.
+WARN: lineage (cli-opencode) runs with --auto and the edit, write, bash and task tools denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+WARN: lineage (cli-opencode) runs with --auto and external_directory denied: file tools outside the working directory are refused, but Bash is not confined and can still write anywhere, so the lineageDir write boundary is prompt-only for Bash.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and the edit, write, bash and task tools denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+WARN: lineage (cli-opencode) runs with --auto and external_directory denied: file tools outside the working directory are refused, but Bash is not confined and can still write anywhere, so the lineageDir write boundary is prompt-only for Bash.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+{"ok":false,"phase":"runtime","reason":"Unrecognized event format: expected object with stem or event_type","code":"RUNTIME_ERROR"}
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and external_directory denied: file tools outside the working directory are refused, but Bash is not confined and can still write anywhere, so the lineageDir write boundary is prompt-only for Bash.
+GREEN: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+RED: {"artifactCount":1,"paths":["research/deltas/iter-001.jsonl"],"iter1RowCount":2}
+RESTORE: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+WARN: lineage (cli-opencode) runs with --auto and the edit, write, bash and task tools denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+WARN: lineage (cli-opencode) runs with --auto and external_directory denied: file tools outside the working directory are refused, but Bash is not confined and can still write anywhere, so the lineageDir write boundary is prompt-only for Bash.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+[executor-audit] child stdout 18 bytes, not echoed
+[executor-audit] child stdout 18 bytes, not echoed
+resource_exhausted[frontier-admit] warning: skipped frontier-nodes.jsonl line 3: Unterminated string in JSON at position 45 (line 1 column 46)
+[frontier-admit] warning: skipped frontier-nodes.jsonl line 3: Unterminated string in JSON at position 45 (line 1 column 46)
+[executor-audit] child stdout 12583239 bytes, not echoed
+GREEN: {"findingsCount":1,"evidenceCount":1}
+RED: {"findingsCount":0,"evidenceCount":1}
+RESTORE: {"findingsCount":1,"evidenceCount":1}
+[executor-audit] child stdout 25166423 bytes, not echoed
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+plugin repo-guards did not activate
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"  DeepSeek-V4-Pro  "}}
+{"type":"step_start","part":{"type":"step-start","modelID":"some-other-model"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"gpt-9-substituted"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+WARN: lineage opencode runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage merge runs with --auto and external_directory denied: file tools outside the working directory are refused, but Bash is not confined and can still write anywhere, so the lineageDir write boundary is prompt-only for Bash.
+WARN: lineage merge runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage merge runs with --auto and the edit, write, bash and task tools denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+WARN: lineage merge runs with --auto and external_directory denied: file tools outside the working directory are refused, but Bash is not confined and can still write anywhere, so the lineageDir write boundary is prompt-only for Bash.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+WARN: lineage (cli-opencode) runs with --auto and no path restriction. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+
+ Test Files  222 passed (222)
+      Tests  4041 passed | 11 skipped (4052)
+   Start at  22:38:21
+   Duration  296.71s (transform 10.69s, setup 2.43s, import 25.24s, tests 1206.43s, environment 11ms)
+
+exit=0
+deep-loop diff after run:
+ M .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/README.md
+ M .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/README.md
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-selector.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts
+ M .skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts
+ M .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+ M .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/executor-adapter-capabilities.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+sha of deep-loop tree diff: ba6a4a573214
+end 2026-11-22T21:43:17Z

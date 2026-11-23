@@ -56,10 +56,25 @@ const PERMISSION_BY_SANDBOX: Record<SandboxMode, PermissionMode> = {
   'danger-full-access': 'bypassPermissions',
 };
 const MATRIX_PROMPT = 'matrix prompt';
+// Stands in for `opencode debug agents`: the inline rules laid over a catch-all allow, top
+// level first and the build agent's own rules last, the order OpenCode applies them in.
+function resolveOpencodeAgentsFromInline({ env }: { env: Record<string, string | undefined> }): unknown {
+  const inline = JSON.parse(env.OPENCODE_CONFIG_CONTENT ?? '{}') as {
+    permission?: Record<string, string>;
+    agent?: { build?: { permission?: Record<string, string> } };
+  };
+  const rules = (map: Record<string, string> = {}) => Object.entries(map).map(([action, effect]) => ({ action, resource: '*', effect }));
+  return [{
+    id: 'build',
+    permissions: [{ action: '*', resource: '*', effect: 'allow' }, ...rules(inline.permission), ...rules(inline.agent?.build?.permission)],
+  }];
+}
+
 const MATRIX_OPTIONS = {
   loopType: 'review' as const,
   specFolder: 'specs/combo-matrix',
   lineageDir: '/tmp/combo-matrix',
+  resolveOpencodeAgents: resolveOpencodeAgentsFromInline,
 };
 
 const MODELS_BY_KIND: Record<ExecutorKind, readonly (string | undefined)[]> = {
@@ -134,7 +149,7 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
     case 'cli-claude-code':
       return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'plan', '--output-format', 'stream-json', '--verbose'];
     case 'cli-opencode':
-      return ['run', '--standalone', '-m', model ?? '', '--format', 'json', '--auto', MATRIX_PROMPT];
+      return ['run', '--standalone', '-m', model ?? '', '--format', 'json', '--auto', '--agent', 'build', MATRIX_PROMPT];
     case 'cli-cursor':
       return [
         '-p', MATRIX_PROMPT, '--output-format', 'text', '--model', model ?? '',
@@ -158,6 +173,7 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
         '--prompt-file', join(realpathSync(MATRIX_OPTIONS.lineageDir), 'vibe-prompt.txt'),
         '--output-dir', join(realpathSync(MATRIX_OPTIONS.lineageDir), 'vibe-output'),
         '--trust', '--model', model ?? '', '--auto-approve',
+        '--enabled-tools', 'read_file', '--enabled-tools', 'grep',
       ];
   }
 }
@@ -198,27 +214,6 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
               rejectedCombinations += 1;
               exercisedKinds.add(kind);
               console.log(`[combo-matrix] rejected kind=${kind} model=${modelLabel} sandbox=${sandbox} reason=native-lineage-refused`);
-              continue;
-            }
-
-            // cli-opencode's Bash tool can write anywhere, so no read-only boundary exists
-            // and read-only must fail closed rather than silently dispatch with write access.
-            if (kind === 'cli-opencode' && sandbox === 'read-only') {
-              expect(() => buildLineageCommand(
-                lineage,
-                MATRIX_PROMPT,
-                sandbox,
-                PERMISSION_BY_SANDBOX[sandbox],
-                { env: installed.env, ...MATRIX_OPTIONS },
-              )).toThrow(/cannot enforce sandbox mode/);
-              rejectedCombinations += 1;
-              exercisedKinds.add(kind);
-              if (model !== undefined) {
-                const exercisedModels = exercisedModelsByKind[kind] ?? new Set<string>();
-                exercisedModels.add(model);
-                exercisedModelsByKind[kind] = exercisedModels;
-              }
-              console.log(`[combo-matrix] rejected kind=${kind} model=${modelLabel} sandbox=${sandbox} reason=unenforceable-sandbox`);
               continue;
             }
 
@@ -263,11 +258,8 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
         0,
       );
       expect(constructedCombinations + rejectedCombinations).toBe(expectedCombinationCount);
-      // Every cli-opencode model is rejected for read-only, and a native lineage is
-      // rejected for every sandbox mode.
-      expect(rejectedCombinations).toBe(
-        MODELS_BY_KIND['cli-opencode'].length + MODELS_BY_KIND.native.length * SANDBOX_MODES.length,
-      );
+      // Only a native lineage is rejected, for every sandbox mode.
+      expect(rejectedCombinations).toBe(MODELS_BY_KIND.native.length * SANDBOX_MODES.length);
       expect(new Set(exercisedKinds)).toEqual(new Set(EXECUTOR_KINDS));
       expect([...exercisedModelsByKind['cli-cursor'] ?? []].sort()).toEqual([...CURSOR_SUPPORTED_MODELS].sort());
       expect([...exercisedModelsByKind['cli-devin'] ?? []].sort()).toEqual([...DEVIN_SUPPORTED_MODELS].sort());

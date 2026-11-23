@@ -467,6 +467,16 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
         + `  process.stdout.write(${JSON.stringify(version)} + '\\n');\n`
         + '  process.exit(0);\n'
         + '}\n'
+        // The OpenCode builder resolves a read-only run's agent before dispatch. The shim answers
+        // with the inline rules over a catch-all allow, top level first and the build agent's
+        // own rules last, the order OpenCode applies them in, and records nothing.
+        + "if (argv[0] === 'debug' && argv[1] === 'agents') {\n"
+        + "  const inline = JSON.parse(process.env.OPENCODE_CONFIG_CONTENT || '{}');\n"
+        + "  const rules = (map) => Object.entries(map || {}).map(([action, effect]) => ({ action, resource: '*', effect }));\n"
+        + "  const build = (inline.agent && inline.agent.build) || {};\n"
+        + "  process.stdout.write(JSON.stringify([{ id: 'build', permissions: [{ action: '*', resource: '*', effect: 'allow' }, ...rules(inline.permission), ...rules(build.permission)] }]));\n"
+        + '  process.exit(0);\n'
+        + '}\n'
         + `fs.writeFileSync(${JSON.stringify(recordPath)}, JSON.stringify(argv));\n`
         + `fs.writeFileSync(${JSON.stringify(childEnvironmentPath(recordPath))}, `
         + 'JSON.stringify({ opencodeConfigContent: process.env.OPENCODE_CONFIG_CONTENT ?? null }));\n'
@@ -691,12 +701,26 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
       expect(receiptSandboxMode(join(run.fixture.repo, 'packet'), 'research-i1-g1')).toBe('danger-full-access');
     });
 
-    it('refuses a read-only dispatch before the child runs', () => {
+    it('hands the child the read-only allowlist for a read-only dispatch', () => {
       const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'read-only');
+      expect(run.argv).toContain('--auto');
+      expect(flagValue(run.argv, '--agent')).toBe('build');
+      const allowlist = { '*': 'deny', read: 'allow', grep: 'allow', glob: 'allow', list: 'allow', external_directory: 'deny' };
+      expect(JSON.parse(childConfigContent(run.fixture.recordPath) as string)).toEqual({
+        permission: allowlist,
+        agent: { build: { permission: allowlist } },
+      });
+      expect(receiptSandboxMode(join(run.fixture.repo, 'packet'), 'research-i1-g1')).toBe('read-only');
+    });
+
+    it('refuses before the child runs when the read-only denies cannot merge into an inherited config', () => {
+      const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'read-only', [], undefined, {
+        OPENCODE_CONFIG_CONTENT: '{not json',
+      });
       expect(run.status).not.toBe(0);
       // A builder input error that is not a missing binary is not rerouted to the usage exit.
       expect(run.status).not.toBe(64);
-      expect(run.stderr).toContain("cannot enforce sandbox mode 'read-only'");
+      expect(run.stderr).toContain('cannot merge into OPENCODE_CONFIG_CONTENT');
       expect(run.argv).toBeNull();
     });
 

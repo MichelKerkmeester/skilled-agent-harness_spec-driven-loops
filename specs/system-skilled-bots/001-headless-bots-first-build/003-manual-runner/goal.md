@@ -11,7 +11,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/003-manual-runner"
-    last_updated_at: "2026-11-22T16:57:30Z"
+    last_updated_at: "2026-11-23T06:30:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
@@ -59,12 +59,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `bots run <fixture-id>` exits 0, and `records/` under the identity folder holds exactly one new terminal record that points to its run folder and reads delivery `not-attempted`
-- [ ] A disabled bot, a paused bot, a precheck that exits non-zero, a precheck that prints `[SILENT]`, an `isolation: worktree` bot and a second concurrent run each end with no dispatch receipt and one record naming the refusal reason
-- [ ] `rg -F` for the fixture's prompt text and for a planted environment value over every log the runner wrote prints nothing
-- [ ] A fixture child that prints `[NEEDS-DECISION]` leaves one open item in `bots inbox`, no held lease, and a record with exit `awaiting-decision`, stop reason `blockedStop` and class `operator`
-- [ ] With one open item for a bot, a second run of that bot exits with the refusal code and cause `awaiting-decision-hold` and no dispatch receipt, and once the item is answered or expired the same run dispatches
-- [ ] `rg -n 'launchctl|\.plist' .skilled/skills/system-skilled-bots/ .skilled/bin/bots.cjs` prints nothing
+- [x] `bots run <fixture-id>` exits 0, and `records/` under the identity folder holds exactly one new terminal record that points to its run folder and reads delivery `not-attempted`
+- [x] A disabled bot, a paused bot, a precheck that exits non-zero, a precheck that prints `[SILENT]`, an `isolation: worktree` bot and a second concurrent run each end with no dispatch receipt and one record naming the refusal reason
+- [x] `rg -F` for the fixture's prompt text and for a planted environment value over every log the runner wrote prints nothing
+- [x] A fixture child that prints `[NEEDS-DECISION]` leaves one open item in `bots inbox`, no held lease, and a record with exit `awaiting-decision`, stop reason `blockedStop` and class `operator`
+- [x] With one open item for a bot, a second run of that bot exits with the refusal code and cause `awaiting-decision-hold` and no dispatch receipt, and once the item is answered or expired the same run dispatches
+- [x] `rg -n 'launchctl|\.plist' .skilled/skills/system-skilled-bots/ .skilled/bin/bots.cjs` prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,10 +82,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | Criteria drawn from spec.md section 5 and acceptance-criteria.md |
+| Live verification, 2026-11-22 and 2026-11-23 | Done | Codex live run exit 0, `converged`, one new record, consumer git status unchanged (`specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch/live-run-codex-result.txt:3`, `specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch/live-run-codex-result.txt:4`, `specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch/live-run-codex-result.txt:5`); OpenCode probe three fixtures PASS (`specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch/live-probe-oc-result.txt:43`); Vibe rerun PASS, bots exit 0 (`specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch/live-probe-mv-rerun-result.txt:17`). All six criteria above already held; none was newly ticked |
+| Completion criteria, after the review rework | Done | Bots suite 17 files, 179 passed (`scratch/bots-suite-rework.txt`); AC-001, AC-002, AC-003, AC-006, AC-013, AC-019 and AC-007 carry the per-criterion evidence. The `rg -F` criterion now covers argv kinds too, since receipts left the run folder |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Review P1 | A Claude Code stream-json child that asked and exited 0 was recorded `converged`; fixed by reading each kind's final answer (T035) |
+| Operator decisions D14, D15 | Receipts moved to the user-level state root (ADR-006); the result event goes through the append gateway (ADR-007), which made `runBot` async |
+| Operator decision 2026-11-22, "Support read-only now" | OpenCode and Mistral Vibe admitted for read-only bots through a tool-narrowing profile in the shared deep-loop builders (ADR-008). Bots suite 17 files, 184 passed; deep-loop 4039 to 4041 passed. The completion criteria above still hold. The live probes (AC-024, AC-025) await the orchestrator |
+| Operator decision 2026-11-22, "Fix all, third review" | The second review's four P1 and three P2 findings were fixed at the source (ADR-008, third review): an OpenCode read-only allowlist checked against the resolved agent, Vibe judged by its export, the checkout path in a lineage-folder prompt, and the three runner hardening fixes. Bots suite 17 files, 191 passed; deep-loop 4041 passed, unchanged. The completion criteria above still hold. The live probes (AC-024, AC-025) await the orchestrator |
 <!-- /ANCHOR:log -->

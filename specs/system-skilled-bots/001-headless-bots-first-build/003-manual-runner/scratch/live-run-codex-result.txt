@@ -1,0 +1,74 @@
+Live run 2026-11-22T23:07Z (operator-approved, cli-codex, read-only manual bot 'hello' in a scratch consumer with no remote and identity in bots/config.json)
+First attempt: exit 4, refused before dispatch (run-folder-refused: skilled-tree-is-worktree), no dispatch, no record
+Second attempt with --skilled-tree <primary checkout>: RUN_EXIT=0
+records before: 0, after: 1 (/Users/michelkerkmeester/.local/state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/records/20261122T230742Z-513cb828.json)
+consumer git status --short before: empty; after: empty (diff identical)
+run folder receipts: 0 files; prompt text in run folder: 0 matches; receipts at state root: intent+completion
+child answer: This repository verifies that a bot run leaves the checkout unchanged.
+--- record ---
+{
+  "schemaVersion": 1,
+  "identity": {
+    "repository": "skilled-scratch/bots-live-consumer",
+    "repositoryPath": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5/scratchpad/live-consumer",
+    "botId": "hello",
+    "runId": "20261122T230742Z-513cb828",
+    "definitionDigest": "sha256:3ee42295c003e56a9fd1c24f240bf13fbd2259ec2a3826b0d2b2256a7b9756ca"
+  },
+  "request": {
+    "requestId": null,
+    "leaseNonce": "21287-1795388862953-704d5fe3-5bec-4df6-b041-a1bd3160cd49",
+    "resultEventId": "20261122T230742Z-513cb828:result",
+    "firedSlot": null,
+    "resumedItemId": null
+  },
+  "dispatch": {
+    "source": "manual",
+    "scheduledAt": null,
+    "dispatchedAt": "2026-11-22T23:07:43.026Z",
+    "latenessSeconds": null,
+    "latenessClass": null,
+    "skippedSlots": null
+  },
+  "budget": {
+    "declared": {
+      "maxIterations": 10,
+      "maxDurationMinutes": 120,
+      "timeoutSeconds": 900
+    },
+    "measured": {
+      "iterations": 1,
+      "elapsedMinutes": 0.154,
+      "costUsd": null,
+      "costSource": null
+    }
+  },
+  "posture": {
+    "isolation": "shared",
+    "sandbox": "read-only",
+    "executorKind": "cli-codex",
+    "model": null
+  },
+  "exit": {
+    "reason": "converged",
+    "class": null,
+    "needsYouItemId": null,
+    "refusal": null
+  },
+  "evidence": {
+    "runFolder": "/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/runs/20261122T230742Z-513cb828",
+    "ledgerDir": "/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/runs/20261122T230742Z-513cb828/ledger",
+    "receiptDir": "/Users/michelkerkmeester/.local/state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/receipts/20261122T230742Z-513cb828",
+    "observabilityStream": "/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/runs/20261122T230742Z-513cb828/observability.jsonl",
+    "worktreePath": null,
+    "branch": null
+  },
+  "delivery": [
+    {
+      "channel": "local-only",
+      "target": "local",
+      "state": "not-attempted",
+      "evidence": null
+    }
+  ]
+}

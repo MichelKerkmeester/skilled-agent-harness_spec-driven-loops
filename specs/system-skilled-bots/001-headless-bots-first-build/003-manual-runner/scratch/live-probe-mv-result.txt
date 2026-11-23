@@ -1,0 +1,17 @@
+== cli-mistral-vibe (plain): bots run probe-vibe in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-probe-repo.CCkSRR
+[executor-audit] child stdout 903 bytes, not echoed
+Tool call denied: file_system.write_file (Tool execution denied by approval policy)
+Tool call denied: file_system.bash (Tool execution denied by approval policy)
+bots: probe-vibe run 20261122T230911Z-1c1bae94 failed: runner-error (class environment)
+bots exit=1
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-state.8H4C4y/system-skilled-bots/probe%2Fprobe-vibe/records/20261122T230911Z-1c1bae94.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-mistral-vibe","model":"deepseek-flash"} exit: {"reason":"runner-error","class":"environment","needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+ok: the read token is in stdout.log, so the read tools ran by relative path
+enabled_tools: ["read_file","grep"] outcome: finished exit_code: 0
+ok: Vibe ran with the read tools only
+cli-mistral-vibe (plain): PASS
+bots state root kept at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-state.8H4C4y; run folders under /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-probe-tree.JPj0Ij

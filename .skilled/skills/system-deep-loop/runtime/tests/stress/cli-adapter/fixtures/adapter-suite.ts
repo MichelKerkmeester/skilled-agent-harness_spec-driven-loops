@@ -480,15 +480,20 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
           '--permission-mode', 'read-only', '--approval-policy', 'never',
         ]));
       } else if (kind === 'cli-mistral-vibe') {
-        // Vibe exposes no confinement or approval flag, so the only truthful assertion is
-        // that the read-only request adds none and the recorded config claims no boundary.
+        // Vibe exposes no confinement or approval flag. A read-only request narrows its tools
+        // to the read tools and is recorded as that compensating control, never a boundary.
         const built = buildCommand(fixture, 'read-only');
         expect(readOnlyArgs).toEqual(expect.arrayContaining([
           '--trust', '--auto-approve', '--model', MODEL_BY_KIND[kind],
+          '--enabled-tools', 'read_file', 'grep',
         ]));
         expect(readOnlyArgs).not.toContain('--sandbox');
         expect(readOnlyArgs).not.toContain('--permission-mode');
-        expect(built.effectiveConfig).toMatchObject({ sandboxMode: null, permissionMode: null });
+        expect(built.effectiveConfig).toMatchObject({
+          sandboxMode: 'read-only',
+          permissionMode: null,
+          sandboxEnforcement: 'compensating',
+        });
       } else {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['--mode', 'plan', '--trust']));
         expect(readOnlyArgs).not.toContain('--force');

@@ -1,0 +1,12 @@
+bots suite after the review rework, npx vitest run --no-coverage, 2026-11-22T20:47:54Z
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+
+ Test Files  17 passed (17)
+      Tests  179 passed (179)
+   Start at  21:47:54
+   Duration  25.09s (transform 1.73s, setup 0ms, import 2.72s, tests 47.82s, environment 1ms)
+
+exit=0

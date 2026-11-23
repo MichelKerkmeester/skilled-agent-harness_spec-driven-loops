@@ -8,11 +8,11 @@
 // (open, answered, expired) is derived from its fields every time it is
 // read and never stored, so it can never disagree with them.
 
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
 import { IDENTITY_PATTERN } from './repo-config.js';
-import { ensureIdentityState, isSafeSegment, needsYouFile } from './state-root.js';
+import { ensureIdentityState, identityStatePaths, isSafeSegment, needsYouFile } from './state-root.js';
 
 import type { Result } from './repo-config.js';
 
@@ -36,6 +36,10 @@ export interface NeedsYouItem {
   createdAt: string;
   expiresAt: string;
   evidence: string[];
+  /** The exact prompt the parked run was dispatched with, so a resumed run continues it. */
+  prompt: string;
+  /** The spec folder the parked run was bound to; the resumed run binds the same one. */
+  specFolder: string | null;
   answer: NeedsYouAnswer | null;
   /** Set once an answer has enqueued its resume request. */
   resumeRequestId: string | null;
@@ -53,6 +57,8 @@ const ITEM_KEYS = [
   'createdAt',
   'expiresAt',
   'evidence',
+  'prompt',
+  'specFolder',
   'answer',
   'resumeRequestId',
 ] as const;
@@ -90,7 +96,7 @@ export function validateNeedsYouItem(raw: unknown): Result<NeedsYouItem> {
   const unknown = Object.keys(raw).find((key) => !(ITEM_KEYS as readonly string[]).includes(key));
   if (unknown !== undefined) return { ok: false, reason: 'unknown-key', detail: unknown };
 
-  for (const key of ['id', 'runId', 'botId', 'identity', 'question'] as const) {
+  for (const key of ['id', 'runId', 'botId', 'identity', 'question', 'prompt'] as const) {
     if (!nonEmptyString(raw[key])) return { ok: false, reason: 'item-field-invalid', detail: key };
   }
   if (raw.id !== raw.runId) return { ok: false, reason: 'item-id-not-run-id' };
@@ -103,6 +109,9 @@ export function validateNeedsYouItem(raw: unknown): Result<NeedsYouItem> {
     return { ok: false, reason: 'item-field-invalid', detail: 'options' };
   }
   if (!isStringList(raw.evidence)) return { ok: false, reason: 'item-field-invalid', detail: 'evidence' };
+  if (raw.specFolder !== null && !nonEmptyString(raw.specFolder)) {
+    return { ok: false, reason: 'item-field-invalid', detail: 'specFolder' };
+  }
   if (raw.answer !== null) {
     const answer = raw.answer;
     if (!isPlainObject(answer) || typeof answer.text !== 'string' || !isInstant(answer.answeredAt)) {
@@ -177,4 +186,132 @@ export function readNeedsYouItem(stateRoot: string, identity: string, itemId: st
     return { ok: false, reason: 'item-invalid', detail: 'not valid JSON' };
   }
   return validateNeedsYouItem(parsed);
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 4. LISTING, HOLD & RESUME
+// ───────────────────────────────────────────────────────────────────
+
+/** An item read back with its state derived at one instant. */
+export interface NeedsYouListing {
+  item: NeedsYouItem;
+  state: NeedsYouState;
+}
+
+/**
+ * List every readable item of one identity with its derived state, oldest
+ * first. A damaged item file is skipped and named, never fatal, so one bad
+ * file cannot hide the rest of the inbox. Only a missing folder means no
+ * items; a folder that exists but cannot be listed is reported, because an
+ * empty answer there would hide every open item.
+ *
+ * @returns The listings, the ids of files that did not read, and the error
+ *   code when the folder could not be listed (null otherwise).
+ */
+export function listNeedsYouItems(
+  stateRoot: string,
+  identity: string,
+  now: Date = new Date(),
+): { items: NeedsYouListing[]; unreadable: string[]; listError: string | null } {
+  const folder = identityStatePaths(stateRoot, identity).needsYou;
+  let names: string[];
+  try {
+    names = readdirSync(folder);
+  } catch (error: unknown) {
+    const code = (error as NodeJS.ErrnoException | null)?.code;
+    if (code === 'ENOENT') return { items: [], unreadable: [], listError: null };
+    return { items: [], unreadable: [], listError: typeof code === 'string' ? code : 'unknown error' };
+  }
+  const items: NeedsYouListing[] = [];
+  const unreadable: string[] = [];
+  for (const name of names) {
+    if (!name.endsWith('.json')) continue;
+    const id = name.slice(0, -'.json'.length);
+    if (!isSafeSegment(id)) continue;
+    const read = readNeedsYouItem(stateRoot, identity, id);
+    if (!read.ok) {
+      unreadable.push(id);
+      continue;
+    }
+    items.push({ item: read.value, state: needsYouState(read.value, now) });
+  }
+  items.sort((a, b) => Date.parse(a.item.createdAt) - Date.parse(b.item.createdAt));
+  return { items, unreadable, listError: null };
+}
+
+/**
+ * The item that holds a bot: unanswered and not past its expiry. An answered
+ * or expired item holds nothing, so no item can hold a bot past its expiry.
+ *
+ * @returns The oldest open item of the bot, or null.
+ */
+export function openItemForBot(
+  stateRoot: string,
+  identity: string,
+  botId: string,
+  now: Date = new Date(),
+): NeedsYouItem | null {
+  const open = listNeedsYouItems(stateRoot, identity, now).items.find(
+    (listing) => listing.item.botId === botId && listing.state === 'open',
+  );
+  return open?.item ?? null;
+}
+
+/** What holds a bot: an open item, item files that do not read and may be its own, or a folder that cannot be listed. */
+export type BotHold =
+  | { kind: 'open'; item: NeedsYouItem }
+  | { kind: 'unreadable'; itemIds: string[] }
+  | { kind: 'unlistable'; code: string };
+
+/** The bot id a damaged item file still names, when its JSON parses that far. */
+function peekBotId(stateRoot: string, identity: string, itemId: string): string | null {
+  try {
+    const parsed = JSON.parse(readFileSync(needsYouFile(stateRoot, identity, itemId), 'utf8')) as { botId?: unknown };
+    return typeof parsed.botId === 'string' ? parsed.botId : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Decide whether a bot is held. An open item of the bot holds it. An item
+ * file that does not read holds it too, unless the file still names another
+ * bot: an item's file name is its run id and never names the bot, so a damaged
+ * item that might be this bot's must hold, the same way a damaged stop switch
+ * still stops. A folder that cannot be listed holds every bot for the same
+ * reason. A hold that fails open would let a bot run past a question.
+ *
+ * @returns The hold, or null when nothing holds the bot.
+ */
+export function holdForBot(stateRoot: string, identity: string, botId: string, now: Date = new Date()): BotHold | null {
+  const { items, unreadable, listError } = listNeedsYouItems(stateRoot, identity, now);
+  // Any item in a folder that cannot be listed may be this bot's open question.
+  if (listError !== null) return { kind: 'unlistable', code: listError };
+  const open = items.find((listing) => listing.item.botId === botId && listing.state === 'open');
+  if (open !== undefined) return { kind: 'open', item: open.item };
+  const mine = unreadable.filter((itemId) => {
+    const named = peekBotId(stateRoot, identity, itemId);
+    return named === null || named === botId;
+  });
+  return mine.length > 0 ? { kind: 'unreadable', itemIds: mine } : null;
+}
+
+/**
+ * The prompt of a run resumed after an answer: the parked run's own prompt,
+ * then the question and the answer. The parked prompt already names the bound
+ * spec folder, so the resumed run binds the same one.
+ *
+ * @returns The prompt, or `item-not-answered` for an item with no answer.
+ */
+export function buildResumedPrompt(item: NeedsYouItem): Result<string> {
+  if (item.answer === null) return { ok: false, reason: 'item-not-answered' };
+  const lines = [
+    item.prompt,
+    '',
+    'An earlier run of this bot stopped to ask the operator a question. The operator has answered it.',
+    `Question: ${item.question}`,
+  ];
+  if (item.options !== null && item.options.length > 0) lines.push(`Options offered: ${item.options.join(' | ')}`);
+  lines.push(`Answer: ${item.answer.text}`, 'Continue the work from where that run stopped, following the answer.');
+  return { ok: true, value: lines.join('\n') };
 }

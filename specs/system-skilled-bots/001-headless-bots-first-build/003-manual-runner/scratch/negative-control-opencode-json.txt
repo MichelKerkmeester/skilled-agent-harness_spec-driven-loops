@@ -1,0 +1,6 @@
+# negative control: opencode-json answers read raw instead of through the json reader
+     × parks a read-only OpenCode run whose json text event carries the marker, with the tool denies in its child 809ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'completed' to be 'awaiting-decision' // Object.is equality
+ Test Files  1 failed (1)
+      Tests  1 failed | 28 skipped (29)

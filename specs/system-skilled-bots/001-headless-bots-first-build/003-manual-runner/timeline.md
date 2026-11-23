@@ -20,7 +20,7 @@ contextType: "general"
 <!-- FILL: Fill the timeline id, the date and the owner. GOOD: TL-001, 2026-10-24, conductor. WEAK: TBD. -->
 
 **Subject:** Phase 3, the manual runner for system-skilled-bots
-**Status:** Planned
+**Status:** In Progress
 **Started:** 2026-11-22
 **Last updated:** 2026-11-22
 **Owner:** Operator
@@ -37,6 +37,8 @@ contextType: "general"
 **2026-11-22:** Operator decisions applied. Raised to Level 3 (D8). ADR-001 accepted as a decision queue with `bots inbox` and `bots answer` (D1). ADR-005 accepted and T025 unblocked (D7). Run folders moved to the Skilled tree's gitignored `.state` (D2). Outcome: planned. Nothing is built.
 
 **2026-11-22:** Second operator round applied. A bot with an open item is held (D9, REQ-022, T034). The expiry key is `needsYou.expiryDays` (D10). `bots answer` moved to phase 5 (D12): T030 removed, AC-015 and AC-016 Superseded, AC-018 and AC-019 added. Outcome: planned. Nothing is built.
+
+**2026-11-22:** Built and verified with a stub executor. The bots suite passed 164 tests and the deep-loop suite held at 4039 passed before and after the allowlist entry. Outcome: 15 criteria Met, AC-006 Unmet (do receipts count as logs), AC-008 Unmet (gateway replay, T014 blocked), the live executor run awaiting operator approval.
 <!-- /ANCHOR:timeline -->
 
 ---

@@ -23,7 +23,7 @@ contextType: "general"
 
 A bot is a `BOT.md` file, and nothing can run one today: `.skilled/bin/bots.cjs` does not exist. This phase builds `bots run <id>` for the manual trigger in a shared checkout, with the stop layers, posture checks and secret refusals a later scheduler depends on. A run that needs a person parks as `awaiting-decision` with one needs-you item. While that item is open, the bot's other runs are held. Phase 5's `bots answer` turns the answer into a `resume` request, and this runner starts the resumed run. A fixture bot proves each path with one terminal record.
 
-**Key Decisions**: a decision queue for human-decision stops (ADR-001, Accepted by the operator), the posture matrix from `executor-config.ts` (ADR-002), the run marker `SKILLED_BOT_RUN_ID` through one allowlist entry (ADR-005, Accepted by the operator), run folders in the Skilled tree's gitignored `.state` (operator decision D2).
+**Key Decisions**: a decision queue for human-decision stops (ADR-001, Accepted by the operator), the posture matrix from `executor-config.ts` (ADR-002), the run marker `SKILLED_BOT_RUN_ID` through one allowlist entry (ADR-005, Accepted by the operator), run folders in the Skilled tree's gitignored `.state` (operator decision D2), dispatch receipts under the user-level state root (ADR-006) and the result event through the append gateway (ADR-007), both Accepted by the operator.
 
 **Critical Dependencies**: phase 1's record schema and state-root layout. Nothing from phase 5: phase 5 owns `bots answer` and calls into this runner (operator decision D12).
 
@@ -36,7 +36,7 @@ A bot is a `BOT.md` file, and nothing can run one today: `.skilled/bin/bots.cjs`
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/003-manual-runner` |
 | **Parent Spec** | ../spec.md |
@@ -146,12 +146,22 @@ New paths sit under the skill layout that phase 1 fixes. The skill folder `.skil
 | `.skilled/skills/system-skilled-bots/runtime/lib/switches.ts` | Create | Disable and pause files under the state root |
 | `.skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` | Create | Headless dispatch, environment allowlist, secret refusals, the run marker, budget and the decision-marker parser. Exports the body-secret predicate |
 | `.skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts` | Create | Item write, read with expiry, the open-item check for the hold and the resumed prompt builder |
+| `.skilled/skills/system-skilled-bots/runtime/lib/result-ledger.ts` | Create | The bots registration for the append gateway: event registry, allow policy, authority root and binding, and the replaying result append (ADR-007) |
+| `.skilled/skills/system-skilled-bots/runtime/lib/state-root.ts` | Modify | The per-run receipt folder and the authority root under the user-level state root (ADR-006, ADR-007) |
 | `.skilled/skills/system-skilled-bots/runtime/tests/` | Create | Unit and integration tests with fixture bots |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Modify | One entry, `SKILLED_BOT_RUN_ID`, in `EXECUTOR_COMMON_ENV_ALLOWLIST` (line 150). Owner and callers are named in ADR-005. Everything else is imported only |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Modify | One entry, `SKILLED_BOT_RUN_ID`, in `EXECUTOR_COMMON_ENV_ALLOWLIST` (line 150), named in ADR-005. Vibe's `DISPATCH_ENV_KEYS` entry, `VIBE_HOME` and `SPECKIT_DIST_AUTO_REBUILD`, so the Vibe builder's lineage home and its read-only rebuild switch reach the child (ADR-008). Everything else is imported only |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts` | Import only | Lease acquire, refresh, release and `startHeartbeat` |
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Import only | Executor kinds, `sandboxMode` and `timeoutSeconds` |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modify | OpenCode's `sandboxSurface` becomes `permission-config` (replacing `auto-approve-flag`), Mistral Vibe's becomes `tool-allowlist`, Vibe accepts `sandboxMode` with `read-only` as its only value, and the preventive-capability notes say what each read-only control is. Both kinds stay `false` in `EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY` (ADR-008) |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | The OpenCode read-only refusal is removed; a read-only OpenCode lineage gets an inline permission config denying edit, write, bash and task, and a read-only Vibe lineage gets `--enabled-tools read_file --enabled-tools grep` and `SPECKIT_DIST_AUTO_REBUILD=0`. Both are recorded as compensating controls. Other sandbox values build as before (ADR-008) |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-adapter-capabilities.vitest.ts`, `combo-matrix.vitest.ts`, `fanout-run.vitest.ts`, `dispatch-iteration.vitest.ts`, `executor-config.vitest.ts`, `tests/stress/cli-adapter/fixtures/adapter-suite.ts` | Modify | The tests that pinned the old refusal and Vibe's missing sandbox now assert the read-only profiles; the workspace-write assertions stay as they were (ADR-008) |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs` | Import only | The stop reasons `blockedStop` (line 48) and `userPaused` |
-| `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts` | Import only | The append gateway that stores a re-sent event once |
+| `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts` | Modify | The admission check reads `AUTHORITY_ADMITTED_MODES` instead of the flip order alone. Everything else is imported (ADR-007) |
+| `.skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts` | Modify | `system-skilled-bots` joins `CutoverCertificateMode`, and `AUTHORITY_CALLER_MODES` and `AUTHORITY_ADMITTED_MODES` are added. `AUTHORITY_FLIP_MODE_ORDER` is unchanged (ADR-007) |
+| `.skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts` | Modify | Exports the two new lists (ADR-007) |
+| `.skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-selector.ts` | Modify | `MODE_SET` admits `AUTHORITY_ADMITTED_MODES` (ADR-007) |
+| `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/README.md` | Modify | Names the admitted-modes check (ADR-007) |
+| `.skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/README.md` | Modify | Names the caller-mode list (ADR-007) |
+| `.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs` | Import only | `readClaudeStreamFinalText`, the final answer of a Claude Code stream-json run |
 | `.skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs` | Import only | One liveness row per phase |
 <!-- /ANCHOR:scope -->
 
@@ -165,7 +175,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `bots run <id>` on a manual fixture bot dispatches once, exits 0 and leaves one terminal run record at `<state root>/<identity key>/records/<run id>.json`, with the request join, honored posture and evidence locations filled. The evidence files sit in its run folder. |
+| REQ-001 | `bots run <id>` on a manual fixture bot dispatches once, exits 0 and leaves one terminal run record at `<state root>/<identity key>/records/<run id>.json`, with the request join, honored posture and evidence locations filled. The evidence files sit in its run folder, except the dispatch receipts, which sit under `<state root>/<identity key>/receipts/<run id>/` (operator decision D14, ADR-006). |
 | REQ-002 | A disabled bot, a paused bot and a precheck that exits non-zero or prints `[SILENT]` each end without dispatch and leave a record whose exit reason says which. |
 | REQ-003 | A declared posture the chosen executor cannot honor, including `isolation: worktree`, is refused before dispatch with a record. A second concurrent run of the same bot is refused at the lease. |
 | REQ-004 | A run killed mid-dispatch releases its lease or leaves it reclaimable by the owner pid, nonce and heartbeat rule. Its record ends as `unknown` only after the owner process is proved gone. |
@@ -183,7 +193,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-008 | `timeoutSeconds` stops a stuck invocation, and reaching the budget is recorded as its own class apart from a timeout. |
 | REQ-009 | Every terminal record carries a failure class (author, operator, environment or hub) beside the raw reason. Stop reasons come from `lifecycle-taxonomy.cjs` and none is added. The record exit value `awaiting-decision` is phase 1's, added by operator decision D1. |
 | REQ-010 | A run that needs a human decision records stop reason `blockedStop`, failure class `operator` and exit `awaiting-decision` (ADR-001). |
-| REQ-011 | Retry happens by ledger replay through the append gateway only, never by a second dispatch. |
+| REQ-011 | Retry happens by ledger replay through the append gateway only, never by a second dispatch. The runner's result event goes through `appendModeEvent` (operator decision D15, ADR-007). |
 | REQ-012 | Unknown cost is written as `null`, never zero, and delivery is `not-attempted` or the local-only value. |
 | REQ-014 | The runner sets `SKILLED_BOT_RUN_ID` to the run id on its child, so phase 5's post-commit leg can skip a commit made inside a bot run. The key passes through one new entry in `EXECUTOR_COMMON_ENV_ALLOWLIST` (ADR-005). |
 | REQ-015 | The runner writes a generation stamp file under `<state root>/<repository identity>/` by temp file and rename after each terminal record and after each needs-you item it writes, for phase 7's stale check. It exports the writer, so phase 5's `bots answer` rewrites the stamp after each recorded answer. |
@@ -192,6 +202,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-020 | When the runner gets a `resume` request, it starts a new run with a new run id, joined to its item. Its prompt is the item's prompt plus the question and the answer, and it binds the same spec folder. The body-secret predicate runs over the question and the answer before dispatch. A resumed run that asks again opens a new item. A test hands the runner a `resume` request directly, without phase 5's drain. |
 | REQ-021 | Run folders resolve to `<skilled tree>/.skilled/skills/.state/system-skilled-bots/<identity key>/runs/<run id>/`, where the Skilled tree is the `.skilled` the runner resolves at run time. Tests point the root at a temp folder. `git check-ignore` reports every run folder path as ignored. |
 | REQ-022 | While a bot has an open needs-you item, meaning unanswered and not past `expiresAt`, the runner refuses every other run of that bot before dispatch. The refusal cause is `awaiting-decision-hold` and the stop reason is the existing `blockedStop`, so no stop or status value is added. The record names the item id, and the run takes no lease. The `resume` request keyed by that item passes, because phase 5 records the answer before it enqueues. An answered or expired item holds nothing (operator decision D9). A hand-typed `bots run <id>` is held too, and its refusal points at `bots inbox` (operator decision D13). |
+| REQ-023 | A read-only bot runs on `cli-opencode` and `cli-mistral-vibe` through a tool-narrowing profile in the shared deep-loop builders: OpenCode with an allowlist in its inline permission config (a catch-all deny, then only the read tools allowed, set at the top level and under the `build` agent it is pinned to) and refused unless the resolved agent denies every write action, Vibe with `--enabled-tools` naming only `read_file` and `grep`, told the checkout path and judged by its export as well as its exit code. Each is recorded as a compensating control, never an OS sandbox, and the runner reads each kind's final answer for the decision marker. Both kinds stay refused for every write-capable posture. A live probe per CLI shows a write refused before the live criteria read Met (operator decision 2026-11-22, "Support read-only now", ADR-008). |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -219,7 +230,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |------|------|--------|------------|
 | Dependency | Phase 1 record schema, state-root layout, `awaiting-decision` and the item schema | High: the runner cannot write a record or an item without them | Start only after phase 1 closes. Record changes go back through phase 1's spec |
 | Dependency | Phase 5's drain hands this runner a `resume` request after `bots answer` | Low: the resumed run is tested here with a direct runner call | Phase 5 owns `bots answer` and its end-to-end test (operator decision D12) |
-| Dependency | `system-deep-loop` runtime libraries | High: lease, audit and gateway behavior come from them | Import, do not modify, except the one allowlist entry ADR-005 accepts. Owner and callers are named there |
+| Dependency | `system-deep-loop` runtime libraries | High: lease, audit and gateway behavior come from them | Import, do not modify, except the one allowlist entry ADR-005 accepts and the caller-mode admission ADR-007 accepts. Owner and callers are named in each |
 | Risk | A run is called contained on a kind with no preventive sandbox | High | Posture is declared and validated. The record states the honored posture (research.md §13) |
 | Risk | A child stops to ask and exits 0 | High | The decision marker and the exemption sit in the prompt as well as the environment. The marker wins over a clean exit (research.md §8) |
 | Risk | The prompt is visible in the process table for five of nine kinds | Med | Body-secret refusal before dispatch, also over the question and answer. Logs never echo the command line (research.md §13) |
@@ -318,8 +329,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - How does the body-secret refusal detect a literal? See ADR-003.
 - Phase 1 lists the generation stamp file, the switch files, the needs-you folder and the item schema in its state-root layout. Until it does, their names here are provisional. The expiry key is `needsYou.expiryDays`, default 7 (operator decision D10).
 - Does the hold also refuse a hand-typed `bots run <id>`? Answered: yes, with a pointer to `bots inbox` (operator decision D13, 2026-11-22).
+- ADR-002 admits OpenCode and Mistral Vibe for read-only. Answered: the operator chose "Support read-only now" (2026-11-22, ADR-008). Both builders carry a read-only tool-narrowing profile, and both kinds are admitted for read-only only. The live probe per CLI, `scratch/live-probe-readonly.sh`, awaits the orchestrator.
+- The live run on a real executor (CHK-021) awaits operator approval. Its command is in `scratch/live-run-awaiting-approval.sh`.
 
-Decided: the human-decision stop (operator decision D1, ADR-001), the run marker (D7, ADR-005), run-folder location (D2), the level (D8, raised to 3), the hold while an item is open (D9), the expiry key (D10) and the move of `bots answer` to phase 5 (D12).
+Decided: the human-decision stop (operator decision D1, ADR-001), the run marker (D7, ADR-005), run-folder location (D2), the level (D8, raised to 3), the hold while an item is open (D9), the expiry key (D10), the move of `bots answer` to phase 5 (D12), dispatch receipts moved out of the run folder to the user-level state root (D14, ADR-006, "Move receipts out") and retry by ledger replay through the append gateway built now (D15, ADR-007, "Build it now", which supersedes ADR-004).
 <!-- /ANCHOR:questions -->
 
 ---

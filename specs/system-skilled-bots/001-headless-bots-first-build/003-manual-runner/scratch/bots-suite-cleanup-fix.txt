@@ -1,0 +1,44 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 370 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 518 bytes, not echoed
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 913 bytes, not echoed
+[executor-audit] child stdout 73 bytes, not echoed
+[executor-audit] child stdout 16 bytes, not echoed
+[executor-audit] child stdout 16 bytes, not echoed
+[executor-audit] child stdout 63 bytes, not echoed
+[executor-audit] child stdout 0 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 10 bytes, not echoed
+[executor-audit] child stdout 107 bytes, not echoed
+
+ Test Files  17 passed (17)
+      Tests  194 passed (194)
+   Start at  00:12:23
+   Duration  29.63s (transform 1.73s, setup 0ms, import 2.68s, tests 55.43s, environment 1ms)
+
+vitest exit=0
+typecheck exit=0

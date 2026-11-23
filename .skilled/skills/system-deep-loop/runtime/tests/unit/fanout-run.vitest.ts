@@ -2240,6 +2240,33 @@ describe('fanout-run.cjs — cli-mistral-vibe adapter', () => {
     expect(command.env?.VIBE_HOME).toBe(join(lineageDir, 'vibe-home'));
   });
 
+  it('narrows a read-only lineage to the read tools and records it as a compensating control', () => {
+    const binDir = makeTempDir('fanout-run-vibe-readonly-bin-');
+    writeVibeStub(binDir);
+    const env = { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` };
+    const build = (sandbox: string) => buildLineageCommand(
+      { kind: 'cli-mistral-vibe', model: 'deepseek-flash' },
+      'p',
+      sandbox,
+      'default',
+      { env, repoRoot: makeVibeRepo(), lineageDir: realpathSync(makeTempDir('fanout-run-vibe-readonly-lineage-')) },
+    ) as { args: string[]; env?: Record<string, string>; effectiveConfig: Record<string, unknown> };
+
+    const readOnly = build('read-only');
+    expect(readOnly.args.slice(-4)).toEqual(['--enabled-tools', 'read_file', '--enabled-tools', 'grep']);
+    expect(readOnly.effectiveConfig).toMatchObject({ sandboxMode: 'read-only', sandboxEnforcement: 'compensating' });
+    // The session-start hook's rebuild writes outside any tool, so read-only turns it off.
+    expect(readOnly.env?.SPECKIT_DIST_AUTO_REBUILD).toBe('0');
+
+    // Every other mode passes no tool flag and records no sandbox, as before.
+    for (const sandbox of ['workspace-write', 'danger-full-access']) {
+      const built = build(sandbox);
+      expect(built.env).toEqual({ VIBE_HOME: expect.any(String) });
+      expect(built.args).not.toContain('--enabled-tools');
+      expect(built.effectiveConfig).toMatchObject({ sandboxMode: null, sandboxEnforcement: 'none' });
+    }
+  });
+
   it('fails closed before command construction when vibe is absent', () => {
     const env = { ...process.env, PATH: makeTempDir('fanout-run-no-vibe-') };
     expect(isVibeBinaryAvailable(env)).toBe(false);
@@ -3900,8 +3927,22 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
       {
         env: { ...process.env, OPENCODE_CONFIG_CONTENT: undefined, ...extraEnv, PATH: `${binDir}:${process.env.PATH ?? ''}` },
         executableVersion: 'opencode 2.3.2',
+        resolveOpencodeAgents: resolve,
       } as never,
     );
+    // Stands in for `opencode debug agents`: the inline rules over a catch-all allow, top level
+    // first and the build agent's own rules last, the order OpenCode applies them in.
+    let resolve = ({ env }: { env: Record<string, string | undefined> }): unknown => {
+      const inline = JSON.parse(env.OPENCODE_CONFIG_CONTENT ?? '{}') as {
+        permission?: Record<string, string>;
+        agent?: { build?: { permission?: Record<string, string> } };
+      };
+      const rules = (map: Record<string, string> = {}) => Object.entries(map).map(([action, effect]) => ({ action, resource: '*', effect }));
+      return [{
+        id: 'build',
+        permissions: [{ action: '*', resource: '*', effect: 'allow' }, ...rules(inline.permission), ...rules(inline.agent?.build?.permission)],
+      }];
+    };
 
     const merged = build('workspace-write', {
       OPENCODE_CONFIG_CONTENT: JSON.stringify({
@@ -3925,7 +3966,58 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect(unconfined.env).toBeUndefined();
     expect(unconfined.effectiveConfig).toMatchObject({ sandboxMode: 'danger-full-access', sandboxEnforcement: 'none' });
 
-    expect(() => build('read-only')).toThrow(/cannot enforce sandbox mode 'read-only'/);
+    // Read-only is an allowlist: a catch-all deny, then only the read actions, written after the
+    // inherited rules so an inherited allow cannot reopen a tool, and written again under the
+    // agent the run names, whose own rules OpenCode applies after the top-level ones.
+    const readOnly = build('read-only', {
+      OPENCODE_CONFIG_CONTENT: JSON.stringify({
+        model: 'kept/model',
+        permission: { bash: 'allow', read: 'allow' },
+        agent: { build: { model: 'kept/agent-model', permission: { edit: 'allow' } }, plan: { permission: { bash: 'allow' } } },
+      }),
+    });
+    expect(readOnly.args).toContain('--auto');
+    expect(readOnly.args.slice(-3, -1)).toEqual(['--agent', 'build']);
+    const allowlist = { '*': 'deny', read: 'allow', grep: 'allow', glob: 'allow', list: 'allow', external_directory: 'deny' };
+    const readOnlyConfig = JSON.parse(readOnly.env.OPENCODE_CONFIG_CONTENT);
+    expect(readOnlyConfig).toEqual({
+      model: 'kept/model',
+      permission: { bash: 'allow', ...allowlist },
+      agent: {
+        build: { model: 'kept/agent-model', permission: { edit: 'allow', ...allowlist } },
+        plan: { permission: { bash: 'allow' } },
+      },
+    });
+    expect(Object.keys(readOnlyConfig.permission)).toEqual(['bash', '*', 'read', 'grep', 'glob', 'list', 'external_directory']);
+    expect(Object.keys(readOnlyConfig.agent.build.permission)).toEqual(['edit', '*', 'read', 'grep', 'glob', 'list', 'external_directory']);
+    expect(() => build('read-only', { OPENCODE_CONFIG_CONTENT: '{"agent":{"build":"open"}}' })).toThrow(/agent\.build permission/);
+
+    // The builder refuses a read-only lineage unless the agent it resolves ends every non-read
+    // action on a deny: a config source OpenCode orders after the inline rules would reopen one.
+    resolve = () => [{ id: 'build', permissions: [{ action: '*', resource: '*', effect: 'deny' }, { action: 'read', resource: '*', effect: 'allow' }, { action: 'shell', resource: 'git *', effect: 'ask' }] }];
+    expect(() => build('read-only')).toThrow(expect.objectContaining({
+      name: 'OpencodeReadOnlyUnconfinedError',
+      message: expect.stringContaining('shell:git *=ask'),
+    }));
+    resolve = () => [{ id: 'build', permissions: [{ action: 'edit', resource: '*', effect: 'deny' }] }];
+    expect(() => build('read-only')).toThrow(/no catch-all deny/);
+    resolve = () => [{ id: 'plan', permissions: [{ action: '*', resource: '*', effect: 'deny' }] }];
+    expect(() => build('read-only')).toThrow(/agent build is not among the resolved agents/);
+    resolve = () => {
+      throw new Error('debug agents exited 1');
+    };
+    expect(() => build('read-only')).toThrow(/could not be resolved: debug agents exited 1/);
+    // workspace-write never consults the resolver.
+    expect(build('workspace-write').args).not.toContain('--agent');
+    resolve = () => [{ id: 'build', permissions: [{ action: '*', resource: '*', effect: 'deny' }, { action: 'grep', resource: '*', effect: 'allow' }, { action: 'browser', resource: '*', effect: 'deny' }] }];
+    expect(build('read-only').args).toContain('--agent');
+    // A tool gate inside OpenCode, recorded as a compensating control and never as an OS boundary.
+    expect(readOnly.effectiveConfig).toMatchObject({ sandboxMode: 'read-only', sandboxEnforcement: 'compensating' });
+
+    // workspace-write is unchanged: the one external_directory deny, nothing more.
+    const workspace = build('workspace-write');
+    expect(JSON.parse(workspace.env.OPENCODE_CONFIG_CONTENT)).toEqual({ permission: { external_directory: 'deny' } });
+    expect(workspace.effectiveConfig).toMatchObject({ sandboxMode: 'workspace-write', sandboxEnforcement: 'compensating' });
   });
 
   it('sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions', async () => {

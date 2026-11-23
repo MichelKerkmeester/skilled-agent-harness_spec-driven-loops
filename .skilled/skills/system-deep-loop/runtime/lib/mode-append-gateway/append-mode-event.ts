@@ -31,7 +31,7 @@ import { resolveCutoverBinding } from './resolve-cutover-binding.js';
 import { resolveAuthorityRoot } from '../authority-root/index.js';
 import { admitCanonicalWrite } from '../deep-research-authority/index.js';
 import {
-  AUTHORITY_FLIP_MODE_ORDER,
+  AUTHORITY_ADMITTED_MODES,
 } from '../per-mode-authority-flip/index.js';
 import {
   LEGACY_PROJECTION_MANIFEST,
@@ -490,7 +490,7 @@ export async function appendModeEvent(
   // Stage `authority`: resolve and verify authority admission from the durable root
   const authorityRoot = options.authorityRoot ?? resolveAuthorityRoot();
 
-  if (!AUTHORITY_FLIP_MODE_ORDER.includes(options.mode as CutoverCertificateMode)) {
+  if (!AUTHORITY_ADMITTED_MODES.includes(options.mode as CutoverCertificateMode)) {
     return {
       ok: false,
       phase: 'authority',

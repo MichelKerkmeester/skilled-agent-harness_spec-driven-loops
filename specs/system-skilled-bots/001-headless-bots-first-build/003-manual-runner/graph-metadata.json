@@ -39,7 +39,7 @@
       "decision"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,16 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/bin/compiled-route.cjs",
-      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-      ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
-      ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
-      ".skilled/commands/deep/assets/deep-review.yaml",
-      ".skilled/commands/deep/assets/deep-research.yaml"
+      "scratch/opencode-permission-probe.txt",
+      "scratch/vibe-tool-names.txt",
+      "scratch/opencode-agent-probe-before.txt",
+      "scratch/live-probe-mv-result.txt",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/result-ledger.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts"
     ],
     "entities": [
       {
@@ -103,63 +106,81 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route.cjs",
+        "name": "opencode-permission-probe.txt",
         "kind": "file",
-        "path": ".skilled/bin/compiled-route.cjs",
+        "path": "scratch/opencode-permission-probe.txt",
         "source": "derived"
       },
       {
-        "name": "needs-you.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-audit.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "loop-lock.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-taxonomy.cjs",
+        "name": "vibe-tool-names.txt",
         "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "path": "scratch/vibe-tool-names.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-agent-probe-before.txt",
+        "kind": "file",
+        "path": "scratch/opencode-agent-probe-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "live-probe-mv-result.txt",
+        "kind": "file",
+        "path": "scratch/live-probe-mv-result.txt",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "posture.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "switches.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+        "source": "derived"
+      },
+      {
+        "name": "result-ledger.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/result-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
         "source": "derived"
       },
       {
         "name": "append-mode-event.ts",
         "kind": "code",
         "path": ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
-        "source": "derived"
-      },
-      {
-        "name": "loop-heartbeat.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-review.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-research.yaml",
         "source": "derived"
       },
       {
@@ -181,33 +202,15 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A bot is a `BOT.md` file, but nothing can run one",
     "created_at": "2026-11-22T10:48:28Z",
-    "last_save_at": "2026-11-22T17:00:01.126Z",
+    "last_save_at": "2026-11-23T05:24:21.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cac6a25ea61b22c0f009aa8a119f59a96a2e2278f3a88a7cb88572c4bb71f1ff",
+    "source_fingerprint": "sha256:592e7b9d57b8b7425344b0249c6131ff8e046dc2335449fee57996eed089d918",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4d2993f0850be604161cf40f7461d1570e248185c121737b5a26a081a076f26",
-      "plan.md": "f9ac1a0e8400bb793ae2a028b9961c276bffc9635a9172f068ed1e0630063e14",
-      "tasks.md": "6e875aac61af12b61ff572acd1b9e517fc5e2eb0a499e14b1c35b1d3c016d222",
-      "decision-record.md": "0a966164eb427ec9d700f0438876ae9651287f5fb06eba7e56f8a8b8c2c650e3",
-      "implementation-summary.md": "b048d62c855222f01135474dafd679eb7e4e4e4223241ea15c4f6dd1f0c4c1a8"
+      "spec.md": "2148a5675cdc47afd071f0db2f24eb7aac2ccd2c6bb16fe2c48baebb4be57b9f",
+      "plan.md": "d81bbc297ecbd0a046aa38be0be1b23249b6e1cef8548fa634c9ba677d2681a6",
+      "tasks.md": "4a7c8f92c0d7c98d19923dc210fc5e62d4d297a2a4c927bbedcf9d125790eaa4",
+      "decision-record.md": "9de6c7353c7fba267fc81eb94f15e777fc090068b8eaac4f100730663537a7a6",
+      "implementation-summary.md": "a4f0f9f5a5a62f553e5efb2068d37fac0a23f9f6eda504fd65afd23abeb0a92a"
     },
     "last_active_at": null
   }

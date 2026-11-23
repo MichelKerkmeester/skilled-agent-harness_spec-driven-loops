@@ -1,0 +1,3 @@
+#!/bin/sh
+# Stand-in for the vibe binary in the runner tests: runs the stub next to it, never a model.
+exec node "$(dirname "$0")/vibe-stub.cjs" "$@"

@@ -1,0 +1,60 @@
+# live-probe-readonly.sh both, run against the stub executors only (PATH = the test stub folder first, HOME and TMPDIR throwaway). Proves the script plumbing; calls no model. Script exit: 1.
+# Expected FAIL lines: the stubs read no file, so the read-token check fails by design. A real child must pass it.
+== cli-opencode (plain): bots run probe-opencode in <scratchpad>/smoke3/tmp/bots-probe-repo.GGiz1I
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 839 bytes, not echoed
+bots: probe-opencode run 20261122T223913Z-a5797855 completed
+bots exit=0
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: <scratchpad>/smoke3/tmp/bots-probe-state.PiBc7f/system-skilled-bots/probe%2Fprobe-opencode/records/20261122T223913Z-a5797855.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-opencode","model":"llmgateway/deepseek-v4.1-flash-1017"} exit: {"reason":"converged","class":null,"needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+FAIL: the read token is not in stdout.log
+note: no edit/write/patch/bash/MCP tool_use event; the model may not have tried, or the tool was not offered
+cli-opencode (plain): FAIL
+== cli-opencode (mcp): bots run probe-opencode-mcp in <scratchpad>/smoke3/tmp/bots-probe-repo.rZBMop
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 839 bytes, not echoed
+bots: probe-opencode-mcp run 20261122T223914Z-60d93a79 completed
+bots exit=0
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: <scratchpad>/smoke3/tmp/bots-probe-state.PiBc7f/system-skilled-bots/probe%2Fprobe-opencode-mcp/records/20261122T223914Z-60d93a79.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-opencode","model":"llmgateway/deepseek-v4.1-flash-1017"} exit: {"reason":"converged","class":null,"needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+FAIL: the read token is not in stdout.log
+note: no edit/write/patch/bash/MCP tool_use event; the model may not have tried, or the tool was not offered
+cli-opencode (mcp): FAIL
+== cli-opencode (agent-override): bots run probe-opencode-agent in <scratchpad>/smoke3/tmp/bots-probe-repo.MInM0N
+WARN: lineage (cli-opencode) runs with --auto and every tool but read, grep, glob, list denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.
+[executor-audit] child stdout 839 bytes, not echoed
+bots: probe-opencode-agent run 20261122T223915Z-5b87c352 completed
+bots exit=0
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: <scratchpad>/smoke3/tmp/bots-probe-state.PiBc7f/system-skilled-bots/probe%2Fprobe-opencode-agent/records/20261122T223915Z-5b87c352.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-opencode","model":"llmgateway/deepseek-v4.1-flash-1017"} exit: {"reason":"converged","class":null,"needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+note: admitted; the inline agent.build rules won over the project's agent rules
+FAIL: the read token is not in stdout.log
+note: no edit/write/patch/bash/MCP tool_use event; the model may not have tried, or the tool was not offered
+cli-opencode (agent-override): FAIL
+== cli-mistral-vibe (plain): bots run probe-vibe in <scratchpad>/smoke3/tmp/bots-probe-repo.qFixpc
+[executor-audit] child stdout 16 bytes, not echoed
+bots: probe-vibe run 20261122T223915Z-1929681e completed
+bots exit=0
+ok: PROBE-WRITE.txt absent
+ok: PROBE-SHELL.txt absent
+ok: PROBE-MCP.txt absent
+record: <scratchpad>/smoke3/tmp/bots-probe-state.PiBc7f/system-skilled-bots/probe%2Fprobe-vibe/records/20261122T223915Z-1929681e.json
+posture: {"isolation":"shared","sandbox":"read-only","executorKind":"cli-mistral-vibe","model":"deepseek-flash"} exit: {"reason":"converged","class":null,"needsYouItemId":null,"refusal":null}
+ok: record states the read-only posture
+FAIL: the read token is not in stdout.log
+enabled_tools: ["read_file","grep"] outcome: finished exit_code: 0
+ok: Vibe ran with the read tools only
+cli-mistral-vibe (plain): FAIL
+bots state root kept at <scratchpad>/smoke3/tmp/bots-probe-state.PiBc7f; run folders under <scratchpad>/smoke3/tmp/bots-probe-tree.1mapmy

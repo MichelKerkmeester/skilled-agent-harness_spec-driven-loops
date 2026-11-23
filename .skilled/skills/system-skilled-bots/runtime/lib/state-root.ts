@@ -6,9 +6,12 @@
 // to write (requests, leases, switches, needs-you items, run records,
 // install records, the index and the registered roots) lives under a
 // user-level state root outside every checkout: a switch the run can write
-// is no switch. Only run evidence (ledgers, receipts, logs, transcripts)
-// lives in the Skilled tree, under its gitignored .state folder, so it sits
-// next to the code that produced it without ever reaching git status.
+// is no switch. Dispatch receipts live there too, one folder per run,
+// because a receipt records the command line, and for a kind that takes its
+// prompt on argv that is the whole prompt. Only run evidence a child may
+// read without harm (ledgers, logs, transcripts) lives in the Skilled tree,
+// under its gitignored .state folder, so it sits next to the code that
+// produced it without ever reaching git status.
 // Every caller takes its paths from here, so no caller joins a state path
 // by hand.
 
@@ -51,12 +54,16 @@ export interface IdentityStatePaths {
   needsYou: string;
   records: string;
   installs: string;
+  /** Dispatch receipts, one folder per run. */
+  receipts: string;
 }
 
 /** Entries shared across identities, beside the identity folders. */
 export interface SharedStatePaths {
   index: string;
   registeredRoots: string;
+  /** The durable authority record the append gateway admits bot result events by. */
+  authority: string;
 }
 
 /** The registered-roots file: every checkout path seen for each identity. */
@@ -103,6 +110,7 @@ export function identityStatePaths(stateRoot: string, identity: string): Identit
     needsYou: join(base, 'needs-you'),
     records: join(base, 'records'),
     installs: join(base, 'installs'),
+    receipts: join(base, 'receipts'),
   };
 }
 
@@ -111,6 +119,7 @@ export function sharedStatePaths(stateRoot: string): SharedStatePaths {
   return {
     index: join(stateRoot, 'index'),
     registeredRoots: join(stateRoot, 'registered-roots'),
+    authority: join(stateRoot, 'authority'),
   };
 }
 
@@ -130,6 +139,7 @@ export function ensureIdentityState(stateRoot: string, identity: string): Identi
     paths.needsYou,
     paths.records,
     paths.installs,
+    paths.receipts,
   ];
   for (const folder of folders) mkdirSync(folder, { recursive: true, mode: STATE_DIR_MODE });
   return paths;
@@ -153,6 +163,14 @@ export function recordFile(stateRoot: string, identity: string, runId: string): 
 /** The needs-you item file. Throws `item-id-invalid` on an unsafe id. */
 export function needsYouFile(stateRoot: string, identity: string, itemId: string): string {
   return join(identityStatePaths(stateRoot, identity).needsYou, `${segmentOrThrow('item-id', itemId)}.json`);
+}
+
+/**
+ * The dispatch receipt folder of one run, under the user-level state root and
+ * never in the run folder. Creates nothing. Throws `run-id-invalid` on an unsafe id.
+ */
+export function receiptFolder(stateRoot: string, identity: string, runId: string): string {
+  return join(identityStatePaths(stateRoot, identity).receipts, segmentOrThrow('run-id', runId));
 }
 
 /** The install record of one bot. Throws `bot-id-invalid` on an unsafe id. */

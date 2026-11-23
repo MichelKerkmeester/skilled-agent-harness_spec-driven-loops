@@ -34,6 +34,13 @@ const lifecycleTaxonomy = requireCjs('../../../system-deep-loop/runtime/lib/deep
 export const AWAITING_DECISION = 'awaiting-decision';
 
 /**
+ * The exit of a run whose one result event could not be recorded. A run that
+ * parked before that failure leaves its item open, and the item still holds
+ * the bot, so this failed exit may keep naming the item.
+ */
+export const RESULT_EVENT_UNRECORDED = 'result-event-unrecorded';
+
+/**
  * Readers that speak the loop stop-reason vocabulary see a parked run as
  * blocked, taken from the deep-loop taxonomy rather than spelled here.
  */
@@ -68,6 +75,8 @@ export interface RequestJoin {
   leaseNonce: string | null;
   resultEventId: string | null;
   firedSlot: string | null;
+  /** The needs-you item a resumed run continues; absent or null for every other run. */
+  resumedItemId?: string | null;
 }
 
 export interface DispatchSnapshot {
@@ -102,8 +111,18 @@ export interface RunExit {
   reason: string;
   /** Derived at write time; null for a run that did not fail. */
   class: FailureClass | null;
-  /** Set only when the reason is awaiting-decision. */
+  /** Set when the reason is awaiting-decision, and kept when a parked run then failed to record its result. */
   needsYouItemId: string | null;
+  /** Present when the run was refused before dispatch, so a refusal never reads as a failure. */
+  refusal?: RefusalDetail | null;
+}
+
+/** Why a run was refused before dispatch, apart from the stop reason the exit carries. */
+export interface RefusalDetail {
+  cause: string;
+  /** The open item that holds the bot, for a hold refusal. */
+  itemId: string | null;
+  detail: string | null;
 }
 
 export interface EvidenceLocations {
@@ -149,6 +168,10 @@ const FIELD_GROUPS = ['identity', 'request', 'dispatch', 'budget', 'posture', 'e
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isNullableString(value: unknown): boolean {
+  return value === null || typeof value === 'string';
 }
 
 function isNullableNumber(value: unknown): boolean {
@@ -202,7 +225,25 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
     }
     if (exit.class !== 'operator') return { ok: false, reason: 'awaiting-decision-class-invalid' };
   } else if (exit.needsYouItemId !== null) {
-    return { ok: false, reason: 'needs-you-item-without-awaiting-decision' };
+    if (exit.reason !== RESULT_EVENT_UNRECORDED) return { ok: false, reason: 'needs-you-item-without-awaiting-decision' };
+    if (typeof exit.needsYouItemId !== 'string' || exit.needsYouItemId === '') {
+      return { ok: false, reason: 'record-field-invalid', detail: 'exit.needsYouItemId' };
+    }
+  }
+  if (exit.refusal !== undefined && exit.refusal !== null) {
+    const refusal = exit.refusal as unknown;
+    if (
+      !isPlainObject(refusal)
+      || typeof refusal.cause !== 'string'
+      || refusal.cause === ''
+      || !isNullableString(refusal.itemId)
+      || !isNullableString(refusal.detail)
+    ) {
+      return { ok: false, reason: 'record-field-invalid', detail: 'exit.refusal' };
+    }
+  }
+  if (!isNullableString(record.request.resumedItemId ?? null)) {
+    return { ok: false, reason: 'record-field-invalid', detail: 'request.resumedItemId' };
   }
 
   for (const [index, entry] of record.delivery.entries()) {

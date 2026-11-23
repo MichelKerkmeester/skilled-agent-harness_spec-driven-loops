@@ -137,9 +137,9 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // sandboxMode selects the harness's own read-only or workspace-write permission mode.
   'cli-deepseek-harness': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools', 'agentPersona'],
   // Vibe has no reasoning flag — thinking is pinned per roster row in `.vibe/config.toml` —
-  // and no OS sandbox or persona surface, so the config carries only the model alias, the
-  // per-iteration timeout, and the live-tool policy.
-  'cli-mistral-vibe': ['model', 'timeoutSeconds', 'liveTools'],
+  // and no OS sandbox or persona surface. Read-only narrows its tools to a read allowlist,
+  // so sandboxMode is accepted, and parseExecutorConfig accepts no other sandbox value.
+  'cli-mistral-vibe': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
 };
 
 /** How a kind's command receives the iteration prompt. */
@@ -159,14 +159,14 @@ export type ExecutorEffortSurface = 'flag' | 'model-suffix' | 'model-id' | 'conf
 
 /**
  * What a requested sandbox mode changes in the command: a sandbox flag, a permission or
- * approval mode, a restricted tool allowlist, an auto-approve flag that only the
- * unconfined mode turns on, or nothing.
+ * approval mode, a restricted tool allowlist, a permission config that denies tools by
+ * name, or nothing.
  */
 export type ExecutorSandboxSurface =
   | 'sandbox-flag'
   | 'permission-mode'
   | 'tool-allowlist'
-  | 'auto-approve-flag'
+  | 'permission-config'
   | 'none';
 
 /**
@@ -228,7 +228,7 @@ export const EXECUTOR_ADAPTER_CAPABILITIES = Object.freeze({
     logFormat: 'opencode-json',
     costSource: 'log',
     effortSurface: 'model-suffix',
-    sandboxSurface: 'auto-approve-flag',
+    sandboxSurface: 'permission-config',
     resume: 'artifact',
   }),
   'cli-cursor': Object.freeze({
@@ -273,7 +273,7 @@ export const EXECUTOR_ADAPTER_CAPABILITIES = Object.freeze({
     logFormat: 'text',
     costSource: 'none',
     effortSurface: 'config',
-    sandboxSurface: 'none',
+    sandboxSurface: 'tool-allowlist',
     resume: 'artifact',
   }),
 } as const satisfies Record<ExecutorKind, ExecutorAdapterCapability>);
@@ -288,7 +288,8 @@ export const EXECUTOR_ADAPTER_CAPABILITIES = Object.freeze({
  * `false` entry here does not mean the kind is unconfined in practice --
  * fanout-run.cjs applies its own control per kind (Claude Code's
  * --permission-mode approval gate, an external_directory deny for cli-opencode's
- * file tools under workspace-write and a fail-loud reject of read-only, the `auto`
+ * file tools under workspace-write and a deny of its edit, shell and subagent tools under
+ * read-only, a read-tool allowlist for a read-only cli-mistral-vibe, the `auto`
  * permission mode for a read-only cli-devin, a restricted tool allowlist for
  * cli-pi, and the fan-out's post-hoc write-containment guard, which reports an
  * out-of-scope write rather than preventing it) -- it means none of those controls
@@ -304,7 +305,8 @@ export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolea
   // and no OS boundary confines the process once a call is approved
   'cli-claude-code': false,
   // No confinement flag exists; workspace-write denies external_directory to the file tools only
-  // (Bash can still write outside the working directory), and read-only is refused
+  // (Bash can still write outside the working directory), and read-only denies the edit, shell
+  // and subagent tools through the inline permission config, a tool gate rather than a boundary
   'cli-opencode': false,
   // --sandbox enabled/disabled is a real OS confinement flag, independent of the approval mode
   'cli-cursor': true,
@@ -315,8 +317,8 @@ export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolea
   'cli-pi': false,
   // Workspace-write blocks home writes; OS temp remains writable.
   'cli-deepseek-harness': true,
-  // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; the roster row decides
-  // what the model may reach
+  // Read-only is a tool-allowlist restriction only, not an OS boundary; every other mode
+  // passes no confinement
   'cli-mistral-vibe': false,
 };
 
@@ -853,6 +855,17 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
           supportedFlags.length ? supportedFlags.join(', ') : 'none'
         }.`,
       })),
+    });
+  }
+
+  // Vibe narrows its tools for read-only and has no control for a write-capable mode, so a
+  // config that names one would claim a boundary the command never applies.
+  if (config.kind === 'cli-mistral-vibe' && config.sandboxMode !== null && config.sandboxMode !== 'read-only') {
+    throw new ExecutorConfigError({
+      issues: [{
+        path: ['sandboxMode'],
+        message: `cli-mistral-vibe accepts sandboxMode 'read-only' only; it has no control for '${config.sandboxMode}'.`,
+      }],
     });
   }
 

@@ -3601,18 +3601,6 @@ function requestedSandboxReport(input) {
 }
 
 function finalizeLineageCommand(input) {
-  // cli-opencode has no OS-level sandbox. workspace-write is honoured only as a permission
-  // rule (external_directory denied for its file tools), and its Bash tool can still write
-  // anywhere, so no read-only boundary exists. A read-only request must be refused rather
-  // than recorded as a boundary the process never had, so dispatch fails closed.
-  if (input.kind === 'cli-opencode' && input.resolvedSandbox
-    && input.resolvedSandbox !== 'danger-full-access' && input.resolvedSandbox !== 'workspace-write') {
-    throw inputError(
-      `cli-opencode cannot enforce sandbox mode '${input.resolvedSandbox}': its Bash tool can write anywhere, `
-        + 'so no read-only boundary exists; use \'workspace-write\' (file tools denied outside the working '
-        + 'directory, Bash not confined), \'danger-full-access\', or a dispatch kind that can enforce this sandbox mode',
-    );
-  }
   const effectiveConfig = {
     kind: input.kind,
     executable: input.command,
@@ -3748,26 +3736,166 @@ function pinReasoningEffortForModel(model, reasoningEffort) {
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 
+// The read actions a read-only lineage keeps. OpenCode passes these v1 permission keys through
+// under the same names, and its built-in explore agent names read, grep and glob as actions too.
+// A name OpenCode does not use only loses a tool; it cannot open one.
+const OPENCODE_READ_ACTIONS = Object.freeze(['read', 'grep', 'glob', 'list']);
+
+// The permission rules each confined mode lays over the inherited config. Under --auto OpenCode
+// approves every action no rule denies, and that includes MCP tools a project registers, so
+// read-only is an allowlist: a catch-all deny first, then only the read actions. OpenCode
+// applies the last rule that matches, so the order of these keys is the policy.
+const OPENCODE_SANDBOX_PERMISSIONS = Object.freeze({
+  'workspace-write': Object.freeze({ external_directory: 'deny' }),
+  'read-only': Object.freeze({
+    '*': 'deny',
+    ...Object.fromEntries(OPENCODE_READ_ACTIONS.map((action) => [action, 'allow'])),
+    external_directory: 'deny',
+  }),
+});
+
+// The agent a read-only lineage runs, named on the command line so a project's default_agent
+// cannot pick one the read-only profile does not cover.
+const OPENCODE_READ_ONLY_AGENT = 'build';
+
+// A read-only lineage OpenCode would run with a write action left open. It stays an
+// input-validation error, so every caller's exit mapping is unchanged, and the name lets a
+// caller report it as a refusal rather than a broken command.
+const OPENCODE_READ_ONLY_UNCONFINED = 'OpencodeReadOnlyUnconfinedError';
+class OpencodeReadOnlyUnconfinedError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = OPENCODE_READ_ONLY_UNCONFINED;
+    this.code = 'INPUT_VALIDATION';
+  }
+}
+
+// Lay a mode's rules over one permission map: each rule is removed and written again, so it
+// lands after every inherited key and no inherited rule can come after it.
+function layPermissionRules(inherited, rules) {
+  const permission = { ...(inherited || {}) };
+  for (const [tool, rule] of Object.entries(rules)) {
+    delete permission[tool];
+    permission[tool] = rule;
+  }
+  return permission;
+}
+
 // OpenCode reads OPENCODE_CONFIG_CONTENT as inline config that overrides the project's
-// opencode.json, so a workspace-write lineage gets its external_directory deny there. An
-// inherited value keeps every other key; one this cannot merge into is refused rather than
-// replaced, because replacing it would silently drop the caller's own settings.
-function opencodeWorkspaceWriteConfigContent(inherited) {
+// opencode.json, so a confined lineage gets its denies there. An inherited value keeps every
+// other key, and the denies are written last so no inherited permission can re-allow a tool
+// the mode denies. A value this cannot merge into is refused rather than replaced, because
+// replacing it would silently drop the caller's own settings. An agent's own permission
+// rules come after the top-level ones, so a project's agent block could re-allow a tool;
+// read-only therefore writes the same rules under the agent it runs too, which OpenCode
+// applies after the project's agent rules.
+function opencodeSandboxConfigContent(sandbox, inherited) {
   let config = {};
   if (inherited !== undefined && inherited !== '') {
     try {
       config = JSON.parse(inherited);
     } catch (error) {
-      throw inputError(`cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: not valid JSON (${error.message})`);
+      throw inputError(`cli-opencode ${sandbox} cannot merge into OPENCODE_CONFIG_CONTENT: not valid JSON (${error.message})`);
     }
     if (!isRecord(config)) {
-      throw inputError('cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: it is not a JSON object');
+      throw inputError(`cli-opencode ${sandbox} cannot merge into OPENCODE_CONFIG_CONTENT: it is not a JSON object`);
     }
   }
   if (config.permission !== undefined && !isRecord(config.permission)) {
-    throw inputError('cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: its permission key is not an object');
+    throw inputError(`cli-opencode ${sandbox} cannot merge into OPENCODE_CONFIG_CONTENT: its permission key is not an object`);
   }
-  return JSON.stringify({ ...config, permission: { ...(config.permission || {}), external_directory: 'deny' } });
+  const rules = OPENCODE_SANDBOX_PERMISSIONS[sandbox];
+  const merged = { ...config, permission: layPermissionRules(config.permission, rules) };
+  if (sandbox !== 'read-only') return JSON.stringify(merged);
+
+  if (config.agent !== undefined && !isRecord(config.agent)) {
+    throw inputError(`cli-opencode ${sandbox} cannot merge into OPENCODE_CONFIG_CONTENT: its agent key is not an object`);
+  }
+  const agent = (config.agent || {})[OPENCODE_READ_ONLY_AGENT];
+  if (agent !== undefined && (!isRecord(agent) || (agent.permission !== undefined && !isRecord(agent.permission)))) {
+    throw inputError(`cli-opencode ${sandbox} cannot merge into OPENCODE_CONFIG_CONTENT: its agent.${OPENCODE_READ_ONLY_AGENT} permission is not an object`);
+  }
+  merged.agent = {
+    ...(config.agent || {}),
+    [OPENCODE_READ_ONLY_AGENT]: { ...(agent || {}), permission: layPermissionRules(agent && agent.permission, rules) },
+  };
+  return JSON.stringify(merged);
+}
+
+/**
+ * Why an OpenCode agent's resolved rules leave a read-only run open, or null when they do not.
+ *
+ * OpenCode applies the last rule that matches an action, and --auto approves anything not
+ * denied, so an `ask` counts as an allow. The run is confined only when a catch-all deny comes
+ * last for every action but the read actions: some `*` deny on every resource, and after it no
+ * rule that is not a deny, unless it names a read action.
+ * @param {unknown} agents - The parsed output of `opencode debug agents`.
+ * @param {string} agentId - The agent the run will use.
+ * @returns {string|null} The gap, or null when every non-read action ends on a deny.
+ */
+function opencodeReadOnlyGap(agents, agentId) {
+  if (!Array.isArray(agents)) return 'the resolved agent list is not an array';
+  const agent = agents.find((entry) => isRecord(entry) && entry.id === agentId);
+  if (!agent) return `agent ${agentId} is not among the resolved agents`;
+  if (!Array.isArray(agent.permissions)) return `agent ${agentId} lists no permission rules`;
+  const rules = agent.permissions;
+  let catchAll = -1;
+  rules.forEach((rule, index) => {
+    if (isRecord(rule) && rule.action === '*' && rule.resource === '*' && rule.effect === 'deny') catchAll = index;
+  });
+  if (catchAll === -1) return `agent ${agentId} has no catch-all deny, so an unlisted tool would run`;
+  for (const rule of rules.slice(catchAll + 1)) {
+    if (!isRecord(rule)) return `agent ${agentId} has a permission rule that is not an object`;
+    if (rule.effect === 'deny' || OPENCODE_READ_ACTIONS.includes(rule.action)) continue;
+    return `agent ${agentId} ends on ${rule.action}:${rule.resource}=${rule.effect} after its catch-all deny`;
+  }
+  return null;
+}
+
+// The environment the child itself gets: the per-kind allowlist over the caller's environment,
+// then the builder's own keys. A resolver run with any other environment could load a
+// different config than the child does. The executor-audit module is TypeScript, so the TS
+// loader is registered first for a caller that runs without it.
+function opencodeChildEnv(parentEnv, configContent) {
+  require('tsx/cjs');
+  const { buildExecutorDispatchEnv } = require('../lib/deep-loop/executor-audit.ts');
+  return { ...buildExecutorDispatchEnv({ kind: 'cli-opencode' }, parentEnv), OPENCODE_CONFIG_CONTENT: configContent };
+}
+
+// `opencode debug agents --standalone` resolves every config source the run would load, the
+// inline one included, and prints each agent's rules in the order they apply. It starts a
+// private server and calls no model.
+function resolveOpencodeAgents({ command, cwd, env }) {
+  const result = spawnSync(command, ['debug', 'agents', '--standalone'], {
+    cwd,
+    env,
+    encoding: 'utf8',
+    timeout: 60_000,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  if (result.error || result.status !== 0) {
+    const why = result.error ? result.error.message : `exit ${result.status}: ${String(result.stderr || '').trim().slice(0, 200)}`;
+    throw new Error(`opencode debug agents failed (${why})`);
+  }
+  return JSON.parse(result.stdout);
+}
+
+// Refuse a read-only lineage unless the agent it will run denies every non-read action. The
+// inline rules are written to win, but a config source OpenCode orders after them (a future
+// release, a plugin) would leave a write open with nothing on the command line to show it.
+function assertOpencodeReadOnlyConfined({ command, cwd, env, resolve }) {
+  let agents;
+  try {
+    agents = resolve({ command, cwd, env });
+  } catch (error) {
+    throw new OpencodeReadOnlyUnconfinedError(
+      `cli-opencode read-only refused: the agent it would run could not be resolved: ${error.message}`,
+    );
+  }
+  const gap = opencodeReadOnlyGap(agents, OPENCODE_READ_ONLY_AGENT);
+  if (gap !== null) {
+    throw new OpencodeReadOnlyUnconfinedError(`cli-opencode read-only refused: ${gap}`);
+  }
 }
 
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
@@ -3782,10 +3910,15 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
   const model = lineage.model || OPENCODE_DEFAULT_MODEL;
   const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
   // Every headless mode runs with --auto, which approves any permission not explicitly
-  // denied. workspace-write adds an explicit external_directory deny, which stops the file
-  // tools (edit, write, read) at the working directory. Bash is not path-confined in either
-  // mode, so this is a compensating control, never a sandbox.
-  const workspaceWrite = resolvedSandbox === 'workspace-write';
+  // denied, MCP tools included. workspace-write adds an explicit external_directory deny,
+  // which stops the file tools (edit, write, read) at the working directory; Bash is not
+  // path-confined there. read-only denies every action, then allows only the read actions,
+  // at the top level and on the agent it names, and is refused unless OpenCode resolves that
+  // agent with every other action denied. Both are compensating controls, a tool gate inside
+  // OpenCode, never a sandbox.
+  const confined = Object.prototype.hasOwnProperty.call(OPENCODE_SANDBOX_PERMISSIONS, resolvedSandbox)
+    ? resolvedSandbox
+    : null;
   const args = [
     'run',
     '--standalone',
@@ -3794,8 +3927,21 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     '--format',
     'json',
     '--auto',
+    ...(confined === 'read-only' ? ['--agent', OPENCODE_READ_ONLY_AGENT] : []),
     prompt,
   ];
+  const cwd = options.directoryRoot || process.cwd();
+  const configContent = confined !== null
+    ? opencodeSandboxConfigContent(confined, parentEnv.OPENCODE_CONFIG_CONTENT)
+    : null;
+  if (confined === 'read-only') {
+    assertOpencodeReadOnlyConfined({
+      command: opencode.command,
+      cwd,
+      env: opencodeChildEnv(parentEnv, configContent),
+      resolve: options.resolveOpencodeAgents || resolveOpencodeAgents,
+    });
+  }
 
   const built = finalizeLineageCommand({
     kind: lineage.kind,
@@ -3810,19 +3956,23 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
-    compensatingControl: workspaceWrite,
+    compensatingControl: confined !== null,
     webSearch: effectiveWebSearchPolicy(lineage),
-    cwd: options.directoryRoot || process.cwd(),
-    ...(workspaceWrite
-      ? { env: { OPENCODE_CONFIG_CONTENT: opencodeWorkspaceWriteConfigContent(parentEnv.OPENCODE_CONFIG_CONTENT) } }
-      : {}),
+    cwd,
+    ...(configContent !== null ? { env: { OPENCODE_CONFIG_CONTENT: configContent } } : {}),
   });
-  process.stderr.write(workspaceWrite
-    ? `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto and external_directory denied: `
+  const label = lineage.label || '(cli-opencode)';
+  if (confined === 'read-only') {
+    process.stderr.write(`WARN: lineage ${label} runs with --auto and every tool but ${OPENCODE_READ_ACTIONS.join(', ')} `
+      + 'denied in its inline permission config: a tool gate inside OpenCode, not an OS sandbox.\n');
+  } else if (confined === 'workspace-write') {
+    process.stderr.write(`WARN: lineage ${label} runs with --auto and external_directory denied: `
       + 'file tools outside the working directory are refused, but Bash is not confined and can still '
-      + 'write anywhere, so the lineageDir write boundary is prompt-only for Bash.\n'
-    : `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto and no path restriction. `
+      + 'write anywhere, so the lineageDir write boundary is prompt-only for Bash.\n');
+  } else {
+    process.stderr.write(`WARN: lineage ${label} runs with --auto and no path restriction. `
       + 'The lineageDir write boundary is prompt-only, not sandbox-enforced.\n');
+  }
   return built;
 }
 
@@ -4457,6 +4607,9 @@ const VIBE_VERSION = '3.1.2';
 // Mirrors VIBE_SUPPORTED_MODELS in lib/deep-loop/executor-config.ts; the runner and the
 // config validator must refuse the same aliases, and a test asserts the copies agree.
 const VIBE_ALLOWED_MODELS = new Set(['deepseek-flash', 'glm-flash']);
+// The builtin read tools `vibe config schema` lists for vibe 3.1.2. Every other builtin can
+// write a file, run a command, start an agent or reach the network.
+const VIBE_READ_ONLY_TOOLS = Object.freeze(['read_file', 'grep']);
 const VIBE_PARTIAL_REASON = 'partial';
 
 /**
@@ -4622,6 +4775,12 @@ function buildVibeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermi
     '--model', model,
     '--auto-approve',
   ];
+  // In print mode --enabled-tools disables every tool it does not name, so a read-only
+  // lineage runs with the two read tools only. The flag repeats once per tool.
+  const readOnly = resolvedSandbox === 'read-only';
+  if (readOnly) {
+    for (const tool of VIBE_READ_ONLY_TOOLS) args.push('--enabled-tools', tool);
+  }
   return finalizeLineageCommand({
     kind: lineage.kind,
     command: 'vibe',
@@ -4629,15 +4788,18 @@ function buildVibeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermi
     input: '',
     prompt,
     cwd: lineageDir,
-    env: { VIBE_HOME: vibeHome },
+    // The session-start hook's default self-heal rebuilds stale dist output in the checkout,
+    // lifecycle code no tool allowlist stops, so a read-only lineage keeps it warning-only.
+    env: readOnly ? { VIBE_HOME: vibeHome, SPECKIT_DIST_AUTO_REBUILD: '0' } : { VIBE_HOME: vibeHome },
     executableVersion: resolveExecutableVersion('vibe', options),
     model,
     reasoningEffort: null,
     serviceTier: null,
-    // Vibe exposes no confinement flag; recording the requested sandbox as effective would
-    // claim a boundary the process never had.
-    resolvedSandbox: null,
+    // Vibe exposes no confinement flag. Read-only is the tool allowlist above, a compensating
+    // control; any other request would claim a boundary the process never had, so it stays null.
+    resolvedSandbox: readOnly ? 'read-only' : null,
     resolvedPermission: null,
+    compensatingControl: readOnly,
     webSearch: effectiveWebSearchPolicy(lineage),
   });
 }
@@ -5005,7 +5167,8 @@ async function main() {
     // cli-opencode takes the same workspace-write default. It has no OS-level sandbox, so its
     // builder honours workspace-write by denying external_directory to the file tools and
     // records that as a compensating control: Bash can still write outside the working
-    // directory. An explicit read-only is refused in finalizeLineageCommand.
+    // directory. An explicit read-only is a catch-all deny with only the read tools allowed,
+    // and the lineage is refused unless OpenCode resolves the pinned agent that way.
     const effectiveSandbox = resolveSandboxMode(lineage.sandboxMode);
     const effectivePermission = resolveClaudePermissionMode(lineage.sandboxMode);
 
@@ -6222,6 +6385,8 @@ module.exports = {
   VIBE_VERSION,
   buildVibeLineageCommand,
   validateVibeCompletion,
+  OPENCODE_READ_ONLY_UNCONFINED,
+  opencodeReadOnlyGap,
   resolveVibeLineageOutcome,
   withAgentPersona,
   validateClaudeConfigDir,

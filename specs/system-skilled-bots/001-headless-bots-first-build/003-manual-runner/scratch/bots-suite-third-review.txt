@@ -1,0 +1,5 @@
+bots suite (after third review) 2026-11-22T22:41:58Z
+ Test Files  17 passed (17)
+      Tests  191 passed (191)
+exit=0
+bots typecheck exit=0

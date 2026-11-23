@@ -1,0 +1,37 @@
+mutation control: receipts pointed back into the run folder, 2026-11-22T20:37:51Z
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 370 bytes, not echoed
+ ❯ tests/runner.vitest.ts (26 tests | 1 failed | 25 skipped) 776ms
+     × leaves no prompt or command line in the run folder for a kind that takes its prompt on argv 776ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/runner.vitest.ts > manual run, happy path > leaves no prompt or command line in the run folder for a kind that takes its prompt on argv
+AssertionError: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-repo-OAFz2e/.skilled/skills/.state/system-skilled-bots/acme%2Ftool/runs/20261122T203752Z-87c5fa91/receipts/dispatch-20261122T203752Z-87c5fa91.completion.json: expected '{"version":1,"type":"dispatch_receipt…' not to contain 'CLAUDE-PROMPT-TEXT-4be0'
+
+- Expected
++ Received
+
+- CLAUDE-PROMPT-TEXT-4be0
++ {"version":1,"type":"dispatch_receipt","phase":"completion","dispatchId":"20261122T203752Z-87c5fa91","issuedAt":"2026-11-22T20:37:52.282Z","facts":{"command":"claude","args":["-p","You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.\nBound spec folder: none. Write no spec documents.\nIf you reach a decision only a person can make, print one line that starts with [NEEDS-DECISION] followed by the question, then optionally one [OPTION] line per choice, and stop. Do not guess.\n\nList the stale notes and change nothing. CLAUDE-PROMPT-TEXT-4be0","--model","claude-opus-4-8","--permission-mode","plan","--output-format","stream-json","--verbose"],"cwd":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/bots-repo-qk8zqa","executor":{"kind":"cli-claude-code","model":null,"reasoningEffort":null,"serviceTier":null,"sandboxMode":"read-only","timeoutSeconds":900,"webSearch":"inherit","configDir":null,"governor":null,"executable":"cli-claude-code"},"iteration":1,"childPid":90773,"exitStatus":0,"signal":null,"sessionId":null},"mac":"0068c6354df68748f1f03ec863301637a18159f45b104af26d48f4da702fc648"}
++
+
+ ❯ tests/runner.vitest.ts:128:30
+    126|     for (const file of runFiles) {
+    127|       const text = readFileSync(file, 'utf8');
+    128|       expect(text, file).not.toContain('CLAUDE-PROMPT-TEXT-4be0');
+       |                              ^
+    129|       expect(text, file).not.toContain('--permission-mode');
+    130|       expect(text, file).not.toContain('not-for-the-child-8812');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 25 skipped (26)
+   Start at  21:37:51
+   Duration  1.08s (transform 183ms, setup 0ms, import 249ms, tests 776ms, environment 0ms)
+
+exit=1

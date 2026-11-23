@@ -1,0 +1,67 @@
+probe: before: deny-list read-only profile  opencode opencode v2.3.2  2026-11-22T22:16:40Z
+OPENCODE_CONFIG_CONTENT={"permission":{"edit":"deny","write":"deny","bash":"deny","task":"deny","external_directory":"deny"}}
+--- repo: plain  opencode.json={}
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow edit:*=deny edit:*=deny shell:*=deny subagent:*=deny external_directory:*=deny browser:*=deny skill:browser=deny
+  edit                last rule for resource *: edit:*=deny
+  shell               last rule for resource *: shell:*=deny
+  subagent            last rule for resource *: subagent:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=allow
+  question            last rule for resource *: question:*=allow
+  demo_tool           last rule for resource *: *:*=allow
+  read                last rule for resource *: *:*=allow
+  grep                last rule for resource *: *:*=allow
+  glob                last rule for resource *: *:*=allow
+  list                last rule for resource *: *:*=allow
+--- repo: mcp  opencode.json={"mcp":{"demo":{"type":"local","command":["node","-e","0"],"enabled":true}}}
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow edit:*=deny edit:*=deny shell:*=deny subagent:*=deny external_directory:*=deny browser:*=deny skill:browser=deny
+  edit                last rule for resource *: edit:*=deny
+  shell               last rule for resource *: shell:*=deny
+  subagent            last rule for resource *: subagent:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=allow
+  question            last rule for resource *: question:*=allow
+  demo_tool           last rule for resource *: *:*=allow
+  read                last rule for resource *: *:*=allow
+  grep                last rule for resource *: *:*=allow
+  glob                last rule for resource *: *:*=allow
+  list                last rule for resource *: *:*=allow
+--- repo: agent  opencode.json={"agent":{"build":{"permission":{"bash":"allow","edit":"allow"}}}}
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow edit:*=deny edit:*=deny shell:*=deny subagent:*=deny external_directory:*=deny shell:*=allow edit:*=allow browser:*=deny skill:browser=deny
+  edit                last rule for resource *: edit:*=allow
+  shell               last rule for resource *: shell:*=allow
+  subagent            last rule for resource *: subagent:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=allow
+  question            last rule for resource *: question:*=allow
+  demo_tool           last rule for resource *: *:*=allow
+  read                last rule for resource *: *:*=allow
+  grep                last rule for resource *: *:*=allow
+  glob                last rule for resource *: *:*=allow
+  list                last rule for resource *: *:*=allow
+--- repo: agent-md  opencode.json={}
+    .opencode/agent/build.md: --- description: build override mode: primary permission:   bash: allow   edit: allow --- You build. 
+debug agents exit=0
+repo file list unchanged by the probe
+agent build rules: *:*=allow read:*.env=ask read:*.env.*=ask read:*.env.example=allow question:*=allow edit:*=deny edit:*=deny shell:*=deny subagent:*=deny external_directory:*=deny shell:*=allow edit:*=allow browser:*=deny skill:browser=deny
+  edit                last rule for resource *: edit:*=allow
+  shell               last rule for resource *: shell:*=allow
+  subagent            last rule for resource *: subagent:*=deny
+  external_directory  last rule for resource *: external_directory:*=deny
+  webfetch            last rule for resource *: *:*=allow
+  question            last rule for resource *: question:*=allow
+  demo_tool           last rule for resource *: *:*=allow
+  read                last rule for resource *: *:*=allow
+  grep                last rule for resource *: *:*=allow
+  glob                last rule for resource *: *:*=allow
+  list                last rule for resource *: *:*=allow
+
+gap check, the new evaluator run over the old deny-list resolutions 2026-11-22T22:27:41Z
+  plain: agent build has no catch-all deny, so an unlisted tool would run
+  agent: agent build has no catch-all deny, so an unlisted tool would run

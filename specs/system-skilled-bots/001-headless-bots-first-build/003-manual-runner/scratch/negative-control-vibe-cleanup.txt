@@ -1,0 +1,32 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots/runtime
+
+[executor-audit] child stdout 16 bytes, not echoed
+ ❯ tests/runner.vitest.ts (32 tests | 1 failed | 31 skipped) 603ms
+     × completes a read-only Mistral Vibe run whose home holds a read-only folder tree, and removes the lineage folder 602ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/runner.vitest.ts > needs-you decisions > completes a read-only Mistral Vibe run whose home holds a read-only folder tree, and removes the lineage folder
+AssertionError: expected 'failed' to be 'completed' // Object.is equality
+
+Expected: "completed"
+Received: "failed"
+
+ ❯ tests/runner.vitest.ts:416:28
+    414|     try {
+    415|       expect(stubRunCount(world)).toBe(1);
+    416|       expect(outcome.kind).toBe('completed');
+       |                            ^
+    417|       expect(existsSync(lineage)).toBe(false);
+    418|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 31 skipped (32)
+   Start at  00:11:24
+   Duration  909ms (transform 182ms, setup 0ms, import 249ms, tests 603ms, environment 0ms)
+
+exit=1
