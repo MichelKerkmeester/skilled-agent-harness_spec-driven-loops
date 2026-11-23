@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d6332262481733d745510002a8efb5a6766550e4825b2691f598f9c9bc9ab841",
+  "corpusHash": "d597ad91cd7cd582c404fcbc792240f329b426f3de99050c2dc8c02b44ad9d32",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29391,
+  "includedPathCount": 29397,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2239,6 +2239,7 @@
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.24.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.25.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.26.0.md",
+    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.27.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.8.0.md",
     ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/examples/README.md",
@@ -13421,6 +13422,11 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/plan.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/spec.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/tasks.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/decision-record.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
@@ -29423,7 +29429,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fba884bf23d09ebc1be3205dd43a15b99be43b4ff58edb1342e2d2a65c5f2b53",
+  "manifestHash": "2d33e112feedf19e52f23f3e550a897345d16170b4afc84138f1fe732d4647ae",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34007,6 +34013,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/scratch",
       "reason": "excluded directory"
     },
     {

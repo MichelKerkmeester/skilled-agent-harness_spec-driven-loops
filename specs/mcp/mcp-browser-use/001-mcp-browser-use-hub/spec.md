@@ -123,6 +123,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 8 | 008-live-runs-and-playbook-fixes/ | Live Bladebro and Aside runs with the operator's approval, the Bladebro attach-mode scenario, catalog, examples and MCP server docs, form fixes in the Chrome DevTools and Aside playbooks, and removal of the leftover 505 worktree (Level 2) | Complete |
 | 9 | 009-sk-code-browser-evidence/ | sk-code's `sk-code-frontend` verification row names the `mcp-browser-use` hub, so a changed page is opened in whichever browser mode the user has installed. sk-code 3.12.2.0, router 2.3.24.0 (Level 1) | Complete |
 | 10 | 010-mcp-tooling-browser-pointers/ | Point the mcp-tooling modes' browser references at the hub | Complete |
+| 11 | 011-bdg-eval-port-note/ | Explain in the Chrome DevTools troubleshooting guide why bdg 0.6.10 `dom eval` fails with `Session target not found` off port 9222, with two fixes. mcp-chrome-devtools 1.0.27.0 (Level 1) | Complete |
 
 ### Phase Transition Rules
 
@@ -144,6 +145,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 007-bladebro-parity-and-changelogs | 008-live-runs-and-playbook-fixes | The 13 Aside signed-in scenarios that 007 deferred to an operator yes run live, and the Bladebro attach-mode gap is covered by a scenario | Each recorded run folder's `results.csv` matches its README tally, and `validate-playbook-package.cjs` exits 0 for the three browser packages |
 | 008-live-runs-and-playbook-fixes | 009-sk-code-browser-evidence | The `sk-code-frontend` row in sk-code's `ROUTER.md` names the `mcp-browser-use` hub and its three browser modes | `parent-skill-check.cjs .skilled/skills/sk-code` exits 0, and `verify-router-sync.cjs` prints `router-sync: 5/5 checks passed` |
 | 009-sk-code-browser-evidence | 010-mcp-tooling-browser-pointers | sk-code names the hub for frontend evidence, and RD-006 passes live | RD-006 `PASS 1/1` recorded in sk-code's benchmark reports |
+| 010-mcp-tooling-browser-pointers | 011-bdg-eval-port-note | No live mcp-tooling doc names a browser packet as a standalone skill | The stale-pointer grep in 010's spec.md prints 0, and `parent-skill-check.cjs .skilled/skills/mcp-tooling` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

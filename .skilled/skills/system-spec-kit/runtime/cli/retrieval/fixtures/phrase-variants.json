@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fba884bf23d09ebc1be3205dd43a15b99be43b4ff58edb1342e2d2a65c5f2b53",
+  "manifestHash": "2d33e112feedf19e52f23f3e550a897345d16170b4afc84138f1fe732d4647ae",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15268,11 +15268,32 @@
     "bdg dom eval": [
       "bdg dom eval"
     ],
+    "bdg dom eval port note": [
+      "bdg dom eval port note"
+    ],
+    "bdg dom eval session target not found": [
+      "bdg dom eval session target not found"
+    ],
     "bdg dom query": [
       "bdg dom query"
     ],
     "bdg dom screenshot": [
       "bdg dom screenshot"
+    ],
+    "bdg eval port note": [
+      "bdg eval port note"
+    ],
+    "bdg eval port note goal": [
+      "bdg eval port note goal"
+    ],
+    "bdg eval port note implementation summary": [
+      "bdg eval port note implementation summary"
+    ],
+    "bdg eval port note plan": [
+      "bdg eval port note plan"
+    ],
+    "bdg eval port note tasks": [
+      "bdg eval port note tasks"
     ],
     "bdg example scripts": [
       "bdg example scripts"
@@ -15288,6 +15309,9 @@
     ],
     "bdg network har export": [
       "bdg network har export"
+    ],
+    "bdg non default port eval": [
+      "bdg non default port eval"
     ],
     "bdg performance metrics": [
       "bdg performance metrics"
@@ -70265,6 +70289,9 @@
     "mcp chrome devtools 1 0 26 0": [
       "mcp-chrome-devtools 1.0.26.0"
     ],
+    "mcp chrome devtools 1 0 27 0": [
+      "mcp-chrome-devtools 1.0.27.0"
+    ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
     ],
@@ -70366,6 +70393,9 @@
     ],
     "mcp chrome devtools v1 0 26 0": [
       "mcp-chrome-devtools v1.0.26.0"
+    ],
+    "mcp chrome devtools v1 0 27 0": [
+      "mcp-chrome-devtools v1.0.27.0"
     ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
@@ -85316,6 +85346,9 @@
     ],
     "phase 11 authoring speed research": [
       "phase 11 authoring speed research"
+    ],
+    "phase 11 bdg eval port note": [
+      "phase 11 bdg eval port note"
     ],
     "phase 11 ci health followups": [
       "phase 11 ci health followups"
@@ -109656,6 +109689,9 @@
     ],
     "session surface hint": [
       "session surface hint"
+    ],
+    "session target not found": [
+      "session target not found"
     ],
     "session teardown sweep": [
       "session teardown sweep"
