@@ -33,7 +33,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,7 +42,10 @@
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts",
-      ".skilled/hooks/injection-contract.md"
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts",
+      ".skilled/hooks/injection-contract.md",
+      "scratch/behaviour/F6-1.md"
     ],
     "entities": [
       {
@@ -88,9 +91,27 @@
         "source": "derived"
       },
       {
+        "name": "command-head-length.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "render-child-session.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "injection-contract.md",
         "kind": "doc",
         "path": ".skilled/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "F6-1.md",
+        "kind": "doc",
+        "path": "scratch/behaviour/F6-1.md",
         "source": "derived"
       },
       {
@@ -101,6 +122,12 @@
       },
       {
         "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,12 +146,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -170,29 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor brief names a deep-loop command as `system-deep-loop → /deep:review (ask)` and nothing more",
     "created_at": "2026-11-23T16:22:57Z",
-    "last_save_at": "2026-11-23T16:25:34.647Z",
+    "last_save_at": "2026-11-23T16:50:45.440Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9ab0b1b8c6d0d578a94728b07b6a72d377d9aaf52ebcbb784dd3ba638e87c09",
+    "source_fingerprint": "sha256:2bdd0f4764432a0111dc860afc15ec4165902f9af43003d0bc1f3257f1aa11e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3b00faa9266856197fd523a76ef5c85f0976db896bc3aec0c6855a58f25033a",
+      "spec.md": "f67bd1893c3e4e888416e5cb8f188aa55f83103bb971da182333b11bba1c05b3",
       "plan.md": "7efbc044423a3b735d64704334dcd31f4fde77654da5e31a1585836d37706b3c",
-      "tasks.md": "ba6dcd9e4da42758cff7d1580cda5705861c72a93dc64853aad97a3fe26ca7b8",
-      "decision-record.md": "41f932c33e04801ed42df2b856389563c36c1e64a6c38a6998f6d32991ce2f94",
-      "implementation-summary.md": "4e424a4868ed15b118e9dbd39fa1850fb81d8c47b691943aac745b703836bd95"
+      "tasks.md": "491746e82186e8a03a9981abcac7690038384a63e2c27ddf0e206947fb5018e0",
+      "decision-record.md": "2061bdb361d55171ff829872fc3139ebd83e1ec8e7212c169117adca8dea3959",
+      "implementation-summary.md": "854ff3835c9532e5239d88b00f5afcd486614d9c1eb6d2740ecd4f3f6d35a408"
     },
     "last_active_at": null
   }

@@ -35,6 +35,8 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | Open a new follow-up packet that puts the deep-loop offer options in the advisor brief, with nothing built until the plan is approved. | Not stated. | None | spec.md, plan.md, tasks.md |
+| Q002 | Approve the plan and build it in worktree 527, including four F6 behaviour runs. | Not stated. | None | tasks.md T001 to T009 |
+| Q003 | Name offer options only for the two deep-loop commands and leave every other ask command label unchanged. | Not stated. | None | spec.md Out of Scope, render.ts |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -61,6 +63,45 @@ Leave it
 Answer:
 ```text
 New follow-up packet (Recommended)
+```
+
+### Q002
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01KEg4nWKAGKzjg4XmxXe8hp:0 -->
+
+Question:
+```text
+Packet 013's plan: one branch in render.ts's commandLabel makes the brief head read `system-deep-loop → /deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop)`. The plan also covers updating the golden tests and the injection contract, the full advisor suite, and four F6 behaviour runs (about $0.80). Approve it?
+```
+
+Options:
+```text
+Approve and build (Recommended)
+Approve, skip F6 runs
+Hold
+```
+
+Answer:
+```text
+Approve and build (Recommended)
+```
+
+### Q003
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01KEg4nWKAGKzjg4XmxXe8hp:2 -->
+
+Question:
+```text
+Should other commands with policy `ask` (for example /create:changelog or /doctor:mcp debug) get a generic hint such as `(ask: offer it, then wait)`?
+```
+
+Options:
+```text
+Deep-loop only (Recommended)
+Add a generic hint
+```
+
+Answer:
+```text
+Deep-loop only (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -9,15 +9,17 @@
     "advisor",
     "hint"
   ],
-  "lastUpdated": "2026-11-23T16:25:34.647Z",
+  "lastUpdated": "2026-11-23T16:50:45.440Z",
   "specId": "013",
   "folderSlug": "deep-loop-offer-in-hint",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "23-11-26_17-25__opened-the-follow-up-packet-that-puts-the-three.md"
+    "23-11-26_17-25__opened-the-follow-up-packet-that-puts-the-three.md",
+    "23-11-26_17-50__built-the-brief-change-passed-the-full-advisor.md",
+    "23-11-26_17-50__built-the-brief-change-passed-the-full-advisor.md"
   ]
 }

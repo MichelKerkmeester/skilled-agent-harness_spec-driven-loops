@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The advisor brief now names the three deep-loop offer options beside the ask policy. Tests pass, but four F6 sessions did not ask the full offer more often than before."
 trigger_phrases:
   - "deep loop offer in hint implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint"
-    last_updated_at: "2026-11-23T16:25:34Z"
+    last_updated_at: "2026-11-23T16:50:45Z"
     last_updated_by: "generate-context"
-    recent_action: "Wrote spec, plan and tasks for carrying the deep-loop offer in the brief"
-    next_safe_action: "Wait for the operator to approve the plan, then run T001"
+    recent_action: "Built the deep-loop offer options into the brief and sampled F6 four times"
+    next_safe_action: "Wait for the operator to keep, reword or revert the brief change"
     packet_purpose: "Purpose: A session that sees a `/deep:research` or `/deep:review` command with policy `ask` in the brief can ask the three-option offer without opening the command doc first."
     blockers:
-      - "Plan approval from the operator"
+      - "SC-002 unmet in F6 sampling"
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md"
-      - "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md"
+      - "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md"
       - "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-deep-loop-offer-in-hint"
@@ -27,10 +27,10 @@ _memory:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
       workspace: "/Users/michelkerkmeester/worktrees/public/527-deep-loop-offer-in-hint"
-      savedAt: "2026-11-23T16:25:34Z"
+      savedAt: "2026-11-23T16:50:45Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 10
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +49,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-deep-loop-offer-in-hint |
-| **Completed** | Not yet, implementation waits for plan approval |
+| **Completed** | Not yet. Built and tested, SC-002 unmet |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -59,17 +59,22 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Implementation has not started. This packet holds the spec, the plan and the task list, and waits for the operator to approve the plan. This file is filled when the work lands.
+The brief head for a deep-loop command with policy `ask` now reads `system-deep-loop → /deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop)`. Every other command label is unchanged, and a dispatched child still gets `(parent-named only)` with no options.
 
 ### Carry the deep-loop offer in the advisor hint
 
-When it lands, a session that sees `/deep:review (ask)` in the brief also sees the three options, so it can ask the offer without opening the command doc first.
+A session that sees the brief now learns the three offer options without opening the command doc. In four F6 runs, two sessions named options from the brief, but none asked all three in one question with A recommended.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | - | Implementation waits for plan approval |
+| `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Modified | `commandLabel` appends the options after `/deep:research` or `/deep:review` when the policy word is `ask` |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts` | Modified | Two deep-loop goldens take the new head, plus a child-session case and a doctor-companion case |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts` | Modified | Accepts a policy word followed by the options |
+| `.skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts` | Modified | Expects the new non-child deep-research head |
+| `.skilled/hooks/injection-contract.md` | Modified | Shows the deep-loop variant of the head |
+| `scratch/behaviour/F6-1.md` to `F6-4.md` | Created | The four F6 behaviour runs |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -78,7 +83,7 @@ When it lands, a session that sees `/deep:review (ask)` in the brief also sees t
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not run yet. `tasks.md` Phase 3 names the checks: the advisor suite, the brief command in `spec.md` and four F6 behaviour runs.
+The advisor was built, the brief command printed the new head, and the full suite ran green. The change was committed as `c4198c6f8cc`, a behaviour arena was built from that commit, and F6 ran four times there with `claude -p`, `claude-sonnet-5-5`, bypass permissions and a $0.75 cap per run, resetting the arena between runs.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -89,7 +94,8 @@ Not run yet. `tasks.md` Phase 3 names the checks: the advisor suite, the brief c
 
 | Decision | Why |
 |----------|-----|
-| Scope the options to `/deep:research` and `/deep:review` only | Only those two commands have a fixed three-option offer. The operator confirms this with the plan |
+| Scope the options to `/deep:research` and `/deep:review` only | Only those two commands have a fixed three-option offer. The operator chose this with the plan |
+| No spec-folder placeholder in option A | The brief cannot know the Gate 3 answer, and a placeholder makes the head longer, also in Pi where the operator sees it. The operator chose this |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -100,7 +106,12 @@ Not run yet. `tasks.md` Phase 3 names the checks: the advisor suite, the brief c
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict` on the planning docs | PASS, run 2026-11-23 |
+| Advisor `npm run build` | exit 0 |
+| `BRIEF` command from `spec.md` | First line: `Advisor: live; use system-deep-loop → /deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop) 0.95/0.12 pass.` |
+| Advisor `npx vitest run` | 180 files, 2624 passed, 4 skipped, 0 failed. The baseline was 2622 passed, and the two new cases account for the difference |
+| Golden test diff | Only the two deep-loop `expectedHead` lines change, and two cases are added |
+| F6, four runs at `c4198c6f8cc` | 0 of 4 asked the full offer. Run 2 recommended `/deep:review:auto` over `:confirm`, and run 4 quoted A and B from the brief but recommended B. Neither offered C. Runs 1 and 3 asked only for the target and defaulted to `:confirm`. No run composed `--extend=3`. Costs $0.153, $0.121, $0.050 and $0.021, $0.35 in all |
+| Packet 012's rate after its routing-step edit, for comparison | 1 of 4 asked the full offer |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -109,7 +120,8 @@ Not run yet. `tasks.md` Phase 3 names the checks: the advisor suite, the brief c
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not implemented.** The brief still prints `(ask)` alone until the plan is approved and built.
+1. **SC-002 is unmet.** No F6 session asked all three options in one question. Every session asked for the review target first, and in `claude -p` the question tool is not available, so each one asked in plain text. Four samples cannot separate a real effect from noise.
+2. **Runs 1 and 3 defaulted to `:confirm`.** The brief names `:auto` as option A, but nothing in it says A is the recommended one.
 <!-- /ANCHOR:limitations -->
 
 ---

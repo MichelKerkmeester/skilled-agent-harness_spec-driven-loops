@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-23 |
 | **Branch** | `worktrees/527-deep-loop-offer-in-hint` |
 <!-- /ANCHOR:metadata -->
@@ -76,6 +76,8 @@ Run 2026-11-23 in worktree 527 at 72599d47a52. F6 rate from packet 012 after its
 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Modify | Print the offer options after a `/deep:*` command with policy word `ask` |
 | `.skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts` | Modify | Expect the new head on the two deep-loop goldens, unchanged heads elsewhere |
 | `.skilled/hooks/injection-contract.md` | Modify | Show the deep-loop variant of the brief head |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts` | Modify | Accept a policy word followed by the offer options. Added during the build, when the suite showed this test pins the old label |
+| `.skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts` | Modify | Expect the new non-child deep-research head. Added during the build for the same reason |
 <!-- /ANCHOR:scope -->
 
 ---
