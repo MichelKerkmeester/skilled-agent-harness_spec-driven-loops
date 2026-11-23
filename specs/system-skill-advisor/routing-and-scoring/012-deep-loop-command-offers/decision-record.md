@@ -250,6 +250,9 @@ AC-017 asks two things of the research aliases that ship. K2, "multi-round resea
 | Q023 | Mark AC-008 met on F6 sample 1 and state that 1 of 4 runs since the routing-step edit asked the offer. | Not stated. | None | acceptance-criteria.md AC-008, implementation-summary.md limitation 5 |
 | Q024 | Tick each unticked task and checklist item against its own check, mark the packet Complete, then commit and push. | Not stated. | None | tasks.md, spec.md, acceptance-criteria.md |
 | Q025 | Leave the pending answers from 13 other sessions alone; each is recorded when its own packet is next saved. | Not stated. | None | none in this packet |
+| Q026 | Leave the checkout-dependent top skill on probes H5 and N12 recorded as it is, without investigating the cause. | Not stated. | None | T031, implementation-summary.md Verification |
+| Q027 | Replace the recorded pre-change corpus counts with a fresh capture run at the pre-change commit. | Not stated. | None | T003, scratch/corpus-before.json |
+| Q028 | Try a save to refresh completion_pct in acceptance-criteria.md and change nothing by hand if it does not. | Not stated. | None | acceptance-criteria.md frontmatter |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -706,6 +709,63 @@ Write me a list
 Answer:
 ```text
 Leave them (Recommended)
+```
+
+### Q026
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019arXajtfnsMvo3vr33UMv3:1 -->
+
+Question:
+```text
+Probes H5 ("review the sk-doc skill") and N12 ("thoroughly test the login flow in the browser") rank a different top skill depending on the checkout, with no command in either, and no advisor code changed. I haven't found the cause. Should I dig into it?
+```
+
+Options:
+```text
+Leave it recorded (Recommended)
+Investigate read-only
+```
+
+Answer:
+```text
+Leave it recorded (Recommended)
+```
+
+### Q027
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019arXajtfnsMvo3vr33UMv3:2 -->
+
+Question:
+```text
+T003's pre-change corpus counts (0 of 35 for both) come from the baseline committed earlier, captured at an older commit `62a9359e60a`, not from a fresh run at the pre-change commit `2ef3895f753`. Should I do the fresh run?
+```
+
+Options:
+```text
+Keep as disclosed (Recommended)
+Run it fresh
+```
+
+Answer:
+```text
+Run it fresh
+```
+
+### Q028
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019arXajtfnsMvo3vr33UMv3:3 -->
+
+Question:
+```text
+The `completion_pct` field in acceptance-criteria.md's frontmatter still reads 0, though the packet is Complete. The save tool owns that field, so I didn't hand-edit it. What should I do?
+```
+
+Options:
+```text
+Leave it (Recommended)
+Try a targeted save
+```
+
+Answer:
+```text
+Try a targeted save
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

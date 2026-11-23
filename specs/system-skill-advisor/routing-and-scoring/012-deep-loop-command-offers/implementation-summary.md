@@ -8,25 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T15:28:51Z"
+    last_updated_at: "2026-11-23T16:22:15Z"
     last_updated_by: "generate-context"
-    recent_action: "Ticked every task and checklist item with evidence and marked the packet Complete"
+    recent_action: "Reran the pre-change corpus capture at 2ef3895f753 and recorded it in T003"
     next_safe_action: "None; the packet is closed"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md"
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/corpus-before.json"
     session_dedup:
-      fingerprint: "sha256:47de2bb926ad7bdbc4b0488cc4b55847c720cf84e1c42f41acbc9ef25e96c05c"
+      fingerprint: "sha256:50632de60e5e2728d7c265ff655474d02a98eea6125995904ab4383810a5eedb"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
-      workspace: "/Users/michelkerkmeester/worktrees/public/522-deep-loop-offer-review-fixes"
-      savedAt: "2026-11-23T15:28:51Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/527-deep-loop-offer-in-hint"
+      savedAt: "2026-11-23T16:22:15Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
