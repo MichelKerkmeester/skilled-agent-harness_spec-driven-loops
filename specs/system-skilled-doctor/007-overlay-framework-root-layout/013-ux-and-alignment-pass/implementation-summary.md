@@ -229,7 +229,7 @@ The empty-array refusal stays. It is an explicit throw, because the engine place
 | 1 | `272253842d2` | APPROVED, 3 P2: the first indented line set the unit, one CRLF switched every line, and a record does not prove the engine wrote the bytes | `2b9a2328922`, `d62e51af43c`. The third was answered with a comment |
 | 2 | `d62e51af43c` | APPROVED, 1 P2: one stray shallow line set the unit | `9bee9df5cc0`, `ca4972a8f5e` |
 | 3 | `ca4972a8f5e` | REQUESTED_CHANGES, 1 P1: dividing a step by the containers its line opens halved the unit for a hand-written `"l": [{` line | `a9d52c1087d`, `8f14f6726f2` |
-| 4 | `8f14f6726f2` | APPROVED, 1 P2: in a file with no one-container line, a stray line sets the unit | `cd8091a09d3`, `d6525194aed` |
+| 4 | `8f14f6726f2` | APPROVED, 1 P2: in a file with no one-container line, a stray line sets the unit | Not fixed: `cd8091a09d3` was reverted by `5f1af6159d0`, see limitation 15 |
 | 5 | `d6525194aed` | APPROVED, 1 P2: that change misread a well-formed `{"x": {` file whose only outer line is its closer | `5f1af6159d0` returns round 4's rule and records limitation 15 |
 | 6 | `5f1af6159d0` | APPROVED, no findings. The engine equals round 4's, and the new test fails on round 5's engine | - |
 
