@@ -37,6 +37,12 @@ export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, stri
     'research': '/deep:research',
     'review': '/deep:review',
   },
+  'system-skilled-bots': {
+    'author': '/bots:author',
+    'run': '/bots:run',
+    'schedule': '/bots:schedule',
+    'status': '/bots:status',
+  },
 };
 // END GENERATED MODE COMMANDS
 
@@ -73,6 +79,7 @@ export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
   'command-doctor-agents-md-check': { command: '/doctor:agents-md check', policy: 'run', mutating: 'read-only', ownerSkillId: 'system-skilled-doctor' },
   'command-doctor-agents-md-embed': { command: '/doctor:agents-md embed', policy: 'ask', mutating: 'mutates', ownerSkillId: 'system-skilled-doctor' },
   'command-doctor-agents-md-restore': { command: '/doctor:agents-md restore', policy: 'ask', mutating: 'mutates', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-bots': { command: '/doctor:bots', policy: 'run', mutating: 'read-only', ownerSkillId: 'system-skilled-bots' },
   'command-doctor-ci-report': { command: '/doctor:ci report', policy: 'run', mutating: 'read-only', ownerSkillId: 'sk-code' },
   'command-doctor-ci-scaffold': { command: '/doctor:ci scaffold', policy: 'ask', mutating: 'mutates', ownerSkillId: 'sk-code' },
   'command-doctor-ci-toggle': { command: '/doctor:ci toggle', policy: 'ask', mutating: 'mutates', ownerSkillId: 'sk-code' },
@@ -120,6 +127,10 @@ export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
   'create:manual-testing-playbook': { command: '/create:manual-testing-playbook', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
 };
 export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {
+  '/bots:author': { policy: 'start', ownerSkillId: 'system-skilled-bots', scorerRow: false },
+  '/bots:run': { policy: 'ask', ownerSkillId: 'system-skilled-bots', scorerRow: false },
+  '/bots:schedule': { policy: 'ask', ownerSkillId: 'system-skilled-bots', scorerRow: false },
+  '/bots:status': { policy: 'run', ownerSkillId: 'system-skilled-bots', scorerRow: false },
   '/create:agent': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: true },
   '/create:benchmark': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/create:changelog': { policy: 'ask', ownerSkillId: 'sk-doc', scorerRow: false },
@@ -141,6 +152,7 @@ export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {
   '/doctor:agents-md check': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
   '/doctor:agents-md embed': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
   '/doctor:agents-md restore': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:bots': { policy: 'run', ownerSkillId: 'system-skilled-bots', scorerRow: true },
   '/doctor:ci report': { policy: 'run', ownerSkillId: 'sk-code', scorerRow: true },
   '/doctor:ci scaffold': { policy: 'ask', ownerSkillId: 'sk-code', scorerRow: true },
   '/doctor:ci toggle': { policy: 'ask', ownerSkillId: 'sk-code', scorerRow: true },

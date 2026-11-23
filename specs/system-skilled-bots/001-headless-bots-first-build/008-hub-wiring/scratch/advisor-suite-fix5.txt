@@ -1,0 +1,78 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skill-advisor/runtime
+
+ ❯ tests/command-routing-slice.vitest.ts (12 tests | 2 failed) 7562ms
+     × matches the captured baseline row by row 3ms
+     × matches the captured totals 3ms
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 36670 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=556521
+[system-skill-advisor-launcher] ownerLeaseReclaimed: unreadable
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=334440
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sav-LXESBb/system-skill-advisor-launcher-mOYcx8/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > matches the captured baseline row by row
+AssertionError: command routing rows drifted from the committed baseline; re-capture with `node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write` when the change is intended: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "cmd-bots-schedule-plain-tune-01: baseline {\"expected_command\":\"/bots:schedule\",\"top\":\"system-skilled-bots\",\"top1\":false,\"top3\":false,\"offered\":false} live {\"expected_command\":\"/bots:schedule\",\"top\":null,\"top1\":false,\"top3\":false,\"offered\":false}",
++ ]
+
+ ❯ tests/command-routing-slice.vitest.ts:201:7
+    199|       drifted,
+    200|       `command routing rows drifted from the committed baseline; re-ca…
+    201|     ).toEqual([]);
+       |       ^
+    202|   });
+    203|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > matches the captured totals
+AssertionError: command routing attached reach drifted from the committed baseline; re-capture with `node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write` when the change is intended: expected { …(11) } to deeply equal { …(11) }
+
+- Expected
++ Received
+
+@@ -200,14 +200,14 @@
+        "total": 49,
+        "withCommand": 1,
+      },
+      "tune": {
+        "attached": 14,
+-       "neither": 11,
++       "neither": 12,
+        "own": 15,
+-       "ownerLed": 24,
+-       "routed": 22,
++       "ownerLed": 23,
++       "routed": 21,
+        "total": 50,
+        "withCommand": 14,
+      },
+    },
+    "typed": {
+
+ ❯ tests/command-routing-slice.vitest.ts:327:7
+    325|       live.attachedMetrics,
+    326|       `command routing attached reach drifted from the committed basel…
+    327|     ).toEqual(baseline.attachedMetrics);
+       |       ^
+    328|   });
+    329|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 177 passed (178)
+      Tests  2 failed | 2472 passed | 4 skipped (2478)
+   Start at  19:00:37
+   Duration  214.34s (transform 1.32s, setup 703ms, import 5.66s, tests 197.30s, environment 7ms)
+

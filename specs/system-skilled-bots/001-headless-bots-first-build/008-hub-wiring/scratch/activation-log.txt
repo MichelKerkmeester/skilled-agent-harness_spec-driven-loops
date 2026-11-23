@@ -1,0 +1,1265 @@
+=== [baseline sync --check] 2026-11-23 14:47:20
+$ node .skilled/bin/compiled-route-sync.cjs --check
+61 closure files under authored root
+  003-contract-schemas/lib/canonical.cjs
+  003-contract-schemas/schemas/compiled-policy.v1.schema.json
+  004-compiler-n1-shadow/compiler/compiler.cjs
+  004-compiler-n1-shadow/compiler/errors.cjs
+  004-compiler-n1-shadow/compiler/order.cjs
+  004-compiler-n1-shadow/harness/json-schema.cjs
+  005-decision-evaluator/lib/decision-contract.cjs
+  005-decision-evaluator/lib/projector.cjs
+  008-calibration/001-holdout-corpus/lib/calibration-corpus.cjs
+  008-calibration/002-rank-vs-calibrated-contract/calibration-method-envelope.v1.json
+  008-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs
+  009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs
+  009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+  009-parent-hub-rollout/001-sk-code/lib/policy-card.cjs
+  009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs
+  009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/policy-card.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/003-mcp-tooling/harness/build-artifacts.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/policy-card.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/policy-card.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs
+  009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/router.cjs
+  009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/policy-card.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/registry-compiler.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/router.cjs
+  009-parent-hub-rollout/009-sk-design/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/009-sk-design/harness/build-artifacts.cjs
+  009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs
+  009-parent-hub-rollout/009-sk-design/lib/policy-card.cjs
+  009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/policy-card.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs
+  013-live-activation/activation/cli-classifier/manifest.json
+  013-live-activation/activation/cli-external-orchestration/manifest.json
+  013-live-activation/activation/mcp-browser-use/manifest.json
+  013-live-activation/activation/mcp-tooling/manifest.json
+  013-live-activation/activation/sk-code/manifest.json
+  013-live-activation/activation/sk-design/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 8 hubs resolve
+SYNC FAILED: 1 served file(s) out of sync; rebuild with compiled-route-sync.cjs, or copy a re-minted activation manifest back to its authored path:
+  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs differs from its authored file
+(exit 1)
+
+=== [baseline guard] 2026-11-23 14:47:20
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-browser-use             fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [baseline front door] 2026-11-23 14:47:20
+$ node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt 'run the nightly-digest bot by hand'
+{"servingAuthority":"legacy","hubId":"system-skilled-bots"}
+(exit 0)
+
+=== [baseline parent-skill-check] 2026-11-23 14:48:25
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+INFO: Resolved:     /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots
+INFO: Policy: advisory findings count as FAIL; hard failures always FAIL.
+
+PASS: 1a: exactly one graph-metadata.json, located at the hub root
+PASS: 1b: hub skill_id "system-skilled-bots" matches directory name
+PASS: 1c: hub family "system" is in the allowed set
+PASS: 2a: no nested graph-metadata.json inside any packet or shared/
+PASS: 2b: no nested description.json inside any packet or shared/
+PASS: 3a: mode-registry.json exists and parses as JSON
+PASS: 3b: mode-registry.json declares 4 modes
+PASS: 3c: every mode packet resolves to an existing sub-directory
+PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
+PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch + packetSkillName + aliases
+PASS: 3d-name: every mode folder matches packetSkillName (or is grandfathered)
+PASS: 3d-name-frontmatter: all 4 packet SKILL.md frontmatter name(s) match packetSkillName
+PASS: 3d-files: every packet carries SKILL.md, README.md, and changelog/
+PASS: 3d-alias: all 24 aliases are unique across modes
+PASS: 3e: every mode has an advisorRouting block with a valid routingClass
+INFO: 3g: hub declares no surface packets
+INFO: 3h: hub declares no transport packets
+PASS: 3i: every mode that grants Write declares mutatesWorkspace:true or a writeScopeNote
+PASS: 3k: all 4 bound command(s) stay within their mode toolSurface.allowed
+INFO: 3f: hub declares no extensions (pure 2-tier)
+PASS: 3j: hub allowed-tools equals the union of mode tool surfaces
+INFO: 4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required
+INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+PASS: 5a: hub-router.json exists and parses as JSON
+PASS: 5b: routerSignals keys match the registry workflowMode set (4)
+PASS: 5c: all 8 referenced vocabulary classes are defined
+PASS: 5d: every router resource path resolves on disk
+PASS: 5e: routerPolicy.tieBreak covers every registered mode
+PASS: 5f: bundleRules reference real modes
+PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+PASS: 5h: routerPolicy.defaultMode is null (surface-primary or no default)
+PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+INFO: 5j: hub declares no command subworkflows
+PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+PASS: 6b: every registered mode (4) appears in the hub SKILL.md mode table
+PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command
+PASS: 7a: all changelog entries are real files (no symlinks)
+PASS: 8a: description.json present with the required fields
+PASS: 8b: description.json carries no registry-owned duplicate keys
+PASS: 5k-alias: every registry alias is a keyword of its routerSignal classes
+PASS: 5k-packet: every mode packet is a description keyword
+INFO: 5k-canary: no compiled-routing canary fixture for hub "system-skilled-bots" in /Users/michelkerkmeester/worktrees/public/system-skilled-bots, leg not applicable
+PASS: 9a: manual-testing-playbook/ present
+PASS: 9b: benchmark/ baseline present
+PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+PASS: 10d-reachability: all 4 manifest mode(s) reach back to a registered mode and vice versa
+PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-author: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-run: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-schedule: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-status: ROUTER.md conforms to the two-state contract (active)
+PASS: 12b-routing-shape: hub and 4 packet(s) follow the routing canon (0 known debt)
+PASS: 13a-version: all JSON routing files carry the SKILL.md version 1.0.0.0
+PASS: 13b-version: SKILL.md version 1.0.0.0 matches the newest changelog entry
+PASS: 13d-packet-version: 4 mode packet(s) match their newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [baseline router-intent-signals check] 2026-11-23 14:48:35
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+OK    system-skilled-bots          declared= 40 signals= 44 missing=  0 orphans=  0
+
+checked=1 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [baseline vocabulary reach] 2026-11-23 14:50:16
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs 2>&1 | grep -E 'system-skilled-bots|RESULT'
+OK   system-skilled-bots          declared= 40 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+RESULT: FAILED
+(exit 0)
+
+=== [baseline hub vocabulary source] 2026-11-23 14:50:29
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs 2>&1 | grep -E 'system-skilled-bots|RESULT|PASS|FAIL' | head
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+RESULT: FAILED
+(exit 0)
+
+=== [scorer freeze (the guard both activate-hub.cjs and flip-serving.cjs call)] 2026-11-23 14:53:06
+$ node -e 'const {assertScorerFrozen}=require("./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs");assertScorerFrozen(process.cwd());console.log("frozen ok")'
+/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs:96
+    throw new Error(
+    ^
+
+Error: scorer surface changed since the freeze — re-freeze consciously before undefined: ablation.ts, aliases.ts, ambiguity.ts, beta-reliability.ts, executor-delegation.ts, feedback-calibration.ts, fusion.ts, lane-registry.ts, lanes/bm25.ts, lanes/derived.ts, lanes/explicit.ts, lanes/graph-causal.ts, lanes/lexical.ts, lanes/semantic-shadow.ts, projection.ts, scoring-constants.ts, text.ts, types.ts, weights-config.ts, command-bridge-loader.ts, doctor-helper-handoff.ts
+    at assertScorerFrozen (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs:96:11)
+    at [eval]:1:156
+    at runScriptInThisContext (node:internal/vm:219:10)
+    at node:internal/process/execution:485:12
+    at [eval]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:483:60)
+    at evalFunction (node:internal/process/execution:317:30)
+    at evalTypeScript (node:internal/process/execution:329:3)
+    at node:internal/main/eval_string:71:3
+
+Node.js v26.13.0
+(exit 1)
+
+=== [baseline sync --check on primary main checkout (pre-existing drift)] 2026-11-23 14:53:06
+$ cd /Users/michelkerkmeester/MEGA/Development/Skilled && node .skilled/bin/compiled-route-sync.cjs --check 2>&1 | tail -2
+SYNC FAILED: 1 served file(s) out of sync; rebuild with compiled-route-sync.cjs, or copy a re-minted activation manifest back to its authored path:
+  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs differs from its authored file
+(exit 0)
+
+=== [sk-doc registry-compiler drift (runtime vs authored)] 2026-11-23 14:53:06
+$ diff .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs
+253c253
+<     'Name the target document or Skilled component.',
+---
+>     'Name the target document or OpenCode component.',
+(exit 1)
+
+=== [stage-two dry run, current hub-router.json (writes nothing)] 2026-11-23 14:53:06
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-dry-run.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots
+{"prompt":"write a new BOT.md for a nightly dependency check bot","action":"route","modes":["author"],"scores":[{"mode":"author","score":12}]}
+{"prompt":"run the nightly-digest bot by hand","action":"defer","modes":[],"scores":[]}
+{"prompt":"install the launchd schedule for my nightly-digest bot","action":"defer","modes":[],"scores":[]}
+{"prompt":"show me the status of my bots and their last runs","action":"defer","modes":[],"scores":[]}
+{"prompt":"what is waiting in my bots inbox","action":"route","modes":["status"],"scores":[{"mode":"status","score":4}]}
+{"prompt":"answer the open needs-you question for the release bot","action":"defer","modes":[],"scores":[]}
+{"prompt":"run the tests","action":"defer","modes":[],"scores":[]}
+{"prompt":"status of the build","action":"defer","modes":[],"scores":[]}
+{"prompt":"author a skill","action":"defer","modes":[],"scores":[]}
+{"prompt":"schedule a meeting for tomorrow","action":"defer","modes":[],"scores":[]}
+{"prompt":"update skilled now","action":"defer","modes":[],"scores":[]}
+{"prompt":"is my skilled install healthy","action":"defer","modes":[],"scores":[]}
+{"prompt":"schedule this bot and show its status","action":"defer","modes":[],"scores":[]}
+{"prompt":"help with bots","action":"defer","modes":[],"scores":[]}
+(exit 0)
+
+=== [stage-two dry run, candidate hub-router.json from scratch (writes nothing)] 2026-11-23 14:53:06
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-dry-run.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/candidate-hub-router.json
+{"prompt":"write a new BOT.md for a nightly dependency check bot","action":"route","modes":["author"],"scores":[{"mode":"author","score":12}]}
+{"prompt":"run the nightly-digest bot by hand","action":"route","modes":["run"],"scores":[{"mode":"run","score":4}]}
+{"prompt":"install the launchd schedule for my nightly-digest bot","action":"route","modes":["schedule"],"scores":[{"mode":"schedule","score":4}]}
+{"prompt":"show me the status of my bots and their last runs","action":"route","modes":["status"],"scores":[{"mode":"status","score":4}]}
+{"prompt":"what is waiting in my bots inbox","action":"route","modes":["status"],"scores":[{"mode":"status","score":4}]}
+{"prompt":"answer the open needs-you question for the release bot","action":"route","modes":["run"],"scores":[{"mode":"run","score":4}]}
+{"prompt":"run the tests","action":"defer","modes":[],"scores":[]}
+{"prompt":"status of the build","action":"defer","modes":[],"scores":[]}
+{"prompt":"author a skill","action":"defer","modes":[],"scores":[]}
+{"prompt":"schedule a meeting for tomorrow","action":"defer","modes":[],"scores":[]}
+{"prompt":"update skilled now","action":"defer","modes":[],"scores":[]}
+{"prompt":"is my skilled install healthy","action":"defer","modes":[],"scores":[]}
+{"prompt":"schedule this bot and show its status","action":"defer","modes":[],"scores":[]}
+{"prompt":"help with bots","action":"defer","modes":[],"scores":[]}
+(exit 0)
+
+=== [candidate vocabulary diff] 2026-11-23 14:53:06
+$ diff .skilled/skills/system-skilled-bots/hub-router.json specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/candidate-hub-router.json
+7c7,12
+<     "tieBreak": ["status", "author", "schedule", "run"],
+---
+>     "tieBreak": [
+>       "status",
+>       "author",
+>       "schedule",
+>       "run"
+>     ],
+27,28c32,38
+<       "classes": ["author-aliases", "author-workflow"],
+<       "resources": ["bots-author/SKILL.md"]
+---
+>       "classes": [
+>         "author-aliases",
+>         "author-workflow"
+>       ],
+>       "resources": [
+>         "bots-author/SKILL.md"
+>       ]
+32,33c42,48
+<       "classes": ["run-aliases", "run-workflow"],
+<       "resources": ["bots-run/SKILL.md"]
+---
+>       "classes": [
+>         "run-aliases",
+>         "run-workflow"
+>       ],
+>       "resources": [
+>         "bots-run/SKILL.md"
+>       ]
+37,38c52,58
+<       "classes": ["schedule-aliases", "schedule-workflow"],
+<       "resources": ["bots-schedule/SKILL.md"]
+---
+>       "classes": [
+>         "schedule-aliases",
+>         "schedule-workflow"
+>       ],
+>       "resources": [
+>         "bots-schedule/SKILL.md"
+>       ]
+42,43c62,68
+<       "classes": ["status-aliases", "status-workflow"],
+<       "resources": ["bots-status/SKILL.md"]
+---
+>       "classes": [
+>         "status-aliases",
+>         "status-workflow"
+>       ],
+>       "resources": [
+>         "bots-status/SKILL.md"
+>       ]
+48c73,79
+<       "keywords": ["system-skilled-bots", "headless bot", "headless bots", "file-defined bot", "bots/config.json"]
+---
+>       "keywords": [
+>         "system-skilled-bots",
+>         "headless bot",
+>         "headless bots",
+>         "file-defined bot",
+>         "bots/config.json"
+>       ]
+51c82,89
+<       "keywords": ["author a bot", "write a bot", "create a bot", "new bot.md", "bot definition", "edit a bot"]
+---
+>       "keywords": [
+>         "author a bot",
+>         "write a bot",
+>         "create a bot",
+>         "new bot.md",
+>         "bot definition",
+>         "edit a bot"
+>       ]
+54c92,97
+<       "keywords": ["bot.md", "new bot", "bots:author", "bot template"]
+---
+>       "keywords": [
+>         "bot.md",
+>         "new bot",
+>         "bots:author",
+>         "bot template"
+>       ]
+57c100,107
+<       "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer"]
+---
+>       "keywords": [
+>         "run the bot",
+>         "run a bot",
+>         "drain the bot queue",
+>         "enqueue a bot run",
+>         "answer the bot",
+>         "bots answer"
+>       ]
+60c110,119
+<       "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you"]
+---
+>       "keywords": [
+>         "bots run",
+>         "bots drain",
+>         "bots enqueue",
+>         "bots:run",
+>         "bot run request",
+>         "answer a needs-you",
+>         "bot by hand",
+>         "needs-you question"
+>       ]
+63c122,128
+<       "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot"]
+---
+>       "keywords": [
+>         "schedule a bot",
+>         "pause the bot",
+>         "resume the bot",
+>         "enable the bot",
+>         "disable the bot"
+>       ]
+66c131,139
+<       "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot"]
+---
+>       "keywords": [
+>         "bots schedule",
+>         "bot schedule",
+>         "bots:schedule",
+>         "launchd bot",
+>         "bot on a schedule",
+>         "cron bot",
+>         "launchd schedule"
+>       ]
+69c142,150
+<       "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me"]
+---
+>       "keywords": [
+>         "bot status",
+>         "bots status",
+>         "last bot run",
+>         "which bots are installed",
+>         "bot inbox",
+>         "bots inbox",
+>         "what do the bots need from me"
+>       ]
+72c153,160
+<       "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "open needs-you items"]
+---
+>       "keywords": [
+>         "bots:status",
+>         "bot runs",
+>         "bot needs-you",
+>         "bot needs me",
+>         "open needs-you items",
+>         "status of my bots"
+>       ]
+(exit 1)
+
+=== [runtime untouched] 2026-11-23 14:53:07
+$ git status --short -- .skilled/skills/system-skilled-bots/runtime; echo done
+done
+(exit 0)
+
+=== STOP SUMMARY (2026-11-23)
+Stopped before any hub vocabulary edit, cohort registration, sync build or mint. Three blockers, each outside this worker's scope:
+
+A. Vocabulary carry-up. With the current hub-router.json, four of the six stage-two prompts defer (run by hand, launchd schedule,
+   status of my bots, answer the needs-you question). The candidate in scratch/candidate-hub-router.json adds four phrases:
+   run: "bot by hand", "needs-you question"; schedule: "launchd schedule"; status: "status of my bots". The dry run routes 6/6 and
+   defers all six out-of-domain prompts. The candidate file is re-serialized JSON, so its diff also expands the inline arrays; only
+   those four phrases are new. Landing them consistently needs graph-metadata.json too: ci-hub-vocabulary-source fails when a
+   hub-router.json term is missing from the ROUTER.md intent, and a new multi-word ROUTER.md phrase fails
+   generate-router-intent-signals --check until `generate-router-intent-signals.cjs --write --hub system-skilled-bots` writes
+   graph-metadata.json. graph-metadata.json is not in the Q002 rows of the Files to Change table.
+B. compiled-route-sync.cjs --check fails at baseline, in this worktree and on the primary main checkout, on
+   009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs (runtime says "Skilled", authored says "OpenCode"; commit
+   e036417256e changed only the runtime copy). Gate 2 cannot exit 0 without touching that out-of-scope file, and an in-place sync
+   build would copy the authored "OpenCode" wording back over the runtime file.
+C. Scorer freeze. assertScorerFrozen throws (output above). activate-hub.cjs and flip-serving.cjs both call it. mint always writes
+   servingAuthority "legacy", and resolveRoute serves compiled only on a "compiled" manifest, so gate 5 cannot pass without a
+   conscious re-freeze or an operator decision.
+
+Created so far (inert, unregistered): the authored engine copies under
+specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/
+(lib/registry-compiler.cjs, lib/router.cjs, lib/policy-card.cjs, harness/build-artifacts.cjs; no fixtures yet).
+The RESULT: FAILED lines from ci-hub-vocabulary-source and ci-router-vocabulary-reach come from other hubs; this hub shows OK in both.
+=== VOCABULARY CHANGE (orchestrator-approved): run += 'bot by hand','needs-you question'; schedule += 'launchd schedule'; status += 'status of my bots', in hub-router.json vocabularyClasses (run-workflow, schedule-workflow, status-workflow) and ROUTER.md INTENT_SIGNALS. Why: four of the six stage-two gate prompts deferred with no mode.
+=== [check before regen] 2026-11-23 14:54:50
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+STALE system-skilled-bots          declared= 44 signals= 44 missing=  4 orphans=  0
+       + bot by hand
+       + needs-you question
+       + launchd schedule
+       + status of my bots
+
+checked=1 hub(s), missing=4, orphans=0
+RESULT: FAILED
+(exit 1)
+
+=== [regenerate graph-metadata] 2026-11-23 14:54:50
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub system-skilled-bots
+WROTE system-skilled-bots          declared= 44 signals= 44 added=  4 orphans=  0
+       + bot by hand
+       + needs-you question
+       + launchd schedule
+       + status of my bots
+
+checked=1 hub(s), added=4, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [skill graph scan] 2026-11-23 14:55:01
+$ node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --workspace-root "$PWD" --format text
+ERROR: Invalid arguments for skill_graph_scan: Unknown parameter(s): workspaceRoot
+(exit 64)
+
+=== [advisor rebuild] 2026-11-23 14:55:02
+$ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 23 -> 24
+skillCount: 16
+(exit 0)
+
+=== [skill graph scan (retry without workspace-root)] 2026-11-23 14:55:08
+$ node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text
+skill_graph_scan: completed
+generation: 24 -> 25
+scannedFiles: 29
+indexedFiles: 0
+indexedEdges: 61
+rejectedEdges: 0
+(exit 0)
+
+=== [advisor rebuild after scan] 2026-11-23 14:55:08
+$ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 25 -> 26
+skillCount: 16
+(exit 0)
+
+=== [skill graph validate] 2026-11-23 14:55:08
+$ node .skilled/bin/skill-advisor.cjs skill_graph_validate --trusted --format text
+{
+  "status": "ok",
+  "data": {
+    "isValid": true,
+    "errorCount": 0,
+    "warningCount": 4,
+    "checkedNodes": 16,
+    "checkedEdges": 61,
+    "errors": [],
+    "warnings": [
+      "SYMMETRY: system-skilled-bots depends_on system-deep-loop, but system-deep-loop missing prerequisite_for system-skilled-bots",
+      "SYMMETRY: system-skilled-bots has sibling system-skilled-doctor, but system-skilled-doctor missing sibling system-skilled-bots",
+      "DERIVED-FRESHNESS: system-skilled-bots derived block has no sanitizer_version (schema v2 requires sanitizeSkillLabel:v2); re-run derived sync",
+      "DERIVED-FRESHNESS: system-skilled-doctor derived block has no sanitizer_version (schema v2 requires sanitizeSkillLabel:v2); re-run derived sync"
+    ]
+  }
+}
+(exit 0)
+
+=== [parent-skill-check after vocab] 2026-11-23 14:55:32
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+INFO: Resolved:     /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots
+INFO: Policy: advisory findings count as FAIL; hard failures always FAIL.
+
+PASS: 1a: exactly one graph-metadata.json, located at the hub root
+PASS: 1b: hub skill_id "system-skilled-bots" matches directory name
+PASS: 1c: hub family "system" is in the allowed set
+PASS: 2a: no nested graph-metadata.json inside any packet or shared/
+PASS: 2b: no nested description.json inside any packet or shared/
+PASS: 3a: mode-registry.json exists and parses as JSON
+PASS: 3b: mode-registry.json declares 4 modes
+PASS: 3c: every mode packet resolves to an existing sub-directory
+PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
+PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch + packetSkillName + aliases
+PASS: 3d-name: every mode folder matches packetSkillName (or is grandfathered)
+PASS: 3d-name-frontmatter: all 4 packet SKILL.md frontmatter name(s) match packetSkillName
+PASS: 3d-files: every packet carries SKILL.md, README.md, and changelog/
+PASS: 3d-alias: all 24 aliases are unique across modes
+PASS: 3e: every mode has an advisorRouting block with a valid routingClass
+INFO: 3g: hub declares no surface packets
+INFO: 3h: hub declares no transport packets
+PASS: 3i: every mode that grants Write declares mutatesWorkspace:true or a writeScopeNote
+PASS: 3k: all 4 bound command(s) stay within their mode toolSurface.allowed
+INFO: 3f: hub declares no extensions (pure 2-tier)
+PASS: 3j: hub allowed-tools equals the union of mode tool surfaces
+INFO: 4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required
+INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+PASS: 5a: hub-router.json exists and parses as JSON
+PASS: 5b: routerSignals keys match the registry workflowMode set (4)
+PASS: 5c: all 8 referenced vocabulary classes are defined
+PASS: 5d: every router resource path resolves on disk
+PASS: 5e: routerPolicy.tieBreak covers every registered mode
+PASS: 5f: bundleRules reference real modes
+PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+PASS: 5h: routerPolicy.defaultMode is null (surface-primary or no default)
+PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+INFO: 5j: hub declares no command subworkflows
+PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+PASS: 6b: every registered mode (4) appears in the hub SKILL.md mode table
+PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command
+PASS: 7a: all changelog entries are real files (no symlinks)
+PASS: 8a: description.json present with the required fields
+PASS: 8b: description.json carries no registry-owned duplicate keys
+PASS: 5k-alias: every registry alias is a keyword of its routerSignal classes
+PASS: 5k-packet: every mode packet is a description keyword
+INFO: 5k-canary: no compiled-routing canary fixture for hub "system-skilled-bots" in /Users/michelkerkmeester/worktrees/public/system-skilled-bots, leg not applicable
+PASS: 9a: manual-testing-playbook/ present
+PASS: 9b: benchmark/ baseline present
+PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+PASS: 10d-reachability: all 4 manifest mode(s) reach back to a registered mode and vice versa
+PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-author: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-run: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-schedule: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: system-skilled-bots/bots-status: ROUTER.md conforms to the two-state contract (active)
+PASS: 12b-routing-shape: hub and 4 packet(s) follow the routing canon (0 known debt)
+PASS: 13a-version: all JSON routing files carry the SKILL.md version 1.0.0.0
+PASS: 13b-version: SKILL.md version 1.0.0.0 matches the newest changelog entry
+PASS: 13d-packet-version: 4 mode packet(s) match their newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [router-intent-signals check after vocab] 2026-11-23 14:55:32
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+OK    system-skilled-bots          declared= 44 signals= 48 missing=  0 orphans=  0
+
+checked=1 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [hub vocabulary source after vocab] 2026-11-23 14:55:32
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-skilled-bots
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+(exit 0)
+
+=== [vocabulary reach after vocab] 2026-11-23 14:55:35
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+OK   system-skilled-bots          declared= 44 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 26
+RESULT: PASSED
+(exit 0)
+
+=== [stage-one advisor for the six prompts] 2026-11-23 14:55:37
+$ for p in 'write a new BOT.md for a nightly dependency check bot' 'run the nightly-digest bot by hand' 'install the launchd schedule for my nightly-digest bot' 'show me the status of my bots and their last runs' 'what is waiting in my bots inbox' 'answer the open needs-you question for the release bot'; do echo "## $p"; python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "$p" --threshold 0.5 2>&1 | tr -d '\n' | head -c 400; echo; done
+## write a new BOT.md for a nightly dependency check bot
+[  {    "skill": "system-skilled-bots",    "kind": "skill",    "confidence": 0.9097,    "uncertainty": 0.12,    "passes_threshold": true,    "reason": "Matched by native advisor_recommend",    "source": "native",    "score": 0.68875,    "dominant_lane": "explicit_author",    "status": "active",    "_shadow": {      "skillId": "system-skilled-bots",      "liveScore": 0.68875,      "shadowScore": 0.
+## run the nightly-digest bot by hand
+[  {    "skill": "system-skilled-bots",    "kind": "skill",    "confidence": 0.8649,    "uncertainty": 0.2,    "passes_threshold": true,    "reason": "Matched by native advisor_recommend",    "source": "native",    "score": 0.609504,    "dominant_lane": "explicit_author",    "status": "active",    "_shadow": {      "skillId": "system-skilled-bots",      "liveScore": 0.609504,      "shadowScore": 0
+## install the launchd schedule for my nightly-digest bot
+[  {    "skill": "system-skilled-bots",    "kind": "skill",    "confidence": 0.9056,    "uncertainty": 0.12,    "passes_threshold": true,    "reason": "Matched by native advisor_recommend",    "source": "native",    "score": 0.68147,    "dominant_lane": "explicit_author",    "status": "active",    "_shadow": {      "skillId": "system-skilled-bots",      "liveScore": 0.68147,      "shadowScore": 0.
+## show me the status of my bots and their last runs
+[]
+## what is waiting in my bots inbox
+[  {    "skill": "system-skilled-bots",    "kind": "skill",    "confidence": 0.855,    "uncertainty": 0.16,    "passes_threshold": true,    "reason": "Matched by native advisor_recommend",    "source": "native",    "score": 0.592106,    "dominant_lane": "explicit_author",    "status": "active",    "_shadow": {      "skillId": "system-skilled-bots",      "liveScore": 0.592106,      "shadowScore": 0
+## answer the open needs-you question for the release bot
+[  {    "skill": "system-skilled-bots",    "kind": "skill",    "confidence": 0.9049,    "uncertainty": 0.12,    "passes_threshold": true,    "reason": "Matched by native advisor_recommend",    "source": "native",    "score": 0.680213,    "dominant_lane": "explicit_author",    "status": "active",    "_shadow": {      "skillId": "system-skilled-bots",      "liveScore": 0.680213,      "shadowScore": 
+(exit 0)
+
+=== [canary harness: build-artifacts (asserts every case's action, selection kind, modes and intents)] 2026-11-23 14:55:53
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+{"artifacts":5,"cases":15,"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","graphHash":"755107d5fdf5a54a17a7dabe597411a92b31348e86d1bc015d3244090024eb0d","status":"built"}
+(exit 0)
+
+=== [stage-two dry run against the live hub files (writes nothing)] 2026-11-23 14:57:01
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-dry-run.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots | cut -c1-140
+{"prompt":"write a new BOT.md for a nightly dependency check bot","action":"route","modes":["author"],"scores":[{"mode":"author","score":12}
+{"prompt":"run the nightly-digest bot by hand","action":"route","modes":["run"],"scores":[{"mode":"run","score":4}]}
+{"prompt":"install the launchd schedule for my nightly-digest bot","action":"route","modes":["schedule"],"scores":[{"mode":"schedule","score
+{"prompt":"show me the status of my bots and their last runs","action":"route","modes":["status"],"scores":[{"mode":"status","score":4}]}
+{"prompt":"what is waiting in my bots inbox","action":"route","modes":["status"],"scores":[{"mode":"status","score":4}]}
+{"prompt":"answer the open needs-you question for the release bot","action":"route","modes":["run"],"scores":[{"mode":"run","score":4}]}
+{"prompt":"run the tests","action":"defer","modes":[],"scores":[]}
+{"prompt":"status of the build","action":"defer","modes":[],"scores":[]}
+{"prompt":"author a skill","action":"defer","modes":[],"scores":[]}
+{"prompt":"schedule a meeting for tomorrow","action":"defer","modes":[],"scores":[]}
+{"prompt":"update skilled now","action":"defer","modes":[],"scores":[]}
+{"prompt":"is my skilled install healthy","action":"defer","modes":[],"scores":[]}
+{"prompt":"schedule this bot and show its status","action":"defer","modes":[],"scores":[]}
+{"prompt":"help with bots","action":"defer","modes":[],"scores":[]}
+(exit 0)
+
+=== [runtime untouched (final)] 2026-11-23 14:57:01
+$ git status --short -- .skilled/skills/system-skilled-bots/runtime; echo done
+done
+(exit 0)
+
+=== [front door unchanged (hub not registered)] 2026-11-23 14:57:01
+$ node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt 'run the nightly-digest bot by hand'
+{"servingAuthority":"legacy","hubId":"system-skilled-bots"}
+(exit 0)
+
+=== UPDATE after orchestrator decisions (A approved; B and C on hold)
+A applied: four phrases in hub-router.json and ROUTER.md, graph-metadata.json regenerated by generate-router-intent-signals --write
+(it also added the intent_signals_generated provenance list on this first write), skill graph scan and advisor rebuild run.
+Canary fixture written (15 cases) and build-artifacts passed. Cohort registration prepared in scratch/activation-pending-edits.txt, not applied.
+Stage one note: "show me the status of my bots and their last runs" reaches system-skilled-bots only at confidence 0.25 (explicit_author
+lane) and drops out at --threshold 0.5; the other five gate prompts list the hub first at 0.85 to 0.91.
+Canary note: "schedule this bot and show its status" defers (no bot phrase matches), while ROUTER.md section 4 describes that request as a
+status-then-schedule bundle. The canary pins the observed defer.
+=== STAGE ONE: why "show me the status of my bots and their last runs" scores 0.25
+advisor_recommend with includeAttribution: system-skilled-bots score 0.6246 (explicit_author raw 1.0, lexical 0.67), yet confidence 0.25,
+and every other candidate is also exactly 0.25. Cause: the prompt starts with "show", so isReadOnlyExplainer() (scorer/text.ts:147) is true,
+and confidenceFor() (scorer/fusion.ts:344) clamps every skill to readOnlyExplainerFloor 0.25 unless readOnlyRouteAllowed() lifts it.
+readOnlyRouteAllowed() (fusion.ts:547) lifts a skill only when the prompt names the skill id or name, or for a read-only command whose
+own keywords match, or for hard-coded per-skill patterns. None of these reads hub-router.json, ROUTER.md or graph-metadata.json
+intent_signals, so no hub vocabulary change can lift this prompt. Comparison: "what is waiting in my bots inbox" (not a read-only verb
+start) has a lower score 0.5921 but confidence 0.855. No vocabulary change made for this; scorer code left alone as instructed.
+=== [B (Q007): sk-doc runtime copied over authored, diff] 2026-11-23 15:07:03
+$ diff .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs && echo identical
+identical
+(exit 0)
+
+=== [B: sync --check before registering bots] 2026-11-23 15:07:03
+$ node .skilled/bin/compiled-route-sync.cjs --check
+61 closure files under authored root
+  003-contract-schemas/lib/canonical.cjs
+  003-contract-schemas/schemas/compiled-policy.v1.schema.json
+  004-compiler-n1-shadow/compiler/compiler.cjs
+  004-compiler-n1-shadow/compiler/errors.cjs
+  004-compiler-n1-shadow/compiler/order.cjs
+  004-compiler-n1-shadow/harness/json-schema.cjs
+  005-decision-evaluator/lib/decision-contract.cjs
+  005-decision-evaluator/lib/projector.cjs
+  008-calibration/001-holdout-corpus/lib/calibration-corpus.cjs
+  008-calibration/002-rank-vs-calibrated-contract/calibration-method-envelope.v1.json
+  008-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs
+  009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs
+  009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+  009-parent-hub-rollout/001-sk-code/lib/policy-card.cjs
+  009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs
+  009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/policy-card.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/003-mcp-tooling/harness/build-artifacts.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/policy-card.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/policy-card.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs
+  009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/router.cjs
+  009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/policy-card.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/registry-compiler.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/router.cjs
+  009-parent-hub-rollout/009-sk-design/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/009-sk-design/harness/build-artifacts.cjs
+  009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs
+  009-parent-hub-rollout/009-sk-design/lib/policy-card.cjs
+  009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/policy-card.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs
+  013-live-activation/activation/cli-classifier/manifest.json
+  013-live-activation/activation/cli-external-orchestration/manifest.json
+  013-live-activation/activation/mcp-browser-use/manifest.json
+  013-live-activation/activation/mcp-tooling/manifest.json
+  013-live-activation/activation/sk-code/manifest.json
+  013-live-activation/activation/sk-design/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 8 hubs resolve
+all 61 served copies match their authored files
+(exit 0)
+
+=== [C (Q006): refreeze scorer pins] 2026-11-23 15:07:12
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs --refreeze
+frozen 22 scorer files -> /Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json
+(exit 0)
+
+=== [C: pins diff] 2026-11-23 15:07:12
+$ git diff --stat -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json; git diff -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json
+ .../shared/frozen-scorer-pins.json                 | 41 +++++++++++-----------
+ 1 file changed, 21 insertions(+), 20 deletions(-)
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json
+index e51abe1de1d..168ae74dc71 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json
+@@ -1,27 +1,28 @@
+ {
+   "note": "Conscious scorer-surface freeze. Re-pin only after the routing gate battery is green on the new scorer.",
+-  "frozenAt": "2026-09-19T06:24:20.893Z",
++  "frozenAt": "2026-11-23T14:07:12.007Z",
+   "files": {
+-    "ablation.ts": "cb5d5f71366d8d717d76b6f49ea0e3c88fe72750806be45a562e9509bb10a406",
++    "ablation.ts": "5063f11c5ff44422688bbd5eed3da744a44e64bb5167141563055b46d13b610a",
+     "age-policy.ts": "01d91c77d5c091e25a09143a4b0362417cd37913c0f2dd569aaffc101ba6b816",
+-    "aliases.ts": "d814c7d926a9a5e6f68c00543cee663e33b2468a9e5326aa46906c9fb4a8a801",
+-    "ambiguity.ts": "f3e2d02f5662ad840c0aa01aa5253086f9070a23bc1015a625f0a44c5a9436c8",
++    "aliases.ts": "6820761606dd702fd6ceab4b93369c39e134ab7add11eb61633af19c0b6df311",
++    "ambiguity.ts": "f506594fb28dd9f1a9bd406e7c0bb9fa252f4c7ac398973979a5aec1abfc2e74",
+     "attribution.ts": "eb84615aacc60c84bbb8e345811c1cca4a4c9a6172f4d49e385e8bbae3f28509",
+-    "beta-reliability.ts": "ed8a90f7f412744da8165feaa4ed850a1408a7222707db77d28574c71ea6f5d3",
+-    "executor-delegation.ts": "889ead72508178ea2c85204c3d980a0ba45f21d021483ebbc3ab7cc66d4133fa",
+-    "feedback-calibration.ts": "c8e18c4548aa8267dc1e507d5d8009dee6a20f8ad49766f39217dcb5715173c0",
+-    "fusion.ts": "aec908e46610e5ba1bbab7b5919f1dab7c4821e083def9d56b5f4ea61563f960",
+-    "lane-registry.ts": "2ff14728ad4dee9f0ac00670b3ce4511fa62daea5ec31b3dcfd941c657471a94",
+-    "lanes/bm25.ts": "0d570ae49cb1c0f34b9efc72dc6eeaf77b3eef8d673a6b7c75b8edb9081b2a0c",
+-    "lanes/derived.ts": "80d792b57c52fb11d2d8ad6100974486d79f737d2be98e794d26f1b34463b2bc",
+-    "lanes/explicit.ts": "3b1532d970042938eca69ff74813c2407a36554778b8a041f5522bc2e78e22aa",
+-    "lanes/graph-causal.ts": "f36407a99ab65e3e18ac35af057abfc92e4c8c04d31513d9606ebce7e9ca2b92",
+-    "lanes/lexical.ts": "451ebe709141d29b12d8e815d2411ab65bf6e636df49acad8b1d1369d2afc32a",
+-    "lanes/semantic-shadow.ts": "8257e4e9a256441528b3cba3f30f27979371688d90bc0f0b60fd437f60ead529",
+-    "projection.ts": "224bbe157664e245d6c972897b71e4a1a609121c28efd66ab41b314fe1f8a5ab",
+-    "scoring-constants.ts": "f0e8f616feec75501762ff6d31bc9963fa0d0bb4e94b7e03546db48b3c9ec144",
+-    "text.ts": "e6d7938b41399837cb35f628d641050d410c9c0e0735c625967f7b63b327c913",
+-    "types.ts": "532868a90a58a03ec995e7dbb3d0753f87c8491d5a27a71f4f39cd89dc730029",
+-    "weights-config.ts": "e48f648339473a0404a678287197d0fff8ca6b18424643270d514851aaf56916"
++    "beta-reliability.ts": "42a537fa11df37a43c7e66780b08c5c5bd79c4f64ac5233d42b0cc74a00aa3fe",
++    "command-bridge-loader.ts": "06ae71c39fbc8b3ad2c81972e1109b595eb5b4fadd7ceb51d0df0856e0a2a3b5",
++    "doctor-helper-handoff.ts": "3d4605068f0a9ba5151b6df37b5727b1d3cd46df811dead36b266369de502977",
++    "executor-delegation.ts": "a60cc8291e26cc95d24aed3e44c0cd8a586e98853b8f26c853a55de4c368577e",
++    "feedback-calibration.ts": "a3bfc85c81baceda5266bfe95f272d854e6fc3e36e98ceb5b2dfbb8dfa40d195",
++    "fusion.ts": "614cc7e95d35f140be12fa2d99d05450eabcee78cb919f0ea0e44a9f86a7b594",
++    "lane-registry.ts": "df3699204c2ea598bf447632789b546f9114bf1375cb1835154bf3d9af0b39a4",
++    "lanes/bm25.ts": "80fe533b2287f2a596d44c6bcd4652a12cf49fbb057625b0c96ef2d63ba1beec",
++    "lanes/derived.ts": "bd526a87cd34a44fd438e7043478a44787e31de9b41238528ec6138ee9947f27",
++    "lanes/explicit.ts": "e23526c0e64d1d86eced827c3586120e263bafe745fe0e84a64979cfdde13751",
++    "lanes/graph-causal.ts": "eacae28f7702d16ffe72414caeb37eee3550c33a7539ad08d720fd59c32b4e18",
++    "lanes/lexical.ts": "6895eb0a0e1a1b1cad26a7c6d4be61097ea9c8129052eb8b8a664e45ee5edf7e",
++    "projection.ts": "46a2fbcbde04f0c9715dbd1b8c766c66a7adda7d32eb05a099847fb31779e825",
++    "scoring-constants.ts": "111f8d76f3809438e9534c2f07dc9ebf87ab84e9c1719600682545d4a847dd20",
++    "text.ts": "c92f34714c44c5e36f6bd52cdede720d3916d361896f561dab7174f92d06212b",
++    "types.ts": "5178e2fc6c37112ff063e78bbb5eda610613b0814413ab1b8d4e16e4ba18ccf7",
++    "weights-config.ts": "714dfb5de51892fea95f0b61b1f1d5346f9b5984f3c6abb6b7dd8882dd5a8cd1"
+   }
+ }
+(exit 0)
+
+NOTE: projection.ts and command-attach.ts carry uncommitted working-tree edits from the first bots build; the refreeze pinned those working-tree bytes.
+=== [advisor dist rebuild (dist is gitignored)] 2026-11-23 15:07:38
+$ cd .skilled/skills/system-skill-advisor/runtime && npm run build
+
+> prebuild
+> node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs prepare-build --package system-skill-advisor/runtime --entry default && node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs prepare-build --package system-skill-advisor/runtime --entry skill-advisor-cli
+
+@spec-kit/system-skill-advisor dist build preparation recorded
+@spec-kit/system-skill-advisor dist build preparation recorded
+
+> build
+> npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json
+
+
+> @spec-kit/shared@1.7.2 build
+> tsc --build
+
+
+> postbuild
+> mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/ && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry default || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'default'});if(r.status!=='cached')throw new Error(r.message)") && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry skill-advisor-cli || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'skill-advisor-cli'});if(r.status!=='cached')throw new Error(r.message)")
+
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+(exit 0)
+
+=== [sync build (promote closure)] 2026-11-23 15:07:44
+$ node .skilled/bin/compiled-route-sync.cjs
+SYNC FAILED: MOVE-SIMULATION FAILED:
+promoted closure failed to resolve hubs: system-skilled-bots
+(exit 1)
+
+NOTE: sync build refused before activation: verifyRoot requires every hub in HUBS to resolve compiled (resolveRoute non-null), which needs a compiled-serving manifest. The build rolled back; runtime closure unchanged. Order changed to: activate (authored) -> flip (authored) -> sync build -> refresh, because the tools' own contracts require it.
+=== [freeze check] 2026-11-23 15:08:08
+$ node -e 'require("./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs").assertScorerFrozen(process.cwd());console.log("scorer frozen: ok")'
+scorer frozen: ok
+(exit 0)
+
+=== [activate-hub] 2026-11-23 15:08:08
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/lib/activate-hub.cjs --hub system-skilled-bots --child specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots --json
+ACTIVATION FAILED: system-skilled-bots does not pass the compiled-serving admission check (verdict broken)
+(exit 1)
+
+STEP: byte-copied the authored engine files (lib, harness, fixtures) and the authored resolve.cjs and compiled-route.cjs into the runtime closure, the same copies the sync build makes, because admission (run by activate-hub) reads the runtime engine while the sync build refuses until the hub is activated. Admission and every guard still run.
+=== [admission after runtime promotion] 2026-11-23 15:08:28
+$ node .skilled/bin/compiled-route-admission.cjs --hub system-skilled-bots
+  system-skilled-bots         pass                    0 pass, 0 drift, 0 stale, 0 n/a; 4 mode(s) without gold
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [activate-hub] 2026-11-23 15:08:32
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/lib/activate-hub.cjs --hub system-skilled-bots --child specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots --json
+{
+  "hubId": "system-skilled-bots",
+  "schemaVersion": "V1",
+  "activated": true,
+  "shippedThisRun": true,
+  "servingAuthority": "legacy",
+  "shadowOnly": true,
+  "selectedPolicy": {
+    "effectivePolicyHash": "510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3",
+    "generation": 1
+  },
+  "candidatePolicy": {
+    "effectivePolicyHash": "510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3",
+    "generation": 1
+  },
+  "priorManifestHash": "5485c5a4a6faddca886425dedc59bd0d5340f7946f9bf7f6a8fec36e802a8c23",
+  "fenceEpoch": {
+    "before": 0,
+    "after": 1
+  },
+  "sourceHashes": [
+    {
+      "hash": "3c1d3cf1f7578d17fd93a7e1ba2960ac70b05898e508d25b69fcca963812e93b",
+      "sourceId": "system-skilled-bots/hub-router.json"
+    },
+    {
+      "hash": "855b037d2d252f98d9d2a7aaf62b848dd538dc961318376258bdb6b9d156bd23",
+      "sourceId": "system-skilled-bots/mode-registry.json"
+    },
+    {
+      "hash": "68bf77462f72b875a3dc5ed09f80f0f8fb9296bab47c2e7b18c4e38005f34b4a",
+      "sourceId": "system-skilled-bots/SKILL.md"
+    }
+  ],
+  "eligibility": {
+    "admissionPassed": true,
+    "scorerDigestsPinned": true,
+    "scorerDigests": {
+      "ablation.ts": "5063f11c5ff44422688bbd5eed3da744a44e64bb5167141563055b46d13b610a",
+      "age-policy.ts": "01d91c77d5c091e25a09143a4b0362417cd37913c0f2dd569aaffc101ba6b816",
+      "aliases.ts": "6820761606dd702fd6ceab4b93369c39e134ab7add11eb61633af19c0b6df311",
+      "ambiguity.ts": "f506594fb28dd9f1a9bd406e7c0bb9fa252f4c7ac398973979a5aec1abfc2e74",
+      "attribution.ts": "eb84615aacc60c84bbb8e345811c1cca4a4c9a6172f4d49e385e8bbae3f28509",
+      "beta-reliability.ts": "42a537fa11df37a43c7e66780b08c5c5bd79c4f64ac5233d42b0cc74a00aa3fe",
+      "command-bridge-loader.ts": "06ae71c39fbc8b3ad2c81972e1109b595eb5b4fadd7ceb51d0df0856e0a2a3b5",
+      "doctor-helper-handoff.ts": "3d4605068f0a9ba5151b6df37b5727b1d3cd46df811dead36b266369de502977",
+      "executor-delegation.ts": "a60cc8291e26cc95d24aed3e44c0cd8a586e98853b8f26c853a55de4c368577e",
+      "feedback-calibration.ts": "a3bfc85c81baceda5266bfe95f272d854e6fc3e36e98ceb5b2dfbb8dfa40d195",
+      "fusion.ts": "614cc7e95d35f140be12fa2d99d05450eabcee78cb919f0ea0e44a9f86a7b594",
+      "lane-registry.ts": "df3699204c2ea598bf447632789b546f9114bf1375cb1835154bf3d9af0b39a4",
+      "lanes/bm25.ts": "80fe533b2287f2a596d44c6bcd4652a12cf49fbb057625b0c96ef2d63ba1beec",
+      "lanes/derived.ts": "bd526a87cd34a44fd438e7043478a44787e31de9b41238528ec6138ee9947f27",
+      "lanes/explicit.ts": "e23526c0e64d1d86eced827c3586120e263bafe745fe0e84a64979cfdde13751",
+      "lanes/graph-causal.ts": "eacae28f7702d16ffe72414caeb37eee3550c33a7539ad08d720fd59c32b4e18",
+      "lanes/lexical.ts": "6895eb0a0e1a1b1cad26a7c6d4be61097ea9c8129052eb8b8a664e45ee5edf7e",
+      "projection.ts": "46a2fbcbde04f0c9715dbd1b8c766c66a7adda7d32eb05a099847fb31779e825",
+      "scoring-constants.ts": "111f8d76f3809438e9534c2f07dc9ebf87ab84e9c1719600682545d4a847dd20",
+      "text.ts": "c92f34714c44c5e36f6bd52cdede720d3916d361896f561dab7174f92d06212b",
+      "types.ts": "5178e2fc6c37112ff063e78bbb5eda610613b0814413ab1b8d4e16e4ba18ccf7",
+      "weights-config.ts": "714dfb5de51892fea95f0b61b1f1d5346f9b5984f3c6abb6b7dd8882dd5a8cd1"
+    }
+  },
+  "rollbackProof": {
+    "byteExact": true,
+    "restoredHash": "5485c5a4a6faddca886425dedc59bd0d5340f7946f9bf7f6a8fec36e802a8c23"
+  },
+  "realModelVerification": "pending"
+}
+(exit 0)
+
+=== [flip-serving] 2026-11-23 15:08:37
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/flip-serving.cjs --hub system-skilled-bots --json
+{
+  "kind": "flip",
+  "hubId": "system-skilled-bots",
+  "servingAuthority": "compiled",
+  "shadowOnly": false,
+  "selectedPolicy": {
+    "effectivePolicyHash": "510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3",
+    "generation": 1
+  },
+  "fenceEpoch": {
+    "before": 1,
+    "after": 2
+  },
+  "gate": {
+    "admissionPassed": true,
+    "scorerFrozen": true,
+    "routedScenarios": 6,
+    "totalScenarios": 15,
+    "effectivePolicyHash": "510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3",
+    "generation": 1
+  },
+  "rollbackTo": "manifest.serving-prior.json",
+  "routeProof": {
+    "routedScenarios": 6,
+    "totalScenarios": 15,
+    "effectivePolicyHash": "510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3",
+    "generation": 1
+  }
+}
+(exit 0)
+
+=== [sync build (after activation and flip)] 2026-11-23 15:08:43
+$ node .skilled/bin/compiled-route-sync.cjs
+SYNC FAILED: MOVE-SIMULATION FAILED:
+promoted closure failed to resolve hubs: system-skilled-bots
+(exit 1)
+
+STEP: the sync build's prior-root verify refused because the runtime activation folder had no manifest for the newly listed hub. Copied the flipped authored manifest.json and fence-state.json into the runtime activation folder (byte copies of activate-hub/flip-serving output). mint was not used: it only creates a legacy manifest, which cannot resolve.
+=== [sync build (runtime manifest present)] 2026-11-23 15:09:00
+$ node .skilled/bin/compiled-route-sync.cjs
+promoted 76 closure files -> .skilled/bin/lib/compiled-routing
+rollback retained at .skilled/bin/lib/compiled-routing.rollback-45879-1795442940321
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/lib/compiled-routing.rollback-45879-1795442940321
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/lib/compiled-routing.rollback-45879-1795442940321
+(exit 0)
+
+=== [manifest freshness] 2026-11-23 15:09:10
+$ node .skilled/bin/compiled-route-manifest.cjs freshness --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1},"currentPolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","manifestFingerprint":"a595f2b8e7ff024650b45424b9ea0db621a18a00656d3286d454daf149e4d1d6"}
+(exit 0)
+
+=== [manifest refresh] 2026-11-23 15:09:10
+$ node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":false,"fresh":false,"causeCode":"publication-locked","selectedPolicy":{"effectivePolicyHash":null,"generation":null},"currentPolicyHash":null,"manifestFingerprint":null,"refreshed":false}
+(exit 1)
+
+=== [gate: guard] 2026-11-23 15:09:16
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-browser-use             fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+  system-skilled-bots         fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [gate: sync --check] 2026-11-23 15:09:16
+$ node .skilled/bin/compiled-route-sync.cjs --check
+67 closure files under authored root
+  003-contract-schemas/lib/canonical.cjs
+  003-contract-schemas/schemas/compiled-policy.v1.schema.json
+  004-compiler-n1-shadow/compiler/compiler.cjs
+  004-compiler-n1-shadow/compiler/errors.cjs
+  004-compiler-n1-shadow/compiler/order.cjs
+  004-compiler-n1-shadow/harness/json-schema.cjs
+  005-decision-evaluator/lib/decision-contract.cjs
+  005-decision-evaluator/lib/projector.cjs
+  008-calibration/001-holdout-corpus/lib/calibration-corpus.cjs
+  008-calibration/002-rank-vs-calibrated-contract/calibration-method-envelope.v1.json
+  008-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs
+  009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs
+  009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+  009-parent-hub-rollout/001-sk-code/lib/policy-card.cjs
+  009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs
+  009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/policy-card.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/003-mcp-tooling/harness/build-artifacts.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/policy-card.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/policy-card.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs
+  009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/router.cjs
+  009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/policy-card.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/registry-compiler.cjs
+  009-parent-hub-rollout/008-cli-classifier/lib/router.cjs
+  009-parent-hub-rollout/009-sk-design/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/009-sk-design/harness/build-artifacts.cjs
+  009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs
+  009-parent-hub-rollout/009-sk-design/lib/policy-card.cjs
+  009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/policy-card.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs
+  009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs
+  009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+  009-parent-hub-rollout/011-system-skilled-bots/lib/policy-card.cjs
+  009-parent-hub-rollout/011-system-skilled-bots/lib/registry-compiler.cjs
+  009-parent-hub-rollout/011-system-skilled-bots/lib/router.cjs
+  013-live-activation/activation/cli-classifier/manifest.json
+  013-live-activation/activation/cli-external-orchestration/manifest.json
+  013-live-activation/activation/mcp-browser-use/manifest.json
+  013-live-activation/activation/mcp-tooling/manifest.json
+  013-live-activation/activation/sk-code/manifest.json
+  013-live-activation/activation/sk-design/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  013-live-activation/activation/system-skilled-bots/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: sync --verify] 2026-11-23 15:09:16
+$ node .skilled/bin/compiled-route-sync.cjs --verify
+move-simulation OK: all 9 hubs resolve; 0 reads under .opencode/specs
+(exit 0)
+
+=== [gate: compiled-route-status] 2026-11-23 15:09:16
+$ node .skilled/bin/compiled-route-status.cjs --all
+[{"hubId":"cli-classifier","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":1},"effectivePolicyHash":"391277058271e0dba9e4e6ac15831538c31b1868e69fd7cd0ba2fcd069d220ca","fenceEpoch":1,"manifestFingerprint":"5d7142e58bda2aaa9dfa327fc405987b9475cfec296ccc876a1b3c6fa06b43d6","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"391277058271e0dba9e4e6ac15831538c31b1868e69fd7cd0ba2fcd069d220ca"}},{"hubId":"cli-external-orchestration","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":5},"effectivePolicyHash":"5e909400d6c749dc2c8b89d0724bc271adbbe743ae670e8b047f83d1cd1063b2","fenceEpoch":2,"manifestFingerprint":"b7840fd1a882909f5244b00a61a21873645f4413dc2aa0a1716d8e922baf14b9","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"5e909400d6c749dc2c8b89d0724bc271adbbe743ae670e8b047f83d1cd1063b2"}},{"hubId":"mcp-browser-use","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":1},"effectivePolicyHash":"3c55ad216b21b80cf876048cc2b91252423f0b9ccea43041ee9f370b76f415ca","fenceEpoch":1,"manifestFingerprint":"aba1307cbc61a7bd07a1199eab3944163c4c092b99eebf01d2a30a99f933f504","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"3c55ad216b21b80cf876048cc2b91252423f0b9ccea43041ee9f370b76f415ca"}},{"hubId":"mcp-tooling","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":4},"effectivePolicyHash":"f4b1c42ee7bc64f3da2f5ea79ba59c727ec0cece3b936d4f5dbc53e74c09f66b","fenceEpoch":4,"manifestFingerprint":"ec0c8cd455a95ba0ab1e8daf25350bbd2a0346e0c70e097499d24879abf5c64c","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"f4b1c42ee7bc64f3da2f5ea79ba59c727ec0cece3b936d4f5dbc53e74c09f66b"}},{"hubId":"sk-code","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":2},"effectivePolicyHash":"fa67ec3ab8531b8a01e4f7f8714c7d918f657f3f720706df12ae0e6779335a87","fenceEpoch":4,"manifestFingerprint":"bd6a260d924087e1665c06c8159905343224c00874532078d33ab149a74d856c","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"fa67ec3ab8531b8a01e4f7f8714c7d918f657f3f720706df12ae0e6779335a87"}},{"hubId":"sk-design","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":1},"effectivePolicyHash":"83f7c3811abc234637273f9006790da5d75804efabcf3f72ea47b7783f99520a","fenceEpoch":1,"manifestFingerprint":"33da624629d83a7c14190f2159b46b8d83ad79462d42464df8c3eb32f0de0df3","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"83f7c3811abc234637273f9006790da5d75804efabcf3f72ea47b7783f99520a"}},{"hubId":"sk-doc","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":5},"effectivePolicyHash":"493d3eccc457f7f6fad6c62121efe97324cc68deab8d566265a0a0c44e31a074","fenceEpoch":4,"manifestFingerprint":"76dcca86500071840d6ef171687628342f18e3398d87664334fae5c0492160df","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"493d3eccc457f7f6fad6c62121efe97324cc68deab8d566265a0a0c44e31a074"}},{"hubId":"system-deep-loop","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":4},"effectivePolicyHash":"f5a95ec855512bf1b0b2e85e6616588ddcc910c7e94d68f30401bed742122a96","fenceEpoch":6,"manifestFingerprint":"d8591972c8f6172ee94484f102b2c428b6f88806d53d66d7e7d82c8171b248f6","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"f5a95ec855512bf1b0b2e85e6616588ddcc910c7e94d68f30401bed742122a96"}},{"hubId":"system-skilled-bots","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":1},"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","fenceEpoch":2,"manifestFingerprint":"a595f2b8e7ff024650b45424b9ea0db621a18a00656d3286d454daf149e4d1d6","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3"}}]
+(exit 0)
+
+=== [gate: foundation vitest] 2026-11-23 15:09:32
+$ npx --no-install vitest run .skilled/bin/compiled-routing-foundation.vitest.ts 2>&1
+
+ RUN  v5.1.1 /Users/michelkerkmeester/worktrees/public/system-skilled-bots
+
+No test files found, exiting with code 1
+
+filter: .skilled/bin/compiled-routing-foundation.vitest.ts
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/.git/**
+(exit 1)
+
+=== [gate: foundation vitest (repo bin config)] 2026-11-23 15:09:41
+$ npx --no-install vitest run --config .skilled/vitest.config.bin.ts .skilled/bin/compiled-routing-foundation.vitest.ts 2>&1
+
+ RUN  v5.1.1 /Users/michelkerkmeester/worktrees/public/system-skilled-bots
+
+No test files found, exiting with code 1
+
+filter: .skilled/bin/compiled-routing-foundation.vitest.ts
+include: bin/**/*.vitest.ts
+exclude:  **/node_modules/**, **/.git/**
+(exit 1)
+
+=== [gate: foundation vitest (run from .skilled with its bin config)] 2026-11-23 15:09:46
+$ cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts 2>&1
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled
+
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-move-dQK9hz/compiled-routing
+no prior closure to roll back
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  15:09:45
+   Duration  775ms (tests 95%, transform 3%, import 2%)
+(exit 0)
+
+=== [gate: admission test] 2026-11-23 15:09:53
+$ node --test .skilled/bin/tests/compiled-route-admission.test.cjs 2>&1 | tail -10
+  ✔ --warn-only reports without failing, and --out writes both reports (27.023792ms)
+✔ command line (81.852958ms)
+ℹ tests 29
+ℹ suites 5
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 281.62325
+(exit 0)
+
+=== [gate: manifest test] 2026-11-23 15:10:06
+$ node --test .skilled/bin/tests/compiled-route-manifest.test.cjs 2>&1 | tail -10
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+(exit 0)
+
+=== [gate: admission --all] 2026-11-23 15:10:06
+$ node .skilled/bin/compiled-route-admission.cjs --all
+  cli-classifier              pass                    4 pass, 0 drift, 0 stale, 0 n/a
+  cli-external-orchestration  pass                    7 pass, 0 drift, 0 stale, 3 n/a; 6 mode(s) without gold
+  mcp-browser-use             pass                    7 pass, 0 drift, 0 stale, 0 n/a
+  mcp-tooling                 pass                    12 pass, 0 drift, 0 stale, 0 n/a
+  sk-code                     pass                    9 pass, 0 drift, 0 stale, 0 n/a
+  sk-design                   pass                    4 pass, 0 drift, 0 stale, 0 n/a; 2 mode(s) without gold
+  sk-doc                      pass                    24 pass, 0 drift, 0 stale, 2 n/a; 6 mode(s) without gold
+  system-deep-loop            pass                    13 pass, 0 drift, 0 stale, 0 n/a
+  system-skilled-bots         pass                    0 pass, 0 drift, 0 stale, 0 n/a; 4 mode(s) without gold
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [sync finalize (gates green: guard, check, verify, status, foundation vitest, admission)] 2026-11-23 15:11:13
+$ node .skilled/bin/compiled-route-sync.cjs --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/lib/compiled-routing.rollback-45879-1795442940321
+finalized rollback .skilled/bin/lib/compiled-routing.rollback-45879-1795442940321; reconciled 0 external manifest(s)
+(exit 0)
+
+=== [manifest test after finalize] 2026-11-23 15:11:34
+$ node --test .skilled/bin/tests/compiled-route-manifest.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (pass|fail)' | head -12
+ℹ pass 48
+ℹ fail 0
+(exit 0)
+
+=== [all compiled-route node tests] 2026-11-23 15:11:54
+$ node --test .skilled/bin/tests/compiled-route-*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail)' | head -12
+ℹ tests 117
+ℹ pass 117
+ℹ fail 0
+(exit 0)
+
+=== [flag propagation vitest] 2026-11-23 15:11:55
+$ cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-flag-propagation.vitest.ts 2>&1 | tail -6
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  15:11:55
+   Duration  135ms (tests 77%, transform 12%, import 8%, worker 3%)
+(exit 0)
+
+=== [gate: canary harness (authored build-artifacts)] 2026-11-23 15:12:04
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+{"artifacts":5,"cases":15,"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","graphHash":"755107d5fdf5a54a17a7dabe597411a92b31348e86d1bc015d3244090024eb0d","status":"built"}
+(exit 0)
+
+=== [gate: parent-skill-check on hub path] 2026-11-23 15:12:05
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots 2>&1 | grep -E 'INFO: Parent skill|^OK|^FAIL|ERROR'
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+(exit 0)
+
+=== stage two compiled, six in-domain (verbatim in stage-two-compiled.jsonl)
+{"hubId":"system-skilled-bots","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"bots-author","packetKind":"workflow","skillId":"system-skilled-bots","workflowMode":"author"}],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"route","selectionKind":"single","targets":[{"backendKind":"bots-cli","packetId":"bots-run","packetKind":"workflow","skillId":"system-skilled-bots","workflowMode":"run"}],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"route","selectionKind":"single","targets":[{"backendKind":"bots-cli","packetId":"bots-schedule","packetKind":"workflow","skillId":"system-skilled-bots","workflowMode":"schedule"}],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"route","selectionKind":"single","targets":[{"backendKind":"bots-cli","packetId":"bots-status","packetKind":"workflow","skillId":"system-skilled-bots","workflowMode":"status"}],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"route","selectionKind":"single","targets":[{"backendKind":"bots-cli","packetId":"bots-status","packetKind":"workflow","skillId":"system-skilled-bots","workflowMode":"status"}],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"route","selectionKind":"single","targets":[{"backendKind":"bots-cli","packetId":"bots-run","packetKind":"workflow","skillId":"system-skilled-bots","workflowMode":"run"}],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+=== stage two compiled, out-of-domain plus the schedule-and-status prompt (verbatim in stage-two-out-of-domain.jsonl)
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1}
+{"prompt": "write a new BOT.md for a nightly dependency check bot", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.9097, true], ["sk-doc", 0.82, true], ["system-spec-kit", 0.82, true], ["sk-code", 0.82, true]]}
+{"prompt": "run the nightly-digest bot by hand", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.8648, true], ["cli-external-orchestration", 0.82, true], ["system-deep-loop", 0.82, true], ["sk-doc", 0.82, true]]}
+{"prompt": "install the launchd schedule for my nightly-digest bot", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.9056, true]]}
+{"prompt": "show me the status of my bots and their last runs", "threshold": 0.5, "bots_rank": null, "top": []}
+{"prompt": "what is waiting in my bots inbox", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.855, true]]}
+{"prompt": "answer the open needs-you question for the release bot", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.9049, true], ["system-deep-loop", 0.5908, true], ["system-spec-kit", 0.5605, true]]}
+{"prompt": "update skilled now", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.82, true], ["system-skilled-doctor", 0.82, true], ["sk-git", 0.82, true]]}
+{"prompt": "is my skilled install healthy", "threshold": 0.5, "bots_rank": null, "top": [["system-skilled-doctor", 0.6485, true], ["command-doctor-setup", 0.9161, true]]}
+{"prompt": "run the tests", "threshold": 0.5, "bots_rank": 7, "top": [["sk-code", 0.82, true], ["sk-doc", 0.82, true], ["mcp-code-mode", 0.82, true], ["cli-external-orchestration", 0.82, true]]}
+{"prompt": "status of the build", "threshold": 0.5, "bots_rank": 3, "top": [["sk-code", 0.82, true], ["system-skill-advisor", 0.82, true], ["system-skilled-bots", 0.82, true], ["mcp-browser-use", 0.82, true]]}
+{"prompt": "author a skill", "threshold": 0.5, "bots_rank": null, "top": [["sk-doc", 0.8453, true], ["cli-external-orchestration", 0.72, true], ["mcp-code-mode", 0.72, true], ["mcp-tooling", 0.72, true]]}
+{"prompt": "schedule a meeting for tomorrow", "threshold": 0.5, "bots_rank": null, "top": []}
+=== STAGE ONE ANALYSIS after activation (advisor_recommend includeAttribution)
+- "show me the status of my bots and their last runs": unchanged at 0.25 for every candidate (read-only explainer floor, see the earlier
+  entry). Not fixable through hub vocabulary.
+- "update skilled now": system-skilled-bots, system-skilled-doctor and sk-git all at confidence 0.82. Bots score 0.1113 vs doctor 0.1091.
+  Both get lexical 0.333 from the token "skilled" in their skill ids. The gap is the derived_generated lane: the token overlap of "skilled"
+  with each hub's own id in its graph-metadata derived block (0.15 raw), haircut by derived-block age, so the newer bots block keeps
+  0.1493 and the older doctor block keeps 0.1313. hub-router.json, ROUTER.md and intent_signals play no part (explicit_author is 0).
+  Changing it would mean editing the derived block or the scorer, both outside the approved fix path, so no change was made.
+- "status of the build": bots rank 3 at 0.82 from the token "status" (same derived/lexical mechanism); pre-existing, the first build's
+  scratch/stage-one-replay.jsonl shows the same 0.111533 score before this change.
+=== [final guard] 2026-11-23 15:13:33
+$ node .skilled/bin/compiled-route-guard.cjs | tail -3
+  system-skilled-bots         fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [final sync --check] 2026-11-23 15:13:33
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [final parent-skill-check] 2026-11-23 15:13:34
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots | grep -E 'INFO: Parent skill|^OK|^FAIL'
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [final runtime untouched] 2026-11-23 15:13:34
+$ git status --short -- .skilled/skills/system-skilled-bots/runtime; echo done
+done
+(exit 0)
+

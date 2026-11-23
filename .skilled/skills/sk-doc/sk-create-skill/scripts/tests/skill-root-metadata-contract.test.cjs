@@ -56,6 +56,7 @@ const EXPECTED_CLASSES = {
   'sk-prompt': contract.CLASS_STANDALONE,
   'system-deep-loop': contract.CLASS_HUB,
   'system-skill-advisor': contract.CLASS_STANDALONE,
+  'system-skilled-bots': contract.CLASS_HUB,
   'system-skilled-doctor': contract.CLASS_STANDALONE,
   'system-spec-kit': contract.CLASS_STANDALONE,
 };

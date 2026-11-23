@@ -1,0 +1,85 @@
+# /bots:run Presentation Contract
+
+Presentation source of truth for `/bots:run`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, the setup display and result displays.
+
+## 1. STARTUP PRESENTATION
+
+For `:confirm` or no suffix, resolve the inputs from `$ARGUMENTS`, show the setup display, and ask only for a required input that is missing.
+
+For `:auto`, resolve the inputs from `$ARGUMENTS` and defaults. Ask only for a required input that is missing.
+
+### Auto Resolution Table
+
+| Field | Required | Resolution |
+|-------|----------|------------|
+| `verb` | Yes | Required. run (the default when the first token is a bot id), enqueue, drain or answer. |
+| `bot_id` | Yes | Required for run and enqueue. |
+| `item_id` | Yes | Required for answer, read from bots inbox. |
+| `answer_text` | Yes | Required for answer. |
+| `repo` | No | Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory. |
+
+### Consolidated Prompt Template
+
+```text
+/bots:run setup
+- verb: [value or default]
+- bot_id: [value or default]
+- item_id: [value or default]
+- answer_text: [value or default]
+- repo: [value or default]
+
+Reply with the missing value, or "go" to proceed.
+```
+
+### Auto Fail-Fast Display
+
+```text
+/bots:run needs a missing input: [field].
+Usage: /bots:run <bot-id|drain|enqueue <bot-id> --source <name> --key <key>|answer <item-id> <text>> [--repo <path>] [:auto|:confirm]
+
+STATUS=FAIL ERROR="Missing required input: [field]"
+```
+
+## 2. CHECKPOINT LAYOUT
+
+The confirm workflow stops once, after the verb and its arguments are resolved and before the verb runs, since a run dispatches a real executor:
+
+```text
+/bots:run checkpoint
+- Verb: {verb}
+- Bot or item: {bot_id}{item_id}
+
+Proceed, Change or Cancel?
+```
+
+## 3. RESULTS DISPLAY
+
+### Success
+
+```text
+/bots:run complete
+- Verb: {verb}
+- Bot or item: {bot_id}{item_id}
+- Exit: [code] [meaning]
+
+STATUS=OK
+```
+
+### Failure
+
+```text
+/bots:run failed
+- Step: [the step that ended the run]
+- Output: [the CLI output, quoted]
+
+STATUS=FAIL ERROR="[named cause]"
+```
+
+## 4. NEXT-STEP SUGGESTIONS
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| The run parked a question (exit 5) | `/bots:status` | Read the open needs-you item in the inbox |
+| The run completed | `/bots:status` | Read the run record and its delivery |
+
+End interactive presentations with a single next-step prompt.

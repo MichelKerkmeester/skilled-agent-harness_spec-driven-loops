@@ -1,0 +1,227 @@
+▶ gold parsing
+  ✔ mode gold reads single, joined and sequenced modes, and flags junk (0.715167ms)
+  ✔ leaf gold reads [] and typed pairs, and flags any other shape (0.123333ms)
+  ✔ prompts come from a fenced block or an inline line, and a pointer is no prompt (0.235542ms)
+✔ gold parsing (1.541708ms)
+▶ scenario scoring
+  ✔ pass-single scores pass (0.17ms)
+  ✔ wrong-mode scores drift (wrong-mode) (0.038375ms)
+  ✔ defer scores drift (silent-defer) (0.027833ms)
+  ✔ clarify scores drift (silent-defer) (0.029958ms)
+  ✔ unsafe scores drift (unsafe-route) (0.034791ms)
+  ✔ negative-pass scores pass (0.0435ms)
+  ✔ multi-partial scores drift (wrong-mode) (0.045333ms)
+  ✔ multi-full scores pass (0.032542ms)
+  ✔ stale-mode scores stale-gold (undeclared-mode) (0.025291ms)
+  ✔ stale-leaf scores stale-gold (undeclared-leaf) (0.028333ms)
+  ✔ missing-leaf scores drift (missing-leaf) (0.033625ms)
+  ✔ orphan scores drift (orphan-target) (0.021417ms)
+  ✔ engine-error scores broken (engine-error) (0.017208ms)
+  ✔ invalid scores invalid (parse-failure) (0.015542ms)
+  ✔ no-prompt scores n/a (no-prompt) (0.014ms)
+  ✔ the worst status sets the hub verdict (0.026959ms)
+✔ scenario scoring (0.884625ms)
+▶ hub verdicts and coverage floors
+  ✔ a candidate missing gold for a mode is insufficient-coverage (0.367625ms)
+  ✔ an admitted hub with the same gaps passes, and the gaps are still reported (0.654125ms)
+  ✔ a candidate with gold for every mode and a negative passes (0.960208ms)
+  ✔ a candidate with no negative scenario is insufficient-coverage (0.679583ms)
+  ✔ the same inputs give the same report (0.493875ms)
+✔ hub verdicts and coverage floors (3.276417ms)
+▶ live hubs
+  ✔ the live corpus holds the pinned number of gold scenarios (8.205ms)
+  ✔ checking every live hub scores each one and leaves the activation state untouched (140.389375ms)
+✔ live hubs (148.665709ms)
+▶ command line
+  ✔ no hub is a usage error (26.753875ms)
+  ✔ an unregistered hub fails as broken (25.560625ms)
+  ✔ --warn-only reports without failing, and --out writes both reports (27.7115ms)
+✔ command line (80.131708ms)
+✔ a finished-run clause alone names no mode (9.266292ms)
+✔ a diagnosis request that mentions the finished run defers (0.563333ms)
+✔ a request that follows the finished-run clause still routes (1.299167ms)
+✔ a run request is not a finished-run clause (0.584125ms)
+✔ one folded mention scores one weight, not two (172.009ms)
+✔ resolves the same route from stdin as from argv (124.520875ms)
+✔ a spaced keyword routes the same however the prompt spells its spaces (33.94625ms)
+✔ a hyphenated keyword routes the same however the prompt spells its hyphens (30.492959ms)
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-test-JFqlYI/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-test-JFqlYI/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-test-JFqlYI/compiled-routing.rollback-16343-1795458008770
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-test-JFqlYI/compiled-routing.rollback-16343-1795458008770
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-test-JFqlYI/compiled-routing.rollback-16343-1795458008770
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-check-b69hP8/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-staging-fail-PB3Fdx/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-postpublish-fail-15GOPP/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-hm0Ueg/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-hm0Ueg/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-hm0Ueg/compiled-routing.rollback-16343-1795458010802
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-hm0Ueg/compiled-routing.rollback-16343-1795458010802
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-hm0Ueg/compiled-routing.rollback-16343-1795458010802
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-w0ZCxq/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-w0ZCxq/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-w0ZCxq/compiled-routing.rollback-16343-1795458011300
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-w0ZCxq/compiled-routing.rollback-16343-1795458011300
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-w0ZCxq/compiled-routing.rollback-16343-1795458011300
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-MjHhgZ/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-MjHhgZ/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-MjHhgZ/compiled-routing.rollback-16343-1795458011924
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-MjHhgZ/compiled-routing.rollback-16343-1795458011924
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-MjHhgZ/compiled-routing.rollback-16343-1795458011924
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-cYi2QK/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-cYi2QK/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-cYi2QK/compiled-routing.rollback-16343-1795458012517
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-cYi2QK/compiled-routing.rollback-16343-1795458012517
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-cYi2QK/compiled-routing.rollback-16343-1795458012517
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing.rollback-16343-1795458013043
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing.rollback-16343-1795458013043
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing.rollback-16343-1795458013043
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing.rollback-16343-1795458013334
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing.rollback-16343-1795458013334
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-E74pf7/compiled-routing.rollback-16343-1795458013334
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-QeitTb/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-QeitTb/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-QeitTb/compiled-routing.rollback-16343-1795458013915
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-QeitTb/compiled-routing.rollback-16343-1795458013915
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-QeitTb/compiled-routing.rollback-16343-1795458013915
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing.rollback-16343-1795458014448
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing.rollback-16343-1795458014448
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing.rollback-16343-1795458014448
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing.rollback-16343-1795458014760
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing.rollback-16343-1795458014760
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-6U9Zbn/compiled-routing.rollback-16343-1795458014760
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458015374
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458015374
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458015374
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458015695
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458015695
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458015695
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458016024
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458016024
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-4oIPTL/compiled-routing.rollback-16343-1795458016024
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-KOegtm/compiled-routing
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-KOegtm/post-publish-runtime
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-KOegtm/revert-runtime
+no prior closure to roll back
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-KOegtm/revert-runtime
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-KOegtm/revert-runtime.rollback-16343-1795458017597
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-KOegtm/revert-runtime.rollback-16343-1795458017597
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-KOegtm/revert-runtime.rollback-16343-1795458017597
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-lTai5B/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-lTai5B/compiled-routing.rollback-16343-1795458017989
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-lTai5B/compiled-routing.rollback-16343-1795458017989
+on a failed gate:              --revert /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-lTai5B/compiled-routing.rollback-16343-1795458017989
+▶ canonical compiled-route manifest
+  ✔ rejects unsafe identities and reports a missing safe manifest (1.291583ms)
+  ✔ fails closed on root, registry, source-link, and compiler errors (24.855083ms)
+  ✔ mints one inert generation-one manifest through the CLI (46.20725ms)
+  ✔ keeps routing byte-identical across mint and rejects duplicate mint (58.489ms)
+  ✔ returns fresh in compact and pretty form, then detects all input drift axes (231.230125ms)
+  ✔ reports malformed manifests without compiling or rewriting them (1.407375ms)
+  ✔ keeps serving cause separate from manifest freshness in status (5.820333ms)
+  ✔ preserves the external manifest across the sync capture/restore round trip (262.165625ms)
+  ✔ publishes the current authored topology atomically into an isolated runtime (556.861833ms)
+  ✔ check fails when a served file is missing or differs from its authored file (398.077333ms)
+  ✔ leaves an existing runtime untouched when the authored source is unavailable (0.693625ms)
+  ✔ sync --check names the authored folder to restore when it is missing, with no stack (141.7615ms)
+  ✔ guard authored-drift names the runtime manifest, its authored twin and the copy (3.691791ms)
+  ✔ guard reports a missing authored manifest by path instead of passing (0.753375ms)
+  ✔ guard stale fix names the refresh command, the skill root and both manifest paths (0.369791ms)
+  ✔ guard stale fix gives a second hub its own skill root and manifest (0.091208ms)
+  ✔ refuses to replace an existing root that is not a verified closure (120.877166ms)
+  ✔ aborts at staging-verify failure without touching the serving root (439.556084ms)
+  ✔ restores the exact prior closure when post-publish verification fails (389.616958ms)
+  ✔ a concurrent external manifest created during publication survives finalize (498.396916ms)
+  ✔ revert swaps the retained rollback back into the serving root (613.252542ms)
+  ✔ rejects arbitrary, symlinked, and stale rollback paths without mutation (565.190291ms)
+  ✔ three-way reconciliation preserves a serving-only external update (548.096ms)
+  ✔ failed finalize and revert verification retain both recoverable roots (873.039916ms)
+  ✔ closure fingerprints reject code-byte drift in the retained rollback (527.703167ms)
+  ✔ finalize and revert cleanup resume after individual removal failures (910.55125ms)
+  ✔ terminal cleanup resumes lock failure without deleting newer publication state (1239.17125ms)
+  ✔ rename failures retain a serving root and recoverable publication state (1577.091708ms)
+  ✔ long-lived status rebinding follows an atomic generation replacement (1287.420208ms)
+  ✔ canonical manifest writers refuse mutation while publication is locked (1.356292ms)
+  ✔ canonical manifest writers hold the shared lock through their atomic write (5.809625ms)
+  ✔ fails sync capture and restore closed on invalid or conflicting entries (1.53925ms)
+  ✔ uses atomic create-if-absent under concurrent writers (68.017541ms)
+  ✔ refuses an existing committed manifest before reading source inputs (0.502917ms)
+  ✔ keeps fixed routing maps unchanged and reports only authorized pre-publication drift (34.279375ms)
+  ✔ refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults (47.015125ms)
+  ✔ a concurrent serving-authority flip during refresh is preserved, not reverted (10.325042ms)
+  ✔ refuses to refresh unsafe hub identities and a missing manifest without writing anything (29.125667ms)
+  ✔ preserves a non-default shadowOnly value through refresh rather than hardcoding it (5.97275ms)
+  ✔ keeps the CLI thin, machine-readable, and usage-safe (70.376708ms)
+  ✔ binds an explicit runtime root before the library loads (253.8665ms)
+  ✔ rejects malformed --runtime-root syntax with usage exit 2 (66.574417ms)
+  ✔ fails closed when the override root lacks a coherent compiled-routing layout (100.454167ms)
+  ✔ sequential same-process explicit-root calls each bind their own runtime root (121.835583ms)
+  ✔ a preloaded private binding cannot capture an explicit or a default operation (98.754583ms)
+  ✔ a default operation after an explicit-root operation targets the promoted root (73.790416ms)
+  ✔ symlink aliases of one runtime root share one lock and one closure (307.202ms)
+  ✔ keeps parse and coherence failures closed through the isolated path (25.104ms)
+✔ canonical compiled-route manifest (12690.581791ms)
+✔ 001-sk-code keeps its composition rules inside the bounds (13.001459ms)
+✔ 003-mcp-tooling keeps its composition rules inside the bounds (8.31025ms)
+✔ 009-sk-design keeps its composition rules inside the bounds (4.06575ms)
+✔ 010-mcp-browser-use keeps its composition rules inside the bounds (2.193667ms)
+✔ a same-mode intent tie sorts by intent name without throwing (0.973292ms)
+✔ a DeepSeek Harness run over the OpenCode Go route routes to the harness alone (3.810083ms)
+✔ a prompt that names both executors still bundles them (3.62575ms)
+✔ an OpenCode dispatch that names an OpenCode Go model stays on OpenCode (3.725792ms)
+✔ without a hint the only shipped surface is selected (2.578625ms)
+✔ a matching surface hint preserves the single-surface route (3.270792ms)
+✔ an empty hint, UNKNOWN or an unknown name changes nothing (6.101583ms)
+✔ a workflow mode stays first with the shipped surface (1.301917ms)
+✔ a SKILLED hint never moves the fallback ahead of another surface (3.492958ms)
+✔ a surface another repository adds to the hub outranks SKILLED when both match (7.110916ms)
+✔ SKILLED alone still routes when a hub also declares another surface (7.209667ms)
+✔ the compiler rejects a hub whose fallback surface is not exactly one or not last (1.855625ms)
+✔ a CI workflow prompt bundles the CI surface (1.406708ms)
+✔ a path-only workflow review bundles the review mode with the CI surface (2.784917ms)
+✔ non-CI prompts that share CI words do not select the CI surface (3.477542ms)
+✔ a frontend review prompt bundles the frontend surface (1.04525ms)
+✔ non-frontend prompts that share frontend words do not select the frontend surface (1.5835ms)
+✔ a workflow mode stays beside a surface that matched several phrases (1.378291ms)
+✔ a prompt that matches only workflow modes or only surfaces keeps one window (2.421542ms)
+✔ a specific surface hint joins a route the prompt scored (1.370667ms)
+✔ a specific surface hint routes a prompt that scores nothing (1.962667ms)
+✔ a hint naming a workflow mode or a surface that is not specific adds nothing (5.52725ms)
+✔ the hint is a request fact (3.750416ms)
+✔ a hinted host surface joins as the first surface after the workflow modes (3.552ms)
+✔ a hub without surface packets ignores the hint (24.301708ms)
+✔ the front door passes --surface-hint through and keeps stdout to one route line (114.013ms)
+✔ a host whose .skilled points outside it skips the missing authored folder (3.08175ms)
+✔ an own checkout with a real .skilled still reports the folder missing (0.834625ms)
+ℹ tests 117
+ℹ suites 6
+ℹ pass 117
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12752.664667

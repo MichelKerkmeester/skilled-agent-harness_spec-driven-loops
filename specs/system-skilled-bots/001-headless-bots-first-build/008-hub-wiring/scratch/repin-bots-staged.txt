@@ -1,0 +1,3 @@
+02d6e3462834a46bd9a1f206a3e91bcc3797010bede2f97f2c47fa3c3b61ab12  bots/config.json
+1ce18e2ae68f6450b0ef23dbc9674129da5cc4a890740eabb44c53df2aa86e99  bots/nightly-digest/BOT.md
+759a2be427491256d898f6675bdcb0bafa08ab29f989b238fe3b67f16e5ba947  bots/tidy-notes/BOT.md

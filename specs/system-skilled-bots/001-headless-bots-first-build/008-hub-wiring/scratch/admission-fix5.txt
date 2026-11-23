@@ -1,0 +1,11 @@
+  cli-classifier              pass                    4 pass, 0 drift, 0 stale, 0 n/a
+  cli-external-orchestration  pass                    7 pass, 0 drift, 0 stale, 3 n/a; 6 mode(s) without gold
+  mcp-browser-use             pass                    7 pass, 0 drift, 0 stale, 0 n/a
+  mcp-tooling                 pass                    12 pass, 0 drift, 0 stale, 0 n/a
+  sk-code                     pass                    9 pass, 0 drift, 0 stale, 0 n/a
+  sk-design                   pass                    4 pass, 0 drift, 0 stale, 0 n/a; 2 mode(s) without gold
+  sk-doc                      pass                    24 pass, 0 drift, 0 stale, 2 n/a; 6 mode(s) without gold
+  system-deep-loop            pass                    13 pass, 0 drift, 0 stale, 0 n/a
+  system-skilled-bots         pass                    8 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.

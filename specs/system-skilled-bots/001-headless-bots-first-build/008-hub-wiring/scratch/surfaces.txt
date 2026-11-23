@@ -1,0 +1,37 @@
+### .skilled/skills/system-skilled-bots/mode-registry.json
+author=7 run=8 schedule=7 status=8 
+### .skilled/skills/system-skilled-bots/hub-router.json
+author=8 run=9 schedule=8 status=8 
+### .skilled/skills/system-skilled-bots/ROUTER.md
+author=3 run=9 schedule=6 status=6 
+### .skilled/skills/system-skilled-bots/graph-metadata.json
+author=8 run=20 schedule=17 status=12 
+### .skilled/skills/system-skilled-bots/description.json
+author=4 run=6 schedule=5 status=5 
+### .skilled/skills/system-skilled-bots/SKILL.md
+author=5 run=10 schedule=8 status=8 
+### .skilled/skills/system-skilled-bots/command-metadata.json
+author=9 run=17 schedule=13 status=12 
+### .skilled/skills/system-skilled-bots/leaf-manifest.json
+author=2 run=3 schedule=3 status=3 
+### SKILL.md mode table rows
+22:Use this hub for a request about a file-defined bot: writing one, running one, putting one on a schedule or reading what the bots did. This table lists all 4 mode packets.
+103:- Resolve packets through `mode-registry.json`. Packet roots are never hardcoded in routing logic.
+116:- A new bot verb fits none of the four modes.
+### description.json
+["system-skilled-bots","mode-registry","hub-router","workflowMode","packetKind","bots-author","bots-run","bots-schedule","bots-status","author","run","schedule","status","headless bot","bot.md","bot schedule","bot status","bot inbox","bots answer"]
+### packets
+.skilled/skills/system-skilled-bots/bots-author
+.skilled/skills/system-skilled-bots/bots-run
+.skilled/skills/system-skilled-bots/bots-schedule
+.skilled/skills/system-skilled-bots/bots-status
+### SKILL.md mode table (sed -n 22,30p)
+Use this hub for a request about a file-defined bot: writing one, running one, putting one on a schedule or reading what the bots did. This table lists all 4 mode packets.
+
+| Mode | Use it for | Packet | Command |
+|------|------------|--------|---------|
+| **author** | Write or edit a `BOT.md` from the shipped template, then check it | `bots-author/` | `/bots:author` |
+| **run** | Run a bot now, queue a run, drain the queue or answer a bot's needs-you item | `bots-run/` | `/bots:run` |
+| **schedule** | Install or remove a bot's launchd schedule, and pause, resume, enable or disable a bot | `bots-schedule/` | `/bots:schedule` |
+| **status** | Read installed bots, last runs, deliveries and the needs-you inbox | `bots-status/` | `/bots:status` |
+

@@ -1,0 +1,247 @@
+=== [baseline replay, unchanged vocabulary] 2026-11-23 16:36:09
+'answer this question' top: [('system-skilled-bots', 0.82), ('system-spec-kit', 0.5909)] bots: [(1, 0.82)]
+'answer the open needs-you question for the release bot' top: [('system-skilled-bots', 0.91), ('system-deep-loop', 0.5908)] bots: [(1, 0.91)]
+'what is waiting in my bots inbox' top: [('system-skilled-bots', 0.855)] bots: [(1, 0.855)]
+=== [strip 'needs-you question' from graph-metadata.json only, rescan, rebuild] 2026-11-23 16:36:11
+0
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+'answer this question' top: [] bots: []
+'answer the open needs-you question for the release bot' top: [('system-skilled-bots', 0.8551), ('system-deep-loop', 0.5887)] bots: [(1, 0.8551)]
+'what is waiting in my bots inbox' top: [('system-skilled-bots', 0.855)] bots: [(1, 0.855)]
+
+=== [restore graph-metadata.json from the pre-strip backup; cmp identical] 2026-11-23 16:36:45
+=== [VOCABULARY CHANGE: run 'needs-you question' -> 'bot needs-you item' in hub-router.json and ROUTER.md] 2026-11-23 16:36:45
+edited .skilled/skills/system-skilled-bots/hub-router.json
+edited .skilled/skills/system-skilled-bots/ROUTER.md
+json ok
+=== [check before regen]
+STALE system-skilled-bots          declared= 49 signals= 53 missing=  1 orphans=  1
+       + bot needs-you item
+       - needs-you question
+
+checked=1 hub(s), missing=1, orphans=1
+RESULT: FAILED
+(exit 1)
+=== [regenerate graph-metadata]
+WROTE system-skilled-bots          declared= 49 signals= 53 added=  1 orphans=  1
+       + bot needs-you item
+       - needs-you question
+
+checked=1 hub(s), added=1, orphans=1
+RESULT: PASSED
+(exit 0)
+0
+
+=== [skill graph scan] 2026-11-23 16:36:57
+$ node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text
+skill_graph_scan: completed
+generation: 50 -> 51
+scannedFiles: 29
+indexedFiles: 0
+indexedEdges: 63
+rejectedEdges: 0
+(exit 0)
+
+=== [advisor rebuild] 2026-11-23 16:36:58
+$ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 51 -> 52
+skillCount: 16
+(exit 0)
+
+=== [router-intent-signals check, all hubs] 2026-11-23 16:36:58
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check | tail -2
+checked=16 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [hub vocabulary source] 2026-11-23 16:36:58
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-skilled-bots
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+(exit 0)
+
+=== [vocabulary reach] 2026-11-23 16:36:58
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+OK   system-skilled-bots          declared= 49 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 52
+RESULT: PASSED
+(exit 0)
+
+=== [canary build-artifacts (authored)] 2026-11-23 16:37:02
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:103
+    throw error;
+    ^
+
+Error: gold mismatch for run-answer-needs-you: action defer but expected route
+    at fail (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:101:19)
+    at assertGoldExpectations (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:106:5)
+    at /Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:132:5
+    at Array.map (<anonymous>)
+    at typedGold (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:129:31)
+    at buildArtifacts (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:170:44)
+    at Object.<anonymous> (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:228:67)
+    at Module._compile (node:internal/modules/cjs/loader:1968:14)
+    at Object..js (node:internal/modules/cjs/loader:2108:10)
+    at Module.load (node:internal/modules/cjs/loader:1690:32) {
+  code: 'GOLD_MISMATCH'
+}
+
+Node.js v26.13.0
+(exit 1)
+
+=== [copy differing authored engine files to runtime] 2026-11-23 16:37:02
+$ for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do if cmp -s specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/$f .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/$f; then echo "same    $f"; else cp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/$f .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/$f && echo "copied  $f"; fi; done
+same    lib/policy-card.cjs
+same    lib/registry-compiler.cjs
+same    lib/router.cjs
+same    harness/build-artifacts.cjs
+same    fixtures/canary-cases.v1.json
+(exit 0)
+
+=== [manifest refresh] 2026-11-23 16:37:02
+$ node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots | cut -c1-260
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"7b34a0ede16452b742
+(exit 0)
+
+=== [mirror runtime manifest to authored copy] 2026-11-23 16:37:02
+$ cp .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json && cmp .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json && echo identical
+identical
+(exit 0)
+
+=== [gate: sync --check] 2026-11-23 16:37:02
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: guard] 2026-11-23 16:37:03
+$ node .skilled/bin/compiled-route-guard.cjs | tail -3
+  system-skilled-bots         fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [canary build FAILED above: gold run-answer-needs-you deferred, because stage two matches keywords as substrings and 'bot needs-you item' is not in that prompt] 2026-11-23 16:37:37
+=== [VOCABULARY CHANGE: run 'bot needs-you item' -> 'answer the open needs-you' in hub-router.json and ROUTER.md] 2026-11-23 16:37:37
+edited .skilled/skills/system-skilled-bots/hub-router.json
+edited .skilled/skills/system-skilled-bots/ROUTER.md
+json ok
+WROTE system-skilled-bots          declared= 49 signals= 53 added=  1 orphans=  1
+       + answer the open needs-you
+       - bot needs-you item
+
+checked=1 hub(s), added=1, orphans=1
+RESULT: PASSED
+(exit 0)
+skill_graph_scan: completed
+generation: 52 -> 53
+advisor_rebuild: rebuilt
+=== [stage-one replay: six ADR-002 out-of-domain probes plus two gate prompts]
+'answer this question' top: [] bots: []
+'run the tests' top: [('sk-code', 0.82), ('sk-doc', 0.82)] bots: [(5, 0.82)]
+'schedule a meeting for tomorrow' top: [] bots: []
+'status of the build' top: [('sk-code', 0.82), ('system-skill-advisor', 0.82)] bots: [(3, 0.82)]
+'author a skill' top: [('sk-doc', 0.8453), ('cli-external-orchestration', 0.72)] bots: [(6, 0.6205)]
+'check my email inbox' top: [('sk-code', 0.5916), ('system-spec-kit', 0.5836)] bots: []
+'answer the open needs-you question for the release bot' top: [('system-skilled-bots', 0.8836), ('system-deep-loop', 0.5908)] bots: [(1, 0.8836)]
+'what is waiting in my bots inbox' top: [('system-skilled-bots', 0.855)] bots: [(1, 0.855)]
+
+=== [canary build-artifacts (authored)] 2026-11-23 16:37:53
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+{"artifacts":5,"cases":20,"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055ceb7cf2","graphHash":"38c3eb8967767018c1c164de6931917bd8a8ebde70ed8eab03905b1e53581165","status":"built"}
+(exit 0)
+
+=== [copy differing authored engine files to runtime] 2026-11-23 16:37:53
+$ for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do if cmp -s specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/$f .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/$f; then echo "same    $f"; else cp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/$f .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/$f && echo "copied  $f"; fi; done
+same    lib/policy-card.cjs
+same    lib/registry-compiler.cjs
+same    lib/router.cjs
+same    harness/build-artifacts.cjs
+same    fixtures/canary-cases.v1.json
+(exit 0)
+
+=== [manifest refresh] 2026-11-23 16:37:53
+$ node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots | cut -c1-300
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055c
+(exit 0)
+
+=== [mirror runtime manifest to authored copy] 2026-11-23 16:37:53
+$ M=013-live-activation/activation/system-skilled-bots/manifest.json; cp .skilled/bin/lib/compiled-routing/$M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/$M && cmp .skilled/bin/lib/compiled-routing/$M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/$M && echo identical && cat .skilled/bin/lib/compiled-routing/$M
+identical
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055ceb7cf2","generation":1},"servingAuthority":"compiled","shadowOnly":false}
+(exit 0)
+
+=== [gate: sync --check] 2026-11-23 16:37:53
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: guard] 2026-11-23 16:37:53
+$ node .skilled/bin/compiled-route-guard.cjs | tail -2
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [stage-two replay (front door), written to stage-two-fix3.jsonl] 2026-11-23 16:37:54
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-after-review-fix.cjs $PWD > specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-fix3.jsonl; echo rc=$?; node -e 'for (const l of require("fs").readFileSync(process.argv[1],"utf8").trim().split("
+")) { const r=JSON.parse(l); console.log([r.kind,r.expected,r.mode??r.modes,r.ok,r.action??"",r.prompt].join(" | ")); }' specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-fix3.jsonl
+rc=0
+gate |  |  |  |  | write a new BOT.md for a nightly dependency check bot
+gate |  |  |  |  | run the nightly-digest bot by hand
+gate |  |  |  |  | install the launchd schedule for my nightly-digest bot
+gate |  |  |  |  | show me the status of my bots and their last runs
+gate |  |  |  |  | what is waiting in my bots inbox
+gate |  |  |  |  | answer the open needs-you question for the release bot
+new |  |  |  |  | run my nightly bot
+new |  |  |  |  | kick off the nightly-digest bot
+new |  |  |  |  | run the nightly bot now
+new |  |  |  |  | pause the nightly-digest bot
+new |  |  |  |  | install the schedule for the nightly-digest bot
+ood |  |  |  |  | run the tests
+ood |  |  |  |  | status of the build
+ood |  |  |  |  | author a skill
+ood |  |  |  |  | schedule a meeting for tomorrow
+ood |  |  |  |  | update skilled now
+ood |  |  |  |  | is my skilled install healthy
+ood |  |  |  |  | schedule this bot and show its status
+(exit 0)
+gate | gold=author | got=author | match=true | action=route | 438c99301304 | write a new BOT.md for a nightly dependency check bot
+gate | gold=run | got=run | match=true | action=route | 438c99301304 | run the nightly-digest bot by hand
+gate | gold=schedule | got=schedule | match=true | action=route | 438c99301304 | install the launchd schedule for my nightly-digest bot
+gate | gold=status | got=status | match=true | action=route | 438c99301304 | show me the status of my bots and their last runs
+gate | gold=status | got=status | match=true | action=route | 438c99301304 | what is waiting in my bots inbox
+gate | gold=run | got=run | match=true | action=route | 438c99301304 | answer the open needs-you question for the release bot
+new | gold=run | got=run | match=true | action=route | 438c99301304 | run my nightly bot
+new | gold=run | got=run | match=true | action=route | 438c99301304 | kick off the nightly-digest bot
+new | gold=run | got=run | match=true | action=route | 438c99301304 | run the nightly bot now
+new | gold=schedule | got=schedule | match=true | action=route | 438c99301304 | pause the nightly-digest bot
+new | gold=schedule | got=schedule | match=true | action=route | 438c99301304 | install the schedule for the nightly-digest bot
+ood | gold=defer | got=defer | match=true | action=defer | 438c99301304 | run the tests
+ood | gold=defer | got=defer | match=true | action=defer | 438c99301304 | status of the build
+ood | gold=defer | got=defer | match=true | action=defer | 438c99301304 | author a skill
+ood | gold=defer | got=defer | match=true | action=defer | 438c99301304 | schedule a meeting for tomorrow
+ood | gold=defer | got=defer | match=true | action=defer | 438c99301304 | update skilled now
+ood | gold=defer | got=defer | match=true | action=defer | 438c99301304 | is my skilled install healthy
+ood | gold=defer | got=defer | match=true | action=defer | 438c99301304 | schedule this bot and show its status
+
+=== [stage two direct: the two ADR-002 probes the replay script does not carry] 2026-11-23 16:38:10
+$ node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt 'answer this question'
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055ceb7cf2","generation":1}
+(exit 0)
+$ node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt 'check my email inbox'
+{"hubId":"system-skilled-bots","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055ceb7cf2","generation":1}
+(exit 0)
+'answer the open question' [('system-skilled-bots', 0.82, 0.214), ('system-spec-kit', 0.5909, 0.125), ('system-deep-loop', 0.59, 0.124)]
+'answer the open ticket' [('system-skilled-bots', 0.82, 0.205), ('cli-external-orchestration', 0.5574, 0.066)]
+'answer the open issues' [('sk-git', 0.82, 0.387), ('system-skilled-bots', 0.82, 0.205), ('sk-code', 0.5988, 0.139)]
+'answer the open' [('system-skilled-bots', 0.82, 0.205), ('cli-external-orchestration', 0.5574, 0.066)]

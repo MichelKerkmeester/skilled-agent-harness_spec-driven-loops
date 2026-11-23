@@ -1,0 +1,57 @@
+# ─────────────────────────────────────────────────────────────────
+# BOTS: STATUS WORKFLOW (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+# Same steps as the auto workflow. This variant adds one checkpoint
+# after the view is resolved and before the read runs.
+role: "Bots status operator for the system-skilled-bots hub"
+purpose: "Read bot status or the needs-you inbox through the bots CLI, after one checkpoint, and report the rows as printed"
+action: "Resolve the inputs, load the bots-status mode contract, confirm the view, run its read and render the result through the presentation contract"
+skill_owner: ".skilled/skills/system-skilled-bots/bots-status/"
+
+operating_mode:
+  workflow: sequential_status
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: one_checkpoint
+  validation: continuous_self_validation
+
+mutation_boundaries:
+  read_only: true
+  mutates_workspace: false
+  allowed_targets:
+    - "none: this route only reads. Its Bash grant runs only the bots status and bots inbox verbs."
+  invariant: "This route runs only the two read verbs its steps name and the files the bots-status contract names. It never runs --rebuild or --unregister, never writes a plist, never calls launchctl and never edits the bots runtime by hand."
+
+upstream_assets:
+  mode_contract: ".skilled/skills/system-skilled-bots/bots-status/SKILL.md"
+  cli: ".skilled/bin/bots.cjs"
+  presentation: ".skilled/commands/bots/assets/bots-status-presentation.txt"
+
+inputs:
+  execution_mode: "INTERACTIVE"
+  view: "Optional. status (the default) or inbox."
+  flags: "Optional. --json and --all for status. Rebuild and unregister flags are not accepted by this route."
+  repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
+
+execution:
+  steps:
+    - "Check that .skilled/bin/bots.cjs exists. If it is missing, report its path and stop with STATUS=FAIL."
+    - "Load .skilled/skills/system-skilled-bots/bots-status/SKILL.md and follow its workflow."
+    - checkpoint:
+        id: view_resolved
+        when: "After the view and flags are resolved and before the read runs"
+        question: "Read /bots:status as shown?"
+        options:
+          - { label: "Proceed", description: "Run the read verb as shown" }
+          - { label: "Change", description: "Edit the view or the flags" }
+          - { label: "Cancel", description: "Stop without reading anything" }
+        wait_for: user_reply
+    - "Run node .skilled/bin/bots.cjs status --repo \"{repo}\" with the flags the request gave, or node .skilled/bin/bots.cjs inbox --repo \"{repo}\" for the inbox view."
+    - "Quote the rows as printed. Name /bots:run for an open needs-you item and /bots:schedule for a row that needs a reinstall."
+    - "If the status index looks stale, name bots status --rebuild as the operator's next step. Do not run it."
+    - "A zero exit ends with STATUS=OK. A non-zero exit ends with STATUS=FAIL quoting the CLI output."
+
+output: |
+  STATUS=OK when every step above completes. Render the success template from the presentation contract.
+  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.
+  STATUS=CANCELLED when the operator cancels at the checkpoint.

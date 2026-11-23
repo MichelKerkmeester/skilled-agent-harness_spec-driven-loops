@@ -1,0 +1,16 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skill-advisor/runtime
+
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 38233 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=1025695
+[system-skill-advisor-launcher] ownerLeaseReclaimed: unreadable
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=719828
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sav-6lom2R/system-skill-advisor-launcher-5HtEMe/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+
+ Test Files  178 passed (178)
+      Tests  2474 passed | 4 skipped (2478)
+   Start at  19:13:40
+   Duration  206.40s (transform 1.40s, setup 677ms, import 5.86s, tests 189.29s, environment 6ms)
+

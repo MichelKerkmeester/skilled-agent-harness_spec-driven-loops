@@ -1,0 +1,65 @@
+## upstream with two commits
+old=f24bac6499 new=6aba45c1de
+## vendored consumer at the old pin, with a bots/ folder
+1 changed
+apply exit=0
+checked=2 ok=2 miss=0
+RESULT: PASSED
+status exit=0
+## install record, job file and one run, through the runtime's own writers (status test support shape)
+{"label":"com.skilled.bots.local_2ftool.nightly-digest.0","skilledKind":"vendored","pinCommit":"f24bac6499","installRecord":"/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/home/.local/state/system-skilled-bots/local%2Ftool/installs/nightly-digest.json","runFolder":"/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/consumer/.skilled/skills/.state/system-skilled-bots/local%2Ftool/runs/fixture-run-0001"}
+fake-install exit=0
+temp agents folder:
+com.skilled.bots.local_2ftool.nightly-digest.0.plist
+run folder: .skilled/skills/.state/system-skilled-bots/local%2Ftool/runs/fixture-run-0001
+## bots/ hashes before
+02d6e3462834a46bd9a1f206a3e91bcc3797010bede2f97f2c47fa3c3b61ab12  bots/config.json
+1ce18e2ae68f6450b0ef23dbc9674129da5cc4a890740eabb44c53df2aa86e99  bots/nightly-digest/BOT.md
+759a2be427491256d898f6675bdcb0bafa08ab29f989b238fe3b67f16e5ba947  bots/tidy-notes/BOT.md
+index built 2026-11-23T14:34:48.175Z (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/home/.local/state/system-skilled-bots/index/status.sqlite)
+ok	local/tool	nightly-digest	/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/consumer	last fixture-run-0001 converged	delivery local-only:delivered
+status-before exit=0
+## staged re-pin
+staged a copy of the tree in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/stage
+backup of 4 paths in skilled-overlays/repin-runs/20261123T143448Z-c9dcd1
+copy 2 paths, delete 0 paths
+0 changed
+0 changed
+checked=2 ok=2 miss=0
+RESULT: STAGED
+repin exit=0
+.
+..
+.git
+.gitignore
+.skilled
+AGENTS.md
+bots
+skilled-overlays
+staged tree root: stage
+diff before after:
+diff1 exit=0
+diff before staged:
+diff2 exit=0
+pin in copy: f24bac6499  pin in stage: 6aba45c1de
+run folder in copy:
+total 8
+drwx------@ 3 michelkerkmeester  wheel  96 Nov 23 15:34 .
+drwx------@ 3 michelkerkmeester  wheel  96 Nov 23 15:34 ..
+-rw-r--r--@ 1 michelkerkmeester  wheel  21 Nov 23 15:34 notes.md
+run folder in stage:
+total 8
+drwxr-xr-x@ 3 michelkerkmeester  wheel  96 Nov 23 15:34 .
+drwxr-xr-x@ 3 michelkerkmeester  wheel  96 Nov 23 15:34 ..
+-rw-r--r--@ 1 michelkerkmeester  wheel  21 Nov 23 15:34 notes.md
+## bots status reading the staged tree in place
+index built 2026-11-23T14:34:48.175Z (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/home/.local/state/system-skilled-bots/index/status.sqlite)
+ok	local/tool	nightly-digest	/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/consumer	last fixture-run-0001 converged	delivery local-only:delivered
+status-stage exit=0
+## bots status after the staged tree takes the copy's path (promotion, simulated in temp only)
+index built 2026-11-23T14:34:48.175Z (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/home/.local/state/system-skilled-bots/index/status.sqlite)
+needs-reinstall	local/tool	nightly-digest	/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/repin-root/consumer	last fixture-run-0001 converged	delivery local-only:delivered	needs-reinstall (pin-changed): bots schedule install nightly-digest
+status-promoted exit=0
+{"botId":"nightly-digest","flags":["needs-reinstall"],"reinstall":["pin-changed"],"fix":"bots schedule install nightly-digest"}
+launchctl verbs seen:
+   4 ["print","gui/501/com.skilled.bots.local_2ftool.nightly-dige

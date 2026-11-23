@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress. Every acceptance row is Met; T001 waits on phase 002's weekday probe |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/008-hub-wiring` |
 | **Parent Spec** | ../spec.md |
@@ -86,6 +86,24 @@ $ node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt "run t
 (exit 0)
 ```
 Captured 2026-11-22, before phases 1 to 7 are built. The folder exists and is empty. Phase 1 may add a minimal skill root, so the build re-captures this block at its first task. The compiled-route call exits 0 with no mode in its output, which is the green-run-lies shape `skill-hub-routing.md` §3 warns about.
+
+Re-captured 2026-11-23 at the start of the build, on the skill root as committed at HEAD (`git archive HEAD .skilled/skills/system-skilled-bots`, exported to a temp folder):
+
+```text
+$ ls -A <HEAD export>/.skilled/skills/system-skilled-bots
+assets
+runtime
+scripts
+
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs <HEAD export>/.skilled/skills/system-skilled-bots
+INFO: Parent skill: <HEAD export>/.skilled/skills/system-skilled-bots
+INFO: Resolved:     <HEAD export>/.skilled/skills/system-skilled-bots
+INFO: Policy: advisory findings count as FAIL; hard failures always FAIL.
+
+ERROR: target is not a parent hub: it carries neither mode-registry.json nor hub-router.json, so the skill-root contract classes it as a standalone skill (class S); check its root with node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+exit=2
+```
+Phases 1 to 7 left the runtime, the checker and the template but no `SKILL.md`. The workflow redo resolved the operation as `update`, because the folder already exists. After the build the same gate on the hub path exits 0 (`scratch/parent-skill-check-final.txt:66`), and after the activation the compiled-route call routes each mode (`scratch/stage-two-compiled.jsonl:1`).
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -104,7 +122,7 @@ Captured 2026-11-22, before phases 1 to 7 are built. The folder exists and is em
 - Prove in the same staged re-pin that a changed runner path is reported as needing reinstall, and record what the re-pin does to run folders under `.skilled/skills/.state/` (operator decisions, 2026-11-22).
 
 ### Out of Scope
-- New runtime behavior or fixes to runner, queue, installer or status code: those belong to phases 001 to 007, and a fix found here goes back to the owning phase.
+- New runtime behavior or fixes to runner, queue, installer or status code: those belong to phases 001 to 007, and a fix found here goes back to the owning phase. The compiled-routing engine for this hub under `.skilled/bin/lib/compiled-routing/` is in scope by operator decision Q002; it is routing infrastructure, not bots runtime.
 - A `lexical` or `alias-fold` mode, projection maps or scorer entries: all four modes are `metadata` (research.md §14).
 - The worktree reclaimer, a Hermes cron backend and the webhook adapter: research.md §15 step 10 marks them as later.
 - Hand-rolled hub or command files: `/create:skill-parent` and `/create:command` are the required path (PLAN-WORKFLOW LOCK).
@@ -119,13 +137,24 @@ Captured 2026-11-22, before phases 1 to 7 are built. The folder exists and is em
 | `.skilled/skills/system-skilled-bots/ROUTER.md` | Create | Stage-two `INTENT_SIGNALS` and `RESOURCE_MAP` with equal keys |
 | `.skilled/skills/system-skilled-bots/graph-metadata.json` | Create | The one advisor identity, carrying every mode's vocabulary |
 | `.skilled/skills/system-skilled-bots/description.json` | Create | Doctor metadata: keywords and description naming all four modes |
-| `.skilled/skills/system-skilled-bots/command-metadata.json` | Create | One entry per command the hub owns |
+| `.skilled/skills/system-skilled-bots/command-metadata.json` | Create | One entry per command the hub owns, authored from the sk-doc command-metadata template; no workflow writes it |
 | `.skilled/skills/system-skilled-bots/leaf-manifest.json` | Create | Generated leaf inventory, never hand-edited |
 | `.skilled/skills/system-skilled-bots/<mode>/` (four packets) | Create | `README.md`, `SKILL.md`, `ROUTER.md` and `changelog/` per mode |
 | `.skilled/commands/bots/` | Create | Thin router commands, one per mode |
 | `.claude/commands/`, `.cursor/commands/`, `.codex/prompts/`, `.pi/prompts/` | Create (generated) | Runtime mirrors written by the sync scripts |
-| `.skilled/commands/doctor/assets/doctor-bots-check.yaml` | Create | Doctor workflow that runs the definition checker |
+| `.skilled/commands/doctor/bots.md`, `.skilled/commands/doctor/assets/doctor-bots-auto.yaml`, `doctor-bots-confirm.yaml`, `doctor-bots-presentation.txt` | Create | Doctor command set that runs the definition checker, as `/create:command` produced it (the split set replaces the single `doctor-bots-check.yaml` first planned) |
 | `.skilled/commands/doctor/_routes.yaml` | Modify | Route entry for the doctor bots command |
+| `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/` and its authored source under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/` | Create | Compiled engine for this hub: `lib/registry-compiler.cjs`, `lib/router.cjs`, `lib/policy-card.cjs`, `harness/build-artifacts.cjs`, `fixtures/canary-cases.v1.json`, `compiled/` and `activation/`, following commit `6a5e1048ea5` (operator decision Q002) |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/` and its authored copy under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/` | Create | Activation fence, records and manifests for this hub (Q002) |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs` and `.../014-runtime-engine/lib/compiled-route.cjs` | Modify | Authored copies of the resolver and front door that `compiled-route-sync.cjs` promotes (Q002) |
+| `.skilled/skills/system-skill-advisor/runtime/dist/` compiled flag module, `.skilled/bin/tests/compiled-route-admission.test.cjs`, `.skilled/skills/README.txt`, `README.md`, the hub's `manual-testing-playbook/` gold scenarios | Modify | Rebuilt advisor dist for the flag cohort, the admission corpus count pin, the skills index and root README hub count, and the gold the admission floor needs (Q002) |
+| `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs`, `.../014-runtime-engine/lib/compiled-route.cjs`, `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json` | Modify | Register the hub with the compiled front door and its serving closure (Q002) |
+| `.skilled/bin/compiled-route-guard.cjs`, `.skilled/bin/compiled-route-sync.cjs`, `.skilled/bin/compiled-routing-foundation.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` | Modify | Add the hub to the guard, the sync check, the foundation test and the advisor's compiled-routing flag list (Q002) |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json` | Modify | Scorer re-freeze before the hub's activation (operator decision Q006) |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs` | Modify | Authored copy brought in line with its runtime copy, an out-of-scope repair (operator decision Q007) |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` | Modify | Held-out rows for the four `/bots:*` commands and `/doctor:bots`, written blind from the command descriptions (operator decision Q003) |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json` | Modify | One recapture after the blind rows land (Q003) |
+| Shared advisor and doctor files the first build changed: `command-attach.ts`, `scorer/projection.ts`, `skill_advisor.py`, the generated command bridges and `scoring-compatibility.json`, `command-metadata-e2e.vitest.ts`, `skill-root-metadata-contract.test.cjs`, two `graph-metadata.json` reverse edges, the commands `README.txt` and `doctor-setup-presentation.txt` | Modify | Carried from the first build; each is re-checked against the workflow output and kept only where a gate needs it |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -146,7 +175,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-005 | The commands are created by `/create:command`, and every runtime mirror tree carries every bots command. `validate-command-tree-parity.sh`, `codex/sync-prompts.cjs --check` and `pi/sync-prompts-pi.cjs --check` all pass. |
 | REQ-006 | `leaf-manifest.json` is regenerated, not hand-edited, and the `10b-byte-drift` check passes in the per-hub gate. |
 | REQ-007 | A staged re-pin (`overlay-engine.cjs repin --upstream <dir> --to <commit> --root <copy> --stage <empty dir>`) on a copy of a vendored consumer carries the copy's `bots/` folder into the staged tree byte-identical and leaves the copy's own `bots/` unchanged, proven by comparing a hash of every file before and after. |
-| REQ-013 | In the staged re-pin, a fixture install record whose recorded runner path no longer resolves to the staged tree's `.skilled/bin/bots.cjs` is reported by `bots status` as needing reinstall. The run records what the re-pin did to a fixture run folder under `.skilled/skills/.state/system-skilled-bots/`. A lost run folder is recorded as a fact, never a failure, because run folders inside the tree may not survive a re-pin. |
+| REQ-013 | In the staged re-pin, once the staged tree replaces the copy at its path, a fixture install record whose recorded pin no longer matches is reported by `bots status` as needing reinstall (operator decision Q004). The run records what the re-pin did to a fixture run folder under `.skilled/skills/.state/system-skilled-bots/`. A lost run folder is recorded as a fact, never a failure, because run folders inside the tree may not survive a re-pin. |
 | REQ-008 | No document in phases 001 to 008 calls a mode routed or reachable before REQ-002 and REQ-003 pass, or integrated before REQ-002 to REQ-006 pass (`skill-hub-routing.md` §2: registered is not routed, and a green gate is not integration). |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -245,10 +274,14 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Which aliases does each mode carry? Proposed in `decision-record.md` ADR-002 and settled by replay.
-- One command per mode, or one `/bots` router with four routes? Proposed in ADR-003.
-- `.opencode/commands/` exists in this repository but is not one of the four mirror trees in `parent-skills-nested-packets.md` §7. Does a sync script cover it? Check with `/doctor:runtime-mirrors` at build time.
-- Which vendored consumer copy serves as the re-pin fixture? Proposed in ADR-006.
+- Which aliases does each mode carry? Settled in `decision-record.md` ADR-002 by replay: 24 aliases, with three dropped after the doctor routing slice moved.
+- One command per mode, or one `/bots` router with four routes? Built as one command per mode per ADR-003, which still waits on operator confirmation.
+- Does a sync script cover `.opencode/commands/`? Yes. `sync-runtime-mirrors.cjs` writes the `.opencode/commands/bots` link, and `validate-command-tree-parity.sh` reports 271 mirrors across 10 trees in sync.
+- Which vendored consumer copy serves as the re-pin fixture? A minimal git-built upstream with two commits and a consumer extracted at the first, per the overlay engine's own repin test, built in the session scratchpad (ADR-006).
+- Resolved by operator decision Q002: AC-002 and AC-012 need `compiled-route.cjs --hub system-skilled-bots` to return a mode, so this phase builds the hub's compiled engine, canaries and activation following commit `6a5e1048ea5`.
+- Resolved by operator decision Q004: AC-011 now reads the promoted case, where the staged tree replaces the copy at its path and `bots status` reports needs-reinstall.
+- Resolved by operator decision Q003: a separate agent writes blind held-out rows from the five command descriptions only, then the `command-routing-slice` baseline is recaptured once.
+- The post-repin hook point in `.skilled/commands/doctor/assets/doctor-overlay-repin.yaml` is an operator-gated follow-up. It is recorded here and the file is unchanged.
 <!-- /ANCHOR:questions -->
 
 ---

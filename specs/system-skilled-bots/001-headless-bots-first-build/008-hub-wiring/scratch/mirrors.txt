@@ -1,0 +1,50 @@
+### .claude/commands/bots
+author.md
+run.md
+schedule.md
+status.md
+### .claude/commands/doctor
+bots.md
+runtime-mirrors.md
+### .opencode/commands/bots
+author.md
+run.md
+schedule.md
+status.md
+### .cursor/commands
+bots-author.md
+bots-run.md
+bots-schedule.md
+bots-status.md
+doctor-bots.md
+### .codex/prompts
+bots-author.md
+bots-run.md
+bots-schedule.md
+bots-status.md
+doctor-bots.md
+### .pi/prompts
+bots-author.md
+bots-run.md
+bots-schedule.md
+bots-status.md
+doctor-bots.md
+### .dsh/prompts
+bots-author.md
+bots-run.md
+bots-schedule.md
+bots-status.md
+doctor-bots.md
+### .vibe/prompts
+bots-author.md
+bots-run.md
+bots-schedule.md
+bots-status.md
+doctor-bots.md
+### .devin/commands
+(none by design: `.devin/SYNC.md:55` says Devin has no command-file surface, so a commands folder would register nothing; Devin reaches the hub through its `skills` link)
+codex/sync-prompts.cjs --check exit=0
+pi/sync-prompts-pi.cjs --check exit=0
+[runtime-mirror-sync] PASS: 271 mirrors across 10 trees are in sync.
+validate-command-tree-parity.sh exit=0
+parity exit=0

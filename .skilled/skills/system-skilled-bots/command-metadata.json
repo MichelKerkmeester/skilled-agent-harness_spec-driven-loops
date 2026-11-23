@@ -1,0 +1,190 @@
+[
+  {
+    "command": "/bots:author",
+    "ownerMode": "author",
+    "description": "Write or edit a bot's BOT.md from the template, then hand the check to /doctor:bots. :auto/:confirm.",
+    "argumentHint": "<bot-id> [--repo <path>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "bots/<bot-id>/BOT.md in the consumer repository named by --repo",
+    "userIntent": {
+      "job": "I want to write or change a bot definition and know it passes the checker before anything runs it.",
+      "ownedSignals": [
+        "author a bot",
+        "write a bot",
+        "new bot.md"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-skilled-bots",
+        "resource": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "action": "load the system-skilled-bots parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "bots-author",
+        "resource": ".skilled/skills/system-skilled-bots/bots-author/SKILL.md",
+        "action": "load the author mode contract, then apply its workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "bots-author",
+        "resource": ".skilled/commands/bots/assets/bots-author-presentation.txt",
+        "action": "load the presentation contract before showing any setup question or result"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "The request names the author mode of a file-defined bot.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/bots:run",
+          "when": "The BOT.md already passes the checker and the request is to run it."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/bots:run",
+    "ownerMode": "run",
+    "description": "Start a bot run, queue or drain bot run requests, or answer a needs-you item. :auto/:confirm.",
+    "argumentHint": "<bot-id|drain|enqueue <bot-id> --source <name> --key <key>|answer <item-id> <text>> [--repo <path>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "the run record under the user-level state root, and the consumer checkout when a shared-isolation run edits files",
+    "ask_first": [
+      "spend",
+      "outside-repo"
+    ],
+    "userIntent": {
+      "job": "I want a bot to run now, from the queue, or after I answer its question.",
+      "ownedSignals": [
+        "run the bot",
+        "drain the bot queue",
+        "answer the bot"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-skilled-bots",
+        "resource": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "action": "load the system-skilled-bots parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "bots-run",
+        "resource": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+        "action": "load the run mode contract, then apply its workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "bots-run",
+        "resource": ".skilled/commands/bots/assets/bots-run-presentation.txt",
+        "action": "load the presentation contract before showing any setup question or result"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "The request names the run mode of a file-defined bot.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/bots:status",
+          "when": "The request only reads which items are open."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/bots:schedule",
+    "ownerMode": "schedule",
+    "description": "Install or remove a cron bot's launchd schedule, or enable, disable, pause or resume a bot. :auto/:confirm.",
+    "argumentHint": "<install|uninstall|enable|disable|pause|resume> <bot-id> [--repo <path>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a launchd agent under ~/Library/LaunchAgents and control state under the user-level state root",
+    "ask_first": [
+      "settings",
+      "outside-repo"
+    ],
+    "userIntent": {
+      "job": "I want a cron bot on its launchd schedule, held or released, or taken off it.",
+      "ownedSignals": [
+        "schedule a bot",
+        "bot schedule",
+        "pause the bot"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-skilled-bots",
+        "resource": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "action": "load the system-skilled-bots parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "bots-schedule",
+        "resource": ".skilled/skills/system-skilled-bots/bots-schedule/SKILL.md",
+        "action": "load the schedule mode contract, then apply its workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "bots-schedule",
+        "resource": ".skilled/commands/bots/assets/bots-schedule-presentation.txt",
+        "action": "load the presentation contract before showing any setup question or result"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "The request names the schedule mode of a file-defined bot.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/bots:run",
+          "when": "The request is one run now rather than a schedule."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/bots:status",
+    "ownerMode": "status",
+    "description": "Read installed bots, last runs, deliveries and the needs-you inbox. Read-only. :auto/:confirm.",
+    "argumentHint": "[status|inbox] [--json] [--all] [--repo <path>] [:auto|:confirm]",
+    "mutating": "read-only",
+    "gate3_location": "n/a: reads only; --rebuild rewrites the status index under the user-level state root",
+    "userIntent": {
+      "job": "I want to see what my bots did and what they need from me, without changing anything.",
+      "ownedSignals": [
+        "bot status",
+        "bot inbox",
+        "which bots are installed"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-skilled-bots",
+        "resource": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "action": "load the system-skilled-bots parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "bots-status",
+        "resource": ".skilled/skills/system-skilled-bots/bots-status/SKILL.md",
+        "action": "load the status mode contract, then apply its workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "bots-status",
+        "resource": ".skilled/commands/bots/assets/bots-status-presentation.txt",
+        "action": "load the presentation contract before showing any setup question or result"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "The request names the status mode of a file-defined bot.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/bots:run",
+          "when": "The request answers a needs-you item rather than reading it."
+        }
+      ]
+    }
+  }
+]

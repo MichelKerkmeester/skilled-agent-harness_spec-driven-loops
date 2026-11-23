@@ -1,0 +1,83 @@
+# /bots:author Presentation Contract
+
+Presentation source of truth for `/bots:author`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, the setup display and result displays.
+
+## 1. STARTUP PRESENTATION
+
+For `:confirm` or no suffix, resolve the inputs from `$ARGUMENTS`, show the setup display, and ask only for a required input that is missing.
+
+For `:auto`, resolve the inputs from `$ARGUMENTS` and defaults. Ask only for a required input that is missing.
+
+### Auto Resolution Table
+
+| Field | Required | Resolution |
+|-------|----------|------------|
+| `bot_id` | Yes | Required. Lowercase letters, digits and hyphens. The router stops until it is given. |
+| `repo` | No | Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory. |
+| `edits` | No | The fields and standing instructions the request names, taken from the request text. |
+
+### Consolidated Prompt Template
+
+```text
+/bots:author setup
+- bot_id: [value or default]
+- repo: [value or default]
+- edits: [value or default]
+
+Reply with the missing value, or "go" to proceed.
+```
+
+### Auto Fail-Fast Display
+
+```text
+/bots:author needs a missing input: [field].
+Usage: /bots:author <bot-id> [--repo <path>] [:auto|:confirm]
+
+STATUS=FAIL ERROR="Missing required input: [field]"
+```
+
+## 2. CHECKPOINT LAYOUT
+
+The confirm workflow stops once, after the BOT.md draft is written and before the handoff:
+
+```text
+/bots:author checkpoint
+- Bot: {bot_id}
+- File: {repo}/bots/{bot_id}/BOT.md
+- Next check: /doctor:bots on {repo}
+
+Proceed, Change or Cancel?
+```
+
+## 3. RESULTS DISPLAY
+
+### Success
+
+```text
+/bots:author complete
+- Bot: {bot_id}
+- File: {repo}/bots/{bot_id}/BOT.md
+- Next check: /doctor:bots on {repo}
+
+STATUS=OK
+```
+
+### Failure
+
+```text
+/bots:author failed
+- Step: [the step that ended the run]
+- Output: [the message, quoted]
+
+STATUS=FAIL ERROR="[named cause]"
+```
+
+## 4. NEXT-STEP SUGGESTIONS
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| The bot is a cron bot | `/bots:schedule install <bot-id>` | Install its schedule, held disabled |
+| The bot is manual | `/bots:run <bot-id>` | Start a run of it |
+| The file passed the author step | `/doctor:bots` | Run the definition check over the repository |
+
+End interactive presentations with a single next-step prompt.

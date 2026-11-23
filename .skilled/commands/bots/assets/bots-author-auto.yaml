@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────────────────────────
+# BOTS: AUTHOR WORKFLOW (AUTO MODE)
+# ─────────────────────────────────────────────────────────────────
+role: "Bots author operator for the system-skilled-bots hub"
+purpose: "Write or edit one bots/<id>/BOT.md from the shipped template and hand the file to the definition check under /doctor:bots"
+action: "Resolve the inputs, load the bots-author mode contract, run its workflow and render the result through the presentation contract"
+skill_owner: ".skilled/skills/system-skilled-bots/bots-author/"
+
+operating_mode:
+  workflow: sequential_author
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  validation: continuous_self_validation
+
+mutation_boundaries:
+  read_only: false
+  mutates_workspace: true
+  allowed_targets:
+    - "<repo>/bots/<bot-id>/BOT.md"
+  invariant: "This route runs no shell command and no bots CLI verb. It writes only the BOT.md the bots-author contract names. The definition check is the read-only run of /doctor:bots, never of this route."
+
+upstream_assets:
+  mode_contract: ".skilled/skills/system-skilled-bots/bots-author/SKILL.md"
+  template: ".skilled/skills/system-skilled-bots/assets/bot-template.md"
+  presentation: ".skilled/commands/bots/assets/bots-author-presentation.txt"
+
+inputs:
+  execution_mode: "AUTONOMOUS"
+  bot_id: "Required. Lowercase letters, digits and hyphens. The router stops until it is given."
+  repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
+  edits: "The fields and standing instructions the request names, taken from the request text."
+
+execution:
+  steps:
+    - "Check that .skilled/skills/system-skilled-bots/assets/bot-template.md and .skilled/skills/system-skilled-bots/bots-author/SKILL.md exist. If one is missing, report its path and stop with STATUS=FAIL."
+    - "Load .skilled/skills/system-skilled-bots/bots-author/SKILL.md and follow its workflow."
+    - "When {repo}/bots/{bot_id}/BOT.md is absent, copy the template there and replace the <your-bot-id> placeholder with {bot_id}. When it exists, read it first and edit only the fields the request names."
+    - "Write the standing instructions in the body. An empty body fails the check."
+    - "Do not run the checker from this route. Name the next step: /doctor:bots on {repo} runs the definition checker read-only over the bots/ folder."
+    - "End with STATUS=OK, quoting the file path and the fields set."
+    - "If a required path is missing or the placeholder cannot be replaced, end with STATUS=FAIL and quote the step that stopped."
+
+output: |
+  STATUS=OK when every step above completes. Render the success template from the presentation contract.
+  STATUS=FAIL when a step ends the run. Quote the step and render the failure template.

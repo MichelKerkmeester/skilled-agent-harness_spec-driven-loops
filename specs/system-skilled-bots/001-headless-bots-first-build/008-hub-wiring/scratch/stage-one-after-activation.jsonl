@@ -1,0 +1,12 @@
+{"prompt": "write a new BOT.md for a nightly dependency check bot", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.9097, true], ["sk-doc", 0.82, true], ["system-spec-kit", 0.82, true], ["sk-code", 0.82, true]]}
+{"prompt": "run the nightly-digest bot by hand", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.8648, true], ["cli-external-orchestration", 0.82, true], ["system-deep-loop", 0.82, true], ["sk-doc", 0.82, true]]}
+{"prompt": "install the launchd schedule for my nightly-digest bot", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.9056, true]]}
+{"prompt": "show me the status of my bots and their last runs", "threshold": 0.5, "bots_rank": null, "top": []}
+{"prompt": "what is waiting in my bots inbox", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.855, true]]}
+{"prompt": "answer the open needs-you question for the release bot", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.9049, true], ["system-deep-loop", 0.5908, true], ["system-spec-kit", 0.5605, true]]}
+{"prompt": "update skilled now", "threshold": 0.5, "bots_rank": 1, "top": [["system-skilled-bots", 0.82, true], ["system-skilled-doctor", 0.82, true], ["sk-git", 0.82, true]]}
+{"prompt": "is my skilled install healthy", "threshold": 0.5, "bots_rank": null, "top": [["system-skilled-doctor", 0.6485, true], ["command-doctor-setup", 0.9161, true]]}
+{"prompt": "run the tests", "threshold": 0.5, "bots_rank": 7, "top": [["sk-code", 0.82, true], ["sk-doc", 0.82, true], ["mcp-code-mode", 0.82, true], ["cli-external-orchestration", 0.82, true]]}
+{"prompt": "status of the build", "threshold": 0.5, "bots_rank": 3, "top": [["sk-code", 0.82, true], ["system-skill-advisor", 0.82, true], ["system-skilled-bots", 0.82, true], ["mcp-browser-use", 0.82, true]]}
+{"prompt": "author a skill", "threshold": 0.5, "bots_rank": null, "top": [["sk-doc", 0.8453, true], ["cli-external-orchestration", 0.72, true], ["mcp-code-mode", 0.72, true], ["mcp-tooling", 0.72, true]]}
+{"prompt": "schedule a meeting for tomorrow", "threshold": 0.5, "bots_rank": null, "top": []}

@@ -1,0 +1,47 @@
+# ─────────────────────────────────────────────────────────────────
+# BOTS: RUN WORKFLOW (AUTO MODE)
+# ─────────────────────────────────────────────────────────────────
+role: "Bots run operator for the system-skilled-bots hub"
+purpose: "Run exactly one bots CLI verb that starts or continues a run and report its exit code with its meaning"
+action: "Resolve the inputs, load the bots-run mode contract, run its workflow and render the result through the presentation contract"
+skill_owner: ".skilled/skills/system-skilled-bots/bots-run/"
+
+operating_mode:
+  workflow: sequential_run
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  validation: continuous_self_validation
+
+mutation_boundaries:
+  read_only: false
+  mutates_workspace: true
+  allowed_targets:
+    - "the run record under the user-level state root"
+    - "the consumer checkout, when the bot runs with shared isolation and its executor edits files"
+  invariant: "This route runs only the bots CLI verbs its steps name and the files the bots-run contract names. It never writes a plist, calls launchctl or edits the bots runtime by hand."
+
+upstream_assets:
+  mode_contract: ".skilled/skills/system-skilled-bots/bots-run/SKILL.md"
+  cli: ".skilled/bin/bots.cjs"
+  presentation: ".skilled/commands/bots/assets/bots-run-presentation.txt"
+
+inputs:
+  execution_mode: "AUTONOMOUS"
+  verb: "Required. run (the default when the first token is a bot id), enqueue, drain or answer."
+  bot_id: "Required for run and enqueue."
+  item_id: "Required for answer, read from bots inbox."
+  answer_text: "Required for answer."
+  repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
+
+execution:
+  steps:
+    - "Check that .skilled/bin/bots.cjs exists. If it is missing, report its path and stop with STATUS=FAIL."
+    - "Load .skilled/skills/system-skilled-bots/bots-run/SKILL.md and follow its workflow."
+    - "Run exactly one verb with --repo \"{repo}\": node .skilled/bin/bots.cjs run {bot_id}, node .skilled/bin/bots.cjs enqueue {bot_id} --source {source} --key {key}, node .skilled/bin/bots.cjs drain, or node .skilled/bin/bots.cjs answer {item_id} \"{answer_text}\"."
+    - "Read the exit code against .skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision."
+    - "Exit 0 ends with STATUS=OK. Exit 5 ends with STATUS=OK and names the parked needs-you item, because the run waits on the operator. Exit 1, 2, 3 or 4 ends with STATUS=FAIL quoting the CLI output."
+
+output: |
+  STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.

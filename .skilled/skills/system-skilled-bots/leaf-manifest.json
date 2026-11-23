@@ -1,0 +1,33 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "references/bot-definition.md"
+      ],
+      "packet": "bots-author",
+      "workflowMode": "author"
+    },
+    {
+      "leaves": [
+        "references/run-queue-and-answer.md"
+      ],
+      "packet": "bots-run",
+      "workflowMode": "run"
+    },
+    {
+      "leaves": [
+        "references/schedule-lifecycle.md"
+      ],
+      "packet": "bots-schedule",
+      "workflowMode": "schedule"
+    },
+    {
+      "leaves": [
+        "references/status-and-inbox.md"
+      ],
+      "packet": "bots-status",
+      "workflowMode": "status"
+    }
+  ],
+  "resourceContractVersion": 1
+}

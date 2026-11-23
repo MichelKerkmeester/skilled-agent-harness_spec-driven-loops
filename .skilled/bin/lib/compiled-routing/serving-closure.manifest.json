@@ -10,9 +10,10 @@
     "cli-classifier",
     "sk-doc",
     "sk-design",
-    "mcp-browser-use"
+    "mcp-browser-use",
+    "system-skilled-bots"
   ],
-  "fileCount": 69,
+  "fileCount": 76,
   "files": [
     "003-contract-schemas/lib/canonical.cjs",
     "003-contract-schemas/schemas/compiled-policy.v1.schema.json",
@@ -65,6 +66,11 @@
     "009-parent-hub-rollout/010-mcp-browser-use/lib/policy-card.cjs",
     "009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs",
     "009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs",
+    "009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json",
+    "009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs",
+    "009-parent-hub-rollout/011-system-skilled-bots/lib/policy-card.cjs",
+    "009-parent-hub-rollout/011-system-skilled-bots/lib/registry-compiler.cjs",
+    "009-parent-hub-rollout/011-system-skilled-bots/lib/router.cjs",
     "013-live-activation/activation/cli-classifier/manifest.json",
     "013-live-activation/activation/cli-external-orchestration/manifest.json",
     "013-live-activation/activation/mcp-browser-use/manifest.json",
@@ -73,6 +79,7 @@
     "013-live-activation/activation/sk-design/manifest.json",
     "013-live-activation/activation/sk-doc/manifest.json",
     "013-live-activation/activation/system-deep-loop/manifest.json",
+    "013-live-activation/activation/system-skilled-bots/manifest.json",
     "014-runtime-engine/lib/compiled-route.cjs",
     "014-runtime-engine/lib/resolve.cjs",
     "013-live-activation/activation/sk-code/fence-state.json",
@@ -82,6 +89,7 @@
     "013-live-activation/activation/cli-classifier/fence-state.json",
     "013-live-activation/activation/sk-doc/fence-state.json",
     "013-live-activation/activation/sk-design/fence-state.json",
-    "013-live-activation/activation/mcp-browser-use/fence-state.json"
+    "013-live-activation/activation/mcp-browser-use/fence-state.json",
+    "013-live-activation/activation/system-skilled-bots/fence-state.json"
   ]
 }

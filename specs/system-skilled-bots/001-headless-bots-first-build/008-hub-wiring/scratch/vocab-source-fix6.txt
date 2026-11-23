@@ -1,0 +1,4 @@
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+
+checked=1 hub(s), drift=0
+RESULT: PASSED

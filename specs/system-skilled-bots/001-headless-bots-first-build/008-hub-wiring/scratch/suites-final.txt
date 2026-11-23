@@ -1,0 +1,13 @@
+advisor suite (npx vitest run in system-skill-advisor/runtime), final state:
+ Test Files  178 passed (178)
+      Tests  2474 passed | 4 skipped (2478)
+   Start at  15:27:42
+   Duration  208.01s (transform 1.16s, setup 573ms, import 4.92s, tests 193.09s, environment 6ms)
+
+
+doctor tests (node --test .skilled/commands/doctor/scripts/tests/*.test.cjs), final state:
+ℹ tests 1674
+ℹ pass 1674
+ℹ fail 0
+
+baseline before this phase: advisor 2 failed / 2472 passed with the first build; doctor 1674 passed

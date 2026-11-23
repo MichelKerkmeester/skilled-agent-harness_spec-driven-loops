@@ -1,0 +1,217 @@
+# workflow-run-log for the redo of hub wiring through /create:skill-parent and /create:command
+# started 2026-11-23T13:21:32Z
+
+== STEP 1 baseline ==
+$ git -C /Users/michelkerkmeester/MEGA/Development/Skilled status --short
+ M .pi/settings.json
+exit=0
+$ cd W && git status --short
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/acceptance-criteria.md
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/decision-record.md
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/goal.md
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/graph-metadata.json
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/implementation-summary.md
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/plan.md
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/spec.md
+ M specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/tasks.md
+ M specs/system-skilled-bots/001-headless-bots-first-build/goal.md
+?? .claude/commands/bots/
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/ac007-no-routed-claim.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/advisor-rebuild.json
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/d4-runtime-untouched.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/doctor-bots-check.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/doctor-bots-git-status-diff.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/doctor-tests.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/final-gates.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/git-status-before-rebuild.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/launchagents-after.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/launchagents-before.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/mirrors.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/parent-skill-check.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/repin-bots-after.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/repin-bots-before.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/repin-bots-staged.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/repin-fake-install.mts
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/repin-proof.sh
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/repin-proof.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/runtime-typecheck.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/runtime-vitest.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/skill-graph-scan.json
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-replay.jsonl
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-replay.sh
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-replay.cjs
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-replay.jsonl
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage1-before-rebuild.json
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/surfaces.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/validate-strict.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/workflow-run-log.txt
+exit=0
+note: .claude/commands/bots/ is an empty untracked directory (no files) left from the moved-aside build
+
+== STEP 2 /create:skill-parent ==
+Skill tool invocation:
+  skill: create:skill-parent
+  args:  system-skilled-bots create --modes author,run,schedule,status --path /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/ :auto
+  result: "Launching skill: create:skill-parent" (router doc returned; the Skill tool works)
+Router step 1: read .skilled/commands/create/assets/create-skill-parent-presentation.txt (W copy, byte-identical to main per cmp)
+Router step 2: presentation contract Phase 0 verification ("SELF-CHECK: Are you operating as @markdown?")
+  indicator "Invoked with @markdown prefix": FAIL (dispatched as a generic leaf worker, not the markdown agent type)
+  indicator "Template-first generation behavior is available": present
+  indicator "sk-doc quality validation behavior is available": present
+  rule: "If any indicator is missing or uncertain: Stop before loading workflow YAML; Display the hard-block message"
+  create_agent_verified = false ; phase_0_status = FAILED
+  hard-block message (verbatim):
+    This command requires @markdown for template-first generation and sk-doc validation.
+    Restart with: @markdown /create:skill-parent <skill-name> [create|update]
+
+    STATUS=FAIL ERROR="Markdown agent required"
+  note: the first 200 lines of create-skill-parent-auto.yaml were read for orientation before this check concluded; no YAML step was executed.
+OUTCOME: STOPPED at Phase 0 per the workflow's own rule and the brief's fail-fast clause. Nothing written under .skilled/. /create:command not invoked (its run would come after the hub and the same @markdown precondition is expected to apply; not verified).
+follow-up check: create-command-presentation.txt Phase 0 is "SELF-CHECK: Are the create-command packet resources available?" (line 10); no @markdown requirement found by grep. It was not run because the brief orders it after the hub.
+post-stop state: git status --short -- .skilled .claude .codex .pi -> empty (exit 0); main status -> " M .pi/settings.json" only (exit 0)
+
+== RUN 2 (@markdown redo) started 2026-11-23 (UTC clock: see date line) ==
+date: 2026-11-23T13:25:21Z
+BINDING: command=/create:skill-parent (then /create:command x5 :auto: /bots:author /bots:run /bots:schedule /bots:status /doctor:bots)
+BINDING: target=system-skilled-bots
+BINDING: output=/Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots
+BINDING: mode=AUTONOMOUS (:auto)
+BINDING: specFolder=/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring
+PHASE0 skill-parent: agent=@markdown; indicators: @markdown invocation present; template-first behavior present; sk-doc validation present -> create_agent_verified=true phase_0_status=PASSED
+PHASE0 skill-parent: presentation contract read (.skilled/commands/create/assets/create-skill-parent-presentation.txt); router read (.skilled/commands/create/skill-parent.md)
+
+== RUN 2 baseline (re-recorded 2026-11-23T13:27:36Z) ==
+$ git -C /Users/michelkerkmeester/MEGA/Development/Skilled status --short
+ M .pi/settings.json            (exit 0; matches expected)
+$ cd W && git status --short   (exit 0)
+ M specs/.../008-hub-wiring/{acceptance-criteria,decision-record,goal,graph-metadata,implementation-summary,plan,spec,tasks}.md ; M specs/.../001-headless-bots-first-build/goal.md
+ ?? specs/.../008-hub-wiring/scratch/* (orchestrator scratch, 26 files incl. workflow-run-log.txt)
+ (no .claude/commands/bots/ entry any more; no .skilled/skills/system-skilled-bots/ untracked files beyond tracked assets/runtime/scripts)
+
+== STEP 1b/0 operation resolution ==
+probe: W/.skilled/skills/system-skilled-bots exists (assets/ runtime/ scripts/), no SKILL.md, no ROUTER.md, no smart-routing.md
+resolved operation=update: skill_root exists -> create would hit existing_skill_on_create (stop, reroute to update); update requires_existing_skill=true satisfied (H2)
+NOTE output_scope gap: operation_router.update.output_scope omits packet README/ROUTER/changelog, hub manual-testing-playbook, benchmark, shared/README.md which step_4 and parent-skill-check require. Followed step_4 activities. PROPOSED AMENDMENT: add these to update.output_scope in create-skill-parent-auto.yaml.
+memory_loaded: _memory.continuity present in implementation-summary.md (grep count 1), no handover.md -> continuity ladder = continuity (handover absent)
+spec_choice=A existing, spec_path=specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring ; spec.md/plan.md/tasks.md/acceptance-criteria.md present; step_1b creates nothing (forbidden to edit spec.md, acceptance-criteria.md, decision-record.md per brief)
+
+== CHECKS (advisor-directed) ==
+excluded-string scrub (case-insensitive) over tracked runtime/ assets/ scripts/ (exclude node_modules): grep exit=1 => NO hits.
+command-metadata.json: grep across create-command-auto.yaml and parent-skill-check.cjs => NO writer, NO checker reference (only the handoff text in create-skill-parent-auto.yaml:533). Decision: neither workflow writes it; brief does not name it -> list in report, do not hand-write.
+family: parent-skill-check.cjs ALLOWED_FAMILIES = cli mcp sk-code sk-hub deep-loop sk-util documentation design system ; YAML quality_standards list omits sk-hub/documentation/design. Checker authoritative -> use family per checker.
+packet names: spec.md and acceptance-criteria.md contain NO bots-* packet names; names come from hand-build mode-registry (packet=bots-author/bots-run/bots-schedule/bots-status, workflowMode=author/run/schedule/status).
+advisor projection (step_4 advisor_projection_emit) and drift guard (step_5): SKIPPED, all four modes routingClass=metadata.
+tool-grant conflict: hand-build gives Bash to author and status; ADR-003 says "only run and schedule grant Bash" and "status must grant no write tool". DECISION: follow ADR-003 (brief directive: tool grants follow ADR-003); status packet's CLI calls become a flagged functional gap for operator decision.
+
+== step_3_template_loading (skill-parent) ==
+read: sk-create-skill/SKILL.md (sk-doc hub), sk-create-skill/ROUTER.md (PARENT_HUB resource set), references/parent-skill/parent-skills-nested-packets.md (sections 2, 6, 7 incl. eleven integration surfaces), assets/parent-skill/parent-skill-{hub,registry,hub-router,root-router,description,graph-metadata,command-metadata,leaf-aliases,readme}-template(.md|.json), scaffold/{hub,packet}-skill-scaffold.md
+reference parent-hub-router-schema.md: NOT read in full (20KB); used checker feedback instead, logged as partial read
+templates to be read later: skill-md-template.md (37KB) for packet SKILL.md shape; skill-router-template.md for packet ROUTER.md
+
+== step_4_package_generation (partial, 13:29:28Z) ==
+WRITE mode-registry.json   (create; 4 modes author/run/schedule/status; packets bots-author/run/schedule/status; ADR-003 grants; ADR-002 aliases)
+WRITE hub-router.json      (create; hand-build routerSignals/vocabularyClasses, defaultMode null, tieBreak status,author,schedule,run)
+WRITE description.json     (create; scrubbed "runs a bot now" -> "run starts a bot")
+WRITE graph-metadata.json  (create; family system (checker ALLOWED_FAMILIES); no intent_signals_generated; one hub identity)
+WRITE ROUTER.md            (create -> router_state stage1-only, empty maps; ROUTER.ACTION: create)
+
+== step_4_package_generation (continued, 13:32:08Z) ==
+WRITE hub SKILL.md, README.md, changelog/v1.0.0.0.md, benchmark/README.md, manual-testing-playbook/manual-testing-playbook.md, shared/README.md
+WRITE bots-author|bots-run|bots-schedule|bots-status: SKILL.md, ROUTER.md, README.md, changelog/v1.0.0.0.md, references/*.md (4 packets, 20 files)
+TOOL-GRANT DECISIONS (ADR-003): author = Read,Write,Edit,Grep,Glob (no Bash; check moved to /doctor:bots per ADR-004); run = Read,Bash,Grep,Glob (bashAllowlist bots.cjs); schedule = Read,Bash,Grep,Glob; status = Read,Bash,Grep,Glob with bashAllowlist ONLY "bots.cjs status" and "bots.cjs inbox" (no Write/Edit). DEVIATION FLAG: ADR-003 text says only run and schedule grant Bash; status needs Bash to run its two read verbs; operator decision required.
+EXCLUDED-STRING scrub: hub-level and packet prose rewritten ("run a bot now" -> "start a bot run"; "bot now" removed; reference trigger "install the bot schedule" dropped).
+generate-leaf-manifest.cjs --write (exit 0), then after root ROUTER active: --write (exit 0) and --check -> "leaf-manifest.json OK" (exit 0)
+ROUTER.md: create(stage1-only) -> active with 4 INTENT_SIGNALS / RESOURCE_MAP keys (AUTHOR RUN SCHEDULE STATUS), all leaves resolve.
+NOT WRITTEN (no workflow covers; list in report): command-metadata.json, leaf-aliases.json (optional, none needed), hub feature catalog (none).
+
+== step_5_validation: parent-skill-check.cjs (canonical gate) ==
+$ cd W && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
+
+== step_4b_human_voice_score (skill-parent, 13:33:40Z) ==
+python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target> on hub SKILL.md, README.md, bots-{author,run,schedule,status}/{SKILL,README}.md (10 targets): exit 0 each, hard blockers 0, mechanical ceiling 100/100 (oxford-comma candidate in bots-author/README.md noted as judgment finding, not a blocker)
+
+== step_5_validation (skill-parent) ==
+parent-skill-check.cjs canonical gate: exit 0 ("OK: parent-skill-check - all hard invariants passed, 0 warnings"; 10b-byte-drift PASS; 12a-router-contract PASS x5; 12b-routing-shape PASS 0 known debt; 5e tieBreak PASS; 5h defaultMode null PASS)
+validate_document.py: exit 0 on hub SKILL.md and all four packet SKILL.md and README.md (9 files)
+DQI (extract_structure dqi.total): hub SKILL 89, hub README 95, bots-author SKILL 84, bots-run SKILL 80, bots-schedule SKILL 80, bots-status SKILL 80, packet READMEs 97 each (after rewrite; first pass 73 failed the 75 bar: added blockquote, links, code block, words), root ROUTER 93, packet ROUTERs 92
+generate-leaf-manifest.cjs --check: exit 0 ("leaf-manifest.json OK")
+hub graph-metadata count: 1 (hub only); packet graph-metadata count: 0 (verified by gate one-identity rule)
+advisor projection emit (step_4) and drift guard (step_5): SKIPPED - all four modes routingClass=metadata
+step_5b_save_context: NOT RUN. Reason: the continuity writer generate-context.js upserts decision-record.md (brief forbids editing it), and writes description.json/graph-metadata.json/phase-parent pointers in the spec packet. implementation-summary.md is orchestrator-owned and already modified. Save left to the orchestrator.
+
+== step_6_completion (skill-parent) ==
+Parent Skill Command Complete
+Skill: system-skilled-bots
+Operation: update (skill root exists with tracked runtime/assets/scripts, no SKILL.md; create refused by existing_skill_on_create)
+Modes: author,run,schedule,status
+Mode: :auto
+Target: /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots
+Root router: ROUTER.md state: active (authored from stage1-only); ROUTER.md action: create
+Spec Folder: specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring (existing); Context saved: no (step_5b not run)
+Identity: hub graph-metadata.json count 1; packet graph-metadata.json count 0
+STATUS=OK PATH=/Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots
+NOT WRITTEN by this workflow (no workflow covers it): command-metadata.json (hub owns /bots:* commands; neither create workflow writes it), leaf-aliases.json (optional, not needed)
+
+############ /create:command x5 (AUTONOMOUS :auto) ############
+== /create:command PHASE0 (presentation) (13:34:44Z) ==
+resources present: sk-create-command/SKILL.md, assets/command-template.md (42605 B), assets/command-presentation-template.md, references/router-presentation-split.md, references/argument-hints-and-modes.md
+create_command_verified=true phase_0_status=PASSED
+
+== /create:command SETUP (per command, :auto, from pre-bound setup) ==
+execution_mode=AUTONOMOUS; package_shape=split_4_file_set (workflow default; only value the YAML allows)
+spec_choice=A existing; spec_path=/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring ; spec.md/plan.md/tasks.md/acceptance-criteria.md present, not rewritten (brief: no edit of spec.md/acceptance-criteria.md/decision-record.md)
+memory_loaded: continuity (no handover.md; _memory.continuity present in implementation-summary.md); auto default text names 'handover', recorded here as continuity (judgment)
+
+== /bots:author  step_1_request_analysis ==
+command_invocation=/bots:author ; command_path=.skilled/commands/bots/author.md (derived: namespace root .skilled/commands/[namespace]/[action].md)
+assets: .skilled/commands/bots/assets/bots-author-{auto,confirm,presentation}.{yaml,txt} (stem bots-author, kebab)
+ls -d .skilled/commands/bots/author.md -> absent (exists check: none)
+== /bots:author step_1b_command_discovery: Glob .skilled/commands/**/*.md + Grep 'bots' -> no existing bots/author command; doctor/ family is route-based (_routes.yaml), noted
+== /bots:author step_1c_spec_folder_setup: existing spec; no spec file written (brief forbids edits to spec.md, decision-record.md, acceptance-criteria.md)
+== /bots:author step_2_understanding + phase_gate: purpose/inputs/tools from hub SKILL + bots-author SKILL (bot_id required; repo optional); tools least-privilege Read,Write,Edit,Grep,Glob (no Bash per ADR-003)
+== /bots:author step_3_planning: split_4_file_set; frontmatter description/argument-hint/allowed-tools; kebab assets bots-author-{auto,confirm,presentation}
+== /bots:author step_4_generation: WROTE .skilled/commands/bots/author.md, assets/bots-author-auto.yaml, assets/bots-author-confirm.yaml, assets/bots-author-presentation.txt. Hand-build bots-author-auto.yaml ran bot-check.cjs (Bash) -> adapted to hand the check to /doctor:bots (ADR-003/ADR-004)
+== /bots:author step_5_validation:
+   router frontmatter keys description, argument-hint, allowed-tools: PARSE_OK
+   yaml parse (pyyaml): bots-author-auto.yaml OK, bots-author-confirm.yaml OK
+   resource paths exist: bots-author/SKILL.md, assets/bot-template.md, author presentation, auto, confirm: all exist
+   leftover grep (bot-check.cjs | bots/config.json) in author files: no hits (exit 1)
+   validate_document.py author.md: exit 0
+   command_bridge_check: command: derive-command-bridges.cjs --check -> exit 1: "modes[1] names /bots:run, which has no command file". DEFERRED: the gate needs all five command files; regenerate + check after the fifth command. Evidence: scratch/bridge-check-baseline.txt
+== /bots:run  (setup: verb from , repo default; memory continuity; spec existing) steps 1..5 executed: step_1 ls check (none), step_1b Glob/Grep (no run command), step_2 understanding (verbs from bots-run SKILL), phase gate PASSED, step_3 split_4_file_set, step_4 WROTE run.md + bots-run-{auto,confirm,presentation}, step_5 validate_cmd.py RESULT PASS (frontmatter, yaml parse x2, 6 referenced paths exist, no leftovers), validate_document.py exit 0. bridge check deferred (see author).
+== /bots:schedule steps 1..5 executed: WROTE schedule.md + bots-schedule-{auto,confirm,presentation}; validate_cmd RESULT as logged on the next line
+== /bots:status steps 1..5: WROTE status.md + bots-status-{auto,confirm,presentation}; validate_cmd RESULT PASS; validate_document exit 0. Bash grant limited to the two read verbs; --rebuild/--unregister not accepted by the route.
+== /doctor:bots steps 1..5: WROTE .skilled/commands/doctor/bots.md + .skilled/commands/doctor/assets/doctor-bots-{auto,confirm,presentation} (split_4_file_set). DIVERGENCE: hand-build and ADR-004 named doctor-bots-check.yaml + doctor-bots-presentation.txt (no auto/confirm); the workflow forces split_4_file_set, so the set is doctor-bots-auto.yaml and doctor-bots-confirm.yaml. Not renamed by hand.
+   a stray file doctor-bots-auto.yaml.placeholder-check was created by mistake and removed at the same step (verified absent).
+
+== /bots:author, /bots:run, /bots:schedule, /bots:status: step_5 command_bridge_check ==
+derive-command-bridges.cjs --check -> exit 1 after doctor route added: "/bots:author|run|schedule|status: command file has no command-metadata.json entry and no doctor route"
+  generator reads <skill>/command-metadata.json (derive-command-bridges.cjs line 129/463); the file does not exist; neither create workflow writes it; the brief does not name it
+  -> LOGIC-SYNC: fact A = bridge gate requires command-metadata.json for every /bots:* command; fact B = skill-parent workflow never writes it and its presentation says "omitted; hub owns no slash commands" while ADR-003 says the hub owns four commands
+  -> per brief: listed in report, NOT hand-written; the bridge regeneration (which writes advisor sources) was NOT run because the gate cannot pass without the file
+== /doctor:bots: route added to _routes.yaml (brief-named post-workflow registration; yaml points to doctor-bots-auto.yaml, the file the workflow produced)
+  route-validate.sh exit 0 (11 WARN, same as baseline; J1 fixed by target-first table in bots.md)
+  bridge gate: global check still fails on the four /bots:* entries above
+== step_5b_quality_validation (per command): validate_document.py exit 0 on each router .md; not extract_structure gated (router DQI not required by the brief for commands)
+== step_6_save_context (per command): NOT RUN (continuity writer touches decision-record.md)
+== mirrors: NOT RUN (held: commands not accepted by the bridge gate)
+== gates: parent-skill-check exit 0 (hub); validate_document exit 0 (hub + 4 packet SKILL.md); runtime/scripts/assets diff 0 lines; main status ' M .pi/settings.json' only
+== step_8 diff report: specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/workflow-vs-hand-diff.txt (2093 lines)
+== END OF RUN 2 (partial): skill-parent OK; /bots:* x4 + /doctor:bots blocked at command_bridge_check by logic-sync (command-metadata.json)
+
+== ORCHESTRATOR, after run 2 (2026-11-23) ==
+command-metadata.json: authored from sk-doc parent-skill-command-metadata-template.json per parent-skills-nested-packets.md ("Add authored command-metadata.json only when the hub owns slash commands"); entries carried from the first build, description and argumentHint re-sourced from each new command file's frontmatter; every choreography resource exists. ci-skill-root-metadata.cjs exit 0 (checked=16 passed=16 failed=0).
+Resolution of run 2's LOGIC-SYNC: not a contradiction. Neither workflow owns the file; the canon names it an authored companion, like the active ROUTER.md. Proposed workflow amendment (not applied): add a command-metadata step to create-skill-parent-auto.yaml step_4_package_generation that fills the template whenever the hub owns commands, and fix the presentation's "omitted; hub owns no slash commands" default.
+derive-command-bridges.cjs (write) exit 0; regenerated command-bridges.generated.json, command-attach.ts, scorer/projection.ts, skill_advisor.py (generated outputs). derive-command-bridges.cjs --check exit 0, "changed": [] (scratch/bridge-check-redo.txt).
+Mirrors: sync-runtime-mirrors, codex, pi, dsh prompts+skills, vibe prompts+skills: each write exit 0, each --check exit 0; validate-command-tree-parity.sh exit 0, "PASS: 271 mirrors across 10 trees are in sync." (scratch/mirrors-redo.txt).
+Main checkout status after: " M .pi/settings.json" only.
+Re-applied hunk: skill-root-metadata-contract.test.cjs registers system-skilled-bots as CLASS_HUB. Gate: node --test skill-root-metadata-contract.test.cjs failed 0/1 without it (new class-H hub not in EXPECTED_CLASSES); passes with it. Same edit the mcp-browser-use template made.
+Re-applied from the first build's patch, each because a named gate failed without it (advisor suite 3 failed / 2470 passed, doctor tests 12 failed / 1662 passed, run 2026-11-23 15:14):
+ - .skilled/commands/README.txt (bots group row, doctor count 18): doctor test "the commands catalog lists the router and counts the folder it lives in"
+ - .skilled/commands/doctor/assets/doctor-setup-presentation.txt (/doctor:bots row): doctor tests "the setup target list carries one helper row and a row for every other doctor command" and "... one agents-md row ..."
+ - system-deep-loop and system-skilled-doctor graph-metadata.json reverse edges: advisor test "validates graph metadata without orphan skills"
+ - command-metadata-e2e.vitest.ts census 27 -> 31 (the four /bots:* entries are real declarations): advisor test "projects every command metadata entry to its declared hub and owner mode"
+ - scoring-compatibility.json command-doctor-bots rows: advisor test "the renderer lookup holds the runnable string of every doctor bridge in the manifest"
+Final-state bridge regeneration after the scoring-compatibility rows (projection.ts changed again), then frozen-scorer-contract.cjs --refreeze from the final scorer (Q006); assertScorerFrozen OK; guard and sync --check rerun.
+Second command-routing-baseline recapture from the final state: the first ran before the scoring-compatibility rows and bridge regeneration, so it drifted. Recorded as a deviation from 'one recapture'; no vocabulary was tuned between the two.
+Third baseline recapture, after the review-fix vocabulary (bot-anchored run and schedule phrases): one blind row moved, cmd-bots-schedule-typed-01 top null -> system-skilled-bots, still top1 false. The phrases came from the review's stage-two finding, not from the blind row.

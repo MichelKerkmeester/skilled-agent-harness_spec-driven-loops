@@ -1,0 +1,23 @@
+canary build exit 0 ("effectivePolicyHash":"86c42d49500c)
+manifest refresh exit 0
+manifest mirror exit 0 ("effectivePolicyHash":"86c42d49500c)
+sync exit 0
+guard exit 0
+stage2 replay exit 0 (rows 31 match 31)
+signals check exit 0
+vocab source exit 0
+vocab reach exit 0
+stage1 replay exit 0 (candidate=NONE stage-one-fails=3)
+slice exit 1
+advisor exit 1
+doctor exit 0
+admission exit 0
+compiled-route tests exit 0
+foundation exit 0
+evaluateHub exit 0
+parent-skill-check exit 0
+scorer frozen: ok
+frozen exit 0
+derived freshness exit 0
+bots vitest exit 0
+bots typecheck exit 0

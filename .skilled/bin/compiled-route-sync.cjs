@@ -61,6 +61,7 @@ const HUBS = [
   'sk-doc',
   'sk-design',
   'mcp-browser-use',
+  'system-skilled-bots',
 ];
 
 // Diverse probes maximize the branches (route/clarify/defer) the engine walks,

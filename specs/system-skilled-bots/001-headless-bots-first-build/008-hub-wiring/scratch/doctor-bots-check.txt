@@ -1,0 +1,143 @@
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/bad-budget
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+FAIL: definition.budget.maxIterations-invalid: bots/nightly-digest/BOT.md: budget.maxIterations-invalid (expected a positive integer)
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/clean
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+exit=0
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/cron-untranslatable
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+FAIL: cron-reboot: bots/nightly-digest/BOT.md: "@reboot": cron-reboot (launchd RunAtLoad also fires on every load, not only at boot)
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/delivery-channel-unknown
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+FAIL: delivery-channel-unknown: bots/nightly-digest/BOT.md: slack:ops names no channel; known: desktop
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/duplicate-id
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+PASS: definition: bots/nightly-digest-copy/BOT.md parses as nightly-digest
+FAIL: duplicate-id: bots/nightly-digest-copy/BOT.md reuses id nightly-digest from bots/nightly-digest/BOT.md
+WARN: folder-id-mismatch: bots/nightly-digest-copy/BOT.md: folder nightly-digest-copy differs from id nightly-digest
+PASS: executor-bounds: bots/nightly-digest-copy/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest-copy/BOT.md: shared
+PASS: schedule: bots/nightly-digest-copy/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest-copy/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/empty-body
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+FAIL: definition.empty-body: bots/nightly-digest/BOT.md: empty-body
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/identity-invalid
+FAIL: config.identity-invalid: bots/config.json: identity-invalid (expected owner/name)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/isolation-invalid
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+FAIL: definition.isolation-invalid: bots/nightly-digest/BOT.md: isolation-invalid (expected one of worktree, shared)
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/isolation-undeclared
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+FAIL: isolation-undeclared: bots/nightly-digest/BOT.md: declare isolation in BOT.md or defaultIsolation in bots/config.json
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/missing-id
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+FAIL: definition.missing-id: bots/nightly-digest/BOT.md: missing-id
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/missing-trigger
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+FAIL: definition.missing-trigger: bots/nightly-digest/BOT.md: missing-trigger
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/no-identity
+PASS: config: bots/config.json reads cleanly
+PASS: identity: MichelKerkmeester/skilled-agent-harness_spec-driven-loops (from origin)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.michelkerkmeester_2fskilled-agent-harness_5fspec-driven-loops.nightly-digest.0
+exit=0
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/reserved-id
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as drain
+FAIL: reserved-id: bots/nightly-digest/BOT.md: id drain is reserved for the repository's own agent
+WARN: folder-id-mismatch: bots/nightly-digest/BOT.md: folder nightly-digest differs from id drain
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/timeout-over-bound
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+FAIL: budget.timeoutSeconds-out-of-bounds: bots/nightly-digest/BOT.md: budget.timeoutSeconds-out-of-bounds (Too big: expected number to be <=3600)
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/unknown-executor-kind
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+FAIL: runtime-kind-unknown: bots/nightly-digest/BOT.md: runtime-kind-unknown (cli-unknown is not one of native, cli-codex, cli-claude-code, cli-opencode, cli-cursor, cli-devin, cli-pi, cli-deepseek-harness, cli-mistral-vibe)
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/unknown-trigger-kind
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/tool (from config)
+FAIL: definition.trigger-kind-invalid: bots/nightly-digest/BOT.md: trigger-kind-invalid (expected one of cron, queue, git-hook, manual)
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/worktree-shared-paths-unresolved
+PASS: config: bots/config.json reads cleanly
+FAIL: worktree-shared-paths-unresolved: bots/config.json: worktree-shared-paths-unresolved (config entry "../outside/node_modules" is not a relative path inside the checkout)
+PASS: identity: local/tool (from config)
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
+exit=1
+### node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <temp git repo with no origin, copied from fixtures/no-identity>
+PASS: config: bots/config.json reads cleanly
+FAIL: identity-missing: the repository has no remote and bots/config.json declares no identity; set "identity": "owner/name"
+PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
+exit=1

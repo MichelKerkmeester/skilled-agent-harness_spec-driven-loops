@@ -1,0 +1,35 @@
+{
+  "name": "system-skilled-bots",
+  "description": "Parent hub for four modes over file-defined headless bots: author writes or edits a BOT.md from the shipped template, run starts a bot, queues or drains run requests and answers a needs-you item (bots answer), schedule installs or removes a cron bot's launchd schedule and enables, disables, pauses or resumes a bot, and status reads installed bots, last runs, deliveries and the needs-you inbox (bots inbox). workflowMode selects the packet through mode-registry.json and hub-router.json. The advisor identity input is graph-metadata.json.",
+  "version": "1.0.0.0",
+  "importance_tier": "high",
+  "keywords": [
+    "system-skilled-bots",
+    "mode-registry",
+    "hub-router",
+    "workflowMode",
+    "packetKind",
+    "bots-author",
+    "bots-run",
+    "bots-schedule",
+    "bots-status",
+    "author",
+    "run",
+    "schedule",
+    "status",
+    "headless bot",
+    "bot.md",
+    "bot schedule",
+    "bot status",
+    "bot inbox",
+    "bots answer"
+  ],
+  "trigger_examples": [
+    "author a bot that summarizes open pull requests every morning",
+    "run the bot nightly-digest",
+    "schedule a bot to run on weekdays at nine",
+    "show bot status and the last bot run",
+    "what do the bots need from me"
+  ],
+  "lastUpdated": "2026-11-23T00:00:00.000Z"
+}

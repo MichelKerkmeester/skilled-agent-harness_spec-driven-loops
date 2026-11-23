@@ -1,0 +1,71 @@
+### node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
+PASS: 13d-packet-version: 4 mode packet(s) match their newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+### node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check
+usage: generate-leaf-manifest.cjs --write|--check <skillDir> (or <skillDir> --write|--check)
+exit=2
+### node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+OK    system-skilled-doctor  7a9025df2832b7c310821234d82c770ad1e19cd9137faddb11d014c4f9c07ee0
+OK    system-spec-kit  57c1a3d3f5857f97f1fe8cec18baa00b5c59a932439dc8f57f7fca445d5b1a8d
+
+checked=16 fresh=16 failed=0
+exit=0
+### node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs
+
+checked=16 fresh=16 stale=0 errored=0
+exit=0
+### node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+OK   [S] system-skilled-doctor
+OK   [S] system-spec-kit
+
+checked=16 passed=16 failed=0 fixed=0
+exit=0
+### node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check
+OK    system-spec-kit              declared=  0 signals= 70 missing=  0 orphans=  0
+
+checked=16 hub(s), missing=0, orphans=0
+RESULT: PASSED
+exit=0
+### node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 19
+RESULT: PASSED
+exit=0
+### node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-skilled-bots
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+exit=0
+### node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+    "pythonActive": 53
+  },
+  "changed": []
+}
+exit=0
+### node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check
+command-router drift check
+
+
+routers=42 clean=42 path-drift=0 shape-drift=0
+exit=0
+### node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs
+PASS command-doctor-mcp-debug second "mcp-doctor.sh diagnostic script"
+PASS command-doctor-mcp-debug second "mcp tools are missing"
+PASS command-doctor-mcp-debug top "/doctor:mcp debug"
+STATUS=OK phrases=268 bridges=36
+exit=0
+### python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only
+Discovered 16 skill graph-metadata.json files
+VALIDATION PASSED: all metadata files are valid
+exit=0
+### node .skilled/bin/compiled-route-guard.cjs
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0

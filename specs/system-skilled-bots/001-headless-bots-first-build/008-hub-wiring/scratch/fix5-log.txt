@@ -1,0 +1,255 @@
+=== [Q011 round] 2026-11-23 18:21:22
+=== [baseline replay with the extended probe set, before any change]
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | my manager needs you to sign this
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | it needs you to confirm the deploy
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | the team needs you
+ood | FAIL top=('system-skilled-bots', 0.8975, 0.667) bots=[(1, 0.8975, 0.667)] | set up a launchd schedule
+ood | FAIL top=('system-skilled-bots', 0.8942, 0.661) bots=[(1, 0.8942, 0.661)] | install a launchd schedule for my backup script
+ood | FAIL top=('system-skilled-bots', 0.8549, 0.592) bots=[(1, 0.8549, 0.592)] | write a launchd plist
+ood | ok   top=None bots=[] | schedule a cron job for the backup
+ood | ok   top=('sk-code', 0.8359, 0.558) bots=[(3, 0.82, 0.153)] | add a cron schedule to my script
+ood | FAIL top=('system-skilled-bots', 0.82, 0.499) bots=[(1, 0.82, 0.499)] | pause the launchd agent
+in  | ok   top=('system-skilled-bots', 0.95) | install the launchd schedule for my nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.95) | install the launchd schedule for the nightly-digest bot
+candidate=NONE stage-one-fails=7
+=== [VOCABULARY CHANGE: drop schedule keyword 'launchd schedule']
+       - launchd schedule
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | my manager needs you to sign this
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | it needs you to confirm the deploy
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | the team needs you
+ood | FAIL top=('system-skilled-bots', 0.8262, 0.541) bots=[(1, 0.8262, 0.541)] | set up a launchd schedule
+ood | FAIL top=('system-skilled-bots', 0.8229, 0.535) bots=[(1, 0.8229, 0.535)] | install a launchd schedule for my backup script
+ood | FAIL top=('system-skilled-bots', 0.8549, 0.592) bots=[(1, 0.8549, 0.592)] | write a launchd plist
+ood | ok   top=None bots=[] | schedule a cron job for the backup
+ood | ok   top=('sk-code', 0.8359, 0.558) bots=[(3, 0.82, 0.153)] | add a cron schedule to my script
+ood | FAIL top=('system-skilled-bots', 0.82, 0.499) bots=[(1, 0.82, 0.499)] | pause the launchd agent
+in  | ok   top=('system-skilled-bots', 0.8921) | install the launchd schedule for my nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.95) | install the launchd schedule for the nightly-digest bot
+candidate=NONE stage-one-fails=7
+
+=== [explicit-lane evidence for the launchd prompts (temporary vitest probe, removed): author:launchd, the bare word, at 0.7] 2026-11-23 18:22:21
+"set up a launchd schedule" [["system-skilled-bots",0.7,["author:launchd"]]]
+"write a launchd plist" [["system-skilled-bots",0.7,["author:launchd"]]]
+"pause the launchd agent" [["system-skilled-bots",0.7,["author:launchd"]]]
+=== [canary build after dropping 'launchd schedule']
+/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:103
+    throw error;
+    ^
+
+Error: gold mismatch for schedule-launchd-install: action defer but expected route
+    at fail (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:101:19)
+    at assertGoldExpectations (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:106:5)
+    at /Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:132:5
+    at Array.map (<anonymous>)
+    at typedGold (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:129:31)
+    at buildArtifacts (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:170:44)
+    at Object.<anonymous> (/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs:228:67)
+    at Module._compile (node:internal/modules/cjs/loader:1968:14)
+    at Object..js (node:internal/modules/cjs/loader:2108:10)
+    at Module.load (node:internal/modules/cjs/loader:1690:32) {
+  code: 'GOLD_MISMATCH'
+}
+
+Node.js v26.13.0
+(exit 1)
+
+=== [canary build FAILED above as predicted: schedule-launchd-install deferred. GOLD CHANGE per Q011: prompt -> 'install the launchd schedule for the nightly-digest bot' (authored fixture)] 2026-11-23 18:22:56
+edited specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+--- canary build
+{"artifacts":5,"cases":20,"effectivePolicyHash":"87fc3d82bc8ff687beea98c76b45fbac93854ec4500f96ffe35efe0380b848c7","graphHash":"a4a61b2567de654ee6ba21e85165cdb90d5557c66ed229f378d9fcc86cfb55da","status":"built"}
+(exit 0)
+same    lib/policy-card.cjs
+same    lib/registry-compiler.cjs
+same    lib/router.cjs
+same    harness/build-artifacts.cjs
+copied  fixtures/canary-cases.v1.json
+"fresh":true
+"effectivePolicyHash":"87fc3d82bc8f
+manifest copies identical
+--- sync
+all 67 served copies match their authored files
+(exit 0)
+--- guard
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+--- stage-two replay
+rc=0
+1 | gate | gold=author | got=author | match=true | 87fc3d82bc8f | write a new BOT.md for a nightly dependency check bot
+2 | gate | gold=run | got=run | match=true | 87fc3d82bc8f | run the nightly-digest bot by hand
+3 | gate | gold=schedule | got=schedule | match=true | 87fc3d82bc8f | install the launchd schedule for the nightly-digest bot
+4 | gate | gold=status | got=status | match=true | 87fc3d82bc8f | show me the status of my bots and their last runs
+5 | gate | gold=status | got=status | match=true | 87fc3d82bc8f | what is waiting in my bots inbox
+6 | gate | gold=run | got=run | match=true | 87fc3d82bc8f | answer the release bot's needs-you question
+7 | gate | gold=run | got=run | match=true | 87fc3d82bc8f | answer the bot's open question with yes
+8 | new | gold=run | got=run | match=true | 87fc3d82bc8f | run my nightly bot
+9 | new | gold=run | got=run | match=true | 87fc3d82bc8f | kick off the nightly-digest bot
+10 | new | gold=run | got=run | match=true | 87fc3d82bc8f | run the nightly bot now
+11 | new | gold=schedule | got=schedule | match=true | 87fc3d82bc8f | pause the nightly-digest bot
+12 | new | gold=schedule | got=schedule | match=true | 87fc3d82bc8f | install the schedule for the nightly-digest bot
+13 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | run the tests
+14 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | status of the build
+15 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | author a skill
+16 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | schedule a meeting for tomorrow
+17 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | update skilled now
+18 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | is my skilled install healthy
+19 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | schedule this bot and show its status
+20 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | answer this question
+21 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | check my email inbox
+22 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | answer the open question
+23 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | answer the open ticket
+24 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | answer my open questions
+25 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | set up a launchd schedule
+26 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | install a launchd schedule for my backup script
+27 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | write a launchd plist
+28 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | pause the launchd agent
+29 | ood | gold=defer | got=defer | match=true | 87fc3d82bc8f | schedule a cron job for the backup
+30 | old-gold | gold=defer | got=defer | match=true | 87fc3d82bc8f | install the launchd schedule for my nightly-digest bot
+31 | old-gold | gold=defer | got=defer | match=true | 87fc3d82bc8f | answer the open needs-you question for the release bot
+rows 31 match 31
+
+=== [diagnostic: strip 'launchd' and 'needs-you' from the hub SKILL.md Keywords comment only (backup kept), rescan, replay] 2026-11-23 18:23:12
+<!-- Keywords: system-skilled-bots, mode-registry, hub-router, workflowMode, packetKind, bots-author, bots-run, bots-schedule, bots-status, headless-bot, bot-md, bots-cli -->
+   'the team needs you' []
+   'set up a launchd schedule' [('system-skilled-bots', 0.6599), ('system-deep-loop', 0.5791)]
+   'write a launchd plist' [('sk-doc', 0.82), ('system-skilled-bots', 0.82)]
+   'pause the launchd agent' [('system-skilled-bots', 0.82)]
+   'install the launchd schedule for the nightly-digest bot' [('system-skilled-bots', 0.95)]
+   'answer the release bot's needs-you question' [('system-skilled-bots', 0.8771), ('system-deep-loop', 0.6014)]
+   'what is waiting in my bots inbox' [('system-skilled-bots', 0.855)]
+--- restore SKILL.md
+restored
+   'the team needs you' [('system-skilled-bots', 0.82)]
+   'set up a launchd schedule' [('system-skilled-bots', 0.8262), ('system-deep-loop', 0.5791)]
+
+=== [CHANGE per Q012: drop 'launchd' and 'needs-you' from the hub SKILL.md Keywords comment] 2026-11-23 18:59:16
+<!-- Keywords: system-skilled-bots, mode-registry, hub-router, workflowMode, packetKind, bots-author, bots-run, bots-schedule, bots-status, headless-bot, bot-md, bots-cli -->
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+--- derived freshness
+
+checked=16 fresh=16 stale=0 errored=0
+--- leaf manifest freshness
+
+checked=16 fresh=16 failed=0
+--- root metadata
+
+checked=16 passed=16 failed=0 fixed=0
+--- guard
+  system-skilled-bots: run node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots, then copy .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json over specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json, or commit with the hooks installed so the pre-commit gate does both
+--- stage one
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.177)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the open question
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[] | answer the open issues
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[] | answer the open review threads
+ood | ok   top=None bots=[] | my manager needs you to sign this
+ood | ok   top=None bots=[] | it needs you to confirm the deploy
+ood | ok   top=None bots=[] | the team needs you
+ood | FAIL top=('system-skilled-bots', 0.6598, 0.247) bots=[(1, 0.6598, 0.247)] | set up a launchd schedule
+ood | FAIL top=('system-skilled-bots', 0.6566, 0.241) bots=[(1, 0.6566, 0.241)] | install a launchd schedule for my backup script
+ood | ok   top=('sk-doc', 0.82, 0.303) bots=[(2, 0.82, 0.298)] | write a launchd plist
+ood | ok   top=None bots=[] | schedule a cron job for the backup
+ood | ok   top=('sk-code', 0.8359, 0.558) bots=[(3, 0.82, 0.153)] | add a cron schedule to my script
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | pause the launchd agent
+in  | ok   top=('system-skilled-bots', 0.8771) | answer the release bot's needs-you question
+in  | ok   top=('system-skilled-bots', 0.6195) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+in  | ok   top=('system-skilled-bots', 0.8332) | answer the bot's open question with yes
+in  | ok   top=('system-skilled-bots', 0.82) | install the launchd schedule for my nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.95) | install the launchd schedule for the nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.9307) | schedule a bot
+in  | ok   top=('system-skilled-bots', 0.9236) | pause the nightly-digest bot
+candidate=NONE stage-one-fails=3
+
+=== [Q012 gates: routing slice and advisor suite FAIL (2 failed, 2472 passed). Drift: cmd-bots-schedule-plain-tune-01 'Set up the launchd timer so the nightly cleanup bot fires on its cron' top system-skilled-bots -> null. An in-domain regression from dropping bare 'launchd'; not recaptured] 2026-11-23 19:09:00
+=== [diagnostic variant: put 'launchd' back in the SKILL.md Keywords comment, keep 'needs-you' removed]
+<!-- Keywords: system-skilled-bots, mode-registry, hub-router, workflowMode, packetKind, bots-author, bots-run, bots-schedule, bots-status, headless-bot, bot-md, bots-cli, launchd -->
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
++ Received
+-     "cmd-bots-author-plain-tune-01": "/bots:author",
+-     "cmd-bots-run-typed-01": "/bots:run",
+-     "cmd-bots-schedule-typed-01": "/bots:schedule",
+ood | ok   top=None bots=[] | my manager needs you to sign this
+ood | ok   top=None bots=[] | it needs you to confirm the deploy
+ood | ok   top=None bots=[] | the team needs you
+ood | FAIL top=('system-skilled-bots', 0.8262, 0.541) bots=[(1, 0.8262, 0.541)] | set up a launchd schedule
+ood | FAIL top=('system-skilled-bots', 0.8229, 0.535) bots=[(1, 0.8229, 0.535)] | install a launchd schedule for my backup script
+ood | FAIL top=('system-skilled-bots', 0.8549, 0.592) bots=[(1, 0.8549, 0.592)] | write a launchd plist
+ood | FAIL top=('system-skilled-bots', 0.82, 0.499) bots=[(1, 0.82, 0.499)] | pause the launchd agent
+in  | ok   top=('system-skilled-bots', 0.8771) | answer the release bot's needs-you question
+in  | ok   top=('system-skilled-bots', 0.6195) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+in  | ok   top=('system-skilled-bots', 0.8332) | answer the bot's open question with yes
+in  | ok   top=('system-skilled-bots', 0.8921) | install the launchd schedule for my nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.95) | install the launchd schedule for the nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.9307) | schedule a bot
+in  | ok   top=('system-skilled-bots', 0.9236) | pause the nightly-digest bot
+candidate=NONE stage-one-fails=4
+
+=== [variant result: slice still fails 'matches the captured totals': four bots rows lose command attachment (author plain, run, schedule and status typed). Bisect: restore the original SKILL.md (both keywords), keep 'launchd schedule' dropped] 2026-11-23 19:10:03
+SKILL.md restored
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 11 passed (12)
+
+=== [bisect step 2: original SKILL.md still fails totals. Put 'launchd schedule' back after 'cron bot' in hub-router.json and ROUTER.md] 2026-11-23 19:10:50
+edited .skilled/skills/system-skilled-bots/hub-router.json
+edited .skilled/skills/system-skilled-bots/ROUTER.md
+       + launchd schedule
+RESULT: PASSED
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > matches the captured totals
+      Tests  1 failed | 11 passed (12)
+
+=== [CORRECTION: bisect steps 1 and 2 ran with a stale manifest, so stage two served legacy and command attachment dropped. They are not evidence. The clean Q012 reading (slice-fix5.txt, manifest refreshed first) shows only the launchd-timer row drift] 2026-11-23 19:11:39
+=== [clean measurement of the middle option: drop 'launchd schedule', keep 'launchd' in SKILL.md, drop 'needs-you'; rebuild canary and manifest before the slice]
+edited
+bots-cli, launchd -->
+       - launchd schedule
+RESULT: PASSED
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+"effectivePolicyHash":"c5a60821fe8d
+"status":"built"
+"fresh":true
+manifest copies identical
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+{"hubId":"system-skilled-bots","action":"route","selectionKind":"single","targets":[{"backendKind":"bots-cli","packetId"
+--- slice
+slice exit 0
+      Tests  12 passed (12)
+--- stage one
+ood | ok   top=None bots=[] | my manager needs you to sign this
+ood | ok   top=None bots=[] | it needs you to confirm the deploy
+ood | ok   top=None bots=[] | the team needs you
+ood | FAIL top=('system-skilled-bots', 0.8262, 0.541) bots=[(1, 0.8262, 0.541)] | set up a launchd schedule
+ood | FAIL top=('system-skilled-bots', 0.8229, 0.535) bots=[(1, 0.8229, 0.535)] | install a launchd schedule for my backup script
+ood | FAIL top=('system-skilled-bots', 0.8549, 0.592) bots=[(1, 0.8549, 0.592)] | write a launchd plist
+ood | FAIL top=('system-skilled-bots', 0.82, 0.499) bots=[(1, 0.82, 0.499)] | pause the launchd agent
+candidate=NONE stage-one-fails=4
+--- launchd timer row
+[('system-skilled-bots', 0.82), ('mcp-tooling', 0.56)]
+--- stage-two replay, middle option
+rc=0
+rows 31 match 31 hash c5a60821fe8d

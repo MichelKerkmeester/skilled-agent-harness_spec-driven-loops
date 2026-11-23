@@ -1,0 +1,11 @@
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled
+
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-move-CySqwQ/compiled-routing
+no prior closure to roll back
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  19:20:20
+   Duration  571ms (tests 97%, import 2%, transform 1%, worker 1%)
+

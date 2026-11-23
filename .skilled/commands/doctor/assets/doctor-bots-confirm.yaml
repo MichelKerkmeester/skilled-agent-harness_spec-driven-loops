@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: BOTS CHECK (CONFIRM MODE, READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+# Same steps as the auto workflow. This variant adds one checkpoint
+# before the checker runs. The checkpoint never changes what runs.
+role: "Diagnostic operator reporting whether one repository's bots/ folder passes the bot definition checker"
+purpose: "Run the definition checker once over the repository's bots/ folder, after one checkpoint, and report each finding by its invariant id"
+action: "Confirm the target, run the checker once, then render its report through the presentation contract"
+skill_owner: ".skilled/skills/system-skilled-bots/"
+
+operating_mode:
+  workflow: single_step_check
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: one_checkpoint
+  validation: read_only_assertion
+
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route runs the definition checker only. The checker reads and never writes. The route never edits a BOT.md, never runs, installs or enqueues a bot, and writes no state log."
+
+upstream_assets:
+  checker: ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs"
+  presentation: ".skilled/commands/doctor/assets/doctor-bots-presentation.txt"
+
+inputs:
+  execution_mode: "INTERACTIVE"
+  root: "Optional repository root, passed as --root <dir>. The current working directory is used without it."
+  strict: "When true, pass --strict so advisory findings count as failures. The default is false."
+
+execution:
+  steps:
+    - "Check that .skilled/skills/system-skilled-bots/scripts/bot-check.cjs and .skilled/commands/doctor/assets/doctor-bots-presentation.txt exist. If one is missing, report its path and stop with STATUS=FAIL."
+    - checkpoint:
+        id: target_resolved
+        when: "After the root and the strict flag are resolved and before the checker runs"
+        question: "Run the definition checker over this repository as shown?"
+        options:
+          - { label: "Proceed", description: "Run the checker once, read-only" }
+          - { label: "Change", description: "Edit the root or the strict flag" }
+          - { label: "Cancel", description: "Stop without running anything" }
+        wait_for: user_reply
+    - 'Run node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs "{root}", adding --strict when requested.'
+    - "Show every PASS, FAIL, WARN and INFO line as printed. A FAIL line names its invariant id, such as definition.missing-trigger or isolation-undeclared."
+    - "Exit 0 means every hard invariant passed: end with STATUS=OK. Exit 1 means at least one invariant failed: list the FAIL lines, name /bots:author as the repair, and end with STATUS=WARN. Exit 2 means the target is missing or the audit could not finish: quote the message and end with STATUS=FAIL."
+    - "Render the result through .skilled/commands/doctor/assets/doctor-bots-presentation.txt."
+
+output: |
+  STATUS=OK when the checker exits 0. Show the check report through the presentation contract.
+  STATUS=WARN when the checker exits 1. Show the check report and each failed invariant id.
+  STATUS=FAIL when the checker exits 2 or cannot run. Name the accepted invocation (/doctor:bots [--root <dir>] [--strict]) and quote the checker message.
+  STATUS=CANCELLED when the operator cancels at the checkpoint.

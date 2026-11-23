@@ -117,9 +117,11 @@ The deciding command is `node .skilled/commands/doctor/scripts/parent-skill-chec
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phases 001 to 007 | Internal | Red (not built) | Modes would route to missing behavior. Phase cannot start |
+| Phases 001 to 007 | Internal | Amber (built; phase 002 still has 3 Unmet weekday-probe rows) | Modes would route to missing behavior. Phase cannot start |
 | `/create:skill-parent` | Internal | Green (exists at `.skilled/commands/create/skill-parent.md`) | No sanctioned hub scaffold. Stop and flag the deviation |
 | `/create:command` | Internal | Green (exists at `.skilled/commands/create/command.md`) | No sanctioned command scaffold. Stop and flag the deviation |
+| `/create:skill-parent` owned assets | Internal | Green (written) | Hub root: `SKILL.md`, `README.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `graph-metadata.json`, `description.json`, `command-metadata.json`, `leaf-manifest.json`, `changelog/`, `shared/`, `benchmark/`, `manual-testing-playbook/`, and per packet `SKILL.md`, `ROUTER.md`, `README.md`, `changelog/` |
+| `/create:command` owned assets | Internal | Green (written) | Per bots command: `.skilled/commands/bots/<mode>.md` plus `assets/bots-<mode>-auto.yaml`, `assets/bots-<mode>-confirm.yaml` and `assets/bots-<mode>-presentation.txt`. Doctor family: `.skilled/commands/doctor/bots.md`, `assets/doctor-bots-check.yaml`, `assets/doctor-bots-presentation.txt` and its `_routes.yaml` entry |
 | `overlay-engine.cjs repin --stage` | Internal | Green (exists at `.skilled/commands/doctor/scripts/overlay-engine.cjs`) | No staged re-pin proof. AC-007 stays Unmet |
 <!-- /ANCHOR:dependencies -->
 

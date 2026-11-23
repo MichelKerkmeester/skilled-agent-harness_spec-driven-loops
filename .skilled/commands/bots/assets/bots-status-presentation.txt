@@ -1,0 +1,81 @@
+# /bots:status Presentation Contract
+
+Presentation source of truth for `/bots:status`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, the setup display and result displays.
+
+## 1. STARTUP PRESENTATION
+
+For `:confirm` or no suffix, resolve the inputs from `$ARGUMENTS`, show the setup display, and ask only for a required input that is missing.
+
+For `:auto`, resolve the inputs from `$ARGUMENTS` and defaults. Ask only for a required input that is missing.
+
+### Auto Resolution Table
+
+| Field | Required | Resolution |
+|-------|----------|------------|
+| `view` | No | Optional. status (the default) or inbox. |
+| `flags` | No | Optional. --json and --all for status. Rebuild and unregister flags are not accepted by this route. |
+| `repo` | No | Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory. |
+
+### Consolidated Prompt Template
+
+```text
+/bots:status setup
+- view: [value or default]
+- flags: [value or default]
+- repo: [value or default]
+
+Reply with the missing value, or "go" to proceed.
+```
+
+### Auto Fail-Fast Display
+
+```text
+/bots:status needs a valid input: [field].
+Usage: /bots:status [status|inbox] [--json] [--all] [--repo <path>] [:auto|:confirm]
+
+STATUS=FAIL ERROR="Invalid input: [field]"
+```
+
+## 2. CHECKPOINT LAYOUT
+
+The confirm workflow stops once, after the view and flags are resolved and before the read runs:
+
+```text
+/bots:status checkpoint
+- View: {view}
+- Flags: [as resolved]
+
+Proceed, Change or Cancel?
+```
+
+## 3. RESULTS DISPLAY
+
+### Success
+
+```text
+/bots:status complete
+- View: {view}
+- Rows: [as printed]
+
+STATUS=OK
+```
+
+### Failure
+
+```text
+/bots:status failed
+- Step: [the step that ended the run]
+- Output: [the CLI output, quoted]
+
+STATUS=FAIL ERROR="[named cause]"
+```
+
+## 4. NEXT-STEP SUGGESTIONS
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| An open needs-you item is listed | `/bots:run answer <item-id> <text>` | Answer it so the run continues |
+| A row needs a reinstall | `/bots:schedule install <bot-id>` | Install the schedule again |
+| The index looks stale | `bots status --rebuild` | Operator step: this rewrites the status index |
+
+End interactive presentations with a single next-step prompt.

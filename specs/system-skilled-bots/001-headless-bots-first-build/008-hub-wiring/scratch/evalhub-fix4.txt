@@ -1,0 +1,11 @@
+verdict: pass
+counts: {"pass":8,"drift":0,"stale-gold":0,"invalid":0,"broken":0,"n/a":0}
+coverage: {"modes":[{"workflowMode":"author","scenarios":1},{"workflowMode":"run","scenarios":2},{"workflowMode":"schedule","scenarios":1},{"workflowMode":"status","scenarios":2}],"uncovered":[],"negatives":2,"enforced":true,"short":false}
+  BOT-001 pass gold=author routed=author
+  BOT-007 pass gold=defer routed=-
+  BOT-008 pass gold=defer routed=-
+  BOT-006 pass gold=run routed=run
+  BOT-002 pass gold=run routed=run
+  BOT-003 pass gold=schedule routed=schedule
+  BOT-005 pass gold=status routed=status
+  BOT-004 pass gold=status routed=status

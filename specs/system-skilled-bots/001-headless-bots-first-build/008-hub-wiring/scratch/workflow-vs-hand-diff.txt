@@ -1,0 +1,2093 @@
+# workflow-vs-hand-diff: produced by /create:skill-parent and /create:command (redo run 2)
+# Summary (what the workflow produced differently from the hand-written first build):
+#  1. Operation resolved to update (skill root exists); create refused by existing_skill_on_create.
+#  2. Hub files generated from the sk-doc parent-skill templates; hub root ROUTER.md went stage1-only -> active with 4 mode maps.
+#  3. Tool grants follow ADR-003: author has no Bash (checker moved to /doctor:bots); status Bash limited to bots status and bots inbox (DEVIATION from ADR-003 wording, flagged).
+#  4. Command set is split_4_file_set: router + -auto/-confirm YAML + -presentation; doctor set is doctor-bots-auto/confirm, not doctor-bots-check (divergence).
+#  5. command-metadata.json is NOT written: neither workflow writes it; the bridge gate requires it (logic-sync block).
+#  6. Excluded strings scrubbed (run bot now, install the bot schedule, uninstall the bot schedule, check the bot definition, bot now): grep empty.
+#  7. status packet and /bots:status no longer run --rebuild or --unregister.
+
+## hub folder (excluding tracked runtime, assets, scripts)
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/README.md .skilled/skills/system-skilled-bots/README.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/README.md	2026-11-23 13:08:42
++++ .skilled/skills/system-skilled-bots/README.md	2026-11-23 14:29:51
+@@ -37,8 +37,8 @@
+ 
+ | Packet | Kind | Use it for | Pointer |
+ |---|---|---|---|
+-| `bots-author/` | workflow | Write or edit a `BOT.md` from the template, then check it | [`README.md`](./bots-author/README.md) |
+-| `bots-run/` | workflow | Run a bot now, queue or drain runs, and answer a needs-you item | [`README.md`](./bots-run/README.md) |
++| `bots-author/` | workflow | Write or edit a `BOT.md` from the template. The check runs under `/doctor:bots` | [`README.md`](./bots-author/README.md) |
++| `bots-run/` | workflow | Run a bot, queue or drain runs, and answer a needs-you item | [`README.md`](./bots-run/README.md) |
+ | `bots-schedule/` | workflow | Install or remove a schedule, and enable, disable, pause or resume a bot | [`README.md`](./bots-schedule/README.md) |
+ | `bots-status/` | workflow | Read status, last runs, deliveries and the needs-you inbox | [`README.md`](./bots-status/README.md) |
+ 
+@@ -53,7 +53,6 @@
+ | [`mode-registry.json`](./mode-registry.json) | The single source of truth for every mode | Resolve which packet owns a request |
+ | [`hub-router.json`](./hub-router.json) | Stage-one signals, vocabulary and tie-break order | See how a request scores against each mode |
+ | [`ROUTER.md`](./ROUTER.md) | Stage-two intent and resource maps | See which leaves a selected mode loads |
+-| [`command-metadata.json`](./command-metadata.json) | The four `/bots:*` commands this hub owns | See which command maps to which mode |
+ | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the reference files a mode loads |
+ | [`assets/bot-template.md`](./assets/bot-template.md) | The `BOT.md` template | Start a new bot from it |
+ | [`scripts/bot-check.cjs`](./scripts/bot-check.cjs) | The read-only definition checker | Prove a `bots/` folder before anything installs it |
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/ROUTER.md .skilled/skills/system-skilled-bots/ROUTER.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/ROUTER.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/ROUTER.md	2026-11-23 14:31:58
+@@ -29,14 +29,14 @@
+ 
+ Every keyword names a bot, so a bare verb like run, schedule or status fires nothing here and the hub defers.
+ 
+-- **Author leaves.** Writing or editing a `BOT.md` loads the bot definition reference: the layout, the template and the checker.
+-- **Run leaves.** Running a bot now, queueing or draining runs, or answering a bot's needs-you item loads the run reference. `bots answer` routes here.
++- **Author leaves.** Writing or editing a `BOT.md` loads the bot definition reference: the layout, the template and the check command that `/doctor:bots` runs.
++- **Run leaves.** Starting a bot run, queueing or draining runs, or answering a bot's needs-you item loads the run reference. `bots answer` routes here.
+ - **Schedule leaves.** Installing or removing a bot's schedule, or enabling, disabling, pausing or resuming a bot, loads the schedule lifecycle reference.
+ - **Status leaves.** Reading bot status, the last bot run or the needs-you inbox loads the status and inbox reference. `bots inbox` routes here.
+ 
+ ---
+ 
+-## 3. MACHINE-READABLE ROUTER
++## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
+ 
+ The single machine-readable projection of the intent model above. Keep the two in sync: when a row changes above, update the matching entry here. `INTENT_SIGNALS` and `RESOURCE_MAP` carry the same keys.
+ 
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/SKILL.md .skilled/skills/system-skilled-bots/SKILL.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/SKILL.md	2026-11-23 13:05:18
++++ .skilled/skills/system-skilled-bots/SKILL.md	2026-11-23 14:29:46
+@@ -23,8 +23,8 @@
+ 
+ | Mode | Use it for | Packet | Command |
+ |------|------------|--------|---------|
+-| **author** | Write or edit a `BOT.md` from the shipped template, then check it | `bots-author/` | `/bots:author` |
+-| **run** | Run a bot now, queue a run, drain the queue or answer a bot's needs-you item | `bots-run/` | `/bots:run` |
++| **author** | Write or edit a `BOT.md` from the shipped template. The check runs under `/doctor:bots` | `bots-author/` | `/bots:author` |
++| **run** | Run a bot, queue a run, drain the queue or answer a bot's needs-you item | `bots-run/` | `/bots:run` |
+ | **schedule** | Install or remove a bot's launchd schedule, and pause, resume, enable or disable a bot | `bots-schedule/` | `/bots:schedule` |
+ | **status** | Read installed bots, last runs, deliveries and the needs-you inbox | `bots-status/` | `/bots:status` |
+ 
+@@ -40,12 +40,10 @@
+ 
+ ## 2. SMART ROUTING
+ 
+-`hub-router.json` scores the request against its vocabulary classes. It then selects one `workflowMode`, an ordered bundle or a defer outcome. `mode-registry.json` maps that mode to its packet folder. The root [`ROUTER.md`](./ROUTER.md) maps the request to the selected mode's leaves and holds the fallback checklist, so read it before selecting a packet.
++`hub-router.json` scores the request against its vocabulary classes. It then selects one `workflowMode`, an ordered bundle or a defer outcome. `mode-registry.json` maps that mode to its packet folder. The root [`ROUTER.md`](./ROUTER.md) holds the hub's routing directive and its fallback checklist, so read it before selecting a packet.
+ 
+ Every signal is anchored on the word bot, because bare verbs like run, schedule and status also name unrelated work. A bot request that names no mode defers: ask which mode the reader means, using the table above.
+ 
+-Take the mode from the compiled front door first, `node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt "<task>"`, as the machine-router callout in [`ROUTER.md`](./ROUTER.md) says. This hub ships without a compiled activation manifest, so the front door returns the `{"servingAuthority":"legacy"}` sentinel and routing uses `hub-router.json` and the root `ROUTER.md` instead.
+-
+ ---
+ 
+ ## 3. HOW IT WORKS
+@@ -70,7 +68,6 @@
+   ROUTER.md
+   description.json
+   graph-metadata.json
+-  command-metadata.json
+   leaf-manifest.json
+   changelog/
+   manual-testing-playbook/
+@@ -89,9 +86,8 @@
+ 
+ - `mode-registry.json` owns the workflow mode, packet kind, backend kind, tool surface, packet identity, aliases and advisor routing class.
+ - `hub-router.json` owns stage-one policy, signals, vocabulary classes and tie-break order.
+-- `ROUTER.md` owns the hub routing directive and the stage-two maps: `INTENT_SIGNALS` and `RESOURCE_MAP` pick the selected mode's leaves.
++- `ROUTER.md` owns the hub routing directive and the stage-two maps that pick the selected mode's leaves.
+ - `description.json` and the single hub `graph-metadata.json` provide advisor discovery without a second identity for any mode.
+-- `command-metadata.json` lists the four `/bots:*` commands this hub owns.
+ - `leaf-manifest.json` is generated from packet resources. Never hand-edit it.
+ 
+ ---
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/README.md .skilled/skills/system-skilled-bots/bots-author/README.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/README.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-author/README.md	2026-11-23 14:32:57
+@@ -1,31 +1,81 @@
+ ---
+ title: "bots-author"
+-description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template, then prove it with the definition checker."
++description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template. The definition check runs under /doctor:bots."
+ version: 1.0.0.0
+ ---
+ 
+ # bots-author
+ 
+-The author mode of the `system-skilled-bots` hub. It writes or edits one `BOT.md` under a repository's `bots/` folder from the shipped template, then proves the file with the definition checker before anything runs or installs it.
++> The author mode of `system-skilled-bots`. It writes or edits one `BOT.md` under a repository's `bots/` folder from the shipped template, and the definition check runs under `/doctor:bots`.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-Use this mode when the hub selects `author`, or run `/bots:author`. The table names what it covers and what it hands to the sibling modes.
++The author mode turns a request about a file-defined bot into one `BOT.md` on disk. A bot is a single file under a repository's `bots/` folder, and this mode decides what that file says, not whether the bot runs. The table names what it covers and what it hands to the sibling modes.
+ 
+ | Aspect | What it gives you |
+ |---|---|
+ | **Use it for** | A request to write a new bot, or to change an existing bot's trigger, runtime, budget, isolation or delivery. A checker failure on a `BOT.md` that needs its field fixed |
+ | **Command** | `/bots:author` |
+-| **Tools** | Read, Write, Edit, Bash, Grep, Glob |
+-| **Hands off** | Running, scheduling or reading a bot. The hub routes those to run, schedule and status. Checking every bot in a repository as a doctor task. Use `/doctor:bots` |
++| **Tools** | Read, Write, Edit, Grep, Glob. No Bash, so the checker never runs from this mode |
++| **Hands off** | Running, scheduling or reading a bot, which the run, schedule and status modes own. Checking every bot in a repository, which is `/doctor:bots` |
+ 
++Every author request reaches this mode through the hub's `author` signal, or through `/bots:author`. The mode holds no routing logic of its own. Its `ROUTER.md` selects the one reference leaf it loads, and that leaf names the template fields.
++
+ ---
+ 
+-## 2. FILES
++## 2. LAYOUT
+ 
++A consumer repository holds only its `bots/` folder. The author mode writes inside that folder and nowhere else.
++
++```text
++<repository>/bots/
++  config.json        repository settings, such as identity for a repository with no remote
++  <id>/BOT.md        one bot: YAML frontmatter and the standing instructions in the body
++```
++
++The id is lowercase letters, digits and hyphens. The template at `assets/bot-template.md` names every field and its default: `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. Run folders and control state never live in the consumer checkout, so an author request never touches them.
++
++---
++
++## 3. HOW TO USE
++
++1. Confirm the bot id and the target repository.
++2. Copy `../assets/bot-template.md` to `bots/<id>/BOT.md`, or open the file that already exists.
++3. Fill the fields the request names. Replace the `<your-bot-id>` placeholder, and write a body, because an empty body fails the check.
++4. Report the file path and the fields you set.
++5. Run `/doctor:bots` on the repository. It reports each failure by its invariant id, such as `definition.missing-trigger` or `isolation-undeclared`, and the field that id names is the one to fix.
++
++The check is a separate step on purpose. This mode grants no Bash, so the checker is read-only and runs under the doctor command, which owns every repository-wide check.
++
++---
++
++## 4. RELATED
++
++- [`SKILL.md`](./SKILL.md): the author workflow, its rules and its success criteria.
++- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
++- [`references/bot-definition.md`](./references/bot-definition.md): the file layout, the template and the check.
++- [`../README.md`](../README.md): the hub overview with all four modes.
++- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
++
++---
++
++## 5. FILES
++
+ - `SKILL.md`: the author workflow, its rules and its success criteria.
+ - `ROUTER.md`: the packet machine router.
+ - `references/bot-definition.md`: the author verbs and their contract.
+ - `changelog/`: release notes for this packet.
++
++---
++
++## 6. VERIFICATION
++
++The hub's structural gate verifies the packet's shape:
++
++```bash
++node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
++```
++
++The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real author request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/ROUTER.md .skilled/skills/system-skilled-bots/bots-author/ROUTER.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/ROUTER.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-author/ROUTER.md	2026-11-23 14:30:15
+@@ -37,7 +37,7 @@
+ 
+ ## 2. INTENT MODEL
+ 
+-- **`DEFINITION`** fires on bot.md, bot definition, author a bot, write a bot, create a bot, new bot, edit a bot, bot template, bot-check, definition checker at weight 4. It loads `references/bot-definition.md`.
++- **`DEFINITION`** fires on bot.md, bot definition, author a bot, write a bot, create a bot, new bot, edit a bot and bot template at weight 4. It loads `references/bot-definition.md`.
+ 
+ A request that fires no intent returns `UNKNOWN_FALLBACK` with the checklist below.
+ 
+@@ -64,7 +64,7 @@
+ ]
+ 
+ INTENT_SIGNALS = {
+-    "DEFINITION": {"weight": 4, "keywords": ["bot.md", "bot definition", "author a bot", "write a bot", "create a bot", "new bot", "edit a bot", "bot template", "bot-check", "definition checker"]},
++    "DEFINITION": {"weight": 4, "keywords": ["bot.md", "bot definition", "author a bot", "write a bot", "create a bot", "new bot", "edit a bot", "bot template"]},
+ }
+ 
+ RESOURCE_MAP = {
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/SKILL.md .skilled/skills/system-skilled-bots/bots-author/SKILL.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/SKILL.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-author/SKILL.md	2026-11-23 14:30:10
+@@ -1,13 +1,13 @@
+ ---
+ name: bots-author
+-description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template, then prove it with the definition checker."
+-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
++description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template. The definition check runs under /doctor:bots."
++allowed-tools: [Read, Write, Edit, Grep, Glob]
+ version: 1.0.0.0
+ ---
+ 
+ # Bots Author
+ 
+-The author mode of the `system-skilled-bots` hub. It writes or edits one `BOT.md` under a repository's `bots/` folder from the shipped template, then proves the file with the definition checker before anything runs or installs it.
++The author mode of the `system-skilled-bots` hub. It writes or edits one `BOT.md` under a repository's `bots/` folder from the shipped template. The mode grants no Bash, so the definition checker does not run here: `/doctor:bots` runs it read-only over the whole `bots/` folder once the file is written.
+ 
+ ---
+ 
+@@ -16,7 +16,7 @@
+ Use this packet when the `system-skilled-bots` hub selects the `author` mode, or when `/bots:author` names it.
+ 
+ - A request to write a new bot, or to change an existing bot's trigger, runtime, budget, isolation or delivery.
+-- A checker failure on a `BOT.md` that needs its field fixed.
++- A checker failure on a `BOT.md` that needs its field fixed. The fix is made here, and the re-check runs under `/doctor:bots`.
+ 
+ ### When NOT to Use
+ 
+@@ -48,8 +48,7 @@
+ 1. Confirm the bot id and the target repository. The id is lowercase letters, digits and hyphens.
+ 2. Copy `../assets/bot-template.md` to `bots/<id>/BOT.md`, or open the existing file, and fill the fields the request names.
+ 3. Write the standing instructions in the body. An empty body fails the check.
+-4. Run `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <checkout-root>` and fix every `FAIL` line by the invariant id it names.
+-5. Report the file path and the checker's final exit status.
++4. Report the file path and the fields you set. Name `/doctor:bots` as the next step, which runs the definition checker read-only over the repository.
+ 
+ ---
+ 
+@@ -58,17 +57,18 @@
+ ### ALWAYS
+ 
+ - Start from the shipped template, never from memory.
+-- Run the checker after every edit and quote its exit status.
++- Name the invariant id of any field the request asks you to change, so the re-check can be read against it.
+ 
+ ### NEVER
+ 
+ - Never restate a field rule the runtime owns.
+ - Never run, schedule or install the bot from this mode.
++- Never run the checker from this mode, because it grants no Bash.
+ 
+ ### ESCALATE IF
+ 
+-- The checker exits 2, so the audit could not finish.
+ - The request needs a field the template does not carry.
++- The bot id collides with an existing `bots/<id>/` folder that the request did not name.
+ 
+ ---
+ 
+@@ -84,11 +84,11 @@
+ 
+ ## 6. SUCCESS CRITERIA
+ 
+-- `bots/<id>/BOT.md` exists and the checker exits 0 on the repository.
++- `bots/<id>/BOT.md` exists with every field the request named, and the report names `/doctor:bots` as the check that follows.
+ 
+ ---
+ 
+ ## 7. INTEGRATION POINTS
+ 
+ - Input: requests routed from the `system-skilled-bots` hub, or `/bots:author`.
+-- Output: the verified author result, with the command run and its exit status.
++- Output: the written or edited `BOT.md` path and the fields set, for `/doctor:bots` to check.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/changelog/v1.0.0.0.md .skilled/skills/system-skilled-bots/bots-author/changelog/v1.0.0.0.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/changelog/v1.0.0.0.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-author/changelog/v1.0.0.0.md	2026-11-23 14:30:20
+@@ -20,7 +20,7 @@
+ - `SKILL.md` carries the author workflow and its rules.
+ - `ROUTER.md` maps author requests to the packet's reference leaf.
+ - `references/bot-definition.md` names the verbs this mode runs.
+-- `/bots:author` is the mode's command.
++- `/bots:author` is the mode's command, with a read, write and edit tool grant and no Bash.
+ 
+ &nbsp;
+ 
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md	2026-11-23 13:05:35
++++ .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md	2026-11-23 14:30:23
+@@ -1,6 +1,6 @@
+ ---
+-title: "Bot Definition: Writing and Checking a BOT.md"
+-description: "Where a bot's BOT.md lives, which fields the template carries, and how the definition checker proves the file before anything installs it."
++title: "Bot Definition: Writing a BOT.md"
++description: "Where a bot's BOT.md lives, which fields the template carries, and which command proves the file with the definition checker."
+ trigger_phrases:
+   - "bot definition"
+   - "write a bot.md"
+@@ -10,9 +10,9 @@
+ version: 1.0.0.0
+ ---
+ 
+-# Bot Definition: Writing and Checking a BOT.md
++# Bot Definition: Writing a BOT.md
+ 
+-A bot is one `BOT.md` file under a repository's `bots/` folder. This reference says where the file goes, where its fields come from and how to prove it before anything runs or installs it.
++A bot is one `BOT.md` file under a repository's `bots/` folder. This reference says where the file goes, where its fields come from and which command proves it before anything runs or installs it.
+ 
+ ---
+ 
+@@ -20,7 +20,7 @@
+ 
+ ### Purpose
+ 
+-Give the author mode one place that names the file layout, the template and the checker, so a new bot is written from the shipped template and checked by the same predicates the runner and installer use.
++Give the author mode one place that names the file layout and the template, so a new bot is written from the shipped template and checked by the same predicates the runner and installer use.
+ 
+ ### Usage
+ 
+@@ -53,10 +53,10 @@
+ 
+ ## 4. CHECK THE DEFINITION
+ 
++The author mode does not run the checker, because it grants no Bash. Hand the check to `/doctor:bots`, which runs the definition checker read-only over the repository's `bots/` folder:
++
+ ```bash
+ node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <checkout-root>
+ ```
+ 
+-The checker only reads. It prints one `PASS|FAIL|WARN|INFO: <id>: <message>` line per finding and exits 0 when every hard invariant passes, 1 on any failure and 2 when the target is missing or the audit cannot finish. `--strict` turns advisory findings into failures. A failure names its invariant id, such as `definition.missing-trigger` or `isolation-undeclared`, so fix the field that id names and run the check again.
+-
+-The same checker runs as `/doctor:bots` for a whole repository.
++The checker only reads. It prints one `PASS|FAIL|WARN|INFO: <id>: <message>` line per finding and exits 0 when every hard invariant passes, 1 on any failure and 2 when the target is missing or the audit cannot finish. `--strict` turns advisory findings into failures. A failure names its invariant id, such as `definition.missing-trigger` or `isolation-undeclared`, so the field that id names is the one to fix before the next check.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/README.md .skilled/skills/system-skilled-bots/bots-run/README.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/README.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-run/README.md	2026-11-23 14:33:02
+@@ -1,31 +1,96 @@
+ ---
+ title: "bots-run"
+-description: "Run mode of system-skilled-bots: run a bot now, queue or drain run requests, and answer a needs-you item so its run continues."
++description: "Run mode of system-skilled-bots: start a bot run, queue or drain run requests, and answer a needs-you item so its run continues."
+ version: 1.0.0.0
+ ---
+ 
+ # bots-run
+ 
+-The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot now, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one.
++> The run mode of `system-skilled-bots`. It starts a bot run through `.skilled/bin/bots.cjs`, queues or drains run requests, and answers a needs-you item so the parked run continues.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-Use this mode when the hub selects `run`, or run `/bots:run`. The table names what it covers and what it hands to the sibling modes.
++The run mode is the one mode that starts an executor. A run dispatches a real executor, which may call a model and, under shared isolation, change the consumer checkout. Every request therefore names the bot id and the repository before anything runs. The table names what it covers and what it hands to the sibling modes.
+ 
+ | Aspect | What it gives you |
+ |---|---|
+-| **Use it for** | A request to run one bot now, or to queue a run from an event. A request to drain the bot request queue. A request to answer a bot's open question so its run continues |
++| **Use it for** | A request to start a run of one bot, or to queue a run from an event. A request to drain the bot request queue. A request to answer a bot's open question so its run continues |
+ | **Command** | `/bots:run` |
+-| **Tools** | Read, Bash, Grep, Glob |
+-| **Hands off** | Reading which items are open. That is `bots inbox`, which the status mode owns. Putting a bot on a schedule. The schedule mode owns launchd |
++| **Tools** | Read, Bash, Grep, Glob. Bash runs only the `bots.cjs` run verbs |
++| **Hands off** | Reading which items are open, which is `bots inbox` and belongs to the status mode. Putting a bot on a schedule, which the schedule mode owns through launchd |
+ 
++`bots answer` lives here because answering an item queues the run that continues the parked one. The hub's `run` signal and the packet's own `ROUTER.md` both route to the same reference leaf.
++
+ ---
+ 
+-## 2. FILES
++## 2. VERBS
+ 
++The mode runs four verbs. Each takes `--repo <path>` for the consumer checkout.
++
++```text
++bots run <id> --repo <path>
++bots enqueue <id> --source <name> (--event-id <id> | --key <key>) --repo <path>
++bots drain --repo <path>
++bots answer <item-id> <text> --repo <path>
++```
++
++`bots run` starts one bot in the shared checkout. `bots enqueue` queues one request, and an event sent twice is a duplicate. `bots drain` claims every queued request once and routes each outcome. `bots answer` answers a needs-you item and queues the run that continues it. Read the item id from `bots inbox`, which the status mode owns.
++
++---
++
++## 3. EXIT CODES
++
++| Exit | Meaning |
++|------|---------|
++| 0 | Completed |
++| 1 | Run failure |
++| 2 | Usage |
++| 3 | Recursion guard |
++| 4 | Refused before dispatch |
++| 5 | Awaiting decision: the run parked a needs-you item |
++
++Report exit 5 as a parked question rather than a failure. A run that ends at exit 5 holds every later run of that bot until its item is answered.
++
++---
++
++## 4. HOW TO USE
++
++1. Confirm the bot id, or the needs-you item id for an answer, and the repository.
++2. Run the one verb the request names, with `--repo <path>`.
++3. Read the exit code against the table in section 3.
++4. Report the verb, its exit code and what the code means.
++
++Never start a run only to test routing. Routing is checked by replaying the request through the hub, not by running a bot.
++
++---
++
++## 5. RELATED
++
++- [`SKILL.md`](./SKILL.md): the run workflow, its rules and its success criteria.
++- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
++- [`references/run-queue-and-answer.md`](./references/run-queue-and-answer.md): the run verbs and their contract.
++- [`../README.md`](../README.md): the hub overview with all four modes.
++- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
++
++---
++
++## 6. FILES
++
+ - `SKILL.md`: the run workflow, its rules and its success criteria.
+ - `ROUTER.md`: the packet machine router.
+ - `references/run-queue-and-answer.md`: the run verbs and their contract.
+ - `changelog/`: release notes for this packet.
++
++---
++
++## 7. VERIFICATION
++
++The hub's structural gate verifies the packet's shape:
++
++```bash
++node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
++```
++
++The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real run request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/ROUTER.md .skilled/skills/system-skilled-bots/bots-run/ROUTER.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/ROUTER.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-run/ROUTER.md	2026-11-23 14:30:39
+@@ -37,8 +37,8 @@
+ 
+ ## 2. INTENT MODEL
+ 
+-- **`RUN`** fires on run the bot, run a bot, bots run, drain the bot queue, bots drain, enqueue a bot run, bots enqueue at weight 4. It loads `references/run-queue-and-answer.md`.
+-- **`ANSWER`** fires on answer the bot, bots answer, answer a needs-you at weight 4. It loads `references/run-queue-and-answer.md`.
++- **`RUN`** fires on run the bot, run a bot, bots run, drain the bot queue, bots drain, enqueue a bot run and bots enqueue at weight 4. It loads `references/run-queue-and-answer.md`.
++- **`ANSWER`** fires on answer the bot, bots answer and answer a needs-you at weight 4. It loads `references/run-queue-and-answer.md`.
+ 
+ A request that fires no intent returns `UNKNOWN_FALLBACK` with the checklist below.
+ 
+@@ -59,9 +59,9 @@
+ DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
+ 
+ UNKNOWN_FALLBACK_CHECKLIST = [
+-    "Name the bot id, or the needs-you item id",
+-    "Say whether the run starts now, goes to the queue, or answers a parked question",
++    "Name the bot id, or the needs-you item id for an answer",
+     "Name the repository the bot belongs to",
++    "Say whether this is a single run, a queued request, a drain or an answer",
+ ]
+ 
+ INTENT_SIGNALS = {
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/SKILL.md .skilled/skills/system-skilled-bots/bots-run/SKILL.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/SKILL.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-run/SKILL.md	2026-11-23 14:30:34
+@@ -1,13 +1,13 @@
+ ---
+ name: bots-run
+-description: "Run mode of system-skilled-bots: run a bot now, queue or drain run requests, and answer a needs-you item so its run continues."
++description: "Run mode of system-skilled-bots: start a bot run, queue or drain run requests, and answer a needs-you item so its run continues."
+ allowed-tools: [Read, Bash, Grep, Glob]
+ version: 1.0.0.0
+ ---
+ 
+ # Bots Run
+ 
+-The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot now, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one.
++The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot run, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one.
+ 
+ ---
+ 
+@@ -15,7 +15,7 @@
+ 
+ Use this packet when the `system-skilled-bots` hub selects the `run` mode, or when `/bots:run` names it.
+ 
+-- A request to run one bot now, or to queue a run from an event.
++- A request to start a run of one bot, or to queue a run from an event.
+ - A request to drain the bot request queue.
+ - A request to answer a bot's open question so its run continues.
+ 
+@@ -62,7 +62,7 @@
+ 
+ ### NEVER
+ 
+-- Never run a bot only to test routing.
++- Never start a run only to test routing.
+ - Never edit a `BOT.md` from this mode. Author owns that.
+ 
+ ### ESCALATE IF
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/changelog/v1.0.0.0.md .skilled/skills/system-skilled-bots/bots-run/changelog/v1.0.0.0.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/changelog/v1.0.0.0.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-run/changelog/v1.0.0.0.md	2026-11-23 14:30:43
+@@ -20,7 +20,7 @@
+ - `SKILL.md` carries the run workflow and its rules.
+ - `ROUTER.md` maps run requests to the packet's reference leaf.
+ - `references/run-queue-and-answer.md` names the verbs this mode runs.
+-- `/bots:run` is the mode's command.
++- `/bots:run` is the mode's command, with Bash granted for the `bots.cjs` verbs.
+ 
+ &nbsp;
+ 
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md .skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md	2026-11-23 13:05:42
++++ .skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md	2026-11-23 14:30:45
+@@ -1,6 +1,6 @@
+ ---
+-title: "Bot Runs: Run Now, Queue, Drain and Answer"
+-description: "The bots CLI verbs that start a run: run one bot now, queue a request, drain the queue, and answer a needs-you item so its run continues."
++title: "Bot Runs: Run, Queue, Drain and Answer"
++description: "The bots CLI verbs that start a run: run one bot, queue a request, drain the queue, and answer a needs-you item so its run continues."
+ trigger_phrases:
+   - "run the bot"
+   - "drain the bot queue"
+@@ -10,7 +10,7 @@
+ version: 1.0.0.0
+ ---
+ 
+-# Bot Runs: Run Now, Queue, Drain and Answer
++# Bot Runs: Run, Queue, Drain and Answer
+ 
+ Every way a bot run starts goes through `.skilled/bin/bots.cjs`. This reference names the verbs and what their exit codes mean.
+ 
+@@ -24,7 +24,7 @@
+ 
+ ### Usage
+ 
+-- Running one bot now.
++- Running one bot.
+ - Queueing a run request from an event and draining the queue.
+ - Answering a needs-you item so the parked run continues.
+ 
+@@ -34,7 +34,7 @@
+ 
+ | Verb | Does |
+ |------|------|
+-| `bots run <id>` | Runs one bot now, in the shared checkout |
++| `bots run <id>` | Runs one bot, in the shared checkout |
+ | `bots enqueue <id> --source <name> (--event-id <id> \| --key <key>)` | Queues one run request. An event sent twice is a duplicate |
+ | `bots drain` | Claims every queued request once, runs it and routes the outcome |
+ | `bots answer <item-id> <text>` | Answers a needs-you item and queues the run that continues it |
+@@ -60,4 +60,4 @@
+ 
+ ## 4. SAFETY
+ 
+-A run dispatches a real executor, which may call a model and, under shared isolation, change the checkout. Confirm the bot id and the repository before running it, and never run a bot only to test routing.
++A run dispatches a real executor, which may call a model and, under shared isolation, change the checkout. Confirm the bot id and the repository before running it, and never start a run only to test routing.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/README.md .skilled/skills/system-skilled-bots/bots-schedule/README.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/README.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-schedule/README.md	2026-11-23 14:33:07
+@@ -6,26 +6,84 @@
+ 
+ # bots-schedule
+ 
+-The schedule mode of the `system-skilled-bots` hub. It installs a cron bot's launchd schedule held disabled, lifts or sets the holds on a bot, and removes a schedule, all through `.skilled/bin/bots.cjs`.
++> The schedule mode of `system-skilled-bots`. It installs a cron bot's launchd schedule held disabled, lifts or sets the holds on a bot, and removes a schedule, all through `.skilled/bin/bots.cjs`.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-Use this mode when the hub selects `schedule`, or run `/bots:schedule`. The table names what it covers and what it hands to the sibling modes.
++The schedule mode decides when a bot may fire. A cron bot runs from a launchd agent that only the installer writes, and a first install is always held disabled, so nothing fires until the operator lifts the hold. The table names what it covers and what it hands to the sibling modes.
+ 
+ | Aspect | What it gives you |
+ |---|---|
+ | **Use it for** | A request to put a cron bot on its schedule, or to install the queue-drain job. A request to enable, disable, pause or resume a bot. A request to remove a bot's schedule |
+ | **Command** | `/bots:schedule` |
+-| **Tools** | Read, Bash, Grep, Glob |
+-| **Hands off** | Running a bot once now. The run mode owns that. Reading whether a schedule is installed. The status mode owns that |
++| **Tools** | Read, Bash, Grep, Glob. Bash runs only the `bots.cjs` schedule verbs |
++| **Hands off** | Running a bot, which the run mode owns. Reading whether a schedule is installed, which the status mode owns |
+ 
++Every schedule request reaches this mode through the hub's `schedule` signal, or through `/bots:schedule`. The mode holds no routing logic of its own, and its `ROUTER.md` selects the one lifecycle reference it loads.
++
+ ---
+ 
+-## 2. FILES
++## 2. VERBS
+ 
++Each verb takes `--repo <path>` for the consumer checkout.
++
++```text
++bots schedule install <id> --repo <path>
++bots enable <id> --repo <path>
++bots disable <id> --repo <path>
++bots pause <id> --repo <path>
++bots resume <id> --repo <path>
++bots schedule uninstall <id> --repo <path>
++```
++
++`bots schedule install` installs a cron bot's schedule held disabled. The id `drain` installs the repository's queue-drain job. `bots enable` lifts a disable and rechecks an installed schedule. `bots disable` stops every run of a bot until it is enabled. `bots pause` and `bots resume` hold and release a bot's runs after the lease. `bots schedule uninstall` removes a schedule and sweeps this repository's orphaned ones.
++
++---
++
++## 3. SAFETY
++
++Installing writes a launchd agent into the user's `~/Library/LaunchAgents` and loads it. Confirm the bot id and the repository before an install, and never write a plist or call launchctl by hand, because only the installer does that. Never enable a schedule the operator has not asked to enable.
++
++After any verb, read `bots status` and report the bot's row. An install whose recorded runner path no longer resolves shows as needing reinstall, and that row is the signal to escalate rather than retry.
++
++---
++
++## 4. HOW TO USE
++
++1. Confirm the bot id and the repository.
++2. Run the one verb the request names, with `--repo <path>`.
++3. Read `bots status` afterwards and report the bot's row.
++4. Name the next step: a first install needs `bots enable` before anything fires.
++
++---
++
++## 5. RELATED
++
++- [`SKILL.md`](./SKILL.md): the schedule workflow, its rules and its success criteria.
++- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
++- [`references/schedule-lifecycle.md`](./references/schedule-lifecycle.md): the schedule verbs and their contract.
++- [`../README.md`](../README.md): the hub overview with all four modes.
++- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
++
++---
++
++## 6. FILES
++
+ - `SKILL.md`: the schedule workflow, its rules and its success criteria.
+ - `ROUTER.md`: the packet machine router.
+ - `references/schedule-lifecycle.md`: the schedule verbs and their contract.
+ - `changelog/`: release notes for this packet.
++
++---
++
++## 7. VERIFICATION
++
++The hub's structural gate verifies the packet's shape:
++
++```bash
++node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
++```
++
++The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real schedule request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md .skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md	2026-11-23 14:31:17
+@@ -37,8 +37,8 @@
+ 
+ ## 2. INTENT MODEL
+ 
+-- **`SCHEDULE`** fires on schedule a bot, bot schedule, bots schedule, cron bot, launchd bot, bot on a schedule at weight 4. It loads `references/schedule-lifecycle.md`.
+-- **`POSTURE`** fires on pause the bot, resume the bot, enable the bot, disable the bot at weight 4. It loads `references/schedule-lifecycle.md`.
++- **`SCHEDULE`** fires on schedule a bot, bot schedule, bots schedule, cron bot, launchd bot and bot on a schedule at weight 4. It loads `references/schedule-lifecycle.md`.
++- **`POSTURE`** fires on pause the bot, resume the bot, enable the bot and disable the bot at weight 4. It loads `references/schedule-lifecycle.md`.
+ 
+ A request that fires no intent returns `UNKNOWN_FALLBACK` with the checklist below.
+ 
+@@ -59,9 +59,9 @@
+ DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
+ 
+ UNKNOWN_FALLBACK_CHECKLIST = [
+-    "Name the bot id",
+-    "Say whether to install, remove, enable, disable, pause or resume",
+-    "Name the repository the bot belongs to",
++    "Name the bot id and the repository it belongs to",
++    "Say whether the request installs, removes, or changes the hold on a schedule",
++    "Confirm the install is wanted now, since a first install is held disabled",
+ ]
+ 
+ INTENT_SIGNALS = {
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/SKILL.md .skilled/skills/system-skilled-bots/bots-schedule/SKILL.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/SKILL.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-schedule/SKILL.md	2026-11-23 14:31:12
+@@ -21,7 +21,7 @@
+ 
+ ### When NOT to Use
+ 
+-- Running a bot once now. The run mode owns that.
++- Running a bot once. The run mode owns that.
+ - Reading whether a schedule is installed. The status mode owns that.
+ 
+ Do not invoke this packet as a separate advisor identity. Routing belongs to the parent hub.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/changelog/v1.0.0.0.md .skilled/skills/system-skilled-bots/bots-schedule/changelog/v1.0.0.0.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/changelog/v1.0.0.0.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-schedule/changelog/v1.0.0.0.md	2026-11-23 14:31:21
+@@ -20,7 +20,7 @@
+ - `SKILL.md` carries the schedule workflow and its rules.
+ - `ROUTER.md` maps schedule requests to the packet's reference leaf.
+ - `references/schedule-lifecycle.md` names the verbs this mode runs.
+-- `/bots:schedule` is the mode's command.
++- `/bots:schedule` is the mode's command, with Bash granted for the `bots.cjs` verbs.
+ 
+ &nbsp;
+ 
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/references/schedule-lifecycle.md .skilled/skills/system-skilled-bots/bots-schedule/references/schedule-lifecycle.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-schedule/references/schedule-lifecycle.md	2026-11-23 13:05:49
++++ .skilled/skills/system-skilled-bots/bots-schedule/references/schedule-lifecycle.md	2026-11-23 14:31:23
+@@ -3,8 +3,8 @@
+ description: "How a cron bot's launchd schedule is installed held disabled, enabled, paused, resumed and removed through the bots CLI."
+ trigger_phrases:
+   - "schedule a bot"
+-  - "install the bot schedule"
+   - "pause the bot"
++  - "bot schedule lifecycle"
+ importance_tier: normal
+ contextType: reference
+ version: 1.0.0.0
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/README.md .skilled/skills/system-skilled-bots/bots-status/README.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/README.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-status/README.md	2026-11-23 14:33:11
+@@ -6,26 +6,81 @@
+ 
+ # bots-status
+ 
+-The status mode of the `system-skilled-bots` hub. It reads what the bots did and what they need through `bots status` and `bots inbox`. It writes nothing in the consumer checkout. `bots inbox` lives here because reading the inbox is a status read.
++> The status mode of `system-skilled-bots`. It reads installed bots, their last runs and deliveries, and the needs-you inbox through `bots status` and `bots inbox`. It writes nothing in the consumer checkout.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-Use this mode when the hub selects `status`, or run `/bots:status`. The table names what it covers and what it hands to the sibling modes.
++The status mode answers what the bots did and what they need. Every read goes through the two `bots.cjs` read verbs, and no other Bash runs from this mode. The table names what it covers and what it hands to the sibling modes.
+ 
+ | Aspect | What it gives you |
+ |---|---|
+ | **Use it for** | A request to list installed bots, their last run or its delivery. A request to read the needs-you inbox. A request to check whether a schedule needs a reinstall or a run folder vanished |
+ | **Command** | `/bots:status` |
+-| **Tools** | Read, Bash, Grep, Glob |
+-| **Hands off** | Answering an inbox item. The run mode owns `bots answer`. Changing a schedule. The schedule mode owns that |
++| **Tools** | Read, Bash (only `bots status` and `bots inbox`), Grep, Glob. No write or edit tool |
++| **Hands off** | Answering an inbox item, which the run mode owns through `bots answer`. Changing a schedule, which the schedule mode owns |
+ 
++`bots inbox` lives here because reading the inbox is a status read. Every status request reaches this mode through the hub's `status` signal, or through `/bots:status`.
++
+ ---
+ 
+-## 2. FILES
++## 2. VERBS
+ 
++The mode runs the two read verbs below. Each takes `--repo <path>` for the consumer checkout.
++
++```text
++node .skilled/bin/bots.cjs status --repo <path>
++node .skilled/bin/bots.cjs status --repo <path> --json
++node .skilled/bin/bots.cjs inbox --repo <path>
++```
++
++`bots status` lists every installed bot with its last run and delivery, and the open needs-you items, read from the status index. `--json` returns the same rows as data. `bots inbox` lists open and expired needs-you items.
++
++`--rebuild` and `--unregister` write, so this mode never runs them. When the index looks stale, name `bots status --rebuild` as the operator's next step. `--unregister` hides an identity's rows without deleting anything, and it is the operator's call too.
++
++---
++
++## 3. READING THE ROWS
++
++A row can report a missing checkout, a changed runner path that needs a reinstall, or a run folder that vanished. Quote each row as the CLI printed it. Then name the mode that acts on it: a needs-you item belongs to the run mode for its answer, and a reinstall belongs to the schedule mode.
++
++---
++
++## 4. HOW TO USE
++
++1. Confirm the repository, or read every identity with `--all`.
++2. Run `bots status` or `bots inbox` with `--repo <path>`, adding `--json` when the reader wants rows as data.
++3. Report the rows as printed.
++4. Point each open needs-you item at the run mode, and each reinstall at the schedule mode.
++
++---
++
++## 5. RELATED
++
++- [`SKILL.md`](./SKILL.md): the status workflow, its rules and its success criteria.
++- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
++- [`references/status-and-inbox.md`](./references/status-and-inbox.md): the status verbs and their contract.
++- [`../README.md`](../README.md): the hub overview with all four modes.
++- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
++
++---
++
++## 6. FILES
++
+ - `SKILL.md`: the status workflow, its rules and its success criteria.
+ - `ROUTER.md`: the packet machine router.
+ - `references/status-and-inbox.md`: the status verbs and their contract.
+ - `changelog/`: release notes for this packet.
++
++---
++
++## 7. VERIFICATION
++
++The hub's structural gate verifies the packet's shape:
++
++```bash
++node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
++```
++
++The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real status request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/ROUTER.md .skilled/skills/system-skilled-bots/bots-status/ROUTER.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/ROUTER.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-status/ROUTER.md	2026-11-23 14:31:35
+@@ -37,8 +37,8 @@
+ 
+ ## 2. INTENT MODEL
+ 
+-- **`STATUS`** fires on bot status, bots status, last bot run, which bots are installed, bot runs at weight 4. It loads `references/status-and-inbox.md`.
+-- **`INBOX`** fires on bot inbox, bots inbox, what do the bots need from me, bot needs-you, open needs-you items, bot needs me at weight 4. It loads `references/status-and-inbox.md`.
++- **`STATUS`** fires on bot status, bots status, last bot run, which bots are installed and bot runs at weight 4. It loads `references/status-and-inbox.md`.
++- **`INBOX`** fires on bot inbox, bots inbox, what do the bots need from me, bot needs-you, open needs-you items and bot needs me at weight 4. It loads `references/status-and-inbox.md`.
+ 
+ A request that fires no intent returns `UNKNOWN_FALLBACK` with the checklist below.
+ 
+@@ -59,9 +59,9 @@
+ DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
+ 
+ UNKNOWN_FALLBACK_CHECKLIST = [
+-    "Name the repository, or ask for every identity",
+-    "Say whether the reader wants bot status or the needs-you inbox",
+-    "Say whether rows should come back as JSON",
++    "Name the repository the status is for, or ask for every identity",
++    "Say whether the reader wants installed bots, the last run, or the needs-you inbox",
++    "Confirm the request only reads: status never writes",
+ ]
+ 
+ INTENT_SIGNALS = {
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/SKILL.md .skilled/skills/system-skilled-bots/bots-status/SKILL.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/SKILL.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-status/SKILL.md	2026-11-23 14:31:30
+@@ -7,7 +7,7 @@
+ 
+ # Bots Status
+ 
+-The status mode of the `system-skilled-bots` hub. It reads what the bots did and what they need through `bots status` and `bots inbox`. It writes nothing in the consumer checkout. `bots inbox` lives here because reading the inbox is a status read.
++The status mode of the `system-skilled-bots` hub. It reads what the bots did and what they need through `bots status` and `bots inbox`, and nothing else. It writes nothing in the consumer checkout. `bots inbox` lives here because reading the inbox is a status read.
+ 
+ ---
+ 
+@@ -47,7 +47,7 @@
+ ## 3. HOW IT WORKS
+ 
+ 1. Confirm the repository, or read every identity with `--all`.
+-2. Run `bots status` or `bots inbox` with `--repo <path>`, adding `--json` when the reader wants rows as data.
++2. Run `node .skilled/bin/bots.cjs status` or `node .skilled/bin/bots.cjs inbox` with `--repo <path>`, adding `--json` when the reader wants rows as data. These two commands are the only Bash this mode runs.
+ 3. Report the rows as printed, and name the mode that acts on any row that needs action.
+ 
+ ---
+@@ -62,11 +62,13 @@
+ ### NEVER
+ 
+ - Never write in the consumer checkout from this mode.
++- Never run `--rebuild` or `--unregister`. Both write, so name them as the operator's next step.
++- Never run any Bash command other than `bots status` and `bots inbox`.
+ - Never answer, enqueue or install from this mode.
+ 
+ ### ESCALATE IF
+ 
+-- The status index looks stale. Offer `bots status --rebuild`, which rewrites the index under the state root.
++- The status index looks stale. Name `bots status --rebuild` as the operator's step, because it rewrites the index under the state root.
+ - A row reports a missing checkout.
+ 
+ ---
+@@ -90,4 +92,4 @@
+ ## 7. INTEGRATION POINTS
+ 
+ - Input: requests routed from the `system-skilled-bots` hub, or `/bots:status`.
+-- Output: the verified status result, with the command run and its exit status.
++- Output: the status result, with the command run and its exit status.
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/changelog/v1.0.0.0.md .skilled/skills/system-skilled-bots/bots-status/changelog/v1.0.0.0.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/changelog/v1.0.0.0.md	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/bots-status/changelog/v1.0.0.0.md	2026-11-23 14:31:38
+@@ -20,7 +20,7 @@
+ - `SKILL.md` carries the status workflow and its rules.
+ - `ROUTER.md` maps status requests to the packet's reference leaf.
+ - `references/status-and-inbox.md` names the verbs this mode runs.
+-- `/bots:status` is the mode's command.
++- `/bots:status` is the mode's command, with no write tool and a Bash allowlist of the two read verbs.
+ 
+ &nbsp;
+ 
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md .skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md	2026-11-23 13:05:55
++++ .skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md	2026-11-23 14:31:41
+@@ -1,6 +1,6 @@
+ ---
+ title: "Bot Status and Inbox"
+-description: "How to read installed bots, last runs, deliveries and the needs-you inbox through the bots CLI, and what each status flag does."
++description: "How to read installed bots, last runs, deliveries and the needs-you inbox through the bots CLI, and which status flags only the operator runs."
+ trigger_phrases:
+   - "bot status"
+   - "bot inbox"
+@@ -26,19 +26,19 @@
+ 
+ - Listing installed bots, their last run and its delivery.
+ - Reading open and expired needs-you items.
+-- Rebuilding the status index from the run records when it looks stale.
++- Naming the rebuild step when the status index looks stale.
+ 
+ ---
+ 
+ ## 2. VERBS
+ 
+-| Command | Shows |
+-|---------|-------|
+-| `bots status` | Every installed bot, its last run and delivery, and open needs-you items, read from the status index |
+-| `bots status --json` | The same rows as JSON |
+-| `bots status --rebuild` | Rebuilds the index from the run records first |
+-| `bots status --all` | Also shows identities hidden with `--unregister` |
+-| `bots inbox` | Open and expired needs-you items |
++| Command | Shows | Run by the status mode |
++|---------|-------|------------------------|
++| `bots status` | Every installed bot, its last run and delivery, and open needs-you items, read from the status index | Yes |
++| `bots status --json` | The same rows as JSON | Yes |
++| `bots inbox` | Open and expired needs-you items | Yes |
++| `bots status --rebuild` | Rebuilds the index from the run records first | No: it writes, so name it for the operator |
++| `bots status --all` | Also shows identities hidden with `--unregister` | Yes, read only |
+ 
+ Each verb takes `--repo <path>` for the consumer checkout. A row can also report a missing checkout, a changed runner path that needs a reinstall, or a run folder that vanished.
+ 
+@@ -46,4 +46,4 @@
+ 
+ ## 3. BOUNDARY
+ 
+-Status only reads the consumer checkout. `--rebuild` rewrites the status index under the user-level state root, and `--unregister <owner/name>` hides an identity's rows and deletes nothing. Answering an inbox item is a run action: use `bots answer` through the run mode.
++Status only reads the consumer checkout. `--rebuild` rewrites the status index under the user-level state root, and `--unregister <owner/name>` hides an identity's rows and deletes nothing. Neither flag is run from the status mode. Answering an inbox item is a run action: use `bots answer` through the run mode.
+Only in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots: command-metadata.json
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/description.json .skilled/skills/system-skilled-bots/description.json
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/description.json	2026-11-23 13:07:47
++++ .skilled/skills/system-skilled-bots/description.json	2026-11-23 14:29:09
+@@ -1,6 +1,6 @@
+ {
+   "name": "system-skilled-bots",
+-  "description": "Parent hub for four modes over file-defined headless bots: author writes or edits a BOT.md from the shipped template and checks it, run runs a bot now, queues or drains run requests and answers a needs-you item (bots answer), schedule installs or removes a cron bot's launchd schedule and enables, disables, pauses or resumes a bot, and status reads installed bots, last runs, deliveries and the needs-you inbox (bots inbox). workflowMode selects the packet through mode-registry.json and hub-router.json. The advisor identity input is graph-metadata.json.",
++  "description": "Parent hub for four modes over file-defined headless bots: author writes or edits a BOT.md from the shipped template, run starts a bot, queues or drains run requests and answers a needs-you item (bots answer), schedule installs or removes a cron bot's launchd schedule and enables, disables, pauses or resumes a bot, and status reads installed bots, last runs, deliveries and the needs-you inbox (bots inbox). workflowMode selects the packet through mode-registry.json and hub-router.json. The advisor identity input is graph-metadata.json.",
+   "version": "1.0.0.0",
+   "importance_tier": "high",
+   "keywords": [
+@@ -26,7 +26,7 @@
+   ],
+   "trigger_examples": [
+     "author a bot that summarizes open pull requests every morning",
+-    "run the bot nightly-digest now",
++    "run the bot nightly-digest",
+     "schedule a bot to run on weekdays at nine",
+     "show bot status and the last bot run",
+     "what do the bots need from me"
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/graph-metadata.json .skilled/skills/system-skilled-bots/graph-metadata.json
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/graph-metadata.json	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/graph-metadata.json	2026-11-23 14:29:15
+@@ -104,8 +104,8 @@
+       "needs-you inbox"
+     ],
+     "intent_signals": [
+-      "write or edit a BOT.md and check it",
+-      "run a bot now, queue or drain runs, answer a needs-you item",
++      "write or edit a BOT.md from the template",
++      "run a bot, queue or drain runs, answer a needs-you item",
+       "install, pause or remove a bot schedule",
+       "read bot status and the needs-you inbox"
+     ],
+@@ -165,50 +165,8 @@
+         "source": "derived"
+       }
+     ],
+-    "causal_summary": "system-skilled-bots is the single public advisor identity for four modes over file-defined headless bots. author writes or edits a BOT.md from the shipped template and proves it with the definition checker. run runs a bot now, queues or drains run requests and answers a needs-you item. schedule installs or removes a cron bot's launchd schedule, held disabled until enabled, and pauses, resumes, enables or disables a bot. status reads installed bots, last runs, deliveries and the needs-you inbox. The hub holds no per-mode logic: hub-router.json selects the mode, and mode-registry.json maps it to its packet. Every signal names a bot, so bare run, schedule and status phrasing does not reach the hub.",
++    "causal_summary": "system-skilled-bots is the single public advisor identity for four modes over file-defined headless bots. author writes or edits a BOT.md from the shipped template. run starts a bot, queues or drains run requests and answers a needs-you item. schedule installs or removes a cron bot's launchd schedule, held disabled until enabled, and pauses, resumes, enables or disables a bot. status reads installed bots, last runs, deliveries and the needs-you inbox. The hub holds no per-mode logic: hub-router.json selects the mode, and mode-registry.json maps it to its packet. Every signal names a bot, so bare run, schedule and status phrasing does not reach the hub.",
+     "created_at": "2026-11-23T00:00:00.000Z",
+     "last_updated_at": "2026-11-23T00:00:00.000Z"
+-  },
+-  "intent_signals_generated": [
+-    "author a bot",
+-    "write a bot",
+-    "create a bot",
+-    "new bot.md",
+-    "bot definition",
+-    "edit a bot",
+-    "bot template",
+-    "run the bot",
+-    "run a bot",
+-    "drain the bot queue",
+-    "enqueue a bot run",
+-    "answer the bot",
+-    "bots answer",
+-    "bots run",
+-    "schedule a bot",
+-    "pause the bot",
+-    "resume the bot",
+-    "enable the bot",
+-    "disable the bot",
+-    "bot schedule",
+-    "bot on a schedule",
+-    "bot status",
+-    "bots status",
+-    "last bot run",
+-    "which bots are installed",
+-    "bot inbox",
+-    "bots inbox",
+-    "what do the bots need from me",
+-    "open needs-you items",
+-    "new bot",
+-    "bots drain",
+-    "bots enqueue",
+-    "bot run request",
+-    "answer a needs-you",
+-    "bots schedule",
+-    "launchd bot",
+-    "cron bot",
+-    "bot runs",
+-    "bot needs-you",
+-    "bot needs me"
+-  ]
++  }
+ }
+diff -ru -x runtime -x assets -x scripts -x node_modules /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/mode-registry.json .skilled/skills/system-skilled-bots/mode-registry.json
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/skills/system-skilled-bots/mode-registry.json	2026-11-23 13:19:13
++++ .skilled/skills/system-skilled-bots/mode-registry.json	2026-11-23 14:31:08
+@@ -2,14 +2,18 @@
+   "resourceContractVersion": 1,
+   "skill": "system-skilled-bots",
+   "version": "1.0.0.0",
+-  "description": "Declarative packet registry for system-skilled-bots: workflowMode, packetKind, backendKind, toolSurface and advisorRouting for the author, run, schedule and status modes. The advisor routes the one hub identity; the hub selects the mode packet.",
++  "description": "Declarative packet registry: workflowMode, packetKind, backendKind, toolSurface, and advisorRouting for system-skilled-bots. The advisor routes the hub identity; the hub selects one of four workflow packets: author, run, schedule and status.",
+   "discriminator": {
+     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+-    "packetKind": "Axis discriminator: workflow for process/lifecycle packets. This hub declares workflow packets only.",
+-    "backendKind": "Which backend runs the mode. template-scaffold writes a BOT.md from the shipped template; bots-cli runs a verb of .skilled/bin/bots.cjs."
++    "packetKind": "Axis discriminator: workflow for process/lifecycle packets, surface for read-only evidence-base packets, transport for packets that bridge to an external tool's CLI/MCP surface.",
++    "backendKind": "Which backend runs the mode. Author uses template-scaffold. Run, schedule and status use bots-cli, the bots runtime verbs."
+   },
+   "advisorRoutingContract": {
+-    "routingClass": "How the advisor finds the packet. metadata = resolved by hub membership with no advisor map entry. Every mode here is metadata, so its vocabulary reaches the advisor only through the hub graph-metadata.json.",
++    "routingClass": "How the advisor finds the packet. lexical = weighted-regex scoring and projection maps. alias-fold = projection-only alias. metadata = resolved by hub membership with no advisor map entry. command-bridge = routed by command. Every mode here uses metadata.",
++    "legacyAdvisorId": "Legacy skill id used by lexical and alias-fold projection maps only.",
++    "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to. Never inferred from array order.",
++    "legacyAliases": "Advisor system-id aliases for lexical or alias-fold routes; drift guards compare these order-insensitively.",
++    "driftGuard": "Path to the registry-vs-advisor drift-guard test. Required (here or in the advisor-projection extension) when any mode uses routingClass lexical or alias-fold.",
+     "packetSkillName": "The packet SKILL.md name. Folder equals packetSkillName unless grandfatheredFolderMismatch is true.",
+     "grandfatheredFolderMismatch": "Required on every mode; false unless a legacy folder/name mismatch is intentionally preserved.",
+     "toolSurface": "Required on every mode; declares allowed tools, forbidden tools, mutating posture, and any bash allowlist."
+@@ -20,10 +24,10 @@
+       "packetKind": "workflow",
+       "backendKind": "template-scaffold",
+       "toolSurface": {
+-        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+-        "forbidden": ["Task"],
++        "allowed": ["Read", "Write", "Edit", "Grep", "Glob"],
++        "forbidden": ["Bash", "Task"],
+         "mutatesWorkspace": true,
+-        "bashAllowlist": ["node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs"]
++        "bashAllowlist": []
+       },
+       "packet": "bots-author",
+       "packetSkillName": "bots-author",
+## commands/bots (hand-build vs W)
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-author-auto.yaml .skilled/commands/bots/assets/bots-author-auto.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-author-auto.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-author-auto.yaml	2026-11-23 14:34:53
+@@ -2,7 +2,7 @@
+ # BOTS: AUTHOR WORKFLOW (AUTO MODE)
+ # ─────────────────────────────────────────────────────────────────
+ role: "Bots author operator for the system-skilled-bots hub"
+-purpose: "Write or edit one bots/<id>/BOT.md from the shipped template and prove the repository's bots/ folder with the definition checker"
++purpose: "Write or edit one bots/<id>/BOT.md from the shipped template and hand the file to the definition check under /doctor:bots"
+ action: "Resolve the inputs, load the bots-author mode contract, run its workflow and render the result through the presentation contract"
+ skill_owner: ".skilled/skills/system-skilled-bots/bots-author/"
+ 
+@@ -18,11 +18,11 @@
+   mutates_workspace: true
+   allowed_targets:
+     - "<repo>/bots/<bot-id>/BOT.md"
+-  invariant: "This route runs only the bots CLI verbs its steps name and the files the bots-author contract names. It never writes a plist, calls launchctl or edits the bots runtime by hand."
++  invariant: "This route runs no shell command and no bots CLI verb. It writes only the BOT.md the bots-author contract names. The definition check is the read-only run of /doctor:bots, never of this route."
+ 
+ upstream_assets:
+   mode_contract: ".skilled/skills/system-skilled-bots/bots-author/SKILL.md"
+-  cli: ".skilled/bin/bots.cjs"
++  template: ".skilled/skills/system-skilled-bots/assets/bot-template.md"
+   presentation: ".skilled/commands/bots/assets/bots-author-presentation.txt"
+ 
+ inputs:
+@@ -33,13 +33,14 @@
+ 
+ execution:
+   steps:
+-    - "Check that .skilled/skills/system-skilled-bots/assets/bot-template.md and .skilled/skills/system-skilled-bots/scripts/bot-check.cjs exist. If one is missing, report its path and stop with STATUS=FAIL."
++    - "Check that .skilled/skills/system-skilled-bots/assets/bot-template.md and .skilled/skills/system-skilled-bots/bots-author/SKILL.md exist. If one is missing, report its path and stop with STATUS=FAIL."
+     - "Load .skilled/skills/system-skilled-bots/bots-author/SKILL.md and follow its workflow."
+     - "When {repo}/bots/{bot_id}/BOT.md is absent, copy the template there and replace the <your-bot-id> placeholder with {bot_id}. When it exists, read it first and edit only the fields the request names."
+     - "Write the standing instructions in the body. An empty body fails the check."
+-    - "Run node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs \"{repo}\" and read every line and the exit status."
+-    - "Exit 0 ends with STATUS=OK. Exit 1 means a hard invariant failed: fix the field the FAIL line names and run the checker again, at most three times, then end with STATUS=FAIL quoting the remaining FAIL lines. Exit 2 means the audit could not finish: quote the message and end with STATUS=FAIL."
++    - "Do not run the checker from this route. Name the next step: /doctor:bots on {repo} runs the definition checker read-only over the bots/ folder."
++    - "End with STATUS=OK, quoting the file path and the fields set."
++    - "If a required path is missing or the placeholder cannot be replaced, end with STATUS=FAIL and quote the step that stopped."
+ 
+ output: |
+-  STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
++  STATUS=OK when every step above completes. Render the success template from the presentation contract.
++  STATUS=FAIL when a step ends the run. Quote the step and render the failure template.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-author-confirm.yaml .skilled/commands/bots/assets/bots-author-confirm.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-author-confirm.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-author-confirm.yaml	2026-11-23 14:34:57
+@@ -1,9 +1,11 @@
+ # ─────────────────────────────────────────────────────────────────
+ # BOTS: AUTHOR WORKFLOW (CONFIRM MODE)
+ # ─────────────────────────────────────────────────────────────────
++# Same steps as the auto workflow. This variant adds one checkpoint
++# after the BOT.md draft is written and before the handoff.
+ role: "Bots author operator for the system-skilled-bots hub"
+-purpose: "Write or edit one bots/<id>/BOT.md from the shipped template and prove the repository's bots/ folder with the definition checker"
+-action: "Resolve the inputs, load the bots-author mode contract, run its workflow and render the result through the presentation contract"
++purpose: "Write or edit one bots/<id>/BOT.md from the shipped template with one checkpoint before the handoff to /doctor:bots"
++action: "Resolve the inputs, load the bots-author mode contract, run its workflow with one checkpoint and render the result through the presentation contract"
+ skill_owner: ".skilled/skills/system-skilled-bots/bots-author/"
+ 
+ operating_mode:
+@@ -18,39 +20,35 @@
+   mutates_workspace: true
+   allowed_targets:
+     - "<repo>/bots/<bot-id>/BOT.md"
+-  invariant: "This route runs only the bots CLI verbs its steps name and the files the bots-author contract names. It never writes a plist, calls launchctl or edits the bots runtime by hand."
++  invariant: "This route runs no shell command and no bots CLI verb. It writes only the BOT.md the bots-author contract names. The definition check is the read-only run of /doctor:bots, never of this route."
+ 
+ upstream_assets:
+   mode_contract: ".skilled/skills/system-skilled-bots/bots-author/SKILL.md"
+-  cli: ".skilled/bin/bots.cjs"
++  template: ".skilled/skills/system-skilled-bots/assets/bot-template.md"
+   presentation: ".skilled/commands/bots/assets/bots-author-presentation.txt"
+ 
+ inputs:
+   execution_mode: "INTERACTIVE"
+-  bot_id: "Required. Lowercase letters, digits and hyphens. The router stops until it is given."
++  bot_id: "Required. Lowercase letters, digits and hyphens. Ask until it is given."
+   repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
+   edits: "The fields and standing instructions the request names, taken from the request text."
+ 
+ execution:
+   steps:
+-    - "Check that .skilled/skills/system-skilled-bots/assets/bot-template.md and .skilled/skills/system-skilled-bots/scripts/bot-check.cjs exist. If one is missing, report its path and stop with STATUS=FAIL."
++    - "Check that .skilled/skills/system-skilled-bots/assets/bot-template.md and .skilled/skills/system-skilled-bots/bots-author/SKILL.md exist. If one is missing, report its path and stop with STATUS=FAIL."
+     - "Load .skilled/skills/system-skilled-bots/bots-author/SKILL.md and follow its workflow."
+     - "When {repo}/bots/{bot_id}/BOT.md is absent, copy the template there and replace the <your-bot-id> placeholder with {bot_id}. When it exists, read it first and edit only the fields the request names."
+     - "Write the standing instructions in the body. An empty body fails the check."
+-    - "Run node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs \"{repo}\" and read every line and the exit status."
+-    - "Exit 0 ends with STATUS=OK. Exit 1 means a hard invariant failed: fix the field the FAIL line names and run the checker again, at most three times, then end with STATUS=FAIL quoting the remaining FAIL lines. Exit 2 means the audit could not finish: quote the message and end with STATUS=FAIL."
++    - checkpoint:
++        id: draft_written
++        when: "After the BOT.md draft is written and before the handoff"
++        show: "Bot id, file path and the fields set"
++        options: ["Proceed to the handoff", "Change the fields", "Cancel"]
++        wait: true
++    - "Do not run the checker from this route. Name the next step: /doctor:bots on {repo} runs the definition checker read-only over the bots/ folder."
++    - "End with STATUS=OK, quoting the file path and the fields set."
++    - "If a required path is missing or the placeholder cannot be replaced, end with STATUS=FAIL and quote the step that stopped."
+ 
+-checkpoint:
+-  when: "After the BOT.md draft is written and before the checker runs"
+-  source: ".skilled/commands/bots/assets/bots-author-presentation.txt"
+-  question: "Proceed with /bots:author as shown?"
+-  options:
+-    - { label: "Proceed", description: "Run the remaining steps as shown" }
+-    - { label: "Change", description: "Revise the inputs, then show them again" }
+-    - { label: "Cancel", description: "End the run with STATUS=CANCELLED and change nothing more" }
+-  wait_for: user_reply
+-
+ output: |
+-  STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
+-  STATUS=CANCELLED when the operator cancels at the checkpoint.
++  STATUS=OK when every step above completes. Render the success template from the presentation contract.
++  STATUS=FAIL when a step ends the run. Quote the step and render the failure template.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-author-presentation.txt .skilled/commands/bots/assets/bots-author-presentation.txt
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-author-presentation.txt	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-author-presentation.txt	2026-11-23 14:35:00
+@@ -36,15 +36,15 @@
+ STATUS=FAIL ERROR="Missing required input: [field]"
+ ```
+ 
+-## 2. DASHBOARD / CHECKPOINT LAYOUT
++## 2. CHECKPOINT LAYOUT
+ 
+-The confirm workflow stops once, after the BOT.md draft is written and before the checker runs:
++The confirm workflow stops once, after the BOT.md draft is written and before the handoff:
+ 
+ ```text
+ /bots:author checkpoint
+ - Bot: {bot_id}
+ - File: {repo}/bots/{bot_id}/BOT.md
+-- Checker exit: [0|1|2]
++- Next check: /doctor:bots on {repo}
+ 
+ Proceed, Change or Cancel?
+ ```
+@@ -57,7 +57,7 @@
+ /bots:author complete
+ - Bot: {bot_id}
+ - File: {repo}/bots/{bot_id}/BOT.md
+-- Checker exit: [0|1|2]
++- Next check: /doctor:bots on {repo}
+ 
+ STATUS=OK
+ ```
+@@ -67,7 +67,7 @@
+ ```text
+ /bots:author failed
+ - Step: [the step that ended the run]
+-- Output: [the CLI or checker output, quoted]
++- Output: [the message, quoted]
+ 
+ STATUS=FAIL ERROR="[named cause]"
+ ```
+@@ -77,6 +77,7 @@
+ | Condition | Suggested Command | Reason |
+ |-----------|-------------------|--------|
+ | The bot is a cron bot | `/bots:schedule install <bot-id>` | Install its schedule, held disabled |
+-| The bot is manual | `/bots:run <bot-id>` | Run it once now |
++| The bot is manual | `/bots:run <bot-id>` | Start a run of it |
++| The file passed the author step | `/doctor:bots` | Run the definition check over the repository |
+ 
+ End interactive presentations with a single next-step prompt.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-run-auto.yaml .skilled/commands/bots/assets/bots-run-auto.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-run-auto.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-run-auto.yaml	2026-11-23 14:35:31
+@@ -44,4 +44,4 @@
+ 
+ output: |
+   STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
++  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-run-confirm.yaml .skilled/commands/bots/assets/bots-run-confirm.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-run-confirm.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-run-confirm.yaml	2026-11-23 14:35:36
+@@ -1,9 +1,11 @@
+ # ─────────────────────────────────────────────────────────────────
+ # BOTS: RUN WORKFLOW (CONFIRM MODE)
+ # ─────────────────────────────────────────────────────────────────
++# Same steps as the auto workflow. This variant adds one checkpoint
++# before the verb runs, since a run dispatches a real executor.
+ role: "Bots run operator for the system-skilled-bots hub"
+-purpose: "Run exactly one bots CLI verb that starts or continues a run and report its exit code with its meaning"
+-action: "Resolve the inputs, load the bots-run mode contract, run its workflow and render the result through the presentation contract"
++purpose: "Run exactly one bots CLI verb that starts or continues a run, after one checkpoint, and report its exit code with its meaning"
++action: "Resolve the inputs, load the bots-run mode contract, confirm the verb, run it and render the result through the presentation contract"
+ skill_owner: ".skilled/skills/system-skilled-bots/bots-run/"
+ 
+ operating_mode:
+@@ -38,21 +40,20 @@
+   steps:
+     - "Check that .skilled/bin/bots.cjs exists. If it is missing, report its path and stop with STATUS=FAIL."
+     - "Load .skilled/skills/system-skilled-bots/bots-run/SKILL.md and follow its workflow."
++    - checkpoint:
++        id: verb_resolved
++        when: "After the verb and its arguments are resolved and before the verb runs"
++        question: "Proceed with /bots:run as shown?"
++        options:
++          - { label: "Proceed", description: "Run the verb as shown" }
++          - { label: "Change", description: "Edit the verb or its arguments" }
++          - { label: "Cancel", description: "Stop without running anything" }
++        wait_for: user_reply
+     - "Run exactly one verb with --repo \"{repo}\": node .skilled/bin/bots.cjs run {bot_id}, node .skilled/bin/bots.cjs enqueue {bot_id} --source {source} --key {key}, node .skilled/bin/bots.cjs drain, or node .skilled/bin/bots.cjs answer {item_id} \"{answer_text}\"."
+     - "Read the exit code against .skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision."
+     - "Exit 0 ends with STATUS=OK. Exit 5 ends with STATUS=OK and names the parked needs-you item, because the run waits on the operator. Exit 1, 2, 3 or 4 ends with STATUS=FAIL quoting the CLI output."
+ 
+-checkpoint:
+-  when: "After the verb and its arguments are resolved and before the verb runs, since a run dispatches a real executor"
+-  source: ".skilled/commands/bots/assets/bots-run-presentation.txt"
+-  question: "Proceed with /bots:run as shown?"
+-  options:
+-    - { label: "Proceed", description: "Run the remaining steps as shown" }
+-    - { label: "Change", description: "Revise the inputs, then show them again" }
+-    - { label: "Cancel", description: "End the run with STATUS=CANCELLED and change nothing more" }
+-  wait_for: user_reply
+-
+ output: |
+   STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
++  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.
+   STATUS=CANCELLED when the operator cancels at the checkpoint.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-run-presentation.txt .skilled/commands/bots/assets/bots-run-presentation.txt
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-run-presentation.txt	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-run-presentation.txt	2026-11-23 14:35:39
+@@ -40,7 +40,7 @@
+ STATUS=FAIL ERROR="Missing required input: [field]"
+ ```
+ 
+-## 2. DASHBOARD / CHECKPOINT LAYOUT
++## 2. CHECKPOINT LAYOUT
+ 
+ The confirm workflow stops once, after the verb and its arguments are resolved and before the verb runs, since a run dispatches a real executor:
+ 
+@@ -48,7 +48,6 @@
+ /bots:run checkpoint
+ - Verb: {verb}
+ - Bot or item: {bot_id}{item_id}
+-- Exit: [code] [meaning]
+ 
+ Proceed, Change or Cancel?
+ ```
+@@ -71,7 +70,7 @@
+ ```text
+ /bots:run failed
+ - Step: [the step that ended the run]
+-- Output: [the CLI or checker output, quoted]
++- Output: [the CLI output, quoted]
+ 
+ STATUS=FAIL ERROR="[named cause]"
+ ```
+@@ -80,7 +79,7 @@
+ 
+ | Condition | Suggested Command | Reason |
+ |-----------|-------------------|--------|
+-| The run parked a question (exit 5) | `/bots:status inbox` | Read the open needs-you item |
++| The run parked a question (exit 5) | `/bots:status` | Read the open needs-you item in the inbox |
+ | The run completed | `/bots:status` | Read the run record and its delivery |
+ 
+ End interactive presentations with a single next-step prompt.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-schedule-auto.yaml .skilled/commands/bots/assets/bots-schedule-auto.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-schedule-auto.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-schedule-auto.yaml	2026-11-23 14:35:58
+@@ -42,5 +42,5 @@
+     - "A zero exit ends with STATUS=OK. A non-zero exit ends with STATUS=FAIL quoting the CLI output."
+ 
+ output: |
+-  STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
++  STATUS=OK when every step above completes. Render the success template from the presentation contract.
++  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-schedule-confirm.yaml .skilled/commands/bots/assets/bots-schedule-confirm.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-schedule-confirm.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-schedule-confirm.yaml	2026-11-23 14:36:02
+@@ -1,9 +1,11 @@
+ # ─────────────────────────────────────────────────────────────────
+ # BOTS: SCHEDULE WORKFLOW (CONFIRM MODE)
+ # ─────────────────────────────────────────────────────────────────
++# Same steps as the auto workflow. This variant adds one checkpoint
++# before the verb runs, because an install writes and loads a launchd agent.
+ role: "Bots schedule operator for the system-skilled-bots hub"
+-purpose: "Run exactly one schedule or posture verb of the bots CLI, then read the bot's status row"
+-action: "Resolve the inputs, load the bots-schedule mode contract, run its workflow and render the result through the presentation contract"
++purpose: "Run exactly one schedule or posture verb of the bots CLI, after one checkpoint, then read the bot's status row"
++action: "Resolve the inputs, load the bots-schedule mode contract, confirm the verb, run it and render the result through the presentation contract"
+ skill_owner: ".skilled/skills/system-skilled-bots/bots-schedule/"
+ 
+ operating_mode:
+@@ -36,22 +38,21 @@
+   steps:
+     - "Check that .skilled/bin/bots.cjs exists. If it is missing, report its path and stop with STATUS=FAIL."
+     - "Load .skilled/skills/system-skilled-bots/bots-schedule/SKILL.md and follow its workflow."
++    - checkpoint:
++        id: verb_resolved
++        when: "After the action and bot id are resolved and before the verb runs"
++        question: "Proceed with /bots:schedule as shown?"
++        options:
++          - { label: "Proceed", description: "Run the verb as shown; a first install is held disabled" }
++          - { label: "Change", description: "Edit the action or the bot id" }
++          - { label: "Cancel", description: "Stop without running anything" }
++        wait_for: user_reply
+     - "Run exactly one verb with --repo \"{repo}\": node .skilled/bin/bots.cjs schedule install {bot_id}, node .skilled/bin/bots.cjs schedule uninstall {bot_id}, node .skilled/bin/bots.cjs enable {bot_id}, node .skilled/bin/bots.cjs disable {bot_id}, node .skilled/bin/bots.cjs pause {bot_id} or node .skilled/bin/bots.cjs resume {bot_id}."
+     - "A first install is held disabled. Say so in the result, and never run enable unless the request asked for it."
+     - "Run node .skilled/bin/bots.cjs status --repo \"{repo}\" and quote the bot's row."
+     - "A zero exit ends with STATUS=OK. A non-zero exit ends with STATUS=FAIL quoting the CLI output."
+ 
+-checkpoint:
+-  when: "After the action is resolved and before an install, uninstall or enable runs, since each one changes what launchd will fire"
+-  source: ".skilled/commands/bots/assets/bots-schedule-presentation.txt"
+-  question: "Proceed with /bots:schedule as shown?"
+-  options:
+-    - { label: "Proceed", description: "Run the remaining steps as shown" }
+-    - { label: "Change", description: "Revise the inputs, then show them again" }
+-    - { label: "Cancel", description: "End the run with STATUS=CANCELLED and change nothing more" }
+-  wait_for: user_reply
+-
+ output: |
+-  STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
++  STATUS=OK when every step above completes. Render the success template from the presentation contract.
++  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.
+   STATUS=CANCELLED when the operator cancels at the checkpoint.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-schedule-presentation.txt .skilled/commands/bots/assets/bots-schedule-presentation.txt
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-schedule-presentation.txt	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-schedule-presentation.txt	2026-11-23 14:36:05
+@@ -36,15 +36,15 @@
+ STATUS=FAIL ERROR="Missing required input: [field]"
+ ```
+ 
+-## 2. DASHBOARD / CHECKPOINT LAYOUT
++## 2. CHECKPOINT LAYOUT
+ 
+-The confirm workflow stops once, after the action is resolved and before an install, uninstall or enable runs, since each one changes what launchd will fire:
++The confirm workflow stops once, after the action and bot id are resolved and before the verb runs:
+ 
+ ```text
+ /bots:schedule checkpoint
+ - Action: {action}
+ - Bot: {bot_id}
+-- Status row: [as printed]
++- Note: a first install is held disabled until enable
+ 
+ Proceed, Change or Cancel?
+ ```
+@@ -57,7 +57,8 @@
+ /bots:schedule complete
+ - Action: {action}
+ - Bot: {bot_id}
+-- Status row: [as printed]
++- Held disabled: [yes|no]
++- Status row: [quoted from bots status]
+ 
+ STATUS=OK
+ ```
+@@ -67,7 +68,7 @@
+ ```text
+ /bots:schedule failed
+ - Step: [the step that ended the run]
+-- Output: [the CLI or checker output, quoted]
++- Output: [the CLI output, quoted]
+ 
+ STATUS=FAIL ERROR="[named cause]"
+ ```
+@@ -76,7 +77,7 @@
+ 
+ | Condition | Suggested Command | Reason |
+ |-----------|-------------------|--------|
+-| The schedule was installed and is held | `/bots:schedule enable <bot-id>` | Let it fire when the operator is ready |
+-| Status reports a reinstall | `/bots:schedule install <bot-id>` | Install it again from the current tree |
++| A first install completed | `/bots:schedule enable <bot-id>` | Lift the hold when the operator wants the schedule to fire |
++| The status row needs a reinstall | `/bots:status` | Read the full status before changing anything |
+ 
+ End interactive presentations with a single next-step prompt.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-status-auto.yaml .skilled/commands/bots/assets/bots-status-auto.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-status-auto.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-status-auto.yaml	2026-11-23 14:36:23
+@@ -17,8 +17,8 @@
+   read_only: true
+   mutates_workspace: false
+   allowed_targets:
+-    - "none: this route only reads, except the status index that --rebuild rewrites under the user-level state root"
+-  invariant: "This route runs only the bots CLI verbs its steps name and the files the bots-status contract names. It never writes a plist, calls launchctl or edits the bots runtime by hand."
++    - "none: this route only reads. Its Bash grant runs only the bots status and bots inbox verbs."
++  invariant: "This route runs only the two read verbs its steps name and the files the bots-status contract names. It never runs --rebuild or --unregister, never writes a plist, never calls launchctl and never edits the bots runtime by hand."
+ 
+ upstream_assets:
+   mode_contract: ".skilled/skills/system-skilled-bots/bots-status/SKILL.md"
+@@ -28,7 +28,7 @@
+ inputs:
+   execution_mode: "AUTONOMOUS"
+   view: "Optional. status (the default) or inbox."
+-  flags: "Optional. --json, --all and --rebuild for status. --rebuild rewrites the status index under the user-level state root and is passed only when asked."
++  flags: "Optional. --json and --all for status. Rebuild and unregister flags are not accepted by this route."
+   repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
+ 
+ execution:
+@@ -37,8 +37,9 @@
+     - "Load .skilled/skills/system-skilled-bots/bots-status/SKILL.md and follow its workflow."
+     - "Run node .skilled/bin/bots.cjs status --repo \"{repo}\" with the flags the request gave, or node .skilled/bin/bots.cjs inbox --repo \"{repo}\" for the inbox view."
+     - "Quote the rows as printed. Name /bots:run for an open needs-you item and /bots:schedule for a row that needs a reinstall."
++    - "If the status index looks stale, name bots status --rebuild as the operator's next step. Do not run it."
+     - "A zero exit ends with STATUS=OK. A non-zero exit ends with STATUS=FAIL quoting the CLI output."
+ 
+ output: |
+-  STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
++  STATUS=OK when every step above completes. Render the success template from the presentation contract.
++  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-status-confirm.yaml .skilled/commands/bots/assets/bots-status-confirm.yaml
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-status-confirm.yaml	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-status-confirm.yaml	2026-11-23 14:36:27
+@@ -1,9 +1,11 @@
+ # ─────────────────────────────────────────────────────────────────
+ # BOTS: STATUS WORKFLOW (CONFIRM MODE)
+ # ─────────────────────────────────────────────────────────────────
++# Same steps as the auto workflow. This variant adds one checkpoint
++# after the view is resolved and before the read runs.
+ role: "Bots status operator for the system-skilled-bots hub"
+-purpose: "Read bot status or the needs-you inbox through the bots CLI and report the rows as printed"
+-action: "Resolve the inputs, load the bots-status mode contract, run its workflow and render the result through the presentation contract"
++purpose: "Read bot status or the needs-you inbox through the bots CLI, after one checkpoint, and report the rows as printed"
++action: "Resolve the inputs, load the bots-status mode contract, confirm the view, run its read and render the result through the presentation contract"
+ skill_owner: ".skilled/skills/system-skilled-bots/bots-status/"
+ 
+ operating_mode:
+@@ -17,8 +19,8 @@
+   read_only: true
+   mutates_workspace: false
+   allowed_targets:
+-    - "none: this route only reads, except the status index that --rebuild rewrites under the user-level state root"
+-  invariant: "This route runs only the bots CLI verbs its steps name and the files the bots-status contract names. It never writes a plist, calls launchctl or edits the bots runtime by hand."
++    - "none: this route only reads. Its Bash grant runs only the bots status and bots inbox verbs."
++  invariant: "This route runs only the two read verbs its steps name and the files the bots-status contract names. It never runs --rebuild or --unregister, never writes a plist, never calls launchctl and never edits the bots runtime by hand."
+ 
+ upstream_assets:
+   mode_contract: ".skilled/skills/system-skilled-bots/bots-status/SKILL.md"
+@@ -28,28 +30,28 @@
+ inputs:
+   execution_mode: "INTERACTIVE"
+   view: "Optional. status (the default) or inbox."
+-  flags: "Optional. --json, --all and --rebuild for status. --rebuild rewrites the status index under the user-level state root and is passed only when asked."
++  flags: "Optional. --json and --all for status. Rebuild and unregister flags are not accepted by this route."
+   repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
+ 
+ execution:
+   steps:
+     - "Check that .skilled/bin/bots.cjs exists. If it is missing, report its path and stop with STATUS=FAIL."
+     - "Load .skilled/skills/system-skilled-bots/bots-status/SKILL.md and follow its workflow."
++    - checkpoint:
++        id: view_resolved
++        when: "After the view and flags are resolved and before the read runs"
++        question: "Read /bots:status as shown?"
++        options:
++          - { label: "Proceed", description: "Run the read verb as shown" }
++          - { label: "Change", description: "Edit the view or the flags" }
++          - { label: "Cancel", description: "Stop without reading anything" }
++        wait_for: user_reply
+     - "Run node .skilled/bin/bots.cjs status --repo \"{repo}\" with the flags the request gave, or node .skilled/bin/bots.cjs inbox --repo \"{repo}\" for the inbox view."
+     - "Quote the rows as printed. Name /bots:run for an open needs-you item and /bots:schedule for a row that needs a reinstall."
++    - "If the status index looks stale, name bots status --rebuild as the operator's next step. Do not run it."
+     - "A zero exit ends with STATUS=OK. A non-zero exit ends with STATUS=FAIL quoting the CLI output."
+ 
+-checkpoint:
+-  when: "After the view is resolved and before --rebuild runs, since it rewrites the status index"
+-  source: ".skilled/commands/bots/assets/bots-status-presentation.txt"
+-  question: "Proceed with /bots:status as shown?"
+-  options:
+-    - { label: "Proceed", description: "Run the remaining steps as shown" }
+-    - { label: "Change", description: "Revise the inputs, then show them again" }
+-    - { label: "Cancel", description: "End the run with STATUS=CANCELLED and change nothing more" }
+-  wait_for: user_reply
+-
+ output: |
+-  STATUS=OK when the workflow ends as its steps say. Render the success template from the presentation contract.
+-  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI or checker output and render the failure template.
++  STATUS=OK when every step above completes. Render the success template from the presentation contract.
++  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.
+   STATUS=CANCELLED when the operator cancels at the checkpoint.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-status-presentation.txt .skilled/commands/bots/assets/bots-status-presentation.txt
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/assets/bots-status-presentation.txt	2026-11-23 13:21:03
++++ .skilled/commands/bots/assets/bots-status-presentation.txt	2026-11-23 14:36:30
+@@ -13,7 +13,7 @@
+ | Field | Required | Resolution |
+ |-------|----------|------------|
+ | `view` | No | Optional. status (the default) or inbox. |
+-| `flags` | No | Optional. --json, --all and --rebuild for status. --rebuild rewrites the status index under the user-level state root and is passed only when asked. |
++| `flags` | No | Optional. --json and --all for status. Rebuild and unregister flags are not accepted by this route. |
+ | `repo` | No | Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory. |
+ 
+ ### Consolidated Prompt Template
+@@ -30,20 +30,20 @@
+ ### Auto Fail-Fast Display
+ 
+ ```text
+-/bots:status needs a missing input: [field].
+-Usage: /bots:status [status|inbox] [--json] [--all] [--rebuild] [--repo <path>] [:auto|:confirm]
++/bots:status needs a valid input: [field].
++Usage: /bots:status [status|inbox] [--json] [--all] [--repo <path>] [:auto|:confirm]
+ 
+-STATUS=FAIL ERROR="Missing required input: [field]"
++STATUS=FAIL ERROR="Invalid input: [field]"
+ ```
+ 
+-## 2. DASHBOARD / CHECKPOINT LAYOUT
++## 2. CHECKPOINT LAYOUT
+ 
+-The confirm workflow stops once, after the view is resolved and before --rebuild runs, since it rewrites the status index:
++The confirm workflow stops once, after the view and flags are resolved and before the read runs:
+ 
+ ```text
+ /bots:status checkpoint
+ - View: {view}
+-- Rows: [as printed]
++- Flags: [as resolved]
+ 
+ Proceed, Change or Cancel?
+ ```
+@@ -65,7 +65,7 @@
+ ```text
+ /bots:status failed
+ - Step: [the step that ended the run]
+-- Output: [the CLI or checker output, quoted]
++- Output: [the CLI output, quoted]
+ 
+ STATUS=FAIL ERROR="[named cause]"
+ ```
+@@ -76,5 +76,6 @@
+ |-----------|-------------------|--------|
+ | An open needs-you item is listed | `/bots:run answer <item-id> <text>` | Answer it so the run continues |
+ | A row needs a reinstall | `/bots:schedule install <bot-id>` | Install the schedule again |
++| The index looks stale | `bots status --rebuild` | Operator step: this rewrites the status index |
+ 
+ End interactive presentations with a single next-step prompt.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/author.md .skilled/commands/bots/author.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/author.md	2026-11-23 13:21:03
++++ .skilled/commands/bots/author.md	2026-11-23 14:34:49
+@@ -1,7 +1,7 @@
+ ---
+-description: Write or edit a bot's BOT.md from the template, then prove it with the definition checker. :auto/:confirm.
++description: Write or edit a bot's BOT.md from the template, then hand the check to /doctor:bots. :auto/:confirm.
+ argument-hint: "<bot-id> [--repo <path>] [:auto|:confirm]"
+-allowed-tools: Read, Write, Edit, Bash, Grep, Glob
++allowed-tools: Read, Write, Edit, Grep, Glob
+ ---
+ 
+ # /bots:author Router
+@@ -16,9 +16,9 @@
+ 
+ ## 1. ROUTER CONTRACT
+ 
+-Route /bots:author to its presentation contract and workflow YAML. Write or edit one bots/<id>/BOT.md from the shipped template and prove the repository's bots/ folder with the definition checker.
++Route /bots:author to its presentation contract and workflow YAML. Write or edit one bots/<id>/BOT.md from the shipped template.
+ 
+-Do not run the bots CLI from this document. The `bots-author` packet of `system-skilled-bots` owns the author workflow, and the workflow YAML owns setup, execution mode and every command it runs.
++Do not run a shell command or the bots CLI from this document. This command grants no Bash, so the definition check is not run here: `/doctor:bots` runs it read-only. The `bots-author` packet of `system-skilled-bots` owns the author workflow, and the workflow YAML owns setup, execution mode and every step it runs.
+ 
+ ---
+ 
+@@ -68,5 +68,5 @@
+ 
+ The bound workflow YAML (`bots-author-auto.yaml` for `:auto`, `bots-author-confirm.yaml` for `:confirm` or an omitted mode) loads the `bots-author` mode contract and runs its workflow step by step.
+ `:auto` executes autonomously.
+-`:confirm` runs the same steps and stops once, after the BOT.md draft is written and before the checker runs.
++`:confirm` runs the same steps and stops once, after the BOT.md draft is written and before the handoff to `/doctor:bots`.
+ All prompts, displays and result wording come from the presentation contract, not this router.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/run.md .skilled/commands/bots/run.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/run.md	2026-11-23 13:21:03
++++ .skilled/commands/bots/run.md	2026-11-23 14:35:28
+@@ -1,5 +1,5 @@
+ ---
+-description: Run a bot now, queue or drain bot run requests, or answer a needs-you item. :auto/:confirm.
++description: Start a bot run, queue or drain bot run requests, or answer a needs-you item. :auto/:confirm.
+ argument-hint: "<bot-id|drain|enqueue <bot-id> --source <name> --key <key>|answer <item-id> <text>> [--repo <path>] [:auto|:confirm]"
+ allowed-tools: Read, Bash, Grep, Glob
+ ---
+@@ -10,15 +10,15 @@
+ 
+ ## 0. REQUIRED INPUT
+ 
+-`/bots:run` needs bot-id, or one of drain, enqueue or answer with its arguments. When `$ARGUMENTS` does not carry it, stop and ask for it. Never infer it from context or conversation history.
++`/bots:run` needs a verb and its arguments. When `$ARGUMENTS` does not carry them, stop and ask for them. Never infer a bot id or an item id from context or conversation history.
+ 
+ ---
+ 
+ ## 1. ROUTER CONTRACT
+ 
+-Route /bots:run to its presentation contract and workflow YAML. Run exactly one bots CLI verb that starts or continues a run and report its exit code with its meaning.
++Route /bots:run to its presentation contract and workflow YAML. Start one bots CLI verb that starts or continues a run, then report its exit code with its meaning.
+ 
+-Do not run the bots CLI from this document. The `bots-run` packet of `system-skilled-bots` owns the run workflow, and the workflow YAML owns setup, execution mode and every command it runs.
++Do not run any bots CLI verb from this document. The `bots-run` packet of `system-skilled-bots` owns the run workflow, and the workflow YAML owns setup, execution mode and every command it runs.
+ 
+ ---
+ 
+@@ -66,7 +66,7 @@
+ 
+ ## 6. WORKFLOW SUMMARY
+ 
+-The bound workflow YAML (`bots-run-auto.yaml` for `:auto`, `bots-run-confirm.yaml` for `:confirm` or an omitted mode) loads the `bots-run` mode contract and runs its workflow step by step.
++The bound workflow YAML (`bots-run-auto.yaml` for `:auto`, `bots-run-confirm.yaml` for `:confirm` or an omitted mode) loads the `bots-run` mode contract and runs exactly one verb step by step.
+ `:auto` executes autonomously.
+-`:confirm` runs the same steps and stops once, after the verb and its arguments are resolved and before the verb runs, since a run dispatches a real executor.
++`:confirm` runs the same steps and stops once, after the verb and its arguments are resolved and before the verb runs.
+ All prompts, displays and result wording come from the presentation contract, not this router.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/schedule.md .skilled/commands/bots/schedule.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/schedule.md	2026-11-23 13:21:03
++++ .skilled/commands/bots/schedule.md	2026-11-23 14:35:54
+@@ -10,15 +10,15 @@
+ 
+ ## 0. REQUIRED INPUT
+ 
+-`/bots:schedule` needs an action and a bot-id. When `$ARGUMENTS` does not carry it, stop and ask for it. Never infer it from context or conversation history.
++`/bots:schedule` needs an action and a bot id. When `$ARGUMENTS` does not carry them, stop and ask for them. Never infer a bot id from context or conversation history.
+ 
+ ---
+ 
+ ## 1. ROUTER CONTRACT
+ 
+-Route /bots:schedule to its presentation contract and workflow YAML. Run exactly one schedule or posture verb of the bots CLI, then read the bot's status row.
++Route /bots:schedule to its presentation contract and workflow YAML. Run one schedule or posture verb of the bots CLI, then read the bot's status row.
+ 
+-Do not run the bots CLI from this document. The `bots-schedule` packet of `system-skilled-bots` owns the schedule workflow, and the workflow YAML owns setup, execution mode and every command it runs.
++Do not run any bots CLI verb from this document. The `bots-schedule` packet of `system-skilled-bots` owns the schedule workflow, and the workflow YAML owns setup, execution mode and every command it runs.
+ 
+ ---
+ 
+@@ -66,7 +66,7 @@
+ 
+ ## 6. WORKFLOW SUMMARY
+ 
+-The bound workflow YAML (`bots-schedule-auto.yaml` for `:auto`, `bots-schedule-confirm.yaml` for `:confirm` or an omitted mode) loads the `bots-schedule` mode contract and runs its workflow step by step.
++The bound workflow YAML (`bots-schedule-auto.yaml` for `:auto`, `bots-schedule-confirm.yaml` for `:confirm` or an omitted mode) loads the `bots-schedule` mode contract and runs exactly one schedule or posture verb step by step.
+ `:auto` executes autonomously.
+-`:confirm` runs the same steps and stops once, after the action is resolved and before an install, uninstall or enable runs, since each one changes what launchd will fire.
++`:confirm` runs the same steps and stops once, before the verb runs, because an install writes and loads a launchd agent.
+ All prompts, displays and result wording come from the presentation contract, not this router.
+diff -ru /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/status.md .skilled/commands/bots/status.md
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/bots/status.md	2026-11-23 13:21:03
++++ .skilled/commands/bots/status.md	2026-11-23 14:36:20
+@@ -1,6 +1,6 @@
+ ---
+ description: Read installed bots, last runs, deliveries and the needs-you inbox. Read-only. :auto/:confirm.
+-argument-hint: "[status|inbox] [--json] [--all] [--rebuild] [--repo <path>] [:auto|:confirm]"
++argument-hint: "[status|inbox] [--json] [--all] [--repo <path>] [:auto|:confirm]"
+ allowed-tools: Read, Bash, Grep, Glob
+ ---
+ 
+@@ -8,11 +8,17 @@
+ 
+ This command is a thin router. It separates execution routing from user-facing presentation.
+ 
++## 0. REQUIRED INPUT
++
++`/bots:status` needs no positional input. With no view it reads the status, and with `inbox` it reads the needs-you inbox. It never needs a bot id.
++
++---
++
+ ## 1. ROUTER CONTRACT
+ 
+-Route /bots:status to its presentation contract and workflow YAML. Read bot status or the needs-you inbox through the bots CLI and report the rows as printed.
++Route /bots:status to its presentation contract and workflow YAML. Read the status or the inbox through the two read verbs of the bots CLI, and report the rows as printed.
+ 
+-Do not run the bots CLI from this document. The `bots-status` packet of `system-skilled-bots` owns the status workflow, and the workflow YAML owns setup, execution mode and every command it runs.
++This command is read-only. Its Bash grant covers only `bots status` and `bots inbox`. It has no write or edit tool, so `--rebuild` and `--unregister` are never run from here: the result names them as the operator's next step. The `bots-status` packet of `system-skilled-bots` owns the status workflow, and the workflow YAML owns setup, execution mode and every command it runs.
+ 
+ ---
+ 
+@@ -60,7 +66,7 @@
+ 
+ ## 6. WORKFLOW SUMMARY
+ 
+-The bound workflow YAML (`bots-status-auto.yaml` for `:auto`, `bots-status-confirm.yaml` for `:confirm` or an omitted mode) loads the `bots-status` mode contract and runs its workflow step by step.
++The bound workflow YAML (`bots-status-auto.yaml` for `:auto`, `bots-status-confirm.yaml` for `:confirm` or an omitted mode) loads the `bots-status` mode contract and runs one read verb step by step.
+ `:auto` executes autonomously.
+-`:confirm` runs the same steps and stops once, after the view is resolved and before --rebuild runs, since it rewrites the status index.
++`:confirm` runs the same steps and stops once, after the view is resolved and before the read runs.
+ All prompts, displays and result wording come from the presentation contract, not this router.
+## doctor bots files
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/doctor/bots.md	2026-11-23 13:12:38
++++ .skilled/commands/doctor/bots.md	2026-11-23 14:38:34
+@@ -1,19 +1,25 @@
+ ---
+-description: "Check a repository's bots/ folder with the bot definition checker, read-only, naming each failed invariant."
+-argument-hint: "[--root <dir>] [--strict]"
++description: Check a repository's bots/ folder with the bot definition checker, read-only, naming each failed invariant. :auto/:confirm.
++argument-hint: "[--root <dir>] [--strict] [:auto|:confirm]"
+ allowed-tools: Read, Bash, Grep, Glob
+ ---
+ <!-- skill_agent: system-skilled-bots -->
+ 
+ # /doctor:bots Router
+ 
+-This command is a thin router. It binds the bot definition check from `_routes.yaml`, then loads its workflow YAML and the presentation contract.
++This command is a thin router. It runs the bot definition checker once over a repository's `bots/` folder, then loads its workflow YAML and the presentation contract.
+ 
++## 0. OPTIONAL INPUT
++
++`/doctor:bots` takes no positional target. `--root <dir>` names the repository whose `bots/` folder is checked, and the current working directory is used without it. `--strict` turns advisory findings into failures.
++
++---
++
+ ## 1. ROUTER CONTRACT
+ 
+-Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command. Do not edit a `BOT.md`: the route only reads, and the author mode of `system-skilled-bots` owns every edit.
++Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command. Do not edit a `BOT.md`: this route only reads, and the `bots-author` mode of `system-skilled-bots` owns every edit.
+ 
+-Load the presentation contract before showing the setup dashboard, the check report, a result summary or next-step text.
++Load the presentation contract before showing the setup display, the check report, a result summary or next-step text.
+ 
+ ---
+ 
+@@ -21,33 +27,34 @@
+ 
+ | Purpose | Asset |
+ |---------|-------|
+-| Route manifest | `.skilled/commands/doctor/_routes.yaml` |
+ | Presentation source of truth | `.skilled/commands/doctor/assets/doctor-bots-presentation.txt` |
++| Auto workflow | `.skilled/commands/doctor/assets/doctor-bots-auto.yaml` |
++| Confirm workflow | `.skilled/commands/doctor/assets/doctor-bots-confirm.yaml` |
+ | Definition checker | `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` |
+ 
+ ---
+ 
+ ## 3. MODE ROUTING
+ 
+-- `_routes.yaml` is the canonical routing and mutation-class manifest, and this command owns the route whose `command` is `/doctor:bots`.
+-- `execution_mode` is always `INTERACTIVE`. No `:auto` or `:confirm` suffix is supported.
+-- The command takes no positional target. `--root <dir>` names the repository whose `bots/` folder is checked, and the current working directory is used without it. `--strict` turns advisory findings into failures.
+-- An unknown flag, a `--root` without its value or a positional token fails before YAML load with the presentation contract's wording.
+ - If any referenced asset is missing, stop and report the missing path.
+ - The YAML owns workflow behavior. The presentation text owns visible wording and layout.
+ 
++1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`, `:confirm` sets `INTERACTIVE`, and no suffix uses the confirm workflow.
++2. Parse `--root` and `--strict`, and reject any other argument before the YAML loads, with the argument failure wording from the presentation contract.
++3. Read `.skilled/commands/doctor/assets/doctor-bots-presentation.txt` and run its setup resolution.
++4. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
++5. Execute the selected YAML step by step.
++6. Use the presentation contract, not this router, for prompts, the check report and result display.
++
+ ---
+ 
+ ## 4. EXECUTION TARGETS
+ 
+ | Target | Workflow |
+ |--------|----------|
+-| `bots-check` | `.skilled/commands/doctor/assets/doctor-bots-check.yaml` |
++| `bots-check` | `.skilled/commands/doctor/assets/doctor-bots-auto.yaml` |
+ 
+-1. Read `.skilled/commands/doctor/assets/doctor-bots-presentation.txt`.
+-2. Read `.skilled/commands/doctor/_routes.yaml` and select the `/doctor:bots` route.
+-3. Parse `--root` and `--strict`, and reject any other argument.
+-4. Load `.skilled/commands/doctor/assets/doctor-bots-check.yaml` and execute it step by step.
++The `:confirm` workflow, `.skilled/commands/doctor/assets/doctor-bots-confirm.yaml`, runs the same `bots-check` route with one checkpoint. Section 3 names when it is chosen.
+ 
+ ---
+ 
+@@ -59,5 +66,7 @@
+ 
+ ## 6. WORKFLOW SUMMARY
+ 
+-The workflow runs `bot-check.cjs` once on the repository, shows every finding line as printed with its invariant id, and maps the exit status to a result: 0 passes, 1 names the failed invariants, 2 means the audit could not finish.
+-It writes nothing.
++The bound workflow YAML runs `bot-check.cjs` once on the repository, shows every finding line as printed with its invariant id, and maps the exit status to a result: 0 passes, 1 names the failed invariants, 2 means the audit could not finish.
++`:auto` executes autonomously.
++`:confirm` stops once, before the checker runs.
++The route writes nothing.
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/doctor/assets/doctor-bots-check.yaml	2026-11-23 13:12:38
++++ .skilled/commands/doctor/assets/doctor-bots-auto.yaml	2026-11-23 14:36:50
+@@ -1,50 +1,34 @@
+ # ─────────────────────────────────────────────────────────────────
+-# DOCTOR: BOTS CHECK (READ-ONLY DIAGNOSTIC)
++# DOCTOR: BOTS CHECK (AUTO MODE, READ-ONLY)
+ # ─────────────────────────────────────────────────────────────────
+-role: Diagnostic Operator reporting whether one repository's bots/ folder passes the bot definition checker
+-purpose: Run the definition checker once over the repository's bots/ folder and report each finding by its invariant id
+-action: Run the checker once -> render its report through the presentation contract
++role: "Diagnostic operator reporting whether one repository's bots/ folder passes the bot definition checker"
++purpose: "Run the definition checker once over the repository's bots/ folder and report each finding by its invariant id"
++action: "Run the checker once, then render its report through the presentation contract"
+ skill_owner: ".skilled/skills/system-skilled-bots/"
+ 
+-# ─────────────────────────────────────────────────────────────────
+-# OPERATING MODE
+-# ─────────────────────────────────────────────────────────────────
+ operating_mode:
+   workflow: single_step_check
+-  compliance: MANDATORY
+-  execution: read_only
++  workflow_compliance: MANDATORY
++  workflow_execution: autonomous
+   approvals: none
+-  tracking: single_run
+   validation: read_only_assertion
+ 
+-# ─────────────────────────────────────────────────────────────────
+-# MUTATION BOUNDARIES (READ-ONLY)
+-# ─────────────────────────────────────────────────────────────────
+ mutation_boundaries:
+   read_only: true
+   allowed_targets: []
+   forbidden_targets:
+     - "**/*"
+-  invariant: "This route runs the definition checker only. The checker imports the runtime's own parser, config reader, identity resolver, executor bounds, cron translator, label grammar and delivery channel list, and it only reads. The route never edits a BOT.md, never runs, installs or enqueues a bot, and writes no state log."
++  invariant: "This route runs the definition checker only. The checker reads and never writes. The route never edits a BOT.md, never runs, installs or enqueues a bot, and writes no state log."
+ 
+-# ─────────────────────────────────────────────────────────────────
+-# UPSTREAM ASSETS
+-# ─────────────────────────────────────────────────────────────────
+ upstream_assets:
+   checker: ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs"
+   presentation: ".skilled/commands/doctor/assets/doctor-bots-presentation.txt"
+ 
+-# ─────────────────────────────────────────────────────────────────
+-# INPUTS
+-# ─────────────────────────────────────────────────────────────────
+ inputs:
+-  execution_mode: "INTERACTIVE"
++  execution_mode: "AUTONOMOUS"
+   root: "Optional repository root, passed as --root <dir>. The current working directory is used without it."
+   strict: "When true, pass --strict so advisory findings count as failures. The default is false."
+ 
+-# ─────────────────────────────────────────────────────────────────
+-# EXECUTION
+-# ─────────────────────────────────────────────────────────────────
+ execution:
+   steps:
+     - "Check that .skilled/skills/system-skilled-bots/scripts/bot-check.cjs and .skilled/commands/doctor/assets/doctor-bots-presentation.txt exist. If one is missing, report its path and stop with STATUS=FAIL."
+@@ -53,9 +37,6 @@
+     - "Exit 0 means every hard invariant passed: end with STATUS=OK. Exit 1 means at least one invariant failed: list the FAIL lines, name /bots:author as the repair, and end with STATUS=WARN. Exit 2 means the target is missing or the audit could not finish: quote the message and end with STATUS=FAIL."
+     - "Render the result through .skilled/commands/doctor/assets/doctor-bots-presentation.txt."
+ 
+-# ─────────────────────────────────────────────────────────────────
+-# OUTPUT
+-# ─────────────────────────────────────────────────────────────────
+ output: |
+   STATUS=OK when the checker exits 0. Show the check report through the presentation contract.
+   STATUS=WARN when the checker exits 1. Show the check report and each failed invariant id.
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/hand-build/.skilled/commands/doctor/assets/doctor-bots-presentation.txt	2026-11-23 13:12:38
++++ .skilled/commands/doctor/assets/doctor-bots-presentation.txt	2026-11-23 14:36:58
+@@ -1,60 +1,90 @@
+ # /doctor:bots Presentation Contract
+ 
+-This file is the single source of truth for user-facing presentation in `/doctor:bots`: argument failures, the setup dashboard, the check report, result templates and next-step text. The command router owns argument parsing and asset routing only. The workflow YAML owns execution behavior.
++Presentation source of truth for `/doctor:bots`. The router owns asset loading. Workflow YAML owns execution. This file owns visible prompts, the setup display, the check report and result displays.
+ 
+-## 1. Argument Failure
++## 1. STARTUP PRESENTATION
+ 
++For `:confirm` or no suffix, resolve the inputs from `$ARGUMENTS`, show the setup display, and ask only for a required input that is missing.
++
++For `:auto`, resolve the inputs from `$ARGUMENTS` and defaults, and show the report directly.
++
++### Auto Resolution Table
++
++| Field | Required | Resolution |
++|-------|----------|------------|
++| `root` | No | Optional repository root, passed as --root <dir>. Defaults to the current working directory. |
++| `strict` | No | When present, pass --strict so advisory findings count as failures. Defaults to false. |
++
++### Argument Failure Display
++
+ ```text
+-Unknown argument: [argument]
+-/doctor:bots takes no target. Its flags are --root <dir> and --strict.
+-STATUS=FAIL ERROR="unknown_argument"
++/doctor:bots does not take [argument].
++Usage: /doctor:bots [--root <dir>] [--strict] [:auto|:confirm]
++
++STATUS=FAIL ERROR="Unknown argument: [argument]"
+ ```
+ 
+-## 2. Setup Dashboard
++### Consolidated Prompt Template
+ 
+ ```text
+-DOCTOR ROUTE SETUP
+-Target: bots-check
+-Workflow: .skilled/commands/doctor/assets/doctor-bots-check.yaml
+-Mutation class: read-only (writes nothing)
+-Execution mode: INTERACTIVE
+-Root: [--root value, or the current working directory]
+-Strict: [yes|no]
+-Next: load workflow YAML
++/doctor:bots setup
++- root: [value or default]
++- strict: [value or default]
++
++Reply with the change, or "go" to run the check.
+ ```
+ 
+-## 3. Result Templates
++## 2. CHECKPOINT LAYOUT
+ 
+-### Check Report
++The confirm workflow stops once, before the checker runs. The checker reads only:
+ 
+ ```text
+-DOCTOR DIAGNOSTIC RESULT
+-Target: bots-check
+-Root: [root]
+-Findings:
+-[every checker line as printed]
+-Failed invariants: [ids, or none]
+-Recommendation: [/bots:author <bot-id> for each failed definition, or none]
+-STATUS=[OK|WARN]
++/doctor:bots checkpoint
++- Root: {root}
++- Strict: [yes|no]
++
++Proceed, Change or Cancel?
+ ```
+ 
+-### Failure Summary
++## 3. CHECK REPORT AND RESULTS
+ 
++Show every finding line exactly as the checker prints it, one `PASS`, `FAIL`, `WARN` or `INFO` line each, with its invariant id.
++
++### Success (checker exit 0)
++
+ ```text
+-DOCTOR TARGET FAILED
+-Target: bots-check
+-Step: [setup|checker]
+-Error: [the checker message, quoted]
+-Next: /doctor:bots --root <dir>
+-STATUS=FAIL ERROR="[message]"
++/doctor:bots passed
++- Root: {root}
++- Findings: [count of PASS, FAIL, WARN and INFO lines]
++
++STATUS=OK
+ ```
+ 
+-## 4. Troubleshooting Display
++### Warning (checker exit 1)
+ 
+-| Situation | Suggested Action |
+-|-----------|------------------|
+-| A definition fails an invariant | Fix the field the invariant id names with `/bots:author <bot-id>`, then run `/doctor:bots` again |
+-| The checker exits 2 | Confirm `--root` names a repository that holds a `bots/` folder |
+-| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
++```text
++/doctor:bots found failed invariants
++- Root: {root}
++- Failed invariants: [each invariant id from a FAIL line]
+ 
+-End interactive presentations with: `What would you like to do next?`
++STATUS=WARN
++```
++
++### Failure (checker exit 2 or cannot run)
++
++```text
++/doctor:bots could not finish
++- Root: {root}
++- Checker output: [quoted message]
++
++STATUS=FAIL ERROR="[named cause]"
++```
++
++## 4. NEXT-STEP SUGGESTIONS
++
++| Condition | Suggested Command | Reason |
++|-----------|-------------------|--------|
++| A FAIL line names a field | `/bots:author` | Edit the BOT.md field the invariant names |
++| The bots folder is clean | `/bots:status` | Read what the installed bots did |
++
++End interactive presentations with a single next-step prompt.
+## doctor-bots-confirm.yaml is W-only (no hand-build counterpart)
+## _routes.yaml (W tracked change, git diff)
+diff --git a/.skilled/commands/doctor/_routes.yaml b/.skilled/commands/doctor/_routes.yaml
+index 005c90e0895..6161a57a1af 100644
+--- a/.skilled/commands/doctor/_routes.yaml
++++ b/.skilled/commands/doctor/_routes.yaml
+@@ -3,7 +3,7 @@
+ # ─────────────────────────────────────────────────────────────────
+ # Source of truth for the routed doctor commands. Each route names the command
+ # that owns it, so one manifest serves every router. The list below is every one of
+-# the 17 router files in this folder, in no particular order:
++# the 18 router files in this folder, in no particular order:
+ #   /doctor:speckit         .skilled/commands/doctor/speckit.md
+ #   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
+ #   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
+@@ -21,6 +21,7 @@
+ #   /doctor:symlink         .skilled/commands/doctor/symlink.md
+ #   /doctor:install         .skilled/commands/doctor/install.md
+ #   /doctor:overlay         .skilled/commands/doctor/overlay.md
++#   /doctor:bots            .skilled/commands/doctor/bots.md
+ # A command that owns one route needs no positional target.
+ # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
+ # Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
+@@ -714,6 +715,23 @@ routes:
+       - "move my vendored skilled copy to a newer upstream commit"
+       - "roll back a vendored skilled re-pin"
+ 
++  - command: /doctor:bots
++    target: bots-check
++    yaml: doctor-bots-auto.yaml
++    setup_vars: [execution_mode, root, strict]
++    allowed_flags: ["--root <dir>", "--strict"]
++    mutating: read-only
++    gate3_location: "n/a (read-only diagnostic; the definition checker reads the repository's bots/ folder and writes nothing)"
++    mcp_tools: []   # script-only; no MCP calls
++    script_invocations:
++      - 'node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <checkout-root>  # the workflow adds --strict only when the operator passed it; exit 0 = pass, 1 = an invariant failed, 2 = audit could not finish'
++    trigger_phrases:
++      - "check my bot definitions"
++      - "validate the bots folder"
++      - "bot definition checker"
++      - "check every bot.md in this repo"
++      - "which bot definitions fail"
++
+ # ─────────────────────────────────────────────────────────────────
+ # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
+ # ─────────────────────────────────────────────────────────────────

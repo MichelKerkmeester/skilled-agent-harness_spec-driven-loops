@@ -1,0 +1,8 @@
+$ rg -n -i 'mode.{0,20}(is|are) (routed|reachable|integrated)' specs/system-skilled-bots/001-headless-bots-first-build/00[1-8]-*/*.md
+specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/spec.md:129:- Hub registry files (`mode-registry.json`, `hub-router.json`, mode packets) - phase 8 owns them, and no mode is routed before then.
+specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/plan.md:153:| Verification | Implementation | Phase close and any claim that a mode is routed |
+specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/implementation-summary.md:3:description: "Planned, not started. Nothing has been built for the bots hub wiring and no mode is routed."
+specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/acceptance-criteria.md:62:| AC-007 | REQ-008 | Given phases 001 to 008 are written, When their documents are searched, Then none claims a mode is routed or reachable before AC-001 and AC-002 are Met, or integrated before AC-001 to AC-005 are Met (`skill-hub-routing.md` §2) | `rg` output over `../00[1-8]-*/*.md` showing no such claim | Unmet | - |
+specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/tasks.md:172:- [x] CHK-042 [P2] No phase doc claims the status mode is routed. No phase doc claims the status mode is routed
+specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/tasks.md:83:- [ ] T026 Confirm no earlier phase claims a mode is routed (`../00[1-8]-*/`). Verify: `rg -n -i 'mode.{0,20}(is|are) (routed|reachable|integrated)' ../00[1-8]-*/*.md` prints no claim of completed routing or integration.
+(exit 0)

@@ -1,0 +1,429 @@
+=== [strip-and-replay: remove 'answer the open needs-you'] 2026-11-23 17:19:02
+       - answer the open needs-you
+ood | ok   top=None bots=[] | answer this question
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | status of the build
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | author a skill
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | check my email inbox
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer the open question
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer the open ticket
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer the open issues
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer the open
+ood | ok   top=None bots=[] | answer the question
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer my open questions
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer the open pr comments
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer the pending question
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+ood |  | answer the open review threads
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+in  |  | answer the open needs-you question for the release bot
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+in  |  | what is waiting in my bots inbox
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+in  |  | answer the bot
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: not all arguments converted during string formatting
+in  |  | bots answer
+candidate=NONE stage-one-fails=0
+=== [replay after strip, formatter fixed] 2026-11-23 17:19:24
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.178)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | FAIL top=('system-skilled-bots', 0.82, 0.214) bots=[(1, 0.82, 0.214)] | answer the open question
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[(2, 0.82, 0.205)] | answer the open issues
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | FAIL top=('system-skilled-bots', 0.82, 0.214) bots=[(1, 0.82, 0.214)] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[(4, 0.6184, 0.174)] | answer the open review threads
+in  | ok   top=('system-skilled-bots', 0.8551) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+candidate=NONE stage-one-fails=4
+
+=== [diagnostic: strip 'open needs-you items' from graph-metadata.json only (backup kept), rescan, rebuild, replay] 2026-11-23 17:19:51
+0
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the open question
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[] | answer the open issues
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[] | answer the open review threads
+in  | ok   top=('system-skilled-bots', 0.8287) | answer the open needs-you question for the release bot
+candidate=NONE stage-one-fails=0
+
+=== [restore graph-metadata.json from the fix4 backup] 2026-11-23 17:20:33
+restored
+=== [VOCABULARY CHANGE: drop status keyword 'open needs-you items' from hub-router.json and ROUTER.md] 2026-11-23 17:20:33
+edited .skilled/skills/system-skilled-bots/hub-router.json
+edited .skilled/skills/system-skilled-bots/ROUTER.md
+.skilled/skills/system-skilled-bots/ROUTER.md:0
+.skilled/skills/system-skilled-bots/hub-router.json:0
+=== [trial: keep run keyword 'answer the open needs-you', status keyword dropped]
+Traceback (most recent call last):
+  File "<stdin>", line 12, in <module>
+AssertionError: ('.skilled/skills/system-skilled-bots/hub-router.json', 'answer the open needs-you')
+       - open needs-you items
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.178)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the open question
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[] | answer the open issues
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[] | answer the open review threads
+in  | ok   top=('system-skilled-bots', 0.8287) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+candidate=answer the open needs-you stage-one-fails=0
+
+=== [the trial above ran with both keywords absent: the earlier strip had already removed the run keyword. Now re-add run 'answer the open needs-you', status keyword still dropped] 2026-11-23 17:20:48
+       + answer the open needs-you
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.178)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | FAIL top=('system-skilled-bots', 0.82, 0.214) bots=[(1, 0.82, 0.214)] | answer the open question
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[(2, 0.82, 0.205)] | answer the open issues
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | FAIL top=('system-skilled-bots', 0.82, 0.214) bots=[(1, 0.82, 0.214)] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[(4, 0.6184, 0.174)] | answer the open review threads
+in  | ok   top=('system-skilled-bots', 0.8836) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+candidate=answer the open needs-you stage-one-fails=4
+
+=== [trial: run 'answer the open needs-you' -> 'needs-you'] 2026-11-23 17:21:05
+       - answer the open needs-you
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.178)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the open question
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[] | answer the open issues
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[] | answer the open review threads
+in  | ok   top=('system-skilled-bots', 0.8287) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+candidate=needs-you stage-one-fails=0
+
+=== [needs-you registration and extra probes] 2026-11-23 17:21:25
+.skilled/skills/system-skilled-bots/graph-metadata.json:33:    "needs-you",
+.skilled/skills/system-skilled-bots/hub-router.json:60:      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a nee
+'my manager needs you to sign this' [('system-skilled-bots', 0.82)]
+'it needs you to confirm the deploy' [('system-skilled-bots', 0.82)]
+'the team needs you' [('system-skilled-bots', 0.82)]
+'list the open needs-you items' []
+'show my bot needs-you inbox' []
+'which needs-you items are open' [('system-skilled-bots', 0.82)]
+=== [canary build-artifacts (authored)]
+{"artifacts":5,"cases":20,"effectivePolicyHash":"7eeb5c637d9adf55e34cb9a8e1670c740086b40b94ab358c0e91d30dd5a1f12f","graphHash":"857d4a86cfb41e291882fc97b8de8d8f73d68cff8433b1efd364bcef2a7bbe7e","status":"built"}
+(exit 0)
+
+=== [NO CANDIDATE PASSES. Restore the review-3 state: run 'needs-you' -> 'answer the open needs-you' after 'run the nightly-digest bot'; status 'open needs-you items' back after 'bot needs me'] 2026-11-23 17:22:13
+restored .skilled/skills/system-skilled-bots/hub-router.json
+restored .skilled/skills/system-skilled-bots/ROUTER.md
+json ok
+       + answer the open needs-you
+       + open needs-you items
+RESULT: PASSED
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+--- canary build
+{"artifacts":5,"cases":20,"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055ceb7cf2","graphHash":"38c3eb8967767018c1c164de6931917bd8a8ebde70ed8eab03905b1e53581165","status":"built"}
+(exit 0)
+same lib/policy-card.cjs
+same lib/registry-compiler.cjs
+same lib/router.cjs
+same harness/build-artifacts.cjs
+same fixtures/canary-cases.v1.json
+"fresh":true
+"effectivePolicyHash":"438c99301304
+manifest copies identical
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055ceb7cf2","generation":1},"servingAuthority":"compiled","shadowOnly":false}
+
+--- generator check all hubs
+RESULT: PASSED
+--- vocabulary source
+RESULT: PASSED
+--- sync
+all 67 served copies match their authored files
+(exit 0)
+--- guard
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+--- stage one replay of the review-3 state
+candidate=NONE stage-one-fails=4
+
+=== [graph-metadata.json differed only in signal order (the generator appends re-added signals); copy the review-3 bytes back] 2026-11-23 17:22:42
+identical
+RESULT: FAILED
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+candidate=NONE stage-one-fails=4
+
+=== [CORRECTION: graph-metadata.fix4.json was taken after the first strip trial, so it lacks the run keyword and is not the review-3 state. Regenerate from the restored source instead] 2026-11-23 17:23:10
+       + answer the open needs-you
+RESULT: PASSED
+RESULT: PASSED
+skill_graph_scan: completed
+advisor_rebuild: rebuilt
+{"artifacts":5,"cases":20,"effectivePolicyHash":"438c99301304397fa6232e2c84e28523141562452596ccf4452636055ceb7cf2","graphHash":"38c3eb8967767018c1c164de6931917bd8a8ebde70ed8eab03905b1e53581165","status":"built"}
+"fresh":true
+all 67 served copies match their authored files
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+RESULT: PASSED
+ood | FAIL top=('system-skilled-bots', 0.82, 0.214) bots=[(1, 0.82, 0.214)] | answer the open question
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | answer the open ticket
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | answer the open
+ood | FAIL top=('system-skilled-bots', 0.82, 0.214) bots=[(1, 0.82, 0.214)] | answer my open questions
+in  | ok   top=('system-skilled-bots', 0.8836) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+candidate=NONE stage-one-fails=4
+stage2 'answer this question': "action":"defer"
+stage2 'check my email inbox': "action":"defer"
+stage2 'answer the open question': "action":"defer"
+stage-two rows 18 match 18
+
+=== [STOP per Q009: no run keyword passed the widened probe set. Review-3 state restored, 008 validate --strict RESULT: PASSED. Waiting on the operator] 2026-11-23 17:24:26
+
+=== [Q010 trial] 2026-11-23 17:36:58
+=== [VOCABULARY CHANGE: drop status 'open needs-you items' from hub-router.json and ROUTER.md]
+edited .skilled/skills/system-skilled-bots/hub-router.json
+edited .skilled/skills/system-skilled-bots/ROUTER.md
+=== [VOCABULARY CHANGE: run 'answer the open needs-you' -> "bot's needs-you"]
+       + bot's needs-you
+       - open needs-you items
+       - answer the open needs-you
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.178)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the open question
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[] | answer the open issues
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[] | answer the open review threads
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | my manager needs you to sign this
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | it needs you to confirm the deploy
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | the team needs you
+ood | FAIL top=('system-skilled-bots', 0.8274, 0.543) bots=[(1, 0.8274, 0.543)] | answer the open needs-you question
+in  | ok   top=('system-skilled-bots', 0.8771) | answer the release bot's needs-you question
+in  | ok   top=('system-skilled-bots', 0.8287) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+in  | ok   top=('system-skilled-bots', 0.8332) | answer the bot's open question with yes
+candidate=bot's needs-you stage-one-fails=4
+
+=== [probe set fix: 'answer the open needs-you question' is a bot-domain prompt, removed from the out-of-domain list]
+=== [strip-and-replay: remove run "bot's needs-you" (status keyword stays dropped)] 2026-11-23 17:37:18
+       - bot's needs-you
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | my manager needs you to sign this
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | it needs you to confirm the deploy
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | the team needs you
+in  | ok   top=('system-skilled-bots', 0.8486) | answer the release bot's needs-you question
+in  | ok   top=('system-skilled-bots', 0.8287) | answer the open needs-you question for the release bot
+candidate=NONE stage-one-fails=3
+
+=== [CORRECTION: the bare 'needs-you' trial had no baseline for the 'needs you' prompts. They rank the hub first without any new keyword, so that rejection reason was wrong] 2026-11-23 17:37:44
+=== [diagnostic graph-only strips from the Q010 state (backup graph-metadata.q010.json), cumulative]
+-- after stripping 'needs-you' (cumulative)
+    'my manager needs you to sign this' [('system-skilled-bots', 0.82, 0.481)]
+    'the team needs you' [('system-skilled-bots', 0.82, 0.481)]
+-- after stripping 'bot needs-you' (cumulative)
+    'my manager needs you to sign this' [('system-skilled-bots', 0.82, 0.481)]
+    'the team needs you' [('system-skilled-bots', 0.82, 0.481)]
+-- after stripping 'answer a needs-you' (cumulative)
+    'my manager needs you to sign this' [('system-skilled-bots', 0.82, 0.481)]
+    'the team needs you' [('system-skilled-bots', 0.82, 0.481)]
+-- after stripping 'bot needs me' (cumulative)
+    'my manager needs you to sign this' [('system-skilled-bots', 0.82, 0.481)]
+    'the team needs you' [('system-skilled-bots', 0.82, 0.481)]
+restored graph-metadata.json
+
+=== [FINDING, out of Q010 scope: 'needs you' prompts rank the hub first through the explicit_author lane, evidence 'author:needs you' (temporary vitest probe, removed). The source is likely the 'needs-you' entry in the hub SKILL.md Keywords comment (inferred; a strip of that keyword would confirm). It does not depend on the run keyword under trial] 2026-11-23 17:40:06
+"the team needs you" [["system-skilled-bots",0.8799999999999999,["author:needs you"]]]
+"my manager needs you to sign this" [["system-skilled-bots",0.8799999999999999,["author:needs you"]]]
+"answer the open question" []
+"answer this question" []
+=== [re-add run "bot's needs-you" (status keyword stays dropped)]
+       + bot's needs-you
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.178)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the open question
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[] | answer the open issues
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[] | answer the open review threads
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | my manager needs you to sign this
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | it needs you to confirm the deploy
+ood | FAIL top=('system-skilled-bots', 0.82, 0.481) bots=[(1, 0.82, 0.481)] | the team needs you
+in  | ok   top=('system-skilled-bots', 0.8771) | answer the release bot's needs-you question
+in  | ok   top=('system-skilled-bots', 0.8287) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+in  | ok   top=('system-skilled-bots', 0.8332) | answer the bot's open question with yes
+candidate=bot's needs-you stage-one-fails=3
+
+=== [GOLD CHANGE per Q010: canary run-answer-needs-you prompt -> "answer the release bot's needs-you question" (authored fixture)] 2026-11-23 17:40:36
+edited specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+--- canary build
+{"artifacts":5,"cases":20,"effectivePolicyHash":"2b15d4cfb0265744f3cfa709a3aeebb916e2db27e0a32fa9d3551aed62bae6fe","graphHash":"cd93588e79a12bf61b9c66f2f7cf2e8dddf112507c258e70717bdd0c0c380808","status":"built"}
+(exit 0)
+same    lib/policy-card.cjs
+same    lib/registry-compiler.cjs
+same    lib/router.cjs
+same    harness/build-artifacts.cjs
+copied  fixtures/canary-cases.v1.json
+"fresh":true
+"effectivePolicyHash":"2b15d4cfb026
+manifest copies identical
+--- sync
+all 67 served copies match their authored files
+(exit 0)
+--- guard
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+--- stage-two replay
+rc=0
+gate | gold=author | got=author | match=true | 2b15d4cfb026 | write a new BOT.md for a nightly dependency check bot
+gate | gold=run | got=run | match=true | 2b15d4cfb026 | run the nightly-digest bot by hand
+gate | gold=schedule | got=schedule | match=true | 2b15d4cfb026 | install the launchd schedule for my nightly-digest bot
+gate | gold=status | got=status | match=true | 2b15d4cfb026 | show me the status of my bots and their last runs
+gate | gold=status | got=status | match=true | 2b15d4cfb026 | what is waiting in my bots inbox
+gate | gold=run | got=run | match=true | 2b15d4cfb026 | answer the release bot's needs-you question
+gate | gold=run | got=run | match=true | 2b15d4cfb026 | answer the bot's open question with yes
+new | gold=run | got=run | match=true | 2b15d4cfb026 | run my nightly bot
+new | gold=run | got=run | match=true | 2b15d4cfb026 | kick off the nightly-digest bot
+new | gold=run | got=run | match=true | 2b15d4cfb026 | run the nightly bot now
+new | gold=schedule | got=schedule | match=true | 2b15d4cfb026 | pause the nightly-digest bot
+new | gold=schedule | got=schedule | match=true | 2b15d4cfb026 | install the schedule for the nightly-digest bot
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | run the tests
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | status of the build
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | author a skill
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | schedule a meeting for tomorrow
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | update skilled now
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | is my skilled install healthy
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | schedule this bot and show its status
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | answer this question
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | check my email inbox
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | answer the open question
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | answer the open ticket
+ood | gold=defer | got=defer | match=true | 2b15d4cfb026 | answer my open questions
+rows 24 match 24
+
+=== [review 4 P1 reproduction: launchd schedule] 2026-11-23 17:55:18
+'set up a launchd schedule' stage1=[('system-skilled-bots', 0.8975), ('system-deep-loop', 0.582)] stage2="action":"route" "workflowMode":"schedule" 
+'install a launchd schedule for my backup script' stage1=[('system-skilled-bots', 0.8942), ('sk-code', 0.6159)] stage2="action":"route" "workflowMode":"schedule" 
+'install the launchd schedule for my nightly-digest bot' stage1=[('system-skilled-bots', 0.95)] stage2="action":"route" "workflowMode":"schedule" 

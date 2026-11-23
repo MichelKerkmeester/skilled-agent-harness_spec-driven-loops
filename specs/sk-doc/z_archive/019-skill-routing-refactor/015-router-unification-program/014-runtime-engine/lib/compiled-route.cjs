@@ -36,6 +36,7 @@ const HUB_CHILD = Object.freeze({
   'sk-doc': '009-parent-hub-rollout/007-sk-doc',
   'sk-design': '009-parent-hub-rollout/009-sk-design',
   'mcp-browser-use': '009-parent-hub-rollout/010-mcp-browser-use',
+  'system-skilled-bots': '009-parent-hub-rollout/011-system-skilled-bots',
 });
 
 const engineCache = new Map();

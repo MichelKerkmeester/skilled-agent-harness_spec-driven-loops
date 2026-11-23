@@ -1,0 +1,16 @@
+mode-registry.json: author=8 run=9 schedule=8 status=9
+hub-router.json: author=8 run=9 schedule=8 status=8
+ROUTER.md: author=5 run=10 schedule=7 status=7
+graph-metadata.json: author=8 run=20 schedule=19 status=14
+description.json: author=4 run=6 schedule=5 status=5
+SKILL.md: author=5 run=10 schedule=8 status=9
+command-metadata.json: author=9 run=17 schedule=13 status=12
+leaf-manifest.json: author=2 run=3 schedule=3 status=3
+mode-registry workflowModes:
+[('author', 'metadata'), ('run', 'metadata'), ('schedule', 'metadata'), ('status', 'metadata')]
+tieBreak:
+['status', 'author', 'schedule', 'run']
+SKILL.md table line:
+22:Use this hub for a request about a file-defined bot: writing one, running one, putting one on a schedule or reading what the bots did. This table lists all 4 mode packets.
+nested graph-metadata:
+       0

@@ -58,12 +58,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots` exits 0, its `INFO: Parent skill:` line names `system-skilled-bots`, and its `10b-byte-drift` line passes
-- [ ] One natural prompt per mode (author, run, schedule, status) returns that mode with non-empty intents from `compiled-route.cjs --hub system-skilled-bots` and returns `system-skilled-bots` from `skill_advisor.py --threshold 0.5`, and prompts for `bots inbox` and `bots answer` return status and run
-- [ ] Each alias's out-of-domain phrase selects `system-skilled-bots` in neither routing stage
-- [ ] `validate-command-tree-parity.sh`, `codex/sync-prompts.cjs --check` and `pi/sync-prompts-pi.cjs --check` each exit 0, and each mirror tree lists every bots command and the doctor bots command
-- [ ] After a staged `overlay-engine.cjs repin` of a vendored consumer copy, `diff` of the `shasum` lists of `bots/` taken before the re-pin, from the copy after it and from the staged tree prints nothing, and `bots status` on the staged tree reports the schedule as needing reinstall
-- [ ] `git diff --stat -- .skilled/skills/system-skilled-bots/runtime` over this phase's changes prints nothing
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots` exits 0, its `INFO: Parent skill:` line names `system-skilled-bots`, and its `10b-byte-drift` line passes
+- [x] One natural prompt per mode (author, run, schedule, status) returns that mode with non-empty intents from `compiled-route.cjs --hub system-skilled-bots` and returns `system-skilled-bots` from `skill_advisor.py --threshold 0.5`, and prompts for `bots inbox` and `bots answer` return status and run
+- [x] Each alias's out-of-domain phrase selects `system-skilled-bots` in neither routing stage
+- [x] `validate-command-tree-parity.sh`, `codex/sync-prompts.cjs --check` and `pi/sync-prompts-pi.cjs --check` each exit 0, and each mirror tree lists every bots command and the doctor bots command
+- [x] After a staged `overlay-engine.cjs repin` of a vendored consumer copy, `diff` of the `shasum` lists of `bots/` taken before the re-pin, from the copy after it and from the staged tree prints nothing, and once the staged tree replaces the copy at its path, `bots status` reports the schedule as needing reinstall
+- [x] `git diff --stat -- .skilled/skills/system-skilled-bots/runtime` over this phase's changes prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,10 +81,23 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | Criteria drawn from spec.md section 5 and acceptance-criteria.md |
+| Per-hub gate | Done | exit 0, 10b-byte-drift PASS (`scratch/parent-skill-check.txt:66`) |
+| Stage one, six prompts | Done | all top `system-skilled-bots` (`scratch/stage-one-replay.jsonl:1`) |
+| Stage two, compiled-route | Done | compiled engine and activation per Q002; every mode routes (`scratch/stage-two-compiled.jsonl:1`) |
+| Out-of-domain probes | Done | none tops the hub in either stage |
+| Mirrors | Done | parity, codex and pi checks exit 0 (`scratch/mirrors.txt:46`) |
+| Staged re-pin `bots/` | Done | both diffs empty (`scratch/repin-proof.txt:41`) |
+| Reinstall row on staged tree | Done | amended reading Q004: `needs-reinstall (pin-changed)` after promotion (`scratch/repin-proof-final.txt:61`) |
+| Runtime untouched | Done | `scratch/d4-final.txt:1` |
+| Workflow redo | Done | `/create:skill-parent` and `/create:command` run as @markdown step by step (`scratch/workflow-run-log.txt:1`), per Q001 |
+| Advisor and doctor suites | Done | 2474 passed 0 failed; 1674 passed 0 failed, rerun after the review 4 fix (`scratch/advisor-suite-fix6.txt:1`, `scratch/doctor-suite-fix6.txt:1`) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| LOGIC-SYNC | Resolved by Q002: compiled engine and activation built in this phase |
+| Advisor routing slice | Resolved by Q003: 15 blind rows, baseline recaptured from the final state |
+| Shared edits | commands `README.txt` catalog, scoring-compatibility, two advisor tests, one sk-doc test, `_routes.yaml`, setup presentation, two graph-metadata reverse edges, four regenerated advisor files |
+| Workflow-only rule breached | First build only. Redone through the workflows per Q001 |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,103 @@
+{
+  "resourceContractVersion": 1,
+  "skill": "system-skilled-bots",
+  "version": "1.0.0.0",
+  "description": "Declarative packet registry: workflowMode, packetKind, backendKind, toolSurface, and advisorRouting for system-skilled-bots. The advisor routes the hub identity; the hub selects one of four workflow packets: author, run, schedule and status.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+    "packetKind": "Axis discriminator: workflow for process/lifecycle packets, surface for read-only evidence-base packets, transport for packets that bridge to an external tool's CLI/MCP surface.",
+    "backendKind": "Which backend runs the mode. Author uses template-scaffold. Run, schedule and status use bots-cli, the bots runtime verbs."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the packet. lexical = weighted-regex scoring and projection maps. alias-fold = projection-only alias. metadata = resolved by hub membership with no advisor map entry. command-bridge = routed by command. Every mode here uses metadata.",
+    "legacyAdvisorId": "Legacy skill id used by lexical and alias-fold projection maps only.",
+    "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to. Never inferred from array order.",
+    "legacyAliases": "Advisor system-id aliases for lexical or alias-fold routes; drift guards compare these order-insensitively.",
+    "driftGuard": "Path to the registry-vs-advisor drift-guard test. Required (here or in the advisor-projection extension) when any mode uses routingClass lexical or alias-fold.",
+    "packetSkillName": "The packet SKILL.md name. Folder equals packetSkillName unless grandfatheredFolderMismatch is true.",
+    "grandfatheredFolderMismatch": "Required on every mode; false unless a legacy folder/name mismatch is intentionally preserved.",
+    "toolSurface": "Required on every mode; declares allowed tools, forbidden tools, mutating posture, and any bash allowlist."
+  },
+  "modes": [
+    {
+      "workflowMode": "author",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Grep", "Glob"],
+        "forbidden": ["Bash", "Task"],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "bots-author",
+      "packetSkillName": "bots-author",
+      "grandfatheredFolderMismatch": false,
+      "command": "/bots:author",
+      "aliases": ["author a bot", "write a bot", "create a bot", "new bot.md", "bot definition", "edit a bot"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "bots-author"
+      }
+    },
+    {
+      "workflowMode": "run",
+      "packetKind": "workflow",
+      "backendKind": "bots-cli",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": true,
+        "bashAllowlist": ["node .skilled/bin/bots.cjs"]
+      },
+      "packet": "bots-run",
+      "packetSkillName": "bots-run",
+      "grandfatheredFolderMismatch": false,
+      "command": "/bots:run",
+      "aliases": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "bots-run"
+      }
+    },
+    {
+      "workflowMode": "schedule",
+      "packetKind": "workflow",
+      "backendKind": "bots-cli",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": ["node .skilled/bin/bots.cjs"]
+      },
+      "packet": "bots-schedule",
+      "packetSkillName": "bots-schedule",
+      "grandfatheredFolderMismatch": false,
+      "command": "/bots:schedule",
+      "aliases": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "bots-schedule"
+      }
+    },
+    {
+      "workflowMode": "status",
+      "packetKind": "workflow",
+      "backendKind": "bots-cli",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": ["node .skilled/bin/bots.cjs status", "node .skilled/bin/bots.cjs inbox"]
+      },
+      "packet": "bots-status",
+      "packetSkillName": "bots-status",
+      "grandfatheredFolderMismatch": false,
+      "command": "/bots:status",
+      "aliases": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "bots-status"
+      }
+    }
+  ]
+}

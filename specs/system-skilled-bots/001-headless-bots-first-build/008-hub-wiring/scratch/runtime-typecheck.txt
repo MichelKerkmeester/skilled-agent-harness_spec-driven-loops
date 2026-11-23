@@ -1,0 +1,4 @@
+
+> @skilled-bots/runtime@0.1.0 typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json
+

@@ -1,0 +1,11 @@
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled
+
+promoted 76 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-move-xDSvXK/compiled-routing
+no prior closure to roll back
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  16:46:10
+   Duration  725ms (tests 94%, import 3%, worker 2%, transform 1%)
+

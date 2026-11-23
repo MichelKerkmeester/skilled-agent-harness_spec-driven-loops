@@ -1,0 +1,300 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 1,
+  "cases": [
+    {
+      "id": "author-new-bot-definition",
+      "prompt": "write a new BOT.md for a nightly dependency check bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "author"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "author"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-bot-by-hand",
+      "prompt": "run the nightly-digest bot by hand",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-launchd-install",
+      "prompt": "install the launchd schedule for the nightly-digest bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "status-bots-last-runs",
+      "prompt": "show me the status of my bots and their last runs",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "status"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "status"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "status-bots-inbox",
+      "prompt": "what is waiting in my bots inbox",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "status"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "status"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-answer-needs-you",
+      "prompt": "answer the release bot's needs-you question",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-my-nightly-bot",
+      "prompt": "run my nightly bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-kick-off-named-bot",
+      "prompt": "kick off the nightly-digest bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-nightly-bot-immediately",
+      "prompt": "run the nightly bot now",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-pause-named-bot",
+      "prompt": "pause the nightly-digest bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-install-for-named-bot",
+      "prompt": "install the schedule for the nightly-digest bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-and-status-names-no-bot-phrase",
+      "prompt": "schedule this bot and show its status",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-run-tests",
+      "prompt": "run the tests",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-build-status",
+      "prompt": "status of the build",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-author-skill",
+      "prompt": "author a skill",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-meeting",
+      "prompt": "schedule a meeting for tomorrow",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-skilled-update",
+      "prompt": "update skilled now",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-install-health",
+      "prompt": "is my skilled install healthy",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "hub-identity-defer",
+      "prompt": "what does system-skilled-bots route through its hub-router",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-reject",
+      "prompt": "forbidden bot operation",
+      "constraints": [
+        "forbidden"
+      ],
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      }
+    }
+  ],
+  "advisorCases": [
+    {
+      "id": "live-match",
+      "state": "live",
+      "drift": false,
+      "contributes": true
+    },
+    {
+      "id": "stale",
+      "state": "stale",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "absent",
+      "state": "absent",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "projection-drift",
+      "state": "live",
+      "drift": true,
+      "contributes": false
+    }
+  ]
+}

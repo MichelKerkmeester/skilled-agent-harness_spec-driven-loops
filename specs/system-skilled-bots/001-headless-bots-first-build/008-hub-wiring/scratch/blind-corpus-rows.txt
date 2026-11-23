@@ -1,0 +1,18 @@
+# Blind held-out rows: provenance
+Written by a separate agent that saw only the five command description strings and argument hints, plus the first 30 lines of command-prompts.jsonl for format. It read no hub-router.json, ROUTER.md, graph-metadata.json or projection file. The orchestrator attached expected_command, expected_top (system-skilled-bots, the skillId in command-bridges.generated.json for all five) and expected_policy (from commandPolicies in the same file: author start, run ask, schedule ask, status run, doctor:bots run), source authored-blind. Prompts are verbatim.
+
+{"command":"/bots:author","kind":"typed","prompt":"/bots:author weekly-digest --repo ~/code/acme"}
+{"command":"/bots:author","kind":"plain-tune","prompt":"Write up the definition file for a new bot that posts a weekly digest, starting from the standard template"}
+{"command":"/bots:author","kind":"plain-holdout","prompt":"I need to change what the dependency-watcher automation is supposed to do, can you update its spec doc?"}
+{"command":"/bots:run","kind":"typed","prompt":"/bots:run answer item-42 yes, go ahead and merge"}
+{"command":"/bots:run","kind":"plain-tune","prompt":"Kick off the triage bot right now instead of waiting for its next turn"}
+{"command":"/bots:run","kind":"plain-holdout","prompt":"There's a backlog of pending jobs for our automations, process everything waiting in line"}
+{"command":"/bots:schedule","kind":"typed","prompt":"/bots:schedule pause nightly-cleanup"}
+{"command":"/bots:schedule","kind":"plain-tune","prompt":"Set up the launchd timer so the nightly cleanup bot fires on its cron"}
+{"command":"/bots:schedule","kind":"plain-holdout","prompt":"Stop the report automation from triggering for a while, I'll turn it back on next week"}
+{"command":"/bots:status","kind":"typed","prompt":"/bots:status inbox --json"}
+{"command":"/bots:status","kind":"plain-tune","prompt":"Show me which bots are installed and when each one last ran"}
+{"command":"/bots:status","kind":"plain-holdout","prompt":"Is anything waiting on me from the automations, and did yesterday's reports actually get delivered?"}
+{"command":"/doctor:bots","kind":"typed","prompt":"/doctor:bots --root ~/code/acme --strict"}
+{"command":"/doctor:bots","kind":"plain-tune","prompt":"Validate every bot definition in the bots folder and tell me which rules they break"}
+{"command":"/doctor:bots","kind":"plain-holdout","prompt":"Lint our automation configs without changing anything, I think one of them is malformed"}

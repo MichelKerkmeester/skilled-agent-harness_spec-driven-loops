@@ -1,0 +1,836 @@
+=== [baseline: leftover locks or rollback dirs] 2026-11-23 15:49:50
+$ ls -la .skilled/bin/lib | grep -iE 'lock|rollback' ; echo done
+done
+(exit 0)
+
+=== [baseline: excluded strings in hub (runtime excluded)] 2026-11-23 15:49:50
+$ grep -rniF --exclude-dir=runtime -e 'run bot now' -e 'install the bot schedule' -e 'uninstall the bot schedule' -e 'check the bot definition' -e 'bot now' .skilled/skills/system-skilled-bots; echo grep-rc=$?
+grep-rc=1
+(exit 0)
+
+=== [baseline: admission bots hub] 2026-11-23 15:49:50
+$ node .skilled/bin/compiled-route-admission.cjs --hub system-skilled-bots
+  system-skilled-bots         pass                    0 pass, 0 drift, 0 stale, 0 n/a; 4 mode(s) without gold
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [baseline: runtime untouched] 2026-11-23 15:49:50
+$ git status --short -- .skilled/skills/system-skilled-bots/runtime; echo done
+done
+(exit 0)
+
+=== [baseline: playbook validator on template hub] 2026-11-23 15:50:10
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs .skilled/skills/mcp-browser-use/manual-testing-playbook 2>&1 | tail -8
+validate-playbook-package: unknown argument: .skilled/skills/mcp-browser-use/manual-testing-playbook
+(exit 0)
+
+=== [baseline: playbook validator on bots hub] 2026-11-23 15:50:10
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs .skilled/skills/system-skilled-bots/manual-testing-playbook 2>&1 | tail -8
+validate-playbook-package: unknown argument: .skilled/skills/system-skilled-bots/manual-testing-playbook
+(exit 0)
+
+=== [baseline: playbook validator, template hub] 2026-11-23 15:50:17
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package mcp-browser-use 2>&1 | tail -12
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=mcp-browser-use tier=FAIL_CLOSED scenarios=7 categories=1 operator=2 routing_gold_excluded=5 violations=0 warnings=0
+exit=0
+(exit 0)
+
+=== [baseline: playbook validator, bots hub] 2026-11-23 15:50:17
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots 2>&1 | tail -12
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+SKIP package=system-skilled-bots tier=FAIL_CLOSED scenarios=0 categories=0 operator=0 routing_gold_excluded=0 violations=0 warnings=0
+exit=0
+(exit 0)
+
+=== [write gold pages (generator kept outside the repo)] 2026-11-23 15:50:52
+$ node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/gen-gold.cjs && ls .skilled/skills/system-skilled-bots/manual-testing-playbook/hub-routing
+wrote 8 pages
+author-new-bot.md
+hub-only-defer.md
+out-of-domain-defer.md
+run-answer-question.md
+run-named-bot.md
+schedule-weekday-bot.md
+status-bot-inbox.md
+status-last-run.md
+(exit 0)
+
+=== [rewrite index section 7] 2026-11-23 15:51:05
+$ node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/gen-index.cjs
+section 7 rewritten
+(exit 0)
+
+=== [evaluateHub admitted:false after gold (before vocab change)] 2026-11-23 15:51:24
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/evaluate-hub-candidate.cjs $PWD
+verdict: pass
+counts: {"pass":8,"drift":0,"stale-gold":0,"invalid":0,"broken":0,"n/a":0}
+coverage: {"modes":[{"workflowMode":"author","scenarios":1},{"workflowMode":"run","scenarios":2},{"workflowMode":"schedule","scenarios":1},{"workflowMode":"status","scenarios":2}],"uncovered":[],"negatives":2,"enforced":true,"short":false}
+  BOT-001 pass gold=author routed=author
+  BOT-007 pass gold=defer routed=-
+  BOT-008 pass gold=defer routed=-
+  BOT-006 pass gold=run routed=run
+  BOT-002 pass gold=run routed=run
+  BOT-003 pass gold=schedule routed=schedule
+  BOT-005 pass gold=status routed=status
+  BOT-004 pass gold=status routed=status
+(exit 0)
+
+=== [playbook validator, bots hub, after gold] 2026-11-23 15:51:24
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots 2>&1 | tail -6
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=system-skilled-bots tier=FAIL_CLOSED scenarios=8 categories=1 operator=2 routing_gold_excluded=6 violations=0 warnings=0
+exit=0
+(exit 0)
+
+=== [admission test before raising LIVE_CORPUS_SIZE] 2026-11-23 15:51:30
+$ node --test .skilled/bin/tests/compiled-route-admission.test.cjs 2>&1 | grep -E 'actual|expected|ℹ (tests|pass|fail)' | head -12
+ℹ tests 29
+ℹ pass 28
+ℹ fail 1
+    actual: 93,
+    expected: 85,
+(exit 0)
+
+=== [raise LIVE_CORPUS_SIZE 85 -> 93] 2026-11-23 15:51:35
+$ sed -i '' 's/^const LIVE_CORPUS_SIZE = 85;$/const LIVE_CORPUS_SIZE = 93;/' .skilled/bin/tests/compiled-route-admission.test.cjs && grep -n '^const LIVE_CORPUS_SIZE' .skilled/bin/tests/compiled-route-admission.test.cjs
+32:const LIVE_CORPUS_SIZE = 93;
+(exit 0)
+
+=== [admission test after raising LIVE_CORPUS_SIZE] 2026-11-23 15:51:36
+$ node --test .skilled/bin/tests/compiled-route-admission.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail)' | head -12
+ℹ tests 29
+ℹ pass 29
+ℹ fail 0
+(exit 0)
+
+=== [fix resolve.cjs comment in both copies] 2026-11-23 15:51:45
+$ for f in specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs; do sed -i '' 's/^\/\/ mcp-tooling, and system-skilled-bots, admitted on its own canary corpus\.$/\/\/ mcp-tooling, and system-skilled-bots, admitted on its own playbook gold./' $f; done; cmp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs && echo identical; grep -n 'playbook gold' .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs; node -c .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs && echo syntax-ok
+identical
+35:// mcp-tooling, and system-skilled-bots, admitted on its own playbook gold.
+syntax-ok
+(exit 0)
+
+=== [pre-edit stage-two dry run of the five new prompts against the live hub files] 2026-11-23 15:51:55
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-dry-run.cjs 2>&1 | head -3; sed -n 1,40p specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-dry-run.cjs | grep -n 'argv\|prompts\|usage' 
+node:internal/errors:547
+      throw error;
+      ^
+2:const N=path.resolve(process.argv[2]);const cand=process.argv[3];
+8:const prompts=["write a new BOT.md for a nightly dependency check bot","run the nightly-digest bot by hand","install the launchd schedule for my nightly-digest bot","show me the status of my bots and their last runs","what is waiting in my bots inbox","answer the open needs-you question for the release bot","run the tests","status of the build","author a skill","schedule a meeting for tomorrow","update skilled now","is my skilled install healthy","schedule this bot and show its status","help with bots"];
+9:for(const p of prompts){const r=evaluateRoute(snap,{prompt:p});const d=r.decision;console.log(JSON.stringify({prompt:p,action:d.action,modes:d.action==='route'?d.route.targets.map(t=>t.destinationId.workflowMode):[],scores:r.trace.matchedScores}));}
+(exit 0)
+
+=== [VOCABULARY CHANGE: run += 'run my nightly bot','run the nightly bot','kick off the nightly-digest bot'; schedule += 'pause the nightly-digest bot','schedule for the nightly-digest bot' (hub-router.json run-workflow/schedule-workflow and ROUTER.md INTENT_SIGNALS); diff] 2026-11-23 15:52:09
+$ node -e 'JSON.parse(require("fs").readFileSync(".skilled/skills/system-skilled-bots/hub-router.json","utf8"));console.log("json ok")' && git diff -U0 -- .skilled/skills/system-skilled-bots/hub-router.json .skilled/skills/system-skilled-bots/ROUTER.md
+json ok
+(exit 0)
+
+=== [check before regen] 2026-11-23 15:52:09
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+STALE system-skilled-bots          declared= 49 signals= 48 missing=  5 orphans=  0
+       + run my nightly bot
+       + run the nightly bot
+       + kick off the nightly-digest bot
+       + pause the nightly-digest bot
+       + schedule for the nightly-digest bot
+
+checked=1 hub(s), missing=5, orphans=0
+RESULT: FAILED
+(exit 1)
+
+=== [regenerate graph-metadata] 2026-11-23 15:52:09
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub system-skilled-bots
+WROTE system-skilled-bots          declared= 49 signals= 48 added=  5 orphans=  0
+       + run my nightly bot
+       + run the nightly bot
+       + kick off the nightly-digest bot
+       + pause the nightly-digest bot
+       + schedule for the nightly-digest bot
+
+checked=1 hub(s), added=5, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [router-intent-signals check after regen] 2026-11-23 15:52:09
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check
+OK    cli-classifier               declared= 40 signals= 44 missing=  0 orphans=  0
+OK    cli-external-orchestration   declared=107 signals=114 missing=  0 orphans=  0
+OK    cli-orca                     declared=  9 signals= 17 missing=  0 orphans=  0
+OK    mcp-browser-use              declared= 50 signals= 75 missing=  0 orphans=  0
+OK    mcp-code-mode                declared=  9 signals= 15 missing=  0 orphans=  0
+OK    mcp-tooling                  declared=100 signals=113 missing=  0 orphans=  0
+OK    sk-code                      declared=238 signals=292 missing=  0 orphans=  0
+OK    sk-design                    declared= 99 signals=126 missing=  0 orphans=  0
+OK    sk-doc                       declared=327 signals=344 missing=  0 orphans=  0
+OK    sk-git                       declared=  0 signals= 46 missing=  0 orphans=  0
+OK    sk-prompt                    declared=  5 signals= 17 missing=  0 orphans=  0
+OK    system-deep-loop             declared= 30 signals= 37 missing=  0 orphans=  0
+OK    system-skill-advisor         declared=  5 signals= 45 missing=  0 orphans=  0
+OK    system-skilled-bots          declared= 49 signals= 53 missing=  0 orphans=  0
+OK    system-skilled-doctor        declared= 30 signals= 58 missing=  0 orphans=  0
+OK    system-spec-kit              declared=  0 signals= 70 missing=  0 orphans=  0
+
+checked=16 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [skill graph scan] 2026-11-23 15:52:15
+$ node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text
+skill_graph_scan: completed
+generation: 35 -> 36
+scannedFiles: 29
+indexedFiles: 0
+indexedEdges: 63
+rejectedEdges: 0
+(exit 0)
+
+=== [advisor rebuild after scan] 2026-11-23 15:52:15
+$ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 36 -> 37
+skillCount: 16
+(exit 0)
+
+=== [hub vocabulary source] 2026-11-23 15:52:15
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-skilled-bots
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+(exit 0)
+
+=== [vocabulary reach] 2026-11-23 15:52:20
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+OK   system-skilled-bots          declared= 49 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 37
+RESULT: PASSED
+(exit 0)
+
+=== [add five canary cases (authored fixture)] 2026-11-23 15:52:30
+$ node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/add-canaries.cjs && git diff --stat -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+cases now 20
+(exit 0)
+
+=== [canary harness: build-artifacts (authored)] 2026-11-23 15:52:35
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+{"artifacts":5,"cases":20,"effectivePolicyHash":"4e16be0a3492aa468ee335633b02fa18f4bce2ecbedd8c12176b9fd152721c68","graphHash":"878f3f77ecfe9a67939015a1f8ec0ae70628fd5e724167e3dfa452e7a7f9719c","status":"built"}
+(exit 0)
+
+=== [copy authored engine (lib, harness, fixtures) to runtime closure] 2026-11-23 15:52:42
+$ A=specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots; R=.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots; for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do if cmp -s $A/$f $R/$f; then echo "same    $f"; else cp $A/$f $R/$f && echo "copied  $f"; fi; done; for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do cmp $A/$f $R/$f || echo MISMATCH $f; done; echo verified
+same    lib/policy-card.cjs
+same    lib/registry-compiler.cjs
+same    lib/router.cjs
+same    harness/build-artifacts.cjs
+copied  fixtures/canary-cases.v1.json
+verified
+(exit 0)
+
+=== [manifest freshness before refresh] 2026-11-23 15:52:42
+$ node .skilled/bin/compiled-route-manifest.cjs freshness --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":false,"causeCode":"stale-manifest","selectedPolicy":{"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1},"currentPolicyHash":"4e16be0a3492aa468ee335633b02fa18f4bce2ecbedd8c12176b9fd152721c68","manifestFingerprint":"a595f2b8e7ff024650b45424b9ea0db621a18a00656d3286d454daf149e4d1d6"}
+(exit 1)
+
+=== [manifest refresh] 2026-11-23 15:52:46
+$ node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"4e16be0a3492aa468ee335633b02fa18f4bce2ecbedd8c12176b9fd152721c68","generation":1},"currentPolicyHash":"4e16be0a3492aa468ee335633b02fa18f4bce2ecbedd8c12176b9fd152721c68","manifestFingerprint":"fa78a793120646fe920ab788c4ed399d04f8bcf93dacf55ab3f792522d8b1233","refreshed":true}
+(exit 0)
+
+=== [runtime manifest after refresh] 2026-11-23 15:52:46
+$ cat .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json; echo; ls -la .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"4e16be0a3492aa468ee335633b02fa18f4bce2ecbedd8c12176b9fd152721c68","generation":1},"servingAuthority":"compiled","shadowOnly":false}
+
+total 16
+drwxr-xr-x@  4 michelkerkmeester  staff  128 Nov 23 15:52 .
+drwxr-xr-x@ 11 michelkerkmeester  staff  352 Nov 23 15:11 ..
+-rw-r--r--@  1 michelkerkmeester  staff   40 Nov 23 15:09 fence-state.json
+-rw-------@  1 michelkerkmeester  staff  195 Nov 23 15:52 manifest.json
+(exit 0)
+
+=== [mirror refreshed manifest bytes into the authored activation copy (as the mcp-tooling vocabulary fix did)] 2026-11-23 15:52:52
+$ A=specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json; R=.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json; cat $A; echo; cp $R $A && cmp $A $R && echo identical
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3","generation":1},"servingAuthority":"compiled","shadowOnly":false}
+
+identical
+(exit 0)
+
+=== [gate: sync --check] 2026-11-23 15:52:52
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -3
+  014-runtime-engine/lib/resolve.cjs
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: guard] 2026-11-23 15:52:52
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-browser-use             fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+  system-skilled-bots         fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [stage two replay after review fix (front door)] 2026-11-23 15:53:10
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-after-review-fix.cjs $PWD > specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-after-review-fix.jsonl; rc=$?; node -e 'for (const l of require("fs").readFileSync(process.argv[1],"utf8").trim().split("\n")) { const r=JSON.parse(l); console.log([r.kind,r.gold,r.got,r.match,r.frontDoor.servingAuthority||"",(r.frontDoor.effectivePolicyHash||"").slice(0,12),r.prompt].join(" | ")); }' specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-after-review-fix.jsonl; exit $rc
+gate | author | author | true |  | 4e16be0a3492 | write a new BOT.md for a nightly dependency check bot
+gate | run | run | true |  | 4e16be0a3492 | run the nightly-digest bot by hand
+gate | schedule | schedule | true |  | 4e16be0a3492 | install the launchd schedule for my nightly-digest bot
+gate | status | status | true |  | 4e16be0a3492 | show me the status of my bots and their last runs
+gate | status | status | true |  | 4e16be0a3492 | what is waiting in my bots inbox
+gate | run | run | true |  | 4e16be0a3492 | answer the open needs-you question for the release bot
+new | run | run | true |  | 4e16be0a3492 | run my nightly bot
+new | run | run | true |  | 4e16be0a3492 | kick off the nightly-digest bot
+new | run | run | true |  | 4e16be0a3492 | run the nightly bot now
+new | schedule | schedule | true |  | 4e16be0a3492 | pause the nightly-digest bot
+new | schedule | schedule | true |  | 4e16be0a3492 | install the schedule for the nightly-digest bot
+ood | defer | defer | true |  | 4e16be0a3492 | run the tests
+ood | defer | defer | true |  | 4e16be0a3492 | status of the build
+ood | defer | defer | true |  | 4e16be0a3492 | author a skill
+ood | defer | defer | true |  | 4e16be0a3492 | schedule a meeting for tomorrow
+ood | defer | defer | true |  | 4e16be0a3492 | update skilled now
+ood | defer | defer | true |  | 4e16be0a3492 | is my skilled install healthy
+ood | defer | defer | true |  | 4e16be0a3492 | schedule this bot and show its status
+(exit 0)
+
+=== [gate: parent-skill-check] 2026-11-23 15:53:17
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots 2>&1 | grep -E 'INFO: Parent skill|^OK|^FAIL|^WARN|ERROR'
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [gate: hub vocabulary source (all hubs)] 2026-11-23 15:53:17
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs 2>&1 | grep -vE '^OK' 
+  stage-two-reverse cli-jev: "shape a jev question" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-jev: "several jev questions" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-jev: "jev question card" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-jev: "jev model id" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-jev: "jev official provider" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-jev: "jev auth status" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-jev: "jev mcp host" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-jev: "jev mcp server" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-opencode: "full plugin runtime" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-opencode: "ablation suite" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-claude-code: "anthropic cli" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-codex: "codex" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-cursor: "cursor-agent" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-cursor: "composer dispatch" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-cursor: "cursor agent dispatch" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-cursor: "grok coding dispatch" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-devin: "autonomous swe agent" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-devin: "devin cloud session" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-devin: "devin headless" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-devin: "grok 4.5 devin dispatch" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-devin: "grok 4.6 devin dispatch" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-pi: "pi dispatch" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-pi: "pi headless" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-pi: "pi thinking" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-pi: "pi passthrough" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-pi: "pi multi-provider" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "cli-deepseek-harness" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "cli deepseek harness" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "dsh cli" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "deepseek harness cli" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "dsh dispatch" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "dsh one-task run" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "dsh json event stream" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "dsh second opinion" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "dsh review" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-deepseek-harness: "deepseek harness headless" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-mistral-vibe: "vibe cli" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-mistral-vibe: "mistral vibe cli" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse cli-mistral-vibe: "vibe second opinion" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+DRIFT mcp-browser-use              alias=0 stage-two=2 triggers=0 packets=0 stage-two-reverse=1
+  stage-two mcp-chrome-devtools: "chrome live manual" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two mcp-chrome-devtools: "core web vitals" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two-reverse mcp-chrome-devtools: "lighthouse audit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse mcp-obsidian: "mcp-obsidian" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  note: stage-two leg not applied (a surface and phase router: every route loads DEFAULT_RESOURCE and its intents span packets; verify-router-sync.cjs owns its mode-to-leaf agreement)
+  stage-two-reverse sk-design-md-generator: "style reference" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-design-md-generator: "measure this surface" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-design-md-generator: "style guide from" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-design-diagram: "ascii" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-design-diagram: "process diagram" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-design-diagram: "diagram the" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-design-diagram: "as a diagram" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "create a new sk" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "skill.md and starter" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "resource_map wiring" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "new capability" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "capability module" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "package a capability" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "mode packets" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "nested packet" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "mode-registry.json" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "hub-router.json" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "rewrite guard" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "create a readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "a readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "project overview" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "getting started doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "intro doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "overview doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "landing doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for my new skill" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for a new skill" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for my skill" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for a skill" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the skill" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for this skill" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "skill's readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for a new hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for a hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for this hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for my hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "hook's readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the ask-surface-guard hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "ask-surface-guard hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the classifier-injection-screen hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "classifier-injection-screen hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the cli-dispatch hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "cli-dispatch hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the codex-global-hooks-check hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "codex-global-hooks-check hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the completion-evidence hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "completion-evidence hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the decision-capture hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "decision-capture hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the directive-lifecycle hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "directive-lifecycle hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the dist-freshness hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "dist-freshness hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the env-secret-guard hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "env-secret-guard hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the goal hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "goal hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the mcp-route-guard hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "mcp-route-guard hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the overlay-guard hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "overlay-guard hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the permission-policy hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "permission-policy hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the post-edit-quality hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "post-edit-quality hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the session-cleanup hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "session-cleanup hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the session-handover hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "session-handover hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the session-lifecycle hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "session-lifecycle hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the skill-advisor hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "skill-advisor hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the subagent-dispatch-guard hook" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "subagent-dispatch-guard hook readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "plugins folder readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "extensions folder readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the plugins folder" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the extensions folder" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for a plugin folder" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for an extension folder" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "runtime folder readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for a runtime folder" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for the runtime folder" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "@analyze agent" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "paired /create" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "create a command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "new slash command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "author a command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "scaffold a command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "agent and paired" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "catalog of features" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "features overview" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "json conversation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "conversation runner" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "run-conversation-scenario" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "benchmark authoring" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "version notes" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "release summary" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "what shipped" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "packet changelog" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "diff document" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "before/after diff" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "visual document diff" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "documentation quality" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "validate documentation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "validate this document" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "score this doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "fail sk-doc standards" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "review the docs" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "review the documentation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "check the docs" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "check the documentation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "audit the docs" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "documentation review bar" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "meet our standards" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "token efficiency" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "llms.txt" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "llmstxt" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "reduce tokens" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "fewer tokens" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "compress the doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "slim down" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "machine-readable index" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "repo rules" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "always-loaded rule" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "rule that binds" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+
+note: stage-two-reverse=225 term(s) are ROUTER.md intent keywords hub-router.json does not route. Stage two also carries the leaf keywords that pick a file once the mode is chosen, so this leg reports and never fails.
+
+checked=9 hub(s), drift=2
+RESULT: FAILED
+(exit 0)
+
+=== [gate: vocabulary reach --hub system-skilled-bots] 2026-11-23 15:53:21
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+OK   system-skilled-bots          declared= 49 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 37
+RESULT: PASSED
+(exit 0)
+
+=== [gate: hub vocabulary source (all hubs), hub verdict lines and real exit] 2026-11-23 15:53:32
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs > /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/vs.txt 2>&1; rc=$?; grep -E '^(OK|DRIFT|FAIL|STALE)|checked=|RESULT' /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/vs.txt; echo node-exit=$rc; git stash list >/dev/null; exit $rc
+OK    cli-classifier               alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=8
+OK    cli-external-orchestration   alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=31
+DRIFT mcp-browser-use              alias=0 stage-two=2 triggers=0 packets=0 stage-two-reverse=1
+OK    mcp-tooling                  alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=1
+OK    sk-code                      alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+OK    sk-design                    alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=7
+OK    sk-doc                       alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=177
+OK    system-deep-loop             alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+checked=9 hub(s), drift=2
+RESULT: FAILED
+node-exit=1
+(exit 1)
+
+=== [baseline for vocabulary source on HEAD hub files: is the drift pre-existing] 2026-11-23 15:53:32
+$ git diff --quiet HEAD -- .skilled/skills/cli-external-orchestration .skilled/skills/mcp-tooling && echo 'drift hubs have no working-tree edits'
+drift hubs have no working-tree edits
+(exit 0)
+
+=== [mcp-browser-use drift is outside this change: no working-tree edits there] 2026-11-23 15:53:38
+$ git status --short -- .skilled/skills/mcp-browser-use; echo status-done; grep -E 'mcp-browser-use' /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/vs.txt | head -5
+status-done
+DRIFT mcp-browser-use              alias=0 stage-two=2 triggers=0 packets=0 stage-two-reverse=1
+(exit 0)
+
+=== [gate: guard] 2026-11-23 15:53:38
+$ node .skilled/bin/compiled-route-guard.cjs | tail -3
+  system-skilled-bots         fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [gate: sync --check] 2026-11-23 15:53:39
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: sync --verify] 2026-11-23 15:53:39
+$ node .skilled/bin/compiled-route-sync.cjs --verify
+move-simulation OK: all 9 hubs resolve; 0 reads under .opencode/specs
+(exit 0)
+
+=== [gate: foundation vitest (from .skilled with its bin config)] 2026-11-23 15:53:40
+$ cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts 2>&1 | tail -6
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  15:53:39
+   Duration  679ms (tests 98%, import 1%)
+(exit 0)
+
+=== [gate: guard (pipefail)] 2026-11-23 15:53:48
+$ set -o pipefail; node .skilled/bin/compiled-route-guard.cjs | tail -2
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [gate: sync --check (pipefail)] 2026-11-23 15:53:48
+$ set -o pipefail; node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: foundation vitest (pipefail)] 2026-11-23 15:53:49
+$ set -o pipefail; cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts 2>&1 | tail -5
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  15:53:48
+   Duration  640ms (tests 98%, import 1%)
+(exit 0)
+
+=== [gate: compiled-route-*.test.cjs] 2026-11-23 15:54:03
+$ set -o pipefail; node --test .skilled/bin/tests/compiled-route-*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail)'
+ℹ tests 117
+ℹ pass 117
+ℹ fail 0
+(exit 0)
+
+=== [gate: admission --all] 2026-11-23 15:54:03
+$ node .skilled/bin/compiled-route-admission.cjs --all
+  cli-classifier              pass                    4 pass, 0 drift, 0 stale, 0 n/a
+  cli-external-orchestration  pass                    7 pass, 0 drift, 0 stale, 3 n/a; 6 mode(s) without gold
+  mcp-browser-use             pass                    7 pass, 0 drift, 0 stale, 0 n/a
+  mcp-tooling                 pass                    12 pass, 0 drift, 0 stale, 0 n/a
+  sk-code                     pass                    9 pass, 0 drift, 0 stale, 0 n/a
+  sk-design                   pass                    4 pass, 0 drift, 0 stale, 0 n/a; 2 mode(s) without gold
+  sk-doc                      pass                    24 pass, 0 drift, 0 stale, 2 n/a; 6 mode(s) without gold
+  system-deep-loop            pass                    13 pass, 0 drift, 0 stale, 0 n/a
+  system-skilled-bots         pass                    8 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [gate: evaluateHub admitted:false (final)] 2026-11-23 15:54:03
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/evaluate-hub-candidate.cjs $PWD
+verdict: pass
+counts: {"pass":8,"drift":0,"stale-gold":0,"invalid":0,"broken":0,"n/a":0}
+coverage: {"modes":[{"workflowMode":"author","scenarios":1},{"workflowMode":"run","scenarios":2},{"workflowMode":"schedule","scenarios":1},{"workflowMode":"status","scenarios":2}],"uncovered":[],"negatives":2,"enforced":true,"short":false}
+  BOT-001 pass gold=author routed=author
+  BOT-007 pass gold=defer routed=-
+  BOT-008 pass gold=defer routed=-
+  BOT-006 pass gold=run routed=run
+  BOT-002 pass gold=run routed=run
+  BOT-003 pass gold=schedule routed=schedule
+  BOT-005 pass gold=status routed=status
+  BOT-004 pass gold=status routed=status
+(exit 0)
+
+=== [gate: frozen scorer] 2026-11-23 15:54:03
+$ node -e "require('./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs').assertScorerFrozen(process.cwd(),'check'); console.log('scorer frozen: ok')"
+scorer frozen: ok
+(exit 0)
+
+=== [stage one replay after review fix] 2026-11-23 15:54:23
+$ bash specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-after-review-fix.sh $PWD specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-after-review-fix.jsonl; rc=$?; python3 -c 'import json,sys
+for l in open(sys.argv[1]):
+    r=json.loads(l); print(r["kind"],"|",r["prompt"],"| exit",r["exit"],"| bots pos",r["bots_position"],"conf",r["bots_confidence"],"| top3",r["top3"])' specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-after-review-fix.jsonl; exit $rc
+gate | write a new BOT.md for a nightly dependency check bot | exit 0 | bots pos 1 conf 0.929 | top3 [['system-skilled-bots', 0.929, True], ['sk-doc', 0.82, True], ['system-spec-kit', 0.82, True]]
+gate | run the nightly-digest bot by hand | exit 0 | bots pos 1 conf 0.928 | top3 [['system-skilled-bots', 0.928, True], ['cli-external-orchestration', 0.82, True], ['system-deep-loop', 0.82, True]]
+gate | install the launchd schedule for my nightly-digest bot | exit 0 | bots pos 1 conf 0.95 | top3 [['system-skilled-bots', 0.95, True]]
+gate | show me the status of my bots and their last runs | exit 0 | bots pos None conf None | top3 []
+gate | what is waiting in my bots inbox | exit 0 | bots pos 1 conf 0.855 | top3 [['system-skilled-bots', 0.855, True]]
+gate | answer the open needs-you question for the release bot | exit 0 | bots pos 1 conf 0.91 | top3 [['system-skilled-bots', 0.91, True], ['system-deep-loop', 0.591, True], ['system-spec-kit', 0.56, True]]
+new | run my nightly bot | exit 0 | bots pos 1 conf 0.942 | top3 [['system-skilled-bots', 0.942, True], ['mcp-code-mode', 0.82, True], ['cli-external-orchestration', 0.82, True]]
+new | kick off the nightly-digest bot | exit 0 | bots pos 1 conf 0.922 | top3 [['system-skilled-bots', 0.922, True]]
+new | run the nightly bot now | exit 0 | bots pos 1 conf 0.942 | top3 [['system-skilled-bots', 0.942, True], ['mcp-code-mode', 0.82, True], ['cli-external-orchestration', 0.82, True]]
+new | pause the nightly-digest bot | exit 0 | bots pos 1 conf 0.924 | top3 [['system-skilled-bots', 0.924, True]]
+new | install the schedule for the nightly-digest bot | exit 0 | bots pos 1 conf 0.916 | top3 [['system-skilled-bots', 0.916, True]]
+ood | run the tests | exit 0 | bots pos 5 conf 0.82 | top3 [['sk-code', 0.82, True], ['sk-doc', 0.82, True], ['mcp-code-mode', 0.82, True]]
+ood | status of the build | exit 0 | bots pos 3 conf 0.82 | top3 [['sk-code', 0.82, True], ['system-skill-advisor', 0.82, True], ['system-skilled-bots', 0.82, True]]
+ood | author a skill | exit 0 | bots pos 6 conf 0.621 | top3 [['sk-doc', 0.845, True], ['cli-external-orchestration', 0.72, True], ['mcp-code-mode', 0.72, True]]
+ood | schedule a meeting for tomorrow | exit 0 | bots pos None conf None | top3 []
+ood | update skilled now | exit 0 | bots pos 1 conf 0.82 | top3 [['system-skilled-bots', 0.82, True], ['system-skilled-doctor', 0.82, True], ['sk-git', 0.82, True]]
+ood | is my skilled install healthy | exit 0 | bots pos 2 conf 0.614 | top3 [['system-skilled-doctor', 0.648, True], ['system-skilled-bots', 0.614, True], ['command-doctor-setup', 0.916, True]]
+(exit 0)
+
+=== [CAUSAL PROBE (temporary): strip the five new phrases from graph-metadata only, rebuild, probe two out-of-domain prompts; restored right after] 2026-11-23 15:55:18
+$ python3 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/strip.py .skilled/skills/system-skilled-bots/graph-metadata.json && node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text | head -2 && node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text | head -2; for p in 'author a skill' 'run the tests'; do python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "$p" --threshold 0.5 | python3 -c 'import json,sys; d=json.load(sys.stdin); print(sys.argv[1], [(i+1,x["confidence"],x["score"]) for i,x in enumerate(d) if x["skill"]=="system-skilled-bots"])' "$p"; done
+stripped
+skill_graph_scan: completed
+generation: 37 -> 38
+advisor_rebuild: rebuilt
+reason: force
+author a skill [(6, 0.6205, 0.177571)]
+run the tests [(5, 0.82, 0.120347)]
+(exit 0)
+
+=== [restore graph-metadata from backup, rescan, rebuild] 2026-11-23 15:55:18
+$ cp /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/bak/graph-metadata.json .skilled/skills/system-skilled-bots/graph-metadata.json && cmp /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b45d76ec-5de0-4fa3-8716-74ef78beca38/scratchpad/bak/graph-metadata.json .skilled/skills/system-skilled-bots/graph-metadata.json && echo restored && node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text && node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+restored
+skill_graph_scan: completed
+generation: 39 -> 40
+scannedFiles: 29
+indexedFiles: 1
+indexedEdges: 63
+rejectedEdges: 0
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 40 -> 41
+skillCount: 16
+(exit 0)
+
+=== [stage one replay after review fix (rerun after the probe restore)] 2026-11-23 15:55:39
+$ bash specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-after-review-fix.sh $PWD specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-after-review-fix.jsonl; rc=$?; python3 -c 'import json,sys
+for l in open(sys.argv[1]):
+    r=json.loads(l); print(r["kind"],"|",r["prompt"],"| exit",r["exit"],"| bots pos",r["bots_position"],"conf",r["bots_confidence"],"| top3",r["top3"])' specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-after-review-fix.jsonl; exit $rc
+gate | write a new BOT.md for a nightly dependency check bot | exit 0 | bots pos 1 conf 0.929 | top3 [['system-skilled-bots', 0.929, True], ['sk-doc', 0.82, True], ['system-spec-kit', 0.82, True]]
+gate | run the nightly-digest bot by hand | exit 0 | bots pos 1 conf 0.928 | top3 [['system-skilled-bots', 0.928, True], ['cli-external-orchestration', 0.82, True], ['system-deep-loop', 0.82, True]]
+gate | install the launchd schedule for my nightly-digest bot | exit 0 | bots pos 1 conf 0.95 | top3 [['system-skilled-bots', 0.95, True]]
+gate | show me the status of my bots and their last runs | exit 0 | bots pos None conf None | top3 []
+gate | what is waiting in my bots inbox | exit 0 | bots pos 1 conf 0.855 | top3 [['system-skilled-bots', 0.855, True]]
+gate | answer the open needs-you question for the release bot | exit 0 | bots pos 1 conf 0.91 | top3 [['system-skilled-bots', 0.91, True], ['system-deep-loop', 0.591, True], ['system-spec-kit', 0.56, True]]
+new | run my nightly bot | exit 0 | bots pos 1 conf 0.942 | top3 [['system-skilled-bots', 0.942, True], ['mcp-code-mode', 0.82, True], ['cli-external-orchestration', 0.82, True]]
+new | kick off the nightly-digest bot | exit 0 | bots pos 1 conf 0.922 | top3 [['system-skilled-bots', 0.922, True]]
+new | run the nightly bot now | exit 0 | bots pos 1 conf 0.942 | top3 [['system-skilled-bots', 0.942, True], ['mcp-code-mode', 0.82, True], ['cli-external-orchestration', 0.82, True]]
+new | pause the nightly-digest bot | exit 0 | bots pos 1 conf 0.924 | top3 [['system-skilled-bots', 0.924, True]]
+new | install the schedule for the nightly-digest bot | exit 0 | bots pos 1 conf 0.916 | top3 [['system-skilled-bots', 0.916, True]]
+ood | run the tests | exit 0 | bots pos 5 conf 0.82 | top3 [['sk-code', 0.82, True], ['sk-doc', 0.82, True], ['mcp-code-mode', 0.82, True]]
+ood | status of the build | exit 0 | bots pos 3 conf 0.82 | top3 [['sk-code', 0.82, True], ['system-skill-advisor', 0.82, True], ['system-skilled-bots', 0.82, True]]
+ood | author a skill | exit 0 | bots pos 6 conf 0.621 | top3 [['sk-doc', 0.845, True], ['cli-external-orchestration', 0.72, True], ['mcp-code-mode', 0.72, True]]
+ood | schedule a meeting for tomorrow | exit 0 | bots pos None conf None | top3 []
+ood | update skilled now | exit 0 | bots pos 1 conf 0.82 | top3 [['system-skilled-bots', 0.82, True], ['system-skilled-doctor', 0.82, True], ['sk-git', 0.82, True]]
+ood | is my skilled install healthy | exit 0 | bots pos 2 conf 0.614 | top3 [['system-skilled-doctor', 0.648, True], ['system-skilled-bots', 0.614, True], ['command-doctor-setup', 0.916, True]]
+(exit 0)
+
+=== [vocabulary reach after restore] 2026-11-23 15:55:43
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+OK   system-skilled-bots          declared= 49 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 42
+RESULT: PASSED
+(exit 0)
+
+=== [router-intent-signals check after restore] 2026-11-23 15:55:43
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+OK    system-skilled-bots          declared= 49 signals= 53 missing=  0 orphans=  0
+
+checked=1 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [final: excluded strings absent from the hub (runtime excluded)] 2026-11-23 15:55:53
+$ grep -rniF --exclude-dir=runtime -e 'run bot now' -e 'install the bot schedule' -e 'uninstall the bot schedule' -e 'check the bot definition' -e 'bot now' .skilled/skills/system-skilled-bots; echo grep-rc=$? '(1 = no match)'
+grep-rc=1 (1 = no match)
+(exit 0)
+
+=== [final: parent-skill-check] 2026-11-23 15:55:53
+$ set -o pipefail; node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots 2>&1 | grep -E 'INFO: Parent skill|^OK|^FAIL|^WARN|ERROR'
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [final: playbook validator] 2026-11-23 15:55:53
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots 2>&1 | tail -2
+PASS package=system-skilled-bots tier=FAIL_CLOSED scenarios=8 categories=1 operator=2 routing_gold_excluded=6 violations=0 warnings=0
+exit=0
+(exit 0)
+
+=== [final: guard + sync --check] 2026-11-23 15:55:53
+$ set -o pipefail; node .skilled/bin/compiled-route-guard.cjs | tail -1 && node .skilled/bin/compiled-route-sync.cjs --check | tail -1
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+all 67 served copies match their authored files
+(exit 0)
+
+=== [final: runtime untouched] 2026-11-23 15:55:53
+$ git status --short -- .skilled/skills/system-skilled-bots/runtime; echo done
+done
+(exit 0)
+
+=== [final: tracked files changed vs the pre-fix working tree (tracked diff stat)] 2026-11-23 15:55:53
+$ git diff --stat -- .skilled/bin specs/sk-doc | tail -12
+ .skilled/bin/compiled-route-guard.cjs              |  1 +
+ .skilled/bin/compiled-route-sync.cjs               |  1 +
+ .skilled/bin/compiled-routing-foundation.vitest.ts | 10 +++---
+ .../014-runtime-engine/lib/compiled-route.cjs      |  1 +
+ .../014-runtime-engine/lib/resolve.cjs             |  5 +--
+ .../compiled-routing/serving-closure.manifest.json | 14 ++++++--
+ .../bin/tests/compiled-route-admission.test.cjs    |  2 +-
+ .../007-sk-doc/lib/registry-compiler.cjs           |  2 +-
+ .../014-runtime-engine/lib/compiled-route.cjs      |  1 +
+ .../014-runtime-engine/lib/resolve.cjs             |  5 +--
+ .../shared/frozen-scorer-pins.json                 | 41 +++++++++++-----------
+ 11 files changed, 49 insertions(+), 34 deletions(-)
+(exit 0)
+
+
+=== orchestrator follow-up in the same fix round: 'hand off to QA' routed to the bots hub through the lexical token 'hand' in 'bot by hand' (executor-delegation fixture split-handoff-prose-hand-off-to-qa, expected none). Replace 'bot by hand' with the bot-anchored 'run the nightly-digest bot'.
+WROTE system-skilled-bots          declared= 49 signals= 53 added=  1 orphans=  1
+       + run the nightly-digest bot
+       - bot by hand
+
+checked=1 hub(s), added=1, orphans=1
+RESULT: PASSED
+skill_graph_scan: completed
+generation: 42 -> 43
+scannedFiles: 29
+indexedFiles: 1
+indexedEdges: 63
+rejectedEdges: 0
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 43 -> 44
+skillCount: 16
+{"artifacts":5,"cases":20,"effectivePolicyHash":"af0cb7c0e1ed23425366f331930ffd96b6cb9ebd779f7358f0e498d0edf0c377","graphHash":"bcf191c0c464aa1fb2dcbfb03363e68595e66056efb1c65aa5459162efcafdc7","status":"built"}
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"af0cb7c0e1ed23425366f331930ffd96b6cb9ebd779f7358f0e498d0edf0c377","generation":1},"currentPolicyHash":"af0cb7c0e1ed23425366f331930ffd96b6cb9ebd779f7358f0e498d0edf0c377","manifestFingerprint":"0648d95269783629751da4ff933593b751793d60600fdb70bb0ac6b9d7b5116c","refreshed":true}

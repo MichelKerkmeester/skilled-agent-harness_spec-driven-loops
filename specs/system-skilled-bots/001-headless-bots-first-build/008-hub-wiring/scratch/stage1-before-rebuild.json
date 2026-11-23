@@ -1,0 +1,161 @@
+[
+  {
+    "skill": "mcp-code-mode",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.26,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.10123,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-code-mode",
+      "liveScore": 0.10123,
+      "shadowScore": 0.102963,
+      "delta": 0.001733,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "cli-external-orchestration",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.095059,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-external-orchestration",
+      "liveScore": 0.095059,
+      "shadowScore": 0.092206,
+      "delta": -0.002853,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "mcp-browser-use",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.26,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.089338,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-browser-use",
+      "liveScore": 0.089338,
+      "shadowScore": 0.09225,
+      "delta": 0.002912,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "cli-classifier",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.07,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-classifier",
+      "liveScore": 0.07,
+      "shadowScore": 0.0625,
+      "delta": -0.0075,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.07,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-doc",
+      "liveScore": 0.07,
+      "shadowScore": 0.0625,
+      "delta": -0.0075,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "system-deep-loop",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.07,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-deep-loop",
+      "liveScore": 0.07,
+      "shadowScore": 0.0625,
+      "delta": -0.0075,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "system-skill-advisor",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.07,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-skill-advisor",
+      "liveScore": 0.07,
+      "shadowScore": 0.0625,
+      "delta": -0.0075,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.5401,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.035588,
+    "dominant_lane": "graph_causal",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.035588,
+      "shadowScore": 0.05475,
+      "delta": 0.019162,
+      "dominantShadowLane": "graph_causal"
+    }
+  }
+]

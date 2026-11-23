@@ -1,0 +1,75 @@
+{
+  "skill": "system-skilled-bots",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": ["status", "author", "schedule", "run"],
+    "outcomes": {
+      "single": "one dominant bot signal routes to one mode",
+      "orderedBundle": "clearly separate bot intents route to an ordered mode list in tie-break order",
+      "defer": "a bot request that names no mode asks which mode the reader means"
+    },
+    "defaultResource": [
+      "ROUTER.md",
+      "mode-registry.json"
+    ],
+    "defaultResourceSemantics": "fallback-only",
+    "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted only when no mode scores, and then only as the defer-time suggestion offered alongside disambiguation. It is never added to a scored route's resource set.",
+    "discoveryClasses": [
+      "hub-identity"
+    ],
+    "discoveryClassesContract": "Classes listed here are hub discovery and defer evidence only. No mode's scoring classes reference them, so a prompt that matches only hub vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
+  },
+  "routerSignals": {
+    "author": {
+      "weight": 4,
+      "classes": ["author-aliases", "author-workflow"],
+      "resources": ["bots-author/SKILL.md"]
+    },
+    "run": {
+      "weight": 4,
+      "classes": ["run-aliases", "run-workflow"],
+      "resources": ["bots-run/SKILL.md"]
+    },
+    "schedule": {
+      "weight": 4,
+      "classes": ["schedule-aliases", "schedule-workflow"],
+      "resources": ["bots-schedule/SKILL.md"]
+    },
+    "status": {
+      "weight": 4,
+      "classes": ["status-aliases", "status-workflow"],
+      "resources": ["bots-status/SKILL.md"]
+    }
+  },
+  "vocabularyClasses": {
+    "hub-identity": {
+      "keywords": ["system-skilled-bots", "headless bot", "headless bots", "file-defined bot", "bots/config.json"]
+    },
+    "author-aliases": {
+      "keywords": ["author a bot", "write a bot", "create a bot", "new bot.md", "bot definition", "edit a bot"]
+    },
+    "author-workflow": {
+      "keywords": ["bot.md", "new bot", "bots:author", "bot template"]
+    },
+    "run-aliases": {
+      "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer"]
+    },
+    "run-workflow": {
+      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot"]
+    },
+    "schedule-aliases": {
+      "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot"]
+    },
+    "schedule-workflow": {
+      "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot"]
+    },
+    "status-aliases": {
+      "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me"]
+    },
+    "status-workflow": {
+      "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "status of my bots"]
+    }
+  }
+}

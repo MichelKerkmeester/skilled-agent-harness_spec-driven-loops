@@ -1,0 +1,109 @@
+Pending cohort registration for system-skilled-bots (prepared, NOT applied)
+=========================================================================
+Prepared 2026-11-23. Waits on two operator decisions:
+  B: the sk-doc registry-compiler drift that fails compiled-route-sync.cjs --check
+  C: the scorer freeze that activate-hub.cjs and flip-serving.cjs refuse on
+Paths are relative to the worktree root. AUTH = specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program
+RT = .skilled/bin/lib/compiled-routing
+
+The authored engine is already built and green:
+  AUTH/009-parent-hub-rollout/011-system-skilled-bots/{lib,harness,fixtures,compiled,activation}
+  build-artifacts: 15 cases, effectivePolicyHash 510775202fa7d0ef5a7d0f0b156d9fa1cfb57ff632f2172f78dffb224ff5d8a3
+
+-------------------------------------------------------------------------
+1. ONE-LINE EDITS (same position as mcp-browser-use: append after it)
+-------------------------------------------------------------------------
+
+1a. AUTH/014-runtime-engine/lib/resolve.cjs  (DEFAULT_ON_HUBS, after `  'mcp-browser-use',`)
+      +  'system-skilled-bots',
+    and the cohort comment, lines 33-35, becomes:
+      // sk-design joins the same way, on this rollout's admission, and so do
+      // mcp-browser-use, admitted on its own canary corpus after it split out of
+      // mcp-tooling, and system-skilled-bots, admitted on its own canary corpus.
+
+1b. AUTH/014-runtime-engine/lib/compiled-route.cjs  (HUB_CHILD, after the mcp-browser-use row)
+      +  'system-skilled-bots': '009-parent-hub-rollout/011-system-skilled-bots',
+
+1c. RT/014-runtime-engine/lib/resolve.cjs and RT/014-runtime-engine/lib/compiled-route.cjs
+      byte-identical to 1a and 1b. Written by the sync build (step 2.1), never by hand.
+
+1d. .skilled/bin/compiled-route-guard.cjs  (HUBS is alphabetical; after line 63 `  'system-deep-loop',`)
+      +  'system-skilled-bots',
+
+1e. .skilled/bin/compiled-route-sync.cjs  (HUBS, after `  'mcp-browser-use',` at line 63)
+      +  'system-skilled-bots',
+
+1f. .skilled/bin/compiled-routing-foundation.vitest.ts
+      line 4:   "covers all eight promoted hubs"           -> "covers all nine promoted hubs"
+      line 124: "(8 hubs; twins order-identical)"          -> "(9 hubs; twins order-identical)"
+      line 131: "// Exactly 8 hubs in every one ..."       -> "// Exactly 9 hubs in every one ..."
+      line 133: "expect(cohort.length).toBe(8);"           -> "expect(cohort.length).toBe(9);"
+      line 271: "'all 8 hubs resolve; 0 reads under .opencode/specs'" -> "'all 9 hubs resolve; 0 reads under .opencode/specs'"
+
+1g. .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts
+      COMPILED_ROUTING_HUBS, after line 22 `  'mcp-browser-use',`:  +  'system-skilled-bots',
+      DEFAULT_ON_HUBS,       after line 41 `  'mcp-browser-use',`:  +  'system-skilled-bots',
+      comment line 25 "(the eight hubs verified compiled-serving" -> "(the nine hubs verified compiled-serving"
+    then rebuild dist: cd .skilled/skills/system-skill-advisor/runtime && npm run build
+    and confirm only dist/runtime/lib/compiled-routing-flag.js (and its map/d.ts, if tracked) changed:
+      git status --short -- .skilled/skills/system-skill-advisor/runtime/dist
+
+1h. RT/serving-closure.manifest.json  (written by the sync build; listed here so the result can be checked)
+      "hubs": append "system-skilled-bots" after "mcp-browser-use"
+      "fileCount": 69 -> 76 (7 new files; 75 if no fence-state.json exists for the hub)
+      "files": after the 010-mcp-browser-use block add
+        "009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json",
+        "009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs",
+        "009-parent-hub-rollout/011-system-skilled-bots/lib/policy-card.cjs",
+        "009-parent-hub-rollout/011-system-skilled-bots/lib/registry-compiler.cjs",
+        "009-parent-hub-rollout/011-system-skilled-bots/lib/router.cjs",
+      after "013-live-activation/activation/sk-doc/manifest.json" (sorted manifest block) add
+        "013-live-activation/activation/system-skilled-bots/manifest.json",
+      at the end of the fence-state block add
+        "013-live-activation/activation/system-skilled-bots/fence-state.json"
+
+1i. .skilled/bin/tests/compiled-route-admission.test.cjs  LIVE_CORPUS_SIZE
+      No change: admission.loadGoldScenarios(<skills>/system-skilled-bots) returns 0 today, so the pin stays 85.
+      Admission will pass on cohort membership only until the hub playbook carries gold scenarios.
+
+1j. Discovery counts (in scope, not yet edited): .skilled/skills/README.txt row for the hub and the root
+    README.md hub and skill counts. Read the current text first; do not copy the browser template's numbers.
+
+-------------------------------------------------------------------------
+2. COMMANDS, IN ORDER, ONCE B AND C ARE APPROVED
+-------------------------------------------------------------------------
+Every command starts with: cd /Users/michelkerkmeester/worktrees/public/system-skilled-bots &&
+
+2.0  Resolve B (operator's choice), then confirm a clean baseline:
+       node .skilled/bin/compiled-route-sync.cjs --check            # must exit 0 before any build
+2.1  Apply edits 1a, 1b, 1d, 1e, 1f, 1g (authored side and bin tools), then promote the closure:
+       node .skilled/bin/compiled-route-sync.cjs                    # writes RT engine copies, resolver, front door, 1h
+2.2  Mint the runtime manifest (inert: servingAuthority legacy, shadowOnly true):
+       node .skilled/bin/compiled-route-manifest.cjs mint --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots --pretty
+     copy it to the authored activation folder:
+       mkdir -p AUTH/013-live-activation/activation/system-skilled-bots
+       cp RT/013-live-activation/activation/system-skilled-bots/manifest.json AUTH/013-live-activation/activation/system-skilled-bots/manifest.json
+2.3  Resolve C (operator re-freezes the scorer consciously), then confirm:
+       node -e 'require("./AUTH/shared/frozen-scorer-contract.cjs").assertScorerFrozen(process.cwd())'
+2.4  Activate (binds the compiled generation, advances the fence, serving stays legacy):
+       node AUTH/013-live-activation/lib/activate-hub.cjs --hub system-skilled-bots --child AUTH/009-parent-hub-rollout/011-system-skilled-bots --json
+2.5  Flip serving authority (fenced CAS, writes serving-flip-record.json and manifest.serving-prior.json):
+       node AUTH/014-runtime-engine/lib/flip-serving.cjs --hub system-skilled-bots --json
+2.6  Bring the runtime manifest to the canonical compiled identity and keep the two copies equal:
+       node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots --pretty
+       cp RT/013-live-activation/activation/system-skilled-bots/manifest.json AUTH/013-live-activation/activation/system-skilled-bots/manifest.json
+       node .skilled/bin/compiled-route-sync.cjs                    # re-promote so fence-state.json joins the closure
+     Caveat: 2.4 and 2.5 write the authored activation folder, while mint and refresh write the runtime one.
+     Read the guard's authored-drift output after this step; the two manifest.json copies must be byte-identical.
+2.7  Gates:
+       npx vitest run .skilled/bin/compiled-routing-foundation.vitest.ts
+       node .skilled/bin/compiled-route-guard.cjs
+       node .skilled/bin/compiled-route-sync.cjs --check
+       node .skilled/bin/compiled-route-admission.cjs --hub system-skilled-bots
+       node --test .skilled/bin/tests/compiled-route-admission.test.cjs
+       node .skilled/bin/compiled-route-status.cjs --hub system-skilled-bots
+       node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots
+       node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt "<each of the 12 brief prompts>"
+       git status --short -- .skilled/skills/system-skilled-bots/runtime
+Rollback: flip-serving.cjs --hub system-skilled-bots --rollback restores manifest.serving-prior.json;
+SPECKIT_COMPILED_ROUTING=0 forces legacy fleet-wide; reverting 1a-1h removes the hub from the cohort.

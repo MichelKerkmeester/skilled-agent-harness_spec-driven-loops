@@ -1,0 +1,31 @@
+ M .skilled/commands/doctor/_routes.yaml
+ M .skilled/commands/doctor/assets/doctor-setup-presentation.txt
+ M .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts
+ M .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+ M specs/system-skilled-bots/001-headless-bots-first-build/goal.md
+?? .skilled/commands/bots/
+?? .skilled/commands/doctor/assets/doctor-bots-check.yaml
+?? .skilled/commands/doctor/assets/doctor-bots-presentation.txt
+?? .skilled/commands/doctor/bots.md
+?? .skilled/skills/system-skilled-bots/README.md
+?? .skilled/skills/system-skilled-bots/ROUTER.md
+?? .skilled/skills/system-skilled-bots/SKILL.md
+?? .skilled/skills/system-skilled-bots/benchmark/
+?? .skilled/skills/system-skilled-bots/bots-author/
+?? .skilled/skills/system-skilled-bots/bots-run/
+?? .skilled/skills/system-skilled-bots/bots-schedule/
+?? .skilled/skills/system-skilled-bots/bots-status/
+?? .skilled/skills/system-skilled-bots/changelog/
+?? .skilled/skills/system-skilled-bots/command-metadata.json
+?? .skilled/skills/system-skilled-bots/description.json
+?? .skilled/skills/system-skilled-bots/graph-metadata.json
+?? .skilled/skills/system-skilled-bots/hub-router.json
+?? .skilled/skills/system-skilled-bots/leaf-manifest.json
+?? .skilled/skills/system-skilled-bots/manual-testing-playbook/
+?? .skilled/skills/system-skilled-bots/mode-registry.json
+?? .skilled/skills/system-skilled-bots/shared/
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/git-status-before-rebuild.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/launchagents-before.txt
+?? specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage1-before-rebuild.json

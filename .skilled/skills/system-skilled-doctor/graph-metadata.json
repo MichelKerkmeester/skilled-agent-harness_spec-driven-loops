@@ -18,7 +18,13 @@
         "context": "its mcp doctor command installs and debugs Code Mode in a project"
       }
     ],
-    "siblings": [],
+    "siblings": [
+      {
+        "target": "system-skilled-bots",
+        "weight": 0.4,
+        "context": "/doctor:bots runs the bots hub's definition checker read-only over a repository's bots/ folder"
+      }
+    ],
     "conflicts_with": [],
     "prerequisite_for": []
   },

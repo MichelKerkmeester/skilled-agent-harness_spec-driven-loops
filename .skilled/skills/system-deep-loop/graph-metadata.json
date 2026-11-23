@@ -27,7 +27,13 @@
       }
     ],
     "conflicts_with": [],
-    "prerequisite_for": []
+    "prerequisite_for": [
+      {
+        "target": "system-skilled-bots",
+        "weight": 0.7,
+        "context": "the bots runner narrows a read-only executor's tools through the deep-loop builder and retries a replay through the deep-loop append gateway"
+      }
+    ]
   },
   "domains": [
     "deep-loop",

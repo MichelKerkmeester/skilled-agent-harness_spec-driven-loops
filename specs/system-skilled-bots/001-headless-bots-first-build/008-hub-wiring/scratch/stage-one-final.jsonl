@@ -1,0 +1,14 @@
+{"kind": "author", "prompt": "write a new BOT.md for a nightly dependency check bot", "stage1_top": [["system-skilled-bots", 0.929], ["sk-doc", 0.82], ["system-spec-kit", 0.82]], "stage2_action": "route", "stage2_modes": ["author"]}
+{"kind": "run", "prompt": "run the nightly-digest bot by hand", "stage1_top": [["system-skilled-bots", 0.896], ["cli-external-orchestration", 0.82], ["system-deep-loop", 0.82]], "stage2_action": "route", "stage2_modes": ["run"]}
+{"kind": "schedule", "prompt": "install the launchd schedule for my nightly-digest bot", "stage1_top": [["system-skilled-bots", 0.95]], "stage2_action": "route", "stage2_modes": ["schedule"]}
+{"kind": "status", "prompt": "what is the status of my bots and their last runs", "stage1_top": [["system-skilled-bots", 0.896], ["sk-code", 0.592]], "stage2_action": "route", "stage2_modes": ["status"]}
+{"kind": "status-show-form", "prompt": "show me the status of my bots and their last runs", "stage1_top": [], "stage2_action": "route", "stage2_modes": ["status"]}
+{"kind": "inbox", "prompt": "what is waiting in my bots inbox", "stage1_top": [["system-skilled-bots", 0.855]], "stage2_action": "route", "stage2_modes": ["status"]}
+{"kind": "answer", "prompt": "answer the open needs-you question for the release bot", "stage1_top": [["system-skilled-bots", 0.91], ["system-deep-loop", 0.591], ["system-spec-kit", 0.56]], "stage2_action": "route", "stage2_modes": ["run"]}
+{"kind": "ood", "prompt": "run the tests", "stage1_top": [["sk-code", 0.82], ["sk-doc", 0.82], ["mcp-code-mode", 0.82]], "stage2_action": "defer", "stage2_modes": []}
+{"kind": "ood", "prompt": "status of the build", "stage1_top": [["sk-code", 0.82], ["system-skill-advisor", 0.82], ["system-skilled-bots", 0.82]], "stage2_action": "defer", "stage2_modes": []}
+{"kind": "ood", "prompt": "author a skill", "stage1_top": [["sk-doc", 0.845], ["cli-external-orchestration", 0.72], ["mcp-code-mode", 0.72]], "stage2_action": "defer", "stage2_modes": []}
+{"kind": "ood", "prompt": "schedule a meeting for tomorrow", "stage1_top": [], "stage2_action": "defer", "stage2_modes": []}
+{"kind": "ood", "prompt": "update skilled now", "stage1_top": [["system-skilled-bots", 0.82], ["system-skilled-doctor", 0.82], ["sk-git", 0.82]], "stage2_action": "defer", "stage2_modes": []}
+{"kind": "ood", "prompt": "is my skilled install healthy", "stage1_top": [["system-skilled-doctor", 0.648], ["system-skilled-bots", 0.614], ["command-doctor-setup", 0.916]], "stage2_action": "defer", "stage2_modes": []}
+{"kind": "ood", "prompt": "hand off to QA", "stage1_top": [], "stage2_action": "defer", "stage2_modes": []}

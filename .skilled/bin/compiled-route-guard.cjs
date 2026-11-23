@@ -61,6 +61,7 @@ const HUBS = [
   'sk-design',
   'sk-doc',
   'system-deep-loop',
+  'system-skilled-bots',
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

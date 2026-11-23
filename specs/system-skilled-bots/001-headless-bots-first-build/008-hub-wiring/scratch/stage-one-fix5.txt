@@ -1,0 +1,37 @@
+ood | ok   top=None bots=[] | answer this question
+ood | ok   top=('sk-code', 0.82, 0.201) bots=[(5, 0.82, 0.12)] | run the tests
+ood | ok   top=None bots=[] | schedule a meeting for tomorrow
+ood | ok   top=('sk-code', 0.82, 0.213) bots=[(3, 0.82, 0.111)] | status of the build
+ood | ok   top=('sk-doc', 0.8453, 0.575) bots=[(6, 0.6204, 0.177)] | author a skill
+ood | ok   top=('sk-code', 0.5916, 0.127) bots=[] | check my email inbox
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the open question
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open ticket
+ood | ok   top=('sk-git', 0.82, 0.387) bots=[] | answer the open issues
+ood | ok   top=('cli-external-orchestration', 0.5574, 0.066) bots=[] | answer the open
+ood | ok   top=None bots=[] | answer the question
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer my open questions
+ood | ok   top=('sk-git', 0.82, 0.524) bots=[] | answer the open pr comments
+ood | ok   top=('system-spec-kit', 0.5909, 0.125) bots=[] | answer the pending question
+ood | ok   top=('system-spec-kit', 0.82, 0.39) bots=[] | open questions in the spec
+ood | ok   top=None bots=[] | what do you need from me
+ood | ok   top=('sk-code', 0.9003, 0.672) bots=[] | answer the open review threads
+ood | ok   top=None bots=[] | my manager needs you to sign this
+ood | ok   top=None bots=[] | it needs you to confirm the deploy
+ood | ok   top=None bots=[] | the team needs you
+ood | FAIL top=('system-skilled-bots', 0.6598, 0.247) bots=[(1, 0.6598, 0.247)] | set up a launchd schedule
+ood | FAIL top=('system-skilled-bots', 0.6566, 0.241) bots=[(1, 0.6566, 0.241)] | install a launchd schedule for my backup script
+ood | ok   top=('sk-doc', 0.82, 0.303) bots=[(2, 0.82, 0.298)] | write a launchd plist
+ood | ok   top=None bots=[] | schedule a cron job for the backup
+ood | ok   top=('sk-code', 0.8359, 0.558) bots=[(3, 0.82, 0.153)] | add a cron schedule to my script
+ood | FAIL top=('system-skilled-bots', 0.82, 0.205) bots=[(1, 0.82, 0.205)] | pause the launchd agent
+in  | ok   top=('system-skilled-bots', 0.8771) | answer the release bot's needs-you question
+in  | ok   top=('system-skilled-bots', 0.6195) | answer the open needs-you question for the release bot
+in  | ok   top=('system-skilled-bots', 0.855) | what is waiting in my bots inbox
+in  | ok   top=('system-skilled-bots', 0.8835) | answer the bot
+in  | ok   top=('system-skilled-bots', 0.8966) | bots answer
+in  | ok   top=('system-skilled-bots', 0.8332) | answer the bot's open question with yes
+in  | ok   top=('system-skilled-bots', 0.82) | install the launchd schedule for my nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.95) | install the launchd schedule for the nightly-digest bot
+in  | ok   top=('system-skilled-bots', 0.9307) | schedule a bot
+in  | ok   top=('system-skilled-bots', 0.9236) | pause the nightly-digest bot
+candidate=NONE stage-one-fails=3

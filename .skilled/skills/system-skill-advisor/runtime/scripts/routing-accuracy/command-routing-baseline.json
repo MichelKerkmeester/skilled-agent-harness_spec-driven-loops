@@ -1,42 +1,42 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "2ef3895f753",
-  "corpusSha256": "sha256:f957f3bf62cad9f30792bd265247eff647437f3ee6a85c95632d122261ca737c",
+  "capturedAtSha": "928be8397fb",
+  "corpusSha256": "sha256:6ef1793bba23231acd9650e57b169eff1a1944364df38db9ca1ed084ea1e07bc",
   "bridgeCounts": {
-    "commandMetadata": 27,
-    "doctorRoutes": 35,
-    "generated": 62,
-    "typescriptActive": 46,
-    "pythonActive": 52
+    "commandMetadata": 31,
+    "doctorRoutes": 36,
+    "generated": 67,
+    "typescriptActive": 47,
+    "pythonActive": 53
   },
   "metrics": {
     "typed_recall_at_1": {
-      "correct": 24,
-      "total": 44
+      "correct": 25,
+      "total": 49
     },
     "typed_reach_top3": {
-      "correct": 28,
-      "total": 44
+      "correct": 29,
+      "total": 49
     },
     "plain_recall_at_1": {
       "tune": {
-        "correct": 14,
-        "total": 45
+        "correct": 15,
+        "total": 50
       },
       "holdout": {
         "correct": 2,
-        "total": 44
+        "total": 49
       }
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 16,
-        "total": 45
+        "correct": 17,
+        "total": 50
       },
       "holdout": {
         "correct": 3,
-        "total": 44
+        "total": 49
       }
     },
     "false_offer": {
@@ -55,6 +55,10 @@
     }
   },
   "unreachable": [
+    "/bots:author",
+    "/bots:run",
+    "/bots:schedule",
+    "/bots:status",
     "/create:benchmark",
     "/create:changelog",
     "/create:command",
@@ -73,6 +77,82 @@
     "/design:extract"
   ],
   "commands": {
+    "/bots:author": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/bots:run": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/bots:schedule": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/bots:status": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
     "/create:agent": {
       "typed": {
         "rows": 1,
@@ -431,6 +511,25 @@
           "rows": 1,
           "top1": 1,
           "top3": 1
+        }
+      }
+    },
+    "/doctor:bots": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
         }
       }
     },
@@ -911,6 +1010,62 @@
     }
   },
   "rows": {
+    "cmd-bots-author-typed-01": {
+      "expected_command": "/bots:author",
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-bots-author-plain-tune-01": {
+      "expected_command": "/bots:author",
+      "top": "system-skilled-bots",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-bots-run-typed-01": {
+      "expected_command": "/bots:run",
+      "top": "system-skilled-bots",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-bots-run-plain-tune-01": {
+      "expected_command": "/bots:run",
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-bots-schedule-typed-01": {
+      "expected_command": "/bots:schedule",
+      "top": "system-skilled-bots",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-bots-schedule-plain-tune-01": {
+      "expected_command": "/bots:schedule",
+      "top": "system-skilled-bots",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-bots-status-typed-01": {
+      "expected_command": "/bots:status",
+      "top": "system-skilled-bots",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-bots-status-plain-tune-01": {
+      "expected_command": "/bots:status",
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
     "cmd-create-agent-typed-01": {
       "expected_command": "/create:agent",
       "top": "create:agent",
@@ -1110,6 +1265,20 @@
     "cmd-doctor-agents-md-plain-tune-01": {
       "expected_command": "/doctor:agents-md",
       "top": "command-doctor-agents-md-check",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-bots-typed-01": {
+      "expected_command": "/doctor:bots",
+      "top": "command-doctor-bots",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-bots-plain-tune-01": {
+      "expected_command": "/doctor:bots",
+      "top": "command-doctor-bots",
       "top1": true,
       "top3": true,
       "offered": true
@@ -1881,39 +2050,53 @@
   "attachedMetrics": {
     "plain": {
       "tune": {
-        "own": 14,
-        "attached": 13,
-        "combined": 27,
-        "total": 45
+        "own": 15,
+        "attached": 14,
+        "combined": 29,
+        "total": 50
       },
       "holdout": {
         "own": 2,
         "attached": 1,
         "combined": 3,
-        "total": 44
+        "total": 49
       }
     },
     "plain_stages": {
       "tune": {
-        "total": 45,
-        "own": 14,
-        "ownerLed": 22,
-        "routed": 20,
-        "withCommand": 13,
-        "attached": 13,
-        "neither": 9
+        "total": 50,
+        "own": 15,
+        "ownerLed": 24,
+        "routed": 22,
+        "withCommand": 14,
+        "attached": 14,
+        "neither": 11
       },
       "holdout": {
-        "total": 44,
+        "total": 49,
         "own": 2,
         "ownerLed": 7,
         "routed": 4,
         "withCommand": 1,
         "attached": 1,
-        "neither": 35
+        "neither": 40
       }
     },
     "plain_by_family": {
+      "bots": {
+        "tune": {
+          "own": 0,
+          "attached": 1,
+          "combined": 1,
+          "total": 4
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 4
+        }
+      },
       "create": {
         "tune": {
           "own": 1,
@@ -1958,16 +2141,16 @@
       },
       "doctor": {
         "tune": {
-          "own": 9,
+          "own": 10,
           "attached": 0,
-          "combined": 9,
-          "total": 17
+          "combined": 10,
+          "total": 18
         },
         "holdout": {
           "own": 1,
           "attached": 0,
           "combined": 1,
-          "total": 17
+          "total": 18
         }
       },
       "prompt": {
@@ -2032,12 +2215,40 @@
       "total": 41
     },
     "typed": {
-      "own": 24,
-      "attached": 19,
-      "combined": 43,
-      "total": 44
+      "own": 25,
+      "attached": 22,
+      "combined": 47,
+      "total": 49
     },
     "typedRows": {
+      "cmd-bots-author-typed-01": {
+        "expected_command": "/bots:author",
+        "top": null,
+        "carried": null,
+        "command": null,
+        "policy": null
+      },
+      "cmd-bots-run-typed-01": {
+        "expected_command": "/bots:run",
+        "top": "system-skilled-bots",
+        "carried": "attached",
+        "command": "/bots:run",
+        "policy": "ask"
+      },
+      "cmd-bots-schedule-typed-01": {
+        "expected_command": "/bots:schedule",
+        "top": "system-skilled-bots",
+        "carried": "attached",
+        "command": "/bots:schedule",
+        "policy": "ask"
+      },
+      "cmd-bots-status-typed-01": {
+        "expected_command": "/bots:status",
+        "top": "system-skilled-bots",
+        "carried": "attached",
+        "command": "/bots:status",
+        "policy": "run"
+      },
       "cmd-create-agent-typed-01": {
         "expected_command": "/create:agent",
         "top": "create:agent",
@@ -2169,6 +2380,13 @@
         "top": "command-doctor-agents-md-check",
         "carried": "own",
         "command": "/doctor:agents-md check",
+        "policy": "run"
+      },
+      "cmd-doctor-bots-typed-01": {
+        "expected_command": "/doctor:bots",
+        "top": "command-doctor-bots",
+        "carried": "own",
+        "command": "/doctor:bots",
         "policy": "run"
       },
       "cmd-doctor-ci-typed-01": {
@@ -2349,6 +2567,10 @@
     },
     "typed_same_owner_ambiguous": [],
     "attachedRows": {
+      "cmd-bots-author-plain-tune-01": "/bots:author",
+      "cmd-bots-run-typed-01": "/bots:run",
+      "cmd-bots-schedule-typed-01": "/bots:schedule",
+      "cmd-bots-status-typed-01": "/bots:status",
       "cmd-create-agent-plain-tune-01": "/create:agent",
       "cmd-create-agent-plain-tune-02": "/create:agent",
       "cmd-create-benchmark-typed-01": "/create:benchmark",

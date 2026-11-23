@@ -1,0 +1,4 @@
+$ git diff --stat HEAD -- .skilled/skills/system-skilled-bots/runtime
+(printed nothing above) exit=0
+$ git status --short -- .skilled/skills/system-skilled-bots/runtime
+(printed nothing above) exit=0

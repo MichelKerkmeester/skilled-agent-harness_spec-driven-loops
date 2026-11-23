@@ -18,13 +18,14 @@ trigger_phrases:
 
 Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt:improve`, `/speckit:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
-Commands are organized into six groups:
+Commands are organized into seven groups:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
+| **bots** | `commands/bots/` | 4 | Author, run, schedule and read file-defined headless bots |
 | **create** | `commands/create/` | 13 | Scaffold Skilled components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 2 | Deep research and review loops |
-| **doctor** | `commands/doctor/` | 17 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, vendored-tree overlay status, apply and re-pin, root instruction-file check and embed, and environment-switch diagnostics |
+| **doctor** | `commands/doctor/` | 18 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, vendored-tree overlay status, apply and re-pin, root instruction-file check and embed, bot definition check, and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 8 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search), the manual trigger for the session handover loop (handoff) and a single-round AI council (ai-council) |
@@ -124,9 +125,20 @@ Scaffold Skilled components using the `sk-doc` skill. Each command supports `:au
 | Testing Playbook | `/create:manual-testing-playbook <skill> [create\|update]` | Create or update a rooted `manual-testing-playbook/` package |
 | With Human Voice | `/create:with-human-voice <file or passage> [apply\|score]` | Apply or score prose against the Human Voice Rules |
 
+### Bots Commands
+
+Drive the `system-skilled-bots` hub, one command per mode. Each supports `:auto` and `:confirm` with YAML workflow files in `bots/assets/`. `bots inbox` runs under status and `bots answer` under run.
+
+| Command | Invocation | Purpose |
+|---------|------------|---------|
+| Author | `/bots:author <bot-id> [--repo <path>] [:auto\|:confirm]` | Write or edit a bot's `BOT.md` from the template, then prove it with the definition checker |
+| Run | `/bots:run <bot-id\|drain\|enqueue <bot-id> --source <name> --key <key>\|answer <item-id> <text>> [--repo <path>] [:auto\|:confirm]` | Run a bot now, queue or drain bot run requests, or answer a needs-you item |
+| Schedule | `/bots:schedule <install\|uninstall\|enable\|disable\|pause\|resume> <bot-id> [--repo <path>] [:auto\|:confirm]` | Install or remove a cron bot's launchd schedule, or enable, disable, pause or resume a bot |
+| Status | `/bots:status [status\|inbox] [--json] [--all] [--rebuild] [--repo <path>] [:auto\|:confirm]` | Read installed bots, last runs, deliveries and the needs-you inbox, read-only |
+
 ### Doctor Commands
 
-Seventeen command files cover the diagnostic surface, one per owner, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Eighteen command files cover the diagnostic surface, one per owner, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -147,6 +159,7 @@ Seventeen command files cover the diagnostic surface, one per owner, with one en
 | Agents Instruction File | `/doctor:agents-md [check\|embed\|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>]` | Report what the root `AGENTS.md` holds against the shipped template row by row, embed the template plus the repository block after a plan and its digest, and restore one recorded run |
 | Symlink | `/doctor:symlink [check\|link\|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--ignore <where>] [--plan-digest <digest>] [--run <dir>] [--yes] [--dry-run]` | Report, create or remove the links that put `.skilled` and the chosen runtime folders into another project repo, as a whole-folder link or a real folder holding one link per entry, and write only against the plan digest the operator approved |
 | Install Guide | `/doctor:install [--root <dir>] [--runtimes <list>] [--json]` | Check the two builds, ask for the target repo, runtimes, link shape and instruction choice in one prompt, run the symlink check and print the ordered setup commands, naming each writing command without ever running one |
+| Bots | `/doctor:bots [--root <dir>] [--strict]` | Check a repository's `bots/` folder with the bot definition checker, read-only, naming each failed invariant |
 | Overlay | `/doctor:overlay [status\|apply\|repin] [--json] [--audit] [--root <dir>] [--capture\|--adopt <path>\|--relayout] [--upstream\|--to\|--rollback <value>]` | Report which overlay destinations in a vendored Skilled tree are out of sync and why, then put the overlays back, capture one live edit into its overlay source, adopt one unowned vendored path as a new overlay, move each overlay source kept off its layout path onto it, or re-pin the tree to a newer upstream commit over a staged plan with a rollback, after one yes |
 
 ### Deep Commands

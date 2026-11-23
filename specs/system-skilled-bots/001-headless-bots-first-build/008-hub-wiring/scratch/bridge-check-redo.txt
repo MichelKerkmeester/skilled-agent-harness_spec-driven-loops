@@ -1,0 +1,11 @@
+{
+  "status": "fresh",
+  "counts": {
+    "commandMetadata": 31,
+    "doctorRoutes": 36,
+    "generated": 67,
+    "typescriptActive": 46,
+    "pythonActive": 52
+  },
+  "changed": []
+}

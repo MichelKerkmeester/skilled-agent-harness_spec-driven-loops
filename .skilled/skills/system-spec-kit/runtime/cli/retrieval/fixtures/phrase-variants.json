@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fcdcb6054feeab3eb6363848ebf78dbf943337eb0c5701c3839a4f57bbabcf37",
+  "manifestHash": "fe0ff451e94058fb422ead68d35f06e7eb7c4c2d90ff4297ebda4430e7ddcfe7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12506,6 +12506,9 @@
     "answer the actual request": [
       "answer the actual request"
     ],
+    "answer the bot": [
+      "answer the bot"
+    ],
     "answerable questions tags": [
       "answerable questions tags"
     ],
@@ -16447,11 +16450,26 @@
     "born findable changelog entries": [
       "born findable changelog entries"
     ],
+    "bot definition": [
+      "bot definition"
+    ],
+    "bot inbox": [
+      "bot inbox"
+    ],
     "bot md bots runner launchd": [
       "BOT.md bots runner launchd"
     ],
     "bot runner kill switches": [
       "bot runner kill switches"
+    ],
+    "bot schedule lifecycle": [
+      "bot schedule lifecycle"
+    ],
+    "bot status": [
+      "bot status"
+    ],
+    "bot template fields": [
+      "bot template fields"
     ],
     "both advisor output paths": [
       "both advisor output paths"
@@ -16462,11 +16480,29 @@
     "bots answer": [
       "bots answer"
     ],
+    "bots author 1 0 0 0": [
+      "bots-author 1.0.0.0"
+    ],
+    "bots author router": [
+      "bots-author router"
+    ],
+    "bots author routing": [
+      "bots-author routing"
+    ],
+    "bots author v1 0 0 0": [
+      "bots-author v1.0.0.0"
+    ],
     "bots delivery channels": [
       "bots delivery channels"
     ],
     "bots four mode wiring": [
       "bots four mode wiring"
+    ],
+    "bots hub shared helpers": [
+      "bots hub shared helpers"
+    ],
+    "bots hub wiring": [
+      "bots hub wiring"
     ],
     "bots inbox": [
       "bots inbox"
@@ -16477,14 +16513,50 @@
     "bots run": [
       "bots run"
     ],
+    "bots run 1 0 0 0": [
+      "bots-run 1.0.0.0"
+    ],
+    "bots run router": [
+      "bots-run router"
+    ],
+    "bots run routing": [
+      "bots-run routing"
+    ],
+    "bots run v1 0 0 0": [
+      "bots-run v1.0.0.0"
+    ],
+    "bots schedule 1 0 0 0": [
+      "bots-schedule 1.0.0.0"
+    ],
     "bots schedule install": [
       "bots schedule install"
+    ],
+    "bots schedule router": [
+      "bots-schedule router"
+    ],
+    "bots schedule routing": [
+      "bots-schedule routing"
+    ],
+    "bots schedule v1 0 0 0": [
+      "bots-schedule v1.0.0.0"
     ],
     "bots status": [
       "bots status"
     ],
+    "bots status 1 0 0 0": [
+      "bots-status 1.0.0.0"
+    ],
     "bots status index sqlite": [
       "bots status index sqlite"
+    ],
+    "bots status router": [
+      "bots-status router"
+    ],
+    "bots status routing": [
+      "bots-status routing"
+    ],
+    "bots status v1 0 0 0": [
+      "bots-status v1.0.0.0"
     ],
     "bots worktree run": [
       "bots worktree run"
@@ -46071,6 +46143,9 @@
     "draft placeholder rule": [
       "Draft placeholder rule"
     ],
+    "drain the bot queue": [
+      "drain the bot queue"
+    ],
     "draw io import": [
       "draw.io import"
     ],
@@ -60306,6 +60381,9 @@
     ],
     "heading validation rules": [
       "heading validation rules"
+    ],
+    "headless bots": [
+      "headless bots"
     ],
     "headless bots first build decision record": [
       "headless bots first build decision record"
@@ -83858,6 +83936,9 @@
     "pause sentinel": [
       "pause sentinel"
     ],
+    "pause the bot": [
+      "pause the bot"
+    ],
     "payload count invariant memory context": [
       "payload count invariant memory_context"
     ],
@@ -105702,6 +105783,9 @@
     "run tests mjs process group kill": [
       "run-tests.mjs process group kill"
     ],
+    "run the bot": [
+      "run the bot"
+    ],
     "run the quality gate": [
       "run the quality gate"
     ],
@@ -107273,6 +107357,9 @@
     ],
     "scenarios by failure mode": [
       "scenarios by failure mode"
+    ],
+    "schedule a bot": [
+      "schedule a bot"
     ],
     "schedule predicates and checker": [
       "schedule predicates and checker"
@@ -120261,6 +120348,9 @@
     "skilled alignment checks": [
       "skilled alignment checks"
     ],
+    "skilled bots hub": [
+      "skilled bots hub"
+    ],
     "skilled canary smoke plan": [
       "skilled canary smoke plan"
     ],
@@ -128391,6 +128481,12 @@
     "system skill advisor v2 0 1 0": [
       "system-skill-advisor v2.0.1.0"
     ],
+    "system skilled bots": [
+      "system-skilled-bots"
+    ],
+    "system skilled bots 1 0 0 0": [
+      "system-skilled-bots 1.0.0.0"
+    ],
     "system skilled bots first build": [
       "system-skilled-bots first build"
     ],
@@ -128399,6 +128495,18 @@
     ],
     "system skilled bots operator decisions": [
       "system-skilled-bots operator decisions"
+    ],
+    "system skilled bots router": [
+      "system-skilled-bots router"
+    ],
+    "system skilled bots routing": [
+      "system-skilled-bots routing"
+    ],
+    "system skilled bots shared tier": [
+      "system-skilled-bots shared tier"
+    ],
+    "system skilled bots v1 0 0 0": [
+      "system-skilled-bots v1.0.0.0"
     ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
@@ -138254,6 +138362,9 @@
     "which 028 phase shipped when": [
       "which 028 phase shipped when"
     ],
+    "which bots are installed": [
+      "which bots are installed"
+    ],
     "which chart type": [
       "which chart type"
     ],
@@ -139184,6 +139295,9 @@
     ],
     "wrapper writes iteration artifacts": [
       "wrapper writes iteration artifacts"
+    ],
+    "write a bot md": [
+      "write a bot.md"
     ],
     "write a note": [
       "Write a note"

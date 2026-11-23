@@ -1,0 +1,16 @@
+signals check exit 0
+vocab source exit 0
+vocab reach exit 0
+stage1 replay exit 0 (candidate=NONE stage-one-fails=3)
+slice exit 0
+advisor exit 0
+doctor exit 0
+admission exit 0
+compiled-route tests exit 0
+foundation exit 0
+evaluateHub exit 0
+parent-skill-check exit 0
+scorer frozen: ok
+frozen exit 0
+bots vitest exit 0
+bots typecheck exit 0

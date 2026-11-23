@@ -1,0 +1,90 @@
+# /doctor:bots Presentation Contract
+
+Presentation source of truth for `/doctor:bots`. The router owns asset loading. Workflow YAML owns execution. This file owns visible prompts, the setup display, the check report and result displays.
+
+## 1. STARTUP PRESENTATION
+
+For `:confirm` or no suffix, resolve the inputs from `$ARGUMENTS`, show the setup display, and ask only for a required input that is missing.
+
+For `:auto`, resolve the inputs from `$ARGUMENTS` and defaults, and show the report directly.
+
+### Auto Resolution Table
+
+| Field | Required | Resolution |
+|-------|----------|------------|
+| `root` | No | Optional repository root, passed as --root <dir>. Defaults to the current working directory. |
+| `strict` | No | When present, pass --strict so advisory findings count as failures. Defaults to false. |
+
+### Argument Failure Display
+
+```text
+/doctor:bots does not take [argument].
+Usage: /doctor:bots [--root <dir>] [--strict] [:auto|:confirm]
+
+STATUS=FAIL ERROR="Unknown argument: [argument]"
+```
+
+### Consolidated Prompt Template
+
+```text
+/doctor:bots setup
+- root: [value or default]
+- strict: [value or default]
+
+Reply with the change, or "go" to run the check.
+```
+
+## 2. CHECKPOINT LAYOUT
+
+The confirm workflow stops once, before the checker runs. The checker reads only:
+
+```text
+/doctor:bots checkpoint
+- Root: {root}
+- Strict: [yes|no]
+
+Proceed, Change or Cancel?
+```
+
+## 3. CHECK REPORT AND RESULTS
+
+Show every finding line exactly as the checker prints it, one `PASS`, `FAIL`, `WARN` or `INFO` line each, with its invariant id.
+
+### Success (checker exit 0)
+
+```text
+/doctor:bots passed
+- Root: {root}
+- Findings: [count of PASS, FAIL, WARN and INFO lines]
+
+STATUS=OK
+```
+
+### Warning (checker exit 1)
+
+```text
+/doctor:bots found failed invariants
+- Root: {root}
+- Failed invariants: [each invariant id from a FAIL line]
+
+STATUS=WARN
+```
+
+### Failure (checker exit 2 or cannot run)
+
+```text
+/doctor:bots could not finish
+- Root: {root}
+- Checker output: [quoted message]
+
+STATUS=FAIL ERROR="[named cause]"
+```
+
+## 4. NEXT-STEP SUGGESTIONS
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| A FAIL line names a field | `/bots:author` | Edit the BOT.md field the invariant names |
+| The bots folder is clean | `/bots:status` | Read what the installed bots did |
+
+End interactive presentations with a single next-step prompt.

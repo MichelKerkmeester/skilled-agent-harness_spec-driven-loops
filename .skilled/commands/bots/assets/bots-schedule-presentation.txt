@@ -1,0 +1,83 @@
+# /bots:schedule Presentation Contract
+
+Presentation source of truth for `/bots:schedule`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, the setup display and result displays.
+
+## 1. STARTUP PRESENTATION
+
+For `:confirm` or no suffix, resolve the inputs from `$ARGUMENTS`, show the setup display, and ask only for a required input that is missing.
+
+For `:auto`, resolve the inputs from `$ARGUMENTS` and defaults. Ask only for a required input that is missing.
+
+### Auto Resolution Table
+
+| Field | Required | Resolution |
+|-------|----------|------------|
+| `action` | Yes | Required. install, uninstall, enable, disable, pause or resume. |
+| `bot_id` | Yes | Required. The id drain installs this repository's queue-drain job. |
+| `repo` | No | Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory. |
+
+### Consolidated Prompt Template
+
+```text
+/bots:schedule setup
+- action: [value or default]
+- bot_id: [value or default]
+- repo: [value or default]
+
+Reply with the missing value, or "go" to proceed.
+```
+
+### Auto Fail-Fast Display
+
+```text
+/bots:schedule needs a missing input: [field].
+Usage: /bots:schedule <install|uninstall|enable|disable|pause|resume> <bot-id> [--repo <path>] [:auto|:confirm]
+
+STATUS=FAIL ERROR="Missing required input: [field]"
+```
+
+## 2. CHECKPOINT LAYOUT
+
+The confirm workflow stops once, after the action and bot id are resolved and before the verb runs:
+
+```text
+/bots:schedule checkpoint
+- Action: {action}
+- Bot: {bot_id}
+- Note: a first install is held disabled until enable
+
+Proceed, Change or Cancel?
+```
+
+## 3. RESULTS DISPLAY
+
+### Success
+
+```text
+/bots:schedule complete
+- Action: {action}
+- Bot: {bot_id}
+- Held disabled: [yes|no]
+- Status row: [quoted from bots status]
+
+STATUS=OK
+```
+
+### Failure
+
+```text
+/bots:schedule failed
+- Step: [the step that ended the run]
+- Output: [the CLI output, quoted]
+
+STATUS=FAIL ERROR="[named cause]"
+```
+
+## 4. NEXT-STEP SUGGESTIONS
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| A first install completed | `/bots:schedule enable <bot-id>` | Lift the hold when the operator wants the schedule to fire |
+| The status row needs a reinstall | `/bots:status` | Read the full status before changing anything |
+
+End interactive presentations with a single next-step prompt.

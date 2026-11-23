@@ -1,0 +1,19 @@
+OK    cli-classifier               declared= 40 signals= 44 missing=  0 orphans=  0
+OK    cli-external-orchestration   declared=107 signals=114 missing=  0 orphans=  0
+OK    cli-orca                     declared=  9 signals= 17 missing=  0 orphans=  0
+OK    mcp-browser-use              declared= 50 signals= 75 missing=  0 orphans=  0
+OK    mcp-code-mode                declared=  9 signals= 15 missing=  0 orphans=  0
+OK    mcp-tooling                  declared=100 signals=113 missing=  0 orphans=  0
+OK    sk-code                      declared=238 signals=292 missing=  0 orphans=  0
+OK    sk-design                    declared= 99 signals=126 missing=  0 orphans=  0
+OK    sk-doc                       declared=327 signals=344 missing=  0 orphans=  0
+OK    sk-git                       declared=  0 signals= 46 missing=  0 orphans=  0
+OK    sk-prompt                    declared=  5 signals= 17 missing=  0 orphans=  0
+OK    system-deep-loop             declared= 30 signals= 37 missing=  0 orphans=  0
+OK    system-skill-advisor         declared=  5 signals= 45 missing=  0 orphans=  0
+OK    system-skilled-bots          declared= 48 signals= 52 missing=  0 orphans=  0
+OK    system-skilled-doctor        declared= 30 signals= 58 missing=  0 orphans=  0
+OK    system-spec-kit              declared=  0 signals= 70 missing=  0 orphans=  0
+
+checked=16 hub(s), missing=0, orphans=0
+RESULT: PASSED

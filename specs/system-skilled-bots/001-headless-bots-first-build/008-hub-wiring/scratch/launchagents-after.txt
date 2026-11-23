@@ -1,0 +1,35 @@
+03e1ca57b8c75c6a812fb9184447999494a4915c  /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.probe.weekday.plist
+5839afc62d3d22bf6aa4e9bad1e155c067566cf0  /Users/michelkerkmeester/Library/LaunchAgents/com.dropbox.DropboxUpdater.wake.plist
+667c89e189caf64da2a0079aac8e58ba121b7381  /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.orphan-sweep.plist
+67425c8f030ef2fa18ad3cfd2c6b3666343212b9  /Users/michelkerkmeester/Library/LaunchAgents/com.alienator88.Pearcleaner.homebrew-autoupdate.plist
+6a4a0f5372eb0c830bbe3d65febed74c5848b2c4  /Users/michelkerkmeester/Library/LaunchAgents/com.adobe.ccxprocess.plist
+880ecc10257f6ed32215f93b599d1c0d947e04b7  /Users/michelkerkmeester/Library/LaunchAgents/at.studio.AsideUpdater.wake.plist
+8eeceff6f9305d9d5b1c11957172b23498d35821  /Users/michelkerkmeester/Library/LaunchAgents/com.google.GoogleUpdater.wake.plist
+98de854470d8d7561f6eba8dedd015992df81c11  /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.deem-update.plist
+bcefe0558555914d731c16b1778c49e77fe06b99  /Users/michelkerkmeester/Library/LaunchAgents/at.studio.asidekeystone.agent.plist
+bcefe0558555914d731c16b1778c49e77fe06b99  /Users/michelkerkmeester/Library/LaunchAgents/at.studio.asidekeystone.xpcservice.plist
+bcefe0558555914d731c16b1778c49e77fe06b99  /Users/michelkerkmeester/Library/LaunchAgents/com.dropbox.dropboxmacupdate.agent.plist
+bcefe0558555914d731c16b1778c49e77fe06b99  /Users/michelkerkmeester/Library/LaunchAgents/com.dropbox.dropboxmacupdate.xpcservice.plist
+bcefe0558555914d731c16b1778c49e77fe06b99  /Users/michelkerkmeester/Library/LaunchAgents/com.google.keystone.agent.plist
+bcefe0558555914d731c16b1778c49e77fe06b99  /Users/michelkerkmeester/Library/LaunchAgents/com.google.keystone.xpcservice.plist
+ccdc43b4aa390ea16898fd7f246894beed38da02  /Users/michelkerkmeester/Library/LaunchAgents/com.elgato.WaveLink.plist
+fdc75382a1604714ad3813391ebe4a742a81af63  /Users/michelkerkmeester/Library/LaunchAgents/mega.mac.megaupdater.plist
+total 128
+drwxr-xr-x@  18 michelkerkmeester  staff   576 Nov 23 12:55 .
+drwx------@ 105 michelkerkmeester  staff  3360 Oct 28 08:18 ..
+-rw-r--r--@   1 michelkerkmeester  staff   181 Aug 25 17:04 at.studio.asidekeystone.agent.plist
+-rw-r--r--@   1 michelkerkmeester  staff   181 Aug 25 17:04 at.studio.asidekeystone.xpcservice.plist
+-rw-r--r--@   1 michelkerkmeester  staff   876 Jun 30 11:44 at.studio.AsideUpdater.wake.plist
+-rw-r--r--    1 michelkerkmeester  staff   639 Nov 23 04:54 com.adobe.ccxprocess.plist
+-rw-r--r--@   1 michelkerkmeester  staff  2054 Aug 26 09:45 com.alienator88.Pearcleaner.homebrew-autoupdate.plist
+-rw-r--r--@   1 michelkerkmeester  staff   181 Oct 25 11:04 com.dropbox.dropboxmacupdate.agent.plist
+-rw-r--r--@   1 michelkerkmeester  staff   181 Oct 25 11:04 com.dropbox.dropboxmacupdate.xpcservice.plist
+-rw-r--r--@   1 michelkerkmeester  staff   858 Oct 25 11:04 com.dropbox.DropboxUpdater.wake.plist
+-rw-r--r--@   1 michelkerkmeester  staff   553 Aug 10 10:53 com.elgato.WaveLink.plist
+-rw-r--r--@   1 michelkerkmeester  staff   884 May  9  2026 com.google.GoogleUpdater.wake.plist
+-rw-r--r--@   1 michelkerkmeester  staff   181 Oct 10 15:21 com.google.keystone.agent.plist
+-rw-r--r--@   1 michelkerkmeester  staff   181 Oct 10 15:21 com.google.keystone.xpcservice.plist
+-rw-r--r--@   1 michelkerkmeester  staff   739 Sep 28 16:27 com.skilled.deem-update.plist
+-rw-r--r--@   1 michelkerkmeester  staff  1079 Oct 31 12:36 com.skilled.orphan-sweep.plist
+-rw-r--r--@   1 michelkerkmeester  staff   664 Nov 22 18:46 com.skilled.probe.weekday.plist
+-rw-r--r--    1 michelkerkmeester  staff   562 Oct  1  2025 mega.mac.megaupdater.plist

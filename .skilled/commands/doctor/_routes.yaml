@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 # Source of truth for the routed doctor commands. Each route names the command
 # that owns it, so one manifest serves every router. The list below is every one of
-# the 17 router files in this folder, in no particular order:
+# the 18 router files in this folder, in no particular order:
 #   /doctor:speckit         .skilled/commands/doctor/speckit.md
 #   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
 #   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
@@ -21,6 +21,7 @@
 #   /doctor:symlink         .skilled/commands/doctor/symlink.md
 #   /doctor:install         .skilled/commands/doctor/install.md
 #   /doctor:overlay         .skilled/commands/doctor/overlay.md
+#   /doctor:bots            .skilled/commands/doctor/bots.md
 # A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
@@ -713,6 +714,23 @@ routes:
       - "repin vendored skilled to a new commit"
       - "move my vendored skilled copy to a newer upstream commit"
       - "roll back a vendored skilled re-pin"
+
+  - command: /doctor:bots
+    target: bots-check
+    yaml: doctor-bots-auto.yaml
+    setup_vars: [execution_mode, root, strict]
+    allowed_flags: ["--root <dir>", "--strict"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; the definition checker reads the repository's bots/ folder and writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <checkout-root>  # the workflow adds --strict only when the operator passed it; exit 0 = pass, 1 = an invariant failed, 2 = audit could not finish'
+    trigger_phrases:
+      - "check my bot definitions"
+      - "validate the bots folder"
+      - "bot definition checker"
+      - "check every bot.md in this repo"
+      - "which bot definitions fail"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

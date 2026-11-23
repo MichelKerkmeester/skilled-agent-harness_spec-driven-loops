@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────────────────────────
+# BOTS: SCHEDULE WORKFLOW (AUTO MODE)
+# ─────────────────────────────────────────────────────────────────
+role: "Bots schedule operator for the system-skilled-bots hub"
+purpose: "Run exactly one schedule or posture verb of the bots CLI, then read the bot's status row"
+action: "Resolve the inputs, load the bots-schedule mode contract, run its workflow and render the result through the presentation contract"
+skill_owner: ".skilled/skills/system-skilled-bots/bots-schedule/"
+
+operating_mode:
+  workflow: sequential_schedule
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  validation: continuous_self_validation
+
+mutation_boundaries:
+  read_only: false
+  mutates_workspace: false
+  allowed_targets:
+    - "a launchd agent under ~/Library/LaunchAgents, through the installer only, on install and uninstall"
+    - "control state under the user-level state root"
+  invariant: "This route runs only the bots CLI verbs its steps name and the files the bots-schedule contract names. It never writes a plist, calls launchctl or edits the bots runtime by hand."
+
+upstream_assets:
+  mode_contract: ".skilled/skills/system-skilled-bots/bots-schedule/SKILL.md"
+  cli: ".skilled/bin/bots.cjs"
+  presentation: ".skilled/commands/bots/assets/bots-schedule-presentation.txt"
+
+inputs:
+  execution_mode: "AUTONOMOUS"
+  action: "Required. install, uninstall, enable, disable, pause or resume."
+  bot_id: "Required. The id drain installs this repository's queue-drain job."
+  repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
+
+execution:
+  steps:
+    - "Check that .skilled/bin/bots.cjs exists. If it is missing, report its path and stop with STATUS=FAIL."
+    - "Load .skilled/skills/system-skilled-bots/bots-schedule/SKILL.md and follow its workflow."
+    - "Run exactly one verb with --repo \"{repo}\": node .skilled/bin/bots.cjs schedule install {bot_id}, node .skilled/bin/bots.cjs schedule uninstall {bot_id}, node .skilled/bin/bots.cjs enable {bot_id}, node .skilled/bin/bots.cjs disable {bot_id}, node .skilled/bin/bots.cjs pause {bot_id} or node .skilled/bin/bots.cjs resume {bot_id}."
+    - "A first install is held disabled. Say so in the result, and never run enable unless the request asked for it."
+    - "Run node .skilled/bin/bots.cjs status --repo \"{repo}\" and quote the bot's row."
+    - "A zero exit ends with STATUS=OK. A non-zero exit ends with STATUS=FAIL quoting the CLI output."
+
+output: |
+  STATUS=OK when every step above completes. Render the success template from the presentation contract.
+  STATUS=FAIL when a step ends the run with FAIL. Quote the CLI output and render the failure template.

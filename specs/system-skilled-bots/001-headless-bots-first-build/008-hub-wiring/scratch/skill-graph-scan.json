@@ -1,0 +1,56 @@
+{
+  "status": "ok",
+  "data": {
+    "progress": [
+      {
+        "step": "advisor_status_before",
+        "generation": 4,
+        "ok": true
+      },
+      {
+        "step": "skill_graph_scan",
+        "ok": true
+      },
+      {
+        "step": "advisor_status_after",
+        "generation": 5,
+        "ok": true
+      }
+    ],
+    "generationBefore": 4,
+    "generationAfter": 5,
+    "scan": {
+      "skillsRoot": "[REDACTED_PATH]",
+      "scannedFiles": 29,
+      "indexedFiles": 0,
+      "skippedFiles": 29,
+      "indexedNodes": 0,
+      "indexedEdges": 61,
+      "rejectedEdges": 0,
+      "deletedNodes": 0,
+      "warnings": [
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/078-anchors-nested-questions/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/079-anchors-adr-allowance/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/080-anchors-duplicate-closer/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/081-level-match-writer-record/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/082-level-match-adr-record/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/083-level-match-mixed-record/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/recursive-artifact-skip/parent/graph-metadata.json",
+        "WEIGHT-BAND: system-skilled-bots depends_on system-deep-loop weight 0.5 outside recommended band [0.7, 1] (.skilled/skills/system-skilled-bots/graph-metadata.json)",
+        "WEIGHT-BAND: system-skilled-bots siblings system-skilled-doctor weight 0.3 outside recommended band [0.4, 0.6] (.skilled/skills/system-skilled-bots/graph-metadata.json)"
+      ],
+      "docs": {
+        "scannedDocs": 103,
+        "indexedDocs": 0,
+        "skippedDocs": 102,
+        "deletedDocs": 0
+      }
+    }
+  }
+}
