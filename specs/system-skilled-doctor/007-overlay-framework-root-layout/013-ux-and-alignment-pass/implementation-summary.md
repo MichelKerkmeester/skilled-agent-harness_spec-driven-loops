@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass"
-    last_updated_at: "2026-11-22T01:55:00Z"
+    last_updated_at: "2026-11-23T14:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Fixed the second final review findings 2, 3 and 5, reviewed until APPROVED"
+    recent_action: "Wrote json-entry values at their key's depth and the file's layout, reviewed until APPROVED"
     next_safe_action: "None: a later phase takes the open limits"
     blockers: []
     key_files:
@@ -211,6 +211,42 @@ No fix needed a revert under the stop rule: the one P1 cleared on its one more a
 | Trigger index check | exit 0 | exit 0 |
 | Strict recursive validation of the 007 parent | 18 of 18 `RESULT: PASSED` | 18 of 18 `RESULT: PASSED` |
 
+### JSON entry layout fix
+
+Barter's `mcp-tooling` graph metadata showed a `json-entry` `set` writing its array flush-left under `"prerequisite_for": `. The `set` branch of `planOperation` took the value's indent from `indentBefore` at the value's start, which is null when the value follows its key on the same line, and fell back to no indent. `setKeyOnItem` had the same fault, and every written value stepped in by a hard-coded two spaces and joined lines with LF. The fix ran on `worktrees/525-overlay-json-indent`, made from main `1ac8dea0681`, which equalled `origin/main`. Every review ran on `model: "opus"` at medium effort.
+
+| Change | Commits |
+|--------|---------|
+| Each value is written at the indent of the line it starts on, in the file's indent unit and line ending, for `set`, `setKeyOnItem`, `insertItems`, `appendItems` and `insertObjectKeys`. An equal value whose bytes are exactly the older engine's flush-left output moves to its depth on the next apply, only while the live file hashes to the state's applied hash and the set or key is recorded | `512be46971a` |
+| The line ending is the one most lines use, and a comment says a record does not prove the engine wrote the bytes | `2b9a2328922` |
+| The unit is the most common step from a line that opens exactly one container, then the shallowest indent, then `style.indent`, then two spaces | `9bee9df5cc0`, `a9d52c1087d`, `5f1af6159d0` |
+| `references/overlays.md` says how a value is laid out, how a flush-left value moves and that `appendItems` and `insertItems` refuse an empty array, with `set` as the way to write one | `272253842d2`, `d62e51af43c`, `ca4972a8f5e`, `8f14f6726f2`, `d6525194aed`, `5f1af6159d0` |
+
+The empty-array refusal stays. It is an explicit throw, because the engine places new items beside one the array already holds, and it was undocumented until this fix. The new suite, `overlay-engine-json-format.test.cjs`, builds each file with `JSON.stringify` at two spaces, four spaces and tabs, in LF and CRLF, applies one operation of each kind and compares the result with `JSON.stringify` of the expected document byte for byte, then checks that a second apply prints `0 changed` and `status` exits 0. A copy of Barter's flush-left file and its state record, run outside Barter, read `overlay-edited` before apply, changed only the six array lines on the first apply, printed `0 changed` on the second, and passed `status` with the pin cross-check running. `status --audit` there listed the file in no finding.
+
+| Round | Range end | Result | Fixed in |
+|-------|-----------|--------|----------|
+| 1 | `272253842d2` | APPROVED, 3 P2: the first indented line set the unit, one CRLF switched every line, and a record does not prove the engine wrote the bytes | `2b9a2328922`, `d62e51af43c`. The third was answered with a comment |
+| 2 | `d62e51af43c` | APPROVED, 1 P2: one stray shallow line set the unit | `9bee9df5cc0`, `ca4972a8f5e` |
+| 3 | `ca4972a8f5e` | REQUESTED_CHANGES, 1 P1: dividing a step by the containers its line opens halved the unit for a hand-written `"l": [{` line | `a9d52c1087d`, `8f14f6726f2` |
+| 4 | `8f14f6726f2` | APPROVED, 1 P2: in a file with no one-container line, a stray line sets the unit | `cd8091a09d3`, `d6525194aed` |
+| 5 | `d6525194aed` | APPROVED, 1 P2: that change misread a well-formed `{"x": {` file whose only outer line is its closer | `5f1af6159d0` returns round 4's rule and records limitation 15 |
+| 6 | `5f1af6159d0` | APPROVED, no findings. The engine equals round 4's, and the new test fails on round 5's engine | - |
+
+The final verdict is round 6's `Review status: APPROVED`. Round 5's P2 was resolved by returning to round 4's rule rather than by a fourth fallback rule, and limitation 15 records the case both rounds circled.
+
+| Gate | Base `1ac8dea0681` | Branch tip `5f1af6159d0` | Merged main `c1df8e54cb6` |
+|------|--------------------|--------------------------|---------------------------|
+| Overlay engine suites | 526 pass | 538 pass, 0 fail | 538 pass, 0 fail |
+| Other doctor tests | 1148 pass | 1146 pass and 2 fail, both from the worktree's unbuilt advisor runtime and missing `tsx` | 1148 pass, 0 fail |
+| Doctor shell suites | not rerun | mutation class 51, mcp-doctor 21, route-validate 23, 0 fail | the same, 0 fail |
+| Overlay guard | 35 | 35 pass, 0 fail | 35 pass, 0 fail |
+| Git hook suites | not rerun | source-root-selection 74, pre-commit 176, pre-push 59, commit-msg 48, prepare-commit-msg 87, message contract 19, autostash guard 14, bounded-git 36, gate-config 25, mass-deletion guard 12, 0 fail each | the same, 0 fail each |
+| Trigger index check | not rerun | exit 0 | exit 0 |
+| Strict recursive validation of the 007 parent | not rerun | not runnable: the worktree's spec-kit runtime build fails, so every folder stops on `@spec-kit/runtime` not found | 18 of 18 `RESULT: PASSED` |
+
+The spec-remint pre-commit gate needs the same runtime, so this record was committed on the merged main rather than on the branch.
+
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -226,6 +262,7 @@ No fix needed a revert under the stop rule: the one P1 cleared on its one more a
 | The second session reran review round 2 rather than trusting the first session's partial run | That run's results were lost when the session stopped |
 | The free `.keep` name and the link-chain step were reverted, not fixed again | Round 8 found a new P1 in the chain step. A revert put the engine back on the tree round 7 approved, and the two P2s it aimed at are recorded below |
 | The engine is changed in at most one more round after round 8 | Each link-handling fix had produced the next round's P1, so the last round is bounded to a refusal only |
+| The JSON unit's fallback for a file with no one-container line stays the shallowest indent | Rounds 4 and 5 each found a layout the other rule misreads, and the two carry the same indents. The shallowest indent misreads only a hand-edited stray line, so it stays and limitation 15 records the case |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -266,9 +303,10 @@ Each count below was read on the branch tip and again on the merged main `058e60
 7. **A dangling user link under a made layout link crashes apply.** With `realdir/x -> ../nowhere` and an entry at `up/x/tool`, apply exits 2 with `ENOENT` after it makes the links and leaves them standing. Remove or fix the dangling link, then run `apply`.
 8. **A moved link that another link reads through gets the moved-link refusal only.** When `inner` moves to a folder that does not exist while `up -> inner` has an entry under it, the refusal is the moved-link one, not the missing-target one, and its `Next:` line may not name a link under `up`. Make the new target first, then follow the `Next:` line.
 9. **The pre-push route-parity gate never fires in Barter.** Its pathspecs are literal `.skilled/...` paths. In a vendored tree whose `.skilled` is a link they match nothing, so the gate always passes there. The fix belongs in Skilled's pre-push hook, in a later phase.
-10. **Limitations 1, 3 to 9, 11, 12 and 14 stay open, and limitations 2 and 13 are closed.** The push changed none of limitations 1 and 3 to 9, and the final review fixes left them as they were. Limitations 11 to 13 came out of the final review's rounds. Limitations 11 and 12 predate its range. Limitation 13 was an edge of a check that range added, and it is fixed. A later phase takes the layout-link limits 3 to 8, 11 and 12.
+10. **Limitations 1, 3 to 9, 11, 12, 14 and 15 stay open, and limitations 2 and 13 are closed.** Limitation 15 came out of the JSON entry layout fix's review rounds. The push changed none of limitations 1 and 3 to 9, and the final review fixes left them as they were. Limitations 11 to 13 came out of the final review's rounds. Limitations 11 and 12 predate its range. Limitation 13 was an edge of a check that range added, and it is fixed. A later phase takes the layout-link limits 3 to 8, 11 and 12.
 11. **Status judges only planner refusals for an entry under a missing layout link.** It plans the entry again at the link's landing, but it leaves the live-edit check to `apply`. A user's file at the landing, such as a file where a directory entry writes a folder, makes `status` say `fix: apply` while `apply` refuses, writes nothing and takes the link back. A landing outside the tree behaves the same way, because `status` never reads there. Follow `apply`'s `BLOCKED` line.
 12. **Relayout moves a source that is a link as the link itself.** A copy such as `custom/link.md -> real.md` is moved to its layout path as the link, so it dangles there, and `status` then reads `canonical copy is missing` for it. A link that leads out of the overlay folder is also read by `status` and moved by relayout. The base engine does the same. Replace such a link with the file it points at before you run `apply --relayout`.
 13. **Closed: an absolute overlay source could read one copy and move another.** For a `file` entry whose source was an absolute path inside the overlay folder, `status` judged the copy at that path joined onto the overlay folder, while relayout moved the copy the absolute path names. Since `6e3d67828c9` such a source gets no `LAYOUT` line and no relayout move. Keep manifest sources relative.
 14. **pre-commit's skill-authoring and contract-recompile gates never fire in a vendored consumer.** Their pathspecs are the logical `.skilled/...` spelling, which matches nothing when `.skilled` is a link, as on main. Spelling them from the resolved root turned both gates on there, and the contract gate then staged its output through the link and crashed, so that change was taken back. Turning these gates on for consumers, together with limitation 9, belongs to a later phase.
+15. **A stray line can set the indent unit in a file with no line that opens one container.** When no line opens exactly one object or array, the unit is the shallowest indent, so in `[{\n    "a": 1,\n  "b": 2,\n    "z": 1\n}]\n` a value is written with a two-space unit. Counting how many lines share an indent fixes that file but misreads the well-formed `{"x": {\n    "y": 1,\n    "w": 2\n  }\n}\n`, which carries the same indents, so the shallowest indent stays. `JSON.stringify` never writes either layout. Put the stray line at its level by hand.
 <!-- /ANCHOR:limitations -->
