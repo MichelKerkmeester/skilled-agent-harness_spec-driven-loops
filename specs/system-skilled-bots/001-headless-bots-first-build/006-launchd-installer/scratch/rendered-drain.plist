@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.skilled.bots.acme_2ftool.drain</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/bin/node</string>
+		<string>/Users/example/Skilled/.skilled/bin/bots.cjs</string>
+		<string>drain</string>
+		<string>--scheduled</string>
+		<string>--repo</string>
+		<string>/Users/example/consumer</string>
+		<string>--skilled-tree</string>
+		<string>/Users/example/Skilled</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/Users/example/consumer</string>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>QueueDirectories</key>
+	<array>
+		<string>/Users/example/.local/state/system-skilled-bots/acme%2Ftool/requests/inbox</string>
+	</array>
+	<key>ThrottleInterval</key>
+	<integer>60</integer>
+	<key>StandardOutPath</key>
+	<string>/Users/example/.local/state/system-skilled-bots/acme%2Ftool/agent-logs/com.skilled.bots.acme_2ftool.drain.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/example/.local/state/system-skilled-bots/acme%2Ftool/agent-logs/com.skilled.bots.acme_2ftool.drain.log</string>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+$ rg -c --include-zero '\| Unmet \|' ../002-schedule-predicates-and-checker/acceptance-criteria.md ../003-manual-runner/acceptance-criteria.md ../005-request-pipeline/acceptance-criteria.md
+../005-request-pipeline/acceptance-criteria.md:0
+../003-manual-runner/acceptance-criteria.md:0
+../002-schedule-predicates-and-checker/acceptance-criteria.md:3
+exit=0
+$ rg -n 'Probe observation' ../002-schedule-predicates-and-checker/decision-record.md
+50:**Probe observation:** not yet observed. Record here the install date, the plist text, every fire timestamp from the probe log and the weekday of each, across at least one matching and one non-matching day.
+$ ls ~/Library/LaunchAgents | grep -c com.skilled.bots.
+0
+$ ls ~/Library/LaunchAgents listing and file hashes, before this build and after both suite runs
+before: 0deff7dad75565707f93a6435077680ebe37883c  -
+after:  0deff7dad75565707f93a6435077680ebe37883c  -

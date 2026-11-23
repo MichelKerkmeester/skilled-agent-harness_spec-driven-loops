@@ -1,0 +1,8 @@
+$ plutil -lint rendered-bot.plist rendered-drain.plist
+../../../../specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/rendered-bot.plist: OK
+../../../../specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/rendered-drain.plist: OK
+exit=0
+$ rg -n '~|\$HOME' rendered-bot.plist rendered-drain.plist
+exit=1
+$ rg -n -i 'token|secret|password|EnvironmentVariables' rendered-bot.plist rendered-drain.plist
+exit=1

@@ -1,0 +1,6 @@
+$ sandbox-exec -p '(version 1)(allow default)(deny network-outbound (remote ip))' npx vitest run --no-coverage tests/installer.vitest.ts tests/slot-accounting.vitest.ts
+ Test Files  2 passed (2)
+      Tests  37 passed (37)
+exit=0
+$ sandbox-exec ... node -e 'fetch("https://example.com")' (control: network really denied)
+blocked: EPERM

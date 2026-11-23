@@ -1,0 +1,88 @@
+== kill-switch stop removed
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > disabled default > stops a reinstall at a kill switch and changes nothing
+      Tests  1 failed | 27 passed (28)
+restored: identical
+== first-install disable removed
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > disabled default > holds a first install disabled and lets a reinstall before enable through
+ FAIL  tests/installer.vitest.ts > uninstall > removes the bot and this identity's orphans, keeps the drain job, other repositories and every run folder
+      Tests  2 failed | 26 passed (28)
+restored: identical
+== drain back-off gate removed
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > drain job > backs off after a drain that stops on a setup fault, so the unemptied folder does not spin
+      Tests  1 failed | 27 passed (28)
+restored: identical
+== sweep identity filter removed
+      Tests  28 passed (28)
+restored: identical
+== pin-changed reason removed
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > needs-reinstall check > flags a re-pinned vendored tree, whose paths never moved, then reads ok after a reinstall
+      Tests  1 failed | 27 passed (28)
+restored: identical
+== clone refusal removed
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > labels > refuses a label another live, registered clone installed, and treats a vanished clone as moved
+      Tests  1 failed | 27 passed (28)
+restored: identical
+== held slot not recorded
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/slot-accounting.vitest.ts > scheduled fires through the runner > holds a fire while an item is open, then runs the next fire normally
+      Tests  1 failed | 7 passed (8)
+restored: identical
+== first fire counts lookback as skipped
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/slot-accounting.vitest.ts > lateness classes > gives a first fire an empty summary and a class from its own slot
+      Tests  1 failed | 7 passed (8)
+restored: identical
+== grace clamp removed
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/slot-accounting.vitest.ts > grace window > is half the period, clamped to 120 and 7,200 seconds
+ FAIL  tests/slot-accounting.vitest.ts > lateness classes > reads a fire within grace as on time and one past it as late
+      Tests  2 failed | 6 passed (8)
+restored: identical
+== sweep identity filter removed (rerun after the test fix)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > uninstall > removes the bot and this identity's orphans, keeps the drain job, other repositories and every run folder
+      Tests  1 failed | 27 passed (28)
+restored: identical
+== enable rechecks the shell's tree instead of the recorded one
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > enable rechecks the job as installed > uses the recorded Skilled tree, not the one the enabling shell names
+      Tests  1 failed | 30 skipped (31)
+restored: identical
+== CLI drops --scheduled
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/installer.vitest.ts > the drain job as launchd starts it > backs off through the CLI under the bare PATH, and a start inside the window touches nothing
+      Tests  1 failed | 30 skipped (31)
+restored: identical
+
+# Second review: operator verbs resolve the job's state home
+mutation: jobEnv returns the shell's environment unchanged
+  -> FAIL "stops the job at the scheduler and writes the run-layer switch where the job reads it" (AssertionError: expected '<other state home>' to be '<job state home>'); restored, cmp clean
+mutation: disableSchedule returns installed:false when no install record is found
+  -> FAIL "still disables the label when no install record is found" (expected installed true, labels [label]); restored, cmp clean
+
+# Third review: one state root per installed identity, every verb
+mutation: install skips the state-home comparison
+  -> FAIL "refuses state-home-changed and writes nothing, and the same state home still meets the kill switch" (expected ok:false, got ok:true); restored, cmp clean
+mutation: bots.cjs resolves every verb from the shell's environment (no jobEnv)
+  -> FAIL "bots disable writes the switch under the job's state root and disables the label" and "bots pause writes the switch under the job's state root" (expected null not to be null); restored, cmp clean
+
+# Fourth review: the job's environment is built, and install compares what shell and job resolve
+mutation: preflight skips the (identity, state root) comparison (condition replaced by false)
+  -> FAIL "refuses job-env-diverges when the shell names a CI repository and origin names another, and writes nothing" (AssertionError: expected { ok: true, value: { …(9) } } to match object { ok: false, …(1) }; Tests 1 failed | 43 skipped (44)); restored, cmp clean (cmp exit 0)
+
+# Fifth review: jobs are found by their checkout (--repo), not by the label built from the identity of now
+mutation: jobEnv looks jobs up only under the identity resolved now (the label lookup reverted)
+  -> FAIL both "after the origin/config changes it: disable stops the old label ..." (AssertionError at the jobEnv state home check: expected '<other state home>' to be '<job state home>'; Tests 2 failed | 48 passed (50)); restored, cmp clean
+mutation: disableSchedule finds no job by --repo (found = [])
+  -> FAIL both rename tests and "disable with no install record still stops the job found by its checkout" (Tests 3 failed | 47 passed (50)); restored, cmp clean
+mutation: install skips the identity-changed refusal
+  -> FAIL both rename tests (Tests 2 failed | 48 passed (50)); restored, cmp clean
+mutation: install skips the state-root drift refusal (log path and drain QueueDirectories)
+  -> FAIL "refuses a reinstall after the config adds a stateRoot, because the drain job watches the old inbox, and the check says so" (Tests 1 failed | 49 passed (50)); restored, cmp clean
+mutation: install skips the stranded-switch refusal
+  -> FAIL "refuses an install whose shell resolves another root than the one a pause was written under" (Tests 1 failed | 49 passed (50)); restored, cmp clean

@@ -1,0 +1,17 @@
+Setup built exactly as scratch/live-install.sh builds it, with a temp Skilled tree in place of the primary checkout and no launchd call.
+$ node bot-check.cjs <consumer>
+PASS: config: bots/config.json reads cleanly
+PASS: identity: local/bots-live-probe (from config)
+PASS: definition: bots/tick/BOT.md parses as tick
+PASS: executor-bounds: bots/tick/BOT.md: runtime cli-codex within the executor's bounds
+PASS: isolation: bots/tick/BOT.md: shared
+PASS: schedule: bots/tick/BOT.md: "*/5 * * * *" translates to 12 calendar dictionaries
+PASS: label: bots/tick/BOT.md: com.skilled.bots.local_2fbots-live-probe.tick.0
+exit=0
+$ env -i PATH=/usr/bin:/bin:/usr/sbin:/sbin HOME=<temp> node <consumer>/.skilled/bin/bots.cjs run tick --schedule-index 0 --repo <consumer> --skilled-tree <temp tree>
+bots: tick refused before dispatch (precheck-silent): printed [SILENT]
+exit=4
+$ record dispatch fields
+{"firedSlot":"2026-11-23T08:25:00.000Z","dispatch":{"source":"schedule","scheduledAt":"2026-11-23T08:25:00.000Z","dispatchedAt":"2026-11-23T08:27:34.411Z","latenessSeconds":154,"latenessClass":"late","skippedSlots":{"count":0,"slots":[],"first":null,"last":null},"heldSlot":null},"exit":{"reason":"precheck-silent","class":null,"needsYouItemId":null,"refusal":{"cause":"precheck-silent","itemId":null,"detail":"printed [SILENT]"}}}
+
+Finding from this smoke: the consumer commit with the message "live probe consumer" was refused by the commit-message hook that the linked .skilled brings with it (output at the top). The live script now commits with a contract-conforming subject and body and stops if the commit is refused; that message was rechecked here and the commit exited 0.

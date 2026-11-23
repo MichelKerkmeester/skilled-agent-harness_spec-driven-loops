@@ -1,0 +1,39 @@
+Environment inputs to identity and state-root resolution, and where each is closed.
+Grep: env. | process.env | env passed on, over lib/state-root.ts, lib/identity.ts, lib/repo-config.ts,
+lib/runner.ts and .skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs.
+
+state-root.ts:89   XDG_STATE_HOME           -> stateRoot. Pinned in every job file when the config names no stateRoot
+                                               (jobEnvironmentVariables); compared in the install tuple.
+state-root.ts:90   HOME, homedir() fallback -> stateRoot when XDG is unset. The job env HOME is the account home
+                                               (accountHome(), user database); with XDG always pinned it no longer
+                                               decides the root. Compared in the install tuple.
+repo-config.ts     (no env read)            -> stateRoot from bots/config.json is required absolute, so cwd never decides it.
+identity.ts:53,71  env passed on            -> repository-identity.cjs; config identity wins before any env read.
+repository-identity.cjs:92  GITHUB_REPOSITORY -> identity. Absent from the built job env; compared in the install tuple
+                                               (job-env-diverges test, mutation control).
+repository-identity.cjs:101 whole env to git -> identity via `git remote get-url origin`: PATH (which git), HOME,
+                                               XDG_CONFIG_HOME, GIT_CONFIG_GLOBAL/SYSTEM/NOSYSTEM, GIT_CONFIG_COUNT/KEY_n/VALUE_n,
+                                               GIT_DIR, GIT_WORK_TREE and any other git variable. Under the built env only
+                                               PATH and HOME exist; any shell difference shows as another identity and is
+                                               refused by the tuple comparison.
+runner.ts:256-268  resolveBotContext env    -> identity + stateRoot. runBot passes resolveEnv when given (runner.ts:644);
+                                               bots.cjs passes jobEnv; drainQueue passes resolveEnv on to every run.
+runner.ts other env uses (closeKilledRun, delivery, precheck, secret check, worktrees, dispatch): execution only,
+                                               never identity or state root; they keep the caller's env.
+request-queue.ts queueContext env           -> identity + stateRoot; bots.cjs passes jobEnv for enqueue, answer passes resolveEnv.
+
+Not resolver inputs, recorded for completeness:
+bots.cjs checkoutRootFrom runs `git rev-parse` under the shell env (GIT_DIR/GIT_WORK_TREE could move it); the job gets the
+checkout as a literal --repo argument, so the job and the verbs given the same --repo agree.
+defaultSeams.agentsDir now comes from the account home, not the shell HOME, so a HOME override no longer puts the job file
+in a folder launchd never loads.
+
+Open, same class, outside identity and state root (not fixed here):
+isolation.ts:298   HOME -> expands worktree shared paths; a fired job sees the account home, a manual verb the shell's HOME.
+delivery.ts:177    HOME -> the delivery home; same split.
+Install runs the definition checker under the shell's environment; enable reruns it under the job's.
+A repository whose only identity source is GITHUB_REPOSITORY (no config identity, no origin) now resolves identity-unknown
+on every verb, as its job would, and its install refuses job-env-diverges.
+
+Real ~/Library/LaunchAgents hash across one full suite run: scratch/launchagents-hash-review4.txt (unchanged).
+post-commit-leg.test.sh after the change: 28 passed, 0 failed, exit 0.

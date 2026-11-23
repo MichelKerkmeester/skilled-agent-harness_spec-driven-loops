@@ -14,6 +14,11 @@
 // one filesystem. A seen-key marker, created exclusively, makes a re-sent
 // event a duplicate instead of a second run; a crash after the marker and
 // before the rename loses the event rather than running it twice.
+//
+// The `env` these functions take is read only to resolve identity and the
+// state root. A library caller passes the job's environment from the
+// installer's `jobEnv`, not its own shell's, so a request lands in the inbox
+// the scheduled drain job watches.
 
 import { randomBytes } from 'node:crypto';
 import { readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';

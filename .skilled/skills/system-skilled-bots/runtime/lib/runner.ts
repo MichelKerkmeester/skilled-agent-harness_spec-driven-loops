@@ -22,6 +22,12 @@
 // is removed or kept before the terminal record, so the record and the notice
 // both say which. Delivery starts only once the terminal record is written,
 // and a failed send never changes the run's outcome.
+//
+// Identity and the state root are resolved under `resolveEnv` when it is
+// given, and the run itself (precheck, secret check, dispatch) uses `env`.
+// A library caller that is not itself a launchd-started job passes the job's
+// environment from the installer's `jobEnv` as `resolveEnv`, so the run
+// lands where the scheduled job would, whatever the calling shell sets.
 
 import { spawnSync } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
@@ -59,6 +65,7 @@ import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { openResultLedger, resultEventKey, sendResultEvent } from './result-ledger.js';
 import { AWAITING_DECISION, readRunRecord, RESULT_EVENT_UNRECORDED, writeRunRecord } from './run-record.js';
+import { HELD_SLOT_REASON, recordScheduledFire } from './slot-accounting.js';
 import {
   ensureIdentityState,
   generationStampFile,
@@ -81,7 +88,7 @@ import type { CommandBuilder } from './dispatch.js';
 import type { BotWorktree } from './isolation.js';
 import type { NeedsYouItem } from './needs-you.js';
 import type { RepoConfig, Result } from './repo-config.js';
-import type { EvidenceLocations, FailureClass, HonoredPosture, RunRecord, WorktreeEvidence } from './run-record.js';
+import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, RunRecord, SkippedSlotSummary, WorktreeEvidence } from './run-record.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -131,6 +138,7 @@ export const REFUSAL_CAUSES = Object.freeze({
   'worktree-setup-failed': { reason: 'worktree-setup-failed', class: 'environment' },
   'parked-worktree-missing': { reason: 'parked-worktree-missing', class: 'operator' },
   'resume-posture-changed': { reason: 'resume-posture-changed', class: 'author' },
+  'schedule-stale': { reason: 'schedule-stale', class: 'operator' },
 } as const satisfies Record<string, { reason: string; class: FailureClass | null }>);
 
 export type RefusalCause = keyof typeof REFUSAL_CAUSES;
@@ -143,14 +151,20 @@ const MINUTE_MS = 60_000;
 const WORKFLOW = 'system-skilled-bots';
 
 /**
- * A manual run, a run drained from the request queue, or the run that resumes
- * a parked one after its answer. A queued run carries its request's join
- * fields so the runner writes them in the run's one record.
+ * A manual run, a run drained from the request queue, the run that resumes
+ * a parked one after its answer, or a fire of an installed schedule. A queued
+ * run carries its request's join fields so the runner writes them in the
+ * run's one record. A scheduled fire names its schedule, and its slot is
+ * accounted before anything else can refuse it.
  */
 export type RunRequest =
   | { kind: 'manual' }
   | { kind: 'queued'; requestId: string; source: string; firedSlot: string | null; prompt: string }
-  | { kind: 'resume'; requestId: string; itemId: string };
+  | { kind: 'resume'; requestId: string; itemId: string }
+  | { kind: 'scheduled'; scheduleIndex: number; firedAt?: Date };
+
+/** The dispatch source a scheduled fire records. */
+export const SCHEDULE_SOURCE = 'schedule';
 
 /** The line that sets a queued request's own prompt apart from the bot body it follows. */
 export const REQUEST_PROMPT_HEADER = '--- Request prompt: added by the queued request that started this run ---';
@@ -162,6 +176,8 @@ export interface RunBotInput {
   skilledTree: string;
   botId: string;
   env?: NodeJS.ProcessEnv;
+  /** The environment identity and the state root are resolved under; defaults to `env`. */
+  resolveEnv?: NodeJS.ProcessEnv;
   request?: RunRequest;
   /** Replaces the deep-loop lineage command builder. */
   buildCommand?: CommandBuilder;
@@ -214,6 +230,17 @@ interface RecordSeed {
   evidence: EvidenceLocations;
   /** The definition's delivery fields; null when the definition did not parse. */
   delivery?: Delivery | null;
+  /** What a scheduled fire stood for; absent for every other run. */
+  slot?: SlotFields | null;
+}
+
+/** The slot fields a scheduled fire writes into its record. */
+interface SlotFields {
+  scheduledAt: string | null;
+  latenessSeconds: number | null;
+  latenessClass: string | null;
+  skippedSlots: SkippedSlotSummary | null;
+  heldSlot: HeldSlot | null;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -330,11 +357,12 @@ function buildRecord(
     },
     dispatch: {
       source: seed.source,
-      scheduledAt: null,
+      scheduledAt: seed.slot?.scheduledAt ?? null,
       dispatchedAt: seed.dispatchedAt,
-      latenessSeconds: null,
-      latenessClass: null,
-      skippedSlots: null,
+      latenessSeconds: seed.slot?.latenessSeconds ?? null,
+      latenessClass: seed.slot?.latenessClass ?? null,
+      skippedSlots: seed.slot?.skippedSlots ?? null,
+      heldSlot: seed.slot?.heldSlot ?? null,
     },
     budget: {
       declared: seed.declared,
@@ -613,7 +641,7 @@ export async function runBot(input: RunBotInput): Promise<RunOutcome> {
   const request: RunRequest = input.request ?? { kind: 'manual' };
   const minuteMs = input.minuteMs ?? MINUTE_MS;
 
-  const resolved = resolveBotContext({ checkoutRoot: input.checkoutRoot, skilledTree: input.skilledTree, env });
+  const resolved = resolveBotContext({ checkoutRoot: input.checkoutRoot, skilledTree: input.skilledTree, env: input.resolveEnv ?? env });
   if (!resolved.ok) {
     return { kind: 'refused', cause: 'identity-unknown', detail: resolved.reason, runId: null, recordPath: null, itemId: null };
   }
@@ -648,10 +676,10 @@ export async function runBot(input: RunBotInput): Promise<RunOutcome> {
     botId: input.botId,
     runId,
     definitionDigest,
-    requestId: request.kind === 'manual' ? null : request.requestId,
+    requestId: request.kind === 'queued' || request.kind === 'resume' ? request.requestId : null,
     resumedItemId: request.kind === 'resume' ? request.itemId : null,
     firedSlot: request.kind === 'queued' ? request.firedSlot : null,
-    source: request.kind === 'queued' ? request.source : request.kind,
+    source: request.kind === 'queued' ? request.source : request.kind === 'scheduled' ? SCHEDULE_SOURCE : request.kind,
     dispatchedAt: new Date().toISOString(),
     declared: definition?.budget ?? { maxIterations: 0, maxDurationMinutes: 0, timeoutSeconds: 0 },
     posture: declaredPosture(definition, context.config),
@@ -700,6 +728,27 @@ async function runSeeded(
     return refusalRecord(context.stateRoot, seed, 'definition-malformed', detail, null, null);
   }
 
+  // A fire is accounted before any other check can refuse it, so a held,
+  // disabled or paused fire still counts its slot once and never again.
+  if (request.kind === 'scheduled') {
+    const fired = recordScheduledFire({
+      stateRoot: context.stateRoot,
+      identity: context.identity,
+      botId: input.botId,
+      scheduleIndex: request.scheduleIndex,
+      trigger: definition.trigger,
+      firedAt: request.firedAt ?? new Date(),
+      runId,
+      summaryCap: context.config.retention.skippedSlotsPerSummary,
+    });
+    if (!fired.ok) {
+      return refusalRecord(context.stateRoot, seed, 'schedule-stale', `${fired.reason}${fired.detail !== undefined ? `: ${fired.detail}` : ''}`, null, null);
+    }
+    const { scheduledAt, latenessSeconds, latenessClass, skippedSlots } = fired.value;
+    seed.slot = { scheduledAt, latenessSeconds, latenessClass, skippedSlots, heldSlot: null };
+    seed.firedSlot = scheduledAt;
+  }
+
   if (readSwitch(context.stateRoot, context.identity, input.botId, 'disabled') !== null) {
     return refusalRecord(context.stateRoot, seed, 'disabled', null, null, null);
   }
@@ -712,6 +761,10 @@ async function runSeeded(
   }
   const hold = holdForBot(context.stateRoot, context.identity, input.botId);
   if (hold?.kind === 'open') {
+    if (seed.slot) {
+      // The fired slot is counted as skipped, once, and never backfilled once the item closes.
+      seed.slot.heldSlot = { at: seed.slot.scheduledAt ?? seed.dispatchedAt, reason: HELD_SLOT_REASON };
+    }
     return refusalRecord(
       context.stateRoot,
       seed,

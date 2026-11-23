@@ -14,6 +14,12 @@
 // pass waits for the next one. Only an environment refusal that would hit
 // every request alike (no identity, no usable run folder) stops the pass,
 // with the claimed request put back, so a broken setup never burns the queue.
+//
+// The queue's identity and state root are resolved under `resolveEnv` when it
+// is given, and passed on to every run, while the runs execute under `env`. A
+// library caller that is not the launchd-started drain job passes the job's
+// environment from the installer's `jobEnv` as `resolveEnv`, so it drains the
+// inbox the job watches.
 
 import {
   atRetryBound,
@@ -62,6 +68,8 @@ export interface DrainInput {
   checkoutRoot: string;
   skilledTree: string;
   env?: NodeJS.ProcessEnv;
+  /** The environment identity and the state root are resolved under; defaults to `env`. */
+  resolveEnv?: NodeJS.ProcessEnv;
   /** Options passed through to every run; tests pin the recursion guard's host reads here. */
   runOptions?: Pick<RunBotInput, 'guard' | 'buildCommand' | 'minuteMs'>;
   /** Replaces the bot runner; only tests use it. */
@@ -146,7 +154,7 @@ export function formatDrainLine(line: DrainLine): string {
 export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>> {
   const env = input.env ?? process.env;
   const run = input.runBot ?? defaultRunBot;
-  const context = resolveBotContext({ checkoutRoot: input.checkoutRoot, skilledTree: input.skilledTree, env });
+  const context = resolveBotContext({ checkoutRoot: input.checkoutRoot, skilledTree: input.skilledTree, env: input.resolveEnv ?? env });
   if (!context.ok) return context;
   const { stateRoot, identity } = context.value;
   const folders = queueFolders(stateRoot, identity);
@@ -185,6 +193,7 @@ export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>
         skilledTree: input.skilledTree,
         botId: request.workflowId,
         env,
+        ...(input.resolveEnv !== undefined ? { resolveEnv: input.resolveEnv } : {}),
         // The runner writes the request join in the run's one record, so the drain never rewrites it.
         request: request.kind === 'resume'
           ? { kind: 'resume', requestId: request.id, itemId: request.idempotencyKey }

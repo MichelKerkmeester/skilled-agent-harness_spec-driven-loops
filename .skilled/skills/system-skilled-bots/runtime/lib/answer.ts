@@ -11,6 +11,11 @@
 // sends the request; because the key is the item id, sending it twice stores
 // it once. The answer is checked for secret literals before it is stored,
 // because it reaches the resumed run's prompt.
+//
+// The item and the queue are found under `resolveEnv` when it is given; the
+// secret check reads `env`. A library caller passes the job's environment
+// from the installer's `jobEnv` as `resolveEnv`, so the answer and its
+// request land where the scheduled jobs read them.
 
 import { collectKnownSecrets, findSecretLiteral } from './dispatch.js';
 import { needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
@@ -32,6 +37,8 @@ export interface AnswerInput {
   itemId: string;
   text: string;
   env?: NodeJS.ProcessEnv;
+  /** The environment identity and the state root are resolved under; defaults to `env`. */
+  resolveEnv?: NodeJS.ProcessEnv;
   now?: Date;
   /** Replaces the queue write; only tests use it. */
   enqueue?: typeof enqueueRequest;
@@ -61,7 +68,7 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   const enqueue = input.enqueue ?? enqueueRequest;
   if (input.text.trim() === '') return { ok: false, reason: 'answer-empty' };
 
-  const context = queueContext(input.checkoutRoot, env);
+  const context = queueContext(input.checkoutRoot, input.resolveEnv ?? env);
   if (!context.ok) return context;
   const { identity, stateRoot } = context.value;
 

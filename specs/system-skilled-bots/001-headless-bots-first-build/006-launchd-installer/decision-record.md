@@ -276,6 +276,11 @@ A second gap follows. A first install held disabled and a label disabled as a ki
 **We propose**: Run `launchctl disable` on the label before `bootstrap`, if the Setup probe shows that bootstrap refuses cleanly with a known exit code, and treat that refusal as the expected result of step 5 on a first install. `man launchctl` predicts this refusal; it does not predict a loaded silent job. Otherwise write the plist and defer `bootstrap` until enable. Either way, `bots enable` must then bootstrap the job (ADR-004). How the installer tells a first-install hold from a kill switch is still to be recorded here before T007 is built.
 
 **How it works**: T003 runs a throwaway plist through disable, bootstrap, print and one calendar minute and records the exit codes, the macOS version and the accepted domain target here. The installer then uses the option the probe supports.
+
+**As built, before the probe (2026-11-23)**: no real `launchctl` call was allowed, so T003 did not run and this record stays Proposed. The installer takes the option that is safe whatever the probe shows:
+- A held install runs `launchctl disable gui/<uid>/<label>` before the job file is moved into place, so a login that loads every file in the folder still skips it. It then runs `bootstrap` as step 5 and keeps its exit code as evidence, whatever it is. It runs `print`; if the host loaded the disabled label after all, it boots it out again, so the hold never depends on the unprobed exit code (`.skilled/skills/system-skilled-bots/runtime/lib/installer.ts:861`).
+- A first install and a kill switch are told apart by the install record, not by `print-disabled`: the record's `hold` is `first-install` for a fresh install, `definition` for a `BOT.md` that says `enabled: false`, and `operator` after `bots disable`. A reinstall stops with `label-kill-switch` when the label is disabled and the record's hold is `operator` or null (disabled by hand). A label disabled with no record left, as after an uninstall, installs again under a `first-install` hold: install never enables, so the label stays disabled either way.
+- The domain target is `gui/<uid>`, one constant in the default seams. The live script prints what each verb returned and settles it.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -563,6 +568,8 @@ The queue lives under the state root keyed by repository identity (research.md ย
 **We propose**: Install one drain agent per repository identity, watching only that repository's `requests/inbox/` folder and running `bots drain`.
 
 **How it works**: The label is the drain form phase 2 ADR-004 proposes, `com.skilled.bots.<identity>.drain`. Phase 2 reserves the bot id `drain` and its checker refuses a bot with that id, so a drain label never collides with a bot label. Install refuses when the watched folder contains any of the sibling folders.
+
+**Respawn back-off, as built (2026-11-23)**: phase 5's drain stops a pass on a setup fault (`identity-unknown`, `run-folder-refused`) and puts the request back, so the watched folder stays non-empty and launchd would start the job again for as long as the fault lasts. Two layers bound that. The drain job file sets `ThrottleInterval` to 60 seconds, against launchd's default of 10, so the job starts at most once a minute. The job runs `bots drain --scheduled`, which keeps a back-off file beside the request folders, never inside the watched one: a refused pass opens a 300-second window that doubles per fault up to 3,600 seconds, a start inside the window returns at once without claiming or running anything, and a clean pass removes the file. The tests are `.skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts:671` (the back-off with an injected clock) and `.skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts:993` (the drain job's own program arguments, run under the bare PATH through the CLI). A repository whose identity cannot be resolved has no state folder to keep the window in, so only the throttle bounds it.
 <!-- /ANCHOR:adr-006-decision -->
 
 ---
@@ -637,6 +644,11 @@ The queue lives under the state root keyed by repository identity (research.md ย
 | Q001 | Detect a moved checkout and reinstall, and take the overlay system into account | Operator answer to research.md ยง16 Q6, 2026-11-22 | ADR-002 Proposed status | ADR-002, REQ-012, REQ-015 to REQ-017 |
 | Q002 | Raise this phase to Level 3 | Operator answer on levels, 2026-11-22 | Level 2 scaffold | spec.md, plan.md, tasks.md |
 | Q003 | A schedule fire while the bot has an open needs-you item is held and recorded as a skipped slot with reason `held-needs-you` | Operator answer D9, 2026-11-22. The operator picked the recommended option. Phase 3 owns the runner check | Firing freely during an open item | REQ-018, AC-018, T028 |
+| Q004 | Run `scratch/live-install.sh` once the review fix is verified: one real disabled install, one enable, one fire, the drain job, then uninstall | Operator answer, 2026-11-23. The operator picked the recommended option | AC-002, AC-005, AC-008, AC-009 left Unmet | AC-002, AC-005, AC-008, AC-009 |
+| Q005 | After the second review returned REQUESTED_CHANGES (disable stops nothing when the shell's `XDG_STATE_HOME` differs from the job's), fix it and dispatch a third review | Operator answer, 2026-11-23, to the step 7 halt. The operator picked the recommended option | The workflow's halt after a second REQUESTED_CHANGES | REQ-003, R-002, `tests/installer.vitest.ts` disable-from-another-shell tests |
+| Q006 | After the third review returned REQUESTED_CHANGES (a reinstall from a shell with another state home skipped the kill-switch guard), fix the class: install refuses with `state-home-changed`, every other verb resolves the root through the installed job, then dispatch a fourth review | Operator answer, 2026-11-23. The operator picked the recommended option | Patching one verb per review round | REQ-003, NFR-S02, R-002 |
+| Q007 | After the fourth review returned REQUESTED_CHANGES (an identity read from the shell's `GITHUB_REPOSITORY` diverges from the job's), close the class by construction: one builder makes the env launchd gives the job, install refuses with `job-env-diverges` when `(identity, state root)` differs between the shell env and the job env, every verb uses the job env, then one fifth review. No further per-variable round is offered | Operator answer, 2026-11-23. The operator picked the recommended option | Q006's per-verb fix and patching one variable per round | REQ-003, REQ-004, NFR-S02, R-002 |
+| Q008 | After the fifth review returned REQUESTED_CHANGES (installed jobs were looked up by the live identity, so an identity change orphaned a firing job), fix it by looking jobs up by the `--repo` path in each job file, add an `identity-changed` refusal and reinstall reason, make disable stop the old label, fold in the three P2s, and verify by orchestrator rerun with no further review | Operator answer, 2026-11-23. The operator picked the recommended option | A sixth review round | REQ-003, R-002 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -651,6 +663,16 @@ Each appendix item uses the same id as its operator decision. The options are in
 **Q002** (levels): "Raise to Level 3".
 
 **Q003** (D9, asked as "While a bot has an open needs-you item, should its schedule keep firing new runs?"): "Hold new runs (Recommended)".
+
+**Q004** (asked as "Can I run it once the current review fix is verified?"): "Yes, run it (Recommended)". The other option was "No, leave rows Unmet".
+
+**Q005** (asked as "Phase 006's second review fails on a new P1 that the first fix exposed... How should I proceed?"): "Fix it, review again (Recommended)". The other options were "Fix it, skip third review" and "Waive and record it".
+
+**Q006** (asked as "Phase 006's third review fails on the same class of bug again... How should I proceed?"): "Class fix + 4th review (Recommended)". The other options were "Fix it, I verify only" and "Waive and record it".
+
+**Q007** (asked as "Phase 006's fourth review fails again, the same class along a new axis... How should I proceed?"): "By-construction fix + 5th review (Recommended)". The other options were "Same fix, I verify only" and "Waive and record it".
+
+**Q008** (asked as "Phase 006's fifth and final review found one P1... How should I proceed?"): "Fix it, I verify only (Recommended)". The other option was "Waive and record it".
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

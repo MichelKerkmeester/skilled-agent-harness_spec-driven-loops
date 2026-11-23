@@ -1,0 +1,20 @@
+$ rg -n --glob '!tests/**' 'launchctl|bootstrap|LaunchAgents' .skilled/skills/system-skilled-bots/runtime/lib .skilled/bin/bots.cjs | cut -d: -f1 | sort | uniq -c
+  28 .skilled/skills/system-skilled-bots/runtime/lib/installer.ts
+exit=0
+$ rg -n "['\"\`]load['\"\`]|launchctl load" .skilled/skills/system-skilled-bots/runtime/lib .skilled/bin/bots.cjs
+exit=1
+$ git diff --stat a2f1f8e8fa0 -- .skilled/commands/doctor ; git status --short -- .skilled/commands/doctor
+exit=0
+$ rg -n 'REQ-|ADR-|phase [0-9]' .skilled/skills/system-skilled-bots/runtime/lib
+exit=1
+$ rg -n 'evaluateCron|parseCron\(' .skilled/skills/system-skilled-bots/runtime/lib --glob '!cron-translator.ts'
+exit=1
+$ rg -n 'translateCron|listSlots' .skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts
+23:import { translateCron } from './cron-translator.js';
+24:import { listSlots } from './slot-lister.js';
+106:  const slots = listSlots(translation, from, to);
+148:  const listed = listSlots(translation, from, firedAt);
+211:  const translation = translateCron(input.trigger.expression);
+exit=0
+$ git diff --stat a2f1f8e8fa0 -- .skilled/skills/system-skilled-bots/runtime/package.json .skilled/skills/system-skilled-bots/runtime/package-lock.json
+exit=0

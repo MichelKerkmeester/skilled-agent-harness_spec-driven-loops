@@ -59,12 +59,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] A harmless cron bot installs disabled, fires once after `bots enable <id>`, and its run record carries `scheduled_at` and a lateness class, and `launchctl print` shows the absolute interpreter path
-- [ ] `rg -n --glob '!tests/**' 'launchctl|bootstrap|LaunchAgents' .skilled/skills/system-skilled-bots/runtime/lib .skilled/bin/bots.cjs` prints lines from `installer.ts` only, and `rg -n 'launchctl load|"load"' .skilled/skills/system-skilled-bots/runtime/lib .skilled/bin/bots.cjs` prints nothing
-- [ ] A lint failure, a failing preflight and a kill-switch label each leave `~/Library/LaunchAgents` byte-identical to its state before the command
-- [ ] In stubbed trees, a removed runner, a retargeted `.skilled` link and a changed vendored `pin.commit` each make the check return `needs-reinstall` with the matching reason, and a reinstall returns `ok`
-- [ ] The slot-accounting tests exit 0, with a sleep-gap case that leaves exactly one run with a skipped-slot summary and no backfill, and a case where a fire for a bot with an open needs-you item dispatches nothing and records the slot as skipped with reason `held-needs-you`
-- [ ] With the drain agent enabled, one request dropped into `<state root>/<repository identity>/requests/inbox/` produces one run record, and `ls -A` of that folder prints nothing afterwards
+- [x] A harmless cron bot installs disabled, fires once after `bots enable <id>`, and its run record carries `scheduled_at` and a lateness class, and `launchctl print` shows the absolute interpreter path
+- [x] `rg -n --glob '!tests/**' 'launchctl|bootstrap|LaunchAgents' .skilled/skills/system-skilled-bots/runtime/lib .skilled/bin/bots.cjs` prints lines from `installer.ts` only, and `rg -n 'launchctl load|"load"' .skilled/skills/system-skilled-bots/runtime/lib .skilled/bin/bots.cjs` prints nothing
+- [x] A lint failure, a failing preflight and a kill-switch label each leave `~/Library/LaunchAgents` byte-identical to its state before the command
+- [x] In stubbed trees, a removed runner, a retargeted `.skilled` link and a changed vendored `pin.commit` each make the check return `needs-reinstall` with the matching reason, and a reinstall returns `ok`
+- [x] The slot-accounting tests exit 0, with a sleep-gap case that leaves exactly one run with a skipped-slot summary and no backfill, and a case where a fire for a bot with an open needs-you item dispatches nothing and records the slot as skipped with reason `held-needs-you`
+- [x] With the drain agent enabled, one request dropped into `<state root>/<repository identity>/requests/inbox/` produces one run record, and `ls -A` of that folder prints nothing afterwards
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,10 +82,17 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | Criteria drawn from spec.md section 5 and acceptance-criteria.md |
+| Criterion 1, real fire | Done | Live, 2026-11-23: held disabled with no fire across one slot, then enabled; one fire wrote firedSlot 10:35:00Z, latenessSeconds 6, on-time (`scratch/live-install-result.txt:25`, `:29`, `:51` to `:56`); the XDG pass repeated it (`scratch/live-install-result-xdg.txt:50` to `:58`) |
+| Criterion 2, grep gates | Done | `scratch/grep-gates.txt`: 28 matches, all in `installer.ts`; the load grep exit 1 |
+| Criterion 3, byte-identical | Done | Shown on the stand-in agents folder the installer is handed (`tests/installer.vitest.ts:268`, `:380` to `:411`, `:347`); the real `~/Library/LaunchAgents` hash was unchanged across the build (`scratch/entry-conditions.txt`) |
+| Criterion 4, needs-reinstall | Done | `tests/installer.vitest.ts:590` to `:633` |
+| Criterion 5, slot accounting | Done | `tests/slot-accounting.vitest.ts:103` (one run, 2015 skipped, no backfill) and `:135` (`held-needs-you`); 8 of 8 pass |
+| Criterion 6, live drain | Done | Live, 2026-11-23: the inbox emptied and one more record appeared (`scratch/live-install-result.txt:106`, `:107`) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Acceptance rows without a status | Rows AC-015, AC-016 and AC-017 in acceptance-criteria.md carry four cells and no Status or Waiver cell. Reported to the orchestrator, not edited here |
+| Acceptance rows without a status | Rows AC-015, AC-016 and AC-017 carried four cells; the Status and Waiver cells were added on 2026-11-23 |
+| T003 probe not run | No real launchctl call was allowed; ADR-003 records the mechanism built without it |
 <!-- /ANCHOR:log -->

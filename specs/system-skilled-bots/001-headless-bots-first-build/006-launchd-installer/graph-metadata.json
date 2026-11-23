@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,10 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
-      ".skilled/scripts/launchagents/README.md",
-      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      ".skilled/commands/doctor/symlink.md"
+      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/fixtures/launchctl-intercept.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/slot-accounting.vitest.ts"
     ],
     "entities": [
       {
@@ -97,27 +106,81 @@
         "source": "derived"
       },
       {
-        "name": "doctor-overlay-repin.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+        "name": "installer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/scripts/launchagents/README.md",
+        "name": "plist-render.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts",
         "source": "derived"
       },
       {
-        "name": "overlay-engine.cjs",
+        "name": "slot-accounting.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
         "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
-        "name": "symlink.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/symlink.md",
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "label.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+        "source": "derived"
+      },
+      {
+        "name": "installer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launchctl-intercept.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/fixtures/launchctl-intercept.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "request-drain.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-queue.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "slot-accounting.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/slot-accounting.vitest.ts",
         "source": "derived"
       },
       {
@@ -143,66 +206,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Guarded",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 5 a bot runs only when someone types `bots run` or `bots drain`",
     "created_at": "2026-11-22T10:48:31Z",
-    "last_save_at": "2026-11-22T17:00:05.798Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-23T10:46:15.403Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -213,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ed45548109caa3df4c52c4e2bfea6ed8a628cb58af64a9519100b06621fb7b6",
+    "source_fingerprint": "sha256:fdd03e631d77499a13f6bc7ba6f2864786b276dd9c67691aa89f695d2879de9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1932bd9f3b4ab9ce8d8965a63338c221a38276b0df95e99eb87d13d0b61b2c8e",
-      "plan.md": "cf619427d3a3767283688bd60afd0e333dc2d3138932642c8dc43d431f2a3661",
-      "tasks.md": "47acd4b6eec2d435e125015027a3651c964271faf3c7b7572bddd66fc2433044",
-      "decision-record.md": "d5783fa27c7a6e20fd64e0a47bd781e7bfd314dd54c5c03f5b980630a543b81f",
-      "implementation-summary.md": "ae0262ba62f0a9297eb82b1808eee853cec59d2928234a3093b3b33e779e18f9"
+      "spec.md": "574f164af362fab2f61548a796d3b07f3a2cb2e37d5ffa670f4608232206dd8c",
+      "plan.md": "1a3f6278c3b35c0d4cf5640a71b778bdf8d6a2538c77d89e2842fa699844c683",
+      "tasks.md": "71244e1c3c9c84e024ff550449f66732ef3639cb21f81ec76b9e06a91af2f8e2",
+      "decision-record.md": "dd27db15652efa30fdad81971e4e566d12d747268b017398dbc15f1990dadd6a",
+      "implementation-summary.md": "6f198c91f64a6413f8d2e2a1941e4ad82de721932e1aa3eb65e42716c72819ec"
     },
     "last_active_at": null
   }

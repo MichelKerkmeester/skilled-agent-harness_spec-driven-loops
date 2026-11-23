@@ -85,7 +85,28 @@ export interface DispatchSnapshot {
   dispatchedAt: string;
   latenessSeconds: number | null;
   latenessClass: string | null;
-  skippedSlots: { count: number; slots: string[] } | null;
+  skippedSlots: SkippedSlotSummary | null;
+  /** A fired slot the runner held instead of dispatching; absent or null for every other run. */
+  heldSlot?: HeldSlot | null;
+}
+
+/**
+ * The slots one fire stood for besides its own. A sleeping host can miss
+ * thousands, so the record keeps the count and the first and last instant,
+ * and `slots` lists at most the configured number of the most recent ones.
+ */
+export interface SkippedSlotSummary {
+  count: number;
+  slots: string[];
+  /** Absent on a record written before the summary carried its bounds. */
+  first?: string | null;
+  last?: string | null;
+}
+
+/** A fired slot counted as skipped, with why it was not dispatched. */
+export interface HeldSlot {
+  at: string;
+  reason: string;
 }
 
 export interface BudgetRecord {
@@ -270,6 +291,27 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
       || !isNullableString(refusal.detail)
     ) {
       return { ok: false, reason: 'record-field-invalid', detail: 'exit.refusal' };
+    }
+  }
+  const skipped = record.dispatch.skippedSlots as unknown;
+  if (skipped !== null && skipped !== undefined) {
+    if (
+      !isPlainObject(skipped)
+      || typeof skipped.count !== 'number'
+      || !Number.isSafeInteger(skipped.count)
+      || skipped.count < 0
+      || !Array.isArray(skipped.slots)
+      || !skipped.slots.every((slot) => typeof slot === 'string')
+      || !isNullableString(skipped.first ?? null)
+      || !isNullableString(skipped.last ?? null)
+    ) {
+      return { ok: false, reason: 'record-field-invalid', detail: 'dispatch.skippedSlots' };
+    }
+  }
+  const held = record.dispatch.heldSlot as unknown;
+  if (held !== null && held !== undefined) {
+    if (!isPlainObject(held) || typeof held.at !== 'string' || held.at === '' || typeof held.reason !== 'string' || held.reason === '') {
+      return { ok: false, reason: 'record-field-invalid', detail: 'dispatch.heldSlot' };
     }
   }
   if (!isNullableString(record.request.resumedItemId ?? null)) {

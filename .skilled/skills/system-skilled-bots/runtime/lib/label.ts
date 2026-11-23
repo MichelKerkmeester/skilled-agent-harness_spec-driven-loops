@@ -2,7 +2,7 @@
 // MODULE: launchd Label Grammar
 // ───────────────────────────────────────────────────────────────────
 //
-// Every repository installs into the same ~/Library/LaunchAgents, so a label
+// Every repository installs into the same per-user agents folder, so a label
 // built from the bot id alone would let two repositories overwrite each
 // other's job. The label carries the repository identity, the bot id and the
 // schedule index, and it parses back to them so status and the uninstall

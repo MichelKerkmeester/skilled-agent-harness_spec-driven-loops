@@ -62,7 +62,7 @@ Guarded install transaction. Every trigger only asks the runner to run; launchd 
 - **Plist renderer** (`plist-render.ts`): turns translator dictionaries, the label and install-time absolute paths into plist text. Without it the plist would rely on `PATH` and `~`, which launchd does not provide (research.md §7).
 - **Installer transaction** (`installer.ts`): the six steps, the `print-disabled` check, uninstall and the orphan sweep. It is the only module that calls `launchctl` or writes into `~/Library/LaunchAgents`; the CLI and the runner call it. Without it a lint failure or a disabled label leaves a half-installed or silently dead job.
 - **Slot accounting** (`slot-accounting.ts`): records what one fire stood for after a sleep. Without it, a fire after a week of sleep is indistinguishable from an on-time run (research.md §7).
-- **Install record and check** (`installer.ts`): writes `<state root>/<identity>/installs/<bot-id>.json` at every install and compares it with the tree as it is now. Without it, a re-pin that replaces the runner code under the same path, or a retargeted `.skilled` link, is invisible until a job misbehaves (ADR-002).
+- **Install record and check** (`installer.ts`): writes `<state root>/<identity>/installs/<bot-id>.json` at every install and compares it with the tree as it is now, returning `runner-missing`, `runner-retargeted`, `kind-changed`, `pin-changed` or `record-missing`. Without it, a re-pin that replaces the runner code under the same path, or a retargeted `.skilled` link, is invisible until a job misbehaves (ADR-002).
 - **Drain agent plist**: a `QueueDirectories` job per repository on phase 5's `requests/inbox/` folder that runs `bots drain`. Without it, queued requests wait for a person.
 
 ### Data Flow

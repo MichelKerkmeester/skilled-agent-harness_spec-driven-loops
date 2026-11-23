@@ -188,6 +188,34 @@ export function installFile(stateRoot: string, identity: string, botId: string):
   return join(identityStatePaths(stateRoot, identity).installs, `${segmentOrThrow('bot-id', botId)}.json`);
 }
 
+/**
+ * The last-fire snapshot of one schedule of one bot. A fire writes it before
+ * dispatch and the next fire reads it, so slot accounting never scans the
+ * record folder. Creates nothing. Throws `bot-id-invalid` on an unsafe id.
+ */
+export function slotSnapshotFile(stateRoot: string, identity: string, botId: string, scheduleIndex: number): string {
+  if (!Number.isSafeInteger(scheduleIndex) || scheduleIndex < 0) throw new Error('schedule-index-invalid');
+  return join(identityStatePaths(stateRoot, identity).base, 'slots', `${segmentOrThrow('bot-id', botId)}.${scheduleIndex}.json`);
+}
+
+/**
+ * The back-off file of the scheduled queue drain. It sits beside the request
+ * folders, never inside the watched one, so writing it never wakes the drain.
+ * Creates nothing.
+ */
+export function drainBackoffFile(stateRoot: string, identity: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'drain-backoff.json');
+}
+
+/**
+ * Where the scheduler writes a job's own stdout and stderr, so a job that dies
+ * before the runner writes a record still leaves a trace. Creates nothing.
+ * Throws `label-invalid` on an unsafe label.
+ */
+export function agentLogFile(stateRoot: string, identity: string, label: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'agent-logs', `${segmentOrThrow('label', label)}.log`);
+}
+
 /** The generation stamp a status reader compares to know its index is stale. */
 export function generationStampFile(stateRoot: string, identity: string): string {
   return join(identityStatePaths(stateRoot, identity).base, 'generation.json');
@@ -313,6 +341,21 @@ export interface RunFolderInput {
  * @returns The absolute run folder path, or a refusal with a named reason.
  */
 export function resolveRunFolder(input: RunFolderInput): Result<string> {
+  const checked = checkRunFolder(input);
+  if (!checked.ok) return checked;
+  mkdirSync(checked.value, { recursive: true, mode: STATE_DIR_MODE });
+  return checked;
+}
+
+/**
+ * Apply every rule resolveRunFolder applies and write nothing. An installer
+ * asks this before it schedules a bot, because a scheduled run whose run
+ * folder would be refused fails unattended, and the installer may not write
+ * inside a Skilled tree.
+ *
+ * @returns The run folder path a run would get, or the same refusal resolveRunFolder gives.
+ */
+export function checkRunFolder(input: RunFolderInput): Result<string> {
   if (!isSafeSegment(input.runId)) return { ok: false, reason: 'run-id-invalid' };
   if (!existsSync(input.skilledTree)) return { ok: false, reason: 'skilled-tree-missing' };
   const tree = realSkilledTree(input.skilledTree);
@@ -328,7 +371,5 @@ export function resolveRunFolder(input: RunFolderInput): Result<string> {
       detail: ignored.status === 1 ? 'git does not ignore the path' : 'git could not answer for the path',
     };
   }
-
-  mkdirSync(folder, { recursive: true, mode: STATE_DIR_MODE });
   return { ok: true, value: folder };
 }
