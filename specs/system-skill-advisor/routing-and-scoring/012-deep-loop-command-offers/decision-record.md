@@ -239,6 +239,9 @@ AC-017 asks two things of the research aliases that ship. K2, "multi-round resea
 | Q012 | Withhold the `/doctor:deep-loop` command row on a prompt that names no deep run. | Not stated. The lexical lane had begun to top that run-policy row on "research why the model needed more iterations to converge". | None | fusion.ts withholdDeepLoopDoctorWithoutRun, tasks.md T043 |
 | Q013 | List the offer flags in both /deep:* argument hints. | The operator had asked "Why would we limit those hints". The 140-character budget is a soft warning with no recorded failure behind it. | None | research.md, review.md, command-metadata.json, tasks.md T046 |
 | Q014 | Run the closure pass: probe once, mark each acceptance row with its evidence, and propose decision records for the rows that cannot be met as written. | Not stated. Evidence: yes_no, option false, overlap 0, imperative true, shift false. | None | acceptance-criteria.md, decision-record.md ADR-001 and ADR-002, tasks.md T051 |
+| Q015 | Keep the multi-round research hub alias and waive the memo out-of-domain replay in AC-017. | Not stated. | None | decision-record.md ADR-002, acceptance-criteria.md AC-017 |
+| Q016 | Record a fresh live behaviour session on the F6 prompt instead of waiving AC-008. | Not stated. | None | scratch/behaviour/F6.md, acceptance-criteria.md AC-008 |
+| Q017 | Commit and push the closure pass after the alias and F6 answers are applied. | Not stated. | None | tasks.md T051 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -479,6 +482,64 @@ No
 Answer:
 ```text
 fix
+```
+
+### Q015
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017rP9ush8rLRbMPhfKD19UH:0 -->
+
+Question:
+```text
+AC-017: the "multi-round research" hub alias makes "write a memo on multi-round research funding for the grant committee" top the deep-loop hub (no command attached), but K2 "multi-round research into vector index compaction" needs that alias to reach the hub. Keep or drop it?
+```
+
+Options:
+```text
+Keep it (Recommended)
+Drop it
+```
+
+Answer:
+```text
+Keep it (Recommended)
+```
+
+### Q016
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017rP9ush8rLRbMPhfKD19UH:1 -->
+
+Question:
+```text
+AC-008: the stored F6 behaviour recording answers a different prompt. Record a fresh live session on "extend the finished deep review by 3 iterations" (about $1 of paid turns in a throwaway checkout)?
+```
+
+Options:
+```text
+Record it (Recommended)
+Waive it
+```
+
+Answer:
+```text
+Record it (Recommended)
+```
+
+### Q017
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017rP9ush8rLRbMPhfKD19UH:2 -->
+
+Question:
+```text
+Commit and push the closure pass (1 test file, 7 packet docs, 3 probe files in worktree 522) to origin/main the same way as before?
+```
+
+Options:
+```text
+After the above (Recommended)
+Now
+Not yet
+```
+
+Answer:
+```text
+After the above (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

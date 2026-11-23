@@ -54,8 +54,8 @@
       "scratch/probes/results-after.json",
       "scratch/probes/results-ac017-ood.json",
       "scratch/probes/review-fix-cases.json",
-      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
-      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts"
+      "scratch/behaviour/F6.md",
+      "scratch/behaviour/F6-other-prompt.md"
     ],
     "entities": [
       {
@@ -161,9 +161,15 @@
         "source": "derived"
       },
       {
-        "name": "command-attach.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
+        "name": "F6.md",
+        "kind": "doc",
+        "path": "scratch/behaviour/F6.md",
+        "source": "derived"
+      },
+      {
+        "name": "F6-other-prompt.md",
+        "kind": "doc",
+        "path": "scratch/behaviour/F6-other-prompt.md",
         "source": "derived"
       },
       {
@@ -195,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Offer From",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-23T11:17:47.472Z",
+    "last_save_at": "2026-11-23T11:20:58.552Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:709da6ee78041587094e37eee901ff3fcf31feb2a2088cadb78770e5eaeb8758",
+    "source_fingerprint": "sha256:e88e694fb2edd8add45f8d2245a55f1f85cfbcea4df8d09cc8bbea287be66a52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95319be3a0cd34906f8e82250065ab50de1e0871648d83bb722a2d83d731a07f",
       "plan.md": "8dc6502026e9175b1a9d7897400e21bc703efc4ed2367700dda357af45bb52ad",
       "tasks.md": "d1863d57900f1c35a6c4cead1d377c898c4b85c67665879c1aefbb098e736b96",
-      "decision-record.md": "2e12b1a99ed035e3f64c7d69b571440a9adfbe9ab2feb36ea7ce99081be17c0c",
-      "implementation-summary.md": "33d84ddf2fe85eb06d4336f6377fcc1a37ab699a05db419e12538e98a5fedbef"
+      "decision-record.md": "0c0b1e8aecba93adf7e5ced2849017befc6a63728eb72a8057998996b5ae1dfc",
+      "implementation-summary.md": "99909d5e982340fd917aa6560a3d0751f57b02ac1f81e5a9e5f0c541dfb32635"
     },
     "last_active_at": null
   }
