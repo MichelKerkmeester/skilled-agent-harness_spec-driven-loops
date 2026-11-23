@@ -111,6 +111,7 @@ Built in worktree `worktrees/522-deep-loop-offer-review-fixes`. The 31 probes ar
 - [x] T050 Add the G and R prompts to the shared fixture and name the run-ask outranking in `$ADV/lib/README.md`. Verify: the fixture holds 63 cases, the Python suite prints `cases=63` and `pass=130, fail=0`, and a TypeScript and Python predicate comparison over 72 prompts shows drift 0.
 - [x] T051 Work every acceptance row against its own check and record the evidence (`acceptance-criteria.md`). Add gate cases for "thoroughly", "exhaustive" and "deep dive" (`$ADV/tests/command-attach-guards.vitest.ts`). Record the AC-019 supersession and the AC-017 alias choice (`decision-record.md` ADR-001, ADR-002). Verify: 18 rows `Met`, AC-019 `Superseded`, and AC-008 and AC-017 `Unmet` with their reason in the closure statement.
 - [x] T052 Name the three offer options in step 0 of both command documents and send a composed flag into option A from the flag table (`.skilled/commands/deep/review.md`, `.skilled/commands/deep/research.md`). Rerun F6 outside plan mode before and after the edit (`scratch/behaviour/F6.md`, `scratch/behaviour/F6-after-step0.md`). Verify: the drift check and its tests pass, and AC-008 records both runs.
+- [x] T053 Sample F6 three more times after the routing-step edit (`scratch/behaviour/F6-sample-1.md` to `F6-sample-3.md`). Verify: AC-008 reads `Met` with the 1 of 4 rate stated in the row.
 <!-- /ANCHOR:phase-3 -->
 
 ---

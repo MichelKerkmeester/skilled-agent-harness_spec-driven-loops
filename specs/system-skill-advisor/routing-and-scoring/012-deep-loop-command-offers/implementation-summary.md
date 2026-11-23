@@ -8,18 +8,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T13:20:39Z"
+    last_updated_at: "2026-11-23T14:10:19Z"
     last_updated_by: "generate-context"
-    recent_action: "Named the offer options in both deep commands and reran F6 twice"
-    next_safe_action: "Decide with the operator how to close AC-008"
+    recent_action: "Marked AC-008 met on one of four F6 runs with the rate disclosed"
+    next_safe_action: "Reconcile the unticked tasks.md checkboxes before marking the packet complete"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
-    blockers:
-      - "AC-008 unmet: no F6 session asked the offer question"
+    blockers: []
     key_files:
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/behaviour/F6-after-step0.md"
-      - ".skilled/commands/deep/review.md"
-      - ".skilled/commands/deep/research.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/behaviour/F6-sample-1.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:ed7b946f01a8d67757861c8b82afd7ac188ebd3ba5da180a7ed674f999f68fb6"
       session_id: "scaffold-012-deep-loop-command-offers"
@@ -28,10 +26,10 @@ _memory:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
       workspace: "/Users/michelkerkmeester/worktrees/public/522-deep-loop-offer-review-fixes"
-      savedAt: "2026-11-23T13:20:39Z"
+      savedAt: "2026-11-23T14:10:19Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 98
     open_questions: []
     answered_questions: []
 ---
@@ -170,7 +168,7 @@ The operator then asked for the remaining open items to be fixed (decision D10).
 - **Several passes:** review over several passes now gets `/deep:review`.
 - **Stuck runs:** a complaint about a stuck, non-converging or stale run now gets `/doctor:deep-loop`.
 - **Explain questions:** an explain question no longer gets a run-policy doctor row.
-- **Behaviour run:** done. Three plan-mode operator turns on F3, F5 and F6 each opened with the offer: one turn that asks the spec-folder and run questions together, with a recommended option A carrying the composed command.
+- **Behaviour run:** done. F3 and F5 asked the offer, and F6 asked it on 1 of 4 runs after the routing-step edit (limitation 5). The earlier plan-mode operator turns on F3, F5 and F6 each opened with the offer: one turn that asks the spec-folder and run questions together, with a recommended option A carrying the composed command.
 
 A second round, also on "fix open", fixed both phrasings that still missed:
 - **Review called "code":** "give the scheduler code many passes of review" now gets `/deep:review`. Naming the target "code" had scored the code skill twice.
@@ -206,5 +204,5 @@ What stays open:
 2. **The argument hints are over the soft budget.** Both hints now list every offer flag (Q013), so `validate_document.py` warns that each is over 140 characters. The warning is soft, and no failure from a long hint is recorded.
 3. **"Write a memo on" is not read as writing about a topic.** "write a memo on iterative research funding for the grant committee" gets `/deep:research pol=ask`, and so does the same memo on "deep research funding", which was a loop ask before this packet. No guard is added for one phrasing.
 4. **The multi-round research alias also catches a memo about research funding.** The operator kept it for K2 (ADR-002), so that memo can surface the hub as a skill suggestion with no command.
-5. **The F6 session skips the offer question.** Three `claude -p` runs on "extend the finished deep review by 3 iterations" each stopped before spending, but none asked the offer with options A, B and C. The plan-mode run (`scratch/behaviour/F6-plan-mode.md`, $0.22) composed `/deep:review <packet> :auto --extend=3` and wrote a plan for approval. The run outside plan mode (`scratch/behaviour/F6.md`, $0.18) asked the spec-folder question and named `--extend=3` as the command it would run, after reading only the flag table. Step 0 of both command documents now names the three options, and the flag table sends a composed flag into option A. The run after that edit (`scratch/behaviour/F6-after-step0.md`, $0.16) asked which review was meant before it opened the command document, so the edit was never read. The session acts on the brief's `ask` alone, and the offer format lives one document away from it. The earlier F6 recording answered another prompt ("8 more") and is kept as `scratch/behaviour/F6-other-prompt.md`. AC-008 stays unmet.
+5. **The F6 session asks the offer only some of the time.** Three `claude -p` runs on "extend the finished deep review by 3 iterations" each stopped before spending, but none asked the offer with options A, B and C. The plan-mode run (`scratch/behaviour/F6-plan-mode.md`, $0.22) composed `/deep:review <packet> :auto --extend=3` and wrote a plan for approval. The run outside plan mode (`scratch/behaviour/F6.md`, $0.18) asked the spec-folder question and named `--extend=3` as the command it would run, after reading only the flag table. Step 0 of both command documents now names the three options, and the flag table sends a composed flag into option A. The run after that edit (`scratch/behaviour/F6-after-step0.md`, $0.16) asked which review was meant before it opened the command document, so the edit was never read. The session acts on the brief's `ask` alone, and the offer format lives one document away from it. Three more samples after the edit split: sample 1 (`scratch/behaviour/F6-sample-1.md`, $0.20) loaded `/deep:review` and asked the offer with `--extend=3` in the recommended option A, while samples 2 and 3 ($0.11 and $0.17) asked which review was meant first, since about 30 finished reviews exist. So 1 of 4 runs since the edit asked the offer, and the operator accepted AC-008 as met with that rate disclosed. The earlier F6 recording answered another prompt ("8 more") and is kept as `scratch/behaviour/F6-other-prompt.md`.
 <!-- /ANCHOR:limitations -->

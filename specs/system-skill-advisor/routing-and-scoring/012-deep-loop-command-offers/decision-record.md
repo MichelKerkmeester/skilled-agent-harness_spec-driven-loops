@@ -245,6 +245,9 @@ AC-017 asks two things of the research aliases that ship. K2, "multi-round resea
 | Q018 | Rerun the F6 behaviour session outside plan mode with a spend cap. | Not stated. | None | scratch/behaviour/F6.md, acceptance-criteria.md AC-008 |
 | Q019 | Commit and push the AC-008 work to origin/main once it is settled. | Not stated. | None | tasks.md T052 |
 | Q020 | Keep AC-008 unmet and tighten the offer wording in both deep command documents, then rerun F6. | Not stated. | None | tasks.md T052, .skilled/commands/deep/review.md, .skilled/commands/deep/research.md |
+| Q021 | Sample F6 three more times before deciding how to close AC-008. | Not stated. | None | tasks.md T053, scratch/behaviour/F6-sample-1.md |
+| Q022 | Hold the push until the AC-008 choice is applied, then push everything together. | Not stated. | None | tasks.md T053 |
+| Q023 | Mark AC-008 met on F6 sample 1 and state that 1 of 4 runs since the routing-step edit asked the offer. | Not stated. | None | acceptance-criteria.md AC-008, implementation-summary.md limitation 5 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -603,6 +606,65 @@ Waive with an ADR
 Answer:
 ```text
 Keep Unmet, tighten (Recommended)
+```
+
+### Q021
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01L9MRUT8BscTve3DfFcRgAP:0 -->
+
+Question:
+```text
+AC-008 is still Unmet after the tightening. I made step 0 of both deep command docs name the three offer options (commit 4c70ce2f517) and reran F6 ($0.16). This time the session asked which finished review was meant before it opened the command doc, so it never read the edit. Across three F6 runs, the session acts on the brief's bare '/deep:review (ask)' and never reaches the offer format, which lives one document away. How should AC-008 be closed?
+```
+
+Options:
+```text
+Waive with an ADR (Recommended)
+Put format in the brief
+Sample more F6 runs
+```
+
+Answer:
+```text
+Sample more F6 runs
+```
+
+### Q022
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01L9MRUT8BscTve3DfFcRgAP:1 -->
+
+Question:
+```text
+Two local commits are ready in worktree 522: 4c70ce2f517 (the step 0 wording in both deep command docs) and adc9501f05c (the F6 recordings with AC-008 kept Unmet). You said to push once AC-008 was settled, and it isn't yet. Push them now?
+```
+
+Options:
+```text
+Push after AC-008 (Recommended)
+Push now
+```
+
+Answer:
+```text
+Push after AC-008 (Recommended)
+```
+
+### Q023
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017P9emkhLYwWmvmYc1giqao:0 -->
+
+Question:
+```text
+The three new F6 samples ($0.49 total, nothing written) split. Sample 1 loaded /deep:review and asked the full offer as text, because headless has no question tool: 'Which packet?' plus A) `/deep:review:auto --extend=3 --spec-folder=<path>` (Recommended), B) :confirm, C) no loop. That matches AC-008 as worded, the same way F3 and F5 did. Samples 2 and 3 first asked which review was meant, since about 30 finished reviews exist, and deferred the command doc. Since the step 0 edit, 1 of 4 runs asked the offer. How should AC-008 be recorded?
+```
+
+Options:
+```text
+Met, rate disclosed (Recommended)
+Waive with an ADR
+Keep Unmet
+```
+
+Answer:
+```text
+Met, rate disclosed (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
