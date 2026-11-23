@@ -8,28 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T14:10:19Z"
+    last_updated_at: "2026-11-23T15:28:51Z"
     last_updated_by: "generate-context"
-    recent_action: "Marked AC-008 met on one of four F6 runs with the rate disclosed"
-    next_safe_action: "Reconcile the unticked tasks.md checkboxes before marking the packet complete"
+    recent_action: "Ticked every task and checklist item with evidence and marked the packet Complete"
+    next_safe_action: "None; the packet is closed"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/behaviour/F6-sample-1.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/corpus-before.json"
     session_dedup:
-      fingerprint: "sha256:ed7b946f01a8d67757861c8b82afd7ac188ebd3ba5da180a7ed674f999f68fb6"
+      fingerprint: "sha256:47de2bb926ad7bdbc4b0488cc4b55847c720cf84e1c42f41acbc9ef25e96c05c"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
       workspace: "/Users/michelkerkmeester/worktrees/public/522-deep-loop-offer-review-fixes"
-      savedAt: "2026-11-23T14:10:19Z"
+      savedAt: "2026-11-23T15:28:51Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 98
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-deep-loop-command-offers |
-| **Completed** | 2026-11-22 |
+| **Completed** | 2026-11-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -153,6 +153,7 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Closure pass: advisor suite | `npm run build` exit 0, then 180 files, 2619 passed, 4 skipped, 0 failed. Three depth words gained gate cases ("thoroughly", "exhaustive", "deep dive"), and the two gate files report 294 passed. Mirror sync passes 260 mirrors, and command references resolve across 84 asset files |
 | Closure pass: corpus | Recapture equals the committed baseline apart from the capture fields. Over the 35 rows that existed before the packet, `false_offer` 0 and `false_offer_attached` 0, as before the code change. Over the 22 new silent rows, `false_offer` 0, and one attached offer: `nm-system-deep-loop-05` (V7) carries `/create:manual-testing-playbook` |
 | Closure pass: alias replay | K2 tops the hub on the research route. Out-of-domain replays in `scratch/probes/results-ac017-ood.json`: three stay off the hub, and "write a memo on multi-round research funding for the grant committee" tops it with no command (ADR-002, accepted: the alias stays) |
+| Final rerun on `958fa817187` | Advisor `npm run build` exit 0, then 180 files, 2622 passed, 4 skipped, 0 failed. The 69 spec-baseline probes, rerun in the worktree and in the primary checkout (`scratch/probes/results-final-958fa81-worktree.json`, `results-final-958fa81-primary.json`), keep every gain, stage-one, lose and `/deep:*` line, with policy `ask` on each. One negative row differs per checkout, with no command in either: in the worktree H5 tops `sk-doc` over `sk-code` by 0.000004, and in the primary checkout N12 tops the operator's private `local-webflow` skill. No advisor code changed after the committed rerun. Mirrors PASS 260, command references OK |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

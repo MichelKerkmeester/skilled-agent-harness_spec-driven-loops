@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `012-deep-loop-command-offers`
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-22
 <!-- /ANCHOR:metadata -->
 
