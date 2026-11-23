@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside browser task"
   - "aside exec"
   - "aside session continuation"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Task (agent-task lane over the aside CLI)
@@ -23,7 +23,7 @@ The capabilities are MUTATING on the browser side (navigation, form actions, dow
 
 Run the preflight first (`command -v aside`, `aside --version 2>&1`, `aside --help 2>&1` as a fixture — the command surface is version-pinned). Then hand the goal to the agent: `aside "Open https://example.com and summarize the page"`. Documented agent capabilities cover navigation, page/DOM inspection, screenshots, downloads, file use, approval requests, and password-manager autofill sign-in (saved password values are never exposed to the agent). Continuation uses `aside --session <id> "<follow-up>"`; the state is account-scoped and tasks can pause for input or approval and resume.
 
-Boundary rules: `--account` is documented for direct tasks and `exec` only — never `aside mcp --account` or `aside repl --account`. `--session` is agent-task continuation, not an MCP browser selector. **UNKNOWN — model-flag spelling**: docs show `-m provider/model` while the installed help shows separate `--model` and `--provider`; capture the installed version's help before using either. **UNKNOWN — session storage backend**: where `--session` state persists is not publicly documented.
+Boundary rules: `--account` is documented for direct tasks and `exec` only. Never use `aside mcp --account` or `aside repl --account`. `--session` is agent-task continuation, not an MCP browser selector. **Model-flag spelling**: on 1.26.626.1517 the installed help defines `-m, --model` (it also accepts `provider/model`) and `-p, --provider`, so both forms work. Capture the installed version's help before scripting either. **UNKNOWN — session storage backend**: where `--session` state persists is not publicly documented.
 
 ---
 

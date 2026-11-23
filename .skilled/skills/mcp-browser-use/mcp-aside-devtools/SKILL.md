@@ -88,7 +88,7 @@ The command surface is version-pinned evidence. Re-capture `--help` before relyi
 
 Boundary rules: `--account` is documented for direct tasks and `exec` only — never invent `aside mcp --account` or `aside repl --account`. `--session` is agent-task continuation, not an MCP browser selector. There are no typed `aside navigate/dom/screenshot/console/network` subcommands.
 
-**UNKNOWN — model-flag spelling**: docs show `-m provider/model` while the installed help shows separate `--model` and `--provider` options. Unresolved; capture the installed version's help before using either spelling.
+**Model-flag spelling**: on 1.26.626.1517 the installed help defines `-m, --model <model>` (it also accepts `provider/model`) and `-p, --provider <provider>`, so `-m provider/model` and `--model <id> --provider <name>` both work. Capture the installed version's help before scripting flags.
 
 ### MCP Approach (Fallback) - Aside MCP via Code Mode
 
@@ -104,7 +104,7 @@ The required inputs are `title` and `code`. It is a persistent, sandboxed ES2023
 Code Mode discovery **re-confirmed the one-`repl`-tool inventory live on 2026-07-16** (`references/discovery-fixture-2026-07-16.json`). This is evidence, not a contract. Always rediscover at runtime with `initialize` and `tools/list`, then Code Mode `search_tools()`, `list_tools()` or `tool_info()` before invocation.
 There are no first-class `navigate`, `dom`, `screenshot`, `console` or `network` MCP tools.
 
-**Browser-profile binding**: a fresh `aside mcp` process is transport-healthy but browser-unbound — `listBrowserTabs()` fails with "This task is not bound to a browser profile." This is a binding failure, not an auth failure. The supported binding procedure is **UNKNOWN** (undocumented); report it distinctly and stop.
+**Browser-profile binding**: on 1.26.626.1517, with the Aside app running and signed in, a fresh `aside mcp` process is bound and `listBrowserTabs()` returns tabs (ASD-010). Earlier versions left a fresh process browser-unbound, and `listBrowserTabs()` failed with "This task is not bound to a browser profile." Other states, such as the app closed, are untested. When that error appears, it is a binding failure, not an auth failure. The supported binding procedure is **UNKNOWN** (undocumented); report it distinctly and stop.
 
 ### Session and Permission Model
 
@@ -151,10 +151,10 @@ Document the pattern and its gaps. Treat any live capture as requiring a bound s
 
 1. The host is not macOS (installer rejects Linux/Windows).
 2. The account is signed out and built-in models fail closed (recover via `aside account use <id>` or re-sign-in — needs the operator).
-3. The browser-unbound error persists — the supported binding procedure is undocumented.
+3. The browser-unbound error appears and persists. The supported binding procedure is undocumented.
 4. A task pauses on MFA, CAPTCHA, identity verification, vault unlock, or an approval gate.
 5. Parallel mutating sessions on one profile are requested.
-6. A needed flag spelling depends on the unresolved `-m` vs `--model`/`--provider` conflict.
+6. A needed flag is missing from the installed version's `--help`.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "BDG-002 -- Session start"
 description: "This scenario validates bdg session startup for `BDG-002`. It focuses on confirming `bdg <url>` starts a CDP session against the given URL and bdg status reports active state."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BDG-002 -- Session start
@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `BDG-002` and confirm th
 - Prompt: `Open https://example.com in bdg and confirm the session is active.`
 - Expected execution process: run two bash commands; do not delegate.
 - Expected signals: `bdg https://example.com` exits 0; `bdg status` reports active session with the URL.
-- Desired user-visible outcome: A short report quoting the status JSON's `state` and `url` fields with a PASS verdict.
+- Desired user-visible outcome: A short report quoting the `bdg status` output showing an active session and its URL with a PASS verdict.
 - Pass/fail: PASS if both signals hold; FAIL if session start errors (browser missing, port conflict) or status doesn't reflect active state.
 
 ---

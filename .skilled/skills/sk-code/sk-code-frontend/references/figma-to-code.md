@@ -7,7 +7,7 @@ trigger_phrases:
   - "implement a figma design in code"
 importance_tier: important
 contextType: implementation
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Figma to Code Translation
@@ -184,7 +184,7 @@ Open the rendered build in a `bdg` session.
   4. Check names, roles and states with `bdg cdp Accessibility.getFullAXTree`, or with a manual screen-reader pass.
   5. Read computed text and background colours with `Runtime.evaluate` as above, then check contrast against the target [`web-visual-values.md`](web-visual-values.md) sets.
   6. Record any check that cannot run as `NOT RUN` with the reason.
-- Use [mcp-aside-devtools](../../../mcp-browser-use/mcp-aside-devtools/SKILL.md) as the fallback renderer. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
+- Use [mcp-aside-devtools](../../../mcp-browser-use/mcp-aside-devtools/SKILL.md) as the fallback renderer only when the user asks, because `aside repl` runs on the user's signed-in account, and only on macOS. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
 
 See [mcp-chrome-devtools](../../../mcp-browser-use/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
 

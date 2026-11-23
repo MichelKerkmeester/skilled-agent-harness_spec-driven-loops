@@ -1,7 +1,7 @@
 ---
 title: "CM-016 -- Sibling-pair handover"
 description: "This scenario validates the cross-MCP handover pattern for `CM-016`. It focuses on confirming a chain can capture a Chrome screenshot then create a ClickUp task referencing the screenshot — both MCPs in one execution."
-version: 1.0.2.0
+version: 1.0.3.0
 id: CM-016
 category: clickup_and_chrome_via_cm
 stage: routing
@@ -47,9 +47,9 @@ Operators run the exact prompt and command sequence for `CM-016` and confirm the
 
 ### Commands
 
-1. Confirm `TEST_LIST_ID` is set
-2. `call_tool_chain({ code: "await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' }); const shot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({}); const ref = 'screenshot_bytes_' + (shot.data || shot).length; const task = await clickup.clickup_create_task({ list_id: '${TEST_LIST_ID}', name: 'CM-016 sibling test', description: 'Screenshot reference: ' + ref }); const fetched = await clickup.clickup_get_task({ task_id: task.id }); await clickup.clickup_delete_task({ task_id: task.id }); return { task_id: task.id, screenshot_ref: ref, description_has_ref: fetched.description?.includes(ref) || false };" })`
-3. Inspect the returned object
+1. Confirm `TEST_LIST_ID` is set. Confirm `list_tools()` shows `clickup_official.` tools. The `clickup_official` manual carries `"disabled": true` in `.utcp_config.json`, so it is not registered at startup. If no `clickup_official.` tools appear, ask the operator before you register it with Code Mode's `register_manual`, because registration opens a ClickUp sign-in tab in their browser (see `mcp-tooling/mcp-click-up/SKILL.md`).
+2. `call_tool_chain({ code: "chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' }); const shot = chrome_devtools_1.chrome_devtools_1_take_screenshot({}); const ref = 'screenshot_bytes_' + (shot.data || shot).length; const task = clickup_official.clickup_official_clickup_create_task({ list_id: '${TEST_LIST_ID}', name: 'CM-016 sibling test', description: 'Screenshot reference: ' + ref }); const fetched = clickup_official.clickup_official_clickup_get_task({ task_id: task.id, include: ['description'] }); clickup_official.clickup_official_clickup_delete_task({ task_id: task.id }); return { task_id: task.id, screenshot_ref: ref, description_has_ref: fetched.description?.includes(ref) || false };" })`
+3. Inspect the returned object and its `logs`
 
 ### Expected
 
@@ -65,11 +65,11 @@ Capture the chain response with both ids and the description-contains check.
 ### Pass / Fail
 
 - **Pass**: Both MCPs executed, task created with screenshot reference, cleanup succeeded.
-- **Fail**: Chain rejects mid-execution (sibling failure — investigate which MCP errored); task description doesn't contain reference (string interpolation broken); cleanup failed (orphan task — delete manually).
+- **Fail**: the chain fails mid-execution, which shows as `result: null` and an `[ERROR] Code execution failed:` line in `logs` while `success` stays `true` (sibling failure: investigate which MCP errored); task description doesn't contain reference (string interpolation broken); cleanup failed (orphan task — delete manually).
 
 ### Failure Triage
 
-1. If chain errors with "tool not found" for either MCP: cross-check both via `list_tools()` (CM-001); confirm both are in `.utcp_config.json`.
+1. If `logs` shows "tool not found" for either MCP: cross-check both via `list_tools()` (CM-001); confirm both are in `.utcp_config.json` and that `clickup_official` is registered (step 1).
 2. If chain runs but `description_has_ref` is false: log the actual `fetched.description` — the ClickUp MCP may strip or reformat description text.
 3. If cleanup orphan: delete via web UI; for repeated runs, add `try/catch` around the create call to capture id even on partial failure (cross-reference CM-013, CM-025).
 

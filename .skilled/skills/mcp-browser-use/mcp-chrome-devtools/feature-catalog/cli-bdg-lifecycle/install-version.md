@@ -6,7 +6,7 @@ trigger_phrases:
   - "bdg --version"
   - "browser-debugger-cli install"
   - "check bdg installed"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Install + Version
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Verify the `bdg` binary before any browser work: `command -v bdg` confirms presence, `bdg --version 2>&1` returns the version string. Install with `npm install -g browser-debugger-cli@alpha` (Node.js 18+ required; Windows via WSL only).
+Verify the `bdg` binary before any browser work: `command -v bdg` confirms presence, `bdg --version 2>&1` returns the version string. Install with `npm install -g browser-debugger-cli@alpha` (bdg 0.6.10 needs Node.js 20 or later. Windows works through WSL only).
 
 ---
 

@@ -278,7 +278,9 @@ function main(strict) {
     // A folder whose metadata cannot be read is not evidence that its skill left
     // the disk, so its name is never reported as a zombie or a ghost.
     const unreadableFolders = new Set(disk.unreadable.map((u) => u.folder));
-    const goneFromDisk = (id) => !diskIds.has(id) && !unreadableFolders.has(id);
+    // fromDisk() skips private local-* skills on purpose, so their absence from the
+    // disk set says nothing about whether they left the disk.
+    const goneFromDisk = (id) => !id.startsWith('local-') && !diskIds.has(id) && !unreadableFolders.has(id);
     const report = (label, items) => out.push(items.length
       ? `  ${label}: ${items.sort().join(', ')}`
       : `  ${label}: none`);

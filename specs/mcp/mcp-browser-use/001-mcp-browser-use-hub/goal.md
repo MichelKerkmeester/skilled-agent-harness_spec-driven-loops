@@ -45,15 +45,13 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Research first: 001 runs 10 iterations before any build; 002-006 are refined from its synthesis. |
-| D2 | Each mode uses its CLI (`bladebro`, `aside`, `bdg`) when installed, and its MCP server via Code Mode when the CLI is missing or the task needs other Code Mode tools, parallel isolated sessions or an MCP-only capability (e.g. Chrome's `lighthouse_audit`, performance traces). |
+| D2 | Each mode uses its CLI (`bladebro`, `aside`, `bdg`) when installed, and its MCP server via Code Mode when the CLI is missing or the task needs other Code Mode tools, parallel isolated sessions or an MCP-only capability. |
 | D3 | `mcp-tooling` keeps its six other modes unchanged. |
 | D4 | Judgment work: Opus 5.5 medium, second Claude account. Bulk mechanical work: opencode-go/hy4-flash-free#high or Vibe deepseek-flash, Opus-reviewed. |
 | D5 | Installing Bladebro needs an operator yes. Rollback: `npm uninstall -g bladebro` and remove its profile directory. |
 | D6 | Mode folder names are decided by 001-research. |
 | D7 | A mode is integrated only when both its routing stages pass. |
 | D8 | No commits without the operator's instruction. |
-
-D1 note: 12 ran, 2 operator-added for a setup fix. D1 stands.
 
 <!-- /ANCHOR:directive -->
 
@@ -79,6 +77,7 @@ phase and binds as if written here.
 | 010-mcp-tooling-browser-pointers | `010-mcp-tooling-browser-pointers/goal.md` |
 | 011-bdg-eval-port-note | `011-bdg-eval-port-note/goal.md` |
 | 012-browser-hub-doc-topic | `012-browser-hub-doc-topic/goal.md` |
+| 013-fix-alignment-findings-for-browser-hub-docs | `013-fix-alignment-findings-for-browser-hub-docs/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -131,5 +130,7 @@ and findings belong here.
 |------|------|
 | Parent goal.md not produced by --with-goal | Written by hand from the sk-create-goal phase-parent template |
 | Parent over the 4,000-character durable budget after the 007 and 008 binding rows | The slice measured 4165 characters. The three `FILL` template comments were removed (cut order step 3 in `budget-and-handoff.md`). It now measures 3704. No criterion and no decision changed |
+| D1 note cut from the durable slice for the 013 binding row | 001-research ran 12 iterations, 2 of them operator-added for a setup fix. D1 stands. D2's examples of an MCP-only capability, Chrome's `lighthouse_audit` and performance traces, were cut too (cut order step 5). It measures 3984. No criterion and no decision changed |
+| 013 judgment work ran on opus-medium subagents in one session | D4 names a second Claude account. The orchestrating session checked each subagent's edits instead |
 | Brief estimated about 30 referencing files outside mcp-tooling | `rg -l` counted 45 on 2026-11-21, several of them generated fixtures and benchmark reports; 003 carries the measured list |
 <!-- /ANCHOR:log -->

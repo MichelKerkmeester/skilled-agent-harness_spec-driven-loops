@@ -5,7 +5,7 @@ trigger_phrases:
   - "viewport emulation"
   - "device metrics override"
   - "mobile viewport testing cli"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Viewport Emulation
@@ -14,13 +14,13 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`bdg cdp Emulation.setDeviceMetricsOverride '{"width":375,"height":667,"deviceScaleFactor":2,"mobile":true}' 2>&1` switches the page to an emulated device viewport. Combine with screenshot capture for responsive validation.
+`bdg cdp Emulation.setDeviceMetricsOverride --params '{"width":375,"height":667,"deviceScaleFactor":2,"mobile":true}' 2>&1` switches the page to an emulated device viewport. Combine with screenshot capture for responsive validation.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The multi-viewport example script iterates desktop (1920x1080), laptop (1366x768), tablet (768x1024), and mobile (375x667, 414x896 with `mobile: true`) capturing per-viewport screenshots, metrics, and console logs. On the MCP path the equivalent tool is `resize_page`.
+The multi-viewport example script lists desktop (1920x1080), laptop (1366x768), tablet (768x1024) and mobile (375x667, 414x896 with `mobile: true`). It passes each viewport's JSON through `--params`, because bdg 0.6.10 rejects it as a second positional argument with `too many arguments` (see `examples/README.md` §3.3). On the MCP path the equivalent tool is `resize_page`.
 
 ---
 

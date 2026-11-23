@@ -125,6 +125,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 10 | 010-mcp-tooling-browser-pointers/ | Point the mcp-tooling modes' browser references at the hub | Complete |
 | 11 | 011-bdg-eval-port-note/ | Explain in the Chrome DevTools troubleshooting guide why bdg 0.6.10 `dom eval` fails with `Session target not found` off port 9222, with two fixes. mcp-chrome-devtools 1.0.27.0 (Level 1) | Complete |
 | 12 | 012-browser-hub-doc-topic/ | Give `/local-doc-alignment` an `mcp-browser-use` topic and run it with Devin lanes (Level 1) | Complete |
+| 13 | 013-fix-alignment-findings-for-browser-hub-docs/ | Fix every finding from 012's two alignment runs: hub docs and scripts against bdg 0.6.10 and Code Mode, plus the own-Chrome routing lift (Level 1) | Complete |
 
 ### Phase Transition Rules
 
@@ -148,6 +149,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 009-sk-code-browser-evidence | 010-mcp-tooling-browser-pointers | sk-code names the hub for frontend evidence, and RD-006 passes live | RD-006 `PASS 1/1` recorded in sk-code's benchmark reports |
 | 010-mcp-tooling-browser-pointers | 011-bdg-eval-port-note | No live mcp-tooling doc names a browser packet as a standalone skill | The stale-pointer grep in 010's spec.md prints 0, and `parent-skill-check.cjs .skilled/skills/mcp-tooling` exits 0 |
 | 011-bdg-eval-port-note | 012-browser-hub-doc-topic | The Chrome DevTools guide explains the bdg `dom eval` port failure | `rg -c 'Session target not found\|returnByValue'` on the guide prints 3 |
+| 012-browser-hub-doc-topic | 013-fix-alignment-findings-for-browser-hub-docs | Both alignment runs wrote a findings report for the browser hub | The doc run holds 91 findings and the skilled run 21 in their `findings.json` |
 <!-- /ANCHOR:phase-map -->
 
 ---

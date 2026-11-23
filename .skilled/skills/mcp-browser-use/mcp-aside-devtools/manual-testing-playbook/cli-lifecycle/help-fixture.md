@@ -1,7 +1,7 @@
 ---
 title: "ASD-002 -- Help fixture capture"
 description: "This scenario validates version-pinned command-surface capture for `ASD-002`. It focuses on saving `aside --help` output as a fixture and confirming the four documented subcommands."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ASD-002 -- Help fixture capture
@@ -16,7 +16,7 @@ This scenario captures the installed `aside` command surface as a fixture and as
 
 ### Why This Matters
 
-The Aside command surface is version-pinned evidence, and one known conflict (docs `-m provider/model` vs installed `--model`/`--provider`) can only be resolved per installed version. The fixture is the packet's authority for flag spellings; scripting flags from memory is a hard rule violation.
+The Aside command surface is version-pinned evidence. The model-flag spelling is one example: 1.26.626.1517 defines both `-m, --model` (which also accepts `provider/model`) and `-p, --provider`, and another version may differ. The fixture is the packet's authority for flag spellings; scripting flags from memory is a hard rule violation.
 
 ---
 

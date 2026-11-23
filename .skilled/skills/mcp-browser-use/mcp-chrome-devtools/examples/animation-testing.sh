@@ -59,7 +59,7 @@ echo "$METRICS" > "$OUTPUT_DIR/animation-metrics-${DATE_STAMP}.json"
 
 # Capture console logs (check for errors)
 echo "📝 Capturing console logs..."
-bdg console --list > "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json" 2>&1
+bdg console --list --json > "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json" 2>&1
 
 # Stop session
 echo "🛑 Stopping browser session..."
@@ -72,7 +72,7 @@ TASK_DURATION=$(echo "$METRICS" | jq '.result.metrics[] | select(.name=="TaskDur
 LAYOUT_DURATION=$(echo "$METRICS" | jq '.result.metrics[] | select(.name=="LayoutDuration") | .value' 2>/dev/null || echo "0")
 
 # Check for console errors
-CONSOLE_ERRORS=$(jq -r '.[] | select(.level=="error") | .text' "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json" 2>/dev/null || echo "")
+CONSOLE_ERRORS=$(jq -r '.messages[] | select(.type=="error") | .text' "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json" 2>/dev/null || echo "")
 
 # Generate report
 echo "📋 Generating performance report..."

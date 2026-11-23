@@ -153,7 +153,7 @@ Default `swe-2-max`. Switch per-dispatch with `--model <name>`; there is no head
 
 Curated families, alphabetical:
 
-- **DeepSeek**: `deepseek-v4-1-flash-high`, `deepseek-v4-1-flash-max`, `deepseek-v4-flash-max`.
+- **DeepSeek**: `deepseek-v4-1-flash-1017-max`, `deepseek-v4-1-flash-high`, `deepseek-v4-1-flash-max`, `deepseek-v4-flash-max`.
 - **Gemini**: `gemini-3-8-flash-high`. The uid spells the family with dashes while the Cursor scope spells the same model with dots.
 - **GLM-5.2**: `glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M.
 - **GLM-5.3**: `glm-5-3-flash-high`, `glm-5-3-flash-max`.

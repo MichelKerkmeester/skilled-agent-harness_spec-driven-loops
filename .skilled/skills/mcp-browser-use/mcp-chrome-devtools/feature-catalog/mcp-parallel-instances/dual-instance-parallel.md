@@ -1,11 +1,11 @@
 ---
 title: "Dual-Instance Parallel"
-description: "chrome_devtools_1 + chrome_devtools_2 via Promise.all — two isolated browsers running simultaneously."
+description: "chrome_devtools_1 and chrome_devtools_2: two isolated browsers driven one call after another from one call_tool_chain."
 trigger_phrases:
   - "parallel browser testing"
   - "chrome_devtools_2"
   - "compare production staging browsers"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Dual-Instance Parallel
@@ -14,13 +14,13 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) each run their own browser process, so a single `call_tool_chain()` can navigate both and capture both screenshots via `Promise.all` — e.g. production vs staging side by side. This is the capability the sequential-only `bdg` CLI cannot provide. The third manual, `chrome_devtools_live`, attaches to the user's own Chrome instead and is not part of this pattern (see `live-instance.md`).
+Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) each run their own browser process, so a single `call_tool_chain()` can navigate both and capture both screenshots, for example production and staging side by side. Write the calls as plain synchronous JavaScript. Code Mode runs the code in a plain function, so a top-level `await` fails. Each tool call blocks until it returns, so the calls run one after another and `Promise.all` adds no concurrency. Two live browsers in one run is what the single-session `bdg` CLI cannot provide. The third manual, `chrome_devtools_live`, attaches to the user's own Chrome instead and is not part of this pattern (see `live-instance.md`).
 
 ---
 
 ## 2. HOW IT WORKS
 
-Each instance is launched with `--isolated=true` so there are no session conflicts. `bdg` exposes one global `status`/`stop` lifecycle with no session selector, so genuine parallel browser control routes through the MCP instances (references/cdp-patterns.md §8 makes this explicit).
+Each instance is launched with `--isolated=true` so there are no session conflicts. `bdg` exposes one global `status`/`stop` lifecycle with no session selector, so work that needs two separate browsers routes through the MCP instances (references/cdp-patterns.md §8 makes this explicit).
 
 ---
 

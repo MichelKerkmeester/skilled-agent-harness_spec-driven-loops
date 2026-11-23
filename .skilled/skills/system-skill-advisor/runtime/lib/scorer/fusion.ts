@@ -615,8 +615,12 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
   // Browser/devtools inspection is a genuine chrome-devtools task even though
   // its verb ("inspect") reads as a read-only explainer. Lift it off the
   // explainer floor when the prompt carries devtools-specific vocabulary.
+  // Attaching to the operator's own Chrome is the same task, so the attach
+  // wording lifts too. It needs the attach verb: "my own Chrome" or
+  // "logged-in Chrome" alone also opens questions about browser settings and
+  // profiles, and a bare "signed-in dashboard" names a page, not a browser.
   if (skillId === 'mcp-browser-use'
-    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser))\b/.test(promptLower)) {
+    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser)|(attach|connect)(es|ed|ing)? (to |with )?my (own|signed[- ]in|logged[- ]in) chrome|chrome[_ -]?devtools[_ -]live)\b/.test(promptLower)) {
     return true;
   }
   if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {

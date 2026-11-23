@@ -7,14 +7,14 @@ trigger_phrases:
   - "aside page.on request"
   - "aside har"
 last_updated: "2026-11-22"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Console and Network Capture (DevTools parity)
 
 ## 1. OVERVIEW
 
-Chrome DevTools' Console list and Network panel map onto Playwright event listeners in the repl. Earlier research flagged console/network capture as UNKNOWN because Aside exposes no dedicated `console`/`network` tool. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) **resolves the pattern**: `page` is a real Playwright `Page`, so `page.on('console', …)`, `page.on('request', …)`, `page.on('response', …)`, and `page.on('requestfinished', …)` are the API-grounded capture paths. What remains open is a live-executed result-shape fixture — running these needs a bound, authorized session, so the matching playbook scenario is SKIP-valid until then (superseding the fail-closed framing of ASD-012/ASD-013 with a documented pattern).
+Chrome DevTools' Console list and Network panel map onto Playwright event listeners in the repl. Earlier research flagged console/network capture as UNKNOWN because Aside exposes no dedicated `console`/`network` tool. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) suggested Playwright event listeners: `page.on('console', …)`, `page.on('request', …)`, `page.on('response', …)` and `page.on('requestfinished', …)`. The live result below shows Aside 1.26.626.1517 rejects all four, so neither console nor network capture works on this version. The guarded probes ASD-012 and ASD-013 report each listener as unsupported.
 
 **Live result on Aside 1.26.626.1517 (2026-11-22, ASD-012, ASD-013 and ASD-018).** `page.on` accepts only close, crash, dialog, domcontentloaded, download, filechooser, frameattached, framedetached, framenavigated, load and popup. It throws for `console`, `request`, `response` and `requestfinished`, so neither capture works through these listeners on this version. The error points to `page.console.logs()` for console output; that call has not been run. Treat the patterns below as the shape to retry when a later version accepts the events.
 
@@ -24,7 +24,7 @@ Capability class: READ-ONLY (listeners observe; they do not mutate). Honest gap:
 
 ## 2. HOW IT WORKS
 
-Register listeners BEFORE the navigation/action that produces the events, collect into a persistent array, then `console.log` the collected shape. Because the repl scope persists across calls, use fresh variable names each call.
+The code below is the shape to retry when a later version accepts these events. On 1.26.626.1517 the first `page.on` call throws. Register listeners BEFORE the navigation/action that produces the events, collect into a persistent array, then `console.log` the collected shape. Because the repl scope persists across calls, use fresh variable names each call.
 
 ```js
 // Console capture (bdg console --list analog)
@@ -50,7 +50,7 @@ console.log(JSON.stringify(net.slice(0, 50)));
 // console.log((await resp.text()).slice(0, 500));
 ```
 
-Constraints: needs a bound tab. Redact cookies, credentials, and request/response headers and bodies from saved evidence. Never claim parity with a dedicated console tool or a native HAR file — the honest wording is "Playwright event capture, HAR-equivalent assembled by the caller". Evaluate/argument edge cases apply; record the exact listener form in any fixture.
+Constraints: needs a bound tab and a version whose `page.on` accepts the events. Redact cookies, credentials, and request/response headers and bodies from saved evidence. Never claim parity with a dedicated console tool or a native HAR file. The honest wording is "Playwright event capture, HAR-equivalent assembled by the caller". Evaluate/argument edge cases apply; record the exact listener form in any fixture.
 
 ---
 

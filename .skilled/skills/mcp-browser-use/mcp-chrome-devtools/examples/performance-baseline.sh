@@ -55,7 +55,7 @@ STYLESHEET_COUNT=$(bdg dom eval "document.styleSheets.length" 2>&1)
 
 # Capture console logs
 echo "📝 Capturing console logs..."
-bdg console --list > "$OUTPUT_DIR/console-${DATE_STAMP}.json" 2>&1
+bdg console --list --json > "$OUTPUT_DIR/console-${DATE_STAMP}.json" 2>&1
 
 # Stop session
 echo "🛑 Stopping browser session..."
@@ -89,7 +89,7 @@ Network Summary:
   Page Load Time: $(jq '[.log.entries[].time] | add' "$OUTPUT_DIR/network-${DATE_STAMP}.har")ms
 
 Console Errors:
-$(jq -r '.[] | select(.level=="error") | "  [\(.level)] \(.text)"' "$OUTPUT_DIR/console-${DATE_STAMP}.json" 2>/dev/null || echo "  No errors")
+$(jq -r '.messages[] | select(.type=="error") | "  [\(.type)] \(.text)"' "$OUTPUT_DIR/console-${DATE_STAMP}.json" 2>/dev/null || echo "  No errors")
 EOF
 
 # Display summary

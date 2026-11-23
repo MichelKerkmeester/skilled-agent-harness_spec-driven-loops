@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside concurrency"
 importance_tier: normal
 contextType: reference
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Aside Session Management
@@ -34,7 +34,7 @@ Use this reference to identify the active state layer, permission boundary, and 
 |---|---|---|---|
 | Agent-task continuation | `--session <id>` on `aside` / `aside exec` | Account-scoped, persists across CLI invocations | Transcripts live in the task folder; generated files persist; tasks can pause for input/approval/notification and resume |
 | REPL persistence | `aside repl` / the MCP `repl` tool | While the owning process is alive | Persistent JavaScript context (variables survive between evaluations in one process) |
-| Browser-profile binding | Aside browser task/profile | Bound per task | Browser operations require a binding; a fresh `aside mcp` process is transport-healthy but browser-unbound |
+| Browser-profile binding | Aside browser task/profile | Bound per task | Browser operations require a binding; on 1.26.626.1517 with the app running and signed in, a fresh `aside mcp` process is bound, while earlier versions left it browser-unbound |
 
 Do not mix the layers: `--session` continues an agent task; it does not select an MCP browser target. The MCP surface exposes no session selector.
 

@@ -1,7 +1,7 @@
 ---
 title: "ASD-017 -- Full-page screenshot + PDF capture"
 description: "This scenario validates Chrome-DevTools visual-capture parity for `ASD-017`: page.screenshot({ fullPage }) and page.pdf through the aside REPL, each verified by artifact magic bytes, with a SKIP-valid path when no bound session exists."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # ASD-017 -- Full-page screenshot + PDF capture
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `ASD-017` and confirm th
 ### Expected
 
 - Step 2 prints one JSON line with `png.size` > 0, `png.magic` equal to `89504e47`, `pdf.size` > 0 and `pdf.head` equal to `%PDF`; no error line, no `[WARN] Use <session>/tmp instead of /tmp` line and no `escapes the session directory` text. Exit 0 alone is not a pass signal, because an `aside repl` error still exits 0.
-- The `./artifacts/` PDF path is the form the REPL tool description documents; it has not yet passed a live run on Aside 1.26.626.1517, so record the outcome as installed-version evidence.
+- The `./artifacts/` PDF path is the form the REPL tool description documents; it holds on Aside 1.26.626.1517, where ASD-017 verified both artifacts by magic bytes.
 
 ### Evidence
 

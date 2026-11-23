@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside capabilities"
   - "aside chrome devtools parity"
 last_updated: "2026-07-17"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # mcp-aside-devtools: Feature Catalog
@@ -55,7 +55,7 @@ Outcome-oriented browser-agent work: `aside "<task>"` and `aside exec` run natur
 | Explicit execution | Task execution with provider/model controls | MUTATING (browser-side) | `aside exec ...` |
 | Account selection | Run a direct task under a chosen account | MUTATING (browser-side) | `aside --account <id> "<task>"` |
 
-See [`task/agent-tasks.md`](task/agent-tasks.md) for boundary rules, the pause/resume approval model, and the unresolved model-flag spelling.
+See [`task/agent-tasks.md`](task/agent-tasks.md) for boundary rules, the pause/resume approval model, and the model-flag spelling.
 
 ---
 
@@ -66,7 +66,7 @@ Deterministic proof steps: `aside repl "<JavaScript>"` keeps a persistent Playwr
 | Feature | One-line description | Class | Canonical invocation |
 |---|---|---|---|
 | Deterministic browser steps | Persistent ES2023+/Playwright REPL: `openTab(url)`, `snapshot(page)` | MUTATING (browser-side) | `aside repl "<JavaScript>"` |
-| Evidence capture | Screenshot/PDF artifacts verified by PNG magic bytes, not tool response | MUTATING (writes artifacts) | `bash examples/repl-evidence-capture.sh <url> <dir>` |
+| Evidence capture | Screenshot/PDF artifacts verified by PNG magic bytes, not tool response | MUTATING (writes artifacts) | One `aside repl "..."` evaluation that opens the tab, writes `./tmp/<name>.png` and reads it back with `fs` (ASD-007) |
 
 See [`repl/repl-evidence-capture.md`](repl/repl-evidence-capture.md) for the helper inventory and the independent-artifact-verification rule.
 
@@ -113,7 +113,7 @@ See [`troubleshoot/troubleshooting-recipes.md`](troubleshoot/troubleshooting-rec
 
 ## 7. DEVTOOLS PARITY
 
-A dedicated family that mirrors the Chrome DevTools capability surface (`mcp-chrome-devtools`) through the one lane Aside actually exposes for structured browser work: the Playwright `page` API inside `aside repl`. The discovery fixture ([`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)) proves `page` is a real Playwright `Page`, so DOM, screenshot, console, network, cookie, storage, performance, and navigation capabilities are all reachable — expressed as Playwright, not as typed `aside dom/console/network` subcommands (which do not exist). Two capabilities have honest gaps: **no native HAR export** (assemble a HAR-equivalent from `page.on` events) and **no built-in Lighthouse audit** (Performance-API timing only; Lighthouse-parity needs external tooling).
+A dedicated family that mirrors the Chrome DevTools capability surface (`mcp-chrome-devtools`) through the one lane Aside actually exposes for structured browser work: the Playwright `page` API inside `aside repl`. The discovery fixture ([`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)) proves `page` is a real Playwright `Page`, so DOM, screenshot, storage, performance, and navigation capabilities are reachable; console, network and context-cookie capture are gaps on 1.26.626.1517 — expressed as Playwright, not as typed `aside dom/console/network` subcommands (which do not exist). Two capabilities have honest gaps: **no native HAR export** (assemble a HAR-equivalent from `page.on` events) and **no built-in Lighthouse audit** (Performance-API timing only; Lighthouse-parity needs external tooling).
 
 | Feature | One-line description | Class | Canonical repl pattern |
 |---|---|---|---|

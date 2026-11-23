@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside mcp handshake failed"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Aside Troubleshooting Guide
@@ -63,7 +63,7 @@ aside account status 2>&1
 | `UNSUPPORTED_PLATFORM` | Installer rejects non-macOS | macOS (Darwin) arm64/x64 only; Linux and Windows are rejected. Escalate — no workaround |
 | `SIGNED_OUT` | Sign-out warning; built-in models fail closed | BYO provider keys keep working; built-in models need re-sign-in. Recover with `aside account use <id>` or per-run `--account <id>` (tasks/`exec` only) |
 | `ACCOUNT_AMBIGUOUS` | Multiple accounts, unclear default | `aside account list` → `aside account status [id]` → `aside account use <id>`; confirm with the operator |
-| `PROFILE_UNBOUND` | `This task is not bound to a browser profile. Open it in Aside browser and try again.` | Not an auth failure. A fresh `aside mcp` process is browser-unbound by design. Supported binding procedure is UNKNOWN (undocumented) — surface the error verbatim and escalate |
+| `PROFILE_UNBOUND` | `This task is not bound to a browser profile. Open it in Aside browser and try again.` | Not an auth failure. Earlier versions left a fresh `aside mcp` process browser-unbound. On 1.26.626.1517 with the app running and signed in, a fresh process is bound. Supported binding procedure is UNKNOWN (undocumented). Surface the error verbatim and escalate |
 | `PROFILE_MISMATCH` | Browser operation blocked on profile verification | Product keeps work tied to the originating profile; stop on ambiguity/mismatch rather than switching profiles |
 | `DAEMON_UNAVAILABLE` | MCP child spawns but reports daemon/browser outage on stderr | Distinguish from a dead stdio child: respawning the child will not help. Check the Aside app/daemon is running; escalate if it persists |
 | `MCP_HANDSHAKE_FAILED` | No `initialize` response over stdio | Capture stderr; verify `aside mcp --help` works; check version; close and respawn once |

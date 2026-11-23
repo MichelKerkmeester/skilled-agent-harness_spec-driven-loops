@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg cdp command"
   - "raw cdp method"
   - "execute cdp with parameters"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Raw CDP Execution
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`bdg cdp Page.reload 2>&1` executes a CDP method directly; `bdg cdp Network.setCookie '{"name":"x","value":"y"}' 2>&1` passes JSON parameters. This is the full-surface escape hatch beyond the helper commands — the CLI reaches 300+ methods across 53 domains.
+`bdg cdp Page.reload 2>&1` executes a CDP method directly; `bdg cdp Network.setCookie --params '{"name":"x","value":"y"}' 2>&1` passes JSON parameters. This is the full-surface escape hatch beyond the helper commands — the CLI reaches 300+ methods across 53 domains.
 
 ---
 

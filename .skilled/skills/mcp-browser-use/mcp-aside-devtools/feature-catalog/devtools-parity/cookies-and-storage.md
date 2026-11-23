@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside sessionStorage"
   - "aside context cookies"
 last_updated: "2026-11-22"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Cookies and Web Storage (DevTools parity)
@@ -55,7 +55,7 @@ Constraints: needs a bound tab. Aside has no cross-context isolation flag (singl
 
 | File | Layer | Role |
 |---|---|---|
-| `references/discovery-fixture-2026-07-16.json` | Fixture | Proves `page.context()` (Playwright BrowserContext) is reachable |
+| `references/discovery-fixture-2026-07-16.json` | Fixture | Proves `page` is a Playwright `Page`; ASD-019 shows `page.context` is undefined on 1.26.626.1517 |
 | `references/aside-online-research-2026-07-17.md` | Reference | §5 confirms saved passwords stay hidden from the agent |
 | `references/session-management.md` | Shared | Single-writer-per-profile posture (no context isolation) |
 

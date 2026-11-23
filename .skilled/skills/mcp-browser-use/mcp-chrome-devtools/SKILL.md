@@ -107,7 +107,7 @@ Common MCP tools include navigation, screenshots, console messages, viewport res
 
 - Already using Code Mode for other tools (external services, Figma, etc.)
 - Need to chain browser operations with other MCP tools
-- **Parallel browser testing** - compare multiple sites/viewports simultaneously
+- **Parallel browser testing** - compare multiple sites or viewports in isolated browsers, driven one call after another from one `call_tool_chain()`
 - Complex multi-step automation in TypeScript
 - Type-safe tool invocation required
 
@@ -183,7 +183,7 @@ Quality targets are fast session startup, quick screenshot/console capture, and 
 This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
 
 Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Gate 2**: Skill routing via `node .skilled/bin/skill-advisor.cjs advisor_recommend`. `skill_advisor.py` is only the degraded fallback when the advisor daemon is unreachable
 - **Tool Routing**: Per AGENTS.md Section 5 decision tree
 - **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
 
@@ -223,7 +223,7 @@ Scripts: `scripts/install.sh` and `scripts/doctor.sh`, both documented in `scrip
 
 Examples: [`examples/README.md`](examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
-Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — the full CLI + MCP capability inventory (30 features across 7 domains), with per-feature files per domain.
+Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md): the full CLI + MCP capability inventory (31 features across 7 domains), with per-feature files per domain.
 
 Server pointers: [`mcp-servers/bdg-cli/README.md`](mcp-servers/bdg-cli/README.md) (CLI install pointer) and [`mcp-servers/chrome-devtools-mcp/README.md`](mcp-servers/chrome-devtools-mcp/README.md) (the Code Mode server behind the manuals) — nothing vendored.
 

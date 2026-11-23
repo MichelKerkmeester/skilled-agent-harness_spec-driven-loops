@@ -87,9 +87,9 @@ Discovery through Code Mode is mandatory before any call:
 ```typescript
 // Live-confirmed dotted discovery names (2026-07-16 fixture):
 //   mobbin.mobbin.search_screens · mobbin.mobbin.search_flows · mobbin.mobbin.search_sections
-const all = await list_tools();
+const all = list_tools();
 // MANDATORY per session: confirm the exact callable + schema before relying on any name
-const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
+const info = tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 ```
 
 Live discovery on 2026-07-16 **CONFIRMED both the dotted discovery names and the callable form** (`references/discovery-fixture-2026-07-16.json`). The convention-derived prediction held exactly.
@@ -121,7 +121,7 @@ Mandatory discovery-first sequence: `list_tools()` or `search_tools({ task_descr
 ```typescript
 call_tool_chain({
   code: `
-    const result = await mobbin.mobbin_search_screens({
+    const result = mobbin.mobbin_search_screens({
       query: "iOS banking app onboarding identity verification",
       platform: "ios",
       limit: 5
