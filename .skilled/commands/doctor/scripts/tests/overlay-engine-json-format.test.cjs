@@ -221,3 +221,26 @@ test('an equal set value in bytes the engine did not write keeps its own layout'
   assert.equal(readDoc(fixture), seedBytes);
   assert.equal(fixture.run(['status']).code, 0);
 });
+
+test('the indent unit is the shallowest indent, even when the first indented line sits deeper', () => {
+  const engine = require('../overlay-engine.cjs');
+  const text = '{"x": {\n    "y": 1\n  },\n  "z": 1\n}\n';
+  const spec = {
+    style: { indent: 2, primitiveArrays: 'multiline' },
+    operations: [{ op: 'set', path: ['z'], value: { a: [1, { b: 2 }] } }],
+  };
+  const output = engine.applyJsonOperations(text, spec, { canReplaceExisting: true });
+  const value = JSON.stringify({ a: [1, { b: 2 }] }, null, '  ').split('\n').join('\n  ');
+  assert.equal(output, `{"x": {\n    "y": 1\n  },\n  "z": ${value}\n}\n`);
+});
+
+test('a file with mixed line endings gets the ending most of its lines use', () => {
+  const engine = require('../overlay-engine.cjs');
+  const text = '{\r\n  "x": 1,\n  "z": 2\n}\n';
+  const spec = {
+    style: { indent: 2, primitiveArrays: 'multiline' },
+    operations: [{ op: 'set', path: ['z'], value: { a: 1 } }],
+  };
+  const output = engine.applyJsonOperations(text, spec, { canReplaceExisting: true });
+  assert.equal(output, '{\r\n  "x": 1,\n  "z": {\n    "a": 1\n  }\n}\n');
+});

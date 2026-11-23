@@ -1209,17 +1209,22 @@ function lineIndent(text, offset) {
 
 /**
  * How the document is laid out, so a written value matches the lines around it:
- * the indent unit of its first indented line, and CRLF line endings when the
- * file already uses them. A document with no indented line falls back to the
- * entry set's `style.indent`, then to two spaces.
+ * the shallowest indent any line carries, which is one level even when the first
+ * indented line opens deeper, and the line ending most of its lines use. A
+ * document with no indented line falls back to the entry set's `style.indent`,
+ * then to two spaces.
  * @param {string} text Document text.
  * @param {{indent?: number|string}} style Entry-set style.
  * @returns {{unit: string, eol: string}} Indent unit and line ending.
  */
 function documentLayout(text, style) {
-  const eol = text.includes('\r\n') ? '\r\n' : '\n';
-  const detected = /\n([ \t]+)[^ \t\r\n]/.exec(text);
-  if (detected) return { unit: detected[1], eol };
+  const crlf = (text.match(/\r\n/g) || []).length;
+  const eol = crlf > (text.match(/\n/g) || []).length - crlf ? '\r\n' : '\n';
+  let detected = null;
+  for (const match of text.matchAll(/\n([ \t]+)[^ \t\r\n]/g)) {
+    if (detected === null || match[1].length < detected.length) detected = match[1];
+  }
+  if (detected) return { unit: detected, eol };
   if (typeof style.indent === 'string' && /^[ \t]+$/.test(style.indent)) return { unit: style.indent, eol };
   if (Number.isInteger(style.indent) && style.indent > 0) return { unit: ' '.repeat(style.indent), eol };
   return { unit: '  ', eol };
@@ -1264,7 +1269,10 @@ function serializeValue(value, indent, style) {
  * Whether the bytes at a value that already equals the wanted value are the
  * ones an earlier engine wrote flush-left, because it read no indent for a
  * value that starts after its key. Only those bytes are rewritten at the value's
- * depth; any other layout of an equal value may be upstream's and stays.
+ * depth; any other layout of an equal value may be upstream's and stays. A
+ * record does not prove the engine wrote those bytes, since a set whose value
+ * already matched upstream is recorded too, so upstream bytes in exactly that
+ * flush-left shape would also move. No formatter writes a value that way.
  * @param {string} text Document text.
  * @param {{start: number, end: number}} node The value's node.
  * @param {*} value The wanted value.
