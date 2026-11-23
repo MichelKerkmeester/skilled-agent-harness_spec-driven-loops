@@ -40,6 +40,7 @@ _memory:
 | Q004 | Mark option A recommended in the brief and sample F6 four more times. | Not stated. | None | T010, render.ts |
 | Q005 | Merge 013 to main and push once it is settled, then remove worktree 527. | Not stated. | None | worktree 527 |
 | Q006 | Keep the brief change, record SC-002 as unmet with the eight-run evidence, mark the packet Complete and merge it to main. | Not stated. | None | spec.md, implementation-summary.md, render.ts |
+| Q007 | When the operator typed the deep-loop command, the brief prints plain (ask) with no offer options. | Not stated. | None | REQ-006, T011 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -164,6 +165,25 @@ Leave 013 open
 Answer:
 ```text
 Keep, merge, SC-002 unmet (Recommended)
+```
+
+### Q007
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017NgHjmF6m34GboesBNRQYx:1 -->
+
+Question:
+```text
+When you type the command yourself, for example `/deep:review:confirm the auth module`, what should the hint show?
+```
+
+Options:
+```text
+Plain (ask), no options (Recommended)
+No command in the hint
+```
+
+Answer:
+```text
+Plain (ask), no options (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

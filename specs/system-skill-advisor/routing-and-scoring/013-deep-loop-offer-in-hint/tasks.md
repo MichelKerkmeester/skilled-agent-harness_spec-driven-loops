@@ -61,6 +61,15 @@ Shell names used below. `ADV` is `.skilled/skills/system-skill-advisor/runtime`.
 - [x] T008 Sample F6 four times in a behaviour arena built from the committed tree (`scratch/behaviour/F6-1.md` to `F6-4.md`). Verify: each file holds the run's prompt, cost and final answer, and `implementation-summary.md` states how many of four asked the three-option offer. Observed 2026-11-23 at `c4198c6f8cc`: four files written, and 0 of 4 sessions asked the full offer (`implementation-summary.md` Verification).
 - [x] T010 Mark option A `(Recommended)` in the brief and sample F6 four more times (`$ADV/lib/render.ts`, `scratch/behaviour/F6-5.md` to `F6-8.md`). Verify: the suite reports 0 failed, `BRIEF` prints `A /deep:review:auto (Recommended)`, and four more files are written. Observed 2026-11-23 at `9dcaaea6b8f`: 2624 passed, the head prints the marker, and 0 of 4 asked the full offer.
 - [x] T009 Validate the packet (`specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint`). Verify: `validate.sh <packet> --strict` prints `RESULT: PASSED`. Observed 2026-11-23: `RESULT: PASSED (errors=0 warnings=0)`.
+
+### Fresh review round
+
+Reopened 2026-11-23 after a fresh review. Built in worktree `worktrees/529-deep-loop-offer-gate-fixes`.
+
+- [ ] T011 Print plain `(ask)` with no options when the operator typed the deep-loop command (`$ADV/lib/render.ts` `commandLabel`, with the typed signal from the recommend path). Verify: `BRIEF` with `/deep:review:confirm the auth module` prints `/deep:review (ask) ` and no `A ` text.
+- [ ] T012 Accept the colon form only for `/deep:*` in the head-length test, and add an ambiguous-head golden case and a typed-command golden case (`$ADV/tests/command-head-length.vitest.ts`, `$ADV/tests/command-brief-golden.vitest.ts`). Verify: `npx vitest run` in `$ADV` reports 0 failed, and each new case fails with its rule reverted.
+- [ ] T013 State the eight-run result, quote the final head and record the Pi hand check (`implementation-summary.md`). Verify: `rg -n 'now learns' implementation-summary.md` prints nothing.
+- [ ] T014 Validate the packet (`specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint`). Verify: `validate.sh <packet> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,7 +78,7 @@ Shell names used below. `ADV` is `.skilled/skills/system-skill-advisor/runtime`.
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [x] All tasks marked `[x]`. Observed: T001 to T010.
+- [ ] All tasks marked `[x]`. Reopened: T011 to T014 are open.
 - [x] No `[B]` blocked tasks remaining. Observed: none.
 - [x] Manual verification passed: four F6 runs recorded under `scratch/behaviour/`. Observed: eight runs, `F6-1.md` to `F6-8.md`. SC-002 is unmet, and the operator closed the packet with that limitation recorded.
 <!-- /ANCHOR:completion -->

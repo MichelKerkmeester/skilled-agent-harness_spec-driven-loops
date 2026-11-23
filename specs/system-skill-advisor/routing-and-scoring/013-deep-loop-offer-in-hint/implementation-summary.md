@@ -8,16 +8,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint"
-    last_updated_at: "2026-11-23T17:59:06Z"
+    last_updated_at: "2026-11-23T18:40:47Z"
     last_updated_by: "generate-context"
-    recent_action: "Marked the packet Complete with SC-002 unmet as accepted"
-    next_safe_action: "None; the packet is closed"
+    recent_action: "Reopened the packet with the typed-command hint fix planned"
+    next_safe_action: "Wait for the operator to approve the fresh-review plan, then run T011"
     packet_purpose: "Purpose: A session that sees a `/deep:research` or `/deep:review` command with policy `ask` in the brief can ask the three-option offer without opening the command doc first."
-    blockers: []
+    blockers:
+      - "Plan approval from the operator"
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md"
+      - "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md"
       - "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
     session_dedup:
       fingerprint: "sha256:4ce41e94d57837aac028f1f20c5a6f31de0f5d6ca9ea2196cb032854f3d6a3ed"
       session_id: "scaffold-013-deep-loop-offer-in-hint"
@@ -25,11 +25,11 @@ _memory:
     session_ref:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
-      workspace: "/Users/michelkerkmeester/worktrees/public/527-deep-loop-offer-in-hint"
-      savedAt: "2026-11-23T17:59:06Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/529-deep-loop-offer-gate-fixes"
+      savedAt: "2026-11-23T18:40:47Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-deep-loop-offer-in-hint |
-| **Completed** | 2026-11-23, with SC-002 unmet as the operator accepted |
+| **Completed** | Reopened 2026-11-23 after a fresh review |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 

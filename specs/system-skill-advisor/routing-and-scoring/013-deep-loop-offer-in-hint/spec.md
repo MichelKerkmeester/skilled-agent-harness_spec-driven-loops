@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-23 |
 | **Branch** | `worktrees/527-deep-loop-offer-in-hint` |
 <!-- /ANCHOR:metadata -->
@@ -101,6 +101,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|---------------------|
 | REQ-004 | The longer head still fits the default token cap with its companion line. | A test renders a `/deep:review` head with a `/doctor:deep-loop` companion at the default cap and expects both lines. |
 | REQ-005 | F6 is sampled four times after the change and the rate is recorded. | `implementation-summary.md` states how many of four F6 sessions asked the three-option offer, with each run's file under `scratch/behaviour/`. |
+| REQ-006 | A command the operator typed shows no offer options. For `/deep:review:confirm the auth module` and `/deep:research:auto vector index compaction` the brief prints `/deep:review (ask)` and `/deep:research (ask)` with no `A ` option text. | The prompt hook prints those heads, and a golden test pins each. |
+| REQ-007 | The tests pin the options to the deep-loop commands only. The head-length test accepts the colon form for `/deep:*` alone, and a golden test covers the offer in an ambiguous two-skill head. | Both tests fail when the options leak onto a non-deep `ask` command or drop out of the ambiguous head. |
+| REQ-008 | The packet says what was measured. `implementation-summary.md` states the eight-run result where it claimed sessions learn the options, quotes the final head, and records whether the Pi hand check ran. | `rg -n 'now learns' implementation-summary.md` prints nothing. |
 <!-- /ANCHOR:requirements -->
 
 ---
