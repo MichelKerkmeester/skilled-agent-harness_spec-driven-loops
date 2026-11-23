@@ -83,7 +83,7 @@ This contract is your instruction set. The research target is the bound spec_fol
 
 ## 3. MODE ROUTING
 
-0. When no `:auto` or `:confirm` suffix is attached, the operator did not type this command, and either a brief named it with policy `ask` or no policy or the request asks for the loop itself, compose and ask the offer in the presentation contract's "Offer From an Advisor Brief" section before anything else. A missing advisor policy counts as `ask`. After a yes, run it with the `:auto` suffix, the composed flags and the Gate 3 answer as its spec folder.
+0. When no `:auto` or `:confirm` suffix is attached, the operator did not type this command, and either a brief named it with policy `ask` or no policy or the request asks for the loop itself, compose and ask the offer in the presentation contract's "Offer From an Advisor Brief" section before anything else. A missing advisor policy counts as `ask`. The offer is one question, asked in the same call as the Gate 3 spec folder question, with three options: A) run the composed invocation with the `:auto` suffix and the Gate 3 answer as its spec folder, marked recommended, B) step through setup with `/deep:research:confirm`, C) no loop, an answer in one pass. A composed command shown for approval without these three options is not the offer. After A, run it with the `:auto` suffix, the composed flags and the Gate 3 answer as its spec folder.
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat every flag in the Workflow Flag Surface table below as a workflow input, not an execution mode. The table is the only list of flags.
 3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, bind runtime YAML placeholders and load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. Setup does not write `{artifact_dir}/deep-research-config.json`: the workflow writes it after any restart archive, in `step_create_config`, or in `step_fanout_root_config` before any lineage spawns on a fan-out run.
@@ -97,7 +97,8 @@ This contract is your instruction set. The research target is the bound spec_fol
 
 The argument hint names the invocation shape; the whole flag surface is here. Every flag below
 is a workflow input, never an execution mode, and the presentation asset owns how each one binds
-into `config`.
+into `config`. When the operator did not type this command, a flag you compose from the request
+goes into option A of the offer in step 0 of MODE ROUTING and is never proposed on its own.
 
 | Flag | Value | Effect |
 |------|-------|--------|
