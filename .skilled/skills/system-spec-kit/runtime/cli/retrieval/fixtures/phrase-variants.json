@@ -1,5 +1,5 @@
 {
-  "manifestHash": "48a77b3baf95f60dede19abcafe432bc8f09f68e2f8e07e0276e85b0d350bc59",
+  "manifestHash": "3deef0ecc5a4c5c6051d7b6290d9ef80c7deb63ec038bd0c7e9a0f3c80d20b25",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21676,6 +21676,9 @@
     ],
     "claude code review prompt template": [
       "claude code review prompt template"
+    ],
+    "claude code review your answers": [
+      "claude code review your answers"
     ],
     "claude code session handover on by default": [
       "claude code session handover on by default"
@@ -55078,6 +55081,9 @@
     ],
     "front proxy utf8 frame corruption": [
       "front proxy utf8 frame corruption"
+    ],
+    "frontend completion browser evidence rule": [
+      "frontend completion browser evidence rule"
     ],
     "frontend content": [
       "frontend content"
@@ -111660,6 +111666,9 @@
     "sk code 3 12 3 0": [
       "sk-code 3.12.3.0"
     ],
+    "sk code 3 12 4 0": [
+      "sk-code 3.12.4.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -113907,6 +113916,9 @@
     "sk code v3 12 3 0": [
       "sk-code v3.12.3.0"
     ],
+    "sk code v3 12 4 0": [
+      "sk-code v3.12.4.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -115127,6 +115139,9 @@
     "sk create manual testing playbook 1 3 1 0": [
       "sk-create-manual-testing-playbook 1.3.1.0"
     ],
+    "sk create manual testing playbook 1 3 2 0": [
+      "sk-create-manual-testing-playbook 1.3.2.0"
+    ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
     ],
@@ -115201,6 +115216,9 @@
     ],
     "sk create manual testing playbook v1 3 1 0": [
       "sk-create-manual-testing-playbook v1.3.1.0"
+    ],
+    "sk create manual testing playbook v1 3 2 0": [
+      "sk-create-manual-testing-playbook v1.3.2.0"
     ],
     "sk create quality control": [
       "sk create quality control"

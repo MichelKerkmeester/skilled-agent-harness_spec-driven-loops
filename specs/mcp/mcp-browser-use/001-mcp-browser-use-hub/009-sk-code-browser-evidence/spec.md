@@ -95,6 +95,7 @@ Before the change, the row named no tool and the versions were the ones shown ab
 - sk-design: unchanged.
 - Amended 2026-11-22 by the operator ("Fix" the four follow-ups): `sk-code/SKILL.md:58` now names the hub, `web-performance-and-loading.md` asks a page-speed claim for two measured numbers, cli-orca hands non-Orca browser work to the hub, and the 11 dead `mcp-tooling/mcp-chrome-devtools` paths in the out-of-repo `local-webflow` skill point at `mcp-browser-use/mcp-chrome-devtools`. These are now in scope.
 - A live browser run: not made. Section 7 names it as open.
+- Amended 2026-11-23 by the operator ("create a manual testing conversation scenario for that"): the conversation scenario RD-006 in sk-code's playbook, `routing-disambiguation/frontend-browser-evidence-conversation.md`, its row and index entry in the playbook root (1.5.22.0 to 1.5.23.0), and live runs of it. The operator later approved two fixes so the browser step reaches a small frontend change: a checklist line in `frontend-practice.md` and an ALWAYS rule in `SKILL.md`. On 2026-11-23 the operator also approved a fix to sk-doc's shared conversation runner, which missed Claude Code 2.1.330's review screen. Then, after a run's Bladebro Chrome crashed in a loop, the operator asked for a fix "so that won't happen again": the runner passes its sandbox mode to scenarios, and RD-006 skips inside the sandbox and stops the browser daemons it started. The operator decided that an Aside call made without being asked fails the scenario, because Aside runs on the signed-in account. The §5 row still lists Aside as an allowed mode, and section 7 names that wording as open.
 
 ### Files to Change
 
@@ -109,6 +110,13 @@ Before the change, the row named no tool and the versions were the ones shown ab
 | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md` | Modify | Phase map row 9, and the handoff row from 008 to 009 |
 | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md` | Modify | Binding row for 009 |
 | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/` | Create | This packet |
+| `.skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md` | Create | Conversation scenario RD-006, added 2026-11-23 |
+| `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md` | Modify | RD-006 row, index entry and scenario count; version 1.5.22.0 to 1.5.23.0 |
+| `.skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md` | Modify | Browser step in the pre-completion checklist; 1.0.5.0 to 1.0.6.0 |
+| `.skilled/skills/sk-code/SKILL.md`, `description.json`, `mode-registry.json`, `hub-router.json`, `changelog/v3.12.4.0.md` | Modify, create | ALWAYS rule pointing completion reports at the §5 row; 3.12.3.0 to 3.12.4.0 |
+| `.skilled/skills/sk-code/benchmark/reports/` | Create | Two recorded RD-006 runs |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` and its test and fixture | Modify, create | Confirms Claude Code's newer review screen; passes `CONVERSATION_SANDBOX` to setup and checks |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md`, `changelog/v1.3.2.0.md`, `references/conversation-scenarios.md` | Modify, create | 1.3.1.0 to 1.3.2.0; reference 1.0.6.0 to 1.0.7.0 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -152,7 +160,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |------|------|--------|------------|
 | Dependency | The `mcp-browser-use` hub and at least one installed browser mode | With no mode installed, no rendered-page evidence is gathered | The row allows NOT RUN with the reason, so the gap shows in the report |
 | Risk | The row could be read as a request to open a signed-in browser | A user's signed-in session could be used without consent | The row says the agent uses a browser session it owns, and opens the user's signed-in browser only when the user asks |
-| Risk | No live browser run was made, so the row's browser steps have not run | A step could fail on a real page | Section 7 names the open run. The first live run would confirm the steps |
+| Risk | The row sits in `ROUTER.md` §5, which the compiled frontend route does not load | Frontend work is reported done without browser evidence or NOT RUN | The ALWAYS rule in `SKILL.md` carries the step, and RD-006 checks it live |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -160,7 +168,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Has the new row's browser step run on a real page? No. No live browser run was made, so the first run is still open.
+- Has the new row's browser step run on a real page? The scenario RD-006 ran live on 2026-11-23 and FAILED. Claude Code loaded sk-code, took the compiled route, read only the frontend references, changed the color and reported it done without opening a browser or writing NOT RUN. The row lives in `ROUTER.md` §5, which that route never shows the agent. The operator approved two fixes. A checklist line in `frontend-practice.md` did not help, because the subject skipped the frontend guidance for a one-value change (run 5). An ALWAYS rule in `SKILL.md` reached it (run 6): the subject quoted the rule, then said it had no browser tool and stopped, although three browser CLIs are installed. It never opened the `mcp-browser-use` hub, and it wrote "Not checked" rather than NOT RUN. A third fix, approved by the operator, tells the agent to read the hub and check for the `bdg` and `bladebro` CLIs. In run 10 the subject then found `bladebro`, but Chrome crashed in a loop inside the runner's macOS sandbox. RD-006 now skips inside the sandbox and runs with `--no-sandbox`. With the operator's go-ahead, run 11 used `--no-sandbox` and PASSED: the subject opened the page in its own headless `bdg` session, saved a screenshot and reported a clean console, with no Chrome crash.
+- Aside in the §5 row: the row lists Aside as an allowed mode, but the hub describes Aside as running on the signed-in account. The operator chose to fail an unasked Aside call in RD-006. Rewording the row to match is open.
+- SD-004 carries the same outdated sign-in check that skipped RD-006's second run. Its fix is the same two patterns, outside this packet.
 - Does the advisor replay still recommend local-webflow, then sk-code? Carried from the earlier run only. It needs the `system-skill-advisor` runtime built, which this worktree lacks.
 - Should `.skilled/skills/sk-code/SKILL.md:58` and the LCP/INP baseline sentence in `web-performance-and-loading.md` also name the hub? Both are optional follow-ups, not done here.
 - Does strict validation pass for this packet and the parent? Yes, after the repair ran with `tsx` linked into this worktree. The link points at worktree 514's copy, so a clean checkout needs its own `tsx` first.

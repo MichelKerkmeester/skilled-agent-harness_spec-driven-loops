@@ -77,6 +77,14 @@ The operator asked for the four follow-ups this packet first left out.
 | `local-webflow/references/` (8 files, outside this repository, in the site repository the skill is linked from) | Modified | 11 dead `mcp-tooling/mcp-chrome-devtools` paths now read `mcp-browser-use/mcp-chrome-devtools`; each file's version bumped |
 
 Checks for the follow-ups: the sk-code hub check printed `OK: parent-skill-check — all hard invariants passed, 0 warnings`; router-sync printed `5/5 checks passed`. In cli-orca, a grep for the old mode names returned no lines, the playbook validator exited 0 with `violations=0`, the catalog validator printed `PASS: 0 violations` and the link checker reported `failures=0`. In local-webflow no `mcp-tooling/mcp-chrome-devtools` path remains, and each rewritten path resolves from the skill's linked location in this repository.
+
+### Conversation scenario RD-006, 2026-11-23
+
+The operator asked for a manual testing conversation scenario that proves the frontend row works. `.skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md` gives Claude Code a scratch page and the plain request to make its Pricing heading dark blue. Its check passes when the reply carries browser evidence from a `bdg`, `bladebro` or Chrome DevTools MCP call, naming a screenshot and the console, or says NOT RUN. It fails when the color is unchanged, when Aside or a signed-in lane was used without being asked, or when the reply reports the change done with neither. It reads only the subject's own tool calls from the transcript, so a hub document quoting `bdg` or `chrome_devtools_live` does not count. The playbook root (1.5.23.0) lists it as RD-006.
+
+The recorded live run failed. Claude Code changed `styles.css` and wrote "I didn't open the page in a browser", with no NOT RUN line. The compiled frontend route loaded only the frontend references, and the browser step lives in `ROUTER.md` §5, which that route does not load. The row is therefore not reaching the agent.
+
+Two fixes followed, each with the operator's go-ahead and a live rerun. A checklist line in `frontend-practice.md` (1.0.6.0) changed nothing, because the subject skipped the frontend guidance for a one-value change. An ALWAYS rule in `SKILL.md` §4 (sk-code 3.12.4.0) did reach it: the subject quoted the rule. It then said the session had no browser tool and stopped, although `bdg`, `aside` and `bladebro` are installed as CLIs, and it wrote "Not checked" rather than NOT RUN. RD-006 still fails. The operator then approved that fix: the rule now names the hub's `SKILL.md`, asks for `command -v bdg` and `bladebro` before concluding no browser exists, and asks for the words NOT RUN. Run 10's subject did find `bladebro`, but Chrome crashed in a loop inside the runner's macOS sandbox and was stopped by hand. The runner now passes its sandbox mode to scenarios, and RD-006 skips inside the sandbox, runs with `--no-sandbox` and stops the browser daemons it started. A shared-runner fix for Claude Code 2.1.330's review screen came first. Run 11, with `--no-sandbox`, PASSED: the subject opened the page in its own headless `bdg` session, saved a screenshot and reported a clean console, with no Chrome crash and no browser left running.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -124,7 +132,7 @@ The first strict validation failed on generated metadata. `repair-derived.cjs` c
 ## Known Limitations
 
 1. **Validation depends on a symlinked `tsx`.** `.skilled/skills/system-spec-kit/node_modules/tsx` points at worktree 514's copy. A clean checkout needs its own `tsx` before `repair-derived.cjs` and the strict validations can run.
-2. **No live browser run.** The new row's browser steps have not run on a real page. Workaround: run the row once on a changed page through an installed browser mode, and record the result.
+2. **One passing live run.** RD-006 passed once, on Claude Code with `bdg`, after failing before the fixes. Other runtimes and modes have not run it. The scenario must run with `--no-sandbox`, which drops the runner's write protection on the repository; the snapshot check still runs.
 3. **Advisor replay not re-run.** Workaround: build the `system-skill-advisor` runtime, then replay the prompt named in the Verification table.
 <!-- /ANCHOR:limitations -->
 

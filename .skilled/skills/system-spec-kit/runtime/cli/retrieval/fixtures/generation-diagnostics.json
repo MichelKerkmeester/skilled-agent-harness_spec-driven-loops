@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7214,
-    "ok": 20531,
+    "missing-frontmatter": 7221,
+    "ok": 20533,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29373,
+  "documentsScanned": 29382,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "48a77b3baf95f60dede19abcafe432bc8f09f68e2f8e07e0276e85b0d350bc59",
+  "manifestHash": "3deef0ecc5a4c5c6051d7b6290d9ef80c7deb63ec038bd0c7e9a0f3c80d20b25",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46266,
+      "ok": 46272,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -11071,6 +11071,42 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-code/benchmark/reports/baseline/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -11348,6 +11384,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

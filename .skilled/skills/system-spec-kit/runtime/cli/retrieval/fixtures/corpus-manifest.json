@@ -1,5 +1,5 @@
 {
-  "corpusHash": "745c26e9076fcfeac414654cad29d1d24540af3bdf35e51029e426e2852cad1b",
+  "corpusHash": "fe2d850ee832afcc74f74dada314b543ccd43dedbc6f4d8e07e199ddd778c258",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29373,
+  "includedPathCount": 29382,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3066,6 +3066,12 @@
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router/findings-and-recommendations.md",
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router/skill-benchmark-report.md",
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router/source.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/README.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule/source.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/README.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation/source.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/README.md",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass/source.md",
     ".skilled/skills/sk-code/benchmark/reports/README.md",
     ".skilled/skills/sk-code/benchmark/reports/baseline/README.md",
     ".skilled/skills/sk-code/benchmark/reports/baseline/failed-runs.md",
@@ -3136,6 +3142,7 @@
     ".skilled/skills/sk-code/changelog/v3.12.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.3.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3200,6 +3207,7 @@
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
     ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md",
@@ -7108,6 +7116,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
@@ -29405,7 +29414,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "48a77b3baf95f60dede19abcafe432bc8f09f68e2f8e07e0276e85b0d350bc59",
+  "manifestHash": "3deef0ecc5a4c5c6051d7b6290d9ef80c7deb63ec038bd0c7e9a0f3c80d20b25",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

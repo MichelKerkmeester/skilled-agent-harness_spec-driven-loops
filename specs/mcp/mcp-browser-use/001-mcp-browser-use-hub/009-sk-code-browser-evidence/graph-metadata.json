@@ -55,11 +55,12 @@
       "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
       "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
       ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
-      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
-      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
-      ".skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs"
+      ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
@@ -135,33 +136,33 @@
         "source": "derived"
       },
       {
+        "name": "frontend-browser-evidence-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-browser-evidence-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontend-practice.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "verify-router-sync.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-goal.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "loader.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs",
         "source": "derived"
       },
       {
@@ -209,7 +210,7 @@
     ],
     "causal_summary": "The `sk-code-frontend` row of sk-code's verification table asked for \"the page rendered in a browser\" and named no tool",
     "created_at": "2026-11-22T21:09:06Z",
-    "last_save_at": "2026-11-22T22:11:39.753Z",
+    "last_save_at": "2026-11-23T10:49:12.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c818a3a791253a81581428e03b3b48344a0708e675dfaa174d84d86ef49a0a09",
+    "source_fingerprint": "sha256:3d5e3f36bbb06378a23cf7cfe2c9ef100769bad93f6d48b398851f0859e59f8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c225bc78a0c715bbb666115595522d565fb149adb4ae4fa13d1ef2727a23279",
+      "spec.md": "5e0db461ac2faabe2f3f4aa03b5ff8072ada1e0685067027f48e041450854aed",
       "plan.md": "e343a69d238825ee8a1d722c00a036f452afe040cfd452acab62711321fed36c",
-      "tasks.md": "b16f7f8d93951c8b621284cff06ed7d5ff26c1036faddd6c55bc77712ccef480",
-      "implementation-summary.md": "7ab96134a3d5502d643a4a07056d2814ec5d799f0fd706203bc91dc5440c3961"
+      "tasks.md": "f548e9465e06d3b46f37b31a0ffe64ca0b6782f322df74d742707a76dcaf083b",
+      "implementation-summary.md": "0d47f901f871181a79a1df27841c37aaea0b37e31541d915680a5d794377eec9"
     },
     "last_active_at": null
   }
