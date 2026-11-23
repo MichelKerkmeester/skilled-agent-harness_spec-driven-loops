@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-22 |
 | **Branch** | `worktrees/516-deep-loop-command-offers` |
 <!-- /ANCHOR:metadata -->
@@ -210,6 +210,29 @@ Every probe requirement is checked by rerunning `scratch/probes/probes-spec-base
 | REQ-012 | The single-probe misses are recorded. N7, N9, D1, V7, H6 and A3 each appear in `command-prompts.jsonl` as a `near-miss` row, and no new guard is added for them. |
 | REQ-013 | The deep-family holdouts are fresh. The three deep-family `holdout` rows are replaced by rows a separate worker writes after tuning. No builder reads a `holdout` row. |
 | REQ-014 | N9 ("summarize the research.md from the last deep research run") carries no deep command after the build. This is kept apart from REQ-002 because D2 keeps "deep research" as a loop ask and D6 rules out a guard for N9. See Open Questions. |
+| REQ-015 | A spelled-out refusal withholds the command. "don't do deep research, just answer quickly", "never run deep research on this", "no need to run a deep review here", "I'm not asking for a deep review, just explain the bug", "no deep review, please; explain the bug" and "a deep review is not needed, just check the diff" carry no `/deep:*` command, and "do a deep review of the parser" keeps `/deep:review`. |
+| REQ-016 | A question about the loop carries no command. "how many iterations does deep research run by default?" and "how many passes does the deep review do" carry no `/deep:*` command. |
+| REQ-017 | Spelling variants keep the command. "run a deep-review of the auth module" gets `/deep:review`, and "I’d like a research loop on cache eviction policies", with a curly apostrophe, gets `/deep:research`. |
+| REQ-018 | A negated symptom is not a stuck run. "the deep research run is not stuck, run 5 more iterations" gets `/deep:research`, not `/doctor:deep-loop`. |
+| REQ-019 | A loop name that names the loop's own code or results, and a count that describes a subject, carry no command (D2 as narrowed by ADR-004). "refactor the deep research scorer", "fix the bugs the deep review found", "open the review loop config", "we need a review loop for every PR", "I want a review loop that approves PRs automatically", "compare 10 iterations of the model and review the results", "research three-pass vs two-pass compilers", "several passes of the linter failed, review the config" and "review our multi-pass compiler" carry no `/deep:*` command. "run a deep review on the parser", "do 5 research iterations on caching" and "review the parser in several passes" keep theirs. |
+| REQ-020 | The Python typed-command check agrees with the TypeScript one. For "don't run /deep:review, explain the review loop", "what does /deep:review do?", "see (/deep:review.md) for the flags" and "my deep review run is stuck, /deep:review again", `_apply_deep_loop_offer_gate` with a typed row returns what `attachCommand` returns. |
+| REQ-021 | Nothing earlier regresses. Every REQ-015 to REQ-020 prompt is in the shared fixture, both suites pass, the TypeScript and Python predicate comparison shows drift 0, every gain, keep and stage-one line of the 69-probe rerun keeps its command, and the corpus `false_offer` count stays 0. |
+| REQ-022 | The docs say what was measured. The v4.2.0.0 changelog no longer says refused asks are skipped before they are, names packet 013's brief change and quotes the final suite count, and AC-008 reads `Waived` with ADR-003. |
+
+### Reopened after a fresh review
+
+A fresh review on 2026-11-23 found gate gaps outside the probe set. Six of them, reproduced through the Claude prompt hook at `a5d054a2f1c`:
+
+```text
+[don't do deep research, just answer quickly] => use system-deep-loop → /deep:research (ask: A /deep:research:auto (Recommended), B /deep:research:confirm, C no loop) 0.90/0.12 pass.
+[no need to run a deep review here] => ambiguous: system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.95/0.16 vs sk-code 0.90/0.12 pass.
+[/deep:review:confirm the auth module] => use system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.94/0.12 pass.
+[run a deep-review of the auth module] => use system-deep-loop 0.95/0.12 pass.
+[how many iterations does deep research run by default?] => use system-deep-loop → /deep:research (ask: A /deep:research:auto (Recommended), B /deep:research:confirm, C no loop) 0.93/0.12 pass.
+[the deep research run is not stuck, run 5 more iterations] => use system-deep-loop → /doctor:deep-loop (run) 0.93/0.12 pass.
+```
+
+The typed-suffix hint is packet 013's to fix. REQ-015 to REQ-022 cover the rest.
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -223,6 +246,7 @@ Every probe requirement is checked by rerunning `scratch/probes/probes-spec-base
 - **SC-001**: Plain loop asks with a command row go from 0 of 5 to 5 of 5 on the gain group (V6, H1a, H1b, E1, E3) of the probe rerun.
 - **SC-002**: Depth-only false offers go from 1 to 0. R7 is the one case, and no row in the no-gain group gains a `/deep:*` command.
 - **SC-003**: The keep and negative groups, 34 rows in all, print the same top skill and `cmd=` value as the baseline block.
+- **SC-005**: Every REQ-015 to REQ-020 prompt gives its stated result through the prompt hook, with the 69-probe and corpus results unchanged.
 - **SC-004**: The recaptured routing baseline's `false_offer` and `false_offer_attached` counts, taken over the rows that existed before this packet, equal the counts captured before the code change.
 <!-- /ANCHOR:success-criteria -->
 

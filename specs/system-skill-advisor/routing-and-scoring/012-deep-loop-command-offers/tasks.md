@@ -112,6 +112,21 @@ Built in worktree `worktrees/522-deep-loop-offer-review-fixes`. The 31 probes ar
 - [x] T051 Work every acceptance row against its own check and record the evidence (`acceptance-criteria.md`). Add gate cases for "thoroughly", "exhaustive" and "deep dive" (`$ADV/tests/command-attach-guards.vitest.ts`). Record the AC-019 supersession and the AC-017 alias choice (`decision-record.md` ADR-001, ADR-002). Verify: 18 rows `Met`, AC-019 `Superseded`, and AC-008 and AC-017 `Unmet` with their reason in the closure statement.
 - [x] T052 Name the three offer options in step 0 of both command documents and send a composed flag into option A from the flag table (`.skilled/commands/deep/review.md`, `.skilled/commands/deep/research.md`). Rerun F6 outside plan mode before and after the edit (`scratch/behaviour/F6.md`, `scratch/behaviour/F6-after-step0.md`). Verify: the drift check and its tests pass, and AC-008 records both runs.
 - [x] T053 Sample F6 three more times after the routing-step edit (`scratch/behaviour/F6-sample-1.md` to `F6-sample-3.md`). Verify: AC-008 reads `Met` with the 1 of 4 rate stated in the row.
+### Fresh review round
+
+Reopened 2026-11-23 after a fresh review. Built in worktree `worktrees/529-deep-loop-offer-gate-fixes`. `HOOK` sends one prompt through `.skilled/hooks/skill-advisor/claude/user-prompt-submit.js` and prints the brief's first line.
+
+- [ ] T054 Withhold the command when a refusal leads the loop ask: "don't", "do not", "never", "no need to", "not asking for", "no" before the loop name, and "is not needed" after it (`$ADV/lib/command-attach.ts` `asksForLoopRun`, `_asks_for_loop_run` in Python). Verify: `HOOK` on the six REQ-015 refusals prints no `/deep:` command, and the control keeps `/deep:review`.
+- [ ] T055 Add "how many" to the question reading (`LOOP_QUESTION`, its Python copy). Verify: `HOOK` on both REQ-016 questions prints no `/deep:` command.
+- [ ] T056 Accept `deep-review` and `deep-research` in the loop wording, and fold curly apostrophes before the run-ask and writing-about tests (`LOOP_WORDING`, `asksForLoopRun`, `isWritingAboutTopic`, Python copies). Verify: `HOOK` on both REQ-017 prompts prints their commands.
+- [ ] T057 Skip a symptom that a negation leads, and let a counted run ask cancel the stuck reading (`LOOP_RUN_SYMPTOM`, `isStuckRunComplaint`, Python copies). Verify: `HOOK` on the REQ-018 prompt prints `/deep:research` and no `/doctor:deep-loop`.
+- [ ] T058 Treat a loop name followed by a code, file or result noun, or led by an edit or fix verb, and a count that describes a subject, as no ask (`command-attach.ts`, Python copies). Verify: `HOOK` on the nine REQ-019 subject prompts prints no `/deep:` command, and the three controls keep theirs.
+- [ ] T059 Mirror the TypeScript mention and boundary rule in the Python typed check (`$ADV/scripts/skill_advisor.py`). Verify: the four REQ-020 prompts give the same result from both gates.
+- [ ] T060 Add every REQ-015 to REQ-020 prompt to the shared fixture and the guard tests (`$ADV/tests/fixtures/deep-loop-offer-cases.json`, `$ADV/tests/command-attach-guards.vitest.ts`). Verify: the Python suite and `npx vitest run` in `$ADV` report 0 failed, and the predicate comparison shows drift 0.
+- [ ] T061 Rerun the 69 probes and recapture the corpus (`scratch/probes/`). Verify: every gain, keep and stage-one line keeps its command, and `false_offer` stays 0.
+- [ ] T062 Record AC-008 as waived (`acceptance-criteria.md`, `decision-record.md` ADR-003). Verify: AC-008 reads `Waived` with `ADR-003`, and ADR-003 exists.
+- [ ] T063 Correct the changelog (`.skilled/changelog/skilled/v4.2.0.0.md`). Verify: it no longer claims refused asks were skipped before this round, it names the brief change, and it quotes the final suite count.
+- [ ] T064 Validate the packet (`$PKT`). Verify: `validate.sh $PKT --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -119,7 +134,7 @@ Built in worktree `worktrees/522-deep-loop-offer-review-fixes`. The 31 probes ar
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`. Observed 2026-11-23: T001 to T053 are all `[x]`.
+- [ ] All tasks marked `[x]`. Reopened: T054 to T064 are open.
 - [x] No `[B]` blocked tasks remaining. Observed 2026-11-23: none.
 - [x] Manual verification passed: one recorded behaviour session each on F3, F5 and F6, or a waiver recorded in `decision-record.md`. Observed: `scratch/behaviour/F3.md`, `F5.md` and `F6-sample-1.md`.
 - [x] `$PKT/scratch/probes/results-after.json` exists and `implementation-summary.md` quotes its gain, lose and negative lines. Observed: the closure-pass probe row in Verification.
@@ -179,7 +194,7 @@ A blocked task is marked `[B]` with its reason on the same line, and a `[B]` tas
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met: every row in `acceptance-criteria.md` reads `Met`, `Waived` or `Superseded`. Observed 2026-11-23: 19 `Met`, 1 `Waived` (AC-017) and 1 `Superseded` (AC-019).
+- [ ] CHK-020 [P0] All acceptance criteria met: every row in `acceptance-criteria.md` reads `Met`, `Waived` or `Superseded`. Reopened: AC-022 to AC-029 are unmet.
 - [x] CHK-021 [P0] Probe rerun complete: `$PKT/scratch/probes/results-after.json` holds 69 rows. Observed 2026-11-23: 69 rows.
 - [x] CHK-022 [P1] Edge cases tested: N6 and N10 carry no command on the probe rerun, and `command-attach.vitest.ts` holds the loop-ask-plus-depth-word case and the two-cue case that spec.md Edge Cases names. Observed 2026-11-23: N6 and N10 show `cmd=-`. The loop-ask-plus-depth-word case ("do a thorough deep review of the typo handling") and the two-cue case are in `command-attach-guards.vitest.ts`.
 - [x] CHK-023 [P1] Corpus recapture read: `false_offer` and `false_offer_attached` over the earlier rows match T003. Observed 2026-11-23: 0 and 0 over the 35 earlier rows, equal to T003.
@@ -235,7 +250,7 @@ A blocked task is marked `[B]` with its reason on the same line, and a `[B]` tas
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
+| P0 Items | 12 | 11/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 

@@ -219,6 +219,195 @@ AC-017 asks two things of the research aliases that ship. K2, "multi-round resea
 
 ---
 
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Waive AC-008 on the measured offer rate
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Operator, who chose "Change to Waived" on 2026-11-23 |
+
+---
+
+<!-- ANCHOR:adr-003-context -->
+### Context
+
+AC-008 asks that a session on F3, F5 or F6 answer first with the three-option offer. F6 asked it in 1 of 4 runs after the routing-step edit, and in 0 of 8 runs after packet 013 put the options in the brief. The F3 and F5 files hold only a final turn that points back at an earlier reply, so they cannot show the offer. The live terminal check quoted in `implementation-summary.md` has no transcript in `scratch/`. The row had been set to `Met` with the rate disclosed, but `Met` means verified.
+
+### Constraints
+
+- The status table in `acceptance-criteria.md`: "`Waived` | Deliberately not pursued. Requires an ADR in the Waiver cell."
+<!-- /ANCHOR:adr-003-context -->
+
+---
+
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+**We chose**: set AC-008 to `Waived` and record the measured rates here.
+
+**How it works**: no code changes. The offer stays taught in the command docs and named in the brief, and the rates stay in the behaviour files of both packets.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Waive with the rates** | The status says what was measured | The criterion stays unmet in substance | 8/10 |
+| Keep `Met` with the rate disclosed | No change | `Met` claims a verification the evidence does not hold | 3/10 |
+
+**Why this one**: a waiver states the gap plainly, and the rates stay on record.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+**What improves**:
+- The acceptance table no longer claims a verified offer.
+
+**What it costs**:
+- The packet closes with a behaviour criterion not reached.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later reader treats the waiver as a pass | M | The rates are in this ADR and in both implementation summaries |
+<!-- /ANCHOR:adr-003-consequences -->
+
+---
+
+<!-- ANCHOR:adr-003-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | `Met` overstated the evidence |
+| 2 | **Beyond Local Maxima?** | PASS | Two wordings were sampled across 12 runs |
+| 3 | **Sufficient?** | PASS | A status change only |
+| 4 | **Fits Goal?** | PASS | The docs say what was measured |
+| 5 | **Open Horizons?** | PASS | A later fix can set the row back to `Met` with new runs |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-003-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-003-impl -->
+### Implementation
+
+**What changes**:
+- AC-008 reads `Waived` with `ADR-003`.
+
+**How to roll back**: set AC-008 back to `Met` with `-` in its Waiver cell.
+<!-- /ANCHOR:adr-003-impl -->
+<!-- /ANCHOR:adr-003 -->
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Narrow D2 so a loop name about the loop's own code is not an ask
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Operator, who chose "Narrow D2" on 2026-11-23 |
+
+---
+
+<!-- ANCHOR:adr-004-context -->
+### Context
+
+D2 counts naming deep research, deep review, a research loop or a review loop as an explicit loop ask. A fresh review showed that this offers the loop on prompts about the loop's own code or results, such as "refactor the deep research scorer", "fix the bugs the deep review found" and "open the review loop config". It also offers it on counts that describe a subject, such as "compare 10 iterations of the model" and "research three-pass vs two-pass compilers".
+
+### Constraints
+
+- D2 in `scratch/decisions.md` is the operator's rule, so narrowing it needs the operator.
+- The keep and gain probes must keep their commands.
+<!-- /ANCHOR:adr-004-context -->
+
+---
+
+<!-- ANCHOR:adr-004-decision -->
+### Decision
+
+**We chose**: a loop name counts as an ask only when no code, file or result noun follows it and no edit or fix verb leads it. A pass or iteration count counts only when it measures the loop rather than a subject.
+
+**How it works**: the gate in `command-attach.ts` and its Python copy read the words around the loop name before they count it, and the shared fixture pins both sides.
+<!-- /ANCHOR:adr-004-decision -->
+
+---
+
+<!-- ANCHOR:adr-004-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Narrow D2** | Ends the topic-mention false offers | Each new reading can drop a real ask, so the controls and probes must hold | 8/10 |
+| Keep D2 | No change | Every mention of the loop's code keeps offering the loop | 4/10 |
+
+**Why this one**: the topic mentions are common in this repository, and each one now costs a recommended `:auto` question.
+<!-- /ANCHOR:adr-004-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-004-consequences -->
+### Consequences
+
+**What improves**:
+- Prompts about the loop's code, results or config stop getting the offer.
+
+**What it costs**:
+- The gate carries more readings to keep in step between TypeScript and Python.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A real ask is read as a subject | M | Controls in the fixture and the 69-probe rerun |
+<!-- /ANCHOR:adr-004-consequences -->
+
+---
+
+<!-- ANCHOR:adr-004-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Nine reported false offers |
+| 2 | **Beyond Local Maxima?** | PASS | Keeping D2 was weighed |
+| 3 | **Sufficient?** | PASS | Readings in one gate and its copy |
+| 4 | **Fits Goal?** | PASS | Offer only when the loop is asked for |
+| 5 | **Open Horizons?** | PASS | Each reading is one pattern to revert |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-004-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-004-impl -->
+### Implementation
+
+**What changes**:
+- REQ-019 and T058 carry the narrowed rule. D11 in `scratch/decisions.md` points here.
+
+**How to roll back**: revert the T058 commit and remove D11.
+<!-- /ANCHOR:adr-004-impl -->
+<!-- /ANCHOR:adr-004 -->
+
+---
+
 <!-- ANCHOR:operator-decisions -->
 ## Operator Decisions
 <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep the archive for 30 days`, gives the stated reason and names REQ-002. WEAK: Q004 says `Discussed retention` and leaves the other cells empty. -->
@@ -253,6 +442,11 @@ AC-017 asks two things of the research aliases that ship. K2, "multi-round resea
 | Q026 | Leave the checkout-dependent top skill on probes H5 and N12 recorded as it is, without investigating the cause. | Not stated. | None | T031, implementation-summary.md Verification |
 | Q027 | Replace the recorded pre-change corpus counts with a fresh capture run at the pre-change commit. | Not stated. | None | T003, scratch/corpus-before.json |
 | Q028 | Try a save to refresh completion_pct in acceptance-criteria.md and change nothing by hand if it does not. | Not stated. | None | acceptance-criteria.md frontmatter |
+| Q029 | Fix the gaps the fresh review found, planned first and built only after approval. | Not stated. | None | REQ-015 to REQ-022, T054 to T064 |
+| Q030 | Asked for the fixes as a phase child of this packet, which the phase rules do not allow for a correction. | Not stated. | None | none, superseded by the Structure answer |
+| Q031 | Reopen this packet for the gate fixes and packet 013 for the typed-command hint, as the phase rules prescribe for a correction. | Not stated. | the Review fixes and Phase answers | spec.md, tasks.md |
+| Q032 | Narrow D2 so a loop name about the loop's own code or results, and a count that describes a subject, is not a loop ask. | Not stated. | None | ADR-004, D11, REQ-019, T058 |
+| Q033 | Set AC-008 to Waived with the measured offer rates recorded in an ADR. | Not stated. | None | ADR-003, AC-008 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -766,6 +960,105 @@ Try a targeted save
 Answer:
 ```text
 Try a targeted save
+```
+
+### Q029
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019jcCSwCn3zQ2mNm7s39T17:0 -->
+
+Question:
+```text
+The fresh Opus review found real gaps in the deep-loop offer epic (I reproduced 6 of them): refusals like "don't do deep research" still get the offer, a typed `/deep:review:confirm` still gets an A/B/C hint recommending :auto, questions like "how many iterations does deep research run" get the offer, "deep-review" with a hyphen loses it, and "not stuck" still routes to the doctor. Some packet claims also overstate the evidence. What should happen?
+```
+
+Options:
+```text
+New fix packet (Recommended)
+Fix only the top two
+Correct the docs only
+Leave it
+```
+
+Answer:
+```text
+New fix packet (Recommended)
+```
+
+### Q030
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01Cq68zJvcBt7nLNpRtcANCd:0 -->
+
+Question:
+```text
+You said "phase" for the review-fix work. Which structure do you want?
+```
+
+Options:
+```text
+014 as a phased packet (Recommended)
+Phase child of 012
+One epic parent over all three
+```
+
+Answer:
+```text
+Phase child of 012
+```
+
+### Q031
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019S6xoZAFB1hTDor6MaVoin:0 -->
+
+Question:
+```text
+"Phase child of 012" conflicts with spec-kit's rules. phase-definitions.md §4 says "A standard non-phased packet may not gain phase children unless both qualification thresholds are met, or the work qualifies for a series parent". 012 is Level 2, under the level-3 threshold. §2 also says a series parent needs "a different change", and that "A correction continues that packet with Option A, even when the packet is complete." The review fixes are corrections of 012's own change (and the typed-suffix hint fix corrects 013's). How should I proceed?
+```
+
+Options:
+```text
+Reopen 012 and 013 (Recommended)
+Phase child anyway (override)
+Standalone 014 instead
+```
+
+Answer:
+```text
+Reopen 012 and 013 (Recommended)
+```
+
+### Q032
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017NgHjmF6m34GboesBNRQYx:0 -->
+
+Question:
+```text
+Decision D2 in packet 012 says naming "deep research", "deep review", "research loop" or "review loop" counts as asking for the loop. Because of that, mentions of the loop's own code or results get the offer: "refactor the deep research scorer", "fix the bugs the deep review found", "open the review loop config". Should the fix narrow D2?
+```
+
+Options:
+```text
+Narrow D2 (Recommended)
+Keep D2 as is
+```
+
+Answer:
+```text
+Narrow D2 (Recommended)
+```
+
+### Q033
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017NgHjmF6m34GboesBNRQYx:2 -->
+
+Question:
+```text
+AC-008 in packet 012 is marked Met on 1 of 4 F6 runs, plus F3 and F5 transcripts that don't show the offer. The reviewer says that should be Waived with a decision record, not Met. Change it?
+```
+
+Options:
+```text
+Change to Waived (Recommended)
+Keep Met
+```
+
+Answer:
+```text
+Change to Waived (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

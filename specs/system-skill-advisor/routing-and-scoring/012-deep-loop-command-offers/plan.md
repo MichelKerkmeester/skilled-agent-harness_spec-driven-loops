@@ -91,6 +91,8 @@ Required inventories:
 
 Setup reads `scratch/decisions.md` and captures the 69-probe baseline in `scratch/probes/results-spec-baseline.json`. Implementation runs five lanes in one worktree: A changes the advisor code, tests, `dist` and baseline; B the deep command docs; C the deep-loop skill docs and hub routing; H the fresh holdout rows; and V runs the gates. Verification reruns the same probe file, the advisor vitest suite, the corpus recapture, `sync-runtime-mirrors.cjs --check`, `validate-command-references.cjs` and `validate.sh --strict`.
 
+A fresh-review round reopens the packet. Setup reproduces the reported prompts through the prompt hook. Implementation fixes the refusal, question, spelling, symptom and subject readings in `command-attach.ts` and their Python copies, narrows D2 as ADR-004 records, and adds every prompt to the shared fixture. Verification reruns both suites, the predicate comparison, the 69 probes and the corpus, then corrects the changelog and AC-008.
+
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
 
