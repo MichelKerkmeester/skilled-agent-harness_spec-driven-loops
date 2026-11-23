@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The advisor brief names a deep-loop command as `system-deep-loop → /deep:review (ask)` and nothing more",
     "created_at": "2026-11-23T16:22:57Z",
-    "last_save_at": "2026-11-23T19:23:35.690Z",
+    "last_save_at": "2026-11-23T21:00:53.639Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5401f60394a9158003e9c204f046708f466d48122f6fdc2b86ce5554de5b5902",
+    "source_fingerprint": "sha256:de4d221a622624572e306d11d3eec680dc1b43909d0ca652556d03b3ce85db5b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4155897adb837b7701ca004c9f0b58375350a864d26183708419133d6e35ecae",
       "plan.md": "7efbc044423a3b735d64704334dcd31f4fde77654da5e31a1585836d37706b3c",
       "tasks.md": "20c2ad8a8ddbe3287a5aceef3400c97f46b674929ace5c5b3c0ed91cf12374b5",
       "decision-record.md": "dd2b98e51650827c2453baa7b391be8c14df64125e373bcb5445580b5bc0f562",
-      "implementation-summary.md": "0488bd106fec32074835719b52a2ab9b77fd4e4eeabf461cec04f0030be928e1"
+      "implementation-summary.md": "d5ef3aeddd174084a87b7d298fae71bbcda77bf89c03e3f6e7227f7f2507ad1f"
     },
     "last_active_at": null
   }
