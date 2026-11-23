@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dd9bfd484f6bf0b2f0b2dc62224a16feba49be6d1792eb7da35b4e09cd0ff932",
+  "manifestHash": "48a77b3baf95f60dede19abcafe432bc8f09f68e2f8e07e0276e85b0d350bc59",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4016,6 +4016,15 @@
     ],
     "016 embedding provider local first": [
       "016-embedding-provider-local-first"
+    ],
+    "016 epic review report": [
+      "016 epic review report"
+    ],
+    "016 epic review strategy": [
+      "016 epic review strategy"
+    ],
+    "016 epic second review": [
+      "016 epic second review"
     ],
     "016 findings remediation": [
       "016 findings remediation"
@@ -89061,6 +89070,9 @@
     ],
     "pi context decisions delegation strategy": [
       "pi-context-decisions delegation strategy"
+    ],
+    "pi context decisions epic review": [
+      "pi context decisions epic review"
     ],
     "pi context decisions packet closeout": [
       "pi-context-decisions packet closeout"

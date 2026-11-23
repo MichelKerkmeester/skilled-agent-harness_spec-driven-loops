@@ -1,28 +1,21 @@
-# Iteration 002 - D2 Security
+# Iteration 002 - Security
 
 ## Dispatcher
 
-- Run: 2 of 5. Session `2026-11-19T04:18:26.591Z`, generation 1, lineageMode `new`.
-- Dimension: security.
-- Focus (from strategy Next Focus): the `route-receipt.ts` file store under a shared temp dir, the `skill-advisor-cli-fallback.ts` subprocess payload, the cost of the `PASTED_REPLY_CUE` and `TASK_MARKER` regexes on large input, and whether pasted text can be injected into routing.
-- Iteration number: the state log holds 1 iteration record, so this is iteration 2. That matches the dispatch.
-- Operator focus: the review covered all four shipped features from a security angle.
-  - Strip: regex cost measured on the shipped `dist` build and on the real Python module, plus the injection direction.
-  - Crash fallback: checked whether any error or stack text reaches the model.
-  - Receipts: checked the store's ownership, symlink and permission handling.
-  - Python parity: the Python strip carries the same regex cost and, unlike the TypeScript paths, has no input bound.
+- Run: 2 of 5, generation 2, lineage `restart`, session `2026-11-23T05:51:03.170Z`.
+- Dimension: security (D2).
+- Iteration number derived from the state log: one prior `type:"iteration"` record, so this is iteration 2, matching the dispatch.
+- Operator focus: covered bridge env parity (launcher child env and Python native-bridge env), the crash fallback's process handling, the subprocess output cap, and the Ollama and embedding lane residue tool's delete and kill paths, judged from code and the parity test rather than packet tables. The doctor cleanup surface was only read through the residue tool's apply step; its YAML wiring is left for traceability.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245-271` (cue and marker regexes, the strip loop)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1009-1018, 4790-4833, 5347-5354` (Python strip, native bridge, stdin intake)
-- `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:1-331` (whole file)
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:225-300` (subprocess payload and spawn)
-- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:182-215, 360-380, 620-660` (64 KiB cut, guard strip, crash fallback)
-- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:465-500` (brief-builder strip)
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:530-545` and `runtime/schemas/advisor-tool-schemas.ts:283,288` (MCP strip and its 10,000-char cap)
-- `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` (range diff: clock rotation)
-- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts:225-252` (store hardening tests)
+- `.skilled/bin/system-skill-advisor-launcher.cjs` (env file loader and repo defaults 28-80, `CHILD_ENV_ALLOWLIST` 111-166, `createChildEnv` 289-307)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (`NATIVE_BRIDGE_ENV_ALLOWLIST` 214-252, `LAUNCHER_ONLY_ENV_KEYS` 253-261, `_native_bridge_env` 697-707, `_sanitize_native_label` 710-721, `_run_native_bridge` 735-790, stdin read before early exits 5778-5795)
+- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787-2793` (launcher/bridge allowlist drift test)
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts` (`capOutput` 108-156, `runSpawnAttempt` 210-310)
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` (`findCliFallbackPaths` 177-205, `childEnvForCli` 207-213, CLI spawn 240-331)
+- `.skilled/commands/doctor/assets/doctor-update-apply.yaml` (lane-cleanup step around 219-228), context only
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs` (`normalizeOllamaHost` 883-896, `resolveContainedTarget` 1792-1821, `deleteContained` 1834-1854, `stopProcess` 1873-1886, `removeEmptyDir` 1896-1915, process ownership 1384-1425), context read named by the operator focus; it is not in `reviewScopeFiles`
 
 ## Findings - New
 
@@ -36,49 +29,52 @@ None.
 
 ### P2 Findings
 
-1. **The task-marker regex backtracks quadratically on a long whitespace run that holds newlines, and the Python strip runs it on unbounded input** -- .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:246 -- `TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi` is scanned with `matchAll` once `PASTED_REPLY_CUE` matches the start of the prompt. A newline both starts the `[.!?\n]` alternative and is consumed by the `\s*` that follows. At every newline in a whitespace run, the engine therefore scans `\s*` to the end of the run, fails `now|task`, and backtracks one character at a time. The cost is quadratic in the length of the run. Measured on the shipped build (`runtime/dist/runtime/lib/prompt-policy.js`, `stripLeadingPastedReply`), a prompt of `"You said:"` plus N newlines plus `"x"` takes 43 ms at 10,000 newlines and 1,767 ms at 65,526. A mixed `"\n \t"` run of 65K characters takes 590 ms. A run of `.` plus spaces, or of `. ` pairs, stays linear (0-1 ms at 64K), so only whitespace runs that contain newlines trigger it. The Python twin `_TASK_MARKER` (`runtime/scripts/skill_advisor.py:4807`), timed by importing the real module, takes 338 ms at 8K, 1,361 ms at 16K, 5,549 ms at 32K and 22,225 ms at 64K. That path has no bound: `recommend_with_native_advisor` strips before `_advisor_prompt_head` by design (`skill_advisor.py:1011-1016`), `analyze_request` strips the raw prompt (`:4845`), and single-prompt mode reads all of stdin (`:5350`). The bounds per path: the MCP handler is capped at 10,000 characters by the schema (`advisor-tool-schemas.ts:288`, about 43 ms, so not a concern there). The Claude hook cuts at 64 KiB (`user-prompt-submit.ts:183`) and then strips synchronously in the brief builder (`skill-advisor-brief.ts:478`), which a `setTimeout` budget cannot preempt. The Python batch modes split input on lines (`skill_advisor.py:5528`), so no single prompt in them carries a newline run. Impact is availability only: added latency, fail-open, no data exposure. The input is the user's own prompt, though that includes pasted third-party content.
-   Finding class: regex_backtracking_cost
-   Scope proof: the measured regexes are the ones this change shipped (`prompt-policy.ts:245-246`, `skill_advisor.py:4800-4807`). The timings come from the shipped dist function and the real Python module, not copies.
-   Affected surface hints: `runtime/lib/prompt-policy.ts` TASK_MARKER (make it linear, for example by matching a marker only at a line or sentence start without a `\s*` that can consume newlines, or by collapsing whitespace runs before the scan); the twin `_TASK_MARKER` in `runtime/scripts/skill_advisor.py`, plus an input bound on the Python single-prompt path; a cost-regression test in `tests/legacy/advisor-prompt-policy.vitest.ts` and `tests/python/test_skill_advisor.py`. Ordering constraint: the regex must be made linear before R1-P2-001 is fixed. Stripping before the 64 KiB cut, as R1-P2-001 implies, removes the only bound on this scan in the TypeScript hook.
-   Case: a prompt that begins "You said:" followed by about 64K consecutive newlines and then "x" spends about 1.8 s in the TypeScript strip and about 22 s in the Python strip.
+1. **Python-advisor spawn has no error listener on the child's stdin** -- .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:247 -- `runSpawnAttempt` writes the whole prompt with `child.stdin?.write(args.prompt)` and attaches `error` listeners only to the child process, never to `child.stdin` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:228-248]. When the child exits or is killed before draining stdin, the pipe write fails with EPIPE and Node raises it as an `error` event on the stdin socket; with no listener that becomes an uncaught exception in the calling process (the hook or the daemon that builds the brief), not the fail-open result the function otherwise returns. The sibling crash-fallback spawn already guards the same write with `child.stdin?.on('error', () => undefined)` [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:278], so the pattern is known in this codebase and simply missing here. Python normally reads stdin before any early exit [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5778-5795], which keeps the window narrow: it opens only when the interpreter dies at import (for example `compat-contract.json` unreadable at module load [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:207]) or the timeout SIGKILLs it while a prompt larger than the pipe buffer is still being written. Availability impact on a fail-open boundary, so P2.
+   Finding class: missing-guard (process I/O error handling)
+   Scope proof: one write site in `runSpawnAttempt`; the only other prompt-to-child write in scope (CLI fallback) is guarded
+   Affected surface hints: runtime/lib/subprocess.ts runSpawnAttempt; callers in runtime/lib/skill-advisor-brief.ts; runtime/tests/subprocess-output-cap.vitest.ts as the natural test home
+   Case: a prompt over 64 KB sent while skill_advisor.py fails at import, so the child exits before reading stdin and the write raises an unhandled EPIPE in the caller.
 
-   Escalation note (downgradeTrigger-style): raise to P1 if a named runtime pipes raw, unbounded prompts into single-prompt `skill_advisor.py`. This iteration names no such caller, so P2 stands under the review-core reach rule.
+Severity doctrine: P2 per `sk-code-review` review-core (robustness defect with a bounded, non-default trigger and no data exposure); not raised to P1 because the trigger needs a broken interpreter or a timeout during a very large prompt write, and inference rather than a reproduced crash supports the uncaught-exception step.
 
 ## Traceability Checks
 
-- No traceability protocol was run this iteration. This was the security pass, and the phase `spec.md` files are still unread, so `spec_code` stays `partial` from iteration 1 and is not recorded here.
+- `spec_code` (partial): the third-round "bridge env parity" claim holds. Every scorer setting in the launcher's `CHILD_ENV_ALLOWLIST` [SOURCE: .skilled/bin/system-skill-advisor-launcher.cjs:111-166] appears in `NATIVE_BRIDGE_ENV_ALLOWLIST` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:214-252] or in the explicit `LAUNCHER_ONLY_ENV_KEYS` set, and a test fails on drift in either direction [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787-2793]. The crash-fallback claim (prompt on stdin, process-group kill on timeout, capped stdout, settle on exit) matches code [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:256-331]. Doctor cleanup wiring still unchecked, so the protocol stays partial.
 
 ## Integration Evidence
 
-- `skill-advisor-cli-fallback.ts:233,250-277`: the hook spawns `process.execPath` on the `advisor_recommend` CLI and sends the prompt as JSON on stdin, never in argv. stderr is ignored, and a timeout kills the whole process group.
-- `hooks/dsh/prompt-advisor.mjs` (range diff): `rotateSessionClock` only logs a failure through `logFailure`, and `advanceBoundary` refuses an empty session id, so no shared-store generation bump happens.
+- Launcher to daemon: `createChildEnv` filters by exact key, adds only the launcher pid, the db dir and the resolved socket dir [SOURCE: .skilled/bin/system-skill-advisor-launcher.cjs:289-307].
+- Python CLI to native bridge: `_native_bridge_env` filters by exact key and applies only the doc-trigger default [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:697-707]; the bridge script is inline with absolute module URLs and the payload travels on stdin.
+- Doctor update apply step to residue tool: `node .../sweep-lane-residue.mjs apply --json [--shared-model delete|keep] </dev/null`, with the shared-model delete bound to an explicit operator yes [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:222-228].
 
 ## Edge Cases
 
-- Inference, unverified: on a single Claude turn the strip can run up to three times. It runs in the brief builder (`skill-advisor-brief.ts:478`), in the receipt guard (`user-prompt-submit.ts:372`, only when a receipt exists and the top pick is floored), and in the CLI fallback (`skill-advisor-cli-fallback.ts:233`, fallback path only). That would multiply the worst case to about 5 s. Each call re-scans until nothing changes. A pathological prompt has no marker, so each call scans once. Not measured end to end.
-- Cross-finding interaction: R1-P2-001's natural fix, stripping before the 64 KiB cut, would make R2-P2-001 unbounded in the TypeScript hook too. This is recorded as an ordering constraint, not a refinement.
+- Scope ambiguity: the operator focus names the residue tool, but `sweep-lane-residue.mjs` is not in `reviewScopeFiles` (the scope list is built from commit trailers). Read as context under the operator focus; no finding raised against it.
+- `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted'` is a repo policy default in the launcher [SOURCE: .skilled/bin/system-skill-advisor-launcher.cjs:72-80] that predates this epic (its last change is the `.opencode` to `.skilled` move). Out of epic scope; the bridge child deliberately does not get it, so the Python path keeps the fail-closed code default.
+- Key-name asymmetry: the Python allowlist forwards `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` while the launcher forwards `SPECKIT_CODEX_HOOK_TIMEOUT_MS` (listed as launcher-only). Neither is a scorer setting, so no wrong output; noted for maintainability.
 
 ## Confirmed-Clean Surfaces
 
-- Receipt store `route-receipt.ts:283-292`: the base and the folder must both be non-symlink directories owned by the current uid with no group or other bits. Writes go through a `wx` temp file with mode 0600 and a rename (`:249-251`). Reads stop at 4,096 bytes and check `sessionId` on parse (`:117`). Tests `route-receipt.vitest.ts:230,242,251` cover a symlinked folder, a world-writable base and a 0755 folder.
-- Crash fallback `user-prompt-submit.ts:624-657`: the diagnostic carries the fixed string `'Unhandled UserPromptSubmit hook exception'` and the model sees only the rendered timeout or fallback directive. No error message or stack reaches `additionalContext`.
-- CLI fallback payload: the prompt goes on stdin, not argv (`skill-advisor-cli-fallback.ts:270-273`).
+- Env forwarding is allowlist-only in all three spawns that cross a trust step (launcher, Python bridge); the CLI fallback passes the caller's own env to its own child, which is the same principal.
+- User prompt never travels in argv: stdin in `subprocess.ts`, the CLI fallback and the Python bridge.
+- Output caps: both `capOutput` and `capStdout` stop growth at the cap; the busy-marker scan still sees text past the cap.
+- Native label output from the bridge is sanitized against instruction-like text before it reaches a brief [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:710-721].
+- Residue tool delete path: fixed segments only, `..` and `/` refused, symlink targets refused, parent realpath must stay under the root realpath, directories deleted only where the caller declares a folder, `rmSync` with `force:false` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792-1854]. Kill path: SIGTERM only to a node process whose first script is this checkout's model-server script compared by realpath of its folder.
 
 ## Ruled Out
 
-- Pasted-text routing injection: `PASTED_REPLY_CUE` is anchored at `^`, so a paste can only drop text that comes before its last marker in a prompt that starts with the cue. The user's own text above a paste is never dropped, and the brief carries skill names, not prompt text.
-- Another local user pre-creating the shared temp base: `ownedFolder` rejects it, and the store then fails open to deliver, which is the pre-receipt behavior.
-- Receipt file-name collisions: the name is 64 bits of sha256 and the `sessionId` is rechecked on parse.
-- DSH clock rotation as an error or secret leak: it only logs.
-- MCP handler regex cost: capped at 10,000 characters, about 43 ms.
+- Prompt disclosure through the process table: ruled out, every prompt-carrying spawn uses stdin.
+- Env leak of unrelated secrets to the daemon or bridge child: ruled out, exact-key allowlists with no prefix match.
+- Residue tool deleting outside its root through a symlink or traversal: ruled out by `resolveContainedTarget`.
+- Residue tool signalling another checkout's or another user's process: ruled out by the ownership check on the script folder realpath.
 
 ## Next Focus
 
-- Dimension: traceability.
-- Focus area: read the phase `spec.md` files and check the strip, crash fallback, receipt and Python-parity behaviors against them. Confirm or rule out R1-P2-002 reach, that is, whether any UserPromptSubmit producer sets `lifecycle_event`.
-- Reason: security is covered; the `spec_code` core protocol is still partial.
-- Rotation status: correctness and security covered; traceability and maintainability remain.
-- Blocked/productive carry-forward: timing the shipped dist function and the real Python module was productive; do not retry crash-path double dedup or receipt cross-session leak.
-- Required evidence: file:line in the phase `spec.md` files and in the code for each traceability result.
+- Dimension: D3 traceability.
+- Focus area: spec_code and checklist_evidence across child packets 001 to 027 against HEAD; the doctor cleanup wiring (`.skilled/commands/doctor/assets/doctor-update-apply.yaml`, `doctor-update-contract.test.cjs`); feature-catalog and playbook entries for pasted-reply stripping, route receipts and crash fallback against code.
+- Reason: correctness and security are clean apart from one P2; the open protocols (checklist_evidence, the four overlays) are all traceability.
+- Rotation status: D1 and D2 done, D3 and D4 pending.
+- Carry-forward: R2-P2-001 open; the residue tool's scope gap (not in `reviewScopeFiles`) is worth a traceability note.
+- Required evidence: file:line for each acceptance-criteria row checked and each catalog claim matched or contradicted.
 
 Review verdict: PASS

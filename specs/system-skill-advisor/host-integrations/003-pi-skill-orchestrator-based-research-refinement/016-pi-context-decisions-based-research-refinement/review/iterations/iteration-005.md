@@ -1,89 +1,84 @@
-# Iteration 5: Correctness stabilization pass
+# Iteration 5 - Stabilization Pass (traceability)
 
 ## Dispatcher
-- Run: 5 of 5 (final, max-iterations stop policy). Session 2026-11-19T04:18:26.591Z, generation 1, lineageMode new.
-- Dimension: correctness (stabilization). All four dimensions were already covered.
-- Jobs: (1) reread each of the 8 active P2s at its cited file:line and settle its severity; (2) look for correctness defects in the files the earlier passes read least.
-- Operator focus: judged from the range `git diff 538d2f789ec 57d3f5d9159^2` and the shipped dist only. No `evidence/` folder and no implementation-summary verdict table was read.
-- Iteration number: JSONL holds 4 iteration records, so this is iteration 5; it matches the dispatch.
+
+- Iteration 5 of 5, the last under the cap. Native `@deep-review` leaf at HEAD `ea73ab54056`.
+- Dimension: traceability, run as a cross-dimension stabilization pass, because all four dimensions were covered in iterations 1 to 4.
+- Jobs: finish the core protocol `checklist_evidence`, recheck the six open P2 findings at HEAD, then run an off-fixture differential of the pasted-reply strip (`prompt-policy.ts` against `skill_advisor.py`).
+- Operator focus: the operator asked for the epic to be judged from code and tests. This pass reran each carried finding's evidence at HEAD (greps, reads and live probes of both runtimes) instead of trusting the earlier narratives. It also fuzzed the pasted-reply strip directly, which is the one shipped surface earlier passes left unprobed.
 
 ## Files Reviewed
-All under `.skilled/skills/system-skill-advisor/`.
-- `hooks/dsh/prompt-advisor.mjs` (range diff, lines 120-240)
-- `runtime/handlers/advisor-recommend.ts` (range diff; strip at 539, prompt uses 541-647)
-- `runtime/lib/scorer/fusion.ts` (range diff; floor flag 1385-1418, post-floor rewrites 1470-1585)
-- `runtime/skill-advisor-cli.ts` (range diff; `degradedRecommendations` 1486-1505)
-- `hooks/lib/skill-advisor-cli-fallback.ts` (range diff; 227-235, 390-396)
-- `runtime/lib/subprocess.ts` (interface 44-52, `parseRecommendations` 178-207)
-- `runtime/schemas/advisor-tool-schemas.ts` (range diff)
-- `runtime/bench/scorer-calibration.bench.ts` (range diff)
-- `runtime/scripts/skill_advisor.py` (strip twin 4790-4835, callers 1014 and 4845)
-- Rereads for the 8 active P2s: `hooks/claude/user-prompt-submit.ts` 192-206, 336-425, 570-660; `runtime/lib/prompt-policy.ts` 243-272; `runtime/lib/skill-advisor-brief.ts` 466-492; `hooks/lib/route-receipt.ts` 147-185.
+
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:225-250`
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:276-279`
+- `.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md:14-41`
+- `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:33`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:438-500`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4545-4600, 5020-5063`
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243-274`
+- Child `spec.md` and `graph-metadata.json` for 007, 008, 009 and 010
+- All seven child `acceptance-criteria.md` files, all child `tasks.md` files, and `003-follow-up-routing-benchmark/implementation-summary.md`
 
 ## Findings - New
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
+
 None.
 
 ### P2 Findings
-1. **The floor flag reaches the hook only on the CLI path: the subprocess parser and the Python scorer never carry it, so the in-process brief path records every floored route as an earned one** -- .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:198 -- The range added `confidenceFloored` to `AdvisorRecommendation` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:49], and the CLI fallback forwards it [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:395]. `parseRecommendations` builds each recommendation from an explicit field list that omits it [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:198], and `skill_advisor.py` has no `confidenceFloored` key at all (exact search, no hit). `buildSkillAdvisorBrief` routes through that parser [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:539]. The hook keys both the guard [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:369] and the receipt-write exclusion [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:406] on that flag. On the brief-producer path the guard never fires and a floored route is written as a receipt. Reach today: only `dependencies.buildBrief` uses that producer, and only tests inject it [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:580]. It is a latent gap, so P2.
-   Finding class: producer-contract gap (field declared on a shared type, filled by one of two producers).
-   Scope proof: the field and the hook readers are in the range diff; the parser omission is in the same file as the new field.
-   Affected surface hints: runtime/lib/subprocess.ts parseRecommendations; runtime/scripts/skill_advisor.py JSON output; hooks/claude/user-prompt-submit.ts guardWeakFollowUp and recordRouteReceipt.
-   Case: a host that injects `buildSkillAdvisorBrief` as `buildBrief` with a confirmed session id gets a floored work-intent top, and the hook writes a receipt for it instead of skipping, then never suppresses a later weak follow-up.
 
-## Severity Stabilization of Active Findings
-Each was reread at its cited line on current main.
+None new. The six carried P2s were all rechecked, and all six are confirmed at HEAD (see the recheck below).
 
-| Finding | Reread | Outcome | Reason |
-|---|---|---|---|
-| R1-P2-001 | user-prompt-submit.ts:200 (head cut), brief.ts:478 and cli-fallback.ts:233 (strip after it) | Confirmed P2 | Needs a paste over 64 KiB. The turn still routes, only on the wrong text, and it fails open. |
-| R1-P2-002 | user-prompt-submit.ts:369-376 | Confirmed P2 | No production producer sets `lifecycle_event` on UserPromptSubmit (iteration 3), so there is no named reach for P1. |
-| R1-P2-003 | user-prompt-submit.ts:604 vs 623 | Confirmed P2 | The receipt is written before `finishAdvisorDelivery`. A wrong suppression needs a failed host write and then a floored weak follow-up on a different skill, and its cost is one skipped brief. |
-| R1-P2-004 | prompt-policy.ts:253 | Confirmed P2 | Reproduced on the dist: `Claude replied: ok. Task: update readme. Now: commit it` strips to `commit it`. Routing quality only. |
-| R2-P2-001 | prompt-policy.ts:246; skill_advisor.py:4807, callers 1014 and 4845 | Confirmed P2 | The quadratic scan is real. The hook bounds it at 64 KiB and the MCP schema at 10,000 chars. The unbounded Python input is a local CLI the user runs on their own prompt, so the blast radius is self-inflicted CPU time. |
-| R3-P2-001 | user-prompt-submit.ts:580 | Confirmed P2 | The fire gate reads the raw prompt. The effect is a routed turn where a skip was intended, which is advisory output. |
-| R4-P2-001 | skill-advisor-brief.ts:473-478 | Confirmed P2 | The two inputs are still in place, including the raw-prompt `policy` that feeds `metalinguisticMentions`. That is the same root and gets no new id. |
-| R4-P2-002 | user-prompt-submit.ts:643 and 651 | Confirmed P2 | `input` is non-null after the 643 return, so the `: { effectiveEmitted: emitted }` arm cannot run. |
+## Prior Finding Recheck (HEAD ea73ab54056)
 
-No escalation and no false positive. The R1-P2-001 plus R2-P2-001 ordering constraint is a note on the order of fixes, not a live defect: the shipped order keeps the 64 KiB bound. No P1 is hidden there.
+| ID | Outcome | Evidence at HEAD |
+|----|---------|------------------|
+| R2-P2-001 | Confirmed | `child.stdin?.write(args.prompt)` still has no stdin `error` listener [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:248], while the sibling spawn guards it [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:278]. Severity unchanged: the trigger stays narrow and is inferred, not reproduced. |
+| R3-P2-001 | Confirmed | Status is still `Planned` in the spec.md of 007, 008, 009 and 010 (lines 25, 25, 26 and 25) [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/spec.md:25]. Their `graph-metadata.json` still reads `"status": "planned"` (lines 38, 38, 39 and 39). |
+| R3-P2-002 | Confirmed, slightly wider | The overview still says "The Claude hook holds back" [SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md:16], and the Source Files tables still list no DSH file [SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md:34-41]. The Vibe adapter loads the compiled Claude handler [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:33], so Vibe also reaches the guard without being named. Codex reach is unverified, because `hooks/` has no codex directory. This is recorded as a recheck note, not a new finding. |
+| R3-P2-003 | Confirmed | `git grep -n score-outcome-rerank -- ':!specs'` exits 0 and prints `.skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md:32`. The AC row still records "The grep exited 1" [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59]. |
+| R4-P2-001 | Confirmed | `asksForLoopRun` still only lowercases [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:476], and so does `asks_for_loop_run` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4597]. Live probe in both copies: the straight-quote form returns true and the curly `I’d like a research loop on cache eviction` returns false. |
+| R4-P2-002 | Confirmed | The comment still says the spelled-count question "stays the question it was" [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:494]. Live probe: `why does it stop after ten iterations` returns true in TS and Python. The control `how many passes does it run` returns false in both. |
+
+None was downgraded and none was a false positive.
 
 ## Traceability Checks
-- `spec_code` (core): partial. The pasted-reply strip is applied once before the cache key, embedding, scorer and compiled-route enrichment in the MCP handler [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:539], and again idempotently inside the scorer [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1277]. That matches the "routes the same as without the paste" claim on the MCP path. The hook-side gaps are still R1-P2-001 and R3-P2-001.
-- `checklist_evidence` (core): notApplicable. The evidence folders are out of bounds by operator direction.
+
+- `checklist_evidence` (core, final): **partial**.
+  - All 117 AC data rows across the seven AC files read Met. The non-Met rows a grep counted are the header rows (line 52 or 54 of each file).
+  - The six unchecked rows in 003 (T009 to T014, `003-follow-up-routing-benchmark/tasks.md:70-80`) are all marked "Only on ship". The phase closed with a no-ship decision [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78], so leaving them unchecked is correct.
+  - No child carries a `checklist.md`.
+  - One residual keeps this at partial: AC-006's evidence cell cannot be reproduced by its own command (R3-P2-003, `027-epic-review-fixes/acceptance-criteria.md:59`). Partial is the honest final status for this protocol in this run.
 
 ## Integration Evidence
-- DSH host `hooks/dsh/prompt-advisor.mjs` -> `runtime/dist/hooks/claude/user-prompt-submit.js` (`handleClaudeUserPromptSubmit`) with `session_id` and no `transcript_path`. Receipt staleness on DSH therefore rests on the lifecycle clock alone, which the new `advanceBoundary` rotates on `agent/created` and on a successful `compaction/end` [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187].
-- Both DSH URLs resolve `dist/hooks/lib/directive-lifecycle.js`, so the rotation and the hook share one module instance and one default store.
+
+- Vibe adapter to the shared Claude handler: `hooks/vibe/prompt-advisor.mjs:33` imports `runtime/dist/hooks/claude/user-prompt-submit.js`.
+- Route-receipt users at HEAD: `hooks/claude/user-prompt-submit.ts`, `hooks/dsh/prompt-advisor.mjs` and `hooks/lib/route-receipt.ts` (exact grep over `hooks/` and `runtime/`).
 
 ## Edge Cases
-- Strip idempotence across folding: the brief strips, then folds to one line, then slices, and the handler strips again. Probed on the dist (`runtime/dist/runtime/lib/prompt-policy.js`) with 4 cases: `strip(fold(strip(x))) === fold(strip(x))` held every time. Folding can only remove newline markers and never create a cue.
-- The empty task after the marker (`Assistant response: ... now:   `) returns the whole prompt, so the paste is scored. That is documented fallback behavior, not a defect.
-- The DSH compaction rotation runs detached (`void rotateSessionClock`). A pre-step that lands before the microtask chain settles would read the old clock. This is inferred and not measured, and the window is microtasks long, so it is ruled out rather than reported.
+
+- Module load limit: `prompt-policy.ts` cannot be imported under Node type stripping, because `./shared/unicode-normalization.js` does not resolve without a build and `runtime/dist/lib/prompt-policy.js` is absent. The differential therefore ran a verbatim slice of `prompt-policy.ts:243-274`. That slice is self-contained, since it uses only its two regexes. This proves the two strip functions agree. It does not prove both call sites pass the same text. The call-site check (the fusion.ts strip site against `skill_advisor.py:1050-1052`) was not run in this pass.
+- Iteration number: 4 iteration records were in the state log, so this is 5, which matches the dispatch.
 
 ## Confirmed-Clean Surfaces
-- `fusion.ts`: no step after 1418 rewrites `confidence`. The later passes (1481, 1534, 1575) change only `uncertainty` and `passes_threshold`, so `confidenceFloored` cannot go stale on a raised confidence.
-- `advisor-recommend.ts`: every downstream prompt use after 539 reads `scoredPrompt`, on the cached path and the fresh path alike. The cache key folds paste variants together on purpose.
-- `skill-advisor-cli.ts` `degradedRecommendations`: a command named only in the paste no longer attaches. The substring match is unchanged from before the range.
-- `skill-advisor-cli-fallback.ts`: strip, then cut. The handler re-strip is a no-op by idempotence.
-- `scorer-calibration.bench.ts`: the new measurements only log. They assert nothing and change no gate.
-- Python twin: the `^` cue anchor without MULTILINE, `.strip(_JS_SPACE_CHARS)` and the fixed-point loop match the TS twin.
+
+- Pasted-reply strip mirror: 14,013 probes produced 0 TS/Python diffs, 1,223 of which changed the text. The probes were 6,013 random token mixes plus 8,000 cue-anchored mixes. They covered NBSP, U+2028/2029, U+0085, U+FEFF, U+200B, U+180E, U+3000, `ſ`, the Kelvin sign, astral characters, CRLF, repeated `Task:` markers and nested cues [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243-273] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5029-5063].
 
 ## Ruled Out
-- A stale floor flag after a confidence rewrite in fusion: no rewrite exists.
-- A double strip changing the scored text between the handler and the scorer: proven idempotent.
-- The DSH detached-rotation race: microtask window, inference only.
-- Brief-path metalinguistic diagnostics read from the raw prompt: same root as R4-P2-001, not a new finding.
+
+- TS/Python pasted-reply strip drift on off-fixture input: 0 diffs over 14,013 probes.
+- Unchecked 003 tasks hiding missing evidence: they are conditional on a ship decision that was not taken.
 
 ## Next Focus
-- Dimension: none. This is the last iteration; synthesis follows.
-- Focus area: synthesis over 9 active P2s (R1-P2-001..004, R2-P2-001, R3-P2-001, R4-P2-001/002, R5-P2-001).
-- Reason: max-iterations stop policy reached.
-- Rotation status: all four dimensions covered, plus one stabilization pass.
-- Blocked/productive carry-forward: probing on the dist stayed productive. Do not retry strip idempotence or the floor-staleness check.
-- Required evidence: none outstanding. Fix ordering: make TASK_MARKER linear (R2-P2-001) before moving the 64 KiB cut (R1-P2-001).
+
+- Dimension: none, the rotation is complete (5 of 5 iterations).
+- Focus area: synthesis. Six P2s are active and no P0 or P1.
+- Reason: the iteration cap has been reached, and every carried finding was confirmed at HEAD.
+- Carry-forward: `checklist_evidence` final partial (AC-006); `feature_catalog_code` partial (R3-P2-002); the strip call-site parity check was not run.
+- Required evidence: none further for this run.
 
 Review verdict: PASS

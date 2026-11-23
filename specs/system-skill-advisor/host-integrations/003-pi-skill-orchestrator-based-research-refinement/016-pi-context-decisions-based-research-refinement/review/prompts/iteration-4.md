@@ -14,21 +14,133 @@ This prompt pack renders the per-iteration context for the `@deep-review` LEAF a
 STATE SUMMARY (auto-generated):
 Iteration: 4 of 5
 Dimension: maintainability
-Prior Findings: P0=0 P1=0 P2=6
+Prior Findings: P0=0 P1=0 P2=4
 Dimension Coverage: correctness, security, traceability (3/4)
-Traceability: core=unfinished=[] overlay=pending
+Traceability: core=partial overlay=pending
 Resource Map Coverage: resource-map.md not present; skipping coverage gate.
-Coverage Age: 3
-Last 2 ratios: 0.2 -> 0.17
+Coverage Age: 0
+Last 2 ratios: 1.0 -> 0.75
 Stuck count: 0
-Provisional Verdict: PASS hasAdvisories=true
+Provisional Verdict: PENDING hasAdvisories=false
 
 Review Iteration: 4 of 5
 Mode: review
 Dimension: maintainability
-Review Target: skill-advisor code shipped by packet 016 (27 files; see Review Scope Files)
-Review Scope Files: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts, .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts, .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts, .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs, .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts, .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts, .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts, .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts, .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts, .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts, .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py, .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts, .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs, .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts, .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py, .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
-Prior Findings: P0=0 P1=0 P2=6
+Review Target: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement
+Review Scope Files: - specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md
+- specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md
+- specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md
+- .env.example
+- .skilled/bin/launcher-heartbeat-watchdog.vitest.ts
+- .skilled/bin/launcher-threshold-env.vitest.ts
+- .skilled/bin/system-skill-advisor-launcher.cjs
+- .skilled/changelog/skilled/v4.1.0.0.md
+- .skilled/changelog/skilled/v4.2.0.0.md
+- .skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs
+- .skilled/skills/system-skill-advisor/changelog/v1.1.1.0.md
+- .skilled/skills/system-skill-advisor/changelog/v1.2.0.0.md
+- .skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md
+- .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+- .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-validate.md
+- .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md
+- .skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/lifecycle.md
+- .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+- .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md
+- .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md
+- .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md
+- .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md
+- .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md
+- .skilled/skills/system-skill-advisor/graph-metadata.json
+- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+- .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs
+- .skilled/skills/system-skill-advisor/hooks/lib/README.md
+- .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+- .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+- .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+- .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs
+- .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs
+- .skilled/skills/system-skill-advisor/INSTALL-GUIDE.md
+- .skilled/skills/system-skill-advisor/leaf-manifest.json
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/weak-follow-up-route-receipt-guard.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/hub-command-attachment.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md
+- .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md
+- .skilled/skills/system-skill-advisor/README.md
+- .skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md
+- .skilled/skills/system-skill-advisor/runtime/advisor-server.ts
+- .skilled/skills/system-skill-advisor/runtime/bench/README.md
+- .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration-baseline.json
+- .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
+- .skilled/skills/system-skill-advisor/runtime/database/.gitignore
+- .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+- .skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/daemon/liveness.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/bm25.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json
+- .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py
+- .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+- .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py
+- .skilled/skills/system-skill-advisor/runtime/tests/compat/shim.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/daemon/liveness.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json
+- .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
+- .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md
+- .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-observability.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json
+- .skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py
+- .skilled/skills/system-skill-advisor/runtime/tests/route-exclusions.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-ask-routing.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/scorer/lane-registry-env-override.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-fallback-049-005.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/scorer/runtime-lane-health.vitest.ts
+- .skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts
+- .skilled/skills/system-skill-advisor/SKILL.md
+- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md
+- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md
+- .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md
+- .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+- .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+- .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+- .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+- .skilled/skills/system-spec-kit/runtime/cli/setup/README.md
+- .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+- .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+- README.md
+Prior Findings: P0=0 P1=0 P2=4
 
 ## PIVOT LINEAGE
 
@@ -46,7 +158,7 @@ Load `.skilled/skills/sk-code/sk-code-review/references/review-core.md` before f
 ## REVIEW DIMENSIONS
 
 correctness, security, traceability, maintainability
-Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): Review the code this change shipped: git diff 538d2f789ec 57d3f5d9159^2 (pasted earlier-reply stripping before scoring, the prompt-hook crash fallback, weak follow-up route receipts, Python scorer strip parity). Judge from the code and tests only; do not read the packet evidence folders or implementation-summary verdict tables.
+Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): Review the code and docs the whole epic shipped across phases 001 to 027 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, and the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.
 
 ## TRACEABILITY PROTOCOLS
 
@@ -68,7 +180,7 @@ Severity scale: `P0`, `P1`, `P2`, and nothing else -- no fourth tier is reserved
 
 ### Iteration Final-Line Contract (MANDATORY)
 
-`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-004.md` MUST end with exactly one of these plain-text lines as the **absolute final line** (no trailing whitespace, no variation), and every iteration MUST emit exactly one parseable verdict:
+`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-{NNN}.md` MUST end with exactly one of these plain-text lines as the **absolute final line** (no trailing whitespace, no variation), and every iteration MUST emit exactly one parseable verdict:
 
 ```
 Review verdict: PASS
@@ -98,8 +210,8 @@ All paths are relative to the repo root.
 - State Log: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-state.jsonl
 - Findings Registry: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-findings-registry.json
 - Strategy: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-strategy.md
-- Write iteration narrative to: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-004.md
-- Write per-iteration delta file to: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-004.jsonl
+- Write iteration narrative to: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-{NNN}.md
+- Write per-iteration delta file to: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-{NNN}.jsonl
 
 ## CONSTRAINTS
 
@@ -110,12 +222,12 @@ All paths are relative to the repo root.
 - Do not re-enter or restate any direction listed as swept or saturated above. The pivot-selected focus is a new read-only review direction, never permission to change the target.
 - Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
 - **ALLOWED WRITE PATHS (the ONLY paths you may create, modify, or append to)**:
-  - `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-004.md`, this iteration's narrative markdown
-  - `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-004.jsonl`, this iteration's delta JSONL
+  - `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-{NNN}.md`, this iteration's narrative markdown
+  - `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-{NNN}.jsonl`, this iteration's delta JSONL
   - `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-strategy.md`, strategy.md (in-place updates only)
   - the append gateway's own writes into the run directory when you invoke it (see OUTPUT CONTRACT item 2) — the gateway is the only writer of `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-state.jsonl`; that path is NEVER one you write directly
 - **BANNED OPERATIONS (NEVER execute against any path)**: `rm`, `rm -rf`, `git rm`, `mv`, `sed -i` (including `sed -i ''`), `rmdir`, `find ... -delete`, shell output-redirect truncate `>` against any file not in the allowed-write list, and any tool call whose effect is to delete, rename, or replace a file outside the allowed-write list. Reading is unrestricted; **writing, renaming, and deleting are scoped**.
-- **SCOPE VIOLATION PROTOCOL**: if your plan would require modifying any path NOT in the allowed-write list, you MUST STOP that action and emit a finding instead. Record the would-be mutation as a `scope_violation` entry in the iteration narrative (under a `## SCOPE VIOLATIONS` heading) and continue the review. NEVER execute the out-of-scope mutation. The review packet (`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-004.md` directory and parents) is the only zone for your writes; the reviewed target spec/code is off-limits.
+- **SCOPE VIOLATION PROTOCOL**: if your plan would require modifying any path NOT in the allowed-write list, you MUST STOP that action and emit a finding instead. Record the would-be mutation as a `scope_violation` entry in the iteration narrative (under a `## SCOPE VIOLATIONS` heading) and continue the review. NEVER execute the out-of-scope mutation. The review packet (`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-{NNN}.md` directory and parents) is the only zone for your writes; the reviewed target spec/code is off-limits.
 - **GATEWAY CALLS ARE REQUIRED AND IN-SCOPE — NEVER A CONTAINMENT VIOLATION**: running `append-mode-event.cjs` against your own run directory is REQUIRED every iteration, not optional. Its writes land inside the run directory, which is your own write authority — that is never the "out-of-scope write" any containment warning means. "Don't run the repo's tooling" guidance targets builds, tests, and repo-wide scripts (e.g. `generate-context.js`, `validate.sh --recursive`, git writes); it does NOT exempt this state-recording gateway. Skipping the gateway call, or writing `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-state.jsonl` directly instead, fails the iteration.
 - Append JSONL record with dimensions, filesReviewed, findingsSummary, findingsNew, traceabilityChecks, newFindingsRatio, and optional graphEvents.
 - When emitting the iteration JSONL record, include an optional `graphEvents` array representing coverage graph nodes and edges discovered this iteration. Omit the field when no graph events are produced. Each event MUST use one of these two EXACT shapes. The reducer discriminates node vs edge by `type`, then validates each node's `kind` against the node vocabulary and each edge's `relation` against the relation vocabulary — any event outside these vocabularies is silently dropped, and if every event is dropped the convergence graph stays empty (nodeCount 0, empty signals):
@@ -126,7 +238,7 @@ All paths are relative to the repo root.
 
 You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_validate step emits a `schema_mismatch` conflict event if any is missing or malformed.
 
-1. **Iteration narrative markdown** at `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-004.md` (path pre-substituted for the current iteration number). Structure: headings for Dimension, Files Reviewed, Findings by Severity (P0/P1/P2), Traceability Checks, Verdict, Next Dimension.
+1. **Iteration narrative markdown** at `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-{NNN}.md` (path pre-substituted for the current iteration number). Structure: headings for Dimension, Files Reviewed, Findings by Severity (P0/P1/P2), Traceability Checks, Verdict, Next Dimension.
 
 2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-state.jsonl` directly — the gateway is its only writer, and it refreshes that log from the ledger after authorizing, fencing, and receipting the record. The record MUST use `"type":"iteration"` EXACTLY, NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored. Required schema:
 
@@ -163,9 +275,9 @@ node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --event-json <that temp file>
 ```
 
-`--event-json` must name the SINGLE-record file (the gateway `JSON.parse`s it whole), never the multi-line `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-004.jsonl`. Exit `0` = the record is durable in the ledger and the refreshed state_log carries it; exit `2` = refused → STOP and name the failed check. Never fall back to a direct write.
+`--event-json` must name the SINGLE-record file (the gateway `JSON.parse`s it whole), never the multi-line `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-{NNN}.jsonl`. Exit `0` = the record is durable in the ledger and the refreshed state_log carries it; exit `2` = refused → STOP and name the failed check. Never fall back to a direct write.
 
-3. **Per-iteration delta file** at `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-004.jsonl` (path pre-substituted, e.g. `deltas/iter-001.jsonl`). This file holds the structured delta stream for this iteration: one `{"type":"iteration",...}` record (same as the state-log append) plus per-event structured records (one per graphEvent, finding, classification, traceability-check, ruled_out direction). Each record on its own JSON line.
+3. **Per-iteration delta file** at `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deltas/iter-{NNN}.jsonl` (path pre-substituted, e.g. `deltas/iter-001.jsonl`). This file holds the structured delta stream for this iteration: one `{"type":"iteration",...}` record (same as the state-log append) plus per-event structured records (one per graphEvent, finding, classification, traceability-check, ruled_out direction). Each record on its own JSON line.
 
 Example delta file contents (one review iteration):
 ```json

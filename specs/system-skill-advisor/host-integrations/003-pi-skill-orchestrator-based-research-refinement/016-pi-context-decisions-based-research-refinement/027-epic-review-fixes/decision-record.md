@@ -47,6 +47,8 @@ _memory:
 | Q011 | Fix both P1 and every P2 finding of the third review in 027. | Not stated. | None | REQ-012 to REQ-016, T029 to T037 |
 | Q012 | Fold the third round into the 2.0.1.0 changelog rather than bumping to 2.0.2.0. | Not stated. | None | .skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md |
 | Q013 | Commit the third round on the 518 branch, merge main in, rerun the gates, push origin/main and remove worktree 518. | Not stated. | None | worktrees/518-advisor-review-round-three |
+| Q014 | The second epic review archives the Nov 19 run and restarts as generation 2. | Not stated. | None | review/, review-archive/2026-11-23T05-50-33Z/ |
+| Q015 | The finished review is committed, merged with origin/main and pushed, and its worktree removed. | Not stated. | None | review/review-report.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -295,6 +297,45 @@ Options:
 ```text
 Commit, merge, push (Recommended)
 Commit only
+```
+
+Answer:
+```text
+Commit, merge, push (Recommended)
+```
+
+### Q014
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_015ofVNxfHYACsPod6pGoRBN:0 -->
+
+Question:
+```text
+The 016 epic already has a finished, committed five-pass review from Nov 19 in 016/review/. What should the new run do with it?
+```
+
+Options:
+```text
+Archive and restart (Recommended)
+Separate packet beside it
+```
+
+Answer:
+```text
+Archive and restart (Recommended)
+```
+
+### Q015
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_015ofVNxfHYACsPod6pGoRBN:2 -->
+
+Question:
+```text
+When the review and the Opus-high synthesis are done, how should the result land?
+```
+
+Options:
+```text
+Commit, merge, push (Recommended)
+Commit only, no push
+Leave uncommitted
 ```
 
 Answer:

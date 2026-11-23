@@ -15,19 +15,20 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts,.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts,.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts,.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs,.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts,.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts,.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts,.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts,.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts,.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts,.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts,.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py,.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts,.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs,.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py,.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json (files)
-- Started: 2026-11-19T04:18:26.591Z
-- Status: INITIALIZED
+- Review Target: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement (spec-folder)
+- Started: 2026-11-23T05:51:03.170Z
+- Status: COMPLETE
 - Iteration: 5 of 5
 - Provisional Verdict: FAIL
 - Failed required gates at stop: coverage
-- hasSearchDebt: false
+- hasSearchDebt: true
 - hasAdvisories: false
-- Session ID: 2026-11-19T04:18:26.591Z
-- Parent Session: none
-- Lifecycle Mode: new
-- Generation: 1
+- Session ID: 2026-11-23T05:51:03.170Z
+- Parent Session: 2026-11-19T04:18:26.591Z
+- Lifecycle Mode: restart
+- Generation: 2
 - continuedFromRun: none
+- stopReason: maxIterationsReached
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:dimension-expansion -->
@@ -47,7 +48,7 @@ Reducer-generated observability surface for the active review packet.
 |----------|------:|
 | P0 (Blockers) | 0 |
 | P1 (Required) | 0 |
-| P2 (Suggestions) | 9 |
+| P2 (Suggestions) | 6 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -56,11 +57,11 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | correctness | correctness | 1.00 | 0/0/4 | complete |
-| 2 | security | security | 0.20 | 0/0/1 | complete |
-| 3 | traceability | traceability | 0.17 | 0/0/1 | complete |
-| 4 | maintainability | maintainability | 0.25 | 0/0/2 | complete |
-| 5 | correctness stabilization: reconfirm 8 P2s, sweep least-read files | correctness | 0.11 | 0/0/9 | complete |
+| 1 | correctness | correctness | 0.00 | 0/0/0 | complete |
+| 2 | security | security | 1.00 | 0/0/1 | complete |
+| 3 | traceability | traceability | 0.75 | 0/0/3 | complete |
+| 4 | maintainability | maintainability | 0.33 | 0/0/2 | complete |
+| 5 | traceability stabilization: checklist_evidence closeout, recheck of six P2s, pasted-reply strip differential | traceability | 0.00 | 0/0/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -68,9 +69,9 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 5 |
+| correctness | covered | 0 |
 | security | covered | 1 |
-| traceability | covered | 1 |
+| traceability | covered | 3 |
 | maintainability | covered | 2 |
 
 <!-- /ANCHOR:dimension-coverage -->
@@ -81,16 +82,16 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.85
-- graphDecision: CONTINUE
+- graphConvergenceScore: 1.00
+- graphDecision: STOP_ALLOWED
 - graphBlockers: none
 
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.17 -> 0.25 -> 0.11
-- convergenceScore: 0.89
-- openFindings: 9
+- Last 3 ratios: 0.75 -> 0.33 -> 0.00
+- convergenceScore: 1.00
+- openFindings: 6
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -104,49 +105,49 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=9, ruledOut=13, deferred=0, blocked=0
+- candidateCoverage: covered=6, ruledOut=12, deferred=1, blocked=0
 
 ### Search Debt
-[None yet]
+- iteration 1 env_parity (deferred): carried to iteration 2; evidence=UNKNOWN
 
 ### Ruled-Out Candidates
-- iteration 1 parity_drift (ruled_out): verified by direct read and passing parity tests; evidence=.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4803, .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245
-- iteration 1 crash_path_double_dedup (ruled_out): emitDiagnostic and observeEmittedAdvisorPolicy swallow errors; evidence=.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:277, .skilled/skills/system-skill-advisor/runtime/lib/render.ts:469
-- iteration 2 shared_temp_dir_trust (ruled_out): verified by direct read and existing tests; evidence=.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283, .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts:230
-- iteration 2 subprocess_argv_exposure (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233
-- iteration 2 error_detail_leak (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:624
-- iteration 2 prompt_injection_routing (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245
-- iteration 3 unreached_contract_field (ruled_out): only tests set the field; evidence=.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:249, .opencode/plugins/system-skill-advisor.js:890
-- iteration 3 spec_code_drift (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:77, .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:116, .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:305
-- iteration 4 twin_drift (ruled_out): shared fixture read by vitest and Python suites; evidence=.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts:25, .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2538
-- iteration 4 weak_test (ruled_out): measured on shipped dist; evidence=.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116
-- iteration 5 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1481
-- iteration 5 idempotence (ruled_out): probed on dist; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:265
-- iteration 5 race (ruled_out): inference only, negligible window; evidence=.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187
+- iteration 1 cross_runtime_drift (ruled_out): verified by read and test run; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:464, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4504
+- iteration 1 stale_cache (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:94
+- iteration 1 idempotence (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267
+- iteration 1 state_transition (ruled_out): verified by read and test; evidence=.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:75
+- iteration 2 secret_env_leak (ruled_out): verified by direct read and drift test; evidence=.skilled/bin/system-skill-advisor-launcher.cjs:289, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:697, .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787
+- iteration 2 argv_disclosure (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:247, .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:279
+- iteration 2 path_traversal_delete (ruled_out): verified by direct read; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792-1854, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1873
+- iteration 3 removed_feature_residue (ruled_out): grep shows only a scrub-list prefix; evidence=.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1014
+- iteration 4 mirror_drift (ruled_out): differential probe agreed on every prompt; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:475, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4595
+- iteration 4 dead_code (ruled_out): registry holds only live lanes; validator checks per-weight range only; evidence=.skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:9
+- iteration 4 comment_hygiene (ruled_out): hits are path-shape placeholders; evidence=.skilled/skills/system-skill-advisor/runtime/advisor-server.ts:103
+- iteration 5 mirror_drift (ruled_out): differential probe agreed on all 14013 prompts; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5029
+- iteration 5 checklist_evidence_gap (ruled_out): the no-ship decision is recorded in the implementation summary; evidence=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md:70, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78
 
 ### Clean Search Proof
-- iteration 1 parity_drift (ruled_out): verified by direct read and passing parity tests; evidence=.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4803, .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245
-- iteration 1 crash_path_double_dedup (ruled_out): emitDiagnostic and observeEmittedAdvisorPolicy swallow errors; evidence=.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:277, .skilled/skills/system-skill-advisor/runtime/lib/render.ts:469
-- iteration 2 shared_temp_dir_trust (ruled_out): verified by direct read and existing tests; evidence=.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283, .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts:230
-- iteration 2 subprocess_argv_exposure (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233
-- iteration 2 error_detail_leak (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:624
-- iteration 2 prompt_injection_routing (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245
-- iteration 3 unreached_contract_field (ruled_out): only tests set the field; evidence=.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:249, .opencode/plugins/system-skill-advisor.js:890
-- iteration 3 spec_code_drift (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:77, .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:116, .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:305
-- iteration 4 twin_drift (ruled_out): shared fixture read by vitest and Python suites; evidence=.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts:25, .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2538
-- iteration 4 weak_test (ruled_out): measured on shipped dist; evidence=.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116
-- iteration 5 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1481
-- iteration 5 idempotence (ruled_out): probed on dist; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:265
-- iteration 5 race (ruled_out): inference only, negligible window; evidence=.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187
+- iteration 1 cross_runtime_drift (ruled_out): verified by read and test run; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:464, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4504
+- iteration 1 stale_cache (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:94
+- iteration 1 idempotence (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267
+- iteration 1 state_transition (ruled_out): verified by read and test; evidence=.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:75
+- iteration 2 secret_env_leak (ruled_out): verified by direct read and drift test; evidence=.skilled/bin/system-skill-advisor-launcher.cjs:289, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:697, .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787
+- iteration 2 argv_disclosure (ruled_out): verified by direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:247, .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:279
+- iteration 2 path_traversal_delete (ruled_out): verified by direct read; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792-1854, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1873
+- iteration 3 removed_feature_residue (ruled_out): grep shows only a scrub-list prefix; evidence=.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1014
+- iteration 4 mirror_drift (ruled_out): differential probe agreed on every prompt; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:475, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4595
+- iteration 4 dead_code (ruled_out): registry holds only live lanes; validator checks per-weight range only; evidence=.skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:9
+- iteration 4 comment_hygiene (ruled_out): hits are path-shape placeholders; evidence=.skilled/skills/system-skill-advisor/runtime/advisor-server.ts:103
+- iteration 5 mirror_drift (ruled_out): differential probe agreed on all 14013 prompts; evidence=.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5029
+- iteration 5 checklist_evidence_gap (ruled_out): the no-ship decision is recorded in the implementation summary; evidence=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md:70, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none. This is the last iteration; synthesis follows. - Focus area: synthesis over 9 active P2s (R1-P2-001..004, R2-P2-001, R3-P2-001, R4-P2-001/002, R5-P2-001). - Reason: max-iterations stop policy reached. - Rotation status: all four dimensions covered, plus one stabilization pass. - Blocked/productive carry-forward: probing on the dist stayed productive. Do not retry strip idempotence or the floor-staleness check. - Required evidence: none outstanding. Fix ordering: make TASK_MARKER linear (R2-P2-001) before moving the 64 KiB cut (R1-P2-001). Review verdict: PASS
+- Dimension: none, the rotation is complete (5 of 5 iterations). - Focus area: synthesis. Six P2s are active and no P0 or P1. - Reason: the iteration cap has been reached, and every carried finding was confirmed at HEAD. - Carry-forward: `checklist_evidence` final partial (AC-006); `feature_catalog_code` partial (R3-P2-002); the strip call-site parity check was not run. - Required evidence: none further for this run. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 9 active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.
+- 1 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->

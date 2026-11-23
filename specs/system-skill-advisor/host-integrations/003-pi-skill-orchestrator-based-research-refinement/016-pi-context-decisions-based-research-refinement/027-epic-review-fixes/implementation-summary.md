@@ -8,27 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes"
-    last_updated_at: "2026-11-22T21:43:37Z"
+    last_updated_at: "2026-11-23T06:22:56Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the third review's findings and passed every gate"
-    next_safe_action: "Land the 518 branch on main after merging origin/main and rerunning the gates"
+    recent_action: "Ran the second five-pass epic review; verdict FAIL from the coverage gate, 6 P2 open"
+    next_safe_action: "Land the review commit, then decide on fixing the six P2s"
     packet_purpose: "Purpose: Every setting the docs name either works under the daemon or is gone, and the doctor's cleanup command has a test that runs it."
     blockers: []
     key_files:
       - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
-      - ".skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts"
     session_dedup:
-      fingerprint: "sha256:4b2a0983a18e383cbfd001e59c510b778c30a3105fe1c0f01dee517bf274e0f3"
+      fingerprint: "sha256:f15b3b41b46c95d65612e077b57cb7b3527f8126eed623cbb18ac5ffceb3aeff"
       session_id: "scaffold-027-epic-review-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
-      workspace: "/Users/michelkerkmeester/worktrees/public/518-advisor-review-round-three"
-      savedAt: "2026-11-22T21:43:37Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/520-epic-016-five-pass-review"
+      savedAt: "2026-11-23T06:22:56Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
