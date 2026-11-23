@@ -1192,6 +1192,43 @@ function indentBefore(text, offset) {
   return cursor === offset ? text.slice(lineStart, cursor) : null;
 }
 
+/**
+ * The leading whitespace of the line an offset sits on. A value written after
+ * its key on the same line nests at that line's depth, which `indentBefore`
+ * cannot report because text precedes the value.
+ * @param {string} text Document text.
+ * @param {number} offset Offset into the text.
+ * @returns {string} The line's indent, empty when it has none.
+ */
+function lineIndent(text, offset) {
+  const lineStart = text.lastIndexOf('\n', offset - 1) + 1;
+  let cursor = lineStart;
+  while (cursor < text.length && (text[cursor] === ' ' || text[cursor] === '\t')) cursor += 1;
+  return text.slice(lineStart, cursor);
+}
+
+/**
+ * How the document is laid out, so a written value matches the lines around it:
+ * the indent unit of its first indented line, and CRLF line endings when the
+ * file already uses them. A document with no indented line falls back to the
+ * entry set's `style.indent`, then to two spaces.
+ * @param {string} text Document text.
+ * @param {{indent?: number|string}} style Entry-set style.
+ * @returns {{unit: string, eol: string}} Indent unit and line ending.
+ */
+function documentLayout(text, style) {
+  const eol = text.includes('\r\n') ? '\r\n' : '\n';
+  const detected = /\n([ \t]+)[^ \t\r\n]/.exec(text);
+  if (detected) return { unit: detected[1], eol };
+  if (typeof style.indent === 'string' && /^[ \t]+$/.test(style.indent)) return { unit: style.indent, eol };
+  if (Number.isInteger(style.indent) && style.indent > 0) return { unit: ' '.repeat(style.indent), eol };
+  return { unit: '  ', eol };
+}
+
+// The layout the engine used for every value before it read the document's
+// own, kept so a value it wrote then can be recognised as its own bytes.
+const LEGACY_LAYOUT = { unit: '  ', eol: '\n' };
+
 function isPrimitive(value) {
   return value === null || typeof value !== 'object';
 }
@@ -1199,25 +1236,46 @@ function isPrimitive(value) {
 /**
  * Serialises a value the way the surrounding document is written: objects and
  * object arrays on their own lines, and short string arrays either inline or
- * expanded according to the document's own habit.
+ * expanded according to the document's own habit. Nested lines step in by the
+ * document's indent unit and end with its line ending.
  * @param {*} value Value to serialise.
  * @param {string} indent Indent of the line the value starts on.
- * @param {{primitiveArrays?: string}} style Entry-set style.
+ * @param {{primitiveArrays?: string, unit?: string, eol?: string}} style
+ *   Entry-set style, with the layout `documentLayout` read from the document.
  * @returns {string} The serialised text.
  */
 function serializeValue(value, indent, style) {
   if (isPrimitive(value)) return JSON.stringify(value);
-  const inner = indent + '  ';
+  const eol = style.eol || '\n';
+  const inner = indent + (style.unit || '  ');
   if (Array.isArray(value)) {
     if (value.length === 0) return '[]';
     const isInline = style.primitiveArrays !== 'multiline' && value.every(isPrimitive);
     if (isInline) return `[${value.map((item) => JSON.stringify(item)).join(', ')}]`;
-    return `[\n${value.map((item) => inner + serializeValue(item, inner, style)).join(',\n')}\n${indent}]`;
+    return `[${eol}${value.map((item) => inner + serializeValue(item, inner, style)).join(`,${eol}`)}${eol}${indent}]`;
   }
   const keys = Object.keys(value);
   if (keys.length === 0) return '{}';
   const members = keys.map((key) => `${inner}${JSON.stringify(key)}: ${serializeValue(value[key], inner, style)}`);
-  return `{\n${members.join(',\n')}\n${indent}}`;
+  return `{${eol}${members.join(`,${eol}`)}${eol}${indent}}`;
+}
+
+/**
+ * Whether the bytes at a value that already equals the wanted value are the
+ * ones an earlier engine wrote flush-left, because it read no indent for a
+ * value that starts after its key. Only those bytes are rewritten at the value's
+ * depth; any other layout of an equal value may be upstream's and stays.
+ * @param {string} text Document text.
+ * @param {{start: number, end: number}} node The value's node.
+ * @param {*} value The wanted value.
+ * @param {object} style Entry-set style with the document layout.
+ * @returns {boolean} Whether to rewrite the value in place.
+ */
+function isLegacyFlushLeft(text, node, value, style) {
+  if (indentBefore(text, node.start) !== null) return false;
+  const live = text.slice(node.start, node.end);
+  const legacy = serializeValue(value, '', { ...style, ...LEGACY_LAYOUT });
+  return live === legacy && live !== serializeValue(value, lineIndent(text, node.start), style);
 }
 
 function deepEqual(left, right) {
@@ -1332,11 +1390,11 @@ function planOperation(operation, root, text, style, edits, options) {
     if (parent && parent.type === 'object' && typeof lastKey === 'string' && !findMember(parent, lastKey)) {
       const reference = parent.members[parent.members.length - 1];
       if (!reference) throw new Error(`cannot insert into the empty object at ${parentPath.join('.')}`);
-      const indent = indentBefore(text, reference.keyStart) || '';
+      const indent = lineIndent(text, reference.keyStart);
       edits.push({
         start: reference.value.end,
         end: reference.value.end,
-        text: `,\n${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
+        text: `,${style.eol}${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
       });
       reportSet(true);
       return 'changed';
@@ -1344,12 +1402,18 @@ function planOperation(operation, root, text, style, edits, options) {
     const target = nodeAtPath(root, operation.path);
     const current = JSON.parse(text.slice(target.start, target.end));
     reportSet(wasAdded);
-    if (deepEqual(current, operation.value)) return 'unchanged';
-    const indent = indentBefore(text, target.start);
+    if (deepEqual(current, operation.value)) {
+      // An equal value the engine wrote flush-left before it read the key's
+      // depth is moved to that depth, while the live file is still its own work.
+      const isOwnLegacy = options.canReplaceExisting &&
+        (options.recordedSets || []).some((record) => samePath(record.path, operation.path)) &&
+        isLegacyFlushLeft(text, target, operation.value, style);
+      if (!isOwnLegacy) return 'unchanged';
+    }
     edits.push({
       start: target.start,
       end: target.end,
-      text: serializeValue(operation.value, indent === null ? '' : indent, style),
+      text: serializeValue(operation.value, lineIndent(text, target.start), style),
     });
     return 'changed';
   }
@@ -1377,21 +1441,26 @@ function planOperation(operation, root, text, style, edits, options) {
     if (member) {
       reportKey((options.recordedKeys || []).some((record) => record.added === true && isKeyRecordFor(record, operation)));
       const current = JSON.parse(text.slice(member.value.start, member.value.end));
-      if (deepEqual(current, operation.value)) return 'unchanged';
-      const indent = indentBefore(text, member.value.start);
+      if (deepEqual(current, operation.value)) {
+        // Same rule as an equal `set`: only the engine's own flush-left bytes move.
+        const isOwnLegacy = options.canReplaceExisting &&
+          (options.recordedKeys || []).some((record) => isKeyRecordFor(record, operation)) &&
+          isLegacyFlushLeft(text, member.value, operation.value, style);
+        if (!isOwnLegacy) return 'unchanged';
+      }
       edits.push({
         start: member.value.start,
         end: member.value.end,
-        text: serializeValue(operation.value, indent === null ? '' : indent, style),
+        text: serializeValue(operation.value, lineIndent(text, member.value.start), style),
       });
       return 'changed';
     }
     const last = item.members[item.members.length - 1];
-    const indent = indentBefore(text, last.keyStart) || '';
+    const indent = lineIndent(text, last.keyStart);
     edits.push({
       start: last.value.end,
       end: last.value.end,
-      text: `,\n${indent}${JSON.stringify(operation.key)}: ${serializeValue(operation.value, indent, style)}`,
+      text: `,${style.eol}${indent}${JSON.stringify(operation.key)}: ${serializeValue(operation.value, indent, style)}`,
     });
     reportKey(true);
     return 'changed';
@@ -1457,11 +1526,10 @@ function planOperation(operation, root, text, style, edits, options) {
             if (!options.canReplaceExisting) {
               throw new Error(`existing entry ${describe(item[identityKey])} differs from the canonical copy`);
             }
-            const indent = indentBefore(text, node.start);
             edits.push({
               start: node.start,
               end: node.end,
-              text: serializeValue(item, indent === null ? '' : indent, style),
+              text: serializeValue(item, lineIndent(text, node.start), style),
             });
             hasChanged = true;
           }
@@ -1479,12 +1547,12 @@ function planOperation(operation, root, text, style, edits, options) {
     const anchor = operation.before && identityKey ? matchIndex(arrayNode, operation.before, identityKey) : -1;
     const reference = anchor >= 0 ? arrayNode.items[anchor] : arrayNode.items[arrayNode.items.length - 1];
     if (!reference) throw new Error(`cannot append to the empty array at ${operation.path.join('.')}`);
-    const indent = indentBefore(text, reference.start) || '';
+    const indent = lineIndent(text, reference.start);
     if (anchor >= 0) {
-      const block = pending.map((item) => `${serializeValue(item, indent, style)},\n${indent}`).join('');
+      const block = pending.map((item) => `${serializeValue(item, indent, style)},${style.eol}${indent}`).join('');
       edits.push({ start: reference.start, end: reference.start, text: block });
     } else {
-      const block = pending.map((item) => `,\n${indent}${serializeValue(item, indent, style)}`).join('');
+      const block = pending.map((item) => `,${style.eol}${indent}${serializeValue(item, indent, style)}`).join('');
       edits.push({ start: reference.end, end: reference.end, text: block });
     }
     return 'changed';
@@ -1517,11 +1585,10 @@ function planOperation(operation, root, text, style, edits, options) {
           if (!options.canReplaceExisting) {
             throw new Error(`existing entry "${entry.key}" differs from the canonical copy`);
           }
-          const indent = indentBefore(text, existing.keyStart);
           edits.push({
             start: existing.value.start,
             end: existing.value.end,
-            text: serializeValue(entry.value, indent === null ? '' : indent, style),
+            text: serializeValue(entry.value, lineIndent(text, existing.keyStart), style),
           });
           hasRewritten = true;
         }
@@ -1533,19 +1600,19 @@ function planOperation(operation, root, text, style, edits, options) {
     const anchor = operation.beforeKey ? findMember(objectNode, operation.beforeKey) : null;
     const reference = anchor || objectNode.members[objectNode.members.length - 1];
     if (!reference) throw new Error(`cannot insert into the empty object at ${operation.path.join('.')}`);
-    const indent = indentBefore(text, reference.keyStart) || '';
+    const indent = lineIndent(text, reference.keyStart);
     const render = (entry) => `${JSON.stringify(entry.key)}: ${serializeValue(entry.value, indent, style)}`;
     if (anchor) {
       edits.push({
         start: reference.keyStart,
         end: reference.keyStart,
-        text: `${pending.map((entry) => `${render(entry)},\n${indent}`).join('')}`,
+        text: `${pending.map((entry) => `${render(entry)},${style.eol}${indent}`).join('')}`,
       });
     } else {
       edits.push({
         start: reference.value.end,
         end: reference.value.end,
-        text: pending.map((entry) => `,\n${indent}${render(entry)}`).join(''),
+        text: pending.map((entry) => `,${style.eol}${indent}${render(entry)}`).join(''),
       });
     }
     return 'changed';
@@ -2128,7 +2195,8 @@ function restoreDroppedKeys(text, operations, recordedKeys, readUpstreamText = (
  * @returns {string} The edited document text.
  */
 function applyJsonOperations(text, spec, options) {
-  const style = spec.style || { indent: 2, primitiveArrays: 'inline' };
+  const declared = spec.style || { indent: 2, primitiveArrays: 'inline' };
+  const style = { ...declared, ...documentLayout(text, declared) };
   const operations = withLaterKeysMerged(spec.operations);
   // A dropped entry is retracted before the entry set runs, so every operation
   // addresses the array the set describes rather than the one it left behind.
