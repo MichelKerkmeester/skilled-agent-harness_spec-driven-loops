@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `012-deep-loop-command-offers`
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-22
 <!-- /ANCHOR:metadata -->
 
@@ -76,14 +76,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-019 | REQ-012 | Given the corpus, When it is searched, Then N7, N9, D1, V7, H6 and A3 each appear as a `near-miss` row, and no new guard for them appears in `command-attach.ts` | `rg -c '"row_type":"near-miss"' .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` prints 15, up from 9; `git diff` on `command-attach.ts` adds no prompt-specific guard. Observed 2026-11-23: 31 near-miss rows. N7, N9, V7, H6 and A3 are near-miss rows, and D1 became a positive `/doctor:deep-loop` row under D10. | Superseded | ADR-001 |
 | AC-020 | REQ-013 | Given the corpus, When the deep-family holdout rows are compared with the previous commit, Then all three are new prompts written by the holdout worker, and no builder's report says it read a holdout row | `git diff` on `command-prompts.jsonl` shows three deep-family `"split":"holdout"` rows removed and three added; the lane reports. Observed 2026-11-23 by row id only: the three deep-family `-01` holdout rows are gone and three `-04` rows replace them. The lane reports are not kept in the packet, so the blind-writer clause rests on the record in `implementation-summary.md`. Evidence: `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:94`. | Met | - |
 | AC-021 | REQ-014 | Given the rebuilt advisor, When N9 is probed, Then no row carries a `/deep:*` command | `PROBE`, the N9 line. If it still prints `cmd=/deep:research`, this row needs an operator waiver recorded in `decision-record.md`. Observed 2026-11-23: N9 prints `cmd=-` with no `/deep:*` command in any row, so no waiver is needed. Evidence: `implementation-summary.md:155`. | Met | - |
-| AC-022 | REQ-015 | Given the rebuilt advisor, When the six refusal prompts and the control are sent through the prompt hook, Then no refusal carries a `/deep:*` command and the control keeps `/deep:review` | Not run yet. | Unmet | - |
-| AC-023 | REQ-016 | Given the rebuilt advisor, When the two "how many" questions are sent, Then neither carries a `/deep:*` command | Not run yet. | Unmet | - |
-| AC-024 | REQ-017 | Given the rebuilt advisor, When the hyphen and curly-apostrophe prompts are sent, Then they get `/deep:review` and `/deep:research` | Not run yet. | Unmet | - |
-| AC-025 | REQ-018 | Given the rebuilt advisor, When "the deep research run is not stuck, run 5 more iterations" is sent, Then it gets `/deep:research` and no `/doctor:deep-loop` | Not run yet. | Unmet | - |
-| AC-026 | REQ-019 | Given the rebuilt advisor, When the nine subject prompts and the three controls are sent, Then no subject prompt carries a `/deep:*` command and each control keeps its command | Not run yet. | Unmet | - |
-| AC-027 | REQ-020 | Given the four typed prompts, When the Python gate and `attachCommand` each read them with a typed row, Then both return the same result | Not run yet. | Unmet | - |
-| AC-028 | REQ-021 | Given the final tree, When both suites, the predicate comparison, the 69-probe rerun and the corpus recapture run, Then all pass, drift is 0, no gain, keep or stage-one line loses its command and `false_offer` stays 0 | Not run yet. | Unmet | - |
-| AC-029 | REQ-022 | Given the changelog and this file, When they are read, Then the changelog states the refusal rule as built, names the brief change and quotes the final suite count, and AC-008 reads `Waived` with ADR-003 | Not run yet. | Unmet | - |
+| AC-022 | REQ-015 | Given the rebuilt advisor, When the six refusal prompts and the control are sent through the prompt hook, Then no refusal carries a `/deep:*` command and the control keeps `/deep:review` | Observed 2026-11-23 through the prompt hook (`scratch/probes/fresh-review-hook.txt`): the six refusals carry no `/deep:*` command, and the control prints `/deep:review`. Evidence: `scratch/probes/fresh-review-hook.txt:1`. | Met | - |
+| AC-023 | REQ-016 | Given the rebuilt advisor, When the two "how many" questions are sent, Then neither carries a `/deep:*` command | Observed (`scratch/probes/fresh-review-hook.txt`): neither question carries a `/deep:*` command. Evidence: `scratch/probes/fresh-review-hook.txt:8`. | Met | - |
+| AC-024 | REQ-017 | Given the rebuilt advisor, When the hyphen and curly-apostrophe prompts are sent, Then they get `/deep:review` and `/deep:research` | Observed (`scratch/probes/fresh-review-hook.txt`): `run a deep-review of the auth module` prints `/deep:review`, and the curly-apostrophe prompt prints `/deep:research`. Evidence: `scratch/probes/fresh-review-hook.txt:10`. | Met | - |
+| AC-025 | REQ-018 | Given the rebuilt advisor, When "the deep research run is not stuck, run 5 more iterations" is sent, Then it gets `/deep:research` and no `/doctor:deep-loop` | Observed (`scratch/probes/fresh-review-hook.txt`): `/deep:research`, with no `/doctor:deep-loop`. Evidence: `scratch/probes/fresh-review-hook.txt:12`. | Met | - |
+| AC-026 | REQ-019 | Given the rebuilt advisor, When the nine subject prompts and the three controls are sent, Then no subject prompt carries a `/deep:*` command and each control keeps its command | Observed (`scratch/probes/fresh-review-hook.txt`): no subject prompt carries a `/deep:*` command, and the three controls keep `/deep:review`, `/deep:research` and `/deep:review`. Evidence: `scratch/probes/fresh-review-hook.txt:13`. | Met | - |
+| AC-027 | REQ-020 | Given the four typed prompts, When the Python gate and `attachCommand` each read them with a typed row, Then both return the same result | Observed: the shared fixture pins `typedReviewKept` for the four prompts and a typed control, and both suites pass on it. Both gates withhold the run command on all four and keep it on the control. Evidence: `implementation-summary.md:214`. | Met | - |
+| AC-028 | REQ-021 | Given the final tree, When both suites, the predicate comparison, the 69-probe rerun and the corpus recapture run, Then all pass, drift is 0, no gain, keep or stage-one line loses its command and `false_offer` stays 0 | Observed: vitest 180 files, 2696 passed, 4 skipped, 0 failed. Python `pass=130, fail=0`. Predicate drift 0 of 227. 69 probes all `exit 0 live` with 0 changes against the last landing. Corpus `false_offer` 0 of 57. Evidence: `implementation-summary.md:163`. | Met | - |
+| AC-029 | REQ-022 | Given the changelog and this file, When they are read, Then the changelog states the refusal rule as built, names the brief change and quotes the final suite count, and AC-008 reads `Waived` with ADR-003 | Observed: `.skilled/changelog/skilled/v4.2.0.0.md` states the refusal rule, names the brief options and the typed `(ask)`, quotes 2,696 passed, and AC-008 reads `Waived` with ADR-003. Evidence: `tasks.md:128`. | Met | - |
 
 ### Status values
 
@@ -109,7 +109,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-The packet was reopened after a fresh review, and the rows for the new requirements are not yet met.
+Every row is `Met`, `Waived` or `Superseded`, and each waiver and supersession names an ADR in `decision-record.md`.
 <!-- /ANCHOR:closure -->

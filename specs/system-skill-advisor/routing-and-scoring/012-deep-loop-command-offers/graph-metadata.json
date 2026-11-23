@@ -34,7 +34,7 @@
       "decision"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,14 +48,14 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
       ".skilled/commands/deep/research.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+      ".skilled/changelog/skilled/v4.2.0.0.md",
       "scratch/routing-analysis.md",
       "scratch/decisions.md",
       "scratch/probes/review-fix-r4.json",
       "scratch/probes/results-after.json",
-      "scratch/probes/results-ac017-ood.json",
-      "scratch/probes/results-final-958fa81-worktree.json",
-      "scratch/probes/review-fix-cases.json",
-      "scratch/behaviour/F6-plan-mode.md"
+      "scratch/probes/results-ac017-ood.json"
     ],
     "entities": [
       {
@@ -125,6 +125,24 @@
         "source": "derived"
       },
       {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-offer-cases.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.2.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "routing-analysis.md",
         "kind": "doc",
         "path": "scratch/routing-analysis.md",
@@ -155,31 +173,7 @@
         "source": "derived"
       },
       {
-        "name": "results-final-958fa81-worktree.json",
-        "kind": "config",
-        "path": "scratch/probes/results-final-958fa81-worktree.json",
-        "source": "derived"
-      },
-      {
-        "name": "review-fix-cases.json",
-        "kind": "config",
-        "path": "scratch/probes/review-fix-cases.json",
-        "source": "derived"
-      },
-      {
-        "name": "F6-plan-mode.md",
-        "kind": "doc",
-        "path": "scratch/behaviour/F6-plan-mode.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,11 +195,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Offer From",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-23T18:40:42.725Z",
+    "last_save_at": "2026-11-23T19:23:34.402Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebba207c9bbbb0f336c17e668bc631e25745854d3e3b73b535a5245c0d869c57",
+    "source_fingerprint": "sha256:479c568ba72effde7ba5a21ad039a83159193bcb8c124aadde0a42c0d9bdc5bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2eabb5c1f0943a99bc87df114a096dd6f7325c404081c44bd151bb8f509fd7b1",
+      "spec.md": "6d726852b57851dcd002658a1b57f6cf1134a4b8b027b9b49533f70c12d3f743",
       "plan.md": "5a7198e12814c1af10049669e7f0b63fa5f9dcc16d905525b9c34abddf7ea45c",
-      "tasks.md": "d35f1ddcfe2c05eb046199f3ecb18e707bcc5612640465af58d3382b38e3717d",
+      "tasks.md": "e1ce6dc82b93714b6dfec908ffd98d34f043f0b6ad695340082929a439d92359",
       "decision-record.md": "d994be9a6e25b6bf315c45620d503d92c6c98d141f49c4f74c4502a372c16497",
-      "implementation-summary.md": "fac967114266087a64bd16d5abc0dfca542ab4107e5afc0629ac9b1194ed861e"
+      "implementation-summary.md": "43770975d1f8d653a3a938cf906dcb683a5f45861f014a35c6e7cc10e2e8e257"
     },
     "last_active_at": null
   }

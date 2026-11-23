@@ -33,7 +33,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,6 +46,8 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts",
       ".skilled/hooks/injection-contract.md",
       "scratch/behaviour/F6-1.md",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      "scratch/typed-head-hook.txt",
       "scratch/behaviour/F6-5.md"
     ],
     "entities": [
@@ -116,6 +118,18 @@
         "source": "derived"
       },
       {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "typed-head-hook.txt",
+        "kind": "file",
+        "path": "scratch/typed-head-hook.txt",
+        "source": "derived"
+      },
+      {
         "name": "F6-5.md",
         "kind": "doc",
         "path": "scratch/behaviour/F6-5.md",
@@ -134,12 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +161,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor brief names a deep-loop command as `system-deep-loop → /deep:review (ask)` and nothing more",
     "created_at": "2026-11-23T16:22:57Z",
-    "last_save_at": "2026-11-23T18:40:47.096Z",
+    "last_save_at": "2026-11-23T19:23:35.690Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:267c96fc517e35239b62ed9da97296c438ee73196196b6c41f3033b93415b2bf",
+    "source_fingerprint": "sha256:5401f60394a9158003e9c204f046708f466d48122f6fdc2b86ce5554de5b5902",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46ca0e15664adf369ea574237a160d7f7e12de919b08d71b5de782a15885b26d",
+      "spec.md": "4155897adb837b7701ca004c9f0b58375350a864d26183708419133d6e35ecae",
       "plan.md": "7efbc044423a3b735d64704334dcd31f4fde77654da5e31a1585836d37706b3c",
-      "tasks.md": "020be97fa423c13d2b57a26f1e1d7716916a0468922d9b63b525a2fa1a84feba",
+      "tasks.md": "20c2ad8a8ddbe3287a5aceef3400c97f46b674929ace5c5b3c0ed91cf12374b5",
       "decision-record.md": "dd2b98e51650827c2453baa7b391be8c14df64125e373bcb5445580b5bc0f562",
-      "implementation-summary.md": "7b069a5cf3aa7907c69238396fe8bb374f46f0deece931f3087f196bf36665db"
+      "implementation-summary.md": "0488bd106fec32074835719b52a2ab9b77fd4e4eeabf461cec04f0030be928e1"
     },
     "last_active_at": null
   }

@@ -66,10 +66,10 @@ Shell names used below. `ADV` is `.skilled/skills/system-skill-advisor/runtime`.
 
 Reopened 2026-11-23 after a fresh review. Built in worktree `worktrees/529-deep-loop-offer-gate-fixes`.
 
-- [ ] T011 Print plain `(ask)` with no options when the operator typed the deep-loop command (`$ADV/lib/render.ts` `commandLabel`, with the typed signal from the recommend path). Verify: `BRIEF` with `/deep:review:confirm the auth module` prints `/deep:review (ask) ` and no `A ` text.
-- [ ] T012 Accept the colon form only for `/deep:*` in the head-length test, and add an ambiguous-head golden case and a typed-command golden case (`$ADV/tests/command-head-length.vitest.ts`, `$ADV/tests/command-brief-golden.vitest.ts`). Verify: `npx vitest run` in `$ADV` reports 0 failed, and each new case fails with its rule reverted.
-- [ ] T013 State the eight-run result, quote the final head and record the Pi hand check (`implementation-summary.md`). Verify: `rg -n 'now learns' implementation-summary.md` prints nothing.
-- [ ] T014 Validate the packet (`specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint`). Verify: `validate.sh <packet> --strict` prints `RESULT: PASSED`.
+- [x] T011 Print plain `(ask)` with no options when the operator typed the deep-loop command (`$ADV/lib/render.ts` `commandLabel`, with the typed signal from the recommend path). Verify: `BRIEF` with `/deep:review:confirm the auth module` prints `/deep:review (ask) ` and no `A ` text. Observed 2026-11-23 (`scratch/typed-head-hook.txt`): `/deep:review:confirm the auth module` prints `system-deep-loop → /deep:review (ask) 0.94/0.12 pass.` and `/deep:research:auto vector index compaction` prints `/deep:research (ask)`, with no `A ` text. An untyped ask keeps the options. The flag is `typed: true` from `attachTypedCommand`, carried by the output schema and the hook fallback mapping.
+- [x] T012 Accept the colon form only for `/deep:*` in the head-length test, and add an ambiguous-head golden case and a typed-command golden case (`$ADV/tests/command-head-length.vitest.ts`, `$ADV/tests/command-brief-golden.vitest.ts`). Verify: `npx vitest run` in `$ADV` reports 0 failed, and each new case fails with its rule reverted. Observed: `npx vitest run` 180 files, 2696 passed, 4 skipped, 0 failed. With the typed rule reverted, the two typed goldens fail. With options on every `ask` command, the head-length cases for non-deep commands fail. With the options dropped, the new ambiguous-head golden fails.
+- [x] T013 State the eight-run result, quote the final head and record the Pi hand check (`implementation-summary.md`). Verify: `rg -n 'now learns' implementation-summary.md` prints nothing. Observed: `rg -n "now learns" implementation-summary.md` prints nothing (exit 1). The summary states the eight-run result, quotes the final head and records the Pi hand check as not run.
+- [x] T014 Validate the packet (`specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint`). Verify: `validate.sh <packet> --strict` prints `RESULT: PASSED`. Observed 2026-11-23: `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,7 +78,7 @@ Reopened 2026-11-23 after a fresh review. Built in worktree `worktrees/529-deep-
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`. Reopened: T011 to T014 are open.
+- [x] All tasks marked `[x]`. Observed 2026-11-23: T011 to T014 are done.
 - [x] No `[B]` blocked tasks remaining. Observed: none.
 - [x] Manual verification passed: four F6 runs recorded under `scratch/behaviour/`. Observed: eight runs, `F6-1.md` to `F6-8.md`. SC-002 is unmet, and the operator closed the packet with that limitation recorded.
 <!-- /ANCHOR:completion -->

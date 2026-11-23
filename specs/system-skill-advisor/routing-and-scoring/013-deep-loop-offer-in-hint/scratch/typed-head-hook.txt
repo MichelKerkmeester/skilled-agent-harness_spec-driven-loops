@@ -1,0 +1,4 @@
+[/deep:research:auto vector index compaction] => Advisor: live; use system-deep-loop → /deep:research (ask) 0.84/0.12 pass.
+[/deep:review:confirm the auth module] => Advisor: live; use system-deep-loop → /deep:review (ask) 0.94/0.12 pass.
+[do a deep review of the parser] => Advisor: live; ambiguous: system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.95/0.16 vs sk-code 0.90/0.12 pass.
+[run /deep:review on the parser] => Advisor: live; ambiguous: system-deep-loop → /deep:review (ask) 0.94/0.16 vs sk-code 0.90/0.12 pass.
