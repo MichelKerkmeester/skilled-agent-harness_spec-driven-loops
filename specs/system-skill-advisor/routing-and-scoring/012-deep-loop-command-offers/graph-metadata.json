@@ -53,9 +53,9 @@
       "scratch/probes/review-fix-r4.json",
       "scratch/probes/results-after.json",
       "scratch/probes/results-ac017-ood.json",
+      "scratch/probes/results-final-958fa81-worktree.json",
       "scratch/probes/review-fix-cases.json",
-      "scratch/behaviour/F6-plan-mode.md",
-      "scratch/behaviour/F6.md"
+      "scratch/behaviour/F6-plan-mode.md"
     ],
     "entities": [
       {
@@ -155,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "results-final-958fa81-worktree.json",
+        "kind": "config",
+        "path": "scratch/probes/results-final-958fa81-worktree.json",
+        "source": "derived"
+      },
+      {
         "name": "review-fix-cases.json",
         "kind": "config",
         "path": "scratch/probes/review-fix-cases.json",
@@ -164,12 +170,6 @@
         "name": "F6-plan-mode.md",
         "kind": "doc",
         "path": "scratch/behaviour/F6-plan-mode.md",
-        "source": "derived"
-      },
-      {
-        "name": "F6.md",
-        "kind": "doc",
-        "path": "scratch/behaviour/F6.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-23T15:26:03.935Z",
+    "last_save_at": "2026-11-23T15:28:51.984Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f35cf28c5389d2325897cc68c52763ecde8100ae8c9f4fcffbe23eb72b6d05b7",
+    "source_fingerprint": "sha256:e9136f494ece0a7fc7ad5d0822e802b9e205598167d0b14e2c7e5b7c6b8a3d90",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "961b402911862f8d649d4a9e5e9200b635f8f07bf326577958485ff442a1ab6e",
       "plan.md": "8dc6502026e9175b1a9d7897400e21bc703efc4ed2367700dda357af45bb52ad",
-      "tasks.md": "a94086ba1b0a13c24404075a81591c075562e6a60610393e76c9c4b7c85a0f0a",
+      "tasks.md": "18c87e1677a9e9a0385f03eb93637056640252eb21e6987873da71ab835c420c",
       "decision-record.md": "175381fc938c50a33b4af93d73b24fed99601eef45185d0fcc511a9cb3915679",
-      "implementation-summary.md": "46337709ecc1c84bb0b89e5bcd1e070e4c2c32a34a1b7beb34806cbbd28e017d"
+      "implementation-summary.md": "a3eb4fb06d5cd6bf5355f523bab3aa998728017fd3e5b6871f90cadff7700f1f"
     },
     "last_active_at": null
   }

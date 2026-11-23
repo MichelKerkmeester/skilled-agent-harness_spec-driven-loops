@@ -1,6 +1,6 @@
 {
-  "source": "command-routing-baseline.json as committed at the pre-change commit 2ef3895f753",
-  "note": "Taken from the committed baseline, not a fresh run. Its corpusSha256 equals the sha256 of command-prompts.jsonl at 2ef3895f753, so it counts the corpus as it stood before the code change.",
+  "source": "command-routing-baseline.json as committed at 2ef3895f753",
+  "note": "Counts as recorded at capturedAtSha 62a9359e60a, not a fresh run at the pre-change commit. The corpusSha256 equals the hash of command-prompts.jsonl at 2ef3895f753, so it pins only the corpus: advisor code changed between 62a9359e60a and 2ef3895f753.",
   "preChangeCommit": "2ef3895f753",
   "capturedAtSha": "62a9359e60a",
   "capturedAt": "2026-10-11",
