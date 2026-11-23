@@ -50,12 +50,12 @@
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
       "scratch/routing-analysis.md",
       "scratch/decisions.md",
+      "scratch/probes/review-fix-r4.json",
+      "scratch/probes/review-fix-cases.json",
       "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
       ".skilled/commands/deep/review.md",
-      ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      ".skilled/commands/deep/assets/deep-research.yaml",
-      ".skilled/skills/system-deep-loop/SKILL.md"
+      ".skilled/commands/deep/assets/deep-research-presentation.txt"
     ],
     "entities": [
       {
@@ -137,6 +137,18 @@
         "source": "derived"
       },
       {
+        "name": "review-fix-r4.json",
+        "kind": "config",
+        "path": "scratch/probes/review-fix-r4.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-fix-cases.json",
+        "kind": "config",
+        "path": "scratch/probes/review-fix-cases.json",
+        "source": "derived"
+      },
+      {
         "name": "command-attach.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
@@ -152,18 +164,6 @@
         "name": "deep-research-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-research.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/SKILL.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-22T21:36:40.398Z",
+    "last_save_at": "2026-11-23T09:35:16.613Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b63efb17c9fee1d50096f02c3cdeec3d55a030fb3c4daff7a1ebcd6a1bd09716",
+    "source_fingerprint": "sha256:2f74b96484df119e5c352b1ea63c0be2e28a54c5e4917c83760f1eb3c2387a29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e8037b7bf231424a207b8cf6e2037ac7d9f0fbd47b9362438f8e871037a0093",
       "plan.md": "8dc6502026e9175b1a9d7897400e21bc703efc4ed2367700dda357af45bb52ad",
-      "tasks.md": "89b14b1ae2938b45cf636da836d3843c77c17bc283d6e530f1bf02870926ff5b",
-      "decision-record.md": "48c18ffc07b096c8d35d76f8b90b4596942e068b4e193adce4790c217ad6fa5d",
-      "implementation-summary.md": "18366263f76cf47fefeedf5224c956abe68cf59635bb366f742cccf8aee5d84c"
+      "tasks.md": "24647c6f94485e62c0f719f71e16181ca9ebfe72bd2c56b0af978a33a82b030a",
+      "decision-record.md": "8af99b2c50bcd532759537c4b28cd1b411f399739fd894b4799bb29156c51262",
+      "implementation-summary.md": "bdd5c5a6b07bc8c462263223103ab191b6821623b0f81961d2a8def2c56aa5e3"
     },
     "last_active_at": null
   }

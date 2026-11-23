@@ -30,6 +30,7 @@ import {
   LOOP_COUNT,
   MODE_CUES,
   MULTI_PASS,
+  namesDeepRun,
   TRACKED_COMMANDS,
   typedCommandIn,
 } from '../command-attach.js';
@@ -1039,6 +1040,22 @@ export function withholdLoopHubOnWritingAbout(
   ));
 }
 
+// The doctor command's keywords share research, iteration and convergence words
+// with model training and test reports, so its row passes only on a prompt that
+// names a deep run or types the command itself. Its run policy would otherwise
+// start a diagnosis of a loop the reader never mentioned.
+export function withholdDeepLoopDoctorWithoutRun(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  if (namesDeepRun(promptLower) || typedCommandIn(promptLower) === '/doctor:deep-loop') return [...ranked];
+  return ranked.map((recommendation) => (
+    recommendation.skill === 'command-doctor-deep-loop' && recommendation.passes_threshold
+      ? { ...recommendation, passes_threshold: false }
+      : recommendation
+  ));
+}
+
 // A reader who ruled out a change must not be handed a command that writes,
 // whichever path chose it. A command that only reads is still the answer.
 export function withholdWritingCommandsOnNoEdit(
@@ -1422,6 +1439,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
   ranked = withholdMentionedCommands(ranked, prompt);
   ranked = withholdWritingCommandsOnNoEdit(ranked, promptLower);
   ranked = withholdLoopHubOnWritingAbout(ranked, promptLower);
+  ranked = withholdDeepLoopDoctorWithoutRun(ranked, promptLower);
   ranked = rankTypedCommandOwnerFirst(ranked, promptLower);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);

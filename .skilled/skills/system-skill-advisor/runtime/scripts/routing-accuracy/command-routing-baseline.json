@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "b9865915857",
-  "corpusSha256": "sha256:1d7a15e13bbb124dc3e8b0d418d0d04a196f1bb04862067963789017615092c3",
+  "capturedAtSha": "ec0e6a5a9dd",
+  "corpusSha256": "sha256:8092a113b3804a58bcfd403daa30d9a9cce8180670e12920bfe8bd019ee78eab",
   "bridgeCounts": {
     "commandMetadata": 27,
     "doctorRoutes": 35,
@@ -41,7 +41,7 @@
     },
     "false_offer": {
       "count": 0,
-      "total": 48
+      "total": 57
     },
     "slash_variant": {
       "reached_top3": 0,
@@ -1932,6 +1932,69 @@
       "top1": false,
       "top3": false,
       "offered": false
+    },
+    "nm-system-deep-loop-13": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-14": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-15": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-16": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-17": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-18": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-19": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-20": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-21": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
     }
   },
   "attachedMetrics": {
@@ -2085,7 +2148,7 @@
     },
     "false_offer_attached": {
       "count": 1,
-      "total": 48
+      "total": 57
     },
     "typed": {
       "own": 24,
@@ -2440,7 +2503,7 @@
     },
     "needs_mode_floor": {
       "count": 1,
-      "total": 48
+      "total": 57
     },
     "needsModeRows": [
       "nm-system-skill-advisor-01"

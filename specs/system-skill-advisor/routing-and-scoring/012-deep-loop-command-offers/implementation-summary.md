@@ -8,30 +8,31 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-22T21:36:40Z"
+    last_updated_at: "2026-11-23T09:35:16Z"
     last_updated_by: "generate-context"
-    recent_action: "Added the deep-loop offer work to the v4.2.0.0 changelog"
-    next_safe_action: "Land the changelog commit on main after the operator approves the push"
+    recent_action: "Fixed negated run asks and rounds-of-review scope; added offer flags to both deep hints"
+    next_safe_action: "Commit worktree 522 through sk-git when the operator asks, then close the earlier note"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
-    blockers: []
+    blockers:
+      - "acceptance-criteria.md rows still Unmet from earlier rounds"
     key_files:
       - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
-      - ".skilled/commands/deep/assets/deep-research-presentation.txt"
-      - ".skilled/commands/deep/assets/deep-review-presentation.txt"
-      - ".skilled/skills/system-deep-loop/hub-router.json"
+      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      - ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
+      - ".skilled/commands/deep/research.md"
+      - ".skilled/commands/deep/review.md"
     session_dedup:
       fingerprint: "sha256:ed7b946f01a8d67757861c8b82afd7ac188ebd3ba5da180a7ed674f999f68fb6"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
-      workspace: "/Users/michelkerkmeester/worktrees/public/516-deep-loop-command-offers"
-      savedAt: "2026-11-22T21:36:40Z"
+      sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
+      workspace: "/Users/michelkerkmeester/worktrees/public/522-deep-loop-offer-review-fixes"
+      savedAt: "2026-11-23T09:35:16Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -147,6 +148,10 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | After D10: corpus | `false_offer` 0 of 45 |
 | Second round: advisor `npm test` | 179 files, 2502 passed, 4 skipped, 0 failed; `false_offer` 0 of 45; blind deep holdouts 1 of 2 attached, doctor holdout missed |
 | Third round: advisor `npm test` | 179 files, 2532 passed, 4 skipped, 0 failed; `false_offer` 0 of 45; blind -04 holdouts 2 of 3 live |
+| Fourth round: advisor `npm test` | 180 files, 2619 passed, 4 skipped, 0 failed. One run before it failed two process-timing tests (`skill-advisor-launcher-orphan-reaping`, `directive-lifecycle`), which passed 3 of 3 alone and in the clean rerun. Python suite pass=130, fail=0 with 63 fixture cases. TypeScript and Python predicates agree on 72 prompts |
+| Fourth round: live probes | 31 review-fix probes and 14 G and R probes all match their expected outcome (`scratch/probes/review-fix-r4.json`, `review-fix-g-r4.json`), and the 31 are unchanged from `review-fix-final.json` |
+| Fourth round: deep-loop runtime `npm test` | 222 files, 4039 passed, 11 skipped, 0 failed. A first run alongside other work failed one 15 ms timing test in `fanout-pool.vitest.ts`, which passed 3 of 3 alone and in the full rerun |
+| Fourth round: corpora and drift | Command-routing baseline and scorer eval baseline recaptured without `--write`: 0 differences apart from the capture SHA. Contract drift, documentation drift, mirror sync (260) and command catalog mirror all OK |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -177,12 +182,23 @@ A third round, on "do for me / fix":
 - **Live check, done:** a claude TUI on the operator's first account, in plan mode, was driven through a pseudo-terminal with "run 5 review iterations on the advisor runtime". It opened one question-tool dialog with two tabs, Spec folder and Deep review. The second tab offered "A) Run it (Recommended): `/deep:review:auto ".skilled/skills/system-skill-advisor/runtime" --max-iterations=5 --stop-policy=max-iterations`", a `:confirm` option and a no-loop option.
 - **Holdouts:** the holdout rows were rewritten blind a third time (-04).
 
+A fourth round fixed the findings of a read-only review of this epic. The operator asked for every P1 and P2 finding to be fixed. The work was built in worktree `worktrees/522-deep-loop-offer-review-fixes` and checked with 31 live probes (`scratch/probes/review-fix-cases.json`):
+- **Convergence and coverage graphs:** "my k-means convergence is stuck" and "the coverage graph is empty in my jest report" no longer get `/doctor:deep-loop`. Those words now name a deep run only beside a review or research noun.
+- **Continue, resume and extend:** "resume the review loop on the auth module" now gets `/deep:review`.
+- **An explicit run beside another reading:** "run deep research to explain why the last CI run failed" and "run 10 research iterations … so I can write an article about it" keep their command. A run ask now wins when it comes first or opens its own clause. "write a blog post about how to run a deep review" stays a piece about the loop.
+- **Counts that name the subject:** digit counts after "first", "last" or "the" give no offer, and neither do "in one iteration", "failed after 3 iterations", "needed more iterations to converge" and "3 rounds of the clinical trial". "do one more iteration" and "stop after 10 iterations" still ask for the loop.
+- **Loop names that are not runs:** "set up a review loop for PR approvals" and "run tests until the review loop passes" get no `/deep:review`.
+- **Mode edges:** "run 5 research iterations on review tooling" now picks research, "what is a deep review? run one on the auth module" gets `/deep:review`, and "I would like a deep loop reviewing the session store" gets `/deep:review`.
+- **The doctor row:** the lexical lane topped the run-policy `/doctor:deep-loop` row on "research why the model needed more iterations to converge". The same row already topped that prompt without "more" before this round. On the operator's choice, the row now passes only on a prompt that names a deep run or types the command.
+- **Docs:** both offer sections and the v4.2.0.0 changelog now say that a bare "iterations" describing the subject is not a loop ask.
+- **A negated run ask:** the run-ask rule had made "summarize the last deep review report, but do not run another deep review" offer `/deep:review`. A run ask with "do not", "don't", "never", "no need to" or "without" within two words before it is now skipped, so that prompt and "write an article about deep research. Don't start a new deep research." get no command again.
+- **Rounds of a named review:** "run 3 rounds of the security audit" and "do 3 rounds of the code review" ask for the loop again. After "of", a round may name one review with its determiner, as long as nothing but a preposition or clause word follows it. A first, looser version also offered the loop on "3 rounds of peer review" and "rounds of budget review meetings", which main did not, so those prompts are now fixture cases. "3 rounds of the clinical trial results" stays a subject.
+- **Argument hints:** on the operator's choice (Q013), both `/deep:*` hints now list `--stop-policy`, `--lineage-mode` and `--extend-minutes`, review lists `--review-focus`, and `--model`, `--reasoning-effort` and `--count` sit under `--executor`. The 140-character budget is a soft warning, so `validate_document.py` still prints it.
+
 What stays open:
 1. **The blind -04 holdouts score 2 of 3.**
    - The doctor and review rows hit.
    - "Dig into how hospitals de-identify patient records …, and spend eight iterations on it" gets no recommendation: "dig into" is not read as a research cue.
    - It is reported, not tuned, so the rows stay blind.
-2. **Two edges remain.**
-   - "I would like a deep loop reviewing the session store" gets no command, because "reviewing" is not a review cue.
-   - "audit the first two iterations for drift" still offers `/deep:review`, from the bare word "iterations".
+2. **The argument hints are over the soft budget.** Both hints now list every offer flag (Q013), so `validate_document.py` warns that each is over 140 characters. The warning is soft, and no failure from a long hint is recorded.
 <!-- /ANCHOR:limitations -->
