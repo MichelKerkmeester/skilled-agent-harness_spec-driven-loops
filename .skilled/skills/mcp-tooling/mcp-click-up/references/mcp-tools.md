@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.20.0
+version: 1.1.21.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -371,7 +371,7 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
 - **Gray text is a class.** ClickUp's gray text colour is `<span class="ql-text-color ql-color-grey">`, which the team uses on the lead number of a numbered title and on the Mark-as-done line. Markdown has no colour, so this is the only path that writes it.
 - **The body editor is inside the task-editor wrapper.** A doc page has a second `.ql-editor` for its title, and on a short page the two can hold the same number of blocks. Select the body with `[data-test="task-editor"] .ql-editor`, falling back to `.ql-editor.ql-cls-checklist`.
 
-**Which browser.** Aside (`mcp-aside-devtools`) owns signed-in ClickUp work by default, and this program drives it. The user's live Chrome (`chrome_devtools_live`) is the fallback, and only the gap pass under "Required after every page write" has a Chrome program.
+**Which browser.** Both browsers come from the `mcp-browser-use` hub. Aside (`mcp-browser-use/mcp-aside-devtools`) owns signed-in ClickUp work by default, and this program drives it. The user's live Chrome (`chrome_devtools_live`, from `mcp-browser-use/mcp-chrome-devtools`) is the fallback, and only the gap pass under "Required after every page write" has a Chrome program.
 
 **No discovery step.** Code Mode asks for `search_tools()` and `tool_info()` before an unknown tool is called. The programs in this section are exempt, because they call tools by the names this document records. When a call answers tool not found, run `tool_info()` on that name before changing the program.
 
@@ -633,8 +633,8 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call that
 1. **Check the import.** Read the page with `content_format: "text/md"` and compare it with the markdown you sent, both normalized: trailing spaces and blank lines dropped, and `[url](url)` unwrapped to the bare URL. Lines are counted, so a line sent twice must come back twice. A line you sent that is missing from the read-back is an import defect, such as an escaped `\*\*`, a paragraph turned into a heading above a divider, a literal `\[\]` or an auto-linked `.md` name. Fix the content and write the page again before step 2. A bold run that ClickUp re-split around inline code is not a defect.
 2. **Count the gaps.** Read the page with `content_format: "text/plain"` and count `/(^|\n) \n/g`. Zero means the routine is done.
 3. **Remove the gaps.** Run one of the two programs below. Both work in a browser the user is already logged in to, in a tab of their own, and close that tab when they finish:
-   - **Aside first** (`mcp-aside-devtools`). The `aside` manual drives the user's own Aside browser. `openTab` opens the page as a background tab, so the user's active tab and window stay as they are and they can keep working while the pass runs. Measured on 2026-11-06: the active tab in each window was the same before and after a pass, and the pass tab reported `active: false`.
-   - **Chrome as the fallback** (`mcp-chrome-devtools`). The `chrome_devtools_live` manual runs `chrome-devtools-mcp --autoConnect` and attaches to the user's own Chrome. It needs Chrome open with remote debugging turned on once at `chrome://inspect/#remote-debugging`. Never use `chrome_devtools_1` or `chrome_devtools_2` for this: they are isolated, so every run starts logged out, and ClickUp keeps a login only for the browser session, so a saved profile does not help either.
+   - **Aside first** (`mcp-browser-use/mcp-aside-devtools`). The `aside` manual drives the user's own Aside browser. `openTab` opens the page as a background tab, so the user's active tab and window stay as they are and they can keep working while the pass runs. Measured on 2026-11-06: the active tab in each window was the same before and after a pass, and the pass tab reported `active: false`.
+   - **Chrome as the fallback** (`mcp-browser-use/mcp-chrome-devtools`). The `chrome_devtools_live` manual runs `chrome-devtools-mcp --autoConnect` and attaches to the user's own Chrome. It needs Chrome open with remote debugging turned on once at `chrome://inspect/#remote-debugging`. Never use `chrome_devtools_1` or `chrome_devtools_2` for this: they are isolated, so every run starts logged out, and ClickUp keeps a login only for the browser session, so a saved profile does not help either.
 
    When no browser tool is available, or a page opens on ClickUp's login screen (`login: true`), stop and tell the user the gap count per page and which browser needs the ClickUp login. Run the program again once they confirm.
 4. **Report per page:** import diff lines, gaps before, gaps left and whether the text is unchanged. A page with gaps left or changed text is not delivered. Say which, and why.

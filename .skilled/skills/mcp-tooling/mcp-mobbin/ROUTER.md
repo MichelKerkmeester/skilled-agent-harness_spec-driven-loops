@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-mobbin routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -50,7 +50,7 @@ The packet's deterministic routing detail behind the summary above: the detectio
 
 ### Primary Detection Signal
 
-Route on **narrow Mobbin-specific signals only**. Generic "design", "UI", or "screen" phrasing is not a Mobbin signal; measured live-site extraction belongs to `sk-design-md-generator`, Refero references to `mcp-refero`, Figma work to `mcp-figma`, and browser work to `mcp-chrome-devtools`.
+Route on **narrow Mobbin-specific signals only**. Generic "design", "UI", or "screen" phrasing is not a Mobbin signal; measured live-site extraction belongs to `sk-design-md-generator`, Refero references to `mcp-refero`, Figma work to `mcp-figma`, and browser work to the `mcp-browser-use` hub.
 
 ```bash
 # Signal detection (pseudo)

@@ -10,7 +10,7 @@ trigger_phrases:
   - "figma code mode variable not found"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Figma CLI Troubleshooting
@@ -381,7 +381,7 @@ lsof -nP -iTCP:3456 -sTCP:LISTEN 2>/dev/null # who, if anyone, owns 3456
 lsof -nP -iTCP:9222 -sTCP:LISTEN 2>/dev/null   # identify the owner FIRST
 ```
 
-- If a different tool owns 9222 (for example a `mcp-chrome-devtools` session), stop that tool or free the port, then re-establish the Figma yolo connection.
+- If a different tool owns 9222 (for example a Chrome DevTools session from `mcp-browser-use/mcp-chrome-devtools`), stop that tool or free the port, then re-establish the Figma yolo connection.
 - Do not kill an unidentified process, and confirm the owner before acting.
 - Prefer `connect --safe`, which uses the plugin bridge and does not need port 9222.
 
@@ -485,7 +485,7 @@ When reporting a bug upstream, include: the binary in use and version (`figma-ds
 - [mcp-wiring.md](mcp-wiring.md) - the optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, and discovery.
 - [INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - install steps and binary verification.
 - [SKILL.md](../SKILL.md) - the skill contract this reference supports.
-- Code Mode transport for the optional MCP: the `mcp-code-mode` skill, `mcp-code-mode/SKILL.md` in the skills library. Browser-debugging owner for port 9222 conflicts: the `mcp-chrome-devtools` skill, `mcp-browser-use/mcp-chrome-devtools/SKILL.md` in the skills library.
+- Code Mode transport for the optional MCP: the `mcp-code-mode` skill, `mcp-code-mode/SKILL.md` in the skills library. Browser-debugging owner for port 9222 conflicts: the Chrome DevTools mode of the `mcp-browser-use` hub, `mcp-browser-use/mcp-chrome-devtools/SKILL.md` in the skills library.
 - Upstream: [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). [Node.js](https://nodejs.org/) (>=18). This skill does not vendor either.
 
 > **Note**: Most failures are upstream of any Figma operation: wrong package under the colliding `figma-cli` name, Node <18, Figma Desktop not open, an incomplete connect mode, or a missing Code Mode env prefix. Verify the binary, Desktop state, and daemon health before deeper diagnosis, and confirm every illustrative command against the live `--help` surface.

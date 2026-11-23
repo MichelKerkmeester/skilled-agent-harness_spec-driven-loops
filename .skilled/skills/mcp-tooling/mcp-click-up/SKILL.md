@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.23.0
+version: 1.2.24.0
 ---
 
 # mcp-click-up Skill
@@ -316,7 +316,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 - `examples/time-tracking-workflow.sh` — Timer + time log workflow
 
 **Related Skills:**
-- `mcp-chrome-devtools` — Structural template this skill was modeled on
+- `mcp-browser-use` — The browser hub. Its Chrome DevTools mode (`mcp-browser-use/mcp-chrome-devtools`) is the structural template this skill was modeled on, and its Aside and Chrome DevTools modes drive the signed-in doc page writes
 - `mcp-code-mode` — Code Mode MCP orchestration (used for official MCP invocation)
 
 **External:**

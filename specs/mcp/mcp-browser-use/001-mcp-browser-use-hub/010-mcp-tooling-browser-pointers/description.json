@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers",
+  "description": "Phase 10: mcp-tooling-browser-pointers",
+  "keywords": [
+    "phase",
+    "mcp-tooling-browser-pointers"
+  ],
+  "lastUpdated": "2026-11-23T11:19:31.597Z",
+  "specId": "010",
+  "folderSlug": "mcp-tooling-browser-pointers",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

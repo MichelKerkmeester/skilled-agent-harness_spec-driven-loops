@@ -12,7 +12,8 @@
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/007-bladebro-parity-and-changelogs",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes",
-    "mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence"
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers"
   ],
   "manual": {
     "depends_on": [],
@@ -65,6 +66,7 @@
       "007-bladebro-parity-and-changelogs/goal.md",
       "008-live-runs-and-playbook-fixes/goal.md",
       "009-sk-code-browser-evidence/goal.md",
+      "010-mcp-tooling-browser-pointers/goal.md",
       "001-research/research/deep-research-state.jsonl",
       "005-routing-and-surfaces/implementation-summary.md"
     ],
@@ -204,7 +206,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-22T21:22:52.044Z",
+    "last_save_at": "2026-11-23T11:21:37.650Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +214,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:90b974746b756ee6582c2adc9820559f8e1d1ce8eddf974a441c0ae5e8639f50",
+    "source_fingerprint": "sha256:96e27045d8f0a35c7881c36679375a0461ef230c443af58996dc108532f29047",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "643bdfaea8db7ce6b15c870d46ae2d3f09b80528d0ca38ac191f1cb58a1cb054",
+      "spec.md": "4e3f158249ed9f6158ba58a40b72e749ebc15f2c419938cece25c108723e2c4a",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
     "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification",
