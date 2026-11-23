@@ -532,6 +532,9 @@ describe('command attach on a deep-loop prompt', () => {
     'do a thorough review of the parser',
     'find out everything you can about the parser',
     'give me a final verdict on the parser',
+    'review the parser thoroughly',
+    'do an exhaustive review of the parser',
+    'do a deep dive review of the parser',
   ])('withholds the review command on depth wording alone: %s', (prompt) => {
     expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBeUndefined();
   });

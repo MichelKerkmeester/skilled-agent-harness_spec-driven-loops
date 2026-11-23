@@ -12,14 +12,14 @@
     "loop",
     "wording"
   ],
-  "lastUpdated": "2026-11-23T09:35:16.613Z",
+  "lastUpdated": "2026-11-23T11:13:49.811Z",
   "specId": "012",
   "folderSlug": "deep-loop-command-offers",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 7,
+  "memorySequence": 8,
   "memoryNameHistory": [
     "22-11-26_13-15__analyzed-deep-loop-command-routing-with-a-fable.md",
     "22-11-26_15-11__closed-the-open-routing-items-after-the-first.md",
@@ -27,6 +27,7 @@
     "22-11-26_18-31__third-follow-up-word-counts-want-verb-loop-asks.md",
     "22-11-26_22-36__third-follow-up-word-counts-want-verb-loop-asks.md",
     "23-11-26_10-34__fourth-review-fix-round-finished-in-worktree-522.md",
-    "23-11-26_10-35__fourth-review-fix-round-finished-in-worktree-522.md"
+    "23-11-26_10-35__fourth-review-fix-round-finished-in-worktree-522.md",
+    "23-11-26_12-13__manual-context-save.md"
   ]
 }

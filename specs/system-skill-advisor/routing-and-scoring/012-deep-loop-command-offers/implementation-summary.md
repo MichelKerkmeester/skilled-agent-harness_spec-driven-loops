@@ -8,19 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T09:35:16Z"
+    last_updated_at: "2026-11-23T11:13:49Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed negated run asks and rounds-of-review scope; added offer flags to both deep hints"
-    next_safe_action: "Commit worktree 522 through sk-git when the operator asks, then close the earlier note"
+    recent_action: "Worked all 21 acceptance rows: 18 Met, AC-019 superseded by ADR-001, AC-008 and AC-017 open"
+    next_safe_action: "Await the operator choice on ADR-002 and the F6 run, then commit worktree 522"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers:
-      - "acceptance-criteria.md rows still Unmet from earlier rounds"
+      - "AC-017 waits on the operator's ADR-002 choice"
+      - "AC-008 needs a recorded live session on the F6 prompt"
     key_files:
-      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      - ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
-      - ".skilled/commands/deep/research.md"
-      - ".skilled/commands/deep/review.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md"
+      - ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts"
     session_dedup:
       fingerprint: "sha256:ed7b946f01a8d67757861c8b82afd7ac188ebd3ba5da180a7ed674f999f68fb6"
       session_id: "scaffold-012-deep-loop-command-offers"
@@ -29,10 +29,10 @@ _memory:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
       workspace: "/Users/michelkerkmeester/worktrees/public/522-deep-loop-offer-review-fixes"
-      savedAt: "2026-11-23T09:35:16Z"
+      savedAt: "2026-11-23T11:13:49Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -152,6 +152,10 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Fourth round: live probes | 31 review-fix probes and 14 G and R probes all match their expected outcome (`scratch/probes/review-fix-r4.json`, `review-fix-g-r4.json`), and the 31 are unchanged from `review-fix-final.json` |
 | Fourth round: deep-loop runtime `npm test` | 222 files, 4039 passed, 11 skipped, 0 failed. A first run alongside other work failed one 15 ms timing test in `fanout-pool.vitest.ts`, which passed 3 of 3 alone and in the full rerun |
 | Fourth round: corpora and drift | Command-routing baseline and scorer eval baseline recaptured without `--write`: 0 differences apart from the capture SHA. Contract drift, documentation drift, mirror sync (260) and command catalog mirror all OK |
+| Closure pass: spec-baseline probe | `scratch/probes/results-after.json`, 69 lines, all `exit 0 live`. Every gain, no-gain, keep and negative row matches `acceptance-criteria.md`. Stage-one rows: R2 tops `system-spec-kit` with `/deep:research` second, V2, V4 and H10 top the hub with `/deep:review`, H7 with `/deep:research`. N9 and H3b carry no deep command |
+| Closure pass: advisor suite | `npm run build` exit 0, then 180 files, 2619 passed, 4 skipped, 0 failed. Three depth words gained gate cases ("thoroughly", "exhaustive", "deep dive"), and the two gate files report 294 passed. Mirror sync passes 260 mirrors, and command references resolve across 84 asset files |
+| Closure pass: corpus | Recapture equals the committed baseline apart from the capture fields. Over the 35 rows that existed before the packet, `false_offer` 0 and `false_offer_attached` 0, as before the code change. Over the 22 new silent rows, `false_offer` 0, and one attached offer: `nm-system-deep-loop-05` (V7) carries `/create:manual-testing-playbook` |
+| Closure pass: alias replay | K2 tops the hub on the research route. Out-of-domain replays in `scratch/probes/results-ac017-ood.json`: three stay off the hub, and "write a memo on multi-round research funding for the grant committee" tops it with no command (ADR-002, accepted: the alias stays) |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -201,4 +205,7 @@ What stays open:
    - "Dig into how hospitals de-identify patient records …, and spend eight iterations on it" gets no recommendation: "dig into" is not read as a research cue.
    - It is reported, not tuned, so the rows stay blind.
 2. **The argument hints are over the soft budget.** Both hints now list every offer flag (Q013), so `validate_document.py` warns that each is over 140 characters. The warning is soft, and no failure from a long hint is recorded.
+3. **"Write a memo on" is not read as writing about a topic.** "write a memo on iterative research funding for the grant committee" gets `/deep:research pol=ask`, and so does the same memo on "deep research funding", which was a loop ask before this packet. No guard is added for one phrasing.
+4. **The multi-round research alias also catches a memo about research funding.** The operator kept it for K2 (ADR-002), so that memo can surface the hub as a skill suggestion with no command.
+5. **The F6 behaviour run is unrecorded.** The stored F6 recording answers "8 more" rather than "extend the finished deep review by 3 iterations", so AC-008 stays unmet until a live session on the F6 prompt is recorded.
 <!-- /ANCHOR:limitations -->

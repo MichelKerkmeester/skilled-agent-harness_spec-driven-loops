@@ -1,0 +1,6 @@
+[
+ {"id":"OOD-iter-1","prompt":"write a blog post about iterative research methods in user experience design"},
+ {"id":"OOD-iter-2","prompt":"draft a slide on why iterative research beats one big user study"},
+ {"id":"OOD-multi-1","prompt":"summarize how multi-round research interviews work in our hiring process"},
+ {"id":"OOD-multi-2","prompt":"write a memo on multi-round research funding for the grant committee"}
+]
