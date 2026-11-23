@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { botWorld, runCli, stubRunCount } from './runner-support.js';
+import { approveBots, botWorld, runCli, stubRunCount } from './runner-support.js';
 import { entries, queueOf, records } from './queue-support.js';
 import { cleanupTemp } from './support.js';
 
@@ -23,6 +23,7 @@ describe('enqueue dedupe', () => {
     expect(second.stdout).toBe(`bots: duplicate ${requestId}\n`);
     expect(entries(queueOf(world).inbox)).toEqual([`${requestId}.json`]);
 
+    approveBots(world);
     const drained = runCli(world, ['drain']);
     expect(drained.status).toBe(0);
     expect(drained.stdout).toBe(`${requestId} ran\n`);

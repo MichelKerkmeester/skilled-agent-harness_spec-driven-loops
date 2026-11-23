@@ -15,10 +15,11 @@
 // Links are the one hazard: a removal that walks into a link reaches the
 // main checkout's dependencies. So every link made is recorded, and a tree
 // is removed only after each recorded link is unlinked as a link, never
-// followed. A tree is removed only when it is clean, still at its base
-// commit and has no stash; anything else is kept and reported, because
-// losing a bot's work is worse than a tree left on disk. Removal is never
-// forced: git's own refusal is a reason to keep the tree.
+// followed. A tree is removed only when it is clean, gitignored files
+// included, still at its base commit and has no stash; anything else is
+// kept and reported, because losing a bot's work is worse than a tree left
+// on disk. Removal is never forced: git's own refusal is a reason to keep
+// the tree.
 
 import { spawnSync } from 'node:child_process';
 import {
@@ -595,18 +596,27 @@ export function reopenBotWorktree(checkoutRoot: string, tree: Pick<TreeHandle, '
 // 7. INSPECT & REMOVE
 // ───────────────────────────────────────────────────────────────────
 
-/** Status entries of a tree, minus the links this module made and the folders it made to hold them. */
-function unexpectedChanges(tree: TreeHandle, env: NodeJS.ProcessEnv): string[] | null {
-  const status = git(tree.path, ['status', '--porcelain=v1', '-z', '--untracked-files=all'], env);
+/**
+ * Status entries of a tree, minus the links this module made and the folders it made to hold
+ * them, split into changes git tracks or would track and files that match an ignore line. The
+ * ignored ones count too: `git worktree remove` deletes them with the tree, and a bot's report
+ * or build output often lands in an ignored folder.
+ */
+function unexpectedChanges(tree: TreeHandle, env: NodeJS.ProcessEnv): { changed: string[]; ignored: string[] } | null {
+  const status = git(tree.path, ['status', '--porcelain=v1', '-z', '--untracked-files=all', '--ignored=matching'], env);
   if (status.status !== 0) return null;
   const ours = new Set(tree.links.map((link) => relative(tree.path, link)));
   const ourDirs = tree.createdDirs.map((dir) => `${relative(tree.path, dir)}/`);
-  return status.stdout
-    .split('\0')
-    .filter((token) => token !== '')
-    .map((token) => (/^.. /.test(token) ? token.slice(3) : token))
-    .map((entry) => entry.replace(/\/$/, ''))
-    .filter((entry) => !ours.has(entry) && !ourDirs.some((dir) => `${entry}/`.startsWith(dir)));
+  const found = { changed: [] as string[], ignored: [] as string[] };
+  for (const token of status.stdout.split('\0')) {
+    if (token === '') continue;
+    // A rename's source path follows its entry as a bare token with no status code.
+    const coded = /^.. /.test(token);
+    const entry = (coded ? token.slice(3) : token).replace(/\/$/, '');
+    if (ours.has(entry) || ourDirs.some((dir) => `${entry}/`.startsWith(dir))) continue;
+    (coded && token.startsWith('!! ') ? found.ignored : found.changed).push(entry);
+  }
+  return found;
 }
 
 /**
@@ -637,7 +647,8 @@ function strayInCreatedDirs(tree: TreeHandle): WorktreeVerdict | null {
 
 /**
  * Decide whether a tree may be removed, with the checks the reaper's numbered
- * lane applies: no change in the tree, no commit beyond its base, no stash
+ * lane applies: no change in the tree (an ignored file counts, because
+ * removal deletes it), no commit beyond its base, no stash
  * made on its branch. The stash list is repository-wide, so it is read from
  * the main checkout. Any check that cannot answer keeps the tree.
  *
@@ -652,7 +663,8 @@ export function inspectWorktree(checkoutRoot: string, tree: TreeHandle, env: Nod
   if (stray !== null) return stray;
   const changes = unexpectedChanges(tree, env);
   if (changes === null) return { keptReason: 'inspect-failed', detail: 'git status did not answer' };
-  if (changes.length > 0) return { keptReason: 'dirty', detail: changes.slice(0, 5).join(', ') };
+  if (changes.changed.length > 0) return { keptReason: 'dirty', detail: changes.changed.slice(0, 5).join(', ') };
+  if (changes.ignored.length > 0) return { keptReason: 'ignored-changes', detail: changes.ignored.slice(0, 5).join(', ') };
 
   const tip = git(tree.path, ['rev-parse', '--verify', 'HEAD^{commit}'], env);
   if (tip.status !== 0) return { keptReason: 'inspect-failed', detail: 'the tree has no readable HEAD' };

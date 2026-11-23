@@ -20,7 +20,7 @@ import { openResultLedger, sendResultEvent } from '../lib/result-ledger.js';
 import { identityStatePaths, receiptFolder, sharedStatePaths } from '../lib/state-root.js';
 import { setSwitch } from '../lib/switches.js';
 import { cleanupTemp } from './support.js';
-import { botWorld, filesUnder, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
+import { approveBots, botWorld, filesUnder, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
 
 import type { NeedsYouItem } from '../lib/needs-you.js';
 import type { RunOutcome } from '../lib/runner.js';
@@ -207,6 +207,41 @@ describe('refusals before dispatch', () => {
     expect(stubRunCount(world)).toBe(0);
     expect(leases(world)).toEqual([]);
   });
+
+  it('ends a timed-out precheck with its whole process group, a background grandchild included', async () => {
+    const world = botWorld();
+    const pidFile = join(world.home, 'grandchild.pid');
+    writeBot(world, 'slow-precheck', [
+      '---',
+      'id: slow-precheck',
+      'trigger: {kind: manual}',
+      'runtime: {kind: cli-codex}',
+      'isolation: shared',
+      `precheck: "sleep 45 & echo $! > ${pidFile}; wait"`,
+      '---',
+      'Never dispatched: the precheck never finishes.',
+      '',
+    ].join('\n'));
+
+    const outcome = await runBot(world.input('slow-precheck', { precheckTimeoutMs: 1_000 }));
+    expect(outcome).toMatchObject({ kind: 'refused', cause: 'precheck-failed' });
+    const grandchild = Number(readFileSync(pidFile, 'utf8').trim());
+    expect(grandchild).toBeGreaterThan(1);
+    const alive = (): boolean => {
+      try {
+        process.kill(grandchild, 0);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+    const until = Date.now() + 5_000;
+    while (alive() && Date.now() < until) await new Promise((done) => setTimeout(done, 50));
+    const survived = alive();
+    if (survived) process.kill(grandchild, 'SIGKILL');
+    expect(survived).toBe(false);
+    expect(stubRunCount(world)).toBe(0);
+  }, 30_000);
 
   it('refuses an unhonorable posture before dispatch', async () => {
     const world = botWorld();
@@ -459,6 +494,7 @@ describe('needs-you decisions', () => {
 
   it('starts a resumed run from a resume request with the question, the answer and the same spec folder', async () => {
     const world = botWorld();
+    approveBots(world);
     writeNeedsYouItem(world.stateRoot, item(world, { answer: { text: 'keep them', answeredAt: new Date().toISOString() } }));
     const outcome = await runBot(world.input('manual-ok', { request: { kind: 'resume', requestId: 'req-9', itemId: 'parked-1' } }));
     expect(outcome.kind).toBe('completed');
@@ -475,6 +511,7 @@ describe('needs-you decisions', () => {
 
   it('refuses a resumed run whose answer holds a secret, naming the key', async () => {
     const world = botWorld({ PLANTED_TOKEN: 'answer-secret-31xz' });
+    approveBots(world);
     writeNeedsYouItem(world.stateRoot, item(world, { answer: { text: 'use answer-secret-31xz', answeredAt: new Date().toISOString() } }));
     const outcome = await runBot(world.input('manual-ok', { request: { kind: 'resume', requestId: 'req-1', itemId: 'parked-1' } }));
     expect(outcome).toMatchObject({ kind: 'refused', cause: 'body-secret' });

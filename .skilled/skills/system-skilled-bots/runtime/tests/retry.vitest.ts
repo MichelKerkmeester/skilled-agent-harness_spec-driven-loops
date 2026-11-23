@@ -82,4 +82,45 @@ describe('drain retry bound', () => {
       value: { attempts: 0 },
     });
   });
+
+  it('never dispatches again a run that already ran, and quarantines an author error at once', async () => {
+    for (const reason of ['result-event-unrecorded', 'decision-marker-empty']) {
+      const world = botWorld();
+      const sent = enqueueFromCheckout(world.checkoutRoot, { workflowId: 'manual-ok', source: 'test', eventId: `evt-${reason}` }, world.env);
+      if (!sent.ok) throw new Error(sent.reason);
+      let calls = 0;
+      const ranOnce = async (): Promise<RunOutcome> => {
+        calls += 1;
+        return { kind: 'failed', reason, class: reason === 'decision-marker-empty' ? 'author' : 'hub', runId: `run-${calls}`, recordPath: null, recursionGuard: false };
+      };
+      const report = await drain(world, { runBot: ranOnce });
+      if (!report.ok) throw new Error(report.reason);
+      expect(report.value.lines, reason).toMatchObject([{ outcome: 'quarantined', reason }]);
+      const again = await drain(world, { runBot: ranOnce });
+      if (!again.ok) throw new Error(again.reason);
+      expect(calls, reason).toBe(1);
+      expect(readQuarantineReasons(queueOf(world)), reason).toMatchObject([{ requestId: sent.value.requestId, reason }]);
+    }
+  });
+
+  it('stops the pass when the executor is not on PATH, and spends no attempt of the request', async () => {
+    const world = botWorld();
+    const sent = enqueueFromCheckout(world.checkoutRoot, { workflowId: 'manual-ok', source: 'test', eventId: 'evt-path' }, world.env);
+    if (!sent.ok) throw new Error(sent.reason);
+    const unavailable = async (): Promise<RunOutcome> => ({
+      kind: 'failed',
+      reason: 'executor-unavailable',
+      class: 'environment',
+      runId: 'run-path',
+      recordPath: null,
+      recursionGuard: false,
+    });
+
+    const report = await drain(world, { runBot: unavailable });
+    expect(report).toMatchObject({ ok: false, reason: 'drain-stopped', detail: expect.stringContaining('executor-unavailable') });
+    const queue = queueOf(world);
+    expect(entries(queue.inbox)).toEqual([`${sent.value.requestId}.json`]);
+    expect(entries(queue.quarantine)).toEqual([]);
+    expect(readClaimed({ ...queue, claimed: queue.inbox }, `${sent.value.requestId}.json`)).toMatchObject({ ok: true, value: { attempts: 0 } });
+  });
 });

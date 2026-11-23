@@ -11,6 +11,7 @@ import { execFileSync, spawn, spawnSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
+import { approveDefinition, digestOf } from '../lib/approval.js';
 import { userStateRoot } from '../lib/state-root.js';
 import { defaultRepoConfig } from '../lib/repo-config.js';
 import { isolatedEnv, tempDir, tempRepo, tempSkilledTree, writeConfig } from './support.js';
@@ -88,6 +89,20 @@ export function commitAll(checkoutRoot: string): void {
 export function writeBot(world: BotWorld, botId: string, text: string): void {
   mkdirSync(join(world.checkoutRoot, 'bots', botId), { recursive: true });
   writeFileSync(join(world.checkoutRoot, 'bots', botId, 'BOT.md'), text);
+}
+
+/**
+ * Approve every bot definition in a world's checkout, with its config, the way
+ * `bots enable` does. A scheduled, queued or resumed run uses only approved
+ * bytes, so a test that starts one without a manual run first approves here.
+ */
+export function approveBots(world: BotWorld): void {
+  const botsDir = join(world.checkoutRoot, 'bots');
+  for (const entry of readdirSync(botsDir, { withFileTypes: true })) {
+    const path = join(botsDir, entry.name, 'BOT.md');
+    if (!entry.isDirectory() || !existsSync(path)) continue;
+    approveDefinition({ stateRoot: world.stateRoot, identity: IDENTITY, checkoutRoot: world.checkoutRoot, botId: entry.name, definitionDigest: digestOf(readFileSync(path)), by: 'enable' });
+  }
 }
 
 /** What the stub saw for one run, or null when it never ran for that run. */

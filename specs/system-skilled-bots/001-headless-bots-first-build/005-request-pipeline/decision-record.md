@@ -160,6 +160,8 @@ research.md §9 requires a bounded retry but gives no number. A request that fai
 **We chose**: Attempt a request at most three times in total, then quarantine it with reason `retry-bound`.
 
 **How it works**: The record carries an `attempts` count. A failure under the bound moves the file back into the watched folder through the temp folder with `attempts` raised by one. A refusal (disabled, failing precheck, malformed) is never retried and goes straight to quarantine.
+
+**Amendment (2026-11-23, operator decision in phase 009)**: the runner's never-dispatch-twice rule in phase 003 REQ-011 wins over "retry every failure". A run that already ran is never retried by the drain: `result-event-unrecorded` and `decision-marker-empty` go straight to quarantine under their own names. `executor-unavailable` is a setup problem, not a request failure: it stops the drain pass and spends no attempt, as a missing identity already does.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---

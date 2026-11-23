@@ -144,6 +144,7 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Reused pie
 | 6 | 006-launchd-installer/ | Transactional install and uninstall, scheduler stop layer, fire-time slot accounting and the queue-drain agent. The install record keeps the resolved runner path and `.skilled` kind, and a post-repin check names its hook point in the overlay flow. A fire during a hold records a skipped slot (research.md §7; ADR-004, D9) | 002, 003, 005 | Draft |
 | 7 | 007-status-index/ | SQLite index and `bots status`, joined with `launchctl print`. Rows for open needs-you items, held bots, a changed runner path and a vanished run folder; retention per ADR-005 and D10 (research.md §12; ADR-001, ADR-004) | 003, 006 | Draft |
 | 8 | 008-hub-wiring/ | Four metadata modes, commands, mirrors, doctor asset, two-stage replay and staged re-pin. `inbox` maps onto the status mode and `answer` onto the run mode; the re-pin also checks that reinstall is reported when the runner path changes (research.md §14; ADR-001, ADR-004) | 001 to 007 | Draft |
+| 9 | 009-skilled-alignment-and-docs/ | [Phase 9 scope] | Pending |
 
 **Levels.** The operator raised phases 001, 003 and 006 to Level 3 (decision-record.md D8). Each child carries its own level. The parent stays a phase parent.
 
@@ -167,6 +168,7 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Reused pie
 | 002, 003 and 005 | 006-launchd-installer | Translator and checker, runner with kill switches, and the request pipeline all exist; the weekday probe result is recorded | 002, 003 and 005 acceptance criteria all Met |
 | 003 and 006 | 007-status-index | Run records and installed labels exist to index | 003 and 006 acceptance criteria all Met |
 | 001 to 007 | 008-hub-wiring | Every runtime behavior is built and proven by a real run | All seven earlier children validate strict with acceptance criteria Met |
+| 008-hub-wiring | 009-skilled-alignment-and-docs | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

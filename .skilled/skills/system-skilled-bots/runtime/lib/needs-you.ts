@@ -8,7 +8,8 @@
 // (open, answered, expired) is derived from its fields every time it is
 // read and never stored, so it can never disagree with them.
 
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
 import { IDENTITY_PATTERN } from './repo-config.js';
@@ -294,6 +295,34 @@ export function holdForBot(stateRoot: string, identity: string, botId: string, n
     return named === null || named === botId;
   });
   return mine.length > 0 ? { kind: 'unreadable', itemIds: mine } : null;
+}
+
+/**
+ * Whether a resume request has still to run: it sits in the watched folder or
+ * is claimed. A request id that is not a safe name cannot be looked up, so it
+ * counts as still to run, the side that keeps the answered work.
+ */
+export function resumeRequestPending(stateRoot: string, identity: string, requestId: string): boolean {
+  if (!isSafeSegment(requestId)) return true;
+  const folders = identityStatePaths(stateRoot, identity).requests;
+  return existsSync(join(folders.inbox, `${requestId}.json`)) || existsSync(join(folders.claimed, `${requestId}.json`));
+}
+
+/**
+ * An answered item of the bot whose resume has not run: no resume request
+ * recorded yet, or its request still queued or claimed. While one exists the
+ * bot's other unattended runs wait, because a run started in between could
+ * take the lease the resume needs, or park a new question that then refuses
+ * the resume, and either way the answered work would never continue.
+ *
+ * @returns The oldest such item, or null.
+ */
+export function itemAwaitingResume(stateRoot: string, identity: string, botId: string, now: Date = new Date()): NeedsYouItem | null {
+  const waiting = listNeedsYouItems(stateRoot, identity, now).items.find(
+    ({ item, state }) =>
+      item.botId === botId && state === 'answered' && (item.resumeRequestId === null || resumeRequestPending(stateRoot, identity, item.resumeRequestId)),
+  );
+  return waiting?.item ?? null;
 }
 
 /**

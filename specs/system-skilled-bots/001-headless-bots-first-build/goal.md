@@ -114,6 +114,7 @@ and findings belong here.
 | 004 and 005 | Done | 004 second review APPROVED, 005 review APPROVED; live desktop notice attempted; suite 264 passed; hook tests 74/14/25/28 passed |
 | Phase 006 launchd installer | Done | d2f75c66184 pushed; 322/322 tests, typecheck 0, validate PASSED, 18/18 AC Met; live install passed twice (held, one fire with slot and lateness, drain, uninstall); five review rounds, operator answers Q004 to Q008 |
 | Phase 007 status index | Done | 928be8397fb pushed; 355/355 tests, typecheck 0, validate PASSED, 16/16 AC Met; second review APPROVED; live status check passed; operator answers Q003 to Q006 |
+| 008 hub wiring review loop | Done | reviews 2-5 fixed, review 5 APPROVED, gates green, f4c318d856a pushed to origin/system-skilled-bots |
 
 ### Deviations and findings
 

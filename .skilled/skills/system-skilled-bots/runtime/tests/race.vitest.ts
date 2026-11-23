@@ -7,7 +7,7 @@ import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { enqueueFromCheckout } from '../lib/request-queue.js';
-import { botWorld, stubRunCount, waitFor } from './runner-support.js';
+import { approveBots, botWorld, stubRunCount, waitFor } from './runner-support.js';
 import { entries, queueOf, records } from './queue-support.js';
 import { cleanupTemp, tempDir } from './support.js';
 
@@ -46,6 +46,7 @@ function linesOf(stdout: string): DrainLine[] {
 describe('drain race', () => {
   it(`leaves exactly one run record joined to the request in each of ${ROUNDS} rounds`, async () => {
     const world = botWorld();
+    approveBots(world);
     const signals = tempDir('bots-race-');
     let lostClaims = 0;
 

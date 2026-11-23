@@ -71,6 +71,7 @@ system-skilled-bots/
   leaf-manifest.json
   changelog/
   manual-testing-playbook/
+  feature-catalog/  the current-state feature inventory
   benchmark/
   shared/
   assets/          the BOT.md template
@@ -121,3 +122,4 @@ system-skilled-bots/
 - [`hub-router.json`](hub-router.json): stage-one policy and signal classes.
 - [`ROUTER.md`](ROUTER.md): the hub routing directive and its fallback checklist.
 - [`README.md`](README.md): operator-facing hub overview.
+- [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md): current-state feature inventory.

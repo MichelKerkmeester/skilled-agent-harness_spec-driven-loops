@@ -9,11 +9,13 @@
 // it again would be refused the same way; a request for a paused bot or a
 // bot held by an open question is quarantined too and is not replayed when
 // the pause lifts or the question is answered. A failure goes back to the
-// watched folder until the retry bound, then to quarantine. A pass handles
-// only what was in the folder when it started, so a request retried in this
-// pass waits for the next one. Only an environment refusal that would hit
-// every request alike (no identity, no usable run folder) stops the pass,
-// with the claimed request put back, so a broken setup never burns the queue.
+// watched folder until the retry bound, then to quarantine, except a run that
+// already ran (its result event went unrecorded) or an author error, which are
+// quarantined at once: a run is never dispatched twice. A pass handles only
+// what was in the folder when it started, so a request retried in this pass
+// waits for the next one. Only a setup fault (no identity, no usable run
+// folder, no executor on PATH) stops the pass, with the claimed request put
+// back, so a broken setup never burns the queue.
 //
 // The queue's identity and state root are resolved under `resolveEnv` when it
 // is given, and passed on to every run, while the runs execute under `env`. A
@@ -36,6 +38,7 @@ import {
   RETRY_BOUND_REASON,
 } from './request-queue.js';
 import { identityKey } from './identity.js';
+import { RESULT_EVENT_UNRECORDED } from './run-record.js';
 import { resolveBotContext, runBot as defaultRunBot } from './runner.js';
 
 import type { Result } from './repo-config.js';
@@ -85,8 +88,29 @@ export const TARGET_MISMATCH_REASON = 'target-mismatch';
 /** Refusals that would hit every request alike, so the pass stops instead of quarantining. */
 const ENVIRONMENT_CAUSES = new Set(['identity-unknown', 'run-folder-refused']);
 
-/** Refusals that say "not now" rather than "never": the request counts an attempt and goes back. */
-const TRANSIENT_CAUSES = new Set(['lease-held']);
+/**
+ * Refusals that say "not now" rather than "never": the request counts an attempt and goes back.
+ * A bot whose answered question still waits for its resume lifts that hold itself once the
+ * queued resume runs, so a request behind it waits rather than being quarantined.
+ */
+const TRANSIENT_CAUSES = new Set(['lease-held', 'awaiting-resume-hold']);
+
+/**
+ * Failures a second dispatch cannot mend. A run whose result event went unrecorded already
+ * ran, and its work is on disk, so dispatching it again would do that work twice. An empty
+ * decision marker is the definition's own error and repeats on every attempt. Both are
+ * quarantined at once under their own reason, so they stay visible.
+ */
+const NO_RETRY_FAILURES = new Set([RESULT_EVENT_UNRECORDED, 'decision-marker-empty']);
+
+/**
+ * A setup fault, not the request's: the executor is not on the PATH the runs get, which is
+ * launchd's bare one for the drain job. Retrying would spend the request's attempts on a
+ * fault no attempt can mend, a resume included, so the pass stops with the request put back
+ * and no attempt counted. Where bots use different executor kinds, one missing CLI stops each
+ * pass at its request, and the requests after it wait until the PATH is fixed.
+ */
+const ENVIRONMENT_FAILURES = new Set(['executor-unavailable']);
 
 type Route =
   | { kind: 'done' }
@@ -108,6 +132,8 @@ export function routeOutcome(outcome: RunOutcome): Route {
     case 'awaiting-decision':
       return { kind: 'done' };
     case 'failed':
+      if (ENVIRONMENT_FAILURES.has(outcome.reason)) return { kind: 'stop', detail: outcome.reason };
+      if (NO_RETRY_FAILURES.has(outcome.reason)) return { kind: 'quarantine', reason: outcome.reason, detail: null };
       return { kind: 'retry' };
     case 'refused': {
       const cause: string = outcome.cause;

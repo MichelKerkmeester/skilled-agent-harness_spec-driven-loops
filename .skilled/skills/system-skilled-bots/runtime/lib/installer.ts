@@ -40,11 +40,12 @@ import { homedir, tmpdir, userInfo } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 import { writeStateAtomic, writeTextAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import { approveDefinition, digestOf } from './approval.js';
 import { translateCron } from './cron-translator.js';
-import { readDefinition } from './definition.js';
-import { identityGuard, identityKey } from './identity.js';
+import { parseDefinition } from './definition.js';
+import { identityGuard, identityKey, PINNED_IDENTITY_ENV } from './identity.js';
 import { buildBotLabel, buildDrainLabel, LABEL_PREFIX, parseLabel, RESERVED_BOT_IDS } from './label.js';
-import { renderBotPlist, renderDrainPlist, sameSchedule, scheduleFromPlist, stateHomeFromPlist } from './plist-render.js';
+import { pinnedFromPlist, renderBotPlist, renderDrainPlist, sameSchedule, scheduleFromPlist, stateHomeFromPlist } from './plist-render.js';
 import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { drainQueue } from './request-drain.js';
@@ -56,9 +57,11 @@ import {
   ensureIdentityState,
   identityStatePaths,
   installFile,
+  PINNED_STATE_ROOT_ENV,
   readRegisteredRoots,
   registerRoot,
   REQUEST_FOLDERS,
+  sharedStatePaths,
   slotSnapshotFile,
   STATE_DIR_MODE,
   userStateRoot,
@@ -67,6 +70,7 @@ import { readSwitch } from './switches.js';
 
 import type { Translation } from './cron-translator.js';
 import type { BotDefinition } from './definition.js';
+import type { PinnedJobValues } from './plist-render.js';
 import type { ParsedLabel } from './label.js';
 import type { RepoConfig, Result } from './repo-config.js';
 import type { DrainInput, DrainReport } from './request-drain.js';
@@ -254,6 +258,8 @@ interface Preflight {
   interpreter: string;
   tree: SkilledTreeInfo;
   definition: BotDefinition | null;
+  /** The digest of the definition bytes the preflight vetted; null for the drain job. */
+  definitionDigest: string | null;
   translation: Translation | null;
   label: string;
 }
@@ -407,8 +413,8 @@ function isExecutableFile(path: string): boolean {
  * user-level state root and nothing into the agents folder.
  *
  * Order: identity, runner and interpreter, the Skilled tree's run root, the
- * switches, then for a bot the checker, the definition's schedule, its label
- * and its posture.
+ * switches, the registered-roots file, then for a bot the checker, the
+ * definition's schedule, its label and its posture.
  *
  * @returns What the transaction needs, or a refusal naming the failed check.
  */
@@ -451,7 +457,11 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
   // under the old root, so it is refused before anything is written. Adopting
   // the job's root silently is not done either: on a fresh install the shell
   // chooses it.
-  const installedEnv = jobEnv({ checkoutRoot, botId: input.botId, env, seams });
+  // Like is compared with like: a shell resolving the checkout as it is now meets the job without its
+  // pins, so a config edit since the install shows; a recheck under the job's pins keeps them.
+  const pinned = pinsOf(env);
+  const jobSide = jobEnv({ checkoutRoot, botId: input.botId, env, seams });
+  const installedEnv = Object.keys(pinned).length > 0 ? jobSide : withoutPins(jobSide);
   const installedRoot = userStateRoot(config.value, installedEnv);
   if (installedRoot !== stateRoot) {
     const wanted = installedEnv.XDG_STATE_HOME?.trim() ? `XDG_STATE_HOME=${installedEnv.XDG_STATE_HOME}` : 'XDG_STATE_HOME unset';
@@ -486,7 +496,7 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
   // Outputs, not inputs, are compared: whatever the shell sets that the job will not see (a CI repository
   // name, another HOME, a git variable) shows up here as a different identity or state root.
   const environmentVariables = jobEnvironmentVariables(config.value, stateRoot);
-  const builtEnv = launchdJobEnv({ accountHome: seams.accountHome, environmentVariables });
+  const builtEnv = launchdJobEnv({ accountHome: seams.accountHome, environmentVariables: { ...environmentVariables, ...pinned } });
   const jobIdentity = identityGuard(checkoutRoot, builtEnv);
   const jobRoot = userStateRoot(config.value, builtEnv);
   if (!jobIdentity.ok || identityKey(jobIdentity.value.identity) !== identityKey(identity.value.identity) || jobRoot !== stateRoot) {
@@ -520,12 +530,20 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
   } catch (error: unknown) {
     return { ok: false, reason: 'switches-unreadable', detail: (error as NodeJS.ErrnoException | null)?.code ?? String(error) };
   }
+  // The transaction registers this checkout only after the job file is in place and the scheduler
+  // was told, so a registered-roots file that does not read is refused here, with nothing installed.
+  try {
+    readRegisteredRoots(stateRoot);
+  } catch (error: unknown) {
+    const detail = (error as NodeJS.ErrnoException | null)?.code ?? (error instanceof Error ? error.message : String(error));
+    return { ok: false, reason: 'registered-roots-unreadable', detail: `${sharedStatePaths(stateRoot).registeredRoots}: ${detail}; repair or remove it. Nothing changed` };
+  }
 
   const base = { agent, identity: identity.value.identity, stateRoot, stateHome, config: config.value, checkoutRoot, skilledTree, interpreter, tree: tree.value } as const;
   if (agent === 'drain') {
     const label = buildDrainLabel(identity.value.identity);
     if (!label.ok) return label;
-    return { ok: true, value: { ...base, definition: null, translation: null, label: label.value } };
+    return { ok: true, value: { ...base, definition: null, definitionDigest: null, translation: null, label: label.value } };
   }
 
   const checked = seams.checker(checkoutRoot, env);
@@ -533,7 +551,15 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
     const failures = checked.lines.filter((line) => line.startsWith('FAIL:'));
     return { ok: false, reason: 'checker-failed', detail: failures.join('; ') || `exit ${checked.exitCode}` };
   }
-  const definition = readDefinition(definitionPath(checkoutRoot, input.botId));
+  let bytes: Buffer;
+  try {
+    bytes = readFileSync(definitionPath(checkoutRoot, input.botId));
+  } catch {
+    return { ok: false, reason: 'definition-malformed', detail: 'definition-unreadable' };
+  }
+  // The approval an install or enable writes names exactly the bytes vetted here.
+  const definitionDigest = digestOf(bytes);
+  const definition = parseDefinition(bytes.toString('utf8'));
   if (!definition.ok) return { ok: false, reason: 'definition-malformed', detail: definition.reason };
   if (definition.value.id !== input.botId) return { ok: false, reason: 'definition-malformed', detail: 'id-mismatch' };
   if (definition.value.trigger.kind !== 'cron') {
@@ -546,7 +572,7 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
   const posture = validatePosture(definition.value, config.value);
   if (!posture.ok) return { ok: false, reason: 'posture-refused', detail: `${posture.reason}${posture.detail !== undefined ? `: ${posture.detail}` : ''}` };
 
-  return { ok: true, value: { ...base, definition: definition.value, translation: translation.value, label: label.value } };
+  return { ok: true, value: { ...base, definition: definition.value, definitionDigest, translation: translation.value, label: label.value } };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -665,10 +691,44 @@ function checkoutJobs(seams: InstallerSeams, checkoutRoot: string): CheckoutJob[
   return jobs;
 }
 
+/**
+ * The environment a job file gives its fires that bears on resolution: the
+ * state home and the pinned state root and identity it carries, under
+ * launchd's own. A schedule's fire marker is left out, so a verb resolving
+ * under this environment is never taken for a scheduled fire.
+ */
+function jobFileEnv(seams: InstallerSeams, job: Record<string, unknown>): NodeJS.ProcessEnv {
+  const stateHome = stateHomeFromPlist(job);
+  const pinned = pinnedFromPlist(job);
+  return launchdJobEnv({
+    accountHome: seams.accountHome,
+    environmentVariables: {
+      ...(stateHome === null ? {} : { XDG_STATE_HOME: stateHome }),
+      ...(pinned === null ? {} : { [PINNED_STATE_ROOT_ENV]: pinned.stateRoot, [PINNED_IDENTITY_ENV]: pinned.identity }),
+    },
+  });
+}
+
+/** The pinned state root and identity an environment carries, as job environment entries; empty when it carries none. */
+function pinsOf(env: NodeJS.ProcessEnv): Record<string, string> {
+  const stateRoot = env[PINNED_STATE_ROOT_ENV];
+  const identity = env[PINNED_IDENTITY_ENV];
+  return stateRoot !== undefined && identity !== undefined ? { [PINNED_STATE_ROOT_ENV]: stateRoot, [PINNED_IDENTITY_ENV]: identity } : {};
+}
+
+/**
+ * An environment with its pinned values taken out: what the checkout itself
+ * resolves now. A check that looks for a job grown stale against the
+ * checkout compares under this, since under the pins the job always agrees.
+ */
+function withoutPins(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+  const { [PINNED_STATE_ROOT_ENV]: _root, [PINNED_IDENTITY_ENV]: _identity, ...rest } = env;
+  return rest;
+}
+
 /** The state root a job file resolves when it fires, under launchd's environment. */
 function jobStateRoot(seams: InstallerSeams, config: RepoConfig, job: Record<string, unknown>): string {
-  const stateHome = stateHomeFromPlist(job);
-  return userStateRoot(config, launchdJobEnv({ accountHome: seams.accountHome, environmentVariables: stateHome === null ? null : { XDG_STATE_HOME: stateHome } }));
+  return userStateRoot(config, jobFileEnv(seams, job));
 }
 
 /**
@@ -680,7 +740,10 @@ function jobStateRoot(seams: InstallerSeams, config: RepoConfig, job: Record<str
  * The installed jobs are the ones whose `--repo` is this checkout, found
  * under any identity. The named job's own file is read first, then any other
  * job of the checkout: the installer refuses a second state home for one
- * checkout, so they agree. With no readable job file, the state home pinned
+ * checkout, so they agree. A job file that pins the state root and identity
+ * gives both, whatever the checkout's config now says, so a verb lands where
+ * the fired job looks even after a run edited that config. With no readable
+ * job file, the state home pinned
  * is the one an install from this shell would write, so a verb before any
  * install and the job installed after it agree. A config state root needs no
  * value at all.
@@ -688,15 +751,14 @@ function jobStateRoot(seams: InstallerSeams, config: RepoConfig, job: Record<str
 export function jobEnv(input: { checkoutRoot: string; botId?: string; env?: NodeJS.ProcessEnv; seams?: Partial<InstallerSeams> }): NodeJS.ProcessEnv {
   const env = input.env ?? process.env;
   const seams = seamsFor(input);
+  const jobs = checkoutJobs(seams, input.checkoutRoot);
+  const found = jobs.find((job) => job.botId === input.botId) ?? jobs[0];
+  // A job that pins its state root and identity answers for both before the checkout's config can.
+  if (found !== undefined && pinnedFromPlist(found.job) !== null) return jobFileEnv(seams, found.job);
   const bare = launchdJobEnv({ accountHome: seams.accountHome });
   const config = readRepoConfig(input.checkoutRoot);
   if (!config.ok || config.value.stateRoot !== null) return bare;
-  const jobs = checkoutJobs(seams, input.checkoutRoot);
-  const found = jobs.find((job) => job.botId === input.botId) ?? jobs[0];
-  if (found !== undefined) {
-    const stateHome = stateHomeFromPlist(found.job);
-    return launchdJobEnv({ accountHome: seams.accountHome, environmentVariables: stateHome === null ? null : { XDG_STATE_HOME: stateHome } });
-  }
+  if (found !== undefined) return jobFileEnv(seams, found.job);
   return launchdJobEnv({ accountHome: seams.accountHome, environmentVariables: jobEnvironmentVariables(config.value, userStateRoot(config.value, env)) });
 }
 
@@ -778,6 +840,7 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
 
   const logPath = agentLogFile(pre.stateRoot, pre.identity, pre.label);
   const runnerPath = pre.tree.repoRunnerRealPath;
+  const pinned: PinnedJobValues = { stateRoot: pre.stateRoot, identity: pre.identity };
   let rendered: Result<string>;
   if (pre.agent === 'drain') {
     const queue = identityStatePaths(pre.stateRoot, pre.identity).requests;
@@ -793,6 +856,7 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
       logPath,
       throttleSeconds: DRAIN_THROTTLE_SECONDS,
       stateHome: pre.stateHome,
+      pinned,
     });
   } else {
     rendered = renderBotPlist({
@@ -806,6 +870,7 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
       translation: pre.translation as Translation,
       logPath,
       stateHome: pre.stateHome,
+      pinned,
     });
   }
   if (!rendered.ok) return rendered;
@@ -907,6 +972,10 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
     if (installed === null || !sameSchedule(installed, pre.translation)) return readBackFailed('the installed schedule differs from the translator output');
   }
   if (stateHomeFromPlist(readBack) !== pre.stateHome) return readBackFailed('the installed job does not carry the state home the install resolved');
+  const readPins = pinnedFromPlist(readBack);
+  if (readPins === null || readPins.stateRoot !== pinned.stateRoot || readPins.identity !== pinned.identity) {
+    return readBackFailed('the installed job does not pin the state root and identity the install resolved');
+  }
   steps.push({ step: 'read-back', status: 0, detail: null });
 
   if (previous === null && pre.agent === 'bot') {
@@ -936,6 +1005,9 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
     enabledAt: previous?.enabledAt ?? null,
   };
   writeStateAtomic(installFile(pre.stateRoot, pre.identity, input.botId), record);
+  if (pre.definitionDigest !== null) {
+    approveDefinition({ stateRoot: pre.stateRoot, identity: pre.identity, checkoutRoot: pre.checkoutRoot, botId: input.botId, definitionDigest: pre.definitionDigest, by: 'install', now });
+  }
   mkdirSync(dirname(logPath), { recursive: true, mode: STATE_DIR_MODE });
 
   const check = checkInstalls({ stateRoot: pre.stateRoot, identity: pre.identity, agentsDir: seams.agentsDir }).find((row) => row.botId === input.botId) ?? {
@@ -969,6 +1041,8 @@ export interface SwitchReport {
  * Lift a hold or a kill switch: rerun the preflight, enable each label and
  * bootstrap a job file that is not loaded. A definition that says
  * `enabled: false` is refused, so the two stop layers never disagree.
+ * Enabling is an operator's approval: the definition and config as they are
+ * now become the ones the bot's unattended runs may use, schedule or not.
  *
  * @returns The report, a preflight refusal, `definition-disabled` or `install-step-failed`.
  */
@@ -978,13 +1052,29 @@ export function enableSchedule(input: InstallInput): Result<SwitchReport> {
   const context = installContext(input.checkoutRoot, env);
   if (!context.ok) return context;
   const record = readInstallRecord(context.value.stateRoot, context.value.identity, input.botId);
-  if (record === null) return { ok: true, value: { installed: false, labels: [], steps: [] } };
+  const approvalTarget = { stateRoot: context.value.stateRoot, identity: context.value.identity, checkoutRoot: input.checkoutRoot, botId: input.botId };
+  if (record === null) {
+    // Enabling a bot with no schedule still approves its definition, so its queued requests may run.
+    if (input.botId !== DRAIN_ID) {
+      let bytes: Buffer | null = null;
+      try {
+        bytes = readFileSync(definitionPath(input.checkoutRoot, input.botId));
+      } catch {
+        bytes = null;
+      }
+      if (bytes !== null) approveDefinition({ ...approvalTarget, definitionDigest: digestOf(bytes), by: 'enable', ...(input.now !== undefined ? { now: input.now } : {}) });
+    }
+    return { ok: true, value: { installed: false, labels: [], steps: [] } };
+  }
 
   // The recheck is of the job as installed: its Skilled tree and interpreter, not the invoking shell's.
   const checked = preflight({ ...input, env, skilledTree: record.skilledTree, interpreter: record.interpreter }, seams);
   if (!checked.ok) return checked;
   if (checked.value.definition?.enabled === false) {
     return { ok: false, reason: 'definition-disabled', detail: `${input.botId}'s BOT.md says enabled: false` };
+  }
+  if (checked.value.definitionDigest !== null) {
+    approveDefinition({ ...approvalTarget, definitionDigest: checked.value.definitionDigest, by: 'enable', ...(input.now !== undefined ? { now: input.now } : {}) });
   }
 
   const steps: StepRecord[] = [];
@@ -1245,7 +1335,8 @@ export function checkInstalls(input: { stateRoot: string; identity: string; agen
  */
 export function checkInstallsFor(input: { checkoutRoot: string; env?: NodeJS.ProcessEnv; seams?: Partial<InstallerSeams> }): Result<InstallCheck[]> {
   const seams = seamsFor(input);
-  const context = installContext(input.checkoutRoot, jobEnv(input));
+  // The check reports a job grown stale against the checkout as it is now, so it resolves without the job's pins.
+  const context = installContext(input.checkoutRoot, withoutPins(jobEnv(input)));
   if (!context.ok) return context;
   const rows = checkInstalls({ ...context.value, agentsDir: seams.agentsDir });
   for (const job of checkoutJobs(seams, input.checkoutRoot)) {

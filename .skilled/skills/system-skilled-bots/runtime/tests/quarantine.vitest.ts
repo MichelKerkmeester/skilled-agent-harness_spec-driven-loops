@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { answerItem } from '../lib/answer.js';
 import { enqueueFromCheckout, queueFolders, readQuarantineReasons } from '../lib/request-queue.js';
 import { setSwitch } from '../lib/switches.js';
-import { botWorld, FIXTURE_BOTS, IDENTITY, runCli, stubRunCount, writeBot } from './runner-support.js';
+import { approveBots, botWorld, FIXTURE_BOTS, IDENTITY, runCli, stubRunCount, writeBot } from './runner-support.js';
 import { drain, entries, queueOf, writeItem } from './queue-support.js';
 import { cleanupTemp } from './support.js';
 
@@ -38,6 +38,7 @@ describe('drain quarantine', () => {
       sent.set(botId, result.value.requestId);
     }
 
+    approveBots(world);
     const drained = runCli(world, ['drain']);
     expect(drained.stderr).toBe('');
     expect(drained.status).toBe(0);

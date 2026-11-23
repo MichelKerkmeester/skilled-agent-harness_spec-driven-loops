@@ -6,10 +6,11 @@
 // identity. The shared resolver returns null for a repository with no
 // remote, and two such repositories would then collide on one key. This
 // module adds the declared identity from bots/config.json on top of the
-// shared resolver and turns "no answer" into a refusal, never a fallback
-// path, so two unknown repositories can never share state.
+// shared resolver, and the identity an installed job pins above both, and
+// turns "no answer" into a refusal, never a fallback path, so two unknown
+// repositories can never share state.
 
-import { readRepoConfig, repositoryIdentity } from './repo-config.js';
+import { IDENTITY_PATTERN, readRepoConfig, repositoryIdentity } from './repo-config.js';
 
 import type { RepoConfig, Result } from './repo-config.js';
 
@@ -17,7 +18,14 @@ import type { RepoConfig, Result } from './repo-config.js';
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
-export type IdentitySource = 'config' | 'env' | 'origin';
+export type IdentitySource = 'job' | 'config' | 'env' | 'origin';
+
+/**
+ * The identity an installed job carries in its own environment. It outranks
+ * the checkout's `bots/config.json`, which a run with checkout write access
+ * could edit to move every lookup under another identity's empty folders.
+ */
+export const PINNED_IDENTITY_ENV = 'SKILLED_BOTS_IDENTITY';
 
 export interface ResolvedIdentity {
   identity: string;
@@ -38,13 +46,20 @@ export interface IdentityInput {
 // ───────────────────────────────────────────────────────────────────
 
 /**
- * Resolve a checkout's identity: the declared config field first, then the
- * environment and the origin remote through the shared resolver.
+ * Resolve a checkout's identity: the one an installed job pinned, then the
+ * declared config field, then the environment and the origin remote through
+ * the shared resolver. A pinned value that is not `owner/name` is refused
+ * rather than skipped, so a damaged job never falls back to the checkout.
  *
  * @param input - Checkout root, its config and the environment.
  * @returns The identity and where it came from, or the refusal `identity-unknown`.
  */
 export function resolveIdentity(input: IdentityInput): Result<ResolvedIdentity> {
+  const pinned = (input.env ?? process.env)[PINNED_IDENTITY_ENV]?.trim();
+  if (pinned) {
+    if (!IDENTITY_PATTERN.test(pinned)) return { ok: false, reason: 'identity-unknown', detail: `${PINNED_IDENTITY_ENV} is not owner/name` };
+    return { ok: true, value: { identity: pinned, source: 'job' } };
+  }
   if (input.config.identity !== null) {
     return { ok: true, value: { identity: input.config.identity, source: 'config' } };
   }

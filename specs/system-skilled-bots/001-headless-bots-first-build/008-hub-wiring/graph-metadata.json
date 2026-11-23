@@ -210,8 +210,8 @@
     ],
     "causal_summary": "After phase 7 the runner, queue, installer and status work from their CLI, but no hub, mode or command points at them",
     "created_at": "2026-11-22T10:48:34Z",
-    "last_save_at": "2026-11-23T18:24:36.741Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-23T18:39:11.722Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:578591ce4741453523fde5a347a733535421ef24bb9c2f007b33d3fde8379065",
+    "source_fingerprint": "sha256:4b6557247ece9b6e729222db5ec876bf54ff40ae7bccf6b3bff3e2bcd5c899bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1a0199dde14e714ae4572e5c5cb2c744f588d23deeb6864cbfecf230c0719aaf",
       "plan.md": "4dbd56d1865a8931a2cb24dec699a3d0d037bc7f6b521f6456c84bd7a1aacb2d",
       "tasks.md": "c4656b00d3e2d30fe5603ce3a94974fe588aeedbf15334cf18d6116ed492ecee",
       "decision-record.md": "304cc7556755fce86e18f3147d9d3903f2cce59c4f8d3c7dd2a360fc4ad7059d",
-      "implementation-summary.md": "1177501f836150476fd280392d991661fead46661575276c7b568fb471ceb003"
+      "implementation-summary.md": "aba8772833288deafc095a1de944f3368dc05166c7c11a52bd5679287f6d5360"
     },
     "last_active_at": null
   }

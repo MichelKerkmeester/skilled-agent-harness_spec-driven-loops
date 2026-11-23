@@ -18,7 +18,7 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, realpathSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, isAbsolute, join, resolve } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
 import { identityKey } from './identity.js';
@@ -34,6 +34,13 @@ export const TOOL_FOLDER = 'system-skilled-bots';
 
 /** Where run folders live, relative to the Skilled tree. */
 export const RUN_ROOT_RELATIVE = join('.skilled', 'skills', '.state', TOOL_FOLDER);
+
+/**
+ * The state root an installed job carries in its own environment. It outranks
+ * the checkout's `bots/config.json`, which a run with checkout write access
+ * could edit to point every switch, hold and lease lookup somewhere empty.
+ */
+export const PINNED_STATE_ROOT_ENV = 'SKILLED_BOTS_STATE_ROOT';
 
 /** Owner-only, the same rule the env-secret guard applies to its state. */
 export const STATE_DIR_MODE = 0o700;
@@ -88,10 +95,13 @@ const SAFE_SEGMENT = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
  * Resolve the user-level state root.
  *
  * @param config - The repository config; its `stateRoot` replaces the default.
- * @param env - The environment read for XDG_STATE_HOME and HOME.
- * @returns `${XDG_STATE_HOME:-$HOME/.local/state}/system-skilled-bots`, or the override.
+ * @param env - The environment read for the pinned root, XDG_STATE_HOME and HOME.
+ * @returns The root an installed job pinned, else the config's override, else
+ *   `${XDG_STATE_HOME:-$HOME/.local/state}/system-skilled-bots`.
  */
 export function userStateRoot(config: Pick<RepoConfig, 'stateRoot'>, env: NodeJS.ProcessEnv = process.env): string {
+  const pinned = env[PINNED_STATE_ROOT_ENV]?.trim();
+  if (pinned && isAbsolute(pinned)) return resolve(pinned);
   if (config.stateRoot !== null) return resolve(config.stateRoot);
   const xdg = env.XDG_STATE_HOME?.trim();
   const base = xdg ? xdg : join(env.HOME?.trim() || homedir(), '.local', 'state');
@@ -188,6 +198,14 @@ export function receiptFolder(stateRoot: string, identity: string, runId: string
  */
 export function deliveryClaimFolder(stateRoot: string, identity: string): string {
   return join(identityStatePaths(stateRoot, identity).base, 'deliveries');
+}
+
+/**
+ * The hashes of the definition and the repository config an operator last
+ * approved for one bot's unattended runs. Throws `bot-id-invalid` on an unsafe id.
+ */
+export function approvalFile(stateRoot: string, identity: string, botId: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'approvals', `${segmentOrThrow('bot-id', botId)}.json`);
 }
 
 /** The install record of one bot. Throws `bot-id-invalid` on an unsafe id. */

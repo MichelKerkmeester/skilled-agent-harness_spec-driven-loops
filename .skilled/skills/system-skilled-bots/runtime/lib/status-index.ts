@@ -21,13 +21,12 @@ import { createRequire } from 'node:module';
 import { basename, dirname, join, sep } from 'node:path';
 
 import { identityKey } from './identity.js';
-import { listNeedsYouItems } from './needs-you.js';
+import { listNeedsYouItems, resumeRequestPending } from './needs-you.js';
 import { DEFAULT_RETENTION, IDENTITY_PATTERN, readRepoConfig } from './repo-config.js';
 import { validateRunRecord } from './run-record.js';
 import {
   generationStampFile,
   identityStatePaths,
-  isSafeSegment,
   needsYouFile,
   readRegisteredRoots,
   readRetiredIdentities,
@@ -482,13 +481,6 @@ export interface RetentionPlan {
   itemFiles: Array<{ itemId: string; path: string }>;
 }
 
-/** Whether a request still waits in the queue: in the watched inbox or claimed by a drain. */
-function requestQueued(stateRoot: string, identity: string, requestId: string): boolean {
-  if (!isSafeSegment(requestId)) return true;
-  const folders = identityStatePaths(stateRoot, identity).requests;
-  return existsSync(join(folders.inbox, `${requestId}.json`)) || existsSync(join(folders.claimed, `${requestId}.json`));
-}
-
 /**
  * Plan every bound of one identity and delete the index rows it removes:
  * run folders past the per-bot bound, index rows past the per-identity bound
@@ -516,7 +508,7 @@ export function planRetention(
     .all(key) as Array<{ item_id: string; identity: string; run_id: string; expires_at: string; answered_at: string | null; resume_request_id: string | null }>;
   const isOpen = (item: (typeof items)[number]) => item.answered_at === null && now.getTime() < Date.parse(item.expires_at);
   const awaitsResume = (item: (typeof items)[number]) =>
-    item.answered_at !== null && (item.resume_request_id === null || requestQueued(stateRoot, item.identity, item.resume_request_id));
+    item.answered_at !== null && (item.resume_request_id === null || resumeRequestPending(stateRoot, item.identity, item.resume_request_id));
   const kept = new Set(items.filter((item) => isOpen(item) || awaitsResume(item)).map((item) => item.run_id));
 
   const rows = db

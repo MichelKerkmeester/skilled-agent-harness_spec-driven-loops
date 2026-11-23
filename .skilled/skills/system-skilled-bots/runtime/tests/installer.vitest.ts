@@ -39,13 +39,14 @@ import {
   scheduledDrain,
   uninstallSchedule,
 } from '../lib/installer.js';
-import { renderBotPlist } from '../lib/plist-render.js';
+import { PINNED_IDENTITY_ENV } from '../lib/identity.js';
+import { renderBotPlist, SCHEDULED_FIRE_ENV } from '../lib/plist-render.js';
 import { drainQueue } from '../lib/request-drain.js';
 import { resolveBotContext } from '../lib/runner.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
 import { enqueueFromCheckout } from '../lib/request-queue.js';
 import { defaultRepoConfig } from '../lib/repo-config.js';
-import { checkRunFolder, identityStatePaths, runRoot, userStateRoot } from '../lib/state-root.js';
+import { checkRunFolder, identityStatePaths, PINNED_STATE_ROOT_ENV, runRoot, userStateRoot } from '../lib/state-root.js';
 import { entries, queueOf } from './queue-support.js';
 import { botWorld, BOTS_CLI, filesUnder } from './runner-support.js';
 import { cleanupTemp, isolatedEnv, tempDir, tempRepo, tempSkilledTree, writeConfig } from './support.js';
@@ -258,8 +259,13 @@ describe('install transaction', () => {
       expect(path.startsWith('/')).toBe(true);
     }
     expect(readFileSync(report.plistPaths[0] as string, 'utf8')).not.toMatch(/~|\$HOME/);
-    // The shell's state home is the job's only environment value, so a fire resolves the install's state root.
-    expect(job.EnvironmentVariables).toEqual({ XDG_STATE_HOME: world.env.XDG_STATE_HOME });
+    // The shell's state home, the pinned state root and identity, and the fire marker are the job's whole environment.
+    expect(job.EnvironmentVariables).toEqual({
+      XDG_STATE_HOME: world.env.XDG_STATE_HOME,
+      [PINNED_STATE_ROOT_ENV]: world.stateRoot,
+      [PINNED_IDENTITY_ENV]: IDENTITY,
+      [SCHEDULED_FIRE_ENV]: '1',
+    });
     expect((job.StartCalendarInterval as unknown[]).length).toBe(12);
     // The installer writes only to the agents folder and the state root, never into a checkout or a Skilled tree.
     expect([folderHash(world.checkoutRoot), folderHash(world.skilledTree)]).toEqual(treesBefore);
@@ -725,8 +731,8 @@ describe('a rendered job', () => {
     writeFileSync(join(checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] bare path probe'\""]));
     const report = mustInstall(world);
     const job = plistJson(report.plistPaths[0] as string);
-    // A config state root wins over the shell, so the job needs no environment to find it.
-    expect(job.EnvironmentVariables).toBeUndefined();
+    // A config state root needs no state home; the job still pins that root and the identity, and marks its fires.
+    expect(job.EnvironmentVariables).toEqual({ [PINNED_STATE_ROOT_ENV]: stateRoot, [PINNED_IDENTITY_ENV]: IDENTITY, [SCHEDULED_FIRE_ENV]: '1' });
 
     const run = fireJob(report.plistPaths[0] as string, tempDir('bots-home-'));
     expect(run.stderr).toContain('refused before dispatch (precheck-silent)');
@@ -1113,12 +1119,13 @@ describe('an install from a shell with another HOME and no state home', () => {
 
     const report = mustInstall(world, 'digest', { env: shell });
     const job = plistJson(report.plistPaths[0] as string);
-    expect(job.EnvironmentVariables).toEqual({ XDG_STATE_HOME: join(shell.HOME as string, '.local', 'state') });
+    const pins = { [PINNED_STATE_ROOT_ENV]: shellRoot, [PINNED_IDENTITY_ENV]: IDENTITY };
+    expect(job.EnvironmentVariables).toEqual({ XDG_STATE_HOME: join(shell.HOME as string, '.local', 'state'), ...pins, [SCHEDULED_FIRE_ENV]: '1' });
     expect(readInstallRecord(shellRoot, IDENTITY, 'digest')).not.toBeNull();
 
-    // The verbs' environment is exactly the job's: the bare PATH, the account home and the pinned state home.
+    // The verbs' environment is the job's minus its fire marker: the bare PATH, the account home, the state home and the pins.
     const verbs = jobEnv({ checkoutRoot: world.checkoutRoot, botId: 'digest', env: world.env, seams: world.seams });
-    expect(verbs).toEqual({ PATH: LAUNCHD_PATH, HOME: world.seams.accountHome, XDG_STATE_HOME: join(shell.HOME as string, '.local', 'state') });
+    expect(verbs).toEqual({ PATH: LAUNCHD_PATH, HOME: world.seams.accountHome, XDG_STATE_HOME: join(shell.HOME as string, '.local', 'state'), ...pins });
     expect(userStateRoot(defaultRepoConfig(), verbs)).toBe(shellRoot);
   });
 });
@@ -1169,12 +1176,15 @@ describe('a job installed before the checkout\'s identity changed', () => {
       const disabled = cli(['disable', 'digest']);
       expect(disabled.status).toBe(0);
       expect(calls()).toContainEqual(['disable', expect.stringMatching(new RegExp(`/${oldLabel.replace(/\./g, '\\.')}$`))]);
-      expect(readSwitch(world.stateRoot, renamed, 'digest', 'disabled')).not.toBeNull();
+      // The job pinned the identity it was installed under, so the verbs keep to it and the new one gets no switch.
+      expect(readSwitch(world.stateRoot, OLD, 'digest', 'disabled')).not.toBeNull();
+      expect(readSwitch(world.stateRoot, renamed, 'digest', 'disabled')).toBeNull();
       expect(existsSync(join(otherHome, 'system-skilled-bots'))).toBe(false);
 
-      // The old job, fired under its own environment, resolves the identity of now and finds the switch.
+      // The old job, fired under its own environment, resolves its pinned identity and is stopped. A config
+      // edit is itself a change nobody approved since the install, so that fire stops on drift first.
       const fired = fireJob(plistPath, home);
-      expect(fired.stderr).toContain('refused before dispatch (disabled)');
+      expect(fired.stderr).toContain(change === 'config' ? 'refused before dispatch (definition-drifted): bots/config.json' : 'refused before dispatch (disabled)');
       expect(fired.status).toBe(4);
 
       // A reinstall would leave two jobs for one bot: it refuses and writes nothing.
@@ -1278,5 +1288,54 @@ describe('the launchctl intercept', () => {
     });
     expect(run.status).not.toBe(0);
     expect(run.stderr).toContain('launchctl-intercept needs BOTS_TEST_ACCOUNT_HOME');
+  });
+});
+
+describe('install preflight', () => {
+  it('refuses a damaged registered-roots file before any job file is written or the scheduler is told', () => {
+    const world = installWorld();
+    mkdirSync(world.stateRoot, { recursive: true });
+    writeFileSync(join(world.stateRoot, 'registered-roots'), '{ not json');
+
+    const result = installSchedule(world.input());
+    expect(result).toMatchObject({ ok: false, reason: 'registered-roots-unreadable' });
+    expect(readdirSync(world.agentsDir)).toEqual([]);
+    expect(world.scheduler.verbs().filter((verb) => !['print', 'print-disabled'].includes(verb))).toEqual([]);
+    expect(readInstallRecord(world.stateRoot, IDENTITY, 'digest')).toBeNull();
+  });
+});
+
+describe('a job pins its state root and identity', () => {
+  it('resolves every fire and verb under the installed values, whatever a run later writes into bots/config.json', () => {
+    const world = installWorld();
+    const report = mustInstall(world);
+    const job = plistJson(report.plistPaths[0] as string);
+    expect(job.EnvironmentVariables).toMatchObject({ SKILLED_BOTS_STATE_ROOT: world.stateRoot, SKILLED_BOTS_IDENTITY: IDENTITY });
+
+    // A run with checkout write access points the config at an empty root and another identity.
+    const decoy = tempDir('bots-decoy-root-');
+    writeConfig(world.checkoutRoot, { identity: 'decoy/elsewhere', stateRoot: decoy });
+    for (const botId of ['digest', DRAIN_ID]) {
+      const context = resolveBotContext({ checkoutRoot: world.checkoutRoot, skilledTree: world.skilledTree, env: jobEnv({ checkoutRoot: world.checkoutRoot, botId, env: world.env, seams: world.seams }) });
+      expect(context, botId).toMatchObject({ ok: true, value: { identity: IDENTITY, stateRoot: world.stateRoot } });
+    }
+  });
+
+  it('approves the installed definition and config, and re-approves the current ones on enable', async () => {
+    const { configDigest, digestOf, readApproval } = await import('../lib/approval.js');
+    const world = installWorld();
+    const botPath = join(world.checkoutRoot, 'bots', 'digest', 'BOT.md');
+    mustInstall(world);
+    expect(readApproval(world.stateRoot, IDENTITY, 'digest')).toMatchObject({
+      approvedBy: 'install',
+      definitionDigest: digestOf(readFileSync(botPath)),
+      configDigest: configDigest(world.checkoutRoot),
+    });
+
+    writeFileSync(botPath, cronBot('digest', '*/10 * * * *'));
+    expect(readApproval(world.stateRoot, IDENTITY, 'digest')?.definitionDigest).not.toBe(digestOf(readFileSync(botPath)));
+    const enabled = enableSchedule(world.input());
+    expect(enabled.ok).toBe(true);
+    expect(readApproval(world.stateRoot, IDENTITY, 'digest')).toMatchObject({ approvedBy: 'enable', definitionDigest: digestOf(readFileSync(botPath)) });
   });
 });

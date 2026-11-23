@@ -5,16 +5,24 @@
 // launchd starts a job with a bare PATH, no shell and no home expansion, so
 // a job file that leans on `node` being on PATH or on `~` fails at its first
 // unattended fire. Every path in a rendered job is absolute and was resolved
-// at install time, the interpreter included. The job carries one environment
-// value at most: the state home the installer resolved its state root from,
-// whenever the repository config names no state root. Without it a fired job
-// would fall back to the state root under the account's home, which need not
-// be the folder holding its install record and its queue.
+// at install time, the interpreter included. The job carries the state home
+// the installer resolved its state root from, whenever the repository config
+// names no state root. Without it a fired job would fall back to the state
+// root under the account's home, which need not be the folder holding its
+// install record and its queue. Every job also pins the state root and the
+// identity the install resolved, so a fire never takes either from the
+// checkout's bots/config.json, which a run could edit. A bot schedule's job
+// also carries a marker that tells the CLI a run came from the installed
+// schedule, never from a hand-typed command, because only a real fire may
+// account a schedule slot.
 // The runner applies its own allowlist to everything else. The renderer only
 // builds text. It reads and writes nothing, so the module that installs a job
 // stays the one place that touches the scheduler.
 
 import { isAbsolute } from 'node:path';
+
+import { PINNED_IDENTITY_ENV } from './identity.js';
+import { PINNED_STATE_ROOT_ENV } from './state-root.js';
 
 import type { CalendarEntry, Translation } from './cron-translator.js';
 import type { Result } from './repo-config.js';
@@ -23,8 +31,18 @@ import type { Result } from './repo-config.js';
 // 1. TYPES & CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Set in a bot schedule's job alone: the CLI accepts `--schedule-index` only under it. */
+export const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
+
 /** The calendar keys a job may carry, in the order they are written. */
 const CALENDAR_KEYS = ['Month', 'Day', 'Weekday', 'Hour', 'Minute'] as const;
+
+/** The state root and identity a job resolves on every fire, whatever the checkout's config says. */
+export interface PinnedJobValues {
+  /** Absolute. */
+  stateRoot: string;
+  identity: string;
+}
 
 export interface BotPlistInput {
   label: string;
@@ -41,8 +59,10 @@ export interface BotPlistInput {
   translation: Translation;
   /** Absolute file the job's own stdout and stderr go to. */
   logPath: string;
-  /** Absolute XDG state home to carry into the job; null or absent carries no environment. */
+  /** Absolute XDG state home to carry into the job; null or absent carries none. */
   stateHome?: string | null;
+  /** The values the install resolved; null or absent pins nothing. */
+  pinned?: PinnedJobValues | null;
 }
 
 export interface DrainPlistInput {
@@ -57,6 +77,7 @@ export interface DrainPlistInput {
   /** Least seconds between two starts of the job. */
   throttleSeconds: number;
   stateHome?: string | null;
+  pinned?: PinnedJobValues | null;
 }
 
 /** A value a rendered job can hold. */
@@ -152,14 +173,25 @@ function checkPaths(paths: Record<string, string>): Result<null> {
   return { ok: true, value: null };
 }
 
-/** The job's environment: only the state home, and only when the installer pinned one. */
-function environmentValue(stateHome: string | null | undefined): Record<string, PlistValue> | null {
-  return stateHome === null || stateHome === undefined ? null : { XDG_STATE_HOME: stateHome };
+/** The job's environment: the state home and the pinned values when the installer set them, and a schedule's fire marker. */
+function environmentValue(stateHome: string | null | undefined, pinned: PinnedJobValues | null | undefined, scheduledFire: boolean): Record<string, PlistValue> | null {
+  const environment: Record<string, PlistValue> = {};
+  if (stateHome !== null && stateHome !== undefined) environment.XDG_STATE_HOME = stateHome;
+  if (pinned !== null && pinned !== undefined) {
+    environment[PINNED_STATE_ROOT_ENV] = pinned.stateRoot;
+    environment[PINNED_IDENTITY_ENV] = pinned.identity;
+  }
+  if (scheduledFire) environment[SCHEDULED_FIRE_ENV] = '1';
+  return Object.keys(environment).length === 0 ? null : environment;
 }
 
-/** The paths every job checks, plus the state home when it carries one. */
-function withStateHome(paths: Record<string, string>, stateHome: string | null | undefined): Record<string, string> {
-  return stateHome === null || stateHome === undefined ? paths : { ...paths, stateHome };
+/** The paths every job checks, plus the state home and the pinned state root when it carries them. */
+function withStateHome(paths: Record<string, string>, stateHome: string | null | undefined, pinned?: PinnedJobValues | null): Record<string, string> {
+  return {
+    ...paths,
+    ...(stateHome === null || stateHome === undefined ? {} : { stateHome }),
+    ...(pinned === null || pinned === undefined ? {} : { pinnedStateRoot: pinned.stateRoot }),
+  };
 }
 
 function calendarValue(entries: CalendarEntry[]): PlistValue {
@@ -193,6 +225,7 @@ export function renderBotPlist(input: BotPlistInput): Result<string> {
         logPath: input.logPath,
       },
       input.stateHome,
+      input.pinned,
     ),
   );
   if (!checked.ok) return checked;
@@ -202,7 +235,7 @@ export function renderBotPlist(input: BotPlistInput): Result<string> {
     WorkingDirectory: input.checkoutRoot,
     RunAtLoad: false,
   };
-  const environment = environmentValue(input.stateHome);
+  const environment = environmentValue(input.stateHome, input.pinned, true);
   if (environment !== null) top.EnvironmentVariables = environment;
   if (input.translation.kind === 'interval') top.StartInterval = input.translation.startInterval;
   else top.StartCalendarInterval = calendarValue(input.translation.entries);
@@ -230,6 +263,7 @@ export function renderDrainPlist(input: DrainPlistInput): Result<string> {
         logPath: input.logPath,
       },
       input.stateHome,
+      input.pinned,
     ),
   );
   if (!checked.ok) return checked;
@@ -240,13 +274,22 @@ export function renderDrainPlist(input: DrainPlistInput): Result<string> {
     WorkingDirectory: input.checkoutRoot,
     RunAtLoad: false,
   };
-  const environment = environmentValue(input.stateHome);
+  const environment = environmentValue(input.stateHome, input.pinned, false);
   if (environment !== null) top.EnvironmentVariables = environment;
   top.QueueDirectories = [input.inboxPath];
   top.ThrottleInterval = input.throttleSeconds;
   top.StandardOutPath = input.logPath;
   top.StandardErrorPath = input.logPath;
   return { ok: true, value: renderDocument(top) };
+}
+
+/** The state root and identity a job file pins, read from its JSON form; null unless it carries both. */
+export function pinnedFromPlist(parsed: Record<string, unknown>): PinnedJobValues | null {
+  const environment = parsed.EnvironmentVariables;
+  if (environment === null || typeof environment !== 'object') return null;
+  const stateRoot = (environment as Record<string, unknown>)[PINNED_STATE_ROOT_ENV];
+  const identity = (environment as Record<string, unknown>)[PINNED_IDENTITY_ENV];
+  return typeof stateRoot === 'string' && typeof identity === 'string' ? { stateRoot, identity } : null;
 }
 
 /** The XDG state home a job file carries, read from its JSON form; null when it carries none. */

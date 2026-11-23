@@ -14,7 +14,7 @@ import { runBot } from '../lib/runner.js';
 import { validateRunRecord } from '../lib/run-record.js';
 import { accountFire, graceWindowSeconds, GRACE_MAX_SECONDS, GRACE_MIN_SECONDS, HELD_SLOT_REASON } from '../lib/slot-accounting.js';
 import { records, writeItem } from './queue-support.js';
-import { botWorld, stubRunCount, writeBot } from './runner-support.js';
+import { approveBots, botWorld, stubRunCount, writeBot } from './runner-support.js';
 import { cleanupTemp } from './support.js';
 
 import type { Translation } from '../lib/cron-translator.js';
@@ -48,6 +48,7 @@ const TICK_BOT = [
 ].join('\n');
 
 function fire(world: BotWorld, firedAt: Date) {
+  approveBots(world);
   return runBot(world.input('tick', { request: { kind: 'scheduled', scheduleIndex: 0, firedAt } }));
 }
 
@@ -144,7 +145,8 @@ describe('scheduled fires through the runner', () => {
     expect(heldRecord.dispatch.heldSlot).toEqual({ at: local(2026, 11, 23, 9, 0).toISOString(), reason: HELD_SLOT_REASON });
     expect(heldRecord.dispatch.scheduledAt).toBe(local(2026, 11, 23, 9, 0).toISOString());
 
-    const answered = writeNeedsYouItem(world.stateRoot, { ...item, answer: { text: 'merge', answeredAt: new Date().toISOString() } });
+    // Answered, and its resume already ran: the request is recorded and no longer queued, so nothing holds the bot.
+    const answered = writeNeedsYouItem(world.stateRoot, { ...item, answer: { text: 'merge', answeredAt: new Date().toISOString() }, resumeRequestId: 'rq-resumed' });
     expect(answered.ok).toBe(true);
 
     const next = await fire(world, local(2026, 11, 23, 9, 5, 3));

@@ -7,7 +7,7 @@ trigger_phrases:
   - "bot template fields"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Bot Definition: Writing a BOT.md
@@ -59,4 +59,4 @@ The author mode does not run the checker, because it grants no Bash. Hand the ch
 node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <checkout-root>
 ```
 
-The checker only reads. It prints one `PASS|FAIL|WARN|INFO: <id>: <message>` line per finding and exits 0 when every hard invariant passes, 1 on any failure and 2 when the target is missing or the audit cannot finish. `--strict` turns advisory findings into failures. A failure names its invariant id, such as `definition.missing-trigger` or `isolation-undeclared`, so the field that id names is the one to fix before the next check.
+The checker only reads. It prints one `PASS|FAIL|INFO: <id>: <message>` line per finding and exits 0 when every hard invariant passes, 1 on any failure and 2 when the target is missing or the audit cannot finish. A folder whose name differs from the bot id fails as `folder-id-mismatch`, so keep `bots/<id>/` and the `id` field equal. `--strict` changes nothing, because no advisory invariant is defined. A failure names its invariant id, such as `definition.missing-trigger` or `isolation-undeclared`, so the field that id names is the one to fix before the next check.

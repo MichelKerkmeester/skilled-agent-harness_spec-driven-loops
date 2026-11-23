@@ -38,7 +38,7 @@ import { readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import { readRunRecord } from '../lib/run-record.js';
 import { identityStatePaths } from '../lib/state-root.js';
 import { cleanupTemp, isolatedEnv, REAL_CHECKOUT, tempDir, tempRepo, tempSkilledTree } from './support.js';
-import { botWorld, IDENTITY, stubReceipt, waitFor, writeBot } from './runner-support.js';
+import { approveBots, botWorld, IDENTITY, stubReceipt, waitFor, writeBot } from './runner-support.js';
 
 import type { CreateWorktreeInput } from '../lib/isolation.js';
 import type { BotWorld } from './runner-support.js';
@@ -266,6 +266,25 @@ describe('worktree removal', () => {
       // A kept tree keeps its links, so the operator can still build in it.
       expect(lstatSync(join(tree.path, 'node_modules')).isSymbolicLink()).toBe(true);
     }
+  });
+
+  it('keeps a tree whose only change is gitignored output, and still removes a clean one under the same ignore rules', () => {
+    const main = mainCheckout();
+    // The link itself matches an ignore line here, so the check must still know it as its own.
+    writeFileSync(join(main.root, '.gitignore'), 'out/\nnode_modules\n');
+    git(main.root, ['add', '.gitignore']);
+    git(main.root, ['commit', '-q', '--no-verify', '-m', 'ignore build output']);
+
+    const clean = made(main);
+    expect(finishBotWorktree(main.root, clean, main.env)).toEqual({ disposition: 'removed', keptReason: null, detail: null });
+
+    const tree = made(main);
+    mkdirSync(join(tree.path, 'out'));
+    writeFileSync(join(tree.path, 'out', 'report.md'), 'the bot output\n');
+    expect(finishBotWorktree(main.root, tree, main.env)).toEqual({ disposition: 'kept', keptReason: 'ignored-changes', detail: 'out' });
+    expect(readFileSync(join(tree.path, 'out', 'report.md'), 'utf8')).toBe('the bot output\n');
+    expect(worktreePaths(main.root)).toContain(tree.path);
+    for (const link of tree.links) expect(lstatSync(link).isSymbolicLink()).toBe(true);
   });
 
   it('keeps a tree as dirty, links intact, when the bot writes into a folder made to hold links', () => {
@@ -625,6 +644,8 @@ describe('a parked worktree run and its resume', () => {
     if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
     const definition = join(world.checkoutRoot, 'bots', 'needs-decision', 'BOT.md');
     writeFileSync(definition, readFileSync(definition, 'utf8').replace('isolation: shared', 'isolation: worktree'));
+    // The operator approved the new posture, so the resume reaches the posture check rather than the drift gate.
+    approveBots(world);
     const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
     if (!item.ok) throw new Error(item.reason);
     writeNeedsYouItem(world.stateRoot, { ...item.value, answer: { text: 'merge', answeredAt: new Date().toISOString() } });

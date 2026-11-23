@@ -2,8 +2,11 @@
 // MODULE: Bot Runner
 // ───────────────────────────────────────────────────────────────────
 //
-// Runs one bot once, in a fixed order: disable switch, needs-you hold,
-// lease, pause switch, precheck, posture, secret check, dispatch, result.
+// Runs one bot once, in a fixed order: approval, disable switch, needs-you
+// hold, lease, pause switch, precheck, posture, secret check, dispatch, result.
+// An unattended run (scheduled, queued or a resume) runs only a definition and
+// config whose hashes an operator approved, so a run that edited either file
+// cannot change what the next unattended run does; a manual run approves them.
 // Every stop before dispatch is a refusal with a named cause, never a run
 // failure, so a scheduler or queue can tell "did not start" from "broke".
 // The lease is the deep-loop loop lock, keyed by bot, repository and spec
@@ -29,7 +32,7 @@
 // environment from the installer's `jobEnv` as `resolveEnv`, so the run
 // lands where the scheduled job would, whatever the calling shell sets.
 
-import { spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
 import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -43,7 +46,8 @@ import {
   startHeartbeat,
   stopHeartbeat,
 } from '../../../system-deep-loop/runtime/lib/deep-loop/loop-lock.js';
-import { readDefinition } from './definition.js';
+import { approveDefinition, checkApproval, digestOf } from './approval.js';
+import { parseDefinition } from './definition.js';
 import { deliverRecord, resolveDeliveryEntries } from './delivery.js';
 import {
   buildBotPrompt,
@@ -60,7 +64,7 @@ import {
 } from './dispatch.js';
 import { resolveIdentity } from './identity.js';
 import { createBotWorktree, finishBotWorktree, inspectWorktree, reopenBotWorktree } from './isolation.js';
-import { buildResumedPrompt, holdForBot, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
+import { buildResumedPrompt, holdForBot, itemAwaitingResume, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
 import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { openResultLedger, resultEventKey, sendResultEvent } from './result-ledger.js';
@@ -119,10 +123,13 @@ export const EXIT_CODES = Object.freeze({
 export const REFUSAL_CAUSES = Object.freeze({
   'definition-missing': { reason: 'definition-missing', class: null },
   'definition-malformed': { reason: 'definition-malformed', class: 'author' },
+  'definition-unapproved': { reason: 'definition-unapproved', class: 'operator' },
+  'definition-drifted': { reason: 'definition-drifted', class: 'operator' },
   'identity-unknown': { reason: 'identity-unknown', class: 'operator' },
   'run-folder-refused': { reason: 'run-folder-refused', class: 'environment' },
   disabled: { reason: 'disabled', class: null },
   'awaiting-decision-hold': { reason: STOP.blockedStop as string, class: null },
+  'awaiting-resume-hold': { reason: STOP.blockedStop as string, class: null },
   'needs-you-unreadable': { reason: STOP.blockedStop as string, class: 'operator' },
   'needs-you-unlistable': { reason: STOP.blockedStop as string, class: 'environment' },
   'resume-item-invalid': { reason: 'resume-item-invalid', class: 'operator' },
@@ -146,6 +153,8 @@ export type RefusalCause = keyof typeof REFUSAL_CAUSES;
 export const PRECHECK_SILENT_MARKER = '[SILENT]';
 
 const PRECHECK_TIMEOUT_MS = 60_000;
+/** How long a timed-out precheck's group has to exit on SIGTERM before SIGKILL. */
+const PRECHECK_KILL_GRACE_MS = 2_000;
 const LEASE_MARGIN_MS = 60_000;
 const MINUTE_MS = 60_000;
 const WORKFLOW = 'system-skilled-bots';
@@ -185,6 +194,8 @@ export interface RunBotInput {
   guard?: { ancestryCmdlines?: string[]; statePaths?: string[] };
   /** How long one budget minute lasts; only tests shorten it. */
   minuteMs?: number;
+  /** How long the precheck may run; only tests shorten it. */
+  precheckTimeoutMs?: number;
   /** Replaces sk-git's worktree numbering script; only tests point it at a stub. */
   namingScript?: string;
   /** Replaces the real delivery channel senders; tests always pass stubs. */
@@ -503,21 +514,63 @@ function deliverTerminal(input: RunBotInput, stateRoot: string, identity: string
 // 4. PRECHECK
 // ───────────────────────────────────────────────────────────────────
 
-function runPrecheck(command: string, cwd: string, env: NodeJS.ProcessEnv): { cause: 'precheck-failed' | 'precheck-silent'; detail: string } | null {
-  const run = spawnSync('/bin/sh', ['-c', command], {
-    cwd,
-    env: commonEnv(env),
-    encoding: 'utf8',
-    timeout: PRECHECK_TIMEOUT_MS,
-    stdio: ['ignore', 'pipe', 'pipe'],
+type PrecheckSkip = { cause: 'precheck-failed' | 'precheck-silent'; detail: string };
+
+/** Signal a whole process group; one already gone is not an error. */
+function signalGroup(pid: number, signal: NodeJS.Signals): void {
+  try {
+    process.kill(-pid, signal);
+  } catch {
+    // ESRCH: every member has exited.
+  }
+}
+
+/**
+ * Run the precheck in a process group of its own. A timeout signals only the
+ * direct child when the group is shared, so anything the shell left in the
+ * background would outlive the check and keep working in the checkout while
+ * the run goes on. On timeout the whole group gets SIGTERM, then SIGKILL after
+ * a short grace, and the check ends only once its output closes.
+ */
+function runPrecheck(command: string, cwd: string, env: NodeJS.ProcessEnv, timeoutMs: number): Promise<PrecheckSkip | null> {
+  return new Promise((settle) => {
+    const child = spawn('/bin/sh', ['-c', command], { cwd, env: commonEnv(env), stdio: ['ignore', 'pipe', 'pipe'], detached: true });
+    let stdout = '';
+    child.stdout.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => {
+      stdout += chunk;
+    });
+    child.stderr.resume();
+    let timedOut = false;
+    let killTimer: NodeJS.Timeout | undefined;
+    const timer = setTimeout(() => {
+      timedOut = true;
+      if (child.pid === undefined) return;
+      const pid = child.pid;
+      signalGroup(pid, 'SIGTERM');
+      killTimer = setTimeout(() => signalGroup(pid, 'SIGKILL'), PRECHECK_KILL_GRACE_MS);
+    }, timeoutMs);
+    let settled = false;
+    const finish = (result: PrecheckSkip | null): void => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      clearTimeout(killTimer);
+      settle(result);
+    };
+    child.on('error', (error: Error) => finish({ cause: 'precheck-failed', detail: error.message }));
+    child.on('close', (code: number | null, signal: NodeJS.Signals | null) => {
+      if (timedOut) {
+        finish({ cause: 'precheck-failed', detail: `timed out after ${timeoutMs} ms; its process group was ended` });
+      } else if (code !== 0) {
+        finish({ cause: 'precheck-failed', detail: code === null ? `killed by ${String(signal)}` : `exit ${code}` });
+      } else if (stdout.includes(PRECHECK_SILENT_MARKER)) {
+        finish({ cause: 'precheck-silent', detail: `printed ${PRECHECK_SILENT_MARKER}` });
+      } else {
+        finish(null);
+      }
+    });
   });
-  if (run.error !== undefined || run.status !== 0) {
-    return { cause: 'precheck-failed', detail: run.error !== undefined ? run.error.message : `exit ${String(run.status)}` };
-  }
-  if (typeof run.stdout === 'string' && run.stdout.includes(PRECHECK_SILENT_MARKER)) {
-    return { cause: 'precheck-silent', detail: `printed ${PRECHECK_SILENT_MARKER}` };
-  }
-  return null;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -658,8 +711,9 @@ export async function runBot(input: RunBotInput): Promise<RunOutcome> {
   } catch {
     return { kind: 'refused', cause: 'definition-missing', detail: path, runId: null, recordPath: null, itemId: null };
   }
-  const definitionDigest = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-  const parsed = readDefinition(path);
+  const definitionDigest = digestOf(bytes);
+  // Parsed from the bytes just hashed, so the approval check and the run see one definition.
+  const parsed = parseDefinition(bytes.toString('utf8'));
   const definition = parsed.ok ? parsed.value : null;
 
   const runId = newRunId();
@@ -716,19 +770,35 @@ async function runSeeded(
   minuteMs: number,
   seed: RecordSeed,
   definition: BotDefinition | null,
-  parsed: ReturnType<typeof readDefinition>,
+  parsed: ReturnType<typeof parseDefinition>,
 ): Promise<RunOutcome> {
   const env = input.env ?? process.env;
   const runId = seed.runId;
   const evidence = seed.evidence;
   const runFolderPath = evidence.runFolder;
 
+  // An unattended run trusts nothing a drifted file says, its trigger included, so this comes first.
+  const approval = { stateRoot: context.stateRoot, identity: context.identity, checkoutRoot: context.checkoutRoot, botId: input.botId, definitionDigest: seed.definitionDigest };
+  if (request.kind !== 'manual') {
+    const unapproved = checkApproval(approval);
+    if (unapproved !== null) return refusalRecord(context.stateRoot, seed, unapproved.cause, unapproved.detail, null, null);
+  }
+
   if (definition === null || definition.id !== input.botId) {
     const detail = parsed.ok ? 'id-mismatch' : parsed.reason;
     return refusalRecord(context.stateRoot, seed, 'definition-malformed', detail, null, null);
   }
 
-  // A fire is accounted before any other check can refuse it, so a held,
+  if (request.kind === 'manual') {
+    try {
+      approveDefinition({ ...approval, by: 'manual-run' });
+    } catch (error: unknown) {
+      // The manual run itself needs no approval; an unattended run left unapproved refuses visibly.
+      observe(seed, 'approval-unwritten', 'running', { detail: error instanceof Error ? error.message : String(error) });
+    }
+  }
+
+  // A fire is accounted before any later check can refuse it, so a held,
   // disabled or paused fire still counts its slot once and never again.
   if (request.kind === 'scheduled') {
     const fired = recordScheduledFire({
@@ -794,6 +864,22 @@ async function runSeeded(
       null,
     );
   }
+  // An answered question holds the bot's other unattended runs until its resume has run, so the
+  // resume finds the lease free and no newer question in its way. A manual run is the operator's own.
+  if (request.kind === 'scheduled' || request.kind === 'queued') {
+    const waiting = itemAwaitingResume(context.stateRoot, context.identity, input.botId);
+    if (waiting !== null) {
+      if (seed.slot) seed.slot.heldSlot = { at: seed.slot.scheduledAt ?? seed.dispatchedAt, reason: HELD_SLOT_REASON };
+      return refusalRecord(
+        context.stateRoot,
+        seed,
+        'awaiting-resume-hold',
+        `item ${waiting.id} is answered and its resume has not run yet; it runs from the queue`,
+        waiting.id,
+        null,
+      );
+    }
+  }
 
   const specFolder = resumeItem?.specFolder ?? definition.specFolder;
   const budgetSeconds = (definition.budget.maxDurationMinutes * minuteMs) / 1000;
@@ -805,7 +891,7 @@ async function runSeeded(
   const nowIso = new Date().toISOString();
   // The audited spawn blocks the event loop, so no heartbeat lands during a
   // dispatch. The lease lives past the longest possible invocation for that reason.
-  const ttlMs = Math.ceil(boundSeconds * 1000) + PRECHECK_TIMEOUT_MS + LEASE_MARGIN_MS;
+  const ttlMs = Math.ceil(boundSeconds * 1000) + PRECHECK_TIMEOUT_MS + PRECHECK_KILL_GRACE_MS + LEASE_MARGIN_MS;
   const acquired = acquireLoopLock(lease, {
     ownerPid: process.pid,
     startedAtIso: nowIso,
@@ -843,7 +929,7 @@ async function runSeeded(
     }
 
     if (definition.precheck !== null) {
-      const skipped = runPrecheck(definition.precheck, context.checkoutRoot, env);
+      const skipped = await runPrecheck(definition.precheck, context.checkoutRoot, env, input.precheckTimeoutMs ?? PRECHECK_TIMEOUT_MS);
       if (skipped !== null) return refusalRecord(context.stateRoot, seed, skipped.cause, skipped.detail, null, nonce);
     }
 

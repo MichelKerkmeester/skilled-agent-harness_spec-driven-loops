@@ -55,8 +55,12 @@ const HARD_INVARIANTS = Object.freeze([
   'reserved-id',
 ]);
 
-/** Advisory invariant ids: WARN by default, FAIL under --strict. */
-const ADVISORY_INVARIANTS = Object.freeze(['folder-id-mismatch']);
+/**
+ * Advisory invariant ids: WARN by default, FAIL under --strict. None is defined
+ * now: a folder whose name differs from its id is a hard failure, because the
+ * runner and the installer refuse that definition.
+ */
+const ADVISORY_INVARIANTS = Object.freeze([]);
 
 const DEFINITION_FILE = 'BOT.md';
 const RUNTIME_DIR = resolve(__dirname, '..', 'runtime');
@@ -181,7 +185,7 @@ async function runCheck(checkoutRoot, options = {}) {
     if (runtime.label.RESERVED_BOT_IDS.includes(bot.id)) {
       fail('reserved-id', `${shown}: id ${bot.id} is reserved for the repository's own agent`);
     }
-    if (folder !== bot.id) advise('folder-id-mismatch', `${shown}: folder ${folder} differs from id ${bot.id}`);
+    if (folder !== bot.id) fail('folder-id-mismatch', `${shown}: folder ${folder} differs from id ${bot.id}`);
 
     const bounds = runtime.definition.checkExecutorBounds(bot);
     if (bounds.ok) pass('executor-bounds', `${shown}: runtime ${bot.runtime.kind} within the executor's bounds`);

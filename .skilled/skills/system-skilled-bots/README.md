@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-bots"
   - "skilled bots hub"
   - "headless bots"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # system-skilled-bots
@@ -56,6 +56,7 @@ The tie-break order is status, author, schedule, then run, so a request that nam
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the reference files a mode loads |
 | [`assets/bot-template.md`](./assets/bot-template.md) | The `BOT.md` template | Start a new bot from it |
 | [`scripts/bot-check.cjs`](./scripts/bot-check.cjs) | The read-only definition checker | Prove a `bots/` folder before anything installs it |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | The current-state feature inventory with source and test anchors | Find which module and test back a bot capability |
 
 ---
 

@@ -209,7 +209,7 @@
     ],
     "causal_summary": "No bot definition format, run record or state location exists in the repository today, so the runner, the checker, the installer and the status index have nothing to read or write (research.md §5, §10)",
     "created_at": "2026-11-22T10:48:26Z",
-    "last_save_at": "2026-11-22T21:09:21.455Z",
+    "last_save_at": "2026-11-23T20:54:27.738Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37b6d76f28d0cbb6a3ba215b8d4b00078b5a1ea5de697aa5688c5fcbd291bf76",
+    "source_fingerprint": "sha256:a7ee5be9727084ed8fa05d5cf63f5a7fbcefa89a2f0f8bf9c9d87f453dc87a2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4836248e9ebcdd50ee8d1d09e90ddb07976b61cd270cd0229f2be30e909c2ff5",
+      "spec.md": "b201a9a35fd40458acc9a4d3855854043a2ad0ca35a2c3bc03969e2675685079",
       "plan.md": "a7121ad5cc7c87b061572b0e23b28a7bb1471abe8d824b8a699ae9bb0e642e41",
       "tasks.md": "0aac38300cbb9eb71b68b76dad0f89cdd9aa7650fd0dde9f59a72be7a1dc35de",
       "decision-record.md": "e020a9b48e398ed75be78b31bfc28d506be58f402a3a91c0a5cb21ef15a9f979",

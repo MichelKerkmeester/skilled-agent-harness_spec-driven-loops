@@ -153,28 +153,15 @@ describe('bot-check.cjs', () => {
     expect(result.lines.filter((line) => line.startsWith('INFO: no-definitions: '))).toHaveLength(1);
   });
 
-  it('lets the strict switch change only advisory lines', () => {
-    expect(ADVISORY_INVARIANTS).toContain('folder-id-mismatch');
-    // One hard failure (no isolation) and one advisory finding (folder differs from id).
-    const repo = copyFixture('isolation-undeclared');
-    renameSync(join(repo, 'bots', 'nightly-digest'), join(repo, 'bots', 'digest'));
-
-    const normal = run(repo);
-    const strict = run(repo, '--strict');
-    expect(normal.status).toBe(1);
-    expect(strict.status).toBe(1);
-    const differs = normal.lines.filter((line, index) => line !== strict.lines[index]);
-    expect(differs).toEqual([expect.stringMatching(/^WARN: folder-id-mismatch: /)]);
-    expect(strict.lines).toContain(differs[0]?.replace(/^WARN/, 'FAIL'));
-    expect(normal.lines.filter((line) => line.startsWith('FAIL:'))).toEqual(
-      strict.lines.filter((line) => line.startsWith('FAIL:') && !line.includes('folder-id-mismatch')),
-    );
-
-    // With the hard failure fixed, strict alone decides the exit.
+  it('fails a folder whose name differs from its id, the definition the runner and installer refuse', () => {
+    expect(ADVISORY_INVARIANTS).not.toContain('folder-id-mismatch');
     const clean = copyFixture('clean');
     renameSync(join(clean, 'bots', 'nightly-digest'), join(clean, 'bots', 'digest'));
-    expect(run(clean).status).toBe(0);
-    expect(run(clean, '--strict').status).toBe(1);
+    for (const result of [run(clean), run(clean, '--strict')]) {
+      expect(result.status).toBe(1);
+      expect(result.lines).toContainEqual(expect.stringMatching(/^FAIL: folder-id-mismatch: bots\/digest\/BOT\.md: folder digest differs from id nightly-digest$/));
+      expect(result.lines.some((line) => line.startsWith('WARN:'))).toBe(false);
+    }
   });
 
   it('writes nothing into the folder it checks', () => {

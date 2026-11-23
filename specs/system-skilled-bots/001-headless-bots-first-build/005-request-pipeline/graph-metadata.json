@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 3 a bot runs only when someone types `bots run <id>`",
     "created_at": "2026-11-22T10:48:30Z",
-    "last_save_at": "2026-11-23T07:42:43.598Z",
+    "last_save_at": "2026-11-23T20:54:27.654Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03483af4d0fcaf6a0af3cb067a1a57cf647f621b7e85e17664159067b586fb7c",
+    "source_fingerprint": "sha256:b841fcea85587e8c616e5b184203079b473d9bcfbbfd88de5c6f601dff5e888e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de74f5832a7b52537a2425791f171aa9888dc587197422a3a23cd37ad82fb38d",
+      "spec.md": "e2eb7f52fc439bc155026b855f59b02a0b553d5ffbcc7ad8c10c7b23372c040c",
       "plan.md": "14893b0076598bb44ecca3d8851c4dd5de6d8af6ba3c3a3cf5d39e64bbeba314",
       "tasks.md": "d044ca21cbc6c6c759f870b65a9270862feebe1e90c9c9cbf9f494c25b7d55cf",
-      "decision-record.md": "ec27d5cbc14df66bf3b096537357d2017986f32ce03d12a3a6a76d8694250489",
+      "decision-record.md": "f92b1ad352dfbbafaac1f11c35377a1913ddb638739e5b3bda5e9968b336c054",
       "implementation-summary.md": "6a666516e9b7decc01f0b0a19ff182ef943fe057aec98c6bf6c80481395e6121"
     },
     "last_active_at": null

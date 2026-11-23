@@ -15,7 +15,7 @@ import { drainQueue } from '../lib/request-drain.js';
 import { queuePaths } from '../lib/request-queue.js';
 import { newRunId } from '../lib/runner.js';
 import { identityStatePaths } from '../lib/state-root.js';
-import { IDENTITY } from './runner-support.js';
+import { approveBots, IDENTITY } from './runner-support.js';
 
 import type { NeedsYouItem } from '../lib/needs-you.js';
 import type { DrainInput } from '../lib/request-drain.js';
@@ -68,8 +68,13 @@ export function writeItem(
   return item;
 }
 
-/** One drain pass over a world's queue, with the real runner unless one is given. */
+/**
+ * One drain pass over a world's queue, with the real runner unless one is
+ * given. The world's bots are approved first, as an operator who enabled them
+ * would have, so a pass exercises the queue rather than the approval gate.
+ */
 export function drain(world: BotWorld, extra: Partial<DrainInput> = {}) {
+  approveBots(world);
   return drainQueue({
     checkoutRoot: world.checkoutRoot,
     skilledTree: world.skilledTree,

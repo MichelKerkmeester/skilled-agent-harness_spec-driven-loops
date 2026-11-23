@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/008-hub-wiring"
-    last_updated_at: "2026-11-23T15:45:00Z"
-    last_updated_by: "orchestrator"
-    recent_action: "Q011-Q013 fixed review 4 P1; gates green"
-    next_safe_action: "Run review 5, then commit on approval"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-11-23T18:39:11Z"
+    last_updated_by: "generate-context"
+    recent_action: "Review 5 approved; f4c318d856a pushed"
+    next_safe_action: "Run alignment, docs and Opus review"
+    packet_purpose: "Purpose: A natural request for each of the four modes reaches that mode through both routing stages on this hub, from every runtime, and a re-pin of a vendored consumer leaves its `bots/` folder untouched."
+    blockers:
+      - "Weekday probe after Tue 12:00"
+    key_files:
+      - ".skilled/skills/system-skilled-bots/hub-router.json"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-hub-wiring"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "f92f3b25-76c2-4213-b120-9a39aa45a9f9"
+      workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
+      savedAt: "2026-11-23T18:39:11Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 95
     open_questions: []
     answered_questions: []

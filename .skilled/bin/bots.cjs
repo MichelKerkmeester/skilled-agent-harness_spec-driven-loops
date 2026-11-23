@@ -21,8 +21,9 @@ const USAGE = [
   '',
   'verbs:',
   '  run <id> [--schedule-index <n>]',
-  '                 run one bot now, in the shared checkout; the scheduler passes',
-  '                 --schedule-index so the run records the slot it fired for',
+  '                 run one bot now, in the shared checkout or, for a worktree',
+  '                 bot, in its own worktree; only the installed schedule passes',
+  '                 --schedule-index, so the run records the slot it fired for',
   '  disable <id>   stop every run of a bot until enabled, and its installed schedule',
   '  enable <id>    lift a disable; for an installed schedule, recheck it and let it fire',
   '  pause <id>     hold a bot\'s runs after the lease until resumed',
@@ -76,6 +77,9 @@ const VERB_SPECS = {
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
 const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', ...FLAG_OPTIONS]);
+// The marker a bot schedule's job file sets, the renderer's SCHEDULED_FIRE_ENV. A schedule index
+// moves the schedule's slot accounting, so only the installed job may pass one.
+const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
 // Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash.
 // A value that is itself one of this CLI's flags still means the value was left out.
 const FREE_TEXT_OPTIONS = new Set(['prompt', 'origin', 'key']);
@@ -411,6 +415,9 @@ async function main(argv) {
     return 0;
   }
   if (parsed.error) return usageExit(parsed.error);
+  if (parsed.verb === 'run' && parsed.options['schedule-index'] !== undefined && process.env[SCHEDULED_FIRE_ENV] !== '1') {
+    return usageExit('--schedule-index is passed only by the installed schedule; run the bot without it');
+  }
 
   const rt = await loadRuntime();
   const { runner, switches, needsYou } = rt;
