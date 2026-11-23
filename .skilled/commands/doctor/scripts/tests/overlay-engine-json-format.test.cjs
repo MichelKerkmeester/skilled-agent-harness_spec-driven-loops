@@ -255,3 +255,18 @@ test('one stray shallow line does not set the indent unit', () => {
   const output = engine.applyJsonOperations(text, spec, { canReplaceExisting: true });
   assert.equal(output, '{\n  "a": [\n    1,\n 2\n  ],\n  "z": {\n    "b": {\n      "c": 1\n    }\n  }\n}\n');
 });
+
+test('a container opened on its parent line does not halve the indent unit', () => {
+  const engine = require('../overlay-engine.cjs');
+  const spec = {
+    style: { indent: 2, primitiveArrays: 'multiline' },
+    operations: [{ op: 'set', path: ['z'], value: { b: 1 } }],
+  };
+  const text = '{\n  "z": 1,\n  "l": [{\n    "a": 1\n  }]\n}\n';
+  const output = engine.applyJsonOperations(text, spec, { canReplaceExisting: true });
+  assert.equal(output, '{\n  "z": {\n    "b": 1\n  },\n  "l": [{\n    "a": 1\n  }]\n}\n');
+  const wrapped = '[{\n  "z": 1\n}]\n';
+  const nested = engine.applyJsonOperations(wrapped, { ...spec, operations: [{ ...spec.operations[0], path: [0, 'z'] }] },
+    { canReplaceExisting: true });
+  assert.equal(nested, '[{\n  "z": {\n    "b": 1\n  }\n}]\n');
+});

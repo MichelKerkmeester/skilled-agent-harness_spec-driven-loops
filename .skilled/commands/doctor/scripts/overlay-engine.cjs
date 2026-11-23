@@ -1209,9 +1209,10 @@ function lineIndent(text, offset) {
 
 /**
  * How the document is laid out, so a written value matches the lines around it:
- * the step a nested line takes in from the line that opens its container, and
- * the line ending most of its lines use. A document with no such step falls
- * back to the entry set's `style.indent`, then to two spaces.
+ * the step a nested line takes in from a line that opens one container, else
+ * the shallowest indent, and the line ending most of its lines use. A document
+ * with no indented line falls back to the entry set's `style.indent`, then to
+ * two spaces.
  * @param {string} text Document text.
  * @param {{indent?: number|string}} style Entry-set style.
  * @returns {{unit: string, eol: string}} Indent unit and line ending.
@@ -1219,24 +1220,23 @@ function lineIndent(text, offset) {
 function documentLayout(text, style) {
   const crlf = (text.match(/\r\n/g) || []).length;
   const eol = crlf > (text.match(/\n/g) || []).length - crlf ? '\r\n' : '\n';
-  // The unit is the step a nested line takes in from the line that opens its
-  // container, the most common one winning, so a stray line at an odd depth or
-  // a container opened deeper on the first line does not set it.
+  // The unit is the step a nested line takes in from a line that opens one
+  // container, the most common one winning, so a stray line at an odd depth
+  // does not set it. A line such as `{"x": {` or `[{` opens two at once and
+  // nests one or two steps by habit, so such lines never set it. Without a
+  // one-container line, the shallowest indent any line carries is the unit.
   const steps = new Map();
+  let shallowest = null;
   const lines = text.split(/\r?\n/);
-  for (let index = 0; index + 1 < lines.length; index += 1) {
-    if (!/[[{]\s*$/.test(lines[index])) continue;
-    const outer = /^[ \t]*/.exec(lines[index])[0];
-    const inner = /^[ \t]*/.exec(lines[index + 1])[0];
-    if (inner.length <= outer.length || !inner.startsWith(outer) || lines[index + 1].trim() === '') continue;
-    // A line such as `{"x": {` leaves two containers open, so its nested line
-    // sits two steps in.
+  for (let index = 0; index < lines.length; index += 1) {
+    const lead = /^[ \t]*/.exec(lines[index])[0];
+    if (lead && lines[index].trim() !== '' && (shallowest === null || lead.length < shallowest.length)) shallowest = lead;
+    if (index + 1 >= lines.length || !/[[{]\s*$/.test(lines[index])) continue;
     const bare = lines[index].replace(/"(?:[^"\\]|\\.)*"/g, '');
-    const open = (bare.match(/[[{]/g) || []).length - (bare.match(/[\]}]/g) || []).length;
-    const gap = inner.length - outer.length;
-    if (open < 1 || gap % open !== 0) continue;
-    const step = inner.slice(outer.length, outer.length + gap / open);
-    if (step.repeat(open) !== inner.slice(outer.length)) continue;
+    if ((bare.match(/[[{]/g) || []).length - (bare.match(/[\]}]/g) || []).length !== 1) continue;
+    const inner = /^[ \t]*/.exec(lines[index + 1])[0];
+    if (inner.length <= lead.length || !inner.startsWith(lead) || lines[index + 1].trim() === '') continue;
+    const step = inner.slice(lead.length);
     steps.set(step, (steps.get(step) || 0) + 1);
   }
   let detected = null;
@@ -1244,6 +1244,7 @@ function documentLayout(text, style) {
     const best = detected === null ? 0 : steps.get(detected);
     if (count > best || (count === best && step.length < detected.length)) detected = step;
   }
+  if (detected === null) detected = shallowest;
   if (detected) return { unit: detected, eol };
   if (typeof style.indent === 'string' && /^[ \t]+$/.test(style.indent)) return { unit: style.indent, eol };
   if (Number.isInteger(style.indent) && style.indent > 0) return { unit: ' '.repeat(style.indent), eol };
