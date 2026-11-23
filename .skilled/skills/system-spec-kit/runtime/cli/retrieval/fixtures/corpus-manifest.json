@@ -1,5 +1,5 @@
 {
-  "corpusHash": "de3e02704f16c14ae7b442ac8908f45f444d13d3f86668bdf10a967c8880b14d",
+  "corpusHash": "8b5bbd89a488ef1a19d7b5c6f8a0039272a200635707ebefc7b41a56c46074b1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29397,
+  "includedPathCount": 29402,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20444,6 +20444,11 @@
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -29429,7 +29434,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1320349051d4ecb48866c7afeef79e94c66a786568d108561be71891f71419c3",
+  "manifestHash": "2e7735382659fe14660375c1466cf44e34a6f4f8e31941bec19dbd3d42e7d7b7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38553,6 +38558,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/scratch",
       "reason": "excluded directory"
     },
     {

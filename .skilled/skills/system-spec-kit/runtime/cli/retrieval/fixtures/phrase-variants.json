@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1320349051d4ecb48866c7afeef79e94c66a786568d108561be71891f71419c3",
+  "manifestHash": "2e7735382659fe14660375c1466cf44e34a6f4f8e31941bec19dbd3d42e7d7b7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3277,6 +3277,9 @@
     ],
     "013 daemon restart reindex": [
       "013 daemon restart reindex"
+    ],
+    "013 deep loop offer in hint operator decisions": [
+      "013-deep-loop-offer-in-hint operator decisions"
     ],
     "013 deep review": [
       "013 deep review"
@@ -17963,6 +17966,9 @@
     ],
     "carried forward question filter": [
       "carried forward question filter"
+    ],
+    "carry the deep loop offer in the advisor": [
+      "carry the deep loop offer in the advisor"
     ],
     "cartesian plots use a taller frame": [
       "cartesian plots use a taller frame"
@@ -37981,6 +37987,18 @@
     ],
     "deep loop modes and commands tasks": [
       "deep loop modes and commands tasks"
+    ],
+    "deep loop offer in hint": [
+      "deep loop offer in hint"
+    ],
+    "deep loop offer in hint implementation summary": [
+      "deep loop offer in hint implementation summary"
+    ],
+    "deep loop offer in hint plan": [
+      "deep loop offer in hint plan"
+    ],
+    "deep loop offer in hint tasks": [
+      "deep loop offer in hint tasks"
     ],
     "deep loop package topology": [
       "deep-loop package topology"
