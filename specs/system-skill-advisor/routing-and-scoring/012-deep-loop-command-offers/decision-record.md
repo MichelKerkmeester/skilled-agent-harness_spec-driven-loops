@@ -242,6 +242,9 @@ AC-017 asks two things of the research aliases that ship. K2, "multi-round resea
 | Q015 | Keep the multi-round research hub alias and waive the memo out-of-domain replay in AC-017. | Not stated. | None | decision-record.md ADR-002, acceptance-criteria.md AC-017 |
 | Q016 | Record a fresh live behaviour session on the F6 prompt instead of waiving AC-008. | Not stated. | None | scratch/behaviour/F6.md, acceptance-criteria.md AC-008 |
 | Q017 | Commit and push the closure pass after the alias and F6 answers are applied. | Not stated. | None | tasks.md T051 |
+| Q018 | Rerun the F6 behaviour session outside plan mode with a spend cap. | Not stated. | None | scratch/behaviour/F6.md, acceptance-criteria.md AC-008 |
+| Q019 | Commit and push the AC-008 work to origin/main once it is settled. | Not stated. | None | tasks.md T052 |
+| Q020 | Keep AC-008 unmet and tighten the offer wording in both deep command documents, then rerun F6. | Not stated. | None | tasks.md T052, .skilled/commands/deep/review.md, .skilled/commands/deep/research.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -540,6 +543,66 @@ Not yet
 Answer:
 ```text
 After the above (Recommended)
+```
+
+### Q018
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_014ffjWwLfhAqVXtLn1pkcij:0 -->
+
+Question:
+```text
+AC-008 (packet 012-deep-loop-command-offers) is the only acceptance row still Unmet. The fresh F6 session ($0.22, plan mode, Sonnet) composed the right command, /deep:review <newest review packet> :auto --extend=3, but wrote a plan for approval instead of asking the one offer question beside the spec-folder question. The earlier F3 and F5 plan-mode sessions did ask. How should AC-008 be closed?
+```
+
+Options:
+```text
+Rerun outside plan (Recommended)
+Tighten offer section
+Waive with an ADR
+```
+
+Answer:
+```text
+Rerun outside plan (Recommended)
+```
+
+### Q019
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_014ffjWwLfhAqVXtLn1pkcij:1 -->
+
+Question:
+```text
+Once AC-008 is settled, should the resulting changes be committed and pushed to origin/main the same way as before (owner token, which bypasses the signed-commit rule)?
+```
+
+Options:
+```text
+Commit and push (Recommended)
+Commit only
+Neither
+```
+
+Answer:
+```text
+Commit and push (Recommended)
+```
+
+### Q020
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01PssQBUbJ1vTQab2So6W7GU:0 -->
+
+Question:
+```text
+The F6 rerun outside plan mode ($0.18, 4 turns, nothing written) stopped before acting. It asked one turn with the spec-folder question (A Existing recommended), named the newest finished review and said it would run `/deep:review <target> --spec-folder=<016 packet> --extend=3` once confirmed. It did not present the offer options (A Run it with :auto, B :confirm, C no loop), so the recommended option itself does not carry --extend=3, as AC-008's wording asks. F3 did present a recommended run option (2A fan-out). How should AC-008 be recorded?
+```
+
+Options:
+```text
+Keep Unmet, tighten (Recommended)
+Mark Met as observed
+Waive with an ADR
+```
+
+Answer:
+```text
+Keep Unmet, tighten (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

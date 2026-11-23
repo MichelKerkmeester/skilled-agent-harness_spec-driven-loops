@@ -8,17 +8,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T11:20:58Z"
+    last_updated_at: "2026-11-23T13:20:39Z"
     last_updated_by: "generate-context"
-    recent_action: "Waived AC-017 by ADR-002 and recorded the F6 session, which skipped the offer question"
-    next_safe_action: "Decide with the operator whether to rerun F6 outside plan mode or fix the offer section"
+    recent_action: "Named the offer options in both deep commands and reran F6 twice"
+    next_safe_action: "Decide with the operator how to close AC-008"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers:
-      - "AC-008 unmet: the F6 session skipped the offer question"
+      - "AC-008 unmet: no F6 session asked the offer question"
     key_files:
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/behaviour/F6.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/behaviour/F6-after-step0.md"
+      - ".skilled/commands/deep/review.md"
+      - ".skilled/commands/deep/research.md"
     session_dedup:
       fingerprint: "sha256:ed7b946f01a8d67757861c8b82afd7ac188ebd3ba5da180a7ed674f999f68fb6"
       session_id: "scaffold-012-deep-loop-command-offers"
@@ -27,7 +28,7 @@ _memory:
       runtime: "claude"
       sessionId: "5789dc27-c573-44e7-afdc-52d0e17986b0"
       workspace: "/Users/michelkerkmeester/worktrees/public/522-deep-loop-offer-review-fixes"
-      savedAt: "2026-11-23T11:20:58Z"
+      savedAt: "2026-11-23T13:20:39Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 95
@@ -205,5 +206,5 @@ What stays open:
 2. **The argument hints are over the soft budget.** Both hints now list every offer flag (Q013), so `validate_document.py` warns that each is over 140 characters. The warning is soft, and no failure from a long hint is recorded.
 3. **"Write a memo on" is not read as writing about a topic.** "write a memo on iterative research funding for the grant committee" gets `/deep:research pol=ask`, and so does the same memo on "deep research funding", which was a loop ask before this packet. No guard is added for one phrasing.
 4. **The multi-round research alias also catches a memo about research funding.** The operator kept it for K2 (ADR-002), so that memo can surface the hub as a skill suggestion with no command.
-5. **The F6 session skips the offer question.** A plan-mode `claude -p` run on "extend the finished deep review by 3 iterations" (`scratch/behaviour/F6.md`, $0.22) picked the newest finished review and composed `/deep:review <packet> :auto --extend=3`, but it wrote a plan for approval instead of asking the one offer question beside the spec-folder question. The earlier F6 recording answered another prompt ("8 more") and is kept as `scratch/behaviour/F6-other-prompt.md`. AC-008 stays unmet.
+5. **The F6 session skips the offer question.** Three `claude -p` runs on "extend the finished deep review by 3 iterations" each stopped before spending, but none asked the offer with options A, B and C. The plan-mode run (`scratch/behaviour/F6-plan-mode.md`, $0.22) composed `/deep:review <packet> :auto --extend=3` and wrote a plan for approval. The run outside plan mode (`scratch/behaviour/F6.md`, $0.18) asked the spec-folder question and named `--extend=3` as the command it would run, after reading only the flag table. Step 0 of both command documents now names the three options, and the flag table sends a composed flag into option A. The run after that edit (`scratch/behaviour/F6-after-step0.md`, $0.16) asked which review was meant before it opened the command document, so the edit was never read. The session acts on the brief's `ask` alone, and the offer format lives one document away from it. The earlier F6 recording answered another prompt ("8 more") and is kept as `scratch/behaviour/F6-other-prompt.md`. AC-008 stays unmet.
 <!-- /ANCHOR:limitations -->
