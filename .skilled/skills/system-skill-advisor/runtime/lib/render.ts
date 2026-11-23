@@ -246,7 +246,7 @@ function commandLabel(recommendation: RenderableRecommendation, childSession: bo
     return `${ownerPart} → ${commandPart}`;
   }
   return policyPart === 'ask' && DEEP_LOOP_OFFER_COMMANDS.has(commandPart)
-    ? `${ownerPart} → ${commandPart} (ask: A ${commandPart}:auto, B ${commandPart}:confirm, C no loop)`
+    ? `${ownerPart} → ${commandPart} (ask: A ${commandPart}:auto (Recommended), B ${commandPart}:confirm, C no loop)`
     : `${ownerPart} → ${commandPart} (${policyPart})`;
 }
 

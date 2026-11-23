@@ -54,7 +54,7 @@ const HEAD_CASES: readonly HeadCase[] = [
       confidence: 0.82,
       uncertainty: 0.16,
     },
-    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask: A /deep:research:auto, B /deep:research:confirm, C no loop) 0.82/0.16 pass.',
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask: A /deep:research:auto (Recommended), B /deep:research:confirm, C no loop) 0.82/0.16 pass.',
   },
   {
     name: 'a design request names the chart mode',
@@ -161,7 +161,7 @@ const HEAD_CASES: readonly HeadCase[] = [
       confidence: 0.82,
       uncertainty: 0.16,
     },
-    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop) 0.82/0.16 pass.',
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.82/0.16 pass.',
   },
 ];
 
@@ -268,7 +268,7 @@ describe('command brief golden heads', () => {
       metrics: { tokenCap: 80 },
     });
 
-    expect(headOf(rendered)).toContain('/deep:review (ask: A /deep:review:auto, B /deep:review:confirm, C no loop)');
+    expect(headOf(rendered)).toContain('/deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop)');
     expect(headOf(rendered)).toContain('\nAlso: /doctor:deep-loop');
   });
 
