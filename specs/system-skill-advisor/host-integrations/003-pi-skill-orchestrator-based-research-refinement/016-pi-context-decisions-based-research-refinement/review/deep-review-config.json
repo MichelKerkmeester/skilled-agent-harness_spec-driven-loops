@@ -1,9 +1,9 @@
 {
-  "topic": "Review: the whole 016 pi-context-decisions epic, phases 001 to 027, as the code stands at HEAD",
-  "sessionId": "2026-11-23T05:51:03.170Z",
-  "parentSessionId": "2026-11-19T04:18:26.591Z",
+  "topic": "Review: the whole 016 pi-context-decisions epic, phases 001 to 028, as the code stands at HEAD",
+  "sessionId": "2026-11-23T09:35:31.105Z",
+  "parentSessionId": "2026-11-23T05:51:03.170Z",
   "lineageMode": "restart",
-  "generation": 2,
+  "generation": 3,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 5,
@@ -31,9 +31,9 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
-  "createdAt": "2026-11-23T05:51:03.170Z",
+  "createdAt": "2026-11-23T09:35:31.105Z",
   "status": "complete",
-  "releaseReadinessState": "in-progress",
+  "releaseReadinessState": "converged",
   "executionMode": "auto",
   "executor": {
     "kind": "native",
@@ -52,7 +52,7 @@
     "traceability",
     "maintainability"
   ],
-  "reviewFocus": "Review the code and docs the whole epic shipped across phases 001 to 027 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, and the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.",
+  "reviewFocus": "Review the code and docs the whole epic shipped across phases 001 to 028 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload) and phase 028's fixes for the second review's six P2 findings (subprocess stdin guard, curly-apostrophe fold and ITERATION_COUNT comment in both offer-gate runtimes, child 007 to 010 statuses, receipt-guard catalog sources, 027 AC-006). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.",
   "severityThreshold": "P2",
   "crossReference": {
     "core": [
@@ -235,7 +235,13 @@
     ".skilled/skills/system-spec-kit/runtime/cli/setup/README.md",
     ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
     ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-    "README.md"
+    "README.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/implementation-summary.md",
+    ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-subprocess.vitest.ts"
   ],
   "stopPolicy": "max-iterations",
   "resource_map": {

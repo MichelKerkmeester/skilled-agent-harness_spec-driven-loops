@@ -2,20 +2,22 @@
 
 ## Dispatcher
 
-- Run: 2 of 5, generation 2, lineage `restart`, session `2026-11-23T05:51:03.170Z`.
-- Dimension: security (D2).
-- Iteration number derived from the state log: one prior `type:"iteration"` record, so this is iteration 2, matching the dispatch.
-- Operator focus: covered bridge env parity (launcher child env and Python native-bridge env), the crash fallback's process handling, the subprocess output cap, and the Ollama and embedding lane residue tool's delete and kill paths, judged from code and the parity test rather than packet tables. The doctor cleanup surface was only read through the residue tool's apply step; its YAML wiring is left for traceability.
+- Iteration 2 of 5, generation 3, sessionId 2026-11-23T09:35:31.105Z, lineageMode restart (config). The state log holds one iteration record, so the derived number is 2 and matches dispatch.
+- Dimension: security. Operator focus addressed by walking the epic's trust and file-system surfaces in turn: the route-receipt store and the hook input it keys on, the pasted-reply strip regexes, the bridge env parity between the launcher and the Python bridge, and the residue tool's apply-mode delete and process-stop paths (the doctor cleanup's engine).
+
+## Dimension
+
+D2 Security.
 
 ## Files Reviewed
 
-- `.skilled/bin/system-skill-advisor-launcher.cjs` (env file loader and repo defaults 28-80, `CHILD_ENV_ALLOWLIST` 111-166, `createChildEnv` 289-307)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (`NATIVE_BRIDGE_ENV_ALLOWLIST` 214-252, `LAUNCHER_ONLY_ENV_KEYS` 253-261, `_native_bridge_env` 697-707, `_sanitize_native_label` 710-721, `_run_native_bridge` 735-790, stdin read before early exits 5778-5795)
-- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787-2793` (launcher/bridge allowlist drift test)
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts` (`capOutput` 108-156, `runSpawnAttempt` 210-310)
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` (`findCliFallbackPaths` 177-205, `childEnvForCli` 207-213, CLI spawn 240-331)
-- `.skilled/commands/doctor/assets/doctor-update-apply.yaml` (lane-cleanup step around 219-228), context only
-- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs` (`normalizeOllamaHost` 883-896, `resolveContainedTarget` 1792-1821, `deleteContained` 1834-1854, `stopProcess` 1873-1886, `removeEmptyDir` 1896-1915, process ownership 1384-1425), context read named by the operator focus; it is not in `reviewScopeFiles`
+- `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:97-331` (base dir, file name hash, parse, FileRouteReceiptStore, ownedFolder, makeRoom)
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:340-418` (receipt session id, transcript size)
+- `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:68-108` (head receipt store)
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243-274` (PASTED_REPLY_CUE, TASK_MARKER, strip loop)
+- `.skilled/bin/system-skill-advisor-launcher.cjs:28-80, 111-160, 289-310` (.env load, repo defaults, CHILD_ENV_ALLOWLIST, createChildEnv)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:214-268, 695-756` (NATIVE_BRIDGE_ENV_ALLOWLIST, LAUNCHER_ONLY_ENV_KEYS, _native_bridge_env)
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1233-1290, 1396-1425, 1781-2130` (context read: the residue tool named by the operator focus and by `doctor-update-apply.yaml:221-222`; not in the declared scope file list)
 
 ## Findings - New
 
@@ -29,52 +31,49 @@ None.
 
 ### P2 Findings
 
-1. **Python-advisor spawn has no error listener on the child's stdin** -- .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:247 -- `runSpawnAttempt` writes the whole prompt with `child.stdin?.write(args.prompt)` and attaches `error` listeners only to the child process, never to `child.stdin` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:228-248]. When the child exits or is killed before draining stdin, the pipe write fails with EPIPE and Node raises it as an `error` event on the stdin socket; with no listener that becomes an uncaught exception in the calling process (the hook or the daemon that builds the brief), not the fail-open result the function otherwise returns. The sibling crash-fallback spawn already guards the same write with `child.stdin?.on('error', () => undefined)` [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:278], so the pattern is known in this codebase and simply missing here. Python normally reads stdin before any early exit [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5778-5795], which keeps the window narrow: it opens only when the interpreter dies at import (for example `compat-contract.json` unreadable at module load [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:207]) or the timeout SIGKILLs it while a prompt larger than the pipe buffer is still being written. Availability impact on a fail-open boundary, so P2.
-   Finding class: missing-guard (process I/O error handling)
-   Scope proof: one write site in `runSpawnAttempt`; the only other prompt-to-child write in scope (CLI fallback) is guarded
-   Affected surface hints: runtime/lib/subprocess.ts runSpawnAttempt; callers in runtime/lib/skill-advisor-brief.ts; runtime/tests/subprocess-output-cap.vitest.ts as the natural test home
-   Case: a prompt over 64 KB sent while skill_advisor.py fails at import, so the child exits before reading stdin and the write raises an unhandled EPIPE in the caller.
-
-Severity doctrine: P2 per `sk-code-review` review-core (robustness defect with a bounded, non-default trigger and no data exposure); not raised to P1 because the trigger needs a broken interpreter or a timeout during a very large prompt write, and inference rather than a reproduced crash supports the uncaught-exception step.
+1. **The Vibe head-receipt store trusts its folder, unlike the route-receipt store beside it** -- .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:99 -- `writeHeadReceipt` runs `mkdirSync(directory, { recursive: true, mode: 0o700 })` and then `writeFileSync(target, head, { mode: 0o600 })` with no check of who owns the folder, whether the folder or the target is a symlink, or the folder's mode. `mkdirSync` does not fail or re-mode an existing folder, and `writeFileSync` follows a symlinked target. `readHeadReceipt` (line 79) reads whatever file sits at the hashed name. The route-receipt store in the same hook family refuses all of that through `ownedFolder` (route-receipt.ts:283-291: symlink, uid and `mode & 0o077` checks on both the base and the subfolder) and writes through a `wx` temp file plus rename (route-receipt.ts:249-251). Where the default base resolves to a shared temp folder (`join(tmpdir(), 'speckit-advisor')` at line 70; on Linux `/tmp` is shared, on macOS `TMPDIR` is per user, so the default there is not exposed), another local user who pre-creates `speckit-advisor/vibe-turn-start` can plant `<digest>.head` as a symlink, and the victim's next write overwrites the link's target with the routing head text. The same user can also plant a receipt equal to the next head and so suppress it. Eviction (line 88-96) only unlinks `*.head` names, which limits the delete side. Severity is P2: it needs a shared temp folder plus the session id to predict the 16-hex digest, and the written content is not attacker-chosen.
+   Finding class: missing defense-in-depth on a per-session state file (inconsistent with the sibling store's rule)
+   Scope proof: the Vibe hook is in the declared review scope; `git log -L` attributes the head-receipt code to the cli-mistral-vibe commits `36ddad5062d` and `45e37473e64`, not to this epic, so this is a scoped file's pre-existing weakness and not a regression from 016.
+   Affected surface hints: `hooks/vibe/prompt-advisor.mjs` headReceiptDir, readHeadReceipt, writeHeadReceipt, evictOldestReceipts; the `ownedFolder` rule in `hooks/lib/route-receipt.ts` is the pattern to reuse.
+   Case: on a Linux host, a second local user creates `/tmp/speckit-advisor/vibe-turn-start/<digest>.head` as a symlink to a file the Vibe user owns, and the Vibe user's next turn overwrites that file with the routing head text.
 
 ## Traceability Checks
 
-- `spec_code` (partial): the third-round "bridge env parity" claim holds. Every scorer setting in the launcher's `CHILD_ENV_ALLOWLIST` [SOURCE: .skilled/bin/system-skill-advisor-launcher.cjs:111-166] appears in `NATIVE_BRIDGE_ENV_ALLOWLIST` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:214-252] or in the explicit `LAUNCHER_ONLY_ENV_KEYS` set, and a test fails on drift in either direction [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787-2793]. The crash-fallback claim (prompt on stdin, process-group kill on timeout, capped stdout, settle on exit) matches code [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:256-331]. Doctor cleanup wiring still unchecked, so the protocol stays partial.
+- spec_code (partial): bridge env parity claim from 027 checked in code. A set diff of `CHILD_ENV_ALLOWLIST` (launcher) against `NATIVE_BRIDGE_ENV_ALLOWLIST` (Python) shows the launcher-only keys are exactly `LAUNCHER_ONLY_ENV_KEYS` (skill_advisor.py:254-261), and the only Python-only key is `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS`. `NATIVE_BRIDGE_ENV_DEFAULTS` mirrors the launcher's `SPECKIT_ADVISOR_DOC_TRIGGERS` default (launcher.cjs:72-74, skill_advisor.py:265-267). Doc-side claims stay for iteration 3.
+- checklist_evidence: not run this iteration.
 
 ## Integration Evidence
 
-- Launcher to daemon: `createChildEnv` filters by exact key, adds only the launcher pid, the db dir and the resolved socket dir [SOURCE: .skilled/bin/system-skill-advisor-launcher.cjs:289-307].
-- Python CLI to native bridge: `_native_bridge_env` filters by exact key and applies only the doc-trigger default [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:697-707]; the bridge script is inline with absolute module URLs and the payload travels on stdin.
-- Doctor update apply step to residue tool: `node .../sweep-lane-residue.mjs apply --json [--shared-model delete|keep] </dev/null`, with the shared-model delete bound to an explicit operator yes [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:222-228].
+- Probe (outside the repo, `/private/tmp/claude-501/redos-probe.mjs`) ran `stripLeadingPastedReply` from the rebuilt `runtime/dist/runtime/lib/prompt-policy.js` on five adversarial inputs between 200k and 1.1M characters (dot runs, repeated `now:` markers, nested cues, a long space run, dot-space-`task` runs): each finished in 0-2 ms, exit 0. No super-linear backtracking.
+- `doctor-update-apply.yaml:221-222` names `sweep-lane-residue.mjs machine --json` and `apply --json [--shared-model delete|keep] </dev/null` as the doctor's cleanup commands; that is the delete path reviewed.
 
 ## Edge Cases
 
-- Scope ambiguity: the operator focus names the residue tool, but `sweep-lane-residue.mjs` is not in `reviewScopeFiles` (the scope list is built from commit trailers). Read as context under the operator focus; no finding raised against it.
-- `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted'` is a repo policy default in the launcher [SOURCE: .skilled/bin/system-skill-advisor-launcher.cjs:72-80] that predates this epic (its last change is the `.opencode` to `.skilled` move). Out of epic scope; the bridge child deliberately does not get it, so the Python path keeps the fail-closed code default.
-- Key-name asymmetry: the Python allowlist forwards `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` while the launcher forwards `SPECKIT_CODEX_HOOK_TIMEOUT_MS` (listed as launcher-only). Neither is a scorer setting, so no wrong output; noted for maintainability.
+- Scope: the residue tool `sweep-lane-residue.mjs` is not in the declared scope file list, though the operator focus names it. It was read as context only; no finding is raised on it.
+- The receipt store's default base on Linux is a shared `/tmp`; a foreign-owned `speckit-advisor` folder disables receipts (ownedFolder fails) and the guard delivers. That is a denial of the feature only, and it fails open to the no-receipt behavior, so it is not a finding.
 
 ## Confirmed-Clean Surfaces
 
-- Env forwarding is allowlist-only in all three spawns that cross a trust step (launcher, Python bridge); the CLI fallback passes the caller's own env to its own child, which is the same principal.
-- User prompt never travels in argv: stdin in `subprocess.ts`, the CLI fallback and the Python bridge.
-- Output caps: both `capOutput` and `capStdout` stop growth at the cap; the busy-marker scan still sees text past the cap.
-- Native label output from the bridge is sanitized against instruction-like text before it reaches a brief [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:710-721].
-- Residue tool delete path: fixed segments only, `..` and `/` refused, symlink targets refused, parent realpath must stay under the root realpath, directories deleted only where the caller declares a folder, `rmSync` with `force:false` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792-1854]. Kill path: SIGTERM only to a node process whose first script is this checkout's model-server script compared by realpath of its folder.
+- Route receipts: file name is a sha256 prefix of the session id (route-receipt.ts:102-104), so a session id cannot traverse; read rejects a non-file or oversize entry and a record whose sessionId differs (route-receipt.ts:116-124, 232-234); write is `wx` temp plus rename at 0o600 inside a 0o700 folder checked for symlink, owner and mode (route-receipt.ts:245-251, 283-291). Eviction only touches regular `.json` and stale `.tmp` entries.
+- Claude hook: only a trimmed, confirmed session id keys a receipt (user-prompt-submit.ts:340-345); the transcript path is only `stat`ed for size (user-prompt-submit.ts:348-351).
+- Pasted-reply strip: TASK_MARKER keeps its post-boundary whitespace off newlines (prompt-policy.ts:248), and the fixed-point loop shrinks the string each pass (prompt-policy.ts:267-273); probe above confirms linear time.
+- Bridge env: both allowlists are exact-key sets, no prefix widening; the Python bridge leaves out `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`, the safer direction for a scoring child.
+- Residue apply mode: `resolveContainedTarget` refuses empty, dot, dot-dot and slash segments, a symlinked target, and a real parent outside the real root (sweep-lane-residue.mjs:1792-1821); a directory is removed only where the fixed name is a folder (1842-1845); only node running this checkout's own model-server script, compared by real folder and fixed basename, is signalled (1400-1422, 2080-2092); server files go only when no server may still use them and never through a symlinked folder (2094-2107); the shared model is deleted only on `--shared-model delete` or an explicit terminal yes (2116-2129); a checkout that still holds a lane source deletes nothing (1988-1990).
 
 ## Ruled Out
 
-- Prompt disclosure through the process table: ruled out, every prompt-carrying spawn uses stdin.
-- Env leak of unrelated secrets to the daemon or bridge child: ruled out, exact-key allowlists with no prefix match.
-- Residue tool deleting outside its root through a symlink or traversal: ruled out by `resolveContainedTarget`.
-- Residue tool signalling another checkout's or another user's process: ruled out by the ownership check on the script folder realpath.
+- ReDoS in the pasted-reply strip: ruled out by the timing probe.
+- Bridge env drift between launcher and Python bridge: none beyond the documented launcher-only keys.
+- Residue apply-mode deleting outside its roots or signalling a foreign process: ruled out by direct read of the containment and ownership guards.
+- Route-receipt path traversal or symlink redirection: ruled out by direct read.
 
 ## Next Focus
 
-- Dimension: D3 traceability.
-- Focus area: spec_code and checklist_evidence across child packets 001 to 027 against HEAD; the doctor cleanup wiring (`.skilled/commands/doctor/assets/doctor-update-apply.yaml`, `doctor-update-contract.test.cjs`); feature-catalog and playbook entries for pasted-reply stripping, route receipts and crash fallback against code.
-- Reason: correctness and security are clean apart from one P2; the open protocols (checklist_evidence, the four overlays) are all traceability.
-- Rotation status: D1 and D2 done, D3 and D4 pending.
-- Carry-forward: R2-P2-001 open; the residue tool's scope gap (not in `reviewScopeFiles`) is worth a traceability note.
-- Required evidence: file:line for each acceptance-criteria row checked and each catalog claim matched or contradicted.
+- Dimension: traceability
+- Focus area: phase 028 doc-side claims (children 007 to 010 statuses, receipt-guard catalog sources naming every hook, 027 AC-006 reproduction), feature catalog to code (pasted-reply stripping, weak-follow-up receipt guard, lifecycle), playbook capability, and the agent_cross_runtime overlay generation 2 never recorded.
+- Reason: planned rotation; spec_code is still partial and checklist_evidence plus all overlays are unrun.
+- Rotation status: 2/4 dimensions covered.
+- Carry-forward: probe-by-input stayed productive (timing probe); direct reads of guard code settled the delete paths cheaply.
+- Required evidence: file:line on both sides of every doc-to-code claim; record each overlay protocol, notApplicable where it does not apply.
 
 Review verdict: PASS

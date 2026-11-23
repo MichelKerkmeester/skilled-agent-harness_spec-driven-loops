@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-18 |
 | **Branch** | `worktrees/474-advisor-pasted-context-and-crash-fallback` |
 | **Parent Spec** | ../spec.md |

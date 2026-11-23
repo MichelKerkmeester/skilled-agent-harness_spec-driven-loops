@@ -16,7 +16,7 @@ vi.mock('node:child_process', () => ({
 interface MockChild extends EventEmitter {
   stdout: EventEmitter & { setEncoding: (encoding: string) => void };
   stderr: EventEmitter & { setEncoding: (encoding: string) => void };
-  stdin: {
+  stdin: EventEmitter & {
     write: ReturnType<typeof vi.fn>;
     end: ReturnType<typeof vi.fn>;
   };
@@ -33,10 +33,10 @@ function mockChild(): MockChild {
   const child = new EventEmitter() as MockChild;
   child.stdout = makeStream();
   child.stderr = makeStream();
-  child.stdin = {
+  child.stdin = Object.assign(new EventEmitter(), {
     write: vi.fn(),
     end: vi.fn(),
-  };
+  });
   child.kill = vi.fn(() => {
     setTimeout(() => child.emit('close', null, 'SIGKILL'), 0);
     return true;

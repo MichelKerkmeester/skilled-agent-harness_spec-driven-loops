@@ -237,8 +237,10 @@ describe('buildAdvisorPart head receipt location', () => {
   it('writes the receipt under the injected env, not process.env', async () => {
     const injectedDir = join(scope.rootDir, 'receipts-injected');
     const processDir = join(scope.rootDir, 'receipts-process');
-    mkdirSync(injectedDir, { recursive: true });
-    mkdirSync(processDir, { recursive: true });
+    // The hook refuses a receipt folder other users can read or write, so each
+    // state folder is made owner-only, as the live default is.
+    mkdirSync(injectedDir, { recursive: true, mode: 0o700 });
+    mkdirSync(processDir, { recursive: true, mode: 0o700 });
 
     const previous = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR;
     process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR = processDir;

@@ -36,7 +36,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,7 +45,6 @@
       "implementation-summary.md",
       "hooks/claude/user-prompt-submit.ts",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      "tmp/p004-briefs/last-refute.txt",
       "scratch/probe.mjs",
       "scratch/probe2.mjs"
     ],
@@ -90,12 +89,6 @@
         "name": "ENV-REFERENCE.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "last-refute.txt",
-        "kind": "file",
-        "path": "tmp/p004-briefs/last-refute.txt",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 004 made the outer catch of `handleClaudeUserPromptSubmit` (`hooks/claude/user-prompt-submit.ts:469-492`) return `renderAdvisorTimeoutFallback()` with default options inside a nested try (`:483-491`)",
     "created_at": "2026-11-18T15:49:30Z",
-    "last_save_at": "2026-11-18T22:50:05.982Z",
+    "last_save_at": "2026-11-23T09:33:45.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +206,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22d3b1c583048797051cb8bd5cea9b8d67cc9d76593ce518b1b282db792b9736",
+    "source_fingerprint": "sha256:da0d104e563d61a99682ae3c1003ed08a2ac7d00481cff91a1dfedfa3e383353",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5be6737a54ca6f489b223ff0d4248bba2408faf33a46205764d196f2bd136c1",
+      "spec.md": "2d895e4b3f394c6d8d5fd42ec58278e04bf526ee736020b07d9aa82cac5a8fb2",
       "plan.md": "836b52610e65be29b6f242cde137d6793498a67570ca95b911f0160544e71df6",
       "tasks.md": "fe7968f237756f8c81dbd1cbeb7113467b9c84f7ad1e4783c8bb5d07aac60c74",
       "implementation-summary.md": "44e4946a686cb9a9d20bee0a94903327c98f42f8439dcbeaf55f32f9922dffa7"

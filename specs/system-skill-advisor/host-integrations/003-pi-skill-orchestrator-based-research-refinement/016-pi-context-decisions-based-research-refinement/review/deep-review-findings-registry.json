@@ -1,22 +1,52 @@
 {
-  "sessionId": "2026-11-23T05:51:03.170Z",
-  "parentSessionId": "2026-11-19T04:18:26.591Z",
-  "generation": 2,
+  "sessionId": "2026-11-23T09:35:31.105Z",
+  "parentSessionId": "2026-11-23T05:51:03.170Z",
+  "generation": 3,
   "lineageMode": "restart",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 5,
-    "timestamp": "2026-11-23T06:22:14.475Z"
+    "timestamp": "2026-11-23T10:18:15.364Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "A negated loop question is read as a request for the loop in both offer gates",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 492,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
       "findingId": "R2-P2-001",
       "severity": "P2",
-      "title": "Python-advisor spawn has no error listener on the child's stdin",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
-      "line": 247,
+      "title": "The Vibe head-receipt store trusts its folder, unlike the route-receipt store beside it",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 99,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -44,9 +74,9 @@
     {
       "findingId": "R3-P2-001",
       "severity": "P2",
-      "title": "Children 007 to 010 record status Planned while parent map and summaries record them complete",
-      "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/spec.md",
-      "line": 25,
+      "title": "Child 012 still reads in progress in two of its three status fields",
+      "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/graph-metadata.json",
+      "line": 39,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -74,9 +104,9 @@
     {
       "findingId": "R3-P2-002",
       "severity": "P2",
-      "title": "Route-receipt catalog entry omits DSH adapter source/test and calls the guard Claude-only",
-      "file": ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
-      "line": 16,
+      "title": "Epic Status cell stops at phase 022 and completion_pct says 100 while phase 028 is open",
+      "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md",
+      "line": 65,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -104,9 +134,9 @@
     {
       "findingId": "R3-P2-003",
       "severity": "P2",
-      "title": "027 AC-006 evidence says grep exited 1 but the grep prints a changelog line at HEAD",
-      "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md",
-      "line": 59,
+      "title": "Pasted-reply stripping catalog names one call site and one runtime",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md",
+      "line": 22,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -134,9 +164,9 @@
     {
       "findingId": "R4-P2-001",
       "severity": "P2",
-      "title": "Loop-run ask does not fold a curly apostrophe while sibling helpers do",
+      "title": "Writing-about predicate does not fold curly apostrophes; three scorer callers read it unfolded",
       "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-      "line": 476,
+      "line": 408,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -164,9 +194,9 @@
     {
       "findingId": "R4-P2-002",
       "severity": "P2",
-      "title": "ITERATION_COUNT comment says 'why does it stop after ten iterations' stays a question but both copies read it as a run ask",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-      "line": 494,
+      "title": "Python offer gate inlines vocabulary lists; shared fixture tests no multi-pass, deep loop or non-I'd-like want-lead case",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      "line": 4509,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -197,9 +227,7 @@
   "terminalGates": {
     "run": 6,
     "stopReason": "maxIterationsReached",
-    "failedRequiredGateIds": [
-      "coverage"
-    ]
+    "failedRequiredGateIds": []
   },
   "persistentSameSeverity": [],
   "severityChanged": [],
@@ -213,9 +241,9 @@
   "findingsBySeverity": {
     "P0": 0,
     "P1": 0,
-    "P2": 6
+    "P2": 7
   },
-  "openFindingsCount": 6,
+  "openFindingsCount": 7,
   "resolvedFindingsCount": 0,
   "convergenceScore": 1,
   "graphConvergenceScore": 1,
@@ -231,33 +259,44 @@
   },
   "candidateCoverage": {
     "covered": [
-      "acceptance_evidence",
-      "catalog_code_drift",
-      "comment_drift",
-      "completion_metadata_drift",
-      "input_normalization",
-      "unhandled_io_error"
+      "catalog_source_gap",
+      "duplicated_heuristic",
+      "heuristic_recall",
+      "normalization_drift",
+      "stale_packet_narrative",
+      "stale_status_metadata",
+      "symlink_redirect"
     ],
     "ruledOut": [
-      "argv_disclosure",
       "checklist_evidence_gap",
       "comment_hygiene",
-      "cross_runtime_drift",
-      "dead_code",
-      "idempotence",
-      "mirror_drift",
-      "path_traversal_delete",
-      "removed_feature_residue",
-      "secret_env_leak",
-      "stale_cache",
-      "state_transition"
+      "dangling_reference",
+      "env_leak",
+      "error_handling",
+      "fix_regression",
+      "open_finding_recheck",
+      "parser_parity",
+      "path_traversal",
+      "redos",
+      "stale_probe_target",
+      "state_transition",
+      "unreproducible_evidence",
+      "unsafe_delete",
+      "untested_wiring"
     ],
-    "deferred": [
-      "env_parity"
-    ],
+    "deferred": [],
     "blocked": [],
     "byBugClass": {
-      "cross_runtime_drift": {
+      "heuristic_recall": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_handling": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -266,16 +305,7 @@
           1
         ]
       },
-      "stale_cache": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "idempotence": {
+      "parser_parity": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -293,16 +323,7 @@
           1
         ]
       },
-      "env_parity": {
-        "covered": false,
-        "ruledOut": false,
-        "deferred": true,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "unhandled_io_error": {
+      "symlink_redirect": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -311,7 +332,7 @@
           2
         ]
       },
-      "secret_env_leak": {
+      "path_traversal": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -320,7 +341,7 @@
           2
         ]
       },
-      "argv_disclosure": {
+      "redos": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -329,7 +350,7 @@
           2
         ]
       },
-      "path_traversal_delete": {
+      "env_leak": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -338,7 +359,16 @@
           2
         ]
       },
-      "completion_metadata_drift": {
+      "unsafe_delete": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_status_metadata": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -347,7 +377,7 @@
           3
         ]
       },
-      "catalog_code_drift": {
+      "stale_packet_narrative": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -356,7 +386,7 @@
           3
         ]
       },
-      "acceptance_evidence": {
+      "catalog_source_gap": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -365,7 +395,7 @@
           3
         ]
       },
-      "removed_feature_residue": {
+      "dangling_reference": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -374,7 +404,16 @@
           3
         ]
       },
-      "input_normalization": {
+      "unreproducible_evidence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "normalization_drift": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -383,28 +422,9 @@
           4
         ]
       },
-      "comment_drift": {
+      "duplicated_heuristic": {
         "covered": true,
         "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "mirror_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4,
-          5
-        ]
-      },
-      "dead_code": {
-        "covered": false,
-        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
@@ -412,6 +432,15 @@
         ]
       },
       "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "untested_wiring": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -428,233 +457,292 @@
         "iterations": [
           5
         ]
+      },
+      "fix_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_probe_target": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "open_finding_recheck": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
       }
     }
   },
-  "searchDebt": [
-    {
-      "iteration": 1,
-      "id": "SL-005",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/bin/system-skill-advisor-launcher.cjs"
-      ],
-      "bugClass": "env_parity",
-      "disposition": "deferred",
-      "rationale": "budget",
-      "evidenceRefs": [],
-      "reason": "carried to iteration 2"
-    }
-  ],
+  "searchDebt": [],
   "ruledOutCandidates": [
     {
       "iteration": 1,
       "id": "SL-001",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts"
       ],
-      "bugClass": "cross_runtime_drift",
+      "bugClass": "error_handling",
       "disposition": "ruled_out",
-      "rationale": "shared fixtures pass in both suites",
+      "rationale": "guard and test present",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:464",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4504"
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:249",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:296"
       ],
-      "reason": "verified by read and test run"
+      "reason": "verified by read and passing test"
     },
     {
       "iteration": 1,
       "id": "SL-002",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
       ],
-      "bugClass": "stale_cache",
+      "bugClass": "parser_parity",
       "disposition": "ruled_out",
-      "rationale": "stamp covers file choice, size and mtime",
+      "rationale": "both runtimes pass the fixture",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:94"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:478",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4559"
       ],
-      "reason": "verified by direct read"
+      "reason": "vitest pass and direct Python replay"
     },
     {
       "iteration": 1,
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts"
       ],
-      "bugClass": "idempotence",
+      "bugClass": "state_transition",
       "disposition": "ruled_out",
-      "rationale": "strip loops until unchanged",
+      "rationale": "reload keyed on stamp",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267"
+        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:94"
+      ],
+      "reason": "verified by direct read and passing route-exclusions tests"
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "hashed name, owned folder",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:102",
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283"
       ],
       "reason": "verified by direct read"
     },
     {
-      "iteration": 1,
-      "id": "SL-004",
-      "dimension": "correctness",
+      "iteration": 2,
+      "id": "SL2-003",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts",
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
       ],
-      "bugClass": "state_transition",
+      "bugClass": "redos",
       "disposition": "ruled_out",
-      "rationale": "end-to-end suppression tests pass with real stores",
+      "rationale": "linear time observed",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:75"
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:248"
       ],
-      "reason": "verified by read and test"
+      "reason": "timing probe"
     },
     {
       "iteration": 2,
-      "id": "SL-201",
+      "id": "SL2-004",
       "dimension": "security",
       "targetRefs": [
         ".skilled/bin/system-skill-advisor-launcher.cjs",
         ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
       ],
-      "bugClass": "secret_env_leak",
+      "bugClass": "env_leak",
       "disposition": "ruled_out",
-      "rationale": "allowlist only",
+      "rationale": "exact-key allowlists, documented split",
       "evidenceRefs": [
-        ".skilled/bin/system-skill-advisor-launcher.cjs:289",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:697",
-        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:254"
       ],
-      "reason": "verified by direct read and drift test"
+      "reason": "verified by set diff"
     },
     {
       "iteration": 2,
-      "id": "SL-202",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
-      ],
-      "bugClass": "argv_disclosure",
-      "disposition": "ruled_out",
-      "rationale": "stdin transport",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:247",
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:279"
-      ],
-      "reason": "verified by direct read"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-204",
+      "id": "SL2-005",
       "dimension": "security",
       "targetRefs": [
         ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
       ],
-      "bugClass": "path_traversal_delete",
+      "bugClass": "unsafe_delete",
       "disposition": "ruled_out",
-      "rationale": "containment and ownership guards",
+      "rationale": "fixed names, real-path containment, owned-process check",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792-1854",
-        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1873"
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1417"
       ],
       "reason": "verified by direct read"
     },
     {
       "iteration": 3,
-      "id": "SL-304",
+      "id": "SL3-004",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/"
+        ".skilled/skills/system-skill-advisor/feature-catalog",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook"
       ],
-      "bugClass": "removed_feature_residue",
+      "bugClass": "dangling_reference",
       "disposition": "ruled_out",
-      "rationale": "no lane code",
+      "rationale": "targets exist or predate the epic",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1014"
+        ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:31"
       ],
-      "reason": "grep shows only a scrub-list prefix"
+      "reason": "cross-skill targets exist; line blamed 2026-11-13 before the epic"
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md"
+      ],
+      "bugClass": "unreproducible_evidence",
+      "disposition": "ruled_out",
+      "rationale": "only failure is 028's expected in-progress state",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:104"
+      ],
+      "reason": "028 validate failure is covered by its own Unmet AC-006"
     },
     {
       "iteration": 4,
-      "id": "SL-401",
+      "id": "SL4-003",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      ],
-      "bugClass": "mirror_drift",
-      "disposition": "ruled_out",
-      "rationale": "no disagreement found",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:475",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4595"
-      ],
-      "reason": "differential probe agreed on every prompt"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-404",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts"
-      ],
-      "bugClass": "dead_code",
-      "disposition": "ruled_out",
-      "rationale": "no residue",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:9"
-      ],
-      "reason": "registry holds only live lanes; validator checks per-weight range only"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-405",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "54 code and test files in reviewScopeFiles"
+        ".skilled/skills/system-skill-advisor/runtime/"
       ],
       "bugClass": "comment_hygiene",
       "disposition": "ruled_out",
       "rationale": "no ephemeral labels",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:103"
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225"
       ],
-      "reason": "hits are path-shape placeholders"
+      "reason": "grep hits are generic placeholders"
     },
     {
-      "iteration": 5,
-      "id": "SL-501",
-      "dimension": "traceability",
+      "iteration": 4,
+      "id": "SL4-004",
+      "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
       ],
-      "bugClass": "mirror_drift",
+      "bugClass": "untested_wiring",
       "disposition": "ruled_out",
-      "rationale": "both functions return identical output on every probe",
+      "rationale": "contract test covers it",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5029"
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:222",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:243",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:326"
       ],
-      "reason": "differential probe agreed on all 14013 prompts"
+      "reason": "asserted by contract test"
     },
     {
       "iteration": 5,
-      "id": "SL-502",
+      "id": "SL5-001",
       "dimension": "traceability",
       "targetRefs": [
-        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md"
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md"
       ],
       "bugClass": "checklist_evidence_gap",
       "disposition": "ruled_out",
-      "rationale": "conditional tasks correctly left open after a no-ship decision",
+      "rationale": "29 RESULT: PASSED lines, exit 0",
       "evidenceRefs": [
-        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md:70",
-        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78"
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:104"
       ],
-      "reason": "the no-ship decision is recorded in the implementation summary"
+      "reason": "reproduced at HEAD"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md"
+      ],
+      "bugClass": "fix_regression",
+      "disposition": "ruled_out",
+      "rationale": "all five Met rows reproduce",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:251",
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:32",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md:55"
+      ],
+      "reason": "verified by direct read and grep"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "stale_probe_target",
+      "disposition": "ruled_out",
+      "rationale": "dist 1795426137 newer than ts 1795426013",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:408"
+      ],
+      "reason": "mtime ordering"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/graph-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "open_finding_recheck",
+      "disposition": "ruled_out",
+      "rationale": "all seven reproduce; no new defect",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:492",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:408",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4582",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:105",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md:22",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:65",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/graph-metadata.json:39",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4509"
+      ],
+      "reason": "findings confirmed and carried; no new finding"
     }
   ],
   "cleanSearchProof": [
@@ -663,220 +751,285 @@
       "id": "SL-001",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts"
       ],
-      "bugClass": "cross_runtime_drift",
+      "bugClass": "error_handling",
       "disposition": "ruled_out",
-      "rationale": "shared fixtures pass in both suites",
+      "rationale": "guard and test present",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:464",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4504"
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:249",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:296"
       ],
-      "proof": "verified by read and test run"
+      "proof": "verified by read and passing test"
     },
     {
       "iteration": 1,
       "id": "SL-002",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
       ],
-      "bugClass": "stale_cache",
+      "bugClass": "parser_parity",
       "disposition": "ruled_out",
-      "rationale": "stamp covers file choice, size and mtime",
+      "rationale": "both runtimes pass the fixture",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:94"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:478",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4559"
       ],
-      "proof": "verified by direct read"
+      "proof": "vitest pass and direct Python replay"
     },
     {
       "iteration": 1,
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts"
       ],
-      "bugClass": "idempotence",
+      "bugClass": "state_transition",
       "disposition": "ruled_out",
-      "rationale": "strip loops until unchanged",
+      "rationale": "reload keyed on stamp",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267"
+        ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:94"
+      ],
+      "proof": "verified by direct read and passing route-exclusions tests"
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "hashed name, owned folder",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:102",
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283"
       ],
       "proof": "verified by direct read"
     },
     {
-      "iteration": 1,
-      "id": "SL-004",
-      "dimension": "correctness",
+      "iteration": 2,
+      "id": "SL2-003",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts",
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
       ],
-      "bugClass": "state_transition",
+      "bugClass": "redos",
       "disposition": "ruled_out",
-      "rationale": "end-to-end suppression tests pass with real stores",
+      "rationale": "linear time observed",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:75"
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:248"
       ],
-      "proof": "verified by read and test"
+      "proof": "timing probe"
     },
     {
       "iteration": 2,
-      "id": "SL-201",
+      "id": "SL2-004",
       "dimension": "security",
       "targetRefs": [
         ".skilled/bin/system-skill-advisor-launcher.cjs",
         ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
       ],
-      "bugClass": "secret_env_leak",
+      "bugClass": "env_leak",
       "disposition": "ruled_out",
-      "rationale": "allowlist only",
+      "rationale": "exact-key allowlists, documented split",
       "evidenceRefs": [
-        ".skilled/bin/system-skill-advisor-launcher.cjs:289",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:697",
-        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2787"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:254"
       ],
-      "proof": "verified by direct read and drift test"
+      "proof": "verified by set diff"
     },
     {
       "iteration": 2,
-      "id": "SL-202",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
-      ],
-      "bugClass": "argv_disclosure",
-      "disposition": "ruled_out",
-      "rationale": "stdin transport",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:247",
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:279"
-      ],
-      "proof": "verified by direct read"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-204",
+      "id": "SL2-005",
       "dimension": "security",
       "targetRefs": [
         ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
       ],
-      "bugClass": "path_traversal_delete",
+      "bugClass": "unsafe_delete",
       "disposition": "ruled_out",
-      "rationale": "containment and ownership guards",
+      "rationale": "fixed names, real-path containment, owned-process check",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792-1854",
-        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1873"
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1792",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1417"
       ],
       "proof": "verified by direct read"
     },
     {
       "iteration": 3,
-      "id": "SL-304",
+      "id": "SL3-004",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/"
+        ".skilled/skills/system-skill-advisor/feature-catalog",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook"
       ],
-      "bugClass": "removed_feature_residue",
+      "bugClass": "dangling_reference",
       "disposition": "ruled_out",
-      "rationale": "no lane code",
+      "rationale": "targets exist or predate the epic",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1014"
+        ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:31"
       ],
-      "proof": "grep shows only a scrub-list prefix"
+      "proof": "cross-skill targets exist; line blamed 2026-11-13 before the epic"
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md"
+      ],
+      "bugClass": "unreproducible_evidence",
+      "disposition": "ruled_out",
+      "rationale": "only failure is 028's expected in-progress state",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:104"
+      ],
+      "proof": "028 validate failure is covered by its own Unmet AC-006"
     },
     {
       "iteration": 4,
-      "id": "SL-401",
+      "id": "SL4-003",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      ],
-      "bugClass": "mirror_drift",
-      "disposition": "ruled_out",
-      "rationale": "no disagreement found",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:475",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4595"
-      ],
-      "proof": "differential probe agreed on every prompt"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-404",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts"
-      ],
-      "bugClass": "dead_code",
-      "disposition": "ruled_out",
-      "rationale": "no residue",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:9"
-      ],
-      "proof": "registry holds only live lanes; validator checks per-weight range only"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-405",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "54 code and test files in reviewScopeFiles"
+        ".skilled/skills/system-skill-advisor/runtime/"
       ],
       "bugClass": "comment_hygiene",
       "disposition": "ruled_out",
       "rationale": "no ephemeral labels",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:103"
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225"
       ],
-      "proof": "hits are path-shape placeholders"
+      "proof": "grep hits are generic placeholders"
     },
     {
-      "iteration": 5,
-      "id": "SL-501",
-      "dimension": "traceability",
+      "iteration": 4,
+      "id": "SL4-004",
+      "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
       ],
-      "bugClass": "mirror_drift",
+      "bugClass": "untested_wiring",
       "disposition": "ruled_out",
-      "rationale": "both functions return identical output on every probe",
+      "rationale": "contract test covers it",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:243",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5029"
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:222",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:243",
+        ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:326"
       ],
-      "proof": "differential probe agreed on all 14013 prompts"
+      "proof": "asserted by contract test"
+    },
+    {
+      "iteration": 4,
+      "id": "SL4-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
+      ],
+      "bugClass": "oversized_module",
+      "disposition": "not_applicable",
+      "rationale": "outside declared scope list; size alone not a defect",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:323"
+      ],
+      "proof": "file not in declared review scope"
     },
     {
       "iteration": 5,
-      "id": "SL-502",
+      "id": "SL5-001",
       "dimension": "traceability",
       "targetRefs": [
-        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md"
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md"
       ],
       "bugClass": "checklist_evidence_gap",
       "disposition": "ruled_out",
-      "rationale": "conditional tasks correctly left open after a no-ship decision",
+      "rationale": "29 RESULT: PASSED lines, exit 0",
       "evidenceRefs": [
-        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md:70",
-        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78"
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:104"
       ],
-      "proof": "the no-ship decision is recorded in the implementation summary"
+      "proof": "reproduced at HEAD"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md"
+      ],
+      "bugClass": "fix_regression",
+      "disposition": "ruled_out",
+      "rationale": "all five Met rows reproduce",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:251",
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:32",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md:55"
+      ],
+      "proof": "verified by direct read and grep"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "stale_probe_target",
+      "disposition": "ruled_out",
+      "rationale": "dist 1795426137 newer than ts 1795426013",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:408"
+      ],
+      "proof": "mtime ordering"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/graph-metadata.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "open_finding_recheck",
+      "disposition": "ruled_out",
+      "rationale": "all seven reproduce; no new defect",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:492",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:408",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4582",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:105",
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md:22",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:65",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/graph-metadata.json:39",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4509"
+      ],
+      "proof": "findings confirmed and carried; no new finding"
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "mirror_drift",
-      "checklist_evidence_gap"
+      "checklist_evidence_gap",
+      "fix_regression",
+      "stale_probe_target",
+      "open_finding_recheck"
     ],
     "covered": [],
     "ruledOut": [
-      "mirror_drift",
-      "checklist_evidence_gap"
+      "checklist_evidence_gap",
+      "fix_regression",
+      "stale_probe_target",
+      "open_finding_recheck"
     ],
     "deferred": [],
     "blocked": [],
@@ -884,88 +1037,105 @@
   },
   "traceability": {
     "summary": {
-      "required": 5,
-      "executed": 5,
-      "pass": 3,
+      "required": 4,
+      "executed": 4,
+      "pass": 2,
       "partial": 2,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 1
+      "notApplicable": 2,
+      "gatingFailures": 0
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:475",
-          ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4595"
-        ],
-        "evidenceRefs": [
-          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:475",
-          ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4595"
+          ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4469",
+          ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:222",
+          ".skilled/commands/doctor/assets/doctor-update-apply.yaml:221"
         ],
         "gateClass": "hard",
         "protocolId": "spec_code",
         "status": "pass",
-        "summary": "offer gate agrees across TS and Python on 32 off-fixture probes"
+        "summary": "shared-fixture claim and doctor cleanup wiring match code and contract test"
       },
       {
         "applicable": true,
         "evidence": [
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59",
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md:70",
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78"
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:104",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:102",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:103",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:106",
+          ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:310",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:80",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md:52",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md:57",
+          ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:251",
+          ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts:97",
+          ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:32",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59"
         ],
         "evidenceRefs": [
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59",
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:78"
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:104",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:102",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:103",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md:106",
+          ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:310",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md:80",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md:52",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/acceptance-criteria.md:57",
+          ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:251",
+          ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts:97",
+          ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:32",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md:59"
         ],
         "gateClass": "hard",
         "protocolId": "checklist_evidence",
-        "status": "partial",
-        "summary": "final: 117/117 AC data rows Met; 003 T009-T014 unchecked by a recorded no-ship decision; AC-006 evidence still non-reproducible at HEAD (R3-P2-003), so partial"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md:22",
-          ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:9"
-        ],
-        "gateClass": "soft",
-        "protocolId": "feature_catalog_code",
-        "status": "partial",
-        "summary": "weights entry matches; R3-P2-002 still open"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md:55"
-        ],
-        "evidenceRefs": [
-          ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md:62"
-        ],
-        "gateClass": "advisory",
-        "protocolId": "playbook_capability",
         "status": "pass",
-        "summary": "playbook vitest 2/2; commands name real entry points"
+        "summary": "goal 102-106 and 028 AC-001..005 reproduce; goal 104 now 29/29 PASSED exit 0; goal 100 not rerun (daemon restart); 101 output-verified, exit not captured; 028 AC-006/007 honestly Unmet"
       },
       {
-        "applicable": true,
+        "applicable": false,
         "evidence": [
-          ".skilled/skills/system-skill-advisor/SKILL.md:26"
-        ],
-        "evidenceRefs": [
           ".skilled/skills/system-skill-advisor/SKILL.md:26"
         ],
         "gateClass": "advisory",
         "protocolId": "skill_agent",
-        "status": "pass",
-        "summary": "SKILL.md triggers cover both shipped behaviors; no agent touched"
+        "status": "notApplicable",
+        "summary": "epic changed no agent definition"
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:77"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "no agent or agent mirror in scope; hook-adapter parity checked under spec_code"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md:22"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "R3-P2-003 still open"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:1"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "summary": "links clean; scenarios not executed this run"
       }
     ],
-    "unfinishedCoreProtocols": [
-      "checklist_evidence"
-    ]
+    "unfinishedCoreProtocols": []
   },
   "divergence": {
     "started": [],

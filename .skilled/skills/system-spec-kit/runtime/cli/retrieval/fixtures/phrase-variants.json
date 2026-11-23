@@ -1,5 +1,5 @@
 {
-  "manifestHash": "48a77b3baf95f60dede19abcafe432bc8f09f68e2f8e07e0276e85b0d350bc59",
+  "manifestHash": "96f377fada67f613ff0d5300c4ae3bc916009772e8f57502971fefe9c705691e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4026,6 +4026,9 @@
     "016 epic second review": [
       "016 epic second review"
     ],
+    "016 epic third review": [
+      "016 epic third review"
+    ],
     "016 findings remediation": [
       "016 findings remediation"
     ],
@@ -6798,6 +6801,9 @@
     ],
     "028 review remediation schema concurrency": [
       "028 review remediation schema concurrency"
+    ],
+    "028 second epic review fixes operator decisions": [
+      "028-second-epic-review-fixes operator decisions"
     ],
     "028 semantic edge layer": [
       "028 semantic edge layer"
@@ -86493,6 +86499,9 @@
     "phase 28 review scope recording": [
       "phase 28 review scope recording"
     ],
+    "phase 28 second epic review fixes": [
+      "phase 28 second epic review fixes"
+    ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
     ],
@@ -89073,6 +89082,9 @@
     ],
     "pi context decisions epic review": [
       "pi context decisions epic review"
+    ],
+    "pi context decisions epic review generation 3": [
+      "pi context decisions epic review generation 3"
     ],
     "pi context decisions packet closeout": [
       "pi-context-decisions packet closeout"
@@ -108512,6 +108524,21 @@
     ],
     "second client reaps starting daemon": [
       "second client reaps starting daemon"
+    ],
+    "second epic review fixes": [
+      "second epic review fixes"
+    ],
+    "second epic review fixes acceptance criteria": [
+      "second epic review fixes acceptance criteria"
+    ],
+    "second epic review fixes implementation summary": [
+      "second epic review fixes implementation summary"
+    ],
+    "second epic review fixes plan": [
+      "second epic review fixes plan"
+    ],
+    "second epic review fixes tasks": [
+      "second epic review fixes tasks"
     ],
     "second family design review": [
       "second family design review"

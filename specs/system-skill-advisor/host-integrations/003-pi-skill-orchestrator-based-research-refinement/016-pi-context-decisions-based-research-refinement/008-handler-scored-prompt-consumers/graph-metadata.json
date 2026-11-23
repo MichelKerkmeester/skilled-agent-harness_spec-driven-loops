@@ -35,14 +35,13 @@
       "raw"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "tmp/p002-briefs/out/last-refute.txt",
       ".skilled/bin/skill-advisor.cjs"
     ],
     "entities": [
@@ -74,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "last-refute.txt",
-        "kind": "file",
-        "path": "tmp/p002-briefs/out/last-refute.txt",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`computeRecommendationOutput` strips the pasted reply once (`runtime/handlers/advisor-recommend.ts:536`) and uses the result for the cache key (`:537-549`), the embedding and the scorer (`:571-579`) and the public fields (`:584-588`)",
     "created_at": "2026-11-18T15:49:28Z",
-    "last_save_at": "2026-11-18T18:04:03.591Z",
+    "last_save_at": "2026-11-23T09:33:45.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +202,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20f254a4dabfa5a53025e5fa27270ba6955004d9395486416d6359980e9e0700",
+    "source_fingerprint": "sha256:b9ebecffd971b9f659022bb170723fe4647ac45754edf40d4c3d161e0402dc6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9371ebb124f2b649698ba133c24dadd5a8581dedced5b4ae99e22f8b32241193",
+      "spec.md": "9a729174a86dfa7463f52ca25f433722e8edf35bfe5c8c4b900fa60e09e37972",
       "plan.md": "9bc59995617e68c7ed5725ec2913ff91d8ffe017278dc02e0ba9cce8373cd70f",
       "tasks.md": "81a239bc8d7f7adb7e69e61084d20ad4c6af240feca9dae1c8d907cff71a5c9e",
       "implementation-summary.md": "e1152a2476a176f2013c383e9aef54c450427fcfb89690dd2d8169eca8c1d462"

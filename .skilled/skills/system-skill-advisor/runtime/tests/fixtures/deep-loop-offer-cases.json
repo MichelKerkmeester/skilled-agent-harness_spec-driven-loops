@@ -28,6 +28,25 @@
     { "id": "named-deep-research", "prompt": "deep research: how do vector databases handle hybrid search", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
     { "id": "start-review-loop", "prompt": "start a review loop on the payments service", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
     { "id": "want-research-loop", "prompt": "i'd like a research loop on cache eviction policies", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
-    { "id": "two-pass", "prompt": "do a two-pass audit of the release notes", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false }
+    { "id": "two-pass", "prompt": "do a two-pass audit of the release notes", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-research-loop-curly-apostrophe", "prompt": "I’d like a research loop on cache eviction policies", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "loop-question-spelled-count", "prompt": "why does the deep review stop after ten iterations", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "bare-question-spelled-count", "prompt": "why does it stop after ten iterations", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-loop-question", "prompt": "why doesn't my deep review converge", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-loop-question-wont", "prompt": "why won't the deep review stop", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "writing-about-curly-apostrophe", "prompt": "write my team’s blog post about how the deep review converges", "asksForLoopRun": false, "stuckRun": false, "writingAbout": true },
+    { "id": "named-deep-review", "prompt": "deep review the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "multi-pass-review", "prompt": "do a multi-pass review of the parser", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "run-deep-loop", "prompt": "run a deep loop on the cache layer", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-i-would-like", "prompt": "i would like a review loop on the billing code", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-we-d-like", "prompt": "we'd like a research loop on vector search", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-we-would-like", "prompt": "we would like a review loop on the importer", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-i-want", "prompt": "i want a research loop on rate limiting", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-we-want", "prompt": "we want a review loop on the scheduler", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-i-need", "prompt": "i need a research loop on retry policies", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-we-need", "prompt": "we need a review loop on the payments flow", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-give-me", "prompt": "give me a research loop on cache warming", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-set-up", "prompt": "set up a review loop on the export service", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-spin-up", "prompt": "spin up a research loop on queue backpressure", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false }
   ]
 }

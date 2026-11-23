@@ -6,22 +6,22 @@ trigger_phrases:
   - "weak follow-up route receipt"
   - "session route receipt"
   - "confidence-floored follow-up"
-version: 1.0.2.0
+version: 1.0.2.1
 ---
 
 # Weak Follow-Up Route-Receipt Guard
 
 ## 1. OVERVIEW
 
-The Claude hook holds back a confidence-floored route when a weak follow-up points to a different skill than the session's current route receipt.
+The shared prompt handler holds back a confidence-floored route when a weak follow-up points to a different skill than the session's current route receipt. Claude runs the handler directly. The DSH, Vibe and Pi adapters run each turn through its compiled copy, so the guard reads the same receipt store on every runtime that passes a session id.
 
 ---
 
 ## 2. HOW IT WORKS
 
-When receipt tracking is enabled and the session clock is available, the hook records a receipt for a brief with a recommendation not marked confidence-floored and a non-degraded result. The receipt stores the routed skill and the session lifecycle clock. It also stores the transcript size.
+When receipt tracking is enabled and the session clock is available, the handler records a receipt for a brief with a recommendation not marked confidence-floored and a non-degraded result. The receipt stores the routed skill and the session lifecycle clock. It also stores the transcript size.
 
-On a later turn, the hook suppresses a recommendation only when it is a floored work-intent route to a different skill and the prompt points back to earlier work. The saved receipt must still match the session clock, and a transcript smaller than the recorded size leaves the turn to deliver normally. A missing receipt or storage error also leaves the turn to deliver. DSH sends no transcript path, so its adapter drops the session's receipt directly at a session start or a clean compaction. It holds that session's next turn until the drop and the clock rotation finish.
+On a later turn, the handler suppresses a recommendation only when it is a floored work-intent route to a different skill and the prompt points back to earlier work. The saved receipt must still match the session clock, and a transcript smaller than the recorded size leaves the turn to deliver normally. A missing receipt or storage error also leaves the turn to deliver. DSH sends no transcript path, so its adapter drops the session's receipt directly at a session start or a clean compaction. It holds that session's next turn until the drop and the clock rotation finish.
 
 ---
 
@@ -32,13 +32,17 @@ On a later turn, the hook suppresses a recommendation only when it is a floored 
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts` | Shared | Stores session route receipts and decides when a weak follow-up is suppressed. |
-| `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Handler | Checks Claude follow-ups against receipts and prepares eligible receipt writes. |
+| `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Handler | The shared prompt handler. Checks follow-ups against receipts and prepares eligible receipt writes. |
+| `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` | Adapter | Runs DSH turns through the handler, commits the receipts it holds once the brief is delivered, and drops a session's receipt at a session start or a clean compaction. |
+| `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` | Adapter | Runs Vibe turns through the handler with its receipts held until the brief is delivered. |
+| `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Adapter | Runs Pi turns through the handler. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` | Automated test | Guard decisions, lifecycle changes, transcript shrink and receipt storage. |
+| `.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs` | Automated test | DSH receipt drops and clock rotation at a session start and a compaction, and delivery when a rotation fails. |
 
 ---
 

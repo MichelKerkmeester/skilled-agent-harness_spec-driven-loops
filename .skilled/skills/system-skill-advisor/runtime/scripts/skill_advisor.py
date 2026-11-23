@@ -4544,7 +4544,7 @@ _WRITING_ABOUT_TOPIC_RE = re.compile(
 )
 _LOOP_SUBJECT = r"(?:[\w'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)\b"
 _LOOP_QUESTION_RE = re.compile(
-    r"\b(?:how|why|when|what) (?:does|do|is|are|did|makes) " + _LOOP_SUBJECT
+    r"\b(?:how|why|when|what) (?:does|do|is|are|did|makes|doesn't|don't|isn't|aren't|didn't|won't|can't) " + _LOOP_SUBJECT
     + r"|\b(?:explain|describe) (?:how|what|why|when) " + _LOOP_SUBJECT
 )
 _LOOP_DIGIT_COUNT_RE = re.compile(r"\b\d+ (?:[a-z-]+ ){0,2}iterations?\b")
@@ -4581,7 +4581,7 @@ def is_past_run_read(text: str) -> bool:
 
 def is_writing_about_topic(text: str) -> bool:
     """True when the prompt asks for a piece written about the loop."""
-    return bool(_WRITING_ABOUT_TOPIC_RE.search(text.lower()))
+    return bool(_WRITING_ABOUT_TOPIC_RE.search(_fold_quotes(text)))
 
 
 def _is_loop_question(lower: str) -> bool:
@@ -4594,7 +4594,7 @@ def _is_loop_question(lower: str) -> bool:
 
 def asks_for_loop_run(prompt: str) -> bool:
     """True when the prompt asks for a deep-loop run itself."""
-    lower = prompt.lower()
+    lower = _fold_quotes(prompt)
     return bool(
         _LOOP_REQUEST_RE.search(lower)
         and not is_past_run_read(lower)

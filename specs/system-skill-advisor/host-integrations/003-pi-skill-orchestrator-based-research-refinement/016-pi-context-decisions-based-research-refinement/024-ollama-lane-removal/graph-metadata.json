@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The advisor's semantic lane, which scores prompts with Ollama or HuggingFace embeddings, ships at live weight 0 after three negative measurements",
     "created_at": "2026-11-20T21:51:18Z",
-    "last_save_at": "2026-11-22T05:35:40.018Z",
+    "last_save_at": "2026-11-23T10:24:51.019Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "spec.md": "ddd30b83c4f560494c8a33178352445737c64421a6b2b2c733b4a9a88564a211",
       "decision-record.md": "999b36ec697dea96f65d2cd114d682574dc66dce0144921da7d1a8f1477cd570"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
-    "last_active_at": "2026-11-21T13:25:49.773Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package",
+    "last_active_at": "2026-11-23T10:24:51.019Z"
   }
 }

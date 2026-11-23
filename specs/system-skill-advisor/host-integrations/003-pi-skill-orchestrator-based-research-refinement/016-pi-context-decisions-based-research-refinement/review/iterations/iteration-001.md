@@ -2,24 +2,21 @@
 
 ## Dispatcher
 
-- Run: 1 of 5, generation 2, lineage `restart`, session `2026-11-23T05:51:03.170Z`.
-- Dimension: correctness (D1).
-- Iteration number derived from the state log: zero prior `type:"iteration"` records, so this is iteration 1, matching the dispatch.
-- Operator focus: covered the third-round fixes (deep-loop offer gate in TS and Python, exclusion-file reload), pasted-reply stripping and route receipts, judged from code and tests rather than packet verdict tables. Crash fallback, the Ollama and embedding lane removal residue tool, the doctor cleanup and bridge env parity are left for later iterations (budget).
+- Iteration 1 of 5, generation 3, sessionId 2026-11-23T09:35:31.105Z, lineageMode restart (config). JSONL held zero iteration records, so the derived number is 1 and matches dispatch.
+- Dimension: correctness. Operator focus addressed by starting at phase 028's fixes (stdin guard, curly-apostrophe fold, ITERATION_COUNT comment) and then the offer gate's question exception, the exclusion reload stamp, both runtimes' fixture parity.
+
+## Dimension
+
+D1 Correctness.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (ITERATIVE_ASK, MULTI_PASS, LOOP_COUNT, LOOP_REQUEST, asksForLoopRun, attachCommand, deferredLoopCommand; lines 277-520, 640-762)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (loop-ask regex mirror and `_apply_deep_loop_offer_gate`; lines 4470-4530, 4600-4630; strip mirror at 5029-5076)
-- `.skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts` (whole file)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py` (exclusion loading, lines 401-418)
-- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts` (pasted-reply strip, lines 243-274) and its callers in `skill-advisor-brief.ts:424,480`, `scorer/fusion.ts:1089`, `handlers/advisor-recommend.ts:529`, `hooks/lib/skill-advisor-cli-fallback.ts:233`, `hooks/claude/user-prompt-submit.ts:202,378`
-- `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts` (whole file)
-- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` (receipt guard and receipt write, lines 339-436)
-- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:71-106` and `directive-lifecycle.ts:88,227` (clock semantics)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json` (25 cases)
-
-Test runs (output and exit read): `npx vitest run` over deep-loop-offer-cases, route-exclusions, hooks/route-receipt, legacy/advisor-prompt-policy, subprocess-output-cap, hooks/skill-advisor-cli-fallback-no-match: 6 files, 127 tests passed. `python3 -m pytest runtime/tests/python/test_skill_advisor.py`: 18 passed.
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:211-317` (runSpawnAttempt, stdin guard)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:375-410, 455-508, 715-745` (stuck-run, past-run, asksForLoopRun, LOOP_QUESTION, ITERATION_COUNT, both offer paths)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4479-4625` (Python offer gate)
+- `.skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:82-126` (reload stamp)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json`, `tests/deep-loop-offer-cases.vitest.ts`, `tests/legacy/advisor-subprocess.vitest.ts`, `tests/subprocess-output-cap.vitest.ts` (diff), `tests/python/test_skill_advisor.py:2854-2878`
+- `028-second-epic-review-fixes/implementation-summary.md` (claims only)
 
 ## Findings - New
 
@@ -33,45 +30,48 @@ None.
 
 ### P2 Findings
 
-None.
-
-Severity doctrine was not needed for a call this iteration because no finding was raised; it loads before the first severity call in a later iteration.
+1. **A negated loop question is read as a request for the loop in both offer gates** -- .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:492 -- `LOOP_QUESTION` only accepts `(?:how|why|when|what) (?:does|do|is|are|did|makes)`, so a question opened by a negated auxiliary is not a loop question, and the stuck-run symptom `(?:doesn't|won't|...) (?:converg\w*|...)` needs the negation directly before the verb, so the inverted question order escapes it too. `LOOP_REQUEST` then matches the bare `deep review` wording and `asksForLoopRun` returns true, which lets `/deep:review` be offered on a diagnostic question. The Python copy has the same shape at .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4546 and agrees, so parity holds and the gap is shared. Probed: Python `asks_for_loop_run` returns True, `is_stuck_run_complaint` False for "why doesn’t the deep review converge", "why doesn't my deep review converge" and "why won't the deep review stop"; the built native gate (`dist/runtime/lib/command-attach.js`) returned the same. The same thought in declarative form, "the deep review isn’t converging", is correctly held back (stuck True, asks False).
+   Finding class: recall gap in a shared heuristic (both runtimes)
+   Scope proof: the deep-loop offer gate shipped in the epic's third-round fixes; the shared fixture `tests/fixtures/deep-loop-offer-cases.json` has no negated-question case, so neither suite catches it.
+   Affected surface hints: `command-attach.ts` LOOP_QUESTION and LOOP_RUN_SYMPTOM, `skill_advisor.py` _LOOP_QUESTION_RE and _LOOP_RUN_SYMPTOM_RE, the shared fixture.
+   Case: the prompt "why doesn't my deep review converge" gets a /deep:review run offer instead of being treated as a question about an existing run.
 
 ## Traceability Checks
 
-- `spec_code` (partial): the third-round claims checked against code. Exclusion reload is real: `getRouteExcludedSkillIds` re-stats the winning file and reloads on a changed stamp [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts:94-116]. The deep-loop offer gate exists in both runtimes and reads the same pattern set [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:464-479] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4504-4513]. Bridge env parity not yet checked, so the protocol stays partial.
+- spec_code (partial, this iteration only the 028 claims): stdin guard present at subprocess.ts:249 and exercised by a real-process EPIPE test in subprocess-output-cap.vitest.ts; curly fold present in `asksForLoopRun` (command-attach.ts:478) and `_fold_quotes` (skill_advisor.py:4559) with fixture case `want-research-loop-curly-apostrophe`; ITERATION_COUNT comment (command-attach.ts:495-501) now matches behavior: probe gives false for "why does the deep review stop after ten iterations" and true for "why does it stop after ten iterations". Children 007-010 statuses, catalog sources and 027 AC-006 are left for the traceability pass.
+- checklist_evidence: not run this iteration.
 
 ## Integration Evidence
 
-- Strip call sites named above all route through the one idempotent `stripLeadingPastedReply`, so the hook, the CLI fallback, the handler and the scorer see the same text for one prompt.
-- Python one-shot CLI reads exclusions fresh per call [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:416-418], so only the TS daemon needed the reload.
+- Tests run: `vitest run tests/deep-loop-offer-cases.vitest.ts tests/legacy/advisor-subprocess.vitest.ts tests/route-exclusions.vitest.ts tests/hooks/route-receipt.vitest.ts` -> 4 files, 93 tests passed, exit 0. Python fixture parity replayed directly: 0 mismatches across 30 cases.
+- Note: the 028 fixes are uncommitted working-tree modifications (`git status` shows lib/command-attach.ts, lib/subprocess.ts, scripts/skill_advisor.py, the fixture and two tests modified). The `dist/` build used for the native probe may predate them; the negated-question result does not depend on the 028 changes (straight-apostrophe form gives the same result), and the Python probe ran on the working-tree source.
 
 ## Edge Cases
 
-- Ambiguity: the LOOP_WORDING list in TS is spliced from an array [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:277-281] while Python hardcodes `deep research|deep review|multi-pass` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4508]. They agree today; parity is held by the shared `deep-loop-offer-cases.json` fixture, not by a single source. Not a finding (no wrong output found), noted for maintainability.
-- Known, documented limitation: the last task marker wins in the strip, so a user task that itself holds a later `Now:` line keeps only the tail. The fixture records it as `expected` beside an `ideal` (`two-markers-in-user-task`, `user-task-before-follow-up-marker`), so it is an accepted trade-off, not a new defect.
-- The comment at `hooks/claude/user-prompt-submit.ts:419` says the clock is read "before this turn's directive delivery moves it". The clock fields only change on `advance-generation` / `advance-session` [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts:75-81], and the end-to-end receipt tests suppress across turns with real stores, so the receipt is not invalidated by delivery. Inference only on whether `evaluate` ever moves the clock; not raised.
+- Ambiguity: the native probe ran on a built `dist/` file because no TS runner (`tsx`) is installed; Python ran on source. Severity rests on the source regex read plus the Python run.
+- Process note: while looking for a TS runner I created and immediately removed an empty directory `runtime/tests/__scratch_probe` inside the review target. Net change is none (git status confirms no new path), but it is recorded here as a deviation from the read-only rule.
 
 ## Confirmed-Clean Surfaces
 
-- Route-exclusion reload: stamp covers which file wins plus size and mtime; a missing or malformed file resolves to an empty set; a local override fully replaces the committed list.
-- Route-receipt guard: suppresses only a floored, work-intent, weak follow-up whose top skill differs from a current receipt; a shrunk transcript or a moved clock delivers; file store checks ownership, mode 0o077, symlinks, size cap, and writes via temp plus rename.
-- Receipt write: floored or degraded routes only expire a differing held receipt, never write one [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:414-419].
-- Deep-loop command attach: stuck-run complaints route to the doctor command; deferred routes offer a command only for exactly one mode cue; a typed other deep-loop command does not unlock this one.
+- `runSpawnAttempt` stdin guard: listener attached before write; error is swallowed and the close handler reports the exit code (subprocess.ts:246-252, 296-316).
+- Busy-marker scan across chunk boundaries with a 64-char carry (subprocess.ts:262-272).
+- Route-exclusion reload: stamp is path+size+mtime of the winning file, falls through local override then committed file, and the cache reloads on any stamp change (route-exclusions.ts:94-115).
+- Python gate `_apply_deep_loop_offer_gate` keeps a typed command even on a stuck complaint, matching the native `typesThisCommand` bypass (skill_advisor.py:4607-4625 vs command-attach.ts:721-724).
 
 ## Ruled Out
 
-- Strip non-idempotence between hook and scorer: ruled out, the function loops to a fixed point [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:267-273].
-- Receipt store permission failure on an existing base dir: the live `$TMPDIR/speckit-advisor` tree is 0700 and owned by the user, and `mkdirSync` creates it 0700.
-- TS/Python offer-gate drift: 127 TS tests and 18 Python tests pass over the shared fixtures.
+- R2-P2-001 (stdin write without error listener): fixed at HEAD working tree.
+- R4-P2-001 (curly apostrophe defeats loop-run ask): fixed in both runtimes.
+- R4-P2-002 (ITERATION_COUNT comment contradicts behavior): comment now matches probed behavior.
+- Native/Python drift on the 30 shared offer cases: none.
 
 ## Next Focus
 
-- Dimension: D2 security.
-- Focus area: `.skilled/bin/system-skill-advisor-launcher.cjs` bridge env forwarding (what env is passed to the child), `runtime/lib/subprocess.ts` output cap, `hooks/lib/skill-advisor-cli-fallback.ts` crash fallback, the Ollama/embedding residue tool, and receipt file trust boundary.
-- Reason: correctness pass on the third-round logic came back clean; the remaining risk sits at process and filesystem boundaries.
-- Rotation status: D1 done, D2 to D4 pending.
-- Carry-forward: bridge env parity and crash fallback still unchecked for correctness too.
-- Required evidence: file:line on each env key forwarded or dropped.
+- Dimension: security
+- Focus area: route-receipt.ts hook input handling, pasted-reply strip in prompt-policy.ts, launcher env passthrough (bridge env parity), residue tool and doctor cleanup file deletion paths.
+- Reason: planned rotation; correctness pass left these unread.
+- Rotation status: 1/4 dimensions covered.
+- Carry-forward: offer-gate fixture probing was productive; keep probe-by-prompt for the Python side.
+- Required evidence: file:line for any path or env handling.
 
 Review verdict: PASS

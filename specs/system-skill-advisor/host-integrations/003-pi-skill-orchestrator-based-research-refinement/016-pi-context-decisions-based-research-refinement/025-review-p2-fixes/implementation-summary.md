@@ -8,26 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes"
-    last_updated_at: "2026-11-21T13:49:38Z"
+    last_updated_at: "2026-11-23T10:24:48Z"
     last_updated_by: "generate-context"
-    recent_action: "Planned the review P2 fixes in spec, plan, tasks and acceptance criteria"
-    next_safe_action: "Run speckit implement on the review P2 fixes"
+    recent_action: "Set completion to 100 to match the Complete status"
+    next_safe_action: "None. The packet is complete"
     packet_purpose: "Purpose: Each advisory closes with a change that a command can check, and the 024 completion metadata matches its evidence, so a follow-up review can move the verdict toward PASS."
     blockers: []
     key_files:
-      - "025-review-p2-fixes/plan.md"
+      - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:80cd6d83641dfd97e891a8fe68017aafb4a7a35e0be7da3a14f0bf7686becbd7"
       session_id: "scaffold-025-review-p2-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
-      workspace: "/Users/michelkerkmeester/worktrees/public/497-ollama-lane-removal"
-      savedAt: "2026-11-21T13:49:38Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/523-epic-016-second-review-fixes"
+      savedAt: "2026-11-23T10:24:48Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
