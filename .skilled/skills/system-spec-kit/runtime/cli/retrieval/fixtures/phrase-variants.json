@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0bd52b2d7be6519eff8c517337a59e6c4cbc75493597cbb0dbe0bca5d09fc128",
+  "manifestHash": "1630f5f8f832c757877d407c552722f1095efef81e7db5d2d124511d21f6ca34",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9637,6 +9637,9 @@
     "advisor local sqlite declaration": [
       "advisor local sqlite declaration"
     ],
+    "advisor logic review report": [
+      "advisor logic review report"
+    ],
     "advisor long prompt head": [
       "advisor long prompt head"
     ],
@@ -10084,6 +10087,9 @@
     ],
     "advisor socket dir caveat": [
       "advisor socket dir caveat"
+    ],
+    "advisor socket ownership check": [
+      "advisor socket ownership check"
     ],
     "advisor socket protocol": [
       "advisor socket protocol"
@@ -118842,6 +118848,12 @@
     "skill advisor debug log gate": [
       "skill-advisor debug log gate"
     ],
+    "skill advisor deep review generation 4": [
+      "skill advisor deep review generation 4"
+    ],
+    "skill advisor deep review generation 5": [
+      "skill advisor deep review generation 5"
+    ],
     "skill advisor deferred cleanup": [
       "skill-advisor deferred cleanup"
     ],
@@ -120022,6 +120034,9 @@
     ],
     "skill graph scan": [
       "skill graph scan"
+    ],
+    "skill graph scan deletes skills": [
+      "skill graph scan deletes skills"
     ],
     "skill graph scan trusted caller gate": [
       "skill_graph_scan trusted caller gate"
@@ -133326,6 +133341,9 @@
     ],
     "trusted caller": [
       "trusted caller"
+    ],
+    "trusted caller default review": [
+      "trusted caller default review"
     ],
     "trusted mutation docs": [
       "trusted mutation docs"

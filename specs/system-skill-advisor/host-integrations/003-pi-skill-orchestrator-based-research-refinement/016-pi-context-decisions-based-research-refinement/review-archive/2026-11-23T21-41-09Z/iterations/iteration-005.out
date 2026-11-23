@@ -1,0 +1,36 @@
+## Review Iteration 5 Complete
+
+```
+BINDING: target=.skilled/skills/system-skill-advisor
+BINDING: maxIterations=5
+BINDING: convergence=0.1
+BINDING: mode=review
+BINDING: dimensions=correctness,security,traceability,maintainability
+BINDING: specFolder=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement
+```
+
+**Focus** — correctness, closing pass: re-verify all 16 active findings at HEAD, then cover the never-read cache/lifecycle slice.
+
+**Two jobs, outcomes**
+
+1. **Recheck (16/16).** No carried finding is a false positive. One retained, one sharpened, fourteen confirmed unchanged.
+   - **R2-P1-001 stays P1.** I first reasoned toward a P2 downgrade — `metadata.trusted === true` short-circuits at `advisor-server.ts:237-240`, so the gate was never an authentication boundary. The loaded doctrine overrode that: `review-core.md` §2 reach calibration says a doc line that promises to reject an input class and fails for that class keeps P1. The guard's own comment promises absent metadata fails closed, the shipped launcher (`launcher.cjs:73-82`) makes it trusted, and the reach (a `_meta`-less same-user client) is named. Not P0, because trust is caller-assertable.
+   - **R3-P2-002 narrowed:** the cited suite exists at `runtime/tests/skill-advisor-cli-manifest-parity.vitest.ts`; the defect is only the missing `runtime/` prefix at `skill-advisor-cli.md:16`.
+2. **New coverage — one new defect, three directions ruled out.**
+   - **R5-P2-001 (new, P2):** `acquireGenerationLock` publishes the lock token in two syscalls (`generation.ts:155-156`), so a concurrent publisher can read an empty file, map it to `token:null` (`:139-146`), and `rmSync` a live lock with no token comparison (`:186-191`) — while the comment at `:117-127` claims exactly that CAS. Both publishers then write `generation+1` for two states.
+   - Ruled out with evidence: stale freshness/prompt caches (keys carry the content signature), a cross-skill-loader cache (none exists), a doc-harvest atomicity gap (fail-closed ordering at `skill-graph-db.ts:1042-1068`).
+
+**Findings:** 1 total — P0 0, P1 0, P2 1. Run totals: P0 0, P1 1, P2 16.
+**newFindingsRatio:** 0.075 (weightedNew 1 + refinement 0.5 over weightedTotal 20).
+**Dimensions:** 4/4 complete; iteration budget exhausted at 5/5.
+**Traceability:** `spec_code` fail, `feature_catalog_code` partial (raised from fail — the CLI entry names the daemon-side knob accurately), `checklist_evidence` notApplicable; `skill_agent` / `agent_cross_runtime` unrun.
+**Edge cases:** empty-lock window is not reproducible on demand (proven by statement order, untested by any suite); `lifecycle/` and `derived/` plus most of `cross-skill-edges/` and `skill-graph/` were **not read** — deferred, not claimed clean.
+**Files written:** `review/iterations/iteration-005.md`, `review/deltas/iter-005.jsonl`, strategy in-place; record through the gateway (`sequence 28`, exit 0, `projectionRefreshed: true`).
+**Status:** `complete`.
+
+**Verdict:** `Review verdict: CONDITIONAL` — final line verified byte-exact.
+
+Two things worth your attention, both outside my write scope: the findings registry still shows 16 open (P1=1, P2=15) because the reducer has not yet ingested `iter-005.jsonl` — R5-P2-001 lands there, and the reducer owns that file. And `deep-review-config.json` shows a full diff in `git status`; that is this run's generation 3→4 restart initialization, not a write from this pass (target tree `.skilled/skills/system-skill-advisor` is clean).
+
+The operator action: dispatch the reducer, then open remediation for R2-P1-001 and R5-P2-001.
+

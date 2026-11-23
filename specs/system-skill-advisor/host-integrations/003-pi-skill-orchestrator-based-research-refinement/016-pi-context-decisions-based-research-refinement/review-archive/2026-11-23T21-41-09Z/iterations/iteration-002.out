@@ -1,0 +1,27 @@
+## Review Iteration 2 Complete
+
+**Focus:** security — daemon/IPC, caller authority, subprocess and prompt piping, hook state files, temp/symlink handling, env forwarding.
+
+**Findings: 3 new (P0 0 / P1 1 / P2 2)**
+
+1. **P1 — the trusted-caller gate is trusted-by-default in the shipped launcher** [SOURCE: .skilled/skills/system-skill-advisor/runtime/advisor-server.ts:247]. `resolveTrustedCaller` promises absent `_meta` fails CLOSED, but the launcher the CLI spawns carries `REPO_ENV_DEFAULTS = {SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted'}` (`.skilled/bin/system-skill-advisor-launcher.cjs:74`, forwarded in `spawnLauncher`'s `env: process.env` at skill-advisor-cli.ts:1118), so a `_meta`-less same-user client is trusted and `advisor_rebuild` / `skill_graph_scan` / `propagate_enhances mode=apply` pass `requireTrustedCaller`. Not P0 because `_meta.trusted` is caller-asserted anyway; not P2 because the documented refusal guarantee and ENV-REFERENCE default are both false in the shipped config.
+2. **P2 — shadow delta log persists the raw prompt at default mode** (shadow-sink.ts:135): `ShadowDeltaRecord.prompt` is appended with `mkdirSync`/`appendFileSync` and no mode, owner or symlink guard, unlike the hook receipt store's 0700/0600 + `ownedFolder` contract (route-receipt.ts:245-250, 283-291).
+3. **P2 — prompt-time mutation refusal exists only in the CLI front door** (skill-advisor-cli.ts:747-761, reached only at :779); the daemon's socket dispatch (advisor-server.ts:317-341) has no prompt-time concept, so a future direct socket client inherits no protection.
+
+**newFindingsRatio:** 0.58 (weighted new 7 / weighted total 12; no refinement of an iteration-1 finding).
+
+**Dimensions completed/remaining:** correctness, security reviewed · traceability, maintainability pending.
+
+**Ruled out after direct reads:** prompt→shell injection (argv-array spawns, stdin prompt), workspace `skill_advisor.py` as supply-chain escalation (repo vendors `.skilled`), lease-driven signal redirect (`kill(pid,0)` probe only), socket-dir ownership (shared bridge refuses foreign-owner/group-writable dirs and non-socket leaves), Python↔TS state-store parity (Python store is dir-fd anchored with O_NOFOLLOW/O_EXCL/uid/nlink checks).
+
+**Edge cases recorded:** socket peer identity is unverified in-target (skill-advisor-cli.ts:1205) but the transport lives in `.skilled/bin/lib/launcher-ipc-bridge.cjs` and the shared package — outside the declared target, deferred to traceability (ledger SL-007); config says `lineageMode: restart` while the registry says resume.
+
+**Traceability:** `spec_code` partial (doc claim at references/graph/propagate-enhances.md:76 vs shipped default); `checklist_evidence` left out — dimension 3 owns it.
+
+**Recommended next focus:** traceability — reference vs shipped-default contradiction (R2-P1-001) and the deferred socket peer-identity trace.
+
+**Files written:** `review/iterations/iteration-002.md`; `review/deltas/iter-002.jsonl` (10 lines); `review/deep-review-strategy.md` (dimension list, completed dimensions, counts P1=1/P2=7, What Worked/Failed, stale NEXT FOCUS and coverage matrix replaced). State recorded through the append gateway: exit 0, receipt `event-3517ce3a…`, `projectionRefreshed: true`, state log now carries exactly 2 iteration records with full route proof. Review target untouched (only ledger frames changed, which are the gateway's own writes).
+
+**Status:** `complete`. Verification note: the strategy edits are evidenced by the edit tool's exact-match success (it errors on a mismatch), not by a re-read — the file was not read back after the call, which was the last of the 24-call budget.
+
+Verdict line: `Review verdict: CONDITIONAL`.

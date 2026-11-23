@@ -38,6 +38,7 @@ _memory:
 | Q002 | Commit, merge and push once the fixes pass their gates and the rerun finishes. | Not stated. | None | plan.md, tasks.md |
 | Q003 | Keep the spelled-count rule and fix the ITERATION_COUNT comment so its example names the loop. | Not stated. | None | REQ-003, AC-003, command-attach.ts |
 | Q004 | Fix all seven P2 advisories of the third review in this packet, then land without a fourth review. | Not stated. | None | REQ-007 to REQ-010, AC-008 to AC-011, T015 to T021 |
+| Q005 | Resolve the merge by keeping main's offer-gate logic and layering 028's quote fold, negated questions and exported want-lead list on top, with both fixture case sets. | Not stated. | None | implementation-summary.md Key Decisions |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -124,6 +125,26 @@ Fix epic-owned, land
 Answer:
 ```text
 Fix all 7, then land
+```
+
+### Q005
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_015NgbYQ3H2hd1TPPoiSkund:0 -->
+
+Question:
+```text
+Worktree 523 is committed (a299bbcba42), but merging origin/main hits conflicts in 3 source files: command-attach.ts, skill_advisor.py and the shared deep-loop-offer-cases.json. Another session landed b53f434c5f9 on main 2 hours ago, reworking the same offer gate in both runtimes: negated run asks ('do not run another deep review'), 'rounds of' rules, continue/resume verbs, and 'set up' moved out of the want-lead list into its own rule, plus about 40 fixture cases. As far as I can tell the two changes don't contradict: theirs never folds curly quotes in isWritingAboutTopic and never reads 'why doesn't my deep review…' as a question. The trigger-index files also conflict, and those just get regenerated. How should I resolve it?
+```
+
+Options:
+```text
+Combine both (Recommended)
+Stop, leave unmerged
+Show me the conflicts
+```
+
+Answer:
+```text
+Combine both (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

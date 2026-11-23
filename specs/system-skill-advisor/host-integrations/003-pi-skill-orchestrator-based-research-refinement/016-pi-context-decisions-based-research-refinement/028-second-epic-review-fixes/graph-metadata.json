@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A Python child that exits before it reads the prompt makes the advisor subprocess throw an uncaught `EPIPE` instead of failing open",
     "created_at": "2026-11-23T09:26:09Z",
-    "last_save_at": "2026-11-23T18:18:19.261Z",
+    "last_save_at": "2026-11-23T22:15:40.007Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c60afeaf874ac31a9159470dab06180c350fdee12155a8bc83035d832b3c909f",
+    "source_fingerprint": "sha256:16995a159c5ce970da981449999b90c8e594e29bdd3890ce49d954c5af6ce80a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d23c77db171583fdce26d6bec28ba637a0c370a4b5ef474e31759dd0232bc755",
       "plan.md": "8697cf93e9987a8007ea82d13a21bfb8e68c61fd7b6aee80ce85235a3225978f",
       "tasks.md": "0fd3d32e8dc5f9c5284a89891fcee3265f085b3085e8acf632acf8a59fc95a72",
-      "decision-record.md": "fb9c422d2f36c97dd79efa7a3cc19f75049a20802ca063b03a7ac55a12fdeb43",
-      "implementation-summary.md": "efd9da2bd02a2d9e69fb106021ac5aee391475faf794189cdf33d5bc84de449d"
+      "decision-record.md": "59c2daf9036001d1685cd346ae1d577baaba85eadf20440b1a4371d3c9d36f63",
+      "implementation-summary.md": "af592971b4e311116c6099426f7ffec9002b7cd7cdfde9601a033462d4b03ce6"
     },
     "last_active_at": null
   }

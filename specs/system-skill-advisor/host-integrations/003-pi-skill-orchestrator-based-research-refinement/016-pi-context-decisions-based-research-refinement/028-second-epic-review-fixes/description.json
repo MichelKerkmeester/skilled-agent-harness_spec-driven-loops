@@ -6,7 +6,7 @@
     "phase",
     "second-epic-review-fixes"
   ],
-  "lastUpdated": "2026-11-23T10:35:58.461Z",
+  "lastUpdated": "2026-11-23T22:14:48.605Z",
   "specId": "028",
   "folderSlug": "second-epic-review-fixes",
   "parentChain": [
@@ -15,8 +15,9 @@
     "003-pi-skill-orchestrator-based-research-refinement",
     "016-pi-context-decisions-based-research-refinement"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "23-11-26_11-35__fixed-the-six-p2-findings-of-the-second-five-pass.md"
+    "23-11-26_11-35__fixed-the-six-p2-findings-of-the-second-five-pass.md",
+    "23-11-26_23-14__recorded-the-operator-s-merge-decision-for.md"
   ]
 }

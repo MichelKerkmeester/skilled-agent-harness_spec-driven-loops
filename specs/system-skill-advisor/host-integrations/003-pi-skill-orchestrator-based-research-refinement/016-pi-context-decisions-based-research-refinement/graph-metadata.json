@@ -218,7 +218,7 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-23T10:36:14.108Z",
+    "last_save_at": "2026-11-23T22:15:40.010Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,13 +226,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:8b408444ea26d854326a9e9c41ac15af2cd18db139f6b6c991295193b516ffe9",
+    "source_fingerprint": "sha256:0f06c14cd7e284ecbdc5446c611add6a701260b668167fdeebb5b5bb275bfe36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "84f618192e9e755a3c01860332cd600419f469210423bdaa9ffc666631735667",
-      "decision-record.md": "9efcaf1024dee7424460dd801bed42db50bebcdfaf89f1514231d5e91922ba16"
+      "decision-record.md": "f63f6ef4836e6961c21c58b76b17b2e648e70bcebe7bc52822d2a21c737cbd80"
     },
     "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes",
-    "last_active_at": "2026-11-23T10:35:58.532Z"
+    "last_active_at": "2026-11-23T22:15:01.064Z"
   }
 }

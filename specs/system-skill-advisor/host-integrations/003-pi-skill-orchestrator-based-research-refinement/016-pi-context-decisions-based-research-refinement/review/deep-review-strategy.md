@@ -11,9 +11,9 @@ contextType: planning
 version: 1.11.1.0
 ---
 
-# Deep Review Strategy - 016 Epic, Generation 3
+# Deep Review Strategy - Advisor Logic, Generation 5
 
-Live strategy for the third five-pass review of the whole 016 epic, run after phase 028 fixed the second review's six P2 findings.
+Live strategy for the three native Opus passes that follow the DeepSeek generation.
 
 ## 1. OVERVIEW
 
@@ -32,7 +32,9 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 ---
 
 ## 2. TOPIC
-Review of the whole 016 pi-context-decisions epic, phases 001 to 028, as the code stands at HEAD. Target type: spec-folder. Focus: Review the code and docs the whole epic shipped across phases 001 to 028 as they stand at HEAD: pasted-reply stripping, crash fallback, route receipts, the Ollama and embedding lane removal and its residue tool, the doctor cleanup, the third-round fixes (bridge env parity, deep-loop offer gate, exclusion reload) and phase 028's fixes for the second review's six P2 findings (subprocess stdin guard, curly-apostrophe fold and ITERATION_COUNT comment in both offer-gate runtimes, child 007 to 010 statuses, receipt-guard catalog sources, 027 AC-006). Judge from code and tests; treat packet evidence and verdict tables as claims to check, not facts.
+The system-skill-advisor logic: 154 source files under `.skilled/skills/system-skill-advisor/runtime/` and `hooks/` (tests, fixtures, benches and dist excluded), at HEAD `82af76f6754`. Target type: skill. Focus: The advisor's logic: runtime/ (lib, scorer, handlers, scripts including the Python fallback skill_advisor.py) and hooks/. Prose docs are out of scope unless code contradicts them.
+
+Generation 4 (five DeepSeek passes, report archived at `review-archive/2026-11-23T21-41-09Z/review-report.md`) returned FAIL: one P1 (R2-P1-001, the launcher sets SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted while `advisor-server.ts:324-326` says a call without caller metadata stays untrusted), 14 P2s, failed scope and coverage gates and four deferred search rows (socket_hijack, python_ts_parity, duplication, lifecycle_and_derived_defect_scan). This generation starts a fresh registry: a finding that still holds is recorded again with its full repo-relative path.
 
 ---
 
@@ -42,16 +44,14 @@ Review of the whole 016 pi-context-decisions epic, phases 001 to 028, as the cod
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
-- Not a re-review of the earlier runs as such; they are archived under `review-archive/2026-11-23T05-50-33Z/` (generation 1) and `review-archive/2026-11-23T09-35-19Z/` (generation 2). Generation 2's six P2s are claims to recheck at HEAD, not findings to carry.
-- Not the cut or research-only items in the epic spec (R1, R4, R6, R7, R8, N5, N6, N7).
-- Not code outside the files the epic touched, except where a finding needs a caller or callee read.
-- Not the deep-loop skill's own tooling (the reducer-generated resource map), which belongs to another packet.
+- Prose docs, except where code contradicts them.
+- Test files as review targets; read them only to judge expected behaviour, and run them when a parity claim needs settling.
 - No fixes: the review target is read-only.
 
 ---
 
 ## 5. STOP CONDITIONS
-- Stop policy is max-iterations: all 5 iterations run; convergence is telemetry only.
+- Stop policy is max-iterations: all 3 iterations run; convergence is telemetry only.
 - Halt on a P0 that needs operator attention before more passes.
 
 ---
@@ -67,120 +67,67 @@ Review of the whole 016 pi-context-decisions epic, phases 001 to 028, as the cod
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 0
-- P2 (Suggestions): 7
+- P1 (Required): 2
+- P2 (Suggestions): 8
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
-- Probing both offer gates with hand-written prompts (Python on source, native via dist) surfaced a shared gap the fixture misses (iteration 1)
-- Running the targeted vitest files plus the Python fixture replay confirmed the 028 fixes cheaply (iteration 1)
-- Comparing sibling state stores (route-receipt ownedFolder vs Vibe head receipt) exposed a missing folder-trust check (iteration 2)
-- A timing probe on the built dist settled the pasted-strip ReDoS question in one call (iteration 2)
-- One scripted pass over all 28 children's spec, graph and acceptance status found the stale child a named-instance fix missed (iteration 3)
-- Rerunning goal and AC commands plus validate.sh --recursive --strict (about 42 s) checked packet claims cheaply (iteration 3)
-- Grepping every caller of the exported offer-gate predicates, then probing dist and Python with a straight/curly pair, found the one predicate the fold fix missed (iteration 4)
-- Grepping the shared fixture and both test suites for each vocabulary entry exposed branches no parity case guards (iteration 4)
-- Rerunning validate.sh --recursive --strict plus the goal and 028 AC commands, and one paired-prompt probe over both runtimes, rechecked all seven P2s and settled checklist_evidence (iteration 5)
+- Running the parity suites instead of reading them settled python_ts_parity in two calls: vitest 206/206 in 9 files, python 130/0 (iteration 2)
+- Comparing the client socket checks with the shared server's own threat comment exposed the missing owner check (iteration 2)
+- One batched sed over every cited line rechecked all eight open findings in a single call (iteration 3)
+- A path sweep over the catalog (123 paths, none missing) plus a caller grep found the claims that are false, not the paths (iteration 3)
 
 ---
 
 ## 9. WHAT FAILED
-- No TS runner (tsx) installed, so native probes rely on a possibly stale dist build (iteration 1)
-- macOS has no `timeout` binary; run probes without it (iteration 2)
-- Naive backtick-path resolution over catalog files flags many relative cross-links; resolve against the catalog root before reading hits (iteration 3)
-- zsh does not word-split an unquoted variable of paths; wrap multi-file greps in bash -c (iteration 4)
-- `${PIPESTATUS[0]}` after a `cd && npx vitest | tail` chain printed empty under zsh, so the goal-101 vitest exit was not captured (iteration 5)
-- Exhausted-approach entries reuse generation 2's ids (R2-P2-001, R4-P2-001, R4-P2-002 "fixed"), which collide with this run's open findings of the same ids; match by title plus file:line (iteration 5)
+- Capturing the vitest exit through PIPESTATUS inside a subshell printed empty; only the summary line is evidence (iteration 2)
+- The 24-call budget did not reach handlers/skill-graph/status.ts and validate.ts (iteration 2)
+- The 24-call budget left playbook_capability unrun; INTENT_BOOSTERS against PHRASE_BOOSTS was compared only through the shared corpus, not table by table (iteration 3)
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### 003 graph status in_progress: explained by the recorded no-ship decision. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: 003 graph status in_progress: explained by the recorded no-ship decision.
+### heldBelow naming one holder (fusion.ts:545-558): the named binding is the lowest-scored holder, which is the one whose ceiling (min) set the final score, as the comment at :542-544 states. Not a defect. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: heldBelow naming one holder (fusion.ts:545-558): the named binding is the lowest-scored holder, which is the one whose ceiling (min) set the final score, as the comment at :542-544 states. Not a defect.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: 003 graph status in_progress: explained by the recorded no-ship decision.
+- Do NOT retry: heldBelow naming one holder (fusion.ts:545-558): the named binding is the lowest-scored holder, which is the one whose ceiling (min) set the final score, as the comment at :542-544 states. Not a defect.
 
-### A phase 028 fix regressing: ruled out by the rechecks above. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A phase 028 fix regressing: ruled out by the rechecks above.
+### isError loss in toMCP: the skill-graph handlers never set isError. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: isError loss in toMCP: the skill-graph handlers never set isError.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A phase 028 fix regressing: ruled out by the rechecks above.
+- Do NOT retry: isError loss in toMCP: the skill-graph handlers never set isError.
 
-### Bridge env drift between launcher and Python bridge: none beyond the documented launcher-only keys. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Bridge env drift between launcher and Python bridge: none beyond the documented launcher-only keys.
+### NaN from age-haircut.ts:37-40 on a malformed timestamp: the only live caller passes `derivedGeneratedAt` validated through isoTimestampOrNull (projection.ts:1334). Not reachable. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: NaN from age-haircut.ts:37-40 on a malformed timestamp: the only live caller passes `derivedGeneratedAt` validated through isoTimestampOrNull (projection.ts:1334). Not reachable.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Bridge env drift between launcher and Python bridge: none beyond the documented launcher-only keys.
+- Do NOT retry: NaN from age-haircut.ts:37-40 on a malformed timestamp: the only live caller passes `derivedGeneratedAt` validated through isoTimestampOrNull (projection.ts:1334). Not reachable.
 
-### Comment hygiene violations in the epic's changed code: none. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Comment hygiene violations in the epic's changed code: none.
+### Prompt-time refusal as a separate finding: folded into P2-001 as defence-in-depth evidence, because hooks reach the daemon only through the CLI. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Prompt-time refusal as a separate finding: folded into P2-001 as defence-in-depth evidence, because hooks reach the daemon only through the CLI.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Comment hygiene violations in the epic's changed code: none.
+- Do NOT retry: Prompt-time refusal as a separate finding: folded into P2-001 as defence-in-depth evidence, because hooks reach the daemon only through the CLI.
 
-### Current native/Python drift on the untested vocabulary branches: none (six-prompt probe). -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Current native/Python drift on the untested vocabulary branches: none (six-prompt probe).
+### Propagate-apply trust predicate mismatch: fails closed; no write path is reachable without trust. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Propagate-apply trust predicate mismatch: fails closed; no write path is reachable without trust.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Current native/Python drift on the untested vocabulary branches: none (six-prompt probe).
+- Do NOT retry: Propagate-apply trust predicate mismatch: fails closed; no write path is reachable without trust.
 
-### Dangling cross-skill catalog links at advisor-recommend.md:31: targets exist in other skills and predate the epic. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Dangling cross-skill catalog links at advisor-recommend.md:31: targets exist in other skills and predate the epic.
+### python_ts_parity disagreement: both suites pass (206/206 vitest, 130/0 Python); no divergent case within the shared corpus. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: python_ts_parity disagreement: both suites pass (206/206 vitest, 130/0 Python); no divergent case within the shared corpus.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Dangling cross-skill catalog links at advisor-recommend.md:31: targets exist in other skills and predate the epic.
+- Do NOT retry: python_ts_parity disagreement: both suites pass (206/206 vitest, 130/0 Python); no divergent case within the shared corpus.
 
-### Doctor lane-cleanup wiring untested: ruled out by `doctor-update-contract.test.cjs:213-328`. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Doctor lane-cleanup wiring untested: ruled out by `doctor-update-contract.test.cjs:213-328`.
+### STOP_WORDS as a duplicated vocabulary: the Python and TypeScript sets serve different roles and are not meant to agree. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: STOP_WORDS as a duplicated vocabulary: the Python and TypeScript sets serve different roles and are not meant to agree.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Doctor lane-cleanup wiring untested: ruled out by `doctor-update-contract.test.cjs:213-328`.
+- Do NOT retry: STOP_WORDS as a duplicated vocabulary: the Python and TypeScript sets serve different roles and are not meant to agree.
 
-### Goal criterion 104 still failing: ruled out (29 PASSED, exit 0). -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Goal criterion 104 still failing: ruled out (29 PASSED, exit 0).
+### Symlink escape through cross-skill-edges apply: discovery skips symlinks, and the apply guard receives the root. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Symlink escape through cross-skill-edges apply: discovery skips symlinks, and the apply guard receives the root.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Goal criterion 104 still failing: ruled out (29 PASSED, exit 0).
-
-### Native probes reading a stale dist: ruled out by mtime. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Native probes reading a stale dist: ruled out by mtime.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Native probes reading a stale dist: ruled out by mtime.
-
-### Native/Python drift on the 30 shared offer cases: none. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Native/Python drift on the 30 shared offer cases: none.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Native/Python drift on the 30 shared offer cases: none.
-
-### R2-P2-001 (stdin write without error listener): fixed at HEAD working tree. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: R2-P2-001 (stdin write without error listener): fixed at HEAD working tree.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: R2-P2-001 (stdin write without error listener): fixed at HEAD working tree.
-
-### R4-P2-001 (curly apostrophe defeats loop-run ask): fixed in both runtimes. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: R4-P2-001 (curly apostrophe defeats loop-run ask): fixed in both runtimes.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: R4-P2-001 (curly apostrophe defeats loop-run ask): fixed in both runtimes.
-
-### R4-P2-002 (ITERATION_COUNT comment contradicts behavior): comment now matches probed behavior. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: R4-P2-002 (ITERATION_COUNT comment contradicts behavior): comment now matches probed behavior.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: R4-P2-002 (ITERATION_COUNT comment contradicts behavior): comment now matches probed behavior.
-
-### Receipt-guard catalog naming only the Claude hook: fixed. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Receipt-guard catalog naming only the Claude hook: fixed.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Receipt-guard catalog naming only the Claude hook: fixed.
-
-### ReDoS in the pasted-reply strip: ruled out by the timing probe. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: ReDoS in the pasted-reply strip: ruled out by the timing probe.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: ReDoS in the pasted-reply strip: ruled out by the timing probe.
-
-### Residue apply-mode deleting outside its roots or signalling a foreign process: ruled out by direct read of the containment and ownership guards. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Residue apply-mode deleting outside its roots or signalling a foreign process: ruled out by direct read of the containment and ownership guards.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Residue apply-mode deleting outside its roots or signalling a foreign process: ruled out by direct read of the containment and ownership guards.
-
-### Route-receipt path traversal or symlink redirection: ruled out by direct read. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Route-receipt path traversal or symlink redirection: ruled out by direct read.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Route-receipt path traversal or symlink redirection: ruled out by direct read.
+- Do NOT retry: Symlink escape through cross-skill-edges apply: discovery skips symlinks, and the apply guard receives the root.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -193,21 +140,17 @@ Review of the whole 016 pi-context-decisions epic, phases 001 to 028, as the cod
 
 ## 11. RULED OUT DIRECTIONS
 [Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
-- R2-P2-001, R4-P2-001, R4-P2-002 rechecked and fixed at HEAD working tree (iteration 1, evidence: subprocess.ts:249, command-attach.ts:478, skill_advisor.py:4559)
-- Native/Python drift on the 30 shared offer cases: none (iteration 1)
-- Pasted-strip ReDoS, launcher/bridge env drift, residue apply-mode escape or foreign-process signal, route-receipt traversal: all ruled out (iteration 2)
-- 003 graph in_progress (recorded no-ship decision), cross-skill catalog links at advisor-recommend.md:31 (pre-epic, targets exist), receipt-guard catalog sources (fixed): ruled out (iteration 3)
-- Comment-hygiene violations in scoped code, untested doctor lane-cleanup wiring, current native/Python drift on untested vocabulary branches: ruled out (iteration 4)
+- [Approach]: [Why ruled out] (iteration N, evidence: [source])
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none (iteration cap reached). Focus area: synthesis. - Reason: all four dimensions covered; core protocols spec_code and checklist_evidence pass; overlays feature_catalog_code and playbook_capability stay partial (advisory). - Rotation status: 4/4 dimensions covered. - Carry-forward: seven confirmed P2s; match by title plus file:line because of the id collision with generation 2. - Required evidence: none outstanding for the core gate. Review verdict: PASS
+- Dimension: none remaining; all four dimensions are covered (3 of 3 iterations used). - Focus area: synthesis. Carry G5-I1-P1-001 and G5-I2-P1-001 as the two active P1s, eight P2s. - Reason: max-iterations stop policy reached. - Rotation status: correctness, security, traceability, maintainability covered (4/4). - Blocked/productive carry-forward: do not reopen parity or the cross-skill-edges symlink path; playbook_capability was never run. - Required evidence: synthesis rechecks the two P1s at file:line before the verdict. Review verdict: CONDITIONAL
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
-Generation 2 (archived at `review-archive/2026-11-23T09-35-19Z/`) returned FAIL from the coverage gate and one open search-ledger row (env_parity), with 0 P0, 0 P1 and 6 P2: R2-P2-001 stdin write without an error listener, R3-P2-001 children 007 to 010 still Planned, R3-P2-002 receipt-guard catalog naming only the Claude hook, R3-P2-003 027 AC-006 grep not reproducing, R4-P2-001 curly apostrophe defeating the loop-run ask, R4-P2-002 ITERATION_COUNT comment contradicting behavior. Phase 028 (`028-second-epic-review-fixes/`) claims to fix all six; verify each at HEAD. Generation 2 never recorded the agent_cross_runtime overlay.
+[Populated during initialization from the continuity ladder and ripgrep recipes, if any prior work exists]
 
 ### Bounded Context Snapshot
 
@@ -228,12 +171,12 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | pass | 3 | 028 code fixes (iter 1) and doc-side claims (iter 3) hold at HEAD |
-| `checklist_evidence` | core | pass | 5 | goal 102-106 and 028 AC-001..005 reproduce; goal 104 now 29/29 PASSED exit 0; goal 100 not rerun (daemon restart); 101 output-verified, exit not captured; R3-P2-001 is metadata drift that falsifies no checked row |
-| `skill_agent` | overlay | notApplicable | 3 | epic changed no agent definition |
-| `agent_cross_runtime` | overlay | notApplicable | 3 | no agent or agent mirror in scope; hook-adapter parity checked under spec_code |
-| `feature_catalog_code` | overlay | partial | 3 | receipt-guard entry matches; pasted-reply entry under-names sources (R3-P2-003) |
-| `playbook_capability` | overlay | partial | 3 | link resolution clean for epic changes; scenarios not executed |
+| `spec_code` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
+| `checklist_evidence` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
+| `skill_agent` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `agent_cross_runtime` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `feature_catalog_code` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `playbook_capability` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -251,18 +194,18 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 
 ## 16. REVIEW BOUNDARIES
 <!-- MACHINE-OWNED: START -->
-- Max iterations: 5
-- Convergence threshold: 0.1
+- Max iterations: [from config]
+- Convergence threshold: [from config]
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=2026-11-23T09:35:31.105Z, parentSessionId=2026-11-23T05:51:03.170Z, generation=3, lineageMode=restart
+- Session lineage: sessionId=[from config.sessionId], parentSessionId=[from config.parentSessionId], generation=[from config.generation], lineageMode=[from config.lineageMode]
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
-- Per-iteration budget: 24 tool calls, 10 minutes
-- Severity threshold: P2
-- Review target type: spec-folder
-- Cross-reference checks: core=spec_code, checklist_evidence; overlay=skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability
+- Per-iteration budget: [from config.maxToolCallsPerIteration] tool calls, [from config.maxMinutesPerIteration] minutes
+- Severity threshold: [from config.severityThreshold]
+- Review target type: [from config.reviewTargetType]
+- Cross-reference checks: core=[from config.crossReference.core], overlay=[from config.crossReference.overlay]
 - Started: [timestamp]
 <!-- MACHINE-OWNED: END -->
 
