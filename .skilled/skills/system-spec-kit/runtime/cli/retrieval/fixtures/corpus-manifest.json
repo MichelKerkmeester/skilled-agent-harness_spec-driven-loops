@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fe2d850ee832afcc74f74dada314b543ccd43dedbc6f4d8e07e199ddd778c258",
+  "corpusHash": "108dd065b4e14e75193f720f0ab8be49aceceb20b6451237414960e0084ac9e4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29382,
+  "includedPathCount": 29391,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2490,6 +2490,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.21.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.22.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.23.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.24.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.5.0.md",
@@ -2690,6 +2691,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.3.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -2743,6 +2745,7 @@
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.5.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.6.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.7.0.md",
+    ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.8.0.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/element-intent-query.md",
     ".skilled/skills/mcp-tooling/mcp-mobbin/examples/platform-flow-research.md",
@@ -2978,6 +2981,7 @@
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.6.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.8.0.md",
+    ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.1.9.0.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/funnel-styles-screens-flows.md",
     ".skilled/skills/mcp-tooling/mcp-refero/examples/metadata-first-lookup.md",
@@ -13412,6 +13416,11 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/plan.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/spec.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/tasks.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/decision-record.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
@@ -29414,7 +29423,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3deef0ecc5a4c5c6051d7b6290d9ef80c7deb63ec038bd0c7e9a0f3c80d20b25",
+  "manifestHash": "245ad36850b6eb452fc913c0179cb181b5c6fab6f05d7047672da81bfe424881",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33994,6 +34003,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers/scratch",
       "reason": "excluded directory"
     },
     {

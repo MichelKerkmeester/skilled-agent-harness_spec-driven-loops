@@ -8,7 +8,7 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.11.0
+version: 1.1.12.0
 ---
 
 # mcp-figma
@@ -156,7 +156,7 @@ The two assets carry paste-ready snippets for the MCP path only. `scripts/doctor
 
 Reach for this skill when a request lands in an open Figma file: build a frame, render a component, add or bind tokens, read the structure, export an asset or repair a connect problem. Reach for it too when an agent needs design context out of Figma and the optional MCP is wired.
 
-Leave it to a sibling when Figma is not the surface. Generic app code with no design input is `sk-code`. A measured Style Reference from a live site's CSS is the `sk-design-md-generator` mode in `sk-design`. This skill stays the Figma transport behind it. A last-mile browser preview of a built page is `mcp-chrome-devtools`. If Figma Desktop is missing or no file is open, there is nothing to drive. The skill says so rather than reporting a read it never made.
+Leave it to a sibling when Figma is not the surface. Generic app code with no design input is `sk-code`. A measured Style Reference from a live site's CSS is the `sk-design-md-generator` mode in `sk-design`. This skill stays the Figma transport behind it. A last-mile browser preview of a built page is the `mcp-browser-use` hub. If Figma Desktop is missing or no file is open, there is nothing to drive. The skill says so rather than reporting a read it never made.
 
 ### Related Skills
 
@@ -166,7 +166,7 @@ Leave it to a sibling when Figma is not the surface. Generic app code with no de
 | `sk-design-md-generator` | Produces the measured Style Reference that grounds a design decision. It reaches Figma through this packet |
 | `sk-code` | Owns application-code standards when an export becomes a real app |
 | `mcp-code-mode` | Runs the optional Figma MCP calls through `call_tool_chain` |
-| `mcp-chrome-devtools` | Gives a real-browser preview of a built page, never a way to operate Figma |
+| `mcp-browser-use` | Gives a real-browser preview of a built page through any installed browser mode, never a way to operate Figma |
 
 ---
 

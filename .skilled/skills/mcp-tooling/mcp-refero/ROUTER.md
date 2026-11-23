@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-refero routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -58,7 +58,7 @@ The routing detail that does not fit the short summary: the detection signals, t
 
 ### Primary Detection Signal
 
-Route on **narrow Refero-specific signals only**. Generic "design", "UI", or "screen" phrasing is not a Refero signal; Figma work belongs to `mcp-figma`, and browser work to `mcp-chrome-devtools`.
+Route on **narrow Refero-specific signals only**. Generic "design", "UI", or "screen" phrasing is not a Refero signal; Figma work belongs to `mcp-figma`, and browser work to the `mcp-browser-use` hub.
 
 ```bash
 # Signal detection (pseudo)

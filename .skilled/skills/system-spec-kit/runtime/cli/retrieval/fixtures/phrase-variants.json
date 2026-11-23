@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3deef0ecc5a4c5c6051d7b6290d9ef80c7deb63ec038bd0c7e9a0f3c80d20b25",
+  "manifestHash": "245ad36850b6eb452fc913c0179cb181b5c6fab6f05d7047672da81bfe424881",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25764,6 +25764,9 @@
     ],
     "clickup auth failed": [
       "clickup auth failed"
+    ],
+    "clickup browser hub": [
+      "clickup browser hub"
     ],
     "clickup cli": [
       "clickup cli"
@@ -70460,6 +70463,9 @@
     "mcp click up 1 2 23 0": [
       "mcp-click-up 1.2.23.0"
     ],
+    "mcp click up 1 2 24 0": [
+      "mcp-click-up 1.2.24.0"
+    ],
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
     ],
@@ -70480,6 +70486,9 @@
     ],
     "mcp click up 1 2 9 0": [
       "mcp-click-up 1.2.9.0"
+    ],
+    "mcp click up browser hub pointer": [
+      "mcp-click-up browser hub pointer"
     ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
@@ -70573,6 +70582,9 @@
     ],
     "mcp click up v1 2 23 0": [
       "mcp-click-up v1.2.23.0"
+    ],
+    "mcp click up v1 2 24 0": [
+      "mcp-click-up v1.2.24.0"
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
@@ -71098,6 +71110,12 @@
     "mcp figma 1 2 3 0": [
       "mcp-figma 1.2.3.0"
     ],
+    "mcp figma 1 2 4 0": [
+      "mcp-figma 1.2.4.0"
+    ],
+    "mcp figma browser hub pointer": [
+      "mcp-figma browser hub pointer"
+    ],
     "mcp figma implementation summary": [
       "mcp figma implementation summary"
     ],
@@ -71166,6 +71184,9 @@
     ],
     "mcp figma v1 2 3 0": [
       "mcp-figma v1.2.3.0"
+    ],
+    "mcp figma v1 2 4 0": [
+      "mcp-figma v1.2.4.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -71284,6 +71305,12 @@
     "mcp mobbin 1 1 7 0": [
       "mcp-mobbin 1.1.7.0"
     ],
+    "mcp mobbin 1 1 8 0": [
+      "mcp-mobbin 1.1.8.0"
+    ],
+    "mcp mobbin browser hub pointer": [
+      "mcp-mobbin browser hub pointer"
+    ],
     "mcp mobbin delivered outcome pitch": [
       "mcp-mobbin delivered-outcome pitch"
     ],
@@ -71334,6 +71361,9 @@
     ],
     "mcp mobbin v1 1 7 0": [
       "mcp-mobbin v1.1.7.0"
+    ],
+    "mcp mobbin v1 1 8 0": [
+      "mcp-mobbin v1.1.8.0"
     ],
     "mcp mutation regex blind": [
       "mcp mutation regex blind"
@@ -71692,6 +71722,12 @@
     "mcp refero 1 1 8 0": [
       "mcp-refero 1.1.8.0"
     ],
+    "mcp refero 1 1 9 0": [
+      "mcp-refero 1.1.9.0"
+    ],
+    "mcp refero browser hub pointer": [
+      "mcp-refero browser hub pointer"
+    ],
     "mcp refero design transport": [
       "mcp-refero design transport"
     ],
@@ -71739,6 +71775,9 @@
     ],
     "mcp refero v1 1 8 0": [
       "mcp-refero v1.1.8.0"
+    ],
+    "mcp refero v1 1 9 0": [
+      "mcp-refero v1.1.9.0"
     ],
     "mcp remote mobbin": [
       "mcp-remote mobbin"
@@ -72130,6 +72169,21 @@
     ],
     "mcp tooling benchmark reports": [
       "mcp-tooling benchmark reports"
+    ],
+    "mcp tooling browser pointers": [
+      "mcp tooling browser pointers"
+    ],
+    "mcp tooling browser pointers goal": [
+      "mcp tooling browser pointers goal"
+    ],
+    "mcp tooling browser pointers implementation summary": [
+      "mcp tooling browser pointers implementation summary"
+    ],
+    "mcp tooling browser pointers plan": [
+      "mcp tooling browser pointers plan"
+    ],
+    "mcp tooling browser pointers tasks": [
+      "mcp tooling browser pointers tasks"
     ],
     "mcp tooling changelog retrofit": [
       "mcp-tooling changelog retrofit"
@@ -76198,6 +76252,9 @@
     ],
     "mobbin rate limit": [
       "mobbin rate limit"
+    ],
+    "mobbin refero figma browser hub": [
+      "mobbin refero figma browser hub"
     ],
     "mobbin registered manual": [
       "mobbin registered manual"
@@ -85169,6 +85226,9 @@
     ],
     "phase 10 hub registration and routing": [
       "phase 10 hub registration and routing"
+    ],
+    "phase 10 mcp tooling browser pointers": [
+      "phase 10 mcp tooling browser pointers"
     ],
     "phase 10 mixed track sweep guard": [
       "phase 10 mixed track sweep guard"
