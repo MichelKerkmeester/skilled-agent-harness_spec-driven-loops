@@ -1,5 +1,5 @@
 {
-  "corpusHash": "227f1783cef078f31c98560159707641387864b92b177525fbc10b9b491d7c8d",
+  "corpusHash": "e48523ab5ffdd62ef9b1c23c0d61f673c615dcbe44efe467f3e6ea1ba540f5be",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -29466,7 +29466,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0bd52b2d7be6519eff8c517337a59e6c4cbc75493597cbb0dbe0bca5d09fc128",
+  "manifestHash": "c00f08b5263afd0aea9046a382208fc97d776917ffa8c5fa47323ddaa6bcc831",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
