@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7253,
-    "ok": 20577,
+    "ok": 20582,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29458,
+  "documentsScanned": 29463,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "98e24170b408d23615f8462510c0853a0611f3a28c37bb0398a418135d3b51df",
+  "manifestHash": "808a57cd18a11cf85894ca765c4fd09e507a7f7a0a5ff6f8ffd93045c4069b81",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46342,
+      "ok": 46350,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -59559,6 +59559,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/scratch",
       "reason": "excluded directory"
     },
     {

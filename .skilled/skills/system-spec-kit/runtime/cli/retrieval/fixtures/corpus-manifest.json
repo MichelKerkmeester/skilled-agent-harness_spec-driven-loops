@@ -1,5 +1,5 @@
 {
-  "corpusHash": "502211ddc9d8b3411c97bea543b68a0c5023dc23e852d63fb93b721fa7e58e39",
+  "corpusHash": "8f3930a258a04322c02b2ed376965a845114407280088c77bf2241cd67d68a0c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29458,
+  "includedPathCount": 29463,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13439,6 +13439,11 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/plan.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/spec.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/tasks.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/decision-record.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
@@ -29490,7 +29495,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "98e24170b408d23615f8462510c0853a0611f3a28c37bb0398a418135d3b51df",
+  "manifestHash": "808a57cd18a11cf85894ca765c4fd09e507a7f7a0a5ff6f8ffd93045c4069b81",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34090,6 +34095,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/scratch",
       "reason": "excluded directory"
     },
     {

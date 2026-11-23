@@ -1,5 +1,5 @@
 {
-  "manifestHash": "98e24170b408d23615f8462510c0853a0611f3a28c37bb0398a418135d3b51df",
+  "manifestHash": "808a57cd18a11cf85894ca765c4fd09e507a7f7a0a5ff6f8ffd93045c4069b81",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16878,6 +16878,9 @@
     ],
     "browser first page write": [
       "browser-first page write"
+    ],
+    "browser hub alignment fixes": [
+      "browser hub alignment fixes"
     ],
     "browser hub changelog topology": [
       "browser hub changelog topology"
@@ -53538,6 +53541,21 @@
     "fix agent contract contradictions tasks": [
       "fix agent contract contradictions tasks"
     ],
+    "fix alignment findings for browser hub docs": [
+      "fix alignment findings for browser hub docs"
+    ],
+    "fix alignment findings for browser hub docs goal": [
+      "fix alignment findings for browser hub docs goal"
+    ],
+    "fix alignment findings for browser hub docs implementation summary": [
+      "fix alignment findings for browser hub docs implementation summary"
+    ],
+    "fix alignment findings for browser hub docs plan": [
+      "fix alignment findings for browser hub docs plan"
+    ],
+    "fix alignment findings for browser hub docs tasks": [
+      "fix alignment findings for browser hub docs tasks"
+    ],
     "fix alignment report findings for speckit command surfaces": [
       "fix alignment report findings for speckit command surfaces"
     ],
@@ -82666,6 +82684,9 @@
     "overview renumbering": [
       "overview renumbering"
     ],
+    "own chrome attach routing lift": [
+      "own chrome attach routing lift"
+    ],
     "owned assets presentation boundary": [
       "owned assets presentation boundary"
     ],
@@ -85667,6 +85688,9 @@
     ],
     "phase 13 dsh live contract pin": [
       "phase 13 dsh live contract pin"
+    ],
+    "phase 13 fix alignment findings for browser hub": [
+      "phase 13 fix alignment findings for browser hub"
     ],
     "phase 13 fix review findings in json entry": [
       "phase 13 fix review findings in json entry"
