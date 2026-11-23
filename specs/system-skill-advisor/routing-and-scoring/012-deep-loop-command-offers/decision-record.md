@@ -142,6 +142,11 @@ Write in direct, active voice.]
 | Q006 | Replace the three deep-family holdout rows with fresh prompts written blind. | Not stated. | None | command-prompts.jsonl holdout -02 rows, decisions D7 |
 | Q007 | Provision the new worktree with npm ci and builds. | Not stated. | None | worktrees/516-deep-loop-command-offers |
 | Q008 | Add the deep-loop offer work to the untagged v4.2.0.0 changelog in place. | Not stated. | None | .skilled/changelog/skilled/v4.2.0.0.md |
+| Q009 | Fix every P1 and P2 finding from the review of this epic. | Not stated. Recorded from the handoff note of the reviewing session. | None | tasks.md Review fix round |
+| Q010 | Record the fix round inside this packet. | Not stated. Recorded from the handoff note of the reviewing session. | None | tasks.md, implementation-summary.md |
+| Q011 | Build the fix round in a git worktree. | Not stated. | None | worktrees/522-deep-loop-offer-review-fixes |
+| Q012 | Withhold the `/doctor:deep-loop` command row on a prompt that names no deep run. | Not stated. The lexical lane had begun to top that run-policy row on "research why the model needed more iterations to converge". | None | fusion.ts withholdDeepLoopDoctorWithoutRun, tasks.md T043 |
+| Q013 | List the offer flags in both /deep:* argument hints. | The operator had asked "Why would we limit those hints". The 140-character budget is a soft warning with no recorded failure behind it. | None | research.md, review.md, command-metadata.json, tasks.md T046 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -305,6 +310,64 @@ Leave as is
 Answer:
 ```text
 Add it (Recommended)
+```
+
+### Q011
+<!-- source: claude:b8ebe2c5-6d17-442a-9d87-25b409193411 -->
+
+Question:
+```text
+Where should the fix round for the deep-loop command-offers review (P1-1 to P1-3, P2-1 to P2-5) be built? The handoff notes this choice was never asked; the current branch is main, with only your own .pi/settings.json change in it.
+```
+
+Options:
+```text
+A) Git worktree (Recommended)
+B) Current branch (main)
+```
+
+Answer:
+```text
+A) Git worktree (Recommended)
+```
+
+### Q012
+<!-- source: claude:b8ebe2c5-6d17-442a-9d87-25b409193411 -->
+
+Question:
+```text
+"research why the model needed more iterations to converge" no longer gets /deep:research. It now tops the /doctor:deep-loop command row (policy run), which the lexical lane scores from that row's keywords ("deep-research convergence drift", "deep-review iteration graph"). The same row already tops "...needed iterations to converge" on main today, so it predates this round. How should this round handle it?
+```
+
+Options:
+```text
+Guard the row (Recommended)
+Record it, change nothing
+Retune the keywords
+```
+
+Answer:
+```text
+Guard the row (Recommended)
+```
+
+### Q013
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_011TRpQVus3HYAeNgqJm3YoE:0 -->
+
+Question:
+```text
+About the argument hints on /deep:research and /deep:review: the 140-character limit is only a soft warning (sk-create-command template line 215 and validate_document.py line 2640). It was added in commit 101bcb08175 with no stated reason for 140 and no recorded failure from a long hint, and deep/research was already 540 characters then. Nothing at runtime breaks on a long hint. Should I add the missing flags (--stop-policy, --lineage-mode, --extend-minutes on both, --review-focus on review, and --model/--reasoning-effort/--count nested under --executor)?
+```
+
+Options:
+```text
+Add the flags (Recommended)
+Leave hints as they are
+```
+
+Answer:
+```text
+Add the flags (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

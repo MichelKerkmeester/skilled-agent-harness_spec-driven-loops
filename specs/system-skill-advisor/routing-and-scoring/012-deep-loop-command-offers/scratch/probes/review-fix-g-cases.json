@@ -1,0 +1,72 @@
+[
+ {
+  "id": "G1",
+  "prompt": "summarize the last deep review report, but do not run another deep review",
+  "want": "no deep command"
+ },
+ {
+  "id": "G2",
+  "prompt": "write an article about deep research. Don't start a new deep research.",
+  "want": "no deep command"
+ },
+ {
+  "id": "G3",
+  "prompt": "run 3 rounds of the security audit",
+  "want": "/deep:review"
+ },
+ {
+  "id": "G4",
+  "prompt": "do 3 rounds of the code review",
+  "want": "/deep:review"
+ },
+ {
+  "id": "G5",
+  "prompt": "summarize the last deep review report, then run another deep review on the fixes",
+  "want": "/deep:review"
+ },
+ {
+  "id": "R1",
+  "prompt": "the paper went through 3 rounds of peer review, summarize the comments",
+  "want": "no deep command"
+ },
+ {
+  "id": "R2",
+  "prompt": "after several rounds of budget review meetings we agreed",
+  "want": "no deep command"
+ },
+ {
+  "id": "R3",
+  "prompt": "multiple rounds of peer review",
+  "want": "no deep command"
+ },
+ {
+  "id": "R4",
+  "prompt": "we did 3 rounds of user research interviews, summarize the themes",
+  "want": "no deep command"
+ },
+ {
+  "id": "R5",
+  "prompt": "two rounds of performance review feedback came back negative",
+  "want": "no deep command"
+ },
+ {
+  "id": "R6",
+  "prompt": "do 3 rounds of the code review on the auth module",
+  "want": "/deep:review"
+ },
+ {
+  "id": "R7",
+  "prompt": "run 3 rounds of the peer review process",
+  "want": "no deep command"
+ },
+ {
+  "id": "R8",
+  "prompt": "research 3 rounds of the clinical trial results",
+  "want": "no deep command"
+ },
+ {
+  "id": "R9",
+  "prompt": "run 3 rounds of review on the parser",
+  "want": "/deep:review"
+ }
+]
