@@ -210,8 +210,8 @@
     ],
     "causal_summary": "A bot is a `BOT.md` file, but nothing can run one",
     "created_at": "2026-11-22T10:48:28Z",
-    "last_save_at": "2026-11-23T05:24:21.160Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-23T05:47:33.053Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:592e7b9d57b8b7425344b0249c6131ff8e046dc2335449fee57996eed089d918",
+    "source_fingerprint": "sha256:fc82ad326731f4774a6444abda6a0cd1f1ba489d0fd0cf5c0c8f788368eb0a42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2148a5675cdc47afd071f0db2f24eb7aac2ccd2c6bb16fe2c48baebb4be57b9f",
       "plan.md": "d81bbc297ecbd0a046aa38be0be1b23249b6e1cef8548fa634c9ba677d2681a6",
       "tasks.md": "4a7c8f92c0d7c98d19923dc210fc5e62d4d297a2a4c927bbedcf9d125790eaa4",
-      "decision-record.md": "9de6c7353c7fba267fc81eb94f15e777fc090068b8eaac4f100730663537a7a6",
-      "implementation-summary.md": "a4f0f9f5a5a62f553e5efb2068d37fac0a23f9f6eda504fd65afd23abeb0a92a"
+      "decision-record.md": "2bd3ec01d7ec51b0b04802c60254e8c02475c1ee1579946ba5095df3b42259f4",
+      "implementation-summary.md": "32fb9f88d55cd4e2e38585aab0c29e0d84e123fd7ffc5e1135a7b87a869a937e"
     },
     "last_active_at": null
   }

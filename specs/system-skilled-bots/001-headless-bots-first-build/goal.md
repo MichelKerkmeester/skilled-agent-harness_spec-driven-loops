@@ -110,6 +110,7 @@ and findings belong here.
 | 002-schedule-predicates-and-checker | In Progress | Review APPROVED, committed `f292a8223be` and pushed. AC-001, AC-002 and AC-011 wait on the launchd weekday probe (loaded 2026-11-22, read after 2026-11-24) |
 | 003-manual-runner | In Progress | First review REQUESTED_CHANGES (decision marker unread from JSON-output kinds). Reworked: marker read per output format, receipts moved to the state root, replay retry through the append gateway, three hardening fixes. Suite 179 passed, deep-loop 4039 passed before and after. OpenCode and Vibe read-only support in build, then re-review and the live run |
 | 004 to 008 | Pending | Waiting on their dependencies |
+| 003-manual-runner | Done | Third review APPROVED; live codex run, OpenCode (3 fixtures) and Vibe probes passed; committed 555101d8c23 and pushed; 7 operator decisions recorded in its decision-record.md |
 
 ### Deviations and findings
 

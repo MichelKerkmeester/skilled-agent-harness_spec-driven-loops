@@ -818,6 +818,13 @@ Side effects recorded, not changed:
 | Q009 | Move dispatch receipts out of the run folder to the user-level state root | Operator answer D14, 2026-11-22 | Receipts in the run folder's `receipts/` | ADR-006, REQ-001, REQ-005, T012, AC-006 |
 | Q010 | Build retry by ledger replay through the append gateway now | Operator answer D15, 2026-11-22 | ADR-004 and its blocked T014 | ADR-007, REQ-011, T014, AC-008 |
 | Q011 | Support read-only bots on OpenCode and Mistral Vibe now, through a tool-narrowing profile in both deep-loop builders, with one approved live probe per CLI before the live rows read Met | Operator answer, 2026-11-22 | The OpenCode and Mistral Vibe refusal in ADR-002's as-built note | ADR-008, REQ-023, T039 to T044, AC-022 to AC-025 |
+| Q012 | Dispatch receipts move out of the run folder to a per-run folder under the user-level state root. | A receipt records the command line, and several executors take the prompt on argv, so a receipt in the shared Skilled tree would hold the prompt. | None | ADR-006, AC-006, runtime/lib/state-root.ts receiptFolder |
+| Q013 | Retry by ledger replay through the deep-loop append gateway is built in this phase rather than waived. | Not stated. | ADR-004 | ADR-007 (supersedes ADR-004), T014, AC-008, runtime/lib/result-ledger.ts |
+| Q014 | The operator did not accept either option and asked why OpenCode and Mistral Vibe cannot be supported; the follow-up question settled it. | Not stated. | None | ADR-008, REQ-023 |
+| Q015 | One live run of a manual read-only bot through cli-codex on a scratch consumer is approved. | Not stated. | None | CHK-021, scratch/live-run-codex-result.txt |
+| Q016 | OpenCode and Mistral Vibe are admitted for read-only bots through tool narrowing in the deep-loop builders, with one live probe per CLI. | Not stated. | None | ADR-008, REQ-023, AC-022 to AC-025, T039 to T044 |
+| Q017 | After the second review returned REQUESTED_CHANGES, all four high findings and three minor ones are fixed at the source and a third review is authorized. | Not stated. | None | ADR-008 third-review section, T045 to T051, AC-026 to AC-028 |
+| Q018 | One more live Vibe probe is approved to confirm the clean exit after the lineage cleanup fix. | Not stated. | None | T052, AC-025, scratch/live-probe-mv-rerun-result.txt |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -840,6 +847,142 @@ Each appendix item uses the same id as its operator decision. The options are in
 - **Q011** (the OpenCode and Mistral Vibe question, relayed without a D number): "Support read-only now". Offered option text: "Add a read-only tool-narrowing profile to both deep-loop builders, admit both kinds for read-only bots only, and run one approved live probe per CLI showing a write is refused before the row reads Met."
 
 Only the chosen answers, and the one option text above, reached this phase. The other offered options were not recorded here.
+
+### Q012
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_017gCbA12Vo82kYb9QwYpXZ4:0 -->
+
+Question:
+```text
+Bots phase 003 (manual runner): for Cursor, Claude Code, Devin and Pi the prompt goes on the command line, so the dispatch receipts written into the run folder (inside the shared Skilled tree) hold the full prompt and args. How should acceptance row AC-006 be closed?
+```
+
+Options:
+```text
+Move receipts out (Recommended)
+Redact prompt in receipt
+Refuse argv executors
+```
+
+Answer:
+```text
+Move receipts out (Recommended)
+```
+
+### Q013
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_017gCbA12Vo82kYb9QwYpXZ4:1 -->
+
+Question:
+```text
+Phase 003 AC-008: retrying a re-sent result event by ledger replay through deep-loop's append gateway needs an event registry, policy, authority root and binding that no bots mode has yet. The goal's completion criteria do not require it. What should happen?
+```
+
+Options:
+```text
+Waive by ADR (Recommended)
+Build it now
+```
+
+Answer:
+```text
+Build it now
+```
+
+### Q014
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_017gCbA12Vo82kYb9QwYpXZ4:2 -->
+
+Question:
+```text
+Phase 003's decision record admitted OpenCode and Mistral Vibe for read-only bots, but the build refuses them for every sandbox class: OpenCode's command builder refuses read-only (its Bash tool can write anywhere) and Vibe takes no sandbox mode. Which stands?
+```
+
+Options:
+```text
+Accept the refusal (Recommended)
+Admit read-only anyway
+```
+
+Answer:
+```text
+Why not support them
+```
+
+### Q015
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_017gCbA12Vo82kYb9QwYpXZ4:3 -->
+
+Question:
+```text
+May I run one live bot on a real executor? It runs `bots run <id>` once for a manual, read-only bot in a scratch consumer repo through cli-codex (the GPT provider), then reads its run record and checks `git status` on the scratch repo before and after. This is what proves goal criterion 3.
+```
+
+Options:
+```text
+Approve one live run (Recommended)
+Not yet
+```
+
+Answer:
+```text
+Approve one live run (Recommended)
+```
+
+### Q016
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_01Y1dUDW1irvro6gcGizeBwi:0 -->
+
+Question:
+```text
+Why OpenCode and Vibe are refused today: deep-loop's OpenCode builder only denies its file tools outside the working directory, and its Bash tool can still write anywhere. The Vibe builder passes no confinement at all. Both can be made read-only by narrowing tools: OpenCode by a permission config that denies edit, write and bash, and Vibe by `--enabled-tools` listing only read tools (the same class Pi is admitted on). That means changing deep-loop's shared OpenCode and Vibe builders, plus one live probe per CLI proving a write attempt is refused (two real model calls). How should bots handle them?
+```
+
+Options:
+```text
+Support read-only now (Recommended)
+Keep refused, follow-up
+```
+
+Answer:
+```text
+Support read-only now (Recommended)
+```
+
+### Q017
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_01CLMshQ5x1m7FjxcmAbLAYQ:0 -->
+
+Question:
+```text
+Phase 003's second review returned REQUESTED_CHANGES, and speckit-implement.yaml halts the phase there: 'The second dispatch returns REQUESTED_CHANGES → list the P0 and open P1 findings, write no implementation-summary.md and claim no completion.' All four open findings rate high (P1), and all four sit in the new OpenCode/Vibe read-only support. The original runner findings are fixed, and the receipt move and replay retry passed. (1) OpenCode read-only only denies listed tools, so MCP tools still run under --auto. (2) A consumer's agent-level OpenCode permissions re-allow edit and shell after the inline denies (confirmed by probe). (3) Vibe runs are judged by exit code only, so an unfinished run reads 'converged'. (4) Vibe runs in a temp folder and is never told the checkout path, so a repo-reading bot sees nothing. How do you want to proceed?
+```
+
+Options:
+```text
+Fix all, third review (Recommended)
+Withdraw OpenCode/Vibe
+Stop phase 003 here
+```
+
+Answer:
+```text
+Fix all, third review (Recommended)
+```
+
+### Q018
+<!-- source: claude:e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5:toolu_01WDT8cTvwLwSYyXYwPBXrdW:0 -->
+
+Question:
+```text
+The live Vibe read-only probe proved the narrowing works: both write attempts were denied, the export shows only read_file and grep, and the read worked by relative path. But the bots run ended runner-error, because real Vibe leaves read-only plugin folders that the cleanup could not remove. That is now fixed and tested: the bots suite has 194 passing tests and the cleanup's negative control fails against the old code. Confirming the clean exit needs one more real Vibe model call (deepseek-flash, a throwaway scratch repo, no external sends). Your earlier approval covered one probe per CLI. May I rerun the Vibe probe once?
+```
+
+Options:
+```text
+Rerun once (Recommended)
+Don't rerun
+```
+
+Answer:
+```text
+Rerun once (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

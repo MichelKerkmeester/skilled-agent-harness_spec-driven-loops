@@ -8,29 +8,33 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/003-manual-runner"
-    last_updated_at: "2026-11-23T06:30:00Z"
-    last_updated_by: "phase-builder"
-    recent_action: "Recorded the live codex run and the live OpenCode and Vibe probes"
-    next_safe_action: "Orchestrator commits the phase"
+    last_updated_at: "2026-11-23T05:47:33Z"
+    last_updated_by: "generate-context"
+    recent_action: "Committed phase 003 after third review and live runs passed"
+    next_safe_action: "Verify and commit phases 004 and 005"
+    packet_purpose: "Purpose: `bots run <id>` runs a manual bot end to end in a shared checkout, refuses what it cannot honor and leaves one terminal run record that says what ran, how it was confined and where its evidence lives."
     blockers:
-      - "CHK-120: rollback not run in a copy"
+      - "CHK-120 rollback not run in a copy"
     key_files:
-      - ".skilled/bin/bots.cjs"
       - ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts"
       - ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"
       - ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"
+      - ".skilled/skills/system-skilled-bots/runtime/lib/result-ledger.ts"
+      - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "implement-003-manual-runner"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5"
+      workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
+      savedAt: "2026-11-23T05:47:33Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 95
-    open_questions:
-      - "spec.md REQ-023 still describes the first build's OpenCode deny list; the build now uses an allowlist (ADR-008 third review)"
-    answered_questions:
-      - "OpenCode and Mistral Vibe: support read-only now (operator, 2026-11-22, ADR-008)"
-      - "Second review: fix all, third review (operator, 2026-11-22, ADR-008 third review)"
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
