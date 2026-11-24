@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T18:12:03Z"
+    last_updated_at: "2026-11-24T19:01:17Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded ADR-008 for the ninth fix round"
     next_safe_action: "Record any decision the traceability rerun raises"
@@ -615,7 +615,7 @@ D2 lists naming a deep loop, deep research, deep review, a research loop or a re
 <!-- ANCHOR:adr-007-context -->
 ### Context
 
-D8 named three loop-shaped research aliases for the hub: `iterative research`, `multi-round research` and `autonomous research`. The build added the first two and dropped the third, because its out-of-domain replay under `.skilled/repo-rules/skill-hub-routing.md` section 4 pulled a slide-deck prompt to the hub. `hub-router.json:34` and `ROUTER.md:63` carry the two that shipped, and T022 records the drop.
+D8 named three loop-shaped research aliases for the hub: `iterative research`, `multi-round research` and `autonomous research`. The build added the first two and dropped the third, because its out-of-domain replay under `.skilled/repo-rules/skill-hub-routing.md` section 4 pulled a slide-deck prompt to the hub. `hub-router.json` and `ROUTER.md` carry the two that shipped in their research alias lists, and T022 records the drop.
 
 REQ-011 was never amended: it still lists all three aliases as reaching both files, so a reader checking the requirement against the tree finds a clause that cannot hold. No acceptance row tested the alias set as built. The traceability review of 2026-11-24 raised this as its P1 finding.
 
@@ -729,7 +729,7 @@ REQ-035 listed "run two deep loops on the cache layer" among the plural prompts 
 
 **We chose**: amend REQ-035 so the mode-free plural prompt asks for the run and serves the hub with no command, the same as its singular.
 
-**How it works**: REQ-035 names the seven prompts that name a mode as carrying their command and states the mode-free one separately. The shared fixture row `plural-deep-loops-served` reads `servedRun: null` in both copies, and AC-051 reads the built advisor's result for all eight.
+**How it works**: REQ-035 names the seven prompts that name a mode as carrying their command and states the mode-free one separately. The shared fixture row `plural-deep-loops-served` reads `servedRun: "none"`, and both suites require zero run rows for it, so a copy that keeps both run rows fails, and AC-051 reads the built advisor's result for all eight.
 <!-- /ANCHOR:adr-008-decision -->
 
 ---

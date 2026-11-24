@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T18:12:03Z"
+    last_updated_at: "2026-11-24T19:01:17Z"
     last_updated_by: "generate-context"
-    recent_action: "Ninth fix round committed, docs at the final tree"
+    recent_action: "Tenth fix round committed, docs at the final tree"
     next_safe_action: "Rerun the traceability review at 7 iterations per lineage so T084 and AC-040 can close"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
@@ -47,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-deep-loop-command-offers |
-| **Completed** | 2026-11-23, closed again after the fresh-review round; reopened 2026-11-24 for the sixth fix round (`tasks.md` T066 to T085), again for the seventh fix round (`tasks.md` T086 and T087), again for the eighth (`tasks.md` T088 to T093), which fixes the four code findings of the second traceability rerun at `2520456bd3f`, and again for the ninth (`tasks.md` T094 to T101), which fixes the third rerun's code findings at `3db3085bcf0` and `5ace62e10e6` and brings these docs to the final tree, with the traceability review rerun (T084) still open |
+| **Completed** | 2026-11-23, closed again after the fresh-review round; reopened 2026-11-24 for the sixth fix round (`tasks.md` T066 to T085), again for the seventh fix round (`tasks.md` T086 and T087), again for the eighth (`tasks.md` T088 to T093), which fixes the four code findings of the second traceability rerun at `2520456bd3f`, again for the ninth (`tasks.md` T094 to T101), which fixes the third rerun's code findings at `3db3085bcf0` and `5ace62e10e6`, and again for the tenth (`tasks.md` T102 to T105), which fixes the fourth rerun's parity gap and reducer numbering at `9f1190407eb` and moves closure evidence to name-based citations, with the traceability review rerun (T084) still open |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -171,7 +171,7 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Sixth round: corpus | `false_offer` 0 of 57 |
 | Sixth round: independent verification | A verification pass over the whole diff raised one P2 and three P1s. The P2, a drift guard that skipped the command decline and ask leads, is fixed. The three P1s are one gap that predates the round, recorded as limitation 8 |
 | Seventh round: advisor suite and Python suite | `npx vitest run` in `$ADV` reports 184 files, 3,126 passed, 4 skipped, 0 failed; `python3 tests/python/test_skill_advisor.py` prints `pass=136, fail=0` |
-| Seventh round: drift guard | The refusal-lead alternation is an exported list on both sides and then the twelfth compared pair, `LOOP_ARTIFACT_NOUNS` and `PAST_RUN_READ_VERBS` each have a per-entry case, and `LEAD_WINDOW` and `ADVISOR_PROMPT_MAX_CHARS` are read back from the Python source and compared; the eighth round reads those surfaces at `tests/deep-loop-offer-cases.vitest.ts:83`, `:90`, `:247`, `:255`, `:262`, `:271`, `:293`, `:303` and `:313` |
+| Seventh round: drift guard | The refusal-lead alternation is an exported list on both sides and then the twelfth compared pair, `LOOP_ARTIFACT_NOUNS` and `PAST_RUN_READ_VERBS` each have a per-entry case, and `LEAD_WINDOW` and `ADVISOR_PROMPT_MAX_CHARS` are read back from the Python source and compared; the eighth round reads those surfaces at `tests/deep-loop-offer-cases.vitest.ts` `VOCABULARY_PAIRS`, `:90`, `:247`, `:255`, `:262`, `:271`, `:293`, `:303` and `:313` |
 | Seventh round: closure docs | REQ-011 names the two aliases the hub carries with ADR-007 and AC-043, limitation 8 states the served-brief layer, every repointed acceptance evidence cell resolves to the line that holds its observation, and `validate.sh --strict` passes on this packet |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 | Eighth round: the four code findings | Plural loop names ask for the run, `how do` and `how can` questions and effort complaints do not, and the degraded brief prints a supplied command only where the tracked table names it for that row's skill. The cases are in `tests/fixtures/deep-loop-offer-cases.json` (285 cases), read by both suites, with the degraded path pinned in `tests/cli-degraded-command-contract.vitest.ts` |
@@ -185,6 +185,10 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Ninth round: Python suite and shared fixture | `python3 tests/python/test_skill_advisor.py` prints `pass=136, fail=0`, and the fixture holds 347 cases |
 | Ninth round: 69 probes | The compare against `results-final-958fa81-worktree.json` prints `changes=0 guarded_failures=0` |
 | Ninth round: deep-loop runtime | `npx vitest run tests/unit` reports 190 files, 3,632 passed, 2 skipped, 0 failed. The two skipped cases are `--claude-config-dir` cases that skip under a Claude Code parent and fail outside one, as they did before this round |
+| Tenth round: code findings | The Python fallback keeps no run row on a mode-free ask, the fixture spells it `"none"`, and the reducer keeps the strategy's section numbers, at `9f1190407eb` |
+| Tenth round: advisor suite | `npm run build` exit 0, then `npx vitest run` in `$ADV` reports 186 files, 3,418 passed, 4 skipped, 0 failed |
+| Tenth round: Python suite and probes | `PY` prints `cases=347` and `pass=136, fail=0`, and the probe compare prints `changes=0 guarded_failures=0` |
+| Tenth round: deep-loop runtime | `npx vitest run tests/unit` reports 191 files, 3,634 passed, 2 skipped, 0 failed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -253,6 +257,8 @@ A seventh round corrected the closure-doc drift the traceability review found (`
 An eighth round fixed the four code findings and the closure-doc drift the second traceability rerun found (`review/review-report.md`, three DeepSeek V4.1 Flash lineages of five iterations, FAIL on its coverage gate). At `2520456bd3f` the gate learned plural loop names, so "run two deep reviews of the auth module" asks for the run while a plural loop that reports a past run, names a symptom or asks a question still does not; a question leading with "how do" or "how can" stays a question, so "how can a deep research loop stop early?" asks for no run while a run the same prompt adds in a later clause still counts; and a complaint about a loop's own speed or cost is no run ask, so "the deep review loop is too slow" and "improve the deep review" carry no command while "run a fast deep review on the parser" and "improve the parser with a deep review" keep it. On the degraded CLI path a supplied command string now prints only where the tracked table names it for the row's own skill, so a string the child process invented cannot reach the brief. The docs pass corrected the counts the seventh round left stale, repointed every evidence cell that landed beside its evidence, moved REQ-006's test-file pointer to the shared fixture and the guards file, and narrowed REQ-031 to the ten lists a fixture row can pin, with the five that cannot named and their reasons given. REQ-039 now owns the corpus recapture. T084 and AC-040 stay open.
 
 A ninth round fixed the third traceability rerun's findings (`review/review-report.md`, generation 5, three DeepSeek V4.1 Flash lineages of seven iterations, FAIL on its coverage and scope gates). "run a deep review of the parser but don't change anything" keeps `/deep:review`, because a review loop writes no code. "skip the deep research, run a deep review on the parser" serves `/deep:review`, since a refused loop phrase no longer supplies the mode cue. "run a deep loop to review the research loop config" serves `/deep:review` on the routed research route. "the deep review didn't finish, run it again" serves the run rather than the diagnosis, and "summarize the deep reviews from last week" carries no doctor command. "run a deep review slower" keeps its command, and "the deep research run is stuck, /doctor:deep-loop" serves the doctor. The scorer's explicit lane now reads "loops" as it reads "loop", so "run two research loops on the cache" keeps `/deep:research`. "run two deep loops on the cache layer" names no mode and serves the hub with no command, by operator decision (ADR-008). The drift guard now compares the mode vocabulary on four surfaces and pins the exception grammar with shared rows. In the review reducer, a direction one iteration ruled out reads as reopenable, and a heading-first strategy section keeps one heading. The duplicate-command guard can now withhold. The docs pass repointed every evidence cell that cites this file, found by row label rather than by offset.
+
+A tenth round fixed the fourth traceability rerun's findings (`review/review-report.md`, generation 6, FAIL on its coverage gate, with no new word-rule gap in the gate). The Python fallback now keeps no run row on "run two deep loops on the cache layer", as the native gate and ADR-008 do, and the fixture spells that absence `"none"`, so a copy that keeps both rows fails the test. The review reducer keeps a strategy's own section numbers. Every acceptance and task citation now names its evidence by symbol, test title, fixture row id, summary row label or task id, and each acceptance row ends with one `Evidence:` tail that a script checks against the tree, so a later edit above a cited line no longer breaks a cell silently.
 
 What stays open:
 1. **The blind -04 holdouts score 2 of 3.**
