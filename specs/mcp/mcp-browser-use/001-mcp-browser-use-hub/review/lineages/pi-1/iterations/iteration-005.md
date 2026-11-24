@@ -2,22 +2,22 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `pi-1`), target agent `@deep-review`, resolved route `Resolved route: mode=review target_agent=deep-review`.
-- Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder).
-- Dimension: cross-reference.
-- Operator focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made.
-- Focus addressed in this iteration: closed the two remaining overlays, re-read every landed finding against the file it cites at HEAD, and re-checked the goal-criteria ledger against the packet's own recorded runs.
+- Mode: review (fan-out lineage `pi-1`, generation 1)
+- Dimension: maintainability
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This iteration tested the drift corrections phase 015 claims: the benchmark and playbook indexes, the `leaf-scopes.json` description, the Aside capability row, and the replay counts its release note states.
 
 ## Files Reviewed
 
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/transport/cli-lane-and-output-envelope.md:32-45`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md:39-76`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md:123,148`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/feature-catalog.md`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/limits-and-safety/capability-gaps-and-handoffs.md`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/manual-testing-playbook.md:320-330`
-- `git status --porcelain` over the three skill packets and the packet's phase folders (dirtiness check)
-- All four prior iteration files' finding rows, re-read against the files they cite
+- `.skilled/skills/mcp-browser-use/README.md:1-75`
+- `.skilled/skills/mcp-browser-use/SKILL.md:1-110`
+- `.skilled/skills/mcp-browser-use/changelog/` (file set), `changelog/v1.1.3.0.md`
+- `.skilled/skills/mcp-browser-use/benchmark/reports/README.md:20-40`
+- `.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/results.csv` (header, row count, verdict column)
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:55-70`
+- `.skilled/skills/mcp-browser-use/leaf-scopes.json:1-12`
+- `.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md:60-115`
+- `.skilled/skills/mcp-aside-devtools/SKILL.md`, `.skilled/skills/mcp-chrome-devtools/SKILL.md`, `.skilled/skills/mcp-bladebro/SKILL.md` (version lines)
 
 ## Findings - New
 
@@ -31,61 +31,55 @@ None.
 
 ### P2 Findings
 
-None.
+1. **The hub README states the one-file-per-release rule and then breaks it in its own table** -- `.skilled/skills/mcp-browser-use/README.md:70` -- The README declares `version: 1.1.4.0` at `:8` and states at `:66` that "Releases live in `changelog/` with one file per release, named `v[version].md`". Its release table at `:69-72` then lists `1.1.1.0`, `1.1.0.0` and `1.0.0.0` only: `changelog/v1.1.2.0.md` and `changelog/v1.1.3.0.md` both exist on disk and neither is listed, and no `changelog/v1.1.4.0.md` exists for the version the file itself claims. Phase 015 declared the README *version* out of scope on the grounds that each doc carries its own version line, which is a different claim from the table and its rule.
+Case: a reader who trusts `README.md:66` and looks for the 1.1.4.0 entry finds no file; a reader who trusts the table concludes the hub stopped at 1.1.1.0 although two later releases shipped and one of them (`v1.1.3.0`) is the release phase 015 created.
+Finding class: `doc-contract-drift`
+Scope proof: `ls changelog/` returns the five files; the README's version line, rule line and table are all read in the same file; `SKILL.md:5` sits at 1.1.3.0 while the README sits at 1.1.4.0, so the missing entry is not a lag of the same number.
+Affected surface hints: `.skilled/skills/mcp-browser-use/README.md`, `.skilled/skills/mcp-browser-use/changelog/`, and the changelog-coverage check phase 007's criteria name.
 
-## Cross-Reference Checks
+## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `feature_catalog_code` | pass | The Bladebro transport entry's envelope claim (`feature-catalog/transport/cli-lane-and-output-envelope.md:32-36`: one object with `ok`, `is_error`, `text`, plus `image_path`; exit 0/1/2) matches the CLI reference (`references/cli-reference.md:61`) and the SKILL's read rule (`SKILL.md:123`). The capability-gaps entry is linked from the playbook root as a catalog entry without a scenario, and the root says so at `manual-testing-playbook.md:328`. |
-| `agent_cross_runtime` | notApplicable | No agent definition in `.skilled/agents/` names the hub or any of its modes, so there is no cross-runtime agent binding to reconcile. |
-| `spec_code` | pass (re-affirmed) | No reviewed file is dirty at HEAD `ec3ed74ad01`, so the criteria evidence recorded in iteration 3 still describes the shipped tree. |
-| `checklist_evidence` | pass (re-affirmed) | The two overstated evidence sentences (iteration 1 P2, iteration 3 P2) are recorded as findings rather than as clean rows; every other sampled row's evidence holds at HEAD. |
+| Protocol | Class | Status | Evidence |
+|---|---|---|---|
+| `spec_code` | core | partial | Phase 015's drift corrections that this iteration checked hold: the Aside capability row now reads "Not offered: Aside 1.26.626.1517 rejects console and network event listeners" (`SKILL.md:40`), `rg page.on` over the hub `SKILL.md` exits 1, the `leaf-scopes.json` description matches the file's single Chrome entry (`SKILL.md:106` against `leaf-scopes.json:1-11`), and the contract at `skill-root-metadata-contract.md:90-94` confirms a one-entry scope file is legal rather than partial. The status stays `partial` for the carried iteration-3 fail. |
+| `checklist_evidence` | core | pass | The replay count phase 015 states ("Replay 51 of 52 PASS", `015/goal.md:53`) matches the artifact: `results.csv` holds 52 data rows and the verdict column counts 51 `PASS` and 1 `FAIL`. The benchmark index row agrees ("51 PASS, 1 FAIL") and its folder link resolves. The playbook index names the newest replay folder, which exists. |
+| `feature_catalog_code` | overlay | pass | Phase 005's catalog criterion holds: `feature-catalog.md:243` totals 31 and the lighthouse leaf exists under `mcp-parallel-instances/`, which is the same leaf `leaf-scopes.json` adds to the Chrome mode's routable set. |
+| `playbook_capability` | overlay | partial | The playbook's result-persistence pointer (`manual-testing-playbook.md:62`) names the newest playbook run and the newest replay, both of which exist; the fourteen scenario-file count for Bladebro was not compared against the 15 the phase-007 criterion claims, so the count stays unverified. |
 
-## Finding Re-Read
+## Integration Evidence
 
-| Finding | File at HEAD | Still valid | Note |
-|---------|--------------|-------------|------|
-| `pi1-I1-P1-001` (id-noun anchor) | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:332` | yes | The helper and its call site are unchanged; the shipped changelog promise it contradicts is unchanged. |
-| `pi1-I1-P2-001` (AC-002 evidence overstatement) | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md:103` | yes | The changelog line that breaks the claim is still at `mcp-bladebro/changelog/v1.2.1.0.md:21`. |
-| `pi1-I2-P1-001` (unpinned registration teaching) | `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:361` | yes | All four copies remain unpinned; the live config remains pinned at `0.26.0`. |
-| `pi1-I2-P2-001` (ungated npx launch) | `.utcp_config.json:56-58` | yes | Three chrome_devtools manuals still launch npx with no operator gate. |
-| `pi1-I3-P2-001` (stale derived status) | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/graph-metadata.json:54` | yes | The parent and `006-verification` still read `in_progress`. |
-| `pi1-I4-P2-001` (duplicated pin authority) | `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh:21` | yes | Both files still declare the five constants and no test mentions bladebro. |
-| `pi1-I4-P2-002` (four guide copies) | `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:354` | yes | Four blocks remain, one authoritative snapshot. |
-
-## Goal Criteria Ledger
-
-| Criterion | Evidence class | Result |
-|-----------|----------------|--------|
-| 1 - research iterations and `research.md` | direct inspection | holds (12 iteration records) |
-| 2 - three hub modes, six `mcp-tooling` modes | direct inspection | holds |
-| 3 - no `mcp-tooling` browser mode remains | direct search | holds |
-| 4 - `parent-skill-check.cjs` exits 0 | packet-recorded run | recorded, not re-run |
-| 5 - one real request per mode through both stages | packet-recorded replay | holds for the three mode rows (48 of 49 overall, one stage-one miss disclosed) |
-| 6 - playbooks with recorded runs, Bladebro on macOS | direct inspection | holds |
-| 7 - `validate.sh --strict --recursive` PASSED | packet-recorded run | recorded, not re-run |
+- `.skilled/skills/mcp-browser-use/benchmark/reports/README.md:24-28` lists five runs; every folder the table links exists on disk (checked by directory test on the two newest and by `find` for the rest), so no index row dangles.
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:62` and `benchmark/reports/README.md:24` agree on the newest replay folder name, `2026-11-24--two-stage-replay--compiled--follow-up`.
+- `.skilled/skills/mcp-browser-use/SKILL.md:106` is the only description of `leaf-scopes.json` in the hub, and it names exactly the one entry the file carries, so the "per-mode" wording the archived review flagged is gone.
 
 ## Edge Cases
 
-- The unrecorded `parent-skill-check` and `validate.sh` results are the only two criteria this lineage cannot observe; both are named as recorded rather than asserted, and neither hides a contradicting file.
-- `feature_catalog_code` was sampled at one entry, not swept across the Bladebro catalog's 17 entries; the sampled entry is the transport contract every other entry depends on.
+- **A one-entry `leaf-scopes.json` looks incomplete and is not.** The contract at `skill-root-metadata-contract.md:92` makes an unscoped mode take the default `references/` and `assets/` walk, so a single Chrome entry is the intended shape, not two missing modes.
+- **The version-line mismatch is out of scope by an earlier decision.** `015/spec.md`'s out-of-scope row says a README version differing from `SKILL.md` is not drift because the commit hook bumps each doc's own line. This iteration treats that as settled and raises only the table and the missing file, which no earlier decision covers.
+- **The verdict column, not the result column, carries the pass/fail truth.** Counting `PASS`/`FAIL` from the last column is what the claim states; counting the `stage1`/`stage2` columns would answer a different question, so it was not done.
+
+## Confirmed-Clean Surfaces
+
+- The Aside capability row no longer advertises `page.on(...)`; the hub `SKILL.md` has no occurrence of it.
+- The replay artifact and both index surfaces agree on 52 rows, 51 PASS and 1 FAIL.
+- Every benchmark index link resolves to a real folder, including the `--post-review` run that supersedes the earlier FAIL.
+- All four mode packets carry a changelog whose version matches their own `SKILL.md` version line (Aside 1.1.13.0, Chrome 1.0.28.0, Bladebro 1.2.1.0).
+- `leaf-scopes.json` is contract-legal and its description in `SKILL.md` is accurate.
 
 ## Ruled Out
 
-- **A catalog claim contradicting the CLI reference.** Ruled out for the transport entry: envelope fields and exit codes match in three places.
-- **A reviewed file changed under the review.** Ruled out: `git status --porcelain` over the three skill packets and the phase folders prints nothing, so every finding still describes HEAD.
-- **A catalog entry silently missing its scenario.** Ruled out: the playbook root names the entries without a scenario and their reasons.
+- **The hub README version mismatch with `SKILL.md` is drift** -- ruled out by the phase 015 out-of-scope decision, cited above; the finding raised here is about the table and the missing file, not the number.
+- **`leaf-scopes.json` omits two of three modes** -- ruled out by the contract's default-walk rule.
+- **The benchmark index points at a run folder that does not exist** -- ruled out by a directory test on every linked path.
+- **The 014 release note counts drifted from the artifact** -- ruled out: the replay artifact counts match what the index and the 015 log state.
 
 ## Next Focus
 
-- Dimension: synthesis
-- Focus area: hand the seven findings, the six bug classes and the goal-criteria ledger to the report, and stop the loop.
-- Reason: every dimension is swept, the depth ledger is complete, and the last iteration added no new finding.
-- Rotation status: correctness, security, traceability, maintainability and cross-reference complete.
-- Blocked/productive carry-forward: productive — the re-read confirmed all seven findings against HEAD.
-- Required evidence: a stop decision from the convergence script and a complete synthesis record.
-
-## Verdict
+- Dimension: maintainability (second pass) then cross-reference consolidation
+- Focus area: `ROUTER.md`'s stage-two maps against `hub-router.json`, and the mode packets' own README/ROUTER/index rows
+- Reason: the hub-level docs are now verified; the per-mode doc sets have only been read where a specific fix touched them
+- Rotation status: maintainability open
+- Blocked/productive carry-forward: productive, index-against-artifact comparison
+- Required evidence: each mode packet's ROUTER.md leaf map compared to its file tree
 
 Review verdict: CONDITIONAL

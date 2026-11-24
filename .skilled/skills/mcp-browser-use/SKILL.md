@@ -2,7 +2,7 @@
 name: mcp-browser-use
 description: "Parent hub for three browser modes: Chrome DevTools, Aside and Bladebro. Routes by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.3.0
+version: 1.1.4.0
 metadata:
   family: mcp
 ---
@@ -59,7 +59,7 @@ Each mode owns a distinct band. A row marked **MCP lane only** runs through Code
 
 Generic browser-automation phrasing defers. Debugging, Lighthouse and performance-trace requests go to Chrome DevTools, and so does a request naming the user's own Chrome, through its live instance. Deterministic signed-in proof goes to Aside. Agentic or stealth signed-in work goes to Bladebro, and so does a caller-owned or already-open browser that names no Chrome.
 
-Take the mode from the compiled front door first, `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt "<task>"`, as the machine-router callout in [`ROUTER.md`](./ROUTER.md) says. Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the `hub-router.json` routing above instead. Compiled routing is the default for this hub. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide, the explicit kill-switch.
+Take the mode from the compiled front door first: `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-stdin <<'TASK'`, the task, then `TASK`. The quoted heredoc keeps the shell from running anything in the task. Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the `hub-router.json` routing above. `SPECKIT_COMPILED_ROUTING=0` forces legacy routing fleet-wide.
 
 ---
 

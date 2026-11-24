@@ -5,31 +5,26 @@
 - Mode: review
 - Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
 - Dimension: traceability
-- Operator review focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- Artifact dir: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-2`
-- Session: `fanout-vibe-2-1795504079797-ay97sx`, generation 1, lineageMode new
-- Sources read this iteration: `steer.md` (absent), `deep-review-strategy.md`, `deep-review-findings-registry.json`, `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md`, `014-fix-deep-review-findings/{goal.md,acceptance-criteria.md,tasks.md,decision-record.md,implementation-summary.md}`
-
-## How this iteration addressed the operator focus
-
-The focus is a goal-criteria question, so this iteration is the one that answers it directly. It
-walked the parent goal's seven completion criteria and phase 014's twenty acceptance rows, ran the
-verification command each row names where the command is read-only, and followed the phase 014
-closure claim into the registry that D1 names. Three rows did not survive that walk: one acceptance
-row names a verification command that cannot produce its evidence, the registry D1 names was never
-updated to record the closures, and one mode's recorded playbook run is mostly failing.
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change
+- Lineage: sessionId `fanout-vibe-2-1795511024070-2cuwlj`, generation 1, lineageMode new
+- Iteration: 3 of 7
 
 ## Files Reviewed
 
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:1-60`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md:1-80`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/tasks.md:27,45,52,57,64,99`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/decision-record.md:55`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T044326Z-restart/deep-review-findings-registry.json`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/deep-review-findings-registry.json`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:25,34`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/{README.md,results.csv}`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/README.md:1-40`
+- `.skilled/skills/mcp-browser-use/README.md:8` -- hub README frontmatter version
+- `.skilled/skills/mcp-browser-use/SKILL.md:18` -- the version-authority rule
+- `.skilled/skills/mcp-browser-use/mode-registry.json:3` -- registry version
+- `.skilled/skills/mcp-browser-use/hub-router.json:3` -- router version
+- `.skilled/skills/mcp-browser-use/description.json:1` -- description version
+- `.skilled/skills/mcp-browser-use/changelog/` -- five release files, newest v1.1.3.0
+- `.skilled/skills/mcp-browser-use/leaf-manifest.json:1` -- 17 declared leaves
+- `.skilled/skills/mcp-browser-use/leaf-scopes.json:1` -- declared leaf scopes
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:62` -- playbook run index
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/README.md:1` -- newest Chrome DevTools run
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/results.csv:1` -- Bladebro run rows
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--signed-in-live/results.csv:1` -- Aside run rows
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/goal.md:1` -- phase 006 criteria and log
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes/goal.md:1` -- phase 008 criteria
 
 ## Findings - New
 
@@ -39,72 +34,71 @@ None.
 
 ### P1 Findings
 
-None new. Two P1 findings from earlier iterations remain active: `R1-P1-001` (advisor id-noun anchor) and `R2-P1-003` (Aside session-dir guard).
+1. **The hub README declares a release that has no changelog entry** -- `.skilled/skills/mcp-browser-use/README.md:8` -- the frontmatter reads `version: 1.1.4.0`, while `mode-registry.json:3`, `hub-router.json:3`, `SKILL.md:6` and `description.json` all read `1.1.3.0`, and `changelog/` holds five files whose newest is `v1.1.3.0.md`. `SKILL.md:18` states the invariant this breaks: "This file's `version` matches the newest entry under `changelog/`. The hub metadata files carry the same value." The only other `1.1.4.0` in the tree belongs to the Aside packet's own changelog, so the hub README carries a value copied from a different skill's release line.
+   Finding class: traceability
+   Scope proof: every file named is hub-owned and inside the declared review target; the invariant is stated by the hub's own SKILL.md.
+   Affected surface hints: `.skilled/skills/mcp-browser-use/README.md`, `.skilled/skills/mcp-browser-use/SKILL.md`, `.skilled/skills/mcp-browser-use/changelog/`
+   Case: a release reader or a version-consistency check reads the hub README, sees `1.1.4.0`, and looks for `changelog/v1.1.4.0.md`, which does not exist; the hub appears to ship a release with no record.
+
+   ```json
+   {"type":"claim","claim":"The hub README frontmatter version is 1.1.4.0 while every other hub metadata file and the newest changelog are 1.1.3.0, violating the version-authority rule the hub SKILL.md states.","evidenceRefs":["README.md:8","SKILL.md:18","mode-registry.json:3","hub-router.json:3","description.json:1","changelog/ listing: newest v1.1.3.0.md","rg 1.1.4.0 in hub: only README.md:8 plus mcp-aside-devtools files"],"counterevidenceSought":"Checked whether a v1.1.4.0 changelog exists anywhere in the hub (it does not), whether a validator enforces cross-file version equality (parent-skill-check passes and no version-authority checker exists under .skilled/commands/doctor/scripts or .skilled/bin), and whether the 1.1.4.0 value could be a deliberate unreleased bump (no changelog, no other metadata file carries it).","alternativeExplanation":"The README may have been bumped ahead of a release that was never cut. Rejected as a defence: the hub SKILL.md makes the changelog the version authority, so a bump without a changelog entry is the defect rather than a staging step.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 if the hub README version is restored to 1.1.3.0, or if a v1.1.4.0 changelog is added and the other four metadata files are bumped with it."}
+   ```
 
 ### P2 Findings
 
-1. **Acceptance row AC-013 names a verification command that cannot produce the evidence the row claims, and the row is marked Met** -- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md:63` -- the row reads "Given the Aside example, When it runs with no argument, Then it writes under `./tmp/`" with verification "`rg -n 'OUT_DIR' mcp-aside-devtools/examples/repl-evidence-capture.sh` prints the `./tmp/` default". The script defines no `OUT_DIR`; it defines `SESSION_DIR="${2:-./tmp}"` at `repl-evidence-capture.sh:25`. Running the named command exits 1 with no output, so the row's stated evidence cannot be produced.
+2. **The phase 006 log records the older, greener Chrome DevTools run as the mode's playbook evidence** -- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/goal.md:1` -- the log's "Mode playbook runs" row reads "Chrome DevTools 4 PASS, 1 FAIL (BDG-008, example.com has no `h1`)", which is the 2026-11-21 run. The newest Chrome DevTools run, `2026-11-22--manual-testing-playbook--remaining-live`, records 4 PASS and 13 FAIL across 17 scenarios. The criterion it supports ("Each of the three mode playbooks records a run dated after 005") is met either way, but the evidence row presents a nearly green playbook while the later run is mostly red.
    Finding class: traceability
-   Scope proof: the acceptance row and the script line it names are both inside the pre-bound scope list; the criterion, the command and the actual variable are cited at line level.
-   Affected surface hints: `014-fix-deep-review-findings/acceptance-criteria.md`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh`, and any later review that re-runs the acceptance rows.
-   Case: a follow-up review re-runs AC-013's verification command to confirm the row; it prints nothing and exits 1, so the reviewer cannot tell whether the row is Met or the command is stale.
-
-2. **The findings registry that phase 014's D1 names was never updated to record the closures, so the record a follow-up review reads still shows every pre-014 finding active** -- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/goal.md:24` -- D1 reads "Every open finding in `../review/deep-review-findings-registry.json` is fixed or closed by a recorded decision. None is dropped." The closures are recorded in `tasks.md` by finding id (T004 closes `O1-I1-P1-001` and `R1-P1-001`, T011 closes `R2-P1-001`, T016 closes `R6-P2-001` with `R7-P2-001`, T023 closes the 005 halves), so D1's letter is satisfied. The registry itself was never updated: the closest pre-014 snapshot records 21 open and 2 resolved with 4 P1 and 17 P2, and the next snapshot records 33 open and 0 resolved.
-   Finding class: traceability
-   Scope proof: the goal decision, the tasks rows and both registry snapshots are inside the packet; the counts are read from the JSON rather than inferred.
-   Affected surface hints: `014-fix-deep-review-findings/goal.md`, `014-fix-deep-review-findings/tasks.md`, `review/deep-review-findings-registry.json`, and the follow-up review the phase objective names.
-   Case: the follow-up review the phase objective exists to enable opens the registry D1 names, sees 3 P1 and 30 P2 active with 0 resolved, and cannot tell which of them phase 014 closed without reading `tasks.md` instead.
-
-3. **The Chrome DevTools playbook's recorded run is 4 PASS and 13 FAIL, and the failures are attributed to stale scenario text that was never corrected** -- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/README.md:9-13` -- the report states "Verdict: FAIL" and "Tally: 4 PASS, 13 FAIL", and explains that "Most failures are stale scenario text, not broken tools": five scenarios pipe `bdg` text output into `jq`, and five MCP scenarios use a top-level `await` that Code Mode rejects. The parent goal's criterion "Each of the three modes has a manual testing playbook with a recorded run" is satisfied because a run is recorded, so this is not a criterion failure; it is a `playbook_capability` gap, because the playbook still teaches the failing forms.
-   Finding class: traceability
-   Scope proof: the report is inside the pre-bound scope list and inside the mode packet the parent goal names; the verdict, the tally and the two failure classes are cited at line level.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/README.md`, the five `jq`-piping scenarios under `manual-testing-playbook/`, and the five `mcp-parallel-instances/` scenarios.
-   Case: an agent follows `manual-testing-playbook/console-and-network/console-list.md` as written, pipes `bdg console --list` into `jq`, and gets a parse error, because the scenario was never updated to `--json`.
+   Scope proof: the phase 006 goal and the Chrome DevTools benchmark report are both inside the declared review target.
+   Affected surface hints: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/goal.md`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/README.md`
+   Case: a reader checking whether the Chrome DevTools playbook is trustworthy reads the phase 006 log, sees 4 PASS and 1 FAIL, and never learns that 13 of 17 scenarios fail in the newest recorded run.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|---|---|---|---|
-| `spec_code` | pass | `goal.md:1-60` vs the tree | Six of the seven parent criteria hold on the tree; the seventh (`validate.sh --strict --recursive`) is blocked for this lineage by the dispatch write limits |
-| `checklist_evidence` | partial | `acceptance-criteria.md:1-80`, `tasks.md:45-64` | 19 of 20 acceptance rows hold; AC-013's named verification command cannot produce its evidence |
-| `playbook_capability` | partial | `remaining-live/README.md:9-13` | All three modes have a recorded run; the Chrome DevTools run is 4 PASS / 13 FAIL and the failing scenario text was not corrected |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | The hub's version-authority invariant is stated at `SKILL.md:18` and broken at `README.md:8` (finding 1). |
+| `checklist_evidence` | partial | Phase 006's mode-playbook row cites the 2026-11-21 Chrome DevTools run while a 2026-11-22 run records 13 failures (finding 2). Phase 008's row counts match the files: Bladebro `results.csv` holds 5 rows at 4 PASS and 1 FAIL, and Aside `signed-in-live/results.csv` holds 15 rows at 10 PASS and 5 FAIL. |
+| `skill_agent` | pass | `parent-skill-check.cjs` exits 0 and names the hub; `leaf-manifest.json` declares 17 leaves and all 17 resolve on disk. |
+| `agent_cross_runtime` | notApplicable | No agent definition carries hub logic. |
+| `feature_catalog_code` | fail | Carried from iteration 2: the Aside install catalog documents an unpinned path that decision D2 forbids. |
+| `playbook_capability` | pass | All three modes carry a `manual-testing-playbook/` with a recorded run: Chrome DevTools `2026-11-22--remaining-live` (17 scenarios), Aside `2026-11-22--signed-in-live` (15 rows), Bladebro `2026-11-22--clickup-real-browser` (5 rows, macOS arm64, Bladebro v4.8.2). The parent criterion "a live Bladebro run on macOS included" is met. |
 
 ## Integration Evidence
 
-- `rg -n 'OUT_DIR' .skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` exited 1 with no output, while `rg -n 'SESSION_DIR'` printed `SESSION_DIR="${2:-./tmp}"` at line 25.
-- `review-archive/20261124T044326Z-restart/deep-review-findings-registry.json` records `openFindingsCount: 21`, `resolvedFindingsCount: 2`, `findingsBySeverity: {P0:0,P1:4,P2:17}`.
-- `review-archive/20261124T070727Z-restart/deep-review-findings-registry.json` records `openFindingsCount: 33`, `resolvedFindingsCount: 0`, `findingsBySeverity: {P0:0,P1:3,P2:30}`.
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/results.csv` marks every row "Raw output not retained", which is the disclosure AC-016 requires, and every path its README cites resolves under the playbook.
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/` holds seven recorded runs, and `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/` holds one, so all three modes have a recorded run.
+- `.skilled/skills/mcp-browser-use/leaf-manifest.json` was resolved against disk: 17 declared leaves, 17 present, 0 missing.
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live` and `2026-11-21--attach-probe--aside-browser`, both cited by the phase 006 log, exist on disk, so the log's cross-references resolve.
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/results.csv` holds exactly the 5 rows phase 008 claims, at 4 PASS and 1 FAIL.
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--signed-in-live/results.csv` holds exactly the 15 rows phase 008 claims, at 10 PASS and 5 FAIL.
 
 ## Edge Cases
 
-- **D1's named path no longer resolves.** `../review/deep-review-findings-registry.json` was moved into `review-archive/20261124T070727Z-restart/` by this run's restart, so the path D1 names is absent on the current tree. Recorded as an edge case rather than a finding because the move is an artifact of the current fan-out run, not of phase 014.
-- **The seventh parent criterion is blocked, not failed.** `validate.sh --strict --recursive` is a repo-wide write-capable command that this lineage's dispatch forbids, so the criterion is recorded as blocked for this lineage and left to the merge.
-- **The Chrome DevTools report has no `results.csv`.** Its aggregate table lives in the README instead. The criterion asks for "a recorded run", not for a specific file, so the absence is not a finding.
-- **Phase 014's defect count does not match the registry.** The summary says "2 P1 and 18 P2"; the pre-014 snapshot says 4 P1 and 17 P2 open. Recorded inside finding 2 rather than as a separate finding, because the count difference is a symptom of the same un-updated registry.
+- The Bladebro and Aside `results.csv` files state that raw output was not retained and that each verdict rests on the operator-approved live run the README records. The parent criterion asks for "a recorded run", not retained output, so this is recorded as a limitation of the evidence rather than a finding.
+- `leaf-scopes.json` declares leaf scopes for `mcp-chrome-devtools` only. The file is a per-mode scope declaration and the other two modes declare their leaves through `leaf-manifest.json`, so the asymmetry is recorded as an observation rather than a finding.
+- The hub playbook index at `manual-testing-playbook.md:62` names `2026-11-21--manual-testing-playbook--hub-routing--post-review` as "the latest recorded playbook run". That sentence is scoped to the hub's own hub-routing playbook, and the three 2026-11-22 runs belong to the mode playbooks, so it is accurate rather than stale.
+- The Chrome DevTools 2026-11-22 run attributes most failures to stale scenario text rather than broken tools. That judgement is the run's own and is not re-litigated here.
 
 ## Confirmed-Clean Surfaces
 
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md`: the three-mode registry criterion, the six-mode `mcp-tooling` criterion, the stale-id criterion, the parent-skill-checker criterion and the per-mode recorded-run criterion all hold on the tree.
-- `014-fix-deep-review-findings/acceptance-criteria.md`: AC-001 through AC-012 and AC-014 through AC-020 hold; AC-009's `browser-debugger-cli@alpha` search prints nothing and AC-002's `npx -y bladebro` search prints only gated, pinned hits.
-- `014-fix-deep-review-findings/tasks.md`: every task names the finding ids it closes, which is the recorded decision D1 asks for.
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/`: every cited path resolves and every unretained row says so.
+- Phase 008's two numeric criteria match the files exactly: Bladebro 5 rows at 4 PASS and 1 FAIL, Aside 15 rows at 10 PASS and 5 FAIL.
+- Every leaf declared in `leaf-manifest.json` resolves on disk.
+- Both benchmark report folders the phase 006 log cites exist.
+- The hub's `changelog/` holds one file per release from v1.0.0.0 through v1.1.3.0 with no gap.
+- `mode-registry.json`, `hub-router.json`, `SKILL.md` and `description.json` agree on `1.1.3.0`.
 
 ## Ruled Out
 
-- **A mode has no recorded playbook run.** Ruled out: Bladebro has one report, Aside has seven, and Chrome DevTools has three with the aggregate table in the README.
-- **The ClickUp evidence citations are broken.** Ruled out: every path the README cites resolves under the playbook, and every `results.csv` row discloses that raw output was not retained.
-- **Phase 014 dropped a finding.** Ruled out: `tasks.md` names the finding ids each task closes, so no finding is silently dropped; the gap is that the registry was not updated to match.
-- **The parent goal's stale-id criterion regressed.** Ruled out in iteration 1 and re-confirmed here: the search prints no match.
+- **Broken cross-references in the phase 006 log.** Both cited Bladebro report folders exist on disk.
+- **A missing mode playbook.** All three modes carry a `manual-testing-playbook/` tree with scenario files and a recorded run.
+- **A missing Bladebro macOS live run.** The 2026-11-22 Bladebro report records a live run on macOS arm64 with Bladebro v4.8.2, and the 2026-11-21 macOS live folder is also present.
+- **A gap in the hub changelog series.** Five files cover v1.0.0.0 through v1.1.3.0 with no missing release.
 
 ## Next Focus
 
 - Dimension: maintainability
-- Focus area: the hub SKILL.md and ROUTER.md prose against the registries, the changelog convention, and the Aside capture example's structure
-- Reason: traceability is covered; maintainability is the last configured dimension and the packet carries a large documentation surface
-- Rotation status: correctness, security and traceability complete; maintainability not started
-- Blocked/productive carry-forward: the `validate.sh --strict --recursive` criterion stays blocked for this lineage; the Chrome DevTools playbook is productive and may be revisited under maintainability
-- Required evidence: file:line citations from the pre-bound scope list
+- Focus area: the hub's documentation structure, the mode packet layout against the `mcp-tooling` sibling, and the changelog and README conventions
+- Reason: maintainability is the last canonical dimension and the remaining scope is documentation shape rather than behaviour
+- Rotation status: correctness, security and traceability reviewed, maintainability next
+- Blocked/productive carry-forward: the version-consistency scan was productive and should be repeated across the three mode packets
+- Required evidence: file:line citations from the three mode packets' README and changelog files
 
 Review verdict: CONDITIONAL

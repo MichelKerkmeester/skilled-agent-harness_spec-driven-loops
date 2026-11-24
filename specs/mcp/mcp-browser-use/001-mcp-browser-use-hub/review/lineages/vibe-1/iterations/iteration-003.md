@@ -2,25 +2,33 @@
 
 ## Dispatcher
 
-- **Mode**: review
-- **Target**: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
-- **Dimension**: security
-- **Operator review focus**: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- **How this iteration addressed the focus**: it checked decision D5 ("Installing Bladebro needs an operator yes") and the packet's security posture across all three modes' install and session surfaces, plus phase 003's REQ-008 mutation-guard coverage for the moved scripts.
-- **Sources read**: `.skilled/skills/mcp-browser-use/mcp-bladebro/{scripts/install.sh,scripts/doctor.sh,references/install-and-verify.md}`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/{scripts/install.sh,references/session-management.md}`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/{scripts/install.sh,references/session-management.md}`, `.skilled/commands/doctor/{assets/mcp-mutation-class-manifest.yaml,scripts/check-mcp-mutation-class.sh}`, `.skilled/scripts/git-hooks/pre-commit`
+- Mode: review, single iteration, LEAF-only (no sub-agent dispatch)
+- Lineage: `vibe-1`, sessionId `fanout-vibe-1-1795511024070-2cuwlj`, generation 1, lineageMode `new`
+- Executor: cli-mistral-vibe, model deepseek-flash (in-process; the fan-out lineage is its own executor)
+- Dimension: traceability
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This iteration addressed the focus directly: it ran each of the goal's seven completion criteria against the shipped files, and it read the advisor 2.0.3.0 changelog's four claims against the hub metadata and the advisor's own scorer.
+- Sources read this iteration: `steer.md` (absent, so no lead ruling applies), `review-scope-files.txt`, `goal.md`, `015-fix-follow-up-review-findings/goal.md`, `015-fix-follow-up-review-findings/tasks.md`, `015-fix-follow-up-review-findings/implementation-summary.md`, `002-hub-scaffold/spec.md`, `005-routing-and-surfaces/spec.md`, `006-verification/implementation-summary.md`, `001-research/research/deep-research-state.jsonl`, `001-research/research/research.md`, `.skilled/skills/mcp-tooling/{mode-registry.json,hub-router.json,leaf-manifest.json,SKILL.md,README.md}`, `.skilled/skills/mcp-browser-use/{graph-metadata.json,description.json}`, `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md`, `.skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/*.md`, `.skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/bin/skill-advisor.cjs`
 
 ## Files Reviewed
 
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:1-80`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh:120-185`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md:1-60`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:1-80`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/references/session-management.md:37-98`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:355-385`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/session-management.md:280-290,680-685`
-- `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:1-100`
-- `.skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:140-175`
-- `.skilled/scripts/git-hooks/pre-commit:625-650`
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:1-140`
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/deep-research-state.jsonl:1`
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:1`
+- `.skilled/skills/mcp-tooling/mode-registry.json:1`
+- `.skilled/skills/mcp-tooling/hub-router.json:1`
+- `.skilled/skills/mcp-tooling/leaf-manifest.json:1`
+- `.skilled/skills/mcp-tooling/SKILL.md:1`
+- `.skilled/skills/mcp-tooling/README.md:1`
+- `.skilled/skills/mcp-browser-use/graph-metadata.json:1`
+- `.skilled/skills/mcp-browser-use/description.json:1`
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:1`
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/ambiguous-defer.md:1`
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/aside-browser-automation.md:1`
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/holdout-agentic-browser.md:1`
+- `.skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md:1-45`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:110-113`
+- `.skilled/commands/doctor/scripts/parent-skill-check.cjs:1`
 
 ## Findings - New
 
@@ -30,82 +38,64 @@ None.
 
 ### P1 Findings
 
-1. **The Aside installer executes unverified remote code and is the only installer in the repository that does** -- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:78` -- The wrapper runs `curl -fsSL "$INSTALLER_URL" | bash` against `https://releases.aside.com/install.sh` (`install.sh:9`) with no digest, signature or pinned-content check. Its own header claims it "verifies the result" (`install.sh:4`), but the only verification is `aside --version`, which runs the freshly installed code, so verification happens after execution. The wrapper also honours `ASIDE_CLI_BASE_URL` (`install.sh:32`), so an environment override redirects the install to any host. Its sibling in the same hub pins four SHA-256 digests and uninstalls on a mismatch (`.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:22-30`), and a repository-wide scan of skill installers finds this Aside wrapper as the only `curl | bash` and the Bladebro wrapper as the only digest-pinned one, so no repo convention excuses it.
-   Finding class: security
-   Scope proof: the installer is a shipped script of a mode inside the declared target's hub, and the mutation-class manifest already declares it `mutating`, so the surface is in scope and already acknowledged as privileged.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh`; `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml` Aside row; the Aside install documentation that offers no verified alternative.
-   Case: an operator runs the documented Aside install on a machine whose DNS or TLS path is subverted, or where `ASIDE_CLI_BASE_URL` is set by a wrapper script; the shell executes whatever the endpoint returns as the invoking user, before any check can run.
-
-```json
-{
-  "type": "claim",
-  "claim": "The Aside install wrapper pipes an unpinned remote script into bash with no integrity check, and it is the only skill installer in the repository that does so.",
-  "evidenceRefs": [
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:9",
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:32",
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:78",
-    ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:22",
-    ".skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:61"
-  ],
-  "counterevidenceSought": "Scanned every skill installer for the same pattern and for digest verification: the Aside wrapper is the only curl-pipe-bash and the Bladebro wrapper the only digest-pinned one, so this is not an accepted repo-wide convention. Searched the Aside references and SKILL.md for a documented digest or signature step and found none. Considered that the endpoint is the vendor's official installer, which lowers likelihood but not the absence of a check.",
-  "alternativeExplanation": "The vendor may publish no stable digest, making pinning impractical. That explains the gap but does not close it: fetching to a file, recording and reviewing the digest, or pinning a version through the documented ASIDE_CLI_VERSION override would all give a checkable artifact, and the sibling mode shows the pattern is available.",
-  "finalSeverity": "P1",
-  "confidence": "high",
-  "downgradeTrigger": "Downgrade to P2 if the Aside documentation is amended to state that the install is unverified by design and the operator accepts that risk explicitly, or if a digest or signature check is added."
-}
-```
+None new. One prior P1 is downgraded this iteration; see the P2 section and the adjudication below.
 
 ### P2 Findings
 
-2. **Neither installer enforces the operator-yes gate in code** -- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:8` -- Decision D5 says installing Bladebro needs an operator yes. Both install wrappers state the rule in a header comment ("Workflows must never call this implicitly", `install.sh:8`; "Workflows must never call this implicitly — installation is always an explicit operator decision", Aside `install.sh:4-5`) and then install on any invocation that is not `-h`/`--help`. Nothing in either script requires a confirmation flag, a terminal prompt or an operator token, so the gate is prose an agent must choose to honour rather than a control the script applies.
-   Finding class: security
-   Scope proof: both scripts are shipped install surfaces of modes inside the declared target's hub.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh` argument parsing; `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh` argument parsing; the mutation-class manifest rows that declare both `mutating`.
-   Case: an agent reads `install-and-verify.md` §3, runs `scripts/install.sh` to "check the install", and installs a global npm package without ever asking the operator, because the script treats a bare invocation as consent.
+1. **Prior finding R1-P1-001 downgraded from P1 to P2: the doc claim is still wrong, but the routing consequence it predicted does not reproduce** -- `.skilled/skills/mcp-browser-use/ROUTER.md:33` -- Iteration 1 rated this P1 on the reach "a frontend performance prompt lifts the hub in stage one". This iteration ran that reach against the live advisor and it did not reproduce: the prompt `improve the core web vitals of my landing page` returns `sk-code` at confidence 0.9295 with `sk-code-frontend` as the compiled target, not `mcp-browser-use`. The contradiction itself stands -- `graph-metadata.json` `intent_signals` does carry `core web vitals` while `ROUTER.md:33` says the phrase is "not advertised to the advisor" -- so the doc line is still factually wrong and still worth a one-line fix. What does not stand is the severity: the phrase is one of 86 intent signals, it does not win stage one on its own, and no gate reads the claim.
+   - Case: a reader trusts `ROUTER.md:33` and concludes the advisor cannot see Core Web Vitals for this hub; the metadata says otherwise, so the reader's model of stage one is wrong even though the routing outcome happens to be right.
+   - Finding class: instance-only
+   - Scope proof: the live advisor run is the counterevidence, and `rg -n "core web vitals" .skilled/skills/mcp-browser-use` still returns the same two metadata sites plus the one prose claim, so the contradiction is unchanged in scope and only its impact is smaller.
+   - Affected surface hints: ["ROUTER.md intent model", "graph-metadata.json intent_signals"]
+   - Claim adjudication:
+     ```json
+     {"type":"claim","claim":"ROUTER.md:33 contradicts graph-metadata.json intent_signals on whether Core Web Vitals is advertised to the advisor, but the predicted routing consequence does not reproduce, so the finding is documentation drift rather than a routing defect.","evidenceRefs":["ROUTER.md:33","graph-metadata.json:1","hub-router.json:118"],"counterevidenceSought":"Ran the advisor on the exact reach the P1 named. `improve the core web vitals of my landing page` returns sk-code at 0.9295 with sk-code-frontend as the compiled target, so the hub does not win stage one.","alternativeExplanation":"The phrase could still tip a near-tie toward the hub on a prompt that also carries a weak browser signal, which would restore a routing consequence without restoring the original reach.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"Raise back to P1 if a prompt is found where core web vitals alone decides a stage-one win for mcp-browser-use."}
+     ```
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | pass | `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:66-72` | Phase 003's REQ-008 holds: the mutation guard's `HOOK_PATTERN` (`check-mcp-mutation-class.sh:147-150`) and `DISCOVERY_GLOBS` (`:151-158`) both cover `skills/mcp-browser-use/mcp-*/scripts/*.sh`, and the manifest carries a row for each of the three moved modes with honest mutation classes. |
-| `checklist_evidence` | partial | `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:78` | D5's operator-yes gate is documented but not enforced, and the Aside install path has no integrity check, so the packet's security posture is uneven across its three modes. |
+- `spec_code` -- pass. All seven goal completion criteria were checked against the shipped files:
+  - Criterion 1: `001-research/research/deep-research-state.jsonl` holds 12 records with `type === "iteration"` (the criterion asks for at least 10), and `001-research/research/research.md` exists at 33,096 bytes.
+  - Criterion 2: `.skilled/skills/mcp-browser-use/mode-registry.json` declares exactly three modes (`mcp-chrome-devtools`, `mcp-aside-devtools`, `mcp-bladebro`) and `.skilled/skills/mcp-tooling/mode-registry.json` declares exactly six (`mcp-click-up`, `mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-obsidian`, `mcp-notion`).
+  - Criterion 3: `rg -n "mcp-tooling/mcp-chrome-devtools|mcp-tooling/mcp-aside-devtools" .skilled` excluding `changelog` and `benchmark/reports` prints no match, and `rg -q "mcp-chrome-devtools|mcp-aside-devtools"` prints no match in each of `.skilled/skills/mcp-tooling/{mode-registry.json,hub-router.json,leaf-manifest.json,SKILL.md,README.md}`.
+  - Criterion 4: `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-browser-use` exits 0 and ends `OK: parent-skill-check -- all hard invariants passed, 0 warnings`, naming the hub as its subject.
+  - Criterion 5: one real request per mode returns `mcp-browser-use` from the advisor and that mode from the compiled router -- Chrome DevTools 0.95 to `mcp-chrome-devtools`, Aside 0.9441 to `mcp-aside-devtools`, Bladebro 0.9295 to `mcp-bladebro`.
+  - Criterion 6: each of the three modes has `manual-testing-playbook/manual-testing-playbook.md` and recorded runs (Chrome DevTools 3, Aside 7, Bladebro 3), including `mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/`.
+  - Criterion 7: not verified by this lineage. `validate.sh --strict --recursive` is a repo-wide write-capable tool and this lineage's write surface forbids running it, so the only support is the phase 015 record at `015-fix-follow-up-review-findings/implementation-summary.md:113`. Recorded as unverified rather than passed.
+- `checklist_evidence` -- pass. Phase 015 criterion 2's advisor half holds: the advisor 2.0.3.0 changelog's four claims were each checked. `mcp-code-mode` is absent from both `graph-metadata.json` `intent_signals` and `description.json` `keywords`; bare `staging` is absent from both; the four staging phrases the changelog says still route live in the advisor's own `explicit.ts:110-113` at weight 0.65, not in the hub metadata, which is consistent with the changelog's wording. The five probe prompts' behaviour is covered by the advisor suite the changelog reports, which this lineage did not re-run.
 
 ## Integration Evidence
 
-- `.skilled/commands/doctor/scripts/check-mcp-mutation-class.sh` -- the guard the pre-commit hook sends moved MCP scripts to; its pattern and globs both name `mcp-browser-use`.
-- `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml` -- the guard's source of truth; rows exist for `mcp-chrome-devtools` (`:45`), `mcp-aside-devtools` (`:61`) and `mcp-bladebro` (`:66`), each with `install_script_mutation_class: mutating` and `doctor_script_mutation_class: read-only`.
-- `.skilled/scripts/git-hooks/pre-commit:625-650` -- the skill-authoring gate that runs the parent-skill doctor and the leaf-manifest check for a staged skill root.
+- `.skilled/commands/doctor/scripts/parent-skill-check.cjs` -- the checker the goal's criterion 4 names. Its `13a-version` row reads "all JSON routing files carry the SKILL.md version 1.1.3.0" and its `13b-version` row reads "SKILL.md version 1.1.3.0 matches the newest changelog entry". Both pass, which is the counterevidence that keeps finding R1-P2-001 at P2: the gate reads JSON routing files and SKILL.md, never `README.md`.
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:110-113` -- the four staging phrases the advisor 2.0.3.0 changelog says still route to the hub. They live in the advisor's explicit lane at 0.65, so the changelog's claim is true through a surface outside the hub's own metadata.
+- `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md` -- the index and the seven `hub-routing/` scenario files agree exactly: both carry `MT-001`, `MT-004`, `MT-007`, `MT-012`, `MT-013`, `MT-H01` and `MT-H04`, with no scenario unindexed and no index entry without a file.
 
 ## Edge Cases
 
-- **Ambiguity: is the Aside `curl | bash` a finding or an accepted vendor pattern?** Resolved by comparison rather than by assumption: a repository-wide scan shows no other skill installer pipes a remote script into a shell, and the sibling mode in the same hub pins digests, so the pattern is an outlier rather than a convention. Kept at P1.
-- **Ambiguity: does the Bladebro `doctor.sh` mutate?** It declares `read-only` and its only write is `trap 'rm -f "$probe_out" "$probe_err"' EXIT` (`doctor.sh:182`), which removes its own temp probe files. Not a finding.
-- **Partial success**: the Chrome DevTools installer was read only around its download and messaging paths (`install.sh:355-385`); it performs no remote fetch, so no integrity question arises there. Its session-management reference carries the correct guidance to keep HAR captures and cookie dumps out of the repository (`session-management.md:283,682`).
-- **Missing dependency**: no live Aside or Bladebro install was performed, so the findings rest on the shipped scripts and docs rather than on observed install behaviour. Stated so the reader can weigh the evidence.
+- Criterion 7 could not be executed. `validate.sh --strict --recursive` is explicitly outside this lineage's write surface, so the criterion is recorded as unverified rather than passed. This is a coverage limit of the lineage, not a defect in the packet.
+- `manual-testing-playbook/hub-routing/ambiguous-defer.md:21` discloses that the advisor gives its prompt to `mcp-code-mode`, so a live session never reaches the hub with it. Recorded as an honest scoping note rather than a finding: the scenario tests the hub on its own, and it says so.
+- The advisor 2.0.3.0 changelog carries its own "Known Limitation" section, stating that a task verb still expands to synonyms so a prompt with two generic words can pass the 0.45 lexical anchor. Recorded as disclosed rather than a finding, and it matches the phase 015 goal's own deviation row ("Shared 0.45 lexical anchor left as is").
 
 ## Confirmed-Clean Surfaces
 
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:22-30` pins four SHA-256 digests (two native binaries, two JS launcher files), refuses a platform with no recorded digest, and runs `npm uninstall -g bladebro` on a mismatch before any installed code runs.
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md:33-53` states the operator gate, the digest values, the rollback and the "never runs npm update" rule, and matches the script's four digests.
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/references/session-management.md:47-50` documents the permission modes and the password boundary: saved password values stay hidden from the agent, and MFA, passkeys, CAPTCHA and vault unlock remain human-only.
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/references/session-management.md:60` frames unattended runs as best-effort with resumable waiting rather than bypasses, which is the correct posture for a signed-in browser.
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/session-management.md:283,682` tells the reader that HAR files, cookie dumps and saved sessions hold live secrets and must be written outside the repository and deleted.
-- A repository-wide scan of the hub for `api_key`, `Bearer `, `password=`, `token=`, `secret=` and private-key markers found no embedded credential; the single hit is a usage comment in `mcp-chrome-devtools/scripts/_utils.sh:738`.
+- All seven goal completion criteria are supported by shipped evidence except criterion 7, which this lineage could not run.
+- The hub's playbook index and its seven scenario files are bidirectionally complete.
+- The advisor 2.0.3.0 id-noun change is present in the shipped metadata: `mcp-code-mode` and bare `staging` are gone from both the hub's intent signals and its description keywords.
 
 ## Ruled Out
 
-- **The mutation-class guard being blind to the moved scripts**: ruled out -- `HOOK_PATTERN` and `DISCOVERY_GLOBS` both name `mcp-browser-use`, and the manifest carries a row for all three modes.
-- **The Bladebro installer running package lifecycle scripts**: ruled out -- it installs with `--ignore-scripts` and checks digests before `bladebro --version` first runs installed code.
-- **Credentials embedded in the hub's docs or scripts**: ruled out by the secret-pattern scan above.
-- **The Aside password boundary being agent-reachable**: ruled out -- `session-management.md:50` states saved password values stay hidden and that MFA, passkeys, CAPTCHA and vault unlock are human-only.
+- "The advisor 2.0.3.0 changelog overstates its staging claim": ruled out, the four phrases live in `explicit.ts:110-113`.
+- "The hub playbook index is missing a scenario": ruled out, the index and the files carry the same seven MT ids.
+- "`mcp-tooling` still carries a browser mode": ruled out, six modes and no browser id in any of its five named files.
+- "The Core Web Vitals contradiction is a routing defect": ruled out by the live advisor run, which returns `sk-code` for that prompt.
 
 ## Next Focus
 
-- **Dimension**: traceability
-- **Focus area**: the seven completion criteria in `goal.md` §3 against shipped evidence, and the 14 child phase goals against their own implementation summaries -- in particular whether each phase's stated goal is met by what shipped, and whether the 014 fixes closed the 2026-11-24 findings at their source.
-- **Reason**: security is complete for the install and session surfaces. Traceability is the dimension the operator focus names most directly ("every phase's shipped work against its goal criteria"), and it is the largest remaining surface.
-- **Rotation status**: correctness and security complete; traceability and maintainability remain.
-- **Blocked/productive carry-forward**: productive -- comparing a suspect pattern against its siblings across the repository distinguished an outlier from a convention in one pass.
-- **Required evidence**: file:line for each criterion's evidence, and for each phase goal claim that the shipped files do or do not support.
+- Dimension: maintainability
+- Focus area: the hub and mode changelogs, the README and SKILL.md prose, the benchmark report READMEs, and the duplicated install guidance across `INSTALL-GUIDE.md`, `references/` and `scripts/README.md`
+- Reason: traceability closed the criteria; the remaining dimension is whether the documentation set is internally consistent and cheap to change
+- Rotation status: correctness, security and traceability pass 1 complete, one dimension remains
+- Blocked/productive carry-forward: productive -- the version-drift and duplicated-install findings both came from comparing two docs that describe the same thing, so the same comparison is the right method here
+- Required evidence: file:line on each duplicated or contradictory statement
 
 Review verdict: CONDITIONAL

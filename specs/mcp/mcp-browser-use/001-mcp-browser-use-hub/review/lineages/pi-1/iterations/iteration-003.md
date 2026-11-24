@@ -2,29 +2,26 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `pi-1`), target agent `@deep-review`, resolved route `Resolved route: mode=review target_agent=deep-review`.
-- Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder).
-- Dimension: traceability.
-- Operator focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made.
-- Focus addressed in this iteration: the parent goal's seven completion criteria and phase 014's acceptance rows were checked against the files they name, with the two core traceability protocols run in full.
+- Mode: review (fan-out lineage `pi-1`, generation 1)
+- Dimension: security
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This iteration tested phase 015's decision D2 ("The Aside installer runs only a script that matches a pinned sha256") against every surface that tells a caller how to install Aside, not only against the installer it patched.
 
 ## Files Reviewed
 
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:44-52` (completion criteria), `spec.md:53`, `graph-metadata.json:54`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/spec.md:23`, `006-verification/graph-metadata.json:37`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/deep-research-state.jsonl`, `001-research/research/research.md`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/goal.md`, `004-bladebro-mode/goal.md`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md:23,140,149,171`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/{acceptance-criteria.md,tasks.md}`
-- `.skilled/skills/mcp-browser-use/{mode-registry.json,hub-router.json,description.json,SKILL.md}` (versions and names)
-- `.skilled/skills/mcp-tooling/mode-registry.json` (six modes)
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/{SKILL.md,changelog/}`, `mcp-aside-devtools/{SKILL.md,changelog/}`, `mcp-bladebro/{SKILL.md,changelog/}`
-- `.skilled/skills/mcp-browser-use/{mcp-chrome-devtools,mcp-aside-devtools,mcp-bladebro}/manual-testing-playbook/manual-testing-playbook.md`
-- `.skilled/skills/mcp-browser-use/{mcp-chrome-devtools,mcp-aside-devtools,mcp-bladebro}/benchmark/reports/`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/{README.md,results.csv}`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:60-81` (pin table)
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:25`
-- `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:43-70`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:1-115`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh:25-42`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:70-80`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md:15-90`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md:50-60`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/references/troubleshooting.md:55-70`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/mcp-servers/aside-cli/README.md:20-45`
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:1-175`, `scripts/doctor.sh:45-140`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/doctor.sh:60-80`
+- `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:1-75`
+- `.skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:1-90`
+- `.skilled/scripts/git-hooks/pre-commit:715-745`
+- `.utcp_config.json:120-270`
 
 ## Findings - New
 
@@ -34,58 +31,77 @@ None.
 
 ### P1 Findings
 
-None.
+1. **The digest-pinned Aside installer is bypassed by every other Aside surface, including the agent instruction** -- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh:36` -- Phase 015 pinned the installer by content (`install.sh:14` `readonly INSTALLER_SHA256`, compared at `:93-99` before `bash "$installer"` at `:103`) and its decision D2 says "The Aside installer runs only a script that matches a pinned sha256" (`015/goal.md:33`). Seven shipped surfaces in the same packet still prescribe the unpinned pipeline instead of the wrapper: `scripts/doctor.sh:36`, `SKILL.md:75`, `INSTALL-GUIDE.md:21`, `:49`, `:83`, `README.md:56`, `references/troubleshooting.md:62`, and `mcp-servers/aside-cli/README.md:25` and `:43`. `SKILL.md:75` is the load-bearing one: it instructs the agent to "report the official install command (`curl -fsSL https://releases.aside.com/install.sh | bash`)" whenever the binary is absent, so the agent path routes around the digest gate by design.
+Case: an operator or agent follows `SKILL.md:75` or `doctor.sh:36` when `aside` is missing and executes a script fetched at that moment with no digest comparison; the wrapper at `scripts/install.sh` that would have refused a changed script is never reached. Reach is the documented remedy line itself, which is the surface both a human and an agent act on.
+Finding class: `security-remediation-gap`
+Scope proof: the pin and its comparison are read in `install.sh`; all nine prescribing lines are located by one `rg` over `.skilled/skills/mcp-browser-use/`; `015/goal.md:33` carries decision D2; `check-mcp-mutation-class.sh:24-42` shows the guard scans for *executed* `curl`/`wget`, so printed guidance is outside its reach and the gate could not have caught this.
+Affected surface hints: `.skills/mcp-browser-use/mcp-aside-devtools/SKILL.md`, `INSTALL-GUIDE.md`, `README.md`, `scripts/doctor.sh`, `references/troubleshooting.md`, `mcp-servers/aside-cli/README.md`, and the playbook entries that quote the install step.
+
+```json
+{
+  "type": "claim",
+  "claim": "The phase 015 digest pin is bypassed by the packet's own install guidance, which still prescribes an unpinned curl | bash, and one of those lines is the instruction an agent follows.",
+  "evidenceRefs": [
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:14",
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:103",
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:75",
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh:36",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/goal.md:33"
+  ],
+  "counterevidenceSought": "Checked whether any of the nine lines qualifies the command with the wrapper, a digest, or a 'use scripts/install.sh instead' pointer; none does. Checked whether SKILL.md:75 restricts reporting to a read-only statement the agent never executes; it says report the command to the operator, which is the documented hand-off path. Checked the mutation-class guard and the pre-commit gate for a rule that would fail the commit on printed guidance; the guard matches executed curl/wget only.",
+  "alternativeExplanation": "The lines are vendor-documented install instructions, and the wrapper is a repository convenience: an operator following the vendor path is exercising their own trust decision, so nothing is broken.",
+  "finalSeverity": "P1",
+  "confidence": 0.82,
+  "downgradeTrigger": "Downgrade to P2 if the Aside packet states that the wrapper is one of several accepted install paths and that the vendor pipeline is the documented default, or if `SKILL.md:75` is amended to name the wrapper first."
+}
+```
 
 ### P2 Findings
 
-1. **Two packets carry a derived `in_progress` status while their docs say Complete, and AC-008 claims they agree** -- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/graph-metadata.json:54` -- The parent `spec.md:53` and `goal.md` both read Complete with `completion_pct: 100`, but the parent `graph-metadata.json` derived block still says `"status": "in_progress"`; `006-verification` repeats the pattern (`spec.md:23` Complete, `graph-metadata.json:37` in_progress). AC-008's verification is "read of the three files' status, `completion_pct` and `next_safe_action`" and its closure line says "the parent spec, goal and graph metadata name the same status and next action" (`014-fix-deep-review-findings/acceptance-criteria.md:61,106`). Two of the three names disagree, so the row's evidence sentence is wrong even though the packet status itself is defensible.
-   Finding class: `doc_code_parity`
-   Scope proof: both files are inside the review target; the four sibling packets checked (001, 013, 014 complete, 006 in_progress) show the field is meant to track packet status.
-   Affected surface hints: skill-graph freshness and query surfaces that read `derived.status`; the parent's completion claim; 014's closure evidence.
-   Case: an operator or tool reads `graph-metadata.json` to decide whether the packet is done and is told `in_progress` for a packet whose spec says Complete.
+None. The remaining security surfaces read clean; see Confirmed-Clean Surfaces.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | Parent criterion 1: 12 iteration records and `research.md` exist (`001-research/research/deep-research-state.jsonl`). Criterion 2: the hub registry lists three modes and `mcp-tooling` six (`.skilled/skills/mcp-browser-use/mode-registry.json`, `.skilled/skills/mcp-tooling/mode-registry.json`). Criterion 3: `rg 'mcp-tooling/mcp-(chrome-devtools\|aside-devtools)'` over `.skilled` prints nothing outside changelog and benchmark reports, and the five named `mcp-tooling` files carry neither id. Criterion 6: three playbook roots exist with recorded runs, including the Bladebro macOS live runs. Criterion 5: the 2026-11-24 replay records both stages passing on the three mode rows (`results.csv` MBU-R-01..03). Criteria 4 and 7 depend on `parent-skill-check.cjs` and `validate.sh --strict --recursive`, which this read-only lineage must not run; their packet-recorded results are named as recorded, not re-observed. |
-| `checklist_evidence` | pass | Sampled and verified: the parity test's five assertions (one parity test plus two per installer) match `pass 5`; `bash -n` exits 0 on all five browser shell scripts; `browser-debugger-cli` is pinned at `0.6.10` in every live install line; `--ignore-scripts` and the launcher digests are present; the Aside example defaults `SESSION_DIR=./tmp`; BB-015 states the Chrome 136+ precondition; the ClickUp report discloses that raw output was not retained and records its one FAIL honestly. One row's evidence sentence is overstated (AC-002/CHK-030, iteration 1 P2) and one AC-008 claim is contradicted by the packet's own metadata (this iteration's P2). |
-| `playbook_capability` | pass | Each mode's playbook root names its scenarios and its latest recorded run, and the Bladebro root points at the 2026-11-22 ClickUp report that records 4 PASS and 1 FAIL with reasons. |
-| `skill_agent` | notApplicable | No agent definition under `.skilled/agents/` references the hub or its modes, so the target has no agent binding to check. |
+| Protocol | Class | Status | Evidence |
+|---|---|---|---|
+| `spec_code` | core | fail | Decision D2 at `015/goal.md:33` says every Aside install runs through the pinned script; the shipped guidance at `SKILL.md:75` and seven sibling surfaces says otherwise. |
+| `checklist_evidence` | core | partial | `015/goal.md:43` records the installer fix as Done with "installer digest check" as its evidence. The check exists at `install.sh:93-99`, so the row is accurate about the file it names and silent about the guidance that bypasses it. |
+| `playbook_capability` | overlay | partial | The Aside manual-testing playbook's install step and `references/troubleshooting.md:62` both quote the unpinned pipeline as the remedy, so the playbook's stated precondition (a digest-checked install) is not what its own instructions produce. |
+| `skill_agent` | overlay | fail | `SKILL.md:75` is the agent-facing contract for a missing binary and it prescribes the unpinned pipeline; an agent obeying it never reaches `scripts/install.sh`. |
 
 ## Integration Evidence
 
-- Advisor surface: the hub is reachable through the advisor's `mcp-browser-use` identity and the replay records both stages (`.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv`).
-- Mutation-class guard: `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:43-70` lists all three browser packets, and `.skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:148-157` covers `skills/mcp-browser-use/mcp-*/scripts/*.sh` and `mcp-servers/*/setup.sh`.
-- Version authority: the hub `SKILL.md` `version: 1.1.2.0`, `mode-registry.json`, `hub-router.json` and `description.json` all carry `1.1.2.0`, and each mode packet's `version` matches its own newest changelog entry (`mcp-chrome-devtools 1.0.28.0`, `mcp-aside-devtools 1.1.13.0`, `mcp-bladebro 1.2.1.0`).
+- `.skilled/scripts/git-hooks/pre-commit:715-745` runs `check-mcp-mutation-class.sh` only when a matching script or the manifest is staged, and the guard's read-only rule matches executed `curl`/`wget`/`npx` calls (`check-mcp-mutation-class.sh:24-42`); printed guidance is therefore invisible to both, which is why the bypass survived the gate that phase 015 relied on.
+- `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:61-65` lists the Aside installer as `mutating` and its doctor as `read-only`, so the guard's own inventory knows the installer exists and never models the guidance surfaces.
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:148-173` installs with `--ignore-scripts` and verifies the launcher and native digests afterwards, removing the install on a mismatch, with the platform without a recorded digest refused at `:120`; the ordering is documented and the package code cannot run before verification.
 
 ## Edge Cases
 
-- `parent-skill-check.cjs` and `validate.sh --strict --recursive` were not run because this lineage may not execute repository tooling; their claims are recorded evidence, not re-observed results, and the `spec_code` pass rests on the surfaces those commands check, inspected directly.
-- `derived.status` in `graph-metadata.json` may be regenerated by graph tooling rather than authored; the finding is against AC-008's agreement claim, not against a missing regeneration step.
-- 005 remains Partial by its own record (REQ-003 met at the default threshold only, REQ-008 after relabeling); the parent discloses this, so it was not raised as drift.
+- **Printed guidance is not execution.** The P1 is about the path a caller is told to take, not about code that runs unaided. It is rated P1 because a shipped instruction is a real caller that produces the failing input, and because the packet's own decision D2 claims the opposite.
+- **The vendor script is itself legitimate.** This is not a claim that `releases.aside.com/install.sh` is malicious; it is a claim that the pin the packet decided on is not the path its own surfaces take.
+- **Nine lines, one finding.** Grouping them keeps the registry honest: fixing one without the others leaves the bypass, so the finding is the class, and the fix list is the nine surfaces.
 
 ## Confirmed-Clean Surfaces
 
-- Hub metadata versions agree with the newest hub changelog entry, and every mode packet's frontmatter version matches its own changelog.
-- The six `mcp-tooling` modes remain unchanged and none of the five named `mcp-tooling` files names a browser mode.
-- Phase 014's 60 checklist rows are all checked, and the sampled evidence holds for the parity test, the pins, the install hardening, the Aside default and the BB-015 precondition.
+- No hardcoded credentials anywhere in the reviewed configuration and wiring: `.utcp_config.json:130-264` passes every provider key through `${VAR}` interpolation, and `mcp-wiring.md:43` states the Aside server exposes no token or OAuth field.
+- The Aside installer itself fails closed: platform gate at `install.sh:62-74`, digest comparison at `:93-99`, `bash "$installer"` only on a match at `:103`, and `trap 'rm -rf "$installer_dir"' EXIT` at `:84` so the fetched script never lingers.
+- The Bladebro installer keeps package lifecycle scripts off during install (`--ignore-scripts` at `:151`) and verifies launcher and native digests with removal on mismatch (`:96-173`).
+- The Chrome doctor's only network-adjacent call is bounded and local-resolution only: `timeout 5 npx --no-install --prefer-offline` at `mcp-chrome-devtools/scripts/doctor.sh:70`, which satisfies the guard's "npx needs BOTH --no-install and timeout" rule.
+- The mutation-class manifest carries a row for all three browser modes (`:45-72`), each with an explicit class, so the guard's fail-closed discovery has no hole in this hub.
 
 ## Ruled Out
 
-- **A browser mode still lives inside `mcp-tooling`.** Ruled out by the exact search in parent criterion 3.
-- **A packet version disagrees with its changelog.** Ruled out for the hub and all three modes.
-- **The Bladebro playbooks hide their one FAIL.** Ruled out: the report records BB-012 FAIL with a reason, and the playbook root links that report as the latest recorded run.
+- **`ASIDE_CLI_BASE_URL` forwarding lets an attacker redirect the download** -- ruled out as a repository finding: the override is documented in the wrapper's usage text (`install.sh:38-41`) as an operator env, and the same comment states the pin covers the script only, so the residual is disclosed rather than silent.
+- **The mutation-class guard's trigger regex misses a new mode directory** -- ruled out for this target: all three browser mode directories match `mcp-[a-z-]+` and each has a manifest row, so no reachable miss exists inside the reviewed tree.
+- **The prefixed command in `repl-evidence-capture.sh` writes cookies or secrets into the repo** -- ruled out: the Chrome-side guidance write path is `"${TMPDIR:-/tmp}"` under `cdp-patterns.md`, and the example's own output path is the caller-supplied `./tmp` session dir.
 
 ## Next Focus
 
-- Dimension: maintainability
-- Focus area: the size and shape of the phase 014 commit, duplicate authorities between `mode-registry.json` aliases and `hub-router.json` vocabulary, and doc weight in the Chrome packet.
-- Reason: traceability is swept; maintainability is the last uncovered dimension before a cross-reference pass.
-- Rotation status: correctness, security and traceability complete; maintainability next.
-- Blocked/productive carry-forward: productive — cross-file claims (`AC-008` versus the metadata it cites) are where drift hides.
-- Required evidence: `file:line` for each finding and a named follow-on change cost.
-
-## Verdict
+- Dimension: traceability
+- Focus area: the phase goals 001-015 against their own completion criteria and `implementation-summary.md` continuity, with the packet-level `goal.md` and `spec.md` claims checked against shipped state
+- Reason: nine of fifteen phases have never had their criteria tested in this run, and the operator focus names "every phase's shipped work against its goal criteria" as the deliverable
+- Rotation status: security closed; traceability begins
+- Blocked/productive carry-forward: productive, goal-criteria-first reads
+- Required evidence: `goal.md` completion criteria per phase plus the shipped line each criterion names
 
 Review verdict: CONDITIONAL

@@ -2,24 +2,19 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `pi-1`), target agent `@deep-review`, resolved route `Resolved route: mode=review target_agent=deep-review`.
-- Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder).
-- Dimension: maintainability.
-- Operator focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made.
-- Focus addressed in this iteration: what the shipped surfaces cost to change — duplicated pin and digest authorities across the Bladebro install/doctor pair, the one registration block the Chrome guide repeats four times, and whether the 014 commit's size is a coherent unit.
+- Mode: review (fan-out lineage `pi-1`, generation 1)
+- Dimension: traceability
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This is the iteration that answers the focus directly: it extracted the completion criteria of all fifteen phase goals and tested the ones a static read can settle, then compared each phase's declared status against its own continuity block.
 
 ## Files Reviewed
 
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:17-27,85-90,166-167`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh:14-27,49-74,145-155,231-239`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:303-400,950-960`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md:45-120`
-- `.skilled/skills/mcp-browser-use/mode-registry.json`, `.skilled/skills/mcp-browser-use/hub-router.json`
-- `.skilled/bin/tests/mcp-installers.test.cjs:40-80`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/{implementation-summary.md,log.md}`
-- `git show --name-only ec3ed74ad01` (commit shape only)
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/{install.sh,doctor.sh}`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/{install.sh,doctor.sh,_utils.sh}`
+- `goal.md`, `spec.md` of `001-research` through `015-fix-follow-up-review-findings` (completion-criteria and metadata sections)
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md` (root metadata)
+- `.skilled/skills/mcp-browser-use/mode-registry.json`
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/` (installer, `SKILL.md`, `mcp-servers/bladebro-mcp/README.md`, playbook tree)
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/feature-catalog.md:243`, `feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md`, `references/cdp-patterns.md`, `manual-testing-playbook/dom-and-screenshot/eval-javascript.md`
 
 ## Findings - New
 
@@ -29,57 +24,64 @@ None.
 
 ### P1 Findings
 
-None.
+None new. The open P1 from iteration 3 (`pi1-I3-P1-001`) is a spec contradiction and is carried there; this iteration's traceability checks record it rather than re-raising it.
 
 ### P2 Findings
 
-1. **The Bladebro pin and its four digests live twice with nothing checking the pair agrees** -- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh:21-27` -- `PINNED_VERSION`, `DIGEST_DARWIN_ARM64`, `DIGEST_DARWIN_X64`, `DIGEST_LAUNCHER_BIN_JS` and `DIGEST_LAUNCHER_BINARY_CJS` are declared identically in `doctor.sh:21-27` and `install.sh:17-27`, each script carries its own verification helper (`check_digest` versus `verify_digest`), and no test guards agreement: `.skilled/bin/tests/mcp-installers.test.cjs` exercises only the helper-copy parity and the two installers that ship `_utils.sh`, so Bladebro is unmentioned. A pin bump that lands in one file splits the verdicts — the installer uninstalls a good release while the doctor calls a bad one healthy, or the reverse.
-   Finding class: `config_precedence`
-   Scope proof: both files are inside the review target, and the doctor's own comment at `doctor.sh:26-27` says "Same values as install.sh", so the duplication is intentional rather than accidental.
-   Affected surface hints: `scripts/install.sh`, `scripts/doctor.sh`, `mcp-installers.test.cjs`, and the packet's install guide.
-   Case: an operator bumps the pin, updates `install.sh`, runs the installer and the doctor in the same session, and gets two different answers about the same installed package.
-2. **The Chrome install guide repeats one registration block four times, which is what let one copy drift** -- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:361` -- The 1,124-line guide carries the same `.utcp_config.json` manual four times (two required instances at lines 354-375, the optional live instance at 387, and a standalone verification snippet at 956), while `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md:45-120` holds the authoritative copy of the same four blocks. This holds independently of iteration 2's pin finding: even with every copy pinned, four copies of one registration contract must be edited together or they diverge, and only one of them is generated from the config.
-   Finding class: `doc_code_parity`
-   Scope proof: the guide and the snapshot asset are both inside the review target, and the snapshot already records the divergence at line 53.
-   Affected surface hints: `INSTALL-GUIDE.md` section 4 and its troubleshooting snippet in section 9, the snapshot asset, and the operator's copy-paste path into `.utcp_config.json`.
-   Case: a future pin bump edits the live config and the snapshot, leaving three guide blocks stale, which is exactly the state iteration 2 found.
+1. **Four phase continuity blocks report a completion percentage their own spec contradicts** -- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/goal.md:6` -- `_memory.continuity.completion_pct` reads `0` for `001-research` and `002-hub-scaffold`, `90` for `006-verification` and `50` for `012-browser-hub-doc-topic`, while each of those folders' `spec.md` metadata says `Status: Complete`. The `recent_action` strings agree with the spec, not the percentage ("Authored the durable directive"), so the same continuity block carries both a finished state and an unfinished score. The generation-3 review recorded this class as open packet-state drift; phases 014 and 015 closed their own packets without closing it.
+Case: `rg -m1 'completion_pct' specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/goal.md` prints `0` for a folder whose `mode-registry.json` ships the exact three modes its criteria name and whose `spec.md` says Complete, so a continuity reader sees a phase that never started beside artifacts that shipped.
+Finding class: `state-drift`
+Scope proof: both sides read for each of the four phases (`goal.md` continuity block and `spec.md` metadata table); the shipped artifacts for 002 were parsed independently (`mode-registry.json`, three modes).
+Affected surface hints: `001-research/goal.md`, `002-hub-scaffold/goal.md`, `006-verification/goal.md`, `012-browser-hub-doc-topic/goal.md`, and any `/speckit:resume` read that trusts `completion_pct`.
 
-## Maintainability Checks
+2. **The root spec says every phase is Complete while phase 005 declares itself Partial** -- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:6` -- The root `Status` cell opens "Complete: phases 001 to 015 are Complete" and then, in the same cell, states "005 still records REQ-003 and REQ-008 as not met as written". `005-routing-and-surfaces/spec.md` carries `Status: Partial` with the same two requirements. One of the two statements is wrong, and a reader who stops at the first clause gets the wrong answer.
+Case: a release reader greps the root `Status` and reads "phases 001 to 015 are Complete"; the child packet for 005 says `Partial` and names two unmet requirements, so the root's first clause is false as written.
+Finding class: `state-drift`
+Scope proof: both status cells read; the child's requirement caveats are quoted in both places, so this is a contradiction rather than a missing qualification.
+Affected surface hints: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md`, `005-routing-and-surfaces/spec.md`, `005-routing-and-surfaces/goal.md` (`completion_pct: 95`).
 
-| Check | Verdict | Evidence |
-|-------|---------|----------|
-| One authority per pin | fail | Bladebro's pin and four digests are declared twice (`install.sh:17-27`, `doctor.sh:21-27`) with no agreement test. |
-| One authority per registration block | fail | Four copies of the Chrome manual block, one of them authoritative (`INSTALL-GUIDE.md:354-387,956` versus `assets/utcp-chrome-devtools-manuals.md:45-120`). |
-| Router vocabulary versus registry aliases | pass | `hub-router.json` `vocabularyClasses` is deliberately a routing vocabulary, not a copy of the registry's `aliases` (bare `aside` is excluded on purpose), and each class names its own reason. |
-| Commit as one reviewable unit | pass | `ec3ed74ad01` is 526 files but 459 of them are the packet's own review archive and 60 are the hub's shipped skills; the change is one coherent fix set rather than unrelated churn. |
-| Script reachability | pass | Every script under the three `scripts/` folders is referenced by at least two packet docs; only `_utils.sh` has few references because it is sourced rather than invoked. |
+## Traceability Checks
+
+| Protocol | Class | Status | Evidence |
+|---|---|---|---|
+| `spec_code` | core | partial | Two of the four phases checked at source hold, two do not. Phase 002's criteria hold: `mode-registry.json` parses to exactly three modes, each `packetKind: workflow` and `backendKind: cli-plus-mcp`, with no transport field. Phase 003's stale-pointer criterion holds: `rg 'mcp-tooling/mcp-(chrome-devtools|aside-devtools|bladebro)'` over `.skilled` excluding changelogs and benchmark reports returns no line. Phase 005's catalog criterion holds: `feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md` exists and `feature-catalog.md:243` totals **31**. Phase 011's `returnByValue` strand holds: `references/troubleshooting.md` and `references/cdp-patterns.md` both carry `"returnByValue":true`. The `spec_code` status stays `partial` only because iteration 3's D2 contradiction (`pi1-I3-P1-001`) remains open. |
+| `checklist_evidence` | core | partial | Phase 014's `npx -y bladebro` criterion holds: every surviving line names an operator yes and pins `bladebro@4.8.2` (`bladebro/SKILL.md:61`, `mcp-servers/bladebro-mcp/README.md:35`, `feature-catalog/transport/mcp-code-mode-lane.md:26`). Phase 014's `browser-debugger-cli@alpha` criterion holds: no match outside changelog and benchmark reports. Phase 007's Bladebro playbook criterion was checked by tree shape only (15 scenario files across five groups), not by the `GUARD PASS` output the criterion names, and the remaining criteria in 001, 004, 005, 006, 008, 009, 010, 011, 012, 013 and 015 are command-output claims that this lineage does not execute. |
+| `playbook_capability` | overlay | partial | Phase 007's "30 of 30 scenarios recorded" and phase 008's `results.csv` row counts are files the run would have to count and read; the playbook tree for Bladebro holds 15 scenario files, so neither number could be confirmed as stated without the validator the criterion names. |
+| `skill_agent` | overlay | fail | Carried from iteration 3: `mcp-aside-devtools/SKILL.md:75` still prescribes the unpinned pipeline that phase 015's D2 forbids. No new agent-surface drift was found this iteration. |
 
 ## Integration Evidence
 
-- The parity helper landed in 014 is the pattern that would remove finding 1: `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/_utils.sh` is byte-identical to `.skilled/skills/mcp-code-mode/scripts/_utils.sh` and asserted by the parity test, so the Chrome packet has one shared helper while Bladebro keeps two copies of its own constants.
-- The doctor's exit contract is explicit and honoured: documented at `doctor.sh:14-17`, accumulated through `status=1` at `doctor.sh:72`, `doctor.sh:149` and `doctor.sh:231`, and returned at `doctor.sh:239`.
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md` names `REQ-003` as met "at the default threshold but not at `--threshold 0.5`" and `REQ-008` as "held only after the browser fixtures were relabeled"; the root spec repeats both qualifiers, so the two documents are consistent about the caveats and inconsistent only about the label.
+- Phase 002's registry was parsed rather than grepped: `mode-registry.json` yields three entries carrying `packetKind` and `backendKind` and no `transport`-axis key, which is exactly what `002-hub-scaffold/goal.md:32` requires.
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/feature-catalog.md:243` carries `| **TOTAL** | **31** |`, and the leaf `mcp-parallel-instances/lighthouse-and-performance-trace.md` is present, so phase 005's structural claim is intact.
 
 ## Edge Cases
 
-- The Bladebro duplication is documented in a comment, so it is a cost the authors accepted; the finding is that nothing enforces the pair, not that the comment is wrong.
-- `git show` was used read-only to inspect the commit shape; nothing was checked out, committed or reset.
-- The 1,124-line guide may be replaced by a pointer to the snapshot asset; that would resolve finding 2 and is named as the downgrade path rather than assumed.
+- **A `rg -r` flag reports a false positive for a renamed parameter.** An early pass of this iteration read `"n": true` where the CDP parameter should have been `returnByValue` and nearly recorded a P1 that the shipped recipes were broken. `-r n` is ripgrep's *replacement* flag, so the match was being rewritten in the output, not in the file. A direct `sed` read of the same line shows `"returnByValue":true`. The candidate was withdrawn; the method note is kept because this class of mistake is silent in the tool output.
+- **Command-output criteria are not settable from a read.** Eleven of the fifteen phases state their completion as a command's printed line. Marking those `pass` from prose would be a fabricated verification, so they are `partial` with the reason named rather than assumed clean.
+- **`completion_pct` may be derived rather than authored.** If a generator writes it from the goal log's progress table, the defect is in the generator's input for those four phases and not in the text; either way the shipped value contradicts the spec, which is the thing an operator reads.
+
+## Confirmed-Clean Surfaces
+
+- Phase 002's mode registry: exactly three modes, both required axes correct, no transport extension.
+- Phase 003's relocation: no stale `mcp-tooling/mcp-*` path remains outside changelogs and benchmark reports.
+- Phase 005's catalog: the named lighthouse leaf exists and the summary total is 31.
+- Phase 011's port note: the `returnByValue` guidance is present in both the troubleshooting reference and the CDP patterns file.
+- Phase 014's install guidance: no bare `npx -y bladebro` instruction survives without an operator yes and a pinned version, and no `browser-debugger-cli@alpha` reference remains in the shipped packet.
 
 ## Ruled Out
 
-- **The 014 commit is an unreviewable blast radius.** Ruled out by the file breakdown: 459 packet files plus 60 hub skill files plus 5 shared files is one fix set, not unrelated churn.
-- **The hub router duplicates the registry's alias list.** Ruled out: `vocabularyClasses` serves routing and deliberately omits bare `aside`, with the omission explained in the file.
-- **An unreferenced browser script.** Ruled out: every script under the three `scripts/` folders is named by at least two packet docs.
+- **The shipped CDP recipes pass a truncated parameter name** -- ruled out after a direct read; the apparent `"n"` was a `rg -r` replacement artifact in this reviewer's own output, and the files carry `"returnByValue":true`.
+- **Phase 015's criteria are unverifiable end to end** -- ruled out for the first two: criterion 1 and the hub strand of criterion 2 were reproduced in iteration 2 through `resolveRoute`.
+- **A phase is missing its goal or spec** -- ruled out: all fifteen child folders carry both, plus `tasks.md`, `plan.md` and `implementation-summary.md` in the levels that require them.
 
 ## Next Focus
 
-- Dimension: cross-reference
-- Focus area: re-read the landed findings against the goal criteria they touch, close the six required bug classes with a final ledger snapshot, and confirm no finding rests on a superseded file.
-- Reason: all four dimensions have been swept; the remaining work is to make the depth ledger complete and to check that the verdict's evidence still holds.
-- Rotation status: correctness, security, traceability and maintainability complete; cross-reference next.
-- Blocked/productive carry-forward: productive — duplication findings came from reading the two scripts side by side.
-- Required evidence: a complete `searchCoverage` snapshot and one disposition row per required bug class.
-
-## Verdict
+- Dimension: maintainability
+- Focus area: the hub's cross-mode documentation consistency (`README.md`, `ROUTER.md`, `leaf-scopes.json`, `mode-registry.json` descriptions, the benchmark and playbook indexes) against what the packets actually ship
+- Reason: the archived run left doc-drift advisories open and phase 015 claims to have corrected them; the previous passes only touched the pack
+- Rotation status: traceability closed for what a read can settle; maintainability begins
+- Blocked/productive carry-forward: productive, index-against-artifact comparison
+- Required evidence: each index row checked against a real folder or file on disk
 
 Review verdict: CONDITIONAL

@@ -1,30 +1,28 @@
-# Iteration 002: Correctness of the phase 014 fixes and the advisor scorer change
+# Review Iteration 002 - mcp-browser-use hub
 
-## Dimension
+## Dispatcher
 
-correctness (D1). Operator review focus: the phase 014 fixes and the advisor scorer change it made, read as behaviour rather than as documentation. Installer behaviour, the Bladebro gate, and the narrowed task-intent confidence gate were all read at their source.
+- Mode: review (LEAF, single iteration)
+- Run: fanout-pi-2-1795511024070-2cuwlj, generation 4, lineageMode new
+- Iteration: 2 of 7
+- Dimension: security
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This iteration addresses it for the hub's install/doctor goal criterion: an installer is operator-invoked, pinned, and verified, and a doctor is read-only. No advisor surface is touched here.
 
-## Sources
+## Files Reviewed
 
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh` (pin, verify step, `bdg cdp --list`)
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh` (pinned install, `--ignore-scripts`, digest checks)
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh` (digest check, MCP probe)
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` (syntax only)
-- `.skilled/bin/tests/mcp-installers.test.cjs` (the five parity assertions)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` (task-intent floor, `hasNamedAnchor`, `promptNamesIdNoun`, `readOnlyRouteAllowed`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts` (confidence constants)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` (category hints)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl`, `command-prompts.jsonl`, `behaviour-fresh-prompts.jsonl` (corpus rows that contain `staging`)
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/spec.md`, `acceptance-criteria.md`, `goal.md`
-- `.skilled/skills/mcp-browser-use/SKILL.md`, `ROUTER.md` (own-Chrome rule)
-
-## Scorecard
-
-- Dimensions covered: correctness (partial: the installer half closed, the scorer half carries the open P1)
-- Files reviewed: 13 read or grepped
-- New findings: P0=0 P1=1 P2=1
-- Refined findings: P0=0 P1=0 P2=1 (`PI2-I1-P2-002` strengthened with the AC-002 evidence, same file:line and root cause, so no new id)
-- New findings ratio: 1.0 (6 of 6 weighted units are new)
+- `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:1-102`
+- `.skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:1-445`
+- `.skilled/scripts/git-hooks/pre-commit:199-283,715-742`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:1-138`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh:45-105`
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:1-70,93-188`
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh:170-239`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:1-45,100-250`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/doctor.sh:1-103`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:1-101,226-240,355-390`
+- `.utcp_config.json:1-120`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/install/install-and-doctor.md:26-38`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/feature-catalog.md:33,81,95`
 
 ## Findings
 
@@ -34,76 +32,61 @@ None.
 
 ### P1 Findings
 
-1. **A bare `staging` category hint still lifts `mcp-browser-use` to the 0.82 task-intent floor on non-browser prompts** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:30 -- The scorer change in 014 is described as making the task-intent floor require the prompt to name the skill. A category hint counts as that naming, because `hasNamedAnchor` is true whenever any lexical evidence entry starts with `hint:`; `mcp-browser-use` still declares the bare word `staging` as a hint, worth `+0.38` on any prompt that contains it. A prompt with a task-intent verb and that word alone therefore clears the anchor test, the direct-score floor (`0.18`) and the recommendation threshold (`0.8`), which is the same mechanism the change removed for a bare `har`.
-   Case: an agent sends "fix the env loader that reads the wrong .env file in staging". `TASK_INTENT` matches `fix`, the lexical lane adds the `staging` hint, `hasNamedAnchor` reads true, `directScore` is at least 0.38, and `mcp-browser-use` is recommended at 0.82 for a configuration bug that has no browser in it.
-   Finding class: class-of-bug
-   Scope proof: `rg -n "staging" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/` shows the word is used across the corpus as a deploy-environment word, and the existing decline rows that carry it (`fit-decline-app-problem-05`, `fresh-decline-app-problem-02`) avoid every task-intent verb, which is why the corpus does not expose the path. The same hint map's other two `mcp-browser-use` entries are phrases (`chrome devtools`, `console errors`); `staging` is the only bare word left in that row after the change.
-   Affected surface hints: ["advisor lexical lane", "advisor task-intent confidence floor", "mcp-browser-use routing", "labeled-prompts corpus"]
-   ```json
-   {
-     "findingId": "PI2-I2-P1-001",
-     "claim": "A bare `staging` category hint is treated as the prompt naming `mcp-browser-use`, so a task-intent prompt that mentions only staging reaches the 0.82 confidence floor.",
-     "evidenceRefs": [
-       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:30",
-       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1226-1233",
-       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:380-405",
-       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:191-194"
-     ],
-     "counterevidenceSought": "Read the whole confidence chain for a demotion of hint-only candidates: `readOnlyRouteAllowed`, the derived-dominant branch, the dispersion guard, the direct-score lift and the `base + directBonus` fallback. None of them ignores a hint as an anchor, and `primaryIntentBonus` only adds. Grepped the routing corpora for decline rows that pair `staging` with a task-intent verb and found none, so no recorded row contradicts the path.",
-     "alternativeExplanation": "The word could be kept deliberately because the hub's playbooks talk about staging sites, and 014's spec only promised to drop `har`. But the branch comment states the intent as needing the prompt to name the skill and calls out shared words as the out-of-domain signature, so keeping a bare deploy word contradicts the stated contract rather than extending it.",
-     "finalSeverity": "P1",
-     "confidence": 0.74,
-     "downgradeTrigger": "If a replay row using a task-intent verb plus `staging` and nothing browser-specific shows `mcp-browser-use` below 0.8, or if a later gate drops hint-only candidates before surfacing, downgrade to P2 hardening.",
-     "transitions": [
-       { "iteration": 2, "from": null, "to": "P1", "reason": "Initial discovery" }
-     ]
-   }
-   ```
-   Skeptic pass: the candidate was challenged on three grounds. (a) Is `staging` reachable only in corpus prompts that are already browser tasks? No: the word is a general deploy-environment word, and the corpus decline rows show it used that way. (b) Does the surfacing gate drop a candidate whose only strong evidence is a hint? No, the evidence array is non-empty and the no-evidence default is keyed on an empty array. (c) Is this a re-raise of a finding 014 already closed? No, 014 closed the `har` token and the browser read-only lift; this is a different hint with the same mechanism. Referee: kept at P1 with confidence 0.74, because the reach is a normal English prompt and the wrong result is a non-browser task routed to a browser hub.
+None.
 
 ### P2 Findings
 
-1. **`promptNamesIdNoun` accepts any generic noun as the skill's name** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:332-335 -- The fourth anchor in `hasNamedAnchor` is "the noun the skill id ends in", implemented as the last dash-separated segment when it is at least four characters. That admits `mode`, `loop`, `code`, `prompt`, `plan` and `catalog`, which are routing vocabulary rather than names, so a prompt that says "loop" or "mode" satisfies the naming test for `system-deep-loop` or `mcp-code-mode` in the same way that "aside" satisfied it for the hub before the change.
-   Case: a prompt such as "update the plan for the mode rollout" carries task intent and two generic nouns, so the floor can lift more than one skill that the prompt never named.
-   Finding class: instance-only
-   Scope proof: `rg -n "promptNamesIdNoun"` shows one definition and one call site, so a restrict-list or a distinctiveness test is a single-file change; the three-character floor already blocks `doc`, `git` and `use`, which shows the mechanism the fix would extend.
-   Affected surface hints: ["advisor task-intent confidence floor", "skill id vocabulary"]
+1. **The Chrome DevTools installer pins by version only, so it cannot catch a substituted tarball the way the Bladebro installer can** -- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:30` -- the installer pins `browser-debugger-cli@0.6.10` (line 30, with the documented reason at 29-31) and then runs `npm install -g "${MCP_PACKAGE}"` at line 233. The only integrity signal is npm's own registry hash for that version; nothing in the packet records or checks the content digest. The sibling Bladebro installer in the same hub does the stronger thing: pinned version at `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:17`, four recorded SHA-256 values at lines 21-27, an `npm install -g --ignore-scripts` at line 152 so no package code runs before verification, and `verify_digest` at lines 96-113 that removes the install on mismatch. The manifest itself claims digest checking only for Bladebro (`mcp-mutation-class-manifest.yaml:70`), so no doc is false; the gap is that two installers in one hub answer the same supply-chain question differently, and the Chrome one is the lower bar.
+   - Finding class: supply-chain-hardening
+   - Scope proof: both installers and the manifest row are in the pre-bound review scope.
+   - Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md`, `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh`
+   Case: a registry-side substitution of the `browser-debugger-cli@0.6.10` tarball (registry compromise, mirror, or a self-hosted registry override) installs and runs unverified code, while the same substitution against the Bladebro pin is caught and the install is removed.
+   ```json
+   {"type":"claim-adjudication","claim":"The Chrome DevTools installer verifies its pinned CLI by version only, with no content digest, unlike the Bladebro installer, so a substituted tarball is not detected.","evidenceRefs":[".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:30",".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:233",".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:17-27",".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:152-166"],"counterevidenceSought":"Checked for a digest constant or verify function in the Chrome script (none), checked INSTALL-GUIDE for a stated pin-and-verify promise (it promises the version pin only), and read the manifest row that claims digest check for Bladebro alone.","alternativeExplanation":"npm refuses to republish an existing version, so the substitution requires compromising the registry or overriding the registry URL; the operator-invoked installer plus a pinned version may be judged sufficient.","finalSeverity":"P2","confidence":0.7,"downgradeTrigger":"P2 while the only attack is registry compromise; would become P1 if the packet's own docs claimed digest verification for the Chrome CLI or if installs could resolve through a configurable registry."}
+   ```
 
 ## Traceability Checks
 
-| Protocol | Status | Gate | Evidence | Notes |
-|---|---|---|---|---|
-| checklist_evidence | partial | hard | specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md:84 | AC-002 is marked Met although its stated verification greps a file whose hit is ungated in place; the closure statement discloses the amendment instead. Finding `PI2-I1-P2-002` is refined by this evidence. |
-| spec_code | partial | hard | .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:30 | 014's stated contract for the scorer change is not fully met: a bare hint still satisfies the naming test. |
-| skill_agent | pass | advisory | .skilled/skills/mcp-browser-use/SKILL.md:60 | The hub SKILL.md and ROUTER.md both state the own-Chrome attach rule that `hub-router.json` applies. |
-
-Criteria re-checked this iteration and holding:
-
-- AC-001 / REQ-001: the two `_utils.sh` copies are byte-identical, and `mcp-installers.test.cjs:49-55` asserts exactly that, so the parity test's assertion matches the tree.
-- AC-009 / REQ-009: `install.sh:30` pins `browser-debugger-cli@0.6.10`; `install.sh:265` verifies the install by running `bdg cdp --list`, and `install.sh:368-369` makes verification the default.
-- AC-010 / REQ-010: `mcp-bladebro/scripts/install.sh:50-53,148-152,166-173` installs with `--ignore-scripts` and checks `bin.js`, `binary.cjs` and the native binary against recorded digests before first use; `doctor.sh:26-27,120-124` checks the same digests.
-- AC-013: `bash -n` exits 0 on `repl-evidence-capture.sh`.
-- AC-017 / REQ-017: `SKILL.md:60` and `ROUTER.md:36` both state the own-Chrome rule, and `ROUTER.md:53` carries `my own chrome` and `signed-in chrome` as Chrome DevTools keywords.
-- Syntax: `bash -n` exits 0 on the Chrome DevTools installer, the Bladebro installer and the Bladebro doctor.
+No traceability protocol was run in this iteration; security review does not advance `spec_code` or `checklist_evidence`, so none is recorded here rather than recorded as pending.
 
 ## Integration Evidence
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` and its lane module are the shared scorer that every advisor caller uses; the finding above is a shared-surface defect, not a hub-local one.
-- `.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv` is the only recorded evidence for the fix. It shows `mcp-browser-use` at 0 on all out-of-domain rows it carries, so it does not exercise the `staging` + task-intent path.
+- `bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh` (read-only guard, run from the repository root): exit 0, `GUARD PASS`; all 24 manifest-listed scripts answered their declared class, including the three browser packets:
+  - `mcp-chrome-devtools/scripts/install.sh` [mutating], `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/doctor.sh` [read-only]
+  - `mcp-aside-devtools/scripts/install.sh` [mutating], `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh` [read-only]
+  - `mcp-bladebro/scripts/install.sh` [mutating], `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh` [read-only]
+- `.skilled/scripts/git-hooks/pre-commit:715-742` wires that guard as a blocking gate, fails closed when the guard is missing (line 730), and triggers on the same path pattern the guard discovers (line 726), so the manifest's "every script the pre-commit hook sends here" contract holds.
+- `.skilled/scripts/git-hooks/pre-commit:199-283` (comment-hygiene gate) checks the staged blobs, reads names NUL-separated (line 225-228), fails closed on a missing or non-executable checker (210-217), warns and applies every core rule when the quality config does not validate (line 257), and names the `// hygiene-ok` escape (line 276).
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:9-14,93-102` downloads `https://releases.aside.com/install.sh`, compares SHA-256 against the pinned `INSTALLER_SHA256` at line 14, and runs it only on a match at line 102; the header at 10-11 discloses that the archive the installer fetches is not itself verified.
+- `.utcp_config.json:1-120` registers `aside`, `bladebro`, `chrome_devtools_1`, `chrome_devtools_live` and `chrome_devtools_2`; all five are stdio, carry no literal credentials, and the Chrome entries pin `chrome-devtools-mcp@0.26.0`.
 
 ## Edge Cases
 
-- The scorer change cannot be executed inside this lineage: running the advisor would write daemon, cache and metrics state outside the write surface. The path is therefore proven by source reading, which is why the P1 carries confidence 0.74 rather than a higher figure, and why the downgrade trigger names the observation that would settle it.
-- MBU-PB-04 failing at stage one while stage two routes correctly is not reported as a finding: 014's criterion is scoped to original, paraphrase and out-of-domain rows, the replay report states the failure plainly, and the parent criterion 5 is satisfied by the three mode rows. It is left as a follow-up in the report's deferred items.
-- `readOnlyRouteAllowed` returns before the naming test for the browser read-only lift; 014 narrowed that lift to `chrome performance trace` or `browser performance trace`, so a bare "performance trace" prompt no longer takes that branch. Read and confirmed, not carried as a finding.
+- The two "read-only" doctors spawn their MCP server (`aside mcp` at `mcp-aside-devtools/scripts/doctor.sh:67`, `bladebro mcp` at `mcp-bladebro/scripts/doctor.sh:190`) and complete a JSON-RPC `initialize` + `tools/list` handshake. The guard's header names a connecting doctor as the historical bug (`.skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:7-8`), so this looked like a mislabel. It is not: the packet documents the probe as read-only (`mcp-aside-devtools/feature-catalog/feature-catalog.md:81,95`; `mcp-aside-devtools/feature-catalog/install/install-and-doctor.md:26,38`), the guard's forbidden list is bounded (no `curl`/`npx`/`claude mcp` without a bound, no `rm -rf`, no profile append), and both probes are watchdog-guarded to 15 s. Recorded as a ruled-out direction rather than a finding.
+- The probes' watchdog kills the backgrounded pipeline's PID (`.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh:194-200`). That PID may be the subshell or the last pipeline element depending on the exec optimization, so the kill does not provably reach an EOF-ignoring server. Not raised: it needs a server that ignores stdin EOF, which contradicts the MCP stdio contract both probes rely on, and it cannot be exercised here (no Aside or Bladebro binary installed).
+- `--add-profile` (`mcp-chrome-devtools/scripts/install.sh:16,58,188-208`) appends `export CHROME_PATH=` to the operator's shell profile. It is opt-in behind an explicit flag, and the installer is labeled `mutating`, so this is consent-gated behavior, not a finding.
+- The comment-hygiene escape `// hygiene-ok` is a documented per-line exemption (`.skilled/scripts/git-hooks/pre-commit:276`), not a hole.
+- No secret literal was found in the hub tree or `.utcp_config.json`; the config indirection `${FIGMA_API_KEY}` reads from `.env` through `load_variables_from` (`utcp_config.json:2-6,70-72`).
+
+## Confirmed-Clean Surfaces
+
+- Bladebro install: platform gate, pin `4.8.2`, `--ignore-scripts`, launcher and native-binary digest checks, removal on mismatch, version assertion after verification.
+- Aside install: platform gate, idempotent no-op when `aside` exists, installer digest verified before execution, no `sudo`, no profile write (it prints the PATH line instead).
+- Chrome install: pinned CLI (`browser-debugger-cli@0.6.10`), `set -euo pipefail` with `IFS` narrowed, quoted expansion of the package constant, and a `sudo npm install -g` string that is printed as operator guidance rather than executed.
+- Mutation-class guard: manifest coverage is complete, discovery and hook pattern are the same regex, a discovered script with no row fails, a null script with a non-`none` class fails, an empty work list is a harness error (exit 2), and the read-only scanner blanks quoted strings and comments before matching so help text cannot trip it.
 
 ## Ruled Out
 
-- Installer parity, pin and lifecycle-script gating: read at source, syntax-checked, and consistent with their acceptance criteria. No finding.
-- Removing the bare `har` token: no `har` entry remains in the scorer modules, and the two replay rows that mention a HAR still pass through other evidence, so the removal did not strand them.
+- "The guard cannot see the MCP handshake, so the read-only label is false": ruled out -- the packet classifies the probe as read-only in two catalogs, and the guard's contract forbids unbounded network and mutation, not a bounded local stdio handshake.
+- "The hook's comment-hygiene gate trusts the working tree": ruled out -- it copies the staged blobs into a temp mirror and checks those (`.skilled/scripts/git-hooks/pre-commit:224-248`).
+- "`.utcp_config.json` carries a token": ruled out -- all five browser manuals are stdio with empty `env`, and the Figma key is an indirection.
 
-## Recommended Next Focus
+## Next Focus
 
-Security (D2): trust boundaries in the same shipped surfaces. The Bladebro installer's digest gate and `npx` refusal, the pinned package install path, and whether the hub's own-Chrome attach rule leaks a data path. Then maintainability (D4) for the packet-state drift that iteration 1 opened.
+- Dimension: traceability
+- Focus area: phases 001-015 -- each `goal.md`/`acceptance-criteria.md` claim against the shipped implementation summary and the code or doc that proves it, with phase 015's follow-up fixes and the advisor 2.0.3.0 id-noun change as named sub-targets.
+- Reason: the operator focus is goal-vs-shipped-work per phase, and the two most recent change sets carry the highest drift risk.
+- Required evidence: file:line per goal criterion, plus `checklist_evidence` over tasks.md `[x]` rows.
+- Rotation status: D1 and D2 covered; D3 next.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

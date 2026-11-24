@@ -1,7 +1,7 @@
 {
   "name": "mcp-browser-use",
   "description": "Parent hub for three browser modes: mcp-chrome-devtools for Chrome DevTools inspection, debugging, Lighthouse audits and performance traces, mcp-aside-devtools for deterministic signed-in REPL proof, and mcp-bladebro for stealth and agentic browser work. workflowMode selects the packet through mode-registry.json and hub-router.json. mcp-code-mode is shared infrastructure and not a hub member.",
-  "version": "1.1.3.0",
+  "version": "1.1.4.0",
   "importance_tier": "high",
   "keywords": [
     "mcp-browser-use",

@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings",
+  "description": "Phase 16: fix-second-follow-up-findings",
+  "keywords": [
+    "phase",
+    "fix-second-follow-up-findings"
+  ],
+  "lastUpdated": "2026-11-24T09:36:46.496Z",
+  "specId": "016",
+  "folderSlug": "fix-second-follow-up-findings",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

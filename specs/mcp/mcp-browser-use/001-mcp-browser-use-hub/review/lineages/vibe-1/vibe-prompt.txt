@@ -631,7 +631,7 @@ Before iteration 1, read .skilled/skills/system-deep-loop/deep-review/assets/pro
 Read .skilled/skills/system-deep-loop/deep-review/SKILL.md and execute the review loop with these parameters:
   spec_folder: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub
   config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-1
-  session_id: fanout-vibe-1-1795504079797-ay97sx
+  session_id: fanout-vibe-1-1795511024070-2cuwlj
   executor: cli-mistral-vibe model=deepseek-flash
   loop_type: review
   config.stopPolicy: convergence
@@ -642,7 +642,7 @@ Review setup bindings (emit before any writes, as PRE-BOUND SETUP ANSWERS):
 review_target: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub
 review_target_type: spec-folder
 review_dimensions: all
-review_focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
+review_focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change
 review_scope_file: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-1/review-scope-files.txt
 spec_folder: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub
 execution_mode: AUTONOMOUS

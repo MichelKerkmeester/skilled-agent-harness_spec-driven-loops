@@ -122,7 +122,8 @@
     "without getting flagged as a bot",
     "attach to the browser i have open",
     "chrome live manual",
-    "core web vitals"
+    "core web vitals",
+    "in aside"
   ],
   "derived": {
     "trigger_phrases": [
@@ -284,6 +285,7 @@
     "without getting flagged as a bot",
     "attach to the browser i have open",
     "chrome live manual",
-    "core web vitals"
+    "core web vitals",
+    "in aside"
   ]
 }

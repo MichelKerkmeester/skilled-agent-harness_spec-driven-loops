@@ -2,108 +2,91 @@
 
 ## Dispatcher
 
-- **Mode**: review
-- **Target**: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
-- **Dimension**: correctness
-- **Operator review focus**: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- **How this iteration addressed the focus**: it checked goal criterion 5's second half -- that the hub router returns the mode -- against the engine that actually serves it in production, and against the canary corpus that admitted this hub to compiled serving. It also checked the phase 005 claim that the compiled engine serves this hub.
-- **Sources read**: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/{resolve.cjs,compiled-route.cjs}`, `.skilled/bin/lib/compiled-route-layout.cjs`, `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/{manifest.json,fence-state.json}`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/{harness/build-artifacts.cjs,fixtures/canary-cases.v1.json}`, `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json`, `.skilled/scripts/git-hooks/pre-commit`
+- Mode: review, single iteration, LEAF-only (no sub-agent dispatch)
+- Lineage: `vibe-1`, sessionId `fanout-vibe-1-1795511024070-2cuwlj`, generation 1, lineageMode `new`
+- Executor: cli-mistral-vibe, model deepseek-flash (in-process; the fan-out lineage is its own executor)
+- Dimension: security
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This iteration addressed the focus by reading the two phase 015 trust-boundary fixes at their source -- the Aside installer digest pin and the Aside capture example's `..` guard -- and by checking whether the same class of defect survives elsewhere in the hub.
+- Sources read this iteration: `steer.md` (absent, so no lead ruling applies), `review-scope-files.txt`, `goal.md`, `015-fix-follow-up-review-findings/goal.md`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh`, `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh`, `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/README.md`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/cli-bdg-lifecycle/install-version.md`, `.skilled/skills/sk-code/sk-code-review/references/review-core.md`
 
 ## Files Reviewed
 
-- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:1-159`
-- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:1-126`
-- `.skilled/bin/lib/compiled-route-layout.cjs:1-80`
-- `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/manifest.json:1`
-- `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/fence-state.json:1`
-- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs:30-60`
-- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:1-160`
-- `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json:1`
-- `.skilled/scripts/git-hooks/pre-commit:459-500`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:1-138`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:1-91`
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:84-180`
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md:30-92`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:175-200`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:11-81`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:945-975`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md:53`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/README.md:21`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md:245`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/cli-bdg-lifecycle/install-version.md:18`
 
 ## Findings - New
 
 ### P0 Findings
 
-None.
+None. No exploitable path, auth bypass or destructive data loss was found. The two phase 015 trust-boundary fixes hold at their source.
 
 ### P1 Findings
 
-1. **The admission canary corpus never exercises the hub's declared three-mode bundle or its canonical ids** -- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:4` -- The corpus holds 15 cases. Its only bundle case is `named-tools-bundle`, "compare chrome devtools and bladebro on this page" (`canary-cases.v1.json:141`), a two-mode bundle. No case names all three modes, and no case uses the `workflowMode` ids the registry publishes. `resolve.cjs:34` states this corpus is what admitted the hub: "mcp-browser-use, admitted on its own canary corpus after it split out of mcp-tooling", and `resolve.cjs:39-48` lists the hub in `DEFAULT_ON_HUBS`, so an unset flag serves it compiled. The corpus therefore cannot prove the `orderedBundle` outcome declared at `hub-router.json:14`, and iteration 1's defect -- the three canonical ids routing to two modes -- passed admission unobserved.
-   Finding class: correctness
-   Scope proof: the corpus, the resolver that names it as admission evidence, and the router outcome it fails to cover are all inside the declared target's shipped routing surface.
-   Affected surface hints: `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json`; `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` `DEFAULT_ON_HUBS`; `.skilled/skills/mcp-browser-use/hub-router.json` outcomes.
-   Case: a maintainer changes the Bladebro vocabulary, runs the canary corpus, sees 15/15 pass, and flips serving authority to `compiled` -- while a three-mode request still drops Bladebro, because no case asks for three modes.
-
-```json
-{
-  "type": "claim",
-  "claim": "The canary corpus that admitted mcp-browser-use to compiled serving has no case for the hub's declared three-mode orderedBundle outcome and no case using the canonical workflowMode ids, so the iteration-1 routing defect could not be caught at admission.",
-  "evidenceRefs": [
-    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:4",
-    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:141",
-    ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:34",
-    ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:39",
-    ".skilled/skills/mcp-browser-use/hub-router.json:14"
-  ],
-  "counterevidenceSought": "Enumerated all 15 case ids and prompts to confirm no three-mode case and no canonical-id case exists. Checked whether a second corpus covers the hub: the serving-closure manifest lists only this one fixtures file for mcp-browser-use. Checked whether the corpus is illustrative rather than admission evidence: resolve.cjs:34 names it as the admission basis, which rules that reading out.",
-  "alternativeExplanation": "The corpus could be a smoke set, with the full contract proven elsewhere. Rejected: the serving-closure manifest lists exactly one fixtures file for this hub, and resolve.cjs names that corpus as the admission basis, so no other artifact carries the proof.",
-  "finalSeverity": "P1",
-  "confidence": "high",
-  "downgradeTrigger": "Downgrade to P2 if a second, broader corpus is shown to gate this hub's serving authority, or if the corpus is documented as illustrative rather than admission evidence."
-}
-```
+1. **The Node-version troubleshooting fix installs Node 18 while the same block and every other doc require Node 20 or later** -- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:187` -- The entry's diagnosis line at `:179` reads `# bdg requires Node.js 20.x or higher`, and the solution immediately below runs `nvm install 18` then `nvm use 18`. A reader who follows the fix ends up on a version the same block says is too old, so the reported failure is not resolved. Every other statement of the requirement in the packet says 20 or later: `INSTALL-GUIDE.md:11`, `INSTALL-GUIDE.md:180` ("browser-debugger-cli declares `engines.node >=20.0.0`"), `feature-catalog/cli-bdg-lifecycle/install-version.md:18`, `README.md:245`, `scripts/install.sh:61` and `scripts/README.md:21`.
+   - Case: a reader whose `bdg` fails with a Node-version error opens the troubleshooting entry, runs the printed `nvm install 18` and `nvm use 18`, and `bdg` still refuses to start because 18 is below the declared `engines.node >=20.0.0`.
+   - Finding class: class-of-bug
+   - Scope proof: `rg -n "Node.js 1[0-9]|Node.js 2[0-9]|requires Node" .skilled/skills/mcp-browser-use` returns 20-or-later in seven places and 18 in exactly one -- `troubleshooting.md:187-188`. The defect is confined to that one block, so the fix is a two-line edit rather than a sweep.
+   - Affected surface hints: ["troubleshooting.md Node-version entry", "INSTALL-GUIDE.md prerequisite line", "scripts/install.sh prerequisite check"]
+   - Claim adjudication:
+     ```json
+     {"type":"claim","claim":"The troubleshooting entry's fix installs Node 18, which the same entry and every other packet doc say is below the bdg requirement of Node 20 or later, so the fix cannot resolve the failure it addresses.","evidenceRefs":["mcp-chrome-devtools/references/troubleshooting.md:179","mcp-chrome-devtools/references/troubleshooting.md:187","mcp-chrome-devtools/INSTALL-GUIDE.md:180","mcp-chrome-devtools/scripts/install.sh:61"],"counterevidenceSought":"Searched for any packet statement that Node 18 is supported, and for a bdg version whose engines field allows 18. Every packet statement says 20 or later, and install-version.md:18 pins bdg 0.6.10 to Node 20 or later.","alternativeExplanation":"The block may predate the 0.6.10 pin and describe an older bdg release, in which case the fix was correct once and is now stale rather than wrong.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 if the operator confirms the entry is intentionally kept for a pre-0.6.10 bdg install, which makes it a scoping note rather than a wrong instruction."}
+     ```
 
 ### P2 Findings
 
-2. **The engine ignores the activation-root override the resolver honours** -- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:29` -- `resolve.cjs:22-25` reads `SPECKIT_ACTIVATION_ROOT_OVERRIDE` and its comment states the purpose: "Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp copy so the harness never reads or mutates live committed state." `compiled-route.cjs:29` hardcodes the same activation root with no override, and `manifestFingerprint` (`compiled-route.cjs:46-53`) reads `manifest.json` from it. With the override set, the resolver gates on the temp manifest while the engine fingerprints the live one, so the stated isolation does not hold.
-   Finding class: correctness
-   Scope proof: both files are the shipped runtime engine for this hub's compiled route.
-   Affected surface hints: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` `ACTIVATION_ROOT` and `manifestFingerprint`; `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` override.
-   Case: a test sets `SPECKIT_ACTIVATION_ROOT_OVERRIDE` to a temp activation tree and flips the temp manifest's `selectedPolicy`; the resolver reads the temp manifest, but the engine's cache key still comes from the live manifest, so the test reads live committed state despite the comment promising it does not.
+2. **The Node-version fix pipes a downloaded script straight into bash, the pattern phase 015 removed from the Aside installer** -- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:186` -- The fix runs `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash`. The URL is version-pinned, but the fetched bytes are never compared against a digest before they execute. Phase 015 D2 established the opposite norm for this packet: `mcp-aside-devtools/scripts/install.sh:88-99` downloads to a temp file, compares sha256 against `INSTALLER_SHA256` and runs the script only on a match, and `changelog/v1.1.3.0.md` records that change as a fix.
+   - Case: a reader follows the troubleshooting fix and executes whatever `raw.githubusercontent.com` serves for that tag at that moment, with no digest gate, so a compromised or re-tagged upstream runs unreviewed code.
+   - Finding class: instance-only
+   - Scope proof: `rg -n "curl.*\|.*(bash|sh)" .skilled/skills/mcp-browser-use` excluding changelog and benchmark returns this one site. The Aside installer and both Bladebro scripts already verify digests, so the pattern survives in exactly one place.
+   - Affected surface hints: ["troubleshooting.md Node-version entry", "mcp-aside-devtools/scripts/install.sh digest pattern"]
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | pass | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/manifest.json:1` | Phase 005's claim that the compiled engine serves this hub holds: the manifest carries `servingAuthority: "compiled"`, `selectedPolicy.effectivePolicyHash` `be9b1fe7...` and `generation: 1`, and the executed route returned exactly that hash and generation. |
-| `checklist_evidence` | partial | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:141` | Criterion 5's admission evidence is partial: the corpus proves each mode singly and one two-mode bundle, but not the three-mode bundle the hub declares. |
+- `spec_code` -- partial. Goal decision D5 ("Installing Bladebro needs an operator yes. Rollback: `npm uninstall -g bladebro` plus its profile directory") holds: `mcp-bladebro/references/install-and-verify.md:30` makes installation an operator stop-for-yes, `:47` pins `bladebro@4.8.2` with `--ignore-scripts`, and `:81` gives the rollback. Phase 015 decision D2 ("The Aside installer runs only a script that matches a pinned sha256") holds at `mcp-aside-devtools/scripts/install.sh:94-98`.
+- `checklist_evidence` -- partial. Phase 015 criterion 2's "the Aside capture example rejects `..` paths" is backed by `mcp-aside-devtools/examples/repl-evidence-capture.sh:35-45`, which rejects any `..` occurrence and then requires the `./tmp` prefix. The advisor half of that criterion is deferred to the traceability iteration.
 
 ## Integration Evidence
 
-- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` -- the serving-authority resolver that gates the compiled route on the flag, the manifest and the policy identity.
-- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` -- the engine that loads the hub's snapshot and evaluates it.
-- `.skilled/bin/lib/compiled-route-layout.cjs` -- selects one coherent layout (`current` = `014-runtime-engine`, `legacy` = `011-runtime-engine`) and fails closed rather than mixing generations.
-- `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json` -- lists the eight `mcp-browser-use` closure files, including `manifest.json`, `fence-state.json` and the three lib modules, so the hub is inside the verified serving closure.
-- `.skilled/scripts/git-hooks/pre-commit:459-500` -- the mirror parity gate; its `MIRROR_SOURCES` list does not include `.opencode/skills/mcp-browser-use`, which is why the mirror question below was ruled out on a different ground.
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:88-99` -- the installer downloads to a `mktemp -d` file, compares `shasum -a 256` against the pinned `INSTALLER_SHA256`, and runs `bash "$installer"` only on a match. The header at `:10-11` states the pin's limit honestly: "The pin covers this script only; the archive it fetches is not verified."
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:96-113` -- `verify_digest` removes the install on a missing file or a mismatch, and `:166-173` checks `bin.js`, `binary.cjs` and the native binary before the first `--version` call at `:176`, so no installed code runs before the digests pass.
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:28-45` -- the guard rejects a single quote or backslash in either argument before splicing them into a single-quoted JavaScript string, then rejects any `..` and requires the `./tmp` prefix, so the `..` climb the phase 015 changelog names is closed.
 
 ## Edge Cases
 
-- **Ambiguity: is the engine reading a mirror rather than the canonical skill?** `build-artifacts.cjs:39` sets `SKILL_ROOT` to `.opencode/skills/mcp-browser-use`, which reads as a mirror dependency. Ruled out: `.opencode/skills` is a symlink to `../.skilled/skills`, and `stat` confirms both `hub-router.json` paths share inode `1288838277`. The engine reads the canonical file. Recorded so a later iteration does not re-raise it.
-- **Partial success**: the `fence-state.json` (`fencingEpoch: 1`) is listed in the serving closure but is not read by the resolver or the engine; only `compiled-route-status.cjs`, `compiled-route-sync.cjs` and the foundation test read it. Not a finding, because the fence is a sync-tool concern rather than a route-time gate.
-- **Ambiguity: does the engine cache serve a stale policy after a vocabulary edit?** `loadHubEngine` keys its cache on the manifest fingerprint (`compiled-route.cjs:59`), not on the hub's authored files, so an in-process edit to `hub-router.json` would serve the cached snapshot. Kept out of the findings because each CLI invocation is a fresh process, so the window is one process and no shipped caller edits the vocabulary mid-run.
+- `mcp-chrome-devtools/INSTALL-GUIDE.md` uses `chrome-devtools-mcp@latest` in six places while `troubleshooting.md:148` pins `browser-debugger-cli@0.6.10`. Read as an unpinned-supply-chain finding, then ruled out: `assets/utcp-chrome-devtools-manuals.md:53` discloses the difference and states that the live registration pins `chrome-devtools-mcp@0.26.0` and "the live config wins". A disclosed generic snippet is not an active finding.
+- `mcp-aside-devtools/scripts/install.sh:39-40` documents that the wrapper honours `ASIDE_CLI_BASE_URL`, which can redirect the archive fetch the pin does not cover. Recorded as disclosed rather than a finding: `:10-11` states the pin's scope, and the override is operator-set.
+- `mcp-aside-devtools/examples/repl-evidence-capture.sh:65` greps the whole REPL output for `Error`, so a page whose URL contains that word could fail the check. Recorded as a fail-closed robustness note, not a security finding: the check can only reject a good run, never accept a bad one.
 
 ## Confirmed-Clean Surfaces
 
-- `resolve.cjs:96-118` `resolveRoute` fails safe on every path: a missing manifest, a non-`compiled` serving authority, a policy-hash or generation mismatch, and any thrown error all return `null`, which `bin/compiled-route.cjs:60-68` turns into the `{"servingAuthority":"legacy"}` sentinel rather than a wrong route.
-- `resolve.cjs:66-79` `parseFlagMode` is tri-state and fails closed: `0`/`false`/`off` is the fleet-wide kill-switch, an unset flag defers to the per-hub cohort, and any other value is treated as invalid and serves legacy with a breadcrumb.
-- `compiled-route-layout.cjs:60-70` `isCoherent` requires the resolver, engine and compiler to exist together, so a partial layout cannot mix a current engine with a legacy activation tree.
-- `bin/compiled-route.cjs:28-40` rejects an unknown option with exit 2 rather than routing with a hub or prompt the caller never supplied.
+- No packet doc or script instructs an agent to print a cookie value, password or token. Every capture site says names and domains only: `mcp-chrome-devtools/references/cdp-patterns.md:197`, `:458`, `:597`, `mcp-chrome-devtools/references/session-management.md:682`, `mcp-bladebro/manual-testing-playbook/manual-testing-playbook.md:45`.
+- `mcp-chrome-devtools/scripts/README.md:13` states that neither setup script touches `.utcp_config.json` or any secret, and the two scripts read that way.
+- `mcp-bladebro/references/install-and-verify.md:47` keeps `--ignore-scripts` on the npm install, so no package lifecycle script runs before the digest checks.
 
 ## Ruled Out
 
-- **The compiled engine reading a stale mirror instead of the canonical skill**: ruled out by inode identity -- `.opencode/skills` is a symlink to `../.skilled/skills`.
-- **The hub serving legacy despite the phase 005 claim**: ruled out by execution -- the route returned `effectivePolicyHash` `be9b1fe7...` and `generation: 1`, matching the manifest's `selectedPolicy` exactly.
-- **`fence-state.json` being an unread dead artifact**: ruled out -- `compiled-route-status.cjs`, `compiled-route-sync.cjs` and `compiled-routing-foundation.vitest.ts` read it.
-- **A missing or malformed manifest causing a throw into the routing hot path**: ruled out -- `readManifest` returns `null` on a read or parse failure and `resolveRoute` then returns `null`.
+- "The Aside installer still pipes a download into bash": ruled out, `mcp-aside-devtools/scripts/install.sh:88-99` verifies the digest first.
+- "The Aside capture example still accepts `./tmp/../..`": ruled out, `repl-evidence-capture.sh:35-45` rejects any `..` before the prefix check.
+- "`chrome-devtools-mcp@latest` is an unpinned supply-chain hole": ruled out as already disclosed at `assets/utcp-chrome-devtools-manuals.md:53`.
+- "The Bladebro installer runs installed code before verifying it": ruled out, `mcp-bladebro/scripts/install.sh:166-176` orders the three digest checks before the first `--version`.
 
 ## Next Focus
 
-- **Dimension**: security
-- **Focus area**: the trust boundaries this hub's modes cross -- the Bladebro install path and its operator-yes gate (D5), the Aside signed-in account handling, the Chrome `--autoConnect` live-profile path, and the MCP wiring references that carry credentials or profile directories.
-- **Reason**: correctness has now covered the hub's routing data, the scorer, the engine and its admission evidence. Security is the next unreviewed dimension and the modes handle signed-in browser profiles, which is the highest-impact surface in the packet.
-- **Rotation status**: correctness is complete for the routing surfaces; security, traceability and maintainability remain.
-- **Blocked/productive carry-forward**: productive -- reading the admission corpus alongside the resolver that names it as admission evidence produced a P1 in one pass.
-- **Required evidence**: file:line for the install gate, the credential or profile handling, and the MCP wiring that names a secret or a profile directory.
+- Dimension: traceability
+- Focus area: goal completion criteria 1, 3, 4, 5 and 7 against the shipped files, plus the phase 015 advisor id-noun change and the five probe prompts
+- Reason: the security pass closed the two phase 015 trust-boundary fixes; the remaining open question is whether the packet's own completion criteria are actually met by what shipped
+- Rotation status: correctness and security pass 1 complete, two dimensions remain
+- Blocked/productive carry-forward: productive -- reading a doc claim against the artifact it describes found both iterations' findings, so the same comparison is the right method for the criteria
+- Required evidence: file:line or command output for each criterion, and the exact advisor and hub-router surfaces named
 
 Review verdict: CONDITIONAL

@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub"
     last_updated_at: "2026-11-24T08:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Closed 014: every deep review finding fixed at its source"
-    next_safe_action: "Run a gate-proven re-review of the hub epic"
+    recent_action: "Closed 016: the generation-4 review findings fixed at source"
+    next_safe_action: "Decide the fleet-wide front-door callout change"
     blockers: []
     key_files:
       - "014-fix-deep-review-findings/spec.md"
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete: phases 001 to 015 are Complete. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. The follow-up deep review (014 decision Q002) returned CONDITIONAL without recorded stop gates, and 015 fixed the findings that held against source |
+| **Status** | Complete: phases 001 to 016 are Complete. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. The follow-up deep review (014 decision Q002) returned CONDITIONAL without recorded stop gates, and 015 fixed the findings that held against source. The generation-4 DeepSeek re-review (`review/review-report.md`) found five more P1s that held, and 016 fixed them |
 | **Created** | 2026-11-21 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -130,6 +130,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 13 | 013-fix-alignment-findings-for-browser-hub-docs/ | Fix every finding from 012's two alignment runs: hub docs and scripts against bdg 0.6.10 and Code Mode, plus the own-Chrome routing lift (Level 1) | Complete |
 | 14 | 014-fix-deep-review-findings/ | Fix every finding of the 2026-11-24 deep review: installer helper parity, the Bladebro npx gate and install order, the bdg pin, Aside docs, routing vocabulary and packet state (Level 2) | Complete |
 | 15 | 015-fix-follow-up-review-findings/ | Fix the findings the follow-up deep review confirmed | Complete |
+| 16 | 016-fix-second-follow-up-findings/ | Fix the findings the generation-4 review confirmed | Complete |
 
 ### Phase Transition Rules
 
@@ -156,6 +157,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 012-browser-hub-doc-topic | 013-fix-alignment-findings-for-browser-hub-docs | Both alignment runs wrote a findings report for the browser hub | The doc run holds 91 findings and the skilled run 21 in their `findings.json` |
 | 013-fix-alignment-findings-for-browser-hub-docs | 014-fix-deep-review-findings | 013 is committed, and a deep review of phases 001 to 013 has recorded its open findings | `review/deep-review-findings-registry.json` lists 33 open findings, and `review/review-report.md` ends with its verdict |
 | 014-fix-deep-review-findings | 015-fix-follow-up-review-findings | 014 Complete and the follow-up review merged | `review/review-report.md` lists each finding with its check |
+| 015-fix-follow-up-review-findings | 016-fix-second-follow-up-findings | 015 Complete and the generation-4 review merged | `review/review-report.md` lists each finding with its check |
 <!-- /ANCHOR:phase-map -->
 
 ---

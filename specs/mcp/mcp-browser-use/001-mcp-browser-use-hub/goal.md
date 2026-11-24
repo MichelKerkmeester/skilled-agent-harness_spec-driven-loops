@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub"
     last_updated_at: "2026-11-24T08:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Closed 014: every deep review finding fixed at its source"
-    next_safe_action: "Run a gate-proven re-review of the hub epic"
+    recent_action: "Closed 016: the generation-4 review findings fixed at source"
+    next_safe_action: "Decide the fleet-wide front-door callout change"
     blockers: []
     key_files:
       - "014-fix-deep-review-findings/goal.md"
@@ -129,6 +129,8 @@ and findings belong here.
 | Deep review 2026-11-24 | Done, FAIL | Four opus-medium lineages, 28 iterations: 0 P0, 2 distinct P1, 18 distinct P2. Report at `review/review-report.md` |
 | 014 deep review fixes | Done | Committed `ec3ed74ad01` with the advisor change `dbea9ff4a25`; replay 48 of 49 |
 | 015 follow-up review fixes | Done | Bundle, Aside, installer and advisor id-noun fixes; replay 51 of 52 |
+| Generation-4 DeepSeek re-review | Done, FAIL on coverage | 0 P0, 7 P1 (5 confirmed, 1 refuted, 1 duplicate); pi-2 fully gate-proven. Report at `review/review-report.md` |
+| 016 second follow-up fixes | Done | Contained-match router rule, `in aside`, Aside docs on the wrapper, stdin heredoc, Node 20; replay 55 of 56 |
 
 ### Deviations and findings
 
