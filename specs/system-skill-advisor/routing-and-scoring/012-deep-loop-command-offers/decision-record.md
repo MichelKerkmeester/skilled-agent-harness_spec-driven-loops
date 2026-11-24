@@ -408,6 +408,197 @@ D2 counts naming deep research, deep review, a research loop or a review loop as
 
 ---
 
+<!-- ANCHOR:adr-005 -->
+## ADR-005: A typed deep command outranks the stuck-run diagnosis on the served head
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24, recording the operator's confirmation of 2026-11-23 |
+| **Deciders** | Operator, who confirmed on 2026-11-23 that the typed command stays on the head (Q034, implementation-summary limitation 6) |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+"my deep review run is stuck, /deep:review again" is both a stuck-run complaint and a typed command. `attachCommand` answers a stuck run with `/doctor:deep-loop`, and the handler then runs `attachTypedCommand`, which puts the typed `/deep:review (ask)` back on the top row. The Python fallback dropped the run row on every stuck run, typed or not. REQ-020, SC-005 and AC-027 stated parity and hook results without naming this case, so a three-lineage deep review on 2026-11-24 filed it as a P1 closure-record gap and as a native and fallback disagreement.
+
+### Constraints
+
+- The served behaviour is the operator's settled choice and is not to change.
+- The native and fallback heads should not give a reader two answers to one prompt.
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: a typed `/deep:*` command stays on the served head even on a stuck-run complaint, with policy `ask`, so the reader still answers one question before any run. `attachCommand` keeps answering `/doctor:deep-loop`, because it is the layer that reads the prompt's wording, and the gate-layer parity with Python holds on the stuck-run predicate. The Python fallback, which has no separate typed layer, keeps a typed run row on a stuck complaint, so both served heads agree.
+
+**How it works**: REQ-020 and AC-027 cover the gate layer, and REQ-029 and AC-036 cover the served head. The shared fixture carries two typed columns: `typedReviewKept` for `attachCommand`, and `servedReviewKept` for the served head, which the TypeScript suite reads through `attachTypedCommand` and the Python suite reads from its gate.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Typed command kept on both served heads** | The reader's own choice wins, and both paths agree | The doctor is not offered on that prompt | 8/10 |
+| Typed command kept natively, dropped by Python | No Python change | The fallback brief answers the same prompt differently | 4/10 |
+| Stuck diagnosis outranks the typed command everywhere | One reading of a stuck run | Reverses the operator's settled choice | 2/10 |
+
+**Why this one**: the operator ruled on the served head, and the fallback brief is a served head too.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**:
+- The docs state the exception, and both served paths give one answer.
+
+**What it costs**:
+- A reader who types the command on a stuck run is offered a new run rather than the diagnosis. The `ask` policy still stops before any spend.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later edit to `typedCommandForTop` moves the native head away from Python | M | The serving-layer test and the `servedReviewKept` column pin both |
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+<!-- ANCHOR:adr-005-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | One P1 found by two lineages |
+| 2 | **Beyond Local Maxima?** | PASS | Three placements weighed |
+| 3 | **Sufficient?** | PASS | One Python branch and one fixture column |
+| 4 | **Fits Goal?** | PASS | A typed command is the reader's explicit ask |
+| 5 | **Open Horizons?** | PASS | Reverting is one condition in each copy |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-005-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-005-impl -->
+### Implementation
+
+**What changes**:
+- REQ-020, SC-005 and AC-027 name the exception now. REQ-029, AC-036 and the sixth-round tasks carry the served-layer pin and the Python alignment.
+
+**How to roll back**: restore the stuck drop for typed rows in `_apply_deep_loop_offer_gate`, set `servedReviewKept` to false on the typed-stuck case, and add a stuck check to `typedCommandForTop`.
+<!-- /ANCHOR:adr-005-impl -->
+<!-- /ANCHOR:adr-005 -->
+
+---
+
+<!-- ANCHOR:adr-006 -->
+## ADR-006: A bare deep loop, research loop or review loop name is not a loop ask
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Recorded under the operator's instruction to run the sixth round autonomously (Q035). It keeps the behaviour the gate has shipped with, and the operator can reverse it. |
+
+---
+
+<!-- ANCHOR:adr-006-context -->
+### Context
+
+D2 lists naming a deep loop, deep research, deep review, a research loop or a review loop as an explicit loop ask. The gate counts bare "deep research" and "deep review", but it counts "deep loop", "research loop" and "review loop" only behind a use, continue or want verb, so "deep loop: audit the payments flow" gets no command while "deep review: audit the payments flow" does. The deep review of 2026-11-24 found that the narrowing had no recorded decision. ADR-004 covers only loop names that name the loop's own code or results.
+
+### Constraints
+
+- D2's purpose is to offer the loop only on an explicit ask.
+- The keep and gain probes must keep their commands.
+<!-- /ANCHOR:adr-006-context -->
+
+---
+
+<!-- ANCHOR:adr-006-decision -->
+### Decision
+
+**We chose**: keep the current behaviour. "Deep research" and "deep review" count on their own, and the three loop names count only behind a use, continue or want verb.
+
+**How it works**: `LOOP_NAMES` in `command-attach.ts` and `_LOOP_NAME` in `skill_advisor.py` are read only through the verb-led alternations of `LOOP_REQUEST`. A shared fixture row pins "deep loop: audit the payments flow" as no ask.
+<!-- /ANCHOR:adr-006-decision -->
+
+---
+
+<!-- ANCHOR:adr-006-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Keep the verb requirement** | No new false offers. A bare loop name is as often a question or a topic as a request, as in "the review loop keeps the PR open" | A terse "deep loop: audit X" gets no command | 7/10 |
+| Count a bare loop name | Matches D2's list word for word | Widens the gate against D2's explicit-ask rule, and every topic mention of the loop offers a run | 4/10 |
+
+**Why this one**: changing it would widen the offer gate, which D2 exists to narrow. The cost of a miss is a skill suggestion with no command, and the reader can still type the command.
+<!-- /ANCHOR:adr-006-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-006-consequences -->
+### Consequences
+
+**What improves**:
+- The spec states the rule the code has run since the first round.
+
+**What it costs**:
+- "deep loop: audit the payments flow" offers no command.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A terse loop request is missed | L | The fixture row records it, and a typed command still asks |
+<!-- /ANCHOR:adr-006-consequences -->
+
+---
+
+<!-- ANCHOR:adr-006-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found the narrowing unrecorded |
+| 2 | **Beyond Local Maxima?** | PASS | Counting the bare name was weighed |
+| 3 | **Sufficient?** | PASS | A spec line, this record and one fixture row |
+| 4 | **Fits Goal?** | PASS | Offer only on an explicit ask |
+| 5 | **Open Horizons?** | PASS | Reversing it is one alternation in each copy |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-006-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-006-impl -->
+### Implementation
+
+**What changes**:
+- The D2 bullet in `spec.md` names the verb requirement and points here. The sixth-round fixture adds the no-ask row.
+
+**How to roll back**: add a bare-name alternation for `LOOP_NAMES` to `LOOP_REQUEST` and `_LOOP_REQUEST_RE`, flip the fixture row, and amend the D2 bullet.
+<!-- /ANCHOR:adr-006-impl -->
+<!-- /ANCHOR:adr-006 -->
+
+---
+
 <!-- ANCHOR:operator-decisions -->
 ## Operator Decisions
 <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep the archive for 30 days`, gives the stated reason and names REQ-002. WEAK: Q004 says `Discussed retention` and leaves the other cells empty. -->
@@ -447,6 +638,8 @@ D2 counts naming deep research, deep review, a research loop or a review loop as
 | Q031 | Reopen this packet for the gate fixes and packet 013 for the typed-command hint, as the phase rules prescribe for a correction. | Not stated. | the Review fixes and Phase answers | spec.md, tasks.md |
 | Q032 | Narrow D2 so a loop name about the loop's own code or results, and a count that describes a subject, is not a loop ask. | Not stated. | None | ADR-004, D11, REQ-019, T058 |
 | Q033 | Set AC-008 to Waived with the measured offer rates recorded in an ADR. | Not stated. | None | ADR-003, AC-008 |
+| Q034 | Keep a typed deep command on the served head when the prompt also complains about a stuck run. | The typed command is the reader's own choice. Recorded from implementation-summary limitation 6, confirmed 2026-11-23; the capture missed it. | None | ADR-005, REQ-020, REQ-029, AC-027, AC-036 |
+| Q035 | Run the sixth remediation round autonomously. | Not stated. Given 2026-11-24 as "Autonomously" when the deep review's remediation was requested. | None | ADR-006, REQ-023 to REQ-034, tasks.md Sixth fix round |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
