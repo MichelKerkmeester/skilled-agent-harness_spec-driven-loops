@@ -371,7 +371,10 @@ function parseIterationFile(iterationPath) {
   // Next Focus).
   const focusSection = extractSection(markdown, 'Focus') || extractSection(markdown, 'Dispatcher');
   const findingsSection = extractSection(markdown, 'Findings') || extractSection(markdown, 'Findings - New');
-  const ruledOutSection = extractSection(markdown, 'Ruled Out') || extractSection(markdown, 'Confirmed-Clean Surfaces') || extractSection(markdown, 'Confirmed-Clean');
+  // A clean surface is a pass, not a direction: the review looked at the area
+  // and found nothing to fix. Reading Confirmed-Clean as ruled out would write
+  // a do-not-retry prohibition over work the iteration never tried.
+  const ruledOutSection = extractSection(markdown, 'Ruled Out');
   // Traceability Checks records protocol status, which the structured
   // traceabilityChecks rollup already owns. Only an explicit Dead Ends section
   // names a direction the review ruled out.
@@ -2377,6 +2380,32 @@ function renderSearchDebtSection(registry) {
 // evidence, so it must not be written as a permanent prohibition.
 const MIN_BLOCKED_ATTEMPTS = 2;
 
+/**
+ * Split a ruled-out entry into the direction it names and the reason it gives,
+ * for entries written as "direction -- reason". An entry that names no reason
+ * keeps its whole text as the direction, so the caller can fall back to a
+ * generic statement rather than inventing one.
+ *
+ * @param {string} entry - Normalized list item from a Dead Ends/Ruled Out section
+ * @returns {{direction: string, reason: string}} Direction alone, plus the reason or ''
+ */
+function splitRuledOutEntry(entry) {
+  // The separator is a spaced double hyphen or an em dash. An unspaced double
+  // hyphen introduces a CLI flag or a kebab-case name, so it stays part of the
+  // direction instead of cutting the text in two.
+  const separator = /\s+(?:--|—)\s+|—/.exec(entry);
+  if (!separator) {
+    return { direction: entry, reason: '' };
+  }
+  const direction = normalizeText(entry.slice(0, separator.index));
+  const reason = normalizeText(entry.slice(separator.index + separator[0].length));
+  // A separator with nothing on one side belongs to the direction's own text.
+  if (!direction || !reason) {
+    return { direction: entry, reason: '' };
+  }
+  return { direction, reason };
+}
+
 function buildExhaustedApproaches(iterationFiles) {
   const grouped = new Map();
 
@@ -2399,19 +2428,20 @@ function buildExhaustedApproaches(iterationFiles) {
       // in two sections from reading as two passes of evidence.
       const attemptCount = new Set(runs).size;
       const lastRun = Math.max(...runs);
+      const { direction, reason } = splitRuledOutEntry(entry);
       if (attemptCount < MIN_BLOCKED_ATTEMPTS) {
         return [
-          `### ${entry} -- RULED OUT (iteration ${lastRun}, ${attemptCount} attempt)`,
-          `- What was tried: ${entry}`,
-          '- Why ruled out: One pass of evidence did not support this direction.',
+          `### ${direction} -- RULED OUT (iteration ${lastRun}, ${attemptCount} attempt)`,
+          `- What was tried: ${direction}`,
+          `- Why ruled out: ${reason || 'One pass of evidence did not support this direction.'}`,
           '- Reopen when: a later iteration carries evidence that contradicts that pass.',
         ].join('\n');
       }
       return [
-        `### ${entry} -- BLOCKED (iteration ${lastRun}, ${attemptCount} attempts)`,
-        `- What was tried: ${entry}`,
-        '- Why blocked: Repeated iteration evidence ruled this direction out.',
-        `- Do NOT retry: ${entry}`,
+        `### ${direction} -- BLOCKED (iteration ${lastRun}, ${attemptCount} attempts)`,
+        `- What was tried: ${direction}`,
+        `- Why blocked: ${reason || 'Repeated iteration evidence ruled this direction out.'}`,
+        `- Do NOT retry: ${direction}`,
       ].join('\n');
     })
     .join('\n\n');
