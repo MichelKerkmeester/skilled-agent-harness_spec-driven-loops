@@ -1,5 +1,5 @@
 {
-  "corpusHash": "836a1e1e78b3793c0351051dddcac2350761d4328dd8a97d36d331ae9da42068",
+  "corpusHash": "f46d6861f4d25d9a8abc17333107255a2952c0a0a2e9c310ff2cabd914afc9cd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29501,
+  "includedPathCount": 29507,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20099,6 +20099,12 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
@@ -29533,7 +29539,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ce1751ca8df00d58eda1c93551012933ba0ae4094d30c4679294b121c2fb1e0f",
+  "manifestHash": "7ad9a403ed8f11870f005a694e33c256de8da168ce88d9a00a0ff7d4e74ba84e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38437,6 +38443,10 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/scratch",
       "reason": "excluded directory"
     },
     {

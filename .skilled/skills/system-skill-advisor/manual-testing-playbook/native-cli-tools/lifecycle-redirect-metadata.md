@@ -6,7 +6,7 @@ trigger_phrases:
   - "lifecycle redirect metadata"
   - "lifecycle redirect"
   - "lifecycle"
-version: 0.8.0.12
+version: 0.8.1.0
 id: NC-005
 category: native_cli_tools
 stage: routing
@@ -42,7 +42,7 @@ Validate lifecycle redirect metadata for non-active skill states.
 1. Run lifecycle tests:
 
 ```bash
-cd .skilled/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/lifecycle-derived-metadata.vitest.ts tests/compat/redirect-metadata.vitest.ts --reporter=default
+cd .skilled/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/lifecycle-derived-metadata.vitest.ts --reporter=default
 ```
 
 2. If a runtime fixture is available, call:

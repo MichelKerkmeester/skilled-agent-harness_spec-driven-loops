@@ -142,7 +142,7 @@ runtime/
 |   +-- scorer/                    # Lane attribution and fusion
 |   +-- daemon/                    # Daemon lifecycle and watcher
 |   +-- freshness/                 # Cache invalidation and trust state
-|   +-- lifecycle/                 # Status, age haircut, archive, rollback
+|   +-- lifecycle/                 # Status, age haircut, archive
 |   +-- derived/                   # Derived-metadata extraction and provenance
 |   +-- compat/                    # Daemon probe and redirect metadata
 |   +-- auth/                      # Trusted caller checks

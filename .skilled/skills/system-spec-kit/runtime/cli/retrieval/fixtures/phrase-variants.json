@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce1751ca8df00d58eda1c93551012933ba0ae4094d30c4679294b121c2fb1e0f",
+  "manifestHash": "7ad9a403ed8f11870f005a694e33c256de8da168ce88d9a00a0ff7d4e74ba84e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6937,6 +6937,9 @@
     "029 test suite": [
       "029 test suite"
     ],
+    "030 advisor ci filter dead helpers operator decisions": [
+      "030-advisor-ci-filter-dead-helpers operator decisions"
+    ],
     "030 clean infrastructure full matrix stress design": [
       "030-clean-infrastructure-full-matrix-stress-design"
     ],
@@ -9126,6 +9129,21 @@
     "advisor child timing tasks": [
       "advisor child timing tasks"
     ],
+    "advisor ci filter dead helpers": [
+      "advisor ci filter dead helpers"
+    ],
+    "advisor ci filter dead helpers acceptance criteria": [
+      "advisor ci filter dead helpers acceptance criteria"
+    ],
+    "advisor ci filter dead helpers implementation summary": [
+      "advisor ci filter dead helpers implementation summary"
+    ],
+    "advisor ci filter dead helpers plan": [
+      "advisor ci filter dead helpers plan"
+    ],
+    "advisor ci filter dead helpers tasks": [
+      "advisor ci filter dead helpers tasks"
+    ],
     "advisor cleanup": [
       "advisor cleanup"
     ],
@@ -9964,9 +9982,6 @@
     ],
     "advisor resolver task": [
       "advisor resolver task"
-    ],
-    "advisor rollback": [
-      "advisor rollback"
     ],
     "advisor routing and local install": [
       "advisor routing and local install"
@@ -105788,6 +105803,9 @@
     ],
     "run tests mjs process group kill": [
       "run-tests.mjs process group kill"
+    ],
+    "run the advisor suite on hook only changes": [
+      "run the advisor suite on hook only changes"
     ],
     "run the quality gate": [
       "run the quality gate"
