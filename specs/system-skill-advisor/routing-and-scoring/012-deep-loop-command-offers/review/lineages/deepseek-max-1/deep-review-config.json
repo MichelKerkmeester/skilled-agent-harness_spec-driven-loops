@@ -1,9 +1,9 @@
 {
   "topic": "Review: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "sessionId": "fanout-deepseek-max-1-1795550334883-gjbarh",
-  "parentSessionId": "2026-11-24T19:58:39.000Z",
+  "sessionId": "fanout-deepseek-max-1-1795552859377-13gxwk",
+  "parentSessionId": "2026-11-24T20:40:59.000Z",
   "lineageMode": "new",
-  "generation": 8,
+  "generation": 9,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 7,
@@ -30,9 +30,8 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "createdAt": "2026-11-24T20:00:20Z",
+  "createdAt": "2026-11-24T20:44:12.287Z",
   "status": "complete",
-  "releaseReadinessState": "in-progress",
   "executionMode": "auto",
   "executor": {
     "kind": "native",
@@ -51,7 +50,7 @@
     "traceability",
     "maintainability"
   ],
-  "reviewFocus": "Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).",
+  "reviewFocus": "Traceability is the lead focus: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md (REQ-001 to REQ-053) against the code that implements it or the decision that records it (ADR-001 to ADR-009), and every ticked task in tasks.md and every Met row in acceptance-criteria.md (AC-001 to AC-061) against evidence that really exists in the tree, including the twelfth fix round (T112 to T114). Cover all four configured dimensions, because the coverage gate needs each one recorded before the last iteration. Give correctness, security and maintainability one iteration each within iterations 1 to 4, and spend the rest on traceability. Record every finding's file as its full repo-relative path, such as specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md, never a bare file name. The scope gate matches full paths only. Do not write a terminal_gates row yourself. The orchestrator computes it with terminal-gates.cjs after the run.",
   "severityThreshold": "P2",
   "crossReference": {
     "core": [
@@ -198,5 +197,7 @@
   "stopPolicy": "max-iterations",
   "resource_map": {
     "emit": true
-  }
+  },
+  "releaseReadinessState": "in-progress",
+  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1"
 }

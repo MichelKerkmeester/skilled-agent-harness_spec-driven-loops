@@ -1,94 +1,75 @@
-# Review Iteration 006 - traceability (checklist_evidence, AC-030 to AC-042)
+# Review Iteration 006
 
 ## Dispatcher
-
-- Mode: review, lineage `deepseek-max-2`, iteration 6 of 7, dimension traceability.
-- Route: `Resolved route: mode=review target_agent=deep-review`.
-- This iteration read the slice the operator focus names explicitly: `acceptance-criteria.md` AC-030 to AC-042, the sixth-round closure rows, each against its fixture rows, test titles and recomputed counts, and ADR-005 and ADR-006 as the decisions those rows cite.
-- Budget: 24 tool calls, used inside it.
+Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; dimension=traceability (overlay protocols).
+Artifact directory: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2`. Read-only review; no `steer.md` exists in this lineage.
 
 ## Files Reviewed
+- `.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:20` (catalog index)
+- `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33` (gate description)
+- `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:41` (withholding description)
+- `.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:180` (NC-012 row)
+- `.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:23` (gate 2)
+- `.skilled/skills/system-skill-advisor/runtime/lib/README.md:146` (`command-attach.ts` description)
+- `.skilled/skills/system-deep-loop/SKILL.md:31` (hub mode table)
+- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` (depth triggers removed)
+- `.skilled/skills/system-deep-loop/deep-research/SKILL.md` (depth triggers removed)
+- `.claude/agents/deep-review.md` and `.opencode/agents/deep-review.md` (runtime mirrors)
+- `.skilled/agents/deep-review.md` (canonical agent)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1621` (no-edit guard, routed path)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1686` (no-edit guard, deferred path)
 
-- `acceptance-criteria.md` AC-030 to AC-042; `spec.md` REQ-023 to REQ-034, SC-006.
-- `decision-record.md:412-600` (ADR-005, ADR-006).
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121-152,181-191,246-330,388-424,474,571,676-690,743`.
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (359 cases; recomputed `refusal-verb-*`, `run-refused-stuck-*`, `typed-*`, `no-edit-*`, `effort-*` rows and the `doctorWithheld` split).
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:919,1125`; `tests/scorer/doctor-handoff-command.vitest.ts`; `tests/scorer/stage-one-loop-subject.vitest.ts:26`; `tests/typed-on-stuck-serving.vitest.ts:112`; `tests/handlers/advisor-recommend-typed-command.vitest.ts`; `tests/cli-degraded-command-contract.vitest.ts:152`; `tests/command-brief-golden.vitest.ts:353`; `tests/python/test_skill_advisor.py:3054`.
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/ac034-served-head.jsonl`.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227,1011`; `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:462,715,942,1317,1381,1693`; `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363-432`.
-- `.skilled/changelog/skilled/v4.2.0.0.md:750-770`; `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123`.
-
-## Findings - New
+## Findings by Severity
 
 ### P0 Findings
-
 None.
 
 ### P1 Findings
-
 None.
 
 ### P2 Findings
-
-1. **AC-038's pair count and per-entry split no longer match the drift guard** -- `acceptance-criteria.md:95` -- The `Met` row's verification says "`VOCABULARY_PAIRS` compares 22 vocabulary pairs ... the last of them `RUN_ASK_REFUSAL_LEADS`", and "Twelve of the 22 lists carry a per-entry case ... The other ten are compared but carry no per-entry case". The tree holds 25 entries (`tests/deep-loop-offer-cases.vitest.ts:121-147`), the last of them `RUN_ASK_REFUSAL_VERBS`, and 13 of them carry a per-entry case, including `RUN_ASK_REFUSAL_VERBS` (`:474`). The eleventh round added `RUN_ASK_REFUSAL_CANCEL_LEADS` and `RUN_ASK_REFUSAL_VERBS` and did not revisit this cell, and `spec.md` REQ-031 deliberately names no count, so the requirement is not the thing that drifted.
-   Finding class: docs-drift (instance-only, acceptance evidence)
-   Scope proof: `acceptance-criteria.md` and `deep-loop-offer-cases.vitest.ts` are both lines of `review-scope-files.txt`, and both figures were recomputed from the test file in this iteration; no gate behaviour is in question.
-   Affected surface hints: `acceptance-criteria.md` AC-038 verification cell; `tasks.md` T076 and T092 state the same stale count and are filed separately.
-   Case: a reader adds a seventh compared list, follows this cell's "22 pairs / twelve with per-entry cases" instruction, updates neither figure, and the row keeps reading `Met` while describing a guard that is three pairs larger and one per-entry case further along than the row says.
+1. **Four documentation surfaces still state the blanket no-edit rule REQ-040 reversed** -- `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33` -- REQ-040 and AC-048 changed the rule so a no-edit clause no longer withholds a read-only loop, and the gate implements it: `attachCommand` keeps the command when the served mode is read-only ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1621]) and `deferredLoopCommand` keeps it the same way ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1686]). The feature catalog still says "A prompt that matches `NO_EDIT_REQUEST` gets no command from any hub, because a reader who rules out a change is never handed work that writes" ([SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33]) and repeats it as "no command when the prompt rules out a change" ([SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:41]); the manual-testing playbook's NC-012 states gate 2 the same way ([SOURCE: .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:23]); and the runtime module reference repeats it as "A prompt that matches `NO_EDIT_REQUEST` gets no command" ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/README.md:146]).
+Finding class: class-of-bug (one reversed rule, three statements that still carry the old form).
+Scope proof: the built rule is at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1621` and `:1686`; the four stale statements are `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33`, `:41`, `.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:23` and `.skilled/skills/system-skill-advisor/runtime/lib/README.md:146`; the requirement and its owning row are `spec.md` REQ-040 and `acceptance-criteria.md` AC-048.
+Affected surface hints: `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md`, `.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md`, `.skilled/skills/system-skill-advisor/runtime/lib/README.md`.
+Case: a reader takes the catalog's rule to the prompt "run a deep review of the parser but don't change anything", concludes the advisor withholds `/deep:review`, and reports the built gate as broken; a tester who extends NC-012's gate 2 to that prompt records a FAIL under the leaf's own "FAIL if ... any withheld command appears" criterion, because the built result is the opposite of what the gate-2 sentence promises.
+Claim adjudication:
+```json
+{"type":"stale_rule_statement","claim":"The feature catalog and the NC-012 playbook still say a no-edit clause withholds every command, while REQ-040 and the gate keep a read-only loop's command.","evidenceRefs":[".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33",".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:41",".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:23",".skilled/skills/system-skill-advisor/runtime/lib/README.md:146",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1621",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1686"],"counterevidenceSought":"read the catalog paragraph in full for a read-only-loop exception (none), read the playbook leaf's six prompts to see whether any covers a read-only loop (all six name creation or git work, so the leaf's own scenario does not exercise the reversed rule), and searched lib/README.md and the two catalog paragraphs for 'read-only' (no hit), which showed the exception is missing on all four surfaces rather than present somewhere.","alternativeExplanation":"the statements describe the creation-command gates only, and a reader will not apply them to a deep-loop command.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"a catalog or playbook sentence, in the same paragraph, naming the read-only loop exception would make the rule unambiguous."}
+```
 
 ## Traceability Checks
-
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `checklist_evidence` | pass | AC-001 to AC-042 checked (42 of 60), with AC-030 to AC-042 recomputed rather than read. |
-
-Row by row, what this iteration bound:
-
-- **AC-030:** twelve `refusal-verb-*` rows, seven `false` and five `true` — recomputed and exact.
-- **AC-031:** 47 rows carry `doctorWithheld`, 27 `true` and 20 `false` — recomputed and exact; the fused-row and withhold-step describes exist in `tests/scorer/doctor-handoff-command.vitest.ts`.
-- **AC-032:** four `typedRunsKept` rows, two keeping `/deep:review` against a non-loop command and two keeping both loops in both orders.
-- **AC-033:** the deferred-route case and its control exist at `tests/command-attach-guards.vitest.ts:1125`, and `loopAskCues` skips a subject-only name (`command-attach.ts:1703-1724`).
-- **AC-034:** `tests/scorer/stage-one-loop-subject.vitest.ts:26` pins the complaint and its control; `scratch/probes/ac034-served-head.jsonl` records `sk-code` 0.8753 and `sk-doc` 0.82 for the complaint and `system-deep-loop` 0.8763 with `/deep:review` for the control, exactly as the cell says.
-- **AC-035:** the golden file's two tests exist (`tests/command-brief-golden.vitest.ts:353` and its partner), and `parseRecommendations` carries command, policy, owner and typed (`lib/subprocess.ts:45-51,216-220`).
-- **AC-036 (ADR-005):** `tests/typed-on-stuck-serving.vitest.ts:112` serves the typed `/deep:review` over the diagnosis, its partner keeps the diagnosis on an untyped complaint, and the handler test covers the replacement; the fixture row `typed-stuck` carries `servedReviewKept`.
-- **AC-037:** `LEAD_WINDOW` 400 on both sides, `ADVISOR_PROMPT_MAX_CHARS` 10_000 on both sides, `DEEP-LOOP-LONG` at `tests/python/test_skill_advisor.py:3054`, and the 359 cases keep their results.
-- **AC-038:** one drift — the pair count and the per-entry split (finding 1). The row's substance (the guard fails on a one-sided list edit) holds.
-- **AC-039:** `refinesSameLocation` (`reduce-state.cjs:1011`) is the reducer's rule, and the unit test named in the change set pins it.
-- **AC-040:** `Unmet`, and honestly so: the row says "Not observed" and names the archived reports that failed. This lineage is the rerun the row waits on; its own gates are reported at synthesis, and recording the closure is the packet owner's step, not this review's.
-- **AC-041:** the fixture `$comment` names each typed column's layer, limitations 6 to 8 and the reversed fifth-round sentence state the built behaviour, the changelog names the typed-on-stuck head and the refusal verbs, and packet 013's degraded-path row exists.
-- **AC-042:** the sixth-round, eighth-round and final-tree suite figures are internally consistent with AC-028, AC-055 and AC-057.
+- `feature_catalog_code` (overlay, hard), status `partial`: the catalog's `advisor-recommend` page describes the gate's reads correctly where it counts — `LOOP_REQUEST`, the depth-wording exclusion, `deferredLoopCommand` with one `MODE_CUES` cue, the history-lead withholding and the correction gate ([SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33]) — and it carries one stale rule (F-006-001).
+- `playbook_capability` (overlay, hard), status `partial`: NC-012 exists and its six prompts match their expected signals by construction (the readme and git commands are creation and doctor rows), while its general gate-2 sentence carries the stale no-edit rule (F-006-001).
+- `skill_agent` (overlay, hard), status `pass`: the hub's mode table names the review packet and the `deep-review` agent for `/deep:review` ([SOURCE: .skilled/skills/system-deep-loop/SKILL.md:31]); the depth triggers the packet removed are gone (the T025 and T026 searches print nothing on both mode packets); and the hub names `/doctor:deep-loop` once, as REQ-011 requires.
+- `agent_cross_runtime` (overlay, hard), status `pass`: the canonical agent is `.skilled/agents/deep-review.md` and both runtime mirrors exist as separate files with the same persona title ([SOURCE: .claude/agents/deep-review.md:1], [SOURCE: .opencode/agents/deep-review.md:1]). The packet's mirror-sync claim (REQ-007, T033) is a dated observation of the tool run, which this review may not re-run; the files it names are present.
+- `spec_code` and `checklist_evidence` stay `pass` from iterations 4 and 5.
 
 ## Integration Evidence
-
-- ADR-005's two layers are separately pinned: `typedReviewKept` at the `attachCommand` layer and `servedReviewKept` at the served head, read by both suites.
-- ADR-006's decision is implemented as `LOOP_NAMES` behind verb-led alternations, and the fixture row `bare-loop-name` pins it.
-- The recorded stage-one probe (`scratch/probes/ac034-served-head.jsonl`) is a real artefact with the two heads and their confidences, not a remembered number.
+- `runtime/lib/README.md` is the module reference every reader of the gate is pointed at, and it carries the blanket rule without the read-only exception ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/README.md:146]), which is why F-006-001 is a four-surface drift rather than one stale page.
+- The playbook's index row for NC-012 ([SOURCE: .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:180]) points at the leaf this iteration read, so the overlay chain is traceable end to end.
 
 ## Edge Cases
-
-- The AC-038 row's substance is verifiable and true: a one-sided list edit does fail the guard. Only its counts and its "last of them" claim drifted. Reporting it as P2 rather than P1 keeps the severity on the record, not on the guard.
-- AC-040 cannot be closed by this review: the row asks that a rerun's terminal gates read evidence, scope and coverage pass, and the packet owner records the closure. This lineage's synthesis states its own gate results so that step has evidence to read.
-- AC-037's wall-clock ceiling (a 96,000-character prompt under one second) is a timed claim; the constants behind it are pinned, the timing is not re-run here.
+- **A playbook whose own prompts do not exercise the stale rule.** NC-012's six prompts are a refusal, a question, a plain request, a no-edit creation request, a typo fix and a git query; none names a deep loop, so the leaf's PASS/FAIL list stays satisfiable while its general sentence is wrong. Recorded so the finding is read as rule drift, not as a broken scenario.
+- **A mirror that cannot be re-checked.** `sync-runtime-mirrors.cjs --check` is the tool the packet cites; this review may not run repo tooling, so the mirror claim is checked by existence and by the canonical path convention, and the packet's dated run stands as the tool evidence.
 
 ## Confirmed-Clean Surfaces
-
-- Every fixture count in AC-030, AC-031, AC-032 and AC-046 recomputes to the stated figure.
-- AC-034's probe artefact matches its cell digit for digit.
-- AC-036's two serving tests and the handler test exist and are named correctly by the row.
+- **The catalog index still lists the advisor's command surface** ([SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:20]), so the page F-006-001 corrects is reachable from the index rather than orphaned.
+- **The hub and both mode packets agree on the mode-to-agent mapping** ([SOURCE: .skilled/skills/system-deep-loop/SKILL.md:31]).
+- **The removed trigger phrases are absent from both mode packets** (T025 and T026's searches print nothing).
 
 ## Ruled Out
-
-- **A fixture count in the sixth-round rows that has moved.** Ruled out: the refusal, doctor, typed, no-edit and effort counts all recompute to the stated figures.
-- **ADR-005 or ADR-006 stating a decision the code does not implement.** Ruled out by reading both the ADRs and the branches they name.
-- **A served-head test that pins the gate layer only.** Ruled out: `tests/typed-on-stuck-serving.vitest.ts:112` goes through the real `advisor_recommend` head, and the fixture column is read on both sides.
+1. **The feature catalog names a module that does not exist** -- ruled out: my first read of the page was taken through `rg -r`, whose replacement text rewrote the matched identifiers in the output only; reading the file directly shows `attachCommand()` and `lib/command-attach.ts`, and `lib/command-attach.ts` exists. Recorded because the false positive is instructive, not because the catalog is wrong.
+2. **The playbook scenario is broken by the reversed rule** -- ruled out for the leaf's own six prompts, which name creation and git work; the drift is in the general sentences (F-006-001).
+3. **The runtime mirrors are missing** -- ruled out: `.claude/agents/deep-review.md` and `.opencode/agents/deep-review.md` both exist and open on the same persona.
 
 ## Next Focus
-
-- Dimension: traceability (core protocols closed; overlay protocols next).
-- Focus area: the four overlay protocols (`skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`), then the consolidation of the four findings and the terminal gate statement.
-- Reason: `spec_code` and `checklist_evidence` are both recorded; the overlay protocols and the gate statement are what remains before synthesis.
-- Rotation status: traceability closes in iteration 7 with the overlay pass.
-- Blocked / productive carry-forward: productive. Recomputing counts found every finding this lineage has.
-- Required evidence: the command-document and presentation contracts against the command entry points, the runtime mirror check for the two command files, and a count of the findings raised.
+- Dimension: traceability (closeout)
+- Focus area: the remaining `Met` rows with a date or commit in their evidence, the archive chain AC-040 rests on, and this run's own closeout: does the packet's closure statement survive everything this lineage found, and does the coverage the gate needs hold for all four dimensions?
+- Reason: iteration 7 is the last; it must decide the verdict the synthesis will carry.
+- Rotation status: all four dimensions reviewed; traceability complete after this iteration.
+- Required evidence: full repo-relative `path:line`, and the coverage membership this run recorded.
+- Blocked/productive carry-forward: five open P2s; no P0 or P1, so the verdict path stays PASS-with-advisories unless iteration 7 raises something.
+- Recovery note: not applicable.
 
 Review verdict: PASS

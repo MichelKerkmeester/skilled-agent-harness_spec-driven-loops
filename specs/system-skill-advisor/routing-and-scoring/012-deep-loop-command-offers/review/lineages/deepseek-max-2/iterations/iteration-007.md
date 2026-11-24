@@ -1,95 +1,74 @@
-# Review Iteration 007 - traceability (overlay protocols and final consolidation)
+# Review Iteration 007
 
 ## Dispatcher
-
-- Mode: review, lineage `deepseek-max-2`, iteration 7 of 7, dimension traceability.
-- Route: `Resolved route: mode=review target_agent=deep-review`.
-- This iteration closed the operator focus: the four overlay protocols were run after `spec_code` and `checklist_evidence` had both been recorded, and the run's four findings were reconciled. `config.stopPolicy` is `max-iterations`, so this is the last iteration and synthesis follows.
-- Budget: 24 tool calls, used inside it.
+Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; dimension=traceability (closeout).
+Artifact directory: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2`. Read-only review; no `steer.md` exists in this lineage.
+This is the last of seven iterations under `stopPolicy=max-iterations`.
 
 ## Files Reviewed
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T203829Z/review-report.md:19` (generation 8's nine P2s)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:95` (AC-038)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:249` (REQ-025)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:154` (T076, T087, T092)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:218` (T111)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:45` (generation 8)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:627` (ADR-007 scope)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:197` (doctor constant)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:27` (import)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-findings-registry.json` (this run's canonical finding state)
 
-- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` (review contract, final-line contract, trigger phrases).
-- `.skilled/agents/deep-review.md` and its two mirrors `.claude/agents/deep-review.md` and `.opencode/agents/deep-review.md`.
-- `.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:106-121` and `feature-catalog/cli-surface/advisor-recommend.md:33,41,47,49`.
-- `.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:180` and `manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:1-60`.
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:557-560,1618-1620`.
-- `deep-review-strategy.md` and `deep-review-findings-registry.json` (this lineage's own state, read for consolidation).
-
-## Findings - New
+## Findings by Severity
 
 ### P0 Findings
-
 None.
 
 ### P1 Findings
-
 None.
 
 ### P2 Findings
-
-None new. The four findings recorded in iterations 2, 4 and 6 stand and are consolidated under Traceability Checks.
+No new finding this iteration. The six open P2s from iterations 2 to 6 stand, and every one of generation 8's nine P2s is closed in the tree (recorded under Confirmed-Clean Surfaces).
 
 ## Traceability Checks
-
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | Iterations 1 to 3: REQ-001 to REQ-052 all resolved. |
-| `checklist_evidence` | pass | Iterations 4 to 6: every ticked task and `Met` row read, with counts recomputed. |
-| `skill_agent` | pass | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` and `.skilled/agents/deep-review.md` state the same final-line contract, the same iteration status enum and the same LEAF boundary, and the depth triggers REQ-011 removed are absent from both. |
-| `agent_cross_runtime` | pass | `.opencode/agents/deep-review.md` is byte-identical to `.skilled/agents/deep-review.md`; `.claude/agents/deep-review.md` differs on 22 lines, all of them runtime frontmatter (`tools:` list) and the `.claude/` path convention, which is the documented mirror transformation. |
-| `feature_catalog_code` | partial | The catalog page `feature-catalog/cli-surface/advisor-recommend.md:33` states "A prompt that matches `NO_EDIT_REQUEST` gets no command from any hub, because a reader who rules out a change is never handed work that writes". REQ-040 shipped the opposite exception for the deep loop: a read-only loop keeps its command (`lib/command-attach.ts:1618-1620`, `READ_ONLY_LOOP_MODES` at `:557-560`). The catalog file is outside the seeded review scope, so the drift is recorded as a deferred observation rather than as a finding, per the scope lock. |
-| `playbook_capability` | pass | NC-012 "A Command the Prompt Does Not Ask For Is Not Offered" names the three generic offer gates; its no-edit gate is a writing-workflow gate (`/create:readme`), which REQ-040 did not change, so its preconditions still hold. The scenario names no deep-loop prompt and claims nothing the built gate contradicts. |
-
-### Finding consolidation
-
-| ID | Severity | Dimension | Location | Status |
-|----|----------|-----------|----------|--------|
-| `L2-P2-001` | P2 | traceability | `timeline.md:41` | active |
-| `L4-P2-001` | P2 | traceability | `tasks.md:184` | active |
-| `L4-P2-002` | P2 | traceability | `tasks.md:218` | active |
-| `L6-P2-001` | P2 | traceability | `acceptance-criteria.md:95` | active |
-
-All four are the same class: a closure record stating a count, a round total or a scope claim that the tree has moved past. Three of the four are the pair-count drift stated three ways (`timeline`'s round count, `tasks`' fifteen and twenty-two, `acceptance`'s twenty-two); the fourth is T111's unqualified scope claim over a gitignored directory. None changes a gate, a command or a requirement, and no P0 or P1 is open.
-
-### Terminal gate statement for this lineage
-
-- **Evidence:** pass. Every active finding carries `file:line` evidence read in this review, and no finding rests on inference alone.
-- **Scope:** pass. Every finding files against a line of `review-scope-files.txt`; the one out-of-scope drift found (the feature catalog) was deferred, not filed.
-- **Coverage:** partial, and honestly so. This lineage ran the operator's traceability focus in all seven iterations, so `traceability` is covered with both core protocols finished, and `correctness`, `security` and `maintainability` were not re-reviewed here. The registry reports `dimensionCoverage` `{correctness: false, security: false, traceability: true, maintainability: false}`. That is the state the packet's AC-040 row describes when it asks for a rerun whose terminal gates read coverage pass, and it is the merge's decision, not this leaf's, how that lands.
+- `spec_code` (core, hard), status `pass` — stands from iteration 4; no REQ row changed status this iteration.
+- `checklist_evidence` (core, hard), status `pass` — stands from iteration 5; the three open items (T084, the completion criterion, CHK-020) still name the one blocker, AC-040.
+- `feature_catalog_code` (overlay, hard), status `partial` — the catalog describes the gate and still carries the stale no-edit rule (F-006-001).
+- `playbook_capability` (overlay, hard), status `partial` — NC-012's prompts hold; its gate-2 sentence carries the stale rule (F-006-001).
+- `skill_agent` (overlay, hard), status `pass` — hub mode table, removed triggers and doctor pointer all hold.
+- `agent_cross_runtime` (overlay, hard), status `pass` — canonical agent and both runtime mirrors present.
 
 ## Integration Evidence
-
-- The cross-runtime mirror check compared three files: `.opencode` is identical, `.claude` differs only in the runtime frontmatter and path convention its own runtime requires.
-- The skill/agent pair agrees on the final-line contract by direct read of both files.
-- The feature-catalog drift is evidenced by the catalog line and the two code lines that implement the exception, so the deferred observation is auditable without widening the finding set.
+- Generation 8's report was read as the record this round answers: its nine P2s are at [SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T203829Z/review-report.md:19], and the twelfth round's three tasks (T112, T113, T114) are the claim that each is closed. Each was checked against the tree rather than against the round's prose.
+- This lineage's registry is the canonical finding state the cross-lineage merge reads: 6 open P2s, 0 P0, 0 P1, and dimension coverage `{correctness: true, security: true, traceability: true, maintainability: true}`.
 
 ## Edge Cases
-
-- **Deferred observation, out of scope (`feature_catalog_code`):** `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33` still describes the pre-REQ-040 no-edit rule as universal, while `lib/command-attach.ts:1618-1620` exempts the deep loop's read-only modes. The catalog page is not a line of `review-scope-files.txt`, so this review records it here and in the search ledger as `deferred` rather than filing a finding against an out-of-scope surface. The fix belongs to whoever owns the catalog page: one clause naming the read-only loop exception.
-- The coverage gate's partial state is a property of the dispatch (all seven iterations bound to the operator's traceability focus), not a review failure. It is reported, not smoothed over.
-- AC-040 stays `Unmet` in the packet. This lineage's evidence, scope and coverage statement is the evidence a later closure pass would read, and the packet owner makes that call.
+- **The registry carries nulls for three structured fields.** This run's delta `finding` rows carry the identity, severity, title and location the prompt pack's delta example shows, and the reducer's documented record shape additionally expects `findingClass`, `scopeProof` and `affectedSurfaceHints` on that row; because the rows omit them, the registry shows `findingClass: null`, `scopeProof: null` and `affectedSurfaceHints: []` for all six findings even though `findingDetails` carries them. The delta files are write-once, so they were left as written; the fields are intact in each iteration narrative and in the iteration records, and the synthesis report should take the Planning Packet fields from there. Recorded as a state limitation of this run, not as a defect in the reviewed tree. The fix for a future lineage is to copy the three fields onto the delta `finding` row itself.
+- **A verdict that is not the release verdict.** This iteration's line is PASS because no active P0 or P1 exists at iteration 7. The release verdict is the cross-lineage merge's to recompute from the registries, and the orchestrator writes the `terminal_gates` row, which this lineage must not write.
 
 ## Confirmed-Clean Surfaces
-
-- The skill contract, the agent definition and both runtime mirrors describe one review loop, and the depth triggers REQ-011 removed are gone from the skill contract.
-- The playbook's three offer gates still describe the built behaviour for writing workflows.
-- No file outside the lineage was modified by this run: the review target, its config, its registry, the reducer outputs it owns and every command, skill and agent file were read only.
+Generation 8's nine P2s, each checked in the tree:
+- **AC-038's pair counts** — the row now states no list count for the tree as it stands ([SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:95]).
+- **The same count in the guard's own task** — T076 states no count for the standing tree ([SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:154]).
+- **REQ-025's phantom caller** — the requirement now says no production path reads `typedCommandIn`, and the sweep confirms only tests call it ([SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:249]).
+- **T111's scope claim** — the task now scopes itself to tracked files and names the gitignored `dist` entry as outside its claim ([SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:218]).
+- **The doctor string declared twice** — one declaration and one import ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:197], [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:27]).
+- **The moving pair count in the closure docs** — AC-038 and the round tasks now date their counts or drop them, and AC-059's 40 pairs and 38 exclusions still match the guard.
+- **The timeline one round short** — the timeline reaches generation 8 ([SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:45]).
+- **The rejected research alias** — ADR-007 now scopes itself to the hub alias lists and names the mode packet and fallback surfaces it leaves alone ([SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:627]).
+- **Two ticked tasks restating a pair count** — T087 and T092 state their own rounds only ([SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:154]).
+- **Dimension coverage for the gate.** All four configured dimensions carry a completed review: correctness (iteration 1), security (iteration 2), maintainability (iteration 3), traceability (iterations 4 to 7).
 
 ## Ruled Out
-
-- **A mirror that has drifted in substance.** Ruled out: `.opencode` is identical and `.claude` differs only in frontmatter and the path convention its runtime requires.
-- **A skill contract that contradicts the agent definition it dispatches.** Ruled out by reading the final-line contract, the status enum and the LEAF boundary in both.
-- **A playbook precondition that the build invalidated.** Ruled out: NC-012's no-edit gate is a writing-workflow gate, which REQ-040 left unchanged.
-- **An active P0 or P1 at the run's last iteration.** Ruled out: four P2 findings, no P0 or P1, across seven iterations.
+1. **Generation 8's findings are still open** — ruled out: each of the nine was traced to the row, task or symbol that closed it, listed above.
+2. **A fifth dimension or an unrecorded one** — ruled out: the configured set is the four canonical dimensions, and the registry shows each true.
+3. **A P0 or P1 hides behind the P2 set** — ruled out on the evidence: the six open findings are a doc-vs-code rule drift (three surfaces plus a module reference), a stale checklist count, two reducer projection defects and a child-boundary vetting gap, and none of them makes a user-visible operation produce the wrong result.
 
 ## Next Focus
-
-- Dimension: none. `config.stopPolicy` is `max-iterations` and this is iteration 7 of 7, so the run stops with `maxIterationsReached` and synthesizes.
-- Focus area: synthesis. The four consolidated records and the terminal gate statement above are what the report compiles from.
-- Reason: the iteration cap is reached and every configured protocol has a recorded status.
-- Rotation status: closed for this lineage. A follow-up run that wants the other three dimensions covered needs them bound to its own iterations, and the pair-count drift needs one pass over `timeline.md`, `tasks.md` and `acceptance-criteria.md`.
-- Blocked / productive carry-forward: productive, with the coverage gap carried forward as a named limit rather than a silent one.
-- Required evidence: the four finding ids, the two core protocol statuses and the coverage state, all of which the registry holds after the reducer runs.
+- Dimension: none remaining (all four recorded; 7 of 7 iterations used).
+- Focus area: synthesis — compile the review report from this run's registry and iteration files, and record the terminal synthesis event.
+- Reason: the iteration cap is reached; `stopPolicy=max-iterations` makes convergence telemetry only.
+- Rotation status: complete.
+- Required evidence: the registry counts, the six finding ids, and the run's dimension coverage.
+- Blocked/productive carry-forward: none blocked.
+- Recovery note: not applicable.
 
 Review verdict: PASS

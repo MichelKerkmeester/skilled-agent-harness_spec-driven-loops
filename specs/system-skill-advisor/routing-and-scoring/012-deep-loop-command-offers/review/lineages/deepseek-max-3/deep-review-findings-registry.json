@@ -1,22 +1,22 @@
 {
-  "sessionId": "fanout-deepseek-max-3-1795550334883-gjbarh",
-  "parentSessionId": "2026-11-24T19:58:39.000Z",
-  "generation": 8,
+  "sessionId": "fanout-deepseek-max-3-1795552859377-13gxwk",
+  "parentSessionId": null,
+  "generation": 1,
   "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 7,
-    "timestamp": "2026-11-24T20:09:40.397Z"
+    "timestamp": "2026-11-24T20:53:39.809Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "R1-P2-001",
-      "severity": "P2",
-      "title": "The drift guard pair count is a moving number the closure docs keep restating as present fact: AC-038 says 22, the tree holds 24, the round tables say 11 and 15",
-      "file": "acceptance-criteria.md",
-      "line": 95,
+      "findingId": "1",
+      "severity": "P1",
+      "title": "A digit iteration count in an unrelated trailing clause turns a how-to question into a run ask",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 1238,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -26,20 +26,14 @@
       "refines": null,
       "dimension": "correctness",
       "firstSeen": 1,
-      "lastSeen": 2,
+      "lastSeen": 1,
       "status": "active",
       "transitions": [
         {
           "iteration": 1,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 2,
-          "from": "P2",
-          "to": "P2",
-          "reason": "Refinement of an earlier finding"
         }
       ],
       "dimensions": [
@@ -48,11 +42,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R1-P2-002",
+      "findingId": "2",
       "severity": "P2",
-      "title": "REQ-025 names \"every other caller\" of typedCommandIn, which has no production caller left",
-      "file": "spec.md",
-      "line": 250,
+      "title": "The past-run outranking reads only punctuation as a clause break, so a run ask introduced by then is swallowed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 828,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -78,11 +72,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R3-P2-001",
+      "findingId": "3",
       "severity": "P2",
-      "title": "The research alias ADR-007 records as rejected still sits in the deep-research mode packet keyword list, a surface the decision never scopes",
-      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "line": 34,
+      "title": "The drift guard's coverage test only recognizes Python pattern names ending in _RE and never checks an excused name exists",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
+      "line": 691,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -90,7 +84,7 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "maintainability",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -103,16 +97,46 @@
         }
       ],
       "dimensions": [
-        "traceability"
+        "maintainability"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "R5-P2-001",
+      "findingId": "4",
       "severity": "P2",
-      "title": "The doctor command string is declared twice, in the two layers that must agree about it",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
-      "line": 1055,
+      "title": "Both suites read the same fixture rows, so a misreading shared by the two copies passes the parity test",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "5",
+      "severity": "P2",
+      "title": "AC-011's verification cell describes an unresolved reference the reference check no longer reports",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+      "line": 68,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -121,12 +145,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "traceability",
-      "firstSeen": 5,
-      "lastSeen": 5,
+      "firstSeen": 4,
+      "lastSeen": 4,
       "status": "active",
       "transitions": [
         {
-          "iteration": 5,
+          "iteration": 4,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -140,88 +164,10 @@
   ],
   "resolvedFindings": [],
   "blockedStopHistory": [],
-  "terminalGates": {
-    "run": 7,
-    "stopReason": "maxIterationsReached",
-    "failedRequiredGateIds": []
-  },
-  "persistentSameSeverity": [
-    {
-      "findingId": "R1-P2-001",
-      "severity": "P2",
-      "title": "The drift guard pair count is a moving number the closure docs keep restating as present fact: AC-038 says 22, the tree holds 24, the round tables say 11 and 15",
-      "file": "acceptance-criteria.md",
-      "line": 95,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 2,
-          "from": "P2",
-          "to": "P2",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
   "severityChanged": [],
-  "repeatedFindings": [
-    {
-      "findingId": "R1-P2-001",
-      "severity": "P2",
-      "title": "The drift guard pair count is a moving number the closure docs keep restating as present fact: AC-038 says 22, the tree holds 24, the round tables say 11 and 15",
-      "file": "acceptance-criteria.md",
-      "line": 95,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 2,
-          "from": "P2",
-          "to": "P2",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
+  "repeatedFindings": [],
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
@@ -230,10 +176,10 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 0,
+    "P1": 1,
     "P2": 4
   },
-  "openFindingsCount": 4,
+  "openFindingsCount": 5,
   "resolvedFindingsCount": 0,
   "convergenceScore": 1,
   "graphConvergenceScore": 0,
@@ -260,71 +206,66 @@
   },
   "traceability": {
     "summary": {
-      "required": 4,
-      "executed": 4,
-      "pass": 4,
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
       "partial": 0,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 2,
+      "notApplicable": 0,
       "gatingFailures": 0
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220"
+          "acceptance-criteria.md:58",
+          "tasks.md:343",
+          "deep-loop-offer-cases.json:129",
+          "command-attach-guards.vitest.ts:1125",
+          "typed-on-stuck-serving.vitest.ts:112",
+          "command-attach.ts:197"
         ],
-        "gateClass": "hard",
-        "protocolId": "spec_code",
-        "status": "pass",
-        "summary": "all 52 REQs resolve; carried complete across iterations 3, 5 and 6"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:338"
+        "evidenceRefs": [
+          "acceptance-criteria.md:58",
+          "tasks.md:343",
+          "deep-loop-offer-cases.json:129",
+          "command-attach-guards.vitest.ts:1125",
+          "typed-on-stuck-serving.vitest.ts:112",
+          "command-attach.ts:197"
         ],
         "gateClass": "hard",
         "protocolId": "checklist_evidence",
         "status": "pass",
-        "summary": "119 acceptance anchors resolve, 60 cells read, 138 ticked boxes checked; carried from iteration 4"
+        "summary": "AC-001..AC-061 traced: evidence tails resolve, fixture counts match, named test titles exist, and AC-040 is accurate for the prior run."
       },
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-deep-loop/SKILL.md:103"
+          "command-attach.ts:1180",
+          "command-attach.ts:1596",
+          "command-attach.ts:1694",
+          "skill_advisor.py:5362",
+          "skill_advisor.py:5743",
+          "skill-advisor-cli.ts:1489",
+          "fusion.ts:1063",
+          "reduce-state.cjs:1011",
+          "spec.md:257"
         ],
-        "gateClass": "soft",
-        "protocolId": "skill_agent",
-        "status": "pass",
-        "summary": "hub resolves modes through mode-registry.json and names its drift guard"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/review-routing.md:1"
+        "evidenceRefs": [
+          "command-attach.ts:1180",
+          "command-attach.ts:1596",
+          "command-attach.ts:1694",
+          "skill_advisor.py:5362",
+          "skill_advisor.py:5743",
+          "skill-advisor-cli.ts:1489",
+          "fusion.ts:1063",
+          "reduce-state.cjs:1011"
         ],
-        "gateClass": "soft",
-        "protocolId": "playbook_capability",
+        "gateClass": "hard",
+        "protocolId": "spec_code",
         "status": "pass",
-        "summary": "playbook carries a review-routing scenario naming /deep:review; preconditions not read line by line"
-      },
-      {
-        "applicable": false,
-        "evidence": [],
-        "gateClass": "overlay",
-        "protocolId": "agent_cross_runtime",
-        "status": "notApplicable",
-        "summary": "no agent definition in the 47-file scope"
-      },
-      {
-        "applicable": false,
-        "evidence": [],
-        "gateClass": "overlay",
-        "protocolId": "feature_catalog_code",
-        "status": "notApplicable",
-        "summary": "no feature-catalog document mentions the deep-loop offer"
+        "summary": "REQ-001..REQ-053 traced to code or the ADR that records them; every stated prompt was evaluated against the fallback and the requirement texts' other claims were read in the tree."
       }
     ],
     "unfinishedCoreProtocols": []

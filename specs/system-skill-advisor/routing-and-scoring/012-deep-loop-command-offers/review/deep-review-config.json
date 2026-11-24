@@ -1,9 +1,9 @@
 {
   "topic": "Review: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "sessionId": "2026-11-24T19:58:39.000Z",
-  "parentSessionId": "2026-11-24T19:01:50.000Z",
+  "sessionId": "2026-11-24T20:40:59.000Z",
+  "parentSessionId": "2026-11-24T19:58:39.000Z",
   "lineageMode": "restart",
-  "generation": 8,
+  "generation": 9,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 7,
@@ -30,7 +30,7 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "createdAt": "2026-11-24T19:58:39.000Z",
+  "createdAt": "2026-11-24T20:40:59.000Z",
   "status": "complete",
   "executionMode": "auto",
   "executor": {

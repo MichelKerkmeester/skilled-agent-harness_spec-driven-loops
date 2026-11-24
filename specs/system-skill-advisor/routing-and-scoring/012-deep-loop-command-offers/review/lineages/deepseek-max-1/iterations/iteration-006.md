@@ -1,18 +1,29 @@
-# Review Iteration 006 — Maintainability
+# Iteration 6 - traceability
 
 ## Dispatcher
 
-- Lineage `review/lineages/deepseek-max-1`, iteration 6 of 7, session `fanout-deepseek-max-1-1795550334883-gjbarh`
-- Dimension: D4 maintainability. Lens: comment hygiene, generated-artifact parity, dead code, and whether the two halves of the refinement rule were kept in step.
+- Lineage: `deepseek-max-1`, generation 9, run `fanout-deepseek-max-1-1795552859377-13gxwk`
+- Dimension: traceability
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`
+- Operator focus addressed: `spec_code` for the remaining requirement slice, REQ-035 to REQ-052, so the protocol that has been `partial` all run can finish with every requirement mapped to the code that implements it or the ADR that records it.
 
 ## Files Reviewed
 
-- Every code file in `review-scope-files.txt` with a `.ts`, `.py`, `.cjs` or `.mjs` suffix (28 files), searched for packet identifiers and spec paths in comments and for `TODO` / `FIXME` / `XXX:` markers
-- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1`, `deep-research.contract.markdown:1`, `compiled/README.markdown:1`
-- `.skilled/commands/deep/assets/deep-review.yaml:664`, `deep-research.yaml:663` (the `next_steps` lists the compiled contracts mirror)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1011`, `:2378`, `:2449` and eight neighbouring symbols
-- `.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:380` to `:440` (`refinedTarget`)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:259` (REQ-035 to REQ-052 rows)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:635` (`hasUnrefusedPronounRerun`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1027` (`LOOP_ARTIFACT_NOUNS`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1201` (`LOOP_QUESTION_AUXILIARIES`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1694` (`routedLoopMode`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1713` (`loopAskCues`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227` (`stripReviewVerdict`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2378` (`MIN_BLOCKED_ATTEMPTS`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2419` (`replaceAnchorSection`)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` (`enrichCompiledRoutes` duplicate guard)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5743` (`_apply_deep_loop_offer_gate`)
 - `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (`PATTERNS_NOT_COMPARED`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:743` (mode vocabulary describe)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:269` (plural rows)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1` (baseline provenance)
 
 ## Findings - New
 
@@ -30,46 +41,64 @@ None.
 
 ## Traceability Checks
 
-| Protocol | Level | Status this iteration | Evidence |
-| --- | --- | --- | --- |
-| `spec_code` | core | partial | No requirement opened for code this iteration. REQ-035 to REQ-051 remain and are reserved for iteration 7. Two requirements about maintainability were read as support rather than as new coverage: REQ-032 and REQ-046, whose behaviour is the reducer's and the closeout's. |
-| `checklist_evidence` | core | partial | Unchanged from iteration 5 apart from the AC-038 drift already carried. |
+- `spec_code` — pass. REQ-035 to REQ-052 are mapped below, which completes the map opened in iteration 3 for REQ-001 to REQ-034. Every requirement resolves to a live anchor at this revision; the three requirements that rest on a measured outcome (REQ-039, REQ-044, REQ-051) also name the record that holds the measurement. Evidence for the raised status: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1201` (REQ-036), `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1713` (REQ-026 and REQ-042), and `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (REQ-051).
+
+  | Requirement | Evidence anchor | Status |
+  |---|---|---|
+  | REQ-035 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:451` (`LOOP_NAMES`, plural forms) + 21 plural fixture rows + `ADR-008` (`decision-record.md:703`) | traced |
+  | REQ-036 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1201` (`LOOP_QUESTION_AUXILIARIES`) + `how-do-*` fixture rows | traced |
+  | REQ-037 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1016` (`LOOP_EFFORT_LEADS`) and `:1078` (`LOOP_EFFORT_WORDS`) + 24 `effort-*` rows | traced |
+  | REQ-038 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489` (`trackedCommandForOwner`) | traced |
+  | REQ-039 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1` — 155 rows, `capturedAtSha` `a139ac3b248`, last committed by this packet on 2026-11-23 | traced |
+  | REQ-040 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:920` (`NO_EDIT_REQUEST`) + three `no-edit-*` rows | traced |
+  | REQ-041 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1713` (`loopAskCues` reads only the phrases still asked for) + five `refused-cue-*` rows | traced |
+  | REQ-042 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1694` (`routedLoopMode`) on the routed single-target branch | traced |
+  | REQ-043 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:635` (`hasUnrefusedPronounRerun`) + `stuck-rerun-*` and `past-summary-*` rows | traced |
+  | REQ-044 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1078` + `typed-doctor-*` rows (four rows keep the typed doctor) | traced |
+  | REQ-045 | `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:743` (mode vocabulary on every surface) + `MODE_CUE_WORDS` at `:540` | traced |
+  | REQ-046 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2378` and `:2419`, plus `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` | traced |
+  | REQ-047 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5743` (`_apply_deep_loop_offer_gate`) + four `servedRun: "none"` fixture rows | traced |
+  | REQ-048 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2419` (`replaceAnchorSection` keeps the file's ordinal) | traced |
+  | REQ-049 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:884` and `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5098` + `loop-wording-*` rows | traced |
+  | REQ-050 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:716` (`RUN_ASK_REFUSAL_CANCEL_LEADS`) + `negated-refusal-*` rows | traced |
+  | REQ-051 | `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (38 patterns listed with a reason) | traced |
+  | REQ-052 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227` and the dashboard writer at `:2896` | traced |
+
+- `checklist_evidence` — pass, carried from iteration 5. Nothing in this pass contradicts the row-level verdicts; the two P2 findings from that pass are recorded against `CHK-001` and `AC-028` and do not reopen the protocol.
 
 ## Integration Evidence
 
-- The refinement rule REQ-032 states is kept in step across the two programs that implement it: `refinesSameLocation` (`reduce-state.cjs:1011`) returns false on a different normalized file or a conflicting dimension, and `refinedTarget` (`synthesis-closeout.cjs:406` to `:432`) applies the same two tests before it will fold a refinement into its target, with a comment that states the rule. A reader can change one and see the other, which is the property maintainability asks for.
-- Generated-artifact parity holds: both compiled contracts carry the six `--extend=N` lines their source YAMLs carry (`deep-review.yaml:664`, `deep-research.yaml:663`), and `compiled/README.markdown` describes the contracts as generated, so a reader is told not to hand-edit them.
+- Reduction surface: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` implements REQ-046, REQ-048 and REQ-052, and every one of those writers was read here rather than inferred from the requirement text.
+- Handler surface: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` is the compiled-route enrichment REQ-046's second clause names; the duplicate guard seeds its set from the rows' existing commands and strips every command field from the row it withholds.
+- Corpus surface: `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1` holds the recaptured baseline; `git log` on that path names this packet's 2026-11-23 commit, so the recapture REQ-039 asks for is in the tree, and the pinned `capturedAt` (2026-10-11) is the scorer's fixed scoring date rather than a stale capture.
 
 ## Edge Cases
 
-- The comment-hygiene rule the runtime framework applies to new code (no decision, requirement, checklist or task ids, and no spec paths, in a code comment) is not stated in the packet. All 28 scope code files pass it today, so the rule and the tree agree; recorded so a later change that cites an id in a comment is caught against the framework rule rather than against packet prose that does not mention it.
-- The packet's own docs cite ids and paths heavily, which is correct for docs and is not what the comment rule covers. The two were kept apart deliberately in this iteration.
+- REQ-039's two provenance fields read old at first sight: `capturedAt` is the scorer's pinned scoring date and `capturedAtSha` is the HEAD at capture time (`a139ac3b248`, a 2026-11-23 commit of this packet). Reading them against the file's own commit history resolves the apparent staleness, so neither is reported.
+- REQ-044 mixes two grammars — an effort word used as manner, and a typed `/doctor:deep-loop` after a clause break. The map treats them as one requirement with two fixture families (`effort-manner-*`, `typed-doctor-*`), because the requirement states both in one row.
+- REQ-047's mode-free rows are four, not the three the requirement names; the fourth is the singular `run-deep-loop` row that AC-055 also lists, so the extra row strengthens the requirement rather than drifting from it.
 
 ## Confirmed-Clean Surfaces
 
-- No `.ts`, `.py`, `.cjs` or `.mjs` file in scope carries a `REQ-` / `ADR-` / `AC-` / `CHK-` id or a `specs/system-skill-advisor/...` path inside a comment.
-- No `TODO`, `FIXME` or `XXX:` marker appears in any scope code file.
-- No symbol named by a requirement is dead: `refinesSameLocation`, `MIN_BLOCKED_ATTEMPTS`, `replaceAnchorSection`, `collapseFindingsByDedupKey`, `dedupeDimensions`, `buildExhaustedApproaches`, `upsertHeadingSectionBefore` and `renderFrontierSection` each have a definition and at least one call site in `reduce-state.cjs`.
-- The 38 rows of `PATTERNS_NOT_COMPARED` each carry a written reason, so the guard's exceptions are auditable rather than a silent skip list.
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:451` — `LOOP_NAMES` carries the plural loop nouns, and the fixture holds 21 `plural-*` rows, so REQ-035's plural clause and its mode-free amendment are both pinned.
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:743` — the mode-vocabulary describe pins the command table, `MODE_CUES`, `MODE_CUE_WORDS` and the hub router on the same modes, which is REQ-045's clause.
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227` — the Next Focus projection ends at the verdict marker and the dashboard writer pushes the multi-line string whole, so REQ-052's two clauses hold.
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` — the compiled-route enrichment offers a derived command once and strips command, policy, owner and typed fields from a row it withholds.
 
 ## Ruled Out
 
-- Packet identifiers leaking into code comments in any scope file: eliminated, the search over all 28 code files found none.
-- A compiled contract that lags its source YAML: eliminated, both contracts carry the lines the YAMLs carry.
-- Dead code among the reducer symbols the requirements name: eliminated, every one has a call site.
-- Two disagreeing implementations of the refinement rule: eliminated, the reducer and the closeout apply the same file-and-dimension test.
-
-## Review Focus
-
-The operator focus is traceability, and this iteration served it indirectly: the two requirements that live in the reducer and the closeout (REQ-032, REQ-046) are implemented once, in step, and with a reason written where the rule is. D4 is now covered, which is the last dimension the review needs before it can report coverage.
+- REQ-039's baseline as stale: ruled out. `capturedAt` is the pinned scoring date, `capturedAtSha` is a 2026-11-23 commit, and the file's last commit is this packet's, so the recapture is in the tree.
+- REQ-047 as short of rows: ruled out. The fourth mode-free row is the singular prompt AC-055 also names.
+- REQ-035's mode-free clause against ADR-008: ruled out. The four `servedRun: "none"` rows are exactly what ADR-008 records, and the hub still serves the ask without a command.
 
 ## Next Focus
 
-- Dimension: cross-reference closing pass — finish `spec_code` over REQ-035 to REQ-051, re-derive the overlay protocols, and settle the status of both core protocols
-- Focus area: the plural loop name (REQ-035), the how-do question (REQ-036), the speed and cost complaint (REQ-037), the degraded tracked-table guard (REQ-038), the corpus (REQ-039), the no-edit clause (REQ-040), the refused mode cue (REQ-041), the routed mode guard (REQ-042), the pronoun rerun (REQ-043), the effort manner and typed doctor (REQ-044), the mode vocabulary guard (REQ-045), the reducer direction (REQ-046), the mode-free ask (REQ-047), the numbering (REQ-048), the whitespace fold (REQ-049), the negated refusal (REQ-050) and the pattern guard (REQ-051)
-- Reason: this is the last block of requirements, and it is the only thing keeping `spec_code` at `partial`
-- Rotation status: all four dimensions covered; this is the closing cross-reference pass
-- Blocked/productive carry-forward: AC-040 cannot close before synthesis; AC-038 is the one open docs row
-- Required evidence: for each requirement, the fixture row and the column value the requirement states, plus `file:line` of the rule that reads it
+- Dimension: traceability
+- Focus area: closure-doc consistency and the ADR set — ADR-001 to ADR-009 against the tree, the changelog's loop-offer claims, the timeline's last round, and the report inputs synthesis needs.
+- Reason: both core protocols are now at `pass`; the last iteration under the cap is spent on the remaining traceability surface rather than on a new dimension.
+- Rotation status: all four dimensions covered; both core protocols at pass.
+- Blocked/productive carry-forward: productive — the ADR set is small and each ADR names the row that owns it.
+- Required evidence: one check per ADR and per changelog claim, plus the round record the timeline carries.
+- No recovery note: this pass was not a recovery iteration.
 
 Review verdict: PASS

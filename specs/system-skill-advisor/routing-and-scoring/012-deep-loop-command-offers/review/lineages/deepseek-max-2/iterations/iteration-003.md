@@ -1,99 +1,76 @@
-# Review Iteration 003 - traceability (spec_code, REQ-035 to REQ-052)
+# Review Iteration 003
 
 ## Dispatcher
-
-- Mode: review, lineage `deepseek-max-2`, iteration 3 of 7, dimension traceability.
-- Route: `Resolved route: mode=review target_agent=deep-review`.
-- This iteration closed the operator focus's `spec_code` half: REQ-035 to REQ-052, the seventh to eleventh rounds, each against the gate copy, scorer lane, reducer function or fixture column it names. Every requirement in the table has now been checked once.
-- Budget: 24 tool calls, used inside it.
+Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; dimension=maintainability.
+Artifact directory: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2`. Read-only review; no `steer.md` exists in this lineage.
 
 ## Files Reviewed
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2380` (`buildExhaustedApproaches`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374` (ruled-out section selection)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407` (`ruledOut` extraction)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:217` (`extractSection`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2421` (`replaceAnchorSection`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:503` (`PATTERN_PAIRS`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (`PATTERNS_NOT_COMPARED`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121` (`VOCABULARY_PAIRS`)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md:44` (this lineage's own exhausted-approaches projection)
 
-- `spec.md` REQ-035 to REQ-052, SC-004, SC-006, Open Questions.
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:539-551,883-885,1693-1701,1489-1494`.
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:10,455,479-493`.
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363-432`.
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489-1494`.
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5098-5106,5406,5767`.
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121-152,430-485,503-571,600-690,750-771`.
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json`.
-- `.skilled/skills/system-deep-loop/hub-router.json` (`routerSignals`); `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227,2378,2395-2470,2570-2620,2880-2900`.
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (247 rows).
-- `decision-record.md:603-900` (ADR-007, ADR-008, ADR-009).
-
-## Findings - New
+## Findings by Severity
 
 ### P0 Findings
-
 None.
 
 ### P1 Findings
-
 None.
 
 ### P2 Findings
-
-None.
+1. **The reducer writes a ruled-out direction as a heading and drops the reason that closed it** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2404` -- `buildExhaustedApproaches` keys on the whole list item from the iteration's `## Ruled Out` section ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407]) and writes it twice: once as `### ${entry} -- RULED OUT` and again as `- What was tried: ${entry}`, while the reason becomes one fixed sentence (`- Why ruled out: One pass of evidence did not support this direction.`, [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2406]). The reviewer's actual evidence for closing the direction never reaches the strategy, which is the document the next iteration reads to avoid re-entering it.
+Finding class: class-of-bug (the projection discards the field it exists to carry).
+Scope proof: the key is the full normalized item at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407`; the two print sites are `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2404` and `:2405`; the same loss occurs on the blocked branch at `:2411` and `:2413`.
+Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/skills/system-deep-loop/runtime/tests/unit`.
+Case: an iteration writes the direction and its evidence as the leaf template asks, "Bounded window loses a distant refusal -- the pattern span is smaller than the window", and the strategy's `## 10. EXHAUSTED APPROACHES` then reads `### Bounded window loses a distant refusal -- the pattern span is smaller than the window -- RULED OUT (iteration 1, 1 attempt)` with `- Why ruled out: One pass of evidence did not support this direction.` This lineage's own strategy shows the shape at [SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md:52], where eight headings are whole sentences and every `Why` line is the generic one, so a later agent reading the strategy learns which directions are closed but not why, and the reopen test ("a later iteration carries evidence that contradicts that pass") has nothing to test against.
+Claim adjudication:
+```json
+{"type":"data_loss","claim":"The exhausted-approaches projection keeps the direction text but replaces the reviewer's closing reason with a fixed sentence, so the strategy cannot carry the evidence that closed a direction.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2404",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2406","specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md:44"],"counterevidenceSought":"read buildExhaustedApproaches in full for a reason split (there is none: the item is a single string), checked whether the iteration file is still pointed at from the strategy (it is not), and read extractListItems to see whether a separator convention exists (it strips only the bullet).","alternativeExplanation":"the template intends the strategy to hold a one-line direction and the iteration file to hold the reason, so nothing is lost for a reader who opens both.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"a documented contract that the strategy carries directions only, with the iteration file named as the reason's home, would make the loss intentional and this advisory only."}
+```
+2. **A confirmed-clean surface is read as an exhausted direction when the iteration carries no `Ruled Out` heading** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374` -- The section reader falls back from `Ruled Out` to `Confirmed-Clean Surfaces` and then to `Confirmed-Clean`, and every item it finds becomes a `ruledOut` direction that `buildExhaustedApproaches` writes as `RULED OUT` or `BLOCKED`. A clean surface is a pass, not a direction the run refuses to enter again.
+Finding class: instance-only (one fallback chain conflates two opposite outcomes).
+Scope proof: the fallback chain is at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374` and feeds `ruledOut` at `:407`; the projection that mislabels it is at `:2402`.
+Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/skills/system-deep-loop/runtime/tests/unit`.
+Case: an iteration file written in the older dialect, which holds `## Confirmed-Clean` but no `## Ruled Out` section, is reduced; 129 such files exist under `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/*/lineages/*/iterations/`, so a resumed or extended run over an archived packet writes each clean surface into the strategy as a direction it may not re-enter, and the "Do NOT retry" wording arrives after a second pass.
+Claim adjudication:
+```json
+{"type":"misclassification","claim":"When an iteration file has no Ruled Out section, the reducer treats its Confirmed-Clean items as ruled-out directions and projects them as exhausted approaches.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2402"],"counterevidenceSought":"searched the reducer for a second consumer of the fallback (none), checked the archived iteration files for the heading the fallback matches (129 files carry `## Confirmed-Clean`), and looked for a guard that skips the fallback when the section is a pass section (none).","alternativeExplanation":"the fallback exists for legacy files whose only closing section was named Confirmed-Clean and whose items were directions after all.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"a unit test showing a legacy file's Confirmed-Clean items are directions would make the fallback correct for its original inputs and leave only the naming risk."}
+```
 
 ## Traceability Checks
-
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | REQ-001 to REQ-052 resolved (52 of 52). Iterations 1 to 3 carried the slices; the last slice's symbols are cited below. |
-
-What this iteration bound:
-
-- **REQ-035 (as amended by ADR-008):** the plural rows carry the seven run prompts and the five past-run, symptom and question prompts in the shared fixture; the mode-free prompt `run two deep loops on the cache layer` appears twice, once pinning the ask (`plural-deep-loops`) and once the served result (`plural-deep-loops-served`), both `servedRun: "none"`.
-- **REQ-036:** `LOOP_QUESTION_AUXILIARIES` and the how-to pattern are compared through `VOCABULARY_PAIRS`; the fixture rows `how-do-run-deep-review`, `how-can-research-loop-stop` read `false` and `how-do-then-run-deep-review` reads `true`.
-- **REQ-037:** `LOOP_EFFORT_LEADS`, `LOOP_EFFORT_WORDS` and `LOOP_EFFORT_CHANGE_VERBS` are exported (`command-attach.ts`), each with an `it.each` case (`deep-loop-offer-cases.vitest.ts:388,393,401`).
-- **REQ-038:** `trackedCommandForOwner` (`skill-advisor-cli.ts:1489-1494`) returns undefined unless the tracked table names the command for the row's own skill or its merged alias, which is what the requirement states.
-- **REQ-039:** the corpus is one file (247 rows) and the baseline is the sibling JSON; the recapture claim is evidence-row only and is read in iteration 5.
-- **REQ-040:** `READ_ONLY_LOOP_MODES` and the no-edit guard at `command-attach.ts:1620` keep a read-only loop; the three `no-edit-*` rows read `readOnlyRunKept` `review`, `review`, `research`.
-- **REQ-041:** `loopAskCues` blanks a refused or subject-only loop phrase (`command-attach.ts:1703-1724`), and the five `refused-cue-*` rows are in the fixture.
-- **REQ-042:** `routedLoopMode` (`command-attach.ts:1693-1701`) runs the same guard on the routed single-target route and keeps the routed mode when the ask does not name another.
-- **REQ-043:** `hasUnrefusedPronounRerun` and the past-run read verbs are exported and pinned; eight `stuck-rerun-pronoun-*` rows carry the column.
-- **REQ-044:** the manner rows read `asksForLoopRun: true` and the complaint rows `false`; the typed-doctor rows run from `typed-doctor-comma-joined` to `typed-doctor-period-joined`.
-- **REQ-045:** `MODE_CUE_WORDS` and `MODE_CUES` key `research` and `review` (`command-attach.ts:539-551`), the hub router's `routerSignals` keys the same two modes, and `NAMED_LOOP_MODE` (`:1763`) is compared with `_NAMED_LOOP_MODE_RE` (`skill_advisor.py:5376`) through `PATTERN_PAIRS`; `EXCEPTION_GRAMMAR_CASES` (`deep-loop-offer-cases.vitest.ts:444-466`) names a case id per grammar shape and the test asserts each id resolves in the fixture.
-- **REQ-046:** `MIN_BLOCKED_ATTEMPTS = 2` (`reduce-state.cjs:2378`) writes a one-pass ruling as `RULED OUT` with a reopen condition (`:2402-2408`) and only a two-attempt ruling as `BLOCKED`; `enrichCompiledRoutes` (`handlers/advisor-recommend.ts:363-432`) keeps one command per result, and its withhold branch destructures `command`, `policy`, `ownerSkillId` and `typed` off the row.
-- **REQ-047:** the three named prompts all read `servedRun: "none"` in the fixture, and the Python gate reads `_asked_loop_mode` (`skill_advisor.py:5406`) at the point it decides the run row (`:5767`).
-- **REQ-048:** `replaceAnchorSection` (`reduce-state.cjs:2421`) resolves the ordinal the file already carries and drops an authored heading above the marker, so a template-numbered strategy keeps one heading per number.
-- **REQ-049:** `lowerFolded` (`command-attach.ts:883-885`) collapses `\s+` to one space and `_fold_quotes` (`skill_advisor.py:5098-5106`) does the same while keeping the prompt as typed.
-- **REQ-050:** `RUN_ASK_REFUSAL_CANCEL_LEADS` (`command-attach.ts:715`) and `_RUN_ASK_REFUSAL_CANCEL_LEAD_LIST` (`skill_advisor.py:4666`) hold the cancelling leads; the seven `negated-refusal-*` rows read five `true` and two `false`.
-- **REQ-051:** `PATTERN_PAIRS` 12, `ANCHORED_PATTERN_PAIRS` 8, `FRAGMENT_PAIRS` 16 and `QUANTIFIER_PAIRS` 4 compare 40 pairs; `PATTERNS_NOT_COMPARED` holds 38 names with a reason (`:571`), and the coverage test recomputes the 43 compiled gate patterns in the fallback's gate slice and requires each to be accounted for exactly once.
-- **REQ-052:** `stripReviewVerdict` (`reduce-state.cjs:227`) ends the section before the `Review verdict:` line and joins the remaining lines, so the strategy and the dashboard keep the focus's own line breaks.
+No protocol was run this iteration: the maintainability pass read the reducer and the drift guard, and no REQ row changed status. `spec_code` stays `partial` from iterations 1 and 2 and is completed in the traceability iterations.
 
 ## Integration Evidence
-
-- The drift guard's coverage test recomputes the compiled pattern set from the Python source (`deep-loop-offer-cases.vitest.ts:676-690`), so a new gate pattern fails the suite instead of going unaccounted.
-- The hub router's `routerSignals` is the third surface (besides `MODE_CUES` and `MODE_CUE_WORDS`) that REQ-045 requires to key the same modes, and it keys exactly `research` and `review`.
-- `routedLoopMode` is the one place the mode guard is applied on the routed route, and the requirement's guard is visible there rather than assumed.
+- Drift-guard surface named: `PATTERN_PAIRS` (12), `ANCHORED_PATTERN_PAIRS` (8), `FRAGMENT_PAIRS` (16) and `QUANTIFIER_PAIRS` (4) compare 40 pairs, and `PATTERNS_NOT_COMPARED` lists 38 names, each with its reason ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571]).
+- Reducer projection surface named: `buildExhaustedApproaches` is the only writer of the strategy's `## 10` section, and this lineage's strategy is the artifact it writes.
 
 ## Edge Cases
-
-- The profile of `pickReviewBaseFocus` (`reduce-state.cjs:2586`) is that a leaf's Next Focus is kept only when it names a dimension the registry still shows uncovered; a run whose operator focus stays on one dimension is steered back to the first uncovered one by each reduction. The strategy's Next Focus is therefore re-stated by the leaf after each reduction, and the focus this lineage actually executes remains the operator's traceability focus. Recorded here because it explains why the strategy's section 12 differs from the reducer's projection.
-- Two fixture rows carry the identical mode-free prompt (`plural-deep-loops`, `plural-deep-loops-served`) on purpose: one pins the ask, the other the served result. That is not duplication.
-- ADR-008's amendment is the reason REQ-035 does not require a command for the mode-free plural ask; the requirement, the decision and the fixture row agree.
+- **Legacy section dialect.** `extractSection` matches a heading exactly, without a numeric prefix ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:217]), which is why the caller passes `'3. REVIEW DIMENSIONS (remaining)'` with its number at [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:417]. A strategy numbered differently from the template would lose that section read; the reducer's write path tolerates both forms through `headingCore`, so only the read is strict. Recorded as an edge case, not a finding: the template this packet uses numbers the section as the caller expects.
+- **Two headings, one number.** `replaceAnchorSection` keeps the ordinal the file already gives a section ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2430]) and absorbs an authored heading above the anchor ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2453]), so a strategy built from the template keeps `## 3`, `## 6`, `## 7` and `## 12` once each, which is what this lineage's file shows.
 
 ## Confirmed-Clean Surfaces
-
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` and `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` carry every vocabulary REQ-045 to REQ-051 names, and no code comment in either holds an ephemeral label or a spec path.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` implements the four behaviours REQ-032, REQ-046, REQ-048 and REQ-052 name, each with a unit test named in the change-set table.
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` implements both halves of REQ-046's enrichment clause.
+- **The drift guard's coverage story is complete.** Every compiled gate pattern is compared, pasted into a compared fragment, or listed with a reason, and the lists total 40 compared pairs plus 38 reasoned exclusions ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:503], [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571]).
+- **The vocabulary guard reads lists, not literals.** `VOCABULARY_PAIRS` carries one row per exported list with its Python tuple name ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121]), so a one-sided edit fails rather than drifting.
+- **No dead caller for the typed single-command reading.** `typedCommandIn` stays exported as the boundary-test reading and the production paths use `typedCommandsIn` ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:252], [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:275]), matching REQ-025's text.
 
 ## Ruled Out
-
-- **A gate pattern the drift guard neither compares nor lists.** Ruled out: the coverage test recomputes the 43 `re.compile` assignments in the fallback's gate slice and requires the accounted set to equal it.
-- **`MODE_CUES` and the hub router keying different modes.** Ruled out: both key `research` and `review`, and the test at `deep-loop-offer-cases.vitest.ts:743` asserts the four surfaces together.
-- **A degraded row keeping a withheld command.** Ruled out by reading the withhold branch, which strips `command`, `policy`, `ownerSkillId` and `typed`.
-- **A read-only loop lost to a no-edit clause.** Ruled out: the guard at `command-attach.ts:1620` exempts the read-only modes, and the three `no-edit-*` rows carry their mode.
+1. **The strategy's numbered reads are inconsistent** — `extractSection(strategyContent, '3. REVIEW DIMENSIONS (remaining)')` passes the number, so a numbered template reads correctly; the strictness is a documented edge case rather than a live defect for this packet's template.
+2. **The reducer can duplicate a machine-owned heading** — the ordinal is taken from the file and the authored heading is absorbed, so this lineage's strategy holds one `## 3`, `## 6`, `## 7` and `## 12`.
+3. **The fixture is a second source of truth for behaviour** — the fixture holds only input/expected columns and both suites read it ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121]); no behaviour is encoded in the fixture that the gate does not implement, because each column is asserted against the gate's own return.
 
 ## Next Focus
-
-- Dimension: traceability (`checklist_evidence`).
-- Focus area: the ticked tasks in `tasks.md`, T001 to T111, each against the evidence line its `Observed` clause names.
-- Reason: `spec_code` is closed; `checklist_evidence` is the second core protocol the focus names, and it is the half the previous reruns left partial.
-- Rotation status: traceability continues, now on the second core protocol.
-- Blocked / productive carry-forward: productive. The evidence-line and anchor technique carries over directly.
-- Required evidence: task id, the artefact the task names, and the line or row that holds the claim.
+- Dimension: traceability
+- Focus area: `spec_code` — every REQ-001 to REQ-053 against the code or the ADR that records it, beginning with the closure records the twelfth round touched (REQ-025, REQ-053, REQ-031) and the REQ rows whose evidence is a probe or a fixture column.
+- Reason: the lead focus; the last four iterations are traceability.
+- Rotation status: 3 of 4 dimensions recorded; traceability remains.
+- Required evidence: `file:line` for each REQ's implementing symbol or ADR section, full repo-relative paths only.
+- Blocked/productive carry-forward: the two reducer P2s are code findings and must not be re-reported as doc findings.
+- Recovery note: not applicable.
 
 Review verdict: PASS
