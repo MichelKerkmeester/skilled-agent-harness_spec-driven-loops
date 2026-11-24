@@ -123,6 +123,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 13 | 013-session-signal-sweeps/ | Make the Codex, DSH, OpenCode and Pi sweeps read the session their runtime names, and make the Vibe sweep read its unified folder | Complete |
 | 14 | 014-devin-vibe-lock-probe/ | Make the Devin and Vibe sweeps prefer the session whose lock a calling process holds, and make the Devin sweep print queued answers when Devin wrote no transcript | Complete |
 | 15 | 015-devin-database-reader/ | Make the Devin sweep read a session from Devin's message store when no transcript file exists, under the hook's own keys | Complete |
+| 16 | 016-stop-hook-auto-record/ | Make the Claude Stop hook record this session's queued tool answers itself when the transcript names exactly one packet, and keep the nudge otherwise | Pending |
 
 ### Phase Transition Rules
 
@@ -151,6 +152,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 012-session-scoped-sweep-and-consume | 013-session-signal-sweeps | The Claude sweep reads its own session and a worktree save clears the primary checkout's pending answer | A live two-session probe per runtime shows the new sweep reading session A |
 | 013-session-signal-sweeps | 014-devin-vibe-lock-probe | Four sweeps read the session their runtime names | A live probe shows the calling session's lock in its own process ancestry on Devin and Vibe |
 | 014-devin-vibe-lock-probe | 015-devin-database-reader | The Devin and Vibe sweeps prefer the caller's locked session | A real Devin session recovers a missed answer under the hook's key and adds nothing when the hook queued it |
+| 015-devin-database-reader | 016-stop-hook-auto-record | The Devin sweep reads Devin's message store | A Claude session bound to one packet ends with its answers in that packet's decision record and no nudge |
 <!-- /ANCHOR:phase-map -->
 
 ---
