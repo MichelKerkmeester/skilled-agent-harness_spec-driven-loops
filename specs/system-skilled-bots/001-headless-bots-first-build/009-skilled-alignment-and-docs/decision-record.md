@@ -35,6 +35,9 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | Close the F1 residual now with an authoring-verb guard that keeps ordered keywords out of prompts holding authoring, building, creating or writing. | Not stated. | None | AC-008, T011, hub-router.json orderedKeywordBlockers, router.cjs scoreModes |
+| Q002 | Delete every bots-* folder in the system temp folder, not only the four rollback copies. | Not stated. | None | 006 scratch rollback evidence; temp cleanup |
+| Q003 | Stop after every phase reached Complete and leave the merge to main for later. | Not stated. | None | parent spec.md phase map |
+| Q004 | Fix the checker so it fails a native bot and a sandbox mismatch, and point the template at a real executor, before the merge. | Not stated. Evidence: yes_no, option false, overlap 1, imperative true, shift false. | None | REQ-007, AC-011, T016, scripts/bot-check.cjs, assets/bot-template.txt |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -62,6 +65,60 @@ Record as follow-up
 Answer:
 ```text
 Authoring-verb guard (Recommended)
+```
+
+### Q002
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_018qYUDmQANDzvFMJwgRewDG:1 -->
+
+Question:
+```text
+My four rollback rehearsal copies are full copies of the tree, left in the system temp folder (/var/folders/.../T/bots-rollback-copy-1DAlzh, -B1ukAg, -Rr1uh6, -vfBipD). Delete them? Their node_modules are only symlinks, so deleting the copies doesn't touch the worktree.
+```
+
+Options:
+```text
+Delete the four copies (Recommended)
+Delete all bots-* temp
+Keep everything
+```
+
+Answer:
+```text
+Delete all bots-* temp
+```
+
+### Q003
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_018qYUDmQANDzvFMJwgRewDG:2 -->
+
+Question:
+```text
+Every phase of the headless bots packet is now Complete. What should I do next?
+```
+
+Options:
+```text
+Prepare merge to main (Recommended)
+Stop here
+```
+
+Answer:
+```text
+Stop here
+```
+
+### Q004
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:chat:72c45006-b610-42bf-869f-70ae911344a1:0a96c4e0-af03-413d-8376-c5139aa85a46 -->
+
+Question:
+```text
+Should I make that fix before the merge?
+```
+
+Options: none
+
+Answer:
+```text
+fix
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

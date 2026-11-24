@@ -416,12 +416,20 @@ describe('preflight', () => {
     expectRefusal(world, world.input('digest', { seams: realChecker }), 'checker-failed');
   }, 60_000);
 
-  it('refuses a posture the real checker passes but the runner would refuse', () => {
+  it('refuses a posture the runner would refuse at the real checker, naming it', () => {
     const world = installWorld();
     writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'native'));
     const { checker: _stub, ...realChecker } = world.seams;
-    expectRefusal(world, world.input('digest', { seams: realChecker }), 'posture-refused');
+    const input = world.input('digest', { seams: realChecker });
+    expectRefusal(world, input, 'checker-failed');
+    expect(installSchedule(input)).toMatchObject({ detail: expect.stringContaining('executor-kind-native') });
   }, 60_000);
+
+  it('still refuses a posture the runner would refuse when the checker passes it', () => {
+    const world = installWorld();
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'native'));
+    expectRefusal(world, world.input('digest'), 'posture-refused');
+  });
 
   it('refuses a Skilled tree that is a linked worktree, naming the fix', () => {
     const world = installWorld();

@@ -38,12 +38,14 @@ fixtures/
 ├── cron-untranslatable/
 ├── delivery-channel-unknown/
 ├── empty-body/
+├── executor-kind-native/
 ├── identity-invalid/
 ├── isolation-invalid/
 ├── isolation-undeclared/
 ├── missing-id/
 ├── missing-trigger/
 ├── no-identity/
+├── posture-unhonorable/
 ├── reserved-id/
 ├── timeout-over-bound/
 ├── unknown-executor-kind/
@@ -55,7 +57,7 @@ fixtures/
 
 ## 3. FIXTURE MAP
 
-The clean bot is `nightly-digest`: a `cron` trigger at `0 9 * * *`, the `native` runtime, a budget of 4 iterations and 600 seconds, `shared` isolation and `local-only` delivery. Its config declares the identity `local/tool`.
+The clean bot is `nightly-digest`: a `cron` trigger at `0 9 * * *`, the `cli-codex` runtime, a budget of 4 iterations and 600 seconds, `shared` isolation and `local-only` delivery. Its config declares the identity `local/tool`.
 
 | Folder | Hard invariant it fails |
 |---|---|
@@ -75,6 +77,8 @@ The clean bot is `nightly-digest`: a `cron` trigger at `0 9 * * *`, the `native`
 | `worktree-shared-paths-unresolved/` | `worktree-shared-paths-unresolved` |
 | `delivery-channel-unknown/` | `delivery-channel-unknown` |
 | `reserved-id/` | `reserved-id` |
+| `executor-kind-native/` | `executor-kind-native` |
+| `posture-unhonorable/` | `posture-unhonorable` |
 
 `no-identity` passes once an identity is set. The suite checks that too, in a temp repository with no remote.
 

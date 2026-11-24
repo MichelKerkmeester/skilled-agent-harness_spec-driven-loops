@@ -4,7 +4,7 @@ description: "Read-only BOT.md definition checker that audits a repository's bot
 trigger_phrases:
   - "bot-check.cjs"
   - "bots definition checker"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # system-skilled-bots / scripts
@@ -52,7 +52,7 @@ node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <checkout-root> [
 | Exit 2 | The target is missing or the audit cannot finish. |
 | `--strict` | Accepted and changes nothing, because no advisory invariant is defined. It would turn an advisory `WARN` into `FAIL` and never changes a hard failure. |
 
-The hard invariants are `definition.missing-id`, `duplicate-id`, `definition.missing-trigger`, `definition.trigger-kind-invalid`, `definition.empty-body`, `runtime-kind-unknown`, `definition.budget.maxIterations-invalid`, `budget.timeoutSeconds-out-of-bounds`, `cron-reboot`, `identity-missing`, `config.identity-invalid`, `isolation-undeclared`, `definition.isolation-invalid`, `worktree-shared-paths-unresolved`, `delivery-channel-unknown` and `reserved-id`. Any other parse, config or cron refusal reports under its own named reason. A folder whose name differs from its bot id fails as `folder-id-mismatch`, because the runner and the installer refuse that definition.
+The hard invariants are `definition.missing-id`, `duplicate-id`, `definition.missing-trigger`, `definition.trigger-kind-invalid`, `definition.empty-body`, `runtime-kind-unknown`, `definition.budget.maxIterations-invalid`, `budget.timeoutSeconds-out-of-bounds`, `cron-reboot`, `identity-missing`, `config.identity-invalid`, `isolation-undeclared`, `definition.isolation-invalid`, `worktree-shared-paths-unresolved`, `delivery-channel-unknown`, `reserved-id`, `executor-kind-native` and `posture-unhonorable`. The last two come from the runner's own posture check, so a bot the runner would refuse before dispatch never passes here. Any other parse, config or cron refusal reports under its own named reason. A folder whose name differs from its bot id fails as `folder-id-mismatch`, because the runner and the installer refuse that definition.
 
 ---
 
@@ -80,8 +80,9 @@ Expected result, exit 0:
 PASS: config: bots/config.json reads cleanly
 PASS: identity: local/tool (from config)
 PASS: definition: bots/nightly-digest/BOT.md parses as nightly-digest
-PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime native within the executor's bounds
+PASS: executor-bounds: bots/nightly-digest/BOT.md: runtime cli-codex within the executor's bounds
 PASS: isolation: bots/nightly-digest/BOT.md: shared
+PASS: posture: bots/nightly-digest/BOT.md: cli-codex honors sandbox workspace-write
 PASS: schedule: bots/nightly-digest/BOT.md: "0 9 * * *" translates to 1 calendar dictionaries
 PASS: label: bots/nightly-digest/BOT.md: com.skilled.bots.local_2ftool.nightly-digest.0
 ```

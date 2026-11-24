@@ -8,26 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/009-skilled-alignment-and-docs"
-    last_updated_at: "2026-11-24T07:00:28Z"
+    last_updated_at: "2026-11-24T18:41:02Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed packet 009: guard, gates, recheck and strict validation all pass"
-    next_safe_action: "Commit the staged tree in the worktree with a pathspec commit"
+    recent_action: "Checker now runs the posture check; suite 381/381"
+    next_safe_action: "Commit and push after operator yes"
     packet_purpose: "Purpose: The skill meets the sk-doc package shape and sk-code standards, and an independent review and a cross-surface alignment run both report no open defect that is not fixed or recorded."
     blockers: []
     key_files:
-      - "specs/system-skilled-bots/001-headless-bots-first-build/009-skilled-alignment-and-docs/scratch/alignment-triage.md"
-      - "specs/system-skilled-bots/001-headless-bots-first-build/009-skilled-alignment-and-docs/scratch/routing-replay.txt"
-      - ".skilled/skills/system-skilled-bots/hub-router.json"
-      - ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/lib/router.cjs"
+      - ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs"
+      - ".skilled/skills/system-skilled-bots/assets/bot-template.txt"
+      - ".skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts"
+      - ".skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts"
+      - ".skilled/skills/system-skilled-bots/manual-testing-playbook/bot-authoring/native-runtime-refused.md"
     session_dedup:
-      fingerprint: "sha256:a981185d93232fa73d7de7ccea0c46b10af2231988cdaa81e9d2b63d6640beb9"
+      fingerprint: "sha256:ee6ecfb45f1ec580a8a308c6e7868ad5b61d123f61617e2f6a0a9b9dcaff3731"
       session_id: "scaffold-009-skilled-alignment-and-docs"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-24T07:00:28Z"
+      savedAt: "2026-11-24T18:41:02Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -130,6 +131,7 @@ A second pass then checked this packet's own uncommitted work. Five read-only le
 |-------|--------|
 | Bots runtime vitest | 35 files, 372 tests passed (baseline 33 / 355) |
 | Bots typecheck | exit 0 |
+| Checker posture fix (T016) | Bots suite `Tests  381 passed (381)`, baseline 378. Typecheck exit 0. Removing the posture call fails both new defect tests. Playbook validator `violations=0`, catalog `--strict` 0 violations, parent-skill-check 0 warnings, route guard fresh |
 | Post-commit harness | 28 passed, 0 failed |
 | Frontmatter coverage | `violations=0` |
 | Skill graph freshness `--strict` | exit 0 |

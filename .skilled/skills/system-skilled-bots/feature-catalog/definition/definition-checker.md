@@ -6,7 +6,7 @@ trigger_phrases:
   - "bot-check.cjs"
   - "check bot definitions"
   - "/doctor:bots"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Definition checker (bot-check.cjs)
@@ -23,7 +23,7 @@ A bad definition would otherwise fail only at its first unattended fire, when no
 
 Run `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs <checkout-root> [--strict]`. It prints one `PASS|FAIL|INFO: <id>: <message>` line per finding. It exits 0 when every hard invariant passes, 1 on any failure and 2 when the target is missing or the audit cannot finish. `--strict` is accepted and changes nothing, because no advisory invariant is defined, so no `WARN` line prints.
 
-The checker loads the runtime's definition parser, config reader, identity resolver, executor bounds, cron translator, label grammar, worktree shared-path resolver and delivery channel list. Hard invariants include a missing id or trigger, a duplicate or reserved id, an empty body, an unknown executor kind, a timeout out of bounds, an unknown identity, undeclared or invalid isolation, unresolved worktree shared paths and an unknown delivery channel. A parse or config refusal reports as `definition.<reason>` or `config.<reason>`, and a cron refusal reports under the translator's own id, so every refusal the runtime can return gets a name. A folder name that differs from the bot id fails as `folder-id-mismatch`, because the runner and the installer refuse that definition.
+The checker loads the runtime's definition parser, config reader, identity resolver, executor bounds, posture check, cron translator, label grammar, worktree shared-path resolver and delivery channel list. Hard invariants include a missing id or trigger, a duplicate or reserved id, an empty body, an unknown executor kind, the `native` kind, a sandbox the executor kind cannot honor, a timeout out of bounds, an unknown identity, undeclared or invalid isolation, unresolved worktree shared paths and an unknown delivery channel. A parse or config refusal reports as `definition.<reason>` or `config.<reason>`, and a cron refusal reports under the translator's own id, so every refusal the runtime can return gets a name. A folder name that differs from the bot id fails as `folder-id-mismatch`, because the runner and the installer refuse that definition.
 
 The checker only reads. `/doctor:bots` runs it and reports each failed invariant, and the author mode, which grants no Bash, hands the check to that command instead of running it.
 

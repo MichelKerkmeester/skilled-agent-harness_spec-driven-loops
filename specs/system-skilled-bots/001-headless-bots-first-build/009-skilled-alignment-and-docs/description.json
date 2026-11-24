@@ -6,15 +6,16 @@
     "phase",
     "skilled-alignment-and-docs"
   ],
-  "lastUpdated": "2026-11-24T07:00:28.288Z",
+  "lastUpdated": "2026-11-24T18:41:02.399Z",
   "specId": "009",
   "folderSlug": "skilled-alignment-and-docs",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "24-11-26_08-00__closed-phase-9-authoring-verb-guard-for-the-bots.md"
+    "24-11-26_08-00__closed-phase-9-authoring-verb-guard-for-the-bots.md",
+    "24-11-26_19-41__the-definition-checker-now-runs-the-runner-s-own.md"
   ]
 }

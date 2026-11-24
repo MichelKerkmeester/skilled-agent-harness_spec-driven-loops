@@ -150,6 +150,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | `feature-catalog/` exists and passes the sk-create-feature-catalog validator the command names. |
 | REQ-005 | The playbook gains runtime categories that pass the sk-create-manual-testing-playbook validator, and `node .skilled/bin/compiled-route-admission.cjs --hub system-skilled-bots` still reports no drift. |
 | REQ-006 | A `/local-skilled-alignment` run completes over the skill, and each of its findings is fixed or recorded with a reason. Amended 2026-11-23: the `devin` lanes failed on an exhausted daily quota and on read-only permission mode rejecting every shell call, so the operator switched the run to `--lanes vibe-deepseek` (DeepSeek Flash, thinking max). |
+| REQ-007 | The definition checker fails every bot the runner's posture check would refuse before dispatch, and the shipped template names a runtime that passes both. Added 2026-11-24 at the operator's request, after the template's `native` default passed the checker and was refused at run time. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

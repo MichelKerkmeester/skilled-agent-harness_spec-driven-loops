@@ -66,6 +66,7 @@ contextType: "general"
 - [x] T013 Rerun the runtime suite and typecheck from the final state. Verify: `Test Files  35 passed (35)` and typecheck exit 0. Observed from the staged tree: `Test Files  35 passed (35)`, `Tests  372 passed (372)`, typecheck exit 0.
 - [x] T014 Recheck the alignment run (`--recheck R`). Verify: every row fixed here reads resolved. Observed: 5 resolved, 3 still open, 0 new, 33 needing review. The three open rows are the renamed template, the deferred release notes and the runner-set `SKILLED_BOT_RUN_ID`, each a recorded decision in `scratch/alignment-triage.md`.
 - [x] T015 Validate this phase and the parent strictly. Verify: `validate.sh --strict` prints `RESULT: PASSED` for both. Observed 2026-11-24: 009 `Errors: 0  Warnings: 0` `RESULT: PASSED`, and the parent with every child `RESULT: PASSED`.
+- [x] T016 Make the checker run the runner's posture check, point the template and the clean fixtures at `cli-codex`, add the `executor-kind-native` and `posture-unhonorable` defect fixtures and update BOT-011, the checker docs and the installer test that expected the checker to pass `native`. Verify: the bots suite and typecheck pass and BOT-011 runs as written. Observed 2026-11-24: `Tests  381 passed (381)` (baseline 378), typecheck exit 0, BOT-011 checker `exit=1` and run `exit=4`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

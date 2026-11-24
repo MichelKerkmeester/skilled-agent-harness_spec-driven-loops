@@ -8,7 +8,7 @@ trigger_phrases:
   - "bots cli inventory"
   - "feature catalog"
 last_updated: "2026-11-23"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # system-skilled-bots: Feature Catalog
@@ -83,7 +83,7 @@ Audits a repository's bots/ folder read-only with the runtime's own predicates a
 
 #### Current Reality
 
-`bot-check.cjs` reads a repository's `bots/` folder with the runtime's own parser, config reader, identity resolver, cron translator, label grammar and delivery list. It prints one line per finding. It exits 0 when every hard invariant passes, 1 on a failure and 2 when the audit cannot finish. A folder whose name differs from its bot id fails. No advisory invariant is defined, so `--strict` changes nothing.
+`bot-check.cjs` reads a repository's `bots/` folder with the runtime's own parser, config reader, identity resolver, posture check, cron translator, label grammar and delivery list, so a bot the runner refuses before dispatch fails here first. It prints one line per finding. It exits 0 when every hard invariant passes, 1 on a failure and 2 when the audit cannot finish. A folder whose name differs from its bot id fails. No advisory invariant is defined, so `--strict` changes nothing.
 
 #### Source Files
 

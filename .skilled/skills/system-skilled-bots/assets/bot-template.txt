@@ -3,8 +3,10 @@
 id: <your-bot-id>
 # Required. kind is cron (with expression), queue (with name), git-hook (needs gitHookTrigger in bots/config.json) or manual.
 trigger: {kind: manual}
-# Executor block. Default: {kind: native}. Keys past kind (model and the like) go to the executor as written.
-runtime: {kind: native}
+# Executor block. Pick a cli-* kind: native is refused, since its child inherits your full environment.
+# Only cli-codex, cli-cursor and cli-deepseek-harness can write. The others need sandbox: read-only.
+# Keys past kind (model and the like) go to the executor as written.
+runtime: {kind: cli-codex}
 # Limits. Defaults: maxIterations 10, maxDurationMinutes 120, timeoutSeconds 900.
 budget: {maxIterations: 10, maxDurationMinutes: 120, timeoutSeconds: 900}
 # Default: true. false keeps the definition but runs nothing.

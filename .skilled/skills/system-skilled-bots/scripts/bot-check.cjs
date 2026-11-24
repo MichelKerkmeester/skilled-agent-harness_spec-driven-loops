@@ -53,6 +53,8 @@ const HARD_INVARIANTS = Object.freeze([
   'worktree-shared-paths-unresolved',
   'delivery-channel-unknown',
   'reserved-id',
+  'executor-kind-native',
+  'posture-unhonorable',
 ]);
 
 /**
@@ -74,7 +76,7 @@ async function loadRuntime() {
   const runtimeRequire = createRequire(join(RUNTIME_DIR, 'package.json'));
   const { tsImport } = runtimeRequire('tsx/esm/api');
   const lib = (name) => tsImport(join(RUNTIME_DIR, 'lib', `${name}.ts`), __filename);
-  const [definition, repoConfig, identity, translator, label, isolation, delivery] = await Promise.all([
+  const [definition, repoConfig, identity, translator, label, isolation, delivery, posture] = await Promise.all([
     lib('definition'),
     lib('repo-config'),
     lib('identity'),
@@ -82,8 +84,9 @@ async function loadRuntime() {
     lib('label'),
     lib('isolation'),
     lib('delivery'),
+    lib('posture'),
   ]);
-  return { definition, repoConfig, identity, translator, label, isolation, delivery };
+  return { definition, repoConfig, identity, translator, label, isolation, delivery, posture };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -195,6 +198,13 @@ async function runCheck(checkoutRoot, options = {}) {
       const isolation = runtime.definition.resolveIsolation(bot, config.value);
       if (isolation.ok) pass('isolation', `${shown}: ${isolation.value}`);
       else fail(isolation.reason, `${shown}: declare isolation in BOT.md or defaultIsolation in bots/config.json`);
+      if (isolation.ok && bounds.ok) {
+        // The runner's own posture check, so a kind or sandbox it refuses at
+        // dispatch never passes here.
+        const verdict = runtime.posture.validatePosture(bot, config.value);
+        if (verdict.ok) pass('posture', `${shown}: ${bot.runtime.kind} honors sandbox ${verdict.value.posture.sandbox}`);
+        else fail(verdict.reason, describe(shown, verdict));
+      }
       if (isolation.ok && isolation.value === 'worktree') {
         const shared = runtime.isolation.resolveSharedPaths({ checkoutRoot: root, config: config.value, env });
         if (shared.ok) pass('worktree-shared-paths', `${shown}: links ${shared.value.paths.length} shared paths from ${shared.value.source}`);

@@ -1,7 +1,7 @@
 ---
 title: "BOT-011 -- A bot left on the native runtime is refused before dispatch"
-description: "This scenario validates bot authoring for `BOT-011`. It focuses on the template's default native runtime passing the checker and then being refused by the runner with exit 4."
-version: 1.0.0.0
+description: "This scenario validates bot authoring for `BOT-011`. It focuses on a native runtime failing the checker and still being refused by the runner with exit 4."
+version: 1.0.1.0
 ---
 
 # BOT-011 -- A bot left on the native runtime is refused before dispatch
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-The template defaults to `runtime: {kind: native}`. The checker accepts that kind, but the runner's posture check refuses it, because a native child would inherit the full environment. This scenario shows both halves, so an author learns to pick a headless executor kind before the first run.
+The runner's posture check refuses `runtime: {kind: native}`, because a native child would inherit the full environment. The checker runs the same posture check, so it fails the bot first. This scenario shows both halves, so an author learns to pick a headless executor kind before the first run.
 
 ### Why This Matters
 
-An author who trusts a clean check and then runs the bot gets a refusal. The refusal must be exit 4 with a named cause and a record, never a dispatch and never a crash.
+An author who skips the check and runs the bot anyway gets a refusal. The refusal must be exit 4 with a named cause and a record, never a dispatch and never a crash.
 
 ---
 
@@ -24,11 +24,11 @@ An author who trusts a clean check and then runs the bot gets a refusal. The ref
 
 Operators run the exact prompt and command sequence for `BOT-011` and confirm the expected signals without contradictory evidence.
 
-- Objective: Prove a native-runtime bot passes the checker and is refused by `bots run` before any executor starts.
-- Real user request: `I left the runtime on the template default. Run the bot and tell me what happens.`
-- Prompt: `I left the runtime on the template default. Run the bot and tell me what happens.`
+- Objective: Prove a native-runtime bot fails the checker and is refused by `bots run` before any executor starts.
+- Real user request: `I set the runtime to native. Check the bot, run it and tell me what happens.`
+- Prompt: `I set the runtime to native. Check the bot, run it and tell me what happens.`
 - Expected execution process: build the world with a native bot, run the checker, run the bot, read its record and confirm no executor ran, then remove the world.
-- Expected signals: the checker exits 0 with `PASS: executor-bounds: bots/pb-native/BOT.md: runtime native within the executor's bounds`. The run exits 4 and prints `bots: pb-native refused before dispatch (posture-refused): executor-kind-native: a native child inherits the full environment`.
+- Expected signals: the checker exits 1 with `FAIL: executor-kind-native: bots/pb-native/BOT.md: executor-kind-native (a native child inherits the full environment)`. The run exits 4 and prints `bots: pb-native refused before dispatch (posture-refused): executor-kind-native: a native child inherits the full environment`.
 - Desired user-visible outcome: the operator learns the runtime kind must change before the bot can run.
 - Pass/fail: PASS if the run exits 4 with that cause, one record exists and the stub never ran. FAIL if the run dispatches, exits anything but 4 or leaves no record.
 
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `BOT-011` and confirm th
 
 ### Prompt
 
-- Prompt: `I left the runtime on the template default. Run the bot and tell me what happens.`
+- Prompt: `I set the runtime to native. Check the bot, run it and tell me what happens.`
 
 > **Recursion guard.** The command line of `bots run` and `bots drain` must never contain an executor word: `claude`, `codex`, `opencode` or `vibe`. The runner's recursion guard reads the command lines of every ancestor process and refuses with exit 3 on a match. Keep those words out of bot ids, temp paths and arguments, and start the commands from a plain terminal, not from inside an AI runtime session.
 
@@ -74,7 +74,7 @@ rm -rf "$W" && unset -f pbots records
 
 ### Expected
 
-- Checker: `PASS: executor-bounds: bots/pb-native/BOT.md: runtime native within the executor's bounds` and `exit=0`.
+- Checker: `FAIL: executor-kind-native: bots/pb-native/BOT.md: executor-kind-native (a native child inherits the full environment)` and `exit=1`.
 - Run: `bots: pb-native refused before dispatch (posture-refused): executor-kind-native: a native child inherits the full environment` on stderr and `exit=4`.
 - `records` prints one line for `pb-native`.
 - `ls` of `stub-receipts` reports no such file or directory, because no executor started.
@@ -85,14 +85,14 @@ The checker output, the run line with `exit=4`, the `records` line and the `ls` 
 
 ### Pass / Fail
 
-- **Pass**: exit 4 with the `posture-refused` cause, one record and no stub receipt.
+- **Pass**: the checker exits 1 with `executor-kind-native`, and the run exits 4 with the `posture-refused` cause, one record and no stub receipt.
 - **Fail**: the run dispatches, exits other than 4, prints no cause or leaves no record.
 - **Skip**: only when node or git is unavailable, or the repository path itself contains an executor word, naming that blocker.
 
 ### Failure Triage
 
 1. Exit 3 means the recursion guard fired. Read the warning above and check the shell's ancestry and the temp path.
-2. A dispatch means the posture check let `native` through. Read `validatePosture` in `runtime/lib/posture.ts`.
+2. A checker exit 0 or a dispatch means the posture check let `native` through. Read `validatePosture` in `runtime/lib/posture.ts`.
 3. No record means the refusal skipped `refusalRecord` in `runtime/lib/runner.ts`.
 
 ---
@@ -114,6 +114,7 @@ The checker output, the run line with `exit=4`, the `records` line and the `ls` 
 | `.skilled/skills/system-skilled-bots/runtime/lib/runner.ts` | Writes the refusal record |
 | `.skilled/bin/bots.cjs` | Maps a refusal to exit 4 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/posture.vitest.ts` | Automated posture coverage |
+| `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` | Fails the native kind through the same posture check |
 
 ---
 

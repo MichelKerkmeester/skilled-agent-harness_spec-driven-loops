@@ -1,7 +1,7 @@
 ---
 title: "system-skilled-bots: Manual Testing Playbook"
 description: "Operator index for system-skilled-bots: hub routing across its four bot modes, and runtime scenarios that author, run, queue, isolate, deliver, schedule and report on throwaway bots."
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # system-skilled-bots: Manual Testing Playbook
@@ -232,12 +232,12 @@ Expected signals: `FAIL: folder-id-mismatch`, `FAIL: budget.timeoutSeconds-out-o
 ### BOT-011 | A bot left on the native runtime is refused before dispatch
 
 #### Description
-Verify a native-runtime bot passes the checker and is refused by `bots run` with exit 4 before any executor starts.
+Verify a native-runtime bot fails the checker and is refused by `bots run` with exit 4 before any executor starts.
 
 #### Scenario Contract
-Prompt: `I left the runtime on the template default. Run the bot and tell me what happens.`
+Prompt: `I set the runtime to native. Check the bot, run it and tell me what happens.`
 
-Expected signals: `refused before dispatch (posture-refused): executor-kind-native` and `exit=4`, with no stub receipt.
+Expected signals: the checker prints `FAIL: executor-kind-native` with `exit=1`, and the run prints `refused before dispatch (posture-refused): executor-kind-native` with `exit=4`, with no stub receipt.
 
 #### Test Execution
 > **Feature File:** [BOT-011](bot-authoring/native-runtime-refused.md)

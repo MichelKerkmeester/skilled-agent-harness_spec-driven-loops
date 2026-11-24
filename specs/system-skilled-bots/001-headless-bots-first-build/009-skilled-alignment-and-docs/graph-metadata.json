@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The bots skill ships about 10,700 lines of runtime code with no code-folder README in any of its code folders, no feature catalog, and a manual testing playbook that covers hub routing only",
     "created_at": "2026-11-23T18:48:00Z",
-    "last_save_at": "2026-11-24T07:00:28.288Z",
+    "last_save_at": "2026-11-24T18:41:02.399Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a61886ff40ebd5cfb5ecd58de89ec7cb5568b6766dcd456200ade4072e0062a",
+    "source_fingerprint": "sha256:4e294e175d176d68021a879923e7c4689d7107e73f6d66df3b21f9a7708041ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1119e52bdc3f2f186584c2a281dc7e34b7e902910f0e12a3597ddd486091be0a",
+      "spec.md": "e1773a1f30cd47b59b9beb1716e73ca1594b8955efb435caeba1dee8dd72caa0",
       "plan.md": "69352257e05cf1f763d16bbfed4770318991bc440fb00b7fcdaeb2308e5a2f94",
-      "tasks.md": "53ff538e797b58653cd0b963594158634a14de43b11d9aafe4fa83b3f4d5ac72",
-      "decision-record.md": "805606ed5ad47fca4b17224553233371d63f293fd2be43ee255aa8fbc849754f",
-      "implementation-summary.md": "79fde879c6190f44e02a862575c547fe275ebe6aec1d3971694347389c913778"
+      "tasks.md": "7f07ab0b80c599e94a3fc1385135ebc15d30d081724d4719a2a592154a33f22d",
+      "decision-record.md": "946d5c40d2dc7fdb7d55891d4d4fab9ede3365b19b861c0d69946bceb2a11a55",
+      "implementation-summary.md": "666d414e5bdac93fb7a1d40f8ed0c430be71ae87f29ebdd32eef0aabf3a0584d"
     },
     "last_active_at": null
   }

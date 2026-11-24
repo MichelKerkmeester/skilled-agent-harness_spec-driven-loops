@@ -42,6 +42,8 @@ const DEFECTS: Record<string, string> = {
   'worktree-shared-paths-unresolved': 'worktree-shared-paths-unresolved',
   'delivery-channel-unknown': 'delivery-channel-unknown',
   'reserved-id': 'reserved-id',
+  'executor-kind-native': 'executor-kind-native',
+  'posture-unhonorable': 'posture-unhonorable',
 };
 
 interface Run {
