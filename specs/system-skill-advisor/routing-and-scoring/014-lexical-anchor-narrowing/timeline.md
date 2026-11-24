@@ -11,7 +11,7 @@ contextType: "general"
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> [One line: what this timeline tracks.]
+> How the lexical anchor candidates were measured and why none landed.
 
 ---
 
@@ -19,11 +19,11 @@ contextType: "general"
 ## 1. METADATA
 <!-- FILL: Fill the timeline id, the date and the owner. GOOD: TL-001, 2026-10-24, conductor. WEAK: TBD. -->
 
-**Subject:** [SUBJECT]
-**Status:** [Draft/In Progress/Complete/Archived]
+**Subject:** Advisor lexical anchor narrowing
+**Status:** In Progress
 **Started:** 2026-11-24
 **Last updated:** 2026-11-24
-**Owner:** [NAME OR ROLE]
+**Owner:** Claude, for the operator
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -34,9 +34,9 @@ contextType: "general"
 
 List events in order. For each, give the date, what happened, then what it led to. Use prose, not a table.
 
-**2026-11-24:** [EVENT OR CHANGE]. Outcome: [RESULTING STATE OR DECISION].
+**2026-11-24:** The packet opened with five probe prompts that lift unnamed skills to 0.82. Outcome: the operator asked to build it (Q011).
 
-**2026-11-24:** [EVENT OR CHANGE]. Outcome: [RESULTING STATE OR DECISION].
+**2026-11-24:** Three candidate rules fixed the probes and held the ratchet, but each moved pinned command and doctor rows. Outcome: the operator chose record and stop (Q012).
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -45,5 +45,5 @@ List events in order. For each, give the date, what happened, then what it led t
 ## 3. MILESTONES
 <!-- FILL: Name each milestone and whether it passed. GOOD: M1 passed. 3 archives left. WEAK: Milestones met. -->
 
-**[MILESTONE]:** target [YYYY-MM-DD OR CONDITION]. Status: [Planned/In Progress/Done]. Evidence: [LINK, PATH OR NOTE].
+**A rule that holds every pin:** target a later attempt. Status: Planned. Evidence: candidate C in `scratch/`.
 <!-- /ANCHOR:milestones -->

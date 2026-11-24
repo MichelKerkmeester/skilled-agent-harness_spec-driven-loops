@@ -35,7 +35,7 @@
       "decision"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "blocked",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -151,7 +151,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Candidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -163,13 +169,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The task-intent confidence floor needs the prompt to name the skill",
     "created_at": "2026-11-24T09:04:13Z",
-    "last_save_at": "2026-11-24T09:05:09.943Z",
+    "last_save_at": "2026-11-24T12:31:35.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0dc1cdc1f1363964e6308fae278a31d486cc65a602539fb50ac4cdf7419df4b",
+    "source_fingerprint": "sha256:b727725adaf781284bd4fc5264d243b8a305d4eebcb5011d4655684a0af42213",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a2b185f4282ce45ac35ee714cf951ae5156de1fc260a74fe1a58f2f9d54f43c",
-      "plan.md": "d4cc672fb9635df57ff4fe9910f67fd6c8c8ca17196d9697c7685eff5bddb8dd",
-      "tasks.md": "ebaf55c8985337256246fd6623efedd8074ed12f9a8d5379fb072f7fee1d256d",
-      "decision-record.md": "044416404941243bfb5ebf7d9aa138fbd3498867c80d9bebb175d05008e7046e",
-      "implementation-summary.md": "26bea1988517b785882811e705ac0e6ec915a4a747a555eadbae11dbd7f61a55"
+      "spec.md": "1b8f8c9316f4827be23feec898890d282cf031b1bd2571ab732c932a1b366f92",
+      "plan.md": "fd95b1fbc847426490e12f4c9ab6ec7f7413889634aca028cc1213d0850825af",
+      "tasks.md": "bef95e7ffb0e83d30d1d77c0e5d073edbd291eab717be0fef8f82b41d63f12a3",
+      "decision-record.md": "280dbe7840701e605b56fdf7b4212f749252ae60cda76f0ccf489e20a545dae3",
+      "implementation-summary.md": "515a3ead5e8bd7ed66b3caf4c94ef57c2763232fd9491d84ce23e41358225a20"
     },
     "last_active_at": null
   }

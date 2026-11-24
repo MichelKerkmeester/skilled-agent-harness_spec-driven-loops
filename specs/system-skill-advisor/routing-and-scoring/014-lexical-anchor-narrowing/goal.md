@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing"
     last_updated_at: "2026-11-24T09:04:12Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Measured three candidate rules and stopped on moved pins"
+    next_safe_action: "Find a rule that keeps the typed /create:* rows on sk-doc"
     blockers: []
     key_files: []
     session_dedup:
@@ -34,7 +34,7 @@ _memory:
 ## 1. DURABLE DIRECTIVE
 <!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** [One sentence. What this packet is for. Not how, not progress.]
+**Objective:** A skill reaches the advisor's 0.82 floor only when the prompt names something that skill owns.
 
 ### Decisions
 
@@ -42,7 +42,8 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | [The decision, stated so a reader can tell whether work honors it] |
+| D1 | No rule lands while it moves a pinned slice row without operator approval |
+| D2 | Ranking stays as it is; only when a skill counts as named changes |
 
 <!-- /ANCHOR:directive -->
 
@@ -53,9 +54,9 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] [A check whose answer is an exit code, a count, or a named artifact]
-- [ ] [Another]
-- [ ] [Another]
+- [ ] None of the five probe prompts lifts a skill it does not name to 0.8 or above
+- [ ] `npx vitest run` in the advisor runtime fails only the known `system-skilled-bots` test
+- [ ] The mcp-browser-use replay fails only MBU-PB-04
 <!-- /ANCHOR:completion -->
 
 ---
@@ -72,11 +73,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Attribution and three candidates | Done | `implementation-summary.md` |
+| Landing | Blocked | Every candidate moved pinned rows; Q012 record and stop |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| The spec said every probe lift came from the lexical clause | The trace showed the direct-score lift and the id-noun clause too |
 <!-- /ANCHOR:log -->

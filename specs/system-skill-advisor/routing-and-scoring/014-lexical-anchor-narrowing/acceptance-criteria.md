@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Narrow the advisor's shared lexical anchor so two generic words no longer lift a skill to the task-intent floor"
+title: "Acceptance Criteria: Narrow the advisor shared lexical anchor"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "lexical anchor narrowing acceptance criteria"
@@ -8,22 +8,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing"
-    last_updated_at: "2026-11-24T09:04:12Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
-    blockers: []
+    last_updated_at: "2026-11-24T13:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Measured three candidate rules and stopped on moved pins"
+    next_safe_action: "Find a rule that keeps the typed /create:* rows on sk-doc before landing any anchor change"
+    blockers:
+      - "Every measured candidate moved pinned command and doctor slice rows"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-014-lexical-anchor-narrowing"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Narrow the advisor's shared lexical anchor so two generic words no longer lift a skill to the task-intent floor
+# Acceptance Criteria: Narrow the advisor shared lexical anchor
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -35,11 +36,10 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** 014-lexical-anchor-narrowing
+**Level:** 2
+**Status:** Blocked
 **Date:** 2026-11-24
 <!-- /ANCHOR:metadata -->
 
@@ -47,13 +47,14 @@ _memory:
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the five probe prompts, When the advisor scores them, Then no unnamed skill reaches 0.8 and sk-prompt and system-skilled-doctor keep their lift | Candidates A and C pass in-process; not landed | Unmet | - |
+| AC-002 | REQ-002 | Given a landed rule, When the ratchet and the full suite run, Then no pinned row moves without operator approval | Every candidate moved command and doctor rows | Unmet | - |
+| AC-003 | REQ-003 | Given a landed rule, When the browser hub replay runs, Then only MBU-PB-04 fails | Not run; nothing landed | Unmet | - |
 
 ### Status values
 
@@ -77,9 +78,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** No
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+No rule landed. The packet stays open, blocked on a rule that keeps the typed command rows (Q012).
 <!-- /ANCHOR:closure -->

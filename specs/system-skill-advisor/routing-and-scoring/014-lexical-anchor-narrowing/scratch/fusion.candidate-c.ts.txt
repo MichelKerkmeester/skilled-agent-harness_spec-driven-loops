@@ -1,0 +1,1583 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Advisor Lane Fusion
+// ───────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
+import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion.js';
+
+import { applyAmbiguity, isAmbiguousTopTwo, wideAmbiguityMembers } from './ambiguity.js';
+import { attributionReason, dominantLane, isDerivedDominant } from './attribution.js';
+import {
+  ADVISOR_HOOK_FRESHNESS_VALUES,
+  ADVISOR_RUNTIME_VALUES,
+  isSpeckitMetricsEnabled,
+  speckitMetrics,
+} from '../metrics.js';
+import { normalize } from '../affordance-normalizer.js';
+import {
+  asksForLoopRun,
+  COMMAND_ASK_LEADS,
+  COMMAND_DECLINE_LEADS,
+  COMMAND_ROWS,
+  commandOnlyMentioned,
+  commandRowFor,
+  DEFECT_CHECK,
+  isNoEditRequest,
+  isRunRefused,
+  isStuckRunComplaint,
+  isWritingAboutTopic,
+  ITERATIVE_ASK,
+  LOOP_COUNT,
+  MODE_CUES,
+  MULTI_PASS,
+  namesDeepRun,
+  TRACKED_COMMANDS,
+  typedCommandsIn,
+} from '../command-attach.js';
+import { scoreDerivedLane } from './lanes/derived.js';
+import { scoreExplicitLane } from './lanes/explicit.js';
+import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
+import { anchoringLexicalScore, lexicalHaystack, scoreLexicalLane } from './lanes/lexical.js';
+import { applyExecutorDelegationOverride } from './executor-delegation.js';
+import {
+  DOCTOR_HELPER_BRIDGE_ID,
+  DOCTOR_HELPER_UNCUED_MIN_SCORE,
+  DOCTOR_HELPER_WEAK_CUE_MIN_SCORE,
+  doctorProblemCue,
+  genericRepairCue,
+  matchDoctorProblem,
+} from './doctor-helper-handoff.js';
+import { loadAdvisorProjection } from './projection.js';
+import { SCORING_CALIBRATION } from './scoring-constants.js';
+import { isReadOnlyExplainer, matchesPhraseBoundary, tokenizePrompt } from './text.js';
+import {
+  DEFAULT_SCORER_WEIGHTS,
+  SCORER_LANES,
+  liveWeightTotal,
+} from './weights-config.js';
+import { isLiveScorerLane } from './lane-registry.js';
+import { isRouteExcludedSkillId } from '../route-exclusions.js';
+import { promptPolicyTokens, stripLeadingPastedReply } from '../prompt-policy.js';
+import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
+import type {
+  AdvisorProjection,
+  AdvisorScoredRecommendation,
+  AdvisorScoringOptions,
+  AdvisorScoringResult,
+  LaneContribution,
+  LaneMatch,
+  LaneRuntimeHealth,
+  LaneScores,
+  ScorerLane,
+  SkillProjection,
+} from './types.js';
+import type { NormalizedAffordance } from '../affordance-normalizer.js';
+import type { RankedList, RrfItem } from '@spec-kit/shared/algorithms/rrf-fusion.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
+const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
+const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
+export const ADVISOR_RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
+export const ADVISOR_RRF_K = 8;
+const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|review|run|start|sweep|update|write)\b/;
+const TYPED_SLASH_COMMAND = /(?:^|[\s`'"(\[])(?:\/[a-z][a-z0-9_-]*:[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*|\/(?:doctor|autoresearch))(?=$|[\s).,!?;`'"])/;
+const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
+// Writing a test or a helper is code work even when the prompt also names a deep-review phrase or a
+// study artifact: the thing asked for comes before the phrase it is written about, so a "deep review"
+// between the verb and the noun means the loop itself is the subject.
+const AUTHORS_CODE = /\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]review)[^.?!]){0,60}?\b(?:helper|vitest|tests?)\b/;
+// The ways a check asks to be run as a loop: in passes, iteratively, or for a
+// counted number of iterations. A bare plural names earlier iterations as often
+// as it asks for more ("audit the first two iterations for drift"), and a bare
+// `iterative` describes the subject as often as the run, so both count only
+// where the shared iterative-ask pattern reads them as the way the work runs.
+const PASSES_ASK = new RegExp(`\\bmulti-pass\\b|${ITERATIVE_ASK.source}|${MULTI_PASS.source}|${LOOP_COUNT.source}`);
+// Writing a changelog is sk-doc's changelog mode even when the prompt names a
+// packet or spec folder. That folder is only where the change history comes from.
+// The verb must govern the changelog itself: only articles and folder or scope
+// modifiers may sit between them, so "add a nested phase ... for the changelog
+// work" or "write the spec folder docs, including the changelog ..." stay
+// spec-folder work.
+const CHANGELOG_AUTHORING = /\b(?:add|create|draft|write)\s+(?:(?:a|an|the|new|nested|packet|packet-local|phase|global|release)\s+){0,4}changelog(?:\s+entry)?\b/;
+const CHANGELOG_PACKET_SOURCE = /\b(?:packet|nested|spec folder)\b/;
+// Code Mode is the transport every other MCP is called through, so a prompt that names
+// one ("aside mcp through code mode") asks for that MCP's owner. The words excluded here
+// are determiners and prepositions, plus "mode" so "code mode mcp" names no other server.
+const NAMES_ANOTHER_MCP = /\b(?!(?:code|mode|the|an?|my|our|your|this|that|its|their|any|each|every|via|through|with|from|for|to|of|in|on)\b)[a-z][a-z0-9-]* mcp\b/;
+const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
+const MEMORY_SAVE_CONTEXT_ANCHOR = /\b(memory|context|conversation|session|handover|checkpoint|resume|preserve|remember|capture|store)\b|\/memory:save|memory:save/;
+// Class C breadth/multi-concern abstention gates. A broad greenfield build or a
+// multi-concern optimization is under-specified for single-skill routing.
+const BREADTH_BUILD_VERB = /\b(build|create|implement|generate|scaffold)\b/;
+const BREADTH_NOUN = /\b(full[- ]?stack|service|platform|application|microservice|saas|backend|whole (app|system))\b/;
+// Narrow anchors that make a broad-build prompt specific enough to route.
+const BREADTH_NARROW_ANCHOR = /\.[a-z]{2,4}\b|\b(test|tests|error|bug|failure|failing|handler|component|function|route|endpoint|class|method|benchmark|review|audit|migration|schema)\b/;
+const MULTI_CONCERN_VERB = /\b(optimize|improve|enhance|harden|speed up)\b/;
+const CONCERN_PERF = /\b(speed|latency|execution|throughput|performance|startup|memory|cpu)\b/;
+const CONCERN_QUALITY = /\b(quality|accuracy|recommendation|recommendations|correctness|reliability|coverage)\b/;
+const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
+const NO_RRF_RANK = Number.MAX_SAFE_INTEGER;
+const ADVISOR_SELF_RECOMMENDATION_SKILL_IDS = new Set(['system-skill-advisor', 'skill-advisor']);
+const DOCTOR_BRIDGE_PREFIX = 'command-doctor-';
+const DOCTOR_COMMAND_PREFIX = '/doctor:';
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
+type MutableLaneScores = {
+  -readonly [K in keyof LaneScores]: LaneMatch[];
+};
+
+interface LaneScoreBundle {
+  readonly laneScores: LaneScores;
+  readonly graphConflictMatches: readonly LaneMatch[];
+  readonly graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>>;
+}
+
+interface AdvisorRrfFusion {
+  readonly scoreBySkill: ReadonlyMap<string, number>;
+  readonly weightedSumScoreBySkill: ReadonlyMap<string, number>;
+  readonly rankBySkill: ReadonlyMap<string, number>;
+}
+
+type AdvisorRuntimeLabel = (typeof ADVISOR_RUNTIME_VALUES)[number];
+type AdvisorFreshnessLabel = (typeof ADVISOR_HOOK_FRESHNESS_VALUES)[number];
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
+function emptyLaneScores(): MutableLaneScores {
+  return Object.fromEntries(SCORER_LANES.map((lane) => [lane, []])) as unknown as MutableLaneScores;
+}
+
+function projectionWithUsableSkillIds(projection: AdvisorProjection): AdvisorProjection {
+  const skills = projection.skills.filter((skill) => {
+    const skillId: unknown = skill.id;
+    return typeof skillId === 'string' && skillId.trim().length > 0;
+  });
+  return skills.length === projection.skills.length
+    ? projection
+    : { ...projection, skills };
+}
+
+export function isAdvisorRrfFusionEnabled(): boolean {
+  const value = process.env[ADVISOR_RRF_FUSION_FLAG]?.trim().toLowerCase();
+  return value ? TRUE_FLAG_VALUES.has(value) : false;
+}
+
+function effectiveScorerWeights(
+  override: AdvisorScoringOptions['laneWeightsOverride'] | undefined,
+): Readonly<Record<ScorerLane, number>> {
+  if (!override) return DEFAULT_SCORER_WEIGHTS;
+  const weights: Record<ScorerLane, number> = { ...DEFAULT_SCORER_WEIGHTS };
+  const runtimeOverride = override as Partial<Record<string, number>>;
+  for (const lane of SCORER_LANES) {
+    const value = runtimeOverride[lane];
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      weights[lane] = value;
+    }
+  }
+  return weights;
+}
+
+function normalizeRuntimeLabel(value: string | undefined): AdvisorRuntimeLabel | null {
+  if (value === undefined) {
+    return null;
+  }
+  return ADVISOR_RUNTIME_VALUES.includes(value as AdvisorRuntimeLabel) ? value as AdvisorRuntimeLabel : null;
+}
+
+function normalizeFreshnessLabel(value: string | undefined): AdvisorFreshnessLabel | null {
+  if (value === undefined) {
+    return 'unavailable';
+  }
+  return ADVISOR_HOOK_FRESHNESS_VALUES.includes(value as AdvisorFreshnessLabel) ? value as AdvisorFreshnessLabel : null;
+}
+
+interface LaneMatchIndexEntry {
+  rawScore: number;
+  evidence: string[];
+  producerSkillIds: string[];
+}
+
+type LaneMatchIndex = Map<string, LaneMatchIndexEntry>;
+
+function buildLaneRuntimeHealth(
+  laneScores: LaneScores,
+  disabled: ReadonlySet<ScorerLane>,
+  runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'] | undefined,
+): readonly LaneRuntimeHealth[] {
+  return SCORER_LANES.map((lane): LaneRuntimeHealth => {
+    const matchCount = laneScores[lane].length;
+    const signal = runtimeLaneHealth?.[lane];
+    if (!disabled.has(lane) && signal?.status === 'runtime_degraded' && matchCount === 0) {
+      return {
+        lane,
+        status: 'runtime_degraded',
+        matchCount,
+        ...(signal.reason ? { reason: signal.reason } : {}),
+      };
+    }
+    return {
+      lane,
+      status: matchCount > 0 ? 'healthy' : 'matched_nothing',
+      matchCount,
+      ...(signal?.reason && signal.status === 'healthy' ? { reason: signal.reason } : {}),
+    };
+  });
+}
+
+function degradedLaneReason(degradedLanes: readonly ScorerLane[]): string | null {
+  if (degradedLanes.length === 0) return null;
+  return `Runtime-degraded scorer lanes omitted from confidence normalization: ${degradedLanes.join(', ')}.`;
+}
+
+function buildLaneMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
+  const index: LaneMatchIndex = new Map();
+  for (const match of matches) {
+    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [], producerSkillIds: [] };
+    existing.rawScore = Math.max(existing.rawScore, match.score);
+    if (existing.evidence.length < 6) {
+      existing.evidence.push(...match.evidence.slice(0, 6 - existing.evidence.length));
+    }
+    for (const producerSkillId of match.producerSkillIds ?? []) {
+      if (!existing.producerSkillIds.includes(producerSkillId)) {
+        existing.producerSkillIds.push(producerSkillId);
+      }
+    }
+    index.set(match.skillId, existing);
+  }
+  return index;
+}
+
+function buildConflictMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
+  const index: LaneMatchIndex = new Map();
+  for (const match of matches) {
+    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [], producerSkillIds: [] };
+    existing.rawScore = Math.min(existing.rawScore, match.score);
+    if (existing.evidence.length < 6) {
+      existing.evidence.push(...match.evidence.slice(0, 6 - existing.evidence.length));
+    }
+    index.set(match.skillId, existing);
+  }
+  return index;
+}
+
+function rankedRrfItems(matches: readonly LaneMatch[]): RrfItem[] {
+  return [...matches]
+    .filter((match) => match.score > 0)
+    .sort((left, right) => right.score - left.score || left.skillId.localeCompare(right.skillId))
+    .map((match) => ({ id: match.skillId }));
+}
+
+/** Match typed slash commands without treating ordinary paths as commands. */
+export function hasTypedSlashCommand(promptLower: string): boolean {
+  return TYPED_SLASH_COMMAND.test(promptLower);
+}
+
+/** Apply prompt-policy tokens and task intent to decide whether to abstain. */
+export function isLowInformationPrompt(prompt: string): boolean {
+  const promptLower = prompt.toLowerCase();
+  return promptPolicyTokens(prompt).meaningful.length <= 3
+    && !TASK_INTENT.test(promptLower)
+    && !hasTypedSlashCommand(promptLower);
+}
+
+/** Fuse lanes into raw and weighted-sum scores while preserving RRF rank order. */
+export function fuseAdvisorLaneRanks(
+  laneScores: LaneScores,
+  weights: Readonly<Record<ScorerLane, number>>,
+  disabled: ReadonlySet<ScorerLane> = new Set(),
+  runtimeDegraded: ReadonlySet<ScorerLane> = new Set(),
+): AdvisorRrfFusion {
+  const lists: RankedList[] = SCORER_LANES.map((lane) => ({
+    source: lane,
+    results: rankedRrfItems(laneScores[lane]),
+    weight: disabled.has(lane) || runtimeDegraded.has(lane) || !isLiveScorerLane(lane)
+      ? 0
+      : weights[lane],
+  }));
+  const fused = fuseResultsMulti(lists, {
+    k: ADVISOR_RRF_K,
+    convergenceBonus: 0,
+    calibratedOverlapBeta: 0,
+    bonusOverChannels: 'configured',
+  });
+  const scoreBySkill = new Map<string, number>();
+  const weightedSumScoreBySkill = new Map<string, number>();
+  const rankBySkill = new Map<string, number>();
+  fused.forEach((result, index) => {
+    const skillId = String(result.id);
+    rankBySkill.set(skillId, index);
+  });
+  for (const list of lists) {
+    const weight = list.weight ?? 0;
+    if (weight <= 0) continue;
+    list.results.forEach(({ id }, index) => {
+      const skillId = String(id);
+      const contribution = weight / (ADVISOR_RRF_K + index + 1);
+      scoreBySkill.set(skillId, (scoreBySkill.get(skillId) ?? 0) + contribution);
+      weightedSumScoreBySkill.set(
+        skillId,
+        (weightedSumScoreBySkill.get(skillId) ?? 0) + contribution * (ADVISOR_RRF_K + 1),
+      );
+    });
+  }
+  return { scoreBySkill, weightedSumScoreBySkill, rankBySkill };
+}
+
+function graphConflictAdjustment(
+  conflictIndex: LaneMatchIndex,
+  recommendation: AdvisorScoredRecommendation,
+): number {
+  return conflictIndex.get(recommendation.skill)?.rawScore ?? 0;
+}
+
+function rrfRankFor(
+  fusion: AdvisorRrfFusion | null,
+  recommendation: AdvisorScoredRecommendation,
+): number {
+  return fusion?.rankBySkill.get(recommendation.skill) ?? NO_RRF_RANK;
+}
+
+function promptMentionsSkill(promptLower: string, skill: SkillProjection): boolean {
+  const phrases = [skill.id, skill.name, skill.id.replace(/-/g, ' ')];
+  // A cli skill wraps one named external tool, so the tool's own name (the
+  // part of the id after "cli-") names the skill as surely as its id does.
+  if (skill.family === 'cli' && skill.id.startsWith('cli-')) {
+    phrases.push(skill.id.slice('cli-'.length).replace(/-/g, ' '));
+  }
+  return phrases.some((phrase) => matchesPhraseBoundary(promptLower, phrase.toLowerCase()));
+}
+
+// The last segment of a skill id is the noun that names it ("doctor" in
+// system-skilled-doctor). Short segments such as "use" or "doc" are left out,
+// because they occur in ordinary prompts that name nothing. The noun alone is
+// not enough: "loop", "mode" and "tooling" are ordinary words too, so it
+// names the skill only when the prompt also holds another word found in the
+// skill's text. That word must be one the prompt holds, not a synonym the lexical
+// lane added, and it is read from the skill's text rather than the capped
+// evidence list, which declared hints can fill.
+function promptNamesIdNoun(promptLower: string, skill: SkillProjection): boolean {
+  const noun = skill.id.split('-').at(-1) ?? '';
+  if (noun.length < 4 || !matchesPhraseBoundary(promptLower, noun)) return false;
+  const haystack = lexicalHaystack(skill);
+  return tokenizePrompt(promptLower).some((token) => token !== noun && haystack.includes(token));
+}
+
+function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean {
+  if (isRouteExcludedSkillId(skill.id)) return false;
+  if (skill.lifecycleStatus === 'archived' || skill.lifecycleStatus === 'future') return false;
+  if (skill.lifecycleStatus === 'deprecated') return promptMentionsSkill(promptLower, skill);
+  return true;
+}
+
+function isAdvisorSelfRecommendationSkill(skillId: string): boolean {
+  return ADVISOR_SELF_RECOMMENDATION_SKILL_IDS.has(skillId);
+}
+
+function confidenceFor(args: {
+  liveNormalized: number;
+  directScore: number;
+  hasNamedAnchor: boolean;
+  readOnlyExplainer: boolean;
+  hasTaskIntent: boolean;
+  readOnlyRouteAllowed: boolean;
+  derivedDominant: boolean;
+  skillId: string;
+}): { value: number; floored: boolean } {
+  const C = SCORING_CALIBRATION.confidence;
+  // The advisor alias must never rank itself first on a read-only explainer;
+  // floor its confidence. The canonical id is demoted separately by the audit
+  // penalty in primaryIntentBonus, so this branch intentionally matches only
+  // the alias id.
+  if (args.readOnlyExplainer && args.skillId === 'skill-advisor') {
+    return { value: C.readOnlyExplainerFloor, floored: false };
+  }
+  const base = C.baseConstant
+    + Math.min(1, args.liveNormalized * C.liveNormalizedRampGain) * C.liveNormalizedRampCoefficient;
+  if (args.readOnlyExplainer && !args.readOnlyRouteAllowed) {
+    return { value: C.readOnlyExplainerFloor, floored: false };
+  }
+  if (args.readOnlyRouteAllowed) {
+    return {
+      value: Number(Math.max(base, C.readOnlyRouteAllowedFloor).toFixed(4)),
+      floored: C.readOnlyRouteAllowedFloor > base,
+    };
+  }
+  if (args.derivedDominant && args.directScore < C.derivedDominantDirectScoreCeiling) {
+    return { value: C.derivedDominantConfidence, floored: false };
+  }
+  // The task-intent floor lifts a skill on a weak direct score, so it needs the
+  // prompt to name the skill: an explicit-lane hit, a declared lexical hint, a
+  // lexical match of moderate strength or the noun its id ends in. One or two
+  // shared words ("aside", "trace", "form") are what an out-of-domain prompt
+  // carries, and such a skill keeps the confidence it earned. A strong direct
+  // score still lifts through the branch below.
+  if (args.hasTaskIntent
+    && args.hasNamedAnchor
+    && (args.directScore >= C.taskIntentDirectScoreFloor
+      || args.liveNormalized >= C.taskIntentLiveNormalizedFloor)) {
+    // Token-stuffing dispersion guard. Without this, a prompt
+    // with task-intent + many weak signals (saturating liveNormalized) but
+    // no strong direct anchor would force confidence to taskIntentFloor for
+    // many unrelated skills. The guard fires when liveNormalized is near-
+    // saturated AND directScore is below the directScoreLiftThreshold —
+    // the precise signature of a token-stuffed prompt. Legitimate task-intent
+    // prompts have at least one strong direct hit and pass via directScore;
+    // they don't hit this branch. When the guard fires we fall through to
+    // the standard `base + directBonus` math below.
+    const dispersionGuardTripped = args.liveNormalized >= 0.95
+      && args.directScore < C.directScoreLiftThreshold;
+    if (!dispersionGuardTripped) {
+      return {
+        value: Number(Math.max(base, C.taskIntentFloor).toFixed(4)),
+        floored: C.taskIntentFloor > base,
+      };
+    }
+  }
+  // A strong direct score lifts only a skill the prompt names. Without the anchor,
+  // a short prompt whose synonyms hit two of a skill's words reaches the floor.
+  if (args.directScore >= C.directScoreLiftThreshold && args.hasNamedAnchor) {
+    return {
+      value: Number(Math.max(base, C.directScoreFloor).toFixed(4)),
+      floored: C.directScoreFloor > base,
+    };
+  }
+  const directBonus = args.directScore >= C.directScoreBonusThreshold ? C.directScoreBonus : 0;
+  return { value: Number(Math.max(0, Math.min(C.hardCeiling, base + directBonus)).toFixed(4)), floored: false };
+}
+
+function uncertaintyFor(contributions: readonly LaneContribution[], confidence: number, ambiguousPressure: number): number {
+  const U = SCORING_CALIBRATION.uncertainty;
+  const evidenceCount = contributions.reduce((total, contribution) => total + contribution.evidence.length, 0);
+  const direct = contributions
+    .filter((contribution) => contribution.lane === 'explicit_author' || contribution.lane === 'lexical')
+    .reduce((max, contribution) => Math.max(max, contribution.rawScore), 0);
+  let uncertainty = U.noEvidenceDefault;
+  if (evidenceCount >= U.highEvidenceCount) uncertainty = U.lowFloor;
+  else if (evidenceCount >= U.mediumEvidenceCount) uncertainty = U.mediumFloor;
+  else if (evidenceCount >= U.someEvidenceCount) uncertainty = U.elevatedFloor;
+  if (direct >= U.directEvidenceDiscountThreshold) uncertainty -= U.directEvidenceDiscount;
+  if (confidence < U.lowConfidencePenaltyThreshold) uncertainty += U.lowConfidencePenalty;
+  uncertainty += ambiguousPressure;
+  return Number(Math.max(U.hardFloor, Math.min(U.hardCeiling, uncertainty)).toFixed(2));
+}
+
+function buildLaneScores(
+  prompt: string,
+  projection: AdvisorProjection,
+  disabled: Set<ScorerLane>,
+  affordances: readonly NormalizedAffordance[],
+  useRrfFusion: boolean,
+): LaneScoreBundle {
+  const scores = emptyLaneScores();
+  if (!disabled.has('explicit_author')) {
+    scores.explicit_author = scoreExplicitLane(prompt, projection);
+  }
+  if (!disabled.has('lexical')) scores.lexical = scoreLexicalLane(prompt, projection);
+  if (!disabled.has('derived_generated')) scores.derived_generated = scoreDerivedLane(prompt, projection, new Date(), affordances);
+  let graphConflictMatches: readonly LaneMatch[] = [];
+  let graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>> = new Map();
+  if (!disabled.has('graph_causal')) {
+    const graphSplit = scoreGraphCausalLaneSplit([
+      ...scores.explicit_author,
+      ...scores.lexical,
+      ...scores.derived_generated,
+    ], projection, {}, affordances);
+    scores.graph_causal = useRrfFusion ? graphSplit.positiveMatches : graphSplit.combinedMatches;
+    graphConflictMatches = graphSplit.conflictMatches;
+    graphSupportBySeed = graphSplit.positiveSupportBySeed;
+  }
+  return { laneScores: scores, graphConflictMatches, graphSupportBySeed };
+}
+
+// Smallest gap the rounded weighted score can still express, so a bounded
+// target sorts strictly below its seed instead of tying with it.
+const SEED_BOUND_GAP = 0.000001;
+
+// Below this explicit-lane score a match is a side mention, not a request.
+const EXPLICIT_WORKFLOW_SIGNAL_FLOOR = 0.55;
+
+// Explicit-lane evidence that a typed slash command named this skill.
+const SLASH_COMMAND_EVIDENCE = /^(phrase|author|explicit):\//;
+
+export function hasSlashCommandAnchor(rawScore: number, evidence: readonly string[]): boolean {
+  return rawScore >= EXPLICIT_WORKFLOW_SIGNAL_FLOOR
+    && evidence.some((entry) => SLASH_COMMAND_EVIDENCE.test(entry));
+}
+
+// Graph support is lent: a seed's own evidence propagates to its neighbours so
+// related skills surface beside it. When the seed was invoked by a typed slash
+// command, the user has named it outright, so support it lends may lift a
+// target up to it but never past it; otherwise the command's own match is what
+// buries the command (a typed "/deep:research" handing its dependency enough
+// support to win). Seeds matched only on loose tokens keep ordinary graph
+// lending, since there the neighbour may well be the better route. Two skills
+// often lend to each other, so the pair is compared on what each holds once
+// the other's loan is taken back: a target whose own evidence still beats the
+// seed's own evidence keeps its score.
+export function boundGraphSupportBySeed(
+  scores: ReadonlyMap<string, number>,
+  graphRawBySkill: ReadonlyMap<string, number>,
+  graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>>,
+  graphWeight: number,
+  slashAnchoredSeeds: ReadonlySet<string>,
+): Map<string, number> {
+  return boundGraphSupportBySeedWithHolders(
+    scores,
+    graphRawBySkill,
+    graphSupportBySeed,
+    graphWeight,
+    slashAnchoredSeeds,
+  ).scores;
+}
+
+/** Return graph-bounded scores and the typed-command seeds behind each cap. */
+export interface SeedBoundResult {
+  readonly scores: Map<string, number>;
+  // Target skill -> the typed-command seed whose ceiling actually lowered it.
+  readonly heldBelow: Map<string, string>;
+  // Target skill -> every typed-command seed that could hold it below itself.
+  readonly heldBy: Map<string, readonly string[]>;
+}
+
+/** Cap lent graph support and retain every typed-command seed that held a target down. */
+export function boundGraphSupportBySeedWithHolders(
+  scores: ReadonlyMap<string, number>,
+  graphRawBySkill: ReadonlyMap<string, number>,
+  graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>>,
+  graphWeight: number,
+  slashAnchoredSeeds: ReadonlySet<string>,
+): SeedBoundResult {
+  const bounded = new Map(scores);
+  const heldBelow = new Map<string, string>();
+  const heldBy = new Map<string, readonly string[]>();
+  if (graphWeight <= 0) return { scores: bounded, heldBelow, heldBy };
+  const lentBy = (lenderId: string, receiverId: string): number => {
+    const support = graphSupportBySeed.get(receiverId)?.get(lenderId) ?? 0;
+    const graphRaw = Math.max(0, graphRawBySkill.get(receiverId) ?? 0);
+    return Math.min(support, graphRaw) * graphWeight;
+  };
+  // Which seed holds which target down is decided once, on the unbounded
+  // scores, so the evidence comparison never sees a cap.
+  const holdersByTarget = new Map<string, string[]>();
+  for (const [targetId, supportBySeed] of graphSupportBySeed) {
+    const targetScore = scores.get(targetId);
+    if (targetScore === undefined) continue;
+    const holders: string[] = [];
+    for (const seedId of supportBySeed.keys()) {
+      if (seedId === targetId || !slashAnchoredSeeds.has(seedId)) continue;
+      const seedScore = scores.get(seedId);
+      if (seedScore === undefined) continue;
+      const targetOwn = targetScore - lentBy(seedId, targetId);
+      const seedOwn = seedScore - lentBy(targetId, seedId);
+      if (targetOwn < seedOwn) holders.push(seedId);
+    }
+    if (holders.length > 0) holdersByTarget.set(targetId, holders);
+  }
+  // A held seed can itself be held by another typed command, so each ceiling
+  // follows the seed's bounded score and the caps repeat until nothing moves.
+  // Caps only ever lower a score, and each pass settles at least one more link
+  // of a chain, so one pass per held target is enough.
+  for (let pass = 0; pass <= holdersByTarget.size; pass += 1) {
+    let moved = false;
+    for (const [targetId, holders] of holdersByTarget) {
+      const current = bounded.get(targetId) ?? 0;
+      let ceiling = current;
+      for (const seedId of holders) ceiling = Math.min(ceiling, (bounded.get(seedId) ?? 0) - SEED_BOUND_GAP);
+      if (ceiling < current) {
+        bounded.set(targetId, Math.max(0, ceiling));
+        moved = true;
+      }
+    }
+    if (!moved) break;
+  }
+  // Only a target the cap really lowered is marked, and only against the seed
+  // whose ceiling set its final score: a seed that merely could have held it
+  // ranked nothing, so the pair keeps its ordinary ambiguity check.
+  for (const [targetId, holders] of holdersByTarget) {
+    const final = bounded.get(targetId) ?? 0;
+    if (final >= (scores.get(targetId) ?? 0)) continue;
+    heldBy.set(targetId, [...holders]);
+    let binding: string | null = null;
+    let lowestSeed = Number.POSITIVE_INFINITY;
+    for (const seedId of holders) {
+      const seedScore = bounded.get(seedId) ?? 0;
+      if (seedScore < lowestSeed) {
+        lowestSeed = seedScore;
+        binding = seedId;
+      }
+    }
+    if (binding) heldBelow.set(targetId, binding);
+  }
+  return { scores: bounded, heldBelow, heldBy };
+}
+
+export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
+  const skillId = skill.id;
+  if (isNoEditRequest(promptLower)) {
+    return false;
+  }
+  // The explainer floor exists to stop an ambiguous read-only question from
+  // routing anywhere. Naming the skill removes the ambiguity: the caller has
+  // already chosen, and a read-only verb does not undo that choice. Without
+  // this, an explicit request is answered with an abstention while the same
+  // sentence phrased with a write verb routes fine.
+  if (promptMentionsSkill(promptLower, skill)) {
+    return true;
+  }
+  // A command whose route only reads (a report, a status check) is the answer
+  // to a list or show question, so its own trigger phrase lifts it off the
+  // floor. A mutating command never carries the flag and stays gated.
+  if (skill.kind === 'command' && 'readOnly' in skill && skill.readOnly === true
+    && skill.keywords.some((phrase) => matchesPhraseBoundary(promptLower, phrase.toLowerCase()))) {
+    return true;
+  }
+  if (skillId === 'sk-code' && /\b(compare|audit|review)\b/.test(promptLower)
+    && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
+    return true;
+  }
+  if (skillId === 'system-spec-kit' && /\b(memory_save|resume_write|routing taxonomy|corpus|source-type|routing bucket)\b/.test(promptLower)) {
+    return true;
+  }
+  if (skillId === 'system-spec-kit' && /\b(packet|spec folder|save memory|phase|continuation prompts|resume handling)\b/.test(promptLower)) {
+    return true;
+  }
+  // Captured operator answers wait in a queue that spec-kit's save step owns, so a show or list
+  // question about that queue, its chat candidates or the decision record is answered there.
+  // Only a read-only question is lifted: a lift applies to any prompt, and a request to research,
+  // dispatch or build something about decisions belongs to another skill.
+  if (skillId === 'system-spec-kit' && isReadOnlyExplainer(promptLower)
+    && /\b(decision capture|decision record|chat candidates?|operator decisions?|recorded as decisions?)\b/.test(promptLower)) {
+    return true;
+  }
+  // The trigger index is spec-kit's own lookup surface, so a question about what a lookup
+  // returned, counted or left out is answered there. Without the lift no skill passes on such a
+  // question, and the doctor hand-off claims it on the index noun alone. Drift is the doctor's
+  // own diagnosis, so a drift question stays with the hand-off.
+  if (skillId === 'system-spec-kit' && isReadOnlyExplainer(promptLower)
+    && /\btrigger[- ]index\b/.test(promptLower) && !/\bdrift\b/.test(promptLower)) {
+    return true;
+  }
+  // Convening a council asks for a deliberation to run, even when the question it will
+  // deliberate uses a read-only verb such as "compare". Only wording that asks for the
+  // council itself lifts the command, so a question about councils stays on the floor.
+  if (skillId === 'command-speckit-ai-council'
+    && /\b(convene (an? )?(ai )?council|ask the council|get a council verdict|run (an? )?ai council)\b/.test(promptLower)) {
+    return true;
+  }
+  // Browser/devtools inspection is a genuine chrome-devtools task even though
+  // its verb ("inspect") reads as a read-only explainer. Lift it off the
+  // explainer floor when the prompt carries devtools-specific vocabulary.
+  // Attaching to the operator's own Chrome is the same task, so the attach
+  // wording lifts too. It needs the attach verb: "my own Chrome" or
+  // "logged-in Chrome" alone also opens questions about browser settings and
+  // profiles, and a bare "signed-in dashboard" names a page, not a browser.
+  // A bare "performance trace" also names SQL and server traces, so it lifts
+  // only beside a browser word.
+  if (skillId === 'mcp-browser-use'
+    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|(chrome|browser) performance trace|inspect (the )?(network|dom|page|element|browser)|(attach|connect)(es|ed|ing)? (to |with )?my (own|signed[- ]in|logged[- ]in) chrome|chrome[_ -]?devtools[_ -]live)\b/.test(promptLower)) {
+    return true;
+  }
+  if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {
+    return true;
+  }
+  // "inspect the worker for defects iteratively" opens on a verb that also asks
+  // for an explanation, but a check for defects asked for in passes or
+  // iterations is the review loop by name. Only the defect check lifts it: a
+  // research cue beside loop wording is as often a question about the loop.
+  if (skillId === 'system-deep-loop' && isReadOnlyExplainer(promptLower)
+    && DEFECT_CHECK.test(promptLower) && PASSES_ASK.test(promptLower)
+    && asksForLoopRun(promptLower)) {
+    return true;
+  }
+  // Reading history is a git task even though its verb reads as a read-only
+  // explainer. A lift applies to any prompt, so only a read-only question is
+  // lifted, and only when it names git, a commit-history object or a branch ref.
+  if (skillId === 'sk-git' && isReadOnlyExplainer(promptLower)
+    && /\b(git|commit (?:history|log)|(?:recent|latest) commits?|last (?:\w+ )?commits?|branch(?:es)? (?:main|master|develop))\b/.test(promptLower)) {
+    return true;
+  }
+  return false;
+}
+
+function isPlainFileSavePrompt(promptLower: string): boolean {
+  return FILE_SAVE_OPERATION.test(promptLower) && !MEMORY_SAVE_CONTEXT_ANCHOR.test(promptLower.replace(/\bfile(s)?\b/g, ''));
+}
+
+function primaryIntentBonus(
+  promptLower: string,
+  recommendation: AdvisorScoredRecommendation,
+): number {
+  const R = SCORING_CALIBRATION.routing;
+  if (/\bdeep[- ]review\b/.test(promptLower)) {
+    if (recommendation.skill === 'sk-code') {
+      return AUTHORS_CODE.test(promptLower) ? R.deepReviewCodeAuthoringSkCodeBonus : R.deepReviewSkCodeReviewPenalty;
+    }
+  }
+  if (/\bdeep[- ]research\b/.test(promptLower)) {
+    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code') return R.deepResearchOtherSkillsPenalty;
+  }
+  if (DEEP_RESEARCH_CYCLE.test(promptLower)) {
+    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code') return R.deepResearchCycleOtherSkillsPenalty;
+  }
+  // Review asked for in iterations or several passes is the same request as a
+  // deep review, so the single-pass code review steps back the same way. Without
+  // this, naming the target as "code" ("the scheduler code") hands sk-code its
+  // own name and keyword and outweighs the loop ask on every lane.
+  if (recommendation.skill === 'sk-code' && MODE_CUES.review.test(promptLower)
+    && PASSES_ASK.test(promptLower) && asksForLoopRun(promptLower)
+    && !AUTHORS_CODE.test(promptLower)) {
+    return R.deepReviewSkCodeReviewPenalty;
+  }
+  // A stuck deep run called a "code audit loop" hands sk-code its own name and
+  // review phrase, so the code skill steps back here as it does for a loop ask.
+  if (recommendation.skill === 'sk-code' && isStuckRunComplaint(promptLower)
+    && !AUTHORS_CODE.test(promptLower)) {
+    return R.deepReviewSkCodeReviewPenalty;
+  }
+  if (/\b(compare|audit|review)\b/.test(promptLower) && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
+    if (recommendation.skill === 'sk-code') return R.compareAuditCodeReviewBonus;
+  }
+  // A changelog request that names its packet or spec folder still asks for a
+  // changelog, so sk-doc must outrank the spec workflow that "spec folder" lifts.
+  // Only those two skills are adjusted here. Every other skill falls through so
+  // later rules such as save-context or /speckit:plan still apply to it.
+  const changelogFromPacket = CHANGELOG_AUTHORING.test(promptLower)
+    && CHANGELOG_PACKET_SOURCE.test(promptLower)
+    && !AUTHORS_CODE.test(promptLower);
+  if (changelogFromPacket) {
+    if (recommendation.skill === 'sk-doc') return R.changelogFromPacketSkDocBonus;
+    if (recommendation.skill === 'system-spec-kit') return R.changelogFromPacketSpecKitPenalty;
+  }
+  // The corpus-study rule reads "packet-local" as study vocabulary, so it must
+  // stay off a changelog request or it would pull the prompt to system-spec-kit.
+  // "packet-local changelog" names sk-doc's changelog mode with or without an
+  // authoring verb, so packet-local is study vocabulary only when it qualifies
+  // something other than a changelog.
+  if (!changelogFromPacket && /\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local(?!\s+changelog))\b/.test(promptLower) && !AUTHORS_CODE.test(promptLower)) {
+    if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
+    if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-tooling' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
+  }
+  if (promptLower.includes('/speckit:resume')) {
+    if (recommendation.skill === 'system-spec-kit') return R.speckitResumeSpecKitBonus;
+    if (recommendation.skill === 'command-speckit-resume') return R.speckitResumeCommandPenalty;
+  }
+  if (promptLower.includes('/speckit:plan')) {
+    if (recommendation.skill === 'command-speckit-plan') return R.speckitPlanCommandBonus;
+    if (recommendation.skill === 'sk-doc') return R.speckitPlanSkDocPenalty;
+  }
+  // External-tool-chain ("call_tool_chain") vocabulary belongs to mcp-code-mode,
+  // not the generic code skill. Disambiguate so the best guess for these
+  // toolchain-shaped prompts is mcp-code-mode.
+  // Toolchain + external-data-source vocabulary (webflow CMS, cms collection)
+  // is mcp-code-mode territory, not the generic code skill.
+  if (/\b(call_tool_chain|code mode|tool ?chain|api chain|webflow cms|cms collection)\b/.test(promptLower)) {
+    if (recommendation.skill === 'mcp-code-mode' && !NAMES_ANOTHER_MCP.test(promptLower)) {
+      return R.mcpToolchainCodeModeBonus;
+    }
+    if (recommendation.skill === 'sk-code') return R.mcpToolchainSkCodePenalty;
+  }
+  // A "code audit" is a single-pass code-review task, not a deep-review loop, so
+  // sk-code should win the near-tie this phrase produces. The sk-code bonus
+  // carries that; the deep-loop skills intentionally hold no "code audit"
+  // vocabulary, so they need no counter-penalty here.
+  if (/\bcode audit\b/.test(promptLower)) {
+    if (recommendation.skill === 'sk-code') return R.codeAuditCodeReviewBonus;
+  }
+  // Colon-command review-loop syntax (":review:auto") invokes the deep-review
+  // loop; rank it above single-pass code review.
+  if (/:review:(auto|confirm)\b/.test(promptLower)) {
+    if (recommendation.skill === 'system-deep-loop') return R.reviewLoopDeepReviewBonus;
+    if (recommendation.skill === 'sk-code') return R.deepReviewSkCodeReviewPenalty;
+  }
+  // Auditing recommendation quality is a review task, not an advisor-self task.
+  if (/\baudit\b/.test(promptLower) && /\b(recommendation|recommendations|recommendation quality|routing quality)\b/.test(promptLower)) {
+    if (recommendation.skill === 'sk-code') return R.auditRecsCodeReviewBonus;
+    // Auditing routing output is a review task, not an advisor invocation: demote
+    // the advisor and its alias (the canonical self-rec id set) so neither ranks
+    // itself first here.
+    if (isAdvisorSelfRecommendationSkill(recommendation.skill)) return R.auditRecsAdvisorPenalty;
+  }
+  if (/\b(save context|save memory)\b/.test(promptLower)) {
+    if (recommendation.skill === 'command-speckit-save') return R.saveContextMemorySaveBonus;
+    if (recommendation.skill === 'system-spec-kit') return R.saveContextMemorySpecKitPenalty;
+  }
+  if (/\b(create (a )?new agent|create agent)\b/.test(promptLower) || promptLower.includes('/create:agent')) {
+    if (recommendation.skill === 'create:agent') return R.createAgentCreateAgentBonus;
+    if (recommendation.skill === 'sk-doc') return R.createAgentSkDocPenalty;
+  }
+  if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:manual-testing-playbook')) {
+    if (recommendation.skill === 'create:manual-testing-playbook' || recommendation.skill === 'command-create-manual-testing-playbook') return R.createTestingPlaybookBonus;
+    if (recommendation.skill === 'sk-doc') return R.createTestingPlaybookSkDocPenalty;
+    if (recommendation.skill === 'system-deep-loop') return R.createTestingPlaybookOtherSkillsPenalty;
+  }
+  if (/\bphase folder\b/.test(promptLower)) {
+    if (recommendation.skill === 'system-spec-kit') return R.phaseFolderSpecKitBonus;
+  }
+  return 0;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
+// A command bridge passes on its own wording: one of its authored phrases or its
+// runnable slash string, which the explicit-author lane reports. A bridge that
+// passed on shared single tokens alone stays scored but stops passing, because
+// its phrases are everyday words and a command must not be offered for a prompt
+// that merely shares some of them.
+export function requireCommandPhraseAnchor(
+  ranked: readonly AdvisorScoredRecommendation[],
+): AdvisorScoredRecommendation[] {
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command') return recommendation;
+    const anchored = recommendation.laneContributions.some((contribution) => (
+      contribution.lane === 'explicit_author' && contribution.rawScore > 0
+    ));
+    if (anchored) return recommendation;
+    return recommendation.passes_threshold
+      ? { ...recommendation, passes_threshold: false }
+      : recommendation;
+  });
+}
+
+function findTypedDoctorCommandText(promptLower: string): string | null {
+  const prompt = promptLower.trim();
+  if (prompt.startsWith(DOCTOR_COMMAND_PREFIX)) {
+    return prompt.slice(DOCTOR_COMMAND_PREFIX.length);
+  }
+
+  const invocationPattern = /\b(?:run|execute|start|launch|use|kick\s+off)\s+\/doctor:/g;
+  let quote: "'" | '"' | '`' | null = null;
+  let quoteScanPosition = 0;
+  let invocation: RegExpExecArray | null;
+
+  while ((invocation = invocationPattern.exec(prompt)) !== null) {
+    const commandPosition = (
+      invocation.index + invocation[0].length - DOCTOR_COMMAND_PREFIX.length
+    );
+    while (quoteScanPosition < commandPosition) {
+      const character = prompt.charAt(quoteScanPosition);
+      const isWordApostrophe = character === "'"
+        && /[a-z0-9]/.test(prompt.charAt(quoteScanPosition - 1))
+        && /[a-z0-9]/.test(prompt.charAt(quoteScanPosition + 1));
+      if (!isWordApostrophe) {
+        if (quote === null) {
+          if (character === "'" || character === '"' || character === '`') {
+            quote = character;
+          }
+        } else if (character === quote) {
+          quote = null;
+        }
+      }
+      quoteScanPosition += 1;
+    }
+    if (quote === null) return prompt.slice(commandPosition + DOCTOR_COMMAND_PREFIX.length);
+  }
+  return null;
+}
+
+export function isDoctorCommandTyped(promptLower: string): boolean {
+  return findTypedDoctorCommandText(promptLower) !== null;
+}
+
+// A passing command row the explicit lane matched on one of its own full
+// multi-word phrases, word for word. Close wording and single words do not count.
+function isCommandNamedByOwnPhrase(recommendation: AdvisorScoredRecommendation): boolean {
+  return recommendation.kind === 'command'
+    && recommendation.passes_threshold
+    && recommendation.laneContributions.some((contribution) => (
+      contribution.lane === 'explicit_author'
+      && contribution.evidence.some((entry) => /^author:\S+\s/.test(entry))
+    ));
+}
+
+// A typed command or matching doctor lead phrase moves its passing bridge first; otherwise passing
+// bridges follow the second passing skill or the only passing skill, and other recommendations keep order.
+export function keepPassingSkillsAboveDoctorBridges(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+  leadPhrasesById: ReadonlyMap<string, readonly string[]> = new Map(),
+): AdvisorScoredRecommendation[] {
+  const isDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
+    recommendation.kind === 'command' && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+  );
+  const isPassingDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
+    isDoctorBridge(recommendation) && recommendation.passes_threshold
+  );
+  const typedCommandText = findTypedDoctorCommandText(promptLower);
+  if (typedCommandText !== null) {
+    const normalizedCommand = typedCommandText.toLowerCase().trim().replace(/\s+/g, '-');
+    let matchedBridgeIndex = -1;
+    let matchedBridgeLength = -1;
+    ranked.forEach((recommendation, index) => {
+      if (!isPassingDoctorBridge(recommendation)) return;
+      const bridgeName = recommendation.skill.slice(DOCTOR_BRIDGE_PREFIX.length);
+      if (bridgeName.length === 0 || !normalizedCommand.startsWith(bridgeName)) return;
+      const nextCharacter = normalizedCommand.charAt(bridgeName.length);
+      const endsAtWordBoundary = (
+        nextCharacter === '' || !/[a-z0-9_]/.test(nextCharacter)
+      );
+      if (!endsAtWordBoundary || bridgeName.length <= matchedBridgeLength) return;
+      matchedBridgeIndex = index;
+      matchedBridgeLength = bridgeName.length;
+    });
+    const matchedBridge = ranked[matchedBridgeIndex];
+    if (!matchedBridge) return [...ranked];
+    return [
+      matchedBridge,
+      ...ranked.slice(0, matchedBridgeIndex),
+      ...ranked.slice(matchedBridgeIndex + 1),
+    ];
+  }
+
+  const leadPhraseBridgeIndex = ranked.findIndex((recommendation) => {
+    if (!isPassingDoctorBridge(recommendation)) return false;
+    return leadPhrasesById.get(recommendation.skill)?.some((phrase) => (
+      matchesPhraseBoundary(promptLower, phrase.toLowerCase())
+    )) ?? false;
+  });
+  const leadPhraseBridge = ranked[leadPhraseBridgeIndex];
+  if (leadPhraseBridge) {
+    return [
+      leadPhraseBridge,
+      ...ranked.slice(0, leadPhraseBridgeIndex),
+      ...ranked.slice(leadPhraseBridgeIndex + 1),
+    ];
+  }
+
+  const passingSkillCount = ranked.filter((recommendation) => (
+    recommendation.kind === 'skill' && recommendation.passes_threshold
+  )).length;
+  if (passingSkillCount === 0) return [...ranked];
+
+  const passingDoctorBridges = ranked.filter(isPassingDoctorBridge);
+  if (passingDoctorBridges.length === 0) return [...ranked];
+  const remaining = ranked.filter((recommendation) => !isPassingDoctorBridge(recommendation));
+  const targetPassingSkillCount = Math.min(2, passingSkillCount);
+  let seenPassingSkills = 0;
+  let insertionIndex = remaining.length;
+  for (const [index, recommendation] of remaining.entries()) {
+    if (recommendation.kind !== 'skill' || !recommendation.passes_threshold) continue;
+    seenPassingSkills += 1;
+    if (seenPassingSkills === targetPassingSkillCount) {
+      insertionIndex = index + 1;
+      break;
+    }
+  }
+  return [
+    ...remaining.slice(0, insertionIndex),
+    ...passingDoctorBridges,
+    ...remaining.slice(insertionIndex),
+  ];
+}
+
+// The ranker names a runnable such as /doctor:agents-md check, so this returns
+// that bridge when it runs without asking and the projection holds it.
+export function runnableDoctorBridgeId(runnable: string, projection: AdvisorProjection): string | undefined {
+  for (const [id, row] of Object.entries(COMMAND_ROWS)) {
+    if (!id.startsWith(DOCTOR_BRIDGE_PREFIX)) continue;
+    if (row.command !== runnable || row.policy !== 'run') continue;
+    if (projection.skills.some((skill) => skill.id === id)) return id;
+  }
+  return undefined;
+}
+
+// A doctor problem described in other words than a bridge's own phrases reaches
+// no doctor bridge. When none passes and none was typed, /doctor:helper's ranker
+// decides whether the prompt is a doctor problem. If it is, the command it ranks
+// first passes when that command runs without asking, and the helper passes
+// otherwise. A plain request for a repair route with no ranked command and no
+// passing skill also gets the helper.
+// How something works, not how to do something: "how do I" and "walk me
+// through" ask for steps, which a doctor route can be the answer to.
+const CONCEPT_QUESTION = /^(?:explain|describe)\b|\b(?:explain|describe) (?:how|what|why)\b|\bhow (?:does|is|are)\b|\bwhy (?:does|do|is|are)\b|\bwhat (?:is|are|does)\b/;
+
+export function applyDoctorHelperHandoff(
+  ranked: readonly AdvisorScoredRecommendation[],
+  context: {
+    readonly prompt: string;
+    readonly promptLower: string;
+    readonly projection: AdvisorProjection;
+    readonly workspaceRoot: string;
+    readonly confidenceThreshold: number;
+    readonly uncertaintyThreshold: number;
+    readonly leadPhrasesById: ReadonlyMap<string, readonly string[]>;
+  },
+): AdvisorScoredRecommendation[] {
+  const isDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
+    recommendation.kind === 'command' && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+  );
+  if (ranked.some((recommendation) => isDoctorBridge(recommendation) && recommendation.passes_threshold)) {
+    return [...ranked];
+  }
+  if (isDoctorCommandTyped(context.promptLower)) return [...ranked];
+  const passingSkills = ranked.filter((recommendation) => (
+    !isDoctorBridge(recommendation) && recommendation.passes_threshold
+  ));
+  const skillPasses = passingSkills.length > 0;
+  // A skill that passed with none of its own phrases in the prompt passed on
+  // shared single words. A command is not allowed to pass that way at all, so
+  // such a pass does not outweigh a named problem the ranker matches strongly.
+  const wordsOnlyPass = skillPasses && passingSkills.every((recommendation) => (
+    !recommendation.laneContributions.some((contribution) => (
+      contribution.lane === 'explicit_author' && contribution.rawScore > 0
+    ))
+  ));
+  const cue = doctorProblemCue(context.prompt);
+  const weakCueOverWords = wordsOnlyPass && cue === 'weak';
+  if (skillPasses && cue !== 'strong' && !weakCueOverWords) return [...ranked];
+
+  const helperSkill = context.projection.skills.find((skill) => skill.id === DOCTOR_HELPER_BRIDGE_ID);
+  if (!helperSkill) return [...ranked];
+  const match = matchDoctorProblem(context.prompt, context.workspaceRoot);
+  if (!match && (skillPasses || !genericRepairCue(context.prompt))) return [...ranked];
+  if (match && cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+  // A question about how something works shares a doctor route's topic words
+  // but reports no problem, so with no cue the ranker's match cannot stand in
+  // for one. That matters most for a route that runs without asking.
+  if (match && cue === null && CONCEPT_QUESTION.test(context.promptLower)) return [...ranked];
+  if (match && cue === 'weak' && match.score < DOCTOR_HELPER_WEAK_CUE_MIN_SCORE) return [...ranked];
+  if (match && weakCueOverWords && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+
+  const handoffId = (match ? runnableDoctorBridgeId(match.runnable, context.projection) : undefined) ?? DOCTOR_HELPER_BRIDGE_ID;
+  const handoffSkill = context.projection.skills.find((skill) => skill.id === handoffId) ?? helperSkill;
+  const existing = ranked.find((recommendation) => recommendation.skill === handoffId);
+  const handoff: AdvisorScoredRecommendation = {
+    skill: handoffId,
+    kind: 'command',
+    confidence: Math.max(existing?.confidence ?? 0, context.confidenceThreshold),
+    uncertainty: Math.min(existing?.uncertainty ?? context.uncertaintyThreshold, context.uncertaintyThreshold),
+    passes_threshold: true,
+    reason: match
+      ? `doctor helper hand-off: /doctor:helper ranks ${match.runnable} first for this problem`
+      : 'doctor helper hand-off: a repair request with no matched doctor route',
+    score: existing?.score ?? 0,
+    laneContributions: existing?.laneContributions ?? [],
+    dominantLane: existing?.dominantLane ?? null,
+    lifecycleStatus: handoffSkill.lifecycleStatus,
+  };
+  const others = ranked.filter((recommendation) => recommendation.skill !== handoffId);
+  if (weakCueOverWords) return [handoff, ...others];
+  return keepPassingSkillsAboveDoctorBridges([...others, handoff], context.promptLower, context.leadPhrasesById);
+}
+
+// A command row passes on its typed name, so a prompt that names the command to
+// refuse it or ask about it would otherwise pass that row. The skill behind the
+// command keeps its own pass, because refusing the command is not refusing the
+// skill.
+export function withholdMentionedCommands(
+  ranked: readonly AdvisorScoredRecommendation[],
+  prompt: string,
+): AdvisorScoredRecommendation[] {
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command' || !recommendation.passes_threshold) return recommendation;
+    // A row names a command with its subcommands, while a prompt names only the
+    // base, so both sides are compared on the base alone.
+    const command = commandRowFor(recommendation.skill)?.command.split(' ')[0];
+    if (command === undefined || !commandOnlyMentioned(prompt, command)) return recommendation;
+    return { ...recommendation, passes_threshold: false };
+  });
+}
+
+// A piece written about a loop method carries the hub's own aliases as its
+// topic, and every lane scores those words, so no single lane can take the hub
+// back off the list. The hub is held back here instead, unless the prompt also
+// types one of its commands, which asks for the run whatever else it says.
+export function withholdLoopHubOnWritingAbout(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  if (!isWritingAboutTopic(promptLower)) return [...ranked];
+  // A prompt may type more than one command, and the longest of them says
+  // nothing about whether a loop run was asked for, so every typed command
+  // counts here.
+  const loopTyped = typedCommandsIn(promptLower).some((typed) => (
+    TRACKED_COMMANDS[typed]?.ownerSkillId === 'system-deep-loop'
+    && !commandOnlyMentioned(promptLower, typed)
+  ));
+  if (loopTyped) return [...ranked];
+  return ranked.map((recommendation) => (
+    recommendation.skill === 'system-deep-loop' && recommendation.passes_threshold
+      ? { ...recommendation, passes_threshold: false }
+      : recommendation
+  ));
+}
+
+const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
+
+// A naming of the doctor command that a refusal or a question leads is not a
+// request for it, while a bare naming on a stuck run is: the reader typed the
+// command they want. The leads are the hub's own, so a new refusal verb reaches
+// both layers from one list, and the marks a prompt may wrap a command name in
+// are skipped between the lead and the name.
+const DOCTOR_NAMING_LED = new RegExp(
+  `(?:^|[^a-z0-9_/])(?:${[...COMMAND_DECLINE_LEADS, ...COMMAND_ASK_LEADS].map((lead) => `(?:${lead})`).join('|')})`
+  + '[\\s`*"“”\\[\\]()~«»′‹›]*/doctor:deep-loop(?![a-z0-9_-]|[./][a-z0-9])',
+);
+
+// The doctor command's keywords share research, iteration and convergence words
+// with model training and test reports, so its row passes only on a prompt that
+// names a deep run or types the command itself. Its run policy would otherwise
+// start a diagnosis of a loop the reader never mentioned. A reader who refuses
+// any run or fix wants the stuck run explained rather than diagnosed, and so does
+// a reader who refuses or asks about the doctor by name, so the row needs a
+// request for the doctor rather than a naming of it.
+export function withholdDeepLoopDoctorWithoutRun(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  const onlyMentioned = commandOnlyMentioned(promptLower, DEEP_LOOP_DOCTOR_COMMAND);
+  // A typed naming asks for the doctor only where the prompt asks for it rather
+  // than refusing or questioning it, as the hub's attach reads the same prompt.
+  // Any typed command counts, because a longer one typed for another hub must
+  // not hide the doctor.
+  const doctorAsked = typedCommandsIn(promptLower).includes(DEEP_LOOP_DOCTOR_COMMAND) && !onlyMentioned;
+  const doctorRefused = isRunRefused(promptLower)
+    || (onlyMentioned && DOCTOR_NAMING_LED.test(promptLower.replace(/[\u2018\u2019]/g, "'")));
+  if (doctorAsked || (namesDeepRun(promptLower) && !doctorRefused)) return [...ranked];
+  return ranked.map((recommendation) => (
+    recommendation.skill === 'command-doctor-deep-loop' && recommendation.passes_threshold
+      ? { ...recommendation, passes_threshold: false }
+      : recommendation
+  ));
+}
+
+// A reader who ruled out a change must not be handed a command that writes,
+// whichever path chose it. A command that only reads is still the answer.
+export function withholdWritingCommandsOnNoEdit(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  if (!isNoEditRequest(promptLower)) return [...ranked];
+  // Every typed command counts, so a longer one typed beside a writing command
+  // does not turn that writing command back into one the reader never asked for.
+  const typed = typedCommandsIn(promptLower);
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command' || !recommendation.passes_threshold) return recommendation;
+    if (commandRowFor(recommendation.skill)?.mutating === 'read-only') return recommendation;
+    // A command the reader typed and asked for is the request, and the no-edit words limit its scope.
+    const base = commandRowFor(recommendation.skill)?.command.split(' ')[0];
+    if (base !== undefined
+      && typed.includes(base)
+      && !commandOnlyMentioned(promptLower, base)) return recommendation;
+    return { ...recommendation, passes_threshold: false };
+  });
+}
+
+// A typed command with no scorer row of its own can only reach the reader through
+// its owner, so the owner must lead. With no row the scorer already orders the
+// list, and a command that does have a row competes on its own evidence.
+export function rankTypedCommandOwnerFirst(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  // A prompt may type more than one command, so every command with no scorer
+  // row of its own, and not refused, adds its owner to the owners that must
+  // lead. The highest-ranked passing one leads, which is the ranking the single
+  // typed command produced.
+  const owners = new Set<string>();
+  for (const typed of typedCommandsIn(promptLower)) {
+    const row = TRACKED_COMMANDS[typed];
+    if (row === undefined || row.scorerRow) continue;
+    // A command the reader refused must not pull its owner to the front, because
+    // the ranking would then lead with the skill that offers it.
+    if (commandOnlyMentioned(promptLower, typed)) continue;
+    owners.add(row.ownerSkillId);
+  }
+  if (owners.size === 0) return [...ranked];
+  const ownerIndex = ranked.findIndex((recommendation) => (
+    owners.has(recommendation.skill) && recommendation.passes_threshold
+  ));
+  const owner = ranked[ownerIndex];
+  if (!owner || ownerIndex === 0) return [...ranked];
+  return [
+    owner,
+    ...ranked.slice(0, ownerIndex),
+    ...ranked.slice(ownerIndex + 1),
+  ];
+}
+
+export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
+  // A reply pasted ahead of the task names skills the task never asked for, so it is scored without it.
+  const prompt = stripLeadingPastedReply(rawPrompt);
+  const projection = projectionWithUsableSkillIds(
+    options.projection ?? loadAdvisorProjection(options.workspaceRoot),
+  );
+  const promptLower = prompt.toLowerCase();
+  const weights = effectiveScorerWeights(options.laneWeightsOverride);
+  const disabled = new Set(options.disabledLanes ?? []);
+  const affordances = normalize(options.affordances ?? []);
+  const useRrfFusion = isAdvisorRrfFusionEnabled();
+  const { laneScores, graphConflictMatches, graphSupportBySeed } = buildLaneScores(
+    prompt,
+    projection,
+    disabled,
+    affordances,
+    useRrfFusion,
+  );
+  const runtimeLaneHealth = options.runtimeLaneHealth;
+  const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, runtimeLaneHealth);
+  const degradedLanes = laneHealth
+    .filter((lane) => lane.status === 'runtime_degraded')
+    .map((lane) => lane.lane);
+  const runtimeDegradedLanes = new Set(degradedLanes);
+  const graphConflictIndex = buildConflictMatchIndex(graphConflictMatches);
+  const rrfFusion = useRrfFusion
+    ? fuseAdvisorLaneRanks(laneScores, weights, disabled, runtimeDegradedLanes)
+    : null;
+  const laneScoreIndexes = Object.fromEntries(
+    SCORER_LANES.map((lane) => [lane, buildLaneMatchIndex(laneScores[lane])]),
+  ) as Record<ScorerLane, LaneMatchIndex>;
+  const liveTotal = SCORER_LANES
+    .filter((lane) => !disabled.has(lane) && !runtimeDegradedLanes.has(lane))
+    .reduce((total, lane) => isLiveScorerLane(lane) ? total + weights[lane] : total, 0) || liveWeightTotal();
+  const runtimeLiveLaneCount = SCORER_LANES
+    .filter((lane) => isLiveScorerLane(lane) && !disabled.has(lane) && !runtimeDegradedLanes.has(lane))
+    .length;
+  if (isSpeckitMetricsEnabled() && liveTotal > 0) {
+    for (const lane of SCORER_LANES) {
+      if (!isLiveScorerLane(lane) || disabled.has(lane) || runtimeDegradedLanes.has(lane)) continue;
+      speckitMetrics.setGauge('spec_kit.scorer.fusion_live_weight_share', weights[lane] / liveTotal, { lane });
+    }
+  }
+  const readOnlyExplainer = isReadOnlyExplainer(promptLower);
+  const hasTaskIntent = TASK_INTENT.test(promptLower);
+  const typedSlashCommand = hasTypedSlashCommand(promptLower);
+  const recommendations: AdvisorScoredRecommendation[] = [];
+
+  const candidates = projection.skills
+    .filter((skill) => isDefaultRoutable(promptLower, skill))
+    .map((skill) => {
+      const contributions: LaneContribution[] = SCORER_LANES.map((lane) => {
+        const laneMatch = laneScoreIndexes[lane].get(skill.id);
+        const rawScore = laneMatch?.rawScore ?? 0;
+        const shadowOnly = !isLiveScorerLane(lane);
+        const runtimeDegraded = runtimeDegradedLanes.has(lane);
+        return {
+          lane,
+          rawScore,
+          weightedScore: shadowOnly || disabled.has(lane) || runtimeDegraded ? 0 : rawScore * weights[lane],
+          weight: disabled.has(lane) || runtimeDegraded ? 0 : weights[lane],
+          evidence: laneMatch?.evidence ?? [],
+          shadowOnly,
+        };
+      });
+      const weightedScore = contributions.reduce((total, contribution) => total + contribution.weightedScore, 0);
+      return { skill, contributions, weightedScore };
+    });
+  // Rank fusion scores by lane position, so a lent-support amount has no
+  // meaning there; the bound applies to the weighted sum only.
+  const graphLaneLive = isLiveScorerLane('graph_causal')
+    && !disabled.has('graph_causal')
+    && !runtimeDegradedLanes.has('graph_causal');
+  const seedBound = useRrfFusion || !graphLaneLive
+    ? null
+    : boundGraphSupportBySeedWithHolders(
+      new Map(candidates.map((candidate) => [candidate.skill.id, candidate.weightedScore])),
+      new Map([...laneScoreIndexes.graph_causal].map(([skillId, entry]) => [skillId, entry.rawScore])),
+      graphSupportBySeed,
+      weights.graph_causal,
+      new Set([...laneScoreIndexes.explicit_author]
+        .filter(([, entry]) => hasSlashCommandAnchor(entry.rawScore, entry.evidence))
+        .map(([skillId]) => skillId)),
+    );
+
+  for (const { skill, contributions, weightedScore } of candidates) {
+    const rrfScore = rrfFusion?.weightedSumScoreBySkill.get(skill.id);
+    const score = useRrfFusion
+      ? rrfScore ?? 0
+      : seedBound?.scores.get(skill.id) ?? weightedScore;
+    const heldBelow = seedBound?.heldBelow.get(skill.id);
+    const heldBy = seedBound?.heldBy.get(skill.id);
+    if (score <= 0 && contributions.every((contribution) => contribution.rawScore <= 0)) continue;
+    if (isSpeckitMetricsEnabled()) {
+      for (const contribution of contributions) {
+        if (contribution.weightedScore !== 0) {
+          speckitMetrics.setGauge('spec_kit.scorer.lane_contribution', contribution.weightedScore, { lane: contribution.lane, skill_id: skill.id });
+        }
+      }
+    }
+
+    const explicitContribution = contributions.find((contribution) => contribution.lane === 'explicit_author');
+    const lexicalContribution = contributions.find((contribution) => contribution.lane === 'lexical');
+    const directScore = Math.max(explicitContribution?.rawScore ?? 0, lexicalContribution?.rawScore ?? 0);
+    const hasNamedAnchor = (explicitContribution?.rawScore ?? 0) > 0
+      || (lexicalContribution?.evidence.some((entry) => entry.startsWith('hint:')) ?? false)
+      || anchoringLexicalScore(prompt, skill, projection) >= SCORING_CALIBRATION.confidence.taskIntentLexicalAnchorFloor
+      || promptNamesIdNoun(promptLower, skill);
+    const derivedDominant = isDerivedDominant(contributions);
+    const liveNormalized = score / liveTotal;
+    const confidenceResult = confidenceFor({
+      liveNormalized,
+      directScore,
+      hasNamedAnchor,
+      readOnlyExplainer,
+      hasTaskIntent,
+      readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill),
+      derivedDominant,
+      skillId: skill.id,
+    });
+    let confidence = confidenceResult.value;
+    let confidenceFloored = confidenceResult.floored;
+    if (skill.id === 'command-speckit-save' && isPlainFileSavePrompt(promptLower)) {
+      const clamped = Math.min(confidence, 0.49);
+      if (clamped < confidence) confidenceFloored = false;
+      confidence = clamped;
+    }
+    recommendations.push({
+      skill: skill.id,
+      kind: skill.kind,
+      confidence,
+      uncertainty: uncertaintyFor(contributions, confidence, 0),
+      passes_threshold: false,
+      reason: attributionReason(contributions),
+      score: useRrfFusion ? score : Number(score.toFixed(6)),
+      laneContributions: contributions,
+      dominantLane: dominantLane(contributions),
+      ...(heldBelow ? { heldBelow } : {}),
+      ...(heldBy ? { heldBy } : {}),
+      ...(confidenceFloored ? { confidenceFloored: true } : {}),
+      redirectTo: skill.redirectTo ?? undefined,
+      redirectFrom: skill.redirectFrom,
+      lifecycleStatus: skill.lifecycleStatus,
+    });
+  }
+
+  if (isSpeckitMetricsEnabled()) {
+    for (const recommendation of recommendations) {
+      if (primaryIntentBonus(promptLower, recommendation) !== 0) {
+        speckitMetrics.incrementCounter('spec_kit.scorer.primary_intent_bonus_applied_total', { skill_id: recommendation.skill });
+      }
+      if (useRrfFusion && graphConflictAdjustment(graphConflictIndex, recommendation) !== 0) {
+        speckitMetrics.incrementCounter('spec_kit.scorer.graph_conflict_demote_applied_total', { skill_id: recommendation.skill });
+      }
+    }
+  }
+  let ranked = recommendations.sort((left, right) => {
+    const leftCommandBonus = left.kind === 'command' && !typedSlashCommand ? -0.08 : 0;
+    const rightCommandBonus = right.kind === 'command' && !typedSlashCommand ? -0.08 : 0;
+    const leftIntent = primaryIntentBonus(promptLower, left);
+    const rightIntent = primaryIntentBonus(promptLower, right);
+    const leftConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, left) : 0;
+    const rightConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, right) : 0;
+    const adjustedScoreDiff = (right.score + rightCommandBonus + rightIntent + rightConflict)
+      - (left.score + leftCommandBonus + leftIntent + leftConflict);
+    if (useRrfFusion) {
+      return adjustedScoreDiff
+        || rrfRankFor(rrfFusion, left) - rrfRankFor(rrfFusion, right)
+        || left.skill.localeCompare(right.skill);
+    }
+    return adjustedScoreDiff
+      || right.confidence - left.confidence
+      || left.skill.localeCompare(right.skill);
+  });
+
+  // Doctor bridges must not shape skill ambiguity or abstention.
+  // Skill slots take their values from the pass with those bridges removed.
+  const finishRanked = (
+    sorted: readonly AdvisorScoredRecommendation[],
+    commandNamedElsewhere = false,
+  ): AdvisorScoredRecommendation[] => {
+    let finished = sorted.map((recommendation, index) => {
+      const next = sorted[index + 1];
+      const ambiguityPressure = next
+        && Math.abs(recommendation.confidence - next.confidence) <= 0.05
+        ? 0.04
+        : 0;
+      const uncertainty = uncertaintyFor(
+        recommendation.laneContributions,
+        recommendation.confidence,
+        ambiguityPressure,
+      );
+      return {
+        ...recommendation,
+        uncertainty,
+        passes_threshold: recommendation.confidence
+          >= (options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD)
+          && uncertainty <= (options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD),
+      };
+    });
+    finished = applyAmbiguity(finished);
+
+    // Low-information ambiguity abstention: a short, intent-less prompt that lands
+    // in a multi-candidate ambiguity cluster is genuinely under-specified. Floor
+    // every cluster member's uncertainty above the strict threshold so strict
+    // callers abstain, while confidence-only callers still surface the best guess
+    // (the disambiguated top-ranked candidate).
+    const lowInfoPrompt = isLowInformationPrompt(prompt);
+    if (lowInfoPrompt) {
+      // Use the wider set: a floor-only skill must not top an under-specified prompt.
+      // A passing command that the prompt names by one of its own full phrases is
+      // a sharper answer than any one-word skill match, so the floor ties still
+      // count and those skills step aside for it. The doctor-free pass sees no
+      // doctor command, so the full pass tells it when one was named.
+      const wideMembers = wideAmbiguityMembers(finished, {
+        floorTiesCount: commandNamedElsewhere || finished.some(isCommandNamedByOwnPhrase),
+      });
+      const clusterMembers = finished.filter((recommendation) => (
+        wideMembers.has(recommendation.skill)
+      ));
+      // Only abstain when the cluster's lead is built from diffuse, shared
+      // single-word keyword matches rather than a distinctive multi-word phrase
+      // anchor (an explicit-author/derived phrase match such as "code audit").
+      // A multi-word anchor means the prompt does pin a specific skill, so it
+      // should route instead of abstaining.
+      const clusterHasPhraseAnchor = clusterMembers.some((recommendation) => (
+        recommendation.laneContributions.some((contribution) => (
+          (contribution.lane === 'explicit_author'
+            || contribution.lane === 'derived_generated')
+          && contribution.evidence.some((entry) => entry.includes(' '))
+        ))
+      ));
+      if (clusterMembers.length >= 2 && !clusterHasPhraseAnchor) {
+        const confThreshold = options.confidenceThreshold
+          ?? DEFAULT_CONFIDENCE_THRESHOLD;
+        const uncThreshold = options.uncertaintyThreshold
+          ?? DEFAULT_UNCERTAINTY_THRESHOLD;
+        const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
+        finished = finished.map((recommendation) => {
+          if (!wideMembers.has(recommendation.skill)) return recommendation;
+          const uncertainty = Math.max(recommendation.uncertainty, floor);
+          return {
+            ...recommendation,
+            uncertainty,
+            passes_threshold: recommendation.confidence >= confThreshold
+              && uncertainty <= uncThreshold,
+          };
+        });
+      }
+    }
+
+    // Class C: breadth / multi-concern abstention. A broad greenfield build
+    // ("build full stack typescript service") or a multi-concern optimization
+    // ("optimize X execution speed and recommendation quality") is under-specified
+    // for single-skill routing. When the top code-like candidate carries that
+    // shape, floor every passing candidate's uncertainty so strict callers abstain.
+    // Narrow anchors (a file, failing test, named component/route, benchmark, or
+    // review intent) bypass the broad-build branch; the multi-concern branch
+    // requires two distinct concern classes, so a file + single concern still routes.
+    if (!typedSlashCommand) {
+      const concernClasses = (CONCERN_PERF.test(promptLower) ? 1 : 0)
+        + (CONCERN_QUALITY.test(promptLower) ? 1 : 0);
+      const broadBuild = BREADTH_BUILD_VERB.test(promptLower)
+        && BREADTH_NOUN.test(promptLower)
+        && !BREADTH_NARROW_ANCHOR.test(promptLower);
+      const multiConcern = MULTI_CONCERN_VERB.test(promptLower)
+        && concernClasses >= 2;
+      if (broadBuild || multiConcern) {
+        const topRec = finished.find((recommendation) => recommendation.passes_threshold)
+          ?? null;
+        if (topRec && (
+          topRec.skill === 'sk-code'
+          || topRec.skill === 'system-skill-advisor'
+        )) {
+          const confThreshold = options.confidenceThreshold
+            ?? DEFAULT_CONFIDENCE_THRESHOLD;
+          const uncThreshold = options.uncertaintyThreshold
+            ?? DEFAULT_UNCERTAINTY_THRESHOLD;
+          const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
+          finished = finished.map((recommendation) => {
+            if (!recommendation.passes_threshold) return recommendation;
+            const uncertainty = Math.max(recommendation.uncertainty, floor);
+            return {
+              ...recommendation,
+              uncertainty,
+              passes_threshold: recommendation.confidence >= confThreshold
+                && uncertainty <= uncThreshold,
+            };
+          });
+        }
+      }
+    }
+
+    // Post-fusion so a resolved executor delegation can carry negative evidence
+    // the pre-clamp explicit lane cannot express, and so it runs after every
+    // abstention gate. The alias table is metadata-derived, so new executors or
+    // small models need no change here. It is a no-op on non-delegation prompts.
+    return applyExecutorDelegationOverride(finished, {
+      promptLower,
+      projection,
+      workspaceRoot: options.workspaceRoot,
+      confidenceThreshold: options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
+      uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
+    });
+  };
+
+  const fullRun = finishRanked(ranked);
+  const doctorFreeRun = finishRanked(ranked.filter((recommendation) => (
+    recommendation.kind !== 'command'
+    || !recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+  )), fullRun.some(isCommandNamedByOwnPhrase));
+  let doctorFreeIndex = 0;
+  ranked = fullRun.map((recommendation) => {
+    if (
+      recommendation.kind === 'command'
+      && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+    ) {
+      return recommendation;
+    }
+    return doctorFreeRun[doctorFreeIndex++]!;
+  });
+
+  ranked = requireCommandPhraseAnchor(ranked);
+  const leadPhrasesById = new Map<string, readonly string[]>();
+  for (const skill of projection.skills) {
+    if (!skill.id.startsWith(DOCTOR_BRIDGE_PREFIX) || !skill.leadPhrases?.length) continue;
+    leadPhrasesById.set(skill.id, skill.leadPhrases);
+  }
+  ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower, leadPhrasesById);
+  ranked = applyDoctorHelperHandoff(ranked, {
+    prompt,
+    promptLower,
+    projection,
+    workspaceRoot: options.workspaceRoot,
+    confidenceThreshold: options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
+    uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
+    leadPhrasesById,
+  });
+  ranked = withholdMentionedCommands(ranked, prompt);
+  ranked = withholdWritingCommandsOnNoEdit(ranked, promptLower);
+  ranked = withholdLoopHubOnWritingAbout(ranked, promptLower);
+  ranked = withholdDeepLoopDoctorWithoutRun(ranked, promptLower);
+  ranked = rankTypedCommandOwnerFirst(ranked, promptLower);
+
+  const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
+  const visible = options.includeAllCandidates ? ranked : passing;
+  const top = passing[0] ?? null;
+  const laneHealthReason = degradedLaneReason(degradedLanes);
+  const abstainReasons = laneHealthReason ? [laneHealthReason] : [];
+  if (isSpeckitMetricsEnabled() && top) {
+    const runtimeLabel = normalizeRuntimeLabel(process.env.SPECKIT_RUNTIME);
+    const freshnessLabel = normalizeFreshnessLabel(process.env.SPECKIT_ADVISOR_FRESHNESS);
+    if (runtimeLabel && freshnessLabel) {
+      speckitMetrics.incrementCounter('spec_kit.advisor.recommendation_emitted_total', { runtime: runtimeLabel, freshness_state: freshnessLabel });
+    }
+    speckitMetrics.recordConfidenceBracket(top.confidence);
+  }
+  return {
+    recommendations: visible,
+    topSkill: top?.skill ?? null,
+    unknown: !top,
+    ambiguous: isAmbiguousTopTwo(ranked.filter((recommendation) => (
+      recommendation.kind !== 'command'
+      || !recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+    ))),
+    metrics: {
+      candidateCount: ranked.length,
+      liveLaneCount: runtimeLiveLaneCount,
+      ...(degradedLanes.length > 0 ? { degradedLanes, laneHealth } : {}),
+    },
+    ...(abstainReasons.length > 0 ? { abstainReasons } : {}),
+  };
+}

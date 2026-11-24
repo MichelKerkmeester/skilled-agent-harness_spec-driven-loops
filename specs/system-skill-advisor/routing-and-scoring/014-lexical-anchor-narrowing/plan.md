@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Narrow the advisor's shared lexical anchor so two generic words no longer lift a skill to the task-intent floor"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Measure each false lift, attribute it to its anchor clause, and try candidate rules against the ratchet, the probes and the pinned slices before landing any."
 trigger_phrases:
   - "lexical anchor narrowing plan"
 importance_tier: "normal"
@@ -15,138 +15,117 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript |
+| **Framework** | Advisor scorer (`fusion.ts`, `lanes/lexical.ts`) |
+| **Storage** | None |
+| **Testing** | In-process ratchet metrics and probes, the full advisor vitest suite, the browser hub replay |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+Candidate changes to when a skill counts as named, with ranking left alone: score the lexical anchor only on prompt words few skills share, make the direct-score lift need a named anchor, and read the id noun's companion word from the prompt. Each candidate is measured on the ratchet, the probes and the full suite. None landed: every candidate moved pinned command and doctor rows, and the operator chose to record and stop (Q012).
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- Each probe lift is attributed to the anchor clause that fired it.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+
+- Every REQ in `spec.md` is Met in `acceptance-criteria.md`, and `validate.sh --strict` prints RESULT: PASSED.
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Measure, attribute, then change the producer. A temporary trace in `fusion.ts` recorded each clause per skill and was removed.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+
+- `anchoringLexicalScore` in `lanes/lexical.ts`, with a per-projection count of skills sharing each word.
+- `hasNamedAnchor`, `promptNamesIdNoun` and the direct-score branch of `confidenceFor` in `fusion.ts`.
+- `lexicalAnchorMaxSkillShare` in `scoring-constants.ts`.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+
+The lexical lane still ranks on expanded tokens. Only the confidence floor reads the new anchor.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Lexical anchor clause | Lifts a skill to 0.82 on a 0.45 lexical score | Score distinctive prompt words only | Probes; ratchet |
+| Direct-score lift | Lifts any skill with direct score 0.65 or more | Needs a named anchor | Probes; ratchet; suite |
+| Id-noun clause | Accepted a synonym as the second word | Prompt word in the skill's text | Doctor probe keeps its lift |
+| Pinned slices and baselines | Consumers | Must not move | Full suite |
+| Browser hub replay | Consumer | Must still fail only MBU-PB-04 | Replay |
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+1. Baseline the metrics and probes, then trace each lift to its clause.
+2. Try candidate rules in order, measuring each: prompt words only, a sharing cap, the direct-lift anchor, the id-noun companion.
+3. Land a candidate only if the full suite holds every pin; otherwise record the measurements and stop.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Pinned slices and scorer tests | `npx vitest run` in the advisor runtime |
+| Integration | Two-stage routing | The browser hub replay |
+| Manual | The five probe prompts | In-process probe |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| Pinned slices | Internal | Green | A moved pin stops the change for an operator decision |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+Revert the advisor commit and rebuild `dist` with `npm run build` in the advisor runtime.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
-
-```
-Setup ──► Implementation ──► Verification
-```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Attribution | Baseline | Candidates |
+| Candidates | Attribution | Landing |
+| Landing | Candidates | Closure |
 <!-- /ANCHOR:phase-deps -->
-
----
-
