@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f46d6861f4d25d9a8abc17333107255a2952c0a0a2e9c310ff2cabd914afc9cd",
+  "corpusHash": "a69b3c5e7a08477f7da9e930fa003ed9470641cf93df3322dadea4df5f1ce835",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29507,
+  "includedPathCount": 29511,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -17371,6 +17371,10 @@
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/plan.md",
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/spec.md",
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/tasks.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/implementation-summary.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/plan.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/spec.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -29539,7 +29543,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7ad9a403ed8f11870f005a694e33c256de8da168ce88d9a00a0ff7d4e74ba84e",
+  "manifestHash": "17f2d595b9a4a0fa77dea6aecb257b348fa574df5a9c1bd9da125d49c95620cd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37227,6 +37231,10 @@
     },
     {
       "path": "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/scratch",
       "reason": "excluded directory"
     },
     {
