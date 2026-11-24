@@ -20,8 +20,9 @@ import {
 } from './skill-advisor-cli-manifest.js';
 
 import { disabledRecommendOutput } from './lib/advisor-disabled.js';
-import { TRACKED_COMMANDS, commandRowFor } from './lib/command-attach.js';
+import { TRACKED_COMMANDS, commandRowFor, type TypedCommand } from './lib/command-attach.js';
 import { stripLeadingPastedReply } from './lib/prompt-policy.js';
+import { mergedSkillForAlias } from './lib/scorer/aliases.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT } from './lib/compat/contract.js';
 import {
   runAdvisorSubprocess,
@@ -1480,6 +1481,18 @@ async function runLocalScorer(prompt: string): Promise<readonly AdvisorRecommend
   }
 }
 
+// A command string that crossed the child-process boundary prints in the position
+// the reader runs it from, so the tracked table decides whether it may print
+// there, not the child that supplied it. The row's skill is read through its alias
+// group because the Python advisor reports a folded deep command under its legacy
+// mode id, and that id stands for the hub that owns the command today.
+function trackedCommandForOwner(skill: string, command: string): TypedCommand | undefined {
+  if (!Object.hasOwn(TRACKED_COMMANDS, command)) return undefined;
+  const tracked = TRACKED_COMMANDS[command];
+  const ownerMatches = tracked.ownerSkillId === skill || tracked.ownerSkillId === mergedSkillForAlias(skill);
+  return ownerMatches ? { command, policy: tracked.policy, ownerSkillId: tracked.ownerSkillId } : undefined;
+}
+
 // The local scorer names command ids, but a reader can only act on a command they
 // typed or on the skill that owns it. A row whose command the prompt typed keeps
 // its command fields, and every other row collapses to its owner skill so the
@@ -1548,10 +1561,14 @@ export function degradedRecommendations(
     // entry. Anchoring it to the first row that survived the threshold filter
     // instead would hand the command to the row below a marked row that failed
     // the threshold, and the head would then name a row the marker never named.
+    // A supplied string keeps the row's place only where the tracked table names
+    // it as that row's own command; a rejected one leaves the row as its plain
+    // skill, because the string is text from the child and the skill is the offer
+    // the reader can always act on.
     const typed = entry.typed === true
       ? entry.command === undefined
         ? typedCommandForRecommendation(entry.skill, task)
-        : { command: entry.command, policy: entry.policy, ownerSkillId: entry.ownerSkillId }
+        : trackedCommandForOwner(entry.skill, entry.command)
       : isLeading
         ? typedCommandForRecommendation(entry.skill, task)
         : undefined;

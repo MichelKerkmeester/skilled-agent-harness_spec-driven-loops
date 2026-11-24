@@ -4594,18 +4594,29 @@ _ITERATIVE_VERB_LIST = (
     "go over",
 )
 
+# The singular and the plural name the same ask, so both spellings are listed:
+# with the singular alone, a plural as in "run two deep reviews" matches nothing
+# and the request goes unanswered.
 _LOOP_WORDING_LIST = (
     "deep research",
+    "deep researches",
     "deep-research",
+    "deep-researches",
     "deep review",
+    "deep reviews",
     "deep-review",
+    "deep-reviews",
     "multi-pass",
 )
 
+# The plural names the same loop as the singular, as in "run two research loops".
 _LOOP_NAME_LIST = (
     "deep loop",
+    "deep loops",
     "research loop",
+    "research loops",
     "review loop",
+    "review loops",
 )
 
 _LOOP_WANT_LEAD_LIST = (
@@ -4731,6 +4742,19 @@ _LOOP_REQUEST_RE = re.compile(
 _LOOP_EDIT_LEAD_RE = re.compile(
     r"\b(?:refactor|fix|edit|modify|rewrite|debug|patch|rename|tweak|tune|clean up) " + _LOOP_OBJECT_GAP + r"\Z"
 )
+# An effort verb leads the loop name the way an edit verb does, as in "speed up
+# the deep research loop" or "improve the deep review": the name is the verb's
+# object, so the reader asks for a change to the loop rather than a run of it.
+_LOOP_EFFORT_LEAD_LIST = (
+    "speed up",
+    "slow down",
+    "improve",
+    "optimize",
+    "optimise",
+)
+_LOOP_EFFORT_LEAD_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(word) for word in _LOOP_EFFORT_LEAD_LIST) + r") " + _LOOP_OBJECT_GAP + r"\Z"
+)
 # The possessive before the nouns and the word boundary after them are grammar
 # rather than vocabulary, so they stay in the pattern.
 _LOOP_ARTIFACT_AFTER_RE = re.compile(
@@ -4738,6 +4762,34 @@ _LOOP_ARTIFACT_AFTER_RE = re.compile(
     + "|".join(re.escape(word) for word in _LOOP_ARTIFACT_NOUN_LIST)
     + r")\b"
 )
+# A complaint about the loop's own speed or cost puts its effort word where the
+# loop's result would go, as in "the deep review loop is too slow" or "deep
+# research runs cost too much", so the name is what the reader complains about
+# rather than what they ask for. The same word as a manner belongs to the
+# request, as in "run a fast deep review on the parser", so the word is read only
+# in a complaint's shape. A cost complaint is a fixed idiom because its measure
+# word describes the cost rather than naming it.
+_LOOP_EFFORT_WORD_LIST = (
+    "slow",
+    "slower",
+    "faster",
+    "expensive",
+    "costly",
+    "long",
+    "longer",
+)
+_LOOP_EFFORT_AFTER_RE = re.compile(
+    r"(?: (?:loop|run|pass|iterations?|runs?))?"
+    r"(?: (?:is|are|was|were|gets?|got|feels?|seems?|runs?|takes?|costs?))?"
+    r"(?: (?:too|very|so|really|quite|way))? "
+    r"(?:" + "|".join(re.escape(word) for word in _LOOP_EFFORT_WORD_LIST) + r")\b"
+    r"|(?: (?:runs?|pass|passes|iterations?))? costs? too much\b"
+)
+# A run that already happened is reported with its own past verb right after the
+# loop's name, as in "how many deep reviews ran yesterday", so the name is that
+# verb's subject and asks for no new run. A target the name takes leaves it the
+# request, so the verb has to follow the name at once.
+_RUN_REPORTED_AFTER_RE = re.compile(r" (?:ran|took|failed|started|finished|completed|happened)\b")
 # A hyphen count or `multi-pass` measures the loop only when it qualifies the
 # loop's own work or ends the phrase.
 _HYPHEN_COUNT_RE = re.compile(r"-(?:pass(?:es)?|rounds?|iterations?)\Z")
@@ -4764,7 +4816,7 @@ _LOOP_ASK_REFUSED_AFTER_RE = re.compile(
     r" (?:needed|necessary|required|wanted|warranted|called for)\b"
 )
 _LOOP_RUN_SUBJECT_RE = re.compile(
-    r"\b(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run)"
+    r"\b(?:(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))(?:s|es)?"
     r"|(?:research|review|audit)(?: (?:loop|run))? (?:i|we) (?:just )?(?:started|launched|kicked off|ran|began|set off|set up)"
     r"|(?:the|my|our|this|that) (?:research|review|audit)(?:'s)? (?:coverage graph|convergence)"
     r"|(?:coverage graph|convergence) (?:of|for|in|on) (?:(?:the|my|our|this|that) )?(?:research|review|audit))\b"
@@ -4789,7 +4841,7 @@ _LOOP_RUN_SYMPTOM_RE = re.compile(
 )
 _LOOP_RUN_REQUESTED_RE = re.compile(
     r"\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}"
-    r"(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))\b"
+    r"(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))(?:s|es)?\b"
 )
 _PAST_RUN_READ_VERB_RE = re.compile(
     r"\b(?:" + "|".join(re.escape(word) for word in _PAST_RUN_READ_VERB_LIST) + r")\b"
@@ -4798,6 +4850,11 @@ _PAST_RUN_OUTPUT_RE = re.compile(
     r"\b(?:last|previous|prior|earlier|yesterday's|finished|completed) (?:[\w'-]+ ){0,2}?(?:deep[- ])?(?:research|review|loop|run)\b"
     r"|\b(?:research|review(?:-report)?)\.md\b|\b(?:research|review) report\b"
     r"|\bdeep[- ](?:research|review) (?:output|report|results|findings|produced|concluded|found|wrote)\b"
+    # A past-time phrase after the loop's name, as in "the deep reviews from last
+    # week", dates the run the read verb asks about just as the marker before the
+    # name does.
+    r"|\b(?:deep[- ])?(?:research|review|loop|run)s?\b (?:from|of|in|during|over)"
+    r" (?:the )?(?:last|previous|prior|earlier|past|yesterday)\b"
 )
 _RUN_CONTINUED_RE = re.compile(r"\b(?:continue|resume|extend|rerun|re-run|more iterations?|\d+ more)\b")
 _WRITING_ABOUT_TOPIC_RE = re.compile(
@@ -4806,11 +4863,42 @@ _WRITING_ABOUT_TOPIC_RE = re.compile(
     r"|slides?|deck|tutorial|op-ed|piece|whitepaper|white paper|primer|explainer)s?\b (?:[\w'-]+ ){0,3}?"
     r"(?:about|on|explaining|covering|describing|introducing|why|how)\b"
 )
-_LOOP_SUBJECT = r"(?:[\w'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)\b"
+_LOOP_SUBJECT = r"(?:[\w'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)(?:s|es)?\b"
+# The finite verb a question puts after its interrogative word is data, one per
+# line. A modal reads the same question, as in "how can a deep research loop stop
+# early", which asks how that loop stops rather than for a run of it.
+_LOOP_QUESTION_AUXILIARY_LIST = (
+    "does",
+    "do",
+    "is",
+    "are",
+    "did",
+    "makes",
+    "doesn't",
+    "don't",
+    "isn't",
+    "aren't",
+    "didn't",
+    "won't",
+    "can't",
+    "can",
+    "could",
+    "should",
+    "would",
+)
+_LOOP_QUESTION_AUX = r"(?:" + "|".join(re.escape(word) for word in _LOOP_QUESTION_AUXILIARY_LIST) + r")"
 _LOOP_QUESTION_RE = re.compile(
-    r"\b(?:how|why|when|what) (?:does|do|is|are|did|makes|doesn't|don't|isn't|aren't|didn't|won't|can't) " + _LOOP_SUBJECT
+    r"\b(?:how|why|when|what) " + _LOOP_QUESTION_AUX + r" " + _LOOP_SUBJECT
     + r"|\bhow many (?:[\w'-]+ ){0,2}?(?:does|do|is|are|did|will|would|should|can) " + _LOOP_SUBJECT
     + r"|\b(?:explain|describe) (?:how|what|why|when) " + _LOOP_SUBJECT
+)
+# A reader who asks how to work the loop puts themselves in the question, as in
+# "how do I run a deep review on this", so the loop name is what they ask about
+# even though their own use verb stands between the two. A second person, as in
+# "can you run a deep review on the parser", states the request itself and is
+# left out on purpose.
+_LOOP_HOW_TO_QUESTION_RE = re.compile(
+    r"\bhow " + _LOOP_QUESTION_AUX + r" (?:i|we) " + _LOOP_SUBJECT
 )
 _LOOP_DIGIT_COUNT_RE = re.compile(r"\b\d+ (?:[a-z-]+ ){0,2}iterations?\b")
 _LOOP_RUN_BY_PRONOUN_RE = re.compile(
@@ -4983,22 +5071,32 @@ def is_writing_about_topic(text: str) -> bool:
 
 
 def _is_loop_question(lower: str) -> bool:
-    return bool(
-        _LOOP_QUESTION_RE.search(lower)
-        and not _LOOP_RUN_REQUESTED_RE.search(lower)
-        and not _LOOP_DIGIT_COUNT_RE.search(lower)
-        and not _LOOP_RUN_BY_PRONOUN_RE.search(lower)
-    )
+    """True when the prompt asks about the loop rather than for a run of it.
+
+    A how-to question holds the use verb the reader asks about, so that verb
+    does not turn the question back into a request; a run the prompt asks for in
+    a clause after the question still does.
+    """
+    if _LOOP_DIGIT_COUNT_RE.search(lower) or _LOOP_RUN_BY_PRONOUN_RE.search(lower):
+        return False
+    how_to = _LOOP_HOW_TO_QUESTION_RE.search(lower)
+    if how_to:
+        return not _LOOP_RUN_REQUESTED_RE.search(lower, how_to.end())
+    return bool(_LOOP_QUESTION_RE.search(lower) and not _LOOP_RUN_REQUESTED_RE.search(lower))
 
 
 def _names_loop_subject(phrase: str, lower: str, start: int, end: int) -> bool:
     """True when the loop phrase is what the request is about, not what it asks for.
 
-    The edit lead is read on the bounded window before the phrase. The patterns
-    after it are anchored at its end, so they match from there without a copy of
-    the rest of the prompt.
+    The edit and effort leads are read on the bounded window before the phrase.
+    The patterns after it are anchored at its end, so they match from there
+    without a copy of the rest of the prompt.
     """
-    if _ends_before(_LOOP_EDIT_LEAD_RE, lower, start) or _LOOP_ARTIFACT_AFTER_RE.match(lower, end):
+    if _ends_before(_LOOP_EDIT_LEAD_RE, lower, start) or _ends_before(_LOOP_EFFORT_LEAD_RE, lower, start):
+        return True
+    if _LOOP_ARTIFACT_AFTER_RE.match(lower, end) or _LOOP_EFFORT_AFTER_RE.match(lower, end):
+        return True
+    if _RUN_REPORTED_AFTER_RE.match(lower, end):
         return True
     if _HYPHEN_COUNT_RE.search(phrase) and not _HYPHEN_COUNT_MEASURES_LOOP_RE.match(lower, end):
         return True

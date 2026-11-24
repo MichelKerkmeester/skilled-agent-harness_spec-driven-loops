@@ -20,7 +20,10 @@ import {
   ITERATIVE_VERBS,
   LEAD_WINDOW,
   LOOP_ARTIFACT_NOUNS,
+  LOOP_EFFORT_LEADS,
+  LOOP_EFFORT_WORDS,
   LOOP_NAMES,
+  LOOP_QUESTION_AUXILIARIES,
   LOOP_RUN_SYMPTOMS,
   LOOP_WANT_LEADS,
   LOOP_WORDING,
@@ -66,6 +69,9 @@ const VOCABULARY_PAIRS: readonly (readonly [string, string, readonly string[]])[
   ['COUNT_WORDS', '_COUNT_WORD_LIST', COUNT_WORDS],
   ['LOOP_RUN_SYMPTOMS', '_LOOP_RUN_SYMPTOM_LIST', LOOP_RUN_SYMPTOMS],
   ['LOOP_ARTIFACT_NOUNS', '_LOOP_ARTIFACT_NOUN_LIST', LOOP_ARTIFACT_NOUNS],
+  ['LOOP_EFFORT_LEADS', '_LOOP_EFFORT_LEAD_LIST', LOOP_EFFORT_LEADS],
+  ['LOOP_EFFORT_WORDS', '_LOOP_EFFORT_WORD_LIST', LOOP_EFFORT_WORDS],
+  ['LOOP_QUESTION_AUXILIARIES', '_LOOP_QUESTION_AUXILIARY_LIST', LOOP_QUESTION_AUXILIARIES],
   ['PAST_RUN_READ_VERBS', '_PAST_RUN_READ_VERB_LIST', PAST_RUN_READ_VERBS],
   ['ITERATIVE_VERBS', '_ITERATIVE_VERB_LIST', ITERATIVE_VERBS],
   ['LOOP_WORDING', '_LOOP_WORDING_LIST', LOOP_WORDING],
@@ -264,6 +270,20 @@ describe('deep-loop offer cases shared with the Python fallback', () => {
   // puts it behind a loop name.
   it.each(LOOP_ARTIFACT_NOUNS)('has a no-run case where a loop name is followed by "%s"', (noun) => {
     const used = cases.some((entry) => !entry.asksForLoopRun && followsLoopName(entry.prompt, noun));
+    expect(used).toBe(true);
+  });
+
+  // An effort word names what a complaint is about, and an effort lead is the
+  // verb whose object the loop name is, so each carries a case that asks for no
+  // run. A word added to one copy alone otherwise passes every case that never
+  // uses it.
+  it.each(LOOP_EFFORT_WORDS)('has a no-run case that carries the effort word "%s"', (word) => {
+    const used = cases.some((entry) => !entry.asksForLoopRun && usesWord(entry.prompt, word));
+    expect(used).toBe(true);
+  });
+
+  it.each(LOOP_EFFORT_LEADS)('has a no-run case where "%s" leads the loop name', (phrase) => {
+    const used = cases.some((entry) => !entry.asksForLoopRun && entry.prompt.toLowerCase().includes(phrase));
     expect(used).toBe(true);
   });
 
