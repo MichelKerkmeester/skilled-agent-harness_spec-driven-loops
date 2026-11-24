@@ -13,6 +13,7 @@ import type {
   AdvisorScoredRecommendation,
   AdvisorScoringOptions,
   AdvisorScoringResult,
+  SkillProjection,
 } from '../../lib/scorer/types.js';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -118,6 +119,24 @@ function isDoctorBridge(
     && recommendation.skill.startsWith(DOCTOR_PREFIX);
 }
 
+function fixtureSkill(id: string, kind: SkillProjection['kind']): SkillProjection {
+  return {
+    id,
+    kind,
+    family: 'system',
+    category: 'test',
+    name: id,
+    description: '',
+    keywords: ['widget audit flow'],
+    domains: [],
+    intentSignals: ['widget audit flow'],
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  };
+}
+
 function scoreSnapshots(
   recommendations: readonly AdvisorScoredRecommendation[],
 ): Array<Pick<
@@ -197,5 +216,37 @@ describe('doctor bridge scoring isolation', () => {
     if (expectedTopSkill !== undefined) {
       expect(fullResult.topSkill).toBe(expectedTopSkill);
     }
+    if (fullResult.topSkill !== null && !fullResult.topSkill.startsWith(DOCTOR_PREFIX)) {
+      expect(fullResult.ambiguous).toBe(doctorFreeResult.ambiguous);
+    }
+  });
+
+  it('ignores a non-owning doctor bridge when it computes skill ambiguity', () => {
+    const fixtureProjection: AdvisorProjection = {
+      skills: [
+        fixtureSkill('alpha', 'skill'),
+        fixtureSkill('command-doctor-beta', 'command'),
+      ],
+      edges: [],
+      generatedAt: '2026-11-24T00:00:00.000Z',
+      source: 'fixture',
+    };
+    const doctorFreeFixture: AdvisorProjection = {
+      ...fixtureProjection,
+      skills: fixtureProjection.skills.filter((skill) => !skill.id.startsWith(DOCTOR_PREFIX)),
+    };
+    const fullResult = scoreAdvisorPrompt('widget audit flow', {
+      workspaceRoot,
+      projection: fixtureProjection,
+      includeAllCandidates: true,
+    });
+    const doctorFreeResult = scoreAdvisorPrompt('widget audit flow', {
+      workspaceRoot,
+      projection: doctorFreeFixture,
+      includeAllCandidates: true,
+    });
+
+    expect(doctorFreeResult.ambiguous).toBe(false);
+    expect(fullResult.ambiguous).toBe(doctorFreeResult.ambiguous);
   });
 });

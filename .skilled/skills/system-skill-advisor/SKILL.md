@@ -97,7 +97,7 @@ Exit codes:
 
 - When the daemon is unreachable, the CLI answers from the local Python scorer and marks the result degraded instead of failing the call.
 - `--format jsonl` renders one complete JSON payload on one stdout line. It is not streaming JSON Lines.
-- Trust resolution fails closed. A call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied. Mutation commands therefore require the maintainer path.
+- The CLI refuses a mutation unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, so mutation commands require the maintainer path. The daemon trusts what a caller asserts. A caller that asserts nothing gets `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`, which the launcher sets to trusted when it starts the daemon.
 
 **Routing phrases come from `graph-metadata.json`.** The daemon routes from each skill's `graph-metadata.json` using `intent_signals` and `derived.trigger_phrases`.
 

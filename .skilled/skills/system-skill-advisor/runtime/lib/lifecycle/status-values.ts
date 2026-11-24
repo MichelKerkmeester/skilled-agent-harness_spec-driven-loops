@@ -1,12 +1,8 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Skill Lifecycle Status Canonical Values
 // ───────────────────────────────────────────────────────────────
-// Single source of truth for the 4-value lifecycle status union
-// used by the scorer, age-haircut, supersession, and skill-derived schemas.
-// Previously each consumer hand-wrote `'active' | 'deprecated' | 'archived' |
-// 'future'` so adding a new value required touching every site. Deriving
-// types from this tuple via `typeof SKILL_LIFECYCLE_STATUS_VALUES[number]`
-// surfaces drift as a compile error at the consumer site.
+// Shared lifecycle statuses for scorer validation and age-haircut types.
+// The union and runtime predicate both derive from this tuple.
 
 export const SKILL_LIFECYCLE_STATUS_VALUES = [
   'active',

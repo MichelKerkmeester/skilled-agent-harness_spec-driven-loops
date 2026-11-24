@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 import { EventEmitter } from 'node:events';
 import net from 'node:net';
-import { mkdirSync, mkdtempSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
+import { chmodSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -12,9 +12,11 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
+const fs = require('node:fs') as typeof import('node:fs');
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const bridgeModulePath = join(repoRoot, '.skilled/bin/lib/launcher-ipc-bridge.cjs');
-const { getIpcSocketPath, resolveIpcSocketDir, maybeBridgeLeaseHolder, probeDaemon } = require(bridgeModulePath) as {
+const { checkIpcSocketOwnership, getIpcSocketPath, resolveIpcSocketDir, maybeBridgeLeaseHolder, probeDaemon } = require(bridgeModulePath) as {
+  checkIpcSocketOwnership: (socketPath: string) => string | null;
   getIpcSocketPath: (serviceName: string, options?: { dbDir?: string }) => string;
   resolveIpcSocketDir: (serviceName: string, options?: { dbDir?: string; socketDir?: string; env?: NodeJS.ProcessEnv }) => string;
   maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string; socketPath?: string }>;
@@ -82,6 +84,48 @@ function createErrorConnect(): () => FakeSocket {
     queueMicrotask(() => socket.emit('error', new Error('ECONNREFUSED')));
     return socket;
   };
+}
+
+async function listenAt(server: net.Server, socketPath: string): Promise<void> {
+  await new Promise<void>((resolvePromise, reject) => {
+    server.once('error', reject);
+    server.listen(socketPath, resolvePromise);
+  });
+}
+
+async function closeServer(server: net.Server): Promise<void> {
+  if (!server.listening) return;
+  await new Promise<void>((resolvePromise, reject) => {
+    server.close((error) => error ? reject(error) : resolvePromise());
+  });
+}
+
+function fakeStats(
+  uid: number,
+  mode: number,
+  kind: 'directory' | 'file' | 'socket' | 'symlink',
+): ReturnType<typeof fs.lstatSync> {
+  return {
+    uid,
+    mode,
+    isDirectory: () => kind === 'directory',
+    isSocket: () => kind === 'socket',
+    isSymbolicLink: () => kind === 'symlink',
+  } as ReturnType<typeof fs.lstatSync>;
+}
+
+function stubLstat(stats: Map<string, ReturnType<typeof fs.lstatSync>>): string[] {
+  const inspected: string[] = [];
+  vi.spyOn(fs, 'lstatSync').mockImplementation(((target: string | Buffer | URL) => {
+    const targetPath = resolve(String(target));
+    inspected.push(targetPath);
+    const result = stats.get(targetPath);
+    if (result) return result;
+    const error = new Error(`missing ${targetPath}`) as NodeJS.ErrnoException;
+    error.code = 'ENOENT';
+    throw error;
+  }) as typeof fs.lstatSync);
+  return inspected;
 }
 
 describe('launcher IPC bridge liveness probe', () => {
@@ -237,10 +281,15 @@ describe('launcher IPC bridge liveness probe', () => {
 
 describe('lease socketPath: stored owner path preferred over recomputed', () => {
   const tempDirs: string[] = [];
+  const servers: net.Server[] = [];
   const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
   const originalSocketScope = process.env.SPECKIT_IPC_SOCKET_SCOPE;
 
-  afterEach(() => {
+  afterEach(async () => {
+    while (servers.length > 0) {
+      const server = servers.pop();
+      if (server) await closeServer(server);
+    }
     if (originalSocketDir === undefined) delete process.env.SPECKIT_IPC_SOCKET_DIR;
     else process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
     if (originalSocketScope === undefined) delete process.env.SPECKIT_IPC_SOCKET_SCOPE;
@@ -275,7 +324,9 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
   it('bridges to the stored socketPath instead of the recomputed one', async () => {
     const ownerDir = tempDir('lease-owner-sock-');
     const storedSocket = join(ownerDir, 'daemon-ipc.sock');
-    writeFileSync(storedSocket, '');
+    const server = net.createServer();
+    servers.push(server);
+    await listenAt(server, storedSocket);
     // Divergent recompute target: a directory with no live socket, mimicking a secondary launcher's
     // worktree env. If the bridge recomputed from this dir it would report no-bridge-socket.
     const divergentDir = tempDir('lease-divergent-');
@@ -334,7 +385,9 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
   it('falls back to the recomputed socket path for a legacy lease without socketPath', async () => {
     const ownerDir = tempDir('lease-legacy-sock-');
     const recomputedSocket = join(ownerDir, 'daemon-ipc.sock');
-    writeFileSync(recomputedSocket, '');
+    const server = net.createServer();
+    servers.push(server);
+    await listenAt(server, recomputedSocket);
     // The recompute resolves SPECKIT_IPC_SOCKET_DIR -> <dir>/daemon-ipc.sock.
     process.env.SPECKIT_IPC_SOCKET_DIR = ownerDir;
 
@@ -376,6 +429,242 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
 
     expect(decision).toMatchObject({ action: 'report', reason: 'no-bridge-socket' });
     expect(bridged).toEqual([]);
+  });
+
+  it('refuses a stored path that is a regular file before probing or bridging', async () => {
+    const ownerDir = tempDir('lease-not-socket-');
+    const socketPath = join(ownerDir, 'daemon-ipc.sock');
+    writeFileSync(socketPath, 'not a socket');
+    process.env.SPECKIT_IPC_SOCKET_DIR = ownerDir;
+    const connect = vi.fn(createAliveConnect());
+    const bridge = vi.fn();
+
+    const decision = await maybeBridgeLeaseHolder({
+      serviceName: 'system-skill-advisor',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z', socketPath },
+      loggerPrefix: 'test-launcher',
+      connect,
+      bridge,
+      probeTimeoutMs: 100,
+    });
+
+    expect(decision).toMatchObject({ action: 'report', reason: 'socket-not-owned', socketPath });
+    expect(connect).not.toHaveBeenCalled();
+    expect(bridge).not.toHaveBeenCalled();
+  });
+});
+
+describe('checkIpcSocketOwnership', () => {
+  const tempDirs: string[] = [];
+  const servers: net.Server[] = [];
+  const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
+  const originalSocketScope = process.env.SPECKIT_IPC_SOCKET_SCOPE;
+  const originalGetuidDescriptor = Object.getOwnPropertyDescriptor(process, 'getuid');
+
+  afterEach(async () => {
+    while (servers.length > 0) {
+      const server = servers.pop();
+      if (server) await closeServer(server);
+    }
+    if (originalSocketDir === undefined) delete process.env.SPECKIT_IPC_SOCKET_DIR;
+    else process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+    if (originalSocketScope === undefined) delete process.env.SPECKIT_IPC_SOCKET_SCOPE;
+    else process.env.SPECKIT_IPC_SOCKET_SCOPE = originalSocketScope;
+    if (originalGetuidDescriptor) Object.defineProperty(process, 'getuid', originalGetuidDescriptor);
+    else delete (process as NodeJS.Process & { getuid?: () => number }).getuid;
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) rmSync(dir, { recursive: true, force: true });
+    }
+    vi.restoreAllMocks();
+  });
+
+  function tempDir(prefix: string): string {
+    const dir = mkdtempSync(join(tmpdir(), prefix));
+    tempDirs.push(dir);
+    return dir;
+  }
+
+  it('refuses a scope directory owned by another uid', () => {
+    const sharedDir = '/tmp/system-skill-advisor';
+    const scopeDir = join(sharedDir, 'abcdef012345');
+    const socketPath = join(scopeDir, 'daemon-ipc.sock');
+    process.env.SPECKIT_IPC_SOCKET_DIR = sharedDir;
+    vi.spyOn(process, 'getuid').mockReturnValue(501);
+    const inspected = stubLstat(new Map([
+      [resolve(sharedDir), fakeStats(501, 0o40700, 'directory')],
+      [resolve(scopeDir), fakeStats(502, 0o40700, 'directory')],
+    ]));
+
+    expect(checkIpcSocketOwnership(socketPath)).toContain(`${scopeDir} owned by uid 502, not 501`);
+    expect(inspected).toEqual([resolve(sharedDir), resolve(scopeDir)]);
+  });
+
+  it('checks ownership of the shared parent before the scoped directory', () => {
+    const sharedDir = '/tmp/system-skill-advisor';
+    const scopeDir = join(sharedDir, 'abcdef012345');
+    const socketPath = join(scopeDir, 'daemon-ipc.sock');
+    process.env.SPECKIT_IPC_SOCKET_DIR = sharedDir;
+    vi.spyOn(process, 'getuid').mockReturnValue(501);
+    const inspected = stubLstat(new Map([
+      [resolve(sharedDir), fakeStats(502, 0o40700, 'directory')],
+      [resolve(scopeDir), fakeStats(501, 0o40700, 'directory')],
+    ]));
+
+    expect(checkIpcSocketOwnership(socketPath)).toContain(`${sharedDir} owned by uid 502, not 501`);
+    expect(inspected).toEqual([resolve(sharedDir)]);
+  });
+
+  it.each([
+    { mode: 0o770, label: 'group-writable' },
+    { mode: 0o777, label: 'world-writable' },
+  ])('refuses a $label socket directory before probing', async ({ mode }) => {
+    const socketDir = tempDir('socket-open-mode-');
+    const socketPath = join(socketDir, 'daemon-ipc.sock');
+    process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+    const server = net.createServer();
+    servers.push(server);
+    await listenAt(server, socketPath);
+    chmodSync(socketDir, mode);
+    const connect = vi.fn(createAliveConnect());
+    const bridge = vi.fn();
+
+    const decision = await maybeBridgeLeaseHolder({
+      serviceName: 'system-skill-advisor',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z', socketPath },
+      loggerPrefix: 'test-launcher',
+      connect,
+      bridge,
+      probeTimeoutMs: 100,
+    });
+
+    expect(decision).toMatchObject({ action: 'report', reason: 'socket-not-owned', socketPath });
+    expect(connect).not.toHaveBeenCalled();
+    expect(bridge).not.toHaveBeenCalled();
+  });
+
+  it('refuses a socket directory reached through a symlink before probing', async () => {
+    const parentDir = tempDir('socket-symlink-');
+    const realDir = join(parentDir, 'real');
+    const linkedDir = join(parentDir, 'linked');
+    mkdirSync(realDir, { mode: 0o700 });
+    symlinkSync(realDir, linkedDir);
+    const realSocketPath = join(realDir, 'daemon-ipc.sock');
+    const socketPath = join(linkedDir, 'daemon-ipc.sock');
+    const server = net.createServer();
+    servers.push(server);
+    await listenAt(server, realSocketPath);
+    process.env.SPECKIT_IPC_SOCKET_DIR = linkedDir;
+    const connect = vi.fn(createAliveConnect());
+    const bridge = vi.fn();
+
+    const decision = await maybeBridgeLeaseHolder({
+      serviceName: 'system-skill-advisor',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z', socketPath },
+      loggerPrefix: 'test-launcher',
+      connect,
+      bridge,
+      probeTimeoutMs: 100,
+    });
+
+    expect(decision).toMatchObject({ action: 'report', reason: 'socket-not-owned', socketPath });
+    expect(connect).not.toHaveBeenCalled();
+    expect(bridge).not.toHaveBeenCalled();
+  });
+
+  it('rejects a regular file at the socket path', () => {
+    const socketDir = tempDir('socket-file-');
+    const socketPath = join(socketDir, 'daemon-ipc.sock');
+    process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+    writeFileSync(socketPath, 'not a socket');
+
+    expect(checkIpcSocketOwnership(socketPath)).toContain(`not a socket: ${socketPath}`);
+  });
+
+  it('rejects a symlink at the socket path', () => {
+    const socketDir = tempDir('socket-node-symlink-');
+    const socketPath = join(socketDir, 'daemon-ipc.sock');
+    process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+    symlinkSync(join(socketDir, 'target.sock'), socketPath);
+
+    expect(checkIpcSocketOwnership(socketPath)).toContain(`symlink at ${socketPath}`);
+  });
+
+  it('accepts a socket in the current user’s private directory', async () => {
+    const socketDir = tempDir('socket-owned-');
+    const socketPath = join(socketDir, 'daemon-ipc.sock');
+    process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+    const server = net.createServer();
+    servers.push(server);
+    await listenAt(server, socketPath);
+
+    expect(checkIpcSocketOwnership(socketPath)).toBeNull();
+  });
+
+  it('checks only the worktree socket directory and does not walk into its home parent', () => {
+    const fakeHome = tempDir('fake-home-');
+    const sharedDir = join(fakeHome, '.spk-wt-sock');
+    const socketDir = join(sharedDir, 'claude-x');
+    mkdirSync(socketDir, { recursive: true });
+    process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+    const inspected: string[] = [];
+    const originalLstatSync = fs.lstatSync;
+    vi.spyOn(fs, 'lstatSync').mockImplementation(((target: string | Buffer | URL) => {
+      const targetPath = resolve(String(target));
+      inspected.push(targetPath);
+      return originalLstatSync(target as string);
+    }) as typeof fs.lstatSync);
+
+    expect(checkIpcSocketOwnership(join(socketDir, 'daemon-ipc.sock'))).toBeNull();
+    expect(inspected).toContain(resolve(socketDir));
+    expect(inspected).not.toContain(resolve('/tmp'));
+    expect(inspected).not.toContain(resolve(fakeHome));
+    expect(inspected).not.toContain(resolve(sharedDir));
+  });
+
+  it('checks the shared parent and scope without walking higher directories', () => {
+    const sharedDir = '/tmp/system-skill-advisor';
+    const scopeDir = join(sharedDir, 'abcdef012345');
+    const socketPath = join(scopeDir, 'daemon-ipc.sock');
+    const fakeHome = '/tmp/fake-home';
+    process.env.SPECKIT_IPC_SOCKET_DIR = sharedDir;
+    vi.spyOn(process, 'getuid').mockReturnValue(501);
+    const inspected = stubLstat(new Map([
+      [resolve(sharedDir), fakeStats(501, 0o40700, 'directory')],
+      [resolve(scopeDir), fakeStats(501, 0o40700, 'directory')],
+      [resolve(socketPath), fakeStats(501, 0o140755, 'socket')],
+    ]));
+
+    expect(checkIpcSocketOwnership(socketPath)).toBeNull();
+    expect(inspected).toContain(resolve(sharedDir));
+    expect(inspected).toContain(resolve(scopeDir));
+    expect(inspected).toContain(resolve(socketPath));
+    expect(inspected).not.toContain(resolve('/tmp'));
+    expect(inspected).not.toContain(resolve(fakeHome));
+    expect(inspected.some((targetPath) => targetPath.includes('.spk-wt-sock'))).toBe(false);
+  });
+
+  it('does not inspect paths for a tcp endpoint', () => {
+    const lstat = vi.spyOn(fs, 'lstatSync');
+
+    expect(checkIpcSocketOwnership('tcp://127.0.0.1:65535')).toBeNull();
+    expect(lstat).not.toHaveBeenCalled();
+  });
+
+  it('does not inspect paths when the platform has no uid lookup', () => {
+    const lstat = vi.spyOn(fs, 'lstatSync');
+    Object.defineProperty(process, 'getuid', { configurable: true, value: undefined });
+
+    expect(checkIpcSocketOwnership('/tmp/system-skill-advisor/daemon-ipc.sock')).toBeNull();
+    expect(lstat).not.toHaveBeenCalled();
+  });
+
+  it('allows an absent socket path and an absent socket directory', () => {
+    const socketDir = tempDir('socket-missing-node-');
+    process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+
+    expect(checkIpcSocketOwnership(join(socketDir, 'daemon-ipc.sock'))).toBeNull();
+    expect(checkIpcSocketOwnership(join(socketDir, 'missing', 'daemon-ipc.sock'))).toBeNull();
   });
 });
 

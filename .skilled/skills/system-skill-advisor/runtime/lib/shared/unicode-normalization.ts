@@ -1,9 +1,9 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: UNICODE NORMALIZATION (LOCAL DUPLICATE)
 // ───────────────────────────────────────────────────────────────────
-// Duplicated from system-spec-kit/shared/unicode-normalization.ts for full skill isolation.
-// Drift is watched by .github/workflows/isolation-check.yml's
-// reverse-direction audit (any new cross-skill import fails CI).
+// Copied from system-spec-kit/shared/unicode-normalization.ts. No CI job or
+// test compares the two copies, so a fix to either one has to be carried to
+// the other by hand.
 //
 // Do NOT add new imports from system-spec-kit here. Duplicate locally instead.
 

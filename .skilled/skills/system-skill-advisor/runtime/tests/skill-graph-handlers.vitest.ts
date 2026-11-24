@@ -127,4 +127,123 @@ describe('skill graph handlers', () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it('keeps every skill and edge outside a one-skill scan root', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-handlers-'));
+    const workspace = join(root, 'workspace');
+    const skillRoot = join(workspace, '.skilled', 'skills');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      vi.spyOn(process, 'cwd').mockReturnValue(workspace);
+      initDb(join(root, 'db'));
+      writeGraphMetadata(skillRoot, 'alpha', {
+        depends_on: [{ target: 'beta', weight: 0.8, context: 'alpha uses beta' }],
+      });
+      writeGraphMetadata(skillRoot, 'alpha-two', {
+        depends_on: [{ target: 'alpha', weight: 0.85, context: 'alpha-two uses alpha' }],
+      });
+      writeGraphMetadata(skillRoot, 'beta', {
+        enhances: [{ target: 'alpha', weight: 0.5, context: 'beta complements alpha' }],
+      });
+      writeGraphMetadata(skillRoot, 'gamma');
+
+      const fullScan = parsePayload(await runWithCallerContext(
+        trustedCaller(),
+        () => handleSkillGraphScan({}),
+      ));
+      expect(fullScan.status).toBe('ok');
+      expect(fullScan.data).toMatchObject({ indexedNodes: 4, indexedEdges: 3, rejectedEdges: 0 });
+      expect(getDb().prepare(`
+        SELECT source_id, target_id, edge_type, weight
+        FROM skill_edges
+        ORDER BY source_id, target_id, edge_type
+      `).all()).toEqual([
+        { source_id: 'alpha', target_id: 'beta', edge_type: 'depends_on', weight: 0.8 },
+        { source_id: 'alpha-two', target_id: 'alpha', edge_type: 'depends_on', weight: 0.85 },
+        { source_id: 'beta', target_id: 'alpha', edge_type: 'enhances', weight: 0.5 },
+      ]);
+
+      writeGraphMetadata(skillRoot, 'alpha', {
+        depends_on: [{ target: 'beta', weight: 0.9, context: 'alpha uses beta' }],
+      });
+      const narrowScan = parsePayload(await runWithCallerContext(
+        trustedCaller(),
+        () => handleSkillGraphScan({ skillsRoot: '.skilled/skills/alpha' }),
+      ));
+
+      expect(narrowScan.status).toBe('ok');
+      expect(narrowScan.data).toMatchObject({
+        scannedFiles: 1,
+        indexedFiles: 1,
+        deletedNodes: 0,
+        rejectedEdges: 0,
+      });
+      expect(getDb().prepare('SELECT id FROM skill_nodes ORDER BY id').all()).toEqual([
+        { id: 'alpha' },
+        { id: 'alpha-two' },
+        { id: 'beta' },
+        { id: 'gamma' },
+      ]);
+      expect(getDb().prepare(`
+        SELECT source_id, target_id, edge_type, weight
+        FROM skill_edges
+        ORDER BY source_id, target_id, edge_type
+      `).all()).toEqual([
+        { source_id: 'alpha', target_id: 'beta', edge_type: 'depends_on', weight: 0.9 },
+        { source_id: 'alpha-two', target_id: 'alpha', edge_type: 'depends_on', weight: 0.85 },
+        { source_id: 'beta', target_id: 'alpha', edge_type: 'enhances', weight: 0.5 },
+      ]);
+      expect(warn).not.toHaveBeenCalled();
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('deletes a removed skill only when the scan root covers its source', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-handlers-'));
+    const workspace = join(root, 'workspace');
+    const skillRoot = join(workspace, '.skilled', 'skills');
+
+    try {
+      vi.spyOn(process, 'cwd').mockReturnValue(workspace);
+      initDb(join(root, 'db'));
+      writeGraphMetadata(skillRoot, 'alpha');
+      writeGraphMetadata(skillRoot, 'gamma', {
+        depends_on: [{ target: 'alpha', weight: 0.8, context: 'gamma uses alpha' }],
+      });
+
+      const fullScan = parsePayload(await runWithCallerContext(
+        trustedCaller(),
+        () => handleSkillGraphScan({}),
+      ));
+      expect(fullScan.data).toMatchObject({ indexedNodes: 2, indexedEdges: 1, deletedNodes: 0 });
+      rmSync(join(skillRoot, 'gamma'), { recursive: true, force: true });
+
+      const narrowScan = parsePayload(await runWithCallerContext(
+        trustedCaller(),
+        () => handleSkillGraphScan({ skillsRoot: '.skilled/skills/alpha' }),
+      ));
+      expect(narrowScan.data).toMatchObject({ deletedNodes: 0 });
+      expect(getDb().prepare('SELECT id FROM skill_nodes ORDER BY id').all()).toEqual([
+        { id: 'alpha' },
+        { id: 'gamma' },
+      ]);
+      expect(getDb().prepare('SELECT source_id, target_id FROM skill_edges').all()).toEqual([
+        { source_id: 'gamma', target_id: 'alpha' },
+      ]);
+
+      const finalScan = parsePayload(await runWithCallerContext(
+        trustedCaller(),
+        () => handleSkillGraphScan({}),
+      ));
+      expect(finalScan.data).toMatchObject({ deletedNodes: 1 });
+      expect(getDb().prepare('SELECT id FROM skill_nodes').all()).toEqual([{ id: 'alpha' }]);
+      expect(getDb().prepare('SELECT COUNT(*) AS count FROM skill_edges').get()).toEqual({ count: 0 });
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

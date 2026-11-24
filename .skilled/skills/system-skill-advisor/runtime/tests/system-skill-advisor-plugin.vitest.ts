@@ -19,6 +19,7 @@ vi.mock('node:child_process', () => ({
 import * as skillAdvisorPlugin from '../../../../../.opencode/plugins/system-skill-advisor.js';
 import * as skillAdvisorRender from '../../../../../.opencode/plugins/lib/skill-advisor-render.js';
 import { renderAdvisorFallbackDirective } from '../lib/render.js';
+import { ADVISOR_PROMPT_MAX_CHARS } from '../schemas/advisor-tool-schemas.js';
 import { SETUP_WORDING as HOOK_SETUP_WORDING } from '../../hooks/claude/user-prompt-submit.js';
 
 const MkSkillAdvisorPlugin = skillAdvisorPlugin.default.factory;
@@ -713,7 +714,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
 
     const clampedPrompt = cliPromptAt(0);
     expect(Buffer.byteLength(clampedPrompt, 'utf8')).toBeLessThanOrEqual(DEFAULT_MAX_PROMPT_BYTES);
-    expect(clampedPrompt.length).toBeLessThan(prompt.length);
+    expect(clampedPrompt.length).toBe(ADVISOR_PROMPT_MAX_CHARS);
   });
 
   // The plugin knows the session's workspace, so it passes the surface its root markers

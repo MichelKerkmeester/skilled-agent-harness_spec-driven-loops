@@ -107,6 +107,7 @@ interface BridgeModule {
   readonly getIpcSocketPath: (serviceName: string, options?: { dbDir?: string }) => string;
   readonly maybeBridgeLeaseHolder: (options: unknown) => unknown;
   readonly probeDaemon: (socketPath: string, options?: { timeoutMs?: number; deepProbe?: boolean }) => Promise<BridgeProbeResult>;
+  readonly checkIpcSocketOwnership: (socketPath: string) => string | null;
   readonly toConnectionOptions: (socketPath: string) => string | net.NetConnectOpts;
 }
 
@@ -250,6 +251,7 @@ function loadBridge(paths: RepoPaths): BridgeModule {
     typeof bridge.getIpcSocketPath !== 'function'
     || typeof bridge.maybeBridgeLeaseHolder !== 'function'
     || typeof bridge.probeDaemon !== 'function'
+    || typeof bridge.checkIpcSocketOwnership !== 'function'
     || typeof bridge.toConnectionOptions !== 'function'
   ) {
     throw new CliProtocolError('launcher IPC bridge does not expose the expected helper contract');
@@ -990,6 +992,7 @@ function renderJobText(toolName: string, payload: unknown): string | null {
       `indexedFiles: ${String(scan.indexedFiles ?? 'unknown')}`,
       `indexedEdges: ${String(scan.indexedEdges ?? 'unknown')}`,
       `rejectedEdges: ${String(scan.rejectedEdges ?? 'unknown')}`,
+      `deletedNodes: ${String(scan.deletedNodes ?? 'unknown')}`,
     ].join('\n');
   }
 
@@ -1095,10 +1098,6 @@ function ensureSocketEnvironment(): void {
   const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
   if (!socketDir || socketDir.startsWith('tcp://')) return;
   mkdirSync(socketDir, { recursive: true, mode: 0o700 });
-  const stat = statSync(socketDir);
-  if ((stat.mode & 0o022) !== 0) {
-    throw new CliProtocolError(`IPC socket directory is group/world-writable: ${socketDir}`);
-  }
 }
 
 function sleep(ms: number): Promise<void> {
@@ -1366,12 +1365,21 @@ async function callTool(toolName: string, args: Record<string, unknown>, timeout
   if (socketPathTooLong(socketPath)) {
     throw new CliProtocolError(`IPC socket path exceeds the Darwin sun_path limit: ${socketPath}`);
   }
+  const initialRefusal = bridge.checkIpcSocketOwnership(socketPath);
+  if (initialRefusal) {
+    throw new CliRetryableError(`backend unavailable: socket not trusted: ${initialRefusal}`);
+  }
 
   // advisor_recommend carries a local-scorer fallback, so it starts the daemon and waits
   // for it only within the bounded cold-start window; the local scorer still answers if
   // that window closes. Tools without a fallback keep the caller's full timeout: for them
   // the daemon is the only answer.
   await ensureDaemonReady(socketPath, bridge, paths, timeoutMs, warmOnly, toolName === 'advisor_recommend');
+
+  const connectRefusal = bridge.checkIpcSocketOwnership(socketPath);
+  if (connectRefusal) {
+    throw new CliRetryableError(`backend unavailable: socket not trusted: ${connectRefusal}`);
+  }
 
   const client = await JsonRpcSocketClient.connect(socketPath, bridge, timeoutMs);
   try {
@@ -1688,6 +1696,7 @@ export const __testing = {
   invokeWithRetry,
   liveDaemonPredatesBuild,
   renderCompletion,
+  renderJobText,
   renderToolList,
   resolvePropertyName,
   validateCommand,

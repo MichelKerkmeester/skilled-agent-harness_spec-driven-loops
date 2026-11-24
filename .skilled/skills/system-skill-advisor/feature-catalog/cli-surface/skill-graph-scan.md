@@ -7,7 +7,7 @@ trigger_phrases:
   - "index skill graph metadata"
   - "sqlite-backed skill graph"
   - "refresh skill relationships"
-version: 0.8.0.10
+version: 0.8.1.0
 ---
 
 # Skill graph scan
@@ -27,6 +27,8 @@ relationships before structural skill queries.
 Current runtime behavior is documented in the source files below.
 
 `skill_graph_scan` mutates advisor state, so the CLI refuses the call unless the caller passes `--trusted` or sets `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` in the environment. An untrusted call exits 64 with the message `skill_graph_scan requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. Example: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text`.
+
+A narrow `skillsRoot` re-indexes only the skills under that root. It deletes only graph rows whose stored source lies under the root. Text output includes `deletedNodes`.
 
 ---
 

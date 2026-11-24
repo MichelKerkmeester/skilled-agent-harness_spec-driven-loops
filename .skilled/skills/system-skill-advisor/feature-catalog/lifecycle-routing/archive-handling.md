@@ -6,7 +6,7 @@ trigger_phrases:
   - "z_archive skills"
   - "z_future skills"
   - "indexed but not routed"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Archive and Future Skills Indexed But Not Routed
@@ -54,5 +54,3 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 Related references:
 
 - [`auto-indexing/df-idf-corpus.md`](../../feature-catalog/auto-indexing/df-idf-corpus.md).
-- [02-supersession.md](./supersession.md).
-- [04-schema-migration.md](../../feature-catalog/lifecycle-routing/schema-migration.md).

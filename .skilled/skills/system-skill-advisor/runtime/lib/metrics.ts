@@ -3,12 +3,13 @@
 // ───────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync } from 'node:fs';
-import { appendFile, chmod, mkdir, rename, unlink, writeFile } from 'node:fs/promises';
+import { constants, existsSync, readFileSync } from 'node:fs';
+import { chmod, mkdir, open, rename, unlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 
 import { ADVISOR_RUNTIME_VALUES } from './advisor-runtime-values.js';
+import { isOwnedPrivateDir } from './owned-private-dir.js';
 
 import type {
   AdvisorHookFreshness,
@@ -169,10 +170,14 @@ const MAX_HEALTH_RECORDS = 30;
 const MAX_DURABLE_DIAGNOSTIC_RECORDS = 200;
 const MAX_DURABLE_OUTCOME_RECORDS = 200;
 const DURABLE_METRICS_ROOT = join(tmpdir(), 'speckit-skill-advisor-metrics');
-// The logs record which skills a user works with, so only that user may read them.
+// The logs record which skills a user works with, so only that user may read them,
+// and the store skips a write it cannot keep that way.
 const PRIVATE_DIR_MODE = 0o700;
 const PRIVATE_FILE_MODE = 0o600;
-const securedLogPaths = new Set<string>();
+const APPEND_NO_FOLLOW = constants.O_APPEND
+  | constants.O_CREAT
+  | constants.O_WRONLY
+  | (constants.O_NOFOLLOW ?? 0);
 let dirReady = false;
 const writeQueues = new Map<string, Promise<void>>();
 
@@ -255,23 +260,56 @@ function percentile(values: readonly number[], percentileValue: number): number 
   return Number(sorted[index]?.toFixed(3) ?? 0);
 }
 
-async function ensureParentDir(path: string): Promise<void> {
-  if (!dirReady) {
-    const dir = dirname(path);
+async function privateDirReady(dir: string): Promise<boolean> {
+  if (dirReady) return true;
+  try {
     await mkdir(dir, { recursive: true, mode: PRIVATE_DIR_MODE });
-    // mkdir keeps an existing directory's mode, so tighten one an older writer created.
-    // Only a chmod that succeeded marks the directory ready, so a failed one is
-    // retried on the next write.
-    dirReady = await chmod(dir, PRIVATE_DIR_MODE).then(() => true, () => false);
+    if (!isOwnedPrivateDir(dir, 0)) return false;
+    if (!isOwnedPrivateDir(dir)) {
+      const tightened = await chmod(dir, PRIVATE_DIR_MODE).then(() => true, () => false);
+      if (!tightened) return false;
+    }
+    dirReady = isOwnedPrivateDir(dir);
+    return dirReady;
+  } catch {
+    return false;
   }
 }
 
-// appendFile applies its mode only when it creates the file, so tighten an older log.
-// Only a chmod that succeeded is remembered, so a failed one is retried on the next write.
-async function securePrivateLog(path: string): Promise<void> {
-  if (securedLogPaths.has(path)) return;
-  if (await chmod(path, PRIVATE_FILE_MODE).then(() => true, () => false)) {
-    securedLogPaths.add(path);
+async function appendPrivateLine(path: string, text: string): Promise<boolean> {
+  let handle: Awaited<ReturnType<typeof open>>;
+  try {
+    handle = await open(path, APPEND_NO_FOLLOW, PRIVATE_FILE_MODE);
+  } catch (error) {
+    if (
+      typeof error === 'object'
+      && error !== null
+      && 'code' in error
+      && (error.code === 'ELOOP' || error.code === 'EMLINK')
+    ) {
+      return false;
+    }
+    throw error;
+  }
+
+  try {
+    const stat = await handle.stat();
+    if (
+      !stat.isFile()
+      || stat.nlink !== 1
+      || (typeof process.getuid === 'function' && stat.uid !== process.getuid())
+    ) {
+      return false;
+    }
+    try {
+      await handle.chmod(PRIVATE_FILE_MODE);
+    } catch {
+      return false;
+    }
+    await handle.appendFile(text, 'utf8');
+    return true;
+  } finally {
+    await handle.close();
   }
 }
 
@@ -300,19 +338,22 @@ async function writeBoundedJsonl(path: string, line: string, maxRecords: number,
   if (options.requireDebug !== false && !process.env.SKILL_ADVISOR_DEBUG) return;
   const previous = writeQueues.get(path) ?? Promise.resolve();
   const next = previous.then(async () => {
-    await ensureParentDir(path);
+    if (!(await privateDirReady(dirname(path)))) return;
     // O_APPEND of one sub-PIPE_BUF line is atomic, so the add never loses a record
     // under concurrency. Bounding stays correct under the same per-path queue: trim
     // only once the file drifts past 1.5x the cap, so the common path is a cheap
     // append and the read-trim-rewrite amortizes to once per ~0.5*maxRecords writes.
-    await appendFile(path, `${line}\n`, { encoding: 'utf8', mode: PRIVATE_FILE_MODE });
-    await securePrivateLog(path);
+    if (!(await appendPrivateLine(path, `${line}\n`))) return;
     if (maxRecords > 0) {
       const lines = readJsonlLines(path);
       if (lines.length > Math.floor(maxRecords * 1.5)) {
         const temporaryPath = `${path}.${process.pid}.${Date.now()}.tmp`;
         // Rename swaps atomically, so a crash mid-trim leaves the old log instead of a truncated one.
-        await writeFile(temporaryPath, `${lines.slice(-maxRecords).join('\n')}\n`, { encoding: 'utf8', mode: PRIVATE_FILE_MODE });
+        await writeFile(
+          temporaryPath,
+          `${lines.slice(-maxRecords).join('\n')}\n`,
+          { encoding: 'utf8', flag: 'wx', mode: PRIVATE_FILE_MODE },
+        );
         try {
           await rename(temporaryPath, path);
         } catch (error) {

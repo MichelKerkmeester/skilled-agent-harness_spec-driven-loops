@@ -51,7 +51,7 @@ tools/
 | `advisor-status.ts` | Defines the `advisor_status` workspace-root schema. |
 | `advisor-rebuild.ts` | Defines the explicit rebuild descriptor and optional `force` flag. |
 | `advisor-validate.ts` | Defines the heavy validation descriptor with `confirmHeavyRun: true`. |
-| `advisor-contract-keys.ts` | Keeps selected descriptor property keys aligned with schema consumers. |
+| `advisor-contract-keys.ts` | Key tuples that type the `advisor_recommend` and `advisor_validate` descriptor properties. |
 | `skill-graph-tools.ts` | Defines `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` and `skill_graph_propagate_enhances`. |
 | `types.ts` | Defines the local `ToolDefinition` contract. |
 

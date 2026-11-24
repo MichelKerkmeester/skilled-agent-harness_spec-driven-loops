@@ -11,6 +11,10 @@ import {
 } from './render.js';
 
 const requireOwnerModule = createRequire(import.meta.url);
+const GATE_QUESTION_OWNER_CANDIDATES = [
+  '../../../system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs',
+  '../../../../../system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs',
+] as const;
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -201,14 +205,20 @@ export interface ActivationDeliveryEvidence {
 const POLICY_OBSERVATION_SINK: PolicyObservationRecord[] = [];
 
 function currentGateQuestion(): string | undefined {
-  try {
-    const owner = requireOwnerModule(
-      '../../../system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs',
-    ) as { GATE_3_QUESTION?: unknown };
-    return typeof owner.GATE_3_QUESTION === 'string' ? owner.GATE_3_QUESTION : undefined;
-  } catch {
-    return undefined;
+  let lastError: unknown;
+  let lastPath: string | undefined;
+  for (const ownerPath of GATE_QUESTION_OWNER_CANDIDATES) {
+    try {
+      const owner = requireOwnerModule(ownerPath) as { GATE_3_QUESTION?: unknown };
+      return typeof owner.GATE_3_QUESTION === 'string' ? owner.GATE_3_QUESTION : undefined;
+    } catch (error: unknown) {
+      lastError = error;
+      lastPath = ownerPath;
+    }
   }
+  const detail = lastError instanceof Error ? lastError.message : String(lastError);
+  console.warn('[policy-plan] Failed to load Gate question owner from ' + lastPath + ': ' + detail);
+  return undefined;
 }
 
 export const POLICY_BLOCK_REGISTRY: readonly PolicyBlockDefinition[] = Object.freeze([
