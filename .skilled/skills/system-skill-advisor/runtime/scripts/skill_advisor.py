@@ -4135,11 +4135,11 @@ _WORKFLOW_OWNER_EVIDENCE_SUFFIXES = ("(signal)", "(phrase)", "(keyword)", "(expl
 # A loop word beside "research" or "review" asks for the deep-loop workflow; the
 # same research-loop and review-loop checks the native explicit lane runs.
 _RESEARCH_LOOP_RE = re.compile(
-    r"\b(continue|resume|launch|kick off|overnight|convergence|multi-pass|loop)\b"
+    r"\b(continue|resume|launch|kick off|overnight|convergence|multi-pass|loops?)\b"
 )
 _REVIEW_LOOP_RE = re.compile(
     r"\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b"
-    r"|\b(convergence|multi-pass|loop)\b"
+    r"|\b(convergence|multi-pass|loops?)\b"
 )
 # The native scorer floors a skill with that explicit evidence at this
 # confidence, so a loop request lifts the deep-loop owner to the same value. Its

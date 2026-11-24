@@ -454,14 +454,14 @@ export function scoreExplicitLane(
   const passesAsked = (MULTI_PASS.test(lower) || LOOP_COUNT.test(lower) || ITERATIVE_ASK.test(lower))
     && (asksForLoopRun(lower) || isStuckRunComplaint(lower));
   const researchLoop = !writingAboutLoop
-    && (/\b(continue|resume|launch|kick off|overnight|convergence|multi-pass|loop)\b/.test(lower) || passesAsked) && /\bresearch\b/.test(lower);
+    && (/\b(continue|resume|launch|kick off|overnight|convergence|multi-pass|loops?)\b/.test(lower) || passesAsked) && /\bresearch\b/.test(lower);
   if (researchLoop) {
     push(scores, 'system-deep-loop', 0.85, 'research-loop');
   }
   // A loop verb counts only when it governs the review ("resume the active
   // deep-review"); a resume or start elsewhere in a review prompt is a topic.
   const reviewLoop = !writingAboutLoop
-    && (/\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|multi-pass|loop)\b/.test(lower) || passesAsked) && /\breview\b/.test(lower);
+    && (/\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|multi-pass|loops?)\b/.test(lower) || passesAsked) && /\breview\b/.test(lower);
   if (reviewLoop) {
     push(scores, 'system-deep-loop', 0.85, 'review-loop');
     // An iteration count or a request for several passes asks for the loop
