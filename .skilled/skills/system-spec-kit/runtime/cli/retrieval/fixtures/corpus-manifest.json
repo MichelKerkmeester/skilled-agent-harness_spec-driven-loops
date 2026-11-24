@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1dcbd0e79353b6876789d2bdd352fef49dc2285abf855bd7d9a0a6b210c82ea2",
+  "corpusHash": "bf5cb87b89a3efa22fbb5dd85802ea91fcb2114ceb031e5993d67d7b4e7c0ffd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29591,
+  "includedPathCount": 29605,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20604,6 +20604,20 @@
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T044309Z/prompts/iteration-1.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/fanout-attribution.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T095434Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T095434Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T111600Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T111600Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T181420Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T181420Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T190150Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T190150Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T195839Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T195839Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T203829Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T203829Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T214500Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T214500Z/review-report.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/fanout-attribution.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/review-report.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
@@ -29623,7 +29637,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d298ad9ce8fed3491f8f0acb07657b217445aa0a1ecd544c278a55a395751b37",
+  "manifestHash": "8b4b4e2fd1969162aeed61ffae0dfc62878a48d6e81a5f45514448ca6456c183",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38795,6 +38809,34 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T095434Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T111600Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T181420Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T190150Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T195839Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T203829Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T214500Z/lineages",
       "reason": "excluded directory"
     },
     {
