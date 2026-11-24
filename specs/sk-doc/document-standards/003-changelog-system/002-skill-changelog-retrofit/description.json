@@ -14,7 +14,7 @@
     "canonical",
     "exemplar"
   ],
-  "lastUpdated": "2026-11-13T10:04:51.664Z",
+  "lastUpdated": "2026-11-24T18:38:11.882Z",
   "specId": "002",
   "folderSlug": "skill-changelog-retrofit",
   "parentChain": [
@@ -22,9 +22,8 @@
     "document-standards",
     "003-changelog-system"
   ],
-  "memorySequence": 35,
+  "memorySequence": 36,
   "memoryNameHistory": [
-    "25-09-26_21-12__stopping-here-per-claude-claude-md-under-context.md",
     "25-09-26_22-09__the-background-tasks-are-all-progressing-so-i-m.md",
     "26-09-26_00-10__the-goal-is-still-active-and-nothing-in-it-has.md",
     "26-09-26_02-11__the-goal-is-still-active-its-text-is-unchanged.md",
@@ -43,6 +42,7 @@
     "26-09-26_08-44__still-held-waiting-on-your-1a-2a.md",
     "26-09-26_08-44__still-held-waiting-on-your-1a-2a.md",
     "26-09-26_08-45__still-held-waiting-on-your-1a-2a.md",
-    "26-09-26_08-45__still-held-waiting-on-your-1a-2a.md"
+    "26-09-26_08-45__still-held-waiting-on-your-1a-2a.md",
+    "24-11-26_19-38__deleted-the-cli-orca-spec-track-and-every-sk-doc.md"
   ]
 }

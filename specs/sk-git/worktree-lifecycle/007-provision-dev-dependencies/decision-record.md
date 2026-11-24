@@ -36,6 +36,7 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Open a separate sk-git packet for the worktree dev-dependency provisioning bug. | Not stated. | None | spec.md section 2 |
 | Q002 | Find the root cause, fix it, add a test and validate in this session; commit and push only after approval. | Not stated. | None | spec.md REQ-001 to REQ-003, tasks.md T003-T007 |
+| Q003 | Fix the sk-git SKILL.md line that called both create and provision idempotent, push it, then remove worktree 536. | Not stated. | none | T010, tasks.md; sk-git SKILL.md v1.11.14.0; changelog/v1.11.14.0.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -81,6 +82,25 @@ Open packet only
 Answer:
 ```text
 Open packet and fix (Recommended)
+```
+
+### Q003
+<!-- source: claude:ff6a7339-90f8-496d-b18b-2c3b56947423:toolu_011bxxp6vYLbfEGt3iep9Vzz:0 -->
+
+Question:
+```text
+The recheck confirms all 8 earlier findings are resolved. It found one new, older P1: sk-git SKILL.md:156 says `worktree-naming.sh create` and `provision` are 'both idempotent', but every `create` allocates a new worktree. Only `provision` is idempotent (critic-confirmed at worktree-naming.sh:412/416). Fix it before removing worktree 536?
+```
+
+Options:
+```text
+Fix, push, then clean up (Recommended)
+Leave it, clean up now
+```
+
+Answer:
+```text
+Fix, push, then clean up (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

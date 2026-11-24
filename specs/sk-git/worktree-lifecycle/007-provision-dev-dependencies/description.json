@@ -13,15 +13,16 @@
     "same-named",
     "dependency"
   ],
-  "lastUpdated": "2026-11-24T13:35:49.498Z",
+  "lastUpdated": "2026-11-24T18:39:55.926Z",
   "specId": "007",
   "folderSlug": "provision-dev-dependencies",
   "parentChain": [
     "sk-git",
     "worktree-lifecycle"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "24-11-26_14-35__opened-and-fixed-the-worktree-provisioning-bug.md"
+    "24-11-26_14-35__opened-and-fixed-the-worktree-provisioning-bug.md",
+    "24-11-26_19-39__recorded-the-operator-s-choice-to-fix-the-sk-git.md"
   ]
 }

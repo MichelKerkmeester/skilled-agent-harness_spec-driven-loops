@@ -1,5 +1,5 @@
 {
-  "corpusHash": "96480a56278f3afa0e5b3db1058500ff3d4c86c719655a3ea475a0d9dfad612e",
+  "corpusHash": "f2907ba7232efec113acf5a1603be9c0d3d1c486e1c374eb6397208239934241",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29501,
+  "includedPathCount": 29507,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11659,6 +11659,11 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/goal.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/handover.md",
@@ -16611,6 +16616,7 @@
     "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/016-system-spec-kit/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/016-system-spec-kit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/016-system-spec-kit/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/decision-record.md",
     "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/goal.md",
     "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/001-release-line-split/acceptance-criteria.md",
@@ -29533,7 +29539,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "81df77bb2d05a3e3735bbb93478dd852e217f6c4ab719b64a63dad0904e3c220",
+  "manifestHash": "5c213113a55c9bd09414a7213c5a9c4ebc72c615ed9004c057ecb171dc6c6cb9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32817,6 +32823,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/scratch",
       "reason": "excluded directory"
     },
     {
