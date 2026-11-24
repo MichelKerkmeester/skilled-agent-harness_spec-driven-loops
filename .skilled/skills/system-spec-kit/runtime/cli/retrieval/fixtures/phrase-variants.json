@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce1751ca8df00d58eda1c93551012933ba0ae4094d30c4679294b121c2fb1e0f",
+  "manifestHash": "af133ab7c486a081581bf7d1108a7748c9f5658dad3b37888f7e413e97f3f0cf",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -93390,6 +93390,18 @@
     "provision command for a fresh clone": [
       "provision command for a fresh clone"
     ],
+    "provision dev dependencies": [
+      "provision dev dependencies"
+    ],
+    "provision dev dependencies implementation summary": [
+      "provision dev dependencies implementation summary"
+    ],
+    "provision dev dependencies plan": [
+      "provision dev dependencies plan"
+    ],
+    "provision dev dependencies tasks": [
+      "provision dev dependencies tasks"
+    ],
     "provision private command links": [
       "provision private command links"
     ],
@@ -129285,6 +129297,9 @@
     "system spec kit mcp sidecar research": [
       "system-spec-kit mcp sidecar research"
     ],
+    "system spec kit missing dev dependencies in worktree": [
+      "system-spec-kit missing dev dependencies in worktree"
+    ],
     "system spec kit own changelog": [
       "system-spec-kit own changelog"
     ],
@@ -139172,6 +139187,9 @@
     ],
     "worktree provisioning plan": [
       "worktree provisioning plan"
+    ],
+    "worktree provisioning skips nested lockfile package": [
+      "worktree provisioning skips nested lockfile package"
     ],
     "worktree provisioning skips sk doc": [
       "worktree provisioning skips sk-doc"

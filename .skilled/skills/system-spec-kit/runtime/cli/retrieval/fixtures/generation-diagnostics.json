@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7274,
-    "ok": 20599,
+    "ok": 20603,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29501,
+  "documentsScanned": 29505,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ce1751ca8df00d58eda1c93551012933ba0ae4094d30c4679294b121c2fb1e0f",
+  "manifestHash": "af133ab7c486a081581bf7d1108a7748c9f5658dad3b37888f7e413e97f3f0cf",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46293,
+      "ok": 46299,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -62773,6 +62773,10 @@
     },
     {
       "path": "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/scratch",
       "reason": "excluded directory"
     },
     {
