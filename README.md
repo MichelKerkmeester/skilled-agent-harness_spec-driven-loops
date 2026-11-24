@@ -28,7 +28,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 - **Session Handover** - endless sessions: near the context limit, the work moves to a fresh session in the same terminal, which keeps the goal, the session name, the running command, the launch flags and, except on Vibe, the model
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **CLI Orchestration** - hand work to another AI CLI on its own subscription, with any provider and model you have set up
-- **15 On-Demand Skills** - eight parent hubs with 43 modes, plus standalone skills for specs, git, prompts and Orca
+- **14 On-Demand Skills** - eight parent hubs with 43 modes, plus standalone skills for specs, git and prompts
 - **26 Shared Hooks** - session handover, goals, routing, quality checks, git and secret guards, running in all eight runtimes through one thin adapter each
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, design and orchestration
 - **17 Doctor Commands** - install Skilled in your own project, check the setup and keep it current
@@ -157,7 +157,7 @@ From request to documented result:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 11 specialized│          │ 15 domain skills │
+         │ 11 specialized│          │ 14 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -276,7 +276,7 @@ Updating works the same way as creating. Name the component and the change, and 
 
 ## 6. 🧰 SKILLS
 
-Fifteen skills ship with Skilled. Gate 2 loads one when the advisor matches it to a task. Eight of them are parent hubs. A hub holds several modes and routes each request to the mode that fits, 43 modes in all. The other seven skills work on their own.
+Fourteen skills ship with Skilled. Gate 2 loads one when the advisor matches it to a task. Eight of them are parent hubs. A hub holds several modes and routes each request to the mode that fits, 43 modes in all. The other six skills work on their own.
 
 ### Parent Hubs
 
@@ -307,8 +307,6 @@ Fifteen skills ship with Skilled. Gate 2 loads one when the advisor matches it t
 **[sk-git](.skilled/skills/sk-git/README.md)** handles worktrees, conventional commits, pull requests and finishing a branch.
 
 **[sk-prompt](.skilled/skills/sk-prompt/README.md)** turns a rough request into a structured, checked prompt.
-
-**[cli-orca](.skilled/skills/cli-orca/README.md)** drives the Orca app's worktrees, terminals, browser and automations.
 
 **[mcp-code-mode](.skilled/skills/mcp-code-mode/README.md)** calls external MCP tools through one TypeScript interface.
 
@@ -726,7 +724,7 @@ That guarantee covers continuity, not every feature. Your AI runtime sends your 
 
 ## 15. ❓ FAQ
 
-### Must all 15 skills be installed?
+### Must all 14 skills be installed?
 
 No. Gate 2 loads a skill only when a task needs it. The MCP and CLI skills need their own tools or keys before they can run.
 

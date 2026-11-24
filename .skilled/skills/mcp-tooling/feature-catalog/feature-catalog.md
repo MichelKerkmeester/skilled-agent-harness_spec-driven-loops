@@ -7,7 +7,7 @@ trigger_phrases:
   - "workflow vs transport routing"
   - "mcp-tooling compiled routing"
 last_updated: "2026-09-20"
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # mcp-tooling: Feature Catalog
@@ -24,8 +24,6 @@ Use this catalog as the current-state inventory for the `mcp-tooling` hub. The h
 |---|---|---|
 | Workflow | `mcp-click-up`, `mcp-obsidian`, `mcp-notion` | May change local or external workflow state and must apply packet-specific authorization and verification gates |
 | Transport | `mcp-figma`, `mcp-refero`, `mcp-mobbin` | External read or explicit-export surfaces; remain `mutatesWorkspace:false` in this workspace |
-
-Orca CLI work left this hub for the standalone `cli-orca` skill, which owns Orca-managed worktrees, repositories, terminals, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state.
 
 ---
 

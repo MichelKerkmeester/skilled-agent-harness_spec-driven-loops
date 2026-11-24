@@ -1,7 +1,7 @@
 ---
 title: "mcp-tooling: Manual Testing Playbook"
 description: "Operator-facing index for mcp-tooling hub-routing validation across six modes: three workflow bridges, three read-only design transports, five blind holdouts, and the generic-tool ownership boundaries."
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # mcp-tooling: Manual Testing Playbook
@@ -59,7 +59,6 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/`.
 
 - **Browser work:** Chrome DevTools and Aside scenarios left this hub with their packets. The `mcp-browser-use` hub owns them, and this hub holds no browser signal.
 - **Obsidian vs ClickUp:** linked markdown, vault, and knowledge-base intent routes to `mcp-obsidian`; project, ticket, task, and time-tracking intent routes to `mcp-click-up`.
-- **Orca vs generic tools:** Orca CLI work is owned by the standalone `cli-orca` skill. This hub holds no Orca signal, so generic Git worktrees, ordinary shell terminals, generic Chrome/CDP, and generic agentic browser work stay with their normal owners and no Orca request can be captured here. The two retired Orca scenarios moved to `specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/`.
 
 ---
 
@@ -68,7 +67,7 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/`.
 - All 12 scenarios resolve to their expected `workflowMode` or to `defer` for MT-004 and assemble exactly the expected packet-qualified resources.
 - No scenario silently loads the wrong packet, a stale flat-skill path, or the fallback resource set on a scored route.
 - MT-004 remains a zero-signal defer: no mode scores, no packet resources are assembled, and the fallback resources are only a defer-time suggestion.
-- MT-H07 preserves the Obsidian/ClickUp boundary, and a retired Orca holdout moved with the subject to the standalone `cli-orca` skill.
+- MT-H07 preserves the Obsidian/ClickUp boundary.
 - Five of six modes have a passing blind holdout. The missing `mcp-notion` holdout is explicitly reported rather than inferred as coverage.
 - Positive and negative alias replays cover the surviving six modes, including a generic Git worktree prompt, generic Chrome/CDP wording, and generic agentic-browser wording, none of which may be captured by the wrong packet.
 - If compiled routing is unavailable or its activation manifest is stale, the run records the legacy decision and exact cause code. It does not claim compiled parity.
@@ -79,4 +78,4 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/`.
 
 For each executed scenario, record the prompt, router command, selected `workflowMode`, expected and observed leaf pairs, command output, exit status, verdict, and any redaction or blocker check. Store current runs under a dated `benchmark/reports/<run-label>/` directory. The existing `benchmark/` Lane C reports are frozen historical evidence for an older hub and cannot serve as current hub validation.
 
-Packet-level playbooks remain authoritative for provider behavior, credentials, mutation gates, browser state, and recovery. Orca CLI behavior is owned by the standalone `cli-orca` skill, whose manual testing playbook carries the moved scenarios.
+Packet-level playbooks remain authoritative for provider behavior, credentials, mutation gates, browser state, and recovery.

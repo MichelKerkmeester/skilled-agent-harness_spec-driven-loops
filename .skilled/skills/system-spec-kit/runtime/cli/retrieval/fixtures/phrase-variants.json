@@ -1,5 +1,5 @@
 {
-  "manifestHash": "808a57cd18a11cf85894ca765c4fd09e507a7f7a0a5ff6f8ffd93045c4069b81",
+  "manifestHash": "d10cbaf2753aca2e4f05612f15b786fada0a6ca66a69ab6887483c2f0540c1d6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3514,6 +3514,9 @@
     ],
     "014 finalize and commit": [
       "014 finalize and commit"
+    ],
+    "014 fix deep review findings operator decisions": [
+      "014-fix-deep-review-findings operator decisions"
     ],
     "014 handover": [
       "014 handover"
@@ -8528,9 +8531,6 @@
     "adaptive fusion channel weighting": [
       "adaptive fusion channel weighting"
     ],
-    "adb orca": [
-      "adb orca"
-    ],
     "add": [
       "add"
     ],
@@ -12479,9 +12479,6 @@
     "and or filter stacking": [
       "and or filter stacking"
     ],
-    "android emulator orca": [
-      "android emulator orca"
-    ],
     "android health data files": [
       "android health data files"
     ],
@@ -13495,6 +13492,9 @@
     "aside diagnostics": [
       "aside diagnostics"
     ],
+    "aside docs match live runs": [
+      "aside docs match live runs"
+    ],
     "aside doctor": [
       "aside doctor"
     ],
@@ -13536,6 +13536,9 @@
     ],
     "aside install script": [
       "aside install script"
+    ],
+    "aside installer pinned digest": [
+      "aside installer pinned digest"
     ],
     "aside lighthouse": [
       "aside lighthouse"
@@ -14818,6 +14821,9 @@
     "bare sibling folder name in a phase map": [
       "bare sibling folder name in a phase map"
     ],
+    "bare staging anchor": [
+      "bare staging anchor"
+    ],
     "bare string statement hygiene": [
       "bare string statement hygiene"
     ],
@@ -15268,6 +15274,9 @@
     "bdg cdp list": [
       "bdg cdp --list"
     ],
+    "bdg cdp params form": [
+      "bdg cdp params form"
+    ],
     "bdg cdp search": [
       "bdg cdp --search"
     ],
@@ -15339,6 +15348,9 @@
     ],
     "bdg performance metrics": [
       "bdg performance metrics"
+    ],
+    "bdg pinned at 0 6 10": [
+      "bdg pinned at 0.6.10"
     ],
     "bdg pipeline integration": [
       "bdg pipeline integration"
@@ -15996,6 +16008,9 @@
     ],
     "bladebro json output": [
       "bladebro json output"
+    ],
+    "bladebro launcher digest check": [
+      "bladebro launcher digest check"
     ],
     "bladebro lighthouse": [
       "bladebro lighthouse"
@@ -16879,11 +16894,17 @@
     "browser first page write": [
       "browser-first page write"
     ],
+    "browser hub alias tightening": [
+      "browser hub alias tightening"
+    ],
     "browser hub alignment fixes": [
       "browser hub alignment fixes"
     ],
     "browser hub changelog topology": [
       "browser hub changelog topology"
+    ],
+    "browser hub deep review remediation": [
+      "browser hub deep review remediation"
     ],
     "browser hub doc topic": [
       "browser hub doc topic"
@@ -16905,6 +16926,9 @@
     ],
     "browser hub shared helpers": [
       "browser hub shared helpers"
+    ],
+    "browser hub three mode bundle": [
+      "browser hub three mode bundle"
     ],
     "browser launch fails": [
       "browser launch fails"
@@ -25057,42 +25081,6 @@
     "cli orca": [
       "cli orca"
     ],
-    "cli orca 0 1 0 0": [
-      "cli-orca 0.1.0.0"
-    ],
-    "cli orca 0 1 1 0": [
-      "cli-orca 0.1.1.0"
-    ],
-    "cli orca 0 1 10 0": [
-      "cli-orca 0.1.10.0"
-    ],
-    "cli orca 0 1 11 0": [
-      "cli-orca 0.1.11.0"
-    ],
-    "cli orca 0 1 2 0": [
-      "cli-orca 0.1.2.0"
-    ],
-    "cli orca 0 1 3 0": [
-      "cli-orca 0.1.3.0"
-    ],
-    "cli orca 0 1 4 0": [
-      "cli-orca 0.1.4.0"
-    ],
-    "cli orca 0 1 5 0": [
-      "cli-orca 0.1.5.0"
-    ],
-    "cli orca 0 1 6 0": [
-      "cli-orca 0.1.6.0"
-    ],
-    "cli orca 0 1 7 0": [
-      "cli-orca 0.1.7.0"
-    ],
-    "cli orca 0 1 8 0": [
-      "cli-orca 0.1.8.0"
-    ],
-    "cli orca 0 1 9 0": [
-      "cli-orca 0.1.9.0"
-    ],
     "cli orca audit surfaces": [
       "cli-orca audit surfaces"
     ],
@@ -25117,11 +25105,14 @@
     "cli orca decision record": [
       "cli-orca decision record"
     ],
+    "cli orca deprecation decisions": [
+      "cli orca deprecation decisions"
+    ],
+    "cli orca deprecation phase parent spec": [
+      "cli orca deprecation phase parent spec"
+    ],
     "cli orca extraction": [
       "cli-orca extraction"
-    ],
-    "cli orca feature catalog": [
-      "cli-orca feature catalog"
     ],
     "cli orca implementation plan": [
       "cli-orca implementation plan"
@@ -25130,81 +25121,39 @@
       "cli orca implementation summary",
       "cli-orca implementation summary"
     ],
-    "cli orca negative holdouts": [
-      "cli-orca negative holdouts"
-    ],
-    "cli orca orca cli as a standalone skill": [
-      "cli-orca: Orca CLI as a Standalone Skill"
-    ],
-    "cli orca ownership split": [
-      "cli-orca ownership split"
-    ],
     "cli orca path catalog": [
       "cli-orca path catalog"
     ],
     "cli orca plan": [
       "cli orca plan"
     ],
-    "cli orca prose clarity": [
-      "cli-orca prose clarity"
+    "cli orca removal baseline": [
+      "cli orca removal baseline"
     ],
-    "cli orca readme": [
-      "cli-orca readme"
+    "cli orca removal docs": [
+      "cli orca removal docs"
     ],
-    "cli orca router": [
-      "cli-orca router"
+    "cli orca removal inventory": [
+      "cli orca removal inventory"
     ],
-    "cli orca routing": [
-      "cli-orca routing"
+    "cli orca removal operator decisions": [
+      "cli orca removal operator decisions"
     ],
-    "cli orca routing vocabulary": [
-      "cli-orca routing vocabulary"
+    "cli orca removal regeneration": [
+      "cli orca removal regeneration"
     ],
-    "cli orca safety boundaries": [
-      "cli-orca safety boundaries"
+    "cli orca removal runtime code": [
+      "cli orca removal runtime code"
+    ],
+    "cli orca removal tests": [
+      "cli orca removal tests"
     ],
     "cli orca tasks": [
       "cli orca tasks",
       "cli-orca tasks"
     ],
-    "cli orca trigger signals": [
-      "cli-orca trigger signals"
-    ],
-    "cli orca v0 1 0 0": [
-      "cli-orca v0.1.0.0"
-    ],
-    "cli orca v0 1 1 0": [
-      "cli-orca v0.1.1.0"
-    ],
-    "cli orca v0 1 10 0": [
-      "cli-orca v0.1.10.0"
-    ],
-    "cli orca v0 1 11 0": [
-      "cli-orca v0.1.11.0"
-    ],
-    "cli orca v0 1 2 0": [
-      "cli-orca v0.1.2.0"
-    ],
-    "cli orca v0 1 3 0": [
-      "cli-orca v0.1.3.0"
-    ],
-    "cli orca v0 1 4 0": [
-      "cli-orca v0.1.4.0"
-    ],
-    "cli orca v0 1 5 0": [
-      "cli-orca v0.1.5.0"
-    ],
-    "cli orca v0 1 6 0": [
-      "cli-orca v0.1.6.0"
-    ],
-    "cli orca v0 1 7 0": [
-      "cli-orca v0.1.7.0"
-    ],
-    "cli orca v0 1 8 0": [
-      "cli-orca v0.1.8.0"
-    ],
-    "cli orca v0 1 9 0": [
-      "cli-orca v0.1.9.0"
+    "cli orca zero reference proof": [
+      "cli orca zero reference proof"
     ],
     "cli orchestration repoint": [
       "cli-orchestration-repoint"
@@ -41110,6 +41059,9 @@
     "delete cli deem packet tasks": [
       "delete cli-deem packet tasks"
     ],
+    "delete cli orca skill folder": [
+      "delete cli-orca skill folder"
+    ],
     "delete comment": [
       "delete comment"
     ],
@@ -41352,6 +41304,9 @@
     ],
     "deploy mcp sh rebuild recycle helper": [
       "deploy-mcp.sh rebuild recycle helper"
+    ],
+    "deprecate cli orca": [
+      "deprecate cli-orca"
     ],
     "deprecate cocoindex phase 010": [
       "deprecate cocoindex phase 010"
@@ -42014,9 +41969,6 @@
     ],
     "desired prior diff actions": [
       "desired prior diff actions"
-    ],
-    "desktop app window orca": [
-      "desktop app window orca"
     ],
     "destructive scope violation": [
       "destructive scope violation"
@@ -53670,8 +53622,26 @@
     "fix deep ranking filter bypass and score scale fixes changelog": [
       "fix deep ranking filter bypass and score scale fixes changelog"
     ],
+    "fix deep review findings": [
+      "fix deep review findings"
+    ],
+    "fix deep review findings acceptance criteria": [
+      "fix deep review findings acceptance criteria"
+    ],
     "fix deep review findings for causal graph channel routing changelog": [
       "fix deep review findings for causal graph channel routing changelog"
+    ],
+    "fix deep review findings goal": [
+      "fix deep review findings goal"
+    ],
+    "fix deep review findings implementation summary": [
+      "fix deep review findings implementation summary"
+    ],
+    "fix deep review findings plan": [
+      "fix deep review findings plan"
+    ],
+    "fix deep review findings tasks": [
+      "fix deep review findings tasks"
     ],
     "fix deep review p1 findings": [
       "fix deep review p1 findings"
@@ -53705,6 +53675,30 @@
     ],
     "fix eight skill and command surfacing gaps": [
       "fix eight skill and command surfacing gaps"
+    ],
+    "fix follow up review findings": [
+      "fix follow up review findings"
+    ],
+    "fix follow up review findings acceptance criteria": [
+      "fix follow up review findings acceptance criteria"
+    ],
+    "fix follow up review findings decision record": [
+      "fix follow up review findings decision record"
+    ],
+    "fix follow up review findings goal": [
+      "fix follow up review findings goal"
+    ],
+    "fix follow up review findings implementation summary": [
+      "fix follow up review findings implementation summary"
+    ],
+    "fix follow up review findings plan": [
+      "fix follow up review findings plan"
+    ],
+    "fix follow up review findings tasks": [
+      "fix follow up review findings tasks"
+    ],
+    "fix follow up review findings timeline": [
+      "fix follow up review findings timeline"
     ],
     "fix investigation deferred p2s for behavior and api changes changelog": [
       "fix investigation deferred p2s for behavior and api changes changelog"
@@ -63021,6 +63015,9 @@
     "id filter expected three digits": [
       "id filter expected three digits"
     ],
+    "id noun anchor": [
+      "id noun anchor"
+    ],
     "ide always shows current work": [
       "ide always shows current work"
     ],
@@ -64149,9 +64146,6 @@
     "install obsidian theme": [
       "install obsidian theme"
     ],
-    "install official orca skill": [
-      "install official orca skill"
-    ],
     "install scripts doctor research": [
       "install scripts doctor research"
     ],
@@ -64184,6 +64178,9 @@
     ],
     "installed plugins roster 24": [
       "installed plugins roster 24"
+    ],
+    "installer helper copies match": [
+      "installer helper copies match"
     ],
     "instance only opt out": [
       "instance only opt out"
@@ -64496,9 +64493,6 @@
     ],
     "invocation pattern column": [
       "invocation pattern column"
-    ],
-    "ios simulator orca": [
-      "ios simulator orca"
     ],
     "ipc bridge handshake exclusive lease": [
       "ipc bridge handshake exclusive lease"
@@ -66115,9 +66109,6 @@
     "lane source tagging": [
       "lane source tagging"
     ],
-    "lane summary first": [
-      "lane summary first"
-    ],
     "lane wave status": [
       "lane wave status"
     ],
@@ -67649,6 +67640,9 @@
     "lexical normalizer fts5": [
       "lexical normalizer fts5"
     ],
+    "lexical only confidence floor": [
+      "lexical only confidence floor"
+    ],
     "lexical search under return": [
       "lexical search under return"
     ],
@@ -67955,9 +67949,6 @@
     "lineage worktree lane decision": [
       "lineage worktree lane decision"
     ],
-    "linear completion comment orca": [
-      "linear completion comment orca"
-    ],
     "linear design md example": [
       "Linear DESIGN.md example"
     ],
@@ -67970,9 +67961,6 @@
     "linear sequential process": [
       "linear sequential process"
     ],
-    "linear status orca": [
-      "linear status orca"
-    ],
     "linear style reference validation": [
       "Linear style reference validation"
     ],
@@ -67981,9 +67969,6 @@
     ],
     "linear task marker tasks": [
       "linear task marker tasks"
-    ],
-    "linear tickets legacy": [
-      "linear-tickets legacy"
     ],
     "link based population count": [
       "link-based population count"
@@ -70115,6 +70100,9 @@
     "mcp aside devtools 1 1 12 0": [
       "mcp-aside-devtools 1.1.12.0"
     ],
+    "mcp aside devtools 1 1 13 0": [
+      "mcp-aside-devtools 1.1.13.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -70178,6 +70166,9 @@
     "mcp aside devtools v1 1 12 0": [
       "mcp-aside-devtools v1.1.12.0"
     ],
+    "mcp aside devtools v1 1 13 0": [
+      "mcp-aside-devtools v1.1.13.0"
+    ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
     ],
@@ -70229,6 +70220,9 @@
     "mcp bladebro 1 2 0 0": [
       "mcp-bladebro 1.2.0.0"
     ],
+    "mcp bladebro 1 2 1 0": [
+      "mcp-bladebro 1.2.1.0"
+    ],
     "mcp bladebro benchmark reports": [
       "mcp-bladebro benchmark reports"
     ],
@@ -70247,6 +70241,9 @@
     "mcp bladebro v1 2 0 0": [
       "mcp-bladebro v1.2.0.0"
     ],
+    "mcp bladebro v1 2 1 0": [
+      "mcp-bladebro v1.2.1.0"
+    ],
     "mcp browser use": [
       "mcp-browser-use"
     ],
@@ -70258,6 +70255,12 @@
     ],
     "mcp browser use 1 1 1 0": [
       "mcp-browser-use 1.1.1.0"
+    ],
+    "mcp browser use 1 1 2 0": [
+      "mcp-browser-use 1.1.2.0"
+    ],
+    "mcp browser use 1 1 3 0": [
+      "mcp-browser-use 1.1.3.0"
     ],
     "mcp browser use advisor routing": [
       "mcp-browser-use advisor routing"
@@ -70303,6 +70306,12 @@
     ],
     "mcp browser use v1 1 1 0": [
       "mcp-browser-use v1.1.1.0"
+    ],
+    "mcp browser use v1 1 2 0": [
+      "mcp-browser-use v1.1.2.0"
+    ],
+    "mcp browser use v1 1 3 0": [
+      "mcp-browser-use v1.1.3.0"
     ],
     "mcp child restart needed": [
       "mcp child restart needed"
@@ -70381,6 +70390,9 @@
     ],
     "mcp chrome devtools 1 0 27 0": [
       "mcp-chrome-devtools 1.0.27.0"
+    ],
+    "mcp chrome devtools 1 0 28 0": [
+      "mcp-chrome-devtools 1.0.28.0"
     ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
@@ -70486,6 +70498,9 @@
     ],
     "mcp chrome devtools v1 0 27 0": [
       "mcp-chrome-devtools v1.0.27.0"
+    ],
+    "mcp chrome devtools v1 0 28 0": [
+      "mcp-chrome-devtools v1.0.28.0"
     ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
@@ -70811,6 +70826,9 @@
     "mcp code mode 1 0 18 0": [
       "mcp-code-mode 1.0.18.0"
     ],
+    "mcp code mode 1 0 19 0": [
+      "mcp-code-mode 1.0.19.0"
+    ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
     ],
@@ -70927,6 +70945,9 @@
     ],
     "mcp code mode v1 0 18 0": [
       "mcp-code-mode v1.0.18.0"
+    ],
+    "mcp code mode v1 0 19 0": [
+      "mcp-code-mode v1.0.19.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -72164,6 +72185,9 @@
     "mcp tooling 1 10 0 0": [
       "mcp-tooling 1.10.0.0"
     ],
+    "mcp tooling 1 10 1 0": [
+      "mcp-tooling 1.10.1.0"
+    ],
     "mcp tooling 1 2 0 0": [
       "mcp-tooling 1.2.0.0"
     ],
@@ -72362,6 +72386,9 @@
     "mcp tooling nested packet research": [
       "mcp-tooling nested packet research"
     ],
+    "mcp tooling orca boundary removed": [
+      "mcp-tooling orca boundary removed"
+    ],
     "mcp tooling readme moves to the purpose first narrative voice": [
       "mcp-tooling README moves to the purpose-first narrative voice"
     ],
@@ -72394,6 +72421,9 @@
     ],
     "mcp tooling v1 10 0 0": [
       "mcp-tooling v1.10.0.0"
+    ],
+    "mcp tooling v1 10 1 0": [
+      "mcp-tooling v1.10.1.0"
     ],
     "mcp tooling v1 2 0 0": [
       "mcp-tooling v1.2.0.0"
@@ -77378,9 +77408,6 @@
     "mutating build workflow": [
       "mutating build workflow"
     ],
-    "mutation and ownership boundaries": [
-      "mutation and ownership boundaries"
-    ],
     "mutation cases": [
       "mutation cases"
     ],
@@ -79612,9 +79639,6 @@
     "official credential stored": [
       "official credential stored"
     ],
-    "official linear tickets skill": [
-      "official linear-tickets skill"
-    ],
     "official notion mcp install": [
       "official notion mcp install"
     ],
@@ -79639,24 +79663,6 @@
     "official obsidian mcp install": [
       "official obsidian mcp install"
     ],
-    "official orca android skill": [
-      "official orca android skill"
-    ],
-    "official orca computer skill": [
-      "official orca computer skill"
-    ],
-    "official orca emulator skill": [
-      "official orca emulator skill"
-    ],
-    "official orca linear skill": [
-      "official orca linear skill"
-    ],
-    "official orca skill layer": [
-      "official orca skill layer"
-    ],
-    "official orca skills": [
-      "official orca skills"
-    ],
     "official orca skills consolidation": [
       "official Orca skills consolidation"
     ],
@@ -79665,9 +79671,6 @@
     ],
     "official orca skills inventory": [
       "official orca skills inventory"
-    ],
-    "official orca skills package": [
-      "official orca skills package"
     ],
     "offline": [
       "--offline"
@@ -81568,53 +81571,14 @@
     "or r 01 election race investigation": [
       "OR-R-01 election race investigation"
     ],
-    "orca accessibility tree clicks": [
-      "orca accessibility tree clicks"
-    ],
-    "orca archive hook": [
-      "orca archive hook"
-    ],
-    "orca archive hook failed": [
-      "orca archive hook failed"
-    ],
-    "orca archive hook gate": [
-      "orca archive hook gate"
-    ],
-    "orca artifacts": [
-      "orca artifacts"
-    ],
-    "orca bare token routing": [
-      "orca bare token routing"
-    ],
-    "orca browser commands": [
-      "orca browser commands"
-    ],
-    "orca browser host unavailable": [
-      "orca browser host unavailable"
-    ],
-    "orca browser safety": [
-      "orca browser safety"
-    ],
     "orca cli evidence": [
       "Orca CLI evidence"
-    ],
-    "orca cli guide authority": [
-      "orca-cli guide authority"
     ],
     "orca cli integration": [
       "Orca CLI integration"
     ],
     "orca cli moves to a standalone skill": [
       "Orca CLI Moves to a Standalone Skill"
-    ],
-    "orca cli resolution": [
-      "orca cli resolution"
-    ],
-    "orca cli skill": [
-      "orca-cli skill"
-    ],
-    "orca cli skill index": [
-      "orca cli skill index"
     ],
     "orca cli surface": [
       "orca cli surface"
@@ -81625,101 +81589,20 @@
     "orca cli workflow bridge": [
       "Orca CLI workflow bridge"
     ],
-    "orca command failed": [
-      "orca command failed"
-    ],
-    "orca command families": [
-      "orca command families"
-    ],
-    "orca command reference": [
-      "orca command reference"
-    ],
-    "orca computer use": [
-      "orca computer use"
-    ],
-    "orca coordinator loop": [
-      "orca coordinator loop"
-    ],
-    "orca discovery stub": [
-      "orca discovery stub"
-    ],
-    "orca embedded browser": [
-      "orca embedded browser"
-    ],
-    "orca emulator": [
-      "orca emulator"
-    ],
-    "orca emulator android": [
-      "orca emulator android"
-    ],
-    "orca environmentrecipes": [
-      "orca environmentRecipes"
-    ],
     "orca evidence criteria": [
       "Orca evidence criteria"
-    ],
-    "orca executable resolution": [
-      "orca executable resolution"
-    ],
-    "orca gui control": [
-      "orca gui control"
     ],
     "orca handoff": [
       "Orca handoff"
     ],
-    "orca handoff receipt": [
-      "orca handoff receipt"
-    ],
     "orca hub routing": [
       "Orca hub routing"
-    ],
-    "orca ide screen reader resolution": [
-      "orca-ide screen reader resolution"
     ],
     "orca implementation tasks": [
       "Orca implementation tasks"
     ],
-    "orca linear": [
-      "orca linear"
-    ],
-    "orca linear legacy name": [
-      "orca linear legacy name"
-    ],
-    "orca linear ticket": [
-      "orca linear ticket"
-    ],
-    "orca linear tickets": [
-      "orca linear tickets"
-    ],
-    "orca mutation boundary": [
-      "orca mutation boundary"
-    ],
-    "orca official skill provenance": [
-      "orca official skill provenance"
-    ],
-    "orca orchestration": [
-      "orca orchestration"
-    ],
     "orca packet decision": [
       "Orca packet decision"
-    ],
-    "orca per workspace env": [
-      "orca per-workspace env"
-    ],
-    "orca per workspace environment recipe": [
-      "orca per workspace environment recipe"
-    ],
-    "orca publishing permissions": [
-      "orca publishing permissions"
-    ],
-    "orca qualified routing vocabulary": [
-      "orca-qualified routing vocabulary"
-    ],
-    "orca qualified worktree signals": [
-      "Orca-qualified worktree signals"
-    ],
-    "orca recipe setup": [
-      "orca recipe setup"
     ],
     "orca research": [
       "orca research"
@@ -81739,27 +81622,6 @@
     "orca routing verification": [
       "Orca routing verification"
     ],
-    "orca runtime": [
-      "orca runtime"
-    ],
-    "orca session": [
-      "orca session"
-    ],
-    "orca simulator evidence": [
-      "orca simulator evidence"
-    ],
-    "orca skill boundaries": [
-      "orca skill boundaries"
-    ],
-    "orca skill snapshot provenance": [
-      "orca skill snapshot provenance"
-    ],
-    "orca skill snapshot release revision": [
-      "orca skill snapshot release revision"
-    ],
-    "orca skills overview": [
-      "orca skills overview"
-    ],
     "orca source inventory": [
       "Orca source inventory"
     ],
@@ -81769,47 +81631,11 @@
     "orca specification summary": [
       "Orca specification summary"
     ],
-    "orca task dag": [
-      "orca task dag"
-    ],
-    "orca terminal commands": [
-      "orca terminal commands"
-    ],
-    "orca terminal handoff": [
-      "orca terminal handoff"
-    ],
-    "orca terminal receipt": [
-      "orca terminal receipt"
-    ],
-    "orca troubleshooting": [
-      "orca troubleshooting"
-    ],
-    "orca untrusted content": [
-      "orca untrusted content"
-    ],
     "orca validation evidence": [
       "Orca validation evidence"
     ],
-    "orca versioned preflight": [
-      "orca versioned preflight"
-    ],
-    "orca vm recipe doctor": [
-      "orca vm recipe doctor"
-    ],
-    "orca worker done": [
-      "orca worker done"
-    ],
     "orca workflow packet": [
       "Orca workflow packet"
-    ],
-    "orca worktree": [
-      "orca worktree"
-    ],
-    "orca worktree all scoping": [
-      "orca worktree all scoping"
-    ],
-    "orca worktree commands": [
-      "orca worktree commands"
     ],
     "orchestrate agent rule 7": [
       "orchestrate agent rule 7"
@@ -82923,9 +82749,6 @@
     ],
     "package boundary module format": [
       "package boundary module format"
-    ],
-    "package digest orca skill": [
-      "package digest orca skill"
     ],
     "package json dependency repair": [
       "package.json dependency repair"
@@ -85758,6 +85581,9 @@
     "phase 14 doctor and ci gate honesty": [
       "phase 14 doctor and ci gate honesty"
     ],
+    "phase 14 fix deep review findings": [
+      "phase 14 fix deep review findings"
+    ],
     "phase 14 gate index and deletions": [
       "phase 14 gate index and deletions"
     ],
@@ -85847,6 +85673,9 @@
     ],
     "phase 15 dsh hook parity": [
       "phase 15 dsh hook parity"
+    ],
+    "phase 15 fix follow up review findings": [
+      "phase 15 fix follow up review findings"
     ],
     "phase 15 freshness strict content": [
       "phase 15 freshness strict content"
@@ -99109,6 +98938,9 @@
     "remove cli hermes executor code": [
       "remove cli-hermes executor code"
     ],
+    "remove cli orca skill": [
+      "remove cli-orca skill"
+    ],
     "remove cloud reranker footgun": [
       "remove cloud reranker footgun"
     ],
@@ -104839,9 +104671,6 @@
     ],
     "router derived file regeneration criteria": [
       "router derived file regeneration criteria"
-    ],
-    "router details move": [
-      "router details move"
     ],
     "router edit freshness": [
       "router edit freshness"
@@ -126938,9 +126767,6 @@
     "superset notify hook routing fix": [
       "superset-notify hook routing fix"
     ],
-    "supervised orca workers": [
-      "supervised orca workers"
-    ],
     "supplemental navigation layer": [
       "supplemental navigation layer"
     ],
@@ -128361,6 +128187,12 @@
     "system skill advisor 2 0 1 0": [
       "system-skill-advisor 2.0.1.0"
     ],
+    "system skill advisor 2 0 2 0": [
+      "system-skill-advisor 2.0.2.0"
+    ],
+    "system skill advisor 2 0 3 0": [
+      "system-skill-advisor 2.0.3.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -128720,6 +128552,12 @@
     ],
     "system skill advisor v2 0 1 0": [
       "system-skill-advisor v2.0.1.0"
+    ],
+    "system skill advisor v2 0 2 0": [
+      "system-skill-advisor v2.0.2.0"
+    ],
+    "system skill advisor v2 0 3 0": [
+      "system-skill-advisor v2.0.3.0"
     ],
     "system skilled bots first build": [
       "system-skilled-bots first build"
@@ -130265,6 +130103,9 @@
     ],
     "task intent backend routing schema": [
       "task-intent backend-routing schema"
+    ],
+    "task intent floor anchor": [
+      "task intent floor anchor"
     ],
     "task ledger": [
       "task ledger"
@@ -138640,9 +138481,6 @@
     ],
     "which obsidian surface": [
       "which obsidian surface"
-    ],
-    "which orca skill owns this surface": [
-      "which orca skill owns this surface"
     ],
     "which packet owns a hook feature": [
       "which packet owns a hook feature"
