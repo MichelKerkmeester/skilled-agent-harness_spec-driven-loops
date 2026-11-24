@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T20:38:54Z"
+    last_updated_at: "2026-11-24T21:44:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded ADR-009 for the eleventh fix round"
     next_safe_action: "Record any decision the traceability rerun raises"
