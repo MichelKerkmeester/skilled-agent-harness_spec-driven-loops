@@ -12,16 +12,15 @@
     "loop",
     "wording"
   ],
-  "lastUpdated": "2026-11-24T20:27:44.244Z",
+  "lastUpdated": "2026-11-24T23:12:36.632Z",
   "specId": "012",
   "folderSlug": "deep-loop-command-offers",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 25,
+  "memorySequence": 26,
   "memoryNameHistory": [
-    "23-11-26_10-34__fourth-review-fix-round-finished-in-worktree-522.md",
     "23-11-26_10-35__fourth-review-fix-round-finished-in-worktree-522.md",
     "23-11-26_12-13__manual-context-save.md",
     "23-11-26_12-20__manual-context-save.md",
@@ -40,6 +39,7 @@
     "24-11-26_06-06__deep-review-landed-in-worktree-533-fail-on.md",
     "24-11-26_10-24__traceability-rerun-t084-on-deepseek-flash-max.md",
     "24-11-26_12-14__eighth-fix-round-plural-loop-names-how-do.md",
-    "24-11-26_21-27__manual-context-save.md"
+    "24-11-26_21-27__manual-context-save.md",
+    "25-11-26_00-12__manual-context-save.md"
   ]
 }

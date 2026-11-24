@@ -893,9 +893,9 @@ AC-020 checks REQ-013 in two parts: the three deep-family holdout rows were repl
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-11-24 |
-| **Deciders** | Proposed by an independent review of generation 10 (`scratch/opus-review.md`). The operator accepts or rejects it. |
+| **Status** | Accepted |
+| **Date** | 2026-11-25 |
+| **Deciders** | Proposed by an independent review of generation 10 (`scratch/opus-review.md`) and accepted by the operator on 2026-11-25 |
 
 ---
 
@@ -919,7 +919,7 @@ The second is the closure docs. The review contract makes `spec_code` and `check
 <!-- ANCHOR:adr-010-decision -->
 ### Decision
 
-**We propose**: three changes, which take effect only once the operator accepts this record.
+**We chose**: three changes, in effect since the operator accepted this record on 2026-11-25.
 
 1. **Phrasing gaps are the gate's known limit.** A prompt the offer gate reads the wrong way costs one declined question or one missed offer, so this packet does not treat it as a defect and adds no new phrasing rule. Generation 10's L1-P1-001 (a refused run ask in a question's later clause) and R1-P1-001 (question auxiliaries outside the grammar) are recorded as accepted gaps of this class.
 2. **AC-040 and REQ-033 close on evidence, scope and severity.** The criterion becomes a `/deep:review` rerun in which every lineage passes the evidence and scope gates and the merged registry holds no open P0. Every open P1 must be either of the accepted phrasing class or dispositioned in this record. The coverage gate is still reported. If it fails only on closure-doc drift, that drift is fixed as P2 work and no further rerun is owed.
@@ -991,7 +991,9 @@ The second is the closure docs. The review contract makes `spec_code` and `check
 
 **What already changed**: the closure-doc counts that claimed the final tree are now pinned to a commit, and R3-P1-001 is fixed. Neither change needs this record.
 
-**How to roll back**: reject this record. AC-040 and REQ-033 keep their current text.
+**How to roll back**: mark this record Superseded, restore the previous AC-040 and REQ-033 text from git history and set AC-040 back to `Unmet`.
+
+**Operator answers this session**: on generation 8 the operator chose to fix the nine P2s and rerun as generation 9. On generation 9 the operator chose to fix all sixteen findings and rerun as generation 10. On generation 10 the operator asked what the rounds were fixing, then asked for an independent Opus review that could fix the work and the deep-review logic. On 2026-11-25 the operator accepted this record and asked for the packet to close and ship. Eleven answers from the earlier session of 2026-11-24 are not in this record, because that session's history was no longer readable when this record closed.
 <!-- /ANCHOR:adr-010-impl -->
 <!-- /ANCHOR:adr-010 -->
 
@@ -1039,6 +1041,9 @@ The second is the closure docs. The review contract makes `spec_code` and `check
 | Q034 | Keep a typed deep command on the served head when the prompt also complains about a stuck run. | The typed command is the reader's own choice. Recorded from implementation-summary limitation 6, confirmed 2026-11-23; the capture missed it. | None | ADR-005, REQ-020, REQ-029, AC-027, AC-036 |
 | Q035 | Run the sixth remediation round autonomously. | Not stated. Given 2026-11-24 as "Autonomously" when the deep review's remediation was requested. | None | ADR-006, REQ-023 to REQ-034, tasks.md Sixth fix round |
 | Q036 | Fix the nine generation 8 P2 findings and run generation 9 of the traceability review at seven iterations. | Not stated. | None | T084, AC-040, review/review-report.md |
+| Q037 | Fix all sixteen generation 9 findings as round thirteen and run generation 10 at seven iterations. | Not stated. | None | T115 to T122, AC-062 to AC-067 |
+| Q038 | Have a fresh Opus high agent review and fix the work and the deep-review logic, because the rerun loop looked like overengineering. | Not stated. | None | scratch/opus-review.md, 87f1cb952c7, 46465394d97, ADR-010 |
+| Q039 | Accept ADR-010, close AC-040 and T084 on generation 10, push to main and remove worktree 535. | Not stated. | The earlier AC-040 criterion that coverage must pass | ADR-010, AC-040, REQ-033, T084 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1671,6 +1676,66 @@ Waive and push now
 Answer:
 ```text
 Fix 9 P2s, rerun gen 9 (Recommended)
+```
+
+### Q037
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01KqqCSTt8hGXJyK4hgFs1W5:0 -->
+
+Question:
+```text
+Generation 9 found 0 P0, 1 P1 and 15 P2; how should I proceed?
+```
+
+Options:
+```text
+Fix all 16, rerun gen 10
+Fix all 16, waive and push
+Fix the P1 only, waive and push
+```
+
+Answer:
+```text
+Fix all 16, rerun gen 10 (Recommended)
+```
+
+### Q038
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01H6be6W1tgj7VDDRrexJ5Te:0 -->
+
+Question:
+```text
+Generation 10 failed coverage with 4 P1 and 13 P2; how should I proceed?
+```
+
+Options:
+```text
+Fix P1s, waive AC-040, push
+Fix all 17, rerun gen 11
+Waive now, push
+```
+
+Answer:
+```text
+What are we actually fixing here for so many rounds
+```
+
+### Q039
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_012YiEgEsTpJEU9Fg17Nz6oF:0 -->
+
+Question:
+```text
+Accept ADR-010 and close AC-040 on generation 10?
+```
+
+Options:
+```text
+Accept ADR-010, close, push
+Accept, file Python removal
+Reject ADR-010, waive AC-040
+```
+
+Answer:
+```text
+Accept ADR-010, close, push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

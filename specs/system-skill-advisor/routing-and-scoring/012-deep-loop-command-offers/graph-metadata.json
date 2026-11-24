@@ -179,12 +179,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +195,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Offer From",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-24T23:06:06.570Z",
+    "last_save_at": "2026-11-24T23:12:48.629Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26e9d13212705c903a530f3a285a0a771c21c7894e64091fd1bbf8cc3a2faf22",
+    "source_fingerprint": "sha256:e1a547bb958099ca81ee1b0a18991c3784fbcaadffc43be2484005ed8331c903",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee67fcfb358b810825220670d178337527a1acb5b14f95c403eda1dab64e8d94",
+      "spec.md": "30875dc908951c0201b45e74bfc2966a10ba4d6f6498fb6d1606c49eb99eb3f2",
       "plan.md": "5a7198e12814c1af10049669e7f0b63fa5f9dcc16d905525b9c34abddf7ea45c",
-      "tasks.md": "952bc708a5b0436741bc07ed90ec1d870799e4c80fb2c412849f884141aecc15",
-      "decision-record.md": "005c47a4e6b9543364fc2c7fc106ee7aa268500399a6b3ecd063415abcb39c50",
-      "implementation-summary.md": "e3fde55fb17dc3ca9eb76da6c9b64cf243bb3ae0e942562ae0bce8ecedbfa4a3"
+      "tasks.md": "e2ffe6207b54b7c7df672b385829594f4b847c3311639d89594c25c284503f7b",
+      "decision-record.md": "dc57c47c51bb471913b35f102409541b0e66fb34a83f68c448c17e05329e88fd",
+      "implementation-summary.md": "42e4ff7c13143097c6162338c365beaf5bf9e7a97586a372a9fbd91149e702f6"
     },
     "last_active_at": null
   }

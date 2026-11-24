@@ -19,9 +19,9 @@ contextType: "general"
 ## 1. METADATA
 
 **Subject:** Offering `/deep:research`, `/deep:review` and `/doctor:deep-loop` only when the request asks for the loop
-**Status:** In Progress
+**Status:** Complete
 **Started:** 2026-11-22
-**Last updated:** 2026-11-24
+**Last updated:** 2026-11-25
 **Owner:** the session building this packet, with the operator deciding each open question
 <!-- /ANCHOR:metadata -->
 
@@ -45,6 +45,10 @@ contextType: "general"
 **2026-11-24:** The eleventh fix round answered generation 7 (`4edba5ad264`, `6e48734eeca`), and the sixth rerun, review generation 8, ran on its tree (`bfd30f8195f`). Outcome: no P0 or P1 and 9 P2s on closure records, the doctor command string and one research alias. Each lineage still failed one terminal gate, so AC-040 stayed open and the twelfth fix round answered the nine P2s (`257bda24512`, `4b3258e754d`).
 
 **2026-11-24:** The seventh rerun, review generation 9, ran on the twelfth round's tree with a focus that names all four dimensions (`6fa766254f6`). Outcome: two lineages of three passed every gate for the first time, and the run found one P1 and 15 P2s. The thirteenth fix round answers them.
+
+**2026-11-24:** The thirteenth fix round answered generation 9 (`c5c97b12dfc` to `335720592ca`), and the eighth rerun, review generation 10, ran on its tree (`766dcef90f4`). Outcome: every lineage passed evidence and scope and covered all four dimensions, and each failed coverage on findings of its own, with 4 P1s, two of them in the thirteenth round's code.
+
+**2026-11-25:** An independent review found the closure criterion could not be met: the gate reads open-ended wording, and the closure docs quoted counts each round made stale. It fixed the reducer's gate-class trust and the hook-brief P1 and pinned every closure count (`87f1cb952c7` to `1dae1408f08`). Outcome: the operator accepted ADR-010, AC-040 closed on generation 10 and the packet was marked Complete.
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -56,5 +60,5 @@ contextType: "general"
 
 **Packet Complete after the closure pass:** target 2026-11-23. Status: Done, later reopened. Evidence: `77cb1e64a53`.
 
-**Traceability rerun passes its coverage gate (AC-040):** target a rerun after the thirteenth fix round. Status: In Progress. Evidence: `review/review-report.md`.
+**Traceability rerun passes its coverage gate (AC-040):** target a rerun after the thirteenth fix round. Status: Done under ADR-010 on 2026-11-25. Evidence: `review/review-report.md`.
 <!-- /ANCHOR:milestones -->
