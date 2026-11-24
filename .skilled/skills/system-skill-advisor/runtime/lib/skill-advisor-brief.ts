@@ -42,6 +42,7 @@ import {
   renderAdvisorBrief,
   type AdvisorBriefRenderableResult,
 } from './render.js';
+import { trackedCommandForOwner } from './command-attach.js';
 
 // Wire prompt-cache invalidation to graph generation bumps.
 // Module-init scope: registers exactly once per host process at first import.
@@ -178,6 +179,18 @@ export function passingRecommendations(
     return recommendation.confidence >= resolvedThresholds.confidenceThreshold
       && recommendation.uncertainty <= resolvedThresholds.uncertaintyThreshold;
   });
+}
+
+// A subprocess row's command is text from the child, so the brief prints it only
+// where the tracked table names that command for the row's own skill. A row that
+// fails that check keeps its skill and its confidence and loses the command, the
+// policy and the owner, because a workflow the row's skill does not own is one
+// the reader cannot run from there.
+function ownedCommandRecommendation(recommendation: AdvisorRecommendation): AdvisorRecommendation {
+  if (recommendation.command === undefined) return recommendation;
+  if (trackedCommandForOwner(recommendation.skill, recommendation.command) !== undefined) return recommendation;
+  const { command: _command, policy: _policy, ownerSkillId: _ownerSkillId, ...rest } = recommendation;
+  return rest;
 }
 
 function renderSharedBrief(
@@ -563,7 +576,8 @@ export async function buildSkillAdvisorBrief(
       });
     }
 
-    const recommendations = passingRecommendations(subprocess.recommendations, options.thresholdConfig);
+    const recommendations = passingRecommendations(subprocess.recommendations, options.thresholdConfig)
+      .map(ownedCommandRecommendation);
     const tokenCap = clampTokenCap(options.maxTokens, hasAdvisorAmbiguitySignal(recommendations));
     const brief = renderSharedBrief(
       recommendations,

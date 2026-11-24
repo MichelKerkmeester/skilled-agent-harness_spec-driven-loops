@@ -5060,7 +5060,14 @@ _LOOP_QUESTION_RE = re.compile(
 _LOOP_HOW_TO_QUESTION_RE = re.compile(
     r"\bhow " + _LOOP_QUESTION_AUX + r" (?:i|we) " + _LOOP_SUBJECT
 )
+# Only a digit count turns the question back into a request, and only inside the
+# question's own clause, where it sets the length of the run the reader asks
+# about. A count in a later clause reports a run that already happened, as in
+# "how do I run a deep review on this? it took 5 iterations last time", so it
+# leaves the question the question it was. A question's own clause ends at the
+# first clause mark after its start.
 _LOOP_DIGIT_COUNT_RE = re.compile(r"\b\d+ (?:[a-z-]+ ){0,2}iterations?\b")
+_LOOP_QUESTION_CLAUSE_END_RE = re.compile(r"[,.;!?\n]")
 _LOOP_RUN_BY_PRONOUN_RE = re.compile(
     r"(?:^|[,.;!?\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*(?:run|start|launch|do|kick off) (?:one|it|another)\b"
 )
@@ -5105,8 +5112,16 @@ def _fold_quotes(text: str) -> str:
     asked for. Collapsing every run of whitespace to that one plain space is what
     keeps such a phrase a phrase. The prompt itself is never rewritten, so
     anything that quotes it back keeps what the reader typed.
+
+    A zero-width character is whitespace the eye cannot see, and a paste out of a
+    document or a word processor carries one inside a phrase often enough to
+    matter: the reader's words look whole while every pattern sees two, which
+    loses the command the same way a tab does. The five listed here are read as
+    whitespace for that reason. U+FEFF is a byte-order mark rather than whitespace
+    to Python's own whitespace class, so it is spelled out to match the native fold,
+    where that character is whitespace already.
     """
-    return re.sub(r"\s+", " ", text.lower().replace("‘", "'").replace("’", "'"))
+    return re.sub(r"[\s\u200b\u200c\u200d\u2060\ufeff]+", " ", text.lower().replace("‘", "'").replace("’", "'"))
 
 
 def _has_unrefused_pronoun_rerun(lower: str) -> bool:
@@ -5268,7 +5283,15 @@ def _forward_search(text: str, pattern: "re.Pattern[str]"):
 def _explicit_run_outranks(lower: str, reading_at: int) -> bool:
     """True when an explicit run ask comes before a reading or opens its own clause after it."""
     # The first clause mark after the reading is found once, because every run
-    # ask after it opens a clause of its own and every one before it does not.
+    # ask that reaches past it opens a clause of its own and every one that stops
+    # before it does not. A clause opens at punctuation, but a reader who types
+    # without it joins two asks with "then" alone, as in "read the deep review
+    # report then run a deep review on the parser", so the word marks the clause
+    # too. "and" does not: it joins the objects of one clause, so "summarize the
+    # deep review report and run notes" is still one reading. The ask is read to
+    # its end rather than from its start, because a past run's own name holds the
+    # use verb a later ask reuses, as in "the last deep research run then run deep
+    # research on caching", which makes one match reach across the mark.
     clause_mark: Optional[int] = None
     for match in _EXPLICIT_RUN_ASK_RE.finditer(lower):
         if _run_ask_negated_at(lower, match.start()):
@@ -5276,9 +5299,9 @@ def _explicit_run_outranks(lower: str, reading_at: int) -> bool:
         if match.start() < reading_at:
             return True
         if clause_mark is None:
-            found = re.compile(r"[,.;!?\n]").search(lower, reading_at)
+            found = re.compile(r"[,.;!?\n]|\bthen\b").search(lower, reading_at)
             clause_mark = found.start() if found else -1
-        if clause_mark != -1 and clause_mark < match.start():
+        if clause_mark != -1 and clause_mark < match.end():
             return True
     return False
 
@@ -5302,19 +5325,36 @@ def is_writing_about_topic(text: str) -> bool:
     return bool(writing and not _explicit_run_outranks(lower, writing.start()))
 
 
+def _loop_question_clause(lower: str, start: int) -> str:
+    """The clause a question opens: from its start to the first clause mark after it.
+
+    A count read in this clause sets the length of the run the reader asks about,
+    while a count in a later clause reports a run that already happened.
+    """
+    end = _LOOP_QUESTION_CLAUSE_END_RE.search(lower, start)
+    return lower[start:] if end is None else lower[start:end.start()]
+
+
 def _is_loop_question(lower: str) -> bool:
     """True when the prompt asks about the loop rather than for a run of it.
 
     A how-to question holds the use verb the reader asks about, so that verb
     does not turn the question back into a request; a run the prompt asks for in
-    a clause after the question still does.
+    a clause after the question still does. A digit count turns it back only
+    inside the question's own clause. A question that names no loop is not a loop
+    question at all, so it never reads its count this way.
     """
-    if _LOOP_DIGIT_COUNT_RE.search(lower) or _LOOP_RUN_BY_PRONOUN_RE.search(lower):
+    if _LOOP_RUN_BY_PRONOUN_RE.search(lower):
         return False
     how_to = _LOOP_HOW_TO_QUESTION_RE.search(lower)
+    question = how_to or _LOOP_QUESTION_RE.search(lower)
+    if not question:
+        return False
+    if _LOOP_DIGIT_COUNT_RE.search(_loop_question_clause(lower, question.start())):
+        return False
     if how_to:
         return not _LOOP_RUN_REQUESTED_RE.search(lower, how_to.end())
-    return bool(_LOOP_QUESTION_RE.search(lower) and not _LOOP_RUN_REQUESTED_RE.search(lower))
+    return not _LOOP_RUN_REQUESTED_RE.search(lower)
 
 
 def _names_loop_subject(phrase: str, lower: str, start: int, end: int) -> bool:

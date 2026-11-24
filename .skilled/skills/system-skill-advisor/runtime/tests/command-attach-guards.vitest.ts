@@ -17,6 +17,7 @@ import {
   commandOnlyMentioned,
   isNoEditRequest,
   isStuckRunComplaint,
+  isWritingAboutTopic,
   MODE_COMMANDS,
   namesDeepRun,
   NO_EDIT_REQUEST,
@@ -571,6 +572,30 @@ describe('command attach on a deep-loop prompt', () => {
     expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
   });
 
+  // A run the reader adds behind "then" opens a clause of its own, so it outranks
+  // a reading of what a past run produced even with no punctuation in front of it.
+  // "and" keeps the reading's own clause, and the wording it joins names no loop
+  // run at all.
+  it.each([
+    ['review', 'read the deep review report then run a deep review on the parser', '/deep:review'],
+    ['research', 'summarize the last deep research run then run deep research on caching', '/deep:research'],
+    ['review', 'summarize the deep review report and run notes', undefined],
+  ] as const)('reads the clause "then" opens and not the word "and": %s', (mode, prompt, command) => {
+    expect(asksForLoopRun(prompt), prompt).toBe(command !== undefined);
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt), prompt).toBe(command);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBe(command);
+  });
+
+  // A piece written about the loop is the other reading the same mark outranks, so
+  // a run ask behind "then" turns the request back into the ask it carries.
+  it.each([
+    ['write a blog post about review loops then run a deep review on the parser', '/deep:review'],
+    ['write a blog post about review loops and run notes', undefined],
+  ] as const)('reads a piece written about the loop past a "then" clause: %s', (prompt, command) => {
+    expect(isWritingAboutTopic(prompt), prompt).toBe(command === undefined);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBe(command);
+  });
+
   // Writing a piece about a loop method names the loop as a topic.
   it.each([
     ['research', 'draft a blog post about iterative research for designers'],
@@ -829,9 +854,35 @@ describe('command attach on a deep-loop prompt', () => {
     expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
   });
 
+  // A zero-width character is invisible in the prompt, so a paste or a word
+  // processor can split a phrase with one and leave the reader's words looking
+  // whole on screen. Every gate pattern reads the fold, so the fold has to read
+  // each of these as whitespace or the phrase matches nothing and the command is
+  // lost on exactly the prompt the reader sees as an ask.
+  it.each([
+    ['review', 'run a deep\u200breview of the auth module', '/deep:review'],
+    ['review', 'run a deep\u200creview of the auth module', '/deep:review'],
+    ['review', 'run a deep\u200dreview of the auth module', '/deep:review'],
+    ['review', 'run a deep\u2060review of the auth module', '/deep:review'],
+    ['review', 'run a deep\ufeffreview of the auth module', '/deep:review'],
+  ] as const)('offers the %s command across a zero-width character: %s', (mode, prompt, command) => {
+    expect(asksForLoopRun(prompt), prompt).toBe(true);
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt), prompt).toBe(command);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBe(command);
+  });
+
+  // The same fold answers the control: a zero-width character inside a question
+  // about the loop still names no run, so the command stays withheld.
+  it('withholds the review command across a zero-width character in a question', () => {
+    const prompt = 'explain what a deep\u200breview is';
+    expect(asksForLoopRun(prompt), prompt).toBe(false);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBeUndefined();
+  });
+
   it('reads a hyphenated loop name inside a path as a file name', () => {
     expect(asksForLoopRun('update the wording in deep-review.md and system-deep-review/SKILL.md')).toBe(false);
   });
+
 
   // A loop name about the loop's own code or results, and a count that
   // describes a subject, name what the request is about rather than a run.

@@ -2946,6 +2946,30 @@ def test_deep_loop_offer_gate_parity():
         fail_test(name, f"wrong={wrong}")
 
 
+def test_deep_loop_clause_mark_then_opens_an_ask():
+    """A run ask behind the word then outranks a reading of a past run, and and does not."""
+    name = "DEEP-LOOP-CLAUSE: a run ask behind then outranks a past-run reading and the word and keeps the reading"
+    cases = (
+        ("read the deep review report then run a deep review on the parser", True),
+        ("summarize the last deep research run then run deep research on caching", True),
+        ("summarize the deep review report and run notes", False),
+    )
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        wrong = [
+            (prompt, asks, advisor.asks_for_loop_run(prompt), advisor.is_past_run_read(prompt))
+            for prompt, asks in cases
+            if advisor.asks_for_loop_run(prompt) != asks or advisor.is_past_run_read(prompt) == asks
+        ]
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if not wrong:
+        ok(name, f"cases={len(cases)}")
+    else:
+        fail_test(name, f"wrong={wrong}")
+
+
 def test_deep_loop_offer_gate_in_fallback():
     """The fallback offers no deep-loop run the prompt never asks for."""
     name = "DEEP-LOOP-FALLBACK: a stuck run gets no run row, a piece about the loop drops the hub, a counted ask keeps its row"
@@ -3046,7 +3070,39 @@ def test_loop_workflow_request_reads_the_run_ask():
         fail_test(name, f"reported={reported} asked={asked}")
 
 
+def test_deep_loop_gate_folds_zero_width():
+    """A zero-width character inside a loop phrase keeps the run the reader asked for."""
+    # A zero-width character is invisible in the prompt, so a paste or a word
+    # processor can split a phrase with one and leave the words looking whole on
+    # screen. The gate folds every prompt before a pattern reads it, so the fold
+    # has to read each of these as whitespace or the phrase matches nothing and
+    # the run is lost on exactly the prompt the reader sees as an ask.
+    name = "DEEP-LOOP-FOLD: a zero-width character in a loop phrase keeps its run row, the control keeps none"
+    review_row = {"skill": "command-spec-kit-deep-review"}
+    hidden = ("\u200b", "\u200c", "\u200d", "\u2060", "\ufeff")
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        kept = {
+            escape.encode("unicode_escape").decode("ascii"): bool(advisor._apply_deep_loop_offer_gate(
+                [dict(review_row)], "run a deep" + escape + "review of the auth module"
+            ))
+            for escape in hidden
+        }
+        control = "explain what a deep\u200breview is"
+        asked = advisor.asks_for_loop_run("run a deep\u200breview of the auth module")
+        control_asks = advisor.asks_for_loop_run(control)
+        control_rows = advisor._apply_deep_loop_offer_gate([dict(review_row)], control)
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if asked is True and control_asks is False and control_rows == [] and all(kept.values()):
+        ok(name, f"kept={len(kept)}")
+    else:
+        fail_test(name, f"asked={asked} control_asks={control_asks} control_rows={control_rows} kept={kept}")
+
+
 def test_deep_loop_gate_long_prompts():
+
     """A long prompt that repeats a refusal or a loop phrase keeps its answer and stays fast."""
     # The gate reads the words before each phrase on a bounded window, so its cost
     # is linear in the prompt. The ceiling is generous: the quadratic cost it
@@ -3201,11 +3257,14 @@ def main():
     test_native_bridge_honors_scorer_override()
     test_threshold_settings_reach_python_defaults()
     test_deep_loop_offer_gate_parity()
+    test_deep_loop_clause_mark_then_opens_an_ask()
     test_deep_loop_offer_gate_in_fallback()
     test_deep_loop_doctor_naming_reading()
     test_deep_loop_typed_run_row_marked()
     test_loop_workflow_request_reads_the_run_ask()
+    test_deep_loop_gate_folds_zero_width()
     test_deep_loop_gate_long_prompts()
+
     test_deep_loop_gate_reads_prompt_head()
     test_deep_loop_served_head()
 

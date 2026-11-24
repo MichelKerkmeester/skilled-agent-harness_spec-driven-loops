@@ -4,12 +4,17 @@
 //
 // The advisor can name the workflow mode a hub would route a prompt to, but the
 // reader still has to translate that mode into the slash command that acts on
-// it. This module owns that translation and nothing else, kept free of imports
-// so the recommend path and a test read the same semantics.
+// it. This module owns that translation and nothing else, so the recommend path,
+// the child-process brief path and a test read one copy of the semantics. Its
+// one import is the alias fold, because deciding which skill owns a command is
+// part of that translation and the Python advisor reports a folded deep command
+// under its legacy mode id.
 //
 // The mode-to-command table is generated rather than hand-maintained: each row is
 // derived from a hub's own command files, so a hub that adds or renames a mode
 // regenerates its row instead of drifting from a copy someone forgot to update.
+
+import { mergedSkillForAlias } from './scorer/aliases.js';
 
 // BEGIN GENERATED MODE COMMANDS
 export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, string>>>> = {
@@ -298,6 +303,18 @@ export interface TypedCommand {
   readonly command: string;
   readonly policy: 'run' | 'start' | 'ask';
   readonly ownerSkillId: string;
+}
+
+// A command string that crossed the child-process boundary may print only where
+// the tracked table names it for the row's own skill, because the child supplies
+// the string and the skill is the offer the reader can always act on. The row's
+// skill is read through its alias group, since a legacy mode id stands for the
+// hub that owns the command today.
+export function trackedCommandForOwner(skill: string, command: string): TypedCommand | undefined {
+  if (!Object.hasOwn(TRACKED_COMMANDS, command)) return undefined;
+  const tracked = TRACKED_COMMANDS[command];
+  const ownerMatches = tracked.ownerSkillId === skill || tracked.ownerSkillId === mergedSkillForAlias(skill);
+  return ownerMatches ? { command, policy: tracked.policy, ownerSkillId: tracked.ownerSkillId } : undefined;
 }
 
 // A prompt that types two commands delivers the first one the leading skill owns
@@ -818,17 +835,25 @@ export const LOOP_ASK_REFUSED_AFTER = /^(?: (?:run|loop|pass|iterations?))? (?:(
 // its own after them. A run ask inside the topic, as in "write a blog post about
 // how to run a deep review", is part of what the piece covers.
 // The first clause mark after the reading is found once, because every run ask
-// after it opens a clause of its own and every one before it does not.
+// that reaches past it opens a clause of its own and every one that stops before
+// it does not. A clause opens at punctuation, but a reader who types without it
+// joins two asks with "then" alone, as in "read the deep review report then run a
+// deep review on the parser", so the word marks the clause too. "and" does not:
+// it joins the objects of one clause, so "summarize the deep review report and
+// run notes" is still one reading. The ask is read to its end rather than from
+// its start, because a past run's own name holds the use verb a later ask reuses,
+// as in "the last deep research run then run deep research on caching", which
+// makes one match reach across the mark.
 function explicitRunOutranks(lower: string, readingAt: number): boolean {
   let clauseMark: number | undefined;
   for (const match of lower.matchAll(EXPLICIT_RUN_ASK)) {
     if (runAskNegatedAt(lower, match.index)) continue;
     if (match.index < readingAt) return true;
     if (clauseMark === undefined) {
-      const found = lower.slice(readingAt).search(/[,.;!?\n]/);
+      const found = lower.slice(readingAt).search(/[,.;!?\n]|\bthen\b/);
       clauseMark = found === -1 ? -1 : readingAt + found;
     }
-    if (clauseMark !== -1 && clauseMark < match.index) return true;
+    if (clauseMark !== -1 && clauseMark < match.index + match[0].length) return true;
   }
   return false;
 }
@@ -881,8 +906,18 @@ export const WRITING_ABOUT_TOPIC = /\b(?:write|draft|compose|author|prepare|publ
 // keyboards type to the straight form the patterns spell, and collapses every
 // run of whitespace to that one plain space. The prompt itself is never
 // rewritten, so anything that quotes it back keeps what the reader typed.
+//
+// A zero-width character is whitespace the eye cannot see, and a paste out of a
+// document or a word processor carries one inside a phrase often enough to
+// matter: the reader's words look whole while every pattern sees two, which
+// loses the command the same way a tab does. The five listed here are read as
+// whitespace for that reason. U+FEFF is JavaScript whitespace already, and it is
+// listed so this set spells out the same characters as the fallback's, whose
+// engine leaves it out.
 function lowerFolded(text: string): string {
-  return text.toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ');
+  return text.toLowerCase()
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\s\u200b\u200c\u200d\u2060\ufeff]+/g, ' ');
 }
 
 export function isWritingAboutTopic(text: string): boolean {
@@ -1229,25 +1264,43 @@ const LOOP_QUESTION = new RegExp(
 // "can you run a deep review on the parser", states the request itself and is
 // left out on purpose.
 const LOOP_HOW_TO_QUESTION = new RegExp(`\\bhow ${LOOP_QUESTION_AUX} (?:i|we) ${LOOP_SUBJECT}`);
-// Only a digit count turns the question back into a request. The spelled count
-// is left out on purpose, so a question about the loop that quotes one, as in
-// "why does the deep review stop after ten iterations", stays the question it
-// was before spelled counts were read as a loop ask. A question that names no
-// loop is not a loop question at all, so "why does it stop after ten
-// iterations" still reads its count as a request for a run.
+// Only a digit count turns the question back into a request, and only inside
+// the question's own clause, where it sets the length of the run the reader asks
+// about. A count in a later clause reports a run that already happened, as in
+// "how do I run a deep review on this? it took 5 iterations last time", so it
+// leaves the question the question it was. The spelled count is left out on
+// purpose, so a question about the loop that quotes one, as in "why does the deep
+// review stop after ten iterations", stays the question it was before spelled
+// counts were read as a loop ask.
 export const ITERATION_COUNT = /\b\d+ (?:[a-z-]+ ){0,2}iterations?\b/;
+// A question's own clause ends at the first clause mark after its start, which
+// is where a later clause reporting a finished run begins.
+export const QUESTION_CLAUSE_END = /[,.;!?\n]/;
 // A later clause that opens with a use verb on "one" or "it" asks for the loop
 // the question named, as in "what is a deep review? run one on the parser".
 export const LOOP_RUN_BY_PRONOUN = /(?:^|[,.;!?\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*(?:run|start|launch|do|kick off) (?:one|it|another)\b/;
 
+// The clause a question opens runs from where it starts to the first clause mark
+// after it, so every count read in it counts this run rather than a finished one.
+function questionClause(lowered: string, start: number): string {
+  const end = QUESTION_CLAUSE_END.exec(lowered.slice(start));
+  return end === null ? lowered.slice(start) : lowered.slice(start, start + end.index);
+}
+
 // A how-to question holds the use verb the reader asks about, so that verb does
 // not turn the question back into a request; a run the prompt asks for in a
-// clause after the question still does.
+// clause after the question still does. A question that names no loop is not a
+// loop question at all, so "why does it stop after ten iterations" still reads
+// its count as a request for a run.
 function isLoopQuestion(lowered: string): boolean {
-  if (ITERATION_COUNT.test(lowered) || LOOP_RUN_BY_PRONOUN.test(lowered)) return false;
+  if (LOOP_RUN_BY_PRONOUN.test(lowered)) return false;
   const howTo = LOOP_HOW_TO_QUESTION.exec(lowered);
-  if (howTo !== null) return !LOOP_RUN_REQUESTED.test(lowered.slice(howTo.index + howTo[0].length));
-  return LOOP_QUESTION.test(lowered) && !LOOP_RUN_REQUESTED.test(lowered);
+  const question = howTo ?? LOOP_QUESTION.exec(lowered);
+  if (question === null) return false;
+  if (ITERATION_COUNT.test(questionClause(lowered, question.index))) return false;
+  return howTo !== null
+    ? !LOOP_RUN_REQUESTED.test(lowered.slice(howTo.index + howTo[0].length))
+    : !LOOP_RUN_REQUESTED.test(lowered);
 }
 
 // `why not` proposes the command rather than refusing it, so the word refuses

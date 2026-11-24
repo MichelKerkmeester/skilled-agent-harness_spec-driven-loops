@@ -20,9 +20,8 @@ import {
 } from './skill-advisor-cli-manifest.js';
 
 import { disabledRecommendOutput } from './lib/advisor-disabled.js';
-import { TRACKED_COMMANDS, commandRowFor, type TypedCommand } from './lib/command-attach.js';
+import { TRACKED_COMMANDS, commandRowFor, trackedCommandForOwner } from './lib/command-attach.js';
 import { stripLeadingPastedReply } from './lib/prompt-policy.js';
-import { mergedSkillForAlias } from './lib/scorer/aliases.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT } from './lib/compat/contract.js';
 import {
   runAdvisorSubprocess,
@@ -1479,18 +1478,6 @@ async function runLocalScorer(prompt: string): Promise<readonly AdvisorRecommend
       process.env[forceLocalEnv] = previous;
     }
   }
-}
-
-// A command string that crossed the child-process boundary prints in the position
-// the reader runs it from, so the tracked table decides whether it may print
-// there, not the child that supplied it. The row's skill is read through its alias
-// group because the Python advisor reports a folded deep command under its legacy
-// mode id, and that id stands for the hub that owns the command today.
-function trackedCommandForOwner(skill: string, command: string): TypedCommand | undefined {
-  if (!Object.hasOwn(TRACKED_COMMANDS, command)) return undefined;
-  const tracked = TRACKED_COMMANDS[command];
-  const ownerMatches = tracked.ownerSkillId === skill || tracked.ownerSkillId === mergedSkillForAlias(skill);
-  return ownerMatches ? { command, policy: tracked.policy, ownerSkillId: tracked.ownerSkillId } : undefined;
 }
 
 // The local scorer names command ids, but a reader can only act on a command they

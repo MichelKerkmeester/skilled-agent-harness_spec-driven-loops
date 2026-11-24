@@ -285,6 +285,9 @@
     { "id": "plural-deep-reviews-question", "prompt": "explain how the deep reviews decide to stop", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
     { "id": "how-do-run-deep-review", "prompt": "how do I run a deep review on this?", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
     { "id": "how-can-research-loop-stop", "prompt": "how can a deep research loop stop early?", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "how-do-run-count-in-later-clause", "prompt": "how do I run a deep review on this? it took 5 iterations last time", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "servedRun": "none" },
+    { "id": "how-can-stop-loop-count-in-later-clause", "prompt": "how can I stop the research loop? the last one ran 12 iterations", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "how-do-run-count-in-question-clause", "prompt": "how do I run a deep review for 5 iterations on the parser", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
     { "id": "how-could-deep-review-miss", "prompt": "how could the deep review miss that", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
     { "id": "how-should-deep-review-report", "prompt": "how should a deep review report findings", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
     { "id": "how-would-deep-review-handle", "prompt": "how would the deep review handle a monorepo", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
@@ -360,6 +363,12 @@
     { "id": "loop-wording-tab", "prompt": "run a deep\treview of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
     { "id": "loop-wording-line-break", "prompt": "run a deep\nreview of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
     { "id": "loop-wording-nbsp", "prompt": "run a deep\u00a0review of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
-    { "id": "loop-wording-artifact-double-space", "prompt": "open the deep  review config", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false }
+    { "id": "loop-wording-zero-width", "prompt": "run a deep\u200breview of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "loop-wording-byte-order-mark", "prompt": "run a deep\ufeffreview of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "question-zero-width-control", "prompt": "explain what a deep\u200breview is", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "servedRun": "none" },
+    { "id": "loop-wording-artifact-double-space", "prompt": "open the deep  review config", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "past-report-then-run-review", "prompt": "read the deep review report then run a deep review on the parser", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "past-research-then-run-research", "prompt": "summarize the last deep research run then run deep research on caching", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "research" },
+    { "id": "past-report-and-run-notes", "prompt": "summarize the deep review report and run notes", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "servedRun": "none" }
   ]
 }

@@ -68,6 +68,7 @@ import {
   PASS_NOUN,
   PAST_RUN_OUTPUT,
   PAST_RUN_READ_VERBS,
+  QUESTION_CLAUSE_END,
   READ_ONLY_LOOP_MODES,
   RERUN_MARKER,
   RERUN_PRONOUNS,
@@ -504,6 +505,7 @@ const PATTERN_PAIRS: readonly (readonly [string, RegExp])[] = [
   ['_NAMED_LOOP_MODE_RE', NAMED_LOOP_MODE],
   ['_RUN_CONTINUED_RE', RUN_CONTINUED],
   ['_LOOP_DIGIT_COUNT_RE', ITERATION_COUNT],
+  ['_LOOP_QUESTION_CLAUSE_END_RE', QUESTION_CLAUSE_END],
   ['_LOOP_RUN_BY_PRONOUN_RE', LOOP_RUN_BY_PRONOUN],
   ['_LOOP_RUN_SUBJECT_RE', LOOP_RUN_SUBJECT],
   ['_LOOP_RUN_REQUESTED_RE', LOOP_RUN_REQUESTED],
@@ -566,8 +568,9 @@ const QUANTIFIER_PAIRS: readonly (readonly [string, string, string])[] = [
 
 // Everything else is built in code on both sides, or is grammar one engine spells
 // and the other expresses some other way. Each entry says why it cannot be compared,
-// and the last test in this block reads the fallback's gate for compiled names, so a
-// pattern that appears in none of these tables fails rather than going uncovered.
+// and the tests in this block read the fallback's gate for the names it compiles and
+// for the names it still holds, so a pattern that appears in none of these tables
+// fails rather than going uncovered.
 const PATTERNS_NOT_COMPARED: readonly (readonly [string, string])[] = [
   ['_LOOP_PASSES_ASK_RE', 'one alternation of the iterative ask, the multi-pass grammar and the count, each read in its own row'],
   ['_LOOP_REQUEST_RE', 'one alternation of the object gap, the use, continue and want forms and the three ask patterns, each read in its own row'],
@@ -684,10 +687,15 @@ describe('deep-loop patterns shared with the Python fallback', () => {
   const gateClose = python.indexOf('\ndef _apply_deep_loop_offer_gate(', gateOpen + 1);
   const gate = gateOpen === -1 || gateClose === -1 ? '' : python.slice(gateOpen, gateClose);
 
+  // The compiled names are read without a suffix convention, because a pattern the
+  // gate compiles under a name of its own is still a pattern the tables owe a row.
+  const gateCompiled = [...gate.matchAll(/^(_[A-Z0-9_]+) = re\.compile\(/gm)]
+    .map((match) => match[1])
+    .sort();
+
   it('compares or accounts for every pattern the fallback compiles in its gate', () => {
     expect(gate, 'the gate section must be found').not.toBe('');
-    const compiled = [...gate.matchAll(/^(_[A-Z0-9_]+_RE) = re\.compile\(/gm)].map((match) => match[1]).sort();
-    expect(compiled.length).toBeGreaterThan(0);
+    expect(gateCompiled.length).toBeGreaterThan(0);
     const accounted = [
       ...PATTERN_PAIRS.map(([name]) => name),
       ...ANCHORED_PATTERN_PAIRS.map(([name]) => name),
@@ -696,7 +704,28 @@ describe('deep-loop patterns shared with the Python fallback', () => {
     // A name carried by two tables would be compared twice, or excused after being
     // compared, so each one is accounted for exactly once.
     expect(new Set(accounted).size).toBe(accounted.length);
-    expect(accounted.filter((name) => /_RE$/.test(name)).sort(), 'every compiled gate pattern is accounted for').toEqual(compiled);
+    const unaccounted = gateCompiled.filter((name) => !accounted.includes(name));
+    expect(unaccounted, 'every compiled gate pattern is accounted for').toEqual([]);
+  });
+
+  // The accounting above reads one way: a pattern the gate compiles has to be named
+  // by a table. An excuse that outlives the pattern it names is the other drift, and
+  // it stays silent, because nothing reads the reason for a name that is gone. Every
+  // name a table carries is therefore read back out of the same slice: a compared
+  // pattern is compiled there, and an excused name is at least still assigned, since
+  // the excuses cover fragments and per-mode tables that no compiled object exposes.
+  it('holds every name it compares or excuses in the fallback gate', () => {
+    expect(gate, 'the gate section must be found').not.toBe('');
+    const compared = [
+      ...PATTERN_PAIRS.map(([name]) => name),
+      ...ANCHORED_PATTERN_PAIRS.map(([name]) => name),
+    ];
+    const uncompiled = compared.filter((name) => !gateCompiled.includes(name));
+    expect(uncompiled, 'every compared pattern is compiled in the gate').toEqual([]);
+    const unassigned = PATTERNS_NOT_COMPARED
+      .map(([name]) => name)
+      .filter((name) => pythonAssignment(gate, name) === undefined);
+    expect(unassigned, 'every excused name is still assigned in the gate').toEqual([]);
   });
 });
 
