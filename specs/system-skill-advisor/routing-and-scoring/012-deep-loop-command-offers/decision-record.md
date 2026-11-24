@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T11:15:08Z"
+    last_updated_at: "2026-11-24T18:12:03Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded ADR-005 to ADR-007 for the sixth and seventh fix rounds"
+    recent_action: "Recorded ADR-008 for the ninth fix round"
     next_safe_action: "Record any decision the traceability rerun raises"
     blockers: []
     key_files: []
@@ -695,6 +695,99 @@ REQ-011 was never amended: it still lists all three aliases as reaching both fil
 **How to roll back**: replay the alias against an out-of-domain prompt, add it to `hub-router.json` and `ROUTER.md` if the replay stays off the hub, and amend REQ-011 and AC-043 in the same pass.
 <!-- /ANCHOR:adr-007-impl -->
 <!-- /ANCHOR:adr-007 -->
+
+---
+
+<!-- ANCHOR:adr-008 -->
+## ADR-008: Amend REQ-035 so a mode-free plural loop serves the hub without a command
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Operator, answering "Amend REQ-035 (Recommended)" in the ninth fix round on the third traceability rerun's P1 |
+
+---
+
+<!-- ANCHOR:adr-008-context -->
+### Context
+
+REQ-035 listed "run two deep loops on the cache layer" among the plural prompts that carry `/deep:review` or `/deep:research`. The prompt names neither mode. Its singular, "run a deep loop on the cache layer", has always served the hub with no command, because a deferred route offers a command only when the ask names one mode (REQ-026). The third traceability rerun found that the plural prompt carried no command anywhere and raised it as a P1.
+
+### Constraints
+
+- The gate never guesses a mode the prompt does not name. Guessing would change the singular prompt and the deferred-route probes too.
+- A requirement is amended by a recorded decision, never by a silent edit.
+<!-- /ANCHOR:adr-008-context -->
+
+---
+
+<!-- ANCHOR:adr-008-decision -->
+### Decision
+
+**We chose**: amend REQ-035 so the mode-free plural prompt asks for the run and serves the hub with no command, the same as its singular.
+
+**How it works**: REQ-035 names the seven prompts that name a mode as carrying their command and states the mode-free one separately. The shared fixture row `plural-deep-loops-served` reads `servedRun: null` in both copies, and AC-051 reads the built advisor's result for all eight.
+<!-- /ANCHOR:adr-008-decision -->
+
+---
+
+<!-- ANCHOR:adr-008-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Amend REQ-035 to the deferred-route rule** | The requirement, the singular prompt and the gate agree | A plural mode-free ask still gets no command | 9/10 |
+| Serve a default mode when none is named | Every plural prompt carries a command | Changes the singular prompt, the deferred-route rule and its probes, and offers a loop the prompt did not pick | 3/10 |
+<!-- /ANCHOR:adr-008-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-008-consequences -->
+### Consequences
+
+**What improves**:
+- REQ-035 can be checked against the tree, and the plural and singular mode-free prompts behave alike.
+
+**What it costs**:
+- A reader who asks for "deep loops" without a mode picks the mode from the hub's own routing.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later round reads a mode into a mode-free ask on one side only | M | The fixture row runs in both copies, and the drift guard compares the mode vocabulary on every surface |
+<!-- /ANCHOR:adr-008-consequences -->
+
+---
+
+<!-- ANCHOR:adr-008-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found the requirement contradicted by the gate's deferred-route rule |
+| 2 | **Beyond Local Maxima?** | PASS | Serving a default mode was weighed and rejected |
+| 3 | **Sufficient?** | PASS | One requirement sentence, this record and one acceptance row |
+| 4 | **Fits Goal?** | PASS | A command is offered only when the request asks for that loop |
+| 5 | **Open Horizons?** | PASS | A default mode can be added later in one gate rule, with its own decision |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-008-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-008-impl -->
+### Implementation
+
+**What changes**:
+- REQ-035 states the mode-free prompt on its own. AC-051 reads all eight prompts through the built advisor. T097 records the change.
+
+**How to roll back**: give the deferred route a default mode in both gate copies, change the fixture row's `servedRun`, and amend REQ-035 and AC-051 with a new record.
+<!-- /ANCHOR:adr-008-impl -->
+<!-- /ANCHOR:adr-008 -->
 
 ---
 
