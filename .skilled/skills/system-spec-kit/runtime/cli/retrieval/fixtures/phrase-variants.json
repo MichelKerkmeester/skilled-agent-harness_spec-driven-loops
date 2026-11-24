@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1b621b1c516b3db7266d1cfb6f4d468467b40ae362d1f2586bebba95cf3850b8",
+  "manifestHash": "454a849ee42064e36321e3799cd05fede7bafb7feb86d015e94c8c1d591188a3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -80263,6 +80263,9 @@
     "one shot embedding retry script": [
       "one-shot embedding retry script"
     ],
+    "one skill graph scan": [
+      "one skill graph scan"
+    ],
     "one status vocabulary": [
       "one status vocabulary"
     ],
@@ -117748,6 +117751,9 @@
     "sk git 1 11 14 0": [
       "sk-git 1.11.14.0"
     ],
+    "sk git 1 11 15 0": [
+      "sk-git 1.11.15.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -118080,6 +118086,9 @@
     ],
     "sk git v1 11 14 0": [
       "sk-git v1.11.14.0"
+    ],
+    "sk git v1 11 15 0": [
+      "sk-git v1.11.15.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -121659,6 +121668,9 @@
     ],
     "socket name assertion": [
       "socket name assertion"
+    ],
+    "socket ownership check": [
+      "socket ownership check"
     ],
     "socket perimeter hardening sun path guard": [
       "socket perimeter hardening sun_path guard"
@@ -128385,6 +128397,9 @@
     "system skill advisor 2 0 4 0": [
       "system-skill-advisor 2.0.4.0"
     ],
+    "system skill advisor 2 0 5 0": [
+      "system-skill-advisor 2.0.5.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -128753,6 +128768,9 @@
     ],
     "system skill advisor v2 0 4 0": [
       "system-skill-advisor v2.0.4.0"
+    ],
+    "system skill advisor v2 0 5 0": [
+      "system-skill-advisor v2.0.5.0"
     ],
     "system skilled bots first build": [
       "system-skilled-bots first build"
@@ -139202,6 +139220,9 @@
     ],
     "worktree 046 removal": [
       "worktree 046 removal"
+    ],
+    "worktree advisor skill graph database": [
+      "worktree advisor skill-graph database"
     ],
     "worktree automation plan": [
       "worktree automation plan"
