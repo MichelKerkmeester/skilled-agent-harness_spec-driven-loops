@@ -1,0 +1,30 @@
+{
+  "$comment": "Read by ../scorer-predicate-cases.vitest.ts and ../python/test_skill_advisor.py. Both implementations count normalized prompt-policy tokens, apply its stop words and recognize typed slash commands consistently.",
+  "schema_version": 1,
+  "cases": [
+    { "id": "path-with-intent", "prompt": "refactor src/scorer/fusion.ts", "typedSlashCommand": false, "meaningfulTokens": 5, "lowInformation": false },
+    { "id": "path-no-intent", "prompt": "explain src/a.ts", "typedSlashCommand": false, "meaningfulTokens": 3, "lowInformation": true },
+    { "id": "and-or", "prompt": "and/or which one", "typedSlashCommand": false, "meaningfulTokens": 2, "lowInformation": true },
+    { "id": "typed-plan", "prompt": "/speckit:plan add a cache", "typedSlashCommand": true, "meaningfulTokens": 4, "lowInformation": false },
+    { "id": "mode-suffix", "prompt": "/speckit:plan:auto", "typedSlashCommand": true, "meaningfulTokens": 3, "lowInformation": false },
+    { "id": "typed-doctor-sub", "prompt": "run /doctor:git hooks", "typedSlashCommand": true, "meaningfulTokens": 4, "lowInformation": false },
+    { "id": "backticked-retired", "prompt": "use `/memory:save` now", "typedSlashCommand": true, "meaningfulTokens": 4, "lowInformation": false },
+    { "id": "doc-path-not-command", "prompt": "docs/create:goal.md", "typedSlashCommand": false, "meaningfulTokens": 4, "lowInformation": false },
+    { "id": "absolute-path", "prompt": "/usr/local/bin is missing", "typedSlashCommand": false, "meaningfulTokens": 4, "lowInformation": false },
+    { "id": "stop-words-only", "prompt": "do it to me", "typedSlashCommand": false, "meaningfulTokens": 1, "lowInformation": true },
+    { "id": "short-review-intent", "prompt": "review it", "typedSlashCommand": false, "meaningfulTokens": 1, "lowInformation": false },
+    { "id": "stop-word-padding", "prompt": "widget it to me please", "typedSlashCommand": false, "meaningfulTokens": 1, "lowInformation": true },
+    { "id": "holdout-row", "prompt": "auto review this PR", "typedSlashCommand": false, "meaningfulTokens": 3, "lowInformation": false },
+    { "id": "bare-command-question", "prompt": "what does /doctor do", "typedSlashCommand": true, "meaningfulTokens": 4, "lowInformation": false },
+    { "id": "dangling-colon", "prompt": "i typed /create: a thing", "typedSlashCommand": false, "meaningfulTokens": 3, "lowInformation": false },
+    { "id": "slash-list", "prompt": "TP/FP/FN/TN counts", "typedSlashCommand": false, "meaningfulTokens": 5, "lowInformation": false },
+    { "id": "url", "prompt": "see https://example.com/a", "typedSlashCommand": false, "meaningfulTokens": 4, "lowInformation": false },
+    { "id": "bare-command", "prompt": "/autoresearch auth subsystem", "typedSlashCommand": true, "meaningfulTokens": 3, "lowInformation": false },
+    { "id": "two-words", "prompt": "the trigger index", "typedSlashCommand": false, "meaningfulTokens": 2, "lowInformation": true },
+    { "id": "hyphen-token", "prompt": "sk-code review", "typedSlashCommand": false, "meaningfulTokens": 2, "lowInformation": false },
+    { "id": "parenthesised", "prompt": "(/deep:review) the branch", "typedSlashCommand": true, "meaningfulTokens": 3, "lowInformation": false },
+    { "id": "trailing-period", "prompt": "run /speckit:plan.", "typedSlashCommand": true, "meaningfulTokens": 3, "lowInformation": false },
+    { "id": "bare-path", "prompt": "/tmp", "typedSlashCommand": false, "meaningfulTokens": 1, "lowInformation": true },
+    { "id": "unicode-normalization", "prompt": "review ﬃ", "typedSlashCommand": false, "meaningfulTokens": 2, "lowInformation": false }
+  ]
+}

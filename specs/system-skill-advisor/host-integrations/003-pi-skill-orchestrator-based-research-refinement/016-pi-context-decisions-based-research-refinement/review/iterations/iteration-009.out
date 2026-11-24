@@ -1,0 +1,27 @@
+## Review Iteration 9 Complete
+
+**Focus** — security (final verification pass): the two open P2s against the current tree, then an introduced-defect scan over the files the fix batch changed.
+
+**Findings: 2 total — P0 0 / P1 0 / P2 2.**
+
+**Prior findings closed (both, with evidence):**
+- **G5-I8-P2-001 — CONFIRMED FIXED.** `skill_advisor.py:4085` now catches `OSError/ValueError/KeyError/TypeError`, warns once, returns `set()`. Probe: `SPECKIT_ADVISOR_PROMPT_POLICY_PATH=/nonexistent/prompt-policy.json python3 skill_advisor.py "implement a retry helper…" --force-local` → exit 0, one stderr warning, normal `sk-code` payload at 0.95. Test case `tests/python/test_skill_advisor.py:2944` asserts the same three conditions.
+- **G5-I2-P2-002 — CONFIRMED FIXED.** `git check-ignore -v` resolves the default path to `.gitignore:212` and rotations to `:214` (both `.opencode` and `.skilled` copies, no negation below). The mode/symlink half also landed: `shadow-sink.ts:183-207` opens `O_NOFOLLOW`/`0600` and refuses `ELOOP`, foreign uid and `nlink !== 1`.
+
+**New (both P2, verdict-neutral):**
+1. `G5-I9-P2-001` — `owned-private-dir.ts:16` concludes "not private" from `(mode & 0o077) === 0`; on win32 a directory reports `0o40777`, so `metrics.ts:266/341` silently drops every durable write (pre-fix it appended when `chmod` no-opped). No `process.platform` branch exists in the changed set. Confidence 0.6, downgrade trigger: POSIX-only support statement.
+2. `G5-I9-P2-002` — three tracked importers (`route-receipt.ts:29`, `metrics.ts:11`, `shadow-sink.ts:19`) now depend on `owned-private-dir.ts`, which `git status` shows `??` and `git diff HEAD --stat` omits, and which is **not** gitignored (`check-ignore` exit 1). A `git commit -a` ships a hook that throws `ERR_MODULE_NOT_FOUND`.
+
+**newFindingsRatio** — 0.5 (two new P2s weighted 2 against two prior open P2s, total 4). Prior ratios 0.0323, 0.0313; this pass deliberately re-entered the fix batch, so the jump is real, not noise.
+
+**Dimensions** — 4/4 complete; no dimension remains.
+
+**Edge cases** — `dirReady` global short-circuits after the first success (single durable root today, invariant recorded); `rotateIfNeeded` no longer rotates a hard-linked path; `isOwnedPrivateDir` `ENOENT` already swept at iteration 8 and not re-entered. Overlay `feature_catalog_code` was not re-run — but its `partial` status referenced supersession/rollback docs that this diff **deletes**, so synthesis should re-run it rather than inherit `partial`.
+
+**Ruled out** — TOCTOU between `checkIpcSocketOwnership` and connect (private owned directory removes the swap window); unused-import build break (all added fs symbols still referenced); mode-bit loss on `skill_advisor.py` (every entry point passes the interpreter explicitly); missing-policy crash in the TS runtime (pre-existing, out of this batch).
+
+**Files written** — `review/iterations/iteration-009.md`, `review/deltas/iter-009.jsonl`, `review/deep-review-strategy.md` (in place). Record through the append gateway: **exit 0**, receipt `event-6162c7a7…`, sequence 36; projection refreshed, 9 iteration records, last = iteration 9 `complete` with full route proof (only the gateway's `claimedTimestamp`/normalized `timestamp` differ from the delta). Reviewed targets not modified.
+
+**Verdict: PASS** (`hasAdvisories=true`) — final line is exactly `Review verdict: PASS`.
+
+**Status: `complete`** — one thing left for the operator: stage `runtime/lib/owned-private-dir.ts` with the rest of the batch before committing (finding G5-I9-P2-002).

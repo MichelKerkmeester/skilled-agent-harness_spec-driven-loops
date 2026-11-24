@@ -5,8 +5,8 @@
 // Uses the advisor package-local skill-graph.sqlite runtime database.
 
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
-import { basename, dirname, join, relative, resolve } from 'node:path';
+import { existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, rmSync, statSync } from 'node:fs';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 
@@ -735,15 +735,52 @@ function parseSkillMetadata(sourcePath: string, parsedJson: JsonRecord, contentH
   };
 }
 
-function deleteMissingNodes(database: Database.Database, skillIds: string[]): number {
-  if (skillIds.length === 0) {
-    const result = database.prepare('DELETE FROM skill_nodes').run();
-    return result.changes;
+function isPathInside(child: string, root: string): boolean {
+  const pathFromRoot = relative(root, child);
+  return pathFromRoot !== ''
+    && pathFromRoot !== '..'
+    && !pathFromRoot.startsWith(`..${sep}`)
+    && !isAbsolute(pathFromRoot);
+}
+
+function realpathOfNearestAncestor(path: string): string {
+  let existingPath = path;
+  while (!existsSync(existingPath)) {
+    existingPath = dirname(existingPath);
   }
 
-  const placeholders = skillIds.map(() => '?').join(', ');
-  const result = database.prepare(`DELETE FROM skill_nodes WHERE id NOT IN (${placeholders})`).run(...skillIds);
-  return result.changes;
+  return join(realpathSync(existingPath), relative(existingPath, path));
+}
+
+function deleteMissingNodesUnderRoot(
+  database: Database.Database,
+  skillIds: string[],
+  scanRoot: string,
+): number {
+  const scannedSkillIds = new Set(skillIds);
+  const rows = database.prepare('SELECT id, source_path FROM skill_nodes').all() as Array<{
+    id: string;
+    source_path: string;
+  }>;
+  const deleteNode = database.prepare('DELETE FROM skill_nodes WHERE id = ?');
+  const workspaceRoot = findAdvisorWorkspaceRoot(process.cwd());
+  const realScanRoot = realpathSync(scanRoot);
+  let deletedNodes = 0;
+
+  // Relative rows resolve against the workspace, and linked roots still match the stored source.
+  for (const row of rows) {
+    if (scannedSkillIds.has(row.id)) continue;
+
+    const storedPath = resolve(workspaceRoot, row.source_path);
+    if (!isPathInside(storedPath, scanRoot)
+      && !isPathInside(realpathOfNearestAncestor(storedPath), realScanRoot)) {
+      continue;
+    }
+
+    deletedNodes += deleteNode.run(row.id).changes;
+  }
+
+  return deletedNodes;
 }
 
 /**
@@ -852,9 +889,9 @@ function harvestSkillDocs(
 /**
  * Index all discovered graph-metadata.json files under a skill directory.
  *
- * Files whose SHA-256 content hash has not changed are skipped. Node rows that
- * disappear from the source directory are deleted first so foreign-key cascade
- * cleanup removes stale edges, even when neighboring source files are skipped.
+ * Files whose SHA-256 content hash has not changed are skipped. Node rows absent
+ * from the scan are deleted only when their stored source path lies under its
+ * root, so foreign-key cascade removes stale edges without dropping other skills.
  */
 export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   const database = getDb();
@@ -919,6 +956,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   let deletedNodes = 0;
 
   if (skillIds.length === 0) {
+    // An empty result is a wrong or missing root, not evidence that its skills were removed.
     warnings.push(`EMPTY-SKILL-SCAN: no skill metadata discovered under ${toDisplayPath(skillDir)}; preserving existing graph`);
     const summary: SkillGraphIndexResult = {
       scannedFiles: discoveredFiles.length,
@@ -938,8 +976,6 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
 
     return summary;
   }
-
-  const knownSkillIds = new Set(skillIds);
 
   const selectExisting = database.prepare(`
     SELECT content_hash, source_path
@@ -973,7 +1009,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   `);
 
   const tx = database.transaction(() => {
-    deletedNodes = deleteMissingNodes(database, skillIds);
+    deletedNodes = deleteMissingNodesUnderRoot(database, skillIds, resolve(skillDir));
 
     const changedEntries: ParsedSkillMetadata[] = [];
     for (const entry of parsedMetadata) {
@@ -1012,6 +1048,8 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
 
     // Re-publish every source edge after all nodes are known so previously
     // rejected edges can backfill when a target skill appears in a later scan.
+    // Nodes outside a narrow root stay in the graph, so they are valid targets.
+    const knownSkillIds = new Set(database.prepare('SELECT id FROM skill_nodes').pluck().all() as string[]);
     for (const entry of parsedMetadata) {
       deleteEdgesBySource.run(entry.node.id);
 

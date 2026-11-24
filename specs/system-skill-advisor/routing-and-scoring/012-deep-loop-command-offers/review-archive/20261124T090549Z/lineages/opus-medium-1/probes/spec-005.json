@@ -1,0 +1,7 @@
+{"iteration":5,"focus":"correctness pass 2: deferred mode resolution and stage-one loop rule","dimensions":["correctness"],
+"filesReviewed":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:899",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:924",".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:449"],
+"findingDetails":[],
+"traceability":[{"protocolId":"spec_code","status":"pass","gateClass":"hard","applicable":true,"evidence":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:911",".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:449"],"summary":"deferred mode resolution and stage-one rule match spec scope"}],
+"ratio":0.0,"novelty":"No new findings; broadened angle confirmed clean.","durationMs":300000,
+"ruledOut":[["depth word lifting hub at stage one","no depth word in loop rule"],["routed path ignoring named loop mode","router not probed; unverified"]],
+"graphEvents":[{"type":"node","id":"dim-correctness","kind":"DIMENSION","label":"correctness"},{"type":"node","id":"file-10","kind":"FILE","label":"explicit.ts"},{"type":"edge","id":"g5-e1","source":"dim-correctness","target":"file-10","relation":"COVERS"}]}

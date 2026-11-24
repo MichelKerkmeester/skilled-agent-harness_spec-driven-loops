@@ -1,0 +1,208 @@
+{
+  "sessionId": "fanout-deepseek-max-1-1795511183570-92w0ez",
+  "parentSessionId": "2026-11-24T09:06:03.000Z",
+  "generation": 3,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-24T09:16:52.812Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The drift guard's per-entry fixture rule skips two of the five lists REQ-031 names",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
+      "line": 206,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The release changelog still quotes the fifth-round advisor suite count",
+      "file": ".skilled/changelog/skilled/v4.2.0.0.md",
+      "line": 759,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The drift guard cannot see the sixth round's highest-churn vocabulary: the refusal-lead alternation is inline in both copies",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 580,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 6,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0.8400000000000001,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "coverageRatio": 1,
+    "evidenceDensityRatio": 1,
+    "findingStabilityRatio": 1,
+    "hotspotSaturationRatio": 1,
+    "noveltyRatio": 0.2,
+    "observationDigest": "05d14a3afe22ab223e5f61fd451ab83b11405bc505b233e75cfa1a575610027d"
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:235",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "REQ-001 to REQ-034 and ADR-005/ADR-006 mapped; REQ-031 and REQ-033 carry R1-P2-001 and this run's completion respectively."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:291",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:87"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "Every ticked sixth-round task and Met row checked against the tree; Verification Summary arithmetic matches the boxes."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -6,15 +6,30 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { appendFileSync, existsSync, mkdirSync, realpathSync, renameSync, statSync } from 'node:fs';
+import {
+  appendFileSync,
+  chmodSync,
+  closeSync,
+  constants,
+  existsSync,
+  fchmodSync,
+  fstatSync,
+  lstatSync,
+  mkdirSync,
+  openSync,
+  realpathSync,
+  renameSync,
+} from 'node:fs';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { isOwnedPrivateDir } from '../owned-private-dir.js';
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
+const APPEND_NO_FOLLOW = constants.O_WRONLY | constants.O_APPEND | constants.O_CREAT | (constants.O_NOFOLLOW ?? 0);
 
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
@@ -131,12 +146,29 @@ function recordShadowDelta(
     };
   }
   try {
+    const dir = dirname(logPath);
+    mkdirSync(dir, { recursive: true, mode: 0o700 });
+    if (!isOwnedPrivateDir(dir)) {
+      if (!isOwnedPrivateDir(dir, 0o002)) {
+        return refused(logPath, "log folder is a symlink, not this user's, not a directory, or writable by others");
+      }
+      try {
+        chmodSync(dir, 0o700);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        return refused(logPath, `log folder could not be made private: ${message}`);
+      }
+      if (!isOwnedPrivateDir(dir)) {
+        return refused(logPath, "log folder could not be made private");
+      }
+    }
     const rotated = rotateIfNeeded(logPath, options.maxBytes ?? DEFAULT_MAX_BYTES, options.now ?? new Date());
-    mkdirSync(dirname(logPath), { recursive: true });
-    appendFileSync(logPath, `${JSON.stringify({
+    if (!appendPrivateLine(logPath, `${JSON.stringify({
       ...record,
       timestamp: record.timestamp ?? new Date().toISOString(),
-    })}\n`, 'utf8');
+    })}\n`)) {
+      return refused(logPath, "log path is a symlink, multiply linked, or not this user's file");
+    }
     return { written: true, logPath, rotated };
   } catch (error: unknown) {
     return {
@@ -148,10 +180,39 @@ function recordShadowDelta(
   }
 }
 
+function refused(logPath: string, reason: string): RecordShadowDeltaResult {
+  return { written: false, logPath, rotated: false, error: `refused: ${reason}` };
+}
+
+function appendPrivateLine(logPath: string, text: string): boolean {
+  let descriptor: number;
+  try {
+    descriptor = openSync(logPath, APPEND_NO_FOLLOW, 0o600);
+  } catch (error: unknown) {
+    if (typeof error === 'object' && error !== null && 'code' in error
+      && (error.code === 'ELOOP' || error.code === 'EMLINK')) {
+      return false;
+    }
+    throw error;
+  }
+
+  try {
+    const stat = fstatSync(descriptor);
+    if (!stat.isFile() || stat.nlink !== 1
+      || (typeof process.getuid === 'function' && stat.uid !== process.getuid())) {
+      return false;
+    }
+    if ((stat.mode & 0o077) !== 0) fchmodSync(descriptor, 0o600);
+    appendFileSync(descriptor, text, 'utf8');
+    return true;
+  } finally {
+    closeSync(descriptor);
+  }
+}
+
 function rotateIfNeeded(logPath: string, maxBytes: number, now: Date): boolean {
-  if (!existsSync(logPath)) return false;
-  const size = statSync(logPath).size;
-  if (size <= maxBytes) return false;
+  const stat = lstatSync(logPath, { throwIfNoEntry: false });
+  if (!stat?.isFile() || stat.nlink !== 1 || stat.size <= maxBytes) return false;
   const suffix = now.toISOString().replace(/[:.]/g, '-');
   renameSync(logPath, `${logPath}.${suffix}.rotated`);
   return true;

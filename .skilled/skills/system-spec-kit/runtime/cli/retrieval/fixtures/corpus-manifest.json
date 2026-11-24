@@ -1,5 +1,5 @@
 {
-  "corpusHash": "39bdf35b855c7545a8fba93eddf7c21dd8e140bddad803f231c5b8947c919af3",
+  "corpusHash": "836a1e1e78b3793c0351051dddcac2350761d4328dd8a97d36d331ae9da42068",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29472,
+  "includedPathCount": 29501,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8364,9 +8364,6 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/age-haircut.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/archive-handling.md",
-    ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/rollback.md",
-    ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/schema-migration.md",
-    ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/supersession.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/python-compat/bench-runner.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/python-compat/cli-shim.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/python-compat/regression-suite.md",
@@ -8411,9 +8408,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/python-shim-stdin.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/age-haircut.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/archive-handling.md",
-    ".skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/schema-migration.md",
-    ".skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/supersession.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/advisor-status-rebuild-separation.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md",
@@ -20098,6 +20093,12 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/028-second-epic-review-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
@@ -20157,15 +20158,37 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review-archive/2026-11-23T21-41-09Z/prompts/iteration-5.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review-archive/2026-11-23T21-41-09Z/resource-map.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review-archive/2026-11-23T21-41-09Z/review-report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review-archive/2026-11-24T05-47-22Z/deep-review-strategy.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review-archive/2026-11-24T05-47-22Z/prompts/iteration-1.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-001.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-002.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-003.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-004.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-005.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-006.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-007.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-008.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-009.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-010.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-011.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-1.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-10.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-11.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-2.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-3.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-4.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-5.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-6.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-7.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-8.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-9.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/resource-map.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/review-report-v5-r10.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/review-report-v5-r3.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/review-report-v5-r7.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/review-report-v5-r9.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/review-report.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/goal.md",
@@ -20511,6 +20534,12 @@
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T044309Z/deep-review-strategy.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T044309Z/prompts/iteration-1.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/review-report.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/fanout-attribution.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/review-report.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md",
@@ -29504,7 +29533,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d10cbaf2753aca2e4f05612f15b786fada0a6ca66a69ab6887483c2f0540c1d6",
+  "manifestHash": "ce1751ca8df00d58eda1c93551012933ba0ae4094d30c4679294b121c2fb1e0f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38407,6 +38436,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -38676,6 +38709,14 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages",
       "reason": "excluded directory"
     },
     {

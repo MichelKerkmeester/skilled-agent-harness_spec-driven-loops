@@ -6,12 +6,25 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { createHash, randomBytes } from 'node:crypto';
+import {
+  chmodSync,
+  closeSync,
+  constants,
+  fstatSync,
+  lstatSync,
+  mkdirSync,
+  openSync,
+  readFileSync,
+  renameSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 
 import type { AdvisorHookOutcomeRecord } from '../metrics.js';
+import { isOwnedPrivateDir } from '../owned-private-dir.js';
 import { asymmetricSinkDelta } from './beta-reliability.js';
 import { isLiveScorerLane } from './lane-registry.js';
 import type { LaneRuntimeHealthStatus, ScorerLane } from './types.js';
@@ -32,6 +45,8 @@ const DEFAULT_MAX_SKILL_SHARE = 0.6;
 const MAX_WEIGHT_DELTA = 0.03;
 const MAX_THRESHOLD_DELTA = 0.05;
 const MAX_RECORDS = 50;
+const PRIVATE_DIR_MODE = 0o700;
+const PRIVATE_FILE_MODE = 0o600;
 const RECORD_ROOT = join(tmpdir(), 'speckit-skill-advisor-calibration');
 
 // ───────────────────────────────────────────────────────────────────
@@ -171,6 +186,54 @@ function laneRecords(
   return records.filter((record) => laneAttributionBySkill[record.skillLabel] === lane);
 }
 
+function ensurePrivateCalibrationDirectory(dir: string): boolean {
+  mkdirSync(dir, { recursive: true, mode: PRIVATE_DIR_MODE });
+  const hasUid = typeof process.getuid === 'function';
+  if (!isOwnedPrivateDir(dir, hasUid ? 0o002 : 0)) return false;
+  if (!hasUid || isOwnedPrivateDir(dir)) return true;
+
+  try {
+    chmodSync(dir, PRIVATE_DIR_MODE);
+  } catch {
+    return false;
+  }
+
+  return isOwnedPrivateDir(dir);
+}
+
+function readOwnRecordLines(path: string): string[] | null {
+  let pathStat: ReturnType<typeof lstatSync>;
+  try {
+    pathStat = lstatSync(path);
+  } catch (error) {
+    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') return [];
+    throw error;
+  }
+  if (!pathStat.isFile()) return null;
+
+  let fd: number;
+  try {
+    fd = openSync(path, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0));
+  } catch (error) {
+    if (!(error instanceof Error) || !('code' in error)) throw error;
+    if (error.code === 'ENOENT') return [];
+    if (error.code === 'ELOOP' || error.code === 'EMLINK') return null;
+    throw error;
+  }
+
+  try {
+    const stat = fstatSync(fd);
+    if (!stat.isFile()
+      || stat.nlink !== 1
+      || stat.dev !== pathStat.dev
+      || stat.ino !== pathStat.ino
+      || (typeof process.getuid === 'function' && stat.uid !== process.getuid())) return null;
+    return readFileSync(fd, 'utf8').split('\n').map((line) => line.trim()).filter(Boolean);
+  } finally {
+    closeSync(fd);
+  }
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ───────────────────────────────────────────────────────────────────
@@ -292,12 +355,38 @@ export function persistAdvisorFeedbackCalibrationRecord(
   report: AdvisorFeedbackCalibrationReport,
 ): string {
   const path = advisorFeedbackCalibrationRecordsPath(workspaceRoot);
-  mkdirSync(dirname(path), { recursive: true });
-  const existing = existsSync(path)
-    ? readFileSync(path, 'utf8').split('\n').map((line) => line.trim()).filter(Boolean)
-    : [];
-  existing.push(JSON.stringify(report));
-  writeFileSync(path, `${existing.slice(-MAX_RECORDS).join('\n')}\n`, 'utf8');
+  const dir = dirname(path);
+  try {
+    if (!ensurePrivateCalibrationDirectory(dir)) return path;
+    const existing = readOwnRecordLines(path);
+    if (existing === null) return path;
+    existing.push(JSON.stringify(report));
+
+    const tempPath = join(dir, `.${basename(path)}.${process.pid}-${randomBytes(6).toString('hex')}.tmp`);
+    let tempCreated = false;
+    let renamed = false;
+    try {
+      const fd = openSync(
+        tempPath,
+        constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | (constants.O_NOFOLLOW ?? 0),
+        PRIVATE_FILE_MODE,
+      );
+      tempCreated = true;
+      try {
+        writeFileSync(fd, `${existing.slice(-MAX_RECORDS).join('\n')}\n`, 'utf8');
+      } finally {
+        closeSync(fd);
+      }
+      renameSync(tempPath, path);
+      renamed = true;
+    } finally {
+      if (tempCreated && !renamed) {
+        unlinkSync(tempPath);
+      }
+    }
+  } catch {
+    return path;
+  }
   return path;
 }
 

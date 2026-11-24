@@ -559,4 +559,32 @@ describe('skill graph database indexing', () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it('scopes the delete to a scan root reached through a symlink', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-symlink-root-'));
+    const dbDir = join(root, 'db');
+    const skillRoot = join(root, 'skills');
+    const aliasRoot = join(root, 'alias');
+
+    try {
+      initDb(dbDir);
+      writeGraphMetadata(join(skillRoot, 'grp'), 'delta');
+      writeGraphMetadata(join(skillRoot, 'grp'), 'epsilon');
+      writeGraphMetadata(skillRoot, 'zeta');
+      symlinkSync(skillRoot, aliasRoot);
+      indexSkillMetadata(skillRoot);
+
+      rmSync(join(skillRoot, 'grp', 'epsilon'), { recursive: true, force: true });
+      const result = indexSkillMetadata(join(aliasRoot, 'grp'));
+
+      expect(result.deletedNodes).toBe(1);
+      expect(getDb().prepare('SELECT id FROM skill_nodes ORDER BY id').all()).toEqual([
+        { id: 'delta' },
+        { id: 'zeta' },
+      ]);
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

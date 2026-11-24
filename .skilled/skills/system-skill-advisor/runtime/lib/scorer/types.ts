@@ -151,6 +151,8 @@ export interface AdvisorScoredRecommendation {
    * ambiguity check does not cluster this skill with that one.
    */
   readonly heldBelow?: string;
+  /** Typed-command seeds whose graph support caused this skill to be held below them. */
+  readonly heldBy?: readonly string[];
   /** True when a confidence floor, not the skill's own evidence, set this confidence. */
   readonly confidenceFloored?: boolean;
   readonly redirectTo?: string;

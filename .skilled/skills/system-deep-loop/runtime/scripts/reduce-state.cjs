@@ -35,6 +35,7 @@ const {
 const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];
 const SEVERITY_KEYS = ['P0', 'P1', 'P2'];
 const SEVERITY_WEIGHTS = { P0: 10.0, P1: 5.0, P2: 1.0 };
+const REPOSITORY_ROOT = path.resolve(__dirname, '../../../../..');
 
 // An extension continues a completed run in place, so its lineage mode stays live.
 const LIVE_LINEAGE_MODES = new Set(['new', 'resume', 'restart', 'completed-continue']);
@@ -704,6 +705,11 @@ function deltaRecordToFinding(record) {
     // A refinement names the finding it sharpens. The observed producer spelling
     // refinementOf is accepted as an alias so both row shapes fold the same way.
     refines: normalizeText(record.refines || record.refinementOf || '') || null,
+    // The dimension the producer declared lets the registry tell a refinement that
+    // sharpens the same concern from one that raises it under another dimension.
+    // A registry entry stores the derived dimension instead, except for a
+    // refinement kept apart from its target, which keeps the declared one.
+    dimension: normalizeDeclaredDimension(record.dimension),
   };
 }
 
@@ -787,6 +793,7 @@ function findingDetailToFinding(detail, record, index) {
       ? detail.content_hash
       : (typeof detail.contentHash === 'string' && detail.contentHash ? detail.contentHash : null),
     refines: normalizeText(detail.refines || detail.refinementOf || '') || null,
+    dimension: normalizeDeclaredDimension(detail.dimension),
   };
 }
 
@@ -948,6 +955,54 @@ function sameFindingAtAnotherLine(existing, finding) {
   return title(existing) === title(finding);
 }
 
+function normalizeDeclaredDimension(value) {
+  return typeof value === 'string' && value.trim() ? value.trim().toLowerCase() : null;
+}
+
+function normalizeFindingPath(value) {
+  if (typeof value !== 'string') return '';
+  const withoutLocation = value.trim()
+    .replace(/\\/g, '/')
+    .replace(/:\d+(?:[:-].*)?$/, '');
+  if (!withoutLocation) return '';
+  const normalized = path.normalize(withoutLocation).replace(/\\/g, '/');
+  if (!path.isAbsolute(normalized)) {
+    return normalized.replace(/^(?:\.\/)+/, '');
+  }
+  const repositoryRelative = path.relative(REPOSITORY_ROOT, normalized);
+  if (repositoryRelative && repositoryRelative !== '..'
+    && !repositoryRelative.startsWith(`..${path.sep}`) && !path.isAbsolute(repositoryRelative)) {
+    return repositoryRelative.split(path.sep).join('/');
+  }
+  return normalized;
+}
+
+// Location identity is the full normalized path, so a bare filename cannot
+// stand in for a same-named file elsewhere in the repository.
+function sameFindingPath(left, right) {
+  return Boolean(left && right && left === right);
+}
+
+/**
+ * A refinement folds into its target only when it sharpens the same place.
+ * One that names another file, or declares another dimension, is a separate
+ * defect that happens to cite an earlier one: folding it would overwrite the
+ * target's wording and drop the refinement's own location, and the freed id
+ * could then be claimed by an unrelated finding when lineages merge. A side
+ * with no file or no declared dimension cannot prove a different place, so it
+ * folds as before.
+ */
+function refinesSameLocation(target, refinement, targetDeclaredDimension) {
+  const targetFile = normalizeFindingPath(target.file);
+  const refinementFile = normalizeFindingPath(refinement.file);
+  if (targetFile && refinementFile && !sameFindingPath(targetFile, refinementFile)) return false;
+  if (targetDeclaredDimension && refinement.dimension
+    && targetDeclaredDimension !== refinement.dimension) {
+    return false;
+  }
+  return true;
+}
+
 function dedupeDimensions(dimensions) {
   const seen = new Set();
   const out = [];
@@ -997,6 +1052,9 @@ function collapseFindingsByDedupKey(findingEntries) {
 
 function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [], universe = REQUIRED_DIMENSIONS) {
   const findingById = new Map();
+  // Producer-declared dimensions by registry key, kept beside the registry so the
+  // refinement check can compare them without adding a field to the entries.
+  const declaredDimensionByKey = new Map();
   const claimAdjudicationByFinding = buildClaimAdjudicationByFinding(iterationRecords);
 
   function upsertFinding(finding, run, iteration, initialReason, adjustmentReason) {
@@ -1004,11 +1062,15 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
     // A refinement names the finding it sharpens rather than a new finding. Fold
     // it into that target before the id-reuse split below, so the registry keeps
-    // one entry and the target carries the newer wording. An unresolved value
-    // falls through to the ordinary insert path.
+    // one entry and the target carries the newer wording. A refinement at another
+    // file or dimension stays under its own id and keeps its link to the target.
     const refinesId = normalizeText(finding.refines || '');
     const refinesTarget = refinesId ? findingById.get(refinesId) : undefined;
-    if (refinesTarget) {
+    if (refinesTarget && refinesSameLocation(
+      refinesTarget,
+      finding,
+      declaredDimensionByKey.get(refinesId),
+    )) {
       refinesTarget.lastSeen = run;
       if (finding.title) {
         refinesTarget.title = finding.title;
@@ -1036,14 +1098,22 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
       || sameFindingAtAnotherLine(existing, finding);
     if (!isSameFinding || !existing) {
       const storageKey = isSameFinding ? finding.findingId : `${finding.findingId}#${findingById.size}`;
+      if (finding.dimension) declaredDimensionByKey.set(storageKey, finding.dimension);
+      // A refinement kept apart from its target was kept for its own file or
+      // dimension, so the declared dimension is the one that split it; a derived
+      // one could name the target's dimension and undo the reason for the split.
+      const keepsDeclaredDimension = Boolean(refinesTarget)
+        && Boolean(finding.dimension) && universe.includes(finding.dimension);
       findingById.set(storageKey, {
         ...finding,
         severity: canonicalSeverity,
-        dimension: deriveDimension(
-          { ...finding, severity: canonicalSeverity },
-          iteration,
-          universe,
-        ),
+        dimension: keepsDeclaredDimension
+          ? finding.dimension
+          : deriveDimension(
+            { ...finding, severity: canonicalSeverity },
+            iteration,
+            universe,
+          ),
         firstSeen: run,
         lastSeen: run,
         status: 'active',

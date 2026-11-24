@@ -7,7 +7,7 @@ trigger_phrases:
   - "skill graph rebuild"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.4.0
+version: 0.8.5.0
 ---
 
 # Skill Graph Drift Reconciliation
@@ -94,7 +94,7 @@ Compare against the daemon's recorded signature stored alongside `runtime/databa
 
 ## 4. RECONCILIATION
 
-Trust resolution fails closed. A call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied. Mutation commands therefore require the maintainer path.
+The CLI refuses a mutation unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, so mutation commands require the maintainer path. The daemon trusts what a caller asserts. A caller that asserts nothing gets `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`, which the launcher sets to trusted when it starts the daemon.
 
 ### Standard reconciliation
 

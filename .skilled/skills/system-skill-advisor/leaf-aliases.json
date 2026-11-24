@@ -161,21 +161,6 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/lifecycle-routing/rollback.md",
-    "diskPath": "feature-catalog/lifecycle-routing/rollback.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/lifecycle-routing/schema-migration.md",
-    "diskPath": "feature-catalog/lifecycle-routing/schema-migration.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/lifecycle-routing/supersession.md",
-    "diskPath": "feature-catalog/lifecycle-routing/supersession.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/python-compat/bench-runner.md",
     "diskPath": "feature-catalog/python-compat/bench-runner.md"
   },
@@ -396,18 +381,8 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md",
-    "diskPath": "manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/lifecycle-routing/schema-migration.md",
     "diskPath": "manual-testing-playbook/lifecycle-routing/schema-migration.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/lifecycle-routing/supersession.md",
-    "diskPath": "manual-testing-playbook/lifecycle-routing/supersession.md"
   },
   {
     "workflowMode": "system-skill-advisor",

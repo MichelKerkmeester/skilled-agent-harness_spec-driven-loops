@@ -1,10 +1,12 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Shared Payload Contract (local duplicate)
 // ───────────────────────────────────────────────────────────────────
-// Duplicated from system-spec-kit/runtime/lib/context/shared-payload.ts
-// for full skill isolation.
-// Drift is watched by .github/workflows/isolation-check.yml's
-// reverse-direction audit (any new cross-skill import fails CI).
+// Forked from system-spec-kit/runtime/lib/context/shared-payload.ts so this
+// module imports nothing from system-spec-kit.
+// No CI job or test compares the two copies, so a fix to either one has to be
+// carried to the other by hand. The copies already differ. This one inlines its
+// helpers and still lists the startup_brief and session_snapshot producers,
+// which the spec-kit copy does not list.
 //
 // Do NOT add new imports from system-spec-kit here. Duplicate locally instead.
 

@@ -12,6 +12,7 @@
 const net = require('net');
 const { StringDecoder } = require('string_decoder');
 const {
+  checkIpcSocketOwnership,
   probeDaemon,
   toConnectionOptions,
 } = require('./launcher-ipc-bridge.cjs');
@@ -669,6 +670,10 @@ function createSessionProxy(options) {
   }
 
   async function attachFreshSocket({ replaySnapshotEntries = [] } = {}) {
+    if (!socketPath.startsWith('tcp://')) {
+      const refusal = checkIpcSocketOwnership(socketPath);
+      if (refusal) throw new Error(`backend unavailable: socket not trusted: ${refusal}`);
+    }
     const freshSocket = await connectSocket(connect, socketPath);
     let handshake;
     try {

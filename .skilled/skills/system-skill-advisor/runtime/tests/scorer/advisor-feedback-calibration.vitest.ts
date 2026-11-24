@@ -2,11 +2,40 @@
 // MODULE: Advisor Feedback Calibration Tests
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import {
+  chmodSync,
+  existsSync,
+  linkSync,
+  lstatSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+const openFailure = vi.hoisted(() => ({ path: null as string | null }));
+
+vi.mock('node:fs', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('node:fs')>();
+  return {
+    ...actual,
+    openSync: (...args: Parameters<typeof actual.openSync>) => {
+      if (args[0] === openFailure.path) {
+        const error = new Error('too many links') as NodeJS.ErrnoException;
+        error.code = 'EMLINK';
+        throw error;
+      }
+      return actual.openSync(...args);
+    },
+  };
+});
 
 import type { AdvisorHookOutcomeRecord } from '../../lib/metrics.js';
 import {
@@ -27,6 +56,27 @@ const CURRENT_THRESHOLDS = {
   confidenceThreshold: 0.8,
   uncertaintyThreshold: 0.35,
 } as const;
+
+const temporaryDirectories: string[] = [];
+
+function makeTemporaryDirectory(): string {
+  const directory = mkdtempSync(join(tmpdir(), 'advisor-calibration-'));
+  temporaryDirectories.push(directory);
+  return directory;
+}
+
+function stubCalibrationStore(path: string): void {
+  vi.stubEnv('SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH', path);
+  vi.stubEnv('SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW', 'true');
+}
+
+function recordCalibration(): ReturnType<typeof recordAdvisorFeedbackCalibrationIfEnabled> {
+  return recordAdvisorFeedbackCalibrationIfEnabled({
+    workspaceRoot: process.cwd(),
+    records: [outcome('alpha', 'accepted')],
+    options: { currentThresholds: CURRENT_THRESHOLDS },
+  });
+}
 
 function outcome(skillLabel: string, kind: AdvisorHookOutcomeRecord['outcome']): AdvisorHookOutcomeRecord {
   return {
@@ -82,6 +132,11 @@ function recommendationSnapshot(result: AdvisorScoringResult): string {
 
 afterEach(() => {
   vi.unstubAllEnvs();
+  vi.restoreAllMocks();
+  openFailure.path = null;
+  for (const directory of temporaryDirectories.splice(0)) {
+    rmSync(directory, { recursive: true, force: true });
+  }
 });
 
 describe('advisor feedback calibration reducer', () => {
@@ -200,6 +255,97 @@ describe('advisor feedback calibration reducer', () => {
       guardrails: { shadowOnly: true, autoPromotion: false },
     });
     rmSync(tempDir, { recursive: true, force: true });
+  });
+
+  it.skipIf(process.platform === 'win32')('leaves a symlinked calibration file target unchanged', () => {
+    const tempDir = makeTemporaryDirectory();
+    const calibrationPath = join(tempDir, 'records.jsonl');
+    const victimPath = join(tempDir, 'victim.txt');
+    writeFileSync(victimPath, 'original\n', { mode: 0o644 });
+    chmodSync(victimPath, 0o644);
+    symlinkSync(victimPath, calibrationPath);
+    stubCalibrationStore(calibrationPath);
+
+    expect(recordCalibration()).not.toBeNull();
+    expect(readFileSync(victimPath, 'utf8')).toBe('original\n');
+    expect(statSync(victimPath).mode & 0o777).toBe(0o644);
+    expect(lstatSync(calibrationPath).isSymbolicLink()).toBe(true);
+    expect(readdirSync(tempDir).filter((entry) => entry.endsWith('.tmp'))).toEqual([]);
+  });
+
+  it.skipIf(typeof process.getuid !== 'function')('skips a calibration folder owned by another user', () => {
+    const tempDir = makeTemporaryDirectory();
+    const calibrationPath = join(tempDir, 'records.jsonl');
+    stubCalibrationStore(calibrationPath);
+    const uid = process.getuid();
+    vi.spyOn(process, 'getuid').mockReturnValue(uid + 1);
+
+    expect(recordCalibration()).not.toBeNull();
+    expect(existsSync(calibrationPath)).toBe(false);
+  });
+
+  it.skipIf(process.platform === 'win32')('tightens a calibration folder created with a 0775 mode', () => {
+    const tempDir = makeTemporaryDirectory();
+    const calibrationPath = join(tempDir, 'records.jsonl');
+    chmodSync(tempDir, 0o775);
+    stubCalibrationStore(calibrationPath);
+
+    expect(recordCalibration()).not.toBeNull();
+    expect(statSync(tempDir).mode & 0o777).toBe(0o700);
+    expect(existsSync(calibrationPath)).toBe(true);
+  });
+
+  it.skipIf(process.platform === 'win32')('replaces a permissive calibration file with a private file', () => {
+    const tempDir = makeTemporaryDirectory();
+    const calibrationPath = join(tempDir, 'records.jsonl');
+    writeFileSync(calibrationPath, `${JSON.stringify({ prior: true })}\n`, { mode: 0o644 });
+    chmodSync(calibrationPath, 0o644);
+    stubCalibrationStore(calibrationPath);
+
+    expect(recordCalibration()).not.toBeNull();
+    expect(statSync(calibrationPath).mode & 0o777).toBe(0o600);
+    expect(readFileSync(calibrationPath, 'utf8').trim().split('\n')).toHaveLength(2);
+  });
+
+  it.skipIf(process.platform === 'win32')('skips a planted dangling calibration folder without throwing', () => {
+    const tempDir = makeTemporaryDirectory();
+    const calibrationDir = join(tempDir, 'calibration');
+    const missingTarget = join(tempDir, 'missing');
+    symlinkSync(missingTarget, calibrationDir);
+    stubCalibrationStore(join(calibrationDir, 'records.jsonl'));
+    let report: ReturnType<typeof recordAdvisorFeedbackCalibrationIfEnabled> | undefined;
+
+    expect(() => {
+      report = recordCalibration();
+    }).not.toThrow();
+    expect(report).not.toBeNull();
+    expect(lstatSync(calibrationDir).isSymbolicLink()).toBe(true);
+    expect(existsSync(missingTarget)).toBe(false);
+  });
+
+  it.skipIf(process.platform === 'win32')('does not write through a hard-linked calibration file', () => {
+    const tempDir = makeTemporaryDirectory();
+    const calibrationPath = join(tempDir, 'records.jsonl');
+    const victimPath = join(tempDir, 'victim.txt');
+    writeFileSync(victimPath, 'original\n', { mode: 0o600 });
+    linkSync(victimPath, calibrationPath);
+    stubCalibrationStore(calibrationPath);
+
+    expect(recordCalibration()).not.toBeNull();
+    expect(readFileSync(victimPath, 'utf8')).toBe('original\n');
+    expect(statSync(calibrationPath).nlink).toBe(2);
+  });
+
+  it('skips a calibration record when a no-follow open returns EMLINK', () => {
+    const tempDir = makeTemporaryDirectory();
+    const calibrationPath = join(tempDir, 'records.jsonl');
+    const original = `${JSON.stringify({ prior: true })}\n`;
+    writeFileSync(calibrationPath, original, { mode: 0o600 });
+    stubCalibrationStore(calibrationPath);
+    openFailure.path = calibrationPath;
+
+    expect(recordCalibration()).not.toBeNull();
+    expect(readFileSync(calibrationPath, 'utf8')).toBe(original);
   });
 });
 

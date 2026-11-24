@@ -31,9 +31,7 @@ import { createSkillGraphWatcher, type SkillGraphFsWatcher } from '../lib/daemon
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
 import { filterCorpusStatEligible, filterDefaultRoutable, routePolicyForPath } from '../lib/lifecycle/archive-handling.js';
 import { applyAgeHaircutToLane } from '../lib/lifecycle/age-haircut.js';
-import { rollbackDerivedBlock, rollbackGraphMetadataFile } from '../lib/lifecycle/rollback.js';
-import { backfillDerivedV2, readMixedVersion } from '../lib/lifecycle/schema-migration.js';
-import { routeSupersession } from '../lib/lifecycle/supersession.js';
+import { rollbackDerivedBlock } from '../lib/lifecycle/rollback.js';
 import { SkillDerivedV2Schema } from '../schemas/skill-derived-v2.js';
 import { lifecycleFixtures } from './fixtures/lifecycle/index.js';
 
@@ -357,23 +355,6 @@ describe('027/002 derived metadata acceptance', () => {
     expect(later.score).toBeLessThan(earlier.score);
   });
 
-  it('AC-4 supports additive v1 to v2 backfill while v1 remains routable during transition', () => {
-    const root = workspace('migration');
-    const dir = writeSkillFixture(root);
-    const derived = syncDerivedMetadata({ workspaceRoot: root, skillDir: dir }).derived;
-    const v1 = { schema_version: 1, skill_id: 'alpha', intent_signals: ['legacy route'], edges: {} };
-
-    const migration = backfillDerivedV2(v1, derived);
-    const mixedV1 = readMixedVersion(v1);
-    const mixedV2 = readMixedVersion(migration.metadata);
-
-    expect(migration.routableDuringTransition).toBe(true);
-    expect(mixedV1.routable).toBe(true);
-    expect(mixedV1.derived).toBeNull();
-    expect(mixedV2.schemaVersion).toBe(2);
-    expect(mixedV2.derived?.provenance_fingerprint).toBe(derived.provenance_fingerprint);
-  });
-
   it('AC-5 rollback strips derived and resets schema_version without losing author fields', () => {
     const metadata = {
       schema_version: 2,
@@ -397,47 +378,6 @@ describe('027/002 derived metadata acceptance', () => {
     expect(result.metadata.lifecycleStatus).toBe('deprecated');
     expect(result.metadata.redirectTo).toBe('beta');
     expect(result.reindexRequired).toBe(true);
-  });
-
-  it('AC-5 rolls back graph-metadata.json through the atomic file path helper', () => {
-    const root = workspace('rollback-file');
-    const dir = writeSkillFixture(root);
-    const graphPath = join(dir, 'graph-metadata.json');
-    const before = JSON.parse(readFileSync(graphPath, 'utf8')) as Record<string, unknown>;
-    write(graphPath, JSON.stringify({
-      ...before,
-      schema_version: 2,
-      lifecycle_status: 'deprecated',
-      redirect_to: 'beta',
-      lifecycleStatus: 'deprecated',
-      redirectTo: 'beta',
-      derived: { trigger_phrases: ['generated'] },
-    }, null, 2));
-
-    const result = rollbackGraphMetadataFile(graphPath);
-    const after = JSON.parse(readFileSync(graphPath, 'utf8')) as Record<string, unknown>;
-
-    expect(result.removedDerived).toBe(true);
-    expect(after.schema_version).toBe(1);
-    expect(after.derived).toBeUndefined();
-    expect(after.lifecycle_status).toBe('deprecated');
-    expect(after.redirect_to).toBe('beta');
-    expect(after.lifecycleStatus).toBe('deprecated');
-    expect(after.redirectTo).toBe('beta');
-  });
-
-  it('AC-6 routes successors by default and explicit old-name prompts with redirect metadata', () => {
-    const implicit = routeSupersession('route lifecycle task', [
-      { skillId: 'sk-x-v1', lifecycleStatus: 'deprecated', redirectTo: 'sk-x-v2', score: 0.95 },
-      { skillId: 'sk-x-v2', lifecycleStatus: 'active', redirectFrom: ['sk-x-v1'], score: 0.8 },
-    ]);
-    const explicit = routeSupersession('please use sk-x-v1 for compatibility', [
-      { skillId: 'sk-x-v1', lifecycleStatus: 'deprecated', redirectTo: 'sk-x-v2', score: 0.95 },
-      { skillId: 'sk-x-v2', lifecycleStatus: 'active', redirectFrom: ['sk-x-v1'], score: 0.8 },
-    ]);
-
-    expect(implicit[0]).toMatchObject({ skillId: 'sk-x-v2', routable: true, reason: 'successor-default' });
-    expect(explicit[0]).toMatchObject({ skillId: 'sk-x-v1', routable: true, redirect_to: 'sk-x-v2' });
   });
 
   it('AC-7 keeps z_archive and z_future structurally indexed but out of routing and corpus stats', () => {

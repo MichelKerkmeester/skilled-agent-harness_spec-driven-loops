@@ -132,6 +132,69 @@ describe('advisor RRF determinism spine', () => {
     expect(fused.rankBySkill.get('alpha')).toBeLessThan(fused.rankBySkill.get('beta') ?? Infinity);
   });
 
+  it('sums repeated rows from one lane at their individual RRF ranks', () => {
+    process.env.SPECKIT_SCORE_NORMALIZATION = 'false';
+    const fused = fuseAdvisorLaneRanks(scores({
+      explicit_author: [
+        match('alpha', 'explicit_author', 0.99),
+        match('beta', 'explicit_author', 0.80),
+        match('alpha', 'explicit_author', 0.70),
+      ],
+    }), DEFAULT_SCORER_WEIGHTS);
+
+    const alphaExpected = DEFAULT_SCORER_WEIGHTS.explicit_author / (ADVISOR_RRF_K + 1)
+      + DEFAULT_SCORER_WEIGHTS.explicit_author / (ADVISOR_RRF_K + 3);
+    expect(fused.scoreBySkill.get('alpha')).toBeCloseTo(alphaExpected, 8);
+  });
+
+  it('scores RRF on the weighted-sum scale under either normalization setting', () => {
+    enableRrf();
+    const projection = createFixtureProjection([
+      skill({
+        id: 'alpha',
+        keywords: ['alpha route'],
+        intentSignals: ['alpha exact route'],
+      }),
+    ]);
+    const score = () => scoreAdvisorPrompt('alpha exact route', {
+      workspaceRoot: process.cwd(),
+      projection,
+      includeAllCandidates: true,
+      confidenceThreshold: 0,
+      uncertaintyThreshold: 1,
+    }).recommendations[0]?.score;
+
+    process.env.SPECKIT_SCORE_NORMALIZATION = 'false';
+    const raw = score();
+    delete process.env.SPECKIT_SCORE_NORMALIZATION;
+    const normalized = score();
+    const expected = DEFAULT_SCORER_WEIGHTS.explicit_author
+      + DEFAULT_SCORER_WEIGHTS.lexical;
+
+    expect(raw).toBeCloseTo(expected, 6);
+    expect(normalized).toBeCloseTo(expected, 6);
+  });
+
+  it('lets a command ranked first in every lane beat a skill ranked second without a slash', () => {
+    enableRrf();
+    const projection = createFixtureProjection([
+      skill({
+        id: 'zeta-command',
+        kind: 'command',
+        keywords: ['widget audit flow'],
+        intentSignals: ['widget audit flow'],
+      }),
+      skill({ id: 'beta', keywords: ['widget'] }),
+    ]);
+    const result = scoreAdvisorPrompt('widget audit flow', {
+      workspaceRoot: process.cwd(),
+      projection,
+      includeAllCandidates: true,
+    });
+
+    expect(result.topSkill).toBe('zeta-command');
+  });
+
   it('splits graph positives from conflict mass for RRF consumers', () => {
     const edges: SkillEdgeProjection[] = [
       { sourceId: 'seed', targetId: 'positive', edgeType: 'enhances', weight: 1 },
