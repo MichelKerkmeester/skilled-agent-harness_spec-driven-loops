@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `016-stop-hook-auto-record`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-24
 <!-- /ANCHOR:metadata -->
 
@@ -53,13 +53,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a transcript naming one packet with a `spec.md` and two queued tool answers, When Stop runs, Then that packet's `decision-record.md` holds both answers verbatim | `npx vitest run tests/hook-session-stop.vitest.ts`, bound case | Unmet | - |
-| AC-002 | REQ-002 | Given the AC-001 run, When `pendingRecords` is read for the session, Then it returns 0 and Stop prints no nudge | `npx vitest run tests/hook-session-stop.vitest.ts`, bound case | Unmet | - |
-| AC-003 | REQ-003 | Given a transcript naming no packet or two packets, When Stop runs, Then no decision record changes and the nudge text prints | `npx vitest run tests/hook-session-stop.vitest.ts`, unbound cases | Unmet | - |
-| AC-004 | REQ-004 | Given a writer that throws, When Stop runs, Then it exits 0, both answers stay pending and the nudge prints | `npx vitest run tests/hook-session-stop.vitest.ts`, throw case | Unmet | - |
-| AC-005 | REQ-005 | Given `AI_SESSION_CHILD=1` and one bound packet, When Stop runs, Then nothing is written | `npx vitest run tests/hook-session-stop.vitest.ts`, child case | Unmet | - |
-| AC-006 | REQ-006 | Given `SYSTEM_DECISION_CAPTURE_DISABLED=1` and one bound packet, When Stop runs, Then nothing is written | `npx vitest run tests/hook-session-stop.vitest.ts`, disabled case | Unmet | - |
-| AC-007 | REQ-007 | Given the AC-001 run, When the new rows are read, Then each `decided` cell starts "Recorded at session end" and each `why` cell reads `Not stated.` | `npx vitest run tests/hook-session-stop.vitest.ts`, bound case assertion | Unmet | - |
+| AC-001 | REQ-001 | Given a transcript naming one packet with a `spec.md` and two queued tool answers, When Stop runs, Then that packet's `decision-record.md` holds both answers verbatim | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts:884`, `npx vitest run tests/hook-session-stop.vitest.ts` passes, 33 of 33: bound case: both rows, question and options verbatim | Met | - |
+| AC-002 | REQ-002 | Given the AC-001 run, When `pendingRecords` is read for the session, Then it returns 0 and Stop prints no nudge | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts:884`, `npx vitest run tests/hook-session-stop.vitest.ts` passes, 33 of 33: bound case: `pendingRecords` 0, nudge null | Met | - |
+| AC-003 | REQ-003 | Given a transcript naming no packet or two packets, When Stop runs, Then no decision record changes and the nudge text prints | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts:903`, `npx vitest run tests/hook-session-stop.vitest.ts` passes, 33 of 33: two-packet, sentence-end and no-packet cases | Met | - |
+| AC-004 | REQ-004 | Given a writer that throws, When Stop runs, Then it exits 0, both answers stay pending and the nudge prints | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts:973`, `npx vitest run tests/hook-session-stop.vitest.ts` passes, 33 of 33: write-failure case: `failed`, 2 pending, nudge | Met | - |
+| AC-005 | REQ-005 | Given `AI_SESSION_CHILD=1` and one bound packet, When Stop runs, Then nothing is written | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts:951`, `npx vitest run tests/hook-session-stop.vitest.ts` passes, 33 of 33: child case: `child_session`, no record | Met | - |
+| AC-006 | REQ-006 | Given `SYSTEM_DECISION_CAPTURE_DISABLED=1` and one bound packet, When Stop runs, Then nothing is written | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts:961`, `npx vitest run tests/hook-session-stop.vitest.ts` passes, 33 of 33: disabled case: `disabled`, no record | Met | - |
+| AC-007 | REQ-007 | Given the AC-001 run, When the new rows are read, Then each `decided` cell starts "Recorded automatically" and each `why` cell reads `Not stated.` | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts:884`, `npx vitest run tests/hook-session-stop.vitest.ts` passes, 33 of 33: bound case: `Recorded automatically: Beta` and `Not stated.` | Met | - |
 
 ### Status values
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-No. Nothing is built yet, so every criterion is unmet.
+Yes. Every criterion is Met with test evidence.
 <!-- /ANCHOR:closure -->

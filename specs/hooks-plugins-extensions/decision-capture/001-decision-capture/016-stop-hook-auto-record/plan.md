@@ -55,7 +55,7 @@ A best-effort step inside an existing hook, with no new module, flag or subproce
 
 ### Key Components
 - **Bound-packet check**: reuses the transcript tail read and the path normalizer, and accepts only one unique folder that holds a `spec.md`. It does not use the current-packet preference the autosave uses, because that picks one folder out of several.
-- **Auto-record step**: reads `pendingRecords` for the session, keeps tool records only, maps each to an `OperatorDecisionEntry` and writes them in one call. `decided` reads "Recorded at session end: <answer>", `why` is left out so the record says `Not stated.`, and `carriedBy` reads "Not linked yet; a later save can link it."
+- **Auto-record step**: reads `pendingRecords` for the session, keeps tool records only, maps each to an `OperatorDecisionEntry` and writes them in one call. `decided` reads "Recorded automatically: <answer>", `why` is left out so the record says `Not stated.`, and `carriedBy` reads "Not linked to a requirement yet."
 - **Nudge**: unchanged. It runs after the step and reports whatever is still pending.
 
 ### Data Flow

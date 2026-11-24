@@ -123,7 +123,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 13 | 013-session-signal-sweeps/ | Make the Codex, DSH, OpenCode and Pi sweeps read the session their runtime names, and make the Vibe sweep read its unified folder | Complete |
 | 14 | 014-devin-vibe-lock-probe/ | Make the Devin and Vibe sweeps prefer the session whose lock a calling process holds, and make the Devin sweep print queued answers when Devin wrote no transcript | Complete |
 | 15 | 015-devin-database-reader/ | Make the Devin sweep read a session from Devin's message store when no transcript file exists, under the hook's own keys | Complete |
-| 16 | 016-stop-hook-auto-record/ | Make the Claude Stop hook record this session's queued tool answers itself when the transcript names exactly one packet, and keep the nudge otherwise | Pending |
+| 16 | 016-stop-hook-auto-record/ | Make the Claude Stop hook record this session's queued tool answers itself when the transcript names exactly one packet, and keep the nudge otherwise | Complete |
 
 ### Phase Transition Rules
 

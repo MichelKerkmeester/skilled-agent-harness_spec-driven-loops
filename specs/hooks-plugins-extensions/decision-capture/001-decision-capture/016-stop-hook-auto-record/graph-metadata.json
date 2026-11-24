@@ -35,7 +35,7 @@
       "016-stop-hook-auto-record"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,12 +43,13 @@
       "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/hooks/decision-capture/lib/capture-core.mjs",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts",
       ".skilled/hooks/decision-capture/README.md",
       ".skilled/hooks/session-lifecycle/README.md",
-      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js"
+      ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js",
+      "dist/hooks/claude/session-stop.js"
     ],
     "entities": [
       {
@@ -88,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "capture-core.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/decision-capture/lib/capture-core.mjs",
-        "source": "derived"
-      },
-      {
         "name": "session-stop.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
@@ -109,6 +104,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/decision-capture/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "capture-core.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/capture-core.mjs",
         "source": "derived"
       },
       {
@@ -198,7 +199,7 @@
     ],
     "causal_summary": "The decision-capture hook queues every answered question, but nothing writes the queue into a decision record until someone runs `/speckit:save --full-auto`",
     "created_at": "2026-11-24T18:37:57Z",
-    "last_save_at": "2026-11-24T18:45:20.343Z",
+    "last_save_at": "2026-11-24T19:06:23.971Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fe33d3ea1e72c4beac6369aac42c7e15a72b156fa57f28d329c3dc9fc591d46",
+    "source_fingerprint": "sha256:c856d9c26cc4936b361059ec6786aedd4a7e781f57d096cbc3610e27d45b0d70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1bd3ef93c7d12074b25be1dafbef775f4e819e80d30f883e84a5312b64a21b6",
-      "plan.md": "a6387b27a86ed6375ed2ef0d4f312239ac72bc2176843dd0c74c7cba711e10f7",
-      "tasks.md": "ab84619e1fa416d5365bee14d4665160974d224a5cc33986a9b07a691162d6b9",
+      "spec.md": "cedd3ba39f746d364d92ebcaa5027a7c6af54fd64140105859e054de055b470e",
+      "plan.md": "687a4f3d664d9e980a1c36a12989ff50222d91f25f890009937cc5396d99fea1",
+      "tasks.md": "5c181acca1278a91fdde4dc25560711a976dd360388bc32d4e509ef815acb729",
       "decision-record.md": "d25329559dd26ae3e3e9d6de8a6955ef4915682eff48f122800a12d8a456d8b2",
-      "implementation-summary.md": "8cd1f855d2fcb4431e5525b1d7ee87936dae5833f3bc34c3fbcb086637cbd630"
+      "implementation-summary.md": "55c53f0d904a4f247f9643158c69aa915cb6ccfc7f5e878b24a5c68b71771480"
     },
     "last_active_at": null
   }

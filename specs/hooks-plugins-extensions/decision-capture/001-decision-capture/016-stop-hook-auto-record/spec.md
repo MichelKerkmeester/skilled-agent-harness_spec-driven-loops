@@ -21,9 +21,9 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-24 |
-| **Branch** | `main` (planning only, no build branch yet) |
+| **Branch** | `worktrees/542-stop-hook-auto-record` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 16 of 16 |
 | **Predecessor** | 015-devin-database-reader |
@@ -126,7 +126,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-005 | A session with `AI_SESSION_CHILD=1` never auto-records. |
 | REQ-006 | `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns auto-record off along with the rest of the concern. |
-| REQ-007 | Each auto-recorded entry says it was recorded at session end, with `why` left as `Not stated.`, so a later save can reword it. |
+| REQ-007 | Each auto-recorded entry says it was recorded automatically, with `why` left as `Not stated.`, because its key is consumed and no later save offers it again. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

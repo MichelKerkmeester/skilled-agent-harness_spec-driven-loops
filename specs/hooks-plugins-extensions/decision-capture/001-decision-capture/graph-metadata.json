@@ -227,7 +227,7 @@
     ],
     "causal_summary": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under `.skilled/hooks/decision-capture/`, the save-time sweeps in its `bin/`, and the decision-record writer at `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` that a full-auto `/speckit:save` calls",
     "created_at": "2026-11-01T20:52:24Z",
-    "last_save_at": "2026-11-24T18:49:28.165Z",
+    "last_save_at": "2026-11-24T19:13:50.676Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,15 +237,15 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1431a789abe5b7ea3bfa4f2ff28bf44f12b445cd9b691096b5faba4683e7769f",
+    "source_fingerprint": "sha256:153f2abf1d7e8b4ac6b8ca92f0ce8d4f8fad604a9e1e56c5dccb3524b5801849",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8c81b8fb25ed0d48008be07b609b15236a21ff8e6863503cad35f93244ad8d5",
+      "spec.md": "2d52ad81af8a1196c06cd2d25f5d2bdfd8ae63f3636fa9093236bfab13d6f86b",
       "decision-record.md": "371ee92c629dd1fe1f86260ef393f52443474afa67d6efb9006b61c4956b628f",
       "research/research.md": "c789a080cd66aa0572f8fc6d3a9ddfea993c904562fd432b6e576b074e489dd1",
       "handover.md": "26ab0ee0b0275927533c3424cf7d473cafb15dbb41272e949f1e9eafa4338a93"
     },
     "last_active_child_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record",
-    "last_active_at": "2026-11-24T18:45:20.389Z"
+    "last_active_at": "2026-11-24T19:06:23.990Z"
   }
 }
