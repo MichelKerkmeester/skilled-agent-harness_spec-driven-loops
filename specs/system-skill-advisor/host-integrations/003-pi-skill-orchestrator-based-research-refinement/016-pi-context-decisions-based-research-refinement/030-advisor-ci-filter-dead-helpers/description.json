@@ -12,7 +12,7 @@
     "production-dead",
     "helpers"
   ],
-  "lastUpdated": "2026-11-24T18:31:27.057Z",
+  "lastUpdated": "2026-11-24T18:44:39.774Z",
   "specId": "030",
   "folderSlug": "advisor-ci-filter-dead-helpers",
   "parentChain": [
@@ -21,10 +21,11 @@
     "003-pi-skill-orchestrator-based-research-refinement",
     "016-pi-context-decisions-based-research-refinement"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "24-11-26_13-22__child-030-widened-the-skill-advisor-stress-path.md",
     "24-11-26_13-22__advisor-ci-filter-and-dead-helpers-the-advisor-ci.md",
-    "24-11-26_19-31__advisor-ci-filter-and-dead-helpers-packet-closed.md"
+    "24-11-26_19-31__advisor-ci-filter-and-dead-helpers-packet-closed.md",
+    "24-11-26_19-44__advisor-ci-filter-and-dead-helpers-packet-closed.md"
   ]
 }

@@ -149,7 +149,7 @@ DeepSeek Flash, cli-pi (Recommended)
 ```
 
 ### Q006
-<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_0127BVSHbr4zVCgR2zuKJzUL:0 -->
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_0127BVSHbr4zVCgR2zuKJzUL:0 -->
 
 Question:
 ```text
@@ -169,7 +169,7 @@ Both (Recommended)
 ```
 
 ### Q007
-<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_0127BVSHbr4zVCgR2zuKJzUL:1 -->
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_0127BVSHbr4zVCgR2zuKJzUL:1 -->
 
 Question:
 ```text
@@ -189,7 +189,7 @@ Patch for both (Recommended)
 ```
 
 ### Q008
-<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_0127BVSHbr4zVCgR2zuKJzUL:2 -->
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_0127BVSHbr4zVCgR2zuKJzUL:2 -->
 
 Question:
 ```text
@@ -209,7 +209,7 @@ cli-pi DeepSeek, markdown (Recommended)
 ```
 
 ### Q009
-<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_018VtRHypXzbSAoMFFWHAkqb:0 -->
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_018VtRHypXzbSAoMFFWHAkqb:0 -->
 
 Question:
 ```text
