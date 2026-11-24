@@ -7,7 +7,6 @@ import { describe, expect, it } from 'vitest';
 import { applyAgeHaircutToLane, derivedAgeMultiplier } from '../../lib/lifecycle/age-haircut.js';
 import {
   filterCorpusStatEligible,
-  filterDefaultRoutable,
   routePolicyForPath,
 } from '../../lib/lifecycle/archive-handling.js';
 
@@ -59,15 +58,12 @@ describe('lifecycle routing stress behavior', () => {
         sourcePath: `.skilled\\skill\\z-future\\future-${index}\\graph-metadata.json`,
       })),
     ];
-    const routed = filterDefaultRoutable(entries);
     const corpusEligible = filterCorpusStatEligible(entries);
     const archivedPolicy = routePolicyForPath('.skilled/skills/z_archive/old/graph-metadata.json');
     const futurePolicy = routePolicyForPath('.skilled\\skill\\z-future\\planned\\graph-metadata.json');
 
     expect(entries.every((entry) => routePolicyForPath(entry.sourcePath).structurallyIndexed)).toBe(true);
-    expect(routed).toHaveLength(500);
     expect(corpusEligible).toHaveLength(500);
-    expect(routed.every((entry) => entry.skillId.startsWith('active-'))).toBe(true);
     expect(archivedPolicy).toMatchObject({
       lifecycleStatus: 'archived',
       defaultRoutable: false,

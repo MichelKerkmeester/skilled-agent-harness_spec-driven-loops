@@ -66,9 +66,8 @@ Until the rebuild and reindex run on the target, the old routing behavior stays 
 
 ## 6. WHERE THE DENYLIST IS ENFORCED
 
-The set is consulted at both routability seams in the advisor:
+The set is consulted at the routability seam in the advisor:
 
 - `lib/scorer/fusion.ts` `isDefaultRoutable` is the production recommend gate. An excluded id returns non-routable before it can be recommended.
-- `lib/lifecycle/archive-handling.ts` `filterDefaultRoutable` drops excluded ids as a second, defensive filter.
 
-Both seams read the same resolved set, so one denylist governs every routing path.
+The gate reads the resolved set, so one denylist governs every routing path.
