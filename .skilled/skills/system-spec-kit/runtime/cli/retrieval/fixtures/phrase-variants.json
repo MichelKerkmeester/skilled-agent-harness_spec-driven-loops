@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5c213113a55c9bd09414a7213c5a9c4ebc72c615ed9004c057ecb171dc6c6cb9",
+  "manifestHash": "4a27983cfe993bf374e5431f6fa5b14d8b65ea9c4e3857128ed941f36bb7cd91",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4155,6 +4155,9 @@
     ],
     "016 seven phases s1 s5 o1 o2": [
       "016 seven phases S1 S5 O1 O2"
+    ],
+    "016 stop hook auto record operator decisions": [
+      "016-stop-hook-auto-record operator decisions"
     ],
     "016 tasks": [
       "016 tasks"

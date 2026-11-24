@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f2907ba7232efec113acf5a1603be9c0d3d1c486e1c374eb6397208239934241",
+  "corpusHash": "d9ba3304ca832f00960a8d5e2f3207e6a1268bf529c1607343e353f1b6a930c7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29507,
+  "includedPathCount": 29508,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11660,6 +11660,7 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/implementation-summary.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/spec.md",
@@ -29539,7 +29540,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5c213113a55c9bd09414a7213c5a9c4ebc72c615ed9004c057ecb171dc6c6cb9",
+  "manifestHash": "4a27983cfe993bf374e5431f6fa5b14d8b65ea9c4e3857128ed941f36bb7cd91",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
