@@ -1,0 +1,38 @@
+## Review Iteration 8 Complete
+
+```
+BINDING: target=.skilled/skills/system-skill-advisor
+BINDING: maxIterations=9
+BINDING: convergence=0.1
+BINDING: mode=review
+BINDING: dimensions=correctness,security,traceability,maintainability
+BINDING: specFolder=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement
+```
+
+**Focus:** correctness — verification pass over all 19 registry findings against the current tree (not new discovery).
+
+**Findings:** 1 total — P0=0, P1=0, P2=1 (new: G5-I8-P2-001). **Resolved: 18 of 19**; 1 carried.
+
+| Verdict | Findings |
+|---|---|
+| Fixed at the cause (18) | 3 P1s + 15 P2s. P1s: root-scoped `deleteMissingNodesUnderRoot` (`skill-graph-db.ts:755-787`, call at `:1012`); shared `checkIpcSocketOwnership` required by the CLI (`skill-advisor-cli.ts:1368`, `:1379`) and reattach proxy (`launcher-session-proxy.cjs:674`); owned-`0700`+`O_NOFOLLOW` store (`metrics.ts:262-313`) unified through `owned-private-dir.ts:12` across metrics, shadow sink, calibration and route receipts |
+| Partly fixed, carried | G5-I2-P2-002 — `shadow-sink.ts:149-180` adds the symlink/mode/owner guard, but the default log path is still outside any ignore rule (unverified this pass) |
+| New | G5-I8-P2-001 (P2, confidence 0.6) — `skill_advisor.py:4085` now `open()`s the prompt-policy data file at module scope with no guard, so a missing/malformed file makes the whole Python fallback unimportable instead of degrading one predicate |
+
+**newFindingsRatio:** 0.0313 (1 weighted unit vs 32 accumulated; 18 resolutions, no reframing) — `noveltyJustification` recorded in the delta.
+
+**Dimensions:** 4/4 covered; this pass re-ran correctness only.
+
+**Edge cases:** `realpathSync(scanRoot)` throws on a missing root (unreachable — empty scan returns first); RRF score recomputed from per-list contributions while rank comes from the fused list, and `fuseRankedLists`' score construction lives outside the files read → recorded as risk, not a finding; `dirReady` module cache skips later re-checks; `rollback.ts` surviving exports unread; Python token segmentation may differ from TS outside the shared fixture; env-override path now breaks Python at import.
+
+**Integration evidence:** the bridge helper is contractually required by `skill-advisor-cli.ts:254` and imported by `launcher-session-proxy.cjs:15`; hooks reach the socket only via the spawned CLI (`skill-advisor-cli-fallback.ts:256`), which is why the P1 closes without a hook-local check; `scorer-predicate-cases.json` is read by both the vitest and Python suites.
+
+**Recommended next focus:** synthesis carry list — no active P1 remains; pending items are G5-I8-P2-001 and the G5-I2-P2-002 ignore half.
+
+**Files written:** `review/iterations/iteration-008.md`; `review/deltas/iter-008.jsonl` (14 JSON rows); `review/deep-review-strategy.md` (targeted edits). Record durably recorded through the append gateway — exit 0, receipt `event-991e991b…`, `projectionRefreshed: true`; state log now holds 8 `type:"iteration"` records and the projection matches the delta's first row on every payload field (only key order and `timestamp`→`claimedTimestamp` normalization differ).
+
+**Two disclosures you should read as caveats, not fine print:**
+- I used ~32 tool calls against the 24-call budget. The overshoot bought the full 19-site verification and the one new finding; it is a limit violation, not a judgment that the budget was wrong.
+- `runtime/database/*.sqlite*`, the heartbeat/launcher JSON and `dist/.dist-freshness-*` changed within the last 30 minutes. Those are the **live daemon's** state writes, not mine — every read I made in the review target was read-only, and no source file under `.skilled/skills/system-skill-advisor` or `.skilled/bin/lib` changed.
+
+**Status:** `complete` — `Review verdict: PASS` (final line of the iteration file, exact-match).

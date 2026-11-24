@@ -8,7 +8,7 @@ trigger_phrases:
   - "tool namespace convention"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # Tool IDs Reference
@@ -56,7 +56,7 @@ The CLI is the only front door, and the per-command ids are the compatibility co
 
 | Tool | Purpose | Key Input | Output Shape Signal |
 |---|---|---|---|
-| `skill_graph_scan` | Index or re-index all `.skilled/skills/*/graph-metadata.json` files into `skill-graph.sqlite` using the hash-aware SQLite indexer. | optional `skillsRoot` (default `.skilled/skills`) | `skillsRoot` plus the index summary (`scannedFiles`, `indexedFiles`, `skippedFiles`, `indexedNodes`, `indexedEdges`, `rejectedEdges`, `deletedNodes`, `warnings`, and `docs` when the doc-trigger harvest is on) |
+| `skill_graph_scan` | Index or re-index skills under `skillsRoot` into `skill-graph.sqlite` using the hash-aware SQLite indexer. A narrow root deletes only rows whose stored source lies under it. Text output includes `deletedNodes`. | optional `skillsRoot` (default `.skilled/skills`) | `skillsRoot` plus the index summary (`scannedFiles`, `indexedFiles`, `skippedFiles`, `indexedNodes`, `indexedEdges`, `rejectedEdges`, `deletedNodes`, `warnings`, and `docs` when the doc-trigger harvest is on) |
 | `skill_graph_query` | Query the SQLite-backed skill graph using structural relationship traversals. Supports `depends_on`, `dependents`, `enhances`, `enhanced_by`, `family_members`, `conflicts`, `transitive_path`, `hub_skills`, `orphans` and `subgraph`. | `queryType` plus query-specific arguments | varies by `queryType` (`relationships[]`, `members[]`, `path[]`, `skills[]`, `graph{}`) |
 | `skill_graph_status` | Report skill graph health from the live SQLite database. | (none) | `totalSkills`, `totalEdges`, `lastIndexedAt`, `families`, `categories`, `schemaVersions`, `staleness`, `validation`, `dbStatus` |
 | `skill_graph_validate` | Validate the live skill graph for schema-version drift, broken edges, weight-band violations, reciprocal symmetry and dependency cycles. | (none) | `isValid`, `errorCount`, `warningCount`, `checkedNodes`, `checkedEdges`, `errors[]`, `warnings[]` |
@@ -70,7 +70,7 @@ The CLI is the only front door, and the per-command ids are the compatibility co
 |---|---|---|
 | `skill_graph_propagate_enhances` | Authoring helper, counted in Section 3. | Trusted-caller gate; see [propagate-enhances.md](../graph/propagate-enhances.md) for its access contract. |
 
-Untrusted callers are rejected before detection runs. No separate internal-tool count is published.
+A real apply call from an untrusted caller is rejected before detection runs. Report, propose and dry-run calls need no trust. No separate internal-tool count is published.
 
 ---
 

@@ -87,4 +87,49 @@ describe('attachTypedCommand', () => {
 
     expect(attachTypedCommand(output, 'resume the cached work')).toBe(output);
   });
+
+  it('replaces the deep-loop diagnosis with a typed /deep:review', () => {
+    const output = outputWith([recommendation('system-deep-loop', {
+      command: '/doctor:deep-loop',
+      policy: 'run',
+    })]);
+
+    const attached = attachTypedCommand(output, 'my deep review run is stuck, /deep:review again');
+
+    expect(attached.recommendations[0]).toEqual(expect.objectContaining({
+      skillId: 'system-deep-loop',
+      command: '/deep:review',
+      policy: 'ask',
+      ownerSkillId: 'system-deep-loop',
+      typed: true,
+    }));
+  });
+
+  it('carries a typed /deep:research on a deep-loop top with the ask policy', () => {
+    const output = outputWith([recommendation('system-deep-loop')]);
+
+    const attached = attachTypedCommand(output, '/deep:research the cache eviction options');
+
+    expect(attached.recommendations[0]).toEqual(expect.objectContaining({
+      command: '/deep:research',
+      policy: 'ask',
+      ownerSkillId: 'system-deep-loop',
+      typed: true,
+    }));
+  });
+
+  it('returns the same output when the typed deep-loop command is refused', () => {
+    const output = outputWith([recommendation('system-deep-loop', {
+      command: '/doctor:deep-loop',
+      policy: 'run',
+    })]);
+
+    expect(attachTypedCommand(output, "don't run /deep:review, explain the review loop")).toBe(output);
+  });
+
+  it('returns the same output when a typed deep-loop command meets an unrelated top', () => {
+    const output = outputWith([recommendation('sk-git')]);
+
+    expect(attachTypedCommand(output, '/deep:review the branch history')).toBe(output);
+  });
 });

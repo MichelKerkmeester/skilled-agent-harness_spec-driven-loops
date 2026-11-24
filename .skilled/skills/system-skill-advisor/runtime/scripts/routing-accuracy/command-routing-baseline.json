@@ -1872,7 +1872,7 @@
     },
     "nm-sk-code-03": {
       "expected_command": null,
-      "top": "system-deep-loop",
+      "top": "sk-code",
       "top1": false,
       "top3": false,
       "offered": false

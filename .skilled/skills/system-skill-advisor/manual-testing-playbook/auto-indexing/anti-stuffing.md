@@ -6,7 +6,7 @@ trigger_phrases:
   - "anti stuffing"
   - "cardinality cap"
   - "repetition density demote"
-version: 0.8.1.0
+version: 0.8.2.0
 id: AI-005
 category: auto_indexing
 stage: routing
@@ -44,7 +44,7 @@ Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derive
 3. Trigger reindex:
 
 ```bash
-touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
+touch /tmp/path-to-copy/.skilled/skills/adversarial-fixture/SKILL.md
 ```
 
 4. Read the fixture's `graph-metadata.json.derived` block.

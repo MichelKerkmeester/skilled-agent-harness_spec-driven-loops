@@ -1,0 +1,789 @@
+{
+  "sessionId": "fanout-deepseek-max-2-1795511183570-92w0ez",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-24T09:19:57.117Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P1",
+      "title": "REQ-011 is an unamended requirement contradicted by the tree, and no acceptance row owns it",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+      "line": 223,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Eleven Met acceptance rows cite an implementation-summary.md line that does not hold their evidence",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+      "line": 58,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "A ticked task stated verification no longer holds",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+      "line": 36,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-004",
+      "severity": "P2",
+      "title": "The changelog quotes a suite count the tree has since exceeded",
+      "file": ".skilled/changelog/skilled/v4.2.0.0.md",
+      "line": 759,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "AC-032 and T069 cite a blank line for typedCommandIn",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+      "line": 89,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Both closure docs carry continuity metadata that predates the sixth round",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+      "line": 13,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 5,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P1",
+      "title": "REQ-011 is an unamended requirement contradicted by the tree, and no acceptance row owns it",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+      "line": 223,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P1",
+      "title": "REQ-011 is an unamended requirement contradicted by the tree, and no acceptance row owns it",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+      "line": 223,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 5
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.667,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "boundary_condition",
+      "injection",
+      "logic_error",
+      "secret_exposure",
+      "spec_code_mismatch",
+      "stale_count",
+      "stale_evidence_pointer",
+      "stale_metadata",
+      "state_transition",
+      "summary_miscount",
+      "unbounded_resource_consumption"
+    ],
+    "ruledOut": [
+      "boundary_condition",
+      "injection",
+      "logic_error",
+      "secret_exposure",
+      "state_transition",
+      "summary_miscount",
+      "unbounded_resource_consumption"
+    ],
+    "deferred": [
+      "stale_evidence_pointer"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "logic_error": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "boundary_condition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unbounded_resource_consumption": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_code_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "stale_evidence_pointer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          5
+        ]
+      },
+      "stale_count": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_metadata": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "summary_miscount": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        "acceptance-criteria.md",
+        "tasks.md",
+        "implementation-summary.md"
+      ],
+      "bugClass": "stale_evidence_pointer",
+      "disposition": "deferred",
+      "rationale": "no new evidence to add",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58"
+      ],
+      "reason": "carried forward unchanged; remediation is a docs edit outside this lineage"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "logic_error",
+      "disposition": "ruled_out",
+      "rationale": "the depth and council vocabulary was removed from the gate and the sampled prompts return no command",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:326"
+      ],
+      "reason": "verified by live probe and direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "command-attach.ts",
+        "skill_advisor.py"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "the two copies return the same gate-layer result for every REQ-020 prompt",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5306"
+      ],
+      "reason": "observed parity at the gate layer"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "the window keeps the lead and the repeated prompt stays withheld",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:592"
+      ],
+      "reason": "verified by live probe"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts",
+        "command-metadata.json"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no code path returns a deep command with run policy",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71",
+        ".skilled/skills/system-deep-loop/command-metadata.json:9"
+      ],
+      "reason": "verified by direct read of the policy table and metadata"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "unbounded_resource_consumption",
+      "disposition": "ruled_out",
+      "rationale": "the bounded lead window keeps every lead read constant-bounded",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:592"
+      ],
+      "reason": "measured, not inferred"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts",
+        "explicit.ts",
+        "fusion.ts",
+        "subprocess.ts",
+        "skill-advisor-cli.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "no secret material in the reviewed change surface",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:64"
+      ],
+      "reason": "exact search returned nothing"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "tasks.md"
+      ],
+      "bugClass": "summary_miscount",
+      "disposition": "ruled_out",
+      "rationale": "the counts agree exactly",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:291"
+      ],
+      "reason": "parsed, not trusted"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "convergence.cjs",
+        "reduce-state.cjs"
+      ],
+      "bugClass": "summary_miscount",
+      "disposition": "ruled_out",
+      "rationale": "the gate's failure is the correct reading of the drift",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1708"
+      ],
+      "reason": "confirmed by running terminal-gates.cjs"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "logic_error",
+      "disposition": "ruled_out",
+      "rationale": "the depth and council vocabulary was removed from the gate and the sampled prompts return no command",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:326"
+      ],
+      "proof": "verified by live probe and direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "command-attach.ts",
+        "skill_advisor.py"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "the two copies return the same gate-layer result for every REQ-020 prompt",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5306"
+      ],
+      "proof": "observed parity at the gate layer"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "the window keeps the lead and the repeated prompt stays withheld",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:592"
+      ],
+      "proof": "verified by live probe"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts",
+        "command-metadata.json"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no code path returns a deep command with run policy",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71",
+        ".skilled/skills/system-deep-loop/command-metadata.json:9"
+      ],
+      "proof": "verified by direct read of the policy table and metadata"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "unbounded_resource_consumption",
+      "disposition": "ruled_out",
+      "rationale": "the bounded lead window keeps every lead read constant-bounded",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:592"
+      ],
+      "proof": "measured, not inferred"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts",
+        "explicit.ts",
+        "fusion.ts",
+        "subprocess.ts",
+        "skill-advisor-cli.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "no secret material in the reviewed change surface",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:64"
+      ],
+      "proof": "exact search returned nothing"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "tasks.md"
+      ],
+      "bugClass": "summary_miscount",
+      "disposition": "ruled_out",
+      "rationale": "the counts agree exactly",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:291"
+      ],
+      "proof": "parsed, not trusted"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        "convergence.cjs",
+        "reduce-state.cjs"
+      ],
+      "bugClass": "summary_miscount",
+      "disposition": "ruled_out",
+      "rationale": "the gate's failure is the correct reading of the drift",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1708"
+      ],
+      "proof": "confirmed by running terminal-gates.cjs"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "spec_code_mismatch",
+      "stale_evidence_pointer",
+      "stale_metadata",
+      "summary_miscount"
+    ],
+    "covered": [
+      "spec_code_mismatch",
+      "stale_evidence_pointer",
+      "stale_metadata",
+      "summary_miscount"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:223",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "all 34 REQ rows checked against code, decision or recorded measurement; REQ-011 is the one mismatch and is an active P1"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:36",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:13",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:291"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "all 85 task rows and 42 AC rows checked; the checklist counts and waiver map resolve; five P2 documentation defects remain"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

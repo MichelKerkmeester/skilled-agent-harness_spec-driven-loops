@@ -254,6 +254,8 @@ const runtimeLaneHealthSchema = z.object({
 // `scoreAdvisorPrompt` directly with `AdvisorScoringOptions.affordances`.
 // advisor_recommend routes on at most this many prompt characters. A caller holding a
 // longer prompt sends its head, so a long prompt is routed rather than refused.
+// The Python fallback and JSON-Schema descriptors repeat this value; the parity tests
+// keep those copies equal to this handler schema.
 export const ADVISOR_PROMPT_MAX_CHARS = 10_000;
 
 export const AdvisorRecommendInputSchema = z.object({

@@ -1,0 +1,9 @@
+{"iteration":2,"focus":"security: refusal and run-policy consent guards, regex availability","dimensions":["security"],
+"filesReviewed":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:440",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:837",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4661",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4718",".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:109"],
+"findings":[
+{"id":"O3-R2-P2-003","severity":"P2","title":"Common refusal verbs (skip, avoid, instead of, refuse) do not withhold the deep command","file":".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:440","findingClass":"incomplete refusal vocabulary"},
+{"id":"O3-R2-P2-004","severity":"P2","title":"A stuck-run complaint attaches the run-policy doctor even when the prompt says not to run anything","file":".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:837","findingClass":"consent guard gap"},
+{"id":"O3-R2-P2-005","severity":"P2","title":"The Python loop-ask scan is quadratic and passes the 3 s fallback timeout on long prompts","file":".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4718","findingClass":"availability"}],
+"traceability":[{"protocolId":"spec_code","status":"partial","gateClass":"hard","applicable":true,"evidence":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:136",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:440"],"summary":"NFR-S01 holds; REQ-015 general statement not met for skip/avoid wording"}],
+"newFindingsRatio":1.0,"novelty":"Three new findings in a dimension not yet covered; none refine iteration 1.","durationMs":300000,
+"ruledOut":[{"direction":"catastrophic backtracking in TS gate regexes","reason":"five adversarial shapes 20-58K chars ran in 2-37 ms"}]}

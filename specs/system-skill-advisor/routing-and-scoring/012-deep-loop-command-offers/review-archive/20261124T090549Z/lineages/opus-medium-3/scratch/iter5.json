@@ -1,0 +1,8 @@
+{"iteration":5,"focus":"correctness second pass: deferred-route mode cues and explicit.ts stage-one rule","dimensions":["correctness"],
+"filesReviewed":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:384",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:899",".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:449"],
+"findings":[
+{"id":"O3-R5-P2-009","severity":"P2","title":"The review mode cue misses the -ing form of the defect-check verbs its comment says it covers","file":".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:384","findingClass":"vocabulary gap"},
+{"id":"O3-R5-P2-010","severity":"P2","title":"The stage-one loop rule reads raw loop wording without the gate's subject and refusal exceptions and penalizes sk-code on it","file":".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:449","findingClass":"lane-gate disagreement"}],
+"traceability":[{"protocolId":"spec_code","status":"pass","gateClass":"hard","applicable":true,"evidence":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:911",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:924"],"summary":"two-cue deferred prompts withhold; named loop mode resolves as documented"}],
+"newFindingsRatio":0.15,"novelty":"Two new P2 against a P1-weighted prior total; low-weight additions.","durationMs":200000,
+"ruledOut":[{"direction":"case sensitivity in mode-cue resolution","reason":"mixed-case probes resolve the same as lower case"}]}

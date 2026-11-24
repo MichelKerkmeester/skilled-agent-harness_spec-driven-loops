@@ -720,17 +720,6 @@
       "approvedAt": "2026-11-05"
     },
     {
-      "id": "rr-hub6-207",
-      "corpus": "labeled",
-      "prompt": "Use the Mobbin MCP through code mode to collect screen examples of paywall designs.",
-      "gold": "mcp-tooling",
-      "promptHash": "sha256:c0c89cbb409585b5caf50bb7445fa5689006e5149bc294d2c5d77a1b6c7b26a6",
-      "localTop": "mcp-code-mode",
-      "nativeTop": "mcp-tooling",
-      "reason": "native improvement: the native Code Mode bonus no longer lifts the transport over an MCP the prompt names, so native reaches the gold while the Python reference still ranks mcp-code-mode first",
-      "approvedAt": "2026-11-21"
-    },
-    {
       "id": "harder:eb10a4b1b288",
       "corpus": "harder",
       "prompt": "Inspect what the rendered page actually did after the click, including network and visual proof.",

@@ -239,12 +239,13 @@ export function resolveTrustedCaller(metadata: Record<string, unknown>): boolean
   if (metadata.trusted === true || metadata.callerAuthority === 'trusted') {
     return true;
   }
-  // _meta is caller-supplied, so absent/unknown transport metadata must fail
-  // CLOSED (untrusted). The daemon owner can restore the legacy
-  // default-trusted behavior for maintenance flows that send no caller
-  // authority (e.g. /doctor repair flows) by setting
-  // SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted in the daemon's own environment
-  // (launcher env), which callers cannot forge.
+  // Trust here is a caller assertion, not an access boundary. _meta is
+  // caller-supplied, so any caller can claim trust through the checks above.
+  // The owner-only IPC socket decides who may call at all. A caller that
+  // asserts nothing gets SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT from the daemon's
+  // own environment, and any value other than exactly trusted means untrusted.
+  // The repository launcher sets it to trusted when the environment leaves it
+  // unset, so under the launcher a silent caller is trusted.
   return process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT === 'trusted';
 }
 
@@ -321,9 +322,11 @@ async function handleAdvisorCallFrame(id: unknown, params: unknown): Promise<Rec
   if (!isRecord(args)) {
     return jsonRpcError(id, JSON_RPC_INVALID_PARAMS, 'advisor.call args must be an object');
   }
-  // Caller authority rides along in the optional caller block, the same assertion
-  // the CLI has always made. Without it the tools see an untrusted caller, so
-  // mutations stay refused.
+  // Caller authority rides along in the optional caller block. The CLI always
+  // sends one, marked untrusted unless --trusted, its --maintainer alias, or
+  // SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1 is given. A frame without the block gets
+  // the daemon's environment default, which the launcher sets to trusted. Under
+  // the launcher such a frame may mutate.
   const callerContext = buildCallerContext(params._meta);
   try {
     const response = await runWithCallerContext(

@@ -19,7 +19,7 @@ trigger_phrases:
 
 Current state:
 
-- `advisor-server.ts` is the advisor daemon entrypoint. It serves the IPC socket (`startIpcSocketServer`), dispatches command frames into `tools/`, manages daemon lifecycle and triggers skill metadata indexing on startup. Its caller-context builder resolves trust **fail-closed**: a caller that asserts no authority is untrusted, and only `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (unforgeable by callers) restores a default-trusted posture for maintenance flows.
+- `advisor-server.ts` is the advisor daemon entrypoint. It serves the IPC socket (`startIpcSocketServer`), dispatches command frames into `tools/`, manages daemon lifecycle and triggers skill metadata indexing on startup. Its caller-context builder takes trust from the caller block. An explicit `trusted` or `callerAuthority` value wins. A caller that asserts nothing gets `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT` from the daemon's environment. The code default is untrusted. When the daemon is started by the launcher, the launcher sets the default to `trusted` if the environment leaves it unset. Callers assert their own trust, so the flag guards against accidental mutation. The owner-only socket is the access boundary.
 - `skill-advisor-cli.ts` (with `skill-advisor-cli-manifest.ts`) is the daemon-backed CLI over the same 9 commands, fronted by the `.skilled/bin/skill-advisor.cjs` shim: the single front door. Calls are sent untrusted by default; `--trusted` / `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` marks maintainer mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`), and the gate fails closed with a usage error (exit `64`) otherwise. Shared exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes and exits `75` instead of cold-spawning the daemon.
 - `tools/` defines command descriptors and dispatches calls. `tools/index.ts` registers `TOOL_DEFINITIONS` with 4 advisor commands plus the spread of skill-graph commands.
 - `handlers/` owns orchestration for advisor tools (recommend, rebuild, status, validate) and skill-graph subhandlers (scan, query, status, validate, propagate_enhances).
@@ -142,7 +142,7 @@ runtime/
 |   +-- scorer/                    # Lane attribution and fusion
 |   +-- daemon/                    # Daemon lifecycle and watcher
 |   +-- freshness/                 # Cache invalidation and trust state
-|   +-- lifecycle/                 # Status, supersession, rollback
+|   +-- lifecycle/                 # Status, age haircut, archive, rollback
 |   +-- derived/                   # Derived-metadata extraction and provenance
 |   +-- compat/                    # Daemon probe and redirect metadata
 |   +-- auth/                      # Trusted caller checks
@@ -203,7 +203,7 @@ runtime/
 
 | File | Responsibility |
 |---|---|
-| `advisor-server.ts` | Advisor daemon entrypoint: IPC socket server, command dispatch, daemon startup, skill graph indexing via `indexSkillMetadata`, and the fail-closed trusted-caller resolution (`resolveTrustedCaller` honors `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` from the daemon env only). |
+| `advisor-server.ts` | Advisor daemon entrypoint: IPC socket server, command dispatch, daemon startup, skill graph indexing via `indexSkillMetadata`, and trusted-caller resolution. `resolveTrustedCaller` honors an explicit caller assertion first. A caller without an assertion gets `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`. The launcher sets it to `trusted` when it starts the daemon. |
 | `skill-advisor-cli.ts` | Daemon-backed CLI over the same 9 tools (built to `dist/runtime/skill-advisor-cli.js`, fronted by `.skilled/bin/skill-advisor.cjs`). Untrusted-by-default `_meta` (`callerAuthority`), trusted-mutation gate for `advisor_rebuild` / `skill_graph_scan` / apply-mode `skill_graph_propagate_enhances`, warm-only probe support, launcher auto-spawn, exit taxonomy `0`/`1`/`64`/`69`/`75`. Retries `advisor_recommend` once without `includeCompiledRoute` when a daemon from an older build rejects that option with JSON-RPC `-32602`. |
 | `skill-advisor-cli-manifest.ts` | Hand-maintained CLI tool manifest asserted at CLI startup and covered by the manifest parity suite so command schemas stay byte-identical to the tool registry. |
 | `tools/index.ts` (lines 1-70) | Tool descriptor registry (`TOOL_DEFINITIONS` at line 37) and dispatch router for 9 public tools. |

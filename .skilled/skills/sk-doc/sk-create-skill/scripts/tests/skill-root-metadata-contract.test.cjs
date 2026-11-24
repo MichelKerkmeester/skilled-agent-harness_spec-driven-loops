@@ -42,7 +42,6 @@ const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..');
 const EXPECTED_CLASSES = {
   'cli-classifier': contract.CLASS_HUB,
   'cli-external-orchestration': contract.CLASS_HUB,
-  'cli-orca': contract.CLASS_STANDALONE,
   'mcp-code-mode': contract.CLASS_STANDALONE,
   'mcp-browser-use': contract.CLASS_HUB,
   'mcp-tooling': contract.CLASS_HUB,

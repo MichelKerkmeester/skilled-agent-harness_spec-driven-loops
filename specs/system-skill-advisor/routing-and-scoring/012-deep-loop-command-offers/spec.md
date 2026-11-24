@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress: the traceability review rerun is open |
 | **Created** | 2026-11-22 |
 | **Branch** | `worktrees/516-deep-loop-command-offers` |
 <!-- /ANCHOR:metadata -->
@@ -40,7 +40,7 @@ A deep-loop command is offered when, and only when, the request asks for the loo
 The operator's decision of 2026-11-22 (`scratch/decisions.md`, row D2) narrows the gate to explicit loop asks. It supersedes the rule in `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md` (line 44, "a deep loop is offered only when the prompt uses depth wording"). A reader of that packet should treat its depth-wording rule as replaced by this one.
 
 An explicit loop ask is any of these:
-- It names a deep loop, deep research, deep review, a research loop or a review loop.
+- It names deep research or deep review. It names a deep loop, a research loop or a review loop behind a use, continue or want verb, as in "run a deep loop" or "I want a review loop". A bare loop name, as in "deep loop: audit the payments flow", is not an ask (ADR-006).
 - It gives an iteration count, or says "iterations", "iterative" or "iteratively".
 - It says multi-pass, or multiple, several or many passes.
 - It types a `/deep:*` command.
@@ -177,6 +177,20 @@ The 84-probe accuracy figures and the corpus run sit in `scratch/routing-analysi
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Modify | Depth triggers removed; Gate 2 line names the advisor CLI |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Modify | Depth triggers removed; attached `:auto` form |
 | `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Modify | `=` flag form in the example |
+
+Added by the sixth round (REQ-023 to REQ-034):
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | Modify | Refusal leads, run-refused stuck guard, typed-command list, subject-aware named mode, -ing defect cue, bounded prefix windows, exported word lists |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Modify | The same gate changes, typed row kept on a stuck run, `typed` emitted, stage-one exceptions, capped gate input, named word lists |
+| `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` | Modify | New cases and the served-layer typed column |
+| `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts`, `tests/command-attach-guards.vitest.ts`, `tests/python/test_skill_advisor.py` | Modify | Fixture readers, drift guard, guard cases, long-prompt cases |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Modify | The doctor row withheld when the prompt refuses any run or fix |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Modify | Stage-one loop rule reads the gate's subject and refusal exceptions |
+| `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`, `runtime/skill-advisor-cli.ts` | Modify | The degraded brief paths carry `command`, `policy` and `typed` |
+| `.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts`, `tests/handlers/advisor-recommend-typed-command.vitest.ts`, `tests/scorer/stage-one-loop-subject.vitest.ts`, `tests/subprocess-typed-fields.vitest.ts`, `tests/command-brief-golden.vitest.ts` | Create or Modify | Served-layer, stage-one and degraded-path tests |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `runtime/tests/unit/reduce-state-refinement-other-file.vitest.ts` | Modify, Create | A refinement against another file keeps its own registry entry |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -206,7 +220,7 @@ Every probe requirement is checked by rerunning `scratch/probes/probes-spec-base
 | REQ-008 | Explicit loop wording beside a research or review cue scores at stage one, and depth wording does not. The probe rerun records the top row of R2, V2, V4, H7 and H10. Fusion decides the winner, so each id's outcome is recorded rather than required. No id in REQ-004 changes its top skill. |
 | REQ-009 | Finished and stuck runs name their way forward. The completed-packet message in `deep-research.yaml` names `--extend=N` and `--restart`. Both presentation files' Next Steps tables gain an `--extend=N` row and a `/doctor:deep-loop --scope=<mode>` row. Both YAML `next_steps` lists gain the `--extend=N` line. |
 | REQ-010 | Setup runs through the question tool. Step 6 of both presentation files names the question tool in `.skilled/repo-rules/communication-handoff.md` §5 in place of `ASK with SINGLE prompt`. Q2 marks Autonomous `(Recommended)`. The first Q-Exec option marks Native `(Recommended, default)`. |
-| REQ-011 | The drift rows are cleared. `ask the council`, `convene` and `several models` leave `DEPTH_WORDING`, and the `several models` boost leaves `explicit.ts`, so H3b no longer tops `system-deep-loop`. The research aliases `iterative research`, `multi-round research` and `autonomous research` reach `hub-router.json` and `ROUTER.md`, so K2 tops `system-deep-loop` on the research route. `comprehensive research` and `deep investigation` leave `deep-research/SKILL.md`. `audit spec folder` and `pre-release review` leave `deep-review/SKILL.md`. The `:auto` invoke form is attached, the Gate 2 line names the advisor CLI, and both examples use `=` flags. The hub `SKILL.md` names `/doctor:deep-loop`. |
+| REQ-011 | The drift rows are cleared. `ask the council`, `convene` and `several models` leave `DEPTH_WORDING`, and the `several models` boost leaves `explicit.ts`, so H3b no longer tops `system-deep-loop`. The research aliases `iterative research` and `multi-round research` reach `hub-router.json` and `ROUTER.md`, so K2 tops `system-deep-loop` on the research route. `autonomous research` was dropped after its out-of-domain replay pulled a slide-deck prompt to the hub, and ADR-007 amends this requirement to the two aliases the tree carries. `comprehensive research` and `deep investigation` leave `deep-research/SKILL.md`. `audit spec folder` and `pre-release review` leave `deep-review/SKILL.md`. The `:auto` invoke form is attached, the Gate 2 line names the advisor CLI, and both examples use `=` flags. The hub `SKILL.md` names `/doctor:deep-loop`. |
 | REQ-012 | The single-probe misses are recorded. N7, N9, D1, V7, H6 and A3 each appear in `command-prompts.jsonl` as a `near-miss` row, and no new guard is added for them. |
 | REQ-013 | The deep-family holdouts are fresh. The three deep-family `holdout` rows are replaced by rows a separate worker writes after tuning. No builder reads a `holdout` row. |
 | REQ-014 | N9 ("summarize the research.md from the last deep research run") carries no deep command after the build. This is kept apart from REQ-002 because D2 keeps "deep research" as a loop ask and D6 rules out a guard for N9. See Open Questions. |
@@ -215,9 +229,21 @@ Every probe requirement is checked by rerunning `scratch/probes/probes-spec-base
 | REQ-017 | Spelling variants keep the command. "run a deep-review of the auth module" gets `/deep:review`, and "I’d like a research loop on cache eviction policies", with a curly apostrophe, gets `/deep:research`. |
 | REQ-018 | A negated symptom is not a stuck run. "the deep research run is not stuck, run 5 more iterations" gets `/deep:research`, not `/doctor:deep-loop`. |
 | REQ-019 | A loop name that names the loop's own code or results, and a count that describes a subject, carry no command (D2 as narrowed by ADR-004). "refactor the deep research scorer", "fix the bugs the deep review found", "open the review loop config", "we need a review loop for every PR", "I want a review loop that approves PRs automatically", "compare 10 iterations of the model and review the results", "research three-pass vs two-pass compilers", "several passes of the linter failed, review the config" and "review our multi-pass compiler" carry no `/deep:*` command. "run a deep review on the parser", "do 5 research iterations on caching" and "review the parser in several passes" keep theirs. |
-| REQ-020 | The Python typed-command check agrees with the TypeScript one. For "don't run /deep:review, explain the review loop", "what does /deep:review do?", "see (/deep:review.md) for the flags" and "my deep review run is stuck, /deep:review again", `_apply_deep_loop_offer_gate` with a typed row returns what `attachCommand` returns. |
+| REQ-020 | The Python typed-command check agrees with the TypeScript one at the gate layer. For "don't run /deep:review, explain the review loop", "what does /deep:review do?" and "see (/deep:review.md) for the flags", `_apply_deep_loop_offer_gate` with a typed row returns what `attachCommand` returns: no run command. For "my deep review run is stuck, /deep:review again", both copies read a stuck run (`isStuckRunComplaint` and `is_stuck_run_complaint` agree), and `attachCommand` alone answers `/doctor:deep-loop`. By operator decision (ADR-005), a typed command outranks the stuck diagnosis on the served head, so the native brief keeps the typed `/deep:review` with policy `ask`. The served result of that prompt, and the Python fallback's alignment with it, is REQ-029. |
 | REQ-021 | Nothing earlier regresses. Every REQ-015 to REQ-020 prompt is in the shared fixture, both suites pass, the TypeScript and Python predicate comparison shows drift 0, every gain, keep and stage-one line of the 69-probe rerun keeps its command, and the corpus `false_offer` count stays 0. |
 | REQ-022 | The docs say what was measured. The v4.2.0.0 changelog no longer says refused asks are skipped before they are, names packet 013's brief change and quotes the final suite count, and AC-008 reads `Waived` with ADR-003. |
+| REQ-023 | Common refusal verbs withhold the command in both copies. "skip the deep review and just answer", "avoid deep research; answer from memory", "there is no need for a deep review", "instead of a deep review, just explain the bug", "I refuse a deep review here" and "do not even think about running a deep review" carry no `/deep:*` command. "skip straight to the deep review of the parser", "don't hesitate to run a deep review" and "don't forget to run a deep review on the parser" keep `/deep:review`. |
+| REQ-024 | A stuck-run complaint that refuses any run or fix gets no `/doctor:deep-loop`. "the deep research run is stuck. please don't run anything" and "my deep research run is stuck and I don't want a fix" carry no doctor command from `attachCommand` or from the fused command row, and the Python fallback drops its doctor row on both. "my deep research run is stuck" keeps `/doctor:deep-loop`. |
+| REQ-025 | A typed deep command survives a second typed command. "run /deep:review on the parser, then /create:changelog" and "/deep:review the parser and then /doctor:deep-loop" keep `/deep:review` from `attachCommand` on a review route and on the served head, as the Python gate already does. `typedCommandIn` keeps its longest-key result for every other caller. |
+| REQ-026 | The deferred-route mode cue reads only loop names that are asks. "run a deep loop to review the research loop config" gets `/deep:review` on a deferred route, not `/deep:research`, and "run a deep loop checking the parser for bugs" gets `/deep:review`, because the defect-check cue reads its -ing forms. |
+| REQ-027 | The stage-one loop rule honours the gate's subject and refusal readings. "several passes of the linter failed, review the config" no longer tops `system-deep-loop` with no command (measured 2026-11-24 on this tree: the head holds `sk-code` at 0.8754 and `sk-doc` at 0.82, neither with a command, and the hub is not among them), while "review the parser in several passes" keeps the hub with `/deep:review`. The Python stage-one copy `_is_loop_workflow_request` reads the same exceptions. No REQ-004 id changes its top skill. |
+| REQ-028 | A typed deep command shows plain `(ask)` on both degraded brief paths. On the CLI degraded path (`degradedRecommendations`) and on the Python subprocess path (`parseRecommendations`), "/deep:review:confirm the auth module" renders `/deep:review (ask)` with no `A ` option text. This corrects the degraded half of packet 013's REQ-006. |
+| REQ-029 | The typed-on-stuck exception is pinned where the reader sees it. "my deep review run is stuck, /deep:review again" keeps `/deep:review` with policy `ask` and `typed: true` on the native served head (`attachTypedCommand`), and the Python fallback keeps its typed run row on a stuck complaint, so both served heads agree (ADR-005). A serving-layer test asserts the native result, and a shared fixture column read by both suites asserts the served result on every typed case. |
+| REQ-030 | Long prompts stay cheap. The Python gate reads the same 10,000-code-unit head the native schema accepts, and the per-match prefix scans in both copies test a bounded window instead of the whole prefix. A 96,000-character prompt runs the Python gate in under one second, a 10,000-character prompt of repeated "do not run /deep:review." stays withheld in both copies, and no fixture case changes its result. |
+| REQ-031 | The vocabulary drift guard covers every word list. The count words, run symptoms, artifact-after nouns, past-run read verbs and iterative verbs are exported arrays in `command-attach.ts` that build their patterns, and named lists in `skill_advisor.py` that build theirs. A test fails when the two copies of any list differ, and every list entry has a fixture case that uses it. |
+| REQ-032 | A refinement filed against another file keeps its own registry entry. When a deep-review finding `refines` an earlier one but names a different file or dimension, the reducer keeps it as its own finding with the `refines` link, and the target keeps its own title and location. A refinement at the same file still folds into its target. |
+| REQ-033 | The review's coverage gate passes. After the build, a deep-review rerun on this packet with traceability as its focus finishes `spec_code` and `checklist_evidence`, and its terminal gates read evidence, scope and coverage pass. |
+| REQ-034 | The closure docs match the built behaviour. The fixture header names which layer each typed column pins. Implementation-summary limitations 6 and 7 and the fifth-round "A stuck run drops the run row" line are rewritten, the v4.2.0.0 changelog names the typed-on-stuck exception and the new refusal verbs, the tasks.md checklist evidence and Verification Summary agree with the boxes they count, and packet 013 records the degraded-path evidence for its REQ-006. |
 
 ### Reopened after a fresh review
 
@@ -234,6 +260,10 @@ A fresh review on 2026-11-23 found gate gaps outside the probe set. Six of them,
 
 The typed-suffix hint is packet 013's to fix. REQ-015 to REQ-022 cover the rest.
 
+### Reopened after a three-lineage deep review
+
+A deep review on 2026-11-24 (`review/review-report.md`, three Opus lineages of five iterations) returned FAIL on its coverage gate, with no P0, one P1 found twice and eighteen P2. The P1 is a closure-record gap: REQ-020, SC-005 and AC-027 stated typed-command parity and hook results without the typed-on-stuck exception the operator had confirmed on 2026-11-23. That docs fix is made in this round's planning pass (REQ-020, SC-005, AC-027, AC-008, ADR-005). REQ-023 to REQ-034 cover the P2 findings, the bare-loop-name decision (ADR-006), the registry fold that lost two structured findings, and the coverage rerun.
+
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
@@ -246,7 +276,8 @@ The typed-suffix hint is packet 013's to fix. REQ-015 to REQ-022 cover the rest.
 - **SC-001**: Plain loop asks with a command row go from 0 of 5 to 5 of 5 on the gain group (V6, H1a, H1b, E1, E3) of the probe rerun.
 - **SC-002**: Depth-only false offers go from 1 to 0. R7 is the one case, and no row in the no-gain group gains a `/deep:*` command.
 - **SC-003**: The keep and negative groups, 34 rows in all, print the same top skill and `cmd=` value as the baseline block.
-- **SC-005**: Every REQ-015 to REQ-020 prompt gives its stated result through the prompt hook, with the 69-probe and corpus results unchanged.
+- **SC-005**: Every REQ-015 to REQ-020 prompt gives its stated result through the prompt hook, with the 69-probe and corpus results unchanged. One prompt is an operator-confirmed exception (ADR-005): "my deep review run is stuck, /deep:review again" prints the typed `system-deep-loop → /deep:review (ask)` on the head, because a typed command outranks the stuck diagnosis on the served head (`scratch/probes/fresh-review-hook.txt:28`).
+- **SC-006**: Every REQ-023 to REQ-031 prompt gives its stated result in both suites through the shared fixture, the deep-review rerun of REQ-033 passes its coverage gate, and the 69-probe and corpus results stay unchanged apart from the intended moves REQ-027 names.
 - **SC-004**: The recaptured routing baseline's `false_offer` and `false_offer_attached` counts, taken over the rows that existed before this packet, equal the counts captured before the code change.
 <!-- /ANCHOR:success-criteria -->
 
@@ -310,7 +341,7 @@ The typed-suffix hint is packet 013's to fix. REQ-015 to REQ-022 cover the rest.
 ## 10. OPEN QUESTIONS
 
 - N9 names "deep research", which D2 keeps as a loop ask, and D6 rules out a guard for it. REQ-014 asks that N9 lose its command, but nothing in the five lanes is designed to drop it. If the rerun still shows `cmd=/deep:research` on N9, the operator decides between a waiver recorded in `decision-record.md` and a narrower reading of "names deep research", such as requiring a run verb.
-- K3 ("start an autonomous research session ... let it run overnight") carries the new alias `autonomous research` but no D2 loop ask. Should it gain the command? The packet assumes no, so K3 is recorded and not required.
+- K3 ("start an autonomous research session ... let it run overnight") would have carried the alias `autonomous research`, which was dropped after its out-of-domain replay (ADR-007), and it carries no D2 loop ask. Should it gain the command? The packet assumes no, so K3 is recorded and not required.
 <!-- /ANCHOR:questions -->
 
 ---

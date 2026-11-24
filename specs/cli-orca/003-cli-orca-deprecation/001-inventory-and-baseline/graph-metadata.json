@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-orca/003-cli-orca-deprecation/001-inventory-and-baseline",
+  "spec_folder": "cli-orca/003-cli-orca-deprecation/001-inventory-and-baseline",
+  "parent_id": "cli-orca/003-cli-orca-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli orca removal inventory",
+      "cli orca removal baseline",
+      "cli orca deprecation decisions",
+      "cli orca removal operator decisions"
+    ],
+    "key_topics": [
+      "cli",
+      "orca",
+      "removal",
+      "inventory",
+      "baseline",
+      "deprecation",
+      "decisions",
+      "operator",
+      "deleting",
+      "skill",
+      "folder",
+      "alone"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/removal-manifest.md",
+      "scratch/baseline-exits.txt",
+      "scratch/baseline-head.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "removal-manifest.md",
+        "kind": "doc",
+        "path": "scratch/removal-manifest.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-exits.txt",
+        "kind": "file",
+        "path": "scratch/baseline-exits.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-head.txt",
+        "kind": "file",
+        "path": "scratch/baseline-head.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deleting",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Removal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deleting the skill folder alone would leave advisor edges, tests, fixtures and docs pointing at a skill that no longer exists",
+    "created_at": "2026-11-24T09:02:09Z",
+    "last_save_at": "2026-11-24T09:35:04.621Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e34ee2b5e57d0373d6d29ab29da4dca35ac88adb18bd09c9d949f5e0e81cafbe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0545e4d9b72d9f437f1c863a05312ed17fd361eac5bc7f31ef3fd091ae397646",
+      "plan.md": "a56131d1709f4925d5cf85ae532d96c5c9c633a5b53f54fb21e2ac046cab9635",
+      "tasks.md": "f2932702d6b4ef1b9ceb363ae2d7e93d19ae74b05e54134e2669375bba74afa0",
+      "decision-record.md": "c553910ea91e4e9b38ac53f2328065da5f996550cff9015d6ced38b5988326d4",
+      "implementation-summary.md": "4801a5c0aaa1b6bfc0978420d06516392a50dbe5e5b3fd328028b02b22f03313"
+    },
+    "last_active_at": null
+  }
+}

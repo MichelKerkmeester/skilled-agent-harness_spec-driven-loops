@@ -1,0 +1,308 @@
+{
+  "sessionId": "fanout-opus-medium-1-1795495423434-9mvwzq",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-24T04:56:09.052Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "Typed-on-stuck exception accepted in prose, but REQ-020/SC-005/AC-027 still state parity and hook output contradicts them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      "line": 428,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "commandOnlyMentioned rescans the prefix per occurrence (quadratic, bounded by the 10K prompt cap)",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 784,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Drift guard covers only the three exported phrase lists; inline regex vocabulary (COUNT_WORDS etc.) can drift silently",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
+      "line": 72,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "Typed-on-stuck exception accepted in prose, but REQ-020/SC-005/AC-027 still state parity and hook output contradicts them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      "line": 428,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "Typed-on-stuck exception accepted in prose, but REQ-020/SC-005/AC-027 still state parity and hook output contradicts them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      "line": 428,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 1,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 4,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:911",
+          ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:449"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "deferred mode resolution and stage-one rule match spec scope"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "AC-027 evidence narrower than SC-005"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "no playbook in scope"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "no feature catalog in scope"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "no agents in scope"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "no skill-agent contract in scope"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

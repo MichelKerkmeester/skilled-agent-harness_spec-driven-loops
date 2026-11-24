@@ -2,7 +2,7 @@
 // MODULE: Daemon Freshness Foundation Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import Database from 'better-sqlite3';
@@ -26,7 +26,12 @@ import {
   type SkillGraphFsWatcher,
 } from '../lib/daemon/watcher.js';
 import { clearCacheInvalidationListeners, getLastCacheInvalidation, onCacheInvalidation } from '../lib/freshness/cache-invalidation.js';
-import { publishAfterCommit, publishSkillGraphGeneration, readSkillGraphGeneration } from '../lib/freshness/generation.js';
+import {
+  __testables as generationTestables,
+  publishAfterCommit,
+  publishSkillGraphGeneration,
+  readSkillGraphGeneration,
+} from '../lib/freshness/generation.js';
 import { rebuildFromSource } from '../lib/freshness/rebuild-from-source.js';
 import { createTrustState, failOpenTrustState } from '../lib/freshness/trust-state.js';
 
@@ -441,6 +446,51 @@ describe('freshness and generation foundation', () => {
 
     expect(readSkillGraphGeneration(root).generation).toBe(2);
     expect(readSkillGraphGeneration(root).reason).toBe('second');
+  });
+
+  it('waits for a fresh empty lock instead of reclaiming it', () => {
+    vi.useRealTimers();
+    const root = workspace('skill-graph-empty-lock');
+    const target = join(root, 'generation');
+    const lockPath = target + '.lock';
+    write(lockPath, '');
+
+    expect(() => generationTestables.acquireGenerationLock(target)).toThrow(/Timed out/);
+    expect(existsSync(lockPath)).toBe(true);
+    expect(readFileSync(lockPath, 'utf8')).toBe('');
+  });
+
+  it('reclaims an empty lock after it becomes stale', () => {
+    vi.useRealTimers();
+    const root = workspace('skill-graph-stale-empty-lock');
+    const target = join(root, 'generation');
+    const lockPath = target + '.lock';
+    write(lockPath, '');
+    const oldTime = (Date.now() - generationTestables.GENERATION_LOCK_STALE_MS - 5_000) / 1_000;
+    utimesSync(lockPath, oldTime, oldTime);
+
+    const release = generationTestables.acquireGenerationLock(target);
+
+    expect(readFileSync(lockPath, 'utf8').trim().split(':')).toHaveLength(3);
+    release();
+    expect(existsSync(lockPath)).toBe(false);
+  });
+
+  it('reclaims a stale legacy lock that has no token', () => {
+    vi.useRealTimers();
+    const root = workspace('skill-graph-stale-legacy-lock');
+    const target = join(root, 'generation');
+    const lockPath = target + '.lock';
+    const oldTimeMs = Date.now() - generationTestables.GENERATION_LOCK_STALE_MS - 5_000;
+    write(lockPath, String(process.pid) + ':' + oldTimeMs + '\n');
+    const oldTime = oldTimeMs / 1_000;
+    utimesSync(lockPath, oldTime, oldTime);
+
+    const release = generationTestables.acquireGenerationLock(target);
+
+    expect(readFileSync(lockPath, 'utf8').trim().split(':')).toHaveLength(3);
+    release();
+    expect(existsSync(lockPath)).toBe(false);
   });
 
   it('covers all fail-open trust-state transitions', () => {

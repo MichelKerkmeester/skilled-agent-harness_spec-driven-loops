@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.18.0
+version: 0.8.19.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -33,9 +33,9 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome, its 
 
 ## 1. OVERVIEW
 
-This playbook provides 55 scenario files across 9 categories, one of them a live conversation scenario, validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion and `PC` for Python compatibility.
+This playbook provides 53 scenario files across 9 categories, one of them a live conversation scenario, validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion and `PC` for Python compatibility.
 
-Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 55 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
+Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 53 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
 
 ### Realistic Test Model
 
@@ -127,7 +127,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 55 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 53 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -154,7 +154,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
 - **Wave 6**: `AI-001..AI-007` auto-indexing behavior.
-- **Wave 7**: `LC-001..LC-005` lifecycle routing.
+- **Wave 7**: `LC-001, LC-003 and LC-004` lifecycle routing.
 - **Wave 8**: `SC-001..SC-006` scorer fusion.
 - **Wave 9**: `PC-001..PC-005` Python compatibility.
 
@@ -256,15 +256,13 @@ This category validates auto indexing scenarios `AI-001..AI-007`.
 
 ## 13. LIFECYCLE ROUTING
 
-This category validates lifecycle routing scenarios `LC-001..LC-005`.
+This category validates lifecycle routing scenarios `LC-001, LC-003 and LC-004`.
 
 | ID | Scenario | File |
 |---|---|---|
 | LC-001 | Derived-Lane-Only Age Haircut | [001-age-haircut.md](lifecycle-routing/age-haircut.md) |
-| LC-002 | Asymmetric Supersession Redirects | [002-supersession.md](lifecycle-routing/supersession.md) |
 | LC-003 | Archive and Future Skills Indexed But Not Routed | [003-archive-handling.md](lifecycle-routing/archive-handling.md) |
 | LC-004 | Outdated Skill Graph Database Discard and Rescan | [004-schema-migration.md](lifecycle-routing/schema-migration.md) |
-| LC-005 | Lifecycle-Level Rollback | [005-rollback-lifecycle.md](lifecycle-routing/rollback-lifecycle.md) |
 
 ---
 

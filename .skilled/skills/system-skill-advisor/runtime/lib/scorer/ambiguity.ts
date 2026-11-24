@@ -21,8 +21,8 @@ export const AMBIGUITY_CONFIDENCE_MARGIN = 0.05;
 // "outside both margins" is required to be unambiguously ranked.
 //
 // One exception: a skill the typed-command bound capped just below the top
-// (`heldBelow` names the top) sits close to it only because of that cap, and the
-// cap already ranked the pair from the user's own command. Counting that gap as
+// (`heldBelow` or `heldBy` names the top) sits close only because of that cap,
+// which already ranked the pair from the user's command. Counting that gap as
 // a tie would report the explicit command as a coin flip. Two skills close on
 // their own evidence still cluster.
 //
@@ -65,7 +65,10 @@ function clustersWithTop(
   recommendation: AdvisorScoredRecommendation,
   applyFloorException: boolean,
 ): boolean {
-  if (recommendation !== top && recommendation.heldBelow === top.skill) return false;
+  if (
+    recommendation !== top
+    && (recommendation.heldBelow === top.skill || recommendation.heldBy?.includes(top.skill) === true)
+  ) return false;
   const scoreGap = Math.abs(top.score - recommendation.score);
   if (scoreGap <= AMBIGUITY_MARGIN + Number.EPSILON) return true;
   // The score margin already failed, so a floored member has nothing left to

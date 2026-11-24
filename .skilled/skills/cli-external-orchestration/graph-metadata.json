@@ -35,11 +35,6 @@
         "context": "dispatched code sessions load sk-code standards"
       },
       {
-        "target": "cli-orca",
-        "weight": 0.4,
-        "context": "Orca manages its runtime surface while this hub dispatches external CLI executors"
-      },
-      {
         "target": "cli-classifier",
         "weight": 0.4,
         "context": "The classifier hub supplies the hosted Jev judgment transport beside this hub's external executor dispatch"

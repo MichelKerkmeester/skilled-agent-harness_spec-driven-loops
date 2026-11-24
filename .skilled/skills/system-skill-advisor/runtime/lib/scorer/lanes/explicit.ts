@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { phraseSpecificity, skillNameVariants, tokenize, tokenizePrompt } from '../text.js';
-import { ITERATIVE_ASK, LOOP_COUNT, MODE_CUES, MULTI_PASS, isStuckRunComplaint, isWritingAboutTopic } from '../../command-attach.js';
+import { ITERATIVE_ASK, LOOP_COUNT, MODE_CUES, MULTI_PASS, asksForLoopRun, isStuckRunComplaint, isWritingAboutTopic } from '../../command-attach.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -444,8 +444,14 @@ export function scoreExplicitLane(
   // A count or more than one pass asks for the loop however it is spelled, so
   // "ten rounds" and "twelve-iteration" read as "10 iterations" does. Iterative
   // wording counts only where it says how the work runs, because "the iterative
-  // solver" names the subject.
-  const passesAsked = MULTI_PASS.test(lower) || LOOP_COUNT.test(lower) || ITERATIVE_ASK.test(lower);
+  // solver" names the subject. The count still has to ask for a run as the
+  // command gate reads one, so "several passes of the linter failed" reports
+  // runs that already happened and "three-pass compilers" names the subject,
+  // and neither hands the hub its lane while the gate offers no command. A
+  // stuck run that quotes its passes keeps the reading, so the hub still holds
+  // the lane its doctor answers from.
+  const passesAsked = (MULTI_PASS.test(lower) || LOOP_COUNT.test(lower) || ITERATIVE_ASK.test(lower))
+    && (asksForLoopRun(lower) || isStuckRunComplaint(lower));
   const researchLoop = !writingAboutLoop
     && (/\b(continue|resume|launch|kick off|overnight|convergence|multi-pass|loop)\b/.test(lower) || passesAsked) && /\bresearch\b/.test(lower);
   if (researchLoop) {

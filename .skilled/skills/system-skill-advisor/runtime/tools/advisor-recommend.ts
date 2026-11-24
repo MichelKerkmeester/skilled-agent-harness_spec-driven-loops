@@ -3,10 +3,10 @@
 // ───────────────────────────────────────────────────────────────
 
 import type { ToolDefinition } from './types.js';
-// Partial: The descriptor's `properties` keys MUST stay aligned
-// with ADVISOR_RECOMMEND_PARAMETER_KEYS so the JSON Schema, Zod schema, and
-// ALLOWED_PARAMETERS stay in sync. The tuple is the single source of truth;
-// drift surfaces as a type-level mismatch when adding or removing a key here.
+// The descriptor's `properties` record is typed by
+// ADVISOR_RECOMMEND_PARAMETER_KEYS, so a key added here without the tuple, or
+// dropped from here while the tuple keeps it, fails the type check. The Zod
+// input schema does not read the tuple.
 import { ADVISOR_RECOMMEND_PARAMETER_KEYS } from './advisor-contract-keys.js';
 
 const properties: Record<(typeof ADVISOR_RECOMMEND_PARAMETER_KEYS)[number], Record<string, unknown>> = {

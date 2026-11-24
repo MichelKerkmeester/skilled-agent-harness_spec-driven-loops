@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "cli-orca/001-mcp-orca-cli",
-    "cli-orca/002-consolidate-official-orca-skills"
+    "cli-orca/002-consolidate-official-orca-skills",
+    "cli-orca/003-cli-orca-deprecation"
   ],
   "manual": {
     "depends_on": [],

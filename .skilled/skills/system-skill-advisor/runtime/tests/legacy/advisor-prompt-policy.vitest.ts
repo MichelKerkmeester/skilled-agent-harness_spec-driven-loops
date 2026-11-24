@@ -50,7 +50,7 @@ describe('skill advisor prompt policy', () => {
       reason: 'explicit_skill_or_governance_marker',
     });
     // A skill outside the sk- family is named just as explicitly, and a short prompt must not skip it.
-    for (const name of ['system-deep-loop', 'cli-orca', 'mcp-tooling']) {
+    for (const name of ['system-deep-loop', 'cli-classifier', 'mcp-tooling']) {
       expect(shouldFireAdvisor(`use the ${name} skill`)).toMatchObject({
         fire: true,
         reason: 'explicit_skill_or_governance_marker',

@@ -23,6 +23,7 @@ const {
   dirname,
   isAbsolute,
   join,
+  normalize,
   relative,
   resolve,
   sep,
@@ -43,6 +44,7 @@ const FINDING_FIELDS = Object.freeze({
   research: Object.freeze(['keyFindings', 'findings']),
   review: Object.freeze(['findingDetails']),
 });
+const REPOSITORY_ROOT = resolve(__dirname, '../../../../..');
 
 const FLAG_KEYS = Object.freeze({
   '--mode': 'mode',
@@ -214,10 +216,43 @@ function collectIterationFindingGroups(record, fields, refinedTarget) {
   return structured
     .map((finding) => {
       const keys = findingKeys(finding);
-      const target = refinedTarget(finding);
-      return target ? [target, ...keys.filter((key) => key !== target)] : keys;
+      const target = refinedTarget(finding, record);
+      const findingId = normalizeFindingKey(finding?.id || finding?.findingId);
+      return {
+        keys: target ? [target.id, ...keys.filter((key) => key !== target.id)] : keys,
+        identityId: target?.id || findingId || keys[0],
+        identityFile: target ? target.file : finding?.file || '',
+      };
     })
-    .filter((keys) => keys.length > 0);
+    .filter((group) => group.keys.length > 0);
+}
+
+function normalizeFindingPath(value) {
+  if (typeof value !== 'string') return '';
+  const withoutLocation = value.trim()
+    .replace(/\\/g, '/')
+    .replace(/:\d+(?:[:-].*)?$/, '');
+  if (!withoutLocation) return '';
+  const normalized = normalize(withoutLocation).replace(/\\/g, '/');
+  if (!isAbsolute(normalized)) return normalized.replace(/^(?:\.\/)+/, '');
+  const repositoryRelative = relative(REPOSITORY_ROOT, normalized);
+  if (repositoryRelative && repositoryRelative !== '..'
+    && !repositoryRelative.startsWith(`..${sep}`) && !isAbsolute(repositoryRelative)) {
+    return repositoryRelative.split(sep).join('/');
+  }
+  return normalized;
+}
+
+function registryFindingMatchesIdentity(candidate, findingId, file) {
+  if (!candidate || typeof candidate !== 'object') return false;
+  const normalizedId = normalizeFindingKey(findingId);
+  const candidateId = normalizeFindingKey(candidate.findingId || candidate.id);
+  const conflictOf = normalizeFindingKey(candidate._conflictOf);
+  if (!normalizedId || (candidateId !== normalizedId && conflictOf !== normalizedId)) return false;
+  const expectedPath = normalizeFindingPath(file);
+  if (!expectedPath) return true;
+  const candidatePath = normalizeFindingPath(candidate.file);
+  return Boolean(candidatePath && candidatePath === expectedPath);
 }
 
 // Cumulative review snapshots and repeatedFindings (a subset of openFindings) need
@@ -343,11 +378,19 @@ function closeOut(args) {
   const scope = runScope(mode, args.stateLog);
   const registry = readJson(args.registry);
   const evidence = registryEvidence(mode, registry);
+  const reviewRegistryFindings = mode === 'review'
+    ? [registry?.openFindings, registry?.resolvedFindings, registry?.repeatedFindings]
+      .filter(Array.isArray)
+      .flat()
+    : [];
   const lineageLogs = lineageStateLogs(args.artifactDir, mode);
   const parsedState = (lineageLogs.length > 0 ? lineageLogs : [args.stateLog])
-    .map(readJsonl)
+    .map((stateLog) => ({ stateLog, ...readJsonl(stateLog) }))
     .map((entry) => ({ ...entry, records: latestIterationRecords(entry.records) }));
-  const stateRecords = parsedState.flatMap((entry) => entry.records);
+  const stateRecords = parsedState.flatMap((entry) => entry.records.map((record) => ({
+    ...record,
+    _stateLogPath: entry.stateLog,
+  })));
   const stateParseFailureCount = parsedState.reduce((sum, entry) => sum + entry.parseFailures, 0);
   const totalIterations = stateRecords.filter((record) => record && record.type === 'iteration').length;
   const iterationFindingCount = stateRecords.reduce(
@@ -355,25 +398,62 @@ function closeOut(args) {
     0,
   );
   const registryFindingKeys = new Set(evidence.keys);
-  // The review reducer folds a refinement into the finding it names when that
-  // finding is already registered, leaving one registry entry for both. A target
-  // the registry lacks folds nothing, so the refinement still counts on its own
-  // and a lost finding still trips the invariants below.
-  const refinedTarget = (finding) => {
+  // The reducer folds a refinement only when the registered target and the
+  // refinement identify the same normalized file without conflicting dimensions.
+  // Kept refinements must be checked by their own id and location.
+  const refinedTarget = (finding, record) => {
     if (mode !== 'review' || !finding || typeof finding !== 'object') return null;
-    const target = normalizeFindingKey(finding.refines || finding.refinementOf);
-    return target && registryFindingKeys.has(target) ? target : null;
+    const targetId = normalizeFindingKey(finding.refines || finding.refinementOf);
+    if (!targetId) return null;
+    const currentIteration = Number(record?.iteration ?? record?.run);
+    const lineage = parsedState.find((entry) => entry.stateLog === record?._stateLogPath);
+    const targetStateFinding = lineage?.records
+      .filter((candidateRecord) => candidateRecord && candidateRecord.type === 'iteration'
+        && Number(candidateRecord.iteration ?? candidateRecord.run) < currentIteration)
+      .flatMap((candidateRecord) => fields.flatMap((field) => (
+        Array.isArray(candidateRecord[field]) ? candidateRecord[field] : []
+      )))
+      .find((candidate) => normalizeFindingKey(candidate?.id || candidate?.findingId) === targetId);
+    if (!targetStateFinding) return null;
+    const target = reviewRegistryFindings.find((candidate) => registryFindingMatchesIdentity(
+      candidate,
+      targetId,
+      targetStateFinding.file,
+    ));
+    if (!target) return null;
+    const targetFile = normalizeFindingPath(targetStateFinding.file || target.file);
+    const refinementFile = normalizeFindingPath(finding.file);
+    if (targetFile && refinementFile && targetFile !== refinementFile) return null;
+    const targetDimensionValue = targetStateFinding.dimension || target.dimension;
+    const targetDimension = typeof targetDimensionValue === 'string'
+      ? targetDimensionValue.trim().toLowerCase()
+      : '';
+    const refinementDimension = typeof finding.dimension === 'string'
+      ? finding.dimension.trim().toLowerCase()
+      : '';
+    if (targetDimension && refinementDimension && targetDimension !== refinementDimension) return null;
+    return { id: targetId, file: targetStateFinding.file || target.file || '' };
   };
   const identifiableFindingGroups = stateRecords.flatMap(
     (record) => collectIterationFindingGroups(record, fields, refinedTarget),
   );
   const missingStructuredFindingGroups = identifiableFindingGroups
-    .filter((keys) => !keys.some((key) => registryFindingKeys.has(key)));
+    .filter((group) => {
+      const findingId = normalizeFindingKey(group.identityId);
+      if (mode === 'review' && findingId) {
+        return !reviewRegistryFindings.some((candidate) => registryFindingMatchesIdentity(
+          candidate,
+          findingId,
+          group.identityFile,
+        ));
+      }
+      return !group.keys.some((key) => registryFindingKeys.has(key));
+    });
   const missingStructuredFindingCount = countDistinctFindings(
-    missingStructuredFindingGroups.map((keys) => keys[0]),
+    missingStructuredFindingGroups.map((group) => group.identityId || group.keys[0]),
   );
   const identifiableFindingCount = countDistinctFindings(
-    identifiableFindingGroups.map((keys) => keys[0]),
+    identifiableFindingGroups.map((group) => group.identityId || group.keys[0]),
   );
   // The root dashboard is a single-executor artifact. Fan-out stores one
   // beside each lineage, so it is required only when the close reads the root log.

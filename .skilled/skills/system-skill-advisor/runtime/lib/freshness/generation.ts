@@ -7,7 +7,19 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { randomBytes } from 'node:crypto';
-import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, realpathSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  closeSync,
+  existsSync,
+  fsyncSync,
+  mkdirSync,
+  openSync,
+  readFileSync,
+  realpathSync,
+  renameSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { GenerationMetadataSchema, type GenerationMetadata } from '../../schemas/generation-metadata.js';
 import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
@@ -144,14 +156,25 @@ function readLockTokenAndAge(lockPath: string): { token: string | null; ageMs: n
   }
 }
 
+function lockFileMtimeMs(lockPath: string): number | null {
+  try {
+    return statSync(lockPath).mtimeMs;
+  } catch (error: unknown) {
+    const code = error instanceof Error && 'code' in error ? (error as NodeJS.ErrnoException).code : null;
+    if (code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
 function acquireGenerationLock(filePath: string): () => void {
   const lockPath = `${filePath}.lock`;
   mkdirSync(dirname(filePath), { recursive: true });
   const startedAt = Date.now();
   while (true) {
     const myToken = randomBytes(16).toString('hex');
+    let fd: number | null = null;
     try {
-      const fd = openSync(lockPath, 'wx');
+      fd = openSync(lockPath, 'wx');
       writeFileSync(fd, `${process.pid}:${Date.now()}:${myToken}\n`, 'utf8');
       closeSync(fd);
       return () => {
@@ -165,6 +188,15 @@ function acquireGenerationLock(filePath: string): () => void {
         // after we paused/lost ownership. We must not delete their lock.
       };
     } catch (error: unknown) {
+      if (fd !== null) {
+        try {
+          closeSync(fd);
+        } catch {
+          // The descriptor may already be closed.
+        }
+        rmSync(lockPath, { force: true });
+        throw error;
+      }
       const code = error instanceof Error && 'code' in error ? (error as NodeJS.ErrnoException).code : null;
       if (code !== 'EEXIST') throw error;
       const { token: incumbentToken, ageMs } = readLockTokenAndAge(lockPath);
@@ -184,9 +216,17 @@ function acquireGenerationLock(filePath: string): () => void {
         continue;
       }
       if (incumbentToken === null) {
-        // Corrupt lock contents (legacy format or partial write). Reclaim it.
-        rmSync(lockPath, { force: true });
-        continue;
+        const mtimeMs = lockFileMtimeMs(lockPath);
+        if (mtimeMs === null) continue;
+        if (Date.now() - mtimeMs > GENERATION_LOCK_STALE_MS) {
+          if (readLockTokenAndAge(lockPath).token === null) {
+            const recheckMs = lockFileMtimeMs(lockPath);
+            if (recheckMs !== null && Date.now() - recheckMs > GENERATION_LOCK_STALE_MS) {
+              rmSync(lockPath, { force: true });
+            }
+          }
+          continue;
+        }
       }
       if (Date.now() - startedAt > GENERATION_LOCK_WAIT_MS) {
         throw new Error('Timed out acquiring skill graph generation lock');

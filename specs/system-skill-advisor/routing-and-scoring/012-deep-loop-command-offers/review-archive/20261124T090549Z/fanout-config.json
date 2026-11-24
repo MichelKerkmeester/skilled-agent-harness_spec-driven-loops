@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-claude-code","model":"claude-opus-5-5","reasoningEffort":"medium","sandboxMode":"danger-full-access","count":3,"label":"opus-medium"}],"concurrency":3}

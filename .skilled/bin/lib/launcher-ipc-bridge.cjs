@@ -176,6 +176,55 @@ function toConnectionOptions(socketPath) {
   };
 }
 
+function ownershipProblem(target, kind, uid) {
+  let stat;
+  try {
+    stat = fs.lstatSync(target);
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    return `cannot inspect ${target}: ${error.code ?? 'unknown'}`;
+  }
+
+  if (stat.isSymbolicLink()) return `symlink at ${target}`;
+  if (kind === 'directory' && !stat.isDirectory()) return `not a directory: ${target}`;
+  if (kind === 'socket' && !stat.isSocket()) return `not a socket: ${target}`;
+  if (stat.uid !== uid) return `${target} owned by uid ${stat.uid}, not ${uid}`;
+  if (kind === 'directory' && (stat.mode & 0o022) !== 0) return `${target} is group or world writable`;
+  return null;
+}
+
+/**
+ * Check the socket path and its owned directories before a client sends prompts.
+ *
+ * @param {string} socketPath - The local socket path or TCP endpoint to inspect.
+ * @returns {string | null} A refusal reason, or null when the path may be used.
+ */
+function checkIpcSocketOwnership(socketPath) {
+  if (socketPath.startsWith('tcp://')) return null;
+  if (typeof process.getuid !== 'function') return null;
+
+  // Clients hand every prompt to whatever listens here; the server enforces the same trust boundary at bind.
+  // A recognized parent also counts because its owner could replace the scoped socket directory.
+  const uid = process.getuid();
+  const resolvedSocketPath = path.resolve(socketPath);
+  const socketDir = path.dirname(resolvedSocketPath);
+  const parentDir = path.dirname(socketDir);
+  const configuredSocketDir = path.resolve(
+    process.env.SPECKIT_IPC_SOCKET_DIR || DEFAULT_SKILL_ADVISOR_SOCKET_DIR,
+  );
+  const trustedParentDirs = new Set([
+    configuredSocketDir,
+    path.resolve(DEFAULT_SKILL_ADVISOR_SOCKET_DIR),
+  ]);
+  const folders = trustedParentDirs.has(parentDir) ? [parentDir, socketDir] : [socketDir];
+
+  for (const folder of folders) {
+    const problem = ownershipProblem(folder, 'directory', uid);
+    if (problem) return problem;
+  }
+  return ownershipProblem(resolvedSocketPath, 'socket', uid);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. STDIO BRIDGE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -419,6 +468,13 @@ async function maybeBridgeLeaseHolder(options) {
     return { action: 'report', reason: 'no-bridge-socket', socketPath };
   }
 
+  const refusal = checkIpcSocketOwnership(socketPath);
+  if (refusal) {
+    process.stderr.write(`[${loggerPrefix}] refusing socket ${socketPath}: ${refusal}\n`);
+    writeLeaseHeld(' (socket-not-owned)');
+    return { action: 'report', reason: 'socket-not-owned', socketPath };
+  }
+
   // deepProbe: REQUIRE a JSON-RPC reply, not just a socket accept. The reap/bridge decision must
   // detect a HUNG daemon (event loop wedged / deadlocked — it still accepts the UDS connection but
   // never services requests). A connect-ok-only probe would bridge a client to the wedged daemon and
@@ -464,6 +520,7 @@ async function maybeBridgeLeaseHolder(options) {
 
 module.exports = {
   bridgeStdioToSocket,
+  checkIpcSocketOwnership,
   getIpcSocketPath,
   resolveIpcSocketDir,
   maybeBridgeLeaseHolder,

@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for six modes: three workflow modes and three read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.10.0.0
+version: 1.10.1.0
 metadata:
   family: mcp
 ---
@@ -38,7 +38,7 @@ Use this hub for any request that names one of its six tool-bridge surfaces. The
 
 - A quick read or edit has no MCP tool-bridge need. Use the relevant skill directly.
 - Shared MCP execution infrastructure is needed without a vendor bridge. Use `mcp-code-mode` directly.
-- Browser work, Chrome/CDP debugging and Aside runs included, belongs to the `mcp-browser-use` hub. Orca CLI work belongs to the standalone `cli-orca` skill.
+- Browser work, Chrome/CDP debugging and Aside runs included, belongs to the `mcp-browser-use` hub.
 - A measured Style Reference belongs to `sk-design-md-generator` for Figma, Refero, and Mobbin material.
 
 ---

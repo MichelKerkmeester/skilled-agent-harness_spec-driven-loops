@@ -26,6 +26,7 @@ import {
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
+import { isOwnedPrivateDir } from '../../runtime/lib/owned-private-dir.js';
 import { promptPolicyTokens } from '../../runtime/lib/prompt-policy.js';
 import {
   DIRECTIVE_LIFECYCLE_STATE_DIR_ENV,
@@ -281,14 +282,7 @@ export class FileRouteReceiptStore implements RouteReceiptStore {
   // the lifecycle store holds its own state to. That rule is what refuses a
   // folder reached through a symlinked parent, which lstat alone lets through.
   private ownedFolder(): boolean {
-    const uid = typeof process.getuid === 'function' ? process.getuid() : null;
-    for (const path of [this.baseDir, this.dir]) {
-      const stat = lstatSync(path);
-      if (stat.isSymbolicLink() || !stat.isDirectory()) return false;
-      if (uid !== null && stat.uid !== uid) return false;
-      if ((stat.mode & 0o077) !== 0) return false;
-    }
-    return true;
+    return isOwnedPrivateDir(this.baseDir) && isOwnedPrivateDir(this.dir);
   }
 
   // Keeps the folder within the shared session bound, oldest first, and drops
