@@ -193,7 +193,8 @@ export function commandRowFor(id: string): CommandRow | undefined {
 }
 
 // The deep-loop hub owns one diagnosis command besides its two run commands.
-const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
+// The scorer reads the same name, so both layers agree on it from one place.
+export const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
 
 // A typed command is the reader's own wording, so it counts only where a command
 // can start and where it ends on a boundary. That keeps a path such as

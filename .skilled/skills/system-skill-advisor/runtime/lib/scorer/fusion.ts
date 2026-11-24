@@ -24,6 +24,7 @@ import {
   COMMAND_ROWS,
   commandOnlyMentioned,
   commandRowFor,
+  DEEP_LOOP_DOCTOR_COMMAND,
   DEFECT_CHECK,
   isNoEditRequest,
   isRunRefused,
@@ -1052,8 +1053,6 @@ export function withholdLoopHubOnWritingAbout(
   ));
 }
 
-const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
-
 // A naming of the doctor command that a refusal or a question leads is not a
 // request for it, while a bare naming on a stuck run is: the reader typed the
 // command they want. The leads are the hub's own, so a new refusal verb reaches
@@ -1061,7 +1060,9 @@ const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
 // are skipped between the lead and the name.
 const DOCTOR_NAMING_LED = new RegExp(
   `(?:^|[^a-z0-9_/])(?:${[...COMMAND_DECLINE_LEADS, ...COMMAND_ASK_LEADS].map((lead) => `(?:${lead})`).join('|')})`
-  + '[\\s`*"“”\\[\\]()~«»′‹›]*/doctor:deep-loop(?![a-z0-9_-]|[./][a-z0-9])',
+  + '[\\s`*"“”\\[\\]()~«»′‹›]*'
+  + DEEP_LOOP_DOCTOR_COMMAND
+  + '(?![a-z0-9_-]|[./][a-z0-9])',
 );
 
 // The doctor command's keywords share research, iteration and convergence words
