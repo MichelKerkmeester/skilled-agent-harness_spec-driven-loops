@@ -19,7 +19,9 @@
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings",
-    "mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings"
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -132,6 +134,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,12 +153,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Browser",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -218,7 +220,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-24T09:43:03.930Z",
+    "last_save_at": "2026-11-24T11:41:57.986Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,10 +228,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b99fadbb0dcf1cf29309882a77b0ecfdb6dd27a416f641c76c46f5a8f3cef3c9",
+    "source_fingerprint": "sha256:f416f4a79235db853e5e85df5f3797bab65f82155a9e42cc99e567ce61ae4975",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3be4cfa2a26a585b0bea47adbb0281054d63b4c30ebba9801817fad7eb11c46e",
+      "spec.md": "4928d5b6d1ff1051ea69dfea12b0af144ad3fb8d6af3223cc6fed0dec38a97f0",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
     "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",

@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-browser-use routing"
 importance_tier: normal
 contextType: general
-version: 1.1.4.0
+version: 1.1.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -102,7 +102,9 @@ The hub's routing directive. The stage-two maps live in section 3, so no second 
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-stdin <<'TASK'
+> <task>
+> TASK
 > ```
 > Follow the returned decision: `route` uses its `targets`, `clarify` and `defer` ask for disambiguation, and `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in `hub-router.json`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing for every hub.
 

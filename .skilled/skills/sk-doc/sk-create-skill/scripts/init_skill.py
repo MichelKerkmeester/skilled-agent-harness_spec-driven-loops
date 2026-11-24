@@ -526,7 +526,9 @@ def hub_compiled_routing_directive(skill_name: str) -> str:
     return (
         '> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:\n'
         '> ```bash\n'
-        '> node .skilled/bin/compiled-route.cjs --hub ' + skill_name + ' --prompt "<task>"\n'
+        '> node .skilled/bin/compiled-route.cjs --hub ' + skill_name + " --prompt-stdin <<'TASK'\n"
+        '> <task>\n'
+        '> TASK\n'
         '> ```\n'
         '> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). '
         'On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. '

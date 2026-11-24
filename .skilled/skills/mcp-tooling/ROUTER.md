@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.14.0
+version: 1.8.15.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -144,7 +144,9 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-stdin <<'TASK'
+> <task>
+> TASK
 > ```
 > Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
 

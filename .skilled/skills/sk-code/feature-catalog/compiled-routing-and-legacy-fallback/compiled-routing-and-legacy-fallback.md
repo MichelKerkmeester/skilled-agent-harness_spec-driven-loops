@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "sk-code compiled routing"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -23,7 +23,7 @@ The directive is on by default for `sk-code` (a member of the per-hub default-on
 
 ### Resolution Order
 
-By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `sk-code`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `sk-code` routes unchanged. As of this writing, `sk-code`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `sk-code` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
+By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`) before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `sk-code`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `sk-code` routes unchanged. As of this writing, `sk-code`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `sk-code` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
 
 ### Tri-State Flag
 

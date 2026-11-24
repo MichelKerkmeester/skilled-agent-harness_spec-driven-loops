@@ -7,7 +7,7 @@ trigger_phrases:
   - "design intent routing"
 importance_tier: important
 contextType: implementation
-version: 3.0.1.0
+version: 3.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -107,7 +107,9 @@ no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 st
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 >
-> node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub sk-design --prompt-stdin <<'TASK'
+> <task>
+> TASK
 >
 > Follow the returned decision. A `route` names its targets, a `clarify` or `defer` asks for disambiguation, and a `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for this hub. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide, the explicit kill-switch.
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.7.14.0
+version: 1.7.15.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -197,7 +197,9 @@ The hub's detailed routing prose lives here so the skill body can keep a short r
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt-stdin <<'TASK'
+> <task>
+> TASK
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `cli-external-orchestration`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 
