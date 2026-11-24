@@ -8,26 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer"
-    last_updated_at: "2026-11-24T12:48:15Z"
+    last_updated_at: "2026-11-24T14:29:24Z"
     last_updated_by: "generate-context"
-    recent_action: "Executor lookup decided: pin absolute path"
-    next_safe_action: "Build executor path pinning at install"
+    recent_action: "Executor pin built and tested"
+    next_safe_action: "Decide the PATH for queued runs started by the drain job"
     packet_purpose: "Purpose: An operator can install a bot's schedule as a disabled launchd agent, enable it on purpose, see it fire and stop it at the scheduler."
     blockers: []
     key_files:
       - ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts"
+      - ".skilled/bin/bots.cjs"
       - ".skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts"
-      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/rollback-run-result.txt"
-      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/security-review.txt"
     session_dedup:
-      fingerprint: "sha256:69c02e020ec2609a13cd8828537dcd1c88af6812391f435cb1d8b5da7251a1e0"
+      fingerprint: "sha256:6f94e9adf198b032c27fe62641e17b96dcf9bf7a3c7f556b998d9db5fe264941"
       session_id: "implement-006-launchd-installer"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-24T12:48:15Z"
+      savedAt: "2026-11-24T14:29:24Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -48,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-launchd-installer |
-| **Completed** | 2026-11-24: all 18 rows Met, the hand rollback run (CHK-120) and the security review (CHK-130) done |
+| **Completed** | 2026-11-24: all 19 rows Met, the hand rollback run (CHK-120), the security review (CHK-130) and the executor pin (REQ-019) done |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -175,6 +174,7 @@ Proof, in the order it ran:
 | Acceptance criteria | 18 of 18 Met. The live install ran twice on 2026-11-23 (`scratch/live-install-result.txt`, `scratch/live-install-result-xdg.txt`): held disabled, one fire with slot and lateness, the drain emptied the inbox, uninstall left nothing. Five review rounds, the last fix verified by the orchestrator under operator answer Q008. Observed: install prints `next fire: UNKNOWN` for a held job |
 | Real fire (T016) | Ran 2026-11-23 under launchd's bare PATH: `firedSlot` and `scheduledAt` 2026-11-23T10:35:00.000Z, `dispatchedAt` 10:35:05.602Z, `latenessSeconds` 6, `latenessClass` on-time, source `schedule` (`scratch/live-install-result.txt:50` to `:56`) |
 | Hand rollback (CHK-120) | 2026-11-24, `scratch/rollback-run-result.txt`: disable, bootout, delete the job file and the record, then no hub job file and `print` exit 113 |
+| Executor pin (REQ-019) | 4 tests in `tests/installer.vitest.ts:693` to `:726`; both mutations fail their test (`scratch/mutation-executor-pin.txt`); suite 35 files, 377 tests passed, exit 0 (baseline 373); typecheck exit 0 (`scratch/bots-suite-executor-pin.txt`) |
 | Security review (CHK-130) | `scratch/security-review.txt`. Install record labels are now checked as hub labels; the new test fails on the old code. Suite 35 files, 373 tests passed, exit 0 (baseline 372); typecheck exit 0 |
 <!-- /ANCHOR:verification -->
 
@@ -184,7 +184,7 @@ Proof, in the order it ran:
 ## Known Limitations
 
 1. **The live run used a bot that never calls a model.** The disabled hold, the real fire, the drain job and the clean uninstall ran on 2026-11-23, but the bot's precheck prints `[SILENT]`, so the fire ended refused and only the slot fields were proven.
-2. **Executors under the bare PATH are open.** A scheduled run starts the runner with an absolute interpreter, but the runner finds an executor such as `codex` on `PATH`, which launchd leaves bare, and the job carries no environment beyond the state home. A real scheduled dispatch fails until that is decided. Raised in `spec.md` open questions.
+2. **Queued runs still get the bare PATH.** A scheduled fire now finds its executor through the path pinned at install. A queued run that the drain job starts does not: the drain job also starts with launchd's bare PATH, and a bot that is only enabled has no install record to pin from. Not decided; the operator's answer covered scheduled runs. Also, the pin is taken at install, so an executor moved later reads `executor-missing` in the check until the bot is installed again.
 12. **The uninstall sweep's root per swept bot is not tested on its own.** Since an install of a second state home is now refused, two jobs of one identity can only carry different state homes when they predate that check; the sweep resolves each swept bot's root from its own job file, and the existing sweep test covers the shared-root case.
 3. **ADR-003 was settled after the build.** The probe ran on 2026-11-23, after T007, and confirmed the mechanism already built.
 4. **Entry conditions met late.** Phase 2 closed on 2026-11-24, after this phase was built. Its probe settled the weekday rule on emit, so weekday-only and day-only crons now install.

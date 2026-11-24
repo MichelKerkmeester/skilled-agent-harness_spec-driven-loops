@@ -37,9 +37,10 @@
 import { spawnSync } from 'node:child_process';
 import { accessSync, constants, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { homedir, tmpdir, userInfo } from 'node:os';
-import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { delimiter, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 import { writeStateAtomic, writeTextAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import { EXECUTOR_ADAPTER_CAPABILITIES } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 import { approveDefinition, digestOf } from './approval.js';
 import { translateCron } from './cron-translator.js';
 import { parseDefinition } from './definition.js';
@@ -136,7 +137,7 @@ export type SkilledKind = (typeof SKILLED_KINDS)[number];
 export type Hold = 'first-install' | 'definition' | 'operator';
 
 /** The reasons the read-only check gives for a schedule that needs a reinstall. */
-export const REINSTALL_REASONS = ['runner-missing', 'runner-retargeted', 'kind-changed', 'pin-changed', 'record-missing', 'identity-changed', 'state-root-changed'] as const;
+export const REINSTALL_REASONS = ['runner-missing', 'runner-retargeted', 'kind-changed', 'pin-changed', 'record-missing', 'identity-changed', 'state-root-changed', 'executor-missing'] as const;
 
 export type ReinstallReason = (typeof REINSTALL_REASONS)[number];
 
@@ -196,10 +197,23 @@ export interface InstallRecord {
   skilledTree: string;
   skilledKind: SkilledKind;
   pinCommit: string | null;
+  /**
+   * The bot's executor as the installing shell resolved it. launchd starts a job
+   * with a bare PATH, so a scheduled fire finds its executor through this path;
+   * null for the drain job, and the path is null when the shell could not resolve it.
+   * Absent in records written before the field existed.
+   */
+  executor?: ExecutorPin | null;
   schedule: { expression: string; scheduleIndex: number } | null;
   hold: Hold | null;
   installedAt: string;
   enabledAt: string | null;
+}
+
+/** An executor kind and the absolute path its binary resolved to at install. */
+export interface ExecutorPin {
+  kind: string;
+  path: string | null;
 }
 
 /** One step of a transaction, as the report shows it. */
@@ -1002,6 +1016,7 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
     skilledTree: pre.skilledTree,
     skilledKind: pre.tree.kind,
     pinCommit: pre.tree.kind === 'vendored' ? pre.tree.pinCommit : null,
+    executor: pre.definition !== null ? pinExecutor(pre.definition.runtime.kind, input.env ?? process.env) : null,
     schedule: pre.definition !== null && pre.definition.trigger.kind === 'cron' ? { expression: pre.definition.trigger.expression, scheduleIndex: 0 } : null,
     hold,
     installedAt: now.toISOString(),
@@ -1282,6 +1297,50 @@ export function uninstallSchedule(input: Omit<InstallInput, 'skilledTree'>): Res
   return { ok: true, value: { removed: labels, swept, leftDisabled, steps } };
 }
 
+/**
+ * Resolve an executor kind's binary the way the command builders look it up:
+ * `command -v` under a plain `/bin/sh`, so a shell alias or function never
+ * stands in for a file.
+ *
+ * @returns The kind and the absolute path, a null path when nothing resolves,
+ *   or null for a kind that spawns no binary.
+ */
+export function pinExecutor(kind: string, env: NodeJS.ProcessEnv): ExecutorPin | null {
+  const capability = (EXECUTOR_ADAPTER_CAPABILITIES as Record<string, { binary: string | null }>)[kind];
+  if (capability === undefined || capability.binary === null) return null;
+  const run = spawnSync('/bin/sh', ['-c', 'command -v "$1"', 'sh', capability.binary], { env, encoding: 'utf8', timeout: COMMAND_TIMEOUT_MS });
+  const found = run.status === 0 ? run.stdout.trim() : '';
+  return { kind, path: isAbsolute(found) && existsSync(found) ? found : null };
+}
+
+/**
+ * The environment a scheduled fire runs under. launchd hands the job a bare
+ * PATH, so the pinned executor's folder and the interpreter's folder go first;
+ * the interpreter's folder is there for an executor that starts through
+ * `#!/usr/bin/env node`. Nothing changes when the bot has no pin, or when its
+ * definition now names another kind than the one pinned.
+ *
+ * @returns The environment for the run, never written back to the job file.
+ */
+export function scheduledRunEnv(input: { checkoutRoot: string; botId: string; env: NodeJS.ProcessEnv; seams?: Partial<InstallerSeams> }): NodeJS.ProcessEnv {
+  const context = installContext(input.checkoutRoot, jobEnv(input));
+  if (!context.ok) return input.env;
+  const record = readInstallRecord(context.value.stateRoot, context.value.identity, input.botId);
+  const pin = record?.executor;
+  if (record === null || pin === undefined || pin === null || pin.path === null) return input.env;
+  let kind: string | null = null;
+  try {
+    const parsed = parseDefinition(readFileSync(definitionPath(input.checkoutRoot, input.botId), 'utf8'));
+    kind = parsed.ok ? parsed.value.runtime.kind : null;
+  } catch {
+    kind = null;
+  }
+  if (kind !== pin.kind) return input.env;
+  const folders = [dirname(pin.path), dirname(record.interpreter)];
+  const rest = String(input.env.PATH ?? '').split(delimiter).filter((entry) => entry !== '' && !folders.includes(entry));
+  return { ...input.env, PATH: [...new Set(folders), ...rest].join(delimiter) };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 9. NEEDS-REINSTALL CHECK
 // ───────────────────────────────────────────────────────────────────
@@ -1289,6 +1348,7 @@ export function uninstallSchedule(input: Omit<InstallInput, 'skilledTree'>): Res
 function recordReasons(record: InstallRecord): ReinstallReason[] {
   const reasons: ReinstallReason[] = [];
   if (!existsSync(record.plistRunnerPath)) reasons.push('runner-missing');
+  if (typeof record.executor?.path === 'string' && !existsSync(record.executor.path)) reasons.push('executor-missing');
   const now = detectSkilledTree(record.checkoutRoot);
   if (!now.ok || now.value.repoRunnerRealPath !== record.repoRunnerRealPath || now.value.treeRoot !== record.treeRoot) {
     reasons.push('runner-retargeted');

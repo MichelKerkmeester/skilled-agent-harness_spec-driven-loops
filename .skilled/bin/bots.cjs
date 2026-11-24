@@ -440,7 +440,9 @@ async function main(argv) {
   if (parsed.verb === 'run') {
     const index = parsed.options['schedule-index'];
     const request = index === undefined ? undefined : { kind: 'scheduled', scheduleIndex: Number(index) };
-    const outcome = await runner.runBot({ checkoutRoot, skilledTree, botId: parsed.id, env, resolveEnv, ...(request ? { request } : {}) });
+    // launchd starts the job with a bare PATH, so a fire takes the executor path pinned at install.
+    const runEnv = request ? rt.installer.scheduledRunEnv({ checkoutRoot, botId: parsed.id, env }) : env;
+    const outcome = await runner.runBot({ checkoutRoot, skilledTree, botId: parsed.id, env: runEnv, resolveEnv, ...(request ? { request } : {}) });
     const line = describeOutcome(parsed.id, outcome);
     (outcome.kind === 'completed' || outcome.kind === 'awaiting-decision' ? process.stdout : process.stderr).write(`${line}\n`);
     return runner.exitCodeFor(outcome);

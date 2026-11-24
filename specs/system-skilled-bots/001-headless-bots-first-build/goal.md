@@ -116,6 +116,7 @@ and findings belong here.
 | Phase 007 status index | Done | 928be8397fb pushed; 355/355 tests, typecheck 0, validate PASSED, 16/16 AC Met; second review APPROVED; live status check passed; operator answers Q003 to Q006 |
 | 008 hub wiring review loop | Done | reviews 2-5 fixed, review 5 APPROVED, gates green, f4c318d856a pushed to origin/system-skilled-bots |
 | Phase 006 closed | done | hand rollback scratch/rollback-run-result.txt; security review fixed record-label check; suite 373/373, strict 10 PASSED |
+| Executor pin for scheduled runs | done | installer.vitest.ts:693-726; suite 377/377; mutations fail |
 
 ### Deviations and findings
 

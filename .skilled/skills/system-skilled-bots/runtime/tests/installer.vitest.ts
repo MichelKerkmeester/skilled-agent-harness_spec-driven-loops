@@ -10,7 +10,7 @@
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { chmodSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -37,10 +37,12 @@ import {
   STATE_HOME_CHANGED,
   readInstallRecord,
   scheduledDrain,
+  scheduledRunEnv,
   uninstallSchedule,
 } from '../lib/installer.js';
 import { PINNED_IDENTITY_ENV } from '../lib/identity.js';
 import { renderBotPlist, SCHEDULED_FIRE_ENV } from '../lib/plist-render.js';
+import { lineageCommandBuilder } from '../lib/dispatch.js';
 import { drainQueue } from '../lib/request-drain.js';
 import { resolveBotContext } from '../lib/runner.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
@@ -663,6 +665,70 @@ describe('needs-reinstall check', () => {
     expect(folderHash(world.stateRoot)).toBe(stateBefore);
     expect(folderHash(world.agentsDir)).toBe(agentsBefore);
     expect(world.scheduler.calls).toEqual([]);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// EXECUTOR PIN
+// ───────────────────────────────────────────────────────────────────
+
+describe('executor pin', () => {
+  /** A folder outside launchd's PATH holding a stand-in `codex` that starts through env node. */
+  function stubExecutor(): string {
+    const bin = tempDir('bots-exec-');
+    writeFileSync(join(bin, 'codex'), '#!/usr/bin/env node\n');
+    chmodSync(join(bin, 'codex'), 0o755);
+    return bin;
+  }
+
+  function checkOf(world: InstallWorld) {
+    return checkInstalls({ stateRoot: world.stateRoot, identity: IDENTITY, agentsDir: world.agentsDir }).find((row) => row.botId === 'digest');
+  }
+
+  function buildsUnder(env: NodeJS.ProcessEnv, cwd: string): () => unknown {
+    const executor = { kind: 'cli-codex', model: null, sandboxMode: 'read-only' } as unknown as Parameters<typeof lineageCommandBuilder>[0]['executor'];
+    return () => lineageCommandBuilder({ executor, prompt: 'Count the open notes.', env, cwd, lineageDir: null });
+  }
+
+  it('pins the executor the shell resolves, and a scheduled fire finds it under the bare PATH', () => {
+    const bin = stubExecutor();
+    const world = installWorld();
+    mustInstall(world, 'digest', { env: { ...world.env, PATH: `${bin}:${LAUNCHD_PATH}` } });
+    expect(readInstallRecord(world.stateRoot, IDENTITY, 'digest')?.executor).toEqual({ kind: 'cli-codex', path: join(bin, 'codex') });
+
+    const bare = { ...world.env, PATH: LAUNCHD_PATH };
+    expect(buildsUnder(bare, world.checkoutRoot)).toThrow(/unavailable/);
+    const runEnv = scheduledRunEnv({ checkoutRoot: world.checkoutRoot, botId: 'digest', env: bare, seams: world.seams });
+    expect(String(runEnv.PATH).split(':').slice(0, 2)).toEqual([bin, dirname(process.execPath)]);
+    expect(buildsUnder(runEnv, world.checkoutRoot)).not.toThrow();
+    const job = plistJson(join(world.agentsDir, `${labelOf(IDENTITY, 'digest')}.plist`));
+    expect(Object.keys((job.EnvironmentVariables as Record<string, string> | undefined) ?? {})).not.toContain('PATH');
+  });
+
+  it('leaves the PATH alone when the definition now names another kind', () => {
+    const bin = stubExecutor();
+    const world = installWorld();
+    mustInstall(world, 'digest', { env: { ...world.env, PATH: `${bin}:${LAUNCHD_PATH}` } });
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-claude-code'));
+    const bare = { ...world.env, PATH: LAUNCHD_PATH };
+    expect(scheduledRunEnv({ checkoutRoot: world.checkoutRoot, botId: 'digest', env: bare, seams: world.seams }).PATH).toBe(LAUNCHD_PATH);
+  });
+
+  it('installs with a null pin when the executor does not resolve, and changes no PATH', () => {
+    const world = installWorld();
+    const bare = { ...world.env, PATH: LAUNCHD_PATH };
+    mustInstall(world, 'digest', { env: bare });
+    expect(readInstallRecord(world.stateRoot, IDENTITY, 'digest')?.executor).toEqual({ kind: 'cli-codex', path: null });
+    expect(scheduledRunEnv({ checkoutRoot: world.checkoutRoot, botId: 'digest', env: bare, seams: world.seams }).PATH).toBe(LAUNCHD_PATH);
+    expect(checkOf(world)).toMatchObject({ status: 'ok', reasons: [] });
+  });
+
+  it('flags a pinned executor that is gone as executor-missing', () => {
+    const bin = stubExecutor();
+    const world = installWorld();
+    mustInstall(world, 'digest', { env: { ...world.env, PATH: `${bin}:${LAUNCHD_PATH}` } });
+    rmSync(join(bin, 'codex'));
+    expect(checkOf(world)).toMatchObject({ status: 'needs-reinstall', reasons: ['executor-missing'] });
   });
 });
 
