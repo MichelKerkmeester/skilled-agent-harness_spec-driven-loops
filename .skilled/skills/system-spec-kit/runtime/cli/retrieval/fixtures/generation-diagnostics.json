@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7256,
+    "missing-frontmatter": 7258,
     "ok": 20583,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29467,
+  "documentsScanned": 29469,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f22334e4e25945bf610d6a58738b865e2059ac53b8a6f57e6ce5652a7d940de4",
+  "manifestHash": "1f62ad302f83f882a68e9a3ba69f5d9141403d0073e40de17e76d3735116875e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -43935,6 +43935,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -64117,6 +64129,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/lineages",
       "reason": "excluded directory"
     },
     {
