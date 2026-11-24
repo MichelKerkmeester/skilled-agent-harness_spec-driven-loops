@@ -1,18 +1,19 @@
-# Review Iteration 007
+# Review Iteration 007 — Cross-reference closing pass (`spec_code` finished, protocols settled)
 
 ## Dispatcher
 
-- Mode: review; target agent `deep-review`; lineage `deepseek-max-1`; generation 7; session `fanout-deepseek-max-1-1795546920757-7pyjry`.
-- Iteration 7 of 7 - the last iteration under the cap. stopPolicy `max-iterations`, so this pass closes the run rather than chasing convergence telemetry.
-- Dimension: `traceability` (close-out). Covers the cross-reference overlay protocols and proves this lineage's own artefacts agree.
-- Operator review focus, addressed here: the two core protocols were finished in iterations 1 to 3 and stay `pass`; this pass records the overlay protocols with the evidence each needs, and re-checks that every `Met` row's evidence still resolves after six iterations of work.
+- Lineage `review/lineages/deepseek-max-1`, iteration 7 of 7, session `fanout-deepseek-max-1-1795550334883-gjbarh`
+- Dimension: cross-reference closing pass (all four dimensions are already covered; this iteration finishes the last requirement block and settles both core protocols).
+- Operator focus: finish `spec_code` and `checklist_evidence`. This iteration is the one that has to say, with evidence, whether they are finished.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/mode-registry.json:1` (mode registry and its `advisorRouting` projection), `hub-router.json:34` (`routerSignals`), `deep-review/SKILL.md`, `deep-research/SKILL.md`.
-- `.skilled/agents/deep-review.md:1` and the runtime mirrors `.claude/agents/deep-review.md`, `.opencode/agents/deep-review.md`, `.cursor/agents/deep-review.md`, `.pi/agents/deep-review.md`, `.codex/agents/deep-review.toml`, read against `.skilled/bin/agent-mirror-crosswalk.md:1`.
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:1` (56 rows re-resolved), `tasks.md:1`.
-- This lineage's own artefacts: `iterations/iteration-001.md` to `iteration-006.md`, `deltas/iter-001.jsonl` to `iter-006.jsonl`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:259` (REQ-035 to REQ-051)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1` (every row group REQ-035 to REQ-051 names, read column by column)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (`PATTERNS_NOT_COMPARED`), `:699` (the coverage test) and the guard describes
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:895`, `:919`, `:965`, `:991`, `:1085`, `:1179`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:330` (`LOOP_WORDING`), `:944` (`isRunRefused`), `:1147` (`namesLoopSubject`), `:1245` (`isLoopQuestion`), `:1693` (`routedLoopMode`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2378` (`MIN_BLOCKED_ATTEMPTS`), `:2449` (`authoredHeading`)
 
 ## Findings - New
 
@@ -22,59 +23,57 @@ None.
 
 ### P1 Findings
 
-None new. `R1-P1-001` and `R4-P1-001` remain active and both force the CONDITIONAL verdict below.
+None.
 
 ### P2 Findings
 
-None new.
+None. The one open finding in this lineage remains DR1-P2-001 from iteration 1.
 
 ## Traceability Checks
 
-| Protocol | Level | Status | Evidence this iteration |
-|---|---|---|---|
-| `spec_code` | core | `pass` (carried) | All 48 REQ rows resolved in iterations 1 to 3; `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537` and the twelve plus twelve built-dist probes |
-| `checklist_evidence` | core | `pass` (carried) | 104 ticked tasks and 52 `Met` rows resolved by name in iteration 3; re-resolved here after six iterations with no new dangling citation |
-| `skill_agent` | overlay | `pass` | `mode-registry.json` names the `research` and `review` modes, `hub-router.json` `routerSignals` keys the same two, and both `deep-research/SKILL.md` and `deep-review/SKILL.md` exist; the three surfaces agree on the mode set the packet changes |
-| `agent_cross_runtime` | overlay | `pass` | `.skilled/agents/deep-review.md` is the canonical declaration and every runtime tree carries its dialect: `.claude/agents/deep-review.md`, `.cursor/agents/deep-review.md`, `.pi/agents/deep-review.md`, `.opencode/agents/` (a link onto the canonical tree) and `.codex/agents/deep-review.toml`. The `.toml` spelling is the sanctioned codex dialect `agent-mirror-crosswalk.md:1` describes, not a missing mirror |
-| `feature_catalog_code` | overlay | `notApplicable` | The packet changes no feature-catalogued component: its change set is the advisor runtime, two command assets and the deep-loop hub, and none of them carries a catalog entry in this packet's scope. Recorded with `applicable: false` rather than left pending |
-| `playbook_capability` | overlay | `notApplicable` | No playbook describes the deep-loop offer or claims a capability this packet changed; the offer is taught in the command assets (REQ-005) and no playbook row names it. Recorded with `applicable: false` |
-
-Artefact consistency, this lineage:
-
-- Eight iterations' worth of artefacts are on disk after this write: `iterations/iteration-001.md` to `iteration-007.md` and `deltas/iter-001.jsonl` to `iter-007.jsonl`, one delta per iteration and one narrative per delta.
-- `deep-review-state.jsonl` held seven rows before this iteration (one `config` row and six `iteration` rows), which is the count the workflow derives the iteration number from; this iteration's record makes it eight.
-- `deep-review-findings-registry.json` reports `{"P0":0,"P1":2,"P2":5}` with seven open findings and `dimensionCoverage` true for all four dimensions, which matches the iterations that produced them.
-- `deep-review-strategy.md` carries one `## 12. NEXT FOCUS` after six reducer passes, so REQ-048's numbering clause holds in the field.
+| Protocol | Level | Status this iteration | Evidence |
+| --- | --- | --- | --- |
+| `spec_code` | core | **pass** | REQ-035: the 13 plural rows carry `asksForLoopRun` `true` on the eight run rows and `false` on the five past-run, symptom and question rows, and the mode-free plural serves `servedRun: "none"` as ADR-008 requires. REQ-036: five `how-*` question rows read `false` while `how-do-then-run-deep-review` and `how-can-you-run-deep-review` read `true`. REQ-037: the `effort-*` rows split into complaint rows at `false` and manner rows at `true` (`effort-manner-longer-run`, `-slower-run`, `-slower-elliptical`). REQ-038: `trackedCommandForOwner` (iteration 2). REQ-039: the corpus and its baseline are read under AC-012 and AC-042. REQ-040: the three `no-edit-*` rows carry `readOnlyRunKept` `review`, `review` and `research`. REQ-041: the five `refused-cue-*` rows all read `asksForLoopRun: true`. REQ-042: `routedLoopMode` (`command-attach.ts:1693`). REQ-043 and REQ-044: the `stuck-rerun-pronoun-*`, `past-summary-*`, `effort-manner-*` and `typed-doctor-*` rows read the way each requirement states, including `doctorWithheld: false` on the four clause-broken typed-doctor rows and `true` where the prompt refuses the doctor. REQ-045: the guard asserts the command table, `MODE_CUES`, `MODE_CUE_WORDS` and `hub-router.json` key the same modes, and compares `NAMED_LOOP_MODE` with `_NAMED_LOOP_MODE_RE`. REQ-046: `MIN_BLOCKED_ATTEMPTS` (`reduce-state.cjs:2378`) writes one ruling as reopened, `authoredHeading` (`:2449`) drops the authored heading, and `enrichCompiledRoutes` strips every command field from a withheld row. REQ-047: `run-deep-loop`, `plural-deep-loops`, `plural-deep-loops-served` and `two-mode-ask-mode` all read `servedRun: "none"`. REQ-048: `replaceAnchorSection` keeps the file's own number, and this lineage's own strategy file came out of seven reducer passes with no duplicate section number. REQ-049: the four `loop-wording-*` rows read `true` with `servedRun: "review"`, and the artifact-noun variant stays `false`. REQ-050: five negated-refusal rows read `true` and the two plain-refusal controls read `false`. REQ-051: `PATTERN_PAIRS`, `ANCHORED_PATTERN_PAIRS`, `FRAGMENT_PAIRS` and `QUANTIFIER_PAIRS` hold 12 + 8 + 16 + 4 = 40 pairs, `PATTERNS_NOT_COMPARED` holds 38 named rows with reasons, and the coverage test asserts every compiled pattern is accounted for. That closes REQ-001 to REQ-051: every requirement is traced either to the code that implements it or to the decision that records it. |
+| `checklist_evidence` | core | partial | 54 `Met` rows stand on evidence this lineage re-derived: the 60 quoted line references all resolve to the line holding their quote (iteration 1), the seven counted claims other than AC-038 match the tree (iteration 1), every ticked task's cited path exists (iteration 5), and the fixture columns the sixth-round cells rely on exist and read the way the cells state (iterations 4 and 7). The protocol does not reach `pass`, for two named reasons: AC-038 states a count the tree no longer has (DR1-P2-001), and AC-040 waits on this run's synthesis. Recording it as `pass` would state that the checklist is finished when one row is demonstrably stale. |
+| `skill_agent` | overlay | notApplicable | No skill contract pairing is in scope. |
+| `agent_cross_runtime` | overlay | notApplicable | No agent definition is in scope. |
+| `feature_catalog_code` | overlay | notApplicable | No feature catalog entry is in scope. |
+| `playbook_capability` | overlay | notApplicable | No playbook is in scope. |
 
 ## Integration Evidence
 
-- Deep-loop hub: `mode-registry.json` and `hub-router.json` agree on `research` and `review`, and both mode packets exist.
-- Agent mirrors: five runtime trees checked; the codex `.toml` dialect confirmed against the crosswalk rather than assumed missing.
-- Packet closure: all 56 acceptance rows and the 104 ticked tasks re-resolved with no new dangling citation after six iterations.
+- The fixture is the integration surface for REQ-035 to REQ-050: each requirement's prompts are rows, each row carries the column the requirement names, and both suites read the same rows (`deep-loop-offer-cases.vitest.ts` for the native gate and `test_skill_advisor.py` for the fallback), so a requirement that both copies must satisfy is checked at one place.
+- `command-attach-guards.vitest.ts` carries the describes the acceptance cells name for the typography cases: "command attach on a refusal verb" (`:895`), "deferred mode cues past a refused loop phrase" (`:919`), "a plural loop name that names no mode" (`:965`), "typed command boundaries" (`:991`), "more than one typed command" (`:1085`) and "long prompts" (`:1179`).
 
 ## Edge Cases
 
-- Ambiguity: the overlay protocol set can be read as mandatory. Two were run (`skill_agent`, `agent_cross_runtime`) and two recorded `notApplicable` with a reason, which the iteration contract allows and which is more honest than a `pending` that would make the coverage gate read incomplete.
-- Contradiction, none: the mode set the hub keys and the registry names are identical.
-- Missing dependency: the feature catalog and playbook surfaces were not searched repository-wide, only for an entry the packet's change set would touch. If a catalog row exists under another name, this iteration would not see it; that possibility is why the status is `notApplicable` with a reason rather than `pass`.
-- Partial success: none; every protocol in the packet's plan now carries a terminal status.
+- REQ-033 and AC-040 are a requirement and a row about this review run itself. The evidence they need is the synthesis's terminal gates, which are written after this iteration, so this iteration records them as carried rather than met. If the terminal gates read `evidence`, `scope` and `coverage` pass, the row can be closed by synthesis; if not, it stays open and says why.
+- `spec_code` reaching `pass` while `checklist_evidence` stays `partial` is deliberate and not a contradiction: the first is a requirement-to-code question that every requirement now answers, and the second is a document-evidence question with one stale row in it.
 
 ## Confirmed-Clean Surfaces
 
-- The mode set is consistent across the registry, the router and the two mode packets.
-- Every runtime tree that ships agents carries the deep-review declaration in its own dialect.
-- The lineage's own state is coherent: iteration, delta, state-log and registry counts agree, and the strategy carries one heading per section.
+- Every fixture row group REQ-035 to REQ-051 names exists, carries the column the requirement names, and holds the value the requirement states, with no row missing and no column absent.
+- The pattern-coverage guard accounts for all 40 compared pairs and all 38 named exceptions, so the Python and native gates cannot drift on a pattern without a test failing.
+- The reducer's numbering rule held across this lineage's own seven passes: the strategy file has no duplicate section number, which is the live proof of REQ-048 rather than a re-reading of it.
 
 ## Ruled Out
 
-- "The codex runtime is missing its deep-review agent mirror": ruled out. `.codex/agents/deep-review.toml` is the codex dialect the crosswalk sanctions.
-- "The overlay protocols are unfinished, so coverage cannot close": ruled out. Two ran and two are `notApplicable` with a recorded reason, which is a terminal status for each.
-- "The lineage lost an iteration or a delta": ruled out. One narrative and one delta per iteration, seven completed and the eighth being this record.
+- A requirement in REQ-035 to REQ-051 with no fixture row behind it: eliminated, every row group named in the requirement block exists with the stated column values.
+- A pattern the drift guard neither compares nor names: eliminated, 40 compared plus 38 named with reasons, and a coverage test that asserts the whole set.
+- Section numbering drift in a strategy the reducer has repeatedly rewritten: eliminated on this lineage's own file.
+- Whitespace folding that changes a reader's quoted prompt (REQ-049): eliminated for the gate result, the four variant rows withhold nothing.
+
+## Review Focus
+
+The operator focus is answered here. `spec_code` is finished: every one of the 51 requirements is traced to the code that implements it or the decision that records it, with `file:line` evidence and, where the claim is a served row, the fixture row and column that pins it. `checklist_evidence` is not finished, and the review says so rather than rounding up: one acceptance row is stale (AC-038) and one waits on synthesis (AC-040).
 
 ## Next Focus
 
-- None. The run reaches `maxIterations` at this iteration, so the loop stops with stop reason `maxIterationsReached` and the synthesis phase compiles the report.
-- What synthesis should carry forward: the two active P1 rows (`R1-P1-001`, `R4-P1-001`) and the five P2 rows, with the CONDITIONAL verdict they force.
-- Rotation status: every configured dimension covered at least once.
+- Dimension: none — the dimension queue is exhausted and all four dimensions have a full pass. Synthesis follows.
+- Focus area: synthesis compiles the report, records the terminal gates, and settles the verdict from the registry.
+- Reason: seven iterations are the configured cap (`stopPolicy: max-iterations`, `maxIterations: 7`).
+- Rotation status: D1, D2, D3 and D4 all covered; every dimension has one full pass.
+- Blocked/productive carry-forward: DR1-P2-001 is the one open finding and is a docs row, so it is a change a `/speckit:plan` follow-up can make without touching code.
+- Required evidence: the terminal gates and the registry-derived verdict.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

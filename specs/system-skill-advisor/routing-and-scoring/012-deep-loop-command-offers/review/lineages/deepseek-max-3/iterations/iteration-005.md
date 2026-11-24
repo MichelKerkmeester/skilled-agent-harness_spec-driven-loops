@@ -1,27 +1,19 @@
-# Review Iteration 005 — traceability (core protocol `checklist_evidence`)
+# Review Iteration 005
 
 ## Dispatcher
 
-- Mode: `review`; target agent: `@deep-review` (LEAF, single iteration).
-- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
-- Lineage: sessionId `fanout-deepseek-max-3-1795546920757-7pyjry`, generation 1, lineageMode `new`, executor cli-pi (deepseek-v4.1-flash-1017).
-- Setup bindings (unchanged; emitted in full at iteration 1).
-- Review focus for this iteration: the second half of the operator's traceability focus — "every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (AC-030 to AC-042)".
-- Correction carried forward: iteration 4's record wrote `checklist_evidence` as `notApplicable`, which was wrong (the protocol applies and was merely deferred). This iteration runs it and records the real result; the iteration 4 narrative carries the same correction.
-- `steer.md` is absent at this iteration.
+- Mode: review; dimension `maintainability` (iteration 5 of 7), the last uncovered dimension.
+- Operator review focus: traceability carried into the maintainability pass — the requirement seams that make a later change safe (REQ-007's generated contracts, REQ-032's refinement folding, REQ-046's rule-out and enrichment, REQ-048's strategy numbering, REQ-052's Next Focus projection), plus the two overlay protocols that apply to a spec-folder target.
+- How this iteration addressed the focus: it verified the generated command contracts against their sources by hash, read the three reducer seams the last three REQs name, checked the hub's mode-registry discipline that the `skill_agent` overlay reads, and swept the advisor source for the one string the two gate layers both need.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md` (all 135 task lines, ten rounds, 132 ticked)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` (all 56 rows and their `Evidence:` tails)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:150-180` (the verification rows the ticks cite)
-- `.skilled/skills/system-skill-advisor/runtime/tests/{command-attach-guards,deep-loop-offer-cases,command-brief-golden,cli-degraded-command-contract,typed-on-stuck-serving,subprocess-typed-fields}.vitest.ts`
-- `.skilled/skills/system-skill-advisor/runtime/tests/scorer/{stage-one-loop-subject,doctor-handoff-command,multi-typed-command-gates,deep-loop-plural-noun,deep-loop-ask-routing,deep-loop-ask-multifile}.vitest.ts` (titles read)
-- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:3050-3060` (`DEEP-LOOP-LONG`)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (347 rows, counted by class)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (247 rows, 31 near-miss)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/{probes-spec-baseline,results-after,results-final-958fa81-worktree}.json`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/behaviour/` (nine recordings)
+- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`, `deep-research.contract.markdown` (generated headers, 15 and 16 `sourceDigests`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (`refinesSameLocation` `:1011`, `stripReviewVerdict` `:227`, `replaceAnchorSection` `:2420`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (`:79`, `:147`, `:196`), `lib/scorer/fusion.ts` (`:1055`, import block `:25`-`:35`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts` (`:402`-`:406`)
+- `.skilled/skills/system-deep-loop/SKILL.md` (`:16`-`:31`, `:103`-`:104`), `mode-registry.json`
+- `.skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/review-routing.md` (presence and subject)
 
 ## Findings - New
 
@@ -31,89 +23,59 @@ None.
 
 ### P1 Findings
 
-None new.
+None.
 
 ### P2 Findings
 
-None new.
+1. **The doctor command string is declared twice, in the two layers that must agree about it** -- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:196` and `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1055` -- both files declare `const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';`, and the value also appears as a table row (`command-attach.ts:79`, `:147`) and a projection row (`projection.ts:402`, `:406`). `fusion.ts` already imports a dozen symbols from `command-attach.ts` (its import block at `:25`-`:35` pulls in `isRunRefused`, `commandOnlyMentioned`, `commandRowFor`, `isNoEditRequest` and more), so the second copy could be an import rather than a re-declaration.
+   Finding class: instance-only
+   Scope proof: `rg -n "const DEEP_LOOP_DOCTOR_COMMAND"` over the advisor source returns exactly those two declarations; the remaining six occurrences of the literal are table or projection data, not constants. The duplication is load-bearing in one direction only: `fusion.ts` reads its copy at `:1083` (`typedCommandsIn(promptLower).includes(DEEP_LOOP_DOCTOR_COMMAND)`) to decide whether a typed doctor was asked for, and `command-attach.ts` reads its own at `:1596` for the gate's typed branch.
+   Affected surface hints: ["command-attach.ts typed doctor branch", "fusion.ts withholdDeepLoopDoctorWithoutRun", "TRACKED_COMMANDS doctor row"]
+   Case: a maintainer renames the command in `TRACKED_COMMANDS` and in `command-attach.ts`'s constant, and misses `fusion.ts`'s copy; `typedCommandsIn` then returns the new string, `includes('/doctor:deep-loop')` is false, and the fused layer withholds the doctor row on a prompt that typed it — a silent behaviour change with no test naming the second constant.
+   Alternative explanation: two small constants in two modules is cheap, and the repository's own rule is that two instances are not yet a pattern. The finding survives that rule only because the two copies are read by two layers that answer one question about one prompt, and because the second module already depends on the first.
 
 ## Traceability Checks
 
 | Protocol | Status | Evidence |
 |---|---|---|
-| `spec_code` | fail | unchanged from iteration 3 (REQ-031 drift, REQ-033 unmet) |
-| `checklist_evidence` | pass | 126 path citations across 132 ticked tasks resolve; 13 of 13 named test titles exist; all 56 acceptance statuses are legal and every waiver names an ADR that exists; the one stale evidence path sits on the one `Unmet` row (already filed as R1-P2-001) |
-
-### Tick-box inventory
-
-| Class | Count | State |
-|---|---|---|
-| Task boxes in `tasks.md` | 135 | 132 `[x]`, 3 `[ ]` |
-| Open task boxes | 3 | T084 (`:166`), "All tasks marked `[x]`" (`:215`), CHK-020 (`:275`) — each open on the same missing rerun |
-| Acceptance rows | 56 | 52 `Met`, 2 `Waived` (ADR-002, ADR-003), 1 `Superseded` (ADR-001), 1 `Unmet` (AC-040) |
-| Waiver cells | 3 | every one names an ADR that exists in `decision-record.md`, and no `Met`/`Unmet` row carries one |
-| CHK rows | 26 | 12 P0 (11 ticked), 13 P1 (13 ticked), 1 P2 (ticked) — the Verification Summary's 12/11, 13/13, 1/1 |
-
-### Ticked-task evidence
-
-- 126 backticked path citations across the ticked task lines were resolved, with `$ADV` and `$PKT` expanded as `tasks.md:25` defines them and bare names tried against `lib/`, `tests/`, `scripts/`, the packet root and `scratch/probes/`. All 126 resolve. The two that needed a second root (`validate_document.py` → `.skilled/skills/sk-doc/scripts/validate_document.py`, `doctor-handoff-command.vitest.ts` → `tests/scorer/`) are named here because a reader reproducing the checklist needs the same mapping.
-- 13 quoted describes/titles the tasks and acceptance cells name were searched for and all exist: "command attach on a refusal verb", "withholdDeepLoopDoctorWithoutRun", "doctor hand-off command", "the loop hub on a piece about the loop", "deferred mode cues past a refused loop phrase", "long prompts", "deep-loop constants shared with the Python fallback", "the loop rules read a plural loop noun as the singular", "enrichCompiledRoutes duplicate-command guard", "keeps the offer options on a degraded deep row that is not marked typed", "serves the typed /deep:review over the diagnosis a stuck complaint earns", "upsertHeadingSectionBefore", "deep-review strategy section numbering".
-- The numeric claims that can be recounted statically all hold: 48 REQs (`spec.md`), 347 fixture cases, 31 near-miss corpus rows, 69 probe rows in each of the three probe files, 47 `doctorWithheld` rows (27 true, 20 false), 24 `effort-*` rows (17 no-run, 7 run), 13 `plural-*` rows in the REQ-035 block (8 run, 5 read), 22 `VOCABULARY_PAIRS`, 2 `NUMERIC_PAIRS`, 12 per-entry `it.each` vocabulary lists and 10 grammar-only ones.
-- The suite totals are the one class not re-executed: `186 files, 3,418 passed` (AC-028, AC-055, changelog:759), `3,415` at `3db3085bcf0` (AC-048), `3,188` at the eighth round, `3,029` at the sixth, and Python `cases=347, pass=136`. Each is stamped with the tree it measured, and running the suites would write outside this lineage, so they are recorded as measured rather than re-measured.
-- Probe rows confirm the two probe-borne checklist claims that are cheapest to falsify: all five gain rows carry their `/deep:*` command with policy `ask` (CHK-031), and N6/N10 carry no command (CHK-022). R7 carries no command and V5 keeps `sk-code` on `sk-code-review`, as REQ-002 states.
-
-### Acceptance-row evidence, sixth round (AC-030 to AC-042)
-
-| AC | Status | Evidence that exists |
-|---|---|---|
-| AC-030 | Met | twelve `refusal-verb-*` fixture rows (`deep-loop-offer-cases.json:129` is `refusal-verb-skip`); the guard describe exists |
-| AC-031 | Met | 47 `doctorWithheld` rows, 27/20 split as the cell states; the two describes exist |
-| AC-032 | Met | four `typedRunsKept` rows; `multi-typed-command-gates.vitest.ts` describes exist |
-| AC-033 | Met | `command-attach-guards.vitest.ts:1125` holds "names the review mode on a deferred route" and the no-command control describe |
-| AC-034 | Met | `stage-one-loop-subject.vitest.ts:26` holds the two named cases |
-| AC-035 | Met | `command-brief-golden.vitest.ts:353` holds the typed-command case; the "keeps the offer options…" describe exists |
-| AC-036 | Met | `typed-on-stuck-serving.vitest.ts` holds both named cases; `advisor-recommend-typed-command.vitest.ts` holds the handler case |
-| AC-037 | Met | the long-prompt cases exist in both suites (`test_skill_advisor.py:3054` is the `DEEP-LOOP-LONG` name) |
-| AC-038 | Met | 22 pairs, 12 per-entry lists, 10 grammar-only lists — each count matches the cell |
-| AC-039 | Met | `refinesSameLocation` at `reduce-state.cjs:995`; both named unit files exist |
-| AC-040 | Unmet | the row says so; its evidence path is the archived report (R1-P2-001) |
-| AC-041 | Met | every valuation clause resolves (changelog `:482-484`, `implementation-summary.md:242`, packet 013 row) |
-| AC-042 | Met | the counts it quotes match the recorded rounds; its `tasks.md:163` pointer is T081 |
+| `spec_code` | `pass` | Carried complete. This iteration added the REQ-007 check the earlier passes could not make cheaply: both generated contracts carry a `sourceDigests` header, and recomputing `sha256` for all 31 listed sources (15 in `deep-review.contract.markdown`, 16 in `deep-research.contract.markdown`) matches every recorded digest, so the compiled contracts are regenerated from the current sources exactly as REQ-007 claims. REQ-032 resolves to `refinesSameLocation` (`reduce-state.cjs:1011`), whose comment states the same rule the requirement does. REQ-052 resolves to `stripReviewVerdict` (`:227`) ending the Next Focus section at the first `review verdict:` line. REQ-048 resolves to `replaceAnchorSection` (`:2420`), whose documented behaviour is that "an existing section keeps the ordinal the file gave it". |
+| `checklist_evidence` | `pass` | Carried complete from iteration 4. |
+| `skill_agent` | `pass` | The hub states the discipline at `SKILL.md:103`-`:104` ("resolve a mode through `mode-registry.json`; never hardcode a router mapping or packet path in the hub") and its mode table at `:30`-`:31` matches the registry's `research` and `review` modes with the packet path and the public command. `mode-registry.json` names its own drift guard (`routing-registry-drift-guard.vitest.ts`) and says the advisor keeps hardcoded projection maps in sync with the registry by that guard rather than reading the file on the hot path, which is the arrangement the SKILL.md describes. |
+| `playbook_capability` | `pass` | The manual-testing playbook carries a `mode-routing/review-routing.md` and an `advisor-integration/` group; both name `/deep:review` as the surface under test, so the capability the packet changes is one the playbook covers. Their scenario preconditions were not read line by line this iteration. |
+| `agent_cross_runtime` | `notApplicable` | The target is the advisor's offer packet; none of the 47 scope files is an agent definition, and the advisor's own agent mirrors are outside this packet's subject. `applicable: false`. |
+| `feature_catalog_code` | `notApplicable` | No feature-catalog document mentions the deep-loop offer: `grep -rln 'deep-loop\|deep:review' .skilled --include='*catalog*'` prints nothing, so there is no catalog claim to check against the code. `applicable: false`. |
 
 ## Integration Evidence
 
-- The fixture is the shared surface both suites read: `tests/deep-loop-offer-cases.vitest.ts` (native) and `tests/python/test_skill_advisor.py` `test_deep_loop_offer_gate_parity` (fallback). Every column this iteration recounted is read by both.
-- The probe runner (`scratch/probes/probe.mjs`) and its three result files are the packet's own measurement surface; `results-after.json` and `results-final-958fa81-worktree.json` both hold 69 rows.
-- Packet 013's row "Reopened: degraded paths" is the cross-packet evidence AC-041 names; it exists at `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md`.
+- The generated contracts are a real seam, not a copy: each header names `compile-command-contracts.cjs` as `generatedBy` and lists every source path with its digest, so REQ-007's "regenerated from the edited sources" is verifiable by hash rather than by inspection. It holds for both contracts.
+- The reducer's three seams each carry their rule in the function comment rather than in a changelog, which is what makes REQ-046, REQ-048 and REQ-052 readable at the place a maintainer would change.
 
 ## Edge Cases
 
-- Recounting a ticked box is not the same as re-executing its command. A "Met"/"[x]" row whose evidence is a suite run is confirmed as *recorded with the tree it measured*, not as *true on this tree today*. The task and acceptance rows themselves insist on the commit stamps that make this distinction legible.
-- AC-030's Given clause says "six refusal prompts" while its verification counts seven (the six plus `refusal-verb-refused-to`). The wider count is the one the fixture and suites read, so the row is `Met`; the mismatch is a wording narrowness, not a false claim.
-- The three open task boxes and CHK-020 all trace to the single missing rerun (T084). The checklist's honesty is therefore intact: the open boxes are the ones a missing deliverable should leave open.
-- Iteration 4's `notApplicable` correction: the protocol was deferred, not inapplicable. This iteration's `pass` supersedes that status in the reducer's rollup, and the iteration 4 narrative was corrected to say so.
+- **`applied/T-*.md` does not exist in this packet**, so the resource-map coverage gate is skipped by the absent-map rule rather than by the `resource-map_present: false` alone. The packet has no `resource-map.md`, which the config records.
+- **The playbook overlay was checked for coverage, not for scenario correctness.** Naming the two playbook files that own review routing is what the overlay asks for; reading each scenario's preconditions against the built tree was not done, and the status says so rather than implying a deeper pass.
+- **Two instances of a constant is below the abstraction threshold by the repository's own restraint rule.** The finding above justifies itself on the two-layer agreement rather than on the count, which is why it stays P2.
 
 ## Confirmed-Clean Surfaces
 
-- 126 of 126 ticked-task path citations resolve; 13 of 13 named test titles exist; 56 of 56 acceptance rows carry a status that exists in the status vocabulary.
-- Every waiver names a real ADR, which is the packet's own rule for a waiver.
-- The Verification Summary's three counts match the CHK boxes exactly, and CHK-001's 48 matches the REQ table.
-- All five gain probes carry their deep command with policy `ask`, and N6/N10 carry none — the two probe claims most likely to rot.
+- Both generated command contracts match every source digest they record (31 of 31), so the compiled artifacts are not stale.
+- The hub resolves modes through `mode-registry.json` and declares its projection drift guard, which is the discipline the `skill_agent` overlay reads.
+- `refinesSameLocation` (`reduce-state.cjs:1011`) folds a same-place refinement and keeps a different-file one, with the reason stated in the comment — REQ-032's rule at the place it is enforced.
+- `stripReviewVerdict` (`:227`) ends a section at the first `review verdict:` line case-insensitively, so a Next Focus projection cannot inherit an iteration's verdict (REQ-052).
 
 ## Ruled Out
 
-- "A ticked task cites a file that has moved": no citation fails to resolve once `$ADV`/`$PKT` are expanded; the two that needed a second root are named above.
-- "A `Met` row rests on an `Unmet`-style stale pointer": the only stale path is AC-040's, and that row is `Unmet`. A `Met` row's tail resolves to its token in every other case (49 cells checked in iteration 1).
-- "AC-038's twelve-and-ten split is wrong": twelve lists carry a per-entry `it.each`, and the ten named grammar-only lists match the ten pairs with no such case.
-- "The suite totals are mutually contradictory": each carries the round and commit it measured; AC-028 states which belongs to the final tree.
+- *A stale compiled contract, the classic generated-artifact failure.* All 31 recorded digests match the current sources.
+- *A hub mode table that hardcodes a packet path the registry does not carry.* The table and the registry agree for both modes.
+- *Two candidate seams that would have made a fourth finding.* `replaceAnchorSection`'s ordinal rule and `stripReviewVerdict`'s cut both do what their requirements say, so nothing was filed against them.
 
 ## Next Focus
 
-- Dimension: correctness
-- Focus area: the sixth fix round's acceptance rows read as behaviour, AC-030 to AC-042 one by one, plus the sibling packet 013 rows the focus names indirectly (its REQ-006 degraded-path evidence).
-- Reason: the operator focus explicitly names AC-030 to AC-042, and a checklist pass proves the rows' evidence exists without proving each row's stated behaviour is the behaviour the code has.
-- Rotation status: all four canonical dimensions have one pass; this is a deepening pass on correctness inside the sixth round.
-- Blocked / productive carry-forward: the fixture probe and the title-existence sweep are productive; nothing is blocked.
-- Required evidence: the fixture columns for the AC-030..AC-042 rows, `command-attach.ts`, `skill-advisor-cli.ts`, `subprocess.ts`, `typed-on-stuck-serving.vitest.ts`, and packet 013's implementation summary.
+- Dimension: `correctness` (rotation)
+- Focus area: re-read the three carried findings for decay and for the fix-completeness question a remediation needs, then take a fresh correctness angle the first pass did not use: the interaction between `attachCommand`'s stuck branch, `withholdDeepLoopDoctorWithoutRun` and the no-edit withhold when a prompt is both stuck and typed (REQ-029, REQ-044), and the `passed_threshold` ordering in `degradedRecommendations`.
+- Reason: iteration 6 of 7; all four dimensions are covered, so the remaining passes rotate rather than break new ground.
+- Rotation status: all four dimensions reviewed; `correctness` and `traceability` each need one rotation pass before the cap.
+- Blocked/productive carry-forward: productive — reading a seam's own comment is the cheapest way to test a requirement about a reducer.
+- Required evidence: `command-attach.ts` stuck branch, `fusion.ts` doctor withhold, `skill-advisor-cli.ts` `passed_threshold` filter, and the three carried finding ids.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

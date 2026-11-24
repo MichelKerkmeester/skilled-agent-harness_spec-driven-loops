@@ -1,20 +1,18 @@
-# Review Iteration 005
+# Review Iteration 005 — Traceability (`checklist_evidence`)
 
 ## Dispatcher
 
-- Mode: review; target agent `deep-review`; lineage `deepseek-max-1`; generation 7; session `fanout-deepseek-max-1-1795546920757-7pyjry`.
-- Iteration 5 of 7 (stopPolicy `max-iterations`).
-- Dimension: `security`. Focus: the trust boundaries the packet's own NFR-S01 and NFR-S02 rows claim, plus the four paths that carry a command to a reader - the gate, the typed-command branch, the degraded CLI brief and the Python fallback.
-- Operator review focus, carried: the traceability protocols stay closed; no requirement row claims a security property beyond NFR-S01/NFR-S02, so this iteration tests the claims the packet does make rather than adding new ones.
+- Lineage `review/lineages/deepseek-max-1`, iteration 5 of 7, session `fanout-deepseek-max-1-1795550334883-gjbarh`
+- Dimension: D3 traceability, second core protocol. Operator focus: every ticked task in `tasks.md` and every `Met` row in `acceptance-criteria.md` against evidence that exists in the tree.
+- Method: extract every path a ticked task cites and resolve it, then read the acceptance table as a table (status distribution, evidence presence) rather than row by row.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71` to `:79` (`COMMAND_ROWS` deep entries and the doctor row), `:109` to `:110` (`command-spec-kit-deep-*`), `:136` to `:147` (`TRACKED_COMMANDS` deep rows), `:1537` (`attachCommand`), `:897` (`RUN_REFUSED`), `:1455` (`namesLoopSubject`).
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489` (`trackedCommandForOwner`), `:1503` (`degradedRecommendations`), `:1639` to `:1656` (the unreachable-daemon fallback and its `degraded: true` payload).
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233` (the hook's prompt truncation to `ADVISOR_PROMPT_MAX_CHARS`).
-- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257` (`ADVISOR_PROMPT_MAX_CHARS = 10_000`), `:262` (the `prompt` bound).
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:655` (`AdvisorRecommendInputSchema.parse`), `:363` (`enrichCompiledRoutes`).
-- The built `.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/command-attach.js`, called 1,780 times across every fixture prompt, five route shapes and nine crafted injection strings.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:1` to `:349` (all 138 ticked boxes and the 3 open ones)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:64` (AC-001 to AC-059, read as a table)
+- `.skilled/skills/system-deep-loop/command-metadata.json:1` (the metadata file T046 names)
+- `.skilled/commands/deep/research.md:1`, `review.md:1` (the argument hints T046 names)
+- `.skilled/skills/sk-doc/scripts/validate_document.py:1` (the validator T046 names)
 
 ## Findings - New
 
@@ -24,63 +22,57 @@ None.
 
 ### P1 Findings
 
-None new. `R1-P1-001` and `R4-P1-001` remain active.
+None.
 
 ### P2 Findings
 
-None new.
+None.
 
 ## Traceability Checks
 
-- `spec_code` and `checklist_evidence` stay `pass` from iteration 3: NFR-S01's row is checked below against the table the gate reads, and NFR-S02's row is checked by reading the changed surfaces for a credential or file read. Neither is a new protocol run.
-
-## Security Surfaces Checked
-
-| Surface | Claim | Result |
-|---|---|---|
-| Policy of the two deep commands | NFR-S01: the `run` policy never starts a deep command; both keep `ask` | Holds. `command-deep-research`, `command-deep-review`, `command-spec-kit-deep-research` and `command-spec-kit-deep-review` all read `policy: 'ask'` (`command-attach.ts:71`, `:72`, `:109`, `:110`); the only `run` rows are doctor and other read-only tools, and `/doctor:deep-loop` is `run` by design (`:79`). |
-| Command string construction | No reader text becomes part of the command | Holds. 1,780 calls over 347 fixture prompts, five route shapes (review, research, empty targets, `{}`, `null`) and nine crafted strings returned only the three table commands or `undefined`; zero off-table results. |
-| Injection strings | A shell metacharacter in the prompt cannot reach the command | Holds. `run a deep review; rm -rf /`, `&& curl`, `$(whoami)`, backticks, `--spec-folder=../../etc`, a NUL byte, a right-to-left override and a 9,000-character suffix all produced a table command or nothing. |
-| Degraded CLI brief | A supplied command must be one the tracked table names for the row's own skill | Holds by construction. `trackedCommandForOwner` (`skill-advisor-cli.ts:1489`) gates the supplied string at `:1571`, and the fallback only runs when the daemon is unreachable (`:1639`). |
-| Prompt-size boundary | REQ-030: the fallback reads the same 10,000-unit head the native schema accepts | Holds, and the boundary is the contract's own: the hook truncates at `hooks/lib/skill-advisor-cli-fallback.ts:233`, the native schema rejects above `ADVISOR_PROMPT_MAX_CHARS` (`advisor-tool-schemas.ts:257`), and the fallback's `_advisor_prompt_head` cuts at the same count in JavaScript units. A longer prompt is outside the advisor's input contract rather than a defect in the gate. |
-| Credential and file reads | NFR-S02: no credential or user data is read | Holds over the changed surfaces. The gate reads only the prompt string; the only file reads on these paths are the tracked-command table and the compiled-route lookup, both repository files. |
+| Protocol | Level | Status this iteration | Evidence |
+| --- | --- | --- | --- |
+| `spec_code` | core | partial | No new requirement was opened this iteration; REQ-001 to REQ-034 keep the coverage iterations 3 and 4 recorded. REQ-035 to REQ-051 remain, and iteration 7 is reserved for them. |
+| `checklist_evidence` | core | partial | Two checks, both mechanical. First, every path a ticked task cites was resolved: 138 boxes cite paths, 19 of them by bare filename, and all 19 resolve once the packet-relative and runtime-relative roots are tried (`results-after.json` and the other `results-*.json` probes under `scratch/probes/`, `doctor-handoff-command.vitest.ts` under `tests/scorer/`, `F5.md` and `F6-sample-*.md` under `scratch/behaviour/`, and `validate_document.py` under `.skilled/skills/sk-doc/scripts/`), so no ticked task points at a file the tree does not hold. Second, the acceptance table was read as a table: of its 59 rows, 54 read `Met`, 3 read `Waived` with an ADR (AC-008 with ADR-003, AC-017 with ADR-002, AC-020 with ADR-009), 1 reads `Superseded` with an ADR (AC-019 with ADR-001) and 1 reads `Unmet` (AC-040). Every row carries an evidence or verification cell, so no row is met on assertion alone. CHK-020 requires `Met`, `Waived` or `Superseded` on every row, and the single `Unmet` is the row the packet documents as waiting on this review run. The protocol stays `partial` because AC-040 can only close after synthesis, and because AC-038's count is still the one stale cell. |
+| `skill_agent` | overlay | notApplicable | The target is a spec packet, not a skill contract; no SKILL.md-to-agent pairing is in scope. |
+| `agent_cross_runtime` | overlay | notApplicable | No agent definition is in the review scope. |
+| `feature_catalog_code` | overlay | notApplicable | No feature catalog entry is in the review scope. |
+| `playbook_capability` | overlay | notApplicable | No playbook is in the review scope. |
 
 ## Integration Evidence
 
-- Native path: `lib/command-attach.ts` `attachCommand`, probed through `dist/runtime/lib/command-attach.js`.
-- Degraded path: `skill-advisor-cli.ts` `degradedRecommendations` with `trackedCommandForOwner`, and the `EXIT_RETRYABLE`-only fallback at `:1639`.
-- Hook path: `hooks/lib/skill-advisor-cli-fallback.ts:233` truncation.
-- Schema boundary: `schemas/advisor-tool-schemas.ts:257` and the handler's parse at `advisor-recommend.ts:655`.
+- T046 (`.skilled/commands/deep/research.md`, `review.md`, `.skilled/skills/system-deep-loop/command-metadata.json`) was checked rather than assumed: all three files exist, both command docs carry `--stop-policy`, `--lineage-mode` and `--extend-minutes`, `review.md` additionally carries `--review-focus`, `research.md` correctly does not, and both docs carry the executor flags (`--model`, `--reasoning-effort`, `--count`). The metadata file names the same three flags. So the task's claim that the two hints and the copy agree is true in the tree.
+- The validator T046 names (`validate_document.py`) lives at `.skilled/skills/sk-doc/scripts/validate_document.py` and at `.skilled/skills/sk-doc/shared/scripts/validate_document.py`; the task names it by filename only, which is the convention the rest of the file follows, so it is ambiguous to a reader but not missing.
 
 ## Edge Cases
 
-- Ambiguity: a prompt that merely mentions a typed command in a declarative sentence ("the advisor attaches /deep:review only when asked") receives the command. Read as intended rather than as a finding: ADR-005 already establishes that a typed command is the reader's own choice on the served head, and this packet's REQ-020 only removes the command for a refusal, a question or a documentation path. Recorded here so the decision is visible rather than silent.
-- Contradiction, none: the two deep commands keep `ask` in all four rows, and no path in the changed files upgrades them.
-- Missing dependency: the Python fallback was not executed from this lineage; its size boundary and its mode-free rule were read from source.
-- Partial success: five of the six surfaces are cleared by probe; the credential-read claim is cleared by reading the changed surfaces, which is the strongest evidence four of them admit.
+- 19 of the 138 ticked tasks name their artifact by bare filename. Each resolves, but only after the reader guesses which of several roots the file sits under (packet `scratch/`, `runtime/tests/`, `.skilled/skills/sk-doc/scripts/`). Recorded because a bare filename is a weaker citation than a path: it survives a file moving between directories. Not raised as a finding, since the convention is uniform across the packet and every name resolves today.
+- AC-038's stale count (DR1-P2-001) is a `Met` row whose evidence is a real file at a real line, so the usual "does the cell resolve" check passes it. It was caught by re-deriving the count, not by resolving the citation. That is the lesson this iteration carries to iteration 7: a resolving citation is not a current observation.
 
 ## Confirmed-Clean Surfaces
 
-- No user text reaches a command string: 1,780 calls, zero off-table results.
-- Both `/deep:*` commands keep policy `ask` on every table row the gate reads.
-- The degraded brief cannot serve a command it cannot vouch for.
-- The hook truncates before the schema boundary it would otherwise exceed.
+- No ticked task cites a path the tree does not hold, after trying the packet root, the advisor runtime root, the deep-loop skill root, the command tree and the sibling packet root.
+- The acceptance table has no row without a verification or evidence cell and no status outside `Met`, `Waived`, `Superseded` and the one documented `Unmet`.
+- The flag hints T046 names are present in both command docs and in the metadata copy, with the one intentional asymmetry (`--review-focus` only on `review.md`) exactly as the task describes it.
 
 ## Ruled Out
 
-- "A shell metacharacter in the prompt can inject into the served command": ruled out. The command comes from a fixed table, and nine crafted strings returned table values only.
-- "The gate reads files or credentials under attacker control": ruled out. The only reads are the tracked table and the compiled-route lookup.
-- "A prompt over the cap makes the hook fail": ruled out. The hook truncates at the same boundary the schema enforces.
-- "The doctor row's `run` policy is a violation of NFR-S01": ruled out. NFR-S01 is written about the two deep commands, and `/doctor:deep-loop` is the hand-off this packet's REQ-009/REQ-024 deliberately offer.
+- A ticked task pointing at a file that was renamed or removed: eliminated, all 19 bare filenames resolve.
+- A `Met` row with no evidence behind it: eliminated, every row carries a verification or evidence cell, and the 60 quoted cells were already checked line by line in iteration 1.
+- A flag hint that drifted between the command docs and the metadata copy (T046): eliminated, both docs and the copy carry the same three flags.
+- Overlay protocols applying to this packet: eliminated, no skill contract, agent definition, feature catalog entry or playbook is inside the review scope, so each is recorded `notApplicable` with `applicable: false` rather than left pending.
+
+## Review Focus
+
+`checklist_evidence` now covers the task checklist and the acceptance table end to end. It stays `partial` for two named reasons rather than a general one: AC-040 waits on synthesis, and AC-038 carries the stale count.
 
 ## Next Focus
 
-- Dimension: `maintainability`.
-- Focus area: the reducer's own strategy writer as it behaves in this lineage, the duplication between the two gate copies, and whether a reader of the packet can follow the change without the review history.
-- Reason: four dimensions need coverage before STOP; `maintainability` is the last uncovered one, and this lineage has already produced evidence about the reducer's projection quality.
-- Rotation status: `security` closes; `maintainability` opens.
-- Blocked/productive carry-forward: productive - reading the table the gate reads and then fuzzing its callers cleared five surfaces quickly; the same shape applies to the reducer's strategy writing.
-- Required evidence: a maintainability finding with file:line and an artefact in this lineage that shows the defect, or a named quality claim checked and cleared.
-- Recovery note: none.
+- Dimension: D4 maintainability
+- Focus area: comment hygiene in the scope files (no decision or requirement ids or spec paths borrowed into code comments), the compiled contract parity story, and whether the drift-guard tables are legible enough to change safely
+- Reason: D4 is the only dimension without a full pass, and the review cannot report coverage until it is covered
+- Rotation status: D1, D2, D3 covered; D4 next
+- Blocked/productive carry-forward: the "re-derive, do not resolve" lesson from iteration 5 is productive for the closure docs
+- Required evidence: `file:line` for every comment or doc finding
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

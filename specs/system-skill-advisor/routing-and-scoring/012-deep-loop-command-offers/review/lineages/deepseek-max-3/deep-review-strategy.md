@@ -1,32 +1,27 @@
 ---
-title: Deep Review Strategy - 012 deep-loop command offers (lineage deepseek-max-3)
-description: Runtime strategy for the fan-out review lineage deepseek-max-3 over packet 012, tracking dimension coverage, findings, exhausted approaches and next focus.
+title: Deep Review Strategy - 012-deep-loop-command-offers (lineage deepseek-max-3)
+description: Session tracking for the traceability-focused deep review lineage of the deep-loop command offers packet.
 trigger_phrases:
-  - "deep review strategy 012"
-  - "deepseek-max-3 review strategy"
+  - "deep review strategy 012 lineage 3"
 importance_tier: normal
 contextType: planning
-version: 1.0.0
 ---
 
-# Deep Review Strategy - Session 012 deep-loop command offers (deepseek-max-3)
+# Deep Review Strategy - Session Tracking
 
-## 1. OVERVIEW
+## 1. REVIEW CHARTER
 
-### Purpose
-
-Persistent state for this fan-out review lineage. Records which dimensions remain, what was found (P0/P1/P2), which review approaches worked or failed, and where to focus next.
-
-### Usage
-
-- Init: populated from `deep-review-config.json` and the operator review focus.
-- Per iteration: the reviewer reads Next Focus, reviews the assigned dimension plus the operator focus, writes the iteration narrative and delta, and updates this file.
-- Mutability: mutable except the machine-owned blocks, which the reducer refreshes.
+- **Target**: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder, Level 3, generation 8)
+- **Dimensions**: correctness, security, traceability, maintainability (all four; traceability carries the core protocols `spec_code` and `checklist_evidence`)
+- **Operator focus**: traceability. Finish `spec_code` and `checklist_evidence`; check every REQ in `spec.md` against the code that implements it or the decision that records it, every ticked task in `tasks.md` and every `Met` row in `acceptance-criteria.md` against evidence that really exists in the tree, including the sixth fix round (REQ-023..REQ-034, AC-030..AC-042, ADR-005, ADR-006).
+- **Stop policy**: `max-iterations`, cap 7. Convergence is telemetry only; this lineage broadens review angles rather than synthesizing early.
+- **Success criteria**: zero P0; every REQ and every `Met`/ticked row either cites evidence that resolves in the tree or is reported as drift.
 
 ---
 
 ## 2. TOPIC
-Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder target). The packet records the advisor work that offers `/deep:review` or `/deep:research` from explicit loop wording, across ten fix rounds and six traceability reruns.
+
+Review of the deep-loop command-offer packet: the advisor surfaces `/deep:research` and `/deep:review` in its brief, render and CLI paths, with the stop-and-ask gates, head-length limits and degraded-transport fallback that the packet's REQ/AC set claims.
 
 ---
 
@@ -36,12 +31,19 @@ Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
-Re-implementing the gate, editing any reviewed file, or re-running the build/test suites as a release gate. This lineage reports findings only.
+
+- Not assessing the routing accuracy of the scorer beyond the deep-loop offer surface named in the REQs.
+- Not re-running the packet's own gates (`validate.sh`, vitest) — this lineage reads tree evidence and cites it; it does not mutate the target.
+- Not judging prose style of the spec docs beyond whether a claim resolves.
 
 ---
 
 ## 5. STOP CONDITIONS
-The loop runs to `config.maxIterations` (7) with `stopPolicy: max-iterations`; convergence is telemetry only.
+
+- `maxIterations` (7) reached, per `config.stopPolicy: max-iterations`.
+- Not converging early: with 7 bound iterations the loop treats convergence as telemetry and rotates dimension/focus instead.
+
+**Outcome.** The cap was reached (7 of 7) with stop reason `maxIterationsReached`. All four dimensions are covered, both core protocols and three overlay protocols read `pass`, two overlays read `notApplicable`, and no active P0 or P1 remains. Four P2 advisories stay open and are grouped into three remediation workstreams in `review-report.md`. `releaseReadinessState` is `in-progress`, not `converged`, because a cap stop is not a convergence stop and because AC-040 is the cross-lineage merge's call.
 
 ---
 
@@ -56,143 +58,162 @@ The loop runs to `config.maxIterations` (7) with `stopPolicy: max-iterations`; c
 <!-- ANCHOR:running-findings -->
 ## 7. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 1
+- P1 (Required): 0
 - P2 (Suggestions): 4
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
-- Evaluating every shared-fixture row against the built `dist` gate: 347 rows agreed on eight columns, which turns REQ-006/REQ-023 to REQ-029 from prose into a checked surface (iteration 1)
-- Parsing every `Evidence: `path:line`` cell in `acceptance-criteria.md` and resolving it against the tree: 49 cells checked, one stale path found, and the method scales to the remaining closure docs (iteration 1)
-- Diffing the exported word lists against `VOCABULARY_PAIRS` rather than reading the requirement: the guard's own data names the gap (iteration 1)
+
+- Resolving each cited `file:line` anchor from an AC evidence cell by direct read: cheap, and it found a row whose count clause no longer matches the tree (iteration 1).
+- Reading the symbol names a REQ quotes (`withholdDeepLoopDoctorWithoutRun`, `_loop_ask_cues`, `typedCommandForTop`) and then following their call sites: it separates a requirement that is implemented from one whose named surface has quietly moved (iteration 1).
+- Reading a security claim against the primitive rather than the prose: `spawn` with an argv array settles "no shell" in one read, and the tracked-table lookup settles "no free-text command" (iteration 2).
+- Grepping a claim's own vocabulary across the packet docs (`vocabulary pairs`) to see whether a stale count is one cell or a class (iteration 2).
+- Resolving the whole acceptance matrix in one scripted pass (existence plus line range) before reading any cell: it turns 60 rows into a short list worth reading rather than 119 individual lookups (iteration 3).
+- Reading a REQ's own named file surfaces (`review.md` step 0, the two presentations' step 6, both YAML `next_steps`) rather than the AC row that restates them, which is how the completion-message nuance surfaced (iteration 3).
+- Verifying a generated artifact by its own recorded digests instead of diffing it by eye: 31 of 31 matched, so REQ-007 needed one computation rather than a read (iteration 5).
+- Reading each reducer seam at its function comment, which is where REQ-032, REQ-048 and REQ-052 put their rule (iteration 5).
+- Using this run's own findings registry as the witness for a reducer requirement: REQ-032's same-file fold and different-file keep were both observed live, not only in its unit test (iteration 6).
+- Reading the compiled-route enrichment as the clause it claims to satisfy, which settled REQ-046 in one read after the traceability passes had only checked its test's existence (iteration 6).
+- Grouping the carried P2s by the surface a fix touches before writing the hand-off, which turned four findings into three advisory workstreams and one decision (iteration 7).
 
 ---
 
 ## 9. WHAT FAILED
-- Reading `acceptance-criteria.md` citations from the repo root instead of the packet root: 22 false drifts until the base path was corrected (iteration 1, recoverable)
-- Treating `doctorWithheld` as "no command at all": seven false mismatches until the column's own header (`$comment`) was read (iteration 1)
+
+- Counting a vocabulary array with an ad-hoc text probe: the row shape defeated two attempts, and the count only settled when the array's open and close brackets were read directly (iteration 1).
+- Reading the pasted reply strip from one call site and assuming the others follow: `fusion.ts` strips inside its own entry point, so the parity check needed all four call sites, not two (iteration 2).
+- Resolving packet-relative `scratch/` anchors from the repo root: the first bulk pass reported 24 anchors missing that all resolve once the packet prefix is applied (iteration 3).
+- Extracting "paths" from a task line by regex: the first attempt picked up commands, flags and package-relative names and reported 212 false misses, so the pass had to be narrowed to repo-relative paths before it meant anything (iteration 4).
+- Citing a function by a line number read from a `sed` window rather than from its own declaration line, which put `refinesSameLocation` three lines low until the declaration was checked (iteration 5).
+- Hand-copying the route-proof string into an iteration record instead of reusing the exact constant: one token was lost, the gateway accepted it, and only a later self-check caught it. The repair is disclosed in iteration 6 and the report (iteration 5/6).
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 10. EXHAUSTED APPROACHES (do not retry)
-### "A `Met` row rests on an `Unmet`-style stale pointer": the only stale path is AC-040's, and that row is `Unmet`. A `Met` row's tail resolves to its token in every other case (49 cells checked in iteration 1). -- RULED OUT (iteration 5, 1 attempt)
-- What was tried: "A `Met` row rests on an `Unmet`-style stale pointer": the only stale path is AC-040's, and that row is `Unmet`. A `Met` row's tail resolves to its token in every other case (49 cells checked in iteration 1).
+### *`autonomous research` still reaching the advisor's derived lane through `deep-research/SKILL.md`.* `projection.ts:1449` reads top-level skill directories with `graph-metadata.json` and takes derived triggers from that metadata (`:1467`), so the nested packet's keyword list is not scored. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: *`autonomous research` still reaching the advisor's derived lane through `deep-research/SKILL.md`.* `projection.ts:1449` reads top-level skill directories with `graph-metadata.json` and takes derived triggers from that metadata (`:1467`), so the nested packet's keyword list is not scored.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A command pasted inside an earlier reply is marked typed on the native served head, while the degraded path strips it": the handler strips once at `advisor-recommend.ts:545` and feeds the stripped `scoredPrompt` to both `enrichCompiledRoutes` and `attachTypedCommand` (`:642`); `subprocess.ts:251` and `skill-advisor-cli.ts:1511` strip too. A direct call to `typedCommandForTop` with the raw prompt does mark it, but the handler never makes that call, so the divergence is not in reach. -- RULED OUT (iteration 2, 1 attempt)
-- What was tried: "A command pasted inside an earlier reply is marked typed on the native served head, while the degraded path strips it": the handler strips once at `advisor-recommend.ts:545` and feeds the stripped `scoredPrompt` to both `enrichCompiledRoutes` and `attachTypedCommand` (`:642`); `subprocess.ts:251` and `skill-advisor-cli.ts:1511` strip too. A direct call to `typedCommandForTop` with the raw prompt does mark it, but the handler never makes that call, so the divergence is not in reach.
+### *A carried finding that a later edit already fixed.* All four re-read at their sites and still present. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: *A carried finding that a later edit already fixed.* All four re-read at their sites and still present.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A ticked task cites a file that has moved": no citation fails to resolve once `$ADV`/`$PKT` are expanded; the two that needed a second root are named above. -- RULED OUT (iteration 5, 1 attempt)
-- What was tried: "A ticked task cites a file that has moved": no citation fails to resolve once `$ADV`/`$PKT` are expanded; the two that needed a second root are named above.
+### *A command offered twice by the compiled-route pass.* `alreadyOffered` is seeded from existing commands and grows as the pass keeps one. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: *A command offered twice by the compiled-route pass.* `alreadyOffered` is seeded from existing commands and grows as the pass keeps one.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "AC-030's refusal count drifts from REQ-023": the fixture holds twelve `refusal-verb-*` rows — six named refusals, `refusal-verb-refused-to`, three keep controls and two conjunction controls — and the AC-030 verification cell counts exactly those seven/three/two. The "six" in the Given clause is narrower than the seven the verification counts, but the row is `Met` on the wider set and no claim is false. -- RULED OUT (iteration 1, 1 attempt)
-- What was tried: "AC-030's refusal count drifts from REQ-023": the fixture holds twelve `refusal-verb-*` rows — six named refusals, `refusal-verb-refused-to`, three keep controls and two conjunction controls — and the AC-030 verification cell counts exactly those seven/three/two. The "six" in the Given clause is narrower than the seven the verification counts, but the row is `Met` on the wider set and no claim is false.
+### *A delta file that does not open with its iteration record.* All five open with one. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: *A delta file that does not open with its iteration record.* All five open with one.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "AC-032's double-typed prompts are ambiguous because `/doctor:deep-loop` shares the hub owner": `typedCommandsIn` returns commands in prompt order and `typedCommandForTop` takes the first owned one, so `/deep:review` wins the review route and `/doctor:deep-loop` wins when it is the only typed command. The two rows pin both orders. -- RULED OUT (iteration 6, 1 attempt)
-- What was tried: "AC-032's double-typed prompts are ambiguous because `/doctor:deep-loop` shares the hub owner": `typedCommandsIn` returns commands in prompt order and `typedCommandForTop` takes the first owned one, so `/deep:review` wins the review route and `/doctor:deep-loop` wins when it is the only typed command. The two rows pin both orders.
+### *A denial-of-service through an unbounded prefix scan or a nested quantifier.* Both directions are bounded, as recorded above. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: *A denial-of-service through an unbounded prefix scan or a nested quantifier.* Both directions are bounded, as recorded above.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "AC-037's timing claim is unverifiable": the Python case prints its own timings (`counted=103ms, refused=100ms`) and both scans are windowed; the claim is recorded, not asserted here. -- RULED OUT (iteration 6, 1 attempt)
-- What was tried: "AC-037's timing claim is unverifiable": the Python case prints its own timings (`counted=103ms, refused=100ms`) and both scans are windowed; the claim is recorded, not asserted here.
+### *A finding that would flip a `Met` row back to `Unmet`.* Each was checked against the row that owns its requirement, and each row's checkable behaviour is intact. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: *A finding that would flip a `Met` row back to `Unmet`.* Each was checked against the row that owns its requirement, and each row's checkable behaviour is intact.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "AC-038's twelve-and-ten split is wrong": twelve lists carry a per-entry `it.each`, and the ten named grammar-only lists match the ten pairs with no such case. -- RULED OUT (iteration 5, 1 attempt)
-- What was tried: "AC-038's twelve-and-ten split is wrong": twelve lists carry a per-entry `it.each`, and the ten named grammar-only lists match the ten pairs with no such case.
+### *A hidden P0 that a clean iteration merely failed to find.* The last two iterations looked at the two seams most likely to hide one — the enrichment pass and the reducer's live registry — and both held. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: *A hidden P0 that a clean iteration merely failed to find.* The last two iterations looked at the two seams most likely to hide one — the enrichment pass and the reducer's live registry — and both held.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "Packet 013's degraded-path row borrows evidence that does not resolve": all four cited lines hold the cases the row names. -- RULED OUT (iteration 6, 1 attempt)
-- What was tried: "Packet 013's degraded-path row borrows evidence that does not resolve": all four cited lines hold the cases the row names.
+### *A hub mode table that hardcodes a packet path the registry does not carry.* The table and the registry agree for both modes. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: *A hub mode table that hardcodes a packet path the registry does not carry.* The table and the registry agree for both modes.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "REQ-011's aliases are missing from the router": both files carry `iterative research` and `multi-round research` once each, and `autonomous research` is absent, which is what ADR-007 amends. -- RULED OUT (iteration 3, 1 attempt)
-- What was tried: "REQ-011's aliases are missing from the router": both files carry `iterative research` and `multi-round research` once each, and `autonomous research` is absent, which is what ADR-007 amends.
+### *A lineage whose iteration count is ambiguous to the loop.* Distinct-run counting gives five, which is the number of iterations actually run. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: *A lineage whose iteration count is ambiguous to the loop.* Distinct-run counting gives five, which is the number of iterations actually run.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "REQ-012's near-miss rows are countable but not real": the five probe prompts map to five distinct near-miss rows, and D1 maps to a plain doctor row whose `expected_command` is `/doctor:deep-loop`. -- RULED OUT (iteration 3, 1 attempt)
-- What was tried: "REQ-012's near-miss rows are countable but not real": the five probe prompts map to five distinct near-miss rows, and D1 maps to a plain doctor row whose `expected_command` is `/doctor:deep-loop`.
+### *A loop-name pattern that a doubled space or a non-breaking space defeats.* Both copies fold all whitespace before matching. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: *A loop-name pattern that a doubled space or a non-breaking space defeats.* Both copies fold all whitespace before matching.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "REQ-020's served-head exception is an undocumented drift": ADR-005 (`decision-record.md:412`) records it, AC-027 and AC-036 both name it, and the fixture carries `servedReviewKept`. The exception is documented at every layer. -- RULED OUT (iteration 3, 1 attempt)
-- What was tried: "REQ-020's served-head exception is an undocumented drift": ADR-005 (`decision-record.md:412`) records it, AC-027 and AC-036 both name it, and the fixture carries `servedReviewKept`. The exception is documented at every layer.
+### *A packet that quietly claims its coverage gate passed.* `T084`, `CHK-020`, AC-040 and the closure statement all say it has not, which is consistent. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: *A packet that quietly claims its coverage gate passed.* `T084`, `CHK-020`, AC-040 and the closure statement all say it has not, which is consistent.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "REQ-028 names `parseRecommendations` but the typed marking happens elsewhere": `parseRecommendations` (`subprocess.ts:187-236`) already preserves `command`, `policy`, `ownerSkillId` and `typed` from the child, and `withTypedCommand` only adds what the child omitted. The requirement's parenthetical holds. -- RULED OUT (iteration 2, 1 attempt)
-- What was tried: "REQ-028 names `parseRecommendations` but the typed marking happens elsewhere": `parseRecommendations` (`subprocess.ts:187-236`) already preserves `command`, `policy`, `ownerSkillId` and `typed` from the child, and `withTypedCommand` only adds what the child omitted. The requirement's parenthetical holds.
+### *A refused run ask inside the refusal machinery matching across a conjunction.* `RUN_ASK_REFUSAL_GAP` excludes `and|then|but|or` (`command-attach.ts:761`), which is the fixture's `refusal-verb-conjunction-*` reading. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: *A refused run ask inside the refusal machinery matching across a conjunction.* `RUN_ASK_REFUSAL_GAP` excludes `and|then|but|or` (`command-attach.ts:761`), which is the fixture's `refusal-verb-conjunction-*` reading.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "REQ-033 can be closed by this lineage's rerun": the rerun ends CONDITIONAL with an active P1, so the rerun AC-040 asks for is not a passing one. -- RULED OUT (iteration 7, 1 attempt)
-- What was tried: "REQ-033 can be closed by this lineage's rerun": the rerun ends CONDITIONAL with an active P1, so the rerun AC-040 asks for is not a passing one.
+### *A remediation that would need a code change to the gate.* Three of the four touch only prose or one import. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: *A remediation that would need a code change to the gate.* Three of the four touch only prose or one import.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "REQ-034's Verification Summary does not match its boxes": the CHK rows count 12 P0 (11 ticked), 13 P1, 1 P2, exactly the summary's numbers. -- RULED OUT (iteration 3, 1 attempt)
-- What was tried: "REQ-034's Verification Summary does not match its boxes": the CHK rows count 12 P0 (11 ticked), 13 P1, 1 P2, exactly the summary's numbers.
+### *A REQ with no owning acceptance row.* Every REQ-001..REQ-052 appears in the matrix's `REQ` column, several through more than one row. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: *A REQ with no owning acceptance row.* Every REQ-001..REQ-052 appears in the matrix's `REQ` column, several through more than one row.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The `.claude` agent mirror drifts from canonical": the three differences are the documented frontmatter dialect and two runtime path renames, the `.opencode` mirror is byte-identical, and the packet changes no agent. -- RULED OUT (iteration 7, 1 attempt)
-- What was tried: "The `.claude` agent mirror drifts from canonical": the three differences are the documented frontmatter dialect and two runtime path renames, the `.opencode` mirror is byte-identical, and the packet changes no agent.
+### *A stale acceptance status.* The five non-`Met` rows each carry their record: three waivers name an ADR, the supersession names ADR-001, and the one `Unmet` row is explained in the closure statement. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: *A stale acceptance status.* The five non-`Met` rows each carry their record: three waivers name an ADR, the supersession names ADR-001, and the one `Unmet` row is explained in the closure statement.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The 10,000-unit cut is a security-relevant truncation an attacker can use to smuggle a second instruction past the window": both copies cut the head and then scan windowed prefixes of that head; no scan reads the uncut tail, and the renderer prints no prompt text. -- RULED OUT (iteration 2, 1 attempt)
-- What was tried: "The 10,000-unit cut is a security-relevant truncation an attacker can use to smuggle a second instruction past the window": both copies cut the head and then scan windowed prefixes of that head; no scan reads the uncut tail, and the renderer prints no prompt text.
+### *A stale compiled contract, the classic generated-artifact failure.* All 31 recorded digests match the current sources. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: *A stale compiled contract, the classic generated-artifact failure.* All 31 recorded digests match the current sources.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The closure docs' five different suite totals for one suite are contradictory": each total carries its commit stamp (3,029 at the sixth round, 3,188 at the eighth, 3,415 at `3db3085bcf0`, 3,418 on the final tree), and AC-028 states which is the final tree. Not drift. -- RULED OUT (iteration 4, 1 attempt)
-- What was tried: "The closure docs' five different suite totals for one suite are contradictory": each total carries its commit stamp (3,029 at the sixth round, 3,188 at the eighth, 3,415 at `3db3085bcf0`, 3,418 on the final tree), and AC-028 states which is the final tree. Not drift.
+### *A ticked box whose cited path does not exist.* All 33 repo-relative paths cited by a `[x]` box resolve. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: *A ticked box whose cited path does not exist.* All 33 repo-relative paths cited by a `[x]` box resolve.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The double-negation gap is a parity failure between the copies": both copies return false, so the copies agree and the rule is the gap. -- RULED OUT (iteration 6, 1 attempt)
-- What was tried: "The double-negation gap is a parity failure between the copies": both copies return false, so the copies agree and the rule is the gap.
+### *A typed `/doctor:deep-loop` surviving a refusal it should not.* `DOCTOR_NAMING_LED` (`fusion.ts:1062`) reads a refusal or question lead directly before the name, and `doctorAsked` requires `!onlyMentioned` (`:1083`), so a refused naming is not served; a bare typed doctor on a stuck run is served, which is REQ-044's clause. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: *A typed `/doctor:deep-loop` surviving a refusal it should not.* `DOCTOR_NAMING_LED` (`fusion.ts:1062`) reads a refusal or question lead directly before the name, and `doctorAsked` requires `!onlyMentioned` (`:1083`), so a refused naming is not served; a bare typed doctor on a stuck run is served, which is REQ-044's clause.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The feature catalog omits a documented feature": the offer is documented in the presentation contracts and command documents, which REQ-005 names; no requirement places it in a catalog. -- RULED OUT (iteration 7, 1 attempt)
-- What was tried: "The feature catalog omits a documented feature": the offer is documented in the presentation contracts and command documents, which REQ-005 names; no requirement places it in a catalog.
+### *A Verification Summary count that does not match its boxes.* The `P0` count matches exactly, and the single unverified item is the unticked `CHK-020`. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: *A Verification Summary count that does not match its boxes.* The `P0` count matches exactly, and the single unverified item is the unticked `CHK-020`.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The gate offers a run for the mode-free plural ask": `attachCommand` on a deferred route returns nothing for "run two deep loops on the cache layer" (probe), and the fixture row `plural-deep-loops-served` reads `servedRun: none` (`tests/fixtures/deep-loop-offer-cases.json:318`). ADR-008's amendment and the code agree. -- RULED OUT (iteration 1, 1 attempt)
-- What was tried: "The gate offers a run for the mode-free plural ask": `attachCommand` on a deferred route returns nothing for "run two deep loops on the cache layer" (probe), and the fixture row `plural-deep-loops-served` reads `servedRun: none` (`tests/fixtures/deep-loop-offer-cases.json:318`). ADR-008's amendment and the code agree.
+### *A waiver named in a row but absent from `decision-record.md`.* ADR-001, ADR-002, ADR-003 and ADR-009 are all present. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: *A waiver named in a row but absent from `decision-record.md`.* ADR-001, ADR-002, ADR-003 and ADR-009 are all present.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The no-edit guard wrongly withholds the doctor command on a stuck run": the behaviour is intended and pinned (`tests/fixtures/deep-loop-offer-cases.json:148`, `no-edit-stuck`, `doctorWithheld: true`), and the fixture header states the no-edit withholds for the doctor row. Not a defect. -- RULED OUT (iteration 1, 1 attempt)
-- What was tried: "The no-edit guard wrongly withholds the doctor command on a stuck run": the behaviour is intended and pinned (`tests/fixtures/deep-loop-offer-cases.json:148`, `no-edit-stuck`, `doctorWithheld: true`), and the fixture header states the no-edit withholds for the doctor row. Not a defect.
+### *Arbitrary text reaching the rendered command from a prompt.* Every emitted `command` is a `TRACKED_COMMANDS` key, chosen by table lookup or by owner-checked derivation; a free-text field cannot become one. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: *Arbitrary text reaching the rendered command from a prompt.* Every emitted `command` is a `TRACKED_COMMANDS` key, chosen by table lookup or by owner-checked derivation; a free-text field cannot become one.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The reducer flattening a multi-line Next Focus into one line is a defect": the reducer owns the anchor body and the template requires only the fields, so the flattening loses formatting but no content. Not a finding. -- RULED OUT (iteration 4, 1 attempt)
-- What was tried: "The reducer flattening a multi-line Next Focus into one line is a defect": the reducer owns the anchor body and the template requires only the fields, so the flattening loses formatting but no content. Not a finding.
+### *Command injection through the Python child.* argv-form spawn with no shell, fixed argv shape, prompt over stdin. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: *Command injection through the Python child.* argv-form spawn with no shell, fixed argv shape, prompt over stdin.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The sixth-round paragraph's eleven pairs is stale": it is a historical statement about the sixth round, and the later rounds record the growth (T087 twelfth pair, T092 fifteen). Not drift. -- RULED OUT (iteration 4, 1 attempt)
-- What was tried: "The sixth-round paragraph's eleven pairs is stale": it is a historical statement about the sixth round, and the later rounds record the growth (T087 twelfth pair, T092 fifteen). Not drift.
+### *Doctor withheld on a stuck run that also carries no-edit wording.* The attach layer returns `undefined` for `isNoEditRequest(prompt)` (`command-attach.ts:1599`) and the fused layer strips a non-read-only row (`fusion.ts:1106`); the doctor row is `add-only`, so both layers withhold it. No divergence. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: *Doctor withheld on a stuck run that also carries no-edit wording.* The attach layer returns `undefined` for `isNoEditRequest(prompt)` (`command-attach.ts:1599`) and the fused layer strips a non-read-only row (`fusion.ts:1106`); the doctor row is `add-only`, so both layers withhold it. No divergence.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The suite totals are mutually contradictory": each carries the round and commit it measured; AC-028 states which belongs to the final tree. -- RULED OUT (iteration 5, 1 attempt)
-- What was tried: "The suite totals are mutually contradictory": each carries the round and commit it measured; AC-028 states which belongs to the final tree.
+### *The native path treating a pasted reply as typed where the degraded path does not.* Both strip it (`advisor-recommend.ts:544`, `skill-advisor-cli.ts:1511`, `subprocess.ts:251`). -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: *The native path treating a pasted reply as typed where the degraded path does not.* Both strip it (`advisor-recommend.ts:544`, `skill-advisor-cli.ts:1511`, `subprocess.ts:251`).
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
+
+### *Two candidate seams that would have made a fourth finding.* `replaceAnchorSection`'s ordinal rule and `stripReviewVerdict`'s cut both do what their requirements say, so nothing was filed against them. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: *Two candidate seams that would have made a fourth finding.* `replaceAnchorSection`'s ordinal rule and `stripReviewVerdict`'s cut both do what their requirements say, so nothing was filed against them.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
@@ -206,50 +227,67 @@ The loop runs to `config.maxIterations` (7) with `stopPolicy: max-iterations`; c
 - Remaining frontier: none recorded
 
 ## 11. RULED OUT DIRECTIONS
-[Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
-- [Approach]: [Why ruled out] (iteration N, evidence: [source])
+
+Three directions were investigated and eliminated this iteration; section 10 keeps their what-was-tried detail.
+
+- Doctor withheld on a stuck run that also carries no-edit wording: both layers withhold it (`command-attach.ts:1599`, `fusion.ts:1106`, `command-attach.ts:79`) (iteration 1).
+- A typed `/doctor:deep-loop` surviving a refusal lead: `DOCTOR_NAMING_LED` and `!onlyMentioned` keep a refused naming out, while a bare typed doctor on a stuck run is REQ-044's request (`fusion.ts:1062`, `fusion.ts:1083`) (iteration 1).
+- A refusal gap matching across a conjunction: `RUN_ASK_REFUSAL_GAP` excludes `and|then|but|or` (`command-attach.ts:761`) (iteration 1).
+- Arbitrary prompt text reaching the rendered command: every emitted command is a `TRACKED_COMMANDS` key chosen by table lookup or owner-checked derivation (`skill-advisor-cli.ts:1489`, `:1570`, `:1573`) (iteration 2).
+- The pasted-reply strip applied on one path only: all of `advisor-recommend.ts:544`, `skill-advisor-cli.ts:1511` and `subprocess.ts:251` strip (iteration 2).
+- Command injection through the Python child: argv-form `spawn` with no shell, fixed argv shape, prompt over stdin (`subprocess.ts:283`, `:414`) (iteration 2).
+- ReDoS through the gate grammars: every quantified group is bounded in `LOOP_REQUEST` and the refusal patterns (`command-attach.ts:761`, `:983`, `:997`) (iteration 2).
+- A REQ with no owning acceptance row: every REQ-001..REQ-052 appears in the matrix `REQ` column (iteration 3).
+- A doubled or non-breaking space defeating a loop-name pattern: both copies fold all whitespace before matching (`command-attach.ts:883`, `skill_advisor.py:5109`) (iteration 3).
+- `autonomous research` reaching the advisor's derived lane through the nested packet's keyword list: `projection.ts:1449` reads top-level skill directories with `graph-metadata.json` only (iteration 3).
+- A stale compiled command contract: all 31 recorded `sourceDigests` match the current source bytes in both contracts (iteration 5).
+- A hub mode table that hardcodes a packet path the registry does not carry: `SKILL.md:30`-`:31` and `mode-registry.json` agree for `research` and `review` (iteration 5).
+- `replaceAnchorSection` losing a strategy file's own section numbers: it keeps the ordinal the file gave the section (iteration 5).
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 12. NEXT FOCUS
-- None. This is the last iteration under `maxIterations`; the run goes to synthesis with stop reason `maxIterationsReached`. - Rotation status: correctness, security, traceability and maintainability each covered; both core protocols executed; overlays resolved. - Carry-forward for synthesis: P0=0, P1=1, P2=4, verdict CONDITIONAL, release readiness `in-progress`. Review verdict: CONDITIONAL
+- Dimension: none remaining — the iteration cap (7) is reached.
+- Focus area: synthesis. Compile the report, run the adversarial self-check over the four P2 findings, derive the verdict from the registry, and record the terminal gates.
+- Reason: `stopPolicy: max-iterations`, iteration 7 of 7.
+- Rotation status: complete; every configured dimension has at least one full iteration, and `correctness` and `traceability` have two each.
+- Blocked/productive carry-forward: nothing blocked.
+- Required evidence: `deep-review-findings-registry.json`, the six protocol statuses above, and the seven iteration narratives.
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- Target pointers: `spec.md` (D1-D10, 48 REQ), `acceptance-criteria.md` (56 AC), `tasks.md` (135 tasks, ten fix rounds), `decision-record.md` (8 ADRs), `implementation-summary.md`; code under `.skilled/skills/system-skill-advisor/runtime/` (gate, scorer, CLI degraded path, Python fallback), `.skilled/commands/deep/`, the reducer `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, and the shared fixture `tests/fixtures/deep-loop-offer-cases.json`.
-- Behavior claims: REQ-001 to REQ-048, AC-001 to AC-056. The operator focus names the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
-- Reuse and conventions: the packet's own ten rounds treat closure-doc drift as P2 and a claim without tree evidence as P1; AC-040 reads `Unmet` for the rerun the packet never ran.
-- Review risks and gaps: five prior reruns returned FAIL on the coverage gate; evidence cells cite `path:line`, so a moved line is drift; the tree carries `.skilled/` and the mirror `dist` build, so a code claim can be true in source and false in the built artifact.
+- **Target pointers**: 47 pre-bound scope files (see `review-scope-files.txt`); the packet's six canonical docs plus the advisor runtime, the deep-loop command/review docs, and the associated vitest/JSON fixtures.
+- **Behavior claims**: `spec.md` REQ-001..REQ-034, `acceptance-criteria.md` AC-001..AC-042 (sixth fix round AC-030..AC-042), `decision-record.md` ADR-001..ADR-006.
+- **Reuse and conventions**: advisor brief rendering via `command-attach.ts` / `render.ts`; typed-command fields on the recommend response; the `free`/`ask`/`run`/`start` typed-command vocabulary used by the deep-loop offer.
+- **Review risks and gaps**: `resource-map.md` absent (coverage gate skipped); the packet was restarted eight generations deep, so prose may describe work an archived round superseded. Implementation evidence outranks stale prose.
 
 ---
 
 ## 14. CROSS-REFERENCE STATUS
 <!-- MACHINE-OWNED: START -->
-[Alignment checks completed across core and overlay protocols]
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
-| `checklist_evidence` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
-| `skill_agent` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `agent_cross_runtime` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `feature_catalog_code` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `playbook_capability` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
+| `spec_code` | core | pass | 3 (re-read in 5, 6, 7) | All 52 REQs resolve to code, a decision, or the artifact that records the measurement; REQ-007's generated contracts verified by hash, 31 of 31 |
+| `checklist_evidence` | core | pass | 4 (re-read in 7) | 119 of 119 acceptance anchors resolve; all 60 cells read; 138 task boxes checked with 33 repo paths present; Verification Summary reproduces from its boxes |
+| `skill_agent` | overlay | pass | 5 | Hub `SKILL.md` mode table matches `mode-registry.json`; the hub names its projection drift guard |
+| `agent_cross_runtime` | overlay | notApplicable | 5 | No agent definition among the 47 scope files |
+| `feature_catalog_code` | overlay | notApplicable | 5 | No feature-catalog document mentions the deep-loop offer |
+| `playbook_capability` | overlay | pass | 5 | Manual-testing playbook carries `mode-routing/review-routing.md` naming `/deep:review`; preconditions not read line by line |
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
-[Per-file coverage state table -- populated during initialization from scope discovery]
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| [54 scope files recorded in `deep-review-config.json` `reviewScopeFiles`] | [D1, D3] | [N] | [0 P0, 0 P1, 0 P2] | [partial/complete] |
+| [pending first iteration] | - | - | - | - |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -261,12 +299,12 @@ The loop runs to `config.maxIterations` (7) with `stopPolicy: max-iterations`; c
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-max-3-1795546920757-7pyjry, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-max-3-1795550334883-gjbarh, parentSessionId=2026-11-24T19:58:39.000Z, generation=8, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-24T19:03:48Z
+- Started: 2026-11-24T19:58:39.000Z
 <!-- MACHINE-OWNED: END -->

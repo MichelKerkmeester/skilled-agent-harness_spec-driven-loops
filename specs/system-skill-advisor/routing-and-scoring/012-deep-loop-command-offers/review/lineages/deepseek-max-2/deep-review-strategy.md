@@ -1,180 +1,184 @@
 ---
-title: Deep Review Strategy - 012-deep-loop-command-offers
-description: Review progress, dimension coverage, findings, and next focus for the traceability rerun lineage deepseek-max-2.
+title: "Deep Review Strategy - 012-deep-loop-command-offers (lineage deepseek-max-2)"
+description: "Runtime strategy file for the deepseek-max-2 fan-out lineage of the generation 8 traceability review of packet 012."
+trigger_phrases:
+  - "deep review strategy 012 deepseek-max-2"
 importance_tier: normal
 contextType: planning
+version: 1.13.0.0
 ---
 
-# Deep Review Strategy - 012-deep-loop-command-offers
+# Deep Review Strategy - Session Tracking
 
-## 1. REVIEW CHARTER
+## 1. OVERVIEW
 
-- Target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder, Level 2)
-- Dimensions: correctness, security, traceability, maintainability
-- Operator focus: finish the `spec_code` and `checklist_evidence` protocols over every REQ, every ticked task and every `Met` acceptance row, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
-- Stop conditions: `stopPolicy=max-iterations` with `maxIterations=7`; the convergence vote is telemetry only.
-- Success criteria: no active P0; every configured dimension covered; both core traceability protocols recorded with evidence.
+**Topic:** Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder target), generation 8 traceability rerun.
+
+**Operator review focus (config.reviewFocus):** Traceability: finish the `spec_code` and `checklist_evidence` protocols. Check every REQ in `spec.md` against the code that implements it or the decision that records it, and every ticked task in `tasks.md` and every `Met` row in `acceptance-criteria.md` against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
 
 ## 2. TOPIC
 
-Review of the deep-loop command-offer packet: the advisor gate that offers `/deep:review` or `/deep:research` on an explicit loop ask, the stage-one loop rule, the deep command documents and presentation files, the hub router aliases, and the closure records that tie them together.
+The packet closes a build that changed the advisor's deep-loop command gate (`lib/command-attach.ts` and its Python fallback `scripts/skill_advisor.py`), the stage-one scorer lane (`lib/scorer/lanes/explicit.ts`), the two deep command documents with their presentation contracts, the corpus and its baseline, and the deep-review reducer (`runtime/scripts/reduce-state.cjs`). It carries 52 requirements across twelve fix rounds, 60 acceptance rows, nine decision records and 72 files in the declared review scope.
 
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
-[All dimensions complete]
+- [ ] correctness
+- [ ] security
+- [ ] maintainability
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
 
-- Re-running the advisor test suites or the 69-probe set; the review reads the tree and the recorded evidence.
-- Proposing or applying fixes; findings only.
-- Reviewing packets 013's build beyond the evidence its REQ-006 row cites.
+- No behaviour change is proposed; the review reports only. Every fix lands in a later round.
+- The advisor vitest suite and the Python suite are not run: the lineage write surface is the lineage directory, and running the repo's gates is outside it.
+- Behaviour re-measurement of the 69 probes and the 247-row routing corpus is not repeated. The probe and corpus evidence is read from the tree and the committed artefacts.
 
 ## 5. STOP CONDITIONS
 
-- `maxIterationsReached` at iteration 7, as configured.
-- Stuck recovery redirects focus rather than stopping, because the stop policy is `max-iterations`.
+- `config.stopPolicy` is `max-iterations`: convergence is telemetry only, and the loop stops at `maxIterations` = 7 with stop reason `maxIterationsReached`.
+- `spec_code` and `checklist_evidence` must both reach a recorded status before synthesis (REQ-033 / AC-040 depends on it).
 
 <!-- ANCHOR:completed-dimensions -->
 ## 6. COMPLETED DIMENSIONS
-- [x] correctness
-- [x] security
 - [x] traceability
-- [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
 <!-- ANCHOR:running-findings -->
 ## 7. RUNNING FINDINGS
 - P0 (Blockers): 0
 - P1 (Required): 0
-- P2 (Suggestions): 5
+- P2 (Suggestions): 4
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
 
-[First iteration -- populated after iteration 1 completes]
+- Looking each requirement's own prompts up in the shared fixture: 48 of 51 quoted strings resolved to a case, so a requirement's reach into the two gate copies is provable from one file (iterations 1, 2).
+- Reading the compiler's slice markers instead of the compiled output: it turned an apparent stale build into a declared boundary (iteration 1).
+- Recomputing every count a closure record states instead of reading it: that is what found the pair-count drift stated three ways and the one unsatisfiable scope claim (iterations 4, 6).
+- Running the packet's own checker (`scratch/citations/evidence-tails.py`) rather than trusting the task text: `problems=0` over 60 rows (iteration 4).
+- Byte-comparing the runtime mirrors instead of assuming packaging drift: only frontmatter and the path convention differed (iteration 7).
 
 ## 9. WHAT FAILED
 
-- The setup `BINDING:` lines were not emitted before the first write. The executor read the config, wrote config, registry, strategy and graph seed first and printed the bindings only in the final report, so the machine-verifiable ordering the agent contract asks for is missing from this lineage's stdout. Recorded here rather than left silent (iteration 7 also records it under Edge Cases).
-- One in-place text replacement used `sed -i` on iteration 7's own narrative to fix a mistyped SOURCE path; the prompt pack bans `sed -i` on any path. The write stayed inside the lineage and touched no review target, and the deviation is recorded in the iteration file.
-- The per-iteration coverage-graph upsert was skipped during the loop and backfilled before synthesis, so the first convergence pass read 0% dimension coverage and recorded a blocked-stop graph decision before the backfill. The re-run after the backfill read `STOP_ALLOWED` with every signal at 1.0.
+- Treating the strategy's dimension checklist as narrative: pre-ticking two dimensions at init made the reducer report coverage no iteration had earned, and it had to be corrected before iteration 2 (iteration 1).
+- Searching the acceptance table for requirement gaps: every REQ id is already covered, so the direction yielded nothing (iteration 1).
+- Trying to close the feature-catalog drift inside this lineage: the page is outside the seeded scope, so the row had to be deferred and now stands as the run's only search debt (iteration 7).
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 10. EXHAUSTED APPROACHES (do not retry)
-### "A `run` policy could start a deep command": ruled out; both deep commands are `ask`, and the `run` policy belongs to the read-only doctor. -- RULED OUT (iteration 5, 1 attempt)
-- What was tried: "A `run` policy could start a deep command": ruled out; both deep commands are `ask`, and the `run` policy belongs to the read-only doctor.
+### **`MODE_CUES` and the hub router keying different modes.** Ruled out: both key `research` and `review`, and the test at `deep-loop-offer-cases.vitest.ts:743` asserts the four surfaces together. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: **`MODE_CUES` and the hub router keying different modes.** Ruled out: both key `research` and `review`, and the test at `deep-loop-offer-cases.vitest.ts:743` asserts the four surfaces together.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A code comment carries an ephemeral requirement or decision label": ruled out for the four gate files. -- RULED OUT (iteration 3, 1 attempt)
-- What was tried: "A code comment carries an ephemeral requirement or decision label": ruled out for the four gate files.
+### **A `Met` row resting on evidence that does not exist.** Ruled out: 60 of 60 tails resolve, and the anchors named by the first 29 rows exist as files, rows or lines. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: **A `Met` row resting on evidence that does not exist.** Ruled out: 60 of 60 tails resolve, and the anchors named by the first 29 rows exist as files, rows or lines.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A refusal still yields a deep command": ruled out by the fixture rows and the guard that reads them. -- RULED OUT (iteration 5, 1 attempt)
-- What was tried: "A refusal still yields a deep command": ruled out by the fixture rows and the guard that reads them.
+### **A checklist count that contradicts its own boxes.** Ruled out: the Verification Summary recomputes to the same figures. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: **A checklist count that contradicts its own boxes.** Ruled out: the Verification Summary recomputes to the same figures.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A requirement has no implementation or decision behind it": ruled out for all 48. -- RULED OUT (iteration 7, 1 attempt)
-- What was tried: "A requirement has no implementation or decision behind it": ruled out for all 48.
+### **A citation tail that lands on the wrong line.** Ruled out: the independent checker reports `problems=0` over all 60 rows. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: **A citation tail that lands on the wrong line.** Ruled out: the independent checker reports `problems=0` over all 60 rows.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A requirement in the sixth round has no recorded decision": ruled out; ADR-005 and ADR-006 cover the typed-on-stuck and bare-loop-name cases the round rests on. -- RULED OUT (iteration 2, 1 attempt)
-- What was tried: "A requirement in the sixth round has no recorded decision": ruled out; ADR-005 and ADR-006 cover the typed-on-stuck and bare-loop-name cases the round rests on.
+### **A corpus-count drift in the ticked tasks.** Ruled out: the baseline still reads `false_offer` 0/57 and `false_offer_attached` 1/57, which is what the tasks quote. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: **A corpus-count drift in the ticked tasks.** Ruled out: the baseline still reads `false_offer` 0/57 and `false_offer_attached` 1/57, which is what the tasks quote.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A ticked task names a file that does not exist": ruled out; every resolvable path token exists once bare filenames are resolved under their directories. -- RULED OUT (iteration 3, 1 attempt)
-- What was tried: "A ticked task names a file that does not exist": ruled out; every resolvable path token exists once bare filenames are resolved under their directories.
+### **A degraded row keeping a withheld command.** Ruled out by reading the withhold branch, which strips `command`, `policy`, `ownerSkillId` and `typed`. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: **A degraded row keeping a withheld command.** Ruled out by reading the withhold branch, which strips `command`, `policy`, `ownerSkillId` and `typed`.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "A ticked task rests on a missing artifact": ruled out apart from the tail-check script recorded as R3-P2-002. -- RULED OUT (iteration 7, 1 attempt)
-- What was tried: "A ticked task rests on a missing artifact": ruled out apart from the tail-check script recorded as R3-P2-002.
+### **A drift-guard list with no Python counterpart.** Ruled out: `SMALL_EDIT_WORDING` is the one deliberate exception and has no Python copy, and the two command lead lists it was excused for are compared. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: **A drift-guard list with no Python counterpart.** Ruled out: `SMALL_EDIT_WORDING` is the one deliberate exception and has no Python copy, and the two command lead lists it was excused for are compared.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "AC-037 reads a different prompt head on each side": ruled out; both constants are 400, and the numeric pair is compared. -- RULED OUT (iteration 4, 1 attempt)
-- What was tried: "AC-037 reads a different prompt head on each side": ruled out; both constants are 400, and the numeric pair is compared.
+### **A fixture count in the sixth-round rows that has moved.** Ruled out: the refusal, doctor, typed, no-edit and effort counts all recompute to the stated figures. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: **A fixture count in the sixth-round rows that has moved.** Ruled out: the refusal, doctor, typed, no-edit and effort counts all recompute to the stated figures.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "ADR-005's served column is asserted only in Python": ruled out; the TypeScript suite reads `servedReviewKept` through `attachTypedCommand`. -- RULED OUT (iteration 4, 1 attempt)
-- What was tried: "ADR-005's served column is asserted only in Python": ruled out; the TypeScript suite reads `servedReviewKept` through `attachTypedCommand`.
+### **A gate pattern the drift guard neither compares nor lists.** Ruled out: the coverage test recomputes the 43 `re.compile` assignments in the fallback's gate slice and requires the accounted set to equal it. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: **A gate pattern the drift guard neither compares nor lists.** Ruled out: the coverage test recomputes the 43 `re.compile` assignments in the fallback's gate slice and requires the accounted set to equal it.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "Prompt text is compiled into a pattern": ruled out by reading every `new RegExp` in the gate; each is built from static lists. -- RULED OUT (iteration 5, 1 attempt)
-- What was tried: "Prompt text is compiled into a pattern": ruled out by reading every `new RegExp` in the gate; each is built from static lists.
+### **A mirror that has drifted in substance.** Ruled out: `.opencode` is identical and `.claude` differs only in frontmatter and the path convention its runtime requires. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: **A mirror that has drifted in substance.** Ruled out: `.opencode` is identical and `.claude` differs only in frontmatter and the path convention its runtime requires.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "REQ-047 has no fixture evidence": ruled out; four rows read `servedRun: "none"`. -- RULED OUT (iteration 6, 1 attempt)
-- What was tried: "REQ-047 has no fixture evidence": ruled out; four rows read `servedRun: "none"`.
+### **A missing declared change-set file.** Ruled out: all 26 paths in the three change-set tables resolve to existing files. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: **A missing declared change-set file.** Ruled out: all 26 paths in the three change-set tables resolve to existing files.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The closure documents drifted beyond the two task counts": ruled out; the acceptance tails resolve apart from AC-040's archived report. -- RULED OUT (iteration 6, 1 attempt)
-- What was tried: "The closure documents drifted beyond the two task counts": ruled out; the acceptance tails resolve apart from AC-040's archived report.
+### **A playbook precondition that the build invalidated.** Ruled out: NC-012's no-edit gate is a writing-workflow gate, which REQ-040 left unchanged. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: **A playbook precondition that the build invalidated.** Ruled out: NC-012's no-edit gate is a writing-workflow gate, which REQ-040 left unchanged.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The drift guard compares fewer than 22 pairs": ruled out; the block holds 22 entries. -- RULED OUT (iteration 2, 1 attempt)
-- What was tried: "The drift guard compares fewer than 22 pairs": ruled out; the block holds 22 entries.
+### **A read-only loop lost to a no-edit clause.** Ruled out: the guard at `command-attach.ts:1620` exempts the read-only modes, and the three `no-edit-*` rows carry their mode. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: **A read-only loop lost to a no-edit clause.** Ruled out: the guard at `command-attach.ts:1620` exempts the read-only modes, and the three `no-edit-*` rows carry their mode.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The gain rows still print `cmd=-`": ruled out by the recorded run, where V6, H1a, H1b, E1 and E3 each carry their deep command. -- RULED OUT (iteration 1, 1 attempt)
-- What was tried: "The gain rows still print `cmd=-`": ruled out by the recorded run, where V6, H1a, H1b, E1 and E3 each carry their deep command.
+### **A refinement folding across files.** Ruled out by reading `refinesSameLocation` and the unit test that names it. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: **A refinement folding across files.** Ruled out by reading `refinesSameLocation` and the unit test that names it.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The hub still carries `autonomous research`": ruled out; neither hub file matches. -- RULED OUT (iteration 2, 1 attempt)
-- What was tried: "The hub still carries `autonomous research`": ruled out; neither hub file matches.
+### **A REQ-015 to REQ-034 prompt missing from the shared fixture.** Ruled out: 48 of 51 quoted strings resolve to a case prompt, and the three that do not are a repeated unit, a describe name and a quoted line, none of which is a prompt. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: **A REQ-015 to REQ-034 prompt missing from the shared fixture.** Ruled out: 48 of 51 quoted strings resolve to a case prompt, and the three that do not are a repeated unit, a describe name and a quoted line, none of which is a prompt.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The keep group drifted on policy": ruled out by the command-and-policy comparison against `results-spec-baseline.json`. -- RULED OUT (iteration 1, 1 attempt)
-- What was tried: "The keep group drifted on policy": ruled out by the command-and-policy comparison against `results-spec-baseline.json`.
+### **A requirement in REQ-001 to REQ-014 with no acceptance row.** Ruled out: all 52 requirement ids appear in the acceptance table, and every acceptance row names at least one requirement id. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: **A requirement in REQ-001 to REQ-014 with no acceptance row.** Ruled out: all 52 requirement ids appear in the acceptance table, and every acceptance row names at least one requirement id.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The no-gain group gained a command": ruled out by a three-row scan over all thirteen ids. -- RULED OUT (iteration 1, 1 attempt)
-- What was tried: "The no-gain group gained a command": ruled out by a three-row scan over all thirteen ids.
+### **A served-head test that pins the gate layer only.** Ruled out: `tests/typed-on-stuck-serving.vitest.ts:112` goes through the real `advisor_recommend` head, and the fixture column is read on both sides. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: **A served-head test that pins the gate layer only.** Ruled out: `tests/typed-on-stuck-serving.vitest.ts:112` goes through the real `advisor_recommend` head, and the fixture column is read on both sides.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The presentation files still carry `ASK with SINGLE prompt`": ruled out; neither file matches. -- RULED OUT (iteration 2, 1 attempt)
-- What was tried: "The presentation files still carry `ASK with SINGLE prompt`": ruled out; neither file matches.
+### **A skill contract that contradicts the agent definition it dispatches.** Ruled out by reading the final-line contract, the status enum and the LEAF boundary in both. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: **A skill contract that contradicts the agent definition it dispatches.** Ruled out by reading the final-line contract, the status enum and the LEAF boundary in both.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The reducer renumbers a template-derived strategy": ruled out on this lineage's own file and by the numbering test. -- RULED OUT (iteration 6, 1 attempt)
-- What was tried: "The reducer renumbers a template-derived strategy": ruled out on this lineage's own file and by the numbering test.
+### **A ticked task whose named test or fixture row is absent.** Ruled out: every test title and fixture row id quoted by T059 to T111 resolves in the tree. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: **A ticked task whose named test or fixture row is absent.** Ruled out: every test title and fixture row id quoted by T059 to T111 resolves in the tree.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The shared fixture holds a different count than the closure docs claim": ruled out; 347 cases, the count AC-028 and AC-055 record. -- RULED OUT (iteration 1, 1 attempt)
-- What was tried: "The shared fixture holds a different count than the closure docs claim": ruled out; 347 cases, the count AC-028 and AC-055 record.
+### **A waiver without a decision record.** Ruled out: AC-008/ADR-003, AC-017/ADR-002, AC-019/ADR-001 and AC-020/ADR-009 all pair correctly. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: **A waiver without a decision record.** Ruled out: AC-008/ADR-003, AC-017/ADR-002, AC-019/ADR-001 and AC-020/ADR-009 all pair correctly.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The sixth fix round's decisions are missing from the record": ruled out; ADR-005 and ADR-006 exist and match the built behaviour. -- RULED OUT (iteration 7, 1 attempt)
-- What was tried: "The sixth fix round's decisions are missing from the record": ruled out; ADR-005 and ADR-006 exist and match the built behaviour.
+### **ADR-005 or ADR-006 stating a decision the code does not implement.** Ruled out by reading both the ADRs and the branches they name. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: **ADR-005 or ADR-006 stating a decision the code does not implement.** Ruled out by reading both the ADRs and the branches they name.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The sixth-round acceptance rows cite test titles that do not exist": ruled out for all eight checked. -- RULED OUT (iteration 4, 1 attempt)
-- What was tried: "The sixth-round acceptance rows cite test titles that do not exist": ruled out for all eight checked.
+### **An active P0 or P1 at the run's last iteration.** Ruled out: four P2 findings, no P0 or P1, across seven iterations. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: **An active P0 or P1 at the run's last iteration.** Ruled out: four P2 findings, no P0 or P1, across seven iterations.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### "The Verification Summary overstates what is verified": ruled out; the open CHK-020 box is the one P0 not verified, which is what 11/12 records. -- RULED OUT (iteration 3, 1 attempt)
-- What was tried: "The Verification Summary overstates what is verified": ruled out; the open CHK-020 box is the one P0 not verified, which is what 11/12 records.
+### **Compiled contracts stale against the edited presentations.** Ruled out: the compiler's slice markers (`compile-command-contracts.cjs:76-78`, `:177-179`) start after the offer section by design, `extractBetween` throws on a missing marker (`:291-296`), and both compiled files carry the setup H3s the slice contains. The offer's absence from the compiled surface is a slice property, not drift. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: **Compiled contracts stale against the edited presentations.** Ruled out: the compiler's slice markers (`compile-command-contracts.cjs:76-78`, `:177-179`) start after the offer section by design, `extractBetween` throws on a missing marker (`:291-296`), and both compiled files carry the setup H3s the slice contains. The offer's absence from the compiled surface is a slice property, not drift.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
@@ -189,58 +193,87 @@ Review of the deep-loop command-offer packet: the advisor gate that offers `/dee
 
 ## 11. RULED OUT DIRECTIONS
 
-[Review angles that were investigated and definitively eliminated]
+- Compiled contracts stale against the edited presentations: the compiler slice opens at `:auto Setup Resolution`, above which the offer section sits, and a missing marker throws (iteration 1, evidence: `compile-command-contracts.cjs:76-78,291-296`).
+- A requirement with no acceptance row: all 52 REQ ids appear in the acceptance table (iteration 1).
+- A declared change-set file missing from the tree: all 26 paths resolve (iteration 1).
+- A REQ-015 to REQ-034 prompt missing from the shared fixture: 48 of 51 quoted strings resolve, the other three are not prompts (iteration 2).
+- A drift-guard list with no Python counterpart: `SMALL_EDIT_WORDING` is the deliberate exception (iteration 2).
+- A refinement folding across files: `refinesSameLocation` returns false on a different file or dimension (iteration 2).
+- A gate pattern neither compared nor listed: 43 compiled patterns, 43 accounted for (iteration 3).
+- `MODE_CUES` and the hub router keying different modes: both key `research` and `review` (iteration 3).
+- A degraded row keeping a withheld command: the branch strips four fields (iteration 3).
+- A `Met` row resting on evidence that does not exist: 60 of 60 tails resolve (iteration 5).
+- A waiver without a decision record: four waivers, four ADRs (iteration 5).
+- A sixth-round fixture count that moved: every count recomputes (iteration 6).
+- An ADR stating a behaviour the tree does not implement: ADR-005 and ADR-006 both hold (iteration 6).
+- A runtime mirror drifted in substance: frontmatter and path convention only (iteration 7).
+- A playbook precondition the build invalidated: NC-012 gates a writing workflow (iteration 7).
 
 <!-- ANCHOR:next-focus -->
 ## 12. NEXT FOCUS
-- None: the run reaches its iteration cap. Synthesis compiles the report from the registry and the iteration trail.
+- Dimension: none. The run stopped at its iteration cap (7 of 7) with stop reason `maxIterationsReached`.
+- Focus area: a follow-up run. Correct the four P2 closure-record drifts in one docs pass, and bind a review to the feature-catalog page so the deferred search-debt row `SL-019` can close.
+- Reason: search debt is the only reason the verdict is CONDITIONAL; the doctrine's next step is another `/deep:review` over the deferred surface, not a remediation plan.
+- Rotation status: closed for this lineage. `correctness`, `security` and `maintainability` were not re-reviewed here and need their own iterations.
+- Blocked / productive carry-forward: productive, with the coverage gap carried forward as a named limit.
+- Required evidence: the four finding ids, both core protocol statuses, and the coverage state in `deep-review-findings-registry.json`.
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- Target pointers: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`, `runtime/scripts/skill_advisor.py`, `runtime/lib/scorer/lanes/explicit.ts`, `runtime/lib/scorer/fusion.ts`, `runtime/lib/subprocess.ts`, `runtime/skill-advisor-cli.ts`, the shared fixture and its tests, the two deep presentation files and command documents, the hub router files, and the deep-loop reducer.
-- Behavior claims: 48 requirements in `spec.md`, 56 acceptance rows in `acceptance-criteria.md`, 105 tasks in `tasks.md`, and the ADR set in `decision-record.md`.
-- Reuse and conventions: the packet's evidence convention is a named citation per task and one `Evidence: path:N (anchor)` tail per acceptance row.
-- Review risks and gaps: earlier reruns returned FAIL on coverage and scope, so the closure records are the likely weak surface; every cited anchor must be re-opened rather than trusted.
+- **Target pointers:** `spec.md` (52 REQ rows), `tasks.md` (T001 to T111, CHK-001 to CHK-051), `acceptance-criteria.md` (AC-001 to AC-060), `decision-record.md` (ADR-001 to ADR-009), `implementation-summary.md`, `timeline.md`.
+- **Behavior claims to verify:** every REQ names the gate copy, scorer lane, reducer function, test title or fixture row that implements it; every `Met` acceptance row names evidence the tree holds.
+- **Reuse and conventions:** the shared fixture `tests/fixtures/deep-loop-offer-cases.json` (359 cases) is read by both the TypeScript and the Python suite, so a case is pinned in both copies or in neither.
+- **Review risks and gaps:** the advisor suite and the Python suite cannot be run from this lineage, so "the suite passes" claims rest on the recorded evidence rows, not on a fresh run. Probe and corpus evidence in `scratch/` is read, not re-measured.
+- **Scope:** 72 files are pre-bound in `review-scope-files.txt`; `runtime/dist/` is generated output and is not a review target.
 
 ## 14. CROSS-REFERENCE STATUS
-<!-- MACHINE-OWNED: START -->
-[Alignment checks completed across core and overlay protocols]
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
-| `checklist_evidence` | core | [pending/pass/partial/fail/blocked] | [N] | [details] |
-| `skill_agent` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `agent_cross_runtime` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `feature_catalog_code` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `playbook_capability` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-<!-- MACHINE-OWNED: END -->
+| `spec_code` | core | pass | 1-3 | 52 of 52 requirement rows bound to a symbol, fixture row, test title or document line |
+| `checklist_evidence` | core | pass | 4-6 | 111 ticked tasks and 42 acceptance rows read with counts recomputed; four P2 docs-drift records |
+| `skill_agent` | overlay | pass | 7 | the deep-review skill contract and its agent definition agree |
+| `agent_cross_runtime` | overlay | pass | 7 | opencode mirror identical; claude mirror differs only in runtime frontmatter and path convention |
+| `feature_catalog_code` | overlay | partial | 7 | the catalog's no-edit sentence predates the read-only loop exception; deferred as an out-of-scope surface (search debt `SL-019`) |
+| `playbook_capability` | overlay | pass | 7 | NC-012 gates a writing workflow, which the build did not change |
 
 ## 15. FILES UNDER REVIEW
-<!-- MACHINE-OWNED: START -->
-[Per-file coverage state table -- populated during initialization from scope discovery]
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| [path/to/file] | [D1, D3] | [N] | [0 P0, 1 P1, 2 P2] | [partial/complete] |
-<!-- MACHINE-OWNED: END -->
+| spec.md (52 REQ rows) | traceability | 6 | 0 | complete |
+| tasks.md (111 tasks, 51 CHK) | traceability | 4 | 2 P2 | complete |
+| acceptance-criteria.md (60 rows) | traceability | 6 | 1 P2 | complete |
+| decision-record.md (9 ADRs) | traceability | 6 | 0 | complete |
+| timeline.md | traceability | 2 | 1 P2 | complete |
+| implementation-summary.md | traceability | 6 | 0 | complete |
+| .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts | traceability | 6 | 0 | complete |
+| .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py | traceability | 3 | 0 | complete |
+| .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts | traceability | 3 | 0 | complete |
+| .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts | traceability | 3 | 0 | complete |
+| .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs | traceability | 3 | 0 | complete |
+| .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json | traceability | 6 | 0 | complete |
+| .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts | traceability | 6 | 1 P2 | complete |
+| .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ (corpus and baseline) | traceability | 5 | 0 | complete |
+| .skilled/commands/deep/ (commands, presentations, YAML, compiled) | traceability | 1 | 0 | complete |
+| .skilled/skills/system-deep-loop/deep-review/SKILL.md and .skilled/agents/deep-review.md (+ mirrors) | traceability | 7 | 0 | complete |
 
 ## 16. REVIEW BOUNDARIES
 <!-- MACHINE-OWNED: START -->
 - Max iterations: 7
-- Convergence threshold: 0.10
+- Convergence threshold: 0.10 (telemetry only under `stopPolicy: max-iterations`)
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-max-2-1795546920757-7pyjry, parentSessionId=2026-11-24T18:14:20.000Z, generation=7, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-max-2-1795550334883-gjbarh, parentSessionId=null, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-24T19:03:34Z
+- Started: 2026-11-24T20:01:19Z
 <!-- MACHINE-OWNED: END -->

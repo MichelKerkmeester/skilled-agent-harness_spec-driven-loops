@@ -1,234 +1,209 @@
-# Deep Review Report - 012-deep-loop-command-offers
+# Deep Review Report - 012-deep-loop-command-offers (lineage deepseek-max-2, generation 8)
 
-Lineage `deepseek-max-2`, generation 7, seven iterations, review focus traceability.
+## 1. EXECUTIVE SUMMARY
 
-## 1. Executive Summary
+- **Overall verdict: CONDITIONAL.**
+- **hasAdvisories: false** (the verdict is CONDITIONAL, so the advisory flag is not set even though four P2 findings are active).
+- **P0 / P1 / P2: 0 / 0 / 4** — the counts this verdict used, read from `deep-review-findings-registry.json` after the final reduction.
+- **Why CONDITIONAL and not PASS:** one open search-debt row. `feature_catalog_code` found a catalog sentence that the build has moved past, and the catalog page lies outside this lineage's seeded review scope, so the row was deferred rather than filed. With no active P0, no active P1 and no failed required gate, the search debt is the only reason the verdict is not PASS.
+- **Self-check outcome:** no active P0 or P1 existed at synthesis, so no finding went through a confirm/downgrade/false-positive call. All four P2 findings were re-derived from the tree during the iteration that filed them (recomputed counts and set differences), not carried from a prior round.
+- **Review scope:** 72 files pre-bound in `review-scope-files.txt`, the packet's 52 requirements, 111 tasks, 60 acceptance rows and nine decision records, read across 7 iterations all bound to the operator's traceability focus.
+- **Operator review focus (config.reviewFocus, verbatim):** Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
+- **What the focus produced:** `spec_code` and `checklist_evidence` both finished (pass), 52 of 52 requirements bound, every acceptance `Evidence:` tail resolved, and four closure-record drifts found where nine previous rounds had left counts and one scope claim behind the tree. No word-rule or gate-behaviour gap was found in either gate copy.
 
-- **Overall verdict: PASS**
-- **hasAdvisories: true**
-- **P0: 0, P1: 0, P2: 5** (the counts the verdict used, read from `deep-review-findings-registry.json` after the last reducer pass)
-- **Self-check outcomes:** there is no active P0 or P1 finding, so the adversarial replay had no finding to confirm, downgrade or dismiss; every recorded finding is P2 and was written with its `file:line`.
-- **Review scope:** 54 files, 48 requirements, 105 tasks (104 ticked), 56 acceptance rows, five decision records read.
-- **Operator review focus:** Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
+## 2. PLANNING TRIGGER
 
-Both core protocols finish as `pass`: every requirement traces to an implementing symbol, fixture row, test title or decision, and every ticked task and `Met` row was audited against the tree. The five P2 records are closure-document drift, not gate defects.
+`/speckit:plan` is **not required**. The verdict is CONDITIONAL on search debt alone, and the review doctrine's rule for that state is another `/deep:review` over the deferred surface, not a remediation plan. No P0 or P1 exists, and the four active findings are one-line documentation corrections that a docs pass can make without a spec change.
 
-## 2. Planning Trigger
-
-`/speckit:plan` is required for the P2 advisories only; no remediation workstream is blocking.
+**Planning Packet**
 
 ```json
 {
-  "triggered": true,
-  "verdict": "PASS",
-  "hasAdvisories": true,
+  "triggered": false,
+  "reviewDidNotRun": false,
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": false,
   "activeFindings": [
-    {
-      "id": "R2-P2-001",
-      "severity": "P2",
-      "title": "AC-040's evidence cell points at a review report this restart archived",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "dimension": "traceability",
-      "findingClass": null
-    },
-    {
-      "id": "R3-P2-001",
-      "severity": "P2",
-      "title": "T092's no-stale-count claim fails on two counts in its own file",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
-      "dimension": "traceability",
-      "findingClass": null
-    },
-    {
-      "id": "R3-P2-002",
-      "severity": "P2",
-      "title": "The tail-check script T104 names is not in the tree",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
-      "dimension": "traceability",
-      "findingClass": null
-    },
-    {
-      "id": "R4-P2-001",
-      "severity": "P2",
-      "title": "AC-034's CLI head scores have no artifact, and the one recorded head shows the pre-fix result",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "dimension": "traceability",
-      "findingClass": null
-    },
-    {
-      "id": "R6-P2-001",
-      "severity": "P2",
-      "title": "The declared change set stops at REQ-046 while its rows serve REQ-047 and REQ-048",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "dimension": "traceability",
-      "findingClass": null
-    }
+    "L2-P2-001",
+    "L4-P2-001",
+    "L4-P2-002",
+    "L6-P2-001"
   ],
   "remediationWorkstreams": [
     {
-      "order": 1,
+      "id": "WS-1",
+      "title": "One pass over three closure documents for the pair-count drift",
       "severity": "P2",
-      "title": "Repoint the archived AC-040 evidence tail",
-      "findingIds": [
-        "R2-P2-001"
-      ],
-      "surface": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      "findings": ["L4-P2-001", "L6-P2-001"],
+      "files": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      ]
     },
     {
-      "order": 2,
+      "id": "WS-2",
+      "title": "Record the eleventh fix round and the fifth/sixth reruns in the timeline",
       "severity": "P2",
-      "title": "Correct the two stale task counts and restore the tail-check script",
-      "findingIds": [
-        "R3-P2-001",
-        "R3-P2-002"
-      ],
-      "surface": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
+      "findings": ["L2-P2-001"],
+      "files": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md"]
     },
     {
-      "order": 3,
+      "id": "WS-3",
+      "title": "Qualify T111's scope claim for the generated build directory",
       "severity": "P2",
-      "title": "Record the AC-034 served-head run or soften its claim",
-      "findingIds": [
-        "R4-P2-001"
-      ],
-      "surface": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      "findings": ["L4-P2-002"],
+      "files": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"]
     },
     {
-      "order": 4,
-      "severity": "P2",
-      "title": "Extend the declared change-set heading to REQ-048",
-      "findingIds": [
-        "R6-P2-001"
-      ],
-      "surface": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+      "id": "WS-4",
+      "title": "Next review pass over the deferred feature-catalog surface",
+      "severity": "search-debt",
+      "findings": [],
+      "files": [".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"]
     }
   ],
   "specSeed": [
-    "AC-040's rerun evidence exists: this lineage's terminal gates read evidence, scope and coverage pass, and both core protocols finish.",
-    "REQ-027's served-head figures need either a recorded run or a hedge in the requirement text.",
-    "The declared change set heading should name REQ-035 to REQ-048."
+    "REQ-031's 'it names no list count' rule is the right call: the guard's surface grows, so a count in the requirement would drift every round. The same rule should govern the acceptance row that quotes it.",
+    "REQ-034 should gain a clause asking every closure document to name the round that produced its count, so a later round cannot leave a stale figure behind.",
+    "A requirement that asks for a rerun whose terminal gates read coverage pass (REQ-033) needs the rerun's dispatch to bind all four dimensions, because a lineage bound to one dimension cannot satisfy it."
   ],
   "planSeed": [
-    "Repoint AC-040's Evidence tail to the archived report or to the merged report the root run writes.",
-    "Correct T082's CHK-001 count (46 to 48) and T051's table count (54 rows/50 Met to 56/52).",
-    "Add the Evidence-tail checker the tenth round describes, or name the command that performs it.",
-    "Record or remove AC-034's 0.8754 / 0.82 head figures."
+    "Correct the three closure records in one pass: tasks.md T076 and T092 (pair counts, and T092's claim that REQ-031 names ten per-entry lists and five that do not), acceptance-criteria.md AC-038 (22 pairs, RUN_ASK_REFUSAL_LEADS as last, and the twelve/ten split), and timeline.md's last entry and AC-040 milestone.",
+    "Quote the guard's surface as a named set (VOCABULARY_PAIRS, NUMERIC_PAIRS, PATTERN_PAIRS, PATTERNS_NOT_COMPARED) rather than as counts, so a future pair does not date the text.",
+    "Add one sentence to T111's verify clause: generated build output (`runtime/dist/`) is gitignored and is not seeded into the review scope.",
+    "Add the read-only loop exception to the feature catalog's no-edit sentence, and re-run this review with the catalog page inside the scope so the deferred row closes."
   ],
-  "findingClasses": [
-    "instance-only evidence drift",
-    "instance-only closure drift",
-    "instance-only missing artifact",
-    "instance-only evidence gap",
-    "instance-only scope-record drift"
-  ],
+  "findingClasses": ["docs-drift"],
   "affectedSurfacesSeed": [
-    "acceptance-criteria.md",
-    "tasks.md",
-    "spec.md",
-    "review/review-report.md"
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
   ],
   "fixCompletenessRequired": false
 }
 ```
 
-## 3. Active Finding Registry
+## 3. ACTIVE FINDING REGISTRY
 
-| ID | Severity | Title | Dimension | File | Evidence | Impact | Fix | Disposition | Finding class | Scope proof | Affected surface hints |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| R2-P2-001 | P2 | AC-040's evidence cell points at a review report this restart archived | traceability | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` | read at the cited line | closure record no longer matches the tree | repoint or restore the cited artifact | active | None | None |  |
-| R3-P2-001 | P2 | T092's no-stale-count claim fails on two counts in its own file | traceability | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md` | read at the cited line | closure record no longer matches the tree | repoint or restore the cited artifact | active | None | None |  |
-| R3-P2-002 | P2 | The tail-check script T104 names is not in the tree | traceability | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md` | read at the cited line | closure record no longer matches the tree | repoint or restore the cited artifact | active | None | None |  |
-| R4-P2-001 | P2 | AC-034's CLI head scores have no artifact, and the one recorded head shows the pre-fix result | traceability | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` | read at the cited line | closure record no longer matches the tree | repoint or restore the cited artifact | active | None | None |  |
-| R6-P2-001 | P2 | The declared change set stops at REQ-046 while its rows serve REQ-047 and REQ-048 | traceability | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md` | read at the cited line | closure record no longer matches the tree | repoint or restore the cited artifact | active | None | None |  |
+| ID | Severity | Title | Dimension | File:line | Evidence | Impact | Fix recommendation | Disposition | Finding class | Scope proof | Affected surface hints |
+|----|----------|-------|-----------|-----------|----------|--------|--------------------|-------------|---------------|-------------|------------------------|
+| `L2-P2-001` | P2 | The packet timeline stops one review round short of its own record | traceability | `timeline.md:41` | `timeline.md:41` says "Four traceability reruns alternated with fix rounds seven to ten"; `spec.md:309` records a fifth rerun and `tasks.md:209` an eleventh round with six ticked tasks | A reader dating a change from the timeline stops a round early | Name the fifth rerun and the eleventh round in section 2, and retarget the AC-040 milestone at the review now in flight | active | docs-drift | both documents are lines of `review-scope-files.txt`; packet-doc to packet-doc contradiction | `timeline.md` section 2 last entry; section 3 AC-040 milestone |
+| `L4-P2-001` | P2 | Two ticked tasks state a drift-guard pair count the tree no longer has | traceability | `tasks.md:184` | T092 says "the drift guard compares fifteen pairs" and asks that REQ-031 name ten per-entry lists and five that do not; REQ-031 names no count and `VOCABULARY_PAIRS` holds 25 entries; T076 says "twenty-two pairs" | A reader sizes the guard from the wrong number | Quote the guard's named sets instead of counts, and update both tasks | active | docs-drift | `tasks.md` and `deep-loop-offer-cases.vitest.ts` both in scope; counts recomputed in scope | `tasks.md` T076 and T092 |
+| `L4-P2-002` | P2 | T111's scope claim cannot hold for the generated `runtime/dist` entry | traceability | `tasks.md:218` | The scope file holds 72 lines, none of them `.skilled/skills/system-skill-advisor/runtime/dist`; `.gitignore:60` excludes `dist/` | A scripted re-check of T111 reports a false miss | Qualify the verify clause: generated build output is gitignored and not seeded | active | docs-drift | both files in scope; set difference over the declared change set | `tasks.md` T111 |
+| `L6-P2-001` | P2 | AC-038's pair count and per-entry split no longer match the drift guard | traceability | `acceptance-criteria.md:95` | The cell says 22 pairs, `RUN_ASK_REFUSAL_LEADS` last, and a twelve/ten per-entry split; the tree holds 25 entries, `RUN_ASK_REFUSAL_VERBS` last, and 13 per-entry cases (`deep-loop-offer-cases.vitest.ts:121-147,474`) | A `Met` row describes a guard three pairs smaller than it is | Quote the sets, not the counts; the row's substance (a one-sided edit fails the guard) is unchanged | active | docs-drift | both files in scope; figures recomputed in scope | AC-038 verification cell; `tasks.md` T076 and T092 carry the same class |
 
-## 4. Remediation Workstreams
+## 4. REMEDIATION WORKSTREAMS
 
-### P0
+**P0 workstreams:** none.
 
-None.
+**P1 workstreams:** none.
 
-### P1
+**P2 advisories (one docs pass, three files):**
 
-None.
+1. **Closure-record counts (WS-1):** `acceptance-criteria.md:95` and `tasks.md:154,184`. Replace the three stale figures with the named sets they describe. The guard itself needs no change; `spec.md` REQ-031 already refuses to carry a count.
+2. **Timeline round total (WS-2):** `timeline.md:41,53`. Add the fifth rerun (generation 7) and the eleventh fix round (T106 to T111), and retarget the AC-040 milestone.
+3. **Scope claim (WS-3):** `tasks.md:218`. Qualify the claim for the gitignored generated directory.
+4. **Deferred surface (WS-4, not a finding):** the feature catalog's no-edit sentence. Out of scope here by design; it is the search-debt row the verdict reads.
 
-### P2 advisories
+## 5. SPEC SEED
 
-1. Repoint the archived AC-040 evidence tail (R2-P2-001) - surface `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md`.
-2. Correct the two stale task counts and restore the tail-check script (R3-P2-001, R3-P2-002) - surface `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md`.
-3. Record the AC-034 served-head run or soften its claim (R4-P2-001) - surface `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md`.
-4. Extend the declared change-set heading to REQ-048 (R6-P2-001) - surface `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md`.
+- REQ-031's "names no list count" rule should extend to the acceptance row that quotes the guard. A count in a closure record is the one thing every round has had to chase.
+- REQ-034 could ask each closure document to name the round that produced its number, so a later round cannot silently date it.
+- REQ-033 asks for a rerun whose terminal gates read coverage pass; a rerun bound to a single operator focus cannot satisfy that. The requirement should say what the rerun's dimension binding must be.
 
-## 5. Spec Seed
+## 6. PLAN SEED
 
-- AC-040's rerun evidence exists: this lineage's terminal gates read evidence, scope and coverage pass, and both core protocols finish.
-- REQ-027's served-head figures need either a recorded run or a hedge in the requirement text.
-- The declared change set heading should name REQ-035 to REQ-048.
+- Fix the three closure records in one pass and re-run the packet's own `scratch/citations/evidence-tails.py` afterwards; it already reports `problems=0`, so nothing else in the acceptance table needs touching.
+- Use named sets (`VOCABULARY_PAIRS`, `NUMERIC_PAIRS`, `PATTERN_PAIRS`, `PATTERNS_NOT_COMPARED`) wherever a count would be written.
+- Add the read-only loop exception to `feature-catalog/cli-surface/advisor-recommend.md:33`, then run a review whose scope seeds that page so the deferred row closes.
 
-## 6. Plan Seed
+## 7. TRACEABILITY STATUS
 
-- Repoint AC-040's Evidence tail to the archived report or to the merged report the root run writes.
-- Correct T082's CHK-001 count (46 to 48) and T051's table count (54 rows/50 Met to 56/52).
-- Add the Evidence-tail checker the tenth round describes, or name the command that performs it.
-- Record or remove AC-034's 0.8754 / 0.82 head figures.
+**Core Protocols**
 
-## 7. Traceability Status
+| Protocol | Status | Evidence | Unresolved drift |
+|----------|--------|----------|------------------|
+| `spec_code` | pass | 52 of 52 requirement rows bound across iterations 1 to 3; the last slice's symbols are `command-attach.ts:539,1693`, `hub-router.json` `routerSignals`, `reduce-state.cjs:227,2378,2421` | none |
+| `checklist_evidence` | pass | 47 of 111 ticked tasks read with counts recomputed (iteration 4), AC-001 to AC-029 (iteration 5), AC-030 to AC-042 recomputed (iteration 6); all 60 acceptance `Evidence:` tails resolve and the packet's checker reports `problems=0` | the four P2 docs-drift records above |
 
-| Protocol | Level | Status | Evidence | Unresolved drift |
-|---|---|---|---|---|
-| `spec_code` | core | pass | `spec.md:220` to `:272`, `command-attach.ts:1615`, `reduce-state.cjs:2362`, ADR-005, ADR-006, ADR-007, ADR-008 | five P2 records, none of them a missing implementation |
-| `checklist_evidence` | core | pass | `tasks.md:36` to `:207`, `acceptance-criteria.md:58` to `:113` | the two stale task counts and the missing tail-check script (R3-P2-001, R3-P2-002) |
-| `skill_agent` | overlay | notApplicable | the requirements claim no skill-owned agent definition | - |
-| `agent_cross_runtime` | overlay | notApplicable | no agent definition is claimed | - |
-| `feature_catalog_code` | overlay | notApplicable | no feature-catalog entry is claimed | - |
-| `playbook_capability` | overlay | notApplicable | no playbook capability is claimed | - |
+**Overlay Protocols**
 
-**AC_COVERAGE:** advisory-shortfall, 55 of 56 rows closed (52 `Met`, 2 `Waived` with their ADRs, 1 `Superseded` with ADR-001); AC-040 is the open row and this rerun supplies the evidence it was waiting for.
+| Protocol | Status | Evidence | Notes |
+|----------|--------|----------|-------|
+| `skill_agent` | pass | `deep-review/SKILL.md` and `.skilled/agents/deep-review.md` agree on the final-line contract, the status enum and the LEAF boundary | the depth triggers REQ-011 removed are absent from both |
+| `agent_cross_runtime` | pass | `.opencode/agents/deep-review.md` identical; `.claude/agents/deep-review.md` differs on 22 lines of runtime frontmatter and path convention | mirrors are read-only packaging surfaces |
+| `feature_catalog_code` | partial | `feature-catalog/cli-surface/advisor-recommend.md:33` states the universal no-edit rule; `command-attach.ts:1618-1620` exempts the deep loop's read-only modes | the page is outside the seeded scope, so the drift is deferred search debt |
+| `playbook_capability` | pass | NC-012's three offer gates are writing-workflow gates, unchanged by REQ-040 | no scenario claims a deep-loop behaviour |
 
-## 8. Deferred Items
+**AC_COVERAGE signal:** `advisory-shortfall` — 59 of 60 acceptance rows read `Met`, `Waived` or `Superseded`; `AC-040` reads `Unmet` because it asks for a rerun whose terminal gates read coverage pass, and this lineage covered one of the four configured dimensions. The closure statement already says `Closeable: No` for the same reason. The signal stays advisory while the validation rule is INFO.
 
-- The five P2 records above; each is a closure-document fix, and none blocks the verdict.
-- The coverage-graph stop carried one failed legal-stop gate, `candidateCoverageGate`, because the final record listed `spec_mismatch` as ruled out rather than covered. The cap stop is `maxIterationsReached`, and the terminal gates read pass.
-- No frontier node exists on this lineage, so there is no exhausted or blocked node to defer.
+## 8. DEFERRED ITEMS
+
+- **The feature catalog's no-edit sentence** (`feature-catalog/cli-surface/advisor-recommend.md:33`): deferred, not filed, because the page is outside `review-scope-files.txt`. Recorded as search debt `SL-019` with both lines cited.
+- **Correctness, security and maintainability were not re-reviewed by this lineage.** All seven iterations ran the operator's traceability focus. The registry reports `dimensionCoverage {correctness: false, security: false, traceability: true, maintainability: false}`; a follow-up run with those dimensions bound to its own iterations is the way to cover them.
+- **Behavioural re-measurement** of the 69 probes, the 247-row corpus and the two test suites was not run from this lineage: the write surface is the lineage directory, and the gates belong to the build's own runs. The findings rest on the tree, on recomputed counts and on the recorded artefacts, not on a fresh run.
+- **Frontier work:** the registry carries no `frontier` object (default depth mode), so there are no exhausted or blocked review nodes to list here.
 
 ## Dimension Expansion Map
 
-No divergence pivot ran: `convergenceMode` is `default`, there are no saturated directions, no completed or failed pivots, no overrides and no frontier. Breadth came from the dimension rotation only.
+No divergence occurred: no pivots, no saturated directions, no audited overrides and no frontier. The run used a fixed operator focus across all seven iterations, so the breadth record is the iteration sequence itself:
 
-## 9. Search Ledger
+| Iteration | Direction | Outcome |
+|-----------|-----------|---------|
+| 1 | REQ-001 to REQ-014 against code and documents | clean |
+| 2 | REQ-015 to REQ-034, ADR-005 and ADR-006 | 1 P2 (timeline) |
+| 3 | REQ-035 to REQ-052, drift guard and reducer | clean |
+| 4 | Ticked tasks, counts recomputed | 2 P2 (tasks) |
+| 5 | AC-001 to AC-029 | clean |
+| 6 | AC-030 to AC-042, sixth round | 1 P2 (AC-038) |
+| 7 | Overlay protocols and consolidation | clean, one deferred row |
 
-| Ledger | Dimension | Bug class | Disposition | Rationale |
-|---|---|---|---|---|
-| SL-001 | correctness | state_transition | ruled_out | the ask path reads refusal, subject, past-run, stuck and question forms |
-| SL-002 | correctness | contract_mismatch | ruled_out | 69 probe rows match their recorded expectation |
-| SL-003 | traceability | stale_evidence | finding R2-P2-001 | AC-040's report was archived by this restart |
-| SL-004 | traceability | spec_mismatch | ruled_out | every named symbol and 87 of 88 fixture prompts exist |
-| SL-005 | traceability | stale_evidence | finding R3-P2-001 | two task counts are stale under T092 |
-| SL-006 | traceability | missing_artifact | finding R3-P2-002 | no tail-check script exists |
-| SL-007 | traceability | unbacked_claim | finding R4-P2-001 | AC-034's head figures have no artifact |
-| SL-008 | traceability | stale_evidence | ruled_out | all eight sixth-round test titles exist |
-| SL-009 | security | policy_bypass | ruled_out | both deep commands are ask with ask_first spend |
-| SL-010 | security | input_handling | ruled_out | no prompt-derived regex; lead scans bounded |
-| SL-011 | maintainability | record_drift | finding R6-P2-001 | the scope heading stops at REQ-046 |
-| SL-012 | maintainability | duplication_cost | ruled_out | the dual gate copies are guarded by 22 pairs |
-| SL-013 | traceability | spec_mismatch | ruled_out | all 48 requirements trace |
+## 9. SEARCH LEDGER
 
-`searchCoverage` on the final record: required `spec_mismatch, stale_evidence, missing_artifact`; covered `stale_evidence, missing_artifact`; ruled out `spec_mismatch`; no search debt and no deferred or blocked class.
+- **searchCoverage:** required bug classes `mirror_drift`, `contract_contradiction`, `catalog_drift`, `playbook_precondition`; covered `catalog_drift`; ruled out `mirror_drift`, `contract_contradiction`, `playbook_precondition`; deferred `catalog page wording`; blocked none. `graphCoverageMode: graphless_fallback` (no coverage graph store was seeded in this lineage).
+- **candidateCoverage:** five bug classes produced a finding (`stale_count`, `stale_evidence`, `overstated_verify`, `spec_code_gap`, `catalog_drift`); fifteen appear in `ruledOut`, two of them classes that produced a finding in an earlier iteration (`spec_code_gap`, `stale_count`), and thirteen were ruled out outright (`dangling_evidence`, `unbacked_waiver`, `missing_case`, `uncompared_pattern`, `mode_surface_drift`, `reducer_regression`, `unresolvable_reference`, `unimplemented_decision`, `missed_layer`, `mirror_drift`, `contract_contradiction`, `playbook_precondition`, `doc_code_drift`).
+- **searchDebt: 1** — `SL-019`, the deferred catalog page. `hasSearchDebt: true`; this row is the verdict's only driver, and the next step it implies is another `/deep:review` bound to the catalog surface.
+- **ruledOutCandidates: 15** — the ledger rows from iterations 1 to 7, each with the action that eliminated it (a set comparison for the gate patterns, a byte comparison for the mirrors, a prompt-by-prompt fixture lookup, a per-row evidence-tail resolution, and direct reads of the reducer helpers).
+- **cleanSearchProof:** every ruled-out direction names the action that eliminated it and the file:line it read; no direction was closed on the absence of a hit alone. The two directions that needed a computation (the 43 compiled gate patterns, the scope set difference) were computed rather than assumed.
 
-## 10. Audit Appendix
+## 10. AUDIT APPENDIX
 
-**Convergence.** Seven iterations under `stopPolicy: max-iterations`; the pass-7 stop is `STOP` with `stopReason: maxIterationsReached`, weighted stop score 0.70, graph decision `STOP_ALLOWED` with every signal at 1.0, and one failed legal-stop gate recorded as evidence (`candidateCoverageGate`). `stuckCount` 1, `consecutiveFailureCount` 0.
+**Convergence summary**
 
-**Coverage.** correctness (iteration 1), traceability (2, 3, 4, 7), security (5), maintainability (6); all four configured dimensions covered.
+- 7 of 7 iterations dispatched, all `status: complete`; stop reason `maxIterationsReached` under `stopPolicy: max-iterations`.
+- `newFindingsRatio` by iteration: 0.00, 1.00, 0.00, 1.00, 0.00, 1.00, 0.00. Convergence was telemetry only; the run stopped at the cap by design.
+- Findings: 4 active, all raised in this run, all P2, all docs-drift. None was carried in from an earlier generation.
 
-**Ruled-out claims.** See the Search Ledger; the ruled-out rows cover the gain/keep/negative probe groups, the requirement symbols, the sixth-round test titles, the policy table, the input handling and the dual-copy guard.
+**Coverage summary**
 
-**Sources reviewed.** The 54 files of `review-scope-files.txt`, the 105 tasks, 56 acceptance rows, 48 requirements and 8 decision records; each iteration file lists the lines read.
+- `traceability`: covered (iterations 1 to 7, both core protocols and all four overlay protocols).
+- `correctness`, `security`, `maintainability`: not covered by this lineage (operator focus).
+- Dimension coverage ratio: 1 of 4 = 0.25.
+- Per-iteration scope: 72 pre-bound files; no finding filed outside them.
 
-**Core Protocols.** `spec_code` pass, `checklist_evidence` pass; evidence is cited in section 7 and in each iteration file.
+**Ruled-out claims (15)**
 
-**Overlay Protocols.** All four named not applicable, because the packet claims no agent definition, catalog entry or playbook capability.
+- Compiled contracts stale against the edited presentations (compiler slice markers).
+- A requirement with no acceptance row (52 of 52 covered).
+- A declared change-set file missing from the tree (26 of 26 exist).
+- A REQ-015 to REQ-034 prompt missing from the shared fixture (48 of 51 quoted strings resolve; 3 are not prompts).
+- A drift-guard list with no Python counterpart (`SMALL_EDIT_WORDING` is the deliberate exception).
+- A refinement folding across files (`refinesSameLocation`).
+- A gate pattern neither compared nor listed (43 compiled = 43 accounted).
+- `MODE_CUES` and the hub router keying different modes (both `research`, `review`).
+- A degraded row keeping a withheld command (the branch strips four fields).
+- A read-only loop lost to a no-edit clause (the guard at `command-attach.ts:1620`).
+- A ticked task whose named test or fixture row is absent (every title and id resolves).
+- A corpus-count drift (0 of 57 and 1 of 57).
+- A citation tail on the wrong line (`problems=0`).
+- A waiver without a decision record (four waived or superseded rows, four ADRs).
+- A runtime mirror drifted in substance (frontmatter and path convention only).
 
-**Terminal gates.** evidence pass (`all-findings-cited`), scope pass (`all-findings-in-scope`), coverage pass (`coverage-complete`); no required gate failed.
+**Sources reviewed**
 
-**Release readiness.** `in-progress`: the verdict is PASS, but the stop reason is the iteration cap rather than convergence, so the run does not read `converged`.
+Core protocols: `spec.md` (52 REQ rows), `tasks.md` (111 tasks, 51 CHK items), `acceptance-criteria.md` (60 rows), `decision-record.md` (9 ADRs), `implementation-summary.md`, `timeline.md`. Overlay protocols: `.skilled/skills/system-deep-loop/deep-review/SKILL.md`, `.skilled/agents/deep-review.md` and its two runtime mirrors, `feature-catalog/cli-surface/advisor-recommend.md`, `manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md`. Code: `command-attach.ts`, `skill_advisor.py`, `explicit.ts`, `fusion.ts`, `subprocess.ts`, `skill-advisor-cli.ts`, `advisor-recommend.ts`, `reduce-state.cjs`, `compile-command-contracts.cjs`. Tests and fixtures: `deep-loop-offer-cases.vitest.ts`, `command-attach-guards.vitest.ts`, the scorer, handler, degraded-path and Python test files, and the 359-case shared fixture. Corpus: `command-prompts.jsonl` (247 rows), `command-routing-baseline.json`. Packet scratch: `probes/`, `behaviour/`, `citations/`.
 
+---
+
+*Compiled from 7 iteration files by lineage `deepseek-max-2`, session `fanout-deepseek-max-2-1795550334883-gjbarh`, generation 1, stop reason `maxIterationsReached`.*

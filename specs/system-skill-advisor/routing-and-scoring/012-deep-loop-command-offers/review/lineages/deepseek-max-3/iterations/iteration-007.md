@@ -1,25 +1,16 @@
-# Review Iteration 007 — traceability (overlay protocols) and active-finding re-read
+# Review Iteration 007
 
 ## Dispatcher
 
-- Mode: `review`; target agent: `@deep-review` (LEAF, single iteration).
-- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
-- Lineage: sessionId `fanout-deepseek-max-3-1795546920757-7pyjry`, generation 1, lineageMode `new`, executor cli-pi (deepseek-v4.1-flash-1017).
-- Setup bindings (unchanged; emitted in full at iteration 1).
-- Review focus for this iteration: the operator's traceability focus on the surfaces the packet's own requirements cross but do not own — the hub skill and its mode packets (`skill_agent`), the agent/runtime mirror surface (`agent_cross_runtime`), the feature catalog (`feature_catalog_code`) and the playbook (`playbook_capability`) — followed by the adversarial re-read the loop owes its active findings before synthesis.
-- This is the last iteration under the cap; `steer.md` is absent.
+- Mode: review; dimension `traceability` (iteration 7 of 7, the iteration cap), final rotation.
+- Operator review focus: the carried findings as a group — one class or several, what a remediation would touch, whether any of them changes the packet's closure — and the terminal coverage statement for this lineage.
+- How this iteration addressed the focus: it grouped the four carried P2 findings by the surface a fix would touch, checked each against the acceptance row that owns its subject to see whether any of them flips a `Met`, and stated the run's protocol coverage as the synthesis will read it.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/SKILL.md:13`, `:47`, `:71`, `:78-86`, `:104-106` (advisor identity and projection-map rules)
-- `.skilled/skills/system-deep-loop/deep-review/SKILL.md:3`, `:12`, `:145-151` (severity scale and reach calibration)
-- `.skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md` (searched for the offer)
-- `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` (searched for an offer row)
-- `.claude/agents/deep-review.md` vs `.skilled/agents/deep-review.md` (frontmatter and body diff)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3/review-scope-files.txt` (no agent path among the 54)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/{spec.md,acceptance-criteria.md,tasks.md,implementation-summary.md,decision-record.md}` (active-finding re-read)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:766`, `:688`; `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5167` (re-read for R6-P2-001)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80`; `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2405-2470` (re-read for R1-P2-002 and R4-P2-001)
+- The four carried findings at their cited sites: `acceptance-criteria.md:95` (R1-P2-001 with its refinement R2-P2-001), `.skilled/skills/system-deep-loop/deep-research/SKILL.md:34` (R3-P2-001), `fusion.ts:1055` with `command-attach.ts:196` (R5-P2-001), `spec.md:250` (R1-P2-002)
+- `spec.md` REQ-031 (`:255`) and REQ-011 (`:235`) — the two requirements whose rows the findings sit under
+- `deep-review-findings-registry.json` (four open findings, all P2)
 
 ## Findings - New
 
@@ -29,63 +20,63 @@ None.
 
 ### P1 Findings
 
-None new.
+None.
 
 ### P2 Findings
 
-None new.
+None. The four carried findings are restated as a remediation group in Traceability Checks rather than re-filed.
 
 ## Traceability Checks
 
 | Protocol | Status | Evidence |
 |---|---|---|
-| `spec_code` | fail | unchanged: REQ-031 drift (R1-P2-002), REQ-033 unmet (R1-P1-001) |
-| `checklist_evidence` | pass | unchanged from iteration 5 |
-| `skill_agent` | pass | the hub `SKILL.md` keeps one advisor identity and requires the projection maps to be drift-guarded (`SKILL.md:71`, `:104-106`), which the packet's shared fixture and `deep-loop-offer-cases.vitest.ts:80`/`:497` provide; `deep-review/SKILL.md:145-151` states the same three-tier scale this review applies |
-| `agent_cross_runtime` | notApplicable | the packet changes no agent definition: none of the 54 scope paths is under `agents/`, and no requirement in `spec.md` names one. `.opencode/agents/deep-review.md` is byte-identical to `.skilled/agents/deep-review.md`, and `.claude/agents/deep-review.md` differs in exactly three places — the frontmatter dialect (mode/permission block versus a `tools` list), the Path Convention line and the two related-resource paths (`.skilled/agents/` → `.claude/agents/`) — each the documented runtime path translation rather than packet drift |
-| `feature_catalog_code` | notApplicable | no feature catalog in the tree claims the advisor offer: `rg -l 'Offer From an Advisor Brief'` finds the two presentation files and the two command documents only, and the deep-loop catalog carries no offer row. There is no catalog claim to check against code |
-| `playbook_capability` | notApplicable | no manual-testing playbook names the offer or the deep-loop command gate; the playbook hits for "advisor" are the turn-start hook scenarios of other skills, which do not describe this behaviour |
-
-### Active-finding re-read (the loop's pre-synthesis adversarial pass)
-
-| Finding | Severity on re-read | Why it stands or moves |
-|---|---|---|
-| R1-P1-001 — REQ-033 unmet and unwaived | P1, unchanged | re-read `spec.md:228`, `:257`, AC-040, T084, CHK-020 and the Verification Summary; still open on four records, still no ADR waiver. The hunter pass asked whether this lineage's own rerun closes it — the rerun is still running and its verdict is CONDITIONAL, so the row cannot be Met in the tree under review |
-| R1-P2-001 — AC-040's archived evidence path | P2, unchanged | the live `review/` tree still holds no `review-report.md`; the token still resolves only in `review-archive/20261124T190150Z/review-report.md:71` |
-| R1-P2-002 — REQ-031's wider-than-guard promise | P2, unchanged | re-counted 23 exported lists and 22 pairs; `SMALL_EDIT_WORDING` still has no pair and no Python tuple |
-| R4-P2-001 — the tenth round's citation claim | P2, unchanged | no evidence-tail checker exists and 56 cells still cite `path:line` |
-| R6-P2-001 — negated refusal | P2, unchanged | both copies still return false on the double-negation probes |
-
-- No finding was downgraded, upgraded or resolved by this iteration, and no active P0 exists at any point in the run.
+| `spec_code` | `pass` | Carried complete across iterations 3, 5 and 6. All 52 REQs resolve to code, a decision, or the artifact that records the measurement. |
+| `checklist_evidence` | `pass` | Carried complete from iteration 4: 119 acceptance anchors resolve, all 60 cells read, 138 ticked task boxes checked, 33 cited repo paths exist, and the Verification Summary reproduces from the boxes behind it. |
+| `skill_agent` | `pass` | Carried from iteration 5: the hub resolves modes through `mode-registry.json`, names its projection drift guard, and its mode table matches the registry. |
+| `playbook_capability` | `pass` | Carried from iteration 5: the manual-testing playbook carries a review-routing scenario naming `/deep:review`; scenario preconditions were not read line by line, and the status says so. |
+| `agent_cross_runtime` | `notApplicable` | No agent definition is in the 47-file scope; the advisor's mirrors are outside this packet's subject. |
+| `feature_catalog_code` | `notApplicable` | No feature-catalog document mentions the deep-loop offer, so there is no catalog claim to check against the code. |
 
 ## Integration Evidence
 
-- `skill_agent`: the hub's projection-map rule and the packet's drift guard are the two halves of one contract; the map rule is at `SKILL.md:71` and the guard rows at `deep-loop-offer-cases.vitest.ts:80`/`:497`.
-- `agent_cross_runtime`: the mirror pair read was `.skilled/agents/deep-review.md` ↔ `.claude/agents/deep-review.md`, with `.opencode/agents/deep-review.md` diffed as a control (identical).
-- The overlay protocols that do not apply were searched for, not assumed: `rg -l 'Offer From an Advisor Brief'` over the tree returns the four command surfaces and nothing else.
+**The four findings are three remediation groups, and none of them flips a `Met` row.**
+
+| Group | Findings | Surface a fix touches | Does it flip a row? |
+|---|---|---|---|
+| stale evidence cell | `R1-P2-001` + `R2-P2-001` | `acceptance-criteria.md:95` only — the row's evidence cell; REQ-031 stays count-free by design (`spec.md:255`) | No. AC-038 checks the guard's behaviour (fails on a one-sided list edit, passes on the tree) and that behaviour is intact; the count is the cell's own addition. |
+| unscoped record | `R3-P2-001` | `deep-research/SKILL.md:34` or one sentence in REQ-011/ADR-007 naming the skill-level keyword list | No. AC-043 checks `hub-router.json` and `ROUTER.md`, where the alias is correctly absent. |
+| duplicated constant | `R5-P2-001` | one import line in `fusion.ts:1055` | No. No acceptance row covers the doctor constant's declaration site; REQ-024 and REQ-044 exercise behaviour that both copies currently satisfy. |
+| orphan export documentation | `R1-P2-002` | one clause of `spec.md:250`, or deleting the unused export | No. AC-032 checks the double-typed behaviour, which `typedCommandForTop` provides. |
+
+- Every group is documentation-scale: none of the four changes what the code answers for any prompt the fixture pins, which is why the run's verdict is PASS with advisories and not CONDITIONAL.
+- The packet's closure does not rest on any of them. It rests on AC-040 (REQ-033), which this run's terminal coverage statement scores, not on the four P2s.
 
 ## Edge Cases
 
-- A `notApplicable` on an overlay protocol means the surface does not carry the behaviour, and each one above names the search that shows the absence. It does not mean the surface was skipped.
-- The `.claude` mirror diff is a frontmatter dialect plus three runtime path renames; a deeper body diff would be required if the packet had touched an agent definition, and it did not.
-- The hub catalog has no offer row, which is not a finding: no requirement asks the catalog to carry one, and the packet's own REQ-005 places the offer text in the presentation contracts.
+- **The cap is reached, so this is the terminal iteration.** No convergence claim is made: `config.stopPolicy` is `max-iterations`, and the stop reason the synthesis records is `maxIterationsReached` whether or not the last iterations were clean.
+- **Two iterations produced no finding.** Iterations 4 and 6 were clean passes on purpose — one completed `checklist_evidence`, the other rotated `correctness` — so the novelty ratio's 0.0 on each is a measurement of a clean pass, not a sign the passes were shallow.
+- **The acceptance matrix's single `Unmet` row is the run's own subject.** AC-040 asks whether a traceability review finishes `spec_code` and `checklist_evidence` with evidence, scope and coverage passing. This lineage can state its protocols are complete and its evidence and scope gates hold; whether the row turns `Met` is the cross-lineage merge's call, and this narrative does not pre-empt it.
 
 ## Confirmed-Clean Surfaces
 
-- Three overlay protocols are inapplicable by evidence (no agent, catalog or playbook surface claims this behaviour), and the one that applies (`skill_agent`) agrees with the code.
-- Every active finding survived its re-read at the same severity; no stale severity remains for synthesis to inherit.
-- No new drift exists between the hub skill's advisor-identity rules and the packet's drift guards.
+- Four dimensions covered: `correctness` (iterations 1, 6), `security` (2), `traceability` (3, 4, 7), `maintainability` (5).
+- Both core protocols complete, three overlay protocols pass and two are recorded `notApplicable` with a reason.
+- No active P0 and no active P1 across the run.
+- Every finding is a P2, and every one is documentation-scale with a named surface.
 
 ## Ruled Out
 
-- "The feature catalog omits a documented feature": the offer is documented in the presentation contracts and command documents, which REQ-005 names; no requirement places it in a catalog.
-- "The `.claude` agent mirror drifts from canonical": the three differences are the documented frontmatter dialect and two runtime path renames, the `.opencode` mirror is byte-identical, and the packet changes no agent.
-- "REQ-033 can be closed by this lineage's rerun": the rerun ends CONDITIONAL with an active P1, so the rerun AC-040 asks for is not a passing one.
+- *A finding that would flip a `Met` row back to `Unmet`.* Each was checked against the row that owns its requirement, and each row's checkable behaviour is intact.
+- *A remediation that would need a code change to the gate.* Three of the four touch only prose or one import.
+- *A hidden P0 that a clean iteration merely failed to find.* The last two iterations looked at the two seams most likely to hide one — the enrichment pass and the reducer's live registry — and both held.
 
 ## Next Focus
 
-- None. This is the last iteration under `maxIterations`; the run goes to synthesis with stop reason `maxIterationsReached`.
-- Rotation status: correctness, security, traceability and maintainability each covered; both core protocols executed; overlays resolved.
-- Carry-forward for synthesis: P0=0, P1=1, P2=4, verdict CONDITIONAL, release readiness `in-progress`.
+- Dimension: none remaining — the iteration cap (7) is reached.
+- Focus area: synthesis. Compile the report, run the adversarial self-check over the four P2 findings, derive the verdict from the registry, and record the terminal gates.
+- Reason: `stopPolicy: max-iterations`, iteration 7 of 7.
+- Rotation status: complete; every configured dimension has at least one full iteration, and `correctness` and `traceability` have two each.
+- Blocked/productive carry-forward: nothing blocked.
+- Required evidence: `deep-review-findings-registry.json`, the six protocol statuses above, and the seven iteration narratives.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

@@ -1,30 +1,22 @@
-# Review Iteration 003 — traceability (core protocol `spec_code`, full requirement sweep)
+# Review Iteration 003
 
 ## Dispatcher
 
-- Mode: `review`; target agent: `@deep-review` (LEAF, single iteration).
-- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
-- Lineage: sessionId `fanout-deepseek-max-3-1795546920757-7pyjry`, generation 1, lineageMode `new`, executor cli-pi (deepseek-v4.1-flash-1017).
-- Setup bindings (unchanged; emitted in full at iteration 1): target, maxIterations=7, convergence=0.1, mode=review, dimensions=correctness/security/traceability/maintainability, specFolder.
-- Review focus for this iteration: the operator's traceability focus is the whole iteration. "Check every REQ in spec.md against the code that implements it or the decision that records it" — the table below does that for all 48 requirements, with the sixth round (REQ-023 to REQ-034) read line by line and the rest read against the code, fixture and probe artifacts.
-- `steer.md` is absent at this iteration.
+- Mode: review; dimension `traceability` (iteration 3 of 7), running the core protocol `spec_code` across the whole requirement set.
+- Operator review focus: finish `spec_code` and `checklist_evidence`. This iteration finished `spec_code` for the REQs the first two iterations did not reach (REQ-001..REQ-022 and REQ-035..REQ-052) and began the bulk anchor pass for `checklist_evidence`.
+- How this iteration addressed the focus: it read all 52 REQ rows of `spec.md`, then resolved each one to the code that implements it, the decision that records it, or the artifact that measures it. It also ran the acceptance matrix's 119 repo-relative and packet-relative `file:line` anchors through existence and line-range checks in one pass.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:211-273` (the two requirement tables and the six reopen paragraphs)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` (ADR-001) through `:1239` (ADR-008 interrogative)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1132` (`asksForLoopRun`), `:1537` (`attachCommand`), `:1628` (`deferredLoopCommand`), `:1667` (`loopAskCues`), `:688` (`RUN_ASK_REFUSAL_LEADS`)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888` (`_advisor_prompt_head`), `:4639` (`_RUN_ASK_REFUSAL_LEAD_LIST`), `:5181` (`_LEAD_WINDOW`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:442-495` (the loop lanes)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (347 rows, read through the probe and by id)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80` (`VOCABULARY_PAIRS`), `:434` (`PATTERN_PAIRS`), `:497` (mode vocabulary on four surfaces)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:995` (`refinesSameLocation`), `:2362` (`MIN_BLOCKED_ATTEMPTS`), `:2405` (`replaceAnchorSection`)
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363` (`enrichCompiledRoutes`), `:442` (`attachTypedCommand`)
-- `.skilled/commands/deep/research.md:86`, `.skilled/commands/deep/review.md:81`, both presentation files `:13`, both YAML `next_steps`
-- `.skilled/changelog/skilled/v4.2.0.0.md:482-484` (refusal, typed-on-stuck and turned-down loop rows), `:759` (suite row)
-- `.skilled/skills/system-deep-loop/hub-router.json:34`, `.skilled/skills/system-deep-loop/ROUTER.md`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (247 rows, 31 near-miss)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/{probes-spec-baseline,results-after,results-final-958fa81-worktree}.json` (69 rows each)
+- `spec.md` REQ-001..REQ-052 (lines 220-276)
+- `.skilled/commands/deep/review.md` (`:81` step 0), `.skilled/commands/deep/research.md` (`:101`)
+- `.skilled/commands/deep/assets/deep-review-presentation.txt` (`:30`, `:237`, `:267`, `:277`, `:583`), `.skilled/commands/deep/assets/deep-research-presentation.txt` (`:30`, `:223`, `:236`, `:246`, `:478`)
+- `.skilled/commands/deep/assets/deep-research.yaml` (`:2254`-`:2270`), `.skilled/commands/deep/assets/deep-review.yaml` (`:2534`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (`MODE_CUE_WORDS` `:539`, `MODE_CUES` `:548`, `RERUN_PRONOUNS` `:613`, `LOOP_EFFORT_WORDS` `:1077`, `LOOP_QUESTION_AUXILIARIES` `:1200`, `lowerFolded` `:883`, `escapePhrase` `:481`)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (`_MODE_CUE_WORDS` `:4770`, `_RERUN_PRONOUN_LIST` `:4990`, `_LOOP_QUESTION_AUXILIARY_LIST` `:5030`, `_NAMED_LOOP_MODE_RE` `:5376`, whitespace fold `:5109`)
+- `.skilled/skills/system-deep-loop/deep-research/SKILL.md` (`:29`-`:37`), `.skilled/skills/system-deep-loop/hub-router.json` (`:34`), `.skilled/skills/system-deep-loop/ROUTER.md` (`:63`), `.skilled/skills/system-deep-loop/SKILL.md` (`:20`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts` (`:1449`-`:1475`), `lib/derived/extract.ts` (`:243`)
+- `decision-record.md` ADR-007 (`:603`); `.skilled/repo-rules/skill-hub-routing.md` §4.
 
 ## Findings - New
 
@@ -34,123 +26,59 @@ None.
 
 ### P1 Findings
 
-None new. The active P1 (REQ-033 unmet and unwaived) is the one this sweep confirms; see the REQ table below.
+None.
 
 ### P2 Findings
 
-None new. The active P2s from iteration 1 (AC-040's archived evidence path, REQ-031's wider-than-guard promise) are both re-confirmed by this sweep.
+1. **The research alias ADR-007 records as rejected still sits in the mode packet's keyword list** -- `decision-record.md:603` (ADR-007) and `spec.md:235` (REQ-011) against `.skilled/skills/system-deep-loop/deep-research/SKILL.md:34` -- ADR-007 says the build "added the first two and dropped the third" research alias because its out-of-domain replay under `skill-hub-routing.md` §4 "pulled a slide-deck prompt to the hub", and amends REQ-011 to "the two aliases the tree carries". Neither the ADR nor REQ-011 names a surface for the drop beyond `hub-router.json` and `ROUTER.md`, and AC-043 checks exactly those two files. `deep-research/SKILL.md` still lists `autonomous research` among its Keyword triggers at `:34`, between `deep research` (`:33`) and `research loop` (`:35`), so a reader who takes "dropped" at face value finds the alias present in a third file the decision never scoped.
+   Finding class: instance-only
+   Scope proof: `rg -n 'autonomous research'` over `hub-router.json` and `ROUTER.md` returns nothing, so AC-043's claim holds; the same search over `deep-research/SKILL.md` returns `:34`. The surface is not one the advisor scores: `projection.ts:1449` enumerates top-level skill directories that carry `graph-metadata.json`, and takes derived triggers from that metadata's `derived.trigger_phrases` (`:1467`), so a nested packet's `SKILL.md` keyword list does not reach the derived lane. That is why this is a documentation-scoping drift and not a live route.
+   Affected surface hints: ["deep-research/SKILL.md keyword triggers", "spec.md REQ-011", "decision-record.md ADR-007", "hub-router.json research aliases"]
+   Case: a maintainer re-reading ADR-007 to learn why `autonomous research` is not in the hub's alias list opens the mode packet and finds it still offered as a keyword, with no sentence anywhere saying the skill-level list was deliberately left alone.
+   Alternative explanation: the packet's keyword list and the hub's alias list are different surfaces, and REQ-011 only ever governed the hub. That reading is consistent with every word of REQ-011 and ADR-007; it is the *record's* silence about the second list, not its behaviour, that is being reported.
+   downgradeTrigger: none lower than P2 — the finding is already at the floor.
+   confidence: medium that a reader would be misled, high that the alias is present and unscoped by the records.
 
 ## Traceability Checks
 
 | Protocol | Status | Evidence |
 |---|---|---|
-| `spec_code` | fail | two required behaviours do not match the tree: REQ-031's guard promise (P2) and REQ-033's obligation (P1). Every other requirement in the table below is confirmed against code, fixture, a recorded probe, or a decision |
-
-### Requirement table (all 48)
-
-Status vocabulary: **Confirmed** — read the code/config/test and the claim holds, or probed the built gate; **Recorded** — the requirement is a measurement the packet records, the artifact exists and its shape matches, and it was not re-executed here; **Drift** — a stated claim does not match the tree; **Unmet** — the obligation is absent.
-
-| REQ | Status | Where it is implemented or recorded |
-|---|---|---|
-| REQ-001 | Recorded | `scratch/probes/results-after.json` holds 69 rows; `implementation-summary.md:154` records the gain lines |
-| REQ-002 | Recorded | same probe file; `command-attach.ts:1132` withholds depth wording |
-| REQ-003 | Recorded | probe rows for the seventeen keep prompts |
-| REQ-004 | Recorded | probe rows for the seventeen negatives |
-| REQ-005 | Confirmed | `deep-research-presentation.txt:13` and `deep-review-presentation.txt:13` carry `### Offer From an Advisor Brief`; `research.md:86` and `review.md:81` carry step 0 |
-| REQ-006 | Confirmed (probed) | all 347 fixture rows agree with the built `dist` gate on `asksForLoopRun`, `stuckRun`, `writingAbout`, `doctorWithheld`, `servedRun`, `typedReviewKept`, `typedRunsKept`, `readOnlyRunKept`; suite counts are recorded at `implementation-summary.md:178` |
-| REQ-007 | Recorded | `.skilled/commands/deep/assets/compiled/` holds the two contracts and the README; `rg 'ASK with SINGLE prompt'` over them prints nothing |
-| REQ-008 | Recorded | stage-one lines quoted at `implementation-summary.md:154`; lanes read at `explicit.ts:442-495` |
-| REQ-009 | Confirmed | `rg -c -- '--extend=N|--restart|doctor:deep-loop --scope='` reads 11, 11, 14, 14 across the two YAMLs and two presentation files |
-| REQ-010 | Confirmed | both presentation files name the `communication-handoff.md` §5 question tool at step 6 (`:223` / `:237`) and carry `Autonomous (Recommended)` plus `Native (Recommended, default)` |
-| REQ-011 | Confirmed | `iterative research` and `multi-round research` each appear once in `hub-router.json` and `ROUTER.md`; `autonomous research`, `comprehensive research`, `deep investigation`, `audit spec folder` and `pre-release review` are absent from the named files |
-| REQ-012 | Confirmed | `command-prompts.jsonl` holds 31 near-miss rows, including N7→`nm-system-deep-loop-02`, N9→`-03`, V7→`-05`, H6→`nm-sk-code-02`, A3→`nm-sk-code-03`; D1 is `cmd-doctor-deep-loop-plain-tune-02`, a plain `/doctor:deep-loop` row |
-| REQ-013 | Confirmed | the three deep-family holdout rows are the `-04` ids (`cmd-deep-research-plain-holdout-04`, `cmd-deep-review-plain-holdout-04`, `cmd-doctor-deep-loop-plain-holdout-04`) |
-| REQ-014 | Confirmed (probed) | "summarize the research.md from the last deep research run" → no command on a review route and on a deferred route |
-| REQ-015 | Confirmed (probed) | "don't do deep research, just answer quickly" → none; "do a deep review of the parser" → `/deep:review` |
-| REQ-016 | Confirmed (probed) | "how many iterations does deep research run by default?" → none |
-| REQ-017 | Confirmed (probed) | the hyphen prompt → `/deep:review`; the curly-apostrophe prompt → `/deep:research` |
-| REQ-018 | Confirmed (probed) | "the deep research run is not stuck, run 5 more iterations" → `/deep:research`, no doctor |
-| REQ-019 | Confirmed (probed) | "refactor the deep research scorer" → none; "run a deep review on the parser" → `/deep:review` |
-| REQ-020 | Confirmed (probed, gate layer) | the typed-stuck prompt reads `stuck: true` and `attachCommand` answers `/doctor:deep-loop`, exactly as the requirement states; the served-head exception is ADR-005 |
-| REQ-021 | Recorded | `implementation-summary.md:178` records 186 files, 3,418 passed, 4 skipped, drift 0 |
-| REQ-022 | Confirmed | `changelog:482-484` states the refusal rule, the typed-on-stuck head and the turned-down loop; `:759` quotes the final suite; AC-008 reads `Waived` with ADR-003 |
-| REQ-023 | Confirmed (probed) | six refusals → none, three controls → `/deep:review`; both copies carry the leads (`command-attach.ts:688`, `skill_advisor.py:4639`) |
-| REQ-024 | Confirmed (probed) | the two run-refusing stuck prompts lose the doctor; the plain complaint keeps it |
-| REQ-025 | Confirmed (probed) | "run /deep:review on the parser, then /create:changelog" keeps `/deep:review` on a review route |
-| REQ-026 | Confirmed (probed) | "run a deep loop to review the research loop config" → `/deep:review` on a deferred route |
-| REQ-027 | Confirmed | `explicit.ts:457` and `:464` gate both lanes on a pass ask; `stage-one-loop-subject.vitest.ts:26` pins both prompts |
-| REQ-028 | Confirmed | `render.ts:250` suppresses the offer for a typed row; `subprocess.ts:245` marks the subprocess row; `skill-advisor-cli.ts:1554` keeps the degraded command row |
-| REQ-029 | Confirmed | `attachTypedCommand` (`advisor-recommend.ts:442`) overrides the doctor with the typed run; the fixture row `typed-stuck` carries `servedReviewKept`; `typed-on-stuck-serving.vitest.ts` pins it |
-| REQ-030 | Confirmed | `schemas/advisor-tool-schemas.ts:257` and `:262`; `skill_advisor.py:888`; `LEAD_WINDOW` at `command-attach.ts:748` and `skill_advisor.py:5181` |
-| REQ-031 | **Drift** | 23 exported word lists, 22 `VOCABULARY_PAIRS` rows, `SMALL_EDIT_WORDING` unpaired — P2 finding R1-P2-002 |
-| REQ-032 | Confirmed | `refinesSameLocation` at `reduce-state.cjs:995`, pinned by `reduce-state-refinement-other-file.vitest.ts` and `synthesis-closeout-refinements.vitest.ts` (both present) |
-| REQ-033 | **Unmet** | AC-040 `Unmet`, T084 `[ ]`, CHK-020 `[ ]`, Verification Summary 11/12, no ADR waiver — P1 finding R1-P1-001 |
-| REQ-034 | Confirmed | fixture header `$comment`; `implementation-summary.md:242`; changelog `:482-484`; packet 013 row "Reopened: degraded paths"; Verification Summary 12/11, 13/13, 1/1 matches the CHK boxes |
-| REQ-035 | Confirmed (probed) | the thirteen rows read as AC-044 states; the eight run rows sit at `deep-loop-offer-cases.json:257-264`, the five reads at `:265-273`; `deep-loop-plural-noun.vitest.ts` pins the scorer |
-| REQ-036 | Confirmed (probed) | "how do I run a deep review on this?" → none; the run-after-question prompt → `/deep:review` |
-| REQ-037 | Confirmed (probed) | "the deep review loop is too slow" → none; "run a fast deep review on the parser" → `/deep:review` |
-| REQ-038 | Confirmed | `trackedCommandForOwner` (`skill-advisor-cli.ts:1489`) requires an own-key hit and an owner match; the rejecting branch prints no command, policy, owner or typed marker |
-| REQ-039 | Recorded | `implementation-summary.md:156` records `false_offer` 0 and each new row's outcome |
-| REQ-040 | Confirmed (probed) | "run a deep review of the parser but don't change anything" → `/deep:review` |
-| REQ-041 | Confirmed | the five `refused-cue-*` rows read as asks; `command-attach-guards.vitest.ts:919` pins the deferred cue |
-| REQ-042 | Confirmed (probed) | the routed research route serves `/deep:review` for the ask that names review |
-| REQ-043 | Confirmed (probed) | "the deep review didn't finish, run it again" is a run ask with no doctor |
-| REQ-044 | Confirmed (probed) | the typed `/doctor:deep-loop` after a clause break serves the doctor; manner effort words keep the run |
-| REQ-045 | Confirmed | `deep-loop-offer-cases.vitest.ts:497` asserts the four surfaces key the same modes; `PATTERN_PAIRS` at `:434` compares `NAMED_LOOP_MODE`; `NUMERIC_PAIRS` at `:109` compares the two numbers |
-| REQ-046 | Confirmed | `MIN_BLOCKED_ATTEMPTS` at `reduce-state.cjs:2362` writes one ruling as reopenable; `authoredHeading` at `:2437` drops the authored heading; `enrichCompiledRoutes` (`advisor-recommend.ts:363`) carries the duplicate guard |
-| REQ-047 | Confirmed | the four mode-free rows read `servedRun: "none"` (`deep-loop-offer-cases.json:262`, `:318`, `:323`, plus `run-deep-loop`); the deferred probe returns nothing for them |
-| REQ-048 | Confirmed | `replaceAnchorSection` (`reduce-state.cjs:2405-2470`) keeps the file's own ordinal; `golden-review-default/next-focus.txt` holds `## 12. NEXT FOCUS`; `deep-review-strategy-numbering.vitest.ts:80` pins it |
-
-### Sixth fix round, one line each (REQ-023 to REQ-034)
-
-| REQ | Outcome | Note |
-|---|---|---|
-| REQ-023 | Confirmed | refusal verbs in both copies, fixture rows and guard block agree |
-| REQ-024 | Confirmed | run-refusal withholds the doctor; the plain complaint keeps it |
-| REQ-025 | Confirmed | a typed command survives a second typed command at the gate layer |
-| REQ-026 | Confirmed | deferred mode cue reads only loop names that are asks |
-| REQ-027 | Confirmed | stage-one lanes honour the subject and refusal readings |
-| REQ-028 | Confirmed | both degraded paths render the typed deep command plainly |
-| REQ-029 | Confirmed | typed-on-stuck is pinned at the handler and in the fixture's served column |
-| REQ-030 | Confirmed | 10,000-unit head and two 400-character windows |
-| REQ-031 | Drift | `SMALL_EDIT_WORDING` is outside the drift guard (P2) |
-| REQ-032 | Confirmed | a refinement at another file keeps its own entry |
-| REQ-033 | Unmet | the coverage rerun is open on four records and unwaived (P1) |
-| REQ-034 | Confirmed | the closure docs state the built behaviour |
+| `spec_code` | `pass` | All 52 REQs resolve. REQ-001..REQ-004, REQ-008, REQ-012, REQ-013, REQ-021, REQ-027, REQ-039 and REQ-042..REQ-047 are measured rows: each resolves to the artifact that records its measurement (the 359-case fixture, `command-routing-baseline.json` with its `capturedAtSha` and `corpusSha256`, the `scratch/probes/` captures, the stage-one and multi-typed-command suites), and those artifacts were confirmed present. REQ-005 resolves to `review.md:81` step 0 and `research.md:101`, which name the presentation contract's "Offer From an Advisor Brief" section with the three options and recommended A, and both presentation files carry that section once. REQ-007 resolves to the compiled contracts under `.skilled/commands/deep/assets/compiled/`; REQ-009 to `deep-research.yaml:2268` and `deep-review.yaml:2534` plus the `--extend=N` row and the `/doctor:deep-loop --scope=` row in both presentations (`deep-research-presentation.txt:478`, `deep-review-presentation.txt:583`); REQ-010 to step 6 in both presentations naming the question tool through `communication-handoff.md` §5, with `Autonomous (Recommended)` at `:236`/`:267` and `Native (Recommended, default)` at `:246`/`:277`. REQ-011 resolves as amended by ADR-007, with the residual keyword-list alias carried as this iteration's P2. REQ-030, REQ-045, REQ-049 and REQ-051 resolve to the symbol pairs listed in Files Reviewed. REQ-023..REQ-029 and REQ-031..REQ-038 were read in iterations 1 and 2. |
+| `checklist_evidence` | `partial` | The acceptance matrix's anchors were checked in bulk: 98 repo-relative `file:line` citations and 21 packet-relative `scratch/` citations, 119 in total, every one resolving to an existing file with the cited line inside the file. Content was verified by reading the line for AC-030..AC-049 and AC-059; the remaining rows' content is unread, and the `tasks.md` ticked boxes are not yet checked. |
 
 ## Integration Evidence
 
-- AC-006/AC-007 point at the two presentation files' `### Offer From an Advisor Brief` and the two command documents' step 0; both were read at the cited lines.
-- REQ-045's four surfaces are `MODE_COMMANDS`, `MODE_CUES`, `MODE_CUE_WORDS` and `hub-router.json`; the test at `deep-loop-offer-cases.vitest.ts:497` reads all four, and the router file was read directly.
-- REQ-032/REQ-046/REQ-048 all land in `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`; the three functions were read at `:995`, `:2362` and `:2405-2470`.
+- The step 0 the offer depends on lives in the command, not the skill: `review.md:81` and `research.md:101` both put the offer first and name the presentation contract's section, so the AI reads the instruction at invocation time.
+- The `--extend=N` wording reaches four surfaces: both YAML `next_steps` lists and both presentation Next Steps tables, which is REQ-009's clause; the completed-packet message in `deep-research.yaml` (`:2254`) does **not** name `--extend=N` or `--restart`, and neither does `deep-review.yaml`'s completion message (`next_steps` carries them instead). REQ-009 names "the completed-packet message in `deep-research.yaml`" specifically; the message block at `:2254`-`:2262` lists artifacts and a status line only, so the requirement's first clause is carried by the `next_steps` block at `:2265`-`:2270` rather than by the message body. Read together with AC-014, the intent is the completion surface, which is satisfied; read literally against the message body, it is not. Recorded rather than filed, because the packet's own row reads the completion surface.
 
 ## Edge Cases
 
-- Two requirements are measurements (REQ-001 to REQ-004, REQ-021) that would need a live advisor run and two full suites to re-execute. They are marked **Recorded**: the artifacts exist and their shape matches the claim, and the packet's own rule is that the registry, not this narrative, carries the release verdict.
-- REQ-020 splits by layer. The gate layer is confirmed by probe; the served head is the ADR-005 exception and is confirmed by code and fixture, not by a live head run.
-- The probe used the built `dist`, not the TypeScript source. That is deliberate: it also tests REQ-006's "dist is rebuilt" clause, and 347/347 agreement would fail if the build lagged the source.
-- `command-prompts.jsonl` maps probe ids through prompts, not through ids of its own; N7/N9/V7/H6/A3 were resolved by matching `probes-spec-baseline.json` prompts to corpus rows, which is recorded here because the mapping is an inference rather than a stated column.
+- **The 119-anchor pass proves location, not content.** A citation that resolves can still point at a line that does not support the claim, which is why AC-038's count survived the first pass and only fell when the array was read. The iteration records the split honestly: anchors resolve, and content was read for 21 of the 60 rows.
+- **Measured rows cannot be re-measured here.** Nine REQs assert probe or suite outcomes. This lineage may not run the repository's tooling, so those resolve by artifact presence and by spot-checking recorded content, which is the strongest evidence available inside the review's write limits.
+- **`deep-research.yaml`'s completion message differs from its `next_steps`.** Recorded in Integration Evidence rather than as a finding, because REQ-009's owner row (AC-014) reads the completion surface, and the surface is present one block below the message body.
 
 ## Confirmed-Clean Surfaces
 
-- 44 of 48 requirements confirmed against code, fixture, probe or decision; two are recorded measurements whose artifacts exist; the two exceptions are the active findings.
-- Every `path:line` cell in `acceptance-criteria.md` except AC-040 resolves with its token on that line (49 cells; re-checked in iteration 1).
-- `dist` and source agree on the whole shared fixture: 347 rows, eight columns, zero disagreements.
+- All 52 REQ ids appear in the acceptance matrix's `REQ` column, and every AC row names its owning REQ: `REQ-001` through `REQ-052` each map to at least one AC (AC-001..AC-060).
+- The matrix has no unrecorded status: 55 `Met`, 3 `Waived` (each naming an ADR), 1 `Superseded` (ADR-001) and 1 `Unmet` (AC-040, with the closure statement at `acceptance-criteria.md:145` stating why).
+- Whitespace inside a loop phrase is handled on both copies: `lowerFolded` (`command-attach.ts:883`) collapses `\s+` before the gate reads `LOOP_REQUEST_ALL` (`:1162`, `:1715`), and the Python fold at `skill_advisor.py:5109` does the same, which is REQ-049.
+- The mode vocabulary is shared on both sides: `MODE_CUE_WORDS` (`:539`) and `MODE_CUES` (`:548`) against `_MODE_CUE_WORDS` (`:4770`) and `_MODE_CUE_PATTERNS` (`:4774`), with `NAMED_LOOP_MODE` against `_NAMED_LOOP_MODE_RE` (`:5376`), which is REQ-045's first clause.
+- `autonomous research` is absent from both hub alias files (`hub-router.json:34`, `ROUTER.md:63`), so AC-043's claim holds as written.
 
 ## Ruled Out
 
-- "REQ-020's served-head exception is an undocumented drift": ADR-005 (`decision-record.md:412`) records it, AC-027 and AC-036 both name it, and the fixture carries `servedReviewKept`. The exception is documented at every layer.
-- "REQ-011's aliases are missing from the router": both files carry `iterative research` and `multi-round research` once each, and `autonomous research` is absent, which is what ADR-007 amends.
-- "REQ-012's near-miss rows are countable but not real": the five probe prompts map to five distinct near-miss rows, and D1 maps to a plain doctor row whose `expected_command` is `/doctor:deep-loop`.
-- "REQ-034's Verification Summary does not match its boxes": the CHK rows count 12 P0 (11 ticked), 13 P1, 1 P2, exactly the summary's numbers.
+- *A REQ with no owning acceptance row.* Every REQ-001..REQ-052 appears in the matrix's `REQ` column, several through more than one row.
+- *A loop-name pattern that a doubled space or a non-breaking space defeats.* Both copies fold all whitespace before matching.
+- *`autonomous research` still reaching the advisor's derived lane through `deep-research/SKILL.md`.* `projection.ts:1449` reads top-level skill directories with `graph-metadata.json` and takes derived triggers from that metadata (`:1467`), so the nested packet's keyword list is not scored.
+- *A stale acceptance status.* The five non-`Met` rows each carry their record: three waivers name an ADR, the supersession names ADR-001, and the one `Unmet` row is explained in the closure statement.
 
 ## Next Focus
 
-- Dimension: maintainability
-- Focus area: the closure-record layer the ten rounds kept rewriting — counts, cross-references, comment hygiene and the reducer-owned surfaces — still read against the operator's traceability question.
-- Reason: traceability's `spec_code` half is complete; `checklist_evidence` needs the tasks/AC row evidence that iteration 5 will read, and maintainability is the last canonical dimension.
-- Rotation status: correctness and security complete; traceability half complete; maintainability next.
-- Blocked / productive carry-forward: nothing blocked. The requirement table is the base iteration 5 will extend row by row.
-- Required evidence: `tasks.md` (ten rounds, 135 boxes), `acceptance-criteria.md`, `implementation-summary.md` limitations, `decision-record.md` ADRs, and the reducer's strategy/dashboard writers.
+- Dimension: `traceability`
+- Focus area: finish `checklist_evidence` — read the evidence cell of every AC row not yet read (AC-001..AC-029 and AC-050..AC-060), then check every ticked box in `tasks.md` against evidence that exists, including the Verification Checklist and the sixth-round lane boxes.
+- Reason: iteration 4 of 7; `spec_code` is complete, and `checklist_evidence` is the protocol still standing between this run and REQ-033's coverage gate.
+- Rotation status: `correctness`, `security` and `traceability` (once) reviewed; `maintainability` remains, and `traceability` needs a second pass for `checklist_evidence`.
+- Blocked/productive carry-forward: productive — the bulk anchor pass resolved 119 of 119, so the remaining work is content reading rather than lookup.
+- Required evidence: `acceptance-criteria.md` rows AC-001..AC-029 and AC-050..AC-060; `tasks.md` ticked boxes and its Verification Checklist.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

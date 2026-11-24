@@ -1,25 +1,20 @@
-BINDING: target=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers
-BINDING: maxIterations=7
-BINDING: convergence=0.1
-BINDING: mode=review
-BINDING: dimensions=correctness,security,traceability,maintainability
-BINDING: specFolder=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers
+Lineage complete. Final state:
 
-## Review Lineage Complete
+**Run:** `deepseek-max-2`, session `fanout-deepseek-max-2-1795550334883-gjbarh`, 7/7 iterations, stop reason `maxIterationsReached`, config `status: complete`.
 
-**Stop:** `maxIterationsReached` at 7/7, terminal gates evidence/scope/coverage all `pass`, both core protocols `pass`, verdict `PASS` with 5 P2 advisories (0 P0, 0 P1).
+**Focus executed (operator traceability focus, all 7 iterations):**
+| Iter | Slice | Result |
+|---|---|---|
+| 1 | REQ-001→014 vs code/docs | clean |
+| 2 | REQ-015→034, ADR-005/006 | 1 P2 (timeline one round short) |
+| 3 | REQ-035→052, drift guard, reducer | clean |
+| 4 | ticked tasks, counts recomputed | 2 P2 (stale pair counts; unsatisfiable scope claim) |
+| 5 | AC-001→029 | clean |
+| 6 | AC-030→042, sixth round | 1 P2 (AC-038 stale pair count) |
+| 7 | overlay protocols + consolidation | clean; catalog drift deferred (out of scope) |
 
-**Findings (all P2, closure-record drift — no gate defect):**
-- `R2-P2-001` AC-040's `Evidence: review/review-report.md:71` was archived by this restart (`acceptance-criteria.md:97`).
-- `R3-P2-001` T092 certifies no stale counts, but T082 says CHK-001 reads 46 (it reads 48) and T051 says 54 rows/50 Met (56/52) (`tasks.md:184`).
-- `R3-P2-002` T104's Evidence-tail checker is not in the tree, so its `problems=0` cannot be reproduced (`tasks.md:206`).
-- `R4-P2-001` AC-034's served-head figures 0.8754/0.82 have no artifact; the one recorded run is the pre-fix 0.84 hub (`acceptance-criteria.md:91`).
-- `R6-P2-001` The declared change-set heading stops at REQ-046 while its rows serve REQ-047/048 (`spec.md:195`).
+**Verdict:** `CONDITIONAL` — 0 P0, 0 P1, 4 P2 (all docs-drift), 1 search-debt row (`SL-019`, the feature-catalog no-edit sentence that predates REQ-040's read-only-loop exception). `spec_code` and `checklist_evidence` both **pass** (52/52 REQs bound; all 60 acceptance `Evidence:` tails resolve, packet checker `problems=0`). Coverage is honestly partial: `traceability` covered, the other three dimensions not re-reviewed by this lineage.
 
-**Coverage:** correctness (1), traceability (2, 3, 4, 7), security (5), maintainability (6). 48/48 requirements traced, 104/104 ticked tasks audited with 130/130 cited artifacts present, 55/56 acceptance rows closed (AC-040 is the one open row this rerun supplies evidence for). ADR-005/ADR-006 read against the built gate and their fixture columns.
-
-**Files written (lineage only):** `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-dashboard.md`, `deep-review-strategy.md`, `review-report.md`, `iterations/iteration-001..007.md`, `deltas/iter-001..007.jsonl`, `graph-db/`, `state-events/`; state rows went only through `append-mode-event.cjs` (run-open, 7 iterations, terminal gates, synthesis), with `reduce-state.cjs` after every append.
-
-**Recorded deviations** (strategy §9): setup `BINDING:` lines emitted after rather than before the first write; one `sed -i` on this lineage's own iteration 7 narrative; per-iteration graph upsert backfilled before synthesis (first convergence pass saw an empty graph, re-run read `STOP_ALLOWED`, all signals 1.0).
+**State integrity:** 9 ledger frames → 7 unique iteration records with full route proof in the projection, `synthesis_complete` carrying `maxIterationsReached`, 7 iteration files each with exactly one final verdict line, 7 write-once deltas whose first row matches the gateway record, registry/dashboard/strategy all reduced from the ledger after every iteration. No writes outside the lineage; no gateway refusals.
 
 FANOUT_LINEAGE_COMPLETE:deepseek-max-2

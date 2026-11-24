@@ -1,43 +1,30 @@
 {
-  "sessionId": "fanout-deepseek-max-1-1795546920757-7pyjry",
-  "parentSessionId": "2026-11-24T19:01:50.000Z",
-  "generation": 7,
+  "sessionId": "fanout-deepseek-max-1-1795550334883-gjbarh",
+  "parentSessionId": "2026-11-24T19:58:39.000Z",
+  "generation": 8,
   "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 7,
-    "timestamp": "2026-11-24T19:14:27.345Z"
+    "timestamp": "2026-11-24T20:08:47.258Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "R1-P1-001",
-      "severity": "P1",
-      "title": "The seeded review scope omits the files four requirements change, so spec_code cannot close on them without failing the terminal scope gate",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "line": 161,
+      "findingId": "DR1-P2-001",
+      "severity": "P2",
+      "title": "AC-038 observed drift-guard counts no longer match the guard it cites",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+      "line": 95,
       "description": "",
-      "findingClass": "class-of-bug",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "anchored on spec.md inside the review target; the omitted surfaces are named as affected hints, not as finding files",
-      "affectedSurfaceHints": [
-        ".skilled/commands/deep/assets/deep-research.yaml",
-        ".skilled/commands/deep/assets/deep-review.yaml",
-        ".skilled/skills/system-deep-loop/hub-router.json",
-        ".skilled/skills/system-deep-loop/ROUTER.md",
-        ".skilled/skills/system-deep-loop/SKILL.md",
-        ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
-        ".skilled/skills/system-skill-advisor/runtime/dist/",
-        ".skilled/commands/deep/assets/compiled/",
-        ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md"
-      ],
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "correctness",
       "firstSeen": 1,
       "lastSeen": 1,
       "status": "active",
@@ -45,224 +32,12 @@
         {
           "iteration": 1,
           "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R4-P1-001",
-      "severity": "P1",
-      "title": "A doubled space, a tab, a line break or a non-breaking space inside a loop phrase withholds the command, in both gate copies, and no fixture case can catch it",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-      "line": 949,
-      "description": "",
-      "findingClass": "class-of-bug",
-      "deltaStatus": null,
-      "scopeProof": "the file is inside the seeded scope; every claim is a probe of the built gate or a read of the exported predicate",
-      "affectedSurfaceHints": [
-        "LOOP_REQUEST",
-        "LOOP_WORDING",
-        "LOOP_NAMES",
-        "MODE_CUE_WORDS",
-        "ITERATIVE_ASK",
-        "_LOOP_REQUEST_RE",
-        "handlers/advisor-recommend.ts attachCommand call",
-        "degraded CLI path"
-      ],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P1",
+          "to": "P2",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
         "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P2-001",
-      "severity": "P2",
-      "title": "AC-040 evidence pointer names the live report path that this rerun restart has already archived",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 97,
-      "description": "",
-      "findingClass": "instance-only",
-      "deltaStatus": null,
-      "scopeProof": "acceptance-criteria.md is inside the review target folder",
-      "affectedSurfaceHints": [
-        "tasks.md T084",
-        "implementation-summary.md next_safe_action"
-      ],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R2-P2-001",
-      "severity": "P2",
-      "title": "AC-020 reads Met while its own verification says the evidence it needs is not in the packet, and REQ-013 rests on the same unkept record",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 77,
-      "description": "",
-      "findingClass": "matrix/evidence",
-      "deltaStatus": null,
-      "scopeProof": "both files are packet documents inside the review target",
-      "affectedSurfaceHints": [
-        "spec.md REQ-013",
-        "tasks.md T047",
-        "implementation-summary.md Eighth round row"
-      ],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R3-P2-001",
-      "severity": "P2",
-      "title": "AC-044 and T088 still count thirteen plural loop-name rows where the fixture holds twenty-one",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 101,
-      "description": "",
-      "findingClass": "instance-only",
-      "deltaStatus": null,
-      "scopeProof": "both closure documents are inside the review target; the fixture was read as data",
-      "affectedSurfaceHints": [
-        "tasks.md T088",
-        "spec.md REQ-035"
-      ],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R6-P2-001",
-      "severity": "P2",
-      "title": "The reducer Next Focus projection captures the iteration verdict and flattens the focus block",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md",
-      "line": 171,
-      "description": "",
-      "findingClass": "class-of-bug",
-      "deltaStatus": null,
-      "scopeProof": "the reducer is in the seeded scope and both artefacts are inside this lineage",
-      "affectedSurfaceHints": [
-        "reduce-state.cjs extractSection",
-        "reduce-state.cjs normalizeText",
-        "strategy section 12",
-        "dashboard section 11",
-        "iteration prompt Next Focus contract"
-      ],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 6,
-      "lastSeen": 6,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 6,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R6-P2-002",
-      "severity": "P2",
-      "title": "The drift guard compares one regex pattern while the fallback hand-mirrors eighteen",
-      "file": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
-      "line": 434,
-      "description": "",
-      "findingClass": "matrix/evidence",
-      "deltaStatus": null,
-      "scopeProof": "the test file is in the seeded scope",
-      "affectedSurfaceHints": [
-        "PATTERN_PAIRS",
-        "_LOOP_REQUEST_RE",
-        "_LOOP_COUNT",
-        "_LOOP_MULTI_PASS",
-        "_ITERATIVE_ASK",
-        "mode-cue patterns"
-      ],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 6,
-      "lastSeen": 6,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 6,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
       ],
       "mergedFindingIds": []
     }
@@ -272,7 +47,9 @@
   "terminalGates": {
     "run": 7,
     "stopReason": "maxIterationsReached",
-    "failedRequiredGateIds": []
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
   },
   "persistentSameSeverity": [],
   "severityChanged": [],
@@ -285,10 +62,10 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 2,
-    "P2": 5
+    "P1": 0,
+    "P2": 1
   },
-  "openFindingsCount": 7,
+  "openFindingsCount": 1,
   "resolvedFindingsCount": 0,
   "convergenceScore": 1,
   "graphConvergenceScore": 0,
@@ -297,81 +74,49 @@
   "graphSignals": {},
   "candidateCoverage": {
     "covered": [
-      "adversarial_input_crash",
-      "artefact_inconsistency",
-      "case_folding",
-      "catastrophic_backtracking",
-      "citation_regression",
-      "command_injection",
-      "comment_label_leak",
-      "credential_read",
-      "cross_copy_vocabulary_drift",
-      "dangling_citation",
+      "acceptance_row_unevidenced",
+      "claim_evidence_drift",
+      "closure_doc_stale",
+      "column_value_mismatch",
+      "comment_hygiene",
       "dead_code",
-      "documentation_drift",
-      "duplicate_heading",
-      "evidence_pointer_stale",
-      "evidence_without_artifact",
-      "guard_coverage_gap",
-      "guard_under_noise",
-      "input_boundary",
-      "mirror_drift",
-      "overlay_protocol_gap",
-      "parity_gap",
-      "policy_escalation",
-      "projection_contamination",
-      "reducer_regression",
-      "requirement_without_code",
-      "scope_definition_gap",
-      "stale_count",
-      "stale_generated_artifact",
-      "unbacked_waiver",
-      "unchecked_box_drift",
-      "unvetted_degraded_command",
-      "whitespace_normalisation"
+      "document_claim_absent",
+      "duplicated_rule",
+      "generated_artifact_drift",
+      "probe_evidence_missing",
+      "requirement_symbol_missing",
+      "requirement_unimplemented",
+      "requirement_without_row",
+      "status_outside_enum",
+      "ticked_task_missing_artifact",
+      "unaccounted_pattern"
     ],
     "ruledOut": [
-      "adversarial_input_crash",
-      "artefact_inconsistency",
-      "case_folding",
-      "catastrophic_backtracking",
-      "citation_regression",
+      "acceptance_row_unevidenced",
+      "closure_doc_stale",
+      "column_value_mismatch",
       "command_injection",
-      "comment_label_leak",
-      "credential_read",
-      "cross_copy_vocabulary_drift",
-      "dangling_citation",
+      "comment_hygiene",
       "dead_code",
-      "documentation_drift",
-      "duplicate_heading",
-      "guard_under_noise",
-      "input_boundary",
-      "mirror_drift",
-      "overlay_protocol_gap",
-      "parity_gap",
-      "policy_escalation",
-      "reducer_regression",
-      "requirement_without_code",
-      "stale_count",
-      "stale_generated_artifact",
-      "unbacked_waiver",
-      "unchecked_box_drift",
-      "unvetted_degraded_command"
+      "decision_not_implemented",
+      "document_claim_absent",
+      "duplicated_rule",
+      "generated_artifact_drift",
+      "probe_evidence_missing",
+      "prompt_disclosure",
+      "requirement_symbol_missing",
+      "requirement_unimplemented",
+      "served_head_ordering",
+      "status_outside_enum",
+      "supplied_command_confusion",
+      "ticked_task_missing_artifact",
+      "unaccounted_pattern",
+      "unbounded_input"
     ],
     "deferred": [],
     "blocked": [],
     "byBugClass": {
-      "requirement_without_code": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1,
-          2
-        ]
-      },
-      "evidence_pointer_stale": {
+      "claim_evidence_drift": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -380,161 +125,106 @@
           1
         ]
       },
-      "scope_definition_gap": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "stale_generated_artifact": {
-        "covered": true,
+      "served_head_ordering": {
+        "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
           1
-        ]
-      },
-      "cross_copy_vocabulary_drift": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "evidence_without_artifact": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "parity_gap": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "stale_count": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2,
-          3
-        ]
-      },
-      "reducer_regression": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "dangling_citation": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "unbacked_waiver": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "unchecked_box_drift": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "comment_label_leak": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "whitespace_normalisation": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "adversarial_input_crash": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "catastrophic_backtracking": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "case_folding": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "guard_under_noise": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "policy_escalation": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
         ]
       },
       "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "prompt_disclosure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unbounded_input": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "supplied_command_confusion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "requirement_unimplemented": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "document_claim_absent": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "probe_evidence_missing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "requirement_symbol_missing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "closure_doc_stale": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "decision_not_implemented": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "ticked_task_missing_artifact": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
@@ -543,7 +233,7 @@
           5
         ]
       },
-      "unvetted_degraded_command": {
+      "acceptance_row_unevidenced": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
@@ -552,7 +242,7 @@
           5
         ]
       },
-      "input_boundary": {
+      "status_outside_enum": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
@@ -561,27 +251,18 @@
           5
         ]
       },
-      "credential_read": {
+      "comment_hygiene": {
         "covered": true,
         "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
-        ]
-      },
-      "projection_contamination": {
-        "covered": true,
-        "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
           6
         ]
       },
-      "guard_coverage_gap": {
+      "generated_artifact_drift": {
         "covered": true,
-        "ruledOut": false,
+        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
@@ -597,7 +278,7 @@
           6
         ]
       },
-      "duplicate_heading": {
+      "duplicated_rule": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
@@ -606,16 +287,16 @@
           6
         ]
       },
-      "documentation_drift": {
+      "requirement_without_row": {
         "covered": true,
-        "ruledOut": true,
+        "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          7
         ]
       },
-      "overlay_protocol_gap": {
+      "column_value_mismatch": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
@@ -624,25 +305,7 @@
           7
         ]
       },
-      "mirror_drift": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ]
-      },
-      "artefact_inconsistency": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ]
-      },
-      "citation_regression": {
+      "unaccounted_pattern": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
@@ -657,920 +320,740 @@
   "ruledOutCandidates": [
     {
       "iteration": 1,
-      "id": "SL-001",
-      "dimension": "traceability",
+      "id": "SL-002",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
       ],
-      "bugClass": "requirement_without_code",
+      "bugClass": "served_head_ordering",
       "disposition": "ruled_out",
-      "rationale": "every requirement in part 1 resolved to a symbol, an asset line or the decision record",
+      "rationale": "No caller reaches the diagnosis row ahead of the typed command.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:949"
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:442",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:570"
       ],
-      "reason": "verified by direct read plus a built-dist probe"
+      "reason": "The ordering ADR-005 requires is present on both paths."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Injection needs an interpreter; there is none.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:285",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:334"
+      ],
+      "reason": "No shell is used on any spawn site."
+    },
+    {
+      "iteration": 2,
       "id": "SL-004",
-      "dimension": "traceability",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
       ],
-      "bugClass": "stale_generated_artifact",
+      "bugClass": "prompt_disclosure",
       "disposition": "ruled_out",
-      "rationale": "every recorded digest matches the current file",
+      "rationale": "argv is the readable surface; it carries no prompt.",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1"
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:276",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:300"
       ],
-      "reason": "digest comparison over both contracts"
+      "reason": "Neither path puts the prompt in argv."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-005",
-      "dimension": "traceability",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
       ],
-      "bugClass": "cross_copy_vocabulary_drift",
+      "bugClass": "unbounded_input",
       "disposition": "ruled_out",
-      "rationale": "all 20 lists agree entry for entry",
+      "rationale": "A bounded window per match bounds the work.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5230"
       ],
-      "reason": "independent extraction and comparison"
+      "reason": "Both the input length and the per-match scan are bounded."
     },
     {
       "iteration": 2,
       "id": "SL-006",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "requirement_without_code",
-      "disposition": "ruled_out",
-      "rationale": "every row in part 2 mapped to a symbol plus a test title",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:897"
-      ],
-      "reason": "verified by direct read plus twelve built-dist probes"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-008",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      ],
-      "bugClass": "parity_gap",
-      "disposition": "ruled_out",
-      "rationale": "both behaviours match the native copy and the fixture",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888"
-      ],
-      "reason": "direct read of both copies"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-009",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json"
-      ],
-      "bugClass": "stale_count",
-      "disposition": "ruled_out",
-      "rationale": "every quoted count matches the tree",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1"
-      ],
-      "reason": "counted from the files"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-010",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
-      ],
-      "bugClass": "reducer_regression",
-      "disposition": "ruled_out",
-      "rationale": "both behaviours are present and this lineage's own strategy kept its section numbers",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2386"
-      ],
-      "reason": "direct read plus the strategy file's numbering after the first reducer pass"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-011",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
-      ],
-      "bugClass": "dangling_citation",
-      "disposition": "ruled_out",
-      "rationale": "no dangling citation in either closure document",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1"
-      ],
-      "reason": "name resolution against the tree"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-013",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
-      ],
-      "bugClass": "unbacked_waiver",
-      "disposition": "ruled_out",
-      "rationale": "every waiver names an existing ADR",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:128"
-      ],
-      "reason": "direct read of the decision record"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-014",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
-      ],
-      "bugClass": "unchecked_box_drift",
-      "disposition": "ruled_out",
-      "rationale": "the summary matches the boxes",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:1"
-      ],
-      "reason": "counted from the file"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-015",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "comment_label_leak",
-      "disposition": "ruled_out",
-      "rationale": "no ephemeral artifact label inside any comment",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688"
-      ],
-      "reason": "comment-hygiene sweep over every in-scope code file"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-017",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "adversarial_input_crash",
-      "disposition": "ruled_out",
-      "rationale": "five shapes, none threw",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537"
-      ],
-      "reason": "probe with outcome check"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-018",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "catastrophic_backtracking",
-      "disposition": "ruled_out",
-      "rationale": "linear behaviour on every repetition",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:748"
-      ],
-      "reason": "timed probes"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-019",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "case_folding",
-      "disposition": "ruled_out",
-      "rationale": "the predicates lower-case their input",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:648"
-      ],
-      "reason": "probe"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-020",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "guard_under_noise",
-      "disposition": "ruled_out",
-      "rationale": "the guards are word-boundary based, not punctuation based",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:949"
-      ],
-      "reason": "probe"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-021",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "policy_escalation",
-      "disposition": "ruled_out",
-      "rationale": "NFR-S01 holds on every row",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71"
-      ],
-      "reason": "table read"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-022",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "command_injection",
-      "disposition": "ruled_out",
-      "rationale": "the command comes from a fixed table",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537"
-      ],
-      "reason": "fuzz over all fixture prompts and crafted strings"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-023",
       "dimension": "security",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
       ],
-      "bugClass": "unvetted_degraded_command",
+      "bugClass": "supplied_command_confusion",
       "disposition": "ruled_out",
-      "rationale": "REQ-038 holds",
+      "rationale": "A string the table does not hold cannot print.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489"
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1571"
       ],
-      "reason": "direct read"
+      "reason": "The check is an allowlist keyed on the owning skill."
     },
     {
-      "iteration": 5,
-      "id": "SL-024",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt"
       ],
-      "bugClass": "input_boundary",
+      "bugClass": "document_claim_absent",
       "disposition": "ruled_out",
-      "rationale": "the boundary is one contract enforced at three points",
+      "rationale": "A requirement that names two files and matches in both is implemented.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257"
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:1",
+        ".skilled/commands/deep/research.md:86"
       ],
-      "reason": "direct read of each point"
+      "reason": "Every presence claim matched in both named files."
     },
     {
-      "iteration": 5,
-      "id": "SL-025",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-final-958fa81-worktree.json"
+      ],
+      "bugClass": "probe_evidence_missing",
+      "disposition": "ruled_out",
+      "rationale": "Recorded evidence that matches the claim settles the row at the document layer.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-final-958fa81-worktree.json:1"
+      ],
+      "reason": "The record holds every id checked, with the stated value."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
       ],
-      "bugClass": "credential_read",
+      "bugClass": "requirement_unimplemented",
       "disposition": "ruled_out",
-      "rationale": "NFR-S02 holds",
+      "rationale": "A list-driven rule is the shape the requirements describe.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:136"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:944",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1147"
       ],
-      "reason": "direct read of every changed read site"
+      "reason": "The rules are built from lists, not from prompt literals."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
+      ],
+      "bugClass": "decision_not_implemented",
+      "disposition": "ruled_out",
+      "rationale": "A recorded decision that matches the code is traceable at both ends.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:442",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:330"
+      ],
+      "reason": "Each decision names a symbol and a fixture column that exist and read as the decision says."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+      ],
+      "bugClass": "requirement_symbol_missing",
+      "disposition": "ruled_out",
+      "rationale": "A symbol found in the file that owns the behaviour satisfies the requirement.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5141"
+      ],
+      "reason": "Both apparent misses were a wrong-file guess, not a missing symbol."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+        ".skilled/changelog/skilled/v4.2.0.0.md"
+      ],
+      "bugClass": "closure_doc_stale",
+      "disposition": "ruled_out",
+      "rationale": "Absence plus a current statement settles the row.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.2.0.0.md:482",
+        ".skilled/changelog/skilled/v4.2.0.0.md:484"
+      ],
+      "reason": "The stale sentence is absent and the changelog states the built behaviour."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
+      ],
+      "bugClass": "ticked_task_missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "A citation that resolves is evidence the task names something real.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:107"
+      ],
+      "reason": "Every cited path resolves once the packet, runtime, skill, command and sibling roots are tried."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      ],
+      "bugClass": "acceptance_row_unevidenced",
+      "disposition": "ruled_out",
+      "rationale": "An evidenced row is what the protocol asks for.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:64"
+      ],
+      "reason": "No row is met on assertion alone."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      ],
+      "bugClass": "status_outside_enum",
+      "disposition": "ruled_out",
+      "rationale": "A documented open row is not a stray status.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97"
+      ],
+      "reason": "The only fourth value is Unmet, which the packet documents as waiting on this run."
     },
     {
       "iteration": 6,
-      "id": "SL-028",
+      "id": "SL-016",
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
       ],
-      "bugClass": "dead_code",
+      "bugClass": "comment_hygiene",
       "disposition": "ruled_out",
-      "rationale": "none is unreachable",
+      "rationale": "A clean search over the whole code scope settles the class.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:897"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1"
       ],
-      "reason": "reachability check rather than reference count"
+      "reason": "The search found no identifier or spec path in any code comment."
     },
     {
       "iteration": 6,
-      "id": "SL-029",
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+      ],
+      "bugClass": "generated_artifact_drift",
+      "disposition": "ruled_out",
+      "rationale": "Parity on a distinctive line is enough to rule out a wholesale lag.",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml:664"
+      ],
+      "reason": "The generated contracts carry the lines the sources carry."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-018",
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
       ],
-      "bugClass": "duplicate_heading",
+      "bugClass": "dead_code",
       "disposition": "ruled_out",
-      "rationale": "REQ-048 holds in the field",
+      "rationale": "Two occurrences is the cheapest proof of a call site in one file.",
       "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md:171"
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2449"
       ],
-      "reason": "heading count in the produced artefact"
+      "reason": "No named symbol is defined without a call site."
     },
     {
       "iteration": 6,
-      "id": "SL-030",
+      "id": "SL-019",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
       ],
-      "bugClass": "documentation_drift",
+      "bugClass": "duplicated_rule",
       "disposition": "ruled_out",
-      "rationale": "no drifted comment found in the in-scope code",
+      "rationale": "Two implementations of one rule that agree today are a maintenance risk, not a defect; recorded as an edge case.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4816"
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:406"
       ],
-      "reason": "read of every changed comment block in iterations 1 to 6"
+      "reason": "Both programs apply the same two tests."
     },
     {
       "iteration": 7,
-      "id": "SL-031",
+      "id": "SL-020",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/mode-registry.json"
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
       ],
-      "bugClass": "overlay_protocol_gap",
+      "bugClass": "column_value_mismatch",
       "disposition": "ruled_out",
-      "rationale": "the mode set is consistent",
+      "rationale": "A row and column that match the requirement is the requirement implemented.",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/hub-router.json:34"
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:269",
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:359"
       ],
-      "reason": "three-surface read"
+      "reason": "All twelve row groups read as the requirements state."
     },
     {
       "iteration": 7,
-      "id": "SL-032",
+      "id": "SL-021",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/agents/deep-review.md"
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts"
       ],
-      "bugClass": "mirror_drift",
+      "bugClass": "unaccounted_pattern",
       "disposition": "ruled_out",
-      "rationale": "no missing mirror",
+      "rationale": "A complete partition closes the drift class.",
       "evidenceRefs": [
-        ".codex/agents/deep-review.toml:1"
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571",
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:699"
       ],
-      "reason": "directory read plus the crosswalk"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-033",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      ],
-      "bugClass": "artefact_inconsistency",
-      "disposition": "ruled_out",
-      "rationale": "counts agree",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md:171"
-      ],
-      "reason": "per-iteration cross-check"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-034",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      ],
-      "bugClass": "citation_regression",
-      "disposition": "ruled_out",
-      "rationale": "no regression",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:1"
-      ],
-      "reason": "re-resolution pass"
+      "reason": "Compared plus named equals the compiled set, and the test asserts it."
     }
   ],
   "cleanSearchProof": [
     {
       "iteration": 1,
-      "id": "SL-001",
-      "dimension": "traceability",
+      "id": "SL-002",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
       ],
-      "bugClass": "requirement_without_code",
+      "bugClass": "served_head_ordering",
       "disposition": "ruled_out",
-      "rationale": "every requirement in part 1 resolved to a symbol, an asset line or the decision record",
+      "rationale": "No caller reaches the diagnosis row ahead of the typed command.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:949"
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:442",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:570"
       ],
-      "proof": "verified by direct read plus a built-dist probe"
+      "proof": "The ordering ADR-005 requires is present on both paths."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Injection needs an interpreter; there is none.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:285",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:334"
+      ],
+      "proof": "No shell is used on any spawn site."
+    },
+    {
+      "iteration": 2,
       "id": "SL-004",
-      "dimension": "traceability",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
       ],
-      "bugClass": "stale_generated_artifact",
+      "bugClass": "prompt_disclosure",
       "disposition": "ruled_out",
-      "rationale": "every recorded digest matches the current file",
+      "rationale": "argv is the readable surface; it carries no prompt.",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1"
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:276",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:300"
       ],
-      "proof": "digest comparison over both contracts"
+      "proof": "Neither path puts the prompt in argv."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-005",
-      "dimension": "traceability",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
       ],
-      "bugClass": "cross_copy_vocabulary_drift",
+      "bugClass": "unbounded_input",
       "disposition": "ruled_out",
-      "rationale": "all 20 lists agree entry for entry",
+      "rationale": "A bounded window per match bounds the work.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5230"
       ],
-      "proof": "independent extraction and comparison"
+      "proof": "Both the input length and the per-match scan are bounded."
     },
     {
       "iteration": 2,
       "id": "SL-006",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "requirement_without_code",
-      "disposition": "ruled_out",
-      "rationale": "every row in part 2 mapped to a symbol plus a test title",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:897"
-      ],
-      "proof": "verified by direct read plus twelve built-dist probes"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-008",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      ],
-      "bugClass": "parity_gap",
-      "disposition": "ruled_out",
-      "rationale": "both behaviours match the native copy and the fixture",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888"
-      ],
-      "proof": "direct read of both copies"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-009",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json"
-      ],
-      "bugClass": "stale_count",
-      "disposition": "ruled_out",
-      "rationale": "every quoted count matches the tree",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1"
-      ],
-      "proof": "counted from the files"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-010",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
-      ],
-      "bugClass": "reducer_regression",
-      "disposition": "ruled_out",
-      "rationale": "both behaviours are present and this lineage's own strategy kept its section numbers",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2386"
-      ],
-      "proof": "direct read plus the strategy file's numbering after the first reducer pass"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-011",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
-      ],
-      "bugClass": "dangling_citation",
-      "disposition": "ruled_out",
-      "rationale": "no dangling citation in either closure document",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1"
-      ],
-      "proof": "name resolution against the tree"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-013",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
-      ],
-      "bugClass": "unbacked_waiver",
-      "disposition": "ruled_out",
-      "rationale": "every waiver names an existing ADR",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:128"
-      ],
-      "proof": "direct read of the decision record"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-014",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
-      ],
-      "bugClass": "unchecked_box_drift",
-      "disposition": "ruled_out",
-      "rationale": "the summary matches the boxes",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:1"
-      ],
-      "proof": "counted from the file"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-015",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "comment_label_leak",
-      "disposition": "ruled_out",
-      "rationale": "no ephemeral artifact label inside any comment",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688"
-      ],
-      "proof": "comment-hygiene sweep over every in-scope code file"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-017",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "adversarial_input_crash",
-      "disposition": "ruled_out",
-      "rationale": "five shapes, none threw",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537"
-      ],
-      "proof": "probe with outcome check"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-018",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "catastrophic_backtracking",
-      "disposition": "ruled_out",
-      "rationale": "linear behaviour on every repetition",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:748"
-      ],
-      "proof": "timed probes"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-019",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "case_folding",
-      "disposition": "ruled_out",
-      "rationale": "the predicates lower-case their input",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:648"
-      ],
-      "proof": "probe"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-020",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "guard_under_noise",
-      "disposition": "ruled_out",
-      "rationale": "the guards are word-boundary based, not punctuation based",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:949"
-      ],
-      "proof": "probe"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-021",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "policy_escalation",
-      "disposition": "ruled_out",
-      "rationale": "NFR-S01 holds on every row",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71"
-      ],
-      "proof": "table read"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-022",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "command_injection",
-      "disposition": "ruled_out",
-      "rationale": "the command comes from a fixed table",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537"
-      ],
-      "proof": "fuzz over all fixture prompts and crafted strings"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-023",
       "dimension": "security",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
       ],
-      "bugClass": "unvetted_degraded_command",
+      "bugClass": "supplied_command_confusion",
       "disposition": "ruled_out",
-      "rationale": "REQ-038 holds",
+      "rationale": "A string the table does not hold cannot print.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489"
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1571"
       ],
-      "proof": "direct read"
+      "proof": "The check is an allowlist keyed on the owning skill."
     },
     {
-      "iteration": 5,
-      "id": "SL-024",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt"
       ],
-      "bugClass": "input_boundary",
+      "bugClass": "document_claim_absent",
       "disposition": "ruled_out",
-      "rationale": "the boundary is one contract enforced at three points",
+      "rationale": "A requirement that names two files and matches in both is implemented.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257"
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:1",
+        ".skilled/commands/deep/research.md:86"
       ],
-      "proof": "direct read of each point"
+      "proof": "Every presence claim matched in both named files."
     },
     {
-      "iteration": 5,
-      "id": "SL-025",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-final-958fa81-worktree.json"
+      ],
+      "bugClass": "probe_evidence_missing",
+      "disposition": "ruled_out",
+      "rationale": "Recorded evidence that matches the claim settles the row at the document layer.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-final-958fa81-worktree.json:1"
+      ],
+      "proof": "The record holds every id checked, with the stated value."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
       ],
-      "bugClass": "credential_read",
+      "bugClass": "requirement_unimplemented",
       "disposition": "ruled_out",
-      "rationale": "NFR-S02 holds",
+      "rationale": "A list-driven rule is the shape the requirements describe.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:136"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:944",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1147"
       ],
-      "proof": "direct read of every changed read site"
+      "proof": "The rules are built from lists, not from prompt literals."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
+      ],
+      "bugClass": "decision_not_implemented",
+      "disposition": "ruled_out",
+      "rationale": "A recorded decision that matches the code is traceable at both ends.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:442",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:330"
+      ],
+      "proof": "Each decision names a symbol and a fixture column that exist and read as the decision says."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+      ],
+      "bugClass": "requirement_symbol_missing",
+      "disposition": "ruled_out",
+      "rationale": "A symbol found in the file that owns the behaviour satisfies the requirement.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5141"
+      ],
+      "proof": "Both apparent misses were a wrong-file guess, not a missing symbol."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+        ".skilled/changelog/skilled/v4.2.0.0.md"
+      ],
+      "bugClass": "closure_doc_stale",
+      "disposition": "ruled_out",
+      "rationale": "Absence plus a current statement settles the row.",
+      "evidenceRefs": [
+        ".skilled/changelog/skilled/v4.2.0.0.md:482",
+        ".skilled/changelog/skilled/v4.2.0.0.md:484"
+      ],
+      "proof": "The stale sentence is absent and the changelog states the built behaviour."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
+      ],
+      "bugClass": "ticked_task_missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "A citation that resolves is evidence the task names something real.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:107"
+      ],
+      "proof": "Every cited path resolves once the packet, runtime, skill, command and sibling roots are tried."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      ],
+      "bugClass": "acceptance_row_unevidenced",
+      "disposition": "ruled_out",
+      "rationale": "An evidenced row is what the protocol asks for.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:64"
+      ],
+      "proof": "No row is met on assertion alone."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      ],
+      "bugClass": "status_outside_enum",
+      "disposition": "ruled_out",
+      "rationale": "A documented open row is not a stray status.",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97"
+      ],
+      "proof": "The only fourth value is Unmet, which the packet documents as waiting on this run."
     },
     {
       "iteration": 6,
-      "id": "SL-028",
+      "id": "SL-016",
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
       ],
-      "bugClass": "dead_code",
+      "bugClass": "comment_hygiene",
       "disposition": "ruled_out",
-      "rationale": "none is unreachable",
+      "rationale": "A clean search over the whole code scope settles the class.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:897"
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1"
       ],
-      "proof": "reachability check rather than reference count"
+      "proof": "The search found no identifier or spec path in any code comment."
     },
     {
       "iteration": 6,
-      "id": "SL-029",
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+      ],
+      "bugClass": "generated_artifact_drift",
+      "disposition": "ruled_out",
+      "rationale": "Parity on a distinctive line is enough to rule out a wholesale lag.",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review.yaml:664"
+      ],
+      "proof": "The generated contracts carry the lines the sources carry."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-018",
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
       ],
-      "bugClass": "duplicate_heading",
+      "bugClass": "dead_code",
       "disposition": "ruled_out",
-      "rationale": "REQ-048 holds in the field",
+      "rationale": "Two occurrences is the cheapest proof of a call site in one file.",
       "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md:171"
+        ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2449"
       ],
-      "proof": "heading count in the produced artefact"
+      "proof": "No named symbol is defined without a call site."
     },
     {
       "iteration": 6,
-      "id": "SL-030",
+      "id": "SL-019",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
       ],
-      "bugClass": "documentation_drift",
+      "bugClass": "duplicated_rule",
       "disposition": "ruled_out",
-      "rationale": "no drifted comment found in the in-scope code",
+      "rationale": "Two implementations of one rule that agree today are a maintenance risk, not a defect; recorded as an edge case.",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4816"
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:406"
       ],
-      "proof": "read of every changed comment block in iterations 1 to 6"
+      "proof": "Both programs apply the same two tests."
     },
     {
       "iteration": 7,
-      "id": "SL-031",
+      "id": "SL-020",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/mode-registry.json"
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
       ],
-      "bugClass": "overlay_protocol_gap",
+      "bugClass": "column_value_mismatch",
       "disposition": "ruled_out",
-      "rationale": "the mode set is consistent",
+      "rationale": "A row and column that match the requirement is the requirement implemented.",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/hub-router.json:34"
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:269",
+        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:359"
       ],
-      "proof": "three-surface read"
+      "proof": "All twelve row groups read as the requirements state."
     },
     {
       "iteration": 7,
-      "id": "SL-032",
+      "id": "SL-021",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/agents/deep-review.md"
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts"
       ],
-      "bugClass": "mirror_drift",
+      "bugClass": "unaccounted_pattern",
       "disposition": "ruled_out",
-      "rationale": "no missing mirror",
+      "rationale": "A complete partition closes the drift class.",
       "evidenceRefs": [
-        ".codex/agents/deep-review.toml:1"
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571",
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:699"
       ],
-      "proof": "directory read plus the crosswalk"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-033",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      ],
-      "bugClass": "artefact_inconsistency",
-      "disposition": "ruled_out",
-      "rationale": "counts agree",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md:171"
-      ],
-      "proof": "per-iteration cross-check"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-034",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      ],
-      "bugClass": "citation_regression",
-      "disposition": "ruled_out",
-      "rationale": "no regression",
-      "evidenceRefs": [
-        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:1"
-      ],
-      "proof": "re-resolution pass"
+      "proof": "Compared plus named equals the compiled set, and the test asserts it."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "overlay_protocol_gap",
-      "mirror_drift",
-      "artefact_inconsistency",
-      "citation_regression"
+      "requirement_without_row",
+      "column_value_mismatch",
+      "unaccounted_pattern"
     ],
     "covered": [
-      "overlay_protocol_gap",
-      "mirror_drift",
-      "artefact_inconsistency",
-      "citation_regression"
+      "requirement_without_row",
+      "column_value_mismatch",
+      "unaccounted_pattern"
     ],
-    "ruledOut": [
-      "overlay_protocol_gap",
-      "mirror_drift",
-      "artefact_inconsistency",
-      "citation_regression"
-    ],
+    "ruledOut": [],
     "deferred": [],
     "blocked": [],
     "graphCoverageMode": "graph"
   },
   "traceability": {
     "summary": {
-      "required": 4,
-      "executed": 4,
-      "pass": 4,
-      "partial": 0,
+      "required": 2,
+      "executed": 2,
+      "pass": 1,
+      "partial": 1,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 2,
-      "gatingFailures": 0
+      "notApplicable": 4,
+      "gatingFailures": 1
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537",
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:230"
+          ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:269",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1693",
+          ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2378",
+          ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571",
+          ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:359"
         ],
         "gateClass": "hard",
         "protocolId": "spec_code",
         "status": "pass",
-        "summary": "Carried pass: all 48 REQ rows resolved in iterations 1 to 3"
+        "summary": "REQ-001 to REQ-051 all traced: REQ-035 to REQ-051 verified against fixture rows and columns and the rules that read them, closing the block left open by iterations 3 and 4."
       },
       {
         "applicable": true,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:1",
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:1"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:95",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97"
         ],
         "gateClass": "hard",
         "protocolId": "checklist_evidence",
-        "status": "pass",
-        "summary": "Carried pass and re-resolved: 104 ticked tasks and 52 Met rows with no new dangling citation"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/system-deep-loop/mode-registry.json:1",
-          ".skilled/skills/system-deep-loop/hub-router.json:34"
-        ],
-        "gateClass": "soft",
-        "protocolId": "skill_agent",
-        "status": "pass",
-        "summary": "Registry, router and both mode packets agree on the research and review modes"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/agents/deep-review.md:1",
-          ".claude/agents/deep-review.md:1",
-          ".codex/agents/deep-review.toml:1",
-          ".skilled/bin/agent-mirror-crosswalk.md:1"
-        ],
-        "gateClass": "soft",
-        "protocolId": "agent_cross_runtime",
-        "status": "pass",
-        "summary": "Five runtime trees carry the deep-review declaration in their own dialect, the codex .toml included"
+        "status": "partial",
+        "summary": "54 Met rows stand on re-derived evidence, but AC-038 is stale (DR1-P2-001) and AC-040 waits on synthesis, so the protocol stays partial."
       },
       {
         "applicable": false,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:161"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1"
         ],
-        "gateClass": "soft",
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "No skill contract pairing is in scope."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent definition is in scope."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1"
+        ],
+        "gateClass": "overlay",
         "protocolId": "feature_catalog_code",
         "status": "notApplicable",
-        "summary": "The packet changes no feature-catalogued component; no catalog entry names the advisor gate or the deep command assets"
+        "summary": "No feature catalog entry is in scope."
       },
       {
         "applicable": false,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:161"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1"
         ],
-        "gateClass": "soft",
+        "gateClass": "overlay",
         "protocolId": "playbook_capability",
         "status": "notApplicable",
-        "summary": "No playbook claims the deep-loop offer capability the packet changes"
+        "summary": "No playbook is in scope."
       }
     ],
-    "unfinishedCoreProtocols": []
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
   },
   "divergence": {
     "started": [],

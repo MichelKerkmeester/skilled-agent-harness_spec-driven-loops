@@ -1,1 +1,13 @@
+The lineage is complete and verified on disk. State-log projection holds 10 rows (run-open, 7 iteration records, terminal gates, synthesis_complete); the ledger accepted every append at exit 0 with receipts (seq 1→10), and containment baseline files are byte-identical, so every write landed inside the lineage.
+
+**Outcome**
+
+- **7 of 7 iterations**, stop reason `maxIterationsReached`, all four dimensions covered.
+- **Verdict `FAIL`, from the mechanism, not from prose**: terminal gates read `evidence` pass, `scope` pass, `coverage` **fail** (`traceability-incomplete`). `spec_code` closed at **pass** (all 51 REQs traced to code or the decision that records them, including REQ-023–REQ-034 with ADR-005 and ADR-006); `checklist_evidence` closed at **partial** for two named reasons rather than a general one.
+- **One active finding (P2)**: AC-038 states 22 vocabulary pairs with `RUN_ASK_REFUSAL_LEADS` last; the guard holds 24 and ends on `RUN_ASK_REFUSAL_VERBS` (`acceptance-criteria.md:95` vs `deep-loop-offer-cases.vitest.ts:121`). Re-derived, not inferred — and confirmed again in the adversarial self-check.
+- **What held under all seven lenses**: 60/60 quoted evidence cells resolve to the line holding their quote; the fixture's counted claims match the tree (31 near-miss, 12 refusal-verb, 47 doctorWithheld 27/20, 359 cases, 40 compared + 38 named patterns); three spawn sites with no shell and prompt-on-stdin; zero packet ids or spec paths in any of the 28 scope code files; the reducer's own numbering rule proved on this lineage's strategy across seven passes.
+- **Deferred, not inflated**: AC-040's bootstrap position is recorded as an observation with counterevidence (generation 7 hit `coverage-complete` with it `Unmet`), because the tree's own history disproves a hard contradiction.
+
+Files: `review-report.md`, 7 iterations, 7 deltas, strategy, dashboard, registry, 10 ledger-backed state rows — all under `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1`.
+
 FANOUT_LINEAGE_COMPLETE:deepseek-max-1

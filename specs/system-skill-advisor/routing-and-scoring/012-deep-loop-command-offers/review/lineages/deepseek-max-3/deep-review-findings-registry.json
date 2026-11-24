@@ -1,52 +1,22 @@
 {
-  "sessionId": "fanout-deepseek-max-3-1795546920757-7pyjry",
-  "parentSessionId": null,
-  "generation": 1,
+  "sessionId": "fanout-deepseek-max-3-1795550334883-gjbarh",
+  "parentSessionId": "2026-11-24T19:58:39.000Z",
+  "generation": 8,
   "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 7,
-    "timestamp": "2026-11-24T19:16:04.682Z"
+    "timestamp": "2026-11-24T20:09:40.397Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "R1-P1-001",
-      "severity": "P1",
-      "title": "REQ-033's coverage rerun is a required P1 that is neither met nor deferred",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "line": 257,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
       "findingId": "R1-P2-001",
       "severity": "P2",
-      "title": "AC-040's evidence cell cites a review report the packet's restart archived",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 97,
+      "title": "The drift guard pair count is a moving number the closure docs keep restating as present fact: AC-038 says 22, the tree holds 24, the round tables say 11 and 15",
+      "file": "acceptance-criteria.md",
+      "line": 95,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -56,7 +26,7 @@
       "refines": null,
       "dimension": "correctness",
       "firstSeen": 1,
-      "lastSeen": 1,
+      "lastSeen": 2,
       "status": "active",
       "transitions": [
         {
@@ -64,6 +34,12 @@
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
         }
       ],
       "dimensions": [
@@ -74,9 +50,9 @@
     {
       "findingId": "R1-P2-002",
       "severity": "P2",
-      "title": "REQ-031's 'every word list' promise is wider than the drift guard it names",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "line": 255,
+      "title": "REQ-025 names \"every other caller\" of typedCommandIn, which has no production caller left",
+      "file": "spec.md",
+      "line": 250,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -102,11 +78,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R4-P2-001",
+      "findingId": "R3-P2-001",
       "severity": "P2",
-      "title": "The tenth round's citation claim names a checker that does not exist",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
-      "line": 261,
+      "title": "The research alias ADR-007 records as rejected still sits in the deep-research mode packet keyword list, a surface the decision never scopes",
+      "file": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      "line": 34,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -115,12 +91,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "traceability",
-      "firstSeen": 4,
-      "lastSeen": 4,
+      "firstSeen": 3,
+      "lastSeen": 3,
       "status": "active",
       "transitions": [
         {
-          "iteration": 4,
+          "iteration": 3,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -132,11 +108,50 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R6-P2-001",
+      "findingId": "R5-P2-001",
       "severity": "P2",
-      "title": "A negated refusal reads as a refusal in both gate copies",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-      "line": 766,
+      "title": "The doctor command string is declared twice, in the two layers that must agree about it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 1055,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 7,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": []
+  },
+  "persistentSameSeverity": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The drift guard pair count is a moving number the closure docs keep restating as present fact: AC-038 says 22, the tree holds 24, the round tables say 11 and 15",
+      "file": "acceptance-criteria.md",
+      "line": 95,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -145,15 +160,21 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 6,
-      "lastSeen": 6,
+      "firstSeen": 1,
+      "lastSeen": 2,
       "status": "active",
       "transitions": [
         {
-          "iteration": 6,
+          "iteration": 1,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
         }
       ],
       "dimensions": [
@@ -162,12 +183,45 @@
       "mergedFindingIds": []
     }
   ],
-  "resolvedFindings": [],
-  "blockedStopHistory": [],
-  "terminalGates": null,
-  "persistentSameSeverity": [],
   "severityChanged": [],
-  "repeatedFindings": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The drift guard pair count is a moving number the closure docs keep restating as present fact: AC-038 says 22, the tree holds 24, the round tables say 11 and 15",
+      "file": "acceptance-criteria.md",
+      "line": 95,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
@@ -176,10 +230,10 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 1,
+    "P1": 0,
     "P2": 4
   },
-  "openFindingsCount": 5,
+  "openFindingsCount": 4,
   "resolvedFindingsCount": 0,
   "convergenceScore": 1,
   "graphConvergenceScore": 0,
@@ -187,1029 +241,90 @@
   "graphBlockers": [],
   "graphSignals": {},
   "candidateCoverage": {
-    "covered": [
-      "closure_claim_without_backing",
-      "closure_record_drift",
-      "command_injection",
-      "guard_coverage_gap",
-      "illegal_status",
-      "instruction_injection",
-      "missing_evidence",
-      "spec_code_drift",
-      "stale_severity",
-      "unbacked_waiver",
-      "unmet_requirement",
-      "word_rule_gap"
-    ],
-    "ruledOut": [
-      "alias_drift",
-      "catalog_claim_drift",
-      "closure_record_drift",
-      "command_injection",
-      "comment_hygiene_violation",
-      "count_mismatch",
-      "dead_code",
-      "degraded_render_gap",
-      "illegal_status",
-      "instruction_injection",
-      "met_row_stale_pointer",
-      "missing_evidence",
-      "mode_free_plural_offer",
-      "moved_task_citation",
-      "near_miss_drift",
-      "no_edit_doctor_withhold",
-      "parity_gap",
-      "playbook_claim_drift",
-      "served_head_drift",
-      "skill_claim_drift",
-      "spec_code_drift",
-      "stale_severity",
-      "unbacked_waiver",
-      "unbounded_input",
-      "word_rule_gap"
-    ],
+    "covered": [],
+    "ruledOut": [],
     "deferred": [],
     "blocked": [],
-    "byBugClass": {
-      "word_rule_gap": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1,
-          6
-        ]
-      },
-      "mode_free_plural_offer": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "no_edit_doctor_withhold": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "degraded_path_rendering": {
-        "covered": false,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "closure_record_drift": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1,
-          6
-        ]
-      },
-      "guard_coverage_gap": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "command_injection": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "instruction_injection": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "unbounded_input": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "spec_code_drift": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "unmet_requirement": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "served_head_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "alias_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "near_miss_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3
-        ]
-      },
-      "closure_claim_without_backing": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "comment_hygiene_violation": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "dead_code": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "missing_evidence": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
-        ]
-      },
-      "illegal_status": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
-        ]
-      },
-      "unbacked_waiver": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
-        ]
-      },
-      "moved_task_citation": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
-        ]
-      },
-      "met_row_stale_pointer": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
-        ]
-      },
-      "count_mismatch": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          5
-        ]
-      },
-      "parity_gap": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          6
-        ]
-      },
-      "degraded_render_gap": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          6
-        ]
-      },
-      "stale_severity": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ]
-      },
-      "skill_claim_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ]
-      },
-      "catalog_claim_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ]
-      },
-      "playbook_claim_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ]
-      }
-    }
+    "byBugClass": {}
   },
   "searchDebt": [],
-  "ruledOutCandidates": [
-    {
-      "iteration": 1,
-      "id": "SL-1-001",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "word_rule_gap",
-      "disposition": "ruled_out",
-      "rationale": "the built gate agrees with every fixture column",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:129"
-      ],
-      "reason": "347/347 rows agree"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-001",
-      "dimension": "security",
-      "targetRefs": [
-        "lib/subprocess.ts",
-        "hooks/lib/skill-advisor-cli-fallback.ts"
-      ],
-      "bugClass": "command_injection",
-      "disposition": "ruled_out",
-      "rationale": "both child paths pass the prompt on stdin",
-      "evidenceRefs": [
-        "lib/subprocess.ts:419",
-        "hooks/lib/skill-advisor-cli-fallback.ts:276"
-      ],
-      "reason": "argv spawn without a shell on both paths"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-002",
-      "dimension": "security",
-      "targetRefs": [
-        "skill-advisor-cli.ts",
-        "lib/render.ts"
-      ],
-      "bugClass": "instruction_injection",
-      "disposition": "ruled_out",
-      "rationale": "the renderer is the prompt-boundary guard and the command table is closed",
-      "evidenceRefs": [
-        "lib/render.ts:519",
-        "skill-advisor-cli.ts:1489"
-      ],
-      "reason": "renderer ignores free-form text"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-003",
-      "dimension": "security",
-      "targetRefs": [
-        "lib/prompt-policy.ts",
-        "handlers/advisor-recommend.ts"
-      ],
-      "bugClass": "instruction_injection",
-      "disposition": "ruled_out",
-      "rationale": "the raw prompt never reaches attachTypedCommand",
-      "evidenceRefs": [
-        "handlers/advisor-recommend.ts:642"
-      ],
-      "reason": "handler strips before attaching"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-004",
-      "dimension": "security",
-      "targetRefs": [
-        "lib/subprocess.ts",
-        "scripts/skill_advisor.py"
-      ],
-      "bugClass": "unbounded_input",
-      "disposition": "ruled_out",
-      "rationale": "bounded head and windowed scans",
-      "evidenceRefs": [
-        "scripts/skill_advisor.py:888",
-        "lib/command-attach.ts:748"
-      ],
-      "reason": "bounded input on both copies"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-3-001",
-      "dimension": "traceability",
-      "targetRefs": [
-        "spec.md",
-        "lib/command-attach.ts"
-      ],
-      "bugClass": "spec_code_drift",
-      "disposition": "ruled_out",
-      "rationale": "the probed requirements hold",
-      "evidenceRefs": [
-        "lib/command-attach.ts:1537"
-      ],
-      "reason": "probe matched each stated result"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-3-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "command-prompts.jsonl"
-      ],
-      "bugClass": "spec_code_drift",
-      "disposition": "ruled_out",
-      "rationale": "the rows exist and carry the expected outcomes",
-      "evidenceRefs": [
-        "command-prompts.jsonl:225"
-      ],
-      "reason": "prompt-to-row mapping confirmed"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-4-002",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "lib/command-attach.ts",
-        "scripts/skill_advisor.py"
-      ],
-      "bugClass": "comment_hygiene_violation",
-      "disposition": "ruled_out",
-      "rationale": "comment hygiene holds",
-      "evidenceRefs": [
-        "lib/command-attach.ts:462"
-      ],
-      "reason": "no ephemeral label in a code comment"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-4-003",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "lib/command-attach.ts"
-      ],
-      "bugClass": "dead_code",
-      "disposition": "ruled_out",
-      "rationale": "every export has a reader",
-      "evidenceRefs": [
-        "lib/command-attach.ts:196"
-      ],
-      "reason": "occurrence counts all above one"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-001",
-      "dimension": "traceability",
-      "targetRefs": [
-        "tasks.md"
-      ],
-      "bugClass": "missing_evidence",
-      "disposition": "ruled_out",
-      "rationale": "every citation resolves",
-      "evidenceRefs": [
-        "tasks.md:275"
-      ],
-      "reason": "126/126 resolved"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-002",
-      "dimension": "traceability",
-      "targetRefs": [
-        "acceptance-criteria.md"
-      ],
-      "bugClass": "illegal_status",
-      "disposition": "ruled_out",
-      "rationale": "all statuses legal",
-      "evidenceRefs": [
-        "acceptance-criteria.md:87"
-      ],
-      "reason": "status vocabulary respected"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-003",
-      "dimension": "traceability",
-      "targetRefs": [
-        "acceptance-criteria.md",
-        "decision-record.md"
-      ],
-      "bugClass": "unbacked_waiver",
-      "disposition": "ruled_out",
-      "rationale": "every waiver is backed",
-      "evidenceRefs": [
-        "acceptance-criteria.md:97"
-      ],
-      "reason": "three of three ADRs exist"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "tasks.md",
-        "deep-loop-offer-cases.json"
-      ],
-      "bugClass": "count_mismatch",
-      "disposition": "ruled_out",
-      "rationale": "every recounted number matches",
-      "evidenceRefs": [
-        "tests/fixtures/deep-loop-offer-cases.json:129"
-      ],
-      "reason": "static counts agree"
-    },
-    {
-      "iteration": 6,
-      "id": "SL-6-002",
-      "dimension": "correctness",
-      "targetRefs": [
-        "acceptance-criteria.md"
-      ],
-      "bugClass": "parity_gap",
-      "disposition": "ruled_out",
-      "rationale": "the copies agree on every audited column",
-      "evidenceRefs": [
-        "tests/fixtures/deep-loop-offer-cases.json:123"
-      ],
-      "reason": "347/347 agreement"
-    },
-    {
-      "iteration": 6,
-      "id": "SL-6-003",
-      "dimension": "correctness",
-      "targetRefs": [
-        "lib/render.ts",
-        "handlers/advisor-recommend.ts"
-      ],
-      "bugClass": "degraded_render_gap",
-      "disposition": "ruled_out",
-      "rationale": "the gate renders as the acceptance row states",
-      "evidenceRefs": [
-        "lib/render.ts:250"
-      ],
-      "reason": "typed rows print plainly"
-    },
-    {
-      "iteration": 6,
-      "id": "SL-6-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "013-deep-loop-offer-in-hint/implementation-summary.md"
-      ],
-      "bugClass": "closure_record_drift",
-      "disposition": "ruled_out",
-      "rationale": "the cross-packet evidence resolves",
-      "evidenceRefs": [
-        "013-deep-loop-offer-in-hint/implementation-summary.md:123"
-      ],
-      "reason": "four of four cited lines hold"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-7-001",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/SKILL.md"
-      ],
-      "bugClass": "skill_claim_drift",
-      "disposition": "ruled_out",
-      "rationale": "the claims hold",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/SKILL.md:71"
-      ],
-      "reason": "guard rows exist"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-7-003",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/agents/deep-review.md",
-        ".claude/agents/deep-review.md"
-      ],
-      "bugClass": "skill_claim_drift",
-      "disposition": "ruled_out",
-      "rationale": "documented runtime translation only",
-      "evidenceRefs": [
-        ".skilled/agents/deep-review.md"
-      ],
-      "reason": "no content drift"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-7-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "spec.md",
-        "acceptance-criteria.md",
-        "tasks.md"
-      ],
-      "bugClass": "stale_severity",
-      "disposition": "ruled_out",
-      "rationale": "no severity moved",
-      "evidenceRefs": [
-        "spec.md:257",
-        "acceptance-criteria.md:97"
-      ],
-      "reason": "five of five unchanged"
-    }
-  ],
-  "cleanSearchProof": [
-    {
-      "iteration": 1,
-      "id": "SL-1-001",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      ],
-      "bugClass": "word_rule_gap",
-      "disposition": "ruled_out",
-      "rationale": "the built gate agrees with every fixture column",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:129"
-      ],
-      "proof": "347/347 rows agree"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-001",
-      "dimension": "security",
-      "targetRefs": [
-        "lib/subprocess.ts",
-        "hooks/lib/skill-advisor-cli-fallback.ts"
-      ],
-      "bugClass": "command_injection",
-      "disposition": "ruled_out",
-      "rationale": "both child paths pass the prompt on stdin",
-      "evidenceRefs": [
-        "lib/subprocess.ts:419",
-        "hooks/lib/skill-advisor-cli-fallback.ts:276"
-      ],
-      "proof": "argv spawn without a shell on both paths"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-002",
-      "dimension": "security",
-      "targetRefs": [
-        "skill-advisor-cli.ts",
-        "lib/render.ts"
-      ],
-      "bugClass": "instruction_injection",
-      "disposition": "ruled_out",
-      "rationale": "the renderer is the prompt-boundary guard and the command table is closed",
-      "evidenceRefs": [
-        "lib/render.ts:519",
-        "skill-advisor-cli.ts:1489"
-      ],
-      "proof": "renderer ignores free-form text"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-003",
-      "dimension": "security",
-      "targetRefs": [
-        "lib/prompt-policy.ts",
-        "handlers/advisor-recommend.ts"
-      ],
-      "bugClass": "instruction_injection",
-      "disposition": "ruled_out",
-      "rationale": "the raw prompt never reaches attachTypedCommand",
-      "evidenceRefs": [
-        "handlers/advisor-recommend.ts:642"
-      ],
-      "proof": "handler strips before attaching"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-2-004",
-      "dimension": "security",
-      "targetRefs": [
-        "lib/subprocess.ts",
-        "scripts/skill_advisor.py"
-      ],
-      "bugClass": "unbounded_input",
-      "disposition": "ruled_out",
-      "rationale": "bounded head and windowed scans",
-      "evidenceRefs": [
-        "scripts/skill_advisor.py:888",
-        "lib/command-attach.ts:748"
-      ],
-      "proof": "bounded input on both copies"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-3-001",
-      "dimension": "traceability",
-      "targetRefs": [
-        "spec.md",
-        "lib/command-attach.ts"
-      ],
-      "bugClass": "spec_code_drift",
-      "disposition": "ruled_out",
-      "rationale": "the probed requirements hold",
-      "evidenceRefs": [
-        "lib/command-attach.ts:1537"
-      ],
-      "proof": "probe matched each stated result"
-    },
-    {
-      "iteration": 3,
-      "id": "SL-3-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "command-prompts.jsonl"
-      ],
-      "bugClass": "spec_code_drift",
-      "disposition": "ruled_out",
-      "rationale": "the rows exist and carry the expected outcomes",
-      "evidenceRefs": [
-        "command-prompts.jsonl:225"
-      ],
-      "proof": "prompt-to-row mapping confirmed"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-4-002",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "lib/command-attach.ts",
-        "scripts/skill_advisor.py"
-      ],
-      "bugClass": "comment_hygiene_violation",
-      "disposition": "ruled_out",
-      "rationale": "comment hygiene holds",
-      "evidenceRefs": [
-        "lib/command-attach.ts:462"
-      ],
-      "proof": "no ephemeral label in a code comment"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-4-003",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "lib/command-attach.ts"
-      ],
-      "bugClass": "dead_code",
-      "disposition": "ruled_out",
-      "rationale": "every export has a reader",
-      "evidenceRefs": [
-        "lib/command-attach.ts:196"
-      ],
-      "proof": "occurrence counts all above one"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-001",
-      "dimension": "traceability",
-      "targetRefs": [
-        "tasks.md"
-      ],
-      "bugClass": "missing_evidence",
-      "disposition": "ruled_out",
-      "rationale": "every citation resolves",
-      "evidenceRefs": [
-        "tasks.md:275"
-      ],
-      "proof": "126/126 resolved"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-002",
-      "dimension": "traceability",
-      "targetRefs": [
-        "acceptance-criteria.md"
-      ],
-      "bugClass": "illegal_status",
-      "disposition": "ruled_out",
-      "rationale": "all statuses legal",
-      "evidenceRefs": [
-        "acceptance-criteria.md:87"
-      ],
-      "proof": "status vocabulary respected"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-003",
-      "dimension": "traceability",
-      "targetRefs": [
-        "acceptance-criteria.md",
-        "decision-record.md"
-      ],
-      "bugClass": "unbacked_waiver",
-      "disposition": "ruled_out",
-      "rationale": "every waiver is backed",
-      "evidenceRefs": [
-        "acceptance-criteria.md:97"
-      ],
-      "proof": "three of three ADRs exist"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-5-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "tasks.md",
-        "deep-loop-offer-cases.json"
-      ],
-      "bugClass": "count_mismatch",
-      "disposition": "ruled_out",
-      "rationale": "every recounted number matches",
-      "evidenceRefs": [
-        "tests/fixtures/deep-loop-offer-cases.json:129"
-      ],
-      "proof": "static counts agree"
-    },
-    {
-      "iteration": 6,
-      "id": "SL-6-002",
-      "dimension": "correctness",
-      "targetRefs": [
-        "acceptance-criteria.md"
-      ],
-      "bugClass": "parity_gap",
-      "disposition": "ruled_out",
-      "rationale": "the copies agree on every audited column",
-      "evidenceRefs": [
-        "tests/fixtures/deep-loop-offer-cases.json:123"
-      ],
-      "proof": "347/347 agreement"
-    },
-    {
-      "iteration": 6,
-      "id": "SL-6-003",
-      "dimension": "correctness",
-      "targetRefs": [
-        "lib/render.ts",
-        "handlers/advisor-recommend.ts"
-      ],
-      "bugClass": "degraded_render_gap",
-      "disposition": "ruled_out",
-      "rationale": "the gate renders as the acceptance row states",
-      "evidenceRefs": [
-        "lib/render.ts:250"
-      ],
-      "proof": "typed rows print plainly"
-    },
-    {
-      "iteration": 6,
-      "id": "SL-6-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "013-deep-loop-offer-in-hint/implementation-summary.md"
-      ],
-      "bugClass": "closure_record_drift",
-      "disposition": "ruled_out",
-      "rationale": "the cross-packet evidence resolves",
-      "evidenceRefs": [
-        "013-deep-loop-offer-in-hint/implementation-summary.md:123"
-      ],
-      "proof": "four of four cited lines hold"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-7-001",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/SKILL.md"
-      ],
-      "bugClass": "skill_claim_drift",
-      "disposition": "ruled_out",
-      "rationale": "the claims hold",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/SKILL.md:71"
-      ],
-      "proof": "guard rows exist"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-7-002",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md"
-      ],
-      "bugClass": "catalog_claim_drift",
-      "disposition": "not_applicable",
-      "rationale": "surface does not carry the behaviour",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md"
-      ],
-      "proof": "no catalog claim exists to check"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-7-003",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/agents/deep-review.md",
-        ".claude/agents/deep-review.md"
-      ],
-      "bugClass": "skill_claim_drift",
-      "disposition": "ruled_out",
-      "rationale": "documented runtime translation only",
-      "evidenceRefs": [
-        ".skilled/agents/deep-review.md"
-      ],
-      "proof": "no content drift"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-7-004",
-      "dimension": "traceability",
-      "targetRefs": [
-        "spec.md",
-        "acceptance-criteria.md",
-        "tasks.md"
-      ],
-      "bugClass": "stale_severity",
-      "disposition": "ruled_out",
-      "rationale": "no severity moved",
-      "evidenceRefs": [
-        "spec.md:257",
-        "acceptance-criteria.md:97"
-      ],
-      "proof": "five of five unchanged"
-    }
-  ],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
   "searchCoverage": {
-    "requiredBugClasses": [
-      "skill_claim_drift",
-      "catalog_claim_drift",
-      "playbook_claim_drift",
-      "stale_severity"
-    ],
-    "covered": [
-      "stale_severity"
-    ],
-    "ruledOut": [
-      "skill_claim_drift",
-      "catalog_claim_drift",
-      "playbook_claim_drift"
-    ],
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
     "deferred": [],
     "blocked": [],
-    "graphCoverageMode": "graphless_fallback"
+    "graphCoverageMode": null
   },
   "traceability": {
     "summary": {
-      "required": 3,
-      "executed": 3,
-      "pass": 2,
+      "required": 4,
+      "executed": 4,
+      "pass": 4,
       "partial": 0,
-      "fail": 1,
+      "fail": 0,
       "blocked": 0,
-      "notApplicable": 3,
-      "gatingFailures": 1
+      "notApplicable": 2,
+      "gatingFailures": 0
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          "spec.md:257",
-          "acceptance-criteria.md:97"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220"
         ],
         "gateClass": "hard",
         "protocolId": "spec_code",
-        "status": "fail",
-        "summary": "unchanged: REQ-031 drift and REQ-033 unmet"
+        "status": "pass",
+        "summary": "all 52 REQs resolve; carried complete across iterations 3, 5 and 6"
       },
       {
         "applicable": true,
         "evidence": [
-          "tasks.md:275"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:338"
         ],
         "gateClass": "hard",
         "protocolId": "checklist_evidence",
         "status": "pass",
-        "summary": "unchanged from iteration 5"
+        "summary": "119 acceptance anchors resolve, 60 cells read, 138 ticked boxes checked; carried from iteration 4"
       },
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-deep-loop/SKILL.md:71",
-          ".skilled/skills/system-deep-loop/deep-review/SKILL.md:145"
+          ".skilled/skills/system-deep-loop/SKILL.md:103"
         ],
-        "gateClass": "hard",
+        "gateClass": "soft",
         "protocolId": "skill_agent",
         "status": "pass",
-        "summary": "hub advisor-identity rule and the three-tier severity scale agree with the code and this review"
+        "summary": "hub resolves modes through mode-registry.json and names its drift guard"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/review-routing.md:1"
+        ],
+        "gateClass": "soft",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "playbook carries a review-routing scenario naming /deep:review; preconditions not read line by line"
       },
       {
         "applicable": false,
-        "evidence": [
-          ".skilled/agents/deep-review.md"
-        ],
-        "gateClass": "hard",
+        "evidence": [],
+        "gateClass": "overlay",
         "protocolId": "agent_cross_runtime",
         "status": "notApplicable",
-        "summary": "the packet changes no agent definition and the mirrors differ only by runtime path translation"
+        "summary": "no agent definition in the 47-file scope"
       },
       {
         "applicable": false,
-        "evidence": [
-          ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md"
-        ],
-        "gateClass": "hard",
+        "evidence": [],
+        "gateClass": "overlay",
         "protocolId": "feature_catalog_code",
         "status": "notApplicable",
-        "summary": "no catalog claims the offer, so there is no catalog-to-code claim to check"
-      },
-      {
-        "applicable": false,
-        "evidence": [
-          ".skilled/skills/system-deep-loop/deep-review/SKILL.md:145"
-        ],
-        "gateClass": "hard",
-        "protocolId": "playbook_capability",
-        "status": "notApplicable",
-        "summary": "no playbook names the offer or the deep-loop command gate"
+        "summary": "no feature-catalog document mentions the deep-loop offer"
       }
     ],
     "unfinishedCoreProtocols": []
