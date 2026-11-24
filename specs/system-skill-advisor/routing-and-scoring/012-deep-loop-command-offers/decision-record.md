@@ -926,6 +926,7 @@ AC-020 checks REQ-013 in two parts: the three deep-family holdout rows were repl
 | Q033 | Set AC-008 to Waived with the measured offer rates recorded in an ADR. | Not stated. | None | ADR-003, AC-008 |
 | Q034 | Keep a typed deep command on the served head when the prompt also complains about a stuck run. | The typed command is the reader's own choice. Recorded from implementation-summary limitation 6, confirmed 2026-11-23; the capture missed it. | None | ADR-005, REQ-020, REQ-029, AC-027, AC-036 |
 | Q035 | Run the sixth remediation round autonomously. | Not stated. Given 2026-11-24 as "Autonomously" when the deep review's remediation was requested. | None | ADR-006, REQ-023 to REQ-034, tasks.md Sixth fix round |
+| Q036 | Fix the nine generation 8 P2 findings and run generation 9 of the traceability review at seven iterations. | Not stated. | None | T084, AC-040, review/review-report.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1538,6 +1539,26 @@ Keep Met
 Answer:
 ```text
 Change to Waived (Recommended)
+```
+
+### Q036
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01LBNoLX18yTxRNyrEhyCcPz:0 -->
+
+Question:
+```text
+Generation 8 found 0 P0, 0 P1 and 9 P2 (closure-record drift, a duplicated doctor string, a leftover alias). It still fails AC-040's gates, each in one lineage, for reasons in the reviewers' own runs rather than the packet: one lineage reviewed only the traceability dimension, one recorded bare file names, so its scope check fails, and one didn't close traceability. How should I proceed?
+```
+
+Options:
+```text
+Fix 9 P2s, rerun gen 9 (Recommended)
+Fix 9 P2s, waive and push
+Waive and push now
+```
+
+Answer:
+```text
+Fix 9 P2s, rerun gen 9 (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

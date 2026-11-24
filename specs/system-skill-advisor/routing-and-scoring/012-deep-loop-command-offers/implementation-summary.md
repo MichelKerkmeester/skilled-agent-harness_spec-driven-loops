@@ -8,15 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T19:58:05Z"
+    last_updated_at: "2026-11-24T20:27:44Z"
     last_updated_by: "generate-context"
-    recent_action: "Eleventh fix round committed, docs at the final tree"
-    next_safe_action: "Rerun the traceability review at 7 iterations per lineage so T084 and AC-040 can close"
+    recent_action: "Generation 8 recorded: 0 P0, 0 P1, 9 P2"
+    next_safe_action: "Fix the nine generation 8 P2s, then run generation 9"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      - "acceptance-criteria.md"
+      - "tasks.md"
+      - "review/review-report.md"
+      - "scratch/citations/evidence-tails.py"
     session_dedup:
       fingerprint: "sha256:7220985625e3d464b944bb777a267782f32dc6e88eba4dd057714755b390db4f"
       session_id: "scaffold-012-deep-loop-command-offers"
@@ -25,7 +27,7 @@ _memory:
       runtime: "claude"
       sessionId: "520c649a-ce93-4135-91b0-cec71dd35a54"
       workspace: "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review"
-      savedAt: "2026-11-24T11:14:31Z"
+      savedAt: "2026-11-24T20:27:44Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 95
