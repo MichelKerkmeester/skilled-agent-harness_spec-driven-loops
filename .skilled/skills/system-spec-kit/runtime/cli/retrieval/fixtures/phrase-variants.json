@@ -1,5 +1,5 @@
 {
-  "manifestHash": "81df77bb2d05a3e3735bbb93478dd852e217f6c4ab719b64a63dad0904e3c220",
+  "manifestHash": "a32d9a4694e55b035710a39f560c69977b81979853ad3f1d697efda70fb99d14",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4155,6 +4155,9 @@
     ],
     "016 seven phases s1 s5 o1 o2": [
       "016 seven phases S1 S5 O1 O2"
+    ],
+    "016 stop hook auto record operator decisions": [
+      "016-stop-hook-auto-record operator decisions"
     ],
     "016 tasks": [
       "016 tasks"
@@ -14490,6 +14493,9 @@
     ],
     "auto rebuild trigger index": [
       "auto rebuild trigger index"
+    ],
+    "auto record operator answers at stop": [
+      "auto record operator answers at stop"
     ],
     "auto refresh queue": [
       "auto-refresh queue"
@@ -85741,6 +85747,9 @@
     "phase 16 stale docs": [
       "phase 16 stale docs"
     ],
+    "phase 16 stop hook auto record": [
+      "phase 16 stop hook auto record"
+    ],
     "phase 16 tasks": [
       "phase 16 tasks"
     ],
@@ -119561,6 +119570,9 @@
     "skill changelog retrofit": [
       "skill changelog retrofit"
     ],
+    "skill changelog retrofit operator decisions": [
+      "skill changelog retrofit operator decisions"
+    ],
     "skill contribution certificate events": [
       "skill contribution certificate events"
     ],
@@ -125683,6 +125695,21 @@
     ],
     "stop hook advisory": [
       "stop hook advisory"
+    ],
+    "stop hook auto record": [
+      "stop hook auto record"
+    ],
+    "stop hook auto record acceptance criteria": [
+      "stop hook auto record acceptance criteria"
+    ],
+    "stop hook auto record implementation summary": [
+      "stop hook auto record implementation summary"
+    ],
+    "stop hook auto record plan": [
+      "stop hook auto record plan"
+    ],
+    "stop hook auto record tasks": [
+      "stop hook auto record tasks"
     ],
     "stop hook metadata handoff": [
       "stop hook metadata handoff"

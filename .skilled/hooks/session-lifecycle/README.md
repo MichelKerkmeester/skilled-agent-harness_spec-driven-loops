@@ -50,6 +50,8 @@ The concern key is `session-lifecycle`. It matches the folder name. Its switch i
 
 When `transcript_path` is present, `processStopHook()` reads new transcript content from the saved offset. It collects state changes and writes them in one `updateState()` call. Context autosave runs only when this stop produced a summary and its state update succeeded.
 
+After `processStopHook()`, Claude's `main()` runs `autoRecordDecisions()`. When the transcript tail names exactly one spec folder that holds a `spec.md`, it writes the session's queued tool answers into that folder's `decision-record.md` at the end of the turn. Chat candidates wait for a save. The decision-capture nudge then reports whatever is still pending.
+
 Claude's `compact-inject.ts` handles `PreCompact`. Codex and Cursor use matching pre-compaction entries. Devin and Pi recover from their post-compaction events. DSH calls `runSessionPrime()` with `source: 'compact'` after a completed compaction. Vibe registers `compaction-post-tool.mjs` to check for new journal data after a tool call.
 
 The stop handlers run at each runtime's end event. Claude, Codex and Devin run `session-stop` at `Stop`. Cursor runs `cursor/session-end.js` at `sessionEnd`. DSH runs `dsh/session-stop-context.mjs` at `agent/disposed`. Pi runs `pi/session-stop-context.ts` at `session_shutdown`. Vibe runs `vibe/turn-end.mjs` at `post_agent`.

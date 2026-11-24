@@ -8,7 +8,7 @@ import { dirname, join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { pathToFileURL } from 'node:url';
 import { ensureStateDir, loadState, updateState, type PersistedHookState } from '../hooks/claude/hook-state.js';
-import { decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
+import { autoRecordDecisions, decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
 
 function loadPersistedState(sessionId: string): PersistedHookState | null {
   const result = loadState(sessionId);
@@ -798,5 +798,188 @@ describe('Claude session-stop decision capture nudge', () => {
   it('stays quiet instead of throwing when the capture core is unavailable', async () => {
     projectDir = mkdtempSync(join(tmpdir(), 'speckit-stop-nudge-'));
     await expect(decisionCaptureNudge(projectDir, 's1')).resolves.toBeNull();
+  });
+});
+
+describe('Claude session-stop auto-record of queued answers', () => {
+  const realCorePath = resolve(
+    import.meta.dirname,
+    '../../../../hooks/decision-capture/lib/capture-core.mjs',
+  );
+  const coreTargetRelative = join('.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
+  const packet = 'specs/demo-track/001-demo-packet';
+  let projectDir: string | null = null;
+
+  type CaptureCore = {
+    queueDir(projectRoot: string): string;
+    pendingRecords(projectRoot: string, sessionId: string): unknown[];
+  };
+
+  async function loadCore(): Promise<CaptureCore> {
+    return (await import(pathToFileURL(realCorePath).href)) as CaptureCore;
+  }
+
+  function queuedRecord(sessionId: string, index: number, answer: string) {
+    return {
+      key: `claude:${sessionId}:toolu_demo:${index}`,
+      kind: 'tool',
+      runtime: 'claude',
+      session_id: sessionId,
+      tool_use_id: 'toolu_demo',
+      question_index: index,
+      question: `Which option for item ${index}?`,
+      header: `Item ${index}`,
+      options: ['Alpha', 'Beta'],
+      answer,
+    };
+  }
+
+  async function makeProject(packets: string[], sessionId: string, answers: string[]) {
+    const root = mkdtempSync(join(tmpdir(), 'speckit-stop-autorecord-'));
+    const coreTarget = join(root, coreTargetRelative);
+    mkdirSync(dirname(coreTarget), { recursive: true });
+    fs.copyFileSync(realCorePath, coreTarget);
+    for (const folder of packets) {
+      mkdirSync(join(root, folder), { recursive: true });
+      writeFileSync(
+        join(root, folder, 'spec.md'),
+        '# Feature Specification: Demo\n\n<!-- SPECKIT_LEVEL: 2 -->\n',
+        'utf-8',
+      );
+    }
+    const core = await loadCore();
+    const queuePath = core.queueDir(root);
+    expect(queuePath.startsWith(fs.realpathSync(root))).toBe(true);
+    mkdirSync(queuePath, { recursive: true });
+    writeFileSync(
+      join(queuePath, `${Buffer.from(sessionId).toString('hex')}.jsonl`),
+      answers.map((answer, index) => JSON.stringify(queuedRecord(sessionId, index, answer))).join('\n') + '\n',
+      'utf-8',
+    );
+    return root;
+  }
+
+  function writeTranscript(root: string, mentioned: string[]): string {
+    const transcriptPath = join(root, 'transcript.jsonl');
+    const lines = mentioned.map((folder) => JSON.stringify({
+      type: 'assistant',
+      message: { content: [{ type: 'text', text: `Edited ${folder}/spec.md` }] },
+    }));
+    writeFileSync(transcriptPath, lines.join('\n') + '\n', 'utf-8');
+    return transcriptPath;
+  }
+
+  function recordText(root: string, folder: string): string | null {
+    const recordPath = join(root, folder, 'decision-record.md');
+    return fs.existsSync(recordPath) ? fs.readFileSync(recordPath, 'utf-8') : null;
+  }
+
+  afterEach(() => {
+    if (projectDir) {
+      rmSync(projectDir, { recursive: true, force: true });
+      projectDir = null;
+    }
+  });
+
+  it('records queued answers into the one packet the transcript names, then reports nothing pending', async () => {
+    projectDir = await makeProject([packet], 'bound', ['Alpha', 'Beta']);
+    const transcriptPath = writeTranscript(projectDir, [packet, packet]);
+
+    const result = await autoRecordDecisions(projectDir, 'bound', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({ status: 'recorded', count: 2, folder: packet });
+    const text = recordText(projectDir, packet) ?? '';
+    expect(text).toContain('<!-- source: claude:bound:toolu_demo:0 -->');
+    expect(text).toContain('<!-- source: claude:bound:toolu_demo:1 -->');
+    expect(text).toContain('Which option for item 1?');
+    expect(text).toContain('Recorded automatically: Beta');
+    expect(text).toContain('Not linked to a requirement yet.');
+    expect(text).toContain('Not stated.');
+    const core = await loadCore();
+    expect(core.pendingRecords(projectDir, 'bound')).toHaveLength(0);
+    expect(await decisionCaptureNudge(projectDir, 'bound')).toBeNull();
+  });
+
+  it('writes nothing and leaves the nudge when the transcript names two packets', async () => {
+    const other = 'specs/demo-track/002-other-packet';
+    projectDir = await makeProject([packet, other], 'split', ['Alpha']);
+    const transcriptPath = writeTranscript(projectDir, [packet, other]);
+
+    const result = await autoRecordDecisions(projectDir, 'split', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({ status: 'skipped', reason: 'not_one_packet' });
+    expect(recordText(projectDir, packet)).toBeNull();
+    expect(recordText(projectDir, other)).toBeNull();
+    expect(await decisionCaptureNudge(projectDir, 'split')).toMatch(/^1 operator answer\(s\)/);
+  });
+
+  it('counts a second packet named at the end of a sentence', async () => {
+    const other = 'specs/demo-track/002-other-packet';
+    projectDir = await makeProject([packet, other], 'dotted', ['Alpha']);
+    const transcriptPath = join(projectDir, 'transcript.jsonl');
+    writeFileSync(transcriptPath, JSON.stringify({
+      type: 'assistant',
+      message: { content: [{ type: 'text', text: `Edited ${packet}/spec.md, not ${other}.` }] },
+    }) + '\n', 'utf-8');
+
+    const result = await autoRecordDecisions(projectDir, 'dotted', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({ status: 'skipped', reason: 'not_one_packet' });
+    expect(recordText(projectDir, packet)).toBeNull();
+  });
+
+  it('writes nothing when the transcript names no packet', async () => {
+    projectDir = await makeProject([packet], 'none', ['Alpha']);
+    const transcriptPath = writeTranscript(projectDir, []);
+
+    const result = await autoRecordDecisions(projectDir, 'none', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({ status: 'skipped', reason: 'not_one_packet' });
+    expect(recordText(projectDir, packet)).toBeNull();
+  });
+
+  it('writes nothing when the one named folder has no spec.md', async () => {
+    projectDir = await makeProject([], 'nospec', ['Alpha']);
+    const transcriptPath = writeTranscript(projectDir, [packet]);
+
+    const result = await autoRecordDecisions(projectDir, 'nospec', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({ status: 'skipped', reason: 'no_spec' });
+    expect(recordText(projectDir, packet)).toBeNull();
+  });
+
+  it('never records inside a dispatched child session', async () => {
+    projectDir = await makeProject([packet], 'child', ['Alpha']);
+    const transcriptPath = writeTranscript(projectDir, [packet]);
+
+    const result = await autoRecordDecisions(projectDir, 'child', transcriptPath, { env: { AI_SESSION_CHILD: '1' } });
+
+    expect(result).toMatchObject({ status: 'skipped', reason: 'child_session' });
+    expect(recordText(projectDir, packet)).toBeNull();
+  });
+
+  it('never records when decision capture is switched off', async () => {
+    projectDir = await makeProject([packet], 'off', ['Alpha']);
+    const transcriptPath = writeTranscript(projectDir, [packet]);
+
+    const result = await autoRecordDecisions(projectDir, 'off', transcriptPath, {
+      env: { SYSTEM_DECISION_CAPTURE_DISABLED: '1' },
+    });
+
+    expect(result).toMatchObject({ status: 'skipped', reason: 'disabled' });
+    expect(recordText(projectDir, packet)).toBeNull();
+  });
+
+  it('keeps the answers pending and the nudge when the write fails', async () => {
+    projectDir = await makeProject([packet], 'broken', ['Alpha', 'Beta']);
+    const transcriptPath = writeTranscript(projectDir, [packet]);
+    mkdirSync(join(projectDir, packet, 'decision-record.md'));
+
+    const result = await autoRecordDecisions(projectDir, 'broken', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({ status: 'failed' });
+    const core = await loadCore();
+    expect(core.pendingRecords(projectDir, 'broken')).toHaveLength(2);
+    expect(await decisionCaptureNudge(projectDir, 'broken')).toMatch(/^2 operator answer\(s\)/);
   });
 });

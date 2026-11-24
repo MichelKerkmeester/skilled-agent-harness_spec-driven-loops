@@ -7,7 +7,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { createReadStream, openSync, fstatSync, readSync, closeSync, type Stats } from 'node:fs';
+import { createReadStream, existsSync, openSync, fstatSync, readSync, closeSync, type Stats } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
@@ -109,6 +109,117 @@ export async function decisionCaptureNudge(
     return null;
   } catch {
     return null;
+  }
+}
+
+// The decision-capture kill switch lives in the shared hook-flags module. The source
+// tree and the compiled tree sit at different depths below `.skilled`, so both
+// locations are tried before the concern counts as on by default.
+function decisionCaptureEnabled(env: NodeJS.ProcessEnv | Record<string, string> | undefined): boolean {
+  const candidates = [
+    new URL('../../../../../../hooks/shared/hook-flags.cjs', import.meta.url),
+    new URL('../../../../../hooks/shared/hook-flags.cjs', import.meta.url),
+  ].map((url) => fileURLToPath(url));
+  const flagsPath = candidates.find((candidate) => existsSync(candidate));
+  if (!flagsPath) return true;
+  try {
+    const { isHookEnabled } = require(flagsPath) as {
+      isHookEnabled?: (concern: string, env?: unknown) => boolean;
+    };
+    return typeof isHookEnabled !== 'function' || isHookEnabled('decision-capture', env) !== false;
+  } catch {
+    return true;
+  }
+}
+
+export interface AutoRecordOptions {
+  /** Environment to read the child marker and kill switch from. Defaults to the process environment. */
+  env?: NodeJS.ProcessEnv | Record<string, string>;
+}
+
+export interface AutoRecordResult {
+  status: 'recorded' | 'skipped' | 'failed';
+  count: number;
+  folder?: string;
+  reason?: 'child_session' | 'disabled' | 'nothing_pending' | 'no_transcript' | 'not_one_packet' | 'no_spec';
+  detail?: string;
+}
+
+interface QueuedAnswer {
+  key?: unknown;
+  kind?: unknown;
+  question?: unknown;
+  options?: unknown;
+  answer?: unknown;
+}
+
+// A queued answer becomes durable only once a decision record quotes it. When the
+// session plainly worked in one packet, Stop writes the answers there at the end of
+// the turn, so a session that ends without a save leaves nothing orphaned. Several
+// packets, or none, leave the choice to a person, and the nudge that follows still
+// asks for a save. The keys are consumed here, so no later save offers them again:
+// each entry says it was recorded automatically and gives no reason, and a person
+// edits the row to add one. Best-effort: any failure leaves the answers pending.
+export async function autoRecordDecisions(
+  projectDir: string,
+  sessionId: string,
+  transcriptPath: string | null,
+  options: AutoRecordOptions = {},
+): Promise<AutoRecordResult> {
+  const env = options.env ?? process.env;
+  if (env.AI_SESSION_CHILD === '1') {
+    return { status: 'skipped', count: 0, reason: 'child_session' };
+  }
+  if (!decisionCaptureEnabled(options.env)) {
+    return { status: 'skipped', count: 0, reason: 'disabled' };
+  }
+
+  try {
+    const corePath = join(projectDir, '.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
+    const core = (await import(pathToFileURL(corePath).href)) as {
+      pendingRecords?: (dir: string, session: string) => QueuedAnswer[];
+    };
+    const pending = (core.pendingRecords?.(projectDir, sessionId) ?? []).filter((record) =>
+      record.kind === 'tool'
+      && typeof record.key === 'string'
+      && typeof record.question === 'string'
+      && record.question.trim() !== ''
+      && typeof record.answer === 'string');
+    if (pending.length === 0) {
+      return { status: 'skipped', count: 0, reason: 'nothing_pending' };
+    }
+    if (!transcriptPath) {
+      return { status: 'skipped', count: 0, reason: 'no_transcript' };
+    }
+
+    const tail = collectTailSpecFolders(transcriptPath, resolveSpecFolderTailBytes(), { trimTrailingPunctuation: true });
+    const folders = [...new Set(tail.folders)];
+    if (tail.ioFailed || folders.length !== 1) {
+      return { status: 'skipped', count: 0, reason: 'not_one_packet' };
+    }
+    const folder = folders[0];
+    const absoluteFolder = join(projectDir, folder);
+    if (!existsSync(join(absoluteFolder, 'spec.md'))) {
+      return { status: 'skipped', count: 0, folder, reason: 'no_spec' };
+    }
+
+    const writer = await import('../../lib/continuity/decision-record-writer.js');
+    const entries = pending.map((record) => ({
+      sourceKey: record.key as string,
+      decided: `Recorded automatically: ${record.answer as string}`,
+      carriedBy: 'Not linked to a requirement yet.',
+      question: record.question as string,
+      options: Array.isArray(record.options) ? record.options.map((option) => String(option)) : [],
+      answer: record.answer as string,
+    }));
+    const result = writer.writeDecisionRecord(absoluteFolder, entries);
+    writer.recordConsumedKeys(projectDir, folder, result.ids, new Date().toISOString());
+    hookLog('info', 'session-stop', `Recorded ${entries.length} queued answer(s) in ${folder}/decision-record.md`);
+    return { status: 'recorded', count: entries.length, folder };
+  } catch (error: unknown) {
+    const detail = error instanceof Error ? error.message : String(error);
+    hookLog('warn', 'session-stop', `Auto-record of queued answers skipped: ${detail}`);
+    return { status: 'failed', count: 0, detail };
   }
 }
 
@@ -654,6 +765,8 @@ async function main(): Promise<void> {
     const projectDir = process.env.CLAUDE_PROJECT_DIR
       || (typeof input.cwd === 'string' ? input.cwd : '')
       || process.cwd();
+    const transcriptPath = typeof input.transcript_path === 'string' ? input.transcript_path : null;
+    await autoRecordDecisions(projectDir, input.session_id, transcriptPath);
     const message = await decisionCaptureNudge(projectDir, input.session_id);
     if (message) {
       process.stdout.write(`${JSON.stringify({ systemMessage: message })}\n`);
@@ -671,14 +784,41 @@ function detectSpecFolderResult(
   currentSpecFolder: string | null = null,
   options: DetectSpecFolderOptions = {},
 ): SpecFolderDetectionResult {
+  const tail = collectTailSpecFolders(transcriptPath, resolveSpecFolderTailBytes(options.tailBytes));
+  if (tail.ioFailed) {
+    return { specFolder: null, reason: 'transcript_io_failed' };
+  }
+  if (tail.folders.length === 0) {
+    return { specFolder: null, reason: 'no_match' };
+  }
+
+  const detectedSpecFolder = selectDetectedSpecFolder(tail.folders, currentSpecFolder);
+  if (detectedSpecFolder) {
+    return {
+      specFolder: detectedSpecFolder,
+      reason: detectedSpecFolder === currentSpecFolder ? 'current_packet' : 'detected_single_packet',
+    };
+  }
+
+  return { specFolder: null, reason: 'ambiguous_transcript' };
+}
+
+/** Read the transcript tail and return every spec folder path it names, normalized. */
+// A path that ends a sentence carries its punctuation and would not normalize. The
+// auto-record check trims it, so a second packet named that way still counts against
+// the one-packet rule instead of silently dropping out.
+function collectTailSpecFolders(
+  transcriptPath: string,
+  tailBytes: number,
+  options: { trimTrailingPunctuation?: boolean } = {},
+): { folders: string[]; ioFailed: boolean } {
   let fileDescriptor: number | undefined;
-  const tailBytes = resolveSpecFolderTailBytes(options.tailBytes);
 
   try {
     fileDescriptor = openSync(transcriptPath, 'r');
     const { size } = fstatSync(fileDescriptor);
     if (size === 0) {
-      return { specFolder: null, reason: 'no_match' };
+      return { folders: [], ioFailed: false };
     }
 
     const bytesToRead = Math.min(size, tailBytes);
@@ -686,34 +826,17 @@ function detectSpecFolderResult(
     const buffer = Buffer.alloc(bytesToRead);
     const bytesRead = readSync(fileDescriptor, buffer, 0, bytesToRead, startPosition);
     const content = buffer.toString('utf-8', 0, bytesRead);
-    const specMatches = content.match(SPEC_FOLDER_PATH_RE) ?? [];
-    if (specMatches.length === 0) {
-      return { specFolder: null, reason: 'no_match' };
-    }
-
-    const normalizedMatches: string[] = [];
-    for (const rawPath of specMatches) {
-      const normalizedPath = normalizeSpecFolderPath(rawPath);
-      if (!normalizedPath) {
-        continue;
+    const folders: string[] = [];
+    for (const rawPath of content.match(SPEC_FOLDER_PATH_RE) ?? []) {
+      const candidate = options.trimTrailingPunctuation ? rawPath.replace(/[.,;:!?)\]}>]+$/, '') : rawPath;
+      const normalizedPath = normalizeSpecFolderPath(candidate);
+      if (normalizedPath) {
+        folders.push(normalizedPath);
       }
-      normalizedMatches.push(normalizedPath);
     }
-    if (normalizedMatches.length === 0) {
-      return { specFolder: null, reason: 'no_match' };
-    }
-
-    const detectedSpecFolder = selectDetectedSpecFolder(normalizedMatches, currentSpecFolder);
-    if (detectedSpecFolder) {
-      return {
-        specFolder: detectedSpecFolder,
-        reason: detectedSpecFolder === currentSpecFolder ? 'current_packet' : 'detected_single_packet',
-      };
-    }
-
-    return { specFolder: null, reason: 'ambiguous_transcript' };
+    return { folders, ioFailed: false };
   } catch {
-    return { specFolder: null, reason: 'transcript_io_failed' };
+    return { folders: [], ioFailed: true };
   } finally {
     if (fileDescriptor !== undefined) {
       closeSync(fileDescriptor);

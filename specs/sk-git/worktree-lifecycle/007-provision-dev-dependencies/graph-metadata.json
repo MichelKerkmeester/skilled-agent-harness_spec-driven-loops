@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`worktree-naming.sh create` skipped the npm install for `.skilled/skills/system-spec-kit`",
     "created_at": "2026-11-24T11:29:35Z",
-    "last_save_at": "2026-11-24T14:21:33.015Z",
+    "last_save_at": "2026-11-24T18:39:55.926Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52b932f72df7eabee6aede34e8ff50960b79f34ae5c577279e638b844df19dab",
+    "source_fingerprint": "sha256:f5dd310ea931e5daf2c1b082d1efa35660b304a7cf9b268ef4c52f8aac178154",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fdef760c0c84ad43efa67aa21158e4e3e574add2eead226d8a6ae651143d2bfe",
       "plan.md": "75c44f7e875e45774ad21f2eff7310a964a3c7349380ad12aad0503098dd70a1",
       "tasks.md": "0ee5c5dde21f5beb1703504e7ee7bfe0b4b8a199a794b655f7d4d9c1acb07b62",
-      "decision-record.md": "f959fbeede02f33ea0d8aa9a20738441aaa56773cf0adc8abc9df0597726611b",
-      "implementation-summary.md": "b21ecad91f4cd5752444aee3523d8ffa77261d44a390bdde3e8c254eb16b7753"
+      "decision-record.md": "b855a2427477394a9fd302c3d8d9658015aff30eaad3b5e61044b8d603b13d64",
+      "implementation-summary.md": "7bfea780ed0b7950794389c69bb30ec5edec185a37be77fec6961d3b7106c86a"
     },
     "last_active_at": null
   }

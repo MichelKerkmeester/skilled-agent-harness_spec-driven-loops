@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7258,
-    "ok": 20615,
+    "ok": 20622,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29501,
+  "documentsScanned": 29508,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "81df77bb2d05a3e3735bbb93478dd852e217f6c4ab719b64a63dad0904e3c220",
+  "manifestHash": "a32d9a4694e55b035710a39f560c69977b81979853ad3f1d697efda70fb99d14",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46317,
+      "ok": 46326,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -58273,6 +58273,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record/scratch",
       "reason": "excluded directory"
     },
     {
