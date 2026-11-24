@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for six modes: three workflow modes and three read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.10.1.0
+version: 1.10.2.0
 metadata:
   family: mcp
 ---

@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the artifact: a measured Style Reference, a chart or a diagram."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.0.2.0
+version: 3.0.3.0
 metadata:
   family: design
 ---
