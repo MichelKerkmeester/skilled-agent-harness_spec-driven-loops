@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Four prefix families: `cli-*` (3), `mcp-*` (2), `sk-*` (5), `system-*` (4) |
+| **Families** | Four prefix families: `cli-*` (2), `mcp-*` (3), `sk-*` (5), `system-*` (4) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---

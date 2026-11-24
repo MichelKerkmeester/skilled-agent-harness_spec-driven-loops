@@ -7,7 +7,8 @@
     "cli-orca/003-cli-orca-deprecation/001-inventory-and-baseline",
     "cli-orca/003-cli-orca-deprecation/002-runtime-code-and-tests",
     "cli-orca/003-cli-orca-deprecation/003-docs-registries-and-skill-removal",
-    "cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof"
+    "cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof",
+    "cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -35,7 +36,7 @@
       "routes"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-inventory-and-baseline/scratch/removal-manifest.md",
@@ -99,16 +100,16 @@
     ],
     "causal_summary": "`cli-orca` is a standalone skill that routes Orca app work: worktrees, terminals, the embedded browser, automations and handoffs",
     "created_at": "2026-11-24T09:02:09Z",
-    "last_save_at": "2026-11-24T09:33:53.125Z",
+    "last_save_at": "2026-11-24T13:21:05.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5a5d1b6e1c433c0c1c30c50bbfd83828dc6f546b83067b4a64e8e65f06a0875b",
+    "source_fingerprint": "sha256:7f57dfb455f66d1309113cc92f7ea2d390907cd5130e67add7b453645718ef84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a727581bc8c26529d2c5d0e307f9acdb323505dea0e1910e875628cbb9da255b"
+      "spec.md": "f0c45ad8833c5cd713d249d3f01ac8b54fef835b193bf5857a65a59541c740a5"
     },
     "last_active_at": null
   }

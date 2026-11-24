@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes",
+  "description": "Phase 5: post-alignment-doc-fixes",
+  "keywords": [
+    "phase",
+    "post-alignment-doc-fixes"
+  ],
+  "lastUpdated": "2026-11-24T13:17:33.416Z",
+  "specId": "005",
+  "folderSlug": "post-alignment-doc-fixes",
+  "parentChain": [
+    "cli-orca",
+    "003-cli-orca-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

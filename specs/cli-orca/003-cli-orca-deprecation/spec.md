@@ -114,6 +114,7 @@ Per-phase detail lives in each child's plan.md. The classified list is `001-inve
 | 2 | 002-runtime-code-and-tests/ | Remove cli-orca from runtime code, tests and test fixtures | Complete |
 | 3 | 003-docs-registries-and-skill-removal/ | Remove cli-orca from docs and registries, then delete the skill and its mirrors | Complete |
 | 4 | 004-regeneration-and-zero-reference-proof/ | Regenerate derived indexes and prove zero live references | Complete |
+| 5 | 005-post-alignment-doc-fixes/ | Fix the skills index counts and the release-note coverage the alignment review found | Complete |
 
 ### Implementers
 
@@ -133,6 +134,7 @@ Edits in phases 2 and 3 go to cli-opencode running `llmgateway/deepseek-v4.1-fla
 | 001-inventory-and-baseline | 002-runtime-code-and-tests | Manifest classifies every hit; baseline logs and exit codes recorded | `scratch/removal-manifest.md`, `scratch/baseline-exits.txt` |
 | 002-runtime-code-and-tests | 003-docs-registries-and-skill-removal | Touched suites match baseline | Rerun of each baseline command |
 | 003-docs-registries-and-skill-removal | 004-regeneration-and-zero-reference-proof | Skill tree and mirrors gone; manifest edit rows done | `git status` and per-file `rg` |
+| 004-regeneration-and-zero-reference-proof | 005-post-alignment-doc-fixes | An alignment report lists the open doc findings | `/local-skilled-alignment` report.md |
 <!-- /ANCHOR:phase-map -->
 
 ---
