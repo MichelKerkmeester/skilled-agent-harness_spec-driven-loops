@@ -1,29 +1,32 @@
-# Review Iteration 005
+# Review Iteration 5
 
 ## Dispatcher
 
-- Route: `Resolved route: mode=review target_agent=deep-review`
-- Session: `fanout-deepseek-max-3-1795514074741-gl47kr`, generation 4, lineageMode `new`
-- Iteration 5 of 5, the last under the cap. Dimension: maintainability, with both core protocols re-confirmed.
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder). Scope: the 46 paths in `review-scope-files.txt`.
-- No `steer.md` exists in this lineage at iteration 5, so this iteration carries no lead ruling.
-
-## Dimension
-
-Maintainability: what a follow-on maintainer would get wrong. The gate is pinned in two language copies, so the drift guard is the load-bearing maintenance mechanism; the closure docs are the other, because four remediation rounds have rewritten them.
-
-The operator focus was addressed by re-confirming both core protocols at their final status with fresh evidence references, so the run's terminal coverage gate reads a completed sweep rather than an iteration that merely stopped.
+- Mode: review, single review iteration (fan-out lineage `deepseek-max-3`).
+- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
+- Iteration 5 of 7, stop policy `max-iterations`.
+- `steer.md` is still absent.
+- Operator focus: the traceability pass supplies the trust-boundary map for this security iteration (REQ-038 and the degraded path).
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (comment scan over the whole file), `:569-618`, `:1061-1101`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, `lib/scorer/fusion.ts`, `lib/subprocess.ts`, `skill-advisor-cli.ts` (comment scan)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (comment scan, `:888`, `:4921`, `:5343`)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `scripts/synthesis-closeout.cjs` (comment scan)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:60-130` (the drift guard and its numeric pairs)
-- `acceptance-criteria.md:1-26` (frontmatter), `implementation-summary.md:1-30` (continuity block), `tasks.md:294-301` (Verification Summary)
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1480` to `:1600` (degraded path)
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:160` to `:255` (`parseRecommendations` and the typed helper)
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:155` to `:280`, `:530` to `:570` (label sanitization and the child-session policy)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:230` to `:320`, `:480` to `:500`, `:790`, `:1380` to `:1519`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:420` to `:470`
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:1` to `:90`
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:250` to `:265`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5440` to `:5500`, `:6290` to `:6310`
+- `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts:145` to `:200`
+- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:3017` to `:3070`
 
-## Findings - New
+## Operator Focus
+
+The traceability work already named the one trust boundary this packet changes: a command string that crosses the child-process boundary. This iteration read that boundary and the renderer behind it. REQ-038's guard holds, and no new security finding was raised; the traceability finding R2-P2-001 still stands because it is a documentation defect, not a security one.
+
+## Findings by Severity
 
 ### P0 Findings
 
@@ -35,52 +38,49 @@ None.
 
 ### P2 Findings
 
-1. **The acceptance criteria still carry the scaffold's continuity block while the body is at round seven** -- `acceptance-criteria.md:11` -- the `_memory.continuity` block reads `last_updated_at: 2026-11-22T11:08:37Z`, `last_updated_by: "scaffold"`, `recent_action: "Authored the acceptance criteria for this packet"`, `completion_pct: 0` and a zero `fingerprint`, while the body's own metadata line says the file was "corrected in the seventh fix round" and 39 of its 43 rows read `Met`. `implementation-summary.md:11-14` was refreshed by `generate-context` at `2026-11-24T09:24:07Z`, so one closure document carries a live continuity block and the other carries the one written before the first requirement landed.
-Finding class: instance-only
-Scope proof: `acceptance-criteria.md` is in `reviewScopeFiles`; its frontmatter and its metadata section were both read, and `implementation-summary.md`'s block was read for comparison.
-Affected surface hints: `acceptance-criteria.md` frontmatter, `/speckit:save` continuity writer, `implementation-summary.md` continuity block
-Case: an operator resumes the packet with `/speckit:resume`, and the continuity ladder reports `completion_pct: 0` with "Authored the acceptance criteria" as the recent action, which reads as a packet that has not started.
+No new finding. R2-P2-001, R2-P2-002 and R4-P2-001 remain active.
 
 ## Traceability Checks
 
-- **`spec_code` (core, hard): pass.** Re-confirmed with fresh references; no REQ row changed since iteration 3. Evidence: `spec.md:213`, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1291`, `.skilled/skills/system-deep-loop/hub-router.json:34`.
-- **`checklist_evidence` (core, hard): pass.** Re-confirmed; the open rows are still `T084` and `CHK-020`, both waiting on this run. Evidence: `tasks.md:244`, `acceptance-criteria.md:86`, `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:94`.
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | pass | REQ-038 read at both ends: `trackedCommandForOwner` at `skill-advisor-cli.ts:1489` to `:1494`, its call at `:1571`, and the test at `cli-degraded-command-contract.vitest.ts:152` and `:178`. NFR-S01 read at the deep command rows. |
+| `checklist_evidence` | partial | The two P2 evidence drifts remain; AC-047's four assertions were opened at `cli-degraded-command-contract.vitest.ts:152` to `:195`. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:66-77`: the drift guard's twelve vocabulary pairs plus the refusal-lead list, and `:80-83` the two numeric pairs, so a word or a window changed on one side fails a test. That is the mechanism that keeps the two copies honest, and it is the surface `R3-P2-002` measures.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:995` and `synthesis-closeout.cjs`: the reducer's refinement rule and the close-out's registry cross-check are the two places this run's findings travel through, and both were read in this review because `REQ-032` names them.
+- `render.ts:163` to `:177` (`sanitizeSkillLabel`) strips control characters and newlines and rejects an instruction-shaped label, so a child-supplied label cannot forge a second brief line.
+- `skill-advisor-cli.ts:1489` to `:1494` gates a supplied command on the tracked table and the row's own skill or alias before the row prints it.
+- `subprocess.ts:180` to `:245` keeps a command, policy, owner and `typed: true` only from a non-empty string or a literal `true`, so a truthy string cannot hide the offer options.
 
 ## Edge Cases
 
-- **Comment hygiene is clean across the changed runtime files.** No `REQ-`, `AC-`, `ADR-`, task id or `specs/` path appears in a comment in `command-attach.ts`, `explicit.ts`, `fusion.ts`, `subprocess.ts`, `skill-advisor-cli.ts`, `skill_advisor.py`, `reduce-state.cjs` or `synthesis-closeout.cjs`. The comments state the durable why ("a refusal lead stops at a conjunction", "the window bounds the per-phrase scan"), which is the form a later maintainer can act on without a packet open.
-- **Two closure documents, two ages of metadata.** The implementation summary's continuity block is current to the last save; the acceptance criteria's is from the scaffold. Reading either alone gives a different picture, which is why the point is raised once rather than treated as noise.
-- **The drift guard is the maintenance answer to a two-language gate,** and its weakness is the same as its strength: it proves the copies agree, not that each word works. `R3-P2-002` records the four lists where that distinction has no per-entry case.
-- **`validation.sh` was not run in this lineage.** The review writes only inside its own artifact directory, and the packet's own `T085` records `RESULT: PASSED`; running it would write outside this lineage, so the claim is read as recorded evidence rather than reproduced.
+- A supplied command string that is unknown or owned by another skill is dropped to the plain skill row and carries no `typed` marker; the test asserts the four missing properties at `cli-degraded-command-contract.vitest.ts:193` to `:195`.
+- The Python subprocess path receives its command from the tracked Python advisor rather than from the prompt, so the same child-injection surface does not exist there; recorded, not raised.
+- A child-supplied skill label reaches `render.ts` and is sanitized on the way out, so a newline or control character in the label is removed rather than printed.
 
 ## Confirmed-Clean Surfaces
 
-- No ephemeral artifact label in any comment of the eight changed runtime files.
-- The drift guard covers twelve word lists and two numeric constants, with a Python-source read that fails a renamed or deleted list rather than comparing empty.
-- Both closure documents, read together, tell one story of the rounds; the only inconsistency is the scaffold continuity block above.
-- `reduce-state.cjs`'s refinement rule keeps a cross-file or cross-dimension refinement as its own entry and folds a same-file one, which is what `REQ-032` requires.
+- Prompt cap: `ADVISOR_PROMPT_MAX_CHARS = 10_000` at `advisor-tool-schemas.ts:257`, and `_advisor_prompt_head` at `skill_advisor.py:888` cuts the same number of UTF-16 code units.
+- Bounded scans: `LEAD_WINDOW = 400` at `command-attach.ts:641` and `_LEAD_WINDOW = 400` at `skill_advisor.py:5009`, with the long-prompt cases at `command-attach-guards.vitest.ts:998` and `test_skill_advisor.py:3017`.
+- No secret: the changed files hold no credential, token or environment read that would expose one; the gate reads only the prompt string and the tracked command table.
+- In the `system-deep-loop` branch, `attachCommand` never returns a `run`-policy deep command: every `/deep:*` row keeps `ask`, and the only run-policy row that branch returns is the separately tracked `/doctor:deep-loop` diagnosis.
+- The hook fallback spawns the CLI with an argument vector, not a shell string.
 
 ## Ruled Out
 
-- **A spec or task id left in a code comment:** ruled out across the eight changed files.
-- **A drift guard that silently compares against an empty list:** ruled out; the Python tuple reader answers `undefined` on a renamed list, and the test asserts it is defined before comparing.
-- **A closure story that diverges between the four packet documents:** ruled out; the rounds, their numbers and their ADRs agree, apart from the scaffold block raised above.
-- **A maintainability defect in the reducer's refinement path:** ruled out by reading the rule and its unit test's stated result.
+- "A child-supplied command string can reach the brief on the CLI degraded path": ruled out; `trackedCommandForOwner` checks the tracked table and the row's own owner or alias, and the test drops an unknown shell pipeline and another skill's command.
+- "A child-supplied label can inject a second brief line": ruled out; `sanitizeSkillLabel` rejects newlines, strips control characters and rejects an instruction-shaped label.
+- "A prompt larger than the schema cap reaches the Python gate whole": ruled out; `_advisor_prompt_head` cuts the same 10,000 units and the long-prompt test covers 96,000 characters.
+- "The deep commands can be started by the `run` policy": ruled out; the deep rows carry `ask` and the gate never upgrades a policy.
 
 ## Next Focus
 
-- None. This is the last iteration under `maxIterations: 5`; the run proceeds to synthesis with stop reason `maxIterationsReached`.
-- Rotation status: fourth rotation complete; all four canonical dimensions are covered and both core protocols are at pass.
-- Blocked/productive carry-forward: the productive category "resolve the citation against its declared base, then read the line" carried the two traceability passes; the exhausted category "probe with a wrong argument order" from the template's prior run does not apply here.
-- Required evidence for synthesis: five active P2 findings, two protocol statuses at pass with file:line references, the terminal gate rows, and the four-dimension coverage record.
-
-## Verdict
-
-One active P2 and no active P0 or P1. The run's verdict is PASS with advisories: four dimensions covered, both core protocols pass, and no blocking finding.
+- Dimension: maintainability, with the overlay traceability protocols.
+- Focus area: comment hygiene in the changed files, the skill-to-agent and cross-runtime contracts, the feature-catalog and playbook claims, and the two P2 documentation drifts' fix shape.
+- Reason: correctness and security are covered; maintainability is the last dimension, and the overlay protocols have not been run.
+- Rotation status: security moves to completed clean; maintainability remains.
+- Carry-forward: R2-P2-001, R2-P2-002 and R4-P2-001 stay active advisories.
+- Required evidence: a file:line for every maintainability finding, and an explicit overlay-protocol status with the exact surfaces checked.
 
 Review verdict: PASS

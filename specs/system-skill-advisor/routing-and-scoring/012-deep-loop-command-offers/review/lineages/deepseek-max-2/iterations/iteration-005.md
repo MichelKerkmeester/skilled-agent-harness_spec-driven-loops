@@ -1,25 +1,17 @@
-# Review Iteration 005 — deepseek-max-2
+# Iteration 5 - Maintainability: the reducer's strategy contract
 
-**Dimension:** maintainability (D4)
-**Focus:** the two-copy maintenance model, what the drift guard can and cannot see, whether the packet's records point a maintainer at the right files, and whether the code's own comments match the code.
+## Dimension
 
-## Dispatcher
-
-- Run: `fanout-deepseek-max-2-1795514074741-gl47kr`, generation 1, lineage mode `new`, final iteration of a five-iteration cap.
-- Artifact directory: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2`.
-- Prior findings carried: P1 × 1 (plural loop names), P2 × 6. Verdict before this iteration: CONDITIONAL.
-- `steer.md` absent.
+Maintainability, judged on the maintenance surface the packet added or touched: the deep-loop reducer that keeps the review's own state coherent, the comment truth of the changed code, the two-copy parity cost, and the fixture's growth. The operator focus is carried as the closeout question: does the packet's own evidence chain survive another run?
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts:1-203`
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:1-1024`
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:1-298`
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (whole file, comment pass)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4480-4990`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:213-214`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:63-65`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:218-253`
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2355-2465`, `:2480-2600` (strategy update, anchor replacement, exhausted-approach rendering)
+- `.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:1-120` (refinement closeout)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:24-1519` (comment truth and export reach)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:440-500`
+- `.skilled/hooks/injection-contract.md:50-60` (the brief's offer sentence)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md` (this lineage's state, observed as the reducer's output)
 
 ## Findings - New
 
@@ -29,49 +21,75 @@ None.
 
 ### P1 Findings
 
-None new. The P1 from iteration 3 remains active.
+None.
 
 ### P2 Findings
 
-1. **REQ-006 points a maintainer at a test file that holds none of the cases it names** -- `spec.md:213` -- the requirement says "`command-attach.vitest.ts` holds a passing case for each loop-ask clause and a passing `undefined` case for each depth word". That file holds three describes (single routed mode, typed command, route that waits for a mode) and no occurrence of `asksForLoopRun` or any loop/depth vocabulary; the loop-ask and depth-word cases are in `command-attach-guards.vitest.ts` (five `asksForLoopRun` uses). AC-009's cell records the move but the requirement still names the old file.
-   Case: a maintainer adding a loop-ask clause follows REQ-006 to `command-attach.vitest.ts`, finds no clause table, and either duplicates the cases in the wrong file or concludes the coverage is missing. The behaviour is tested; the pointer is stale.
-   Finding class: `instance-only` (one requirement line).
-   Scope proof: `spec.md` and both test files are in `reviewScopeFiles`; the absence was measured with `rg -c "asksForLoopRun|deep review|deep research|thorough"` over `command-attach.vitest.ts` (0) and `rg -c "asksForLoopRun"` over `command-attach-guards.vitest.ts` (5).
-   Affected surface hints: `spec.md:213`, `acceptance-criteria.md:66` (AC-009's acknowledged move), `command-attach.vitest.ts`, `command-attach-guards.vitest.ts:808-1024`.
+1. **The strategy updater duplicates a machine-owned heading it was meant to normalize** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2396` -- `replaceAnchorSection` writes `## <heading>` inside the replacement block, and it takes that branch whenever the anchor markers already exist. A strategy authored in the shape the shipped template uses - heading first, machine marker under it - therefore ends with the heading twice: the author's own heading above the anchor and the reducer's copy inside it. The heading fallback below (`:2407`) exists to stop exactly this, but it is unreachable once the anchor branch has matched, so the duplication is permanent: a second reducer pass leaves both headings in place.
+Finding class: state-format
+Scope proof: the reducer is the only writer of that block, the duplicate is visible in the strategy this lineage produced, and a second identical pass did not remove it.
+Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2390-2416`, `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` (heading-first template shape), every `deep-review-strategy.md` rendered from that template
+Case: a run that starts from the shipped strategy template and then reduces once shows "## 3. REVIEW DIMENSIONS (remaining)" twice, and the same for the completed-dimensions and next-focus sections; here 3 sections carry 6 headings after two passes.
+
+```json
+{"type":"claim-adjudication","claim":"The anchor branch of the strategy updater inserts its own heading and never removes the author's, so a heading-first strategy ends up with each machine heading duplicated and stays that way.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2396",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2407"],"counterevidenceSought":"Read both branches of replaceAnchorSection and the heading fallback; re-ran the reducer on the same input and counted the heading, which stayed at two.","alternativeExplanation":"The duplicate may be read as a second, authored section rather than a defect, and a later read may take the authored heading as the live one.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"Withdraw if the strategy template is changed to place the heading inside the anchor markers, or if the updater learns to drop a heading immediately above the anchor."}
+```
+
+2. **A direction ruled out once is rendered as a blocked approach that must not be retried** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363` -- `buildExhaustedApproaches` folds `iteration.ruledOut` into the exhausted-approach section and renders each entry as `BLOCKED (iteration N, 1 attempts)` with "Why blocked: Repeated iteration evidence ruled this direction out" and "Do NOT retry". A direction ruled out in a single pass with direct evidence was never attempted-and-blocked, and the review prompt tells later iterations not to re-enter anything listed there, so one pass of evidence freezes the direction for the rest of the run.
+Finding class: state-semantics
+Scope proof: the renderer is the only producer of that section; its three fixed lines are visible in this lineage's strategy for four one-pass directions.
+Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2359-2387`, `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md:74-87` (the template's exhausted-approach section), the iteration prompt's "swept or saturated" guard
+Case: iteration 2 ruled out a waiver with a missing ADR by reading the decision record once; iteration 5's strategy now reads "A waiver whose ADR is missing: ... -- BLOCKED (iteration 2, 1 attempts) ... Do NOT retry", so a later iteration is told not to re-check a direction that was only settled by evidence.
+
+```json
+{"type":"claim-adjudication","claim":"buildExhaustedApproaches treats a single-pass ruled-out direction as an exhausted, blocked approach and instructs later iterations not to retry it.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2380"],"counterevidenceSought":"Read the renderer and the template's section contract; checked the rendered output in this lineage's strategy, which shows four such entries with '1 attempts'.","alternativeExplanation":"Folding ruled-out directions into one 'do not repeat' list may be deliberate economy: the loop should not spend depth re-proving what one pass settled, and the wording 'Do NOT retry' then means 'do not re-open without new evidence'.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"Withdraw if the template or the state-format doc states that ruled-out directions are intentionally frozen after one pass."}
+```
 
 ## Traceability Checks
 
-None run this iteration; both core protocols completed in iterations 1 and 2. Empty results array, not a `pending` placeholder.
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | pass | Held from iteration 2; the maintainability pass added no requirement drift |
+| `checklist_evidence` | pass | Held from iteration 4; the two findings above are not claimed by any ticked task |
+
+- REQ-032's refinement fold was read again for maintenance: `refinesSameLocation` and the storage-key split are commented with the reason each branch exists, and the unit suite that pins them is `reduce-state-refinement-other-file.vitest.ts` (12 `refines` references).
+- REQ-031's parity guard is a behavioural comparison, not just a list comparison: `test_skill_advisor.py:2854` reads the shared fixture and compares `asks_for_loop_run`, `is_stuck_run_complaint`, `is_writing_about_topic`, the served column and the typed columns on every case, so grammar drift fails the same test as vocabulary drift.
+- Evidence: `[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2854]`
 
 ## Integration Evidence
 
-- The maintenance measurement ran over both gate copies as libraries (`dist/runtime/lib/command-attach.js` and `skill_advisor.asks_for_loop_run`), across 2,306 generated prompts, so the parity statement below is a measurement rather than a reading.
-- The drift guard's own coverage boundary was read in `deep-loop-offer-cases.vitest.ts:65-95,241-296`, the file that owns the twelve-pair comparison and the five per-entry groups.
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` writes the strategy file the review prompt reads on the next iteration, and `/deep:review`'s workflow calls it after every iteration; both findings sit on that one hand-off.
+- `.skilled/hooks/injection-contract.md:56` carries a second literal copy of the brief's offer sentence; it agrees with `render.ts:251` word for word today, so no finding is raised, but the pair is unguarded.
 
 ## Edge Cases
 
-- **What the drift guard cannot see.** It compares the exported word lists and two integers. The grammar around those lists — the alternations, lookbehinds and tails in `LOOP_RUN_SYMPTOM`, `PASS_NOUN`, `RUN_ASK_NEGATED` and their Python twins — is unguarded, so a one-sided grammar edit passes every pair. Today the two grammars agree: 2,306 generated prompt combinations produce 0 disagreements between the copies, which is why this is recorded as a boundary of the guard rather than a finding. The plural-ask P1 is the other side of that boundary: a word list that is complete on both sides and still incomplete for the language.
-- **Deliberate duplication.** Both offer sections and the two gate copies are duplicated by design (REQ-005, REQ-020); measured parity is the only defence, and it currently holds.
-- **`implementation-summary.md:166` still says the drift guard compares eleven pairs** where it compares twelve — same stale-snapshot class as iteration 1's P2-001, not counted again.
-- **Self-reported deviation carried from iteration 3**: one `sed -i ''` on this lineage's own iteration-3 narrative, against the prompt pack's banned-operation list; no file outside the lineage was touched.
+- A strategy authored with the heading already inside the anchor markers is unaffected by finding 1; this lineage's file was authored heading-first, which is what the shipped template models.
+- Two reducer passes were run to test whether the duplicate self-heals; it does not, so the finding is not an artifact of one pass.
+- The second finding's severity is held at P2 and its confidence at medium: the wording can be read as deliberate economy, and nothing in the packet states which reading is intended.
+- Comment truth: no reviewed code comment embeds an ADR, REQ, CHK, task id or spec path, so the repository's comment-hygiene prohibition holds across every changed source file.
 
 ## Confirmed-Clean Surfaces
 
-- **Parity across the two gate copies**: 2,306 generated prompts (23 leads × 10 loop phrases × 10 tails, plus six stuck-run variants) compared on `asksForLoopRun` and `isStuckRunComplaint` — 0 disagreements.
-- **No dead symbol on the changed path**: every exported predicate and table that the packet added or touched (`EXPLICIT_RUN_ASK`, `LOOP_RUN_REQUESTED`, `namesDeepRun`, `MODE_CUES`, `isNoEditRequest`, `isRunRefused`, `typedCommandsIn`, `LOOP_WANT_LEADS`, `MULTI_PASS`, `ITERATIVE_ASK`, `COMMAND_DECLINE_LEADS`, `COMMAND_ASK_LEADS`, `PASS_NOUN`) has a reader in the library, the scorer, the handler or the CLI.
-- **Comments match the code on the changed paths**: the `LOOP_NAMES` / `LOOP_WORDING` / `ITERATIVE_ASK` / `PASS_NOUN` / `COUNT_*` / `RUN_REFUSED` blocks each state the grammar the pattern beside them implements, and no comment carries an ephemeral label (iteration 2's check).
-- **The fixture and its readers**: one JSON file, one schema, both suites read it; 248 cases, every exported word list covered.
+- Comment hygiene: a scan of every changed source file for `REQ-`, `ADR-`, `CHK-`, `specs/`, `AC-0NN` and `T0NN` inside comment lines returns nothing.
+- Dead exports: every export of `command-attach.ts` that the packet added has a reader in the runtime or its tests (`namesDeepRun` 3, `LOOP_REQUEST` 2, `RUN_REFUSED` 2, `SMALL_EDIT_WORDING` 2, the rest higher).
+- Comment truth in the gate: the `LOOP_WORDING` comment's claim that each phrase is listed in both spellings is true of the list (`deep research`/`deep researches`/`deep-research`/`deep-researches`, `deep review`/`deep reviews`/`deep-review`/`deep-reviews`).
+- The offer sentence in the hook contract and the one in `render.ts` agree exactly, so the brief cannot teach a different option set than its contract.
 
 ## Ruled Out
 
-- **A parity drift the guard would have missed**: 0 disagreements over 2,306 prompts.
-- **Dead code left behind by the packet**: every touched symbol has a reader.
-- **A comment that contradicts its pattern**: none found on the changed blocks.
-- **Two offer sections drifting apart**: both carry the same option set and the same composed-flag rule.
+- A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it.
+- A dead export left behind by the packet: every added export has at least one reader.
+- A duplicated offer literal that has already drifted: the two copies agree word for word.
+- A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns.
 
 ## Next Focus
 
-- None: this is iteration 5 of a `max-iterations` run. The loop proceeds to terminal gates and synthesis.
-- **Carry-forward:** the P1 (plural loop names) is the one finding that needs an operator decision — guard it or record it as a limitation beside limitation 7.
+- Dimension: correctness
+- Focus area: second pass over the served-head composition (`attachCommand` -> `attachTypedCommand`) and the two degraded paths, where iteration 1 sampled predicates but did not follow the row from the handler to the rendered label end to end
+- Reason: maintainability found the reducer weak spots; the served-head path is the one place where correctness and traceability meet and it has not been followed end to end
+- Rotation status: all four canonical dimensions covered; this is a second pass for depth
+- Blocked/productive carry-forward: the reducer's exhausted-approach list now freezes four directions; none of them is the served-head path, so this focus is clear
+- Required evidence: a file:line per branch from handler to label, with one built-copy behaviour sample
+- Recovery note: none
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

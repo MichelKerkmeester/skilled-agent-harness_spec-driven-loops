@@ -1,14 +1,23 @@
-Lineage complete and verified.
+## Review loop complete — lineage `deepseek-max-2`
 
-**Result — `deepseek-max-2`, 5/5 iterations, stop `maxIterationsReached`, verdict FAIL**
+**Setup bindings** (emitted before writes): target `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`, maxIterations 7, convergence 0.1, mode review, dimensions correctness/security/traceability/maintainability, specFolder the 012 packet. No `steer.md` existed; the run proceeded under the dispatcher's pre-bound answers.
 
-- **Verdict driver:** terminal gates recorded evidence `pass`, scope `pass`, coverage `fail` (`coverage-too-young` — maintainability was first covered in the final capped iteration, so no stabilization pass follows). `review-verdict.cjs` recomputed `FAIL` with `active_p0 0 / active_p1 1 / active_p2 7` and `failed_required_gate_ids ["coverage"]`.
-- **Findings:** 8 active — 1 P1, 7 P2.
-  - P1 `ITER3-P1-001`: plural loop nouns never read as asks in either gate copy ("run two research loops", "run 2 deep reviews" → no command; singular → command). Measured by executing both copies.
-  - P2s: four closure-evidence drifts (fixture holds 248 cases, rows say 203; changelog no longer quotes 2,696; AC-042 3,029 vs T087 3,126; AC-031 cites a comment and a fixture property), one false-offer class (performance complaints read as run asks), one hardening gap (degraded brief renders a fallback-supplied command unchecked), one stale pointer (REQ-006 names a test file with none of the cases).
-- **Traceability focus answered:** `spec_code` and `checklist_evidence` completed — every REQ-001..REQ-034 resolved to a producer, 41 REQ prompts agreed across both gates, 110 of 110 citations resolve, 39 Met rows read, 3 waivers ADR-backed, Verification Summary reproduces.
-- **Evidence runs:** both gates executed (2,306-prompt parity fuzz → 0 disagreements), ReDoS timings (worst 17 ms on 10k chars), citation resolution, fixture/guard replication, per-entry coverage (0 misses). Suites, `validate.sh`, probes and corpus were not re-run — they write outside this lineage.
-- **State:** 8 ledger rows (config + 5 iterations + terminal gates + synthesis), all five deltas match their records, registry/strategy/dashboard refreshed by the reducer, `review-report.md` with all required sections, config `status: complete`.
-- **Deviations recorded:** one `sed -i ''` on my own iteration-3 narrative (banned op, in-lineage only); `phase_save` skipped per the dispatch's write prohibition.
+### Iterations (all run inline as the dispatched executor; no nested CLI or sub-agent)
+
+| # | Dimension | Focus | New P2 | Ratio |
+|---|---|---|---|---|
+| 1 | correctness | Gate grammar sampled on the built copy; gate-layer REQs | 1 | 1.0 |
+| 2 | traceability | `spec_code` over REQ-001..REQ-039 vs producers and ADRs | 1 | 1.0 |
+| 3 | security | Spawn, label, policy, prompt cap, regex cost | 0 | 0.0 |
+| 4 | traceability | `checklist_evidence`: 123 task boxes, 47 criteria rows | 0 | 0.0 |
+| 5 | maintainability | Reducer strategy contract, comment truth, parity cost | 2 | 1.0 |
+| 6 | correctness | Served head end to end (handler → label) | 1 | 1.0 |
+| 7 | traceability | Closeout: re-read every filed finding, correct one anchor | 0 | 0.1 |
+
+**Findings (all P2, no P0/P1):** pronoun rerun read as a doctor ask (`command-attach.ts:566`); AC-041's evidence cell cites three drifted lines (`acceptance-criteria.md:98`); strategy heading duplicated by the reducer (`reduce-state.cjs:2394`); ruled-out direction rendered as a blocked approach (`reduce-state.cjs:2363`); dead duplicate-command guard (`advisor-recommend.ts:412`). The closeout caught its own bad anchor on R5-P2-001 and recorded a refinement to `:2394`.
+
+**Synthesis:** `review-report.md` with all 9 core sections, Planning Packet, Dimension Expansion Map and Audit Appendix. `terminal-gates.cjs` → evidence/scope/coverage all **pass**; `review-verdict.cjs` → **PASS**, hasAdvisories true, P0 0 / P1 0 / P2 5; stop reason **`maxIterationsReached`**; config flipped to `complete`; dashboard COMPLETE; lock released.
+
+**State integrity:** 10 ledger rows through `append-mode-event.cjs` (run-init, 7 iterations, terminal gates, synthesis_complete); state log never written directly; reducer run after every iteration and after closeout; 7 iteration narratives and 7 deltas, each ending/first-lining as the contract requires; route proof on every iteration. No file outside the lineage was created or modified (the only sibling changes are the parallel `deepseek-max-1` / `deepseek-max-3` lineages and the advisor daemon's gitignored heartbeat files).
 
 FANOUT_LINEAGE_COMPLETE:deepseek-max-2

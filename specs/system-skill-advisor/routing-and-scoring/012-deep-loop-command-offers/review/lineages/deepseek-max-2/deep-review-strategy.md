@@ -1,39 +1,39 @@
 ---
-title: Deep Review Strategy
-description: Persistent review brain for the deepseek-max-2 lineage over packet 012, tracking dimension coverage, findings, exhausted approaches and next focus.
+title: Deep Review Strategy - 012 Deep-Loop Command Offers
+description: Session tracking for the fan-out review lineage deepseek-max-2 over the deep-loop command-offer packet.
 trigger_phrases:
-  - "deep review strategy 012 deepseek-max-2"
+  - "deep review strategy 012"
+  - "command offers review strategy"
 importance_tier: normal
 contextType: planning
+version: 1.0.0.0
 ---
 
-# Deep Review Strategy - Packet 012 / lineage deepseek-max-2
+# Deep Review Strategy - Session Tracking
 
 ## 2. TOPIC
-Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
-Operator focus: traceability, completing the `spec_code` and `checklist_evidence` protocols over REQ-001..REQ-034, the ticked tasks, the Met acceptance rows, and the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
 
----
+Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder target): the deep-loop command-offer routing that turns a deep research/review ask into a typed command offer in the skill-advisor brief, plus the sixth fix round recorded as REQ-023..REQ-034, AC-030..AC-042, ADR-005 and ADR-006.
 
+## 3. REVIEW DIMENSIONS (remaining)
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
 [All dimensions complete]
 
 <!-- /ANCHOR:review-dimensions -->
-## 4. NON-GOALS
-- Implementing fixes for any finding.
-- Re-running the repository's build, test, or validation tooling; evidence is read from the tree and from the packet's recorded runs.
-- Re-reviewing packet 013's own requirements except where packet 012's REQ-034 cites them as closure evidence.
-- Broadening code findings outside `reviewScopeFiles`; packet docs, commands and skills are cited as traceability context only.
 
----
+## 4. NON-GOALS
+
+- Reworking the scoring model or lane weights beyond what the packet's REQs claim.
+- Reviewing packets other than 012 (013 appears only where 012 cites it as a dependency).
+- Running the repository's suites as proof work: evidence is read from the tree and, where required, from tests read as sources.
 
 ## 5. STOP CONDITIONS
-- `config.stopPolicy` is `max-iterations` with `maxIterations=5`: the loop runs all five iterations and convergence is telemetry only.
-- Hard stop on three consecutive failed iterations, or on an unreadable state file.
 
----
+- `stopPolicy: max-iterations` with `maxIterations: 7`: the loop runs to the cap and convergence is telemetry only.
+- Early stop only through the workflow's own blockers (three consecutive failed iterations, pause sentinel, duration).
 
+## 4. COMPLETED DIMENSIONS
 <!-- ANCHOR:completed-dimensions -->
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
@@ -42,157 +42,158 @@ Operator focus: traceability, completing the `spec_code` and `checklist_evidence
 - [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
+
+## 5. RUNNING FINDINGS
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 1
-- P2 (Suggestions): 7
+- P1 (Required): 0
+- P2 (Suggestions): 5
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
-## 8. WHAT WORKED
-- **Executing both gate copies instead of reading them:** the built native gate and `skill_advisor.asks_for_loop_run` answered the 41 REQ prompts identically, which turns REQ-020/REQ-021/REQ-031 from prose claims into a measurement (iteration 1).
-- **Counting the shared fixture and searching the changelog for the quoted number:** two cheap reads turned three `Met` evidence cells into findings without a suite run (iteration 1).
-- **Replicating the drift guard's per-entry logic over the tracked fixture:** proved 248 cases cover every exported word list with 0 misses (iteration 1).
-- **Resolving every citation mechanically instead of eyeballing rows:** 110 of 110 `path:line` references resolved in range, so the one imprecise cell stood out against a measured baseline (iteration 2).
-- **Re-running each "prints nothing" verification command:** five absent-phrase claims and four counted claims all reproduced, which separates real drift from prose suspicion (iteration 2).
-- **Executing an inflected prompt set instead of only the fixture's prompts:** 13 plural and singular loop names exposed a whole vocabulary class the fixture never tries (iteration 3).
-- **Timing both gates on adversarial 10,000-character prompts:** ten cases, worst case 17 ms, which turns "ReDoS" from a suspicion into a measurement (iteration 4).
-- **Generating 2,306 prompt combinations to test two-copy parity:** 0 disagreements, so the maintenance risk could be stated as a boundary rather than a guess (iteration 5).
 
----
+## 8. WHAT WORKED
+
+- Sampling the exported predicates on the built copy for each REQ paragraph: it turns a prose claim into an observed result in one call and is cheap enough to repeat per REQ group (iteration 1)
+- The entry-for-entry list comparison between `command-attach.ts` and `skill_advisor.py`: it settles REQ-031's parity claim without reading the grammar twice (iteration 1)
+- Opening every `path:line` cell in the AC table against the tree, one print per cited line: it finds anchor drift that a count check cannot see (iteration 2)
 
 ## 9. WHAT FAILED
-- **Reading the packet's round-to-round suite totals as authority:** AC-042 (3029), T087 (3,126) and the changelog (3,126) disagree, and the suite cannot be re-run inside this lineage's write surface, so the number stays an open record question (iteration 1).
-- **Treating citation resolution as proof:** all 110 citations resolve in range, yet AC-031's two still land on a comment and a fixture property, so line existence and line meaning are separate checks (iteration 2).
-- **Sampling the vocabulary only at the singular:** every pass through the fixture and the 41 REQ prompts missed the plural loop nouns, so a fixture-driven review reproduces the fixture's blind spots (iteration 3).
-- **Leaving dimensions to the last iteration under a hard cap:** maintainability was first covered in iteration 5, so the coverage gate read `coverage-too-young` and the stop is a FAIL that no further iteration of this run could clear (iteration 5).
 
----
+- Reading the whole `skill_advisor.py` gate for parity: the file is 6,791 lines and the fifteen lists are the only mechanically comparable part, so a full read here would spend the iteration budget for less evidence (iteration 1)
+- Trusting a `Met` cell's line numbers without opening them: two of AC-041's anchors land one line off and one is blank, which only a direct print shows (iteration 2)
 
+## 9. EXHAUSTED APPROACHES (do not retry)
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### **A bare-loop-name ask (ADR-006)**: "deep loop: audit the payments flow" reads `false`; "run a deep loop" and "I want a review loop" read `true`. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **A bare-loop-name ask (ADR-006)**: "deep loop: audit the payments flow" reads `false`; "run a deep loop" and "I want a review loop" read `true`.
+### `needsMode` surviving beside a typed command producing a contradictory brief: `commandLabel` reads the typed command first and only suppresses the generated row. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: `needsMode` surviving beside a typed command producing a contradictory brief: `commandLabel` reads the typed command first and only suppresses the generated row.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A bare-loop-name ask (ADR-006)**: "deep loop: audit the payments flow" reads `false`; "run a deep loop" and "I want a review loop" read `true`.
+- Do NOT retry: `needsMode` surviving beside a typed command producing a contradictory brief: `commandLabel` reads the typed command first and only suppresses the generated row.
 
-### **A comment that contradicts its pattern**: none found on the changed blocks. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **A comment that contradicts its pattern**: none found on the changed blocks.
+### A `dist` stale against the source: the built copy reproduced the source's readings on every sampled REQ prompt. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: A `dist` stale against the source: the built copy reproduced the source's readings on every sampled REQ prompt.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A comment that contradicts its pattern**: none found on the changed blocks.
+- Do NOT retry: A `dist` stale against the source: the built copy reproduced the source's readings on every sampled REQ prompt.
 
-### **A depth-word leak into the gate**: "do a thorough code review" and "find out everything you can" both read `asksForLoopRun: false`, as REQ-002 requires. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **A depth-word leak into the gate**: "do a thorough code review" and "find out everything you can" both read `asksForLoopRun: false`, as REQ-002 requires.
+### A `Met` row whose evidence artifact is missing: all nine cited scratch artifacts exist. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: A `Met` row whose evidence artifact is missing: all nine cited scratch artifacts exist.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A depth-word leak into the gate**: "do a thorough code review" and "find out everything you can" both read `asksForLoopRun: false`, as REQ-002 requires.
+- Do NOT retry: A `Met` row whose evidence artifact is missing: all nine cited scratch artifacts exist.
 
-### **A false `Met` whose evidence file is missing**: all 13 named scratch evidence files exist. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **A false `Met` whose evidence file is missing**: all 13 named scratch evidence files exist.
+### A brief printing the offer options for a typed command: the renderer checks `typed !== true` before it builds the option text. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: A brief printing the offer options for a typed command: the renderer checks `typed !== true` before it builds the option text.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A false `Met` whose evidence file is missing**: all 13 named scratch evidence files exist.
+- Do NOT retry: A brief printing the offer options for a typed command: the renderer checks `typed !== true` before it builds the option text.
 
-### **A parity drift on the new prompts**: both copies agree on all 24 prompts measured this iteration; the findings are vocabulary gaps present in both, not divergence. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A parity drift on the new prompts**: both copies agree on all 24 prompts measured this iteration; the findings are vocabulary gaps present in both, not divergence.
+### A command-injection path through the child spawn: the call uses an argv vector, no shell, and a fixed in-repo entrypoint. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: A command-injection path through the child spawn: the call uses an argv vector, no shell, and a fixed in-repo entrypoint.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A parity drift on the new prompts**: both copies agree on all 24 prompts measured this iteration; the findings are vocabulary gaps present in both, not divergence.
+- Do NOT retry: A command-injection path through the child spawn: the call uses an argv vector, no shell, and a fixed in-repo entrypoint.
 
-### **A parity drift the guard would have missed**: 0 disagreements over 2,306 prompts. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **A parity drift the guard would have missed**: 0 disagreements over 2,306 prompts.
+### A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A parity drift the guard would have missed**: 0 disagreements over 2,306 prompts.
+- Do NOT retry: A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it.
 
-### **A prompt-only path to the pass-through in P2-001**: the Python gate marks `typed` only on its own table's rows, so reaching it needs a hostile or buggy child, which is why it is hardening rather than a blocker. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **A prompt-only path to the pass-through in P2-001**: the Python gate marks `typed` only on its own table's rows, so reaching it needs a hostile or buggy child, which is why it is hardening rather than a blocker.
+### A criteria row whose waiver ADR is absent: all four returned rows name a present ADR. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: A criteria row whose waiver ADR is absent: all four returned rows name a present ADR.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A prompt-only path to the pass-through in P2-001**: the Python gate marks `typed` only on its own table's rows, so reaching it needs a hostile or buggy child, which is why it is hardening rather than a blocker.
+- Do NOT retry: A criteria row whose waiver ADR is absent: all four returned rows name a present ADR.
 
-### **A question-reading bug**: "what does deep review mean" / "how does the deep review pick dimensions" both return false. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A question-reading bug**: "what does deep review mean" / "how does the deep review pick dimensions" both return false.
+### A dead export left behind by the packet: every added export has at least one reader. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: A dead export left behind by the packet: every added export has at least one reader.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A question-reading bug**: "what does deep review mean" / "how does the deep review pick dimensions" both return false.
+- Do NOT retry: A dead export left behind by the packet: every added export has at least one reader.
 
-### **A refusal-in-later-clause bug**: a refusal of a different action leaves an earlier ask standing, in both copies. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A refusal-in-later-clause bug**: a refusal of a different action leaves an earlier ask standing, in both copies.
+### A denial-of-service path through the gate regexes: bounded windows and linear scans keep the worst sampled prompt under 15 ms. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: A denial-of-service path through the gate regexes: bounded windows and linear scans keep the worst sampled prompt under 15 ms.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A refusal-in-later-clause bug**: a refusal of a different action leaves an earlier ask standing, in both copies.
+- Do NOT retry: A denial-of-service path through the gate regexes: bounded windows and linear scans keep the worst sampled prompt under 15 ms.
 
-### **A TS/Python parity drift in `asksForLoopRun`**: 41 REQ prompts compared, 0 disagreements; the words level is also pinned by the twelve-pair guard. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **A TS/Python parity drift in `asksForLoopRun`**: 41 REQ prompts compared, 0 disagreements; the words level is also pinned by the twelve-pair guard.
+### A dimension left uncovered: all four are recorded as covered in the registry. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: A dimension left uncovered: all four are recorded as covered in the registry.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A TS/Python parity drift in `asksForLoopRun`**: 41 REQ prompts compared, 0 disagreements; the words level is also pinned by the twelve-pair guard.
+- Do NOT retry: A dimension left uncovered: all four are recorded as covered in the registry.
 
-### **A two-cue mode leak**: a prompt with both mode cues gets no command on a deferred route, as CHK-012 requires. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A two-cue mode leak**: a prompt with both mode cues gets no command on a deferred route, as CHK-012 requires.
+### A duplicated offer literal that has already drifted: the two copies agree word for word. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: A duplicated offer literal that has already drifted: the two copies agree word for word.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A two-cue mode leak**: a prompt with both mode cues gets no command on a deferred route, as CHK-012 requires.
+- Do NOT retry: A duplicated offer literal that has already drifted: the two copies agree word for word.
 
-### **A typed-command loss on a second typed command**: both REQ-025 prompts keep `/deep:review` at the gate layer and the served head. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **A typed-command loss on a second typed command**: both REQ-025 prompts keep `/deep:review` at the gate layer and the served head.
+### A finding outside the declared scope: all five files are scope entries. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: A finding outside the declared scope: all five files are scope entries.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A typed-command loss on a second typed command**: both REQ-025 prompts keep `/deep:review` at the gate layer and the served head.
+- Do NOT retry: A finding outside the declared scope: all five files are scope entries.
 
-### **A typed-list ordering bug**: `typedCommandsIn` order does not hide a shorter typed command; measured in iteration 1 as well. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A typed-list ordering bug**: `typedCommandsIn` order does not hide a shorter typed command; measured in iteration 1 as well.
+### A finding whose evidence did not survive the cap: four re-read clean, and the fifth's wording holds while its line is corrected. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: A finding whose evidence did not survive the cap: four re-read clean, and the fifth's wording holds while its line is corrected.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A typed-list ordering bug**: `typedCommandsIn` order does not hide a shorter typed command; measured in iteration 1 as well.
+- Do NOT retry: A finding whose evidence did not survive the cap: four re-read clean, and the fifth's wording holds while its line is corrected.
 
-### **A Verification Summary that miscounts its boxes**: 12/11, 13/13, 1/1 reproduce. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **A Verification Summary that miscounts its boxes**: 12/11, 13/13, 1/1 reproduce.
+### A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A Verification Summary that miscounts its boxes**: 12/11, 13/13, 1/1 reproduce.
+- Do NOT retry: A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns.
 
-### **A waiver without an ADR**: all three name ADRs that exist. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **A waiver without an ADR**: all three name ADRs that exist.
+### A label-injection path from the fallback's JSON: the tracked-table check gates every supplied command, and the label sanitizer handles the remaining text. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: A label-injection path from the fallback's JSON: the tracked-table check gates every supplied command, and the label sanitizer handles the remaining text.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A waiver without an ADR**: all three name ADRs that exist.
+- Do NOT retry: A label-injection path from the fallback's JSON: the tracked-table check gates every supplied command, and the label sanitizer handles the remaining text.
 
-### **An unresolved in-range citation (110 checked)**: 0 failures. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **An unresolved in-range citation (110 checked)**: 0 failures.
+### A missing ADR behind a waiver: the four returned rows (`Waived` AC-008, AC-017; `Superseded` AC-019; and the ADR-005 exception in AC-027) each name an ADR present in `decision-record.md`. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: A missing ADR behind a waiver: the four returned rows (`Waived` AC-008, AC-017; `Superseded` AC-019; and the ADR-005 exception in AC-027) each name an ADR present in `decision-record.md`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **An unresolved in-range citation (110 checked)**: 0 failures.
+- Do NOT retry: A missing ADR behind a waiver: the four returned rows (`Waived` AC-008, AC-017; `Superseded` AC-019; and the ADR-005 exception in AC-027) each name an ADR present in `decision-record.md`.
 
-### **An unverifiable "prints nothing" task claim**: all five re-run and all hold. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **An unverifiable "prints nothing" task claim**: all five re-run and all hold.
+### A parity drift between the two gate copies: all fifteen compared lists agree entry for entry, and the two numbers REQ-031 names agree. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: A parity drift between the two gate copies: all fifteen compared lists agree entry for entry, and the two numbers REQ-031 names agree.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **An unverifiable "prints nothing" task claim**: all five re-run and all hold.
+- Do NOT retry: A parity drift between the two gate copies: all fifteen compared lists agree entry for entry, and the two numbers REQ-031 names agree.
 
-### **Dead code left behind by the packet**: every touched symbol has a reader. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **Dead code left behind by the packet**: every touched symbol has a reader.
+### A prompt-echo path: the brief prints skill ids, commands and policy words from tracked tables, never the prompt body. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: A prompt-echo path: the brief prints skill ids, commands and policy words from tracked tables, never the prompt body.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Dead code left behind by the packet**: every touched symbol has a reader.
+- Do NOT retry: A prompt-echo path: the brief prints skill ids, commands and policy words from tracked tables, never the prompt body.
 
-### **Prototype pollution through `skill` ids**: own-key lookups on every table read. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **Prototype pollution through `skill` ids**: own-key lookups on every table read.
+### A quadratic cost in the lead scans: bounded windows keep 96,000-character prompts in single-digit milliseconds. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: A quadratic cost in the lead scans: bounded windows keep 96,000-character prompts in single-digit milliseconds.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Prototype pollution through `skill` ids**: own-key lookups on every table read.
+- Do NOT retry: A quadratic cost in the lead scans: bounded windows keep 96,000-character prompts in single-digit milliseconds.
 
-### **ReDoS in either gate copy**: measured, worst case 17 ms on 10,000 characters. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **ReDoS in either gate copy**: measured, worst case 17 ms on 10,000 characters.
+### A REQ whose producer does not exist: all 39 map to a branch, a test line, an ADR or a packet record. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: A REQ whose producer does not exist: all 39 map to a branch, a test line, an ADR or a packet record.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **ReDoS in either gate copy**: measured, worst case 17 ms on 10,000 characters.
+- Do NOT retry: A REQ whose producer does not exist: all 39 map to a branch, a test line, an ADR or a packet record.
 
-### **REQ-001 "plain loop asks gain the command row" as a finding**: the gate returns `/deep:review` on a plain ask in both copies and the deferred-route cue adds the mode; no drift found. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **REQ-001 "plain loop asks gain the command row" as a finding**: the gate returns `/deep:review` on a plain ask in both copies and the deferred-route cue adds the mode; no drift found.
+### A row losing `needsMode` when a command is absent: the false branch adds it only when the route defers and no command was produced. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: A row losing `needsMode` when a command is absent: the false branch adds it only when the route defers and no command was produced.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **REQ-001 "plain loop asks gain the command row" as a finding**: the gate returns `/deep:review` on a plain ask in both copies and the deferred-route cue adds the mode; no drift found.
+- Do NOT retry: A row losing `needsMode` when a command is absent: the false branch adds it only when the route defers and no command was produced.
 
-### **Secrets in the changed files**: none. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **Secrets in the changed files**: none.
+### A stale suite count across the closure docs: the sixth, seventh and eighth rounds each quote their own totals, and the changelog quotes the eighth (`3,188`), which is the current tree's row. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: A stale suite count across the closure docs: the sixth, seventh and eighth rounds each quote their own totals, and the changelog quotes the eighth (`3,188`), which is the current tree's row.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Secrets in the changed files**: none.
+- Do NOT retry: A stale suite count across the closure docs: the sixth, seventh and eighth rounds each quote their own totals, and the changelog quotes the eighth (`3,188`), which is the current tree's row.
 
-### **Shell injection through the prompt**: the prompt never reaches a command line. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **Shell injection through the prompt**: the prompt never reaches a command line.
+### A terminal gate that would fail on this record: evidence is vacuous with no P0/P1, scope is 5 of 5, coverage is 4 of 4. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: A terminal gate that would fail on this record: evidence is vacuous with no P0/P1, scope is 5 of 5, coverage is 4 of 4.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Shell injection through the prompt**: the prompt never reaches a command line.
+- Do NOT retry: A terminal gate that would fail on this record: evidence is vacuous with no P0/P1, scope is 5 of 5, coverage is 4 of 4.
 
-### **Two offer sections drifting apart**: both carry the same option set and the same composed-flag rule. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **Two offer sections drifting apart**: both carry the same option set and the same composed-flag rule.
+### A ticked task with no evidence at all: the three citation-free boxes each carry a rationale or a readable claim. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: A ticked task with no evidence at all: the three citation-free boxes each carry a rationale or a readable claim.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Two offer sections drifting apart**: both carry the same option set and the same composed-flag rule.
+- Do NOT retry: A ticked task with no evidence at all: the three citation-free boxes each carry a rationale or a readable claim.
+
+### A typed command losing a policy on the served head: the typed row sets policy, owner and typed in one overwrite. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: A typed command losing a policy on the served head: the typed row sets policy, owner and typed in one overwrite.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: A typed command losing a policy on the served head: the typed row sets policy, owner and typed in one overwrite.
 
 <!-- /ANCHOR:exhausted-approaches -->
+
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
 - Completed pivots: 0
 - Failed pivots: 0
@@ -202,68 +203,76 @@ Operator focus: traceability, completing the `spec_code` and `checklist_evidence
 - Remaining frontier: none recorded
 
 ## 11. RULED OUT DIRECTIONS
-[Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
 
----
+- A parity drift between the two gate copies: the fifteen compared lists agree entry for entry, and `LEAD_WINDOW`/`ADVISOR_PROMPT_MAX_CHARS` agree (iteration 1, evidence: `command-attach.ts:330-935`, `skill_advisor.py:4480-5230`)
+- A quadratic lead scan: bounded windows keep 96,000-character prompts in single-digit milliseconds (iteration 1, evidence: built `command-attach.js` timed on four long prompts)
+- A contradictory brief when `needsMode` survives beside a typed command: `commandLabel` reads the typed command first (`render.ts:227`) (iteration 1)
+- A requirement without a producer: all 39 REQ ids resolve to a branch, test line, ADR or packet record (iteration 2)
+- A waiver whose ADR is missing: ADR-001, 002, 003, 005, 006 and 007 all exist at their headings (iteration 2)
 
+## 11. NEXT FOCUS
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- None. The run reached its fifth and final iteration; terminal gates recorded, synthesis complete.
-- Outcome: verdict FAIL on the terminal coverage gate (`coverage-too-young`) with an active P1. Report: `review-report.md` in this lineage.
-- Carry-forward: the P1 (plural loop names) and the P2 performance-vocabulary finding need one operator decision — guard the family or record it as a limitation beside limitation 7.
-- Coverage note: the last dimension was first covered in the final capped iteration, so REQ-033 / AC-040 needs a rerun with a stabilization pass or an amended criterion.
+- Dimension: none - the iteration cap is reached - Focus area: synthesis - Reason: `stopPolicy: max-iterations` with `maxIterations: 7` stops the loop here; the next step compiles `review-report.md` from this registry - Rotation status: every configured dimension covered; correctness and traceability reviewed twice - Blocked/productive carry-forward: nothing blocked - Required evidence: the registry, this narrative and the delta agree on five open P2 rows and no P0/P1 - Recovery note: none Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
+
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- **Target pointers**: the score file `command-attach.ts` and its guard suites; `skill_advisor.py`; the two deep presentation assets and the two deep command docs; the packet docs (`spec.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`); packet 013's docs as closure evidence; reducer/closeout scripts and their unit tests.
-- **Behavior claims**: REQ-001..REQ-034 (offers on plain loop asks, no depth-only offers, typed-command precedence, refusal and subject readings, degraded-path rendering, registry refinement identity, coverage-gate closure).
-- **Reuse and conventions**: the shared fixture `tests/fixtures/deep-loop-offer-cases.json` is the single source both the TypeScript and Python suites read; the presentation files carry the offer section the AI reads.
-- **Review risks and gaps**: no `resource-map.md` in the packet, so the coverage-gate section is absent; recorded probe and suite results live in `scratch/` and the changelog, not in machine-rerun evidence; a prior three-lineage Opus review of this packet returned FAIL on its coverage gate.
+- Target pointers: the 012 packet docs (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`), the two offer producers (`runtime/lib/command-attach.ts`, `runtime/scripts/skill_advisor.py`), the scorer lane (`runtime/lib/scorer/lanes/explicit.ts`), the presentation assets under `.skilled/commands/deep/assets/`, and the suites that pin the behavior (`tests/deep-loop-offer-cases.vitest.ts`, `tests/fixtures/deep-loop-offer-cases.json`, `tests/python/test_skill_advisor.py`).
+- Behavior claims to verify: REQ-001..REQ-039 in `spec.md`; AC-001..AC-047 in `acceptance-criteria.md`; the ticked tasks in `tasks.md`; ADR-001..ADR-007 in `decision-record.md`.
+- Reuse and conventions: one typed-offer grammar shared by the TypeScript lane and the Python fallback; the fixture file is the parity oracle; the brief's head length budget is pinned by a suite.
+- Review risks and gaps: `resource-map.md` is absent, so the coverage gate is skipped; runtime mirrors (`.claude/`, `.opencode/`) are downstream packaging surfaces and are not review targets; the 013 packet is a sibling dependency, not in scope.
 
----
+### Prior Context (continuity ladder)
+
+- `handover.md`: not present at the packet root.
+- `_memory.continuity`: read from `implementation-summary.md` where present.
+- A prior completed lineage for this packet exists under `review-archive/20261124T111600Z/`; it is read-only evidence of earlier findings and is not this lineage's state.
 
 ## 14. CROSS-REFERENCE STATUS
-<!-- MACHINE-OWNED: START -->
-[Alignment checks completed across core and overlay protocols]
-
+<!-- ANCHOR:cross-reference -->
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | pass | 1 | REQ-001..REQ-034 each resolved to a producer; 41 REQ prompts agree across both gate copies; record-accuracy drift raised as ITER1-P2-001..003 |
-| `checklist_evidence` | core | pass | 2 | 110 of 110 citations resolve; 39 Met rows read; 3 ADR-backed waivers; Verification Summary reproduces its boxes; one citation-precision P2 |
+| `spec_code` | core | pass | 2 | All 39 REQ ids mapped to a producer, test line, ADR or packet record; one closure cell cites drifted lines (R2-P2-001) |
+| `checklist_evidence` | core | pending | - | - |
 | `skill_agent` | overlay | pending | - | - |
 | `agent_cross_runtime` | overlay | pending | - | - |
 | `feature_catalog_code` | overlay | pending | - | - |
 | `playbook_capability` | overlay | pending | - | - |
-<!-- MACHINE-OWNED: END -->
-
----
+<!-- /ANCHOR:cross-reference -->
 
 ## 15. FILES UNDER REVIEW
-<!-- MACHINE-OWNED: START -->
-[Per-file coverage state table -- populated as iterations cover files]
-
+<!-- ANCHOR:files-under-review -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-<!-- MACHINE-OWNED: END -->
-
----
+| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | D1 | 1 | 0 P0, 0 P1, 1 P2 | partial |
+| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` | D3 | 2 | 0 P0, 0 P1, 1 P2 | partial |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | - | - | - | pending |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | - | - | - | pending |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | - | - | - | pending |
+| `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | - | - | - | pending |
+| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md` | - | - | - | pending |
+| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md` | - | - | - | pending |
+| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` | - | - | - | pending |
+| remaining 038 scope files | - | - | - | pending |
+<!-- /ANCHOR:files-under-review -->
 
 ## 16. REVIEW BOUNDARIES
-<!-- MACHINE-OWNED: START -->
-- Max iterations: 5
-- Convergence threshold: 0.1
+<!-- ANCHOR:review-boundaries -->
+- Max iterations: 7
+- Convergence threshold: 0.10 (telemetry only under `stopPolicy: max-iterations`)
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-max-2-1795514074741-gl47kr, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-max-2-1795518961022-7ms9ak, parentSessionId=null, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-24T09:55Z
-<!-- MACHINE-OWNED: END -->
+- Started: 2026-11-24T11:17:12.795Z
+<!-- /ANCHOR:review-boundaries -->

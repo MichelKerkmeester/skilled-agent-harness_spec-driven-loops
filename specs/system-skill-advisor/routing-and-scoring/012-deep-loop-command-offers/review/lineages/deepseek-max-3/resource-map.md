@@ -10,11 +10,11 @@ description: "Auto-generated review resource map from convergence evidence."
 
 ## Summary
 
-- **Total references**: 3
-- **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=1, Specs=2, Scripts=0, Tests=0, Config=0, Meta=0
+- **Total references**: 2
+- **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=1, Specs=1, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
 - **Scope**: review convergence output for 012-deep-loop-command-offers
-- **Generated**: 2026-11-24T10:06:04.777Z
+- **Generated**: 2026-11-24T11:26:56.096Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` · `MISSING` · `PLANNED`.
@@ -35,7 +35,6 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
-| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=1 |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=1 |
 
 ---

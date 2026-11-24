@@ -16,17 +16,16 @@ Reducer-generated observability surface for the active review packet.
 <!-- ANCHOR:status -->
 ## 2. STATUS
 - Review Target: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers (spec-folder)
-- Started: 2026-11-24T09:55:25.000Z
+- Started: 2026-11-24T11:16:48.000Z
 - Status: COMPLETE
-- Iteration: 5 of 5
-- Provisional Verdict: FAIL
-- Failed required gates at stop: coverage
+- Iteration: 7 of 7
+- Provisional Verdict: CONDITIONAL
 - hasSearchDebt: false
 - hasAdvisories: false
-- Session ID: fanout-deepseek-max-1-1795514074741-gl47kr
-- Parent Session: 2026-11-24T09:54:34.000Z
+- Session ID: fanout-deepseek-max-1-1795518961022-7ms9ak
+- Parent Session: none
 - Lifecycle Mode: new
-- Generation: 4
+- Generation: 1
 - continuedFromRun: none
 - stopReason: maxIterationsReached
 
@@ -47,8 +46,8 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 0 |
-| P2 (Suggestions) | 6 |
+| P1 (Required) | 4 |
+| P2 (Suggestions) | 8 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -57,11 +56,13 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | traceability | traceability | 1.00 | 0/0/3 | complete |
-| 2 | traceability | traceability | 0.14 | 0/0/1 | complete |
-| 3 | correctness | correctness | 0.00 | 0/0/0 | complete |
-| 4 | traceability | traceability | 0.20 | 0/0/1 | complete |
-| 5 | maintainability | maintainability/security | 0.17 | 0/0/1 | complete |
+| 1 | traceability/spec_code over REQ-001..REQ-039 | traceability | 1.00 | 0/2/1 | complete |
+| 2 | traceability/checklist_evidence over AC-001..AC-047 and T001..T092 | traceability | 0.21 | 0/0/3 | complete |
+| 3 | correctness: refusal, mode-cue and stuck-run paths on the served gate | correctness | 0.30 | 0/1/1 | complete |
+| 4 | security: untrusted prompt handling, regex cost, bounded window, degraded trust boundary | security | 0.05 | 0/0/1 | complete |
+| 5 | maintainability: drift guard coverage, mode vocabulary surfaces, comment hygiene | maintainability | 0.09 | 0/0/2 | complete |
+| 6 | correctness follow-up: no-edit guard, typed doctor, re-verification of active P1s | correctness | 0.19 | 0/1/1 | complete |
+| 7 | traceability overlay: skill_agent and agent_cross_runtime, plus finding-line re-resolution | traceability | 0.00 | 0/0/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -69,10 +70,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 0 |
+| correctness | covered | 3 |
 | security | covered | 1 |
-| traceability | covered | 5 |
-| maintainability | covered | 0 |
+| traceability | covered | 6 |
+| maintainability | covered | 2 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
@@ -89,12 +90,12 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.00 -> 0.20 -> 0.17
-- convergenceScore: 0.83
-- openFindings: 6
-- persistentSameSeverity: 0
+- Last 3 ratios: 0.09 -> 0.19 -> 0.00
+- convergenceScore: 1.00
+- openFindings: 12
+- persistentSameSeverity: 1
 - severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 0
+- repeatedFindings (deprecated combined bucket): 1
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -104,17 +105,40 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:corruption-warnings -->
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
-- No search-depth state captured (legacy v1 record).
-- graphCoverageMode: none
+- graphCoverageMode: graphless_fallback
+- candidateCoverage: covered=9, ruledOut=10, deferred=0, blocked=0
+
+### Search Debt
+[None yet]
+
+### Ruled-Out Candidates
+- iteration 1 boundary_input (ruled_out): the loop-name pattern excludes word, slash, dot and hyphen continuations; evidence=command-attach.ts:843
+- iteration 2 missing_evidence (ruled_out): every citation resolves to an existing file and in-range line; evidence=tasks.md:309
+- iteration 3 state_transition (ruled_out): the fallback never reads cues; evidence=skill_advisor.py:5452
+- iteration 4 redos (ruled_out): bounded windows and precompiled patterns keep it linear; evidence=command-attach.ts:641
+- iteration 4 command_injection (ruled_out): tracked table and owner check gate the string; evidence=skill-advisor-cli.ts:1489
+- iteration 5 comment_hygiene (ruled_out): no ticket or spec path in any changed comment; evidence=command-attach.ts:1489
+- iteration 7 document_drift (ruled_out): sets are equal; evidence=ROUTER.md:63
+- iteration 7 mirror_drift (ruled_out): no depth trigger remains; evidence=.skilled/agents/deep-review.md
+
+### Clean Search Proof
+- iteration 1 boundary_input (ruled_out): the loop-name pattern excludes word, slash, dot and hyphen continuations; evidence=command-attach.ts:843
+- iteration 2 missing_evidence (ruled_out): every citation resolves to an existing file and in-range line; evidence=tasks.md:309
+- iteration 3 state_transition (ruled_out): the fallback never reads cues; evidence=skill_advisor.py:5452
+- iteration 4 redos (ruled_out): bounded windows and precompiled patterns keep it linear; evidence=command-attach.ts:641
+- iteration 4 command_injection (ruled_out): tracked table and owner check gate the string; evidence=skill-advisor-cli.ts:1489
+- iteration 5 comment_hygiene (ruled_out): no ticket or spec path in any changed comment; evidence=command-attach.ts:1489
+- iteration 7 document_drift (ruled_out): sets are equal; evidence=ROUTER.md:63
+- iteration 7 mirror_drift (ruled_out): no depth trigger remains; evidence=.skilled/agents/deep-review.md
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- None. This is the last iteration under `maxIterations: 5`; the run proceeds to synthesis with stop reason `maxIterationsReached`. - Rotation status: all four canonical dimensions covered (traceability 1-2-4, correctness 3, maintainability and security 5). - Blocked/productive carry-forward: the productive category "observed command, then read the cited line" carried the run; the exhausted category "two-language gate divergence" is closed for this tree. - Required evidence for synthesis: six active P2 findings, the two protocol statuses, the terminal gate rows and the four-dimension coverage record. Review verdict: PASS
+- None: `maxIterations=7` is reached. The synthesis phase compiles `review-report.md` from the registry.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 6 active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.
+- 4 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 
 <!-- /ANCHOR:active-risks -->

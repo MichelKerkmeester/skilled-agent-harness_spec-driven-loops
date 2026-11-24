@@ -1,30 +1,29 @@
-# Review Iteration 004
+# Review Iteration 4
 
 ## Dispatcher
 
-- Route: `Resolved route: mode=review target_agent=deep-review`
-- Session: `fanout-deepseek-max-3-1795514074741-gl47kr`, generation 4, lineageMode `new`
-- Iteration 4 of 5. Dimension: traceability, second pass (`checklist_evidence`). Operator review focus bound: the same protocol pair.
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder). Scope: the 46 paths in `review-scope-files.txt`.
-- No `steer.md` exists in this lineage at iteration 4, so this iteration carries no lead ruling.
-
-## Dimension
-
-Traceability, second pass: `checklist_evidence` over the 87 task rows and 43 acceptance rows. A ticked box is checked against the tree by rerunning the row's own stated command where the tree can answer it, and a `Met` row is checked against the line its evidence cell cites.
-
-The operator focus was addressed by finishing the second core protocol, so both `spec_code` and `checklist_evidence` now carry a final status with file:line evidence.
+- Mode: review, single review iteration (fan-out lineage `deepseek-max-3`).
+- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
+- Iteration 4 of 7, stop policy `max-iterations`.
+- `steer.md` is still absent.
+- Operator focus: every iteration also covers the traceability focus, so this correctness pass reads the code the requirement cells pin.
 
 ## Files Reviewed
 
-- `tasks.md:34-179` (T001 to T087), `tasks.md:202-300` (CHK rows and the Verification Summary)
-- `acceptance-criteria.md:49-127` (AC-001 to AC-043 and the closure statement)
-- `scratch/probes/fresh-review-hook.txt:1-30` (AC-022 to AC-026, AC-029, AC-036 evidence)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:94` and the whole row set (AC-020)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:125` (AC-032), `:2` (header), whole file counted for `refusal-verb-` and `doctorWithheld`
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:963`, `tests/scorer/stage-one-loop-subject.vitest.ts:20`, `:26`, `tests/command-brief-golden.vitest.ts:353`, `:364`, `tests/typed-on-stuck-serving.vitest.ts:107`
-- Fifteen ticked rows rerun with their own `rg` command: T006, T008, T013, T014, T015, T016, T017, T018, T020, T021, T023, T027, T028, T045, T065
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:480` to `:520`, `:575` to `:700`, `:810` to `:1010`, `:1010` to `:1100`, `:1380` to `:1519`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4990` to `:5060`, `:5435` to `:5500`, `:5555` to `:5585`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:440` to `:470`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074` to `:1100`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1480` to `:1600`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:273` to `:289`
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:525` to `:545`, `:955` to `:1024`
 
-## Findings - New
+## Operator Focus
+
+The operator focus is traceability, and this iteration used it as the input to correctness: each code path read here is one a REQ cell names. REQ-037's effort rule is the source of the one finding; the other four requirement families this iteration touched (refusal, question, plural, typed) held on the inputs their cells and fixtures name.
+
+## Findings by Severity
 
 ### P0 Findings
 
@@ -36,97 +35,53 @@ None.
 
 ### P2 Findings
 
-None. The one stale acceptance cell this pass would have raised is already active as `R3-P2-001`, and the two documentation defects the task rows carry are active as `R3-P2-002` and `R3-P2-003`; repeating them here would inflate the count without adding evidence.
+1. **An effort word after the loop name withholds the command even when it is a manner on the request** -- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:931` -- `LOOP_EFFORT_AFTER` matches an effort word directly after a loop name with every preceding group optional, so "run a deep review longer than the last one on the parser" reads " longer" as a complaint and the phrase is skipped as a subject. The same shape exists in `_LOOP_EFFORT_AFTER_RE` at `skill_advisor.py:4781`. REQ-037's principle is that an effort word used as a manner on the request keeps the command; the fixture pins the complaint ("the deep review takes longer than the tests", `deep-loop-offer-cases.json:276`) and three manner controls before the loop name, but no manner that follows it.
+   Finding class: class-of-bug (the producer pattern reads an effort word in a complaint shape without a subject or verb requirement, in both gate copies).
+   Scope proof: the TypeScript pattern and its test site are at `command-attach.ts:931` to `:968`; the Python copy is at `skill_advisor.py:4781` to `:4789`, read at `:5097`. The fixture has no request-with-effort-after-name case.
+   Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json`, `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts`.
+   Case: "run a deep review longer than the last one on the parser" returns no command from `attachCommand` on a single review route, because `namesLoopSubject` tests `after = " longer than the last one on the parser"` against `LOOP_EFFORT_AFTER`, which matches `" longer"`.
 
 ## Traceability Checks
 
-- **`spec_code` (core, hard): pass.** Unchanged from iteration 3, no row re-opened by this pass. Evidence: `spec.md:213`, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1291`.
-- **`checklist_evidence` (core, hard): pass.** All 87 task rows and all 43 acceptance rows were checked. Every ticked row's stated command that the tree can answer was rerun and agreed with the row; every `Met` row's cited line was read and holds the observation, apart from the `AC-029` cell already active as `R3-P2-001`. Evidence: `tasks.md:244`, `acceptance-criteria.md:86`, `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:94`.
-
-Row counts and what the boxes hold:
-
-| Set | Boxes | Open | Agrees with the Verification Summary |
-|---|---|---|---|
-| P0 items | 12 | 1 (`CHK-020`) | yes — `11/12` |
-| P1 items | 13 | 0 | yes — `13/13` |
-| P2 items | 1 | 0 | yes — `1/1` |
-| Task rows | 87 | 1 (`T084`) | yes — the open rows are the ones the summary counts out |
-
-Rerun results, fifteen rows whose own command the tree can answer:
-
-| Row | Command result | Row's claim |
-|---|---|---|
-| T006 | no `'several models'` in `explicit.ts` | prints nothing |
-| T008 | 31 `near-miss` rows | count moved from 15 to 31 through D10 |
-| T013 / T014 | step 0 present at `research.md:86` / `review.md:81` | one line each |
-| T015 / T016 | `ASK with SINGLE prompt` absent from both presentation files | prints nothing |
-| T017 / T018 | `--extend=N` present in both YAML files | present |
-| T020 | `/doctor:deep-loop --scope=review` at `deep-review-presentation.txt:583` | present |
-| T021 | hub `SKILL.md` names `/doctor:deep-loop` at `:20` | present |
-| T023 | one `multi-round research` line in `ROUTER.md` | present |
-| T027 | `--max-iterations 15` absent from the research quick reference | prints nothing |
-| T028 | `ASK with SINGLE prompt` absent from the compiled contract | prints nothing |
-| T045 | no `says "iterations", "iterative"` row in the deep assets | prints nothing |
-| T065 | `ADR-005` present in `spec.md` and `acceptance-criteria.md` | present in both |
-
-Acceptance cells checked by content, beyond the citation sweep:
-
-- `AC-020` (`acceptance-criteria.md:77`): the three deep-family `-01` holdout rows are gone and `command-prompts.jsonl:94` is `cmd-deep-research-plain-holdout-04`. The row itself discloses that the blind-writer clause rests on the implementation summary rather than on a kept lane report, which is honest and is why it is not raised again.
-- `AC-022` / `AC-023` (`:79`, `:80`): `fresh-review-hook.txt:1-9` shows the six refusals with no `/deep:*` command, the control with `/deep:review`, and both loop questions with no command.
-- `AC-030` (`:87`): eleven `refusal-verb-` rows in the fixture, which matches the cell.
-- `AC-031` (`:88`): twenty-six fixture rows carry `doctorWithheld`; the twenty-seventh occurrence is the header's own description of the field, so the cell's count is right.
-- `AC-032` (`:89`): `fixtures/deep-loop-offer-cases.json:125` is `typed-two-commands-changelog` with `typedRunsKept: ["/deep:review"]`.
-- `AC-033` (`:90`): `command-attach-guards.vitest.ts:963` is the deferred-route table that asserts `/deep:review`.
-- `AC-034` (`:91`): `stage-one-loop-subject.vitest.ts:20` keeps the loop lane and `:26` drops it.
-- `AC-035` (`:92`): `command-brief-golden.vitest.ts:353` prints a typed deep command plainly and `:364` keeps the offer on a degraded row that is not marked typed.
-- `AC-036` (`:93`): `typed-on-stuck-serving.vitest.ts:107` serves `/deep:review` with policy `ask` and `typed: true`.
-- `AC-043` (`:100`): `autonomous research` appears in neither hub file, and both aliases appear in both.
-
-Non-`Met` rows, each checked for a backing record:
-
-- `AC-008` `Waived` -> ADR-003 exists (`decision-record.md:223`) and states the measured offer rate.
-- `AC-017` `Waived` -> ADR-002 exists (`:128`) and records the out-of-domain replay that keeps the alias.
-- `AC-019` `Superseded` -> ADR-001 exists (`:33`) and names the five near-miss rows plus D1's replacement row.
-- `AC-040` `Unmet` -> correct while this review runs; its cell says the rerun is a follow-up, not part of the build.
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | pass | REQ-023 to REQ-030 read again against `command-attach.ts` and `skill_advisor.py`; REQ-037's producer is the source of R4-P2-001. All thirty-nine REQs remain mapped from iteration 3. |
+| `checklist_evidence` | partial | The two P2 evidence drifts remain (R2-P2-001, R2-P2-002); this iteration adds no checklist finding. |
 
 ## Integration Evidence
 
-- `tasks.md:299-300` (the Verification Summary rows) were recomputed against the boxes they count; the three categories agree.
-- `acceptance-criteria.md:123-127` (closure statement) still describes `Met`, `Waived` and `Superseded` as the closeable set, which matches the four non-`Met` rows as they stand.
+- `command-attach.ts:968` is where `namesLoopSubject` reads `LOOP_EFFORT_AFTER`; that is the single decision point that produces the false negative.
+- `skill_advisor.py:5097` reads `_LOOP_EFFORT_AFTER_RE` at the matching Python decision point, so the two copies share the defect rather than diverging.
 
 ## Edge Cases
 
-- **Two rows are open by design, not by failure.** `T084` and `CHK-020` are the rerun and its acceptance check; both name why they are open, and both flip only when this run's report lands. A checklist pass that marked them ticked would be the defect.
-- **`AC-019` is superseded, so its count clause is not checked.** The corpus holds 31 near-miss rows, not the 15 the row originally named; ADR-001 records the reversal and the replacement check, so the count is not a defect.
-- **`AC-020` rests on a record rather than a kept artifact.** Its cell says the lane reports are not kept; the row-id evidence it does carry resolves, so the gap is disclosed rather than hidden.
-- **A count that looks off by one is the header.** `doctorWithheld` appears 27 times in the fixture for 26 rows, the extra occurrence being the header's description of the field.
+- The finding is a false negative, not a false offer: the prompt asks for a run and gets no command, which is the safer direction. That keeps the severity at P2 even though the trigger is a plausible request.
+- A manner word placed before the loop name is already covered by the fixture's three controls, so the gap is specifically the post-name position.
+- The same post-name position also catches "run a deep review slower", which is a request for a slower run in some phrasings. It is recorded as the same finding rather than a second one, because the producer is the same pattern.
 
 ## Confirmed-Clean Surfaces
 
-- Every ticked row whose command the tree can answer agrees with its own stated result.
-- Every `Met` row's evidence cell resolves to a line that holds the observation, with the single exception already active as `R3-P2-001`.
-- All four non-`Met` rows name a record that exists, or state honestly why they cannot be met yet.
-- The Verification Summary's three counts match the boxes behind them.
+- `endsBefore` (`command-attach.ts:650` to `:655`) starts every lead read at `end - LEAD_WINDOW` with 16 characters of context, so a lookbehind cannot fire at the cut and a lead longer than the window is lost rather than invented; the Python `_ends_before` at `skill_advisor.py:5011` to `:5013` has the same bounds.
+- `RUN_ASK_NEGATED_SOURCE` (`:629`) excludes a conjunction in the two-word gap, so "skip it and deep review the parser" asks for the run, and the fixture's two conjunction controls pass.
+- `typedCommandsIn` (`:274` to `:290`) keeps one key per start index, longest first, then dedupes the mapped retired commands; `typedCommandIn` (`:251`) still returns the longest key for its other callers.
+- `deferredLoopCommand` (`:1465` to `:1497`) blanks a loop name the prompt treats as its subject before reading `MODE_CUES`, so "run a deep loop to review the research loop config" lands on review and the two controls return nothing.
+- `isLoopQuestion` (`:1061` to `:1066`) leaves "how do I run a deep review? then run a deep review on the parser" a request and "how can a deep research loop stop early?" a question.
+- `trackedCommandForOwner` (`skill-advisor-cli.ts:1489` to `:1494`) checks the tracked table by own key and compares the owner or its merged alias, so an unknown or other-skill command cannot print.
 
 ## Ruled Out
 
-- **A ticked task whose stated verification no longer holds:** ruled out over fifteen reruns and the whole-row sweep.
-- **A `Waived` or `Superseded` row with no backing ADR:** ruled out; ADR-001, ADR-002 and ADR-003 all exist and say what the cells claim.
-- **A `Met` row resting on a citation that does not resolve:** ruled out; all 116 `path:line` citations in the packet resolve once the documents' declared `$ADV` base is applied.
-- **A Verification Summary that overstates the verified count:** ruled out; `11/12`, `13/13` and `1/1` are what the boxes hold.
-- **A checklist row silently ticked while the work is outstanding:** ruled out; `T084` and `CHK-020` are open and each names its reason.
+- "The bounded window loses a lead at the cut": ruled out; `endsBefore` keeps 16 characters of context and starts the search at the slice's window offset.
+- "A conjunction inside the refusal gap still negates the next clause": ruled out; the gap's negative lookahead names `and`, `then`, `but` and `or`, and the two conjunction fixtures pass.
+- "`typedCommandsIn` lets a longer command hide a shorter one": ruled out; it keys by start index and keeps the longer only where two commands start at the same place.
+- "The deferred mode cue counts a subject loop name as a cue": ruled out; `namesLoopSubject` blanks it before `MODE_CUES` runs.
 
 ## Next Focus
 
-- Dimension: maintainability
-- Focus area: the gate's two copies as a maintenance surface — comment hygiene, the drift guard as the anti-divergence mechanism, the closure docs' readability, and whether the packet's own documents now tell a consistent story after four rounds.
-- Reason: it is the last uncovered canonical dimension, and the two open rows plus the P2 set are the maintenance questions worth stating.
-- Rotation status: 3 of 4 dimensions covered; both core protocols recorded at pass.
-- Blocked/productive carry-forward: productive category "resolve the citation against its declared base, then read the line" closed both protocols; the maintainability pass should reuse it rather than invent a new approach.
-- Required evidence: file:line for each claim, and a statement of what a follow-on maintainer would get wrong.
-
-## Verdict
-
-No new finding and no active P0 or P1, so the iteration passes. Both core protocols are now `pass`, and the terminal coverage gate has what it needs once maintainability is covered.
+- Dimension: security.
+- Focus area: the prompt-to-command trust boundary, the child-supplied command path, the prompt-head cap, and any path where reviewed content or subprocess output becomes a command.
+- Reason: correctness has one P2; security is the next dimension with no coverage and the packet touches a trust boundary.
+- Rotation status: correctness moves to completed with one advisory; security and maintainability remain.
+- Carry-forward: R2-P2-001, R2-P2-002 and R4-P2-001 stay active advisories.
+- Required evidence: a concrete input and a file:line for each security finding; a clean surface gets the exact guard it relies on.
 
 Review verdict: PASS

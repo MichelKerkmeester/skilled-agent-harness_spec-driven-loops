@@ -1,30 +1,32 @@
-# Review Iteration 002
+# Review Iteration 002 — deepseek-max-1
+
+**Dimension:** traceability (D3)
+**Protocol:** `checklist_evidence`
+**Focus:** every ticked task in `tasks.md` and every `Met` row in `acceptance-criteria.md` against evidence that exists in the tree, with the operator focus carried in full: the sixth, seventh and eighth fix rounds (REQ-023 to REQ-039, AC-030 to AC-047, ADR-005, ADR-006) are checked row by row.
 
 ## Dispatcher
 
-LEAF deep-review iteration 2 of 5, lineage `deepseek-max-1`, session `fanout-deepseek-max-1-1795514074741-gl47kr`, generation 4, lineageMode `new`.
-Mode review; dimension `traceability`; core protocols `spec_code` and `checklist_evidence`.
-Operator review focus: finish the `spec_code` and `checklist_evidence` protocols; check every REQ against the code or decision that implements it, and every `Met` row against evidence that exists.
-
-This iteration carried the focus into the second band: REQ-013 to REQ-022 against the shared fixture, the two gate copies and the recorded corpus, and AC-020 to AC-033 against those surfaces.
+- Run: `fanout-deepseek-max-1-1795518961022-7ms9ak`, generation 1, lineage mode `new`, label `deepseek-max-1`.
+- Execution: this process; no nested dispatch ran.
+- Config: `maxIterations=7`, `stopPolicy=max-iterations`, four canonical dimensions.
+- Steering channel: `steer.md` is absent at iteration 2.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:225-234` (REQ-013 to REQ-022)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:77-91` (AC-020 to AC-033)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:124-167,294-300`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:93-310` (ADR-001, ADR-002, ADR-003)
-- `.skilled/changelog/skilled/v4.2.0.0.md:478-486,755-762`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (split census, 92 holdout rows)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:675-735`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:470-485`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1-254` (all 248 cases, read programmatically)
-- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2855-2975,3013-3060`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5227-5272,5343-5388`
-- `.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts:190-245`
-- `.skilled/skills/system-skill-advisor/runtime/tests/scorer/stage-one-loop-subject.vitest.ts:1-60`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json` (rows N9, H3b, R2, V2, V4, H7, H10, K2)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:153-160`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:44-133`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:36-316`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:150-180,225-262`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33,128,223,317,412,508,603,720-741`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1-6,120-170,250-290`
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:530-542,855-870,996-1000`
+- `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts:150-154`
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts:351-355`
+- `.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:105-110,146-150`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:450-458`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:641`
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:995`
+- `.skilled/commands/deep/assets/deep-research-presentation.txt:28-32,223-248`, `deep-review-presentation.txt:237-278`
+- `.skilled/changelog/skilled/v4.2.0.0.md:480-486,755-761`
 
 ## Findings - New
 
@@ -38,63 +40,77 @@ None.
 
 ### P2 Findings
 
-1. **The closure docs disagree on the final advisor suite counts** -- `tasks.md:163` -- `refines iter1-P2-fixture-count`. AC-042 and T081 record the sixth-round run as 184 files, 3,029 passed and `cases=203`; T087 and the changelog record the seventh-round run as 184 files, 3,126 passed; the shared fixture now holds 248 cases. The three numbers describe three different trees, but AC-042 and the changelog both call their run the final one, so a reader cannot tell which count certifies the built tree.
-   Finding class: matrix/evidence (closure-doc count drift across three documents).
-   Scope proof: `tasks.md:163` states 3,029; `tasks.md:174` states 3,126; `.skilled/changelog/skilled/v4.2.0.0.md:759` states 3,126; `acceptance-criteria.md:99` states 3,029 with `cases=203`; `tests/fixtures/deep-loop-offer-cases.json` holds 248 cases.
-   Affected surface hints: `tasks.md:163`, `tasks.md:174`, `acceptance-criteria.md:99`, `.skilled/changelog/skilled/v4.2.0.0.md:759`, `tests/fixtures/deep-loop-offer-cases.json`.
-   Case: an operator asks which suite run closed the packet, and the packet answers 3,029 in two places and 3,126 in two others, with the fixture the suite reads at neither stated size.
+1. **AC-015's evidence line proves the question-tool convention, not the three placements it claims** -- `acceptance-criteria.md:72` -- The row says step 6 names the question tool and Q2/Q-Exec carry `(Recommended)`, then cites `deep-research-presentation.txt:30` as the evidence. Line 30 is the offer section's "Ask once, through the question tool that … §5 names for your runtime" sentence. Step 6 is at `:223`, Q2 at `:236` and Q-Exec at `:246`, and the review presentation file holds the same three at `:237`, `:267` and `:277`.
+   Case: a reader checking AC-015 opens the cited line and finds the offer section, not the setup form the row describes, so the row's `Met` cannot be confirmed from the evidence cell alone even though the underlying text exists two hundred lines later.
+   Finding class: `evidence-pointer` (record precision, no behaviour change).
+   Scope proof: `acceptance-criteria.md` and both presentation files are `reviewScopeFiles` entries; the three placements were read at the lines named above.
+   Affected surface hints: `acceptance-criteria.md:72` (AC-015 verification cell), `deep-research-presentation.txt:30,223,236,246`, `deep-review-presentation.txt:237,267,277`.
+
+2. **AC-041 and T082 cite a blank line and a neighbouring line for two closure claims** -- `acceptance-criteria.md:98` -- AC-041 says the sixth-round paragraph is at `implementation-summary.md:232` and that `:230` says the stuck drop was reversed; T082 repeats both. `:232` is blank, the sixth-round paragraph starts at `:233`, and the reversed-sentence is at `:231`. The three limitation citations in the same row (`:258`, `:259`, `:260`) do resolve.
+   Case: an operator following AC-041's citation for the sixth-round record lands on an empty line, and the row's own "each state the built behaviour" claim is then checked against the wrong paragraph.
+   Finding class: `evidence-pointer` (record precision, no behaviour change).
+   Scope proof: `acceptance-criteria.md` and `tasks.md` are review-scope entries; `implementation-summary.md` is in scope and the four lines were read directly.
+   Affected surface hints: `acceptance-criteria.md:98` (AC-041), `tasks.md:164` (T082), `implementation-summary.md:231,232,233`.
+
+3. **AC-019's Then clause and its own observation disagree on the near-miss count** -- `acceptance-criteria.md:76` -- The Then clause states the search "prints 15, up from 9", while the Observed sentence in the same row states 31 near-miss rows, which is what the corpus holds today (`rg -c '"row_type":"near-miss"'` = 31). The row is `Superseded` with ADR-001, so it blocks nothing, but a superseded row that contradicts itself is still the closure record a reader checks first.
+   Case: an operator verifying ADR-001's supersession reads the row and cannot tell whether the counted outcome is 15 or 31, so the decision record it points to is the only thing that settles it.
+   Finding class: `record-inconsistency` (documentation only; no closure impact because the row is superseded).
+   Scope proof: `acceptance-criteria.md:76` is in scope; the count was produced by `rg -c` over `command-prompts.jsonl`, also in scope.
+   Affected surface hints: `acceptance-criteria.md:76`, `decision-record.md:33` (ADR-001), `command-prompts.jsonl` near-miss rows.
 
 ## Traceability Checks
 
-### spec_code
+| Protocol | Status | Evidence |
+|---|---|---|
+| `checklist_evidence` | pass | Every `Met`, `Waived` and `Superseded` row was read; every `path:line` citation in `acceptance-criteria.md` and `tasks.md` resolved to an existing file and an in-range line (0 unresolved, 0 out-of-range across both files); the three P2 findings are pointer precision, not missing evidence. The one `Unmet` row (AC-040) is matched by the open T084, the open "All tasks marked [x]" box, the open CHK-020 and the closure statement `Closeable: No`. |
+| `spec_code` | carried from iteration 1 | The two P1 findings stand; this iteration did not re-run that protocol. |
 
-- REQ-013: the corpus holds 92 `holdout` rows; the three deep-family rows are the `-04` generation (`cmd-deep-review-plain-holdout-04`, `cmd-deep-research-plain-holdout-04`, `cmd-doctor-deep-loop-plain-holdout-04`), and every builder that reads `split === 'holdout'` skips or labels it rather than tuning on it (`run-command-behaviour.mjs:682,727`, `capture-command-routing-baseline.mjs:474-477`, `score-command-transcripts.mjs:1792`). [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:682]
-- REQ-014: N9 reads `system-deep-loop cmd=- pol=- fresh=live exit=0` in the 69-probe file; no `/deep:*` command. REQ-014's clause holds.
-- REQ-015: all six refusal prompts are fixture rows with `asksForLoopRun: false` (`refused-do-deep-research`, `refused-never-run`, `refused-no-need-to-run`, `refused-not-asking-for`, `refused-bare-no`, `refused-not-needed-after`), and the control `refusal-control-do` reads `true`.
-- REQ-016: `question-how-many-iterations` and `question-how-many-passes` both read `false`.
-- REQ-017: `hyphen-deep-review` reads `true`, and the curly-apostrophe row `want-research-loop-curly-apostrophe` reads `true`.
-- REQ-018: `negated-symptom-counted-ask` reads `true`, so the negated symptom keeps the run ask.
-- REQ-019: the nine subject prompts are fixture rows reading `false` (`subject-code-noun`, `subject-result-verb`, `subject-config-noun`, `subject-standing-loop-for-every`, `subject-iterations-of-model`, `subject-hyphen-pass-compilers`, `subject-passes-failed`, `subject-multi-pass-compiler`), and the three controls read `true`.
-- REQ-020: the four typed rows carry `typedReviewKept` (`false` on refused, question and doc-path; `true` on the control) and the typed-stuck row carries `typedReviewKept: false` with `servedReviewKept: true`; `_apply_deep_loop_offer_gate` reads the same clauses through `_deep_command_only_mentioned` and marks a kept typed row at `skill_advisor.py:5384`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5343]
-- REQ-021: the 69-probe file holds every gain, keep and negative row with `live`/`exit 0`; the corpus `false_offer` counts are the recorded `implementation-summary.md:155,160` rows (0 of 57), not recomputed here.
-- REQ-022: the changelog states the refusal rule, names the brief change and the typed `(ask)` head (`v4.2.0.0.md:482-486`), quotes the seventh-round suite at `:759`, and AC-008 reads `Waived` with ADR-003 recorded at `decision-record.md:223,308`.
+What this iteration actually ran, rather than read:
 
-### checklist_evidence
-
-- AC-020 to AC-033 read against their cited lines: 14 rows, 14 evidence cells resolve, and 13 hold what the row says they hold. AC-030's `cases=203` is the one stale cell, folded into finding 1; its `rg -c 'refusal-verb-'` census still prints 11 on the current fixture.
-- The `tasks.md` Verification Summary agrees with the boxes it counts: 12 P0 CHK items with CHK-020 open (11/12), 13 P1 (13/13), 1 P2 (1/1); the T-task list holds 87 tasks of which 86 are ticked and T084 is the one open item, which matches CHK-020's AC-040 note.
+1. **Citation resolution over both closure documents.** Every backticked `path:line` in `acceptance-criteria.md` and `tasks.md` was parsed and resolved against the repo root, the packet folder, the advisor runtime and its `lib`/`scripts`/`tests` subdirectories, and the deep-loop runtime. 0 unresolved and 0 out-of-range. The pass includes the sixth/seventh/eighth-round rows (AC-030 to AC-047) and their tasks (T068 to T092).
+2. **Checkbox arithmetic against the Verification Summary.** 123 checkbox lines: 120 checked, 3 open. By priority: P0 11 checked of 12, P1 13 of 13, P2 1 of 1, plus 95 unlabelled checked and 2 unlabelled open. The summary's `12 / 11`, `13 / 13` and `1 / 1` match those boxes, so AC-041's "what the boxes behind it hold" is true.
+3. **The open work is coherent.** T084 (rerun), the "All tasks marked [x]" file-organization check, and CHK-020 [P0] are open for the same reason — AC-040 is `Unmet` because this rerun is the follow-up, not part of the build. No ticked task and no `Met` row depends on a run this review did.
+4. **Spot-checked anchors that carry a specific claim.** `typed-stuck` at fixture `:123` carries `servedReviewKept: true`; `refusal-verb-skip` at `:129` reads `false`; the depth-word `it.each` list sits at guards `:532-541`; the long-prompt describe starts at `:998`; the degraded row keeps a tracked supplied command at `cli-degraded-command-contract.vitest.ts:152`; the golden test prints a typed deep command plainly at `:353`; `LEAD_WINDOW = 400` at `command-attach.ts:641`; `refinesSameLocation` at `reduce-state.cjs:995`; `passesAsked` at `explicit.ts:454`; the doctor withhold at `fusion.ts:1074`; all seven ADRs named by a `Waived`/`Superseded` cell exist.
 
 ## Integration Evidence
 
-- The fixture is the shared parity surface: `tests/deep-loop-offer-cases.vitest.ts` reads it for the native gate and `tests/python/test_skill_advisor.py:2857` reads the same file for the fallback, so REQ-021's parity claim has one source of truth.
-- `run-command-behaviour.mjs` and `capture-command-routing-baseline.mjs` are the builders that read `split`; both skip holdout rows for tuning and publishing, which is what REQ-013's no-builder clause means.
+- Closure records: `acceptance-criteria.md` and `tasks.md`, read in full.
+- Decision record: ADR-001 to ADR-007, each waiver's target verified to exist.
+- Implementation record: `implementation-summary.md` rows and limitations, with the cited lines read.
+- Changelog row that AC-029 quotes: `.skilled/changelog/skilled/v4.2.0.0.md:759` carries `184 files, 3,188 passed, 4 skipped, none failed`.
 
 ## Edge Cases
 
-- The fixture's `typedReviewKept` and `servedReviewKept` columns disagree on the typed-stuck row by design (ADR-005). A reader who treats the two columns as duplicates will report a false parity failure.
-- Three holdout rows and 89 other holdout rows are `holdout`, but only the three deep-family `-04` rows are in REQ-013's scope; counting all 92 would overstate the requirement.
-- The changelog line 759 is the seventh-round count while line 482-486 describes the sixth-round behaviour; both are true statements about different rounds, which is why the count drift is a documentation defect rather than a behaviour contradiction.
+- **The suites were not run.** AC-009, AC-010, AC-028, AC-042 and T081/T087/T088/T092 claim suite results; this iteration verified that the cited files and lines exist and that the numbers agree across rows, not that the suites still pass on this tree. That limit is stated rather than converted into a pass.
+- **`validate.sh --strict` claims (T085, T086, implementation-summary) were not re-run.** The command is outside this lineage's write surface; the claims are read as recorded results.
+- **AC-019 is superseded.** Its internal disagreement is recorded at P2 and changes no closure state.
 
 ## Confirmed-Clean Surfaces
 
-- Every REQ-015 to REQ-019 prompt is present in the shared fixture with the stated boolean; no prompt is missing and no stated result is inverted.
-- The Python gate's doctor branch and the native fused doctor row agree on the refused, questioned and bare namings of `/doctor:deep-loop`.
-- The stage-one lane's `passesAsked` gate and the deferred-route `namesLoopSubject` blanking both read the same `asksForLoopRun` predicate as the command gate, so no second reading of the loop vocabulary exists.
+- AC-040 / T084 / CHK-020 / closure statement: the packet says `Unmet` and `Closeable: No` in four places, and the open boxes match.
+- AC-030, AC-031, AC-036, AC-037, AC-038, AC-039, AC-044, AC-045, AC-046, AC-047: each cited fixture, guard, serving-test or reducer line holds the case the row names.
+- AC-029: the changelog line quotes the same suite totals as AC-028 and AC-042's final-tree number.
+- Verification Summary: counts agree with the boxes.
 
 ## Ruled Out
 
-- A missing fixture row for any REQ-015 to REQ-019 prompt: ruled out by prompt-substring search over all 248 cases.
-- A TypeScript/Python divergence on the typed-stuck, typed-refused, typed-question or typed-doc-path rows: ruled out at the gate layer by the shared `typedReviewKept`/`servedReviewKept` columns and the Python `_apply_deep_loop_offer_gate` clauses.
-- A builder that tunes on a holdout row: ruled out by reading the three split readers; each skips or labels holdout rows.
-- A Verification Summary miscount: ruled out by counting the CHK boxes and matching 12/13/1 with 11/13/1 verified.
+- **AC-031's "26 fixture rows carry `doctorWithheld`" is wrong.** Ruled out: the fixture has 26 key occurrences (16 true, 10 false); the 27th textual match is the `$comment` header.
+- **Fixture size drift.** Ruled out: the fixture holds 285 cases and every row that cites `cases=285` matches.
+- **A waiver names a missing ADR.** Ruled out: ADR-001, ADR-002 and ADR-003 all exist at `decision-record.md:33,128,223`.
+- **The Verification Summary overcounts verified P0s.** Ruled out: 11 of 12 P0 boxes are checked, matching `11/12`.
 
 ## Next Focus
 
-- Dimension: traceability
-- Focus area: REQ-023 to REQ-034 and AC-030 to AC-043, including ADR-005 and ADR-006, with the sixth-round refusal, stuck, typed, long-prompt and drift-guard clauses read against both copies.
-- Reason: the second band is settled; the sixth round is the newest code and carries the operator's named ADRs.
-- Rotation status: traceability pass 2 of 3 complete.
-- Blocked/productive carry-forward: the fixture-row comparison is productive and continues; the count sweep is productive and produced finding 1.
-- Required evidence: both gate copies for REQ-023 to REQ-032, ADR-005/ADR-006 text, and the reducer refinement test for REQ-032.
+- **Dimension:** correctness
+- **Focus area:** the served gate's behavior on the refusal, subject and stuck-run paths, especially where the Python and TypeScript copies could diverge (typed commands, refusal leads, bounded windows).
+- **Reason:** traceability's two core protocols are now covered; the next dimension is where implementation-level defects show.
+- **Rotation status:** traceability complete; correctness starts.
+- **Required evidence:** code paths at `file:line`, plus served-head measurements for any behavior claim.
 
-Review verdict: PASS
+## Assessment
+
+Dimensions addressed: traceability
+
+The checklist half of traceability holds: every citation resolves, the summary matches its boxes, and the open work is coherent with the one `Unmet` row. The three P2s are precision defects in the closure record, the kind the seventh and eighth rounds set out to remove. No new P0/P1 this iteration; the two P1s from iteration 1 remain active.
+
+Review verdict: CONDITIONAL

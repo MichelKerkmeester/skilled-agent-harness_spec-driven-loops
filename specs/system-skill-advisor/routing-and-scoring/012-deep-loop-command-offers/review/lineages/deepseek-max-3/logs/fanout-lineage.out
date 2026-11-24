@@ -1,11 +1,1 @@
-Lineage `deepseek-max-3` finished all five iterations and its synthesis. Every state record went through the append gateway (eight ledger rows: run-open, five iterations, terminal gates, synthesis complete), and the reducer ran after each append.
-
-**Verdict: FAIL** — 0 P0, 0 P1, 5 P2. The findings are clean; the verdict comes from the terminal **coverage** gate (`coverage-too-young`), not from a defect: evidence and scope pass, both core traceability protocols read `pass`, all four dimensions are covered, but `maintainability` was first covered in the last iteration, so the run had no stabilization pass afterwards. `review-verdict.cjs` makes a failed required gate a FAIL, and the cross-lineage merge will read the same row.
-
-What the review established: all 34 REQ rows resolve to a producer, an accepted decision or a stored measurement (including ADR-001's D1 supersession, ADR-005's typed-on-stuck split and ADR-007's dropped alias); all 87 task rows and 43 acceptance rows were checked, fifteen ticked rows rerun with their own commands, and all 116 citations resolve once each document's declared `$ADV` base is applied.
-
-The five P2 advisories: the gate reads `how do I put /deep:review …` as a request rather than a question (both copies share the gap); AC-029 quotes 2,696 where the changelog now reads 3,126; REQ-031 promises a fixture case per list entry where four of the twelve compared lists are parity-only; REQ-006 and the Edge Cases name `command-attach.vitest.ts` for cases that live in `command-attach-guards.vitest.ts`; and `acceptance-criteria.md` still carries the scaffold's continuity block at `completion_pct: 0`.
-
-Yours to decide: run one more review pass with maintainability covered by iteration 4 (or `--extend=1`) so AC-040 and T084 can flip, then apply the five documentation fixes — the full seed is in `review/lineages/deepseek-max-3/review-report.md`.
-
 FANOUT_LINEAGE_COMPLETE:deepseek-max-3

@@ -1,28 +1,40 @@
-# Review Iteration 002
+# Review Iteration 2
 
 ## Dispatcher
 
-- Route: `Resolved route: mode=review target_agent=deep-review`
-- Session: `fanout-deepseek-max-3-1795514074741-gl47kr`, generation 4, lineageMode `new`
-- Iteration 2 of 5. Dimension: security. Operator review focus bound: traceability (`spec_code` + `checklist_evidence`).
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder). Scope: the 46 paths in `review-scope-files.txt`.
-- No `steer.md` exists in this lineage at iteration 2, so this iteration carries no lead ruling.
-
-## Dimension
-
-Security: the offer gate's trust boundary. The prompt is outside-authored text the advisor reads on every turn, so the question is what a hostile or careless prompt can obtain, and whether the offer can start anything rather than ask.
-
-The operator focus was addressed by keeping the `spec_code` protocol's security-flavoured rows (REQ-024's doctor row, REQ-025's typed precedence, REQ-030's unbounded-input cost) in the same pass, so the gate's refusal and cost guards are settled on evidence before the traceability iterations rely on them.
+- Mode: review, single review iteration (fan-out lineage `deepseek-max-3`).
+- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
+- Iteration 2 of 7, stop policy `max-iterations`.
+- `steer.md` is still absent, so no lead ruling applied.
+- Operator focus: finish `spec_code` and `checklist_evidence`, checking every REQ against the code or decision that implements it and every `Met` row against evidence that exists in the tree.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:756-775` (`isNoEditRequest`, `RUN_REFUSED`), `:1061-1101` (`COMMAND_ASK_NAMED_WORDS`, `COMMAND_ASK_SHOULD_WORDS`, `COMMAND_ASK_LEAD_WORDS`), `:1096-1152` (`COMMAND_ASK_TARGET`, `commandOnlyMentioned` inputs), `:1229-1276` (`commandOnlyMentioned`), `:1291-1367` (`attachCommand` guard order), `:64-121` (`COMMAND_ROWS` policies)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5227` (`_deep_command_only_mentioned`), `:5343-5400` (`_apply_deep_loop_offer_gate`), `:5333` (`is_run_refused`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1091-1130` (`withholdWritingCommandsOnNoEdit`)
-- Live probes: `attachCommand` over 10 security-shaped prompts, `commandOnlyMentioned` over four interrogative shapes in TypeScript and three in Python, plus a 90,000-character prefix probe.
-- Secret scan over `command-attach.ts`, `subprocess.ts`, `skill-advisor-cli.ts`, `render.ts`, `explicit.ts` and `skill_advisor.py`; directive scan over the packet docs and the shared fixture.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:302` to `:357` (REQ-031 to REQ-039, success criteria, open questions)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58` to `:135` (AC-001 to AC-047 evidence cells)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:153` to `:182`, `:229` to `:261`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:305` to `:315` (Verification Summary), `:176` to `:185` (eighth round)
+- `.skilled/changelog/skilled/v4.2.0.0.md:478` to `:486`, `:759`
+- `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:330` to `:360`, `:509` to `:571`, `:841` to `:944`, `:1016` to `:1040`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:440` to `:470`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5440` to `:5490`, `:5566`, `:3022` to `:3070`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1470` to `:1600`
+- `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts:152` to `:195`
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:68` to `:92`, `:247` to `:318`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:253` to `:291`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json` (`metrics`, `attachedMetrics`, `rows`)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (near-miss and split counts)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:985` to `:1025`
+- `.skilled/skills/system-deep-loop/hub-router.json:34`, `.skilled/skills/system-deep-loop/ROUTER.md:63`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:412` to `:560` (ADR-005 to ADR-007)
 
-## Findings - New
+## Operator Focus
+
+This iteration closed the requirement sweep for the ninth round: REQ-031 to REQ-039 were read against the code and decision that implement them, and every `Met` acceptance cell from AC-001 to AC-047 was opened on the line it cites. That is where the two findings below come from: the requirements are implemented, but thirteen acceptance cells and one limitation block cite the row above their evidence after the eighth round inserted rows into `implementation-summary.md`, and AC-040's statement about `review/` no longer describes the tree.
+
+## Findings by Severity
 
 ### P0 Findings
 
@@ -34,76 +46,60 @@ None.
 
 ### P2 Findings
 
-1. **A question that leads with `how do` or `how can` still gets the command attached** -- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1061` -- `COMMAND_ASK_NAMED_WORDS` carries the third-person interrogatives (`what does`, `what is`, `how does`, `how did`, `why does`, `why did`) and the imperatives (`explain`, `describe`, `tell me …`), but not the first- and second-person forms a reader actually types when asking about the command: `how do I put /deep:review in my shell aliases?` and `how can I make /deep:research cheaper?` both return `false` from `commandOnlyMentioned`, so `attachCommand` reads the typed name as the request and offers the loop. The Python copy answers the same way (`skill_advisor.py:5227`), so this is one gap in a shared vocabulary rather than a divergence between the copies.
-Finding class: class-of-bug (one interrogative family, reachable from both copies through one list)
-Scope proof: `command-attach.ts` and `skill_advisor.py` are both in `reviewScopeFiles`; the four interrogative shapes were probed live in both languages, and `what does` / `how does` return `true` in the same run, which isolates the missing forms rather than a broken guard.
-Affected surface hints: `command-attach.ts` `COMMAND_ASK_NAMED_WORDS`, `skill_advisor.py` `_COMMAND_ASK_LEAD_LIST`, `tests/fixtures/deep-loop-offer-cases.json` (a fixture row would pin it), `tests/command-attach-guards.vitest.ts`
-Case: an operator asks `how do I put /deep:review in my shell aliases?`, and the advisor answers with the deep-loop offer — option A `/deep:review:auto` — so a reader who asked which command to configure is asked to launch it. The offer's policy is `ask`, so nothing runs without a second confirmation, which is what keeps this below P1.
-- Counterevidence sought: `COMMAND_ASK_SHOULD_WORDS` and `COMMAND_BARE_ASK_LEAD` were read for a second path that could catch the prompt; neither matches, because `COMMAND_ASK_SHOULD_WORDS` is scoped to `should I` / `do I need to` shapes and `COMMAND_BARE_ASK_LEAD` requires a question mark after the command name, which `…aliases?` does not place there. The shared fixture has no such row.
-- Alternative explanation: the vocabulary is deliberately third-person because a typed command is meant to win over any looser reading, and `how do I …` may be judged a request for setup help that the offer legitimately answers.
-- Downgrade trigger: a fixture row or a decision-record entry that states first-person `how do` shapes are meant to keep the command.
+1. **Acceptance evidence cells point one row above the closure-pass and limitation rows they cite** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58` -- thirteen `Met` rows cite `implementation-summary.md` line numbers that land on the neighbouring row rather than the observation. AC-001, AC-002, AC-003, AC-004, AC-005, AC-010, AC-013, AC-016 and AC-021 cite `:153`, which is the fourth-round corpora row; the closure-pass probe row is `:154`. AC-011 cites `:154`; the mirror and reference-gate result is on the closure-pass advisor-suite row at `:155`. AC-012 cites `:155`; its corpus counts are on `:156`. AC-017 cites `:156`; its alias replay is on `:157`. AC-028 cites `:177` to `:178`; its 69-probe result is on `:180` and its suite result on `:178`. AC-041 cites `:232` for the sixth-round paragraph (actual `:233`), `:230` for the reversed stuck-drop line (actual `:231`), `:258` and `:259` for limitations 6 and 7 (actual `:259` and `:260`), and `:260` for the served-brief gap (actual `:261`).
+   Finding class: instance-only (stale line pointers in one file; the underlying evidence exists one row below every pointer).
+   Scope proof: every pointer is in `acceptance-criteria.md`'s criteria table; the cited lines were opened in `implementation-summary.md` at the stated numbers.
+   Affected surface hints: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md`; the row labels in `implementation-summary.md` are the durable anchors a repoint should use.
+   Case: a reader opens `acceptance-criteria.md:58` for AC-001's probe evidence, follows `implementation-summary.md:153`, and finds the fourth-round corpus row, not the 69-probe result; the same happens for every row listed above.
 
-### Claim adjudication (P2, recorded for the self-check)
-
-```json
-{"type":"claim","claim":"commandOnlyMentioned does not recognize the first-person interrogative forms how do / how can, so a question about the command attaches it","evidenceRefs":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1061",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5227"],"counterevidenceSought":"read COMMAND_ASK_SHOULD_WORDS, COMMAND_BARE_ASK_LEAD and the fixture for a second path or a pinned case; none covers the shape","alternativeExplanation":"the third-person-only vocabulary is deliberate, and a typed command is meant to outrank a looser reading","finalSeverity":"P2","confidence":0.8,"downgradeTrigger":"a fixture row or decision-record entry stating the first-person shapes keep the command"}
-```
+2. **AC-040's evidence statement says `review/` still holds the pre-fix report, but the report was archived and `review/` holds only the current run's config and lineages** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:135` -- the row reads "so `review/` still holds the pre-fix report and `spec_code` and `checklist_evidence` are unfinished." `review/` has no `review-report.md`; the three prior reports are under `review-archive/20261124T090549Z/`, `20261124T095434Z/` and `20261124T111600Z/`, and `review/` now holds the fan-out config plus `lineages/`. The status `Unmet` is still correct, so only the sentence about where the report lives is stale.
+   Finding class: instance-only (one half of one evidence cell; the unmet status does not change).
+   Scope proof: `ls` of `review/` and `find` for `review-report*.md` under the packet returned the three archive paths and no file at `review/review-report.md`.
+   Affected surface hints: `acceptance-criteria.md` AC-040; `review-archive/20261124T111600Z/review-report.md` is the report a reader should be sent to.
+   Case: a reader follows AC-040's sentence to `review/` to read the pre-fix report and finds no report there; the nearest match is the archived generation-4 report.
 
 ## Traceability Checks
 
-- **`spec_code` (core, hard): partial.** Second pass. REQ-020, REQ-024, REQ-025, REQ-027 and REQ-030's guards were re-checked in the security framing and remain as iteration 1 recorded them. Evidence: `command-attach.ts:1301`, `fusion.ts:1074`, `skill_advisor.py:5343`, `command-attach.ts:629`.
-- **`checklist_evidence` (core, hard)**: not run in this iteration; scheduled for iterations 4 and 5.
-
-Security-shaped observations this iteration settled:
-
-| Surface | Observed | Evidence |
-|---|---|---|
-| No-edit guard order | `don't change anything, just review the diff` and `do not modify the parser, run a deep review` both return no command, so the no-edit guard holds before the mode-cue path and before the deep gate | `command-attach.ts:1320`, probe |
-| Command policy | both `/deep` rows carry `policy: ask`; only `/doctor:deep-loop` carries `run`, and it is withheld on a refusing complaint | `command-attach.ts:64-121`, `fusion.ts:1074` |
-| Naming versus request | `see (/deep:review.md) for the flags`, `what does /deep:review do?` and `how does /deep:review work?` all withhold; a path mention never becomes a request | `command-attach.ts:1229`, probe |
-| Pronoun decline | `'/deep:review' is not what I want, do not run it` withholds | `command-attach.ts:1109`, probe |
-| Bounded window under a long prefix | a 90,000-character prefix followed by `do not run /deep:review` still withholds, and followed by `how does /deep:review work?` still withholds, so the 400-character window keeps both readings | `command-attach.ts:629-646`, probe |
-| Secrets | no credential, token, bearer or private-key literal in the six changed runtime files | grep over the files, no hit |
-| Untrusted content | no directive aimed at an AI reviewer appears in the packet docs or the shared fixture; the fixture's prompts are test data | grep over the files, no hit |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial (REQ-023 to REQ-039 checked) | REQ-031 fifteen vocabulary pairs `deep-loop-offer-cases.vitest.ts:68`, refusal-lead pair `:83`, numeric pairs `:90`, ten per-entry lists `:247` to `:293`; REQ-032 `refinesSameLocation` `reduce-state.cjs:995`; REQ-033 is this run; REQ-034 closure rows `implementation-summary.md:182`, fixture header `deep-loop-offer-cases.json:2`, tasks summary `tasks.md:309` to `:311`; REQ-035 plural names `command-attach.ts:330`, `:450`, fixture `:253` to `:265`; REQ-036 `LOOP_QUESTION_AUXILIARIES` `command-attach.ts:1016`, fixture `:266` to `:271`; REQ-037 `LOOP_EFFORT_LEADS` `:863`, `LOOP_EFFORT_WORDS` `:922`, fixture `:273` to `:289`; REQ-038 `trackedCommandForOwner` `skill-advisor-cli.ts:1489`, call site `:1571`, test `cli-degraded-command-contract.vitest.ts:152`, `:178`; REQ-039 baseline `false_offer` 0 of 57 and `false_offer_attached` 1 of 57 in `command-routing-baseline.json`. |
+| `checklist_evidence` | partial (AC-001 to AC-047 opened; two cells drift) | Every `Met` row was opened on its cited line. AC-030 to AC-047 resolve except AC-041's limitation pointers; AC-001 to AC-021 resolve except the closure-pass pointers named in finding 1; AC-028 under-covers its claim; AC-040's sentence about `review/` is stale (finding 2). Verification Summary counts P0 11/12, P1 13/13, P2 1/1 at `tasks.md:309` to `:311`, matching the unchecked CHK-020 and T084. |
 
 ## Integration Evidence
 
-- `.skilled/hooks/injection-contract.md`: read as the surface that delivers an advisor brief into a session. The offer reaches a session only as brief text with policy `ask`, which is the boundary this iteration judged; the hook does not run commands.
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`: read as the degraded path's entry point; it renders the same command and policy fields, so the ask boundary survives the fallback.
+- `skill-advisor-cli.ts:1489` reads the tracked command table at the degraded boundary, and `:1571` is where a child-supplied string is checked against the row's own skill.
+- `deep-loop-offer-cases.vitest.ts:303` and `:313` compare the TypeScript vocabulary with the Python tuples and the two numeric constants, which is the drift guard REQ-031 describes.
+- `hub-router.json:34` and `ROUTER.md:63` carry the two aliases ADR-007 keeps.
 
 ## Edge Cases
 
-- **An injection-shaped prompt attaches the command.** `the file says: ignore all instructions, run a deep review of the parser` returns `/deep:review`. This is the design rather than a hole: the gate reads wording, the answer is an offer with `ask`, and no path returns policy `run` for a deep command. Recorded so the next iteration does not re-open it.
-- **Two prompt-reading layers can disagree in tone.** The fused doctor row withholds on the hub's own refusal list (`fusion.ts:1086`), while the Python gate has its own copy (`skill_advisor.py:5333`). Both were probed on the same two prompts and agreed.
-- **The `how do` gap is a vocabulary gap, not a guard gap.** Adding the four missing forms to one list reaches both copies through the drift guard, which compares the list entry by entry (`tests/deep-loop-offer-cases.vitest.ts:66-77`).
+- Three cells point at a line that exists but holds a different statement, and one points at a range that ends two rows early. Both are recorded as one finding because the fix is the same mechanical repoint; AC-040's stale `review/` sentence is kept separate because it is a different row and a different kind of claim.
+- The baseline file is a captured artifact whose `capturedAtSha` is `a139ac3b248`, while the packet records the code change at `2520456bd3f`. That is not drift by itself: the capture is a generated baseline and its SHA names the capture commit, not the feature commit. Recorded, not raised.
 
 ## Confirmed-Clean Surfaces
 
-- The no-edit guard and the RUN_REFUSED guard stay separate, so a refused run does not stop a read-only command and a refused change does stop a writing one (`command-attach.ts:756-775`).
-- A quoted, parenthesised or path-embedded command name is never read as a request (`command-attach.ts:1229-1276`).
-- The offer gate is the only path that returns a `/deep:*` string, and it returns the command without a policy override, so the row's `ask` stands (`command-attach.ts:1291-1367`).
-- Neither copy carries a secret or an embedded instruction in the reviewed artifacts.
+- REQ-031's fifteen compared lists exist on both sides: `VOCABULARY_PAIRS` at `deep-loop-offer-cases.vitest.ts:68` to `:79`, the refusal-lead pair at `:83`, and the Python tuples at `skill_advisor.py:4480` to `:5213`.
+- REQ-032's `refinesSameLocation` keeps a refinement at another file or dimension as its own entry and still folds a same-file refinement, at `reduce-state.cjs:995` to `:1006`.
+- REQ-034's fixture header names each typed column's layer at `deep-loop-offer-cases.json:2`; limitations 6, 7 and 8 describe the built behaviour at `implementation-summary.md:259` to `:261`; the changelog names the refusal exception, the typed-on-stuck head and the refusal verbs at `:482` to `:484`.
+- REQ-035's plural names are in `LOOP_WORDING` (`deep researches`, `deep reviews`, `deep-reviews`) and `LOOP_NAMES` (`deep loops`, `research loops`, `review loops`), and the fixture pins eight run rows and five no-run rows at `:253` to `:265`.
+- REQ-036's question auxiliaries and the `how do`/`how can` pattern are pinned by `:266` to `:271`; REQ-037's effort leads and words by `:273` to `:289`.
+- REQ-038's degraded path drops an unknown or other-skill-supplied command, policy, owner and typed marker at `skill-advisor-cli.ts:1571` to `:1600`, with the exact assertions at `cli-degraded-command-contract.vitest.ts:178` to `:195`.
+- REQ-039's baseline carries `false_offer` 0 of 57 and `false_offer_attached` 1 of 57, and the fixture holds 285 cases; `rg -c '"row_type":"near-miss"'` prints 31, matching ADR-001's recorded corpus state.
 
 ## Ruled Out
 
-- **A prompt can start a deep run without confirmation:** ruled out; both `/deep` rows carry `policy: ask`, and `attachCommand` returns a bare command string with no policy override.
-- **A path or quoted mention becomes a request:** ruled out for the `.md` path form and for the parenthesised form, by probe.
-- **A refusal placed after a 90,000-character prefix escapes the bounded window:** ruled out; the trailing refusal is still read and the command withheld.
-- **A refusal of the change still yielding a writing command:** ruled out; the no-edit guard precedes the deep gate and the fused writing-command guard repeats it.
-- **A secret left in the changed runtime files:** ruled out by grep over all six.
-- **Directive-like text inside the review targets:** ruled out; none found, so no untrusted-instruction finding is raised.
+- "REQ-035's plural forms are read from a separate list that the drift guard does not compare": ruled out; the plurals sit inside `LOOP_WORDING` and `LOOP_NAMES`, both compared at `deep-loop-offer-cases.vitest.ts:68` to `:79`.
+- "REQ-036's `how do` exception is native-only": ruled out; `_LOOP_QUESTION_AUXILIARY_LIST` exists at `skill_advisor.py:4870` and is compared by the drift guard.
+- "REQ-038 accepts a command tracked for the row's alias group without checking ownership": ruled out; `trackedCommandForOwner` compares both `ownerSkillId` and `mergedSkillForAlias(skill)` at `skill-advisor-cli.ts:1492` to `:1493`.
+- "AC-043's aliases are absent from one of the two hub files": ruled out; both `hub-router.json:34` and `ROUTER.md:63` carry `iterative research` and `multi-round research`, and neither carries `autonomous research`.
 
 ## Next Focus
 
-- Dimension: traceability
-- Focus area: `spec_code` over all 34 REQ rows, REQ-001 to REQ-034, each against the code that implements it or the decision that records it, including ADR-005, ADR-006 and ADR-007.
-- Reason: the operator focus asks for the two core protocols to finish, and the gate rows are now settled on probe evidence.
-- Rotation status: 2 of 4 dimensions covered.
-- Blocked/productive carry-forward: productive category "producer read plus live probe" carried the first two iterations; for REQ rows whose behaviour is a recorded probe rather than a live one, the productive move is to read the code anchor and confirm the cited line says what the row claims.
-- Required evidence: a file or decision anchor per REQ row, and a status for `spec_code` that reflects whether every row resolved.
-
-## Verdict
-
-One active P2 and no active P0 or P1, so the iteration passes on its own findings and the run is unchanged in shape: the P2 is advisory.
+- Dimension: traceability (continuing the operator focus).
+- Focus area: REQ-001 to REQ-022, AC-001 to AC-029 statuses, and ADR-001 to ADR-004. Re-read the rows whose pointers drifted to confirm the underlying evidence still holds before synthesis.
+- Reason: the ninth-round requirements are implemented; the remaining unchecked part of the operator focus is the first five fix rounds and the superseded/waived rows.
+- Rotation status: traceability stays active through iteration 3; correctness begins at iteration 4.
+- Carry-forward: the evidence-pointer finding stays active until a fix round repoints the cells; it does not block, so the verdict remains PASS.
+- Required evidence: each REQ-001 to REQ-022 producer, each AC-001 to AC-029 status, and each ADR-001 to ADR-004 decision.
 
 Review verdict: PASS
