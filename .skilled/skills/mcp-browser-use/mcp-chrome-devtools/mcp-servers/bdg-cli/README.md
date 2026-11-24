@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg cli install"
   - "browser-debugger-cli"
   - "install bdg"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # bdg-cli
@@ -21,7 +21,7 @@ version: 1.0.3.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Installing and verifying `bdg`, the token-efficient terminal interface to the Chrome DevTools Protocol (300+ methods across 53 domains). |
-| **Invoke with** | `npm install -g browser-debugger-cli@alpha`, then `bdg --version` and `bdg <url>`. |
+| **Invoke with** | `npm install -g browser-debugger-cli@0.6.10`, then `bdg --version` and `bdg <url>`. |
 | **Works on** | Node.js 20+ with Chrome/Chromium/Edge. macOS and Linux native; Windows via WSL only. |
 | **Produces** | A working `bdg` binary on `PATH` able to start sessions, capture screenshots, read console logs, and export HAR files. |
 
@@ -40,7 +40,7 @@ mcp-chrome-devtools drives browser debugging through `bdg`, a real third-party C
 **Step 1: Install.**
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 Alternatively run the skill's embedded installer: `bash ../../scripts/install.sh`.
@@ -70,7 +70,7 @@ ls -la /tmp/verify.png
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: bdg` | Not installed or npm bin not on `PATH` | `npm install -g browser-debugger-cli@alpha`; check `npm config get prefix` and add its `bin` to `PATH` |
+| `command not found: bdg` | Not installed or npm bin not on `PATH` | `npm install -g browser-debugger-cli@0.6.10`; check `npm config get prefix` and add its `bin` to `PATH` |
 | `Error: Could not find Chrome` | No resolvable browser binary | Set `CHROME_PATH` (see [`../../references/troubleshooting.md`](../../references/troubleshooting.md)) |
 | Fails on native Windows | Windows is WSL-only | `wsl --install`, then install bdg inside WSL |
 

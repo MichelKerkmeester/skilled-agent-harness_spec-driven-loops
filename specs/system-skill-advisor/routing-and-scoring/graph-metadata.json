@@ -16,7 +16,8 @@
     "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan",
     "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups",
     "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-    "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint"
+    "system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint",
+    "system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing"
   ],
   "manual": {
     "depends_on": [],

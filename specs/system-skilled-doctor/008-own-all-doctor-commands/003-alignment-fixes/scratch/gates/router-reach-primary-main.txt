@@ -1,0 +1,16 @@
+OK   cli-classifier               declared= 40 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+OK   cli-external-orchestration   declared=107 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+FAIL mcp-browser-use              declared= 71 wrong-hub=  0 outranked=  1 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+       outranked  core web vitals                            sk-code=0.9500, mcp-browser-use=0.9161
+OK   mcp-tooling                  declared=100 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+OK   sk-code                      declared=238 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+OK   sk-design                    declared= 99 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  1 probe-error=  0 stale=  0 operator-local=  0
+FAIL sk-doc                       declared=327 wrong-hub=  0 outranked=  2 no-reach=  0 allowed=  6 probe-error=  0 stale=  0 operator-local=  0
+       outranked  audit the docs                             sk-code=0.9277, sk-doc=0.9268
+       outranked  which json files does a skill need         sk-code=0.9147, sk-doc=0.8998
+OK   system-deep-loop             declared= 30 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=8 hub(s), wrong-hub=0, outranked=3, no-reach=0, allowed=7, probe-error=0, stale=0, operator-local=0
+advisor generation: 3476
+RESULT: FAILED
+exit=1

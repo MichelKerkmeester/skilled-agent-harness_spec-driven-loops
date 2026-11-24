@@ -560,6 +560,37 @@ expect_rc "bun package provisions from a relative worktree path" 0 run_relative_
 expect_eq "relative worktree path still installs the bun package" "1" \
   "$(awk '$1 == "bun-pkg" && $2 == "install" { c++ } END { print c + 0 }' "$BUN_LOG")"
 
+# A package with its own npm lockfile installs into its own node_modules, so an
+# ancestor that already installed a same-named dependency must not stand in for
+# it. A workspace member with no lockfile still counts the workspace root's install.
+LOCK_PROV="$PROV/lock-prov"
+LOCK_TREE="$LOCK_PROV/tree"
+rm -rf "$LOCK_PROV"
+mkdir -p "$LOCK_PROV/scripts" "$LOCK_TREE/outer/node_modules/left-pad" \
+  "$LOCK_TREE/outer/inner/member"
+LOCK_TREE="$(cd "$LOCK_TREE" && pwd -P)"
+cp "$NAMING" "$LOCK_PROV/scripts/worktree-naming.sh"
+printf 'outer\nouter/inner\nouter/inner/member\n' > "$LOCK_PROV/scripts/worktree-provision-paths.txt"
+printf '{"devDependencies":{"left-pad":"1.0.0"}}\n' > "$LOCK_TREE/outer/package.json"
+printf '{"devDependencies":{"left-pad":"1.0.0"}}\n' > "$LOCK_TREE/outer/inner/package.json"
+printf '{"dependencies":{"left-pad":"1.0.0"}}\n' > "$LOCK_TREE/outer/inner/member/package.json"
+: > "$LOCK_TREE/outer/package-lock.json"
+: > "$LOCK_TREE/outer/inner/package-lock.json"
+run_lock_provision() {
+  (
+    source "$LOCK_PROV/scripts/worktree-naming.sh"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/bin:$PATH" provision_worktree "$LOCK_TREE"
+  )
+}
+: > "$NPM_LOG"
+expect_rc "a nested lockfile package provisions" 0 run_lock_provision
+expect_eq "a nested lockfile package installs despite an ancestor's same-named dependency" "1" \
+  "$(awk '$1 == "inner" && $2 == "ci" { c++ } END { print c + 0 }' "$NPM_LOG")"
+expect_eq "the ancestor that already holds its dependency is not reinstalled" "0" \
+  "$(awk '$1 == "outer" { c++ } END { print c + 0 }' "$NPM_LOG")"
+expect_eq "a workspace member counts its workspace root's install" "0" \
+  "$(awk '$1 == "member" { c++ } END { print c + 0 }' "$NPM_LOG")"
+
 # Without bun on PATH a bun package fails loudly instead of falling back to npm.
 NOBUN_TREE="$PROV/nobun-tree"
 mkdir -p "$NOBUN_TREE/bun-pkg" "$PROV/nobun-bin"
@@ -643,6 +674,79 @@ run_strict_quiet_fail_provision() {
 expect_rc "a silent install failure under set -e still fails the run" 1 run_strict_quiet_fail_provision
 expect_rc "a silent install failure under set -e reaches the summary" 0 \
   grep -q "provisioned: 0 installed, 0 built, 0 already present, 1 failed" "$PROV/quiet-fail.out"
+
+# ── provision builds the advisor's skill-graph database ──────────
+# The database is gitignored, so a new worktree has none and the advisor reports
+# degraded health until a scan builds it. A scan that fails, or that exits
+# cleanly without writing the database, must fail provisioning: a tree that looks
+# provisioned but cannot advise is worse than a loud failure here. A tree with no
+# advisor CLI yet has nothing to scan with, so it provisions and stays unscanned.
+GRAPH_DB_REL=".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+
+write_advisor_stub() { # write_advisor_stub <tree> <call-log> -- stub advisor CLI in the tree
+  local tree="$1" log="$2"
+  mkdir -p "$tree/.skilled/bin"
+  cat > "$tree/.skilled/bin/skill-advisor.cjs" <<STUB
+const fs = require("fs");
+const path = require("path");
+const db = "$tree/$GRAPH_DB_REL";
+fs.appendFileSync("$log", process.argv.slice(2).join(" ") + "\n");
+if (process.env.ADVISOR_STUB_MODE === "fail") process.exit(1);
+if (process.env.ADVISOR_STUB_MODE === "silent") process.exit(0);
+fs.mkdirSync(path.dirname(db), { recursive: true });
+fs.writeFileSync(db, "");
+STUB
+}
+
+advisor_calls() { # advisor_calls <call-log> -- how many times the stub advisor ran
+  if [ -f "$1" ]; then awk 'END { print NR + 0 }' "$1"; else echo 0; fi
+}
+
+GRAPH_SCAN_TREE="$PROV/advisor-scan-tree"
+GRAPH_SCAN_LOG="$PROV/advisor-scan.log"
+rm -rf "$GRAPH_SCAN_TREE" "$GRAPH_SCAN_LOG"
+write_advisor_stub "$GRAPH_SCAN_TREE" "$GRAPH_SCAN_LOG"
+expect_rc "a missing skill-graph database provisions" 0 run_fixture_provision "$GRAPH_SCAN_TREE"
+expect_rc "the skill-graph scan leaves its database in the tree" 0 test -e "$GRAPH_SCAN_TREE/$GRAPH_DB_REL"
+expect_eq "the skill-graph scan runs once" "1" "$(advisor_calls "$GRAPH_SCAN_LOG")"
+expect_eq "the skill-graph scan asks for the trusted scan" "skill_graph_scan --trusted --format text" \
+  "$(cat "$GRAPH_SCAN_LOG")"
+
+GRAPH_KEEP_TREE="$PROV/advisor-keep-tree"
+GRAPH_KEEP_LOG="$PROV/advisor-keep.log"
+rm -rf "$GRAPH_KEEP_TREE" "$GRAPH_KEEP_LOG"
+write_advisor_stub "$GRAPH_KEEP_TREE" "$GRAPH_KEEP_LOG"
+mkdir -p "$GRAPH_KEEP_TREE/$(dirname "$GRAPH_DB_REL")"
+: > "$GRAPH_KEEP_TREE/$GRAPH_DB_REL"
+expect_rc "an existing skill-graph database provisions" 0 run_fixture_provision "$GRAPH_KEEP_TREE"
+expect_eq "an existing skill-graph database is never rescanned" "0" \
+  "$(advisor_calls "$GRAPH_KEEP_LOG")"
+
+GRAPH_FAIL_TREE="$PROV/advisor-fail-tree"
+GRAPH_FAIL_LOG="$PROV/advisor-fail.log"
+rm -rf "$GRAPH_FAIL_TREE" "$GRAPH_FAIL_LOG"
+write_advisor_stub "$GRAPH_FAIL_TREE" "$GRAPH_FAIL_LOG"
+ADVISOR_STUB_MODE=fail expect_rc "a failed skill-graph scan fails provisioning" 1 \
+  run_fixture_provision "$GRAPH_FAIL_TREE"
+expect_eq "a failed skill-graph scan is attempted once" "1" "$(advisor_calls "$GRAPH_FAIL_LOG")"
+
+# A scan that exits cleanly without its database is the same outcome as a failed
+# one: the advisor still has nothing to read.
+GRAPH_SILENT_TREE="$PROV/advisor-silent-tree"
+GRAPH_SILENT_LOG="$PROV/advisor-silent.log"
+rm -rf "$GRAPH_SILENT_TREE" "$GRAPH_SILENT_LOG"
+write_advisor_stub "$GRAPH_SILENT_TREE" "$GRAPH_SILENT_LOG"
+ADVISOR_STUB_MODE=silent expect_rc "a scan that writes no database fails provisioning" 1 \
+  run_fixture_provision "$GRAPH_SILENT_TREE"
+expect_rc "a scan that writes no database leaves it missing" 1 \
+  test -e "$GRAPH_SILENT_TREE/$GRAPH_DB_REL"
+
+GRAPH_NOCLI_TREE="$PROV/advisor-nocli-tree"
+rm -rf "$GRAPH_NOCLI_TREE"
+mkdir -p "$GRAPH_NOCLI_TREE"
+expect_rc "a tree without the advisor CLI provisions" 0 run_fixture_provision "$GRAPH_NOCLI_TREE"
+expect_rc "a tree without the advisor CLI creates no database" 1 \
+  test -e "$GRAPH_NOCLI_TREE/$GRAPH_DB_REL"
 
 # ── no-argument provision uses the linked worktree ───────────────
 LINKED="$PROV/linked"

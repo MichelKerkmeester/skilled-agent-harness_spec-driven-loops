@@ -7,7 +7,7 @@ trigger_phrases:
   - "bladebro capabilities"
   - "feature catalog"
 last_updated: "2026-11-22"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-bladebro: Feature Catalog
@@ -230,11 +230,11 @@ See [`real-browser/pause-resume-and-switch-back.md`](real-browser/pause-resume-a
 
 #### Description
 
-An operator-approved `npm install -g bladebro@4.8.2` adds the native binary through optional dependencies, and its SHA-256 is checked against the release sidecar before first use.
+An operator-approved `npm install -g --ignore-scripts bladebro@4.8.2` adds the native binary through optional dependencies with no lifecycle script, and the SHA-256 of the native binary and of the two JS launcher files is checked against recorded digests before first use.
 
 #### Current Reality
 
-The pinned install passed live on macOS arm64, and the installed native binary matched the v4.8.2 sidecar digest. `scripts/install.sh` wraps the install, the digest check and the version check, and removes the install again on a mismatch. Nothing installs Bladebro without an operator yes.
+The pinned install passed live on macOS arm64, and the installed native binary matched the v4.8.2 sidecar digest. `scripts/install.sh` wraps the install with lifecycle scripts off, the launcher and native binary digest checks and the version check, and removes the install again on a mismatch. Nothing installs Bladebro without an operator yes.
 
 #### Source Files
 

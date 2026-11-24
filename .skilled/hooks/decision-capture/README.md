@@ -33,6 +33,10 @@ The concern key is `decision-capture`. Its switch is `SYSTEM_DECISION_CAPTURE_DI
 
 `pendingRecords` filters out consumed keys. `takeNudge` returns a count only when the pending count has risen since the last notice.
 
+On Claude, the Stop hook runs at the end of every turn and records the session's queued tool answers itself when the transcript tail names exactly one spec folder that holds a `spec.md`. It writes them into that folder's `decision-record.md` and marks their keys consumed, so the nudge that follows stays quiet and no later save offers them again. Each entry starts `Recorded automatically:` and gives no reason, so a person edits the row to add one. When the writer creates the record and `spec.md` has no level marker, it adds one to `spec.md`. A tail with no folder or several, a child session, the concern switch or a failed write leaves the answers pending for the nudge. `SYSTEM_SESSION_LIFECYCLE_DISABLED=1` stops the Claude Stop hook itself, so it turns off both the automatic record and the nudge. Chat candidates always wait for a save.
+
+The tail check cannot tell which packet an answer was about. A session that answers in one packet and then reads only another near the end files the answers under the second.
+
 `chatCandidatesFromTurns` builds candidates from ordered turns and reports how many candidates it dropped.
 
 ---
@@ -99,7 +103,7 @@ The concern runs by default. Set the concern switch to stop live adapter capture
 
 | Switch | Concern key | Effect |
 |---|---|---|
-| `SYSTEM_DECISION_CAPTURE_DISABLED=1` | `decision-capture` | Stops live adapter capture for this concern. |
+| `SYSTEM_DECISION_CAPTURE_DISABLED=1` | `decision-capture` | Stops live adapter capture and the Claude Stop hook's automatic record. |
 | `SYSTEM_HOOKS_DISABLED=1` | Every concern | Master switch for hooks that use the shared resolver. |
 
 Both switches accept `1`, `true`, `yes` or `on`, in any case. The resolver checks the environment before `.skilled/hooks/hook-flags.env`. Copy `.skilled/hooks/hook-flags.env.example` to that path to keep local switch values. The save command still runs sweeps on stored session data.

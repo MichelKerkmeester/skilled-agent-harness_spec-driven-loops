@@ -1,19 +1,19 @@
 ---
 title: "Pinned install and digest check"
-description: "An operator-approved `npm install -g bladebro@4.8.2` adds the native binary through optional dependencies, and its SHA-256 is checked against the release sidecar before first use."
+description: "An operator-approved `npm install -g --ignore-scripts bladebro@4.8.2` adds the native binary through optional dependencies with no lifecycle script, and the SHA-256 of the native binary and of the two JS launcher files is checked against recorded digests before first use."
 trigger_phrases:
   - "pinned install and digest check"
   - "install bladebro"
   - "bladebro sha256"
   - "bladebro install.sh"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
-# Pinned install and digest check (npm install -g bladebro@4.8.2)
+# Pinned install and digest check (npm install -g --ignore-scripts bladebro@4.8.2)
 
 ## 1. OVERVIEW
 
-An operator-approved `npm install -g bladebro@4.8.2` adds the native binary through optional dependencies, and its SHA-256 is checked against the release sidecar before first use.
+An operator-approved `npm install -g --ignore-scripts bladebro@4.8.2` adds the native binary through optional dependencies with no lifecycle script, and the SHA-256 of the native binary and of the two JS launcher files is checked against recorded digests before first use.
 
 Installing Bladebro changes the host, so it is an operator stop-for-yes every time. Without that yes, the agent reports the command and stops. The pin and the digest keep the binary the packet was written against.
 
@@ -27,11 +27,11 @@ Installing Bladebro changes the host, so it is an operator stop-for-yes every ti
 
 ### Install and Digest
 
-`npm install -g bladebro@4.8.2` adds the package plus the native `bladebro-darwin-arm64` or `bladebro-darwin-x64` package through optional dependencies, with no postinstall script. Before the binary first runs, its SHA-256 is compared with the v4.8.2 release `.sha256` sidecar through `shasum -a 256 -c`. The standalone prebuilt binary plus its digest is the higher-assurance alternative to npm.
+`npm install -g --ignore-scripts bladebro@4.8.2` adds the package plus the native `bladebro-darwin-arm64` or `bladebro-darwin-x64` package through optional dependencies, and no lifecycle script runs. Before anything installed first runs, the native binary's SHA-256 is compared with the v4.8.2 release `.sha256` sidecar through `shasum -a 256 -c`. The two JS files the npm launcher runs first, `bin.js` and `binary.cjs`, are compared with the digests recorded from the 4.8.2 package. The standalone prebuilt binary plus its digest is the higher-assurance alternative to npm.
 
 ### Wrapper Script
 
-`scripts/install.sh` refuses a platform with no recorded digest, does nothing when `bladebro` is already on PATH, installs the pinned release, checks the digest and the version, and removes the install again on a mismatch. It never runs `npm update` or `bladebro -u`. The two macOS digests live in that script, in `scripts/doctor.sh` and in `references/install-and-verify.md`, so a new pin changes all three.
+`scripts/install.sh` refuses a platform with no recorded digest, does nothing when `bladebro` is already on PATH, installs the pinned release with lifecycle scripts off, checks the launcher and native binary digests before the version, and removes the install again on a mismatch. It never runs `npm update` or `bladebro -u`. The native binary and launcher digests live in that script, in `scripts/doctor.sh` and in `references/install-and-verify.md`, so a new pin changes all three.
 
 ---
 

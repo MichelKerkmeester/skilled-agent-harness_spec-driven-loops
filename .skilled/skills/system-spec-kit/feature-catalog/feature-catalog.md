@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-15"
-version: 2.1.44.0
+version: 2.1.45.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -961,7 +961,7 @@ See [`governance/feature-flag-governance.md`](governance/feature-flag-governance
 
 #### Description
 
-The doctor routers split checks by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git`, `/doctor:ci`, `/doctor:sk-skill`, `/doctor:agents-md` and `/doctor:setup`) and dispatch to their subsystem routes.
+The doctor routers split checks by subsystem (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git`, `/doctor:ci`, `/doctor:sk-skill`, `/doctor:agents-md` and `/doctor:setup`) and dispatch to their subsystem routes.
 
 #### Current Reality
 

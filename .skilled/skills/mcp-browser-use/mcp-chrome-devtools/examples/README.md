@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools examples"
   - "bdg example scripts"
   - "browser automation scripts"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # CLI Chrome DevTools - Example Scripts
@@ -49,7 +49,7 @@ When these scripts support a Spec Kit packet, route packet recovery back through
 
 ```bash
 # Install browser-debugger-cli
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 
 # Verify installation
 bdg --version

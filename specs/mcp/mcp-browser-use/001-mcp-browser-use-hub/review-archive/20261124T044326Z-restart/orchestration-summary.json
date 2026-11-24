@@ -1,0 +1,50 @@
+{
+  "run_id": "1795300286921-qfagh7",
+  "loop_type": "review",
+  "spec_folder": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [
+    {
+      "label": "claude2",
+      "index": 1,
+      "started_at_iso": "2026-11-21T22:19:40.210Z"
+    }
+  ],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "claude2",
+      "status": "failed",
+      "failure_class": "exit",
+      "exit_code": 0,
+      "rerun_command": null,
+      "rerun_note": "archive /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/claude2 first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --loop-type review --review-focus-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-focus.txt --review-target-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-target.txt --review-target-type spec-folder --review-scope-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-scope.txt --fanout-config-json-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review --convergence-threshold 0.10 --stop-policy max-iterations --convergence-mode default --depth-mode default --only-lineage claude2"
+    }
+  ],
+  "provider_cost_usd": {
+    "total": 5.718219,
+    "by_lineage": {
+      "claude2": 5.718219
+    }
+  }
+}

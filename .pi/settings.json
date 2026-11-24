@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.0",
   "theme": "dark",
   "defaultThinkingLevel": "max",
   "showHardwareCursor": true,
@@ -44,9 +44,13 @@
   },
   "deviceId": "601f79cc-08e3-4c46-a7b6-6d59ac689f90",
   "extensionChangelogVersions": {
-    "{\"source\":\"npm:pi-blackhole\",\"scope\":\"project\"}": "0.5.18",
+    "{\"source\":\"npm:pi-blackhole\",\"scope\":\"project\"}": "0.5.19",
     "{\"source\":\"npm:pi-web-access\",\"scope\":\"project\"}": "0.48.0",
     "{\"source\":\"git:github.com/dbachelder/pi-btw\",\"scope\":\"project\"}": "0.8.1",
-    "{\"source\":\"npm:pi-claude-code-ui\",\"scope\":\"project\"}": "1.0.112"
+    "{\"source\":\"npm:pi-claude-code-ui\",\"scope\":\"project\"}": "1.0.112",
+    "{\"source\":\"npm:pi-blackhole\",\"scope\":\"user\"}": "0.5.19",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.48.0",
+    "{\"source\":\"git:github.com/dbachelder/pi-btw\",\"scope\":\"user\"}": "0.8.1",
+    "{\"source\":\"npm:pi-claude-code-ui\",\"scope\":\"user\"}": "1.0.114"
   }
 }

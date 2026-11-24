@@ -6,7 +6,7 @@ trigger_phrases:
   - "bladebro doctor"
 importance_tier: normal
 contextType: reference
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Bladebro Install and Verify
@@ -44,13 +44,15 @@ Installation is an operator stop-for-yes. Without that yes, report the command a
 
 | Step | Command | Expected | Rollback |
 |---|---|---|---|
-| 3 | `npm install -g bladebro@4.8.2` | The package plus the native `bladebro-darwin-arm64` or `bladebro-darwin-x64` through optional dependencies; no postinstall script | `npm uninstall -g bladebro` |
+| 3 | `npm install -g --ignore-scripts bladebro@4.8.2` | The package plus the native `bladebro-darwin-arm64` or `bladebro-darwin-x64` through optional dependencies. No lifecycle script runs | `npm uninstall -g bladebro` |
 | 4 | `bladebro doctor` | Health pass, the data root (`~/.local/state/blade` or `~/.blade`), a browser found | Set `CHROME_PATH`, re-run |
 | 5 | `bladebro --version` | `4.8.2` | None |
 
-`scripts/install.sh` runs steps 3 to 5 with the digest check below, and removes the install again on a mismatch. `scripts/doctor.sh` repeats the digest check read-only. Both scripts carry the same two digests, so a new pin changes this file and both scripts together.
+`scripts/install.sh` runs steps 3 to 5 with the digest checks below, and removes the install again on a missing file or a mismatch. It checks every digest before `--version` first runs installed code. `scripts/doctor.sh` repeats the digest checks read-only. It reads the installed version from the package manifest, so no `bladebro` call runs before the digests are checked, and none runs after a mismatch on the pinned release. Both scripts carry the same four digests, so a new pin changes this file and both scripts together.
 
-Leave optional dependencies enabled. Verify the resolved native binary against the release `.sha256` sidecar with `shasum -a 256 -c` before use. The v4.8.2 macOS digests recorded at authoring are arm64 `sha256:7324e502b1710f8fb0a073b1f71d3647266d986a50e7351cb4257ec4eb5d8fa8` and x64 `sha256:d839f5f8a8bed8f616e68029350b1c36f8bc12ee2a16deb32b6f7df93a5a36c3`. For higher assurance, prefer the standalone prebuilt binary plus its digest over npm.
+Leave optional dependencies enabled. Verify the resolved native binary against the release `.sha256` sidecar with `shasum -a 256 -c` before use. The v4.8.2 macOS digests recorded at authoring are arm64 `sha256:7324e502b1710f8fb0a073b1f71d3647266d986a50e7351cb4257ec4eb5d8fa8` and x64 `sha256:d839f5f8a8bed8f616e68029350b1c36f8bc12ee2a16deb32b6f7df93a5a36c3`.
+
+The npm launcher runs two JS files before it hands over to the native binary. Their v4.8.2 digests, recorded from the installed package, are `bin.js` `sha256:14717680d950c7256756e904c9dfddd218e761b53cbc758f229583be0b45ae60` and `binary.cjs` `sha256:b123650d1119d7bbb71022dffb28983713d4eabcc76ae0cc81d456806a0e2baa`. Both are the same on every platform. For higher assurance, prefer the standalone prebuilt binary plus its digest over npm.
 
 ---
 

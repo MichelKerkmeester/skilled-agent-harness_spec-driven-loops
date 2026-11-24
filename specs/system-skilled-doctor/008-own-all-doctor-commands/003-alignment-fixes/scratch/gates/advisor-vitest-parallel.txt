@@ -1,0 +1,49 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/541-own-all-doctor-commands/.skilled/skills/system-skill-advisor/runtime
+
+ ❯ tests/handlers/advisor-validate.vitest.ts (10 tests | 2 failed) 160463ms
+     × returns the required slice bundle schema for a skill subset 42560ms
+     × surfaces named intent buckets with minN floors 48108ms
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 6873 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=526954
+[system-skill-advisor-launcher] ownerLeaseReclaimed: unreadable
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=875284
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sav-nyHBEZ/system-skill-advisor-launcher-unZPqP/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/handlers/advisor-validate.vitest.ts > advisor_validate handler > returns the required slice bundle schema for a skill subset
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/handlers/advisor-validate.vitest.ts:22:3
+     20|
+     21| describe('advisor_validate handler', () => {
+     22|   it('returns the required slice bundle schema for a skill subset', as…
+       |   ^
+     23|     const response = await handleAdvisorValidate({ confirmHeavyRun: tr…
+     24|     const parsed = JSON.parse(response.content[0].text) as { status: s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/handlers/advisor-validate.vitest.ts > advisor_validate handler > surfaces named intent buckets with minN floors
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/handlers/advisor-validate.vitest.ts:41:3
+     39|   });
+     40|
+     41|   it('surfaces named intent buckets with minN floors', async () => {
+       |   ^
+     42|     const response = await handleAdvisorValidate({ confirmHeavyRun: tr…
+     43|     const parsed = JSON.parse(response.content[0].text) as { data: unk…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 189 passed (190)
+      Tests  2 failed | 3204 passed | 4 skipped (3210)
+   Start at  22:22:39
+   Duration  325.58s (transform 2.24s, setup 640ms, import 6.61s, tests 308.32s, environment 6ms)
+
+exit=1

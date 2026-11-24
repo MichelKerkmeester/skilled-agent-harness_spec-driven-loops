@@ -6,7 +6,7 @@ trigger_phrases:
   - "age haircut derived"
   - "age decay"
   - "lifecycle age"
-version: 0.8.2.0
+version: 0.8.3.0
 id: LC-001
 category: lifecycle_routing
 stage: routing
@@ -81,7 +81,6 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt matching
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
-- Scenario [LC-002](./supersession.md), supersession redirects.
 - Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/lane-fusion.md), lane fusion basics.
 - Feature [`lifecycle-routing/age-haircut.md`](../../feature-catalog/lifecycle-routing/age-haircut.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts`.

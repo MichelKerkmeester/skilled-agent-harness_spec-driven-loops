@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting whether the sk-code surface passes its setup battery end to end
 purpose: Run the external user's verify battery for the sk-code hub plus its provisioning precheck, derived-metadata freshness gate and route probe, and name the repair command for each failing leg
 action: Run .skilled/commands/doctor/scripts/sk-code-setup-check.cjs once -> render its per-leg PASS/FAIL/SKIP verdict and repair lines through the presentation contract
-skill_owner: ".skilled/skills/sk-code/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

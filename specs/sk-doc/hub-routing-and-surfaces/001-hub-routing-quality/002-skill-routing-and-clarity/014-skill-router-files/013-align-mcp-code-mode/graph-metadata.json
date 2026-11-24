@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The machine router of mcp-code-mode moved from SKILL.md to ROUTER.md",
     "created_at": "2026-10-29T17:20:35Z",
-    "last_save_at": "2026-11-10T05:26:33.289Z",
+    "last_save_at": "2026-11-24T18:15:46.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75791eb90b9dd060b34bd6b542ea1049d73d179536a9108f3b9d1214eb98766c",
+    "source_fingerprint": "sha256:4007470f99242dfe475e17def7d16d5e5843efd2057b6b3db929725410eec5c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c66d1a8576510e0abfef847f44754bbc0637e4a891e4f8fc588a20516cc723ad",
+      "spec.md": "f7ccdb1e70bbb991ac7ab714c7344b25109f0349e3c02e628c24aca5c6656cc9",
       "plan.md": "e6f71cd1fb3802b3840307e614434addfcd54bed62b57d30320688008515e900",
       "tasks.md": "66e809fcfb1995d37a6cb1e736897690295b2dbb7b4014b2a6b77efe4d97d3cf",
       "implementation-summary.md": "fbf34e90211df032fc31081cbecc219a661e950b09f2b61e49b519f467d2fc53"

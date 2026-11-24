@@ -7,12 +7,21 @@
 // as the content word "auto", matching any skill that mentions it.
 
 import { describe, expect, it } from 'vitest';
-import { boundGraphSupportBySeed, scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
+import {
+  boundGraphSupportBySeed,
+  boundGraphSupportBySeedWithHolders,
+  scoreAdvisorPrompt,
+} from '../../lib/scorer/fusion.js';
+import { isAmbiguousTopTwo } from '../../lib/scorer/ambiguity.js';
 import { scoreLexicalLane } from '../../lib/scorer/lanes/lexical.js';
 import { createFixtureProjection } from '../../lib/scorer/projection.js';
 import { hasAdvisorAmbiguitySignal } from '../../lib/render.js';
 import { resultFromCliData } from '../../../hooks/lib/skill-advisor-cli-fallback.js';
-import type { SkillEdgeProjection, SkillProjection } from '../../lib/scorer/types.js';
+import type {
+  AdvisorScoredRecommendation,
+  SkillEdgeProjection,
+  SkillProjection,
+} from '../../lib/scorer/types.js';
 
 function skill(id: string, fields: Partial<SkillProjection> = {}): SkillProjection {
   return {
@@ -123,6 +132,53 @@ describe('a typed command is not ambiguous with the neighbour it held down', () 
       now: () => 1,
     });
     expect(hasAdvisorAmbiguitySignal(fromCli.recommendations)).toBe(false);
+  });
+
+  it('tracks every typed-command holder when the binding holder stops passing', () => {
+    const bounded = boundGraphSupportBySeedWithHolders(
+      new Map([['cmd-a', 0.8], ['cmd-b', 0.79], ['sk-target', 0.85]]),
+      new Map([['sk-target', 0.3]]),
+      new Map([['sk-target', new Map([['cmd-a', 0.3], ['cmd-b', 0.3]])]]),
+      1,
+      new Set(['cmd-a', 'cmd-b']),
+    );
+    const heldBy = (bounded as typeof bounded & {
+      readonly heldBy?: Map<string, readonly string[]>;
+    }).heldBy;
+    expect([...(heldBy?.get('sk-target') ?? [])].sort()).toEqual(['cmd-a', 'cmd-b']);
+
+    const recommendation = (
+      skillId: string,
+      kind: AdvisorScoredRecommendation['kind'],
+      confidence: number,
+      passesThreshold: boolean,
+      extra: { readonly heldBelow?: string; readonly heldBy?: readonly string[] } = {},
+    ): AdvisorScoredRecommendation => ({
+      skill: skillId,
+      kind,
+      confidence,
+      uncertainty: 0.2,
+      passes_threshold: passesThreshold,
+      reason: 'fixture',
+      score: bounded.scores.get(skillId) ?? 0,
+      laneContributions: [],
+      dominantLane: null,
+      lifecycleStatus: 'active',
+      ...extra,
+    } as AdvisorScoredRecommendation);
+    const targetHolders = heldBy?.get('sk-target');
+    const candidates = [
+      recommendation('cmd-a', 'command', 0.8, true),
+      recommendation('cmd-b', 'command', 0.79, true),
+      recommendation('sk-target', 'skill', 0.85, true, {
+        heldBelow: bounded.heldBelow.get('sk-target'),
+        ...(targetHolders ? { heldBy: targetHolders } : {}),
+      }),
+    ];
+    expect(isAmbiguousTopTwo(candidates)).toBe(true);
+
+    candidates[1] = recommendation('cmd-b', 'command', 0.79, false);
+    expect(isAmbiguousTopTwo(candidates)).toBe(false);
   });
 });
 

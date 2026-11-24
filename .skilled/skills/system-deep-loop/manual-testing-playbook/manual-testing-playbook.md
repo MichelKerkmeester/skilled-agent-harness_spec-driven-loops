@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "1.2.8.0"
+version: "1.2.9.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook
@@ -181,7 +181,7 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 
 ### Doctor Command Scenarios
 
-The `/doctor:deep-loop` scenarios now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
+The `/doctor:deep-loop` scenarios now live in the [system-skilled-doctor playbook](../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md).
 
 ---
 

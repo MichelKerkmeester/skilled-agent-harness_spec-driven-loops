@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.10.0.0
+version: 2.10.1.0
 metadata:
   family: documentation
 ---
@@ -59,7 +59,7 @@ The `mode-registry.json` aliases, each packet's `Keyword triggers:` line and the
 Stage 2 (mode → leaves) lives in the root [`ROUTER.md`](./ROUTER.md), which maps the request's authoring intent to the packet-local leaf resources that mode loads.
 The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 The advisor routes every documentation and authoring query to the single identity `sk-doc`.
-Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"`.
+Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`).
 Act on the decision: `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
 Compiled routing is the default.
 An unclear documentation intent asks for disambiguation, because `routerPolicy.defaultMode` is `null`.

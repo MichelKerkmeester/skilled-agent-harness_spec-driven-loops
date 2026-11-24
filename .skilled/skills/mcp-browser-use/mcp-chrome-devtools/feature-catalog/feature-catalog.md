@@ -1,7 +1,7 @@
 ---
 title: "mcp-chrome-devtools: Feature Catalog"
 description: "Unified feature inventory for the mcp-chrome-devtools skill: the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 29 exposed tools, dual isolated instances plus a live instance in the user's own Chrome)."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # mcp-chrome-devtools: Feature Catalog
@@ -14,7 +14,7 @@ Complete feature inventory for both approaches in the mcp-chrome-devtools skill.
 
 The mcp-chrome-devtools skill routes browser debugging between two complementary approaches:
 
-- **bdg CLI** (`npm install -g browser-debugger-cli@alpha`) — the primary surface. Direct, fast, token-efficient terminal access to the Chrome DevTools Protocol: 300+ CDP methods across 53 domains, self-documenting via `--list` / `--describe` / `--search`, Unix-pipe composable. One global session lifecycle (`bdg <url>` / `bdg status` / `bdg stop`) with no session selector, so sessions run sequentially.
+- **bdg CLI** (`npm install -g browser-debugger-cli@0.6.10`) — the primary surface. Direct, fast, token-efficient terminal access to the Chrome DevTools Protocol: 300+ CDP methods across 53 domains, self-documenting via `--list` / `--describe` / `--search`, Unix-pipe composable. One global session lifecycle (`bdg <url>` / `bdg status` / `bdg stop`) with no session selector, so sessions run sequentially.
 - **Chrome DevTools MCP via Code Mode**: the fallback for multi-tool integration and parallel browsers. Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) are registered in `.utcp_config.json`, each launching `chrome-devtools-mcp` over stdio via `npx` with `--isolated=true`, invoked through `call_tool_chain()` with the naming `{instance}.{instance}_{tool_name}`. A third manual, `chrome_devtools_live`, runs with `--autoConnect` and attaches to the user's own Chrome for signed-in work.
 
 > **Verification note.** MCP tool names are a subset of CDP (29 exposed tools from `tools/list` on the pinned chrome-devtools-mcp@0.26.0) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of all three manuals lives in `../assets/utcp-chrome-devtools-manuals.md`.
@@ -25,7 +25,7 @@ Routing is **capability-based**: prefer the CLI when it fits (SKILL.md Rule "Che
 |--------|-------|
 | CLI CDP surface | 300+ methods across 53 domains (self-discovered, never hardcoded) |
 | MCP exposed tools | 29 (via Code Mode; confirm names with discovery) |
-| CLI install | `npm install -g browser-debugger-cli@alpha` |
+| CLI install | `npm install -g browser-debugger-cli@0.6.10` |
 | MCP manuals | `chrome_devtools_1` + `chrome_devtools_2` in `.utcp_config.json`, both `--isolated=true`, plus `chrome_devtools_live` with `--autoConnect` for signed-in work in the user's own Chrome |
 | MCP invocation | `chrome_devtools_N.chrome_devtools_N_<tool_name>` via `call_tool_chain()` |
 | Platforms | macOS and Linux native; Windows via WSL only |
@@ -37,7 +37,7 @@ Routing is **capability-based**: prefer the CLI when it fits (SKILL.md Rule "Che
 4 features covering install verification and the single-session lifecycle (start, status, stop).
 
 ### Install + version
-`command -v bdg` then `bdg --version` — verify the CLI before first use; install with `npm install -g browser-debugger-cli@alpha`.
+`command -v bdg` then `bdg --version` — verify the CLI before first use; install with `npm install -g browser-debugger-cli@0.6.10`.
 
 See [`cli-bdg-lifecycle/install-version.md`](cli-bdg-lifecycle/install-version.md)
 

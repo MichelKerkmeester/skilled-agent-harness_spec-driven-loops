@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/008-own-all-doctor-commands/001-ownership-transfer",
+  "spec_folder": "system-skilled-doctor/008-own-all-doctor-commands/001-ownership-transfer",
+  "parent_id": "system-skilled-doctor/008-own-all-doctor-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ownership transfer",
+      "phase 1 ownership transfer",
+      "doctor command owner skill_agent tag",
+      "ownership transfer plan",
+      "ownership transfer tasks",
+      "ownership transfer acceptance criteria",
+      "ownership transfer implementation summary"
+    ],
+    "key_topics": [
+      "ownership",
+      "transfer",
+      "phase",
+      "doctor",
+      "command",
+      "owner",
+      "tag",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+      ".skilled/commands/README.txt",
+      ".skilled/commands/doctor/scripts/tests/run-all.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capture-command-routing-baseline.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-all.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/tests/run-all.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Generated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Router",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-skilled-doctor/SKILL.md` said it owned eleven doctor commands and that six belonged to other skills",
+    "created_at": "2026-11-24T18:45:46Z",
+    "last_save_at": "2026-11-24T21:38:06.326Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:44690f5f1ecf61495662c15077df2ebc9a63ceee2067ed1d28117d93544dd8be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "71810386c0884c660ab5ae9376177b3c35dff08ca4cf7f0791706609f5f916f8",
+      "plan.md": "759f1a2a598dab941dbb6bb96962725ab8084785e5ea1f63accfe1fa5e659f4a",
+      "tasks.md": "e9c77129bc2d260f84d768bb7a5df72cc4c47a67d376f36327519ad117dff329",
+      "implementation-summary.md": "6113943d7f840e8ab6686eee44ceaf87c9b3aecf7eacbd584f545ffd7563e003"
+    },
+    "last_active_at": null
+  }
+}

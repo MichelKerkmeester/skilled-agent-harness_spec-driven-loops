@@ -5,19 +5,26 @@
 # Read-only diagnostics for the Bladebro CLI and MCP surfaces. It installs
 # nothing, updates nothing and never prints cookie or credential values. Every
 # bladebro call runs with BLADE_NO_UPDATE_CHECK=1, the binary's own switch, so
-# no check reaches the release registry. The MCP probe speaks a minimal
-# JSON-RPC handshake over stdio and closes the process again.
+# no check reaches the release registry. No bladebro call runs until the
+# launcher and native binary digests have been checked, and none runs at all
+# when a digest on the pinned release does not match. The MCP probe speaks a
+# minimal JSON-RPC handshake over stdio and closes the process again.
 #
 # Exit Codes:
 #   0 - Healthy, or only warnings (including a missing CLI)
-#   1 - The native binary digest does not match the pinned release, or the
-#       registered Code Mode manual is missing from .utcp_config.json
+#   1 - A native binary or JS launcher digest does not match the pinned
+#       release, or the registered Code Mode manual is missing from
+#       .utcp_config.json
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 readonly PINNED_VERSION="4.8.2"
 readonly DIGEST_DARWIN_ARM64="7324e502b1710f8fb0a073b1f71d3647266d986a50e7351cb4257ec4eb5d8fa8"
 readonly DIGEST_DARWIN_X64="d839f5f8a8bed8f616e68029350b1c36f8bc12ee2a16deb32b6f7df93a5a36c3"
+# The npm launcher runs bin.js and binary.cjs before the native binary. Same
+# values as install.sh, recorded from the installed 4.8.2 package.
+readonly DIGEST_LAUNCHER_BIN_JS="14717680d950c7256756e904c9dfddd218e761b53cbc758f229583be0b45ae60"
+readonly DIGEST_LAUNCHER_BINARY_CJS="b123650d1119d7bbb71022dffb28983713d4eabcc76ae0cc81d456806a0e2baa"
 
 export BLADE_NO_UPDATE_CHECK=1
 export BLADE_PLAIN=1
@@ -38,6 +45,34 @@ case "${1:-}" in
 esac
 
 status=0
+
+# Compare a file's SHA-256 with the recorded digest. Read-only: a mismatch on
+# the pinned version is an error, while on another version it is the expected
+# drift and only warns.
+# Args: $1=file path, $2=expected digest, $3=label for messages
+check_digest() {
+  local file="$1"
+  local expected="$2"
+  local label="$3"
+  local actual
+  if [ ! -f "$file" ]; then
+    warn "$label not found at $file"
+    return 0
+  fi
+  actual="$(shasum -a 256 "$file" | awk '{print $1}')"
+  if [ "$actual" = "$expected" ]; then
+    ok "$label digest matches the recorded ${PINNED_VERSION} value"
+    return 0
+  fi
+  case "$version" in
+    "v${PINNED_VERSION}")
+      err "Digest mismatch on the pinned ${PINNED_VERSION} $label: $file"
+      info "expected $expected"
+      info "actual   $actual"
+      status=1 ;;
+    *) warn "$label digest differs from the ${PINNED_VERSION} record, as expected for $version; record that release's digest before relying on it" ;;
+  esac
+}
 
 log "== mcp-bladebro doctor (read-only) =="
 
@@ -63,33 +98,51 @@ if ! command -v bladebro >/dev/null 2>&1; then
   log "Doctor is read-only. For setup, see install.sh and INSTALL-GUIDE.md."
   exit 0
 fi
-version="$(bladebro --version 2>/dev/null | head -1 || true)"
+launcher="$(command -v bladebro)"
+launcher_target="$(readlink -f "$launcher")"
+pkg_dir="$(cd "$(dirname "$launcher_target")" && pwd)"
+# The version comes from the package manifest, a plain JSON read, because
+# running bladebro --version would execute the installed code the digest
+# checks below exist to vet first.
+version=""
+if [ -f "$pkg_dir/package.json" ]; then
+  pkg_version="$(node -e 'try{console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).version||"")}catch{}' "$pkg_dir/package.json" 2>/dev/null || true)"
+  [ -n "$pkg_version" ] && version="v${pkg_version}"
+fi
 case "$version" in
-  *"v${PINNED_VERSION}"*) ok "bladebro: $(command -v bladebro) ($version)" ;;
-  "") warn "bladebro: $(command -v bladebro) (version unavailable)" ;;
-  *)  warn "bladebro: $(command -v bladebro) ($version) differs from the pin ${PINNED_VERSION}; re-verify flags with 'bladebro help --json'" ;;
+  "v${PINNED_VERSION}") ok "bladebro: $launcher (package $version)" ;;
+  "") warn "bladebro: $launcher (no npm package manifest; version unknown until the CLI runs)" ;;
+  *)  warn "bladebro: $launcher (package $version) differs from the pin ${PINNED_VERSION}; re-verify flags with 'bladebro help --json'" ;;
 esac
 
 # The digest is recorded for the pinned release only, so a version drift makes
 # a mismatch expected rather than suspicious.
-log "-- Native binary digest --"
-if [ -z "$platform_pkg" ]; then
-  info "Skipped: no recorded digest for this platform"
-elif ! command -v shasum >/dev/null 2>&1; then
-  warn "shasum not found; cannot check the digest"
+log "-- Launcher and native binary digests --"
+if ! command -v shasum >/dev/null 2>&1; then
+  warn "shasum not found; cannot check the digests"
 else
-  launcher="$(command -v bladebro)"
-  pkg_dir="$(cd "$(dirname "$(readlink -f "$launcher")")" && pwd)"
+  # Only the npm install runs the JS launcher. A standalone binary on PATH has
+  # no bin.js beside it, so only the native binary step below applies.
+  if [ "$(basename "$launcher_target")" = "bin.js" ]; then
+    check_digest "$pkg_dir/bin.js" "$DIGEST_LAUNCHER_BIN_JS" "launcher bin.js"
+    check_digest "$pkg_dir/binary.cjs" "$DIGEST_LAUNCHER_BINARY_CJS" "launcher binary.cjs"
+  else
+    info "Launcher check skipped: $launcher is not the npm bin.js launcher"
+  fi
+fi
+if [ -z "$platform_pkg" ]; then
+  info "Native binary check skipped: no recorded digest for this platform"
+elif command -v shasum >/dev/null 2>&1; then
   native="$(node -e 'try{const p=require("path");console.log(p.join(p.dirname(require.resolve(process.argv[1]+"/package.json",{paths:[process.argv[2]]})),"bladebro"))}catch{}' "$platform_pkg" "$pkg_dir" 2>/dev/null || true)"
   if [ -z "$native" ] || [ ! -f "$native" ]; then
     warn "Native binary $platform_pkg not found beside $pkg_dir (standalone install, or optional dependencies disabled)"
   else
     actual_digest="$(shasum -a 256 "$native" | awk '{print $1}')"
     if [ "$actual_digest" = "$expected_digest" ]; then
-      ok "Digest matches the recorded ${PINNED_VERSION} value"
+      ok "Native binary digest matches the recorded ${PINNED_VERSION} value"
     else
       case "$version" in
-        *"v${PINNED_VERSION}"*)
+        "v${PINNED_VERSION}")
           err "Digest mismatch on the pinned ${PINNED_VERSION} binary: $native"
           info "expected $expected_digest"
           info "actual   $actual_digest"
@@ -98,6 +151,14 @@ else
       esac
     fi
   fi
+fi
+
+# A failed digest means the installed code is not the vetted release, so the
+# checks below, which all run it, are skipped.
+if [ "$status" -ne 0 ]; then
+  err "A digest does not match the pinned release; no bladebro command was run"
+  info "Reinstall with scripts/install.sh (operator yes required), then rerun this doctor."
+  exit "$status"
 fi
 
 log "-- bladebro doctor (update check off) --"

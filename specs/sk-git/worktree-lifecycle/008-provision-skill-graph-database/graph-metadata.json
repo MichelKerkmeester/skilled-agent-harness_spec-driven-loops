@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/worktree-lifecycle/008-provision-skill-graph-database",
+  "spec_folder": "sk-git/worktree-lifecycle/008-provision-skill-graph-database",
+  "parent_id": "sk-git/worktree-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "provision skill graph database",
+      "build the advisor skill graph database when provisioning",
+      "provision skill graph database plan",
+      "provision skill graph database tasks",
+      "provision skill graph database acceptance criteria",
+      "008-provision-skill-graph-database operator decisions",
+      "provision skill graph database implementation summary"
+    ],
+    "key_topics": [
+      "provision",
+      "skill",
+      "graph",
+      "database",
+      "advisor",
+      "provisioning",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "008-provision-skill-graph-database",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/bin/worktree-session.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview After",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Provisioning",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`worktree-naming.sh provision` installs dependencies and builds the listed outputs, but it never creates the advisor skill-graph database, `.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`",
+    "created_at": "2026-11-24T14:39:19Z",
+    "last_save_at": "2026-11-24T14:46:08.317Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5d6247e9e529d96fdb7500d7208f2d0fc5d528ec30ec72119e075bda9bca11b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "14dc3a01f490501750a9b8966e57ec2627d849d57737929555d00ef7b6f7cb55",
+      "plan.md": "8595cbe5c709cafef8e8ab0f3986cc671156e07dfb098edfa3cdc4e3f9578fc4",
+      "tasks.md": "80cf2b1ab1cfb2cef7da63c0882025d9aaa5216b0d8879ae17412007393217da",
+      "decision-record.md": "5cc5887a24287fa8d05700d243fa50669f9200e252c7514a475c56164448d04f",
+      "implementation-summary.md": "0a20dd19c4b131c7fbe9550900d15ccd3cf1e3f692ac905ddd0d9de7939e487c"
+    },
+    "last_active_at": null
+  }
+}

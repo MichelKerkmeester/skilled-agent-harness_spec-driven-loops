@@ -1,0 +1,149 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/541-own-all-doctor-commands/.skilled/skills/system-spec-kit
+
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-skipped
+INFO [speckit-hook:session-stop] Session autosave-skipped stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-failed
+INFO [speckit-hook:session-stop] Session summary extracted (20 chars)
+WARN [speckit-hook:session-stop] Context auto-save failed: autosave failed
+INFO [speckit-hook:session-stop] Session autosave-failed stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-different-packet
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-different-packet stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session ambiguous-retarget
+WARN [speckit-hook:session-stop] Spec folder detection was ambiguous; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session ambiguous-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session io-failed-retarget
+WARN [speckit-hook:session-stop] Transcript parsing failed: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-stop-hook-autosave-ndebFG/missing-transcript.jsonl'
+WARN [speckit-hook:session-stop] Spec folder detection skipped: transcript I/O failed; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session io-failed-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session offset-sentinel-session
+INFO [speckit-hook:session-stop] Token snapshot: 165 total (claude-sonnet), est. $0.001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 120 prompt + 45 completion = 165 total tokens
+INFO [speckit-hook:session-stop] Session offset-sentinel-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-write-session
+INFO [speckit-hook:session-stop] Token snapshot: 75 total (claude-sonnet-4-6), est. $0.0005
+INFO [speckit-hook:session-stop] Parsed 1 messages: 50 prompt + 25 completion = 75 total tokens
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/026-graph-and-context-optimization/016-foundational-runtime/001-initial-research
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+INFO [speckit-hook:session-stop] Session atomic-write-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session preparse-stat-session
+INFO [speckit-hook:session-stop] Token snapshot: 15 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 10 prompt + 5 completion = 15 total tokens
+INFO [speckit-hook:session-stop] Session preparse-stat-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-refresh-session
+INFO [speckit-hook:session-stop] Token snapshot: 8 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 5 prompt + 3 completion = 8 total tokens
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-refresh-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session persist-fail-session
+INFO [speckit-hook:session-stop] Token snapshot: 50 total (claude-sonnet-4-6), est. $0.0004
+INFO [speckit-hook:session-stop] Parsed 1 messages: 30 prompt + 20 completion = 50 total tokens
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+ERROR [speckit-hook:state] Failed to save state: Simulated atomic state write failure
+WARN [speckit-hook:state] State update was not persisted for session persist-fail-session
+INFO [speckit-hook:session-stop] Session persist-fail-session stop processing complete
+INFO [speckit-hook:session-prime] SessionStart triggered (source: compact, session: test-session-prime)
+WARN [speckit-hook:session-prime] No cached compact payload for session test-session-prime
+INFO [speckit-hook:session-prime] Output 182 chars for source=compact
+INFO [speckit-hook:session-prime] SessionStart triggered (source: compact, session: test-session-prime)
+WARN [speckit-hook:session-prime] No cached compact payload for session test-session-prime
+INFO [speckit-hook:session-prime] Output 116 chars for source=compact
+INFO [speckit-hook:session-prime] SessionStart triggered (source: compact, session: test-session-prime)
+WARN [speckit-hook:session-prime] No cached compact payload for session test-session-prime
+INFO [speckit-hook:session-prime] Output 116 chars for source=compact
+INFO [speckit-hook:session-prime] SessionStart triggered (source: compact, session: test-session-prime)
+INFO [speckit-hook:session-prime] Injecting cached compact brief (89 chars after sanitization, cached at 2026-11-24T21:29:38.918Z)
+INFO [speckit-hook:session-prime] Output 607 chars for source=compact
+INFO [speckit-hook:session-prime] SessionStart triggered (source: compact, session: test-session-prime)
+WARN [speckit-hook:session-prime] Rejecting stale compact cache for session test-session-prime (cached at 2020-01-01T00:00:00.000Z)
+INFO [speckit-hook:session-prime] Output 116 chars for source=compact
+INFO [speckit-hook:compact-inject] Merge pipeline completed in 0ms (2 sections, ~39 tokens)
+WARN [speckit-hook:stdin] Failed to parse hook stdin: stdin.on is not a function
+WARN [speckit-hook:stdin] Failed to parse hook stdin: stdin.on is not a function
+INFO [speckit-hook:session-prime] SessionStart triggered (source: compact, session: test-session-prime)
+WARN [speckit-hook:session-prime] No cached compact payload for session test-session-prime
+INFO [speckit-hook:session-prime] Output 220 chars for source=compact
+WARN [speckit-hook:timeout] Operation timed out after 50ms
+INFO [speckit-hook:session-stop] Stop hook fired for session producer-metadata-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session producer-metadata-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-no-summary
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session autosave-enabled-no-summary stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+ERROR [speckit-hook:state] Failed to save state: injected EIO for autosave failure test
+WARN [speckit-hook:state] State update was not persisted for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Session autosave-enabled-state-write-fail stop processing complete
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] lease holder pid=123 socket=tcp://127.0.0.1:65535 failed 1 consecutive liveness probes: timeout
+[test-launcher] bridging to lease holder pid=123 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-owner-sock-fKZ8zG/daemon-ipc.sock
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (no-bridge-socket)
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (no-bridge-socket)
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (socket-not-owned)
+[test-launcher] bridging to lease holder pid=123 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-legacy-sock-MSYXdr/daemon-ipc.sock
+[test-launcher] refusing socket /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-not-socket-cUGdGp/daemon-ipc.sock: not a socket: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-not-socket-cUGdGp/daemon-ipc.sock
+[test-launcher] refusing socket /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/socket-open-mode-LeIESa/daemon-ipc.sock: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/socket-open-mode-LeIESa is group or world writable
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (socket-not-owned)
+[test-launcher] refusing socket /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/socket-open-mode-gOIhzB/daemon-ipc.sock: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/socket-open-mode-gOIhzB is group or world writable
+[test-launcher] refusing socket /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/socket-symlink-pWeF2c/linked/daemon-ipc.sock: symlink at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/socket-symlink-pWeF2c/linked
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (socket-not-owned)
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (socket-not-owned)
+INFO [speckit-hook:state] Skipped clearing compact payload for session r33001-session because the cached payload changed
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/4d43fa425f9b/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/4d43fa425f9b/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] {"event":"load_most_recent_state_rejected","reason":"scope_unknown_fail_closed"}
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/7a625c5ec615/poison-pill.json.bad
+WARN [speckit-hook:state] {"event":"clean_stale_states_skipped","file":"blocked.json","path":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/ee9916cb696a/blocked.json","reason":"EPERM: operation not permitted, unlink '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/ee9916cb696a/blocked.json'"}
+INFO [speckit-hook:compact-inject] Merge pipeline completed in 0ms (2 sections, ~39 tokens)
+INFO [speckit-hook:compact-inject] Merge pipeline completed in 0ms (2 sections, ~71 tokens)
+INFO [speckit-hook:compact-inject] Merge pipeline completed in 0ms (2 sections, ~71 tokens)
+[compact-merger evidence]
+Rendered section headers and token estimates:
+- ## Active Files & Structural Context source=code-graph tokenEstimate=17
+- ## Session State / Next Steps source=session tokenEstimate=14
+- ## Triggered Memories source=memory tokenEstimate=13
+MergedBrief.allocation:
+- codeGraph floor=1200 requested=17 granted=17 dropped=0
+- sessionState floor=0 requested=24 granted=24 dropped=0
+- triggered floor=400 requested=13 granted=13 dropped=0
+MergedBrief.metadata.totalTokenEstimate=44
+MergedBrief.metadata.sourceCount=3
+MergedBrief.metadata.mergedAt=2026-11-24T21:29:39.989Z
+MergedBrief.metadata.mergeDurationMs=1
+MergedBrief.metadata.deduplicatedFiles=1
+
+ Test Files  93 passed | 3 skipped (96)
+      Tests  1365 passed | 11 skipped (1376)
+   Start at  22:29:37
+   Duration  140.09s (transform 3.37s, setup 701ms, import 9.57s, tests 189.02s, environment 4ms)
+
+exit=0

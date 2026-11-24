@@ -1,6 +1,6 @@
 {
   "skill": "mcp-browser-use",
-  "version": "1.1.1.0",
+  "version": "1.1.5.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -88,7 +88,9 @@
         "in devtools",
         "devtools console",
         "browser debug",
-        "lighthouse",
+        "lighthouse audit",
+        "run lighthouse",
+        "run a lighthouse",
         "bdg",
         "cdp",
         "chrome-devtools",
@@ -111,18 +113,26 @@
         "console errors",
         "network requests",
         "har export",
-        "performance trace",
+        "export a har of",
+        "capture a har",
+        "save a har",
+        "as a har file",
+        "export the network log",
+        "record a performance trace",
+        "capture a performance trace",
+        "chrome performance trace",
         "cdp domain",
         "capture browser screenshots",
-        "export a har",
-        "har file",
         "core web vitals"
       ]
     },
     "aside-devtools-aliases": {
-      "note": "Bare aside is kept: without it, requests such as \"run aside on the pricing page\" or \"open aside and log in\" name the tool and still defer. Stage two only runs after the advisor picks this hub, so ordinary-prose uses of the word never reach it.",
+      "note": "Bare aside is left out because it is an ordinary English word, and phrases such as \"set that aside\" lifted this hub above the advisor floor. Requests that name the tool use a verb form instead, so \"run aside on the pricing page\" and \"open aside and log in\" still route here. Forms such as \"aside to\" and \"in aside\" stay out for the same reason.",
       "keywords": [
-        "aside",
+        "use aside",
+        "run aside",
+        "open aside",
+        "with aside",
         "aside browser",
         "aside cli",
         "aside mcp",
@@ -130,7 +140,8 @@
         "aside daemon",
         "aside account",
         "aside devtools",
-        "mcp-aside-devtools"
+        "mcp-aside-devtools",
+        "in aside"
       ]
     },
     "aside-repl-evidence": {
@@ -141,7 +152,10 @@
         "deterministic signed-in proof",
         "sandboxed playwright repl",
         "replay this signed-in",
-        "signed-in replay"
+        "replay the signed-in",
+        "signed-in replay",
+        "fill out the form in my signed-in",
+        "fill in the form in my signed-in"
       ]
     },
     "bladebro-aliases": {
@@ -150,8 +164,8 @@
         "bladebro cli",
         "bladebro mcp",
         "stealth browser",
-        "rb attach",
-        "rb status"
+        "bladebro rb",
+        "mcp-bladebro"
       ]
     },
     "bladebro-workflow": {
@@ -164,7 +178,12 @@
         "attach to my open browser",
         "caller-owned browser",
         "browser i already have open",
-        "already-open browser"
+        "already-open browser",
+        "already open browser",
+        "without getting flagged as a bot",
+        "attach to the browser i have open",
+        "without bot detection",
+        "avoid bot detection"
       ]
     }
   }

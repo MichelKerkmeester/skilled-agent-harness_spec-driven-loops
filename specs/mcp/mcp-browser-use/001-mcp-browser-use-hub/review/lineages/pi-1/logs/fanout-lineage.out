@@ -1,0 +1,11 @@
+Ran the full lineage: init, seven inline iterations, reducer after each, terminal gates, and synthesis. Everything written sits under `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-1`.
+
+**Result.** Verdict **FAIL**: 0 P0, 1 P1, 8 P2 active. `review-verdict.cjs` derived it from the registry plus the terminal stop, which recorded `failedRequiredGateIds: ["coverage"]`; the verdict is FAIL because that required gate is still failing, and the chain is disclosed in the report (my own `spec_code: fail` on the Aside D2 contradiction is what keeps `traceabilityCovered` false, so a reader who treated D2 as advisory would see CONDITIONAL instead).
+
+**What the target actually does well.** The phase 015 fixes hold where they execute: the three-mode bundle routes all three modes through the live compiled path (`orderedBundle`, correct order), the two hub-side advisor probes now `defer`, the Aside installer refuses a digest mismatch, the activation manifest hash equals the compiled snapshot, and the 52-row replay carries 51 PASS with only the documented `MBU-PB-04` gap. The 2.0.3.0 ratchet claim is true across all 52 rows.
+
+**The P1.** The digest pin phase 015 added is bypassed by the packet's own guidance: nine lines across six files still teach `curl … | bash`, including `mcp-aside-devtools/SKILL.md:75`, which is the instruction an agent follows when the binary is missing.
+
+**Disclosures.** Stop reason is `maxIterationsReached` at 7, not convergence, with `blockedBy: [dimensionCoverageGate, graphlessFallbackGate]`. `prompts/` is empty because iterations ran inline, as this dispatch binds. `git status` shows changes outside the lineage, but they belong to the fan-out root and sibling `pi-2`; nothing of mine landed there.
+
+FANOUT_LINEAGE_COMPLETE:pi-1

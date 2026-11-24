@@ -5,7 +5,7 @@ trigger_phrases:
   - "bladebro install script"
   - "bladebro doctor script"
   - "bladebro scripts"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-bladebro scripts
@@ -28,11 +28,11 @@ The scripts are separate operator entrypoints with different side effects.
 
 ```text
 operator
-  |-- explicit install decision --> install.sh --> npm install -g bladebro@4.8.2 --> digest check --> version check
-  `-- health inspection ---------> doctor.sh  --> version, digest, bladebro doctor, MCP stdio probe, manual check
+  |-- explicit install decision --> install.sh --> npm install -g --ignore-scripts bladebro@4.8.2 --> launcher and binary digest checks --> version check
+  `-- health inspection ---------> doctor.sh  --> version, digests, bladebro doctor, MCP stdio probe, manual check
 ```
 
-Both scripts carry the v4.8.2 macOS digests that `../references/install-and-verify.md` records. A new pin changes all three files together.
+Both scripts carry the v4.8.2 digests that `../references/install-and-verify.md` records: the two macOS native binaries and the two JS launcher files, `bin.js` and `binary.cjs`. A new pin changes all three files together.
 
 ---
 
@@ -52,7 +52,7 @@ scripts/
 | File | Responsibility | Mutation posture |
 |---|---|---|
 | `install.sh` | Refuses platforms with no recorded digest, does nothing when `bladebro` is already on PATH, installs the pinned release, checks the native binary digest and removes the install on a mismatch. | Changes the machine when the install runs. |
-| `doctor.sh` | Reports the version against the pin, the native binary digest, the `bladebro doctor` summary, a JSON-RPC `initialize` plus `tools/list` handshake over stdio and the registered manual. | Read-only. |
+| `doctor.sh` | Reports the package version against the pin, the launcher and native binary digests, the `bladebro doctor` summary, a JSON-RPC `initialize` plus `tools/list` handshake over stdio and the registered manual. | Read-only. |
 
 The mutation-class guard, `.skilled/commands/doctor/scripts/check-mcp-mutation-class.sh`, holds `doctor.sh` to its read-only label through the row in `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`.
 
@@ -82,7 +82,7 @@ Changes nothing and installs nothing. A run on 2026-11-21 against an empty `BLAD
 
 ## 6. VALIDATION
 
-A healthy doctor run reports a version and digest match, the `bladebro doctor` summary, an `initialize` response, the five tools `act`, `see`, `state`, `run` and `vision` and the registered manual. It exits 0 when the CLI is absent or a check only warns. It exits 1 when the pinned binary's digest does not match, or when `.utcp_config.json` exists without the `bladebro` manual.
+A healthy doctor run reports a version and digest match, the `bladebro doctor` summary, an `initialize` response, the five tools `act`, `see`, `state`, `run` and `vision` and the registered manual. It exits 0 when the CLI is absent or a check only warns. It exits 1 when a digest on the pinned release does not match, and then runs no `bladebro` command at all, or when `.utcp_config.json` exists without the `bladebro` manual.
 
 ---
 

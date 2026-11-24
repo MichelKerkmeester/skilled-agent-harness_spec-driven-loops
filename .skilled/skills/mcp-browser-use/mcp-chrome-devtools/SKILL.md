@@ -2,7 +2,7 @@
 name: mcp-chrome-devtools
 description: "Chrome DevTools orchestrator: routes between bdg CLI (fast, token-efficient) and Code Mode MCP (multi-tool integration)."
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.27.0
+version: 1.0.28.0
 ---
 
 # Chrome DevTools Orchestrator - CLI + MCP Integration
@@ -58,7 +58,7 @@ Prefer CLI (`bdg`) for fast, low-token browser inspection. Use MCP via Code Mode
 
 #### Installation & Verification
 
-Check with `command -v bdg`, install with `npm install -g browser-debugger-cli@alpha`, then verify `bdg --version 2>&1`.
+Check with `command -v bdg`, install with `npm install -g browser-debugger-cli@0.6.10`, then verify `bdg --version 2>&1`.
 
 ### MCP Approach (Fallback) - Chrome DevTools via Code Mode
 

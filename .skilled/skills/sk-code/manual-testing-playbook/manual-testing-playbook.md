@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.23.0
+version: 1.5.25.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §16 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing, the feature-catalog entry each scenario belongs to, and the scenario counts the validator derives from the walked tree.
 
-Coverage note (2026-05-04, with the CI and `/doctor:ci` bullets added 2026-10-25): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at ROUTER.md head-of-main. It exercises:
+Coverage note (2026-05-04, with the CI bullet added 2026-10-25): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at ROUTER.md head-of-main. It exercises:
 - SKILLED surface detection (CWD or target path under `.skilled/`).
 - UNKNOWN fallback (Go / Swift markers: disambiguation expected).
 - SKILLED language sub-detection (JavaScript, TypeScript, Python, Shell, Rust, Config) with correct sub-language reference loading, LS-005 and LS-006 covering the JavaScript and Rust rows.
@@ -83,8 +83,8 @@ Record which path ran in the evidence. A run on the fallback path is still grade
 3. The skill advisor at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable and `skill-graph.json` includes the `sk-code` entry with its `signals` list intact.
 4. The orchestrator runtime has a Skill Advisor Hook OR can invoke `skill_advisor.py` via Bash.
 5. **Concurrency cap**: When running multi-scenario waves, cap at 5 parallel scenarios. Scenarios that invoke `skill_advisor.py` are CPU-light and can run concurrently; scenarios that dispatch `@code` (write work) MUST run serially to avoid scope-collision on the working tree.
-6. **Mutating scenarios**: most scenarios in this playbook are read-only against the skill surface, but four change something and MUST run serially with their undo applied before the next scenario starts. DOC-382 creates and then deletes a nested `graph-metadata.json` inside the `sk-code-skilled/` packet. TH-001 appends a newline to `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` and back-dates its compiled `orchestrator.js`, restoring both from a backup copy. DR-004 creates and then removes `sk-code-skilled/references/zzz_fake_language/` in the live references tree. DOC-383 commits a baseline inside a throwaway clone under a `mktemp -d` directory that it deletes. Every other scenario writes only under `/tmp` or reads only. Each per-feature file's SOURCE METADATA names its own undo, and a scenario that cannot complete its undo is a FAIL, not a PASS with a note.
-7. For a scenario that needs a shared current-code checkout, the environment is `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`. The [central doctor-command category README](../../../manual-testing-playbook/doctor-commands/README.md) describes it and its reset steps.
+6. **Mutating scenarios**: most scenarios in this playbook are read-only against the skill surface, but two change something and MUST run serially with their undo applied before the next scenario starts. TH-001 appends a newline to `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` and back-dates its compiled `orchestrator.js`, restoring both from a backup copy. DR-004 creates and then removes `sk-code-skilled/references/zzz_fake_language/` in the live references tree. Every other scenario writes only under `/tmp` or reads only. Each per-feature file's SOURCE METADATA names its own undo, and a scenario that cannot complete its undo is a FAIL, not a PASS with a note.
+7. For a scenario that needs a shared current-code checkout, the environment is `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`. The [doctor-command category README in system-skilled-doctor](../../system-skilled-doctor/manual-testing-playbook/doctor-commands/README.md) describes it and its reset steps.
 8. The skill advisor serves on its native path for any criterion that compares `score`. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --health` reports `"status": "degraded"` when the local fallback is serving and another status when the native path is. A degraded run still records its verdict, with the fallback banner quoted in the evidence.
 
 ---
@@ -98,7 +98,7 @@ Record which path ran in the evidence. A run on the fallback path is still grade
 - The agent dispatched (if any) with name and runtime (e.g. `@code` via `.skilled/agents/code.md`).
 - The AI's user-visible response (the answer it produced or the action it took).
 - The scenario verdict (PASS / FAIL / SKIP) with one-line rationale, and for a SKIP the named blocker.
-- Output transcripts saved under `/tmp/skc-NNN*.txt` per scenario, plus the `git status --porcelain` output for every mutating step of DOC-382, TH-001, DR-004 and DOC-383.
+- Output transcripts saved under `/tmp/skc-NNN*.txt` per scenario, plus the `git status --porcelain` output for every mutating step of TH-001 and DR-004.
 
 ---
 
@@ -109,7 +109,7 @@ Record which path ran in the evidence. A run on the fallback path is still grade
 - AI agent prompts: `As @<agent>: <instruction>`.
 - Resource path notation: paths shown relative to `.skilled/skills/sk-code/` (e.g. `shared/references/stack-detection.md`).
 - `→` separates sequential steps inside a scenario's Exact Command Sequence.
-- All evidence files live under `/tmp/skc-NNN*`. Only DOC-382, TH-001, DR-004 and DOC-383 change anything inside a working tree; DOC-382, TH-001 and DR-004 restore it in place and DOC-383 changes only its own throwaway clone. Every other scenario writes nothing outside a `/tmp` sandbox.
+- All evidence files live under `/tmp/skc-NNN*`. Only TH-001 and DR-004 change anything inside a working tree, and both restore it in place. Every other scenario writes nothing outside a `/tmp` sandbox.
 
 ---
 
@@ -138,7 +138,7 @@ For each executed scenario, check:
 
 - `PASS`: all 7 acceptance checks true.
 - `FAIL`: any of (advisor lost, wrong surface, wrong agent, missing required reference, minor resource-loading drift) is true. Resource-loading drift is a FAIL rather than a lesser verdict: the load set is a graded criterion, so an extra or missing load fails it and the named drift goes in the rationale.
-- `SKIP`: a documented external blocker (e.g. advisor binary unavailable in the sandbox, `gh` unauthenticated for the DOC-394 round trip alone).
+- `SKIP`: a documented external blocker (e.g. advisor binary unavailable in the sandbox).
 
 ### Feature Verdict Rules
 
@@ -174,7 +174,7 @@ This section records wave planning and capacity guidance for the manual testing 
 3. Saturate remaining worker slots up to 5 for advisor probes; 1 for `@code` dispatches.
 4. Pre-assign explicit scenario IDs to each wave before execution.
 5. Run the SA-001 advisor-probe wave LAST so it can reference outputs from SD-* and LS-* scenarios.
-6. Keep DOC-382, TH-001, DR-004 and DOC-383 out of every parallel wave, because each changes a tree. Run them one at a time and confirm the undo before starting the next.
+6. Keep TH-001 and DR-004 out of every parallel wave, because each changes a tree. Run them one at a time and confirm the undo before starting the next.
 7. After each wave, save evidence under `/tmp/skc-wave-NN/`, then begin the next wave.
 8. Record utilization, per-feature file references, and evidence paths in the final report.
 
@@ -279,7 +279,7 @@ Per-feature files: see `plugins-and-hooks/`.
 
 ## 14. DOCTOR COMMAND SCENARIOS
 
-The `/doctor:sk-code` and `/doctor:ci` scenarios now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
+The `DOC` scenarios of `/doctor:sk-code` and `/doctor:ci` now live in the [system-skilled-doctor playbook](../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md). Scenarios that test a mode through its doctor command stay with that mode: `CQ-023` in the sk-code-quality playbook and the two foreign-repository scenarios in the sk-code-ci playbook.
 
 ---
 

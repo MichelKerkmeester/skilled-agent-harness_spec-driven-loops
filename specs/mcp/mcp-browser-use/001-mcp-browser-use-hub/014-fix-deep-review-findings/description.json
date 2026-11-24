@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",
+  "description": "Phase 14: fix-deep-review-findings",
+  "keywords": [
+    "phase",
+    "fix-deep-review-findings"
+  ],
+  "lastUpdated": "2026-11-24T06:19:01.458Z",
+  "specId": "014",
+  "folderSlug": "fix-deep-review-findings",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "24-11-26_06-47__deep-review-of-the-hub-epic-finished-fail-2.md",
+    "24-11-26_07-13__verified-lane-d-re-minted-the-mcp-tooling.md",
+    "24-11-26_07-19__resumed-014-from-the-9ff3994f-handoff-amended.md"
+  ]
+}

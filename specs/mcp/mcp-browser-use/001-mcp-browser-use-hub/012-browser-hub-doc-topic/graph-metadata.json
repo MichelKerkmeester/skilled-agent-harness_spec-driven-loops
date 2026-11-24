@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`/local-doc-alignment` checks only the topics listed in its `topics.json`, and none of the eight covered the browser hub",
     "created_at": "2026-11-23T18:13:27Z",
-    "last_save_at": "2026-11-23T18:58:20.334Z",
+    "last_save_at": "2026-11-24T12:03:31.177Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00ef58fc7b8160ee3765c0ab0c581a83403401ab8a0ab519d5c4893654af3903",
+    "source_fingerprint": "sha256:9022880a2f6bea065d5974411fb65a36e3dd87020ab27e93bc48abf249640a61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c4f0f68df219a0197b1e18b50e2b84ce811c5b1cee4cffb3eab4856c5b30ab1",
       "plan.md": "3a841ab469b41925ea701fb15c00e60d947f3f7a532bb60a1f7935ab74be7a51",
       "tasks.md": "17aefb927b9897905c85da2bae1ea5e5a25c5de6678e2711e080dd699e9fa012",
-      "decision-record.md": "c9be79593516333c53925dc1a196b9a289d6b5dc5116a98a8f61b2368b67d83e",
+      "decision-record.md": "7f0bc9ff027a81dba163b642a7684bbc4ef2e1d5cd193944f418676bba12a800",
       "implementation-summary.md": "76c9ade0a7707c5938216c4ccba3c4ac02834c3774d5da6435e670e39e6f6e04"
     },
     "last_active_at": null

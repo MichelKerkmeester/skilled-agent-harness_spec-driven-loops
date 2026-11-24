@@ -5,7 +5,7 @@ trigger_phrases:
   - "op-001"
   - "degraded daemon"
   - "degraded"
-version: 0.8.5.0
+version: 0.8.6.0
 id: OP-001
 category: operator_h5
 stage: routing
@@ -136,11 +136,11 @@ No files found
 Command run: `glob("runtime/**/*err*", ".skilled/skills/system-skill-advisor")`
 
 ```text
-.opencode/skills/system-skill-advisor/runtime/tests/__fixtures__/errors.ts
-.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
-.opencode/skills/system-skill-advisor/runtime/lib/error-diagnostics.ts
-.opencode/skills/system-skill-advisor/runtime/lib/utils/error-format.ts
-.opencode/skills/system-skill-advisor/runtime/tests/scorer/lane-registry-env-override.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/fixtures/errors.ts
+.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/lib/error-diagnostics.ts
+.skilled/skills/system-skill-advisor/runtime/lib/utils/error-format.ts
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/lane-registry-env-override.vitest.ts
 ```
 
 Command run: `skill_graph_scan({})`

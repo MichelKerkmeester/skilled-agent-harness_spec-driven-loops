@@ -1,20 +1,16 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor Tool Contract Keys
 // ───────────────────────────────────────────────────────────────
-// Partial: Single source of truth for the parameter key sets
-// of the two most critical advisor tool contracts. The JSON Schema
-// descriptors (skill_advisor/tools/advisor-recommend.ts +
-// skill_advisor/tools/advisor-validate.ts) and the ALLOWED_PARAMETERS map in
-// schemas/tool-input-schemas.ts both read from these tuples instead of
-// hand-maintaining parallel string lists.
+// Parameter key tuples for the advisor_recommend and advisor_validate
+// descriptors. Each descriptor types its JSON Schema `properties` record by
+// its tuple, so a key added to or removed from one without the other fails the
+// type check.
 //
-// This is a partial fix: the broader 60+-tool contract surface still
-// duplicates JSON Schema, Zod inputs, handler checks, and allowed-parameter
-// lists. A clean single-source generation for the entire surface would
-// require introducing zod-to-json-schema and a code-gen pipeline, which is
-// out of scope for a single sub-phase. This module demonstrates the pattern
-// on the two highest-priority advisor contracts so a follow-on packet has a
-// concrete template to extend.
+// The Zod input schemas in schemas/advisor-tool-schemas.ts do not read these
+// tuples. For advisor_recommend, the descriptor and Zod option keys are held
+// equal by tests/handlers/advisor-recommend-descriptor-parity.vitest.ts. The
+// Zod schema also accepts a top-level workspaceRoot, which the descriptor does
+// not list.
 
 export const ADVISOR_RECOMMEND_PARAMETER_KEYS = [
   'prompt',

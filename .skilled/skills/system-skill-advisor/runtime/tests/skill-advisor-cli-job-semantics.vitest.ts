@@ -6,6 +6,8 @@ import { existsSync, readFileSync } from 'node:fs';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { __testing } from '../skill-advisor-cli.js';
+
 import {
   cleanupSkillAdvisorScope,
   createIsolatedCliScope,
@@ -192,4 +194,26 @@ describe('skill-advisor CLI rebuild and scan job semantics', () => {
       indexedFiles: expect.any(Number),
     }));
   }, 300_000);
+});
+
+describe('skill_graph_scan text summary', () => {
+  it('prints deletedNodes beside the other scan counts', () => {
+    const summary = __testing.renderJobText('skill_graph_scan', {
+      status: 'ok',
+      data: {
+        generationBefore: 1,
+        generationAfter: 2,
+        progress: [],
+        scan: {
+          scannedFiles: 1,
+          indexedFiles: 1,
+          indexedEdges: 2,
+          rejectedEdges: 0,
+          deletedNodes: 3,
+        },
+      },
+    });
+
+    expect(summary).toContain('deletedNodes: 3');
+  });
 });

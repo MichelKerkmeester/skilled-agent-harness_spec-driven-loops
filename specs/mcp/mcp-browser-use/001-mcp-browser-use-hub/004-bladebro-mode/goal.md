@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode"
-    last_updated_at: "2026-11-21T08:11:45Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-24T05:32:33Z"
+    last_updated_by: "claude-code"
+    recent_action: "Reran all five criteria and ticked them"
+    next_safe_action: "Rerun the five criteria when a later phase edits the Bladebro packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-11-21-browser-use-hub-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] parent-skill-check.cjs run with .skilled/skills/mcp-browser-use exits 0, names that hub, and the registry lists 3 modes
-- [ ] .skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md carries name: mcp-bladebro and the command -v bladebro lane check
-- [ ] rg -c for R-SEC-1, R-SEC-2 or R-SEC-3 in that SKILL.md prints at least 3, and each rule's text matches spec.md section 3
-- [ ] jq . .utcp_config.json exits 0 and the file contains a bladebro stdio manual with args ["mcp"]
-- [ ] git diff --stat on .skilled/skills/mcp-browser-use/mcp-aside-devtools prints nothing
+- [x] parent-skill-check.cjs run with .skilled/skills/mcp-browser-use exits 0, names that hub, and the registry lists 3 modes
+- [x] .skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md carries name: mcp-bladebro and the command -v bladebro lane check
+- [x] rg -c for R-SEC-1, R-SEC-2 or R-SEC-3 in that SKILL.md prints at least 3, and each rule's text matches spec.md section 3
+- [x] jq . .utcp_config.json exits 0 and the file contains a bladebro stdio manual with args ["mcp"]
+- [x] git diff --stat on .skilled/skills/mcp-browser-use/mcp-aside-devtools prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -83,6 +83,11 @@ and findings belong here.
 | Packet authored | Done | `parent-skill-check.cjs .skilled/skills/mcp-browser-use` exit 0, `OK: parent-skill-check`, 3 modes; `rg -c 'R-SEC-1\|R-SEC-2\|R-SEC-3'` printed 6; each R-SEC line from spec.md matched once with `rg -F` |
 | Code Mode manual | Done | `jq . .utcp_config.json` exit 0; the `bladebro` entry is stdio, `command: bladebro`, `args: ["mcp"]` |
 | Aside unchanged by 004 | Done | sha256 of `git diff` and `git diff --cached` on the Aside folder equal the pre-edit baselines |
+| Rerun 2026-11-24, criterion 1 | Met, ticked | `parent-skill-check.cjs .skilled/skills/mcp-browser-use` exits 0, names `.skilled/skills/mcp-browser-use` as the parent skill and prints `OK: parent-skill-check` with 0 warnings. `3b` declares 3 modes, and `jq '.modes \| length'` prints 3 |
+| Rerun 2026-11-24, criterion 2 | Met, ticked | `rg -n '^name: mcp-bladebro'` matches line 2. `rg -c 'command -v bladebro'` prints 4 |
+| Rerun 2026-11-24, criterion 3 | Met, ticked | `rg -c 'R-SEC-1\|R-SEC-2\|R-SEC-3'` prints 6. Each quoted rule from `spec.md` lines 91, 93 and 95, searched with `rg -c -F`, prints 1 |
+| Rerun 2026-11-24, criterion 4 | Met, ticked | `jq . .utcp_config.json` exits 0. The `bladebro` manual is `call_template_type: mcp`, `transport: stdio`, `command: bladebro`, `args: ["mcp"]` |
+| Rerun 2026-11-24, criterion 5 | Met, ticked | `git diff --stat` and `git diff --cached --stat` on `.skilled/skills/mcp-browser-use/mcp-aside-devtools` print nothing, exit 0. The 003 relocation is committed, so the literal check now holds |
 | Post-execution review | Done | @review APPROVED, 0 P0, 0 P1, 3 P2; the bare `mcp` router keyword was narrowed; R-SEC-3's "owned by 006" wording and the stale retrieval-fixture entry for the removed scaffold leaf are left for the operator and 005 |
 
 ### Deviations and findings
@@ -94,5 +99,6 @@ and findings belong here.
 | Hub root `ROUTER.md` left to 005 | This phase writes the packet's own `ROUTER.md` only |
 | Upstream moved to v4.8.3 | T002 printed `v4.8.3` (2026-11-21). The compare changes no `docs/` file or README, and the quoted flags were re-read and hold. The pin stays v4.8.2 because R-SEC-2/3 name it |
 | Aside no-diff check fails as written | `git diff --stat` prints 33 files from 003's uncommitted relocation; 004's own delta is zero by sha256 baseline |
+| Boxes left unticked at close | The evidence rows above met every criterion on 2026-11-21, but the boxes stayed open until the 2026-11-24 deep review flagged them |
 | Placeholder folder was untracked | plan.md's `git restore` rollback cannot restore it; the stub was copied to `/tmp/bb004/stub-backup` before editing |
 <!-- /ANCHOR:log -->

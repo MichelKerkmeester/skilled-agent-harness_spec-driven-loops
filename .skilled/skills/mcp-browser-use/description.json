@@ -1,7 +1,7 @@
 {
   "name": "mcp-browser-use",
   "description": "Parent hub for three browser modes: mcp-chrome-devtools for Chrome DevTools inspection, debugging, Lighthouse audits and performance traces, mcp-aside-devtools for deterministic signed-in REPL proof, and mcp-bladebro for stealth and agentic browser work. workflowMode selects the packet through mode-registry.json and hub-router.json. mcp-code-mode is shared infrastructure and not a hub member.",
-  "version": "1.1.1.0",
+  "version": "1.1.5.0",
   "importance_tier": "high",
   "keywords": [
     "mcp-browser-use",
@@ -16,11 +16,11 @@
     "aside repl",
     "bladebro",
     "stealth browser",
-    "lighthouse",
-    "performance trace",
-    "aside",
+    "lighthouse audit",
+    "record a performance trace",
+    "use aside",
     "agentic browser",
     "browser automation"
   ],
-  "lastUpdated": "2026-11-21T00:00:00.000Z"
+  "lastUpdated": "2026-11-24T00:00:00.000Z"
 }

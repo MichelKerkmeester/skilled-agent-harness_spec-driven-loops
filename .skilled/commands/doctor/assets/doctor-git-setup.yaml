@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting whether the sk-git setup passes its read-only battery end to end
 purpose: Run the read-only battery over the sk-git install, hooks, trust, gates, standards, allowlist, worktrees, Commit-Id policy, advisory rules, suppressors and AI-tool hook registration, and name the repair command for each failing check
 action: Run .skilled/commands/doctor/scripts/git-setup-check.cjs once -> render its per-check PASS/FAIL/SKIP/UNKNOWN/DEGRADED verdict and repair lines through the presentation contract
-skill_owner: ".skilled/skills/sk-git/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

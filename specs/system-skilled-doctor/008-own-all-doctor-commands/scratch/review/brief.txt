@@ -1,0 +1,38 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/541-own-all-doctor-commands
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0
+are set in your environment, which this repository's AGENTS.md defines as the autonomous
+child-dispatch exemption. The spec folder is specs/system-skilled-doctor/008-own-all-doctor-commands.
+This is a READ-ONLY review. Write nothing, edit nothing, commit nothing. Proceed directly.
+
+PERSONA: read .claude/agents/review.md first and act as that reviewer. You have only a shell:
+use cat, sed, rg, git and node for every read.
+
+TASK
+The uncommitted working-tree diff (run: git status --short; git diff; git diff --cached) makes two changes:
+1. The six doctor commands /doctor:sk-code, /doctor:ci, /doctor:git, /doctor:sk-skill,
+   /doctor:skill-advisor and /doctor:deep-loop change owner to the skill system-skilled-doctor.
+   The owner source is the "<!-- skill_agent: ... -->" tag in .skilled/commands/doctor/*.md, which
+   .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs reads.
+2. The playbook folder .skilled/manual-testing-playbook/ moves into
+   .skilled/skills/system-skilled-doctor/manual-testing-playbook/ (category doctor-commands/), and its
+   root document is merged into that skill's manual-testing-playbook.md.
+
+Find defects in this diff. Check at least:
+- Any live file outside specs/ and changelog/ folders that still says one of the six commands belongs to
+  sk-code, sk-git, sk-doc, system-skill-advisor or system-deep-loop, or still names the old path
+  .skilled/manual-testing-playbook as a live location.
+- Markdown links in the moved files and in files that link to them: do they resolve?
+- The edit to .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs
+  (the ownerLed line): is it correct against how attachCommand in runtime/lib/command-attach.ts works,
+  and does it keep the stage invariants that tests/command-routing-slice.vitest.ts asserts?
+- The merged .skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md:
+  internal contradictions, wrong section numbers, scenario ids indexed twice or missing.
+Do not run the vitest or node:test suites; the orchestrator runs them.
+
+RETURN FORMAT
+One line per finding: SEVERITY (P0/P1/P2) | file:line | what is wrong | the evidence you read.
+Write "NO FINDINGS" if none. End with one line: FILES READ: <comma-separated paths>.

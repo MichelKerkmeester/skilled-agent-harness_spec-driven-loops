@@ -1,0 +1,53 @@
+scenario_id,kind,gold_mode,prompt,before_hub_confidence,before_route_action,before_route_target,before_verdict,advisor_top,advisor_top_confidence,hub_confidence,hub_rank,hub_dominant_lane,mcp_tooling_above_threshold,route_action,route_selection_kind,route_target,stage1,stage2,verdict
+MBU-R-01,mode,mcp-chrome-devtools,debug this page with chrome devtools and take a screenshot,0.95,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.95,0.95,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-R-02,mode,mcp-aside-devtools,use aside to fill this form in my signed-in account,0.9441,route,mcp-aside-devtools,PASS,mcp-browser-use,0.9441,0.9441,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-R-03,mode,mcp-bladebro,use bladebro to attach to my open browser and finish the checkout flow,0.9295,route,mcp-bladebro,PASS,mcp-browser-use,0.9295,0.9295,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-T-01,tie-break,mcp-aside-devtools,replay this signed-in checkout step by step and save the evidence,0.8482,route,mcp-aside-devtools,PASS,mcp-browser-use,0.8482,0.8482,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-T-02,tie-break,mcp-bladebro,"in the browser I already have open, work out how to finish this signup",0.8525,route,mcp-bladebro,PASS,mcp-browser-use,0.8525,0.8525,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-T-03,tie-break,mcp-chrome-devtools,export a HAR of this page load,0.8764,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.8764,0.8764,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-P-01,paraphrase,mcp-aside-devtools,fill out the form in my signed-in account,0.9161,route,mcp-aside-devtools,PASS,mcp-browser-use,0.9161,0.9161,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-P-02,paraphrase,mcp-aside-devtools,replay the signed-in login flow and keep the evidence,0.8368,route,mcp-aside-devtools,PASS,mcp-browser-use,0.8368,0.8368,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-P-03,paraphrase,mcp-bladebro,browse this site without getting flagged as a bot,0.8751,route,mcp-bladebro,PASS,mcp-browser-use,0.8751,0.8751,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-P-04,paraphrase,mcp-bladebro,"in my already open browser, figure out how to finish the order",0.8525,route,mcp-bladebro,PASS,mcp-browser-use,0.8525,0.8525,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-P-05,paraphrase,mcp-chrome-devtools,save the network log of this page as a har file,0.9161,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.9161,0.9161,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-P-06,paraphrase,mcp-chrome-devtools,run lighthouse on the staging page,0.9346,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.8665,0.8665,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-P-07,paraphrase,mcp-chrome-devtools,record a performance trace of the page load in chrome,0.95,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.95,0.95,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-P-08,paraphrase,mcp-chrome-devtools,attach to my own chrome and inspect the signed-in dashboard,0.8947,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.8947,0.8947,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-P-09,paraphrase,mcp-bladebro,use bladebro status to check the daemon,0.8661,route,mcp-bladebro,PASS,mcp-browser-use,0.8661,0.8661,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-N-01,negative,none,"as an aside, can you tidy this paragraph",0,defer,,PASS,,0,0,,,false,defer,,,true,true,PASS
+MBU-N-02,negative,none,set that aside and fix the failing unit test first,0,defer,,PASS,sk-code,0.8967,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-N-03,negative,none,convert this ruby rb file to python,0,defer,,PASS,sk-code,0.8933,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-N-04,negative,none,write a lighthouse keeper short story,0,defer,,PASS,sk-doc,0.82,0,,lexical,false,defer,,,true,true,PASS
+MBU-N-05,negative,none,"click through rate dropped, analyse the csv",0,defer,,PASS,,0,0,,,false,defer,,,true,true,PASS
+MBU-N-06,negative,none,"make the checkout flow stealthier in the copy, less salesy",0,defer,,PASS,,0,0,,,false,defer,,,true,true,PASS
+MBU-N-07,negative,none,summarise the performance trace review notes in the spec,0,defer,,PASS,sk-code,0.9175,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-N-08,negative,none,export a har file parser in typescript,0,defer,,PASS,sk-code,0.9151,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-N-09,negative,none,set that aside and fix the failing unit test,0,defer,,PASS,sk-code,0.8986,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-N-10,negative-rb,none,rb status of the ruby build,0,defer,,PASS,sk-code,0.82,0,,lexical,false,defer,,,true,true,PASS
+MBU-N-11,negative-rb,none,check rb attach logs in the deploy,0,defer,,PASS,,0,0,,,false,defer,,,true,true,PASS
+MBU-P-10,paraphrase,mcp-aside-devtools,run aside on the pricing page,0.8665,route,mcp-aside-devtools,PASS,mcp-browser-use,0.8665,0.8665,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-P-11,paraphrase,mcp-aside-devtools,open aside and log in,0.9019,route,mcp-aside-devtools,PASS,mcp-browser-use,0.9019,0.9019,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-P-12,paraphrase,mcp-chrome-devtools,run a lighthouse audit on the homepage,0.95,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.95,0.95,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-P-13,paraphrase,mcp-bladebro,check bladebro rb status,0.9117,route,mcp-bladebro,PASS,mcp-browser-use,0.9116,0.9116,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-P-14,paraphrase,mcp-chrome-devtools,export a HAR of the checkout page,0.8764,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.8764,0.8764,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-P-15,paraphrase,mcp-bladebro,attach to the browser i have open and finish the signup,0.8588,route,mcp-bladebro,PASS,mcp-browser-use,0.8588,0.8588,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-P-16,paraphrase,mcp-aside-devtools,replay the signed-in checkout and keep the proof,0.8527,route,mcp-aside-devtools,PASS,mcp-browser-use,0.8527,0.8527,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-PB-01,playbook,mcp-chrome-devtools,Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging.,0.95,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.95,0.95,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-PB-02,playbook,mcp-aside-devtools,"Use the Aside browser to sign into the staging dashboard, capture REPL evidence of the console errors, and screenshot the failing widget.",0.95,route,mcp-aside-devtools,PASS,mcp-browser-use,0.95,0.95,1,explicit_author,false,route,single,mcp-aside-devtools,true,true,PASS
+MBU-PB-03,playbook,mcp-bladebro,Use Bladebro to read example.com in stealth mode and click the Learn more link.,0.8333,route,mcp-bladebro,PASS,mcp-browser-use,0.8333,0.8333,1,explicit_author,false,route,single,mcp-bladebro,true,true,PASS
+MBU-PB-04,playbook,mcp-chrome-devtools,The staging site throws runtime errors on load; I need to inspect its network requests and the live DOM to find the cause.,0,route,mcp-chrome-devtools,FAIL,,0,0,,,false,route,single,mcp-chrome-devtools,false,true,FAIL
+MBU-PB-05,playbook,mcp-chrome-devtools,Run a Lighthouse audit on the staging homepage and report the performance score.,0.95,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.9275,0.9275,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-PB-06,playbook-defer,defer,"Have the browser sign into the staging portal on its own, click through the checkout flow, and save proof screenshots of every step it takes.",0.82,defer,,PASS,mcp-browser-use,0.82,0.82,1,explicit_author,false,defer,,,n/a,true,PASS
+MBU-PB-07,playbook-defer,defer,Use the MCP tool bridge for this.,0,defer,,PASS,mcp-code-mode,0.95,0,,explicit_author,true,defer,,,n/a,true,PASS
+MBU-N-12,negative,none,use aside comments to explain the tradeoff in the doc,0,route,mcp-aside-devtools,PASS,,0,0,,,false,route,single,mcp-aside-devtools,true,false,PASS
+MBU-N-13,negative,none,write a report on the lighthouse score methodology for the blog,0,defer,,PASS,sk-doc,0.82,0,,lexical,false,defer,,,true,true,PASS
+MBU-N-14,negative,none,parse the network har of this page in a python script,0,defer,,PASS,sk-code,0.9344,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-N-15,negative,none,"my emails got flagged as a bot by the spam filter, fix the smtp headers",0,defer,,PASS,,0,0,,,false,defer,,,true,true,PASS
+MBU-N-16,negative,none,update the form in my signed-in account settings component in react,0,defer,,PASS,,0,0,,,false,defer,,,true,true,PASS
+MBU-N-17,negative,none,add a performance trace of the sql queries to the server logs,0,defer,,PASS,,0,0,,,false,defer,,,true,true,PASS
+MBU-N-18,negative,none,"the browser i have open is slow, which extensions should i remove",0,defer,,PASS,local-webflow,0.82,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-F-01,contract,mcp-chrome-devtools,attach to my own chrome and finish the checkout,0.8588,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.8588,0.8588,1,explicit_author,false,route,single,mcp-chrome-devtools,true,true,PASS
+MBU-N-19,negative,none,fix the code in the parser,not-captured,not-captured,not-captured,not-captured,sk-code,0.8481,0,,explicit_author,false,defer,,,true,true,PASS
+MBU-N-20,negative,none,fix the config loader that reads the wrong settings file in staging,not-captured,not-captured,not-captured,not-captured,sk-code,0.82,0,,lexical,false,defer,,,true,true,PASS
+MBU-B-01,bundle,mcp-chrome-devtools+mcp-aside-devtools+mcp-bladebro,"use mcp-chrome-devtools, mcp-aside-devtools and mcp-bladebro",not-captured,not-captured,not-captured,not-captured,mcp-browser-use,0.9464,0.9464,1,explicit_author,false,route,orderedBundle,mcp-chrome-devtools+mcp-aside-devtools+mcp-bladebro,true,true,PASS
+MBU-F-02,contract,mcp-chrome-devtools+mcp-bladebro,"attach to my own chrome, the browser i already have open, and finish the checkout",0.8841,route,mcp-chrome-devtools,PASS,mcp-browser-use,0.8841,0.8841,1,explicit_author,false,route,orderedBundle,mcp-chrome-devtools+mcp-bladebro,true,true,PASS

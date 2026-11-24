@@ -63,7 +63,6 @@ Frozen choices. Changing one is an amendment.
 |-------|---------------|
 | 001-cli-classifier | `001-cli-classifier/goal.md` |
 | 002-cli-external-orchestration | `002-cli-external-orchestration/goal.md` |
-| 003-cli-orca | `003-cli-orca/goal.md` |
 | 004-mcp-code-mode | `004-mcp-code-mode/goal.md` |
 | 005-mcp-tooling | `005-mcp-tooling/goal.md` |
 | 006-sk-code | `006-sk-code/goal.md` |

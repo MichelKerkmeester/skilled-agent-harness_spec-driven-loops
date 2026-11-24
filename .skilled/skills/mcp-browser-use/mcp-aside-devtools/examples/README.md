@@ -5,7 +5,7 @@ trigger_phrases:
   - "aside examples"
   - "aside example scripts"
   - "aside workflow scripts"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Aside Devtools - Example Scripts
@@ -48,20 +48,20 @@ Each script is a working workflow and an honest capability boundary: it exercise
 **Purpose:** Deterministic evidence workflow: open a tab, capture a screenshot, verify the artifact by PNG magic bytes.
 
 ```bash
-./repl-evidence-capture.sh                          # https://example.com → /tmp/aside-evidence (fails on 1.26.626.1517, see below)
-./repl-evidence-capture.sh https://example.org ./<evidence-dir>
+./repl-evidence-capture.sh                          # https://example.com, writes ./tmp/ in the REPL session folder
+./repl-evidence-capture.sh https://example.org ./tmp/<evidence-dir>
 ```
 
 **What it verifies:**
-- `openTab(url)` round trip (the documented REPL entry point)
-- `page.screenshot({ path })` writes a real file
-- File exists, size > 0, first four bytes are PNG magic `89504e47`, independent of the tool response
+- `openTab(url)`, `page.screenshot({ path })` and the file check all run in one `aside repl` evaluation
+- The REPL's `fs` global reads the file back, and the logged JSON must show size > 0 and PNG magic `89504e47`
+- The output must carry no error or `[WARN]` line, because an `aside repl` error still exits 0
 
 **Honest boundaries:** bound-page result shapes are untested territory; the script gates on the artifact, not the response. A "not bound to a browser profile" error is a binding state, not an auth failure.
 
-**Status on Aside 1.26.626.1517: the script fails its file check.** Steps 1 and 2 run as two separate `aside repl` processes, and each starts with `page` null. The REPL also redirects the `/tmp` screenshot path into its session folder and removes the file when it exits. So the shell check in step 3 finds no file and the script exits 1. An `aside repl` error exits 0, so the step 2 failure branch does not fire either. Until the script changes, use the one-evaluation form in [`manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md`](../manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md) (ASD-007), which writes to `./tmp/` and reads the file back with `fs`.
+**Status on Aside 1.26.626.1517.** The script uses the one-evaluation form from [`manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md`](../manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md) (ASD-007), which passed live. Each separate `aside repl` call starts with `page` null. The REPL redirects a `/tmp` path into its session folder and removes the session files when it exits. So the script writes to `./tmp/` and checks the file with `fs` inside the same evaluation. The REPL removes the PNG when it exits, so the logged JSON line is the evidence to keep. The second argument must stay under `./tmp`. An absolute path or a folder outside `./tmp` is rejected. It has not yet been run as a script against a live Aside.
 
-**Exit codes (the script's contract):** `0` artifact verified; `1` any step or verification failed. On 1.26.626.1517 it exits `1`.
+**Exit codes:** `0` artifact verified, `1` any step or verification failed.
 
 ---
 

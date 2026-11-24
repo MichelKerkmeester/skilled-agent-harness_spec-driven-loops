@@ -18,6 +18,7 @@ import json
 import os
 import re
 import sqlite3
+import subprocess
 import sys
 import tempfile
 import time
@@ -2970,6 +2971,38 @@ def test_deep_loop_clause_mark_then_opens_an_ask():
         fail_test(name, f"wrong={wrong}")
 
 
+def test_scorer_predicate_parity():
+    """The fallback reads shared scorer predicate cases like TypeScript."""
+    name = "SCORER-PREDICATES: the fallback matches the shared predicate cases"
+    fixture = os.path.realpath(os.path.join(SCRIPT_DIR, "..", "tests", "fixtures", "scorer-predicate-cases.json"))
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        with open(fixture, "r", encoding="utf-8") as handle:
+            cases = json.load(handle)["cases"]
+        wrong = []
+        for case in cases:
+            prompt_lower = case["prompt"].lower()
+            got = (
+                advisor.has_typed_slash_command(prompt_lower),
+                advisor.meaningful_token_count(prompt_lower),
+                advisor.is_low_information_prompt(prompt_lower),
+            )
+            want = (
+                case["typedSlashCommand"],
+                case["meaningfulTokens"],
+                case["lowInformation"],
+            )
+            if got != want:
+                wrong.append((case["id"], got, want))
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if cases and not wrong:
+        ok(name, f"cases={len(cases)}")
+    else:
+        fail_test(name, f"wrong={wrong}")
+
+
 def test_deep_loop_offer_gate_in_fallback():
     """The fallback offers no deep-loop run the prompt never asks for."""
     name = "DEEP-LOOP-FALLBACK: a stuck run gets no run row, a piece about the loop drops the hub, a counted ask keeps its row"
@@ -2990,6 +3023,35 @@ def test_deep_loop_offer_gate_in_fallback():
         ok(name, f"stuck={stuck[:2]} written={written[:2]} asked={asked[:2]}")
     else:
         fail_test(name, f"stuck={stuck[:3]} written={written[:3]} asked={asked[:3]}")
+
+
+def test_prompt_policy_missing_degrades():
+    """The fallback still routes when the prompt-policy file is unusable."""
+    name = "PROMPT-POLICY-MISSING: a missing prompt policy degrades stop-word filtering instead of the fallback"
+    missing = os.path.join(tempfile.gettempdir(), "sk-advisor-absent-prompt-policy.json")
+    stdout = ""
+    try:
+        if os.path.exists(missing):
+            os.remove(missing)
+        completed = subprocess.run(
+            [sys.executable, os.path.join(SCRIPT_DIR, "skill_advisor.py"),
+             "implement a retry helper in the python client", "--force-local"],
+            capture_output=True, text=True, timeout=300,
+            env=dict(os.environ, SPECKIT_ADVISOR_PROMPT_POLICY_PATH=missing),
+        )
+        stdout = completed.stdout
+        results = json.loads(stdout) if stdout.strip() else []
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    warned = missing in completed.stderr
+    if completed.returncode == 0 and results and warned:
+        ok(name, f"exit={completed.returncode} results={len(results)} warned=True")
+    else:
+        fail_test(
+            name,
+            f"exit={completed.returncode} results={len(results)} warned={warned} stdout={stdout[:120]!r}",
+        )
 
 
 def test_deep_loop_doctor_naming_reading():
@@ -3258,7 +3320,9 @@ def main():
     test_threshold_settings_reach_python_defaults()
     test_deep_loop_offer_gate_parity()
     test_deep_loop_clause_mark_then_opens_an_ask()
+    test_scorer_predicate_parity()
     test_deep_loop_offer_gate_in_fallback()
+    test_prompt_policy_missing_degrades()
     test_deep_loop_doctor_naming_reading()
     test_deep_loop_typed_run_row_marked()
     test_loop_workflow_request_reads_the_run_ask()

@@ -1,0 +1,28 @@
+code-quality-run/v1 gate=NO_BLOCKER_FOUND exit=0 status=advisory
+scope: files, lines changed, 3 file(s)
+surfaces: SKILLED
+layers: pre-commit present, ci present, post-edit present
+config: repo .skilled/skills/sk-code/sk-code-quality/repository/quality.json
+trust: trusted (the repository shares its git common dir with the runner checkout)
+checks:
+  comment-hygiene RAN_CLEAN P0 required
+  conflict-markers RAN_CLEAN P0 required
+  secrets RAN_CLEAN P0 required
+  debug-leftovers RAN_CLEAN P1
+  syntax-json NOT_APPLICABLE P0 required
+  syntax-cjs NOT_APPLICABLE P0 required
+  syntax-node NOT_APPLICABLE P0 required
+  syntax-python NOT_APPLICABLE P0 required
+  syntax-shell NOT_APPLICABLE P0 required
+  syntax-yaml NOT_APPLICABLE P0
+  syntax-toml NOT_APPLICABLE P0
+  dist-staleness NOT_APPLICABLE P1
+  actionlint configured NOT_APPLICABLE P1
+findings: 0
+checklists to load:
+  hub:sk-code/shared/references/universal/code-quality-standards.md (universal floor)
+  hub:sk-code/sk-code-skilled/assets/checklists/universal-checklist.md (SKILLED surface, paths .skilled/**)
+  hub:sk-code/sk-code-skilled/assets/checklists/skill-authoring.md (SKILLED surface, paths .skilled/skills/**)
+  hub:sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md (SKILLED surface, extensions .ts .tsx .mts .cts)
+override applied: review.todo-tracking replace: A TODO, FIXME or HACK names its owner, as `TODO(owner)`, and says what is left to do from hub:sk-code/sk-code-skilled/assets/checklists/universal-checklist.md
+judgment required: input validation, no silent failures, initialization safety, no commented-out code, accessibility, design restraint ladder

@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/008-own-all-doctor-commands/001-ownership-transfer",
+  "description": "Phase 1: ownership-transfer",
+  "keywords": [
+    "phase",
+    "ownership-transfer"
+  ],
+  "lastUpdated": "2026-11-24T18:45:47.906Z",
+  "specId": "001",
+  "folderSlug": "ownership-transfer",
+  "parentChain": [
+    "system-skilled-doctor",
+    "008-own-all-doctor-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

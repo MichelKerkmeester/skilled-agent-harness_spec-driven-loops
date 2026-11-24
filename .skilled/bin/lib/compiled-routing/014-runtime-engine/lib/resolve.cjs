@@ -147,7 +147,8 @@ module.exports = {
 // legacy sentinel so the caller falls back to the prose smart-router.
 if (require.main === module) {
   const args = process.argv.slice(2);
-  const hub = args[args.indexOf('--hub') + 1];
+  const hubIdx = args.indexOf('--hub');
+  const hub = hubIdx >= 0 ? args[hubIdx + 1] : undefined;
   const promptIdx = args.indexOf('--prompt');
   const prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';
   if (!hub) {

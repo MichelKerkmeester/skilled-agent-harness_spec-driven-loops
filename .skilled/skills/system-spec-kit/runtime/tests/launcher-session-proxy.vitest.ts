@@ -3,8 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { EventEmitter } from 'node:events';
+import { chmodSync, mkdtempSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -231,6 +233,65 @@ describe('launcher session proxy frame engine', () => {
     outOfPositionTracker.handleClientFrame(initialized);
     outOfPositionTracker.handleClientFrame(initialize);
     expect(outOfPositionTracker.getCachedInitialize()).toBe(initialize);
+  });
+
+  describe('socket ownership during reattach', () => {
+    const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
+    const tempDirs: string[] = [];
+    const proxies: SessionProxy[] = [];
+
+    afterEach(() => {
+      if (originalSocketDir === undefined) delete process.env.SPECKIT_IPC_SOCKET_DIR;
+      else process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+      while (proxies.length > 0) proxies.pop()?.stop();
+      while (tempDirs.length > 0) {
+        const dir = tempDirs.pop();
+        if (dir) rmSync(dir, { recursive: true, force: true });
+      }
+      vi.useRealTimers();
+      vi.restoreAllMocks();
+    });
+
+    it('refuses an untrusted socket directory before replaying a pending prompt', async () => {
+      vi.useFakeTimers();
+      const socketDir = mkdtempSync(join(tmpdir(), 'session-proxy-owner-'));
+      tempDirs.push(socketDir);
+      process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+      const input = new FakeInput();
+      const output = new FakeOutput();
+      const sockets: FakeSocket[] = [];
+      const request = toolCall('reattach-pending', 'advisor_recommend');
+      const proxy = createSessionProxy({
+        socketPath: join(socketDir, 'daemon-ipc.sock'),
+        stdin: input,
+        stdout: output,
+        probe: aliveProbe,
+        classify: classifySkillAdvisorFrame,
+        connect: createConnectedSocket(sockets),
+        log: () => undefined,
+        maxReattachAttempts: 1,
+        maxColdStartAttempts: 1,
+      });
+      proxies.push(proxy);
+
+      await proxy.start();
+      input.send(request);
+      await flushMicrotasks();
+      expect(sockets[0]?.writes.some((chunk) => chunk.includes('reattach-pending'))).toBe(true);
+
+      chmodSync(socketDir, 0o770);
+      sockets[0]?.emit('close');
+      await flushMicrotasks(20);
+      await vi.advanceTimersByTimeAsync(100);
+      await flushMicrotasks(20);
+
+      expect(sockets).toHaveLength(1);
+      expect(outputFrames(output)).toContainEqual(expect.objectContaining({
+        id: 'reattach-pending',
+        error: expect.objectContaining({ code: -32001 }),
+      }));
+      expect(output.ended).toBe(true);
+    });
   });
 
   it('reassembles a multibyte frame split across chunk boundaries without U+FFFD corruption', () => {

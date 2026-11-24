@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside mcp handshake failed"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.6.0
 ---
 
 # Aside Troubleshooting Guide
@@ -59,7 +59,7 @@ aside account status 2>&1
 
 | State | Signal | Recovery |
 |---|---|---|
-| `CLI_MISSING` | `command -v aside` empty | Report the official installer (`curl -fsSL https://releases.aside.com/install.sh \| bash`); operator-invoked only. Also check `~/.local/bin` is on PATH — the installer places the shim at `~/.local/bin/aside` |
+| `CLI_MISSING` | `command -v aside` empty | Report the install wrapper (`bash scripts/install.sh`, which verifies the official installer against a pinned sha256); operator-invoked only. Also check `~/.local/bin` is on PATH — the installer places the shim at `~/.local/bin/aside` |
 | `UNSUPPORTED_PLATFORM` | Installer rejects non-macOS | macOS (Darwin) arm64/x64 only; Linux and Windows are rejected. Escalate — no workaround |
 | `SIGNED_OUT` | Sign-out warning; built-in models fail closed | BYO provider keys keep working; built-in models need re-sign-in. Recover with `aside account use <id>` or per-run `--account <id>` (tasks/`exec` only) |
 | `ACCOUNT_AMBIGUOUS` | Multiple accounts, unclear default | `aside account list` → `aside account status [id]` → `aside account use <id>`; confirm with the operator |
@@ -76,8 +76,8 @@ aside account status 2>&1
 
 ## 4. CAPABILITY GAPS (FAIL CLOSED)
 
-- **Console capture**: no dedicated verified contract exists in docs or the live tool schema. A guarded Playwright `page.on('console', ...)` probe inside `repl` is the only candidate path — if it fails, report console capture as unsupported. Never claim parity with `bdg console --list`.
-- **Network capture**: no dedicated tool discovered. A guarded `page.on('request'/'response', ...)` probe is the only candidate path; do not promise HAR-export parity.
+- **Console capture**: a gap on Aside 1.26.626.1517. No dedicated tool exists. `page.on('console', ...)` throws there. The error points to `page.console.logs()`, which has not been run yet. Run the listener only inside a `try`/`catch` probe and report console capture as unsupported when it throws. Never claim parity with `bdg console --list`.
+- **Network capture**: a gap on Aside 1.26.626.1517. No dedicated tool exists. `page.on('request', ...)` and `page.on('response', ...)` throw there. Probe them only inside a `try`/`catch` and report the gap. Never promise HAR-export parity.
 - **Bound-page output shapes**: DOM snapshot and screenshot result shapes on a bound page are untested (UNKNOWN); validate artifacts independently (PNG magic bytes, parseable JSON) every time.
 
 ---

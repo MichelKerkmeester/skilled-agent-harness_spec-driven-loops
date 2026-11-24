@@ -3,7 +3,7 @@ description: "Diagnose deep-loop coverage graphs and convergence for research an
 argument-hint: "[--scope=research|review|both|all]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
-<!-- skill_agent: system-deep-loop -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:deep-loop Router
 

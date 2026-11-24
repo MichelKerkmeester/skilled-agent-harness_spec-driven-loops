@@ -1,0 +1,1570 @@
+{
+  "generatedAt": "2026-11-24T08:44:32Z",
+  "hub": "mcp-browser-use",
+  "rows": [
+    {
+      "id": "MBU-R-01",
+      "kind": "mode",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "debug this page with chrome devtools and take a screenshot",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.95,
+      "hubConfidence": 0.95,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.95,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-R-02",
+      "kind": "mode",
+      "gold": "mcp-aside-devtools",
+      "prompt": "use aside to fill this form in my signed-in account",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9441,
+      "hubConfidence": 0.9441,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.9441,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-R-03",
+      "kind": "mode",
+      "gold": "mcp-bladebro",
+      "prompt": "use bladebro to attach to my open browser and finish the checkout flow",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9295,
+      "hubConfidence": 0.9295,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.9295,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-T-01",
+      "kind": "tie-break",
+      "gold": "mcp-aside-devtools",
+      "prompt": "replay this signed-in checkout step by step and save the evidence",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8482,
+      "hubConfidence": 0.8482,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8482,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-T-02",
+      "kind": "tie-break",
+      "gold": "mcp-bladebro",
+      "prompt": "in the browser I already have open, work out how to finish this signup",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8525,
+      "hubConfidence": 0.8525,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8525,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-T-03",
+      "kind": "tie-break",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "export a HAR of this page load",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8764,
+      "hubConfidence": 0.8764,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8764,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-01",
+      "kind": "paraphrase",
+      "gold": "mcp-aside-devtools",
+      "prompt": "fill out the form in my signed-in account",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9161,
+      "hubConfidence": 0.9161,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.9161,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-02",
+      "kind": "paraphrase",
+      "gold": "mcp-aside-devtools",
+      "prompt": "replay the signed-in login flow and keep the evidence",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8368,
+      "hubConfidence": 0.8368,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8368,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-03",
+      "kind": "paraphrase",
+      "gold": "mcp-bladebro",
+      "prompt": "browse this site without getting flagged as a bot",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8751,
+      "hubConfidence": 0.8751,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8751,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-04",
+      "kind": "paraphrase",
+      "gold": "mcp-bladebro",
+      "prompt": "in my already open browser, figure out how to finish the order",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8525,
+      "hubConfidence": 0.8525,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8525,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-05",
+      "kind": "paraphrase",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "save the network log of this page as a har file",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9161,
+      "hubConfidence": 0.9161,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.9161,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-06",
+      "kind": "paraphrase",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "run lighthouse on the staging page",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8665,
+      "hubConfidence": 0.8665,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.9346,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-07",
+      "kind": "paraphrase",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "record a performance trace of the page load in chrome",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.95,
+      "hubConfidence": 0.95,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.95,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-08",
+      "kind": "paraphrase",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "attach to my own chrome and inspect the signed-in dashboard",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8947,
+      "hubConfidence": 0.8947,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8947,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-09",
+      "kind": "paraphrase",
+      "gold": "mcp-bladebro",
+      "prompt": "use bladebro status to check the daemon",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8661,
+      "hubConfidence": 0.8661,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8661,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-01",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "as an aside, can you tidy this paragraph",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-02",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "set that aside and fix the failing unit test first",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.8967,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-03",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "convert this ruby rb file to python",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.8933,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-04",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "write a lighthouse keeper short story",
+      "advisorTop": "sk-doc",
+      "advisorTopConfidence": 0.82,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "lexical",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-05",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "click through rate dropped, analyse the csv",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-06",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "make the checkout flow stealthier in the copy, less salesy",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-07",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "summarise the performance trace review notes in the spec",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.9175,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-08",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "export a har file parser in typescript",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.9151,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-09",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "set that aside and fix the failing unit test",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.8986,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-10",
+      "kind": "negative-rb",
+      "gold": "none",
+      "prompt": "rb status of the ruby build",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.82,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "lexical",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-11",
+      "kind": "negative-rb",
+      "gold": "none",
+      "prompt": "check rb attach logs in the deploy",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-10",
+      "kind": "paraphrase",
+      "gold": "mcp-aside-devtools",
+      "prompt": "run aside on the pricing page",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8665,
+      "hubConfidence": 0.8665,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8665,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-11",
+      "kind": "paraphrase",
+      "gold": "mcp-aside-devtools",
+      "prompt": "open aside and log in",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9019,
+      "hubConfidence": 0.9019,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.9019,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-12",
+      "kind": "paraphrase",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "run a lighthouse audit on the homepage",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.95,
+      "hubConfidence": 0.95,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.95,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-13",
+      "kind": "paraphrase",
+      "gold": "mcp-bladebro",
+      "prompt": "check bladebro rb status",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9116,
+      "hubConfidence": 0.9116,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.9117,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-14",
+      "kind": "paraphrase",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "export a HAR of the checkout page",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8764,
+      "hubConfidence": 0.8764,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8764,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-15",
+      "kind": "paraphrase",
+      "gold": "mcp-bladebro",
+      "prompt": "attach to the browser i have open and finish the signup",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8588,
+      "hubConfidence": 0.8588,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8588,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-P-16",
+      "kind": "paraphrase",
+      "gold": "mcp-aside-devtools",
+      "prompt": "replay the signed-in checkout and keep the proof",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8527,
+      "hubConfidence": 0.8527,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8527,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-PB-01",
+      "kind": "playbook",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging.",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.95,
+      "hubConfidence": 0.95,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.95,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-PB-02",
+      "kind": "playbook",
+      "gold": "mcp-aside-devtools",
+      "prompt": "Use the Aside browser to sign into the staging dashboard, capture REPL evidence of the console errors, and screenshot the failing widget.",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.95,
+      "hubConfidence": 0.95,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.95,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-PB-03",
+      "kind": "playbook",
+      "gold": "mcp-bladebro",
+      "prompt": "Use Bladebro to read example.com in stealth mode and click the Learn more link.",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8333,
+      "hubConfidence": 0.8333,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8333,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-PB-04",
+      "kind": "playbook",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "The staging site throws runtime errors on load; I need to inspect its network requests and the live DOM to find the cause.",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": false,
+      "stage2": true,
+      "verdict": "FAIL",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "id": "MBU-PB-05",
+      "kind": "playbook",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "Run a Lighthouse audit on the staging homepage and report the performance score.",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9275,
+      "hubConfidence": 0.9275,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.95,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-PB-06",
+      "kind": "playbook-defer",
+      "gold": "defer",
+      "prompt": "Have the browser sign into the staging portal on its own, click through the checkout flow, and save proof screenshots of every step it takes.",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.82,
+      "hubConfidence": 0.82,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": null,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.82,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-PB-07",
+      "kind": "playbook-defer",
+      "gold": "defer",
+      "prompt": "Use the MCP tool bridge for this.",
+      "advisorTop": "mcp-code-mode",
+      "advisorTopConfidence": 0.95,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": true,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": null,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-12",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "use aside comments to explain the tradeoff in the doc",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": false,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-aside-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-13",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "write a report on the lighthouse score methodology for the blog",
+      "advisorTop": "sk-doc",
+      "advisorTopConfidence": 0.82,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "lexical",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-14",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "parse the network har of this page in a python script",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.9344,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-15",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "my emails got flagged as a bot by the spam filter, fix the smtp headers",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-16",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "update the form in my signed-in account settings component in react",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-17",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "add a performance trace of the sql queries to the server logs",
+      "advisorTop": null,
+      "advisorTopConfidence": 0,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": null,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-18",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "the browser i have open is slow, which extensions should i remove",
+      "advisorTop": "local-webflow",
+      "advisorTopConfidence": 0.82,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0,
+        "routeAction": "defer",
+        "routeTargets": [],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-F-01",
+      "kind": "contract",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "attach to my own chrome and finish the checkout",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8588,
+      "hubConfidence": 0.8588,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8588,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    },
+    {
+      "id": "MBU-N-19",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "fix the code in the parser",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.8481,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": null
+    },
+    {
+      "id": "MBU-N-20",
+      "kind": "negative",
+      "gold": "none",
+      "prompt": "fix the config loader that reads the wrong settings file in staging",
+      "advisorTop": "sk-code",
+      "advisorTopConfidence": 0.82,
+      "hubConfidence": 0,
+      "hubRank": null,
+      "hubDominantLane": "lexical",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "defer",
+      "routeSelectionKind": null,
+      "routeTargets": [],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": null
+    },
+    {
+      "id": "MBU-B-01",
+      "kind": "bundle",
+      "gold": "mcp-chrome-devtools+mcp-aside-devtools+mcp-bladebro",
+      "prompt": "use mcp-chrome-devtools, mcp-aside-devtools and mcp-bladebro",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.9464,
+      "hubConfidence": 0.9464,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "orderedBundle",
+      "routeTargets": [
+        "mcp-chrome-devtools",
+        "mcp-aside-devtools",
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": null
+    },
+    {
+      "id": "MBU-F-02",
+      "kind": "contract",
+      "gold": "mcp-chrome-devtools+mcp-bladebro",
+      "prompt": "attach to my own chrome, the browser i already have open, and finish the checkout",
+      "advisorTop": "mcp-browser-use",
+      "advisorTopConfidence": 0.8841,
+      "hubConfidence": 0.8841,
+      "hubRank": 1,
+      "hubDominantLane": "explicit_author",
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "orderedBundle",
+      "routeTargets": [
+        "mcp-chrome-devtools",
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "fc55eafafd5fc13b99c71dee65d396017419a630ceb540fd0dd88498d138aeb8",
+      "generation": 1,
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS",
+      "before": {
+        "hubConfidence": 0.8841,
+        "routeAction": "route",
+        "routeTargets": [
+          "mcp-chrome-devtools",
+          "mcp-bladebro"
+        ],
+        "policyHash": "be9b1fe7c9b66b6dc610b1cbb3a6b1b53ebcbcc5fa7e5530dca11eb3d4a8e4d2",
+        "verdict": "PASS"
+      }
+    }
+  ]
+}

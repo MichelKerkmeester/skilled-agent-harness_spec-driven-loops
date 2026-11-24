@@ -1,0 +1,17 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/541-own-all-doctor-commands/.skilled/skills/system-skill-advisor/runtime
+
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 85848 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=169797
+[system-skill-advisor-launcher] ownerLeaseReclaimed: unreadable
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=754948
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sav-uVxQNO/system-skill-advisor-launcher-7SquJh/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+
+ Test Files  190 passed (190)
+      Tests  3206 passed | 4 skipped (3210)
+   Start at  22:31:57
+   Duration  206.38s (transform 1.17s, setup 583ms, import 5.30s, tests 190.71s, environment 6ms)
+
+exit=0

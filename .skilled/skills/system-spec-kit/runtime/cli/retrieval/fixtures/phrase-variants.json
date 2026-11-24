@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f22334e4e25945bf610d6a58738b865e2059ac53b8a6f57e6ce5652a7d940de4",
+  "manifestHash": "d298ad9ce8fed3491f8f0acb07657b217445aa0a1ecd544c278a55a395751b37",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2041,6 +2041,9 @@
     "007 plan voyage cleanup": [
       "007 plan voyage cleanup"
     ],
+    "007 provision dev dependencies operator decisions": [
+      "007-provision-dev-dependencies operator decisions"
+    ],
     "007 review doc reconciliation operator decisions": [
       "007-review-doc-reconciliation operator decisions"
     ],
@@ -2335,6 +2338,9 @@
     ],
     "008 plan race window debug": [
       "008 plan race window debug"
+    ],
+    "008 provision skill graph database operator decisions": [
+      "008-provision-skill-graph-database operator decisions"
     ],
     "008 race window debug log hygiene": [
       "008 race window debug log hygiene"
@@ -3515,6 +3521,9 @@
     "014 finalize and commit": [
       "014 finalize and commit"
     ],
+    "014 fix deep review findings operator decisions": [
+      "014-fix-deep-review-findings operator decisions"
+    ],
     "014 handover": [
       "014 handover"
     ],
@@ -4146,6 +4155,9 @@
     ],
     "016 seven phases s1 s5 o1 o2": [
       "016 seven phases S1 S5 O1 O2"
+    ],
+    "016 stop hook auto record operator decisions": [
+      "016-stop-hook-auto-record operator decisions"
     ],
     "016 tasks": [
       "016 tasks"
@@ -6874,6 +6886,9 @@
     "028 track b tasks": [
       "028 track b tasks"
     ],
+    "029 advisor logic review fixes operator decisions": [
+      "029-advisor-logic-review-fixes operator decisions"
+    ],
     "029 autoclean orphan file removal": [
       "029-autoclean-orphan-file-removal"
     ],
@@ -6930,6 +6945,9 @@
     ],
     "029 test suite": [
       "029 test suite"
+    ],
+    "030 advisor ci filter dead helpers operator decisions": [
+      "030-advisor-ci-filter-dead-helpers operator decisions"
     ],
     "030 clean infrastructure full matrix stress design": [
       "030-clean-infrastructure-full-matrix-stress-design"
@@ -8528,9 +8546,6 @@
     "adaptive fusion channel weighting": [
       "adaptive fusion channel weighting"
     ],
-    "adb orca": [
-      "adb orca"
-    ],
     "add": [
       "add"
     ],
@@ -8647,9 +8662,6 @@
     ],
     "additive adherence artifacts tasks": [
       "additive adherence artifacts tasks"
-    ],
-    "additive backfill": [
-      "additive backfill"
     ],
     "additive dark cycle evidence": [
       "additive-dark cycle evidence"
@@ -8913,9 +8925,6 @@
     "adr disposition": [
       "adr disposition"
     ],
-    "adr extraction": [
-      "adr extraction"
-    ],
     "adr governance for embedder advisor": [
       "ADR governance for embedder + advisor"
     ],
@@ -9125,6 +9134,21 @@
     ],
     "advisor child timing tasks": [
       "advisor child timing tasks"
+    ],
+    "advisor ci filter dead helpers": [
+      "advisor ci filter dead helpers"
+    ],
+    "advisor ci filter dead helpers acceptance criteria": [
+      "advisor ci filter dead helpers acceptance criteria"
+    ],
+    "advisor ci filter dead helpers implementation summary": [
+      "advisor ci filter dead helpers implementation summary"
+    ],
+    "advisor ci filter dead helpers plan": [
+      "advisor ci filter dead helpers plan"
+    ],
+    "advisor ci filter dead helpers tasks": [
+      "advisor ci filter dead helpers tasks"
     ],
     "advisor cleanup": [
       "advisor cleanup"
@@ -9385,6 +9409,9 @@
     "advisor feedback calibration": [
       "advisor feedback calibration"
     ],
+    "advisor fix work units waves": [
+      "advisor fix work units waves"
+    ],
     "advisor folder merges": [
       "advisor folder merges"
     ],
@@ -9637,6 +9664,24 @@
     "advisor local sqlite declaration": [
       "advisor local sqlite declaration"
     ],
+    "advisor logic final verification pass": [
+      "advisor logic final verification pass"
+    ],
+    "advisor logic review fixes": [
+      "advisor logic review fixes"
+    ],
+    "advisor logic review fixes acceptance criteria": [
+      "advisor logic review fixes acceptance criteria"
+    ],
+    "advisor logic review fixes implementation summary": [
+      "advisor logic review fixes implementation summary"
+    ],
+    "advisor logic review fixes plan": [
+      "advisor logic review fixes plan"
+    ],
+    "advisor logic review fixes tasks": [
+      "advisor logic review fixes tasks"
+    ],
     "advisor logic review report": [
       "advisor logic review report"
     ],
@@ -9660,6 +9705,9 @@
     ],
     "advisor metadata extraction": [
       "advisor metadata extraction"
+    ],
+    "advisor metrics temp dir symlink": [
+      "advisor metrics temp dir symlink"
     ],
     "advisor move recalibration": [
       "advisor move recalibration"
@@ -9940,9 +9988,6 @@
     ],
     "advisor resolver task": [
       "advisor resolver task"
-    ],
-    "advisor rollback": [
-      "advisor rollback"
     ],
     "advisor routing and local install": [
       "advisor routing and local install"
@@ -10261,6 +10306,9 @@
     ],
     "advisor surface hint tasks": [
       "advisor surface hint tasks"
+    ],
+    "advisor temp folder owner check": [
+      "advisor temp folder owner check"
     ],
     "advisor test 37 failures": [
       "advisor test 37 failures"
@@ -11647,18 +11695,6 @@
     "align cli external orchestration tasks": [
       "align cli external orchestration tasks"
     ],
-    "align cli orca": [
-      "align cli orca"
-    ],
-    "align cli orca implementation summary": [
-      "align cli orca implementation summary"
-    ],
-    "align cli orca plan": [
-      "align cli orca plan"
-    ],
-    "align cli orca tasks": [
-      "align cli orca tasks"
-    ],
     "align deep loop runtime with sk code": [
       "align deep-loop runtime with sk-code"
     ],
@@ -12478,9 +12514,6 @@
     ],
     "and or filter stacking": [
       "and or filter stacking"
-    ],
-    "android emulator orca": [
-      "android emulator orca"
     ],
     "android health data files": [
       "android health data files"
@@ -13495,6 +13528,9 @@
     "aside diagnostics": [
       "aside diagnostics"
     ],
+    "aside docs match live runs": [
+      "aside docs match live runs"
+    ],
     "aside doctor": [
       "aside doctor"
     ],
@@ -13536,6 +13572,9 @@
     ],
     "aside install script": [
       "aside install script"
+    ],
+    "aside installer pinned digest": [
+      "aside installer pinned digest"
     ],
     "aside lighthouse": [
       "aside lighthouse"
@@ -13822,12 +13861,6 @@
     "asymmetric damping anti pattern memory": [
       "asymmetric damping anti-pattern memory"
     ],
-    "asymmetric routing": [
-      "asymmetric routing"
-    ],
-    "asymmetric supersession": [
-      "asymmetric supersession"
-    ],
     "async deferred enrichment": [
       "async deferred enrichment"
     ],
@@ -13911,12 +13944,6 @@
     ],
     "atomic reindex": [
       "atomic reindex"
-    ],
-    "atomic rollback": [
-      "atomic rollback"
-    ],
-    "atomic rollback lifecycle": [
-      "atomic rollback lifecycle"
     ],
     "atomic save orphan recovery": [
       "atomic save orphan recovery"
@@ -14467,6 +14494,9 @@
     "auto rebuild trigger index": [
       "auto rebuild trigger index"
     ],
+    "auto record operator answers at stop": [
+      "auto record operator answers at stop"
+    ],
     "auto refresh queue": [
       "auto-refresh queue"
     ],
@@ -14817,6 +14847,9 @@
     ],
     "bare sibling folder name in a phase map": [
       "bare sibling folder name in a phase map"
+    ],
+    "bare staging anchor": [
+      "bare staging anchor"
     ],
     "bare string statement hygiene": [
       "bare string statement hygiene"
@@ -15268,6 +15301,9 @@
     "bdg cdp list": [
       "bdg cdp --list"
     ],
+    "bdg cdp params form": [
+      "bdg cdp params form"
+    ],
     "bdg cdp search": [
       "bdg cdp --search"
     ],
@@ -15339,6 +15375,9 @@
     ],
     "bdg performance metrics": [
       "bdg performance metrics"
+    ],
+    "bdg pinned at 0 6 10": [
+      "bdg pinned at 0.6.10"
     ],
     "bdg pipeline integration": [
       "bdg pipeline integration"
@@ -15996,6 +16035,9 @@
     ],
     "bladebro json output": [
       "bladebro json output"
+    ],
+    "bladebro launcher digest check": [
+      "bladebro launcher digest check"
     ],
     "bladebro lighthouse": [
       "bladebro lighthouse"
@@ -16879,11 +16921,17 @@
     "browser first page write": [
       "browser-first page write"
     ],
+    "browser hub alias tightening": [
+      "browser hub alias tightening"
+    ],
     "browser hub alignment fixes": [
       "browser hub alignment fixes"
     ],
     "browser hub changelog topology": [
       "browser hub changelog topology"
+    ],
+    "browser hub deep review remediation": [
+      "browser hub deep review remediation"
     ],
     "browser hub doc topic": [
       "browser hub doc topic"
@@ -16900,11 +16948,20 @@
     "browser hub doc topic tasks": [
       "browser hub doc topic tasks"
     ],
+    "browser hub id and alias bundle": [
+      "browser hub id and alias bundle"
+    ],
+    "browser hub p2 advisories": [
+      "browser hub p2 advisories"
+    ],
     "browser hub routing": [
       "browser hub routing"
     ],
     "browser hub shared helpers": [
       "browser hub shared helpers"
+    ],
+    "browser hub three mode bundle": [
+      "browser hub three mode bundle"
     ],
     "browser launch fails": [
       "browser launch fails"
@@ -16983,6 +17040,9 @@
     ],
     "build release notes": [
       "build release notes"
+    ],
+    "build the advisor skill graph database when provisioning": [
+      "build the advisor skill graph database when provisioning"
     ],
     "build the colour system": [
       "build the colour system"
@@ -21503,9 +21563,6 @@
     "class of bug vs finding": [
       "class of bug vs finding"
     ],
-    "class s classification": [
-      "class-S classification"
-    ],
     "classifier build order": [
       "classifier build order"
     ],
@@ -22355,6 +22412,9 @@
     "cli classifier 0 8 1 0": [
       "cli-classifier 0.8.1.0"
     ],
+    "cli classifier 0 8 10 0": [
+      "cli-classifier 0.8.10.0"
+    ],
     "cli classifier 0 8 2 0": [
       "cli-classifier 0.8.2.0"
     ],
@@ -22525,6 +22585,9 @@
     ],
     "cli classifier v0 8 1 0": [
       "cli-classifier v0.8.1.0"
+    ],
+    "cli classifier v0 8 10 0": [
+      "cli-classifier v0.8.10.0"
     ],
     "cli classifier v0 8 2 0": [
       "cli-classifier v0.8.2.0"
@@ -23887,6 +23950,9 @@
     "cli external orchestration 2 1 0 0": [
       "cli-external-orchestration 2.1.0.0"
     ],
+    "cli external orchestration 2 1 1 0": [
+      "cli-external-orchestration 2.1.1.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -24048,6 +24114,9 @@
     ],
     "cli external orchestration v2 1 0 0": [
       "cli-external-orchestration v2.1.0.0"
+    ],
+    "cli external orchestration v2 1 1 0": [
+      "cli-external-orchestration v2.1.1.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -25054,157 +25123,11 @@
     "cli opencode version detection": [
       "cli-opencode version detection"
     ],
-    "cli orca": [
-      "cli orca"
-    ],
-    "cli orca 0 1 0 0": [
-      "cli-orca 0.1.0.0"
-    ],
-    "cli orca 0 1 1 0": [
-      "cli-orca 0.1.1.0"
-    ],
-    "cli orca 0 1 10 0": [
-      "cli-orca 0.1.10.0"
-    ],
-    "cli orca 0 1 11 0": [
-      "cli-orca 0.1.11.0"
-    ],
-    "cli orca 0 1 2 0": [
-      "cli-orca 0.1.2.0"
-    ],
-    "cli orca 0 1 3 0": [
-      "cli-orca 0.1.3.0"
-    ],
-    "cli orca 0 1 4 0": [
-      "cli-orca 0.1.4.0"
-    ],
-    "cli orca 0 1 5 0": [
-      "cli-orca 0.1.5.0"
-    ],
-    "cli orca 0 1 6 0": [
-      "cli-orca 0.1.6.0"
-    ],
-    "cli orca 0 1 7 0": [
-      "cli-orca 0.1.7.0"
-    ],
-    "cli orca 0 1 8 0": [
-      "cli-orca 0.1.8.0"
-    ],
-    "cli orca 0 1 9 0": [
-      "cli-orca 0.1.9.0"
-    ],
-    "cli orca audit surfaces": [
-      "cli-orca audit surfaces"
-    ],
     "cli orca changelog entry": [
       "cli-orca changelog entry"
     ],
-    "cli orca changelog retrofit": [
-      "cli-orca changelog retrofit"
-    ],
-    "cli orca changelog rewrite": [
-      "cli-orca changelog rewrite"
-    ],
-    "cli orca changelog rewrite plan": [
-      "cli-orca changelog rewrite plan"
-    ],
-    "cli orca changelog rewrite status": [
-      "cli-orca changelog rewrite status"
-    ],
-    "cli orca changelog rewrite tasks": [
-      "cli-orca changelog rewrite tasks"
-    ],
-    "cli orca decision record": [
-      "cli-orca decision record"
-    ],
-    "cli orca extraction": [
-      "cli-orca extraction"
-    ],
-    "cli orca feature catalog": [
-      "cli-orca feature catalog"
-    ],
-    "cli orca implementation plan": [
-      "cli-orca implementation plan"
-    ],
-    "cli orca implementation summary": [
-      "cli orca implementation summary",
-      "cli-orca implementation summary"
-    ],
-    "cli orca negative holdouts": [
-      "cli-orca negative holdouts"
-    ],
-    "cli orca orca cli as a standalone skill": [
-      "cli-orca: Orca CLI as a Standalone Skill"
-    ],
-    "cli orca ownership split": [
-      "cli-orca ownership split"
-    ],
-    "cli orca path catalog": [
-      "cli-orca path catalog"
-    ],
-    "cli orca plan": [
-      "cli orca plan"
-    ],
-    "cli orca prose clarity": [
-      "cli-orca prose clarity"
-    ],
-    "cli orca readme": [
-      "cli-orca readme"
-    ],
-    "cli orca router": [
-      "cli-orca router"
-    ],
-    "cli orca routing": [
-      "cli-orca routing"
-    ],
-    "cli orca routing vocabulary": [
-      "cli-orca routing vocabulary"
-    ],
-    "cli orca safety boundaries": [
-      "cli-orca safety boundaries"
-    ],
-    "cli orca tasks": [
-      "cli orca tasks",
-      "cli-orca tasks"
-    ],
-    "cli orca trigger signals": [
-      "cli-orca trigger signals"
-    ],
-    "cli orca v0 1 0 0": [
-      "cli-orca v0.1.0.0"
-    ],
-    "cli orca v0 1 1 0": [
-      "cli-orca v0.1.1.0"
-    ],
-    "cli orca v0 1 10 0": [
-      "cli-orca v0.1.10.0"
-    ],
-    "cli orca v0 1 11 0": [
-      "cli-orca v0.1.11.0"
-    ],
-    "cli orca v0 1 2 0": [
-      "cli-orca v0.1.2.0"
-    ],
-    "cli orca v0 1 3 0": [
-      "cli-orca v0.1.3.0"
-    ],
-    "cli orca v0 1 4 0": [
-      "cli-orca v0.1.4.0"
-    ],
-    "cli orca v0 1 5 0": [
-      "cli-orca v0.1.5.0"
-    ],
-    "cli orca v0 1 6 0": [
-      "cli-orca v0.1.6.0"
-    ],
-    "cli orca v0 1 7 0": [
-      "cli-orca v0.1.7.0"
-    ],
-    "cli orca v0 1 8 0": [
-      "cli-orca v0.1.8.0"
-    ],
-    "cli orca v0 1 9 0": [
-      "cli-orca v0.1.9.0"
+    "cli orca skill removed": [
+      "cli-orca skill removed"
     ],
     "cli orchestration repoint": [
       "cli-orchestration-repoint"
@@ -30374,6 +30297,9 @@
     "compiled route probe criteria": [
       "compiled route probe criteria"
     ],
+    "compiled route prompt stdin heredoc": [
+      "compiled route prompt stdin heredoc"
+    ],
     "compiled route raw prompt pasted reply": [
       "compiled route raw prompt pasted reply"
     ],
@@ -31282,9 +31208,6 @@
     ],
     "consolidate doctor router implementations": [
       "consolidate doctor router implementations"
-    ],
-    "consolidate official orca skills acceptance criteria": [
-      "consolidate official orca skills acceptance criteria"
     ],
     "consolidate socket server copies": [
       "consolidate socket-server copies"
@@ -39999,6 +39922,9 @@
     "deep review interruption recovery": [
       "deep-review interruption recovery"
     ],
+    "deep review iteration 010": [
+      "deep review iteration 010"
+    ],
     "deep review iteration commit": [
       "deep-review iteration commit"
     ],
@@ -40926,9 +40852,6 @@
     ],
     "deferred hop notice": [
       "deferred hop notice"
-    ],
-    "deferred orca implementation": [
-      "deferred Orca implementation"
     ],
     "deferred p2": [
       "deferred P2"
@@ -42014,9 +41937,6 @@
     ],
     "desired prior diff actions": [
       "desired prior diff actions"
-    ],
-    "desktop app window orca": [
-      "desktop app window orca"
     ],
     "destructive scope violation": [
       "destructive scope violation"
@@ -44511,6 +44431,9 @@
     "doctor command guidance timeline": [
       "doctor command guidance timeline"
     ],
+    "doctor command owner skill agent tag": [
+      "doctor command owner skill_agent tag"
+    ],
     "doctor command plumbing": [
       "doctor command plumbing"
     ],
@@ -44603,6 +44526,9 @@
     ],
     "doctor commands inventory and extract tasks": [
       "doctor commands inventory and extract tasks"
+    ],
+    "doctor commands manual testing playbook": [
+      "doctor commands manual testing playbook"
     ],
     "doctor commands release notes": [
       "doctor commands release notes"
@@ -45080,6 +45006,9 @@
     "doctor overlay status apply": [
       "doctor overlay status apply"
     ],
+    "doctor ownership alignment findings": [
+      "doctor ownership alignment findings"
+    ],
     "doctor ownership split": [
       "doctor ownership split"
     ],
@@ -45157,6 +45086,12 @@
     ],
     "doctor playbook git tasks": [
       "doctor-playbook-git tasks"
+    ],
+    "doctor playbook into system skilled doctor": [
+      "doctor playbook into system-skilled-doctor"
+    ],
+    "doctor playbook into the skill": [
+      "doctor playbook into the skill"
     ],
     "doctor playbook invocation rewrite": [
       "doctor playbook invocation rewrite"
@@ -49670,9 +49605,6 @@
     "evidence gap z score degraded": [
       "evidence gap z-score degraded"
     ],
-    "evidence gated orca": [
-      "evidence-gated Orca"
-    ],
     "evidence gated provenance": [
       "evidence gated provenance"
     ],
@@ -50673,12 +50605,6 @@
     ],
     "extraction parent phase inventory": [
       "extraction parent phase inventory"
-    ],
-    "extraction results": [
-      "extraction results"
-    ],
-    "extraction task list": [
-      "extraction task list"
     ],
     "extractive description derive": [
       "extractive description derive"
@@ -53670,8 +53596,26 @@
     "fix deep ranking filter bypass and score scale fixes changelog": [
       "fix deep ranking filter bypass and score scale fixes changelog"
     ],
+    "fix deep review findings": [
+      "fix deep review findings"
+    ],
+    "fix deep review findings acceptance criteria": [
+      "fix deep review findings acceptance criteria"
+    ],
     "fix deep review findings for causal graph channel routing changelog": [
       "fix deep review findings for causal graph channel routing changelog"
+    ],
+    "fix deep review findings goal": [
+      "fix deep review findings goal"
+    ],
+    "fix deep review findings implementation summary": [
+      "fix deep review findings implementation summary"
+    ],
+    "fix deep review findings plan": [
+      "fix deep review findings plan"
+    ],
+    "fix deep review findings tasks": [
+      "fix deep review findings tasks"
     ],
     "fix deep review p1 findings": [
       "fix deep review p1 findings"
@@ -53705,6 +53649,33 @@
     ],
     "fix eight skill and command surfacing gaps": [
       "fix eight skill and command surfacing gaps"
+    ],
+    "fix every finding of the twelve pass deep": [
+      "fix every finding of the twelve pass deep"
+    ],
+    "fix follow up review findings": [
+      "fix follow up review findings"
+    ],
+    "fix follow up review findings acceptance criteria": [
+      "fix follow up review findings acceptance criteria"
+    ],
+    "fix follow up review findings decision record": [
+      "fix follow up review findings decision record"
+    ],
+    "fix follow up review findings goal": [
+      "fix follow up review findings goal"
+    ],
+    "fix follow up review findings implementation summary": [
+      "fix follow up review findings implementation summary"
+    ],
+    "fix follow up review findings plan": [
+      "fix follow up review findings plan"
+    ],
+    "fix follow up review findings tasks": [
+      "fix follow up review findings tasks"
+    ],
+    "fix follow up review findings timeline": [
+      "fix follow up review findings timeline"
     ],
     "fix investigation deferred p2s for behavior and api changes changelog": [
       "fix investigation deferred p2s for behavior and api changes changelog"
@@ -53792,6 +53763,30 @@
     ],
     "fix script filesystem scope": [
       "fix script filesystem scope"
+    ],
+    "fix second follow up findings": [
+      "fix second follow up findings"
+    ],
+    "fix second follow up findings acceptance criteria": [
+      "fix second follow up findings acceptance criteria"
+    ],
+    "fix second follow up findings decision record": [
+      "fix second follow up findings decision record"
+    ],
+    "fix second follow up findings goal": [
+      "fix second follow up findings goal"
+    ],
+    "fix second follow up findings implementation summary": [
+      "fix second follow up findings implementation summary"
+    ],
+    "fix second follow up findings plan": [
+      "fix second follow up findings plan"
+    ],
+    "fix second follow up findings tasks": [
+      "fix second follow up findings tasks"
+    ],
+    "fix second follow up findings timeline": [
+      "fix second follow up findings timeline"
     ],
     "fix sidecar investigation findings": [
       "fix sidecar investigation findings"
@@ -54063,9 +54058,6 @@
     "flash variant max pin": [
       "flash variant max pin"
     ],
-    "flat level 3 packet": [
-      "flat Level 3 packet"
-    ],
     "flat packets beside sub tracks": [
       "flat packets beside sub-tracks"
     ],
@@ -54116,6 +54108,30 @@
     ],
     "fleet flip complete": [
       "fleet flip complete"
+    ],
+    "fleet front door stdin": [
+      "fleet front door stdin"
+    ],
+    "fleet front door stdin acceptance criteria": [
+      "fleet front door stdin acceptance criteria"
+    ],
+    "fleet front door stdin decision record": [
+      "fleet front door stdin decision record"
+    ],
+    "fleet front door stdin goal": [
+      "fleet front door stdin goal"
+    ],
+    "fleet front door stdin implementation summary": [
+      "fleet front door stdin implementation summary"
+    ],
+    "fleet front door stdin plan": [
+      "fleet front door stdin plan"
+    ],
+    "fleet front door stdin tasks": [
+      "fleet front door stdin tasks"
+    ],
+    "fleet front door stdin timeline": [
+      "fleet front door stdin timeline"
     ],
     "fleet gate closeout": [
       "fleet gate closeout"
@@ -55159,6 +55175,9 @@
     ],
     "fromscan recheck bypass": [
       "fromScan recheck bypass"
+    ],
+    "front door prompt stdin": [
+      "front door prompt stdin"
     ],
     "front page readme template": [
       "front page readme template"
@@ -62291,9 +62310,6 @@
     "hub doc runtime drift summary": [
       "hub doc runtime drift summary"
     ],
-    "hub extraction plan": [
-      "hub extraction plan"
-    ],
     "hub frontmatter strict yaml": [
       "hub frontmatter strict yaml"
     ],
@@ -63020,6 +63036,9 @@
     ],
     "id filter expected three digits": [
       "id filter expected three digits"
+    ],
+    "id noun anchor": [
+      "id noun anchor"
     ],
     "ide always shows current work": [
       "ide always shows current work"
@@ -64149,9 +64168,6 @@
     "install obsidian theme": [
       "install obsidian theme"
     ],
-    "install official orca skill": [
-      "install official orca skill"
-    ],
     "install scripts doctor research": [
       "install scripts doctor research"
     ],
@@ -64184,6 +64200,9 @@
     ],
     "installed plugins roster 24": [
       "installed plugins roster 24"
+    ],
+    "installer helper copies match": [
+      "installer helper copies match"
     ],
     "instance only opt out": [
       "instance only opt out"
@@ -64496,9 +64515,6 @@
     ],
     "invocation pattern column": [
       "invocation pattern column"
-    ],
-    "ios simulator orca": [
-      "ios simulator orca"
     ],
     "ipc bridge handshake exclusive lease": [
       "ipc bridge handshake exclusive lease"
@@ -66115,9 +66131,6 @@
     "lane source tagging": [
       "lane source tagging"
     ],
-    "lane summary first": [
-      "lane summary first"
-    ],
     "lane wave status": [
       "lane wave status"
     ],
@@ -66724,17 +66737,11 @@
     "lc 001": [
       "lc-001"
     ],
-    "lc 002": [
-      "lc-002"
-    ],
     "lc 003": [
       "lc-003"
     ],
     "lc 004": [
       "lc-004"
-    ],
-    "lc 005": [
-      "lc-005"
     ],
     "lcp image priority": [
       "lcp image priority"
@@ -67619,6 +67626,33 @@
     "levels research manifest": [
       "levels.research manifest"
     ],
+    "lexical anchor distinctive word": [
+      "lexical anchor distinctive word"
+    ],
+    "lexical anchor narrowing": [
+      "lexical anchor narrowing"
+    ],
+    "lexical anchor narrowing acceptance criteria": [
+      "lexical anchor narrowing acceptance criteria"
+    ],
+    "lexical anchor narrowing decision record": [
+      "lexical anchor narrowing decision record"
+    ],
+    "lexical anchor narrowing goal": [
+      "lexical anchor narrowing goal"
+    ],
+    "lexical anchor narrowing implementation summary": [
+      "lexical anchor narrowing implementation summary"
+    ],
+    "lexical anchor narrowing plan": [
+      "lexical anchor narrowing plan"
+    ],
+    "lexical anchor narrowing tasks": [
+      "lexical anchor narrowing tasks"
+    ],
+    "lexical anchor narrowing timeline": [
+      "lexical anchor narrowing timeline"
+    ],
     "lexical candidate pool": [
       "lexical candidate pool"
     ],
@@ -67648,6 +67682,9 @@
     ],
     "lexical normalizer fts5": [
       "lexical normalizer fts5"
+    ],
+    "lexical only confidence floor": [
+      "lexical only confidence floor"
     ],
     "lexical search under return": [
       "lexical search under return"
@@ -67753,12 +67790,6 @@
     ],
     "lifecycle redirect metadata": [
       "lifecycle redirect metadata"
-    ],
-    "lifecycle revert": [
-      "lifecycle revert"
-    ],
-    "lifecycle rollback": [
-      "lifecycle rollback"
     ],
     "lifecycle save writes continuity": [
       "lifecycle save writes continuity"
@@ -67955,9 +67986,6 @@
     "lineage worktree lane decision": [
       "lineage worktree lane decision"
     ],
-    "linear completion comment orca": [
-      "linear completion comment orca"
-    ],
     "linear design md example": [
       "Linear DESIGN.md example"
     ],
@@ -67970,9 +67998,6 @@
     "linear sequential process": [
       "linear sequential process"
     ],
-    "linear status orca": [
-      "linear status orca"
-    ],
     "linear style reference validation": [
       "Linear style reference validation"
     ],
@@ -67981,9 +68006,6 @@
     ],
     "linear task marker tasks": [
       "linear task marker tasks"
-    ],
-    "linear tickets legacy": [
-      "linear-tickets legacy"
     ],
     "link based population count": [
       "link-based population count"
@@ -70115,6 +70137,9 @@
     "mcp aside devtools 1 1 12 0": [
       "mcp-aside-devtools 1.1.12.0"
     ],
+    "mcp aside devtools 1 1 13 0": [
+      "mcp-aside-devtools 1.1.13.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -70178,6 +70203,9 @@
     "mcp aside devtools v1 1 12 0": [
       "mcp-aside-devtools v1.1.12.0"
     ],
+    "mcp aside devtools v1 1 13 0": [
+      "mcp-aside-devtools v1.1.13.0"
+    ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
     ],
@@ -70229,6 +70257,9 @@
     "mcp bladebro 1 2 0 0": [
       "mcp-bladebro 1.2.0.0"
     ],
+    "mcp bladebro 1 2 1 0": [
+      "mcp-bladebro 1.2.1.0"
+    ],
     "mcp bladebro benchmark reports": [
       "mcp-bladebro benchmark reports"
     ],
@@ -70247,6 +70278,9 @@
     "mcp bladebro v1 2 0 0": [
       "mcp-bladebro v1.2.0.0"
     ],
+    "mcp bladebro v1 2 1 0": [
+      "mcp-bladebro v1.2.1.0"
+    ],
     "mcp browser use": [
       "mcp-browser-use"
     ],
@@ -70258,6 +70292,18 @@
     ],
     "mcp browser use 1 1 1 0": [
       "mcp-browser-use 1.1.1.0"
+    ],
+    "mcp browser use 1 1 2 0": [
+      "mcp-browser-use 1.1.2.0"
+    ],
+    "mcp browser use 1 1 3 0": [
+      "mcp-browser-use 1.1.3.0"
+    ],
+    "mcp browser use 1 1 4 0": [
+      "mcp-browser-use 1.1.4.0"
+    ],
+    "mcp browser use 1 1 5 0": [
+      "mcp-browser-use 1.1.5.0"
     ],
     "mcp browser use advisor routing": [
       "mcp-browser-use advisor routing"
@@ -70303,6 +70349,18 @@
     ],
     "mcp browser use v1 1 1 0": [
       "mcp-browser-use v1.1.1.0"
+    ],
+    "mcp browser use v1 1 2 0": [
+      "mcp-browser-use v1.1.2.0"
+    ],
+    "mcp browser use v1 1 3 0": [
+      "mcp-browser-use v1.1.3.0"
+    ],
+    "mcp browser use v1 1 4 0": [
+      "mcp-browser-use v1.1.4.0"
+    ],
+    "mcp browser use v1 1 5 0": [
+      "mcp-browser-use v1.1.5.0"
     ],
     "mcp child restart needed": [
       "mcp child restart needed"
@@ -70381,6 +70439,9 @@
     ],
     "mcp chrome devtools 1 0 27 0": [
       "mcp-chrome-devtools 1.0.27.0"
+    ],
+    "mcp chrome devtools 1 0 28 0": [
+      "mcp-chrome-devtools 1.0.28.0"
     ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
@@ -70486,6 +70547,9 @@
     ],
     "mcp chrome devtools v1 0 27 0": [
       "mcp-chrome-devtools v1.0.27.0"
+    ],
+    "mcp chrome devtools v1 0 28 0": [
+      "mcp-chrome-devtools v1.0.28.0"
     ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
@@ -70811,6 +70875,9 @@
     "mcp code mode 1 0 18 0": [
       "mcp-code-mode 1.0.18.0"
     ],
+    "mcp code mode 1 0 19 0": [
+      "mcp-code-mode 1.0.19.0"
+    ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
     ],
@@ -70927,6 +70994,9 @@
     ],
     "mcp code mode v1 0 18 0": [
       "mcp-code-mode v1.0.18.0"
+    ],
+    "mcp code mode v1 0 19 0": [
+      "mcp-code-mode v1.0.19.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -71761,21 +71831,6 @@
     "mcp obsidian validation fixes": [
       "mcp-obsidian validation fixes"
     ],
-    "mcp orca cli": [
-      "mcp-orca-cli"
-    ],
-    "mcp orca cli migration": [
-      "mcp-orca-cli migration"
-    ],
-    "mcp orca closure gate": [
-      "mcp-orca closure gate"
-    ],
-    "mcp orca handoff": [
-      "mcp-orca handoff"
-    ],
-    "mcp orca verification checklist": [
-      "mcp-orca verification checklist"
-    ],
     "mcp prompt command listed": [
       "mcp prompt command listed"
     ],
@@ -72164,6 +72219,12 @@
     "mcp tooling 1 10 0 0": [
       "mcp-tooling 1.10.0.0"
     ],
+    "mcp tooling 1 10 1 0": [
+      "mcp-tooling 1.10.1.0"
+    ],
+    "mcp tooling 1 10 2 0": [
+      "mcp-tooling 1.10.2.0"
+    ],
     "mcp tooling 1 2 0 0": [
       "mcp-tooling 1.2.0.0"
     ],
@@ -72350,17 +72411,14 @@
     "mcp tooling hub capabilities": [
       "mcp-tooling hub capabilities"
     ],
-    "mcp tooling hub integration": [
-      "mcp-tooling hub integration"
-    ],
     "mcp tooling hub leaf manifest obsidian": [
       "mcp-tooling hub leaf manifest obsidian"
     ],
     "mcp tooling hub router scoring": [
       "mcp-tooling hub-router scoring"
     ],
-    "mcp tooling nested packet research": [
-      "mcp-tooling nested packet research"
+    "mcp tooling orca boundary removed": [
+      "mcp-tooling orca boundary removed"
     ],
     "mcp tooling readme moves to the purpose first narrative voice": [
       "mcp-tooling README moves to the purpose-first narrative voice"
@@ -72394,6 +72452,12 @@
     ],
     "mcp tooling v1 10 0 0": [
       "mcp-tooling v1.10.0.0"
+    ],
+    "mcp tooling v1 10 1 0": [
+      "mcp-tooling v1.10.1.0"
+    ],
+    "mcp tooling v1 10 2 0": [
+      "mcp-tooling v1.10.2.0"
     ],
     "mcp tooling v1 2 0 0": [
       "mcp-tooling v1.2.0.0"
@@ -77378,9 +77442,6 @@
     "mutating build workflow": [
       "mutating build workflow"
     ],
-    "mutation and ownership boundaries": [
-      "mutation and ownership boundaries"
-    ],
     "mutation cases": [
       "mutation cases"
     ],
@@ -77572,6 +77633,9 @@
     ],
     "narrative skill readme": [
       "narrative skill readme"
+    ],
+    "narrow the advisor s shared lexical anchor": [
+      "narrow the advisor s shared lexical anchor"
     ],
     "narrow the alignment drift guard so it skips": [
       "narrow the alignment drift guard so it skips"
@@ -79612,9 +79676,6 @@
     "official credential stored": [
       "official credential stored"
     ],
-    "official linear tickets skill": [
-      "official linear-tickets skill"
-    ],
     "official notion mcp install": [
       "official notion mcp install"
     ],
@@ -79638,36 +79699,6 @@
     ],
     "official obsidian mcp install": [
       "official obsidian mcp install"
-    ],
-    "official orca android skill": [
-      "official orca android skill"
-    ],
-    "official orca computer skill": [
-      "official orca computer skill"
-    ],
-    "official orca emulator skill": [
-      "official orca emulator skill"
-    ],
-    "official orca linear skill": [
-      "official orca linear skill"
-    ],
-    "official orca skill layer": [
-      "official orca skill layer"
-    ],
-    "official orca skills": [
-      "official orca skills"
-    ],
-    "official orca skills consolidation": [
-      "official Orca skills consolidation"
-    ],
-    "official orca skills embedding plan": [
-      "official Orca skills embedding plan"
-    ],
-    "official orca skills inventory": [
-      "official orca skills inventory"
-    ],
-    "official orca skills package": [
-      "official orca skills package"
     ],
     "offline": [
       "--offline"
@@ -80109,6 +80140,9 @@
     ],
     "one shot embedding retry script": [
       "one-shot embedding retry script"
+    ],
+    "one skill graph scan": [
+      "one skill graph scan"
     ],
     "one status vocabulary": [
       "one status vocabulary"
@@ -81568,248 +81602,11 @@
     "or r 01 election race investigation": [
       "OR-R-01 election race investigation"
     ],
-    "orca accessibility tree clicks": [
-      "orca accessibility tree clicks"
-    ],
-    "orca archive hook": [
-      "orca archive hook"
-    ],
-    "orca archive hook failed": [
-      "orca archive hook failed"
-    ],
-    "orca archive hook gate": [
-      "orca archive hook gate"
-    ],
-    "orca artifacts": [
-      "orca artifacts"
-    ],
-    "orca bare token routing": [
-      "orca bare token routing"
-    ],
-    "orca browser commands": [
-      "orca browser commands"
-    ],
-    "orca browser host unavailable": [
-      "orca browser host unavailable"
-    ],
-    "orca browser safety": [
-      "orca browser safety"
-    ],
-    "orca cli evidence": [
-      "Orca CLI evidence"
-    ],
-    "orca cli guide authority": [
-      "orca-cli guide authority"
-    ],
-    "orca cli integration": [
-      "Orca CLI integration"
-    ],
     "orca cli moves to a standalone skill": [
       "Orca CLI Moves to a Standalone Skill"
     ],
-    "orca cli resolution": [
-      "orca cli resolution"
-    ],
-    "orca cli skill": [
-      "orca-cli skill"
-    ],
-    "orca cli skill index": [
-      "orca cli skill index"
-    ],
-    "orca cli surface": [
-      "orca cli surface"
-    ],
-    "orca cli technical approach": [
-      "Orca CLI technical approach"
-    ],
     "orca cli workflow bridge": [
       "Orca CLI workflow bridge"
-    ],
-    "orca command failed": [
-      "orca command failed"
-    ],
-    "orca command families": [
-      "orca command families"
-    ],
-    "orca command reference": [
-      "orca command reference"
-    ],
-    "orca computer use": [
-      "orca computer use"
-    ],
-    "orca coordinator loop": [
-      "orca coordinator loop"
-    ],
-    "orca discovery stub": [
-      "orca discovery stub"
-    ],
-    "orca embedded browser": [
-      "orca embedded browser"
-    ],
-    "orca emulator": [
-      "orca emulator"
-    ],
-    "orca emulator android": [
-      "orca emulator android"
-    ],
-    "orca environmentrecipes": [
-      "orca environmentRecipes"
-    ],
-    "orca evidence criteria": [
-      "Orca evidence criteria"
-    ],
-    "orca executable resolution": [
-      "orca executable resolution"
-    ],
-    "orca gui control": [
-      "orca gui control"
-    ],
-    "orca handoff": [
-      "Orca handoff"
-    ],
-    "orca handoff receipt": [
-      "orca handoff receipt"
-    ],
-    "orca hub routing": [
-      "Orca hub routing"
-    ],
-    "orca ide screen reader resolution": [
-      "orca-ide screen reader resolution"
-    ],
-    "orca implementation tasks": [
-      "Orca implementation tasks"
-    ],
-    "orca linear": [
-      "orca linear"
-    ],
-    "orca linear legacy name": [
-      "orca linear legacy name"
-    ],
-    "orca linear ticket": [
-      "orca linear ticket"
-    ],
-    "orca linear tickets": [
-      "orca linear tickets"
-    ],
-    "orca mutation boundary": [
-      "orca mutation boundary"
-    ],
-    "orca official skill provenance": [
-      "orca official skill provenance"
-    ],
-    "orca orchestration": [
-      "orca orchestration"
-    ],
-    "orca packet decision": [
-      "Orca packet decision"
-    ],
-    "orca per workspace env": [
-      "orca per-workspace env"
-    ],
-    "orca per workspace environment recipe": [
-      "orca per workspace environment recipe"
-    ],
-    "orca publishing permissions": [
-      "orca publishing permissions"
-    ],
-    "orca qualified routing vocabulary": [
-      "orca-qualified routing vocabulary"
-    ],
-    "orca qualified worktree signals": [
-      "Orca-qualified worktree signals"
-    ],
-    "orca recipe setup": [
-      "orca recipe setup"
-    ],
-    "orca research": [
-      "orca research"
-    ],
-    "orca review resource map": [
-      "orca review resource map"
-    ],
-    "orca routing decision": [
-      "Orca routing decision"
-    ],
-    "orca routing research": [
-      "Orca routing research"
-    ],
-    "orca routing task breakdown": [
-      "Orca routing task breakdown"
-    ],
-    "orca routing verification": [
-      "Orca routing verification"
-    ],
-    "orca runtime": [
-      "orca runtime"
-    ],
-    "orca session": [
-      "orca session"
-    ],
-    "orca simulator evidence": [
-      "orca simulator evidence"
-    ],
-    "orca skill boundaries": [
-      "orca skill boundaries"
-    ],
-    "orca skill snapshot provenance": [
-      "orca skill snapshot provenance"
-    ],
-    "orca skill snapshot release revision": [
-      "orca skill snapshot release revision"
-    ],
-    "orca skills overview": [
-      "orca skills overview"
-    ],
-    "orca source inventory": [
-      "Orca source inventory"
-    ],
-    "orca specification acceptance": [
-      "Orca specification acceptance"
-    ],
-    "orca specification summary": [
-      "Orca specification summary"
-    ],
-    "orca task dag": [
-      "orca task dag"
-    ],
-    "orca terminal commands": [
-      "orca terminal commands"
-    ],
-    "orca terminal handoff": [
-      "orca terminal handoff"
-    ],
-    "orca terminal receipt": [
-      "orca terminal receipt"
-    ],
-    "orca troubleshooting": [
-      "orca troubleshooting"
-    ],
-    "orca untrusted content": [
-      "orca untrusted content"
-    ],
-    "orca validation evidence": [
-      "Orca validation evidence"
-    ],
-    "orca versioned preflight": [
-      "orca versioned preflight"
-    ],
-    "orca vm recipe doctor": [
-      "orca vm recipe doctor"
-    ],
-    "orca worker done": [
-      "orca worker done"
-    ],
-    "orca workflow packet": [
-      "Orca workflow packet"
-    ],
-    "orca worktree": [
-      "orca worktree"
-    ],
-    "orca worktree all scoping": [
-      "orca worktree all scoping"
-    ],
-    "orca worktree commands": [
-      "orca worktree commands"
     ],
     "orchestrate agent rule 7": [
       "orchestrate agent rule 7"
@@ -82684,6 +82481,9 @@
     "overview renumbering": [
       "overview renumbering"
     ],
+    "own all doctor commands phase parent spec": [
+      "own all doctor commands phase parent spec"
+    ],
     "own chrome attach routing lift": [
       "own chrome attach routing lift"
     ],
@@ -82735,8 +82535,26 @@
     "ownership hierarchy": [
       "ownership hierarchy"
     ],
+    "ownership transfer": [
+      "ownership transfer"
+    ],
+    "ownership transfer acceptance criteria": [
+      "ownership transfer acceptance criteria"
+    ],
+    "ownership transfer implementation summary": [
+      "ownership transfer implementation summary"
+    ],
+    "ownership transfer plan": [
+      "ownership transfer plan"
+    ],
+    "ownership transfer tasks": [
+      "ownership transfer tasks"
+    ],
     "owning mode for frontmatter": [
       "owning mode for frontmatter"
+    ],
+    "owns every doctor command": [
+      "owns every doctor command"
     ],
     "ox alpha routes": [
       "ox alpha routes"
@@ -82923,9 +82741,6 @@
     ],
     "package boundary module format": [
       "package boundary module format"
-    ],
-    "package digest orca skill": [
-      "package digest orca skill"
     ],
     "package json dependency repair": [
       "package.json dependency repair"
@@ -83532,6 +83347,9 @@
     ],
     "parent hub scaffold": [
       "parent hub scaffold"
+    ],
+    "parent hub scaffold prompt stdin": [
+      "parent hub scaffold prompt stdin"
     ],
     "parent hub task list": [
       "parent hub task list"
@@ -85188,6 +85006,9 @@
     "phase 1 model effort atomic replay": [
       "phase 1 model effort atomic replay"
     ],
+    "phase 1 ownership transfer": [
+      "phase 1 ownership transfer"
+    ],
     "phase 1 package strict": [
       "phase 1 package strict"
     ],
@@ -85542,9 +85363,6 @@
     "phase 12 advisor suite parallel trial": [
       "phase 12 advisor suite parallel trial"
     ],
-    "phase 12 align cli orca": [
-      "phase 12 align cli orca"
-    ],
     "phase 12 alignment fixes": [
       "phase 12 alignment fixes"
     ],
@@ -85758,6 +85576,9 @@
     "phase 14 doctor and ci gate honesty": [
       "phase 14 doctor and ci gate honesty"
     ],
+    "phase 14 fix deep review findings": [
+      "phase 14 fix deep review findings"
+    ],
     "phase 14 gate index and deletions": [
       "phase 14 gate index and deletions"
     ],
@@ -85848,6 +85669,9 @@
     "phase 15 dsh hook parity": [
       "phase 15 dsh hook parity"
     ],
+    "phase 15 fix follow up review findings": [
+      "phase 15 fix follow up review findings"
+    ],
     "phase 15 freshness strict content": [
       "phase 15 freshness strict content"
     ],
@@ -85929,6 +85753,9 @@
     "phase 16 ended goal mark match": [
       "phase 16 ended goal mark match"
     ],
+    "phase 16 fix second follow up findings": [
+      "phase 16 fix second follow up findings"
+    ],
     "phase 16 follow up fix sweep": [
       "phase 16 follow up fix sweep"
     ],
@@ -85959,6 +85786,9 @@
     "phase 16 stale docs": [
       "phase 16 stale docs"
     ],
+    "phase 16 stop hook auto record": [
+      "phase 16 stop hook auto record"
+    ],
     "phase 16 tasks": [
       "phase 16 tasks"
     ],
@@ -85979,6 +85809,9 @@
     ],
     "phase 17 dsh rc3 repin": [
       "phase 17 dsh rc3 repin"
+    ],
+    "phase 17 fleet front door stdin": [
+      "phase 17 fleet front door stdin"
     ],
     "phase 17 gold checker": [
       "phase 17 gold checker"
@@ -86075,6 +85908,9 @@
     ],
     "phase 18 tasks": [
       "phase 18 tasks"
+    ],
+    "phase 18 triage gen4 p2 findings": [
+      "phase 18 triage gen4 p2 findings"
     ],
     "phase 18 vibe compaction context": [
       "phase 18 vibe compaction context"
@@ -86288,6 +86124,9 @@
     ],
     "phase 2 pins imports dual export": [
       "phase 2 pins imports dual export"
+    ],
+    "phase 2 playbook consolidation": [
+      "phase 2 playbook consolidation"
     ],
     "phase 2 playbook path repair": [
       "phase 2 playbook path repair"
@@ -86724,6 +86563,9 @@
     "phase 3 agent mirror checker relocation": [
       "phase 3 agent mirror checker relocation"
     ],
+    "phase 3 alignment fixes": [
+      "phase 3 alignment fixes"
+    ],
     "phase 3 cache optimizer": [
       "phase 3 cache optimizer"
     ],
@@ -86744,9 +86586,6 @@
     ],
     "phase 3 cli deepseek harness skill packet": [
       "phase 3 cli deepseek harness skill packet"
-    ],
-    "phase 3 cli orca": [
-      "phase 3 cli orca"
     ],
     "phase 3 closure gate": [
       "phase 3 closure gate"
@@ -90612,6 +90451,21 @@
     "playbook common pitfalls": [
       "playbook common pitfalls"
     ],
+    "playbook consolidation": [
+      "playbook consolidation"
+    ],
+    "playbook consolidation acceptance criteria": [
+      "playbook consolidation acceptance criteria"
+    ],
+    "playbook consolidation implementation summary": [
+      "playbook consolidation implementation summary"
+    ],
+    "playbook consolidation plan": [
+      "playbook consolidation plan"
+    ],
+    "playbook consolidation tasks": [
+      "playbook consolidation tasks"
+    ],
     "playbook contract regression proof": [
       "playbook contract regression proof"
     ],
@@ -93552,6 +93406,18 @@
     "provision command for a fresh clone": [
       "provision command for a fresh clone"
     ],
+    "provision dev dependencies": [
+      "provision dev dependencies"
+    ],
+    "provision dev dependencies implementation summary": [
+      "provision dev dependencies implementation summary"
+    ],
+    "provision dev dependencies plan": [
+      "provision dev dependencies plan"
+    ],
+    "provision dev dependencies tasks": [
+      "provision dev dependencies tasks"
+    ],
     "provision private command links": [
       "provision private command links"
     ],
@@ -93566,6 +93432,21 @@
     ],
     "provision private commands by form": [
       "provision private commands by form"
+    ],
+    "provision skill graph database": [
+      "provision skill graph database"
+    ],
+    "provision skill graph database acceptance criteria": [
+      "provision skill graph database acceptance criteria"
+    ],
+    "provision skill graph database implementation summary": [
+      "provision skill graph database implementation summary"
+    ],
+    "provision skill graph database plan": [
+      "provision skill graph database plan"
+    ],
+    "provision skill graph database tasks": [
+      "provision skill graph database tasks"
     ],
     "provision stamp fingerprint before build": [
       "provision stamp fingerprint before build"
@@ -96472,20 +96353,11 @@
     "reddit post framing decision": [
       "reddit post framing decision"
     ],
-    "redirect from": [
-      "redirect_from"
-    ],
-    "redirect from redirect to": [
-      "redirect_from redirect_to"
-    ],
     "redirect metadata": [
       "redirect metadata"
     ],
     "redirect table rebuild": [
       "redirect table rebuild"
-    ],
-    "redirect to": [
-      "redirect_to"
     ],
     "redispatch once": [
       "redispatch once"
@@ -101568,6 +101440,9 @@
     "resolvedconfidencethreshold helper": [
       "resolvedConfidenceThreshold helper"
     ],
+    "resolvedfindings closure probe": [
+      "resolvedFindings closure probe"
+    ],
     "resolveipcsocketpath ancestor realpath": [
       "resolveIpcSocketPath ancestor realpath"
     ],
@@ -104840,9 +104715,6 @@
     "router derived file regeneration criteria": [
       "router derived file regeneration criteria"
     ],
-    "router details move": [
-      "router details move"
-    ],
     "router edit freshness": [
       "router edit freshness"
     ],
@@ -105956,6 +105828,9 @@
     ],
     "run tests mjs process group kill": [
       "run-tests.mjs process group kill"
+    ],
+    "run the advisor suite on hook only changes": [
+      "run the advisor suite on hook only changes"
     ],
     "run the quality gate": [
       "run the quality gate"
@@ -107583,9 +107458,6 @@
     "schema refinement cross field": [
       "schema refinement cross-field"
     ],
-    "schema rollback": [
-      "schema rollback"
-    ],
     "schema v13 document metadata": [
       "schema v13 document metadata"
     ],
@@ -107744,6 +107616,9 @@
     ],
     "scoped search under returning fix": [
       "scoped search under-returning fix"
+    ],
+    "scoped skill graph scan delete": [
+      "scoped skill graph scan delete"
     ],
     "scoped staging discipline": [
       "scoped staging discipline"
@@ -111891,6 +111766,9 @@
     "sk code 3 12 4 0": [
       "sk-code 3.12.4.0"
     ],
+    "sk code 3 12 5 0": [
+      "sk-code 3.12.5.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -114141,6 +114019,9 @@
     "sk code v3 12 4 0": [
       "sk-code v3.12.4.0"
     ],
+    "sk code v3 12 5 0": [
+      "sk-code v3.12.5.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -115823,6 +115704,9 @@
     "sk create skill 1 16 0 0": [
       "sk-create-skill 1.16.0.0"
     ],
+    "sk create skill 1 16 1 0": [
+      "sk-create-skill 1.16.1.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -115969,6 +115853,9 @@
     ],
     "sk create skill v1 16 0 0": [
       "sk-create-skill v1.16.0.0"
+    ],
+    "sk create skill v1 16 1 0": [
+      "sk-create-skill v1.16.1.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -116176,6 +116063,9 @@
     ],
     "sk design 3 0 2 0": [
       "sk-design 3.0.2.0"
+    ],
+    "sk design 3 0 3 0": [
+      "sk-design 3.0.3.0"
     ],
     "sk design advisor identity": [
       "sk-design advisor identity"
@@ -116871,6 +116761,9 @@
     "sk design v3 0 2 0": [
       "sk-design v3.0.2.0"
     ],
+    "sk design v3 0 3 0": [
+      "sk-design v3.0.3.0"
+    ],
     "sk doc": [
       "sk doc"
     ],
@@ -116900,6 +116793,9 @@
     ],
     "sk doc 2 10 0 0": [
       "sk-doc 2.10.0.0"
+    ],
+    "sk doc 2 10 1 0": [
+      "sk-doc 2.10.1.0"
     ],
     "sk doc 2 2 0 0": [
       "sk-doc 2.2.0.0"
@@ -117438,6 +117334,9 @@
     "sk doc v2 10 0 0": [
       "sk-doc v2.10.0.0"
     ],
+    "sk doc v2 10 1 0": [
+      "sk-doc v2.10.1.0"
+    ],
     "sk doc v2 2 0 0": [
       "sk-doc v2.2.0.0"
     ],
@@ -117726,6 +117625,15 @@
     ],
     "sk git 1 11 12 0": [
       "sk-git 1.11.12.0"
+    ],
+    "sk git 1 11 13 0": [
+      "sk-git 1.11.13.0"
+    ],
+    "sk git 1 11 14 0": [
+      "sk-git 1.11.14.0"
+    ],
+    "sk git 1 11 15 0": [
+      "sk-git 1.11.15.0"
     ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
@@ -118053,6 +117961,15 @@
     ],
     "sk git v1 11 12 0": [
       "sk-git v1.11.12.0"
+    ],
+    "sk git v1 11 13 0": [
+      "sk-git v1.11.13.0"
+    ],
+    "sk git v1 11 14 0": [
+      "sk-git v1.11.14.0"
+    ],
+    "sk git v1 11 15 0": [
+      "sk-git v1.11.15.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -119713,6 +119630,9 @@
     "skill changelog retrofit": [
       "skill changelog retrofit"
     ],
+    "skill changelog retrofit operator decisions": [
+      "skill changelog retrofit operator decisions"
+    ],
     "skill contribution certificate events": [
       "skill contribution certificate events"
     ],
@@ -120533,9 +120453,6 @@
     ],
     "skill smart router": [
       "skill smart router"
-    ],
-    "skill supersession": [
-      "skill supersession"
     ],
     "skill surface evergreen audit": [
       "skill surface evergreen audit"
@@ -121632,6 +121549,9 @@
     ],
     "socket name assertion": [
       "socket name assertion"
+    ],
+    "socket ownership check": [
+      "socket ownership check"
     ],
     "socket perimeter hardening sun path guard": [
       "socket perimeter hardening sun_path guard"
@@ -125241,9 +125161,6 @@
     "standalone mcp with legacy bridge scaffold": [
       "standalone-mcp-with-legacy-bridge scaffold"
     ],
-    "standalone orca cli skill": [
-      "standalone Orca CLI skill"
-    ],
     "standalone save second writer guard": [
       "standalone save second writer guard"
     ],
@@ -125838,6 +125755,21 @@
     ],
     "stop hook advisory": [
       "stop hook advisory"
+    ],
+    "stop hook auto record": [
+      "stop hook auto record"
+    ],
+    "stop hook auto record acceptance criteria": [
+      "stop hook auto record acceptance criteria"
+    ],
+    "stop hook auto record implementation summary": [
+      "stop hook auto record implementation summary"
+    ],
+    "stop hook auto record plan": [
+      "stop hook auto record plan"
+    ],
+    "stop hook auto record tasks": [
+      "stop hook auto record tasks"
     ],
     "stop hook metadata handoff": [
       "stop hook metadata handoff"
@@ -126920,26 +126852,14 @@
     "superseding decision record deepseek": [
       "superseding decision record deepseek"
     ],
-    "supersession": [
-      "supersession"
-    ],
     "supersession contradicts caused invalidation": [
       "supersession contradicts caused invalidation"
     ],
     "supersession contradicts over semantic": [
       "supersession contradicts over semantic"
     ],
-    "supersession rollback": [
-      "supersession rollback"
-    ],
-    "supersession routing": [
-      "supersession routing"
-    ],
     "superset notify hook routing fix": [
       "superset-notify hook routing fix"
-    ],
-    "supervised orca workers": [
-      "supervised orca workers"
     ],
     "supplemental navigation layer": [
       "supplemental navigation layer"
@@ -127815,6 +127735,9 @@
     "system deep loop 2 2 0 0": [
       "system-deep-loop 2.2.0.0"
     ],
+    "system deep loop 2 2 1 0": [
+      "system-deep-loop 2.2.1.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -128081,6 +128004,9 @@
     ],
     "system deep loop v2 2 0 0": [
       "system-deep-loop v2.2.0.0"
+    ],
+    "system deep loop v2 2 1 0": [
+      "system-deep-loop v2.2.1.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -128360,6 +128286,18 @@
     ],
     "system skill advisor 2 0 1 0": [
       "system-skill-advisor 2.0.1.0"
+    ],
+    "system skill advisor 2 0 2 0": [
+      "system-skill-advisor 2.0.2.0"
+    ],
+    "system skill advisor 2 0 3 0": [
+      "system-skill-advisor 2.0.3.0"
+    ],
+    "system skill advisor 2 0 4 0": [
+      "system-skill-advisor 2.0.4.0"
+    ],
+    "system skill advisor 2 0 5 0": [
+      "system-skill-advisor 2.0.5.0"
     ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
@@ -128721,6 +128659,18 @@
     "system skill advisor v2 0 1 0": [
       "system-skill-advisor v2.0.1.0"
     ],
+    "system skill advisor v2 0 2 0": [
+      "system-skill-advisor v2.0.2.0"
+    ],
+    "system skill advisor v2 0 3 0": [
+      "system-skill-advisor v2.0.3.0"
+    ],
+    "system skill advisor v2 0 4 0": [
+      "system-skill-advisor v2.0.4.0"
+    ],
+    "system skill advisor v2 0 5 0": [
+      "system-skill-advisor v2.0.5.0"
+    ],
     "system skilled bots first build": [
       "system-skilled-bots first build"
     ],
@@ -128786,6 +128736,9 @@
     ],
     "system skilled doctor manual testing": [
       "system-skilled-doctor manual testing"
+    ],
+    "system skilled doctor owns every doctor command": [
+      "system-skilled-doctor owns every doctor command"
     ],
     "system skilled doctor playbook": [
       "system-skilled-doctor playbook"
@@ -129455,6 +129408,9 @@
     ],
     "system spec kit mcp sidecar research": [
       "system-spec-kit mcp sidecar research"
+    ],
+    "system spec kit missing dev dependencies in worktree": [
+      "system-spec-kit missing dev dependencies in worktree"
     ],
     "system spec kit own changelog": [
       "system-spec-kit own changelog"
@@ -130265,6 +130221,9 @@
     ],
     "task intent backend routing schema": [
       "task-intent backend-routing schema"
+    ],
+    "task intent floor anchor": [
+      "task intent floor anchor"
     ],
     "task ledger": [
       "task ledger"
@@ -132936,6 +132895,30 @@
     "triage and fix the readme reference and derived": [
       "triage and fix the readme reference and derived"
     ],
+    "triage gen4 p2 findings": [
+      "triage gen4 p2 findings"
+    ],
+    "triage gen4 p2 findings acceptance criteria": [
+      "triage gen4 p2 findings acceptance criteria"
+    ],
+    "triage gen4 p2 findings decision record": [
+      "triage gen4 p2 findings decision record"
+    ],
+    "triage gen4 p2 findings goal": [
+      "triage gen4 p2 findings goal"
+    ],
+    "triage gen4 p2 findings implementation summary": [
+      "triage gen4 p2 findings implementation summary"
+    ],
+    "triage gen4 p2 findings plan": [
+      "triage gen4 p2 findings plan"
+    ],
+    "triage gen4 p2 findings tasks": [
+      "triage gen4 p2 findings tasks"
+    ],
+    "triage gen4 p2 findings timeline": [
+      "triage gen4 p2 findings timeline"
+    ],
     "trial log jsonl 74 rows": [
       "trial log jsonl 74 rows"
     ],
@@ -135084,9 +135067,6 @@
     ],
     "v1 search pipeline": [
       "v1 search pipeline"
-    ],
-    "v1 v2 additive": [
-      "v1 v2 additive"
     ],
     "v2 1 1 0 release notes": [
       "v2.1.1.0 release notes"
@@ -138641,9 +138621,6 @@
     "which obsidian surface": [
       "which obsidian surface"
     ],
-    "which orca skill owns this surface": [
-      "which orca skill owns this surface"
-    ],
     "which packet owns a hook feature": [
       "which packet owns a hook feature"
     ],
@@ -138975,9 +138952,6 @@
       "workflow owner guard",
       "workflow-owner guard"
     ],
-    "workflow packet acceptance": [
-      "workflow packet acceptance"
-    ],
     "workflow path filters": [
       "workflow path filters"
     ],
@@ -139146,6 +139120,9 @@
     "worktree 046 removal": [
       "worktree 046 removal"
     ],
+    "worktree advisor skill graph database": [
+      "worktree advisor skill-graph database"
+    ],
     "worktree automation plan": [
       "worktree automation plan"
     ],
@@ -139211,6 +139188,9 @@
     ],
     "worktree commit finish phases": [
       "worktree commit finish phases"
+    ],
+    "worktree create not idempotent": [
+      "worktree create not idempotent"
     ],
     "worktree creation checklist": [
       "worktree creation checklist"
@@ -139344,8 +139324,14 @@
     "worktree provisioning drift": [
       "worktree provisioning drift"
     ],
+    "worktree provisioning nested lockfile": [
+      "worktree provisioning nested lockfile"
+    ],
     "worktree provisioning plan": [
       "worktree provisioning plan"
+    ],
+    "worktree provisioning skips nested lockfile package": [
+      "worktree provisioning skips nested lockfile package"
     ],
     "worktree provisioning skips sk doc": [
       "worktree provisioning skips sk-doc"

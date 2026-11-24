@@ -277,7 +277,10 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);
     expect(tsCorrect).toBeGreaterThanOrEqual(95);
-    expect(tsUnknown).toBeLessThanOrEqual(13);
+    // 13 -> 14: the task-intent confidence floor now needs the prompt to name the
+    // skill, so rr-iter3-069 no longer answers mcp-tooling on shared words alone
+    // and abstains. That row was already wrong, and no correct answer moved.
+    expect(tsUnknown).toBeLessThanOrEqual(14);
     expect(goldNoneFalseFire).toBeLessThanOrEqual(10);
     // 28 → 27 after the labeled corpus shrank 197 → 193 (4 mcp-figma
     // rows removed). The stratified holdout's 40-row sample shifted strata; net accuracy

@@ -147,7 +147,7 @@
       "README.md",
       "leaf-manifest.config.json"
     ],
-    "causal_summary": "Standalone skill that owns the doctor commands for putting Skilled into a project, checking it there and keeping it current; each command keeps its own workflow under .skilled/commands/doctor and is credited to this skill through its skill_agent tag.",
+    "causal_summary": "Standalone skill that owns every doctor command, for putting Skilled into a project, checking it there, keeping it current and checking each skill's own setup; each command keeps its own workflow under .skilled/commands/doctor and is credited to this skill through its skill_agent tag.",
     "created_at": "2026-11-06T07:28:03.454659+00:00",
     "last_updated_at": "2026-11-06T07:30:00.221Z"
   },

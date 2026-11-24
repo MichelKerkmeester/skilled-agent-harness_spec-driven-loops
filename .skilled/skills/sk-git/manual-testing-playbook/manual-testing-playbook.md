@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.5.6.0
+version: 1.5.7.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -851,7 +851,7 @@ Prompt: `As a git safety reviewer, run the sk-git preflight advisory against a d
 
 ## 15. DOCTOR COMMAND SCENARIOS
 
-The `/doctor:git` scenarios now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
+The `/doctor:git` scenarios now live in the [system-skilled-doctor playbook](../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md).
 
 ---
 

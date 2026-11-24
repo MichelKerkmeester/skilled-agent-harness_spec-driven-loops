@@ -1,1 +1,1 @@
-The 8 commits main..HEAD on this branch that build the browser-use parent hub: the hub scaffold, the move of the Chrome DevTools and Aside modes into the hub, the Bladebro stealth-browser mode, advisor routing at both stages, nested sub-track support in system-spec-kit, and the end-to-end verification. Pure renames of moved spec packets are out of scope; review the edited and added files.
+every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change

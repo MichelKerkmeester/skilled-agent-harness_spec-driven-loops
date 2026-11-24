@@ -30,7 +30,6 @@ compat/
 +-- advisor-status-reader.ts   # Reads advisor status payloads
 +-- contract.ts                # Compatibility contract helpers
 +-- daemon-probe.ts            # Daemon availability probe
-+-- redirect-metadata.ts       # Redirect metadata normalization
 `-- README.md
 ```
 
@@ -43,7 +42,6 @@ compat/
 | `advisor-status-reader.ts` | Reads and shapes advisor status data. |
 | `contract.ts` | Holds compatibility contract helpers. |
 | `daemon-probe.ts` | Checks advisor daemon availability. |
-| `redirect-metadata.ts` | Normalizes lifecycle redirect metadata. |
 
 ---
 
@@ -72,7 +70,6 @@ status or compatibility request
 |---|---|---|
 | `advisor-status-reader.ts` | TypeScript module | Reads advisor status state. |
 | `daemon-probe.ts` | TypeScript module | Probes daemon availability. |
-| `redirect-metadata.ts` | TypeScript module | Normalizes redirect metadata. |
 | `contract.ts` | TypeScript module | Compatibility contract helpers. |
 
 ---

@@ -3,7 +3,8 @@
 // ───────────────────────────────────────────────────────────────
 
 import type { AdvisorProjection, LaneMatch } from '../types.js';
-import { matchesPhraseBoundary, scoreTokenOverlap, tokenizePrompt } from '../text.js';
+import { SCORING_CALIBRATION } from '../scoring-constants.js';
+import { matchesPhraseBoundary, scoreTokenOverlap, tokenize, tokenizePrompt } from '../text.js';
 import { scoreBm25LexicalShadowLane, type AdvisorBm25Match } from './bm25.js';
 
 const SYNONYMS: Readonly<Record<string, readonly string[]>> = {
@@ -27,7 +28,7 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'sk-doc': ['readme', 'feature catalog', 'playbook', 'taxonomy', 'documentation', 'docs', 'manual testing'],
   'system-spec-kit': ['spec folder', 'packet', 'plan', 'tasks', 'checklist', 'memory save', 'handover', 'implementation summary', 'corpus'],
   'system-deep-loop': ['deep research', 'deep-research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage', 'deep review', 'deep-review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review'],
-  'mcp-browser-use': ['chrome devtools', 'har', 'console errors', 'staging'],
+  'mcp-browser-use': ['chrome devtools', 'console errors'],
   'sk-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],
   // 'browser' and 'layout' were removed as bare tokens: a single word here grants
@@ -55,6 +56,68 @@ function expandedTokens(prompt: string): string[] {
   return [...expanded];
 }
 
+type ProjectedSkill = AdvisorProjection['skills'][number];
+
+function lexicalCandidates(skill: ProjectedSkill): string[] {
+  return [
+    skill.id.replace(/-/g, ' '),
+    skill.name,
+    skill.description,
+    ...skill.domains,
+    ...skill.intentSignals,
+    ...skill.keywords,
+  ];
+}
+
+const vocabularyBySkill = new WeakMap<ProjectedSkill, Set<string>>();
+
+/** The words a skill's own metadata holds, which the lexical lane scores against. */
+export function lexicalVocabulary(skill: ProjectedSkill): Set<string> {
+  const cached = vocabularyBySkill.get(skill);
+  if (cached) return cached;
+  const vocabulary = new Set(lexicalCandidates(skill).flatMap((entry) => tokenize(entry)));
+  vocabularyBySkill.set(skill, vocabulary);
+  return vocabulary;
+}
+
+const haystackBySkill = new WeakMap<ProjectedSkill, string>();
+
+/** The skill's lexical text as one lowercase string, which the lane's evidence matches within. */
+export function lexicalHaystack(skill: ProjectedSkill): string {
+  const cached = haystackBySkill.get(skill);
+  if (cached !== undefined) return cached;
+  const haystack = lexicalCandidates(skill).join(' ').toLowerCase();
+  haystackBySkill.set(skill, haystack);
+  return haystack;
+}
+
+const sharingSkillsByProjection = new WeakMap<AdvisorProjection, Map<string, number>>();
+
+function sharingSkillCounts(projection: AdvisorProjection): Map<string, number> {
+  const cached = sharingSkillsByProjection.get(projection);
+  if (cached) return cached;
+  const counts = new Map<string, number>();
+  for (const skill of projection.skills) {
+    if (skill.kind !== 'skill') continue;
+    for (const token of lexicalVocabulary(skill)) counts.set(token, (counts.get(token) ?? 0) + 1);
+  }
+  sharingSkillsByProjection.set(projection, counts);
+  return counts;
+}
+
+// A lexical score names a skill for the confidence floor only when the prompt
+// holds one of the skill's words that few skills list. Synonyms widen recall for
+// ranking, and "run", "check" or "mode" sit in many skills' metadata, so a prompt
+// carrying only those names none of them. Command entries are left out of the
+// count, because each one repeats its owner's words.
+export function promptHoldsDistinctiveWord(prompt: string, skill: ProjectedSkill, projection: AdvisorProjection): boolean {
+  const counts = sharingSkillCounts(projection);
+  const skillCount = projection.skills.filter((entry) => entry.kind === 'skill').length;
+  const maxSharing = Math.max(1, Math.floor(skillCount * SCORING_CALIBRATION.confidence.lexicalAnchorMaxSkillShare));
+  const vocabulary = lexicalVocabulary(skill);
+  return tokenizePrompt(prompt).some((token) => vocabulary.has(token) && (counts.get(token) ?? 0) <= maxSharing);
+}
+
 export function scoreLexicalLane(prompt: string, projection: AdvisorProjection): LaneMatch[] {
   const lower = prompt.toLowerCase();
   const tokens = expandedTokens(prompt);
@@ -65,14 +128,7 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
 
   for (const skill of projection.skills) {
     const evidence: string[] = [];
-    const candidates = [
-      skill.id.replace(/-/g, ' '),
-      skill.name,
-      skill.description,
-      ...skill.domains,
-      ...skill.intentSignals,
-      ...skill.keywords,
-    ];
+    const candidates = lexicalCandidates(skill);
     let score = scoreTokenOverlap(tokens, candidates, originalTokenCount);
 
     for (const hint of CATEGORY_HINTS[skill.id] ?? []) {
@@ -88,7 +144,7 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
     // evidence at all — which takes the no-evidence uncertainty default and is then
     // dropped by the surfacing gate. The candidate was confident and invisible at
     // the same time, and nothing in the output said why.
-    const haystack = candidates.join(' ').toLowerCase();
+    const haystack = lexicalHaystack(skill);
     const tokenHits = tokens.filter((token) => haystack.includes(token)).slice(0, 5);
     evidence.push(...tokenHits.map((token) => `token:${token}`));
 

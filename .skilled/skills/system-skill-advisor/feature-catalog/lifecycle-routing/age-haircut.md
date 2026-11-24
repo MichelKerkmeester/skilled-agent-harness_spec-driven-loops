@@ -6,7 +6,7 @@ trigger_phrases:
   - "derived age decay"
   - "age weighted derived"
   - "lifecycle age"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Derived-Lane-Only Age Haircut
@@ -51,4 +51,3 @@ Related references:
 
 - [`scorer-fusion/lane-fusion.md`](../../feature-catalog/scorer-fusion/lane-fusion.md).
 - [`scorer-fusion/attribution.md`](../scorer-fusion/attribution.md).
-- [02-supersession.md](./supersession.md).

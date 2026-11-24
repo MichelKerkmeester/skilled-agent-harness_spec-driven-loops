@@ -3,10 +3,11 @@
 // ───────────────────────────────────────────────────────────────
 
 import type { ToolDefinition } from './types.js';
-// Partial: The descriptor's `properties` keys MUST stay aligned
-// with ADVISOR_VALIDATE_PARAMETER_KEYS so the JSON Schema, Zod schema, and
-// ALLOWED_PARAMETERS stay in sync. The tuple is the single source of truth.
 import { ADVISOR_RUNTIME_VALUES } from '../lib/advisor-runtime-values.js';
+// The descriptor's `properties` record is typed by
+// ADVISOR_VALIDATE_PARAMETER_KEYS, so a key added here without the tuple, or
+// dropped from here while the tuple keeps it, fails the type check. The Zod
+// input schema does not read the tuple.
 import { ADVISOR_VALIDATE_PARAMETER_KEYS } from './advisor-contract-keys.js';
 
 const properties: Record<(typeof ADVISOR_VALIDATE_PARAMETER_KEYS)[number], Record<string, unknown>> = {

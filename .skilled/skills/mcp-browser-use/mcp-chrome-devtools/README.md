@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.25.0
+version: 1.0.26.0
 ---
 
 # mcp-chrome-devtools
@@ -57,7 +57,7 @@ The protocol is the reason the CLI stays small. `bdg` does not wrap every CDP me
 **Step 1: Install the CLI.**
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 Expected: npm reports the added package and exits 0. Then confirm that the binary resolves and reports a version.
@@ -213,7 +213,7 @@ The skill is not a cross-browser test framework. It drives Chromium-based browse
 
 | What you see | Why | Fix |
 |---|---|---|
-| `bash: bdg: command not found` | npm installed the binary somewhere that is not on PATH | Run `npm install -g browser-debugger-cli@alpha`, then check `npm config get prefix` to find its `bin` folder |
+| `bash: bdg: command not found` | npm installed the binary somewhere that is not on PATH | Run `npm install -g browser-debugger-cli@0.6.10`, then check `npm config get prefix` to find its `bin` folder |
 | `Error: Could not find Chrome/Chromium executable` | No browser binary at a standard path | Set `CHROME_PATH` to your browser executable and confirm with `ls -la "$CHROME_PATH"` |
 | `Error: Session already running` | An earlier run never called `bdg stop` | Run `bdg stop 2>&1`. In a script, register `trap "bdg stop 2>&1" EXIT INT TERM` |
 | `Error: Method 'Page.screenshot' not found` | The method name does not exist | `bdg cdp --search screenshot` finds the real name, here `Page.captureScreenshot` |

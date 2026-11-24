@@ -2,7 +2,7 @@
 name: mcp-aside-devtools
 description: "Aside AI-browser orchestrator: routes between the aside CLI (agent tasks + deterministic REPL) and Aside MCP via Code Mode."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.12.0
+version: 1.1.13.0
 ---
 
 # Aside Browser Orchestrator - CLI + MCP Integration
@@ -72,7 +72,7 @@ aside --version 2>&1      # capture the installed version as a fixture
 aside --help 2>&1         # capture the installed command surface as a fixture
 ```
 
-The command surface is version-pinned evidence. Re-capture `--help` before relying on any flag; never freeze flag spellings from memory. If the binary is absent, report the official install command (`curl -fsSL https://releases.aside.com/install.sh | bash`, macOS-only) and let the operator decide — never install implicitly.
+The command surface is version-pinned evidence. Re-capture `--help` before relying on any flag; never freeze flag spellings from memory. If the binary is absent, report the install command (`bash scripts/install.sh`, macOS-only, which runs the official installer only after its pinned sha256 matches) and let the operator decide — never install implicitly.
 
 #### Verified Command Surface
 
@@ -144,8 +144,8 @@ For cleanup, close the MCP stdio process. No public `daemon`/`status`/`stop` com
 6. Misdiagnose the unbound-profile error as missing bearer auth, or silently fall back across safety boundaries (transport failure never justifies changing account, profile, permissions, or approval semantics).
 7. Claim a *native dedicated* console/network tool, a *native HAR export*, a *Lighthouse audit*, *parallel isolated instances* or *raw CDP passthrough*. Aside has none of these.
 
-Console/network capture IS reachable through Playwright `page.on(...)` events in the repl (fixture-confirmed API). The caller assembles it, so it is not a dedicated tool.
-Document the pattern and its gaps. Treat any live capture as requiring a bound session and independent verification. See the DevTools-parity feature family.
+Console and network capture are gaps on Aside 1.26.626.1517. The `page.on('console' | 'request' | 'response')` calls throw there. The error points to `page.console.logs()`, which has not been run yet.
+Run each listener inside its own `try`/`catch` and report the per-event outcome. Never call a capture working without a bound session and independent proof. See the DevTools-parity feature family.
 
 ### ⚠️ ESCALATE IF
 
@@ -201,7 +201,7 @@ Confidence labels mean: `confirmed` is backed by a fixture and online research; 
 | Screenshot + PDF | `page.screenshot({ fullPage })` / `page.pdf` | confirmed |
 | Console capture | `page.on('console', ...)` | **gap on 1.26.626.1517 — `page.on` rejects the event** |
 | Network capture | `page.on('request'\|'response', ...)` | **gap on 1.26.626.1517 — `page.on` rejects the events** |
-| HAR export | assemble from events | **gap — no native HAR** |
+| HAR export | none on 1.26.626.1517: `page.on` rejects the network events | **gap — no native HAR** |
 | Cookies + storage | `page.evaluate(document.cookie / localStorage)`; `page.context()` is undefined | names and keys run without error on 1.26.626.1517 (ASD-019, a page with no cookies) / **context cookies a gap** |
 | Performance timing | `page.evaluate(performance.getEntriesByType(...))` | confirmed / skip-valid |
 | Lighthouse audit | — external tooling required | **gap — no Lighthouse** |

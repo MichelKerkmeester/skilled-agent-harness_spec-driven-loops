@@ -1,0 +1,1380 @@
+{
+  "sessionId": "fanout-vibe-1-1795511024070-2cuwlj",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 7,
+    "timestamp": "2026-11-24T09:20:03.569Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The Node-version troubleshooting fix installs Node 18 while the same block and every other doc require Node 20 or later",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md",
+      "line": 187,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "rg for Node.js version statements under .skilled/skills/mcp-browser-use returns 20-or-later in seven places and 18 in exactly one, troubleshooting.md:187-188",
+      "affectedSurfaceHints": [
+        "troubleshooting.md Node-version entry",
+        "INSTALL-GUIDE.md prerequisite line",
+        "scripts/install.sh prerequisite check"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "The intent vocabulary has no prose form for Aside, so a request that names Aside either defers or silently drops it from a bundle",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md",
+      "line": 53,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The gap is one vocabulary class in one file. Every Aside keyword carries a qualifier while BLADEBRO carries bare bladebro; replaying the two prompts through evaluateRoute returns defer and a two-mode orderedBundle; all sixteen canary cases pass, so the defect sits outside the fixture coverage rather than in the fix.",
+      "affectedSurfaceHints": [
+        "ROUTER.md INTENT_SIGNALS ASIDE_DEVTOOLS",
+        "hub-router.json vocabularyClasses",
+        "graph-metadata.json intent_signals",
+        "registry-compiler.cjs compiled routingModel",
+        "fixtures/canary-cases.v1.json",
+        "SKILL.md defer definition"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "ROUTER.md says Core Web Vitals is not advertised to the advisor, but graph-metadata.json intent_signals advertises it",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "README.md carries version 1.1.4.0 while every other hub metadata file and the newest changelog say 1.1.3.0",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "line": 6,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The Node-version fix pipes a downloaded script straight into bash, the pattern phase 015 removed from the Aside installer",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md",
+      "line": 186,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "rg for curl piped to bash or sh under .skilled/skills/mcp-browser-use excluding changelog and benchmark returns this one site; the Aside and Bladebro installers already verify digests",
+      "affectedSurfaceHints": [
+        "troubleshooting.md Node-version entry",
+        "mcp-aside-devtools/scripts/install.sh digest pattern"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The hub README release index stops at 1.1.1.0 and omits the two newest releases, including the one that carries the phase 015 fixes",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "line": 70,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "ls changelog/ lists five files and grep -n \"changelog/v\" README.md returns three rows at :70-72, so the gap is exactly two rows in one table; the three mode packets each carry a complete changelog set",
+      "affectedSurfaceHints": [
+        "README.md release index",
+        "changelog/",
+        "SKILL.md version authority line"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "The Aside installer digest gate is enforced only by scripts/install.sh and documented nowhere, while seventeen documentation sites present the ungated vendor curl pipe bash as the install path",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+      "line": 88,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The gate is one block in one script and the omission is one sentence in one README row. rg for digest or sha256 over the Aside packet returns only scripts/install.sh, so no doc states the control; rg for the vendor installer URL returns seventeen sites across ten files, so the ungated path is the one the docs lead with. The Bladebro packet is unaffected.",
+      "affectedSurfaceHints": [
+        "mcp-aside-devtools/scripts/README.md install.sh row",
+        "mcp-aside-devtools/feature-catalog/install/install-and-doctor.md install line",
+        "mcp-aside-devtools/INSTALL-GUIDE.md step 3",
+        "mcp-aside-devtools/README.md install block",
+        "mcp-aside-devtools/SKILL.md install guidance"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "ROUTER.md says Core Web Vitals is not advertised to the advisor, but graph-metadata.json intent_signals advertises it",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "ROUTER.md says Core Web Vitals is not advertised to the advisor, but graph-metadata.json intent_signals advertises it",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 5
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9333,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "broken_cross_reference",
+      "contract_mismatch",
+      "merged_workstream",
+      "mirror_drift",
+      "missing_evidence",
+      "overclaiming_scenario",
+      "path_traversal",
+      "phantom_command",
+      "regression_in_fix",
+      "scope_widening",
+      "secret_exposure",
+      "silent_partial_route",
+      "stage_vocabulary_drift",
+      "stale_capability_claim",
+      "stale_claim",
+      "stale_finding",
+      "stale_index",
+      "supply_chain",
+      "undocumented_control",
+      "version_drift",
+      "vocabulary_gap"
+    ],
+    "ruledOut": [
+      "boundary_handling",
+      "broken_cross_reference",
+      "duplicated_guidance",
+      "injection",
+      "merged_workstream",
+      "mirror_drift",
+      "missing_evidence",
+      "overclaiming_scenario",
+      "path_traversal",
+      "phantom_command",
+      "regression_in_fix",
+      "scope_widening",
+      "secret_exposure",
+      "stage_vocabulary_drift",
+      "stale_capability_claim",
+      "stale_claim",
+      "stale_finding",
+      "state_transition",
+      "supply_chain",
+      "undocumented_control",
+      "version_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "contract_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "boundary_handling": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "supply_chain": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "missing_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_claim": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_index": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "version_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_guidance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "vocabulary_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "silent_partial_route": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "regression_in_fix": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_capability_claim": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "mirror_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "broken_cross_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "phantom_command": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "stage_vocabulary_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "overclaiming_scenario": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "undocumented_control": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "scope_widening": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "stale_finding": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "merged_workstream": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "The 403 Forbidden canary case routes, as its fixture expects",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:109"
+      ],
+      "reason": "verified by direct read that prompt text never reaches the reject branch"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "boundary_handling",
+      "disposition": "ruled_out",
+      "rationale": "A discovery-only prompt scores zero modes and defers",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:97"
+      ],
+      "reason": "verified by direct read that discovery classes are never referenced by a routerSignal"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh"
+      ],
+      "bugClass": "supply_chain",
+      "disposition": "ruled_out",
+      "rationale": "Phase 015 D2 holds at its source",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:94"
+      ],
+      "reason": "verified by direct read that the digest gate precedes execution"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The climb the phase 015 changelog names is closed",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:35"
+      ],
+      "reason": "verified by direct read that the .. check runs before the prefix check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/cdp-patterns.md",
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Secret hygiene is consistent across the three packets",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/cdp-patterns.md:197"
+      ],
+      "reason": "verified by exact search that every capture site restricts output to names and domains"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The goal criteria are supported",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1"
+      ],
+      "reason": "six of seven criteria verified against shipped evidence; the seventh is a lineage coverage limit, not a packet defect"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md",
+        ".skilled/skills/mcp-browser-use/graph-metadata.json"
+      ],
+      "bugClass": "stale_claim",
+      "disposition": "ruled_out",
+      "rationale": "The changelog is accurate",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:110"
+      ],
+      "reason": "every changelog claim checked against a shipped surface"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "The pin is single-valued at v4.8.2",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md:341"
+      ],
+      "reason": "every occurrence is honest recording inside the transcript, not a pin"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "No drift in the two moved packets",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/README.md:21"
+      ],
+      "reason": "each pin is single-valued across the packet"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json"
+      ],
+      "bugClass": "regression_in_fix",
+      "disposition": "ruled_out",
+      "rationale": "The compiled model carries all four bundle rules including the triple",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:96"
+      ],
+      "reason": "the fix holds on every form the fixture covers"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-017",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md"
+      ],
+      "bugClass": "stale_capability_claim",
+      "disposition": "ruled_out",
+      "rationale": "The changelog is accurate as behaviour, not only as prose",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md:1"
+      ],
+      "reason": "all eleven advisor probes match the changelog"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-018",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md"
+      ],
+      "bugClass": "stale_capability_claim",
+      "disposition": "ruled_out",
+      "rationale": "Hub row and packet rows agree on console, network and HAR",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md:40"
+      ],
+      "reason": "the correction is complete and matches the Aside packet matrix"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".claude/skills/mcp-browser-use",
+        ".claude/skills/mcp-tooling"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "The packaging surface is in sync",
+      "evidenceRefs": [
+        ".claude/skills/mcp-browser-use/SKILL.md:5"
+      ],
+      "reason": "both mirrors are byte-identical to canonical"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-020",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/README.md",
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/ROUTER.md"
+      ],
+      "bugClass": "broken_cross_reference",
+      "disposition": "ruled_out",
+      "rationale": "Cross-reference integrity holds",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:1"
+      ],
+      "reason": "every relative link resolves"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog"
+      ],
+      "bugClass": "phantom_command",
+      "disposition": "ruled_out",
+      "rationale": "The five-tool set is stated identically in two places",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md:34"
+      ],
+      "reason": "no phantom command"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/graph-metadata.json",
+        ".skilled/skills/mcp-browser-use/hub-router.json"
+      ],
+      "bugClass": "stage_vocabulary_drift",
+      "disposition": "ruled_out",
+      "rationale": "The two stages are meant to differ on discovery vocabulary",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json:1"
+      ],
+      "reason": "discovery classes are documented as defer evidence only, so the defer is the design working"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/console-network-capture.md"
+      ],
+      "bugClass": "overclaiming_scenario",
+      "disposition": "ruled_out",
+      "rationale": "The pass/fail line forbids the overclaim",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/console-network-capture.md:33"
+      ],
+      "reason": "the scenario is capability-honest"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-025",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md",
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/INSTALL-GUIDE.md"
+      ],
+      "bugClass": "scope_widening",
+      "disposition": "ruled_out",
+      "rationale": "Scope stays exactly one block",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:187"
+      ],
+      "reason": "each packet states its own correct requirement, so the finding does not widen"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-026",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/README.md"
+      ],
+      "bugClass": "merged_workstream",
+      "disposition": "ruled_out",
+      "rationale": "The release surface is wrong in both directions",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:8"
+      ],
+      "reason": "both are real defects but one edit fixes both, so they merge as a workstream rather than as a finding"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-027",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md"
+      ],
+      "bugClass": "undocumented_control",
+      "disposition": "ruled_out",
+      "rationale": "The defect is disclosure, not consent",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md:21"
+      ],
+      "reason": "consent is gated everywhere; only the digest disclosure is missing"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "The 403 Forbidden canary case routes, as its fixture expects",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:109"
+      ],
+      "proof": "verified by direct read that prompt text never reaches the reject branch"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "boundary_handling",
+      "disposition": "ruled_out",
+      "rationale": "A discovery-only prompt scores zero modes and defers",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:97"
+      ],
+      "proof": "verified by direct read that discovery classes are never referenced by a routerSignal"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh"
+      ],
+      "bugClass": "supply_chain",
+      "disposition": "ruled_out",
+      "rationale": "Phase 015 D2 holds at its source",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:94"
+      ],
+      "proof": "verified by direct read that the digest gate precedes execution"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The climb the phase 015 changelog names is closed",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:35"
+      ],
+      "proof": "verified by direct read that the .. check runs before the prefix check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/cdp-patterns.md",
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Secret hygiene is consistent across the three packets",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/cdp-patterns.md:197"
+      ],
+      "proof": "verified by exact search that every capture site restricts output to names and domains"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The goal criteria are supported",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1"
+      ],
+      "proof": "six of seven criteria verified against shipped evidence; the seventh is a lineage coverage limit, not a packet defect"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md",
+        ".skilled/skills/mcp-browser-use/graph-metadata.json"
+      ],
+      "bugClass": "stale_claim",
+      "disposition": "ruled_out",
+      "rationale": "The changelog is accurate",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:110"
+      ],
+      "proof": "every changelog claim checked against a shipped surface"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "The pin is single-valued at v4.8.2",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md:341"
+      ],
+      "proof": "every occurrence is honest recording inside the transcript, not a pin"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "No drift in the two moved packets",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/README.md:21"
+      ],
+      "proof": "each pin is single-valued across the packet"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json"
+      ],
+      "bugClass": "regression_in_fix",
+      "disposition": "ruled_out",
+      "rationale": "The compiled model carries all four bundle rules including the triple",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:96"
+      ],
+      "proof": "the fix holds on every form the fixture covers"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-017",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md"
+      ],
+      "bugClass": "stale_capability_claim",
+      "disposition": "ruled_out",
+      "rationale": "The changelog is accurate as behaviour, not only as prose",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md:1"
+      ],
+      "proof": "all eleven advisor probes match the changelog"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-018",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md"
+      ],
+      "bugClass": "stale_capability_claim",
+      "disposition": "ruled_out",
+      "rationale": "Hub row and packet rows agree on console, network and HAR",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md:40"
+      ],
+      "proof": "the correction is complete and matches the Aside packet matrix"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".claude/skills/mcp-browser-use",
+        ".claude/skills/mcp-tooling"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "The packaging surface is in sync",
+      "evidenceRefs": [
+        ".claude/skills/mcp-browser-use/SKILL.md:5"
+      ],
+      "proof": "both mirrors are byte-identical to canonical"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-020",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/README.md",
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/ROUTER.md"
+      ],
+      "bugClass": "broken_cross_reference",
+      "disposition": "ruled_out",
+      "rationale": "Cross-reference integrity holds",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:1"
+      ],
+      "proof": "every relative link resolves"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog"
+      ],
+      "bugClass": "phantom_command",
+      "disposition": "ruled_out",
+      "rationale": "The five-tool set is stated identically in two places",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md:34"
+      ],
+      "proof": "no phantom command"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/graph-metadata.json",
+        ".skilled/skills/mcp-browser-use/hub-router.json"
+      ],
+      "bugClass": "stage_vocabulary_drift",
+      "disposition": "ruled_out",
+      "rationale": "The two stages are meant to differ on discovery vocabulary",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json:1"
+      ],
+      "proof": "discovery classes are documented as defer evidence only, so the defer is the design working"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/console-network-capture.md"
+      ],
+      "bugClass": "overclaiming_scenario",
+      "disposition": "ruled_out",
+      "rationale": "The pass/fail line forbids the overclaim",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/console-network-capture.md:33"
+      ],
+      "proof": "the scenario is capability-honest"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-025",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md",
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/INSTALL-GUIDE.md"
+      ],
+      "bugClass": "scope_widening",
+      "disposition": "ruled_out",
+      "rationale": "Scope stays exactly one block",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:187"
+      ],
+      "proof": "each packet states its own correct requirement, so the finding does not widen"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-026",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/README.md"
+      ],
+      "bugClass": "merged_workstream",
+      "disposition": "ruled_out",
+      "rationale": "The release surface is wrong in both directions",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:8"
+      ],
+      "proof": "both are real defects but one edit fixes both, so they merge as a workstream rather than as a finding"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-027",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md"
+      ],
+      "bugClass": "undocumented_control",
+      "disposition": "ruled_out",
+      "rationale": "The defect is disclosure, not consent",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md:21"
+      ],
+      "proof": "consent is gated everywhere; only the digest disclosure is missing"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "undocumented_control",
+      "scope_widening",
+      "stale_finding",
+      "merged_workstream"
+    ],
+    "covered": [
+      "undocumented_control",
+      "scope_widening",
+      "stale_finding",
+      "merged_workstream"
+    ],
+    "ruledOut": [
+      "scope_widening",
+      "stale_finding"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 7,
+      "executed": 7,
+      "pass": 7,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "Goal criteria 1 through 6 hold on the shipped files. Criterion 7 is unverified because validate.sh is banned by the write surface and writes outside the lineage."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/goal.md:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "Phase 015 criteria 1 and 2 hold as behaviour from iteration 5. Criterion 3 replay half is the same unexecutable validate.sh item."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mode-registry.json:15",
+          ".skilled/skills/mcp-browser-use/mode-registry.json:39"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "The hub declares no agent or command binding and ships none: command is null on all three mode entries, stated as the contract in the schema description."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".claude/skills/mcp-browser-use/SKILL.md:5",
+          ".claude/skills/mcp-browser-use/mode-registry.json:3"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "summary": "Both runtime mirrors are byte-identical to canonical at 312 files each; diff -rq returns no output for either skill and the mirror versions read 1.1.3.0."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md:34",
+          ".skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md:83"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "summary": "All seven Bladebro commands the feature catalog names resolve to documented commands, and the five-tool set is stated identically in the CLI reference and the CLI README."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:152",
+          ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/devtools-parity/console-network-capture.md:33"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "The index and the hub-routing folder agree on all seven scenario ids including MT-H01 and MT-H04, and the Aside parity scenario is capability-honest about the page.on gap."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:187",
+          ".skilled/skills/mcp-browser-use/ROUTER.md:53",
+          ".skilled/skills/mcp-browser-use/README.md:8"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "cross_reference_reverification",
+        "status": "pass",
+        "summary": "All six active findings re-read at their shipped file:line and all six are still active. R2-P1-001 scope confirmed at exactly two lines; R1-P2-001 and R4-P2-001 confirmed as one README release surface."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

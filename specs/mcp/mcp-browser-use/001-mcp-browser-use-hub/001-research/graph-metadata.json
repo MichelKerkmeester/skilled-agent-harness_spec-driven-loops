@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The program has to choose a hub contract, mode names, a CLI-versus-Code-Mode rule and a migration scope before it builds anything, and none of those is settled",
     "created_at": "2026-11-21T08:11:40Z",
-    "last_save_at": "2026-11-21T12:34:51.599Z",
+    "last_save_at": "2026-11-24T12:03:14.060Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:85d155f521855a5eeb9f4c1f4d51d9af04e1fda6c694c319b9c07f764526a2a5",
+    "source_fingerprint": "sha256:843aecc3bf8f1a8cd2397356aa8cb9e36ce096ccf1e53877e9f9394a7d7f0c65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e3233d7404234cbc98fd5fcae27a1493455c653eaa70538248297993e09fb7c",
       "plan.md": "13f407b0e5bca1c4b66e15f4a7c28b9c57e4e5c3f1002bec269bc1dd4ba2c90e",
       "tasks.md": "a2d272153e930dd6834553a66531ef03bb07bea3ba04405d7e1b9bb6bafddd24",
       "implementation-summary.md": "7eb7e1c166b295120b22993f8d09536f25e9c369d2e973f76f751d519c1b6764",
-      "research/research.md": "d347556871766784663a6696eef467f7c92b38b3a86bdb81e39a3c7c26640197"
+      "research/research.md": "bf97c8cd62572c890cb195b1b789bdada7ff5dcf730878a6011f13dce7f72d27"
     },
     "last_active_at": null
   }

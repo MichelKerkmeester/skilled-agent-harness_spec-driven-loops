@@ -7,7 +7,7 @@ trigger_phrases:
   - "workflow vs transport routing"
   - "mcp-tooling compiled routing"
 last_updated: "2026-09-20"
-version: 1.2.2.0
+version: 1.2.4.0
 ---
 
 # mcp-tooling: Feature Catalog
@@ -24,8 +24,6 @@ Use this catalog as the current-state inventory for the `mcp-tooling` hub. The h
 |---|---|---|
 | Workflow | `mcp-click-up`, `mcp-obsidian`, `mcp-notion` | May change local or external workflow state and must apply packet-specific authorization and verification gates |
 | Transport | `mcp-figma`, `mcp-refero`, `mcp-mobbin` | External read or explicit-export surfaces; remain `mutatesWorkspace:false` in this workspace |
-
-Orca CLI work left this hub for the standalone `cli-orca` skill, which owns Orca-managed worktrees, repositories, terminals, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state.
 
 ---
 
@@ -45,7 +43,7 @@ See [`workflow-vs-transport-routing/workflow-vs-transport-routing.md`](workflow-
 
 ### Conditional Compiled Front Door And Legacy Fallback
 
-`node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"` is the conditional front door. It may serve a compiled decision only when the runtime flag and the promoted activation manifest both authorize it. A legacy sentinel, stale-manifest status, or resolver error leaves registry-driven routing authoritative.
+`node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`) is the conditional front door. It may serve a compiled decision only when the runtime flag and the promoted activation manifest both authorize it. A legacy sentinel, stale-manifest status, or resolver error leaves registry-driven routing authoritative.
 
 The activation manifest is not promoted by adding an ordinary packet. After a hub registry or router change, run the status command and record its `causeCode`; do not call a legacy result compiled-serving evidence.
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.9.0
+version: 1.1.11.0
 ---
 
 # mcp-aside-devtools
@@ -50,10 +50,10 @@ Browser work arrives in two shapes. A goal such as sign in and download wants an
 
 ## 2. QUICK START
 
-**Step 1: Install the CLI.** The installer is macOS only and operator-invoked.
+**Step 1: Install the CLI.** The installer is macOS only and operator-invoked. The wrapper checks the official installer against a pinned sha256 before it runs it.
 
 ```bash
-curl -fsSL https://releases.aside.com/install.sh | bash
+bash scripts/install.sh
 ```
 
 Expect the binary at `~/.local/bin/aside`. Add `~/.local/bin` to PATH if `command -v aside` finds nothing.
@@ -186,7 +186,7 @@ Yes. `aside mcp` speaks stdio and the `aside` manual is registered in `.utcp_con
 
 ### Does Aside capture console logs or network traffic?
 
-You can collect them yourself through the Playwright `page` API in the REPL. Register `page.on('console', ...)` or `page.on('request', ...)` and keep the events you need. There is no dedicated capture tool and no native HAR export. A live capture needs a bound authorized session, so treat the pattern as unconfirmed until it runs against one.
+Not on Aside 1.26.626.1517. The live runs showed that `page.on('console', ...)`, `page.on('request', ...)` and `page.on('response', ...)` each throw. The error points to `page.console.logs()`, which has not been run yet. There is no dedicated capture tool and no native HAR export. What works is `page.evaluate(...)`, which reads page state such as page-visible cookie names and storage keys.
 
 ### Can I run parallel Aside sessions?
 

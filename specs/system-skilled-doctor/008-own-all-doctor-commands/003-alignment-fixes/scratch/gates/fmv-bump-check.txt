@@ -1,0 +1,14 @@
+# run with a temporary index (HEAD + tracked working-tree changes under .skilled), real index untouched
+  NOT RAISED .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md: body changed, version 1.5.24.0 did not go up (next 1.5.25.0)
+  NOT RAISED .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md: body changed, version 1.1.6.0 did not go up (next 1.1.7.0)
+  NOT RAISED .skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md: body changed, version 1.0.6.0 did not go up (next 1.0.7.0)
+  NOT RAISED .skilled/skills/system-skilled-doctor/README.md: body changed, version 1.0.13.0 did not go up (next 1.0.14.0)
+  NOT RAISED .skilled/skills/system-skilled-doctor/ROUTER.md: body changed, version 1.0.10.0 did not go up (next 1.0.11.0)
+  NOT RAISED .skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands/README.md: body changed, version 2.4.0.0 did not go up (next 2.4.1.0)
+  NOT RAISED .skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md: body changed, version 1.0.0.0 did not go up (next 1.0.1.0)
+  NOT RAISED .skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md: body changed, version 1.1.0.0 did not go up (next 1.1.1.0)
+  NOT RAISED .skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/moved-command-contract.md: body changed, version 1.0.3.0 did not go up (next 1.0.4.0)
+  NOT RAISED .skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md: body changed, version 1.7.11.0 did not go up (next 1.7.12.0)
+Fix: node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --base HEAD
+     then commit the raised versions.
+exit=1

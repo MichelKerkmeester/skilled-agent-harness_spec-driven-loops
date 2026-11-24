@@ -1,14 +1,14 @@
 ---
 title: "Chrome DevTools Installation Guide"
 description: "Installation and configuration for Chrome DevTools browser debugging through the bdg CLI and the MCP fallback."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Chrome DevTools Installation Guide
 
 Complete installation and configuration guide for Chrome DevTools browser debugging, providing AI assistants with browser control through two approaches. The CLI tool (bdg) offers direct, fast, token-efficient browser debugging. The MCP fallback runs through Code Mode for multi-tool orchestration and parallel browser testing. Covers screenshot capture, DOM inspection, console evaluation, network monitoring and performance profiling.
 
-> **Package:** `browser-debugger-cli@alpha` | **Dependencies:** Node.js 20+, Chrome/Chromium
+> **Package:** `browser-debugger-cli@0.6.10` | **Dependencies:** Node.js 20+, Chrome/Chromium
 
 **Version:** 2.1.0 | **Updated:** 2026-02-20 | **Protocol:** Chrome DevTools Protocol (CDP)
 
@@ -69,16 +69,16 @@ Chrome DevTools gives AI assistants browser debugging capabilities through two a
 | ---------------- | ------------------------------------------------------------------------------------------- |
 | **GitHub (CLI)** | [szymdzum/browser-debugger-cli](https://github.com/szymdzum/browser-debugger-cli)           |
 | **GitHub (MCP)** | [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) |
-| **npm (CLI)**    | `browser-debugger-cli@alpha`                                                                |
+| **npm (CLI)**    | `browser-debugger-cli@0.6.10`                                                               |
 | **npm (MCP)**    | `chrome-devtools-mcp@latest`                                                                |
 | **License**      | MIT / Apache-2.0                                                                            |
 
 ### Two Approaches
 
-| Approach            | Package                      | When to Use                             | Token Cost |
-| ------------------- | ---------------------------- | --------------------------------------- | ---------- |
-| **CLI (bdg)**       | `browser-debugger-cli@alpha` | Single browser, quick tasks, debugging  | Lowest     |
-| **MCP (Code Mode)** | `chrome-devtools-mcp@latest` | Multi-tool workflows, parallel browsers | Higher     |
+| Approach            | Package                       | When to Use                             | Token Cost |
+| ------------------- | ----------------------------- | --------------------------------------- | ---------- |
+| **CLI (bdg)**       | `browser-debugger-cli@0.6.10` | Single browser, quick tasks, debugging  | Lowest     |
+| **MCP (Code Mode)** | `chrome-devtools-mcp@latest`  | Multi-tool workflows, parallel browsers | Higher     |
 
 Default to CLI. Use MCP only when CLI is not sufficient.
 
@@ -98,7 +98,7 @@ Task received → Is bdg CLI available? (command -v bdg)
                         │               │
                         ▼               ▼
                    Use MCP         Install CLI:
-                   (fallback)      npm i -g browser-debugger-cli@alpha
+                   (fallback)      npm i -g browser-debugger-cli@0.6.10
 ```
 
 ### Architecture Diagram
@@ -223,8 +223,10 @@ export CHROME_PATH="/usr/bin/chromium-browser"
 ### Step 1: Install browser-debugger-cli
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
+
+The version pin is deliberate. Later tags, including the moving `alpha` and `latest` tags, change bdg behavior that these docs describe. The docs in this packet describe 0.6.10. Move the pin only after you re-check the docs against the new version.
 
 ### Step 2: Verify the binary
 
@@ -686,7 +688,7 @@ bdg "$URL" 2>&1 || exit 1
 
 | Feature            | CLI (bdg)                                   | MCP (Code Mode)                         |
 | ------------------ | ------------------------------------------- | --------------------------------------- |
-| **Installation**   | `npm install -g browser-debugger-cli@alpha` | Code Mode + UTCP config                 |
+| **Installation**   | `npm install -g browser-debugger-cli@0.6.10` | Code Mode + UTCP config                 |
 | **Token Cost**     | Lowest                                      | Medium                                  |
 | **CDP Access**     | All 644 methods                             | MCP-exposed subset (29 tools)           |
 | **Self-Discovery** | `cdp --list`, `cdp --describe`, `cdp --search` | `search_tools()`                        |
@@ -717,7 +719,7 @@ trap "bdg stop 2>&1" EXIT INT TERM
 SCRATCH="${TMPDIR:-/tmp}"
 
 # Verify CLI is available
-command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; exit 1; }
+command -v bdg || { echo "Install: npm install -g browser-debugger-cli@0.6.10"; exit 1; }
 
 # Start session
 bdg https://example.com 2>&1 || exit 1
@@ -860,7 +862,7 @@ rm -f "$SCRATCH/cookies.json"
 
 | Error | Cause | Fix |
 | ----- | ----- | --- |
-| `command not found: bdg` | CLI not installed or not in PATH | Run `npm install -g browser-debugger-cli@alpha`. Check PATH with `npm config get prefix` |
+| `command not found: bdg` | CLI not installed or not in PATH | Run `npm install -g browser-debugger-cli@0.6.10`. Check PATH with `npm config get prefix` |
 | `Error: Could not find Chrome` | Chrome path not set or binary missing | Set `CHROME_PATH` env var. See path examples below |
 | `Error: No active session` | Session not started or crashed | Run `bdg stop 2>&1` then retry `bdg <url> 2>&1` |
 | `Failed to move to new namespace` | Linux sandbox restriction | Enable user namespaces or set `CHROME_FLAGS`. See Linux sandbox section |
@@ -873,7 +875,7 @@ rm -f "$SCRATCH/cookies.json"
 
 ```bash
 # Install bdg
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 
 # Or fix PATH
 npm config get prefix
@@ -937,7 +939,7 @@ export CHROME_FLAGS="--no-sandbox"
 wsl --install
 
 # Inside WSL, install bdg
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 ### MCP: Tool Not Found
@@ -1048,7 +1050,7 @@ chrome_devtools_2.chrome_devtools_2_navigate_page({ url: "..." })  // parallel i
 ### Installation
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 ### Discovery

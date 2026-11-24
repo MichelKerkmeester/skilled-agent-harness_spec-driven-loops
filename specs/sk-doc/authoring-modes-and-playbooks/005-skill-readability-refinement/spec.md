@@ -105,7 +105,6 @@ Every skill and mode is read file by file and refined for readability, layout an
 |-------|--------|-------|--------|
 | 1 | 001-cli-classifier/ | `cli-classifier`: hub and shared docs, then one nested phase per mode (1) | Pending |
 | 2 | 002-cli-external-orchestration/ | `cli-external-orchestration`: hub and shared docs, then one nested phase per mode (7) | Pending |
-| 3 | 003-cli-orca/ | `cli-orca`: every in-scope doc of the skill | Pending |
 | 4 | 004-mcp-code-mode/ | `mcp-code-mode`: every in-scope doc of the skill | Pending |
 | 5 | 005-mcp-tooling/ | `mcp-tooling`: hub and shared docs, then one nested phase per mode (8) | Pending |
 | 6 | 006-sk-code/ | `sk-code`: hub and shared docs, then one nested phase per mode (5) | Pending |
@@ -129,8 +128,7 @@ Every skill and mode is read file by file and refined for readability, layout an
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-cli-classifier | 002-cli-external-orchestration | Every leaf of the skill passes its gates, and the skill is committed | The leaf `scratch/gates.txt` files and the skill commit |
-| 002-cli-external-orchestration | 003-cli-orca | Every leaf of the skill passes its gates, and the skill is committed | The leaf `scratch/gates.txt` files and the skill commit |
-| 003-cli-orca | 004-mcp-code-mode | Every leaf of the skill passes its gates, and the skill is committed | The leaf `scratch/gates.txt` files and the skill commit |
+| 002-cli-external-orchestration | 004-mcp-code-mode | Every leaf of the skill passes its gates, and the skill is committed | The leaf `scratch/gates.txt` files and the skill commit |
 | 004-mcp-code-mode | 005-mcp-tooling | Every leaf of the skill passes its gates, and the skill is committed | The leaf `scratch/gates.txt` files and the skill commit |
 | 005-mcp-tooling | 006-sk-code | Every leaf of the skill passes its gates, and the skill is committed | The leaf `scratch/gates.txt` files and the skill commit |
 | 006-sk-code | 007-sk-design | Every leaf of the skill passes its gates, and the skill is committed | The leaf `scratch/gates.txt` files and the skill commit |

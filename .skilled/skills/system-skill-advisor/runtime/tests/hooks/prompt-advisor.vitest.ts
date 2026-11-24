@@ -10,6 +10,7 @@ import promptAdvisor, {
   ADVISOR_HOOK_MODULE,
   formatPiAdvisorDebug,
 } from '../../../hooks/pi/prompt-advisor.js';
+import { DEFAULT_CLAUDE_HOOK_TIMEOUT_MS } from '../../../hooks/claude/user-prompt-submit.js';
 
 type InputHandler = (
   event: { text: string },
@@ -45,6 +46,10 @@ function findRepositoryRoot(): string {
 
 const ORIGINAL_DISABLED = process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
 const ORIGINAL_TIMEOUT = process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS;
+
+function reportedBudgetMs(): string | undefined {
+  return formatPiAdvisorDebug(undefined, false, 0).match(/budgetMs=(\d+)$/)?.[1];
+}
 
 describe('Pi prompt advisor bridge', () => {
   afterEach(() => {
@@ -84,6 +89,18 @@ describe('Pi prompt advisor bridge', () => {
     },
   ])('classifies advisor debug context as $brief', ({ context, brief }) => {
     expect(formatPiAdvisorDebug(context, false, 10)).toContain(`brief=${brief}`);
+  });
+
+  it('uses the Claude hook default when the timeout is unset', () => {
+    delete process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS;
+
+    expect(reportedBudgetMs()).toBe(String(DEFAULT_CLAUDE_HOOK_TIMEOUT_MS));
+  });
+
+  it.each(['', '   ', '0'])('uses the Claude hook default when the timeout is %j', (value) => {
+    process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = value;
+
+    expect(reportedBudgetMs()).toBe(String(DEFAULT_CLAUDE_HOOK_TIMEOUT_MS));
   });
 
   it('leaves the input untouched when the advisor returns no context', async () => {

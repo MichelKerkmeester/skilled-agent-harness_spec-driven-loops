@@ -6,7 +6,7 @@ trigger_phrases:
   - "schema migration"
   - "outdated database discard"
   - "schema version rescan"
-version: 0.8.2.0
+version: 0.8.3.0
 id: LC-004
 category: lifecycle_routing
 stage: routing
@@ -24,8 +24,6 @@ Prompt: Manual validation that a skill graph database built at an older schema v
 ## 1. OVERVIEW
 
 Validate that the skill graph database layer in `lib/skill-graph/skill-graph-db.ts` treats a `skill-graph.sqlite` stored below `SCHEMA_VERSION` as outgrown derived state. On the first open it deletes the file together with its `-wal`, `-shm` and `-journal` sidecars and logs `[skill-graph] Discarded a schema version N database; the next scan rebuilds it`. The scan that follows rebuilds every row from `graph-metadata.json`. Nothing is migrated in place, so no row of the old file survives and there is no rollback to it.
-
-The metadata-level backfill in `lib/lifecycle/schema-migration.ts` is a separate pure function over `graph-metadata.json` content. It never reads or writes the database, so this scenario does not exercise it.
 
 ---
 
@@ -109,9 +107,8 @@ rm -rf "$WORK"
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
-- Scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md), lifecycle rollback.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), rebuild-from-source.
-- Feature [`lifecycle-routing/schema-migration.md`](../../feature-catalog/lifecycle-routing/schema-migration.md), the metadata-level backfill this scenario does not exercise.
+- Feature [`feature-catalog/daemon-and-freshness/rebuild-from-source.md`](../../feature-catalog/daemon-and-freshness/rebuild-from-source.md), outdated database discard.
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts`.
 
 ---

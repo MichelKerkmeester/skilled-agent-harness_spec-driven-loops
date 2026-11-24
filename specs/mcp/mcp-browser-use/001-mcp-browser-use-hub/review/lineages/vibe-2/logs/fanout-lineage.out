@@ -1,0 +1,17 @@
+Lineage `vibe-2` is complete. Seven iterations ran inline, all through the append gateway and reducer.
+
+**Verdict: CONDITIONAL** — 11 active findings, 0 P0, 4 P1, 7 P2. Stop reason `maxIterationsReached`; convergence did not fire because the dimension-coverage gate stays closed on `traceabilityCovered: false` while P1 findings are open.
+
+The four P1s, all re-confirmed against current source in iteration 6:
+- Mixed id/alias forms drop a named mode from the bundle (`router.cjs:88`) — live: `"use mcp-chrome-devtools and bladebro"` → `single`, all-id form → `orderedBundle`.
+- The documented front door splices the task into a double-quoted shell argument (`SKILL.md:62`, `ROUTER.md:105`) — run literally, a task with inner quotes returns `defer`, and `$(...)` executes.
+- Hub `README.md:8` declares `1.1.4.0` with no such changelog.
+- The Aside feature catalog still offers the unpinned `curl | bash` install (`install-and-doctor.md:24`), contradicting phase 015 D2.
+
+The operator focus held up: all fifteen phase goals carry zero unchecked criteria, the phase 015 canary case asserts `orderedBundle` with all three modes, the 52-row replay fails only the documented MBU-PB-04, and the advisor 2.0.3.0 change verified live at both ends ("staging site" → hub at 0.82; the re-pinned doctor row → nothing).
+
+Two new P2s came from the cross-reference pass, both bookkeeping in `goal.md`: the BINDING table stops at phase 014 while the packet ships 015, and the review evidence row cites `review/review-report.md`, which does not exist (the report is under `review-archive/20261124T070727Z-restart/`).
+
+Containment verified by diffing the lineage's own baseline snapshot: zero files changed outside `review/lineages/vibe-2`. `validate.sh` and the canary harness were not run — both write outside the lineage — so those two criteria stand on recorded evidence and are flagged as such in the report.
+
+FANOUT_LINEAGE_COMPLETE:vibe-2

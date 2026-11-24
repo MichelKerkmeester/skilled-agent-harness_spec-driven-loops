@@ -4,6 +4,7 @@
 
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BDG_PINNED_VERSION="0.6.10"
 
 _c_red=$'\033[31m'; _c_grn=$'\033[32m'; _c_ylw=$'\033[33m'; _c_dim=$'\033[2m'; _c_rst=$'\033[0m'
 log()  { printf '%s\n' "$*"; }
@@ -56,14 +57,20 @@ log "-- bdg CLI --"
 if command -v bdg >/dev/null 2>&1; then
   if version="$(bdg --version 2>/dev/null)"; then
     ok "bdg: $(command -v bdg) ($version)"
+    # The docs describe the pinned release, so a different one can behave unlike them.
+    # The whole version token is compared, so 0.6.100 does not pass as 0.6.10.
+    found_version="$(printf '%s\n' "$version" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1 || true)"
+    if [ "$found_version" != "$BDG_PINNED_VERSION" ]; then
+      warn "bdg $version is not the pinned $BDG_PINNED_VERSION, the docs describe $BDG_PINNED_VERSION"
+    fi
   else
     ok "bdg: $(command -v bdg) (version unavailable)"
   fi
 elif command -v npx >/dev/null 2>&1; then
-  if timeout 5 npx --no-install --prefer-offline browser-debugger-cli@alpha --version >/dev/null 2>&1; then
-    ok "browser-debugger-cli@alpha: resolvable via npx --no-install"
+  if timeout 5 npx --no-install --prefer-offline "browser-debugger-cli@${BDG_PINNED_VERSION}" --version >/dev/null 2>&1; then
+    ok "browser-debugger-cli@${BDG_PINNED_VERSION}: resolvable via npx --no-install"
   else
-    warn "bdg not on PATH and browser-debugger-cli@alpha not resolvable via npx --no-install"
+    warn "bdg not on PATH and browser-debugger-cli@${BDG_PINNED_VERSION} not resolvable via npx --no-install"
   fi
 else
   warn "bdg not on PATH and npx not found"

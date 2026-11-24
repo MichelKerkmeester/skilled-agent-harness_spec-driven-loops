@@ -71,7 +71,7 @@ describe('child session command brief', () => {
     const rendered = renderAdvisorBrief(advisorResult('command-doctor-git-setup'));
 
     expect(rendered).toBe(expectedBrief(
-      'Advisor: live; use sk-git → /doctor:git setup (run) 0.85/0.20 pass.',
+      'Advisor: live; use system-skilled-doctor → /doctor:git setup (run) 0.85/0.20 pass.',
     ));
   });
 
@@ -137,7 +137,7 @@ describe('child session command brief', () => {
     const rendered = renderAdvisorBrief(advisorResult('command-doctor-git-hooks'));
 
     expect(rendered).toBe(expectedBrief(
-      'Advisor: live; use sk-git → /doctor:git hooks (parent-named only) 0.85/0.20 pass.',
+      'Advisor: live; use system-skilled-doctor → /doctor:git hooks (parent-named only) 0.85/0.20 pass.',
     ));
   });
 

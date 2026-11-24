@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/008-own-all-doctor-commands/002-playbook-consolidation",
+  "spec_folder": "system-skilled-doctor/008-own-all-doctor-commands/002-playbook-consolidation",
+  "parent_id": "system-skilled-doctor/008-own-all-doctor-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook consolidation",
+      "phase 2 playbook consolidation",
+      "doctor playbook into system-skilled-doctor",
+      "playbook consolidation plan",
+      "playbook consolidation tasks",
+      "playbook consolidation acceptance criteria",
+      "playbook consolidation implementation summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "consolidation",
+      "phase",
+      "doctor",
+      "system-skilled-doctor",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "scenarios"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/moved-command-contract.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "moved-command-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/moved-command-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Root",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor scenarios lived in a package no skill owned, and the owning skill had its own playbook beside it",
+    "created_at": "2026-11-24T18:45:48Z",
+    "last_save_at": "2026-11-24T21:38:07.797Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f94353430f508dcc48bd68fc4c4a3f4d2b1f91bc376379eb167471fc93e79599",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a826a5b02567d496f74c696e6f07cc4aae6344cd6d27d2e6595cca4772deebba",
+      "plan.md": "2e8102a4e11bd05482eee9594de76b0bbc9a40fec011a8b8d06f1a8b2dbda479",
+      "tasks.md": "7922d3f64e83692ae3c4ce9e8724c64547c929de4cd47f0b7ed0e3156304c0de",
+      "implementation-summary.md": "d4855aad9c97238f92fc80fcb11503bc5b3ec7bc115a55c55c8b61e4b37f23cc"
+    },
+    "last_active_at": null
+  }
+}

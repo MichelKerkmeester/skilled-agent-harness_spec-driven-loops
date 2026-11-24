@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record",
+  "description": "Phase 16: stop-hook-auto-record",
+  "keywords": [
+    "phase",
+    "stop-hook-auto-record"
+  ],
+  "lastUpdated": "2026-11-24T19:45:21.315Z",
+  "specId": "016",
+  "folderSlug": "stop-hook-auto-record",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "24-11-26_19-45__planned-the-stop-hook-auto-record-child-the.md",
+    "24-11-26_20-06__built-the-stop-hook-auto-record-child-the-claude.md",
+    "24-11-26_20-45__stop-hook-auto-record-child-landed-on-main-and.md"
+  ]
+}

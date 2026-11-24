@@ -25,7 +25,9 @@ readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
 readonly MCP_NAME="Chrome DevTools"
-readonly MCP_PACKAGE="browser-debugger-cli@alpha"
+# Pinned on purpose: the alpha and latest tags move, and later bdg releases change
+# behavior that this packet's docs describe. Move the pin with a docs re-check.
+readonly MCP_PACKAGE="browser-debugger-cli@0.6.10"
 readonly CLI_COMMAND="bdg"
 readonly MIN_NODE_VERSION="20"
 

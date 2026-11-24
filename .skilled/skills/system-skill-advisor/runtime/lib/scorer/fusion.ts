@@ -41,7 +41,7 @@ import {
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
-import { scoreLexicalLane } from './lanes/lexical.js';
+import { lexicalHaystack, promptHoldsDistinctiveWord, scoreLexicalLane } from './lanes/lexical.js';
 import { applyExecutorDelegationOverride } from './executor-delegation.js';
 import {
   DOCTOR_HELPER_BRIDGE_ID,
@@ -53,7 +53,7 @@ import {
 } from './doctor-helper-handoff.js';
 import { loadAdvisorProjection } from './projection.js';
 import { SCORING_CALIBRATION } from './scoring-constants.js';
-import { isReadOnlyExplainer, matchesPhraseBoundary } from './text.js';
+import { isReadOnlyExplainer, matchesPhraseBoundary, tokenizePrompt } from './text.js';
 import {
   DEFAULT_SCORER_WEIGHTS,
   SCORER_LANES,
@@ -61,7 +61,7 @@ import {
 } from './weights-config.js';
 import { isLiveScorerLane } from './lane-registry.js';
 import { isRouteExcludedSkillId } from '../route-exclusions.js';
-import { stripLeadingPastedReply } from '../prompt-policy.js';
+import { promptPolicyTokens, stripLeadingPastedReply } from '../prompt-policy.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
 import type {
   AdvisorProjection,
@@ -86,7 +86,8 @@ const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
 const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
 export const ADVISOR_RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
 export const ADVISOR_RRF_K = 8;
-const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
+const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|review|run|start|sweep|update|write)\b/;
+const TYPED_SLASH_COMMAND = /(?:^|[\s`'"(\[])(?:\/[a-z][a-z0-9_-]*:[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*|\/(?:doctor|autoresearch))(?=$|[\s).,!?;`'"])/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
 // Writing a test or a helper is code work even when the prompt also names a deep-review phrase or a
 // study artifact: the thing asked for comes before the phrase it is written about, so a "deep review"
@@ -143,6 +144,7 @@ interface LaneScoreBundle {
 
 interface AdvisorRrfFusion {
   readonly scoreBySkill: ReadonlyMap<string, number>;
+  readonly weightedSumScoreBySkill: ReadonlyMap<string, number>;
   readonly rankBySkill: ReadonlyMap<string, number>;
 }
 
@@ -277,6 +279,20 @@ function rankedRrfItems(matches: readonly LaneMatch[]): RrfItem[] {
     .map((match) => ({ id: match.skillId }));
 }
 
+/** Match typed slash commands without treating ordinary paths as commands. */
+export function hasTypedSlashCommand(promptLower: string): boolean {
+  return TYPED_SLASH_COMMAND.test(promptLower);
+}
+
+/** Apply prompt-policy tokens and task intent to decide whether to abstain. */
+export function isLowInformationPrompt(prompt: string): boolean {
+  const promptLower = prompt.toLowerCase();
+  return promptPolicyTokens(prompt).meaningful.length <= 3
+    && !TASK_INTENT.test(promptLower)
+    && !hasTypedSlashCommand(promptLower);
+}
+
+/** Fuse lanes into raw and weighted-sum scores while preserving RRF rank order. */
 export function fuseAdvisorLaneRanks(
   laneScores: LaneScores,
   weights: Readonly<Record<ScorerLane, number>>,
@@ -297,13 +313,26 @@ export function fuseAdvisorLaneRanks(
     bonusOverChannels: 'configured',
   });
   const scoreBySkill = new Map<string, number>();
+  const weightedSumScoreBySkill = new Map<string, number>();
   const rankBySkill = new Map<string, number>();
   fused.forEach((result, index) => {
     const skillId = String(result.id);
-    scoreBySkill.set(skillId, result.rrfScore);
     rankBySkill.set(skillId, index);
   });
-  return { scoreBySkill, rankBySkill };
+  for (const list of lists) {
+    const weight = list.weight ?? 0;
+    if (weight <= 0) continue;
+    list.results.forEach(({ id }, index) => {
+      const skillId = String(id);
+      const contribution = weight / (ADVISOR_RRF_K + index + 1);
+      scoreBySkill.set(skillId, (scoreBySkill.get(skillId) ?? 0) + contribution);
+      weightedSumScoreBySkill.set(
+        skillId,
+        (weightedSumScoreBySkill.get(skillId) ?? 0) + contribution * (ADVISOR_RRF_K + 1),
+      );
+    });
+  }
+  return { scoreBySkill, weightedSumScoreBySkill, rankBySkill };
 }
 
 function graphConflictAdjustment(
@@ -322,12 +351,27 @@ function rrfRankFor(
 
 function promptMentionsSkill(promptLower: string, skill: SkillProjection): boolean {
   const phrases = [skill.id, skill.name, skill.id.replace(/-/g, ' ')];
-  // A cli skill wraps one named external tool, so the tool's own name ("orca"
-  // for cli-orca) names the skill as surely as its id does.
+  // A cli skill wraps one named external tool, so the tool's own name (the
+  // part of the id after "cli-") names the skill as surely as its id does.
   if (skill.family === 'cli' && skill.id.startsWith('cli-')) {
     phrases.push(skill.id.slice('cli-'.length).replace(/-/g, ' '));
   }
   return phrases.some((phrase) => matchesPhraseBoundary(promptLower, phrase.toLowerCase()));
+}
+
+// The last segment of a skill id is the noun that names it ("doctor" in
+// system-skilled-doctor). Short segments such as "use" or "doc" are left out,
+// because they occur in ordinary prompts that name nothing. The noun alone is
+// not enough: "loop", "mode" and "tooling" are ordinary words too, so it
+// names the skill only when the prompt also holds another word found in the
+// skill's text. That word must be one the prompt holds, not a synonym the lexical
+// lane added, and it is read from the skill's text rather than the capped
+// evidence list, which declared hints can fill.
+function promptNamesIdNoun(promptLower: string, skill: SkillProjection): boolean {
+  const noun = skill.id.split('-').at(-1) ?? '';
+  if (noun.length < 4 || !matchesPhraseBoundary(promptLower, noun)) return false;
+  const haystack = lexicalHaystack(skill);
+  return tokenizePrompt(promptLower).some((token) => token !== noun && haystack.includes(token));
 }
 
 function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean {
@@ -344,6 +388,7 @@ function isAdvisorSelfRecommendationSkill(skillId: string): boolean {
 function confidenceFor(args: {
   liveNormalized: number;
   directScore: number;
+  hasNamedAnchor: boolean;
   readOnlyExplainer: boolean;
   hasTaskIntent: boolean;
   readOnlyRouteAllowed: boolean;
@@ -372,7 +417,15 @@ function confidenceFor(args: {
   if (args.derivedDominant && args.directScore < C.derivedDominantDirectScoreCeiling) {
     return { value: C.derivedDominantConfidence, floored: false };
   }
+  // The task-intent floor lifts a skill on a weak direct score, so it needs the
+  // prompt to name the skill: an explicit-lane hit, a declared lexical hint, a
+  // lexical match of moderate strength on at least one word few skills list, the
+  // noun its id ends in, or a typed command the skill owns. One or two
+  // shared words ("aside", "trace", "form") are what an out-of-domain prompt
+  // carries, and such a skill keeps the confidence it earned. A strong direct
+  // score still lifts through the branch below.
   if (args.hasTaskIntent
+    && args.hasNamedAnchor
     && (args.directScore >= C.taskIntentDirectScoreFloor
       || args.liveNormalized >= C.taskIntentLiveNormalizedFloor)) {
     // Token-stuffing dispersion guard. Without this, a prompt
@@ -393,7 +446,9 @@ function confidenceFor(args: {
       };
     }
   }
-  if (args.directScore >= C.directScoreLiftThreshold) {
+  // A strong direct score lifts only a skill the prompt names. Without the anchor,
+  // a short prompt whose synonyms hit two of a skill's words reaches the floor.
+  if (args.directScore >= C.directScoreLiftThreshold && args.hasNamedAnchor) {
     return {
       value: Number(Math.max(base, C.directScoreFloor).toFixed(4)),
       floored: C.directScoreFloor > base,
@@ -488,12 +543,16 @@ export function boundGraphSupportBySeed(
   ).scores;
 }
 
+/** Return graph-bounded scores and the typed-command seeds behind each cap. */
 export interface SeedBoundResult {
   readonly scores: Map<string, number>;
   // Target skill -> the typed-command seed whose ceiling actually lowered it.
   readonly heldBelow: Map<string, string>;
+  // Target skill -> every typed-command seed that could hold it below itself.
+  readonly heldBy: Map<string, readonly string[]>;
 }
 
+/** Cap lent graph support and retain every typed-command seed that held a target down. */
 export function boundGraphSupportBySeedWithHolders(
   scores: ReadonlyMap<string, number>,
   graphRawBySkill: ReadonlyMap<string, number>,
@@ -503,7 +562,8 @@ export function boundGraphSupportBySeedWithHolders(
 ): SeedBoundResult {
   const bounded = new Map(scores);
   const heldBelow = new Map<string, string>();
-  if (graphWeight <= 0) return { scores: bounded, heldBelow };
+  const heldBy = new Map<string, readonly string[]>();
+  if (graphWeight <= 0) return { scores: bounded, heldBelow, heldBy };
   const lentBy = (lenderId: string, receiverId: string): number => {
     const support = graphSupportBySeed.get(receiverId)?.get(lenderId) ?? 0;
     const graphRaw = Math.max(0, graphRawBySkill.get(receiverId) ?? 0);
@@ -549,6 +609,7 @@ export function boundGraphSupportBySeedWithHolders(
   for (const [targetId, holders] of holdersByTarget) {
     const final = bounded.get(targetId) ?? 0;
     if (final >= (scores.get(targetId) ?? 0)) continue;
+    heldBy.set(targetId, [...holders]);
     let binding: string | null = null;
     let lowestSeed = Number.POSITIVE_INFINITY;
     for (const seedId of holders) {
@@ -560,7 +621,7 @@ export function boundGraphSupportBySeedWithHolders(
     }
     if (binding) heldBelow.set(targetId, binding);
   }
-  return { scores: bounded, heldBelow };
+  return { scores: bounded, heldBelow, heldBy };
 }
 
 export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
@@ -623,8 +684,10 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
   // wording lifts too. It needs the attach verb: "my own Chrome" or
   // "logged-in Chrome" alone also opens questions about browser settings and
   // profiles, and a bare "signed-in dashboard" names a page, not a browser.
+  // A bare "performance trace" also names SQL and server traces, so it lifts
+  // only beside a browser word.
   if (skillId === 'mcp-browser-use'
-    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser)|(attach|connect)(es|ed|ing)? (to |with )?my (own|signed[- ]in|logged[- ]in) chrome|chrome[_ -]?devtools[_ -]live)\b/.test(promptLower)) {
+    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|(chrome|browser) performance trace|inspect (the )?(network|dom|page|element|browser)|(attach|connect)(es|ed|ing)? (to |with )?my (own|signed[- ]in|logged[- ]in) chrome|chrome[_ -]?devtools[_ -]live)\b/.test(promptLower)) {
     return true;
   }
   if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {
@@ -1192,6 +1255,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
   }
   const readOnlyExplainer = isReadOnlyExplainer(promptLower);
   const hasTaskIntent = TASK_INTENT.test(promptLower);
+  const typedSlashCommand = hasTypedSlashCommand(promptLower);
   const recommendations: AdvisorScoredRecommendation[] = [];
 
   const candidates = projection.skills
@@ -1232,11 +1296,12 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     );
 
   for (const { skill, contributions, weightedScore } of candidates) {
-    const rrfScore = rrfFusion?.scoreBySkill.get(skill.id);
+    const rrfScore = rrfFusion?.weightedSumScoreBySkill.get(skill.id);
     const score = useRrfFusion
       ? rrfScore ?? 0
       : seedBound?.scores.get(skill.id) ?? weightedScore;
     const heldBelow = seedBound?.heldBelow.get(skill.id);
+    const heldBy = seedBound?.heldBy.get(skill.id);
     if (score <= 0 && contributions.every((contribution) => contribution.rawScore <= 0)) continue;
     if (isSpeckitMetricsEnabled()) {
       for (const contribution of contributions) {
@@ -1246,15 +1311,23 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
       }
     }
 
-    const directScore = Math.max(
-      contributions.find((contribution) => contribution.lane === 'explicit_author')?.rawScore ?? 0,
-      contributions.find((contribution) => contribution.lane === 'lexical')?.rawScore ?? 0,
-    );
+    const explicitContribution = contributions.find((contribution) => contribution.lane === 'explicit_author');
+    const lexicalContribution = contributions.find((contribution) => contribution.lane === 'lexical');
+    const directScore = Math.max(explicitContribution?.rawScore ?? 0, lexicalContribution?.rawScore ?? 0);
+    const hasNamedAnchor = (explicitContribution?.rawScore ?? 0) > 0
+      || (lexicalContribution?.evidence.some((entry) => entry.startsWith('hint:')) ?? false)
+      || ((lexicalContribution?.rawScore ?? 0) >= SCORING_CALIBRATION.confidence.taskIntentLexicalAnchorFloor
+        && promptHoldsDistinctiveWord(prompt, skill, projection))
+      || promptNamesIdNoun(promptLower, skill)
+      || typedCommandsIn(promptLower).some((typed) => (
+        TRACKED_COMMANDS[typed]?.ownerSkillId === skill.id && !commandOnlyMentioned(promptLower, typed)
+      ));
     const derivedDominant = isDerivedDominant(contributions);
     const liveNormalized = score / liveTotal;
     const confidenceResult = confidenceFor({
       liveNormalized,
       directScore,
+      hasNamedAnchor,
       readOnlyExplainer,
       hasTaskIntent,
       readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill),
@@ -1279,6 +1352,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
       laneContributions: contributions,
       dominantLane: dominantLane(contributions),
       ...(heldBelow ? { heldBelow } : {}),
+      ...(heldBy ? { heldBy } : {}),
       ...(confidenceFloored ? { confidenceFloored: true } : {}),
       redirectTo: skill.redirectTo ?? undefined,
       redirectFrom: skill.redirectFrom,
@@ -1297,8 +1371,8 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     }
   }
   let ranked = recommendations.sort((left, right) => {
-    const leftCommandBonus = left.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
-    const rightCommandBonus = right.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
+    const leftCommandBonus = left.kind === 'command' && !typedSlashCommand ? -0.08 : 0;
+    const rightCommandBonus = right.kind === 'command' && !typedSlashCommand ? -0.08 : 0;
     const leftIntent = primaryIntentBonus(promptLower, left);
     const rightIntent = primaryIntentBonus(promptLower, right);
     const leftConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, left) : 0;
@@ -1347,11 +1421,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     // every cluster member's uncertainty above the strict threshold so strict
     // callers abstain, while confidence-only callers still surface the best guess
     // (the disambiguated top-ranked candidate).
-    const meaningfulTokenCount = promptLower.split(/\s+/)
-      .filter((token) => token.length > 1).length;
-    const lowInfoPrompt = meaningfulTokenCount <= 3
-      && !hasTaskIntent
-      && !promptLower.includes('/');
+    const lowInfoPrompt = isLowInformationPrompt(prompt);
     if (lowInfoPrompt) {
       // Use the wider set: a floor-only skill must not top an under-specified prompt.
       // A passing command that the prompt names by one of its own full phrases is
@@ -1403,7 +1473,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     // Narrow anchors (a file, failing test, named component/route, benchmark, or
     // review intent) bypass the broad-build branch; the multi-concern branch
     // requires two distinct concern classes, so a file + single concern still routes.
-    if (!promptLower.includes('/')) {
+    if (!typedSlashCommand) {
       const concernClasses = (CONCERN_PERF.test(promptLower) ? 1 : 0)
         + (CONCERN_QUALITY.test(promptLower) ? 1 : 0);
       const broadBuild = BREADTH_BUILD_VERB.test(promptLower)
@@ -1505,7 +1575,10 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     recommendations: visible,
     topSkill: top?.skill ?? null,
     unknown: !top,
-    ambiguous: isAmbiguousTopTwo(ranked),
+    ambiguous: isAmbiguousTopTwo(ranked.filter((recommendation) => (
+      recommendation.kind !== 'command'
+      || !recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+    ))),
     metrics: {
       candidateCount: ranked.length,
       liveLaneCount: runtimeLiveLaneCount,

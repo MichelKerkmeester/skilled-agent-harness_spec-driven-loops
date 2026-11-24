@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Four prefix families: `cli-*` (3), `mcp-*` (2), `sk-*` (5), `system-*` (4) |
+| **Families** | Four prefix families: `cli-*` (2), `mcp-*` (3), `sk-*` (5), `system-*` (4) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
@@ -44,7 +44,6 @@ Each skill name links to its own README. One-line descriptions reflect current b
 |---|---|
 | [`cli-classifier`](cli-classifier/README.md) | Parent hub for typed judgments from classifier models: routes by `workflowMode` to the `packetKind: "transport"` mode `cli-jev` (over the `cli-jev` packet, bridging the Jev CLI and MCP surface), returning one typed value and never mutating the workspace |
 | [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-mistral-vibe` and the experimental `cli-deepseek-harness`, whose LLM Gateway route passed a keyed run |
-| [`cli-orca`](cli-orca/README.md) | Standalone class-S skill for Orca CLI work: managed worktrees, terminals, the embedded browser, automations, artifacts, handoffs and skill sharing, plus one authored reference and one verbatim snapshot for each of the eight official Orca skills |
 
 ### mcp-*: External Tool Surfaces
 

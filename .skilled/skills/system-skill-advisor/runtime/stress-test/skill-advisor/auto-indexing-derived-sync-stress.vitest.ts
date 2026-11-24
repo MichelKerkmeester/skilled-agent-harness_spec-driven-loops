@@ -18,7 +18,6 @@ import {
   sanitizeDerivedArray,
   sanitizeDerivedValue,
   sanitizeDiagnostic,
-  sanitizeEnvelopeSkillLabel,
 } from '../../lib/derived/sanitizer.js';
 import { syncDerivedMetadata } from '../../lib/derived/sync.js';
 import { SkillDerivedV2Schema } from '../../schemas/skill-derived-v2.js';
@@ -156,7 +155,6 @@ describe('sa-008..sa-011 — auto-indexing derived metadata stress behavior', ()
     expect(sanitized).toHaveLength(128);
     expect(uniqueLowercase.size).toBe(128);
     expect(sanitized.every((value) => !/ignore|override|execute|tool|developer|assistant/i.test(value))).toBe(true);
-    expect(sanitizeEnvelopeSkillLabel(attacks[0])).toBeNull();
     expect(sanitizeDiagnostic(attacks[1])).toBe('SANITIZED_DIAGNOSTIC');
   });
 

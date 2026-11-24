@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "mcp-tooling compiled routing"
-version: 1.1.2.0
+version: 1.1.4.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -32,7 +32,9 @@ node .skilled/bin/compiled-route-status.cjs --hub mcp-tooling
 Then use the front door:
 
 ```bash
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-stdin <<'TASK'
+<task>
+TASK
 ```
 
 A `route` result may be followed directly. A `clarify` or `defer` result requires disambiguation. A legacy sentinel, stale-manifest cause, or resolver error means that the caller must use the registry-driven route and record compiled serving as unavailable for that run.
@@ -40,10 +42,6 @@ A `route` result may be followed directly. A `clarify` or `defer` result require
 ### Tri-State Flag
 
 `SPECKIT_COMPILED_ROUTING=1` requests compiled resolution but cannot override an invalid or stale activation manifest. `SPECKIT_COMPILED_ROUTING=0`, `false`, or `off` forces legacy routing. Unset behavior is determined by the runtime's activation cohort and manifest; it is not a promise that this hub is currently compiled-serving.
-
-### Former Orca Integration Boundary
-
-The Orca packet left this hub for the standalone `cli-orca` skill, so the former hub-mode registration no longer exists and no compiled promotion applies to it. This change never modified the compiled shadow-child compiler, admission manifest, or runtime activation cohort. Until an independently authorized promotion refreshes those artifacts, a status result such as `legacy` with `stale-manifest` is the honest outcome for this hub.
 
 ---
 

@@ -1,0 +1,1639 @@
+{
+  "mergedFrom": [
+    "opus-1",
+    "opus-2",
+    "opus-3",
+    "opus-4"
+  ],
+  "lineageExecutors": {
+    "opus-1": {
+      "kind": "cli-claude-code",
+      "model": "claude-opus-5-5",
+      "reasoningEffort": "medium"
+    },
+    "opus-2": {
+      "kind": "cli-claude-code",
+      "model": "claude-opus-5-5",
+      "reasoningEffort": "medium"
+    },
+    "opus-3": {
+      "kind": "cli-claude-code",
+      "model": "claude-opus-5-5",
+      "reasoningEffort": "medium"
+    },
+    "opus-4": {
+      "kind": "cli-claude-code",
+      "model": "claude-opus-5-5",
+      "reasoningEffort": "medium"
+    }
+  },
+  "mergedVerdict": "FAIL",
+  "failedRequiredGateIds": [
+    "coverage",
+    "scope"
+  ],
+  "openFindings": [
+    {
+      "findingId": "O1-I1-P2-002",
+      "severity": "P2",
+      "title": "003 and 004 marked Complete with every goal criterion unchecked",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/goal.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "O4-I3-P2-001",
+      "severity": "P2",
+      "title": "003 closure surface says AC-002 unmet and not closeable while its AC row and the tree say met",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/acceptance-criteria.md",
+      "line": 94,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-4"
+      ]
+    },
+    {
+      "findingId": "O4-I3-P2-002",
+      "severity": "P2",
+      "title": "004 goal criteria all unchecked and continuity at completion_pct 0 though every criterion holds",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/goal.md",
+      "line": 21,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-4"
+      ]
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "005 goal criterion 1 is ticked though its own evidence shows mcp-tooling still passing the threshold",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/goal.md",
+      "line": 59,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "O2-I3-P2-004",
+      "severity": "P2",
+      "title": "005 unmet REQ-009 still reproduces at 0.82 and no later phase owns it",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/implementation-summary.md",
+      "line": 158,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O1-I1-P2-001",
+      "severity": "P2",
+      "title": "011 completion criterion count now prints 5, not 3",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md",
+      "line": 327,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "011's goal criterion and the parent handoff row no longer reproduce: the guide count is 5, not 3",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note/goal.md",
+      "line": 56,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "O1-I1-P1-001",
+      "severity": "P1",
+      "title": "013 changed one copy of the shared installer _utils.sh; mcp-installers parity test fails, 003 criterion broken",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/_utils.sh",
+      "line": 160,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "O1-I4-P2-001",
+      "severity": "P2",
+      "title": "013 shipped behavior changes without version/changelog entries and rewrote the released v1.0.27.0 entry",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.27.0.md",
+      "line": 15,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "013 shipped script and behaviour changes in two packets without cutting a release: it rewrote 011's published v1.0.27.0 note and gave Aside no entry",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.27.0.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "O2-I4-P2-001",
+      "severity": "P2",
+      "title": "Aside docs still teach page.on capture and page.context() cookies after the live run proved both throw on 1.26.626.1517",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md",
+      "line": 147,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O4-I4-P2-001",
+      "severity": "P2",
+      "title": "Aside example repl-evidence-capture.sh still defaults to /tmp, which its README says fails on the current Aside",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh",
+      "line": 12,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-4"
+      ]
+    },
+    {
+      "findingId": "O1-I6-P2-001",
+      "severity": "P2",
+      "title": "Aside playbook root keeps a hand-typed scenario census the validator flags",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 35,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "O2-I6-P2-001",
+      "severity": "P2",
+      "title": "BB-015 launches the browser's live profile with a debug port that branded Chrome 136+ refuses, and its triage blames the wrong cause",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md",
+      "line": 45,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O2-I5-P2-001",
+      "severity": "P2",
+      "title": "bdg installs from floating @alpha tag while the packet documents and verifies bdg 0.6.10 behaviour",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O1-I2-P2-001",
+      "severity": "P2",
+      "title": "Bladebro installer runs npm lifecycle scripts before the digest check",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh",
+      "line": 111,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "O2-I2-P2-001",
+      "severity": "P2",
+      "title": "Bladebro installer runs npm lifecycle scripts before the digest gate, and the JS launcher is never verified",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh",
+      "line": 111,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O2-I1-P2-001",
+      "severity": "P2",
+      "title": "Caller-owned Chrome attach routes to Chrome DevTools while SKILL.md gives caller-owned attachment to Bladebro",
+      "file": ".skilled/skills/mcp-browser-use/SKILL.md",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O1-I2-P2-002",
+      "severity": "P2",
+      "title": "Chrome DevTools installer pulls bdg from floating @alpha while docs pin bdg 0.6.10",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Chrome DevTools installs a moving browser-debugger-cli@alpha tag while 013 aligned every doc to bdg 0.6.10",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "O2-I3-P2-003",
+      "severity": "P2",
+      "title": "Live playbook verdicts cite evidence files that were never kept",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/results.csv",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O1-I3-P2-002",
+      "severity": "P2",
+      "title": "Parent continuity and graph metadata contradict the Complete status",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/graph-metadata.json",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "O1-I3-P2-001",
+      "severity": "P2",
+      "title": "Parent handoff table carries [Criteria TBD] placeholders for 006 -> 007",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "line": 146,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-1"
+      ]
+    },
+    {
+      "findingId": "O4-I3-P2-003",
+      "severity": "P2",
+      "title": "Parent handoff table keeps a [Criteria TBD] placeholder row for 006 to 007",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "line": 146,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-4"
+      ]
+    },
+    {
+      "findingId": "O2-I3-P2-002",
+      "severity": "P2",
+      "title": "Parent spec keeps a TBD 006->007 handoff row and names the removed 505 branch",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "line": 146,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "O4-I3-P2-004",
+      "severity": "P2",
+      "title": "Parent spec.md and goal.md continuity frozen at planning time (completion_pct 0, Start 002)",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-4"
+      ]
+    },
+    {
+      "findingId": "O2-I3-P2-001",
+      "severity": "P2",
+      "title": "Phase 003 and 004 goal criteria all unchecked although phases are complete and criteria hold",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/goal.md",
+      "line": 59,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-2"
+      ]
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Phase 013 broke phase 003's installer-test criterion: the two _utils.sh copies now differ",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/_utils.sh",
+      "line": 160,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Phases 003 and 004 are marked Complete but every completion criterion in their goal.md is unchecked",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/goal.md",
+      "line": 58,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The Bladebro SKILL.md lane rule endorses npx -y bladebro mcp, an implicit unpinned install that R-SEC-3 forbids",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The parent handoff table still carries template placeholders for 006 to 007",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "line": 146,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "The rb status and rb attach aliases route unrelated rb prompts to the Bladebro mode",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/tasks.md",
+      "line": 67,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 6,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 7,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Tie-break routing holds only for the recorded phrasings, with margins near the advisor floor",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-21--two-stage-replay--compiled/results.csv",
+      "line": 5,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-3"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 30
+  },
+  "openFindingsCount": 33,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 3,
+  "activeP2": 30,
+  "searchDebt": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "maintainability": true,
+    "security": true,
+    "traceability": true
+  },
+  "traceability": {
+    "summary": {
+      "required": 6,
+      "executed": 6,
+      "pass": 2,
+      "partial": 4,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/commands/assets/local-doc-alignment/topics.json:286"
+        ],
+        "gateClass": "soft",
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "summary": "no stale mirror or agent paths"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:146"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "P2 checklist drift (011 count, 003/004 boxes, handoff TBD) unresolved"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md:226",
+          ".skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/feature-catalog.md:139"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "counts match; Aside index rows contradict live result"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md:30",
+          ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md:45"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "summary": "BB-015 honours R-SEC-1 but omits Chrome 136+ precondition"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md:86"
+        ],
+        "gateClass": "soft",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "no --account; live manual consent stated"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/_utils.sh:160"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "D2 manuals hold; O1-I1-P1-001 re-read still active"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence",
+      "spec_code"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "consent_bypass",
+      "secret_exposure"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "consent_bypass",
+      "secret_exposure"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "candidateCoverage": {
+    "covered": [
+      "count_drift",
+      "criterion_regression",
+      "cross_copy_drift",
+      "release_drift",
+      "status_drift",
+      "supply_chain"
+    ],
+    "ruledOut": [
+      "consent_bypass",
+      "criterion_regression",
+      "destructive_command",
+      "evidence_tally_drift",
+      "routing_regression",
+      "scope_creep",
+      "secret_exposure",
+      "stale_mirror_path",
+      "version_mismatch"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "consent_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          7
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "count_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "criterion_regression": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "cross_copy_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "destructive_command": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "evidence_tally_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "release_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "routing_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "scope_creep": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "stale_mirror_path": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "status_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "supply_chain": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      },
+      "version_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ],
+        "lineages": [
+          "opus-1"
+        ]
+      }
+    }
+  },
+  "divergenceByLineage": {
+    "opus-1": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    },
+    "opus-2": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    },
+    "opus-3": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    },
+    "opus-4": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    }
+  },
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled"
+      ],
+      "bugClass": "criterion_regression",
+      "disposition": "ruled_out",
+      "rationale": "no match",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-tooling/mode-registry.json:1"
+      ],
+      "reason": "verified by rg",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-3",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md"
+      ],
+      "bugClass": "destructive_command",
+      "disposition": "ruled_out",
+      "rationale": "fix holds",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md:48"
+      ],
+      "reason": "verified by direct read",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-4",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "consent_bypass",
+      "disposition": "ruled_out",
+      "rationale": "needs explicit attach wording",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:623"
+      ],
+      "reason": "verified by direct read",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-3",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/spec.md"
+      ],
+      "bugClass": "scope_creep",
+      "disposition": "ruled_out",
+      "rationale": "in declared scope",
+      "evidenceRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs/spec.md:91"
+      ],
+      "reason": "verified by direct read",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use"
+      ],
+      "bugClass": "version_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "checker passes",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md:5"
+      ],
+      "reason": "verified by checker",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-1",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route.cjs"
+      ],
+      "bugClass": "routing_regression",
+      "disposition": "ruled_out",
+      "rationale": "all route correctly",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:109"
+      ],
+      "reason": "verified by replay",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use"
+      ],
+      "bugClass": "evidence_tally_drift",
+      "disposition": "ruled_out",
+      "rationale": "match",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/results.csv:1"
+      ],
+      "reason": "verified by count",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-2",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents",
+        ".claude/agents"
+      ],
+      "bugClass": "stale_mirror_path",
+      "disposition": "ruled_out",
+      "rationale": "no match",
+      "evidenceRefs": [
+        ".skilled/commands/assets/local-doc-alignment/topics.json:286"
+      ],
+      "reason": "verified by rg",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-1",
+      "dimension": "security",
+      "targetRefs": [
+        ".utcp_config.json"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "no env",
+      "evidenceRefs": [
+        ".utcp_config.json:1"
+      ],
+      "reason": "verified by direct read",
+      "lineage": "opus-1"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-2",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md"
+      ],
+      "bugClass": "consent_bypass",
+      "disposition": "ruled_out",
+      "rationale": "rule present",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md:86"
+      ],
+      "reason": "verified by direct read",
+      "lineage": "opus-1"
+    }
+  ]
+}

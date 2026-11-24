@@ -29,6 +29,7 @@ import re
 import sqlite3
 import subprocess
 import sys
+import unicodedata
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -49,6 +50,7 @@ NATIVE_TIMEOUT_SECONDS = 2.5
 # advisor_recommend routes on at most this many prompt characters, counted in the UTF-16
 # code units JavaScript measures. A longer prompt is sent as its head, so it is routed
 # rather than refused.
+# Keep this aligned with tests/parity/python-ts-constant-parity.vitest.ts.
 ADVISOR_PROMPT_MAX_CHARS = 10_000
 NATIVE_ADVISOR_STATUS = os.path.join(
     REPO_ROOT,
@@ -2493,8 +2495,8 @@ GENERATED_COMMAND_BRIDGES = {
         "lead_phrases": ["disable comment hygiene gate"],
         "inventory_id": "command-doctor-git-hooks",
         "command": "/doctor:git",
-        "skill_id": "sk-git",
-        "owner_mode": "sk-git",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-runtime-mirrors": {
@@ -2511,8 +2513,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor skill-budget"],
         "inventory_id": "command-doctor-skill-advisor-skill-budget",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-git-setup": {
@@ -2520,8 +2522,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:git setup", "/doctor:git"],
         "inventory_id": "command-doctor-git-setup",
         "command": "/doctor:git",
-        "skill_id": "sk-git",
-        "owner_mode": "sk-git",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-git-standards": {
@@ -2529,8 +2531,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:git standards"],
         "inventory_id": "command-doctor-git-standards",
         "command": "/doctor:git",
-        "skill_id": "sk-git",
-        "owner_mode": "sk-git",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-code-setup": {
@@ -2538,8 +2540,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-code setup", "/doctor:sk-code"],
         "inventory_id": "command-doctor-sk-code-setup",
         "command": "/doctor:sk-code",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-tune": {
@@ -2547,8 +2549,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor tune"],
         "inventory_id": "command-doctor-skill-advisor-tune",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-rebuild": {
@@ -2556,8 +2558,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor rebuild"],
         "inventory_id": "command-doctor-skill-advisor-rebuild",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-parent-skill": {
@@ -2565,8 +2567,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor parent-skill"],
         "inventory_id": "command-doctor-skill-advisor-parent-skill",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-skill-graph-freshness": {
@@ -2574,8 +2576,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor skill-graph-freshness"],
         "inventory_id": "command-doctor-skill-advisor-skill-graph-freshness",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-router-reach": {
@@ -2583,8 +2585,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor router-reach"],
         "inventory_id": "command-doctor-skill-advisor-router-reach",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-speckit": {
@@ -2610,8 +2612,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:deep-loop"],
         "inventory_id": "command-doctor-deep-loop",
         "command": "/doctor:deep-loop",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "system-deep-loop",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-mcp-debug": {
@@ -2638,8 +2640,8 @@ GENERATED_COMMAND_BRIDGES = {
         "lead_phrases": ["which ci workflow switches are off", "ci workflow switch state", "ci switch report"],
         "inventory_id": "command-doctor-ci-report",
         "command": "/doctor:ci",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-ci-scaffold": {
@@ -2647,8 +2649,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:ci scaffold"],
         "inventory_id": "command-doctor-ci-scaffold",
         "command": "/doctor:ci",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-ci-toggle": {
@@ -2656,8 +2658,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:ci toggle"],
         "inventory_id": "command-doctor-ci-toggle",
         "command": "/doctor:ci",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-code-quality": {
@@ -2665,8 +2667,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-code quality"],
         "inventory_id": "command-doctor-sk-code-quality",
         "command": "/doctor:sk-code",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-skill-check": {
@@ -2674,8 +2676,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-skill check", "/doctor:sk-skill"],
         "inventory_id": "command-doctor-sk-skill-check",
         "command": "/doctor:sk-skill",
-        "skill_id": "sk-doc",
-        "owner_mode": "sk-doc",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-skill-convert": {
@@ -2683,8 +2685,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-skill convert"],
         "inventory_id": "command-doctor-sk-skill-convert",
         "command": "/doctor:sk-skill",
-        "skill_id": "sk-doc",
-        "owner_mode": "sk-doc",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-helper": {
@@ -4071,8 +4073,81 @@ CODE_MODE_TOOLCHAIN_RE = re.compile(r"\b(call_tool_chain|code mode|tool ?chain|a
 # prompt for abstention purposes.
 TASK_INTENT_RE = re.compile(
     r"\b(add|append|build|change|configure|create|edit|fix|generate|implement"
-    r"|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b"
+    r"|modify|move|patch|refactor|rename|replace|review|run|start|sweep|update|write)\b"
 )
+
+PROMPT_POLICY_PATH = os.environ.get("SPECKIT_ADVISOR_PROMPT_POLICY_PATH") or os.path.join(
+    SCRIPT_DIR, "..", "data", "prompt-policy.default.json"
+)
+_HIDDEN_PROMPT_CHARS_RE = re.compile("[\\u00ad\\u200b-\\u200f\\ufeff]")
+_PROMPT_TOKEN_RE = re.compile(r"[a-z0-9][a-z0-9_-]*")
+_TYPED_SLASH_COMMAND_RE = re.compile(
+    r"(?:^|[\s`'\"(\[])(?:/[a-z][a-z0-9_-]*:[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*|/(?:doctor|autoresearch))(?=$|[\s).,!?;`'\"])"
+)
+_CONFUSABLE_PROMPT_REPLACEMENTS = (
+    (re.compile("[\\u0410\\u0391]"), "A"), (re.compile("[\\u0430\\u03b1]"), "a"),
+    (re.compile("[\\u0412\\u0392]"), "B"), (re.compile("\\u0432"), "v"),
+    (re.compile("\\u0421"), "C"), (re.compile("[\\u0441\\u03f2]"), "c"),
+    (re.compile("[\\u0395\\u0415]"), "E"), (re.compile("[\\u03b5\\u0435]"), "e"),
+    (re.compile("[\\u041d\\u0397]"), "H"), (re.compile("\\u043d"), "h"),
+    (re.compile("[\\u0406\\u0399]"), "I"), (re.compile("[\\u0456\\u03b9]"), "i"),
+    (re.compile("[\\u041a\\u039a]"), "K"), (re.compile("[\\u043a\\u03ba]"), "k"),
+    (re.compile("[\\u041c\\u039c]"), "M"), (re.compile("[\\u043c\\u03bc]"), "m"),
+    (re.compile("[\\u041e\\u039f]"), "O"), (re.compile("[\\u043e\\u03bf]"), "o"),
+    (re.compile("[\\u0420\\u03a1]"), "P"), (re.compile("[\\u0440\\u03c1]"), "p"),
+    (re.compile("[\\u0405\\u03a3]"), "S"), (re.compile("[\\u0455\\u03c3\\u03c2]"), "s"),
+    (re.compile("[\\u0422\\u03a4]"), "T"), (re.compile("[\\u0442\\u03c4]"), "t"),
+    (re.compile("[\\u0425\\u03a7]"), "X"), (re.compile("[\\u0445\\u03c7]"), "x"),
+    (re.compile("[\\u0423\\u03a5]"), "Y"), (re.compile("[\\u0443\\u03c5]"), "y"),
+)
+
+
+def _load_prompt_policy_stop_words(path: str) -> Set[str]:
+    """Load prompt-policy stop words, degrading to an empty set on a bad file."""
+    # The fallback runs when the daemon is down, so a bad policy file must degrade
+    # stop-word filtering rather than stop routing.
+    try:
+        with open(path, "r", encoding="utf-8") as policy_file:
+            return set(json.load(policy_file)["sets"]["STOP_WORDS"])
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        print(f"skill_advisor: unusable prompt policy {path}: {exc}", file=sys.stderr)
+        return set()
+
+
+PROMPT_POLICY_STOP_WORDS: Set[str] = _load_prompt_policy_stop_words(PROMPT_POLICY_PATH)
+
+
+def _canonical_prompt_fold(prompt: str) -> str:
+    normalized = unicodedata.normalize("NFKC", prompt)
+    normalized = _HIDDEN_PROMPT_CHARS_RE.sub("", normalized)
+    normalized = "".join(
+        character for character in unicodedata.normalize("NFD", normalized)
+        if not unicodedata.category(character).startswith("M")
+    )
+    for pattern, replacement in _CONFUSABLE_PROMPT_REPLACEMENTS:
+        normalized = pattern.sub(replacement, normalized)
+    return normalized
+
+
+def meaningful_token_count(prompt: str) -> int:
+    """Count normalized prompt-policy tokens that are not stop words."""
+    tokens = _PROMPT_TOKEN_RE.findall(_canonical_prompt_fold(prompt).lower())
+    return sum(1 for token in tokens if token not in PROMPT_POLICY_STOP_WORDS)
+
+
+def has_typed_slash_command(prompt_lower: str) -> bool:
+    """Return whether the prompt contains a typed slash command."""
+    return _TYPED_SLASH_COMMAND_RE.search(prompt_lower) is not None
+
+
+def is_low_information_prompt(prompt: str) -> bool:
+    """Return whether a prompt is short, intentless and lacks a typed command."""
+    prompt_lower = prompt.lower()
+    return (
+        meaningful_token_count(prompt) <= 3
+        and not TASK_INTENT_RE.search(prompt_lower)
+        and not has_typed_slash_command(prompt_lower)
+    )
 
 # Uncertainty floor applied to every member of a low-information ambiguity
 # cluster: above the default strict threshold so strict callers abstain, but
@@ -4144,6 +4219,7 @@ _REVIEW_LOOP_RE = re.compile(
 # The native scorer floors a skill with that explicit evidence at this
 # confidence, so a loop request lifts the deep-loop owner to the same value. Its
 # uncertainty gets the same relief a verbatim skill-name mention gets here.
+# Keep this aligned with tests/parity/python-ts-constant-parity.vitest.ts.
 _LOOP_OWNER_CONFIDENCE_FLOOR = 0.82
 _LOOP_OWNER_UNCERTAINTY_CAP = 0.30
 # Generic single tokens that appear in executor metadata as domain labels rather
@@ -6106,8 +6182,7 @@ def _apply_low_info_ambiguity_abstention(
     """
     if not recommendations:
         return
-    meaningful = [token for token in re.findall(r"\b\w+\b", prompt_lower) if len(token) > 1]
-    if len(meaningful) > 3 or TASK_INTENT_RE.search(prompt_lower) or "/" in prompt_lower:
+    if not is_low_information_prompt(prompt_lower):
         return
     # Confidence-only membership on purpose: a candidate whose uncertainty
     # already fails the strict threshold still belongs in the cluster — it is
@@ -6173,7 +6248,7 @@ def _apply_breadth_abstention(
     bypass the broad-build branch; multi-concern requires two concern classes,
     so a file plus a single concern still routes.
     """
-    if not prompt_lower or "/" in prompt_lower:
+    if not prompt_lower or has_typed_slash_command(prompt_lower):
         return
     concern_classes = (1 if CONCERN_PERF_RE.search(prompt_lower) else 0) + (
         1 if CONCERN_QUALITY_RE.search(prompt_lower) else 0

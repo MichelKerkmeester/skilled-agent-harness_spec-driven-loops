@@ -1,0 +1,23 @@
+Lineage complete and verified. Final state:
+
+**Run**: 7 of 7 iterations, stop reason `converged` at a 0.0345 new-findings ratio against the 0.10 threshold.
+
+**Verdict**: `CONDITIONAL` — 0 P0, 4 P1, 9 P2 active, 0 search debt, 0 corruption.
+
+| Iteration | Dimension | Findings |
+|---|---|---|
+| 1 | correctness | R1-P1-001 (three canonical ids never reach the three-mode bundle), R1-P2-002 |
+| 2 | correctness | R2-P1-001 (admission corpus never tests the bundle), R2-P2-002 |
+| 3 | security | R3-P1-001 (Aside installer pipes unverified remote code to a shell), R3-P2-002 |
+| 4 | traceability | R4-P1-001 (advisor keyword set 17 vs router's 76; hub unreachable), R4-P2-002 |
+| 5 | traceability | R5-P2-001, R5-P2-002 |
+| 6 | maintainability | R6-P2-001 (run index omits the newest run), R6-P2-002 (release note misstates all three counts) |
+| 7 | cross-reference | R7-P2-001 (no feature catalog) |
+
+Two judgement calls worth naming. The `MT-H01` PASS/FAIL candidate in iteration 7 was withdrawn as a duplicate — R4-P1-001 already states it and already cites the same line, so re-raising it would have inflated the count without new evidence. And the maintainability dimension was sampled, not swept: `changelog/v1.1.0.0.md`, `v1.0.0.0.md` and the three mode packets' own changelogs are recorded as unverified rather than clean.
+
+Six of the seven parent criteria are verified by execution or direct read. Criterion 5 holds per mode but not for a combined three-mode request, which is R1-P1-001.
+
+Artifacts written, all inside the lineage: `iterations/iteration-001..007.md`, `deltas/iter-001..007.jsonl`, `review-report.md`, `resource-map.md`, plus the reducer-owned registry, dashboard and strategy. State went through the append gateway only — ledger sequence 10, `projectionRefreshed: true` on every append. `git status` confirms nothing outside `review/lineages/vibe-1` was touched.
+
+FANOUT_LINEAGE_COMPLETE:vibe-1

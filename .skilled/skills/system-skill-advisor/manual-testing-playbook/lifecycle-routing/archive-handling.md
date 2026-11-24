@@ -6,7 +6,7 @@ trigger_phrases:
   - "z_archive skills"
   - "z_future skills"
   - "indexed not routed"
-version: 0.8.1.0
+version: 0.8.2.0
 id: LC-003
 category: lifecycle_routing
 stage: routing
@@ -79,7 +79,6 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-004](../../manual-testing-playbook/auto-indexing/corpus-df-idf.md), active-only corpus.
-- Scenario [LC-002](./supersession.md), supersession routing.
 - Feature [`lifecycle-routing/archive-handling.md`](../../feature-catalog/lifecycle-routing/archive-handling.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts`.
 

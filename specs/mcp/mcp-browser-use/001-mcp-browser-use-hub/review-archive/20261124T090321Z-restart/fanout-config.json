@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-pi","model":"deepseek-v4.1-flash-1017","reasoningEffort":"max","label":"pi","count":2},{"kind":"cli-mistral-vibe","model":"deepseek-flash","label":"vibe","count":2}],"concurrency":4}

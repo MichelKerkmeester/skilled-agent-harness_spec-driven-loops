@@ -1,7 +1,7 @@
 ---
 title: "Aside CLI Installation Guide"
 description: "Install the Aside AI-browser CLI on macOS, sign in, understand the permission tiers and verify the Aside MCP wiring for Code Mode."
-version: 1.0.2.0
+version: 1.0.4.0
 ---
 
 # Aside CLI Installation Guide
@@ -18,7 +18,7 @@ Paste this prompt to an AI agent to run the install interactively:
 Install the Aside CLI on this macOS machine. Steps:
 1. Confirm the platform is macOS (Darwin) arm64 or x64 — abort on anything else.
 2. Check for an existing binary with `command -v aside`; if present, report the version and stop.
-3. With my confirmation, run: curl -fsSL https://releases.aside.com/install.sh | bash
+3. With my confirmation, run: bash .skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh. It checks the official installer against a pinned sha256 and runs it only on a match.
 4. Verify: `command -v aside` (expect ~/.local/bin/aside) and `aside --version 2>&1`.
 5. Capture `aside --help 2>&1` as a fixture for the installed command surface.
 6. Check sign-in state with `aside account list 2>&1` and `aside account status 2>&1`.
@@ -43,11 +43,13 @@ The CLI is the primary surface; the MCP server is a fallback launched from the s
 
 ### Distribution
 
-Aside ships via an official curl bootstrap installer — **not npm** and not a GitHub package:
+Aside ships via an official curl bootstrap installer — **not npm** and not a GitHub package. Run it through the packaged wrapper, which downloads the script, checks its sha256 against a pinned digest and runs it only on a match:
 
 ```bash
-curl -fsSL https://releases.aside.com/install.sh | bash
+bash .skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh
 ```
+
+A digest mismatch means Aside changed its installer. Read the new script before bumping `INSTALLER_SHA256` in the wrapper. The pin covers the script only, not the archive it downloads.
 
 The Developer settings page inside the Aside app can also install, update, or reinstall the CLI.
 
@@ -69,7 +71,7 @@ The Developer settings page inside the Aside app can also install, update, or re
 
 ### Installer Environment Overrides
 
-The installer honors: `ASIDE_CLI_VERSION`, `ASIDE_CLI_BASE_URL`, `ASIDE_CLI_INSTALL_DIR`, `ASIDE_CLI_BIN_DIR`. Default shim location: `~/.local/bin/aside` — ensure `~/.local/bin` is on `PATH`.
+The installer honors: `ASIDE_CLI_VERSION`, `ASIDE_CLI_BASE_URL`, `ASIDE_CLI_INSTALL_DIR`, `ASIDE_CLI_BIN_DIR`. The packaged wrapper refuses `ASIDE_CLI_BASE_URL`, because it verifies the installer script and not the archive the script downloads. Default shim location: `~/.local/bin/aside` — ensure `~/.local/bin` is on `PATH`.
 
 > Install-target layout note: research descriptions of the app-bundle layout diverge (`Aside CLI.app` vs `~/.aside/cli`); both trace to the same installer. Capture your installed layout as a fixture if you need to document it.
 
@@ -80,7 +82,7 @@ The installer honors: `ASIDE_CLI_VERSION`, `ASIDE_CLI_BASE_URL`, `ASIDE_CLI_INST
 ### Step 1: Install the CLI
 
 ```bash
-curl -fsSL https://releases.aside.com/install.sh | bash
+bash .skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh
 ```
 
 Or run the packaged wrapper (platform gate + no-op when already installed):
