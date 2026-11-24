@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7280,
-    "ok": 20669,
+    "missing-frontmatter": 7258,
+    "ok": 20624,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29577,
+  "documentsScanned": 29510,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f86bb66dec71f43e2617f674b43488ebb770d46dfa2fd4b128fbd892597e7012",
+  "manifestHash": "0f03c4a01ae7c36ae187174efb2bedaf72762a832db0d516e41aeda79624b1f5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46398,
+      "ok": 46327,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -35858,138 +35858,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/orca-integration/2026-09-19--conformance-remediation/cli-devin-review-output.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/orca-integration/2026-09-19--orca-integration/report.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/synthesis.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/003-cli-orca-deprecation/001-inventory-and-baseline/acceptance-criteria.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/003-cli-orca-deprecation/002-runtime-code-and-tests/acceptance-criteria.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/003-cli-orca-deprecation/003-docs-registries-and-skill-removal/acceptance-criteria.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/acceptance-criteria.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/research.md",
       "reason": "no opening frontmatter delimiter"
@@ -57940,38 +57808,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/cli-orca/001-mcp-orca-cli/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/003-cli-orca-deprecation/001-inventory-and-baseline/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/003-cli-orca-deprecation/002-runtime-code-and-tests/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/003-cli-orca-deprecation/003-docs-registries-and-skill-removal/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/commands/001-command-contract-reconciliation/scratch",
       "reason": "excluded directory"
     },
@@ -62069,10 +61905,6 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/003-cli-jev/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/004-cli-orca/scratch",
       "reason": "excluded directory"
     },
     {

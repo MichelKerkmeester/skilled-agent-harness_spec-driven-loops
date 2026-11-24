@@ -1,8 +1,0 @@
-advisor-vitest exit=0 (final rerun after dist rebuild and ledger fix: 2738 passed, 4 skipped)
-metadata-contract exit=0
-readme-manifest exit=1
-readme-verdicts exit=0
-cite-drift exit=0
-runtime-mirrors exit=0
-opencode-advisor-plugin exit=0
-compiled-route-tests exit=1

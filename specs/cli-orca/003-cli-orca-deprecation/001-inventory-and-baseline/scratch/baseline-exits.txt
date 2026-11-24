@@ -1,7 +1,0 @@
-advisor-vitest exit=1
-metadata-contract exit=0
-readme-manifest exit=1
-readme-verdicts exit=0
-cite-drift exit=0
-runtime-mirrors exit=0
-opencode-advisor-plugin exit=0

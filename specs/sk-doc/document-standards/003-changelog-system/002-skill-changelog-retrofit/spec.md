@@ -94,7 +94,6 @@ Every skill changelog reads in the current format and still records exactly what
 | 1 | 001-tooling-and-pilot/ | Checker, briefs, driver and the ten-file pilot | Complete |
 | 2 | 002-cli-external-orchestration/ | 112 cli-external-orchestration changelogs, 3 kept in the pilot | Planned |
 | 3 | 003-cli-jev/ | 5 cli-jev changelogs | Planned |
-| 4 | 004-cli-orca/ | 1 cli-orca changelog | Planned |
 | 5 | 005-mcp-code-mode/ | 9 mcp-code-mode changelogs | Planned |
 | 6 | 006-mcp-tooling/ | 55 mcp-tooling changelogs, 1 kept in the phase 001 check run | Planned |
 | 7 | 007-sk-code/ | 29 sk-code changelogs | Planned |
@@ -121,8 +120,7 @@ Every skill changelog reads in the current format and still records exactly what
 |------|-----|----------|--------------|
 | 001-tooling-and-pilot | 002-cli-external-orchestration | The operator approves the pilot style | `001-tooling-and-pilot/acceptance-criteria.md` AC-008 is Met |
 | 002-cli-external-orchestration | 003-cli-jev | Every listed file is kept or recorded with its reason, and the skill commit is pushed | `validate.sh --strict` on 002-cli-external-orchestration reports `RESULT: PASSED` |
-| 003-cli-jev | 004-cli-orca | Every listed file is kept or recorded with its reason, and the skill commit is pushed | `validate.sh --strict` on 003-cli-jev reports `RESULT: PASSED` |
-| 004-cli-orca | 005-mcp-code-mode | Every listed file is kept or recorded with its reason, and the skill commit is pushed | `validate.sh --strict` on 004-cli-orca reports `RESULT: PASSED` |
+| 003-cli-jev | 005-mcp-code-mode | Every listed file is kept or recorded with its reason, and the skill commit is pushed | `validate.sh --strict` on 003-cli-jev reports `RESULT: PASSED` |
 | 005-mcp-code-mode | 006-mcp-tooling | Every listed file is kept or recorded with its reason, and the skill commit is pushed | `validate.sh --strict` on 005-mcp-code-mode reports `RESULT: PASSED` |
 | 006-mcp-tooling | 007-sk-code | Every listed file is kept or recorded with its reason, and the skill commit is pushed | `validate.sh --strict` on 006-mcp-tooling reports `RESULT: PASSED` |
 | 007-sk-code | 008-sk-communication | Every listed file is kept or recorded with its reason, and the skill commit is pushed | `validate.sh --strict` on 007-sk-code reports `RESULT: PASSED` |

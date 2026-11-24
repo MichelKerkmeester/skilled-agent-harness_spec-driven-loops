@@ -7,7 +7,6 @@
     "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/001-tooling-and-pilot",
     "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/002-cli-external-orchestration",
     "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/003-cli-jev",
-    "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/004-cli-orca",
     "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/005-mcp-code-mode",
     "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/006-mcp-tooling",
     "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/007-sk-code",
@@ -61,7 +60,6 @@
       "001-tooling-and-pilot/goal.md",
       "002-cli-external-orchestration/goal.md",
       "003-cli-jev/goal.md",
-      "004-cli-orca/goal.md",
       "005-mcp-code-mode/goal.md",
       "006-mcp-tooling/goal.md",
       "007-sk-code/goal.md",
@@ -73,7 +71,8 @@
       "013-sk-vision/goal.md",
       "014-system-deep-loop/goal.md",
       "015-system-skill-advisor/goal.md",
-      "016-system-spec-kit/goal.md"
+      "016-system-spec-kit/goal.md",
+      "scratch/check_changelog_shape.py"
     ],
     "entities": [
       {
@@ -86,6 +85,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "check_changelog_shape.py",
+        "kind": "file",
+        "path": "scratch/check_changelog_shape.py",
         "source": "derived"
       },
       {
@@ -163,17 +168,17 @@
     ],
     "causal_summary": "sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`",
     "created_at": "2026-09-24T15:48:26Z",
-    "last_save_at": "2026-11-10T05:26:22.938Z",
+    "last_save_at": "2026-11-24T18:07:29.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:38434bc67f06c4f09478544dcffd458252a7b2933b4ef43340212294e5c5b200",
+    "source_fingerprint": "sha256:d8eb89bc17573ef0979e9bf64ba382a58da7b469218f09a4bf9984fd2ec42491",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28e4e99a85f2776bfd585b7eabbb2695566c1e0cdf4b21b1c056b466cc57517c"
+      "spec.md": "df6dcb94e60a78e0b4676c8adcb5ba276a6d70d2efdb1266d134746c15041d0e"
     },
     "last_active_child_id": "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit/016-system-spec-kit",
     "last_active_at": "2026-09-26T08:27:03.158Z"

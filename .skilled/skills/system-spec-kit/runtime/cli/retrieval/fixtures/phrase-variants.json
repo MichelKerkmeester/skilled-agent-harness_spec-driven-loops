@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f86bb66dec71f43e2617f674b43488ebb770d46dfa2fd4b128fbd892597e7012",
+  "manifestHash": "0f03c4a01ae7c36ae187174efb2bedaf72762a832db0d516e41aeda79624b1f5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1213,9 +1213,6 @@
     "004 plan vec store": [
       "004 plan vec store"
     ],
-    "004 regeneration and zero reference proof operator decisions": [
-      "004-regeneration-and-zero-reference-proof operator decisions"
-    ],
     "004 release and program cleanup": [
       "004 release-and-program-cleanup"
     ],
@@ -1536,9 +1533,6 @@
     ],
     "005 plan q4 quantization": [
       "005 plan q4 quantization"
-    ],
-    "005 post alignment doc fixes operator decisions": [
-      "005-post-alignment-doc-fixes operator decisions"
     ],
     "005 post program cleanup": [
       "005 post-program cleanup"
@@ -8927,9 +8921,6 @@
     ],
     "adr disposition": [
       "adr disposition"
-    ],
-    "adr extraction": [
-      "adr extraction"
     ],
     "adr governance for embedder advisor": [
       "ADR governance for embedder + advisor"
@@ -21578,9 +21569,6 @@
     "class of bug vs finding": [
       "class of bug vs finding"
     ],
-    "class s classification": [
-      "class-S classification"
-    ],
     "classifier build order": [
       "classifier build order"
     ],
@@ -25144,91 +25132,20 @@
     "cli orca": [
       "cli orca"
     ],
-    "cli orca audit surfaces": [
-      "cli-orca audit surfaces"
-    ],
     "cli orca changelog entry": [
       "cli-orca changelog entry"
     ],
-    "cli orca changelog retrofit": [
-      "cli-orca changelog retrofit"
-    ],
-    "cli orca changelog rewrite": [
-      "cli-orca changelog rewrite"
-    ],
-    "cli orca changelog rewrite plan": [
-      "cli-orca changelog rewrite plan"
-    ],
-    "cli orca changelog rewrite status": [
-      "cli-orca changelog rewrite status"
-    ],
-    "cli orca changelog rewrite tasks": [
-      "cli-orca changelog rewrite tasks"
-    ],
-    "cli orca decision record": [
-      "cli-orca decision record"
-    ],
-    "cli orca deprecation decisions": [
-      "cli orca deprecation decisions"
-    ],
-    "cli orca deprecation phase parent spec": [
-      "cli orca deprecation phase parent spec"
-    ],
-    "cli orca extraction": [
-      "cli-orca extraction"
-    ],
-    "cli orca implementation plan": [
-      "cli-orca implementation plan"
-    ],
     "cli orca implementation summary": [
-      "cli orca implementation summary",
-      "cli-orca implementation summary"
-    ],
-    "cli orca path catalog": [
-      "cli-orca path catalog"
+      "cli orca implementation summary"
     ],
     "cli orca plan": [
       "cli orca plan"
-    ],
-    "cli orca post alignment doc fixes": [
-      "cli orca post alignment doc fixes"
-    ],
-    "cli orca post alignment doc fixes plan": [
-      "cli orca post alignment doc fixes plan"
-    ],
-    "cli orca post alignment doc fixes tasks": [
-      "cli orca post alignment doc fixes tasks"
-    ],
-    "cli orca removal baseline": [
-      "cli orca removal baseline"
-    ],
-    "cli orca removal docs": [
-      "cli orca removal docs"
-    ],
-    "cli orca removal inventory": [
-      "cli orca removal inventory"
-    ],
-    "cli orca removal operator decisions": [
-      "cli orca removal operator decisions"
-    ],
-    "cli orca removal regeneration": [
-      "cli orca removal regeneration"
-    ],
-    "cli orca removal runtime code": [
-      "cli orca removal runtime code"
-    ],
-    "cli orca removal tests": [
-      "cli orca removal tests"
     ],
     "cli orca skill removed": [
       "cli-orca skill removed"
     ],
     "cli orca tasks": [
-      "cli orca tasks",
-      "cli-orca tasks"
-    ],
-    "cli orca zero reference proof": [
-      "cli orca zero reference proof"
+      "cli orca tasks"
     ],
     "cli orchestration repoint": [
       "cli-orchestration-repoint"
@@ -31309,9 +31226,6 @@
     ],
     "consolidate doctor router implementations": [
       "consolidate doctor router implementations"
-    ],
-    "consolidate official orca skills acceptance criteria": [
-      "consolidate official orca skills acceptance criteria"
     ],
     "consolidate socket server copies": [
       "consolidate socket-server copies"
@@ -40957,9 +40871,6 @@
     "deferred hop notice": [
       "deferred hop notice"
     ],
-    "deferred orca implementation": [
-      "deferred Orca implementation"
-    ],
     "deferred p2": [
       "deferred P2"
     ],
@@ -41139,9 +41050,6 @@
     ],
     "delete cli deem packet tasks": [
       "delete cli-deem packet tasks"
-    ],
-    "delete cli orca skill folder": [
-      "delete cli-orca skill folder"
     ],
     "delete comment": [
       "delete comment"
@@ -41385,9 +41293,6 @@
     ],
     "deploy mcp sh rebuild recycle helper": [
       "deploy-mcp.sh rebuild recycle helper"
-    ],
-    "deprecate cli orca": [
-      "deprecate cli-orca"
     ],
     "deprecate cocoindex phase 010": [
       "deprecate cocoindex phase 010"
@@ -49703,9 +49608,6 @@
     "evidence gap z score degraded": [
       "evidence gap z-score degraded"
     ],
-    "evidence gated orca": [
-      "evidence-gated Orca"
-    ],
     "evidence gated provenance": [
       "evidence gated provenance"
     ],
@@ -50706,12 +50608,6 @@
     ],
     "extraction parent phase inventory": [
       "extraction parent phase inventory"
-    ],
-    "extraction results": [
-      "extraction results"
-    ],
-    "extraction task list": [
-      "extraction task list"
     ],
     "extractive description derive": [
       "extractive description derive"
@@ -54164,9 +54060,6 @@
     ],
     "flash variant max pin": [
       "flash variant max pin"
-    ],
-    "flat level 3 packet": [
-      "flat Level 3 packet"
     ],
     "flat packets beside sub tracks": [
       "flat packets beside sub-tracks"
@@ -62419,9 +62312,6 @@
     ],
     "hub doc runtime drift summary": [
       "hub doc runtime drift summary"
-    ],
-    "hub extraction plan": [
-      "hub extraction plan"
     ],
     "hub frontmatter strict yaml": [
       "hub frontmatter strict yaml"
@@ -71944,21 +71834,6 @@
     "mcp obsidian validation fixes": [
       "mcp-obsidian validation fixes"
     ],
-    "mcp orca cli": [
-      "mcp-orca-cli"
-    ],
-    "mcp orca cli migration": [
-      "mcp-orca-cli migration"
-    ],
-    "mcp orca closure gate": [
-      "mcp-orca closure gate"
-    ],
-    "mcp orca handoff": [
-      "mcp-orca handoff"
-    ],
-    "mcp orca verification checklist": [
-      "mcp-orca verification checklist"
-    ],
     "mcp prompt command listed": [
       "mcp prompt command listed"
     ],
@@ -72539,17 +72414,11 @@
     "mcp tooling hub capabilities": [
       "mcp-tooling hub capabilities"
     ],
-    "mcp tooling hub integration": [
-      "mcp-tooling hub integration"
-    ],
     "mcp tooling hub leaf manifest obsidian": [
       "mcp-tooling hub leaf manifest obsidian"
     ],
     "mcp tooling hub router scoring": [
       "mcp-tooling hub-router scoring"
-    ],
-    "mcp tooling nested packet research": [
-      "mcp-tooling nested packet research"
     ],
     "mcp tooling orca boundary removed": [
       "mcp-tooling orca boundary removed"
@@ -79834,15 +79703,6 @@
     "official obsidian mcp install": [
       "official obsidian mcp install"
     ],
-    "official orca skills consolidation": [
-      "official Orca skills consolidation"
-    ],
-    "official orca skills embedding plan": [
-      "official Orca skills embedding plan"
-    ],
-    "official orca skills inventory": [
-      "official orca skills inventory"
-    ],
     "offline": [
       "--offline"
     ],
@@ -81745,71 +81605,11 @@
     "or r 01 election race investigation": [
       "OR-R-01 election race investigation"
     ],
-    "orca cli evidence": [
-      "Orca CLI evidence"
-    ],
-    "orca cli integration": [
-      "Orca CLI integration"
-    ],
     "orca cli moves to a standalone skill": [
       "Orca CLI Moves to a Standalone Skill"
     ],
-    "orca cli surface": [
-      "orca cli surface"
-    ],
-    "orca cli technical approach": [
-      "Orca CLI technical approach"
-    ],
     "orca cli workflow bridge": [
       "Orca CLI workflow bridge"
-    ],
-    "orca evidence criteria": [
-      "Orca evidence criteria"
-    ],
-    "orca handoff": [
-      "Orca handoff"
-    ],
-    "orca hub routing": [
-      "Orca hub routing"
-    ],
-    "orca implementation tasks": [
-      "Orca implementation tasks"
-    ],
-    "orca packet decision": [
-      "Orca packet decision"
-    ],
-    "orca research": [
-      "orca research"
-    ],
-    "orca review resource map": [
-      "orca review resource map"
-    ],
-    "orca routing decision": [
-      "Orca routing decision"
-    ],
-    "orca routing research": [
-      "Orca routing research"
-    ],
-    "orca routing task breakdown": [
-      "Orca routing task breakdown"
-    ],
-    "orca routing verification": [
-      "Orca routing verification"
-    ],
-    "orca source inventory": [
-      "Orca source inventory"
-    ],
-    "orca specification acceptance": [
-      "Orca specification acceptance"
-    ],
-    "orca specification summary": [
-      "Orca specification summary"
-    ],
-    "orca validation evidence": [
-      "Orca validation evidence"
-    ],
-    "orca workflow packet": [
-      "Orca workflow packet"
     ],
     "orchestrate agent rule 7": [
       "orchestrate agent rule 7"
@@ -91545,9 +91345,6 @@
     "post adr 012 embedder survey": [
       "post-adr-012 embedder survey"
     ],
-    "post alignment doc fixes implementation summary": [
-      "post alignment doc fixes implementation summary"
-    ],
     "post arc docs sweep summary": [
       "post-arc docs sweep summary"
     ],
@@ -99144,9 +98941,6 @@
     ],
     "remove cli hermes executor code": [
       "remove cli-hermes executor code"
-    ],
-    "remove cli orca skill": [
-      "remove cli-orca skill"
     ],
     "remove cloud reranker footgun": [
       "remove cloud reranker footgun"
@@ -121377,9 +121171,6 @@
     "skills folder cleanup": [
       "skills folder cleanup"
     ],
-    "skills index family counts": [
-      "skills index family counts"
-    ],
     "skills root lists skills only": [
       "skills root lists skills only"
     ],
@@ -125327,9 +125118,6 @@
     ],
     "standalone mcp with legacy bridge scaffold": [
       "standalone-mcp-with-legacy-bridge scaffold"
-    ],
-    "standalone orca cli skill": [
-      "standalone Orca CLI skill"
     ],
     "standalone save second writer guard": [
       "standalone save second writer guard"
@@ -139103,9 +138891,6 @@
     "workflow owner guard": [
       "workflow owner guard",
       "workflow-owner guard"
-    ],
-    "workflow packet acceptance": [
-      "workflow packet acceptance"
     ],
     "workflow path filters": [
       "workflow path filters"
