@@ -40,7 +40,12 @@
       "tasks.md",
       "implementation-summary.md",
       ".skilled/skills/sk-git/scripts/worktree-naming.sh",
-      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh"
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-git/changelog/v1.11.13.0.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-mcp-install.md",
+      ".github/workflows/README.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md"
     ],
     "entities": [
       {
@@ -80,6 +85,36 @@
         "source": "derived"
       },
       {
+        "name": "v1.11.13.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.11.13.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-install.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-mcp-install.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,13 +139,13 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Code Mode",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Change Type",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -156,41 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`worktree-naming.sh create` skipped the npm install for `.skilled/skills/system-spec-kit`",
     "created_at": "2026-11-24T11:29:35Z",
-    "last_save_at": "2026-11-24T11:31:12.128Z",
+    "last_save_at": "2026-11-24T13:20:38.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c1725c67882198bbc2852e6c275b016fba86a58fe29fd20682899101569bf0d",
+    "source_fingerprint": "sha256:c99a432adcfc2ecad9372fe76d0fd9a09d17ddab603257c259bc9f2eb174c8e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3754422b8e27296ea7e3a8eb1828172852e352d497115f4bd85115d24ceb9315",
+      "spec.md": "74aaee6b7d2accd887973f6d3443bda625099691dfa48d770e61e26f7e5f3e91",
       "plan.md": "75c44f7e875e45774ad21f2eff7310a964a3c7349380ad12aad0503098dd70a1",
-      "tasks.md": "cc28e4085b75378c0078d2f95b88394d66fb789945bdbd26e51386ec038b0780",
-      "implementation-summary.md": "389402b2992dd9848d7b7a0b0f1fdfb412cffc999fb3ba4b8e153aa1e99ba99b"
+      "tasks.md": "453d3b1b8efffd0c926b2e86252e2e533bac0ec75ce2fec89d9675cc4cbd2b01",
+      "implementation-summary.md": "78cbbbb4aabd3bfd21f24af276c2d804885183e0a6fc6471e3c1f9404937aadf"
     },
     "last_active_at": null
   }

@@ -57,6 +57,9 @@ Provisioning decides a package is installed when it finds the package's first de
 |------|--------|---------|
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modified | `_wn_npm_install_root` sets the npm walk boundary |
 | `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Regression case for a nested lockfile package and a workspace member |
+| `.skilled/skills/sk-git/changelog/v1.11.13.0.md`, `SKILL.md` | Created/Modified | Release coverage at 1.11.13.0 |
+| `.skilled/manual-testing-playbook/doctor-commands/doctor-mcp-install.md` | Modified | The approved npm install restores Code Mode's `node_modules`; provisioning never did |
+| `.github/workflows/README.md`, `job-shape-rules.md`, `SECURITY.md` | Modified | Correct accounts of the setup action's callers and what provisioning checks and installs |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -89,6 +92,8 @@ The failure was reproduced by creating worktree 536. The new test case was run a
 | Same suite against the HEAD script | Fails as expected, `PASS=177 FAIL=1` on the new case |
 | `worktree-naming.sh provision` on worktree 536 | PASS, `provisioned: 1 installed, 4 built, 13 already present, 0 failed` |
 | `shellcheck -S warning worktree-naming.sh` | 2 warnings, the same 2 as at HEAD |
+| `validate_document.py` on the v1.11.13.0 changelog | PASS, `Total issues: 0` |
+| `grep -n 'actions/setup$' .github/workflows/*.yml` against `job-shape-rules.md:119` | PASS, lines 63, 103, 103, 145 and 266 |
 <!-- /ANCHOR:verification -->
 
 ---

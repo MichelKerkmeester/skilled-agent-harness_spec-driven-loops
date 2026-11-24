@@ -105,7 +105,7 @@ Run `/doctor:ci report` to see each switch state. Run `/doctor:ci toggle` to cha
 
 `.github/actions/setup/action.yml` provisions the dependency trees and build outputs that the OpenCode, plugin and routing jobs need. It restores them from the Actions cache, then runs the repository's provisioning walk. The walk checks only that each tree's first dependency directory exists and that the five build outputs named in `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` carry a stamp matching their tracked sources. The other cached outputs get no check. A cache hit therefore shortens install and build work without verifying installed versions or every build input. The `cache` input defaults to `true`. Setting it to `false` forces a cold provision, which the scheduled run of `opencode-plugin-tests.yml` uses.
 
-`opencode-v2-battery.yml`, `opencode-plugin-tests.yml` and `routing-registry-drift.yml` use the action.
+`pi-entry-checks.yml`, `opencode-v2-battery.yml`, `opencode-plugin-tests.yml` and `routing-registry-drift.yml` use the action.
 
 ### Checkouts that skip loop state
 

@@ -71,6 +71,7 @@ ls: .skilled/skills/system-spec-kit/node_modules/typescript: No such file or dir
 ### In Scope
 - Stop the npm dependency walk at the package's install root, the nearest folder from the package up to the worktree root that holds a `package-lock.json`.
 - Add a regression case: a nested lockfile package installs even when an ancestor already holds the same dependency, and a workspace member with no lockfile still counts its workspace root's install.
+- Addendum from the `/local-doc-alignment` and `/local-skilled-alignment` runs: record the fix as sk-git v1.11.13.0, and correct five docs that describe provisioning wrongly. `doctor-mcp-install.md` told the reader to restore Code Mode's dependencies with a command that never installs them. Two CI docs undercounted the setup-action callers or cited stale lines, one undersold what the walk checks, and `SECURITY.md` said every listed tree installs.
 
 ### Out of Scope
 - Checking every dependency instead of the first one. The first-dependency probe is right once the walk stops at the right root.
@@ -83,6 +84,11 @@ ls: .skilled/skills/system-spec-kit/node_modules/typescript: No such file or dir
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modify | Add `_wn_npm_install_root` and use it as the npm walk boundary |
 | `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modify | Add the nested-lockfile regression case |
+| `.skilled/skills/sk-git/SKILL.md`, `.skilled/skills/sk-git/changelog/v1.11.13.0.md` | Modify/Create | Release coverage, version 1.11.13.0 |
+| `.skilled/manual-testing-playbook/doctor-commands/doctor-mcp-install.md` | Modify | Drop the provision restore step that cannot work; version 1.2.1.0 |
+| `.github/workflows/README.md` | Modify | Four workflows call the setup action |
+| `.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md` | Modify | What the walk checks, and the current call lines; version 1.1.15.0 |
+| `SECURITY.md` | Modify | Provisioning installs only what is missing and skips a path with no `package.json` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -102,6 +108,7 @@ ls: .skilled/skills/system-spec-kit/node_modules/typescript: No such file or dir
 |----|-------------|---------------------|
 | REQ-002 | A workspace member with no lockfile still counts its workspace root's install | The new test case logs no npm call for the member |
 | REQ-003 | A real worktree provisions with no failed build | `worktree-naming.sh provision` on worktree 536 prints `0 failed` |
+| REQ-004 | No live doc gives a wrong account of provisioning | Each doc finding in the alignment report is fixed, and `grep -n 'actions/setup$' .github/workflows/*.yml` matches the lines `job-shape-rules.md` cites |
 <!-- /ANCHOR:requirements -->
 
 ---
