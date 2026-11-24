@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer"
-    last_updated_at: "2026-11-24T12:45:25Z"
+    last_updated_at: "2026-11-24T12:48:15Z"
     last_updated_by: "generate-context"
-    recent_action: "Hand rollback run, security review, record-label fix"
-    next_safe_action: "Decide how scheduled runs find executors under launchd's bare PATH"
+    recent_action: "Executor lookup decided: pin absolute path"
+    next_safe_action: "Build executor path pinning at install"
     packet_purpose: "Purpose: An operator can install a bot's schedule as a disabled launchd agent, enable it on purpose, see it fire and stop it at the scheduler."
     blockers: []
     key_files:
@@ -20,14 +20,14 @@ _memory:
       - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/rollback-run-result.txt"
       - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/security-review.txt"
     session_dedup:
-      fingerprint: "sha256:7d4c00accd5667ab67489c097b437c2eddf69abc67761eb3b1694d44bcf14411"
+      fingerprint: "sha256:69c02e020ec2609a13cd8828537dcd1c88af6812391f435cb1d8b5da7251a1e0"
       session_id: "implement-006-launchd-installer"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-24T12:45:25Z"
+      savedAt: "2026-11-24T12:48:15Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

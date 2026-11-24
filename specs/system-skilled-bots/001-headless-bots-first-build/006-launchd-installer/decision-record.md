@@ -651,6 +651,7 @@ The queue lives under the state root keyed by repository identity (research.md Â
 | Q006 | After the third review returned REQUESTED_CHANGES (a reinstall from a shell with another state home skipped the kill-switch guard), fix the class: install refuses with `state-home-changed`, every other verb resolves the root through the installed job, then dispatch a fourth review | Operator answer, 2026-11-23. The operator picked the recommended option | Patching one verb per review round | REQ-003, NFR-S02, R-002 |
 | Q007 | After the fourth review returned REQUESTED_CHANGES (an identity read from the shell's `GITHUB_REPOSITORY` diverges from the job's), close the class by construction: one builder makes the env launchd gives the job, install refuses with `job-env-diverges` when `(identity, state root)` differs between the shell env and the job env, every verb uses the job env, then one fifth review. No further per-variable round is offered | Operator answer, 2026-11-23. The operator picked the recommended option | Q006's per-verb fix and patching one variable per round | REQ-003, REQ-004, NFR-S02, R-002 |
 | Q008 | After the fifth review returned REQUESTED_CHANGES (installed jobs were looked up by the live identity, so an identity change orphaned a firing job), fix it by looking jobs up by the `--repo` path in each job file, add an `identity-changed` refusal and reinstall reason, make disable stop the old label, fold in the three P2s, and verify by orchestrator rerun with no further review | Operator answer, 2026-11-23. The operator picked the recommended option | A sixth review round | REQ-003, R-002 |
+| Q009 | A scheduled run finds its executor through an absolute path resolved on the shell's PATH at install and kept in the install record. | Not stated. | None | spec.md open questions, implementation-summary.md Known Limitations 2 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -675,6 +676,27 @@ Each appendix item uses the same id as its operator decision. The options are in
 **Q007** (asked as "Phase 006's fourth review fails again, the same class along a new axis... How should I proceed?"): "By-construction fix + 5th review (Recommended)". The other options were "Same fix, I verify only" and "Waive and record it".
 
 **Q008** (asked as "Phase 006's fifth and final review found one P1... How should I proceed?"): "Fix it, I verify only (Recommended)". The other option was "Waive and record it".
+
+### Q009
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_01L1cQBuyUTx39BXorB8KEL2:1 -->
+
+Question:
+```text
+A scheduled bot cannot yet reach its executor. launchd starts jobs with a bare PATH (/usr/bin:/bin:/usr/sbin:/sbin), so `codex` and the other executor CLIs are not found. The live test only passed because its bot never dispatches. How should a scheduled run find its executor?
+```
+
+Options:
+```text
+Pin absolute path (Recommended)
+Fixed PATH in job
+Leave it open
+```
+
+Answer:
+```text
+Pin absolute path (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

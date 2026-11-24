@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 5 a bot runs only when someone types `bots run` or `bots drain`",
     "created_at": "2026-11-22T10:48:31Z",
-    "last_save_at": "2026-11-24T12:45:25.994Z",
+    "last_save_at": "2026-11-24T12:48:15.158Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1aa8f821055e4651d8cc8dde1297221b8486f2d9aaa5425c4fa865797cfdff0d",
+    "source_fingerprint": "sha256:dc4a30af9a10274d9a6dc8e2289522b32bf176125024f015d310bc08bfff9f98",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3907182a46fa21b9c18c78040ee91e299cb63cdc803b01f4029d2cfc956bcb93",
+      "spec.md": "bef126931634a0523f54169cfd066f1942c01520610b738fd7f2671030184044",
       "plan.md": "1a3f6278c3b35c0d4cf5640a71b778bdf8d6a2538c77d89e2842fa699844c683",
       "tasks.md": "af3555451fb35af97fee5a88a677d5005480d778504100e8b2f57c0c0477c5cd",
-      "decision-record.md": "ea0b7c5a4189904465f4e60bc6fb40cbeed1e5632d95c44c04d1657d1db34a3e",
-      "implementation-summary.md": "3891c4e3f50eceb2a791aa7af8eff92c33b14944e38b551c92155b42c68e54a5"
+      "decision-record.md": "513cedc5fe10913435f6cc02e5c6967511b0b69aaa470186faeee085e8f129c5",
+      "implementation-summary.md": "8602bd87b0fb85cc2af5023e5c8cb7dd2dbaee95bb9c12cdfdc798ac3a25075e"
     },
     "last_active_at": null
   }
