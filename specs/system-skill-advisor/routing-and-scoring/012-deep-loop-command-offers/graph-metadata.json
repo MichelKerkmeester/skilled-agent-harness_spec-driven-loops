@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-24T22:56:34.394Z",
+    "last_save_at": "2026-11-24T23:06:06.570Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c31b5c55fa82c60f9297100bf99d288e954426b9a7896209a607dba87aaa3eea",
+    "source_fingerprint": "sha256:26e9d13212705c903a530f3a285a0a771c21c7894e64091fd1bbf8cc3a2faf22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ee67fcfb358b810825220670d178337527a1acb5b14f95c403eda1dab64e8d94",

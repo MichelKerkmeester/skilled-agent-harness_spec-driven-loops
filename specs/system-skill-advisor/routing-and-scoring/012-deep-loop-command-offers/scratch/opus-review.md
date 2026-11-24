@@ -34,7 +34,8 @@ A second cause compounds the first. The closure docs quoted suite and fixture co
 - **R2-P1-001**, the reducer's null fields. No gate in `runtime/scripts/` reads `findingClass`, `scopeProof` or `affectedSurfaceHints`. The strict v2 dispatch validator (`runtime/lib/deep-loop/post-dispatch-validate.ts:1268`) already requires `scopeProof` and `affectedSurfaceHints` on an active finding. Null is the honest value for a field the producer did not write.
 - **The coverage rule**, for the contract reasons above.
 - **Removing the Python duplicate.** I checked how far it reaches before deciding. The Python `asks_for_loop_run` also feeds `_is_loop_workflow_request`, which is the fallback's workflow-owner scoring guard, not only the offer. Removing it also touches the doctor-row, typed-row and ordering helpers, the 806-line drift guard, the fixture's Python columns, about 166 deep-loop lines in `test_skill_advisor.py`, and roughly fifteen REQs that name "both copies". Done halfway, it would leave the two copies disagreeing with no guard. It is the top follow-up, scored in ADR-010's alternatives.
-- **The remaining generation 10 P2s.** These cover the two reducer projection details, the routed-mode substitution wording in two docs and in REQ-047, and the continuity metadata. The continuity fields belong to the continuity writer, `generate-context.js` through `/speckit:save`, and I did not hand-edit them, so `implementation-summary.md` still names generation 8 in `recent_action`.
+- **The P2s the brief fix also closes.** L2-P2-001 is the same defect as R3-P1-001, and L3-P2-002 is the blind ownership test. Both are closed by `46465394d97`.
+- **The remaining generation 10 P2s.** These cover the two reducer projection details, the routed-mode substitution wording in two docs and in REQ-047, and the continuity metadata. The continuity fields belong to the continuity writer, `generate-context.js` through `/speckit:save`, and I did not hand-edit them, so `implementation-summary.md` still names generation 8 in `recent_action`, and `acceptance-criteria.md` and `decision-record.md` still name the eleventh round, though the decision record now holds ADR-010. A `/speckit:save` after the operator answers ADR-010 refreshes all three.
 
 ## Verification
 
@@ -45,10 +46,10 @@ Final-state numbers, from `.skilled/skills/system-skill-advisor/runtime` and `.s
 | Advisor `npm run build` | exit 0 | exit 0 | none |
 | Advisor `npx vitest run` | 187 files, 3,557 passed, 4 skipped, 0 failed | 187 files, 3,557 passed, 4 skipped, 0 failed | 0. The brief case was rewritten, not added |
 | `python3 tests/python/test_skill_advisor.py` | pass=138, fail=0 | pass=138, fail=0 | none |
-| Deep-loop `npx vitest run tests/unit` | 192 files, 3,637 passed, 2 skipped | 192 files, 3,638 passed, 2 skipped | +1, the new contract-class case |
+| Deep-loop `npx vitest run tests/unit` | 192 files, 3,637 passed, 2 skipped | 192 files, 3,638 passed, 2 skipped, rerun on HEAD `fa6dae58780` | +1, the new contract-class case |
 | `validate.sh --strict` on the packet | not run | `Errors: 0  Warnings: 1`, `RESULT: PASSED`, exit 0 | The first run failed on generated-metadata drift, which `repair-derived.cjs --apply` re-derived. The one warning is `SOURCE_TAGS`: three citations inside the review lineages' containment baselines point at `.opencode/agents/deep-review.md`, which has moved. Those are review artifacts and I did not edit them |
 
-The advisor gates were rerun after the README and changelog edits, on the final tree.
+The advisor gates were rerun after the README and changelog edits, on the final tree. `PY` printed `cases=368` there, which is the count the pinned rows quote. AC-009 had quoted "841 tests" for its two named files, but they now report 1,195, so the row states 0 failed instead.
 
 ## Recommendation for closing AC-040
 
@@ -59,6 +60,6 @@ Accept ADR-010, then read AC-040 against generation 10 as it already stands, wit
 - R2-P1-001 is dispositioned.
 - L1-P1-001 and R1-P1-001 are of the accepted phrasing class.
 
-On those facts the row can read `Met` citing ADR-010. If the operator rejects ADR-010, the honest alternative is to waive AC-040 rather than run an eleventh generation, because the criterion as written cannot converge.
+On those facts the row can read `Met` citing ADR-010. Generation 10 reviewed the tree before `87f1cb952c7` and `46465394d97`. Those two commits are small and covered by tests, so accepting the reading means accepting them without another review. If the operator rejects ADR-010, the honest alternative is to waive AC-040 rather than run an eleventh generation, because the criterion as written cannot converge.
 
 Open a follow-up packet that makes the Python fallback offer deep-loop commands only when they are typed. That deletes the duplicate gate and its drift guard, and amends the both-copies REQs in one place.
