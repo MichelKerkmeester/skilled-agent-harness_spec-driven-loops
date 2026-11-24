@@ -1,5 +1,5 @@
 {
-  "manifestHash": "014b2f2f4814219fed3805818e82ab34b34e23a44f88c39453eecc921015feec",
+  "manifestHash": "16da0ed8df20b6332a951298d47e6610444d691e3c23aee6ca9d268aa03ebc50",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -117613,6 +117613,9 @@
     "sk git 1 11 13 0": [
       "sk-git 1.11.13.0"
     ],
+    "sk git 1 11 14 0": [
+      "sk-git 1.11.14.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -117942,6 +117945,9 @@
     ],
     "sk git v1 11 13 0": [
       "sk-git v1.11.13.0"
+    ],
+    "sk git v1 11 14 0": [
+      "sk-git v1.11.14.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -139100,6 +139106,9 @@
     ],
     "worktree commit finish phases": [
       "worktree commit finish phases"
+    ],
+    "worktree create not idempotent": [
+      "worktree create not idempotent"
     ],
     "worktree creation checklist": [
       "worktree creation checklist"

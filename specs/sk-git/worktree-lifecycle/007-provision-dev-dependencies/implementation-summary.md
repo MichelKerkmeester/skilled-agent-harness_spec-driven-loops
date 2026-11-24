@@ -67,6 +67,7 @@ Provisioning decides a package is installed when it finds the package's first de
 | `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Regression case for a nested lockfile package and a workspace member |
 | `.skilled/skills/sk-git/changelog/v1.11.13.0.md`, `SKILL.md` | Created/Modified | Release coverage at 1.11.13.0 |
 | `.skilled/manual-testing-playbook/doctor-commands/doctor-mcp-install.md` | Modified | The approved npm install restores Code Mode's `node_modules`; provisioning never did |
+| `.skilled/skills/sk-git/SKILL.md`, `changelog/v1.11.14.0.md` | Modified/Created | Only `provision` is idempotent; `create` allocates a new worktree each time |
 | `.github/workflows/README.md`, `job-shape-rules.md`, `SECURITY.md` | Modified | Correct accounts of the setup action's callers and what provisioning checks and installs |
 <!-- /ANCHOR:what-built -->
 
