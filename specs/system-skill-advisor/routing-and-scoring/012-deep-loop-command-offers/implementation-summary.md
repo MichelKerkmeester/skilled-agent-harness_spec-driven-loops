@@ -8,30 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T21:00:47Z"
+    last_updated_at: "2026-11-24T05:06:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Merged origin/main, reran every gate and pushed to main as 54322bd4bbe"
-    next_safe_action: "None: the packet is complete and on main"
+    recent_action: "Deep review finished with verdict FAIL, remediation round requested"
+    next_safe_action: "Commit the review, then plan and build the sixth fix round"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
-      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/fresh-review-hook.txt"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/review-report.md"
     session_dedup:
-      fingerprint: "sha256:9df8d533445293a282dbbcecaceee0958575e206d975a2096b7d5472d41702f2"
+      fingerprint: "sha256:7220985625e3d464b944bb777a267782f32dc6e88eba4dd057714755b390db4f"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "520c649a-ce93-4135-91b0-cec71dd35a54"
-      workspace: "/Users/michelkerkmeester/worktrees/public/531-continuity-close-012-013"
-      savedAt: "2026-11-23T21:00:47Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/533-deep-loop-offers-deep-review"
+      savedAt: "2026-11-24T05:06:29Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
