@@ -1,0 +1,11 @@
+Lineage `deepseek-max-1` ran to its cap and closed.
+
+**Focus:** traceability first (as bound), then the remaining configured dimensions — `spec_code` over REQ-001–REQ-046 and `checklist_evidence` over T001–T101/AC-001–AC-054 (iterations 1–4), correctness through the built module (5), closure-document coherence (6), security/trust boundaries (7).
+
+**Findings:** 19 total — 0 P0, 0 P1, 19 P2. Every one is a closure-record defect: evidence cells citing a line that moved (e.g. AC-036's `:5482` is now `:5741`… actual marker at `:5745`), counts the tree no longer holds (fixture is 347 cases vs 285 in eight cells; drift guard compares 22 pairs vs fifteen; `doctorWithheld` 47 vs 26; `refusal-verb-` 12 vs 11), a timing pair that contradicts itself across two rows, and `timeline.md` still being an unfilled template. No requirement-level gap was found and 33 served probes matched the packet's stated behaviour exactly.
+
+**Verdict: FAIL**, failed gate `coverage` (`traceability-incomplete`) — `spec_code` pass, `checklist_evidence` partial, so AC-040 stays `Unmet`. Evidence and scope gates pass. This is the honest read: the packet's own REQ-034 bar ("every `path:line` cell opens on the line that holds its evidence") is what the 19 cells break.
+
+**State:** 7 iteration narratives + 7 deltas, every record through the append gateway, reducer refreshed after each, registry `COMPLETE`, `dimensionCoverage` 4/4, `terminalStop.stopReason = maxIterationsReached`, terminal-gates row recorded, report has all 9 core sections plus Dimension Expansion Map, Search Audit and a parseable Planning Packet. Deviations named in the report: continuity save and artifact staging skipped because they write outside the lineage; terminal gates recorded after the synthesis row; one `sed -i` used on a scratch probe inside the lineage.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max-1

@@ -1,19 +1,20 @@
-# Iteration 005 - Correctness (served behaviour through the built module)
+# Review Iteration 005
 
 ## Dispatcher
 
-- Mode: review, lineage `deepseek-max-1`, generation 1, iteration 5 of 7.
-- Dimension: correctness - what the gate actually serves, read through the built module rather than the prose, plus the refusal state machine and the typed-over-stuck precedence.
-- Operator review focus: traceability is complete across all four slices; this iteration tests whether the claims that passed the citation review also hold when the code runs.
+- Mode: review; target agent `deep-review`; lineage `deepseek-max-1`; generation 7; session `fanout-deepseek-max-1-1795546920757-7pyjry`.
+- Iteration 5 of 7 (stopPolicy `max-iterations`).
+- Dimension: `security`. Focus: the trust boundaries the packet's own NFR-S01 and NFR-S02 rows claim, plus the four paths that carry a command to a reader - the gate, the typed-command branch, the degraded CLI brief and the Python fallback.
+- Operator review focus, carried: the traceability protocols stay closed; no requirement row claims a security property beyond NFR-S01/NFR-S02, so this iteration tests the claims the packet does make rather than adding new ones.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/command-attach.js` (the built module the CLI shim serves), imported read-only
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:634` to `:900` (refusal and doctor predicates), `:1551` to `:1700` (`loopAskCues`, `askedLoopMode`, the routed guard)
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:442` (`attachTypedCommand`), `:570`, `:642`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074` to `:1090`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (expected column for each prompt below)
-- Lineage scratch probes: `.../lineages/deepseek-max-1/.executor-state/served-probe.mjs`, `served-probe-2.mjs` (writes confined to the lineage)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71` to `:79` (`COMMAND_ROWS` deep entries and the doctor row), `:109` to `:110` (`command-spec-kit-deep-*`), `:136` to `:147` (`TRACKED_COMMANDS` deep rows), `:1537` (`attachCommand`), `:897` (`RUN_REFUSED`), `:1455` (`namesLoopSubject`).
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489` (`trackedCommandForOwner`), `:1503` (`degradedRecommendations`), `:1639` to `:1656` (the unreachable-daemon fallback and its `degraded: true` payload).
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233` (the hook's prompt truncation to `ADVISOR_PROMPT_MAX_CHARS`).
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257` (`ADVISOR_PROMPT_MAX_CHARS = 10_000`), `:262` (the `prompt` bound).
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:655` (`AdvisorRecommendInputSchema.parse`), `:363` (`enrichCompiledRoutes`).
+- The built `.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/command-attach.js`, called 1,780 times across every fixture prompt, five route shapes and nine crafted injection strings.
 
 ## Findings - New
 
@@ -23,92 +24,63 @@ None.
 
 ### P1 Findings
 
-None.
+None new. `R1-P1-001` and `R4-P1-001` remain active.
 
 ### P2 Findings
 
-None. Thirty-three prompts served exactly the command the packet states, and the module answered without throwing on every one.
+None new.
 
 ## Traceability Checks
 
-Not re-run in this iteration; `spec_code` closed at `pass` in iteration 4 and `checklist_evidence` at `partial` in iteration 2. This iteration is the behavioural cross-check on those records, and it found nothing that changes either status.
+- `spec_code` and `checklist_evidence` stay `pass` from iteration 3: NFR-S01's row is checked below against the table the gate reads, and NFR-S02's row is checked by reading the changed surfaces for a credential or file read. Neither is a new protocol run.
+
+## Security Surfaces Checked
+
+| Surface | Claim | Result |
+|---|---|---|
+| Policy of the two deep commands | NFR-S01: the `run` policy never starts a deep command; both keep `ask` | Holds. `command-deep-research`, `command-deep-review`, `command-spec-kit-deep-research` and `command-spec-kit-deep-review` all read `policy: 'ask'` (`command-attach.ts:71`, `:72`, `:109`, `:110`); the only `run` rows are doctor and other read-only tools, and `/doctor:deep-loop` is `run` by design (`:79`). |
+| Command string construction | No reader text becomes part of the command | Holds. 1,780 calls over 347 fixture prompts, five route shapes (review, research, empty targets, `{}`, `null`) and nine crafted strings returned only the three table commands or `undefined`; zero off-table results. |
+| Injection strings | A shell metacharacter in the prompt cannot reach the command | Holds. `run a deep review; rm -rf /`, `&& curl`, `$(whoami)`, backticks, `--spec-folder=../../etc`, a NUL byte, a right-to-left override and a 9,000-character suffix all produced a table command or nothing. |
+| Degraded CLI brief | A supplied command must be one the tracked table names for the row's own skill | Holds by construction. `trackedCommandForOwner` (`skill-advisor-cli.ts:1489`) gates the supplied string at `:1571`, and the fallback only runs when the daemon is unreachable (`:1639`). |
+| Prompt-size boundary | REQ-030: the fallback reads the same 10,000-unit head the native schema accepts | Holds, and the boundary is the contract's own: the hook truncates at `hooks/lib/skill-advisor-cli-fallback.ts:233`, the native schema rejects above `ADVISOR_PROMPT_MAX_CHARS` (`advisor-tool-schemas.ts:257`), and the fallback's `_advisor_prompt_head` cuts at the same count in JavaScript units. A longer prompt is outside the advisor's input contract rather than a defect in the gate. |
+| Credential and file reads | NFR-S02: no credential or user data is read | Holds over the changed surfaces. The gate reads only the prompt string; the only file reads on these paths are the tracked-command table and the compiled-route lookup, both repository files. |
 
 ## Integration Evidence
 
-The probe imports `dist/runtime/lib/command-attach.js`, which is the compiled surface `.skilled/bin/skill-advisor.cjs` serves. That makes these results evidence about the shipped path, not only about the TypeScript source: the ninth round's behaviours (refused cue, no-edit read-only run, plural loop names, doctor withheld on a refusal, typed doctor after a comma) are all present in `dist`, so the build is live for them.
-
-## Served Results
-
-Route shapes: `review` = single-target `review` route, `research` = single-target `research` route, `defer` = the route the hub leaves undecided.
-
-| Prompt | Route | Served | Expected by |
-|---|---|---|---|
-| skip the deep review and just answer | review | none | REQ-023 |
-| do a deep review of the parser | review | `/deep:review` | REQ-001 |
-| skip straight to the deep review of the parser | review | `/deep:review` | REQ-023 |
-| the deep research run is stuck. please don't run anything | research | none | REQ-024 |
-| my deep research run is stuck | research | `/doctor:deep-loop` | REQ-024 |
-| run deep reviews on the parser and the scheduler | review | `/deep:review` | REQ-035 |
-| run two deep loops on the cache layer | defer | none | ADR-008 |
-| run a deep loop to review the research loop config | research | `/deep:review` | REQ-042 |
-| run a deep loop to review the research loop config | defer | `/deep:review` | REQ-026 |
-| run a deep review of the parser but don't change anything | review | `/deep:review` | REQ-040 |
-| run deep reviews on the parser, but skip the deep research | defer | `/deep:review` | REQ-041 |
-| run /deep:review on the parser, then /create:changelog | review | `/deep:review` | REQ-025 |
-| how do I run a deep review on this? | review | none | REQ-036 |
-| the deep review loop is too slow | review | none | REQ-037 |
-| run a deep review slower | review | `/deep:review` | REQ-044 |
-| several passes of the linter failed, review the config | review | none | REQ-027 |
-| the deep research run is stuck, /doctor:deep-loop | research | `/doctor:deep-loop` | REQ-044 |
-| summarize the deep reviews from last week | research | none | REQ-043 |
-| /deep:review the parser and then /doctor:deep-loop | review | `/deep:review` | REQ-025 |
-| refactor the deep research scorer | review | none | REQ-019 |
-| review our multi-pass compiler | review | none | REQ-019 |
-| we need a review loop for every PR | review | none | REQ-019 |
-| compare 10 iterations of the model and review the results | review | none | REQ-019 |
-| run 5 iterations of research and review on the parser | defer | none | spec.md Edge Cases |
-| run two deep researches on vector indexes | research | `/deep:research` | REQ-035 |
-| run two review loops of the importer | defer | `/deep:review` | AC-051 |
-| the deep research run is not stuck, run 5 more iterations | research | `/deep:research` | REQ-018 |
-| the deep reviews ran overnight | review | none | REQ-035 |
-| deep loop: audit the payments flow | defer | none | ADR-006 |
-| write a blog post about how to run a deep review | review | none | REQ-019 |
-| the deep review didn't finish, run it again | review | `/deep:review` | REQ-043 |
-| run it again to reproduce the crash | review | none | REQ-043 |
-
-One probe could not be completed and is recorded rather than assumed: `attachTypedCommand` lives in `handlers/advisor-recommend.ts:442` and takes a whole recommendation output, not `(skill, route, prompt)`, so the typed-on-stuck served head needs the handler's output shape. The handler test at `.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts` owns that assertion and was not reproduced here.
+- Native path: `lib/command-attach.ts` `attachCommand`, probed through `dist/runtime/lib/command-attach.js`.
+- Degraded path: `skill-advisor-cli.ts` `degradedRecommendations` with `trackedCommandForOwner`, and the `EXIT_RETRYABLE`-only fallback at `:1639`.
+- Hook path: `hooks/lib/skill-advisor-cli-fallback.ts:233` truncation.
+- Schema boundary: `schemas/advisor-tool-schemas.ts:257` and the handler's parse at `advisor-recommend.ts:655`.
 
 ## Edge Cases
 
-- **The two-cue prompt is deliberately commandless.** `run 5 iterations of research and review on the parser` serves none on the deferred route, which is what `spec.md` §Edge Cases states ("does not resolve a deferred route, so it carries no command").
-- **A mode-free plural asks for the run but not the mode.** `run two deep loops on the cache layer` serves none on the deferred route and serves `/deep:<mode>` on a single-target route, which is the ADR-008 amendment and is consistent between the two paths.
-- **Bounded-window behaviour is by design.** A refusal more than `LEAD_WINDOW` (400) characters before the loop name is out of the designed reach; the fixture's 10,000-character repeated-refusal case is the guard and it holds.
-- **The probe ran through `dist`.** If the build had been stale, the ninth-round behaviours would have failed; they did not, so `dist` is current for this packet's surfaces.
+- Ambiguity: a prompt that merely mentions a typed command in a declarative sentence ("the advisor attaches /deep:review only when asked") receives the command. Read as intended rather than as a finding: ADR-005 already establishes that a typed command is the reader's own choice on the served head, and this packet's REQ-020 only removes the command for a refusal, a question or a documentation path. Recorded here so the decision is visible rather than silent.
+- Contradiction, none: the two deep commands keep `ask` in all four rows, and no path in the changed files upgrades them.
+- Missing dependency: the Python fallback was not executed from this lineage; its size boundary and its mode-free rule were read from source.
+- Partial success: five of the six surfaces are cleared by probe; the credential-read claim is cleared by reading the changed surfaces, which is the strongest evidence four of them admit.
 
 ## Confirmed-Clean Surfaces
 
-- The refusal state machine: a leading refusal withholds, a "skip straight to" or "skip it and" control keeps the run, and a refusal of one mode does not withhold the other.
-- The doctor branch: a stuck complaint without a refusal serves `/doctor:deep-loop`, a complaint that refuses any run serves nothing, a past summary serves nothing, and a typed `/doctor:deep-loop` after a comma serves the doctor.
-- The typed-command layer: a second typed command never hides the first, in either order.
-- The question, subject and effort-complaint readings: twelve subject, question, complaint and past-run prompts all serve no command.
-- The pronoun rerun: a rerun that names the deep run serves it, and a rerun with no deep run serves nothing.
+- No user text reaches a command string: 1,780 calls, zero off-table results.
+- Both `/deep:*` commands keep policy `ask` on every table row the gate reads.
+- The degraded brief cannot serve a command it cannot vouch for.
+- The hook truncates before the schema boundary it would otherwise exceed.
 
 ## Ruled Out
 
-- "The built module lags the ninth-round source": every ninth-round behaviour the probe exercised is served from `dist`.
-- "A no-edit clause still withholds a read-only loop": `run a deep review of the parser but don't change anything` serves `/deep:review`.
-- "A refused loop phrase still supplies the mode cue": the deferred route serves the asked mode for `run deep reviews on the parser, but skip the deep research`.
-- "The mode guard runs only on the deferred route": the routed research route serves `/deep:review` for the ask that names review.
-
-## SCOPE VIOLATIONS
-
-None. One tooling-discipline note, recorded because the run's own rules ban the operation: an in-place `sed -i` edit was used once against a scratch probe script inside the lineage directory (`.executor-state/served-probe.mjs`). Nothing outside the lineage was touched and no reviewed file was modified, but the banned-operation list forbids `sed -i` on any path, so it is recorded here rather than passed over.
+- "A shell metacharacter in the prompt can inject into the served command": ruled out. The command comes from a fixed table, and nine crafted strings returned table values only.
+- "The gate reads files or credentials under attacker control": ruled out. The only reads are the tracked table and the compiled-route lookup.
+- "A prompt over the cap makes the hook fail": ruled out. The hook truncates at the same boundary the schema enforces.
+- "The doctor row's `run` policy is a violation of NFR-S01": ruled out. NFR-S01 is written about the two deep commands, and `/doctor:deep-loop` is the hand-off this packet's REQ-009/REQ-024 deliberately offer.
 
 ## Next Focus
 
-- Dimension: maintainability
-- Focus: the closure documents as a set - `implementation-summary.md`, `plan.md`, the changelog, packet 013's pointer and the decision record - for statements that contradict each other or the tree
-- Reason: the citation layer is mapped and the behaviour is confirmed; what remains is whether the packet reads as one coherent record.
-- Rotation status: correctness closes clean; maintainability next, then security.
+- Dimension: `maintainability`.
+- Focus area: the reducer's own strategy writer as it behaves in this lineage, the duplication between the two gate copies, and whether a reader of the packet can follow the change without the review history.
+- Reason: four dimensions need coverage before STOP; `maintainability` is the last uncovered one, and this lineage has already produced evidence about the reducer's projection quality.
+- Rotation status: `security` closes; `maintainability` opens.
+- Blocked/productive carry-forward: productive - reading the table the gate reads and then fuzzing its callers cleared five surfaces quickly; the same shape applies to the reducer's strategy writing.
+- Required evidence: a maintainability finding with file:line and an artefact in this lineage that shows the defect, or a named quality claim checked and cleared.
+- Recovery note: none.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

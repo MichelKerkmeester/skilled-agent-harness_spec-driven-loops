@@ -1,1 +1,25 @@
+BINDING: target=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers
+BINDING: maxIterations=7
+BINDING: convergence=0.1
+BINDING: mode=review
+BINDING: dimensions=correctness,security,traceability,maintainability
+BINDING: specFolder=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers
+
+## Review Lineage Complete
+
+**Stop:** `maxIterationsReached` at 7/7, terminal gates evidence/scope/coverage all `pass`, both core protocols `pass`, verdict `PASS` with 5 P2 advisories (0 P0, 0 P1).
+
+**Findings (all P2, closure-record drift — no gate defect):**
+- `R2-P2-001` AC-040's `Evidence: review/review-report.md:71` was archived by this restart (`acceptance-criteria.md:97`).
+- `R3-P2-001` T092 certifies no stale counts, but T082 says CHK-001 reads 46 (it reads 48) and T051 says 54 rows/50 Met (56/52) (`tasks.md:184`).
+- `R3-P2-002` T104's Evidence-tail checker is not in the tree, so its `problems=0` cannot be reproduced (`tasks.md:206`).
+- `R4-P2-001` AC-034's served-head figures 0.8754/0.82 have no artifact; the one recorded run is the pre-fix 0.84 hub (`acceptance-criteria.md:91`).
+- `R6-P2-001` The declared change-set heading stops at REQ-046 while its rows serve REQ-047/048 (`spec.md:195`).
+
+**Coverage:** correctness (1), traceability (2, 3, 4, 7), security (5), maintainability (6). 48/48 requirements traced, 104/104 ticked tasks audited with 130/130 cited artifacts present, 55/56 acceptance rows closed (AC-040 is the one open row this rerun supplies evidence for). ADR-005/ADR-006 read against the built gate and their fixture columns.
+
+**Files written (lineage only):** `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-dashboard.md`, `deep-review-strategy.md`, `review-report.md`, `iterations/iteration-001..007.md`, `deltas/iter-001..007.jsonl`, `graph-db/`, `state-events/`; state rows went only through `append-mode-event.cjs` (run-open, 7 iterations, terminal gates, synthesis), with `reduce-state.cjs` after every append.
+
+**Recorded deviations** (strategy §9): setup `BINDING:` lines emitted after rather than before the first write; one `sed -i` on this lineage's own iteration 7 narrative; per-iteration graph upsert backfilled before synthesis (first convergence pass saw an empty graph, re-run read `STOP_ALLOWED`, all signals 1.0).
+
 FANOUT_LINEAGE_COMPLETE:deepseek-max-2

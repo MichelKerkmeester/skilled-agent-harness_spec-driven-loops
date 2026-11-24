@@ -1,0 +1,15 @@
+{
+  "registryPath": "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-findings-registry.json",
+  "dashboardPath": "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-dashboard.md",
+  "strategyPath": "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md",
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 0,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}

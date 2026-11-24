@@ -1,0 +1,46 @@
+{
+ "record": {
+  "type": "iteration", "iteration": 5, "mode": "review", "target_agent": "deep-review", "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-deepseek-max-1-1795546920757-7pyjry", "status": "complete", "focus": "security", "dimension": "security",
+  "dimensions": ["security"],
+  "filesReviewed": [
+   ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71",
+   ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:136",
+   ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537",
+   ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489",
+   ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1639",
+   ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233",
+   ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257",
+   ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:655"
+  ],
+  "findingsCount": 0, "findingsSummary": {"P0": 0, "P1": 0, "P2": 0},
+  "findingsNew": [],
+  "findingDetails": [],
+  "traceabilityChecks": {"results": []},
+  "newFindingsRatio": 0.0,
+  "noveltyJustification": "No finding this iteration. Five of six security surfaces were cleared by a 1,780-call probe and the sixth by reading the changed surfaces; the zero names the clean result honestly rather than reporting the cleared surfaces as findings.",
+  "sessionId": "fanout-deepseek-max-1-1795546920757-7pyjry", "generation": 7, "lineageMode": "new",
+  "timestamp": "2026-11-24T19:58:00.000Z", "durationMs": 600000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {"scopeClass": "complex", "enforcement": "warn", "reason": "four command-serving paths and one input boundary, each carrying a policy or a size contract", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71"]},
+  "targetSelection": {"selectedTargets": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts", ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts", ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"], "selectionReason": "every path that can hand a command to a reader runs through one of these three files", "discoveryMethods": ["direct_read", "built_dist_probe", "static_table_read"], "omittedHighRiskTargets": [], "graphStatus": "available", "semanticSearchStatus": "unavailable", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489"]},
+  "searchCoverage": {"requiredBugClasses": ["policy_escalation", "command_injection", "unvetted_degraded_command", "input_boundary", "credential_read"], "covered": ["policy_escalation", "command_injection", "unvetted_degraded_command", "input_boundary", "credential_read"], "ruledOut": ["policy_escalation", "command_injection", "unvetted_degraded_command", "input_boundary", "credential_read"], "deferred": [], "blocked": [], "graphCoverageMode": "graph"},
+  "searchLedger": [
+   {"id": "SL-021", "dimension": "security", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"], "bugClass": "policy_escalation", "hypothesis": "a path serves a deep command with policy run", "searchActions": [{"method": "static_table_read", "queryOrPath": "COMMAND_ROWS and TRACKED_COMMANDS deep rows", "result": "all four /deep rows read ask; only doctor rows read run", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71"]}], "disposition": "ruled_out", "rationale": "NFR-S01 holds on every row", "ruledOutReason": "table read"},
+   {"id": "SL-022", "dimension": "security", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"], "bugClass": "command_injection", "hypothesis": "prompt text can reach the served command string", "searchActions": [{"method": "built_dist_probe", "queryOrPath": "1780 calls: 347 fixture prompts x 5 route shapes plus 9 crafted injection strings", "result": "zero off-table results", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537"]}], "disposition": "ruled_out", "rationale": "the command comes from a fixed table", "ruledOutReason": "fuzz over all fixture prompts and crafted strings"},
+   {"id": "SL-023", "dimension": "security", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"], "bugClass": "unvetted_degraded_command", "hypothesis": "a supplied command reaches a degraded row without a tracked-table check", "searchActions": [{"method": "direct_read", "queryOrPath": "trackedCommandForOwner at the supplied-string branch", "result": "the supplied string is gated there", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489"]}], "disposition": "ruled_out", "rationale": "REQ-038 holds", "ruledOutReason": "direct read"},
+   {"id": "SL-024", "dimension": "security", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"], "bugClass": "input_boundary", "hypothesis": "the size cap differs between the hook, the schema and the fallback", "searchActions": [{"method": "direct_read", "queryOrPath": "ADVISOR_PROMPT_MAX_CHARS and both truncation points", "result": "one constant, one hook truncation, one schema bound, one Python cut in JS units", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257"]}], "disposition": "ruled_out", "rationale": "the boundary is one contract enforced at three points", "ruledOutReason": "direct read of each point"},
+   {"id": "SL-025", "dimension": "security", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"], "bugClass": "credential_read", "hypothesis": "a changed surface reads a credential or user data", "searchActions": [{"method": "direct_read", "queryOrPath": "the four command-serving paths", "result": "only the tracked table and the compiled-route lookup are read", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:136"]}], "disposition": "ruled_out", "rationale": "NFR-S02 holds", "ruledOutReason": "direct read of every changed read site"}
+  ],
+  "graphEvents": []
+ },
+ "rows": [
+  {"type": "classification", "iteration": 5, "detail": "Security sweep cleared five of six surfaces by probe and the sixth by reading; 1780 built-dist calls produced zero off-table commands; all four /deep rows keep policy ask"},
+  {"type": "ruled_out", "iteration": 5, "direction": "prompt text injects into the served command", "reason": "1780 calls, zero off-table results"},
+  {"type": "ruled_out", "iteration": 5, "direction": "a deep command can be served with policy run", "reason": "all four /deep rows read ask; doctor rows are run by design"},
+  {"type": "ruled_out", "iteration": 5, "direction": "the degraded brief serves an unvetted supplied command", "reason": "trackedCommandForOwner gates it"},
+  {"type": "ruled_out", "iteration": 5, "direction": "a prompt over the cap breaks the hook", "reason": "the hook truncates at the schema boundary"},
+  {"type": "ruled_out", "iteration": 5, "direction": "a changed surface reads a credential or user data", "reason": "only repository files are read"}
+ ]
+}

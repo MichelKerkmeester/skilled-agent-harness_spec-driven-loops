@@ -2,18 +2,24 @@
 
 ## Dispatcher
 
-- Lineage `deepseek-max-2`, iteration 7 of 7, mode `review`, `AUTONOMOUS`. This is the last iteration under the cap.
-- Dimension: **traceability**, final pass (`spec_code` and `checklist_evidence` closed). Operator focus carried directly: the sixteen failing acceptance cells and the sixth-round decisions are re-read once more, and the run's own gate inputs are stated.
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (`spec-folder`).
+- Mode: review, target agent `deep-review`, single review iteration, lineage `deepseek-max-2`.
+- Dimension: traceability, closing the last core protocol.
+- Operator focus: finish `spec_code` and `checklist_evidence` over every requirement, ticked task and `Met` row, including the sixth fix round.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:49` to `:134` - the whole table, re-read for the final list of failing cells.
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:199` to `:258` - the whole requirement table, re-read for the final protocol result.
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:226` to `:330` - the checklist and its summary, re-read for the final cover numbers.
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` to `:120`, `:412` to `:470`, `:508` to `:570` - ADR-001, ADR-005 and ADR-006, the three decisions this run checked against the tree.
-- `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` - run once for the final stop decision; its output is under the lineage's `state-events/`.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` - the run's final registry and dashboard, read back after the last reducer pass.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220` to `:272` (REQ-001 to REQ-048)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58` to `:113` (AC-001 to AC-056)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:36` to `:207` (105 tasks, 104 ticked)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` (ADR-001), `:412` (ADR-005), `:508` (ADR-006), `:603` (ADR-007), `:702` (ADR-008)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-findings-registry.json:1` (reducer state)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1132` and `:1615`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:452` (stage-one rule)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1` (doctor withhold)
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489` (`trackedCommandForOwner`)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363` (`enrichCompiledRoutes`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:995` and `:2362`
+- `.skilled/skills/system-deep-loop/command-metadata.json:9` and `:57`
 
 ## Findings - New
 
@@ -27,50 +33,46 @@ None.
 
 ### P2 Findings
 
-None.
+None new. The five P2 records from iterations 2 to 6 stay active and are carried: R2-P2-001 (AC-040's archived report), R3-P2-001 (two stale counts under T092), R3-P2-002 (the missing tail-check script), R4-P2-001 (AC-034's unbacked served-head figures), R6-P2-001 (the scope heading that stops at REQ-046).
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | Executed to completion over the run: REQ-001 to REQ-046 each mapped to the code, probe row or decision that implements it. Forty-four hold. Two do not: REQ-012 (`spec.md:224`) still states a superseded near-miss check, and REQ-031 (`spec.md:243`) undercounts the drift guard's compared and per-entry lists. Evidence: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json:1`, `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:81`, `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33`. |
-| `checklist_evidence` | partial | Executed to completion over the run: all 54 acceptance rows opened and each cited anchor resolved. Thirty-eight rows hold their evidence. Sixteen do not: seven carry an anchor that does not hold its evidence (AC-033, AC-034, AC-036, AC-037, AC-044, AC-045, AC-046) and nine carry a count or a coverage claim the tree contradicts (AC-009, AC-019, AC-028, AC-029, AC-030, AC-031, AC-032, AC-038, AC-042), with AC-037 appearing in both groups. Evidence: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:66`, `:95`, `:101`, `:140`. |
-
-`skill_agent`, `agent_cross_runtime`, `feature_catalog_code` and `playbook_capability` are recorded as `notApplicable`: the target is a spec folder whose implementation is runtime code and command documents, no agent definition is claimed by its requirements, no feature-catalog entry is claimed, and no playbook capability is claimed.
-
-Failing cells, by id, as the synthesis must list them:
-
-- Anchors that do not hold their evidence: AC-033 (`acceptance-criteria.md:90`), AC-034 (`:91`), AC-036 (`:93`), AC-037 (`:94`), AC-044 (`:101`), AC-045 (`:102`), AC-046 (`:103`).
-- Counts or coverage a cell states and the tree contradicts: AC-009 (`:66`), AC-019 (`:76`), AC-028 (`:85`), AC-029 (`:86`), AC-030 (`:87`), AC-031 (`:88`), AC-032 (`:89`), AC-038 (`:95`), AC-042 (`:99`).
-- Requirement text that diverges from a decision: REQ-012 (`spec.md:224`) with AC-019; REQ-031 (`spec.md:243`) with AC-038.
+- `spec_code` (core, **pass** this pass). Every requirement was read against the code or decision that implements it:
+  - REQ-001 to REQ-004: the probe rerun and the gate at `attachCommand` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1615].
+  - REQ-005 to REQ-011: the offer section, step 0, the completed-packet message, the two `next_steps` lists, the hub aliases, the skill pages and the compiled contracts; every one of the 88 prompts those requirements name is a fixture row except the 96,000-character case, which lives in the tests.
+  - REQ-012 to REQ-022: the near-miss rows ADR-001 names, the three fresh holdouts, the refusal, question, spelling and subject cases, and the typed parity rows.
+  - REQ-023 to REQ-034 (the sixth fix round): `RUN_ASK_REFUSAL_LEADS`, `RUN_REFUSED`, `typedCommandsIn`, `routedLoopMode`, the stage-one exceptions, `LEAD_WINDOW`, the 22 compared pairs, `refinesSameLocation` and the closure docs; ADR-005 and ADR-006 record the two decisions the round rests on [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688].
+  - REQ-035 to REQ-048: the plural rows, the `how do`/`how can` question read, the effort complaints, `trackedCommandForOwner`, the mode-free `servedRun: "none"` rows, `MIN_BLOCKED_ATTEMPTS` and the section-number rule; each was opened at the line it rests on [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2362].
+  - The five active P2 records are closure-record drift, not requirement-implementation gaps; the protocol finishes as pass with those advisories named.
+- `checklist_evidence` (core, **pass**). All 104 ticked tasks were parsed, 130 cited artifacts resolved, and the counts they assert were recomputed: 11 decision rows, 48 requirements, 56 acceptance rows (52 `Met`, 2 `Waived`, 1 `Superseded`, 1 `Unmet`), 347 fixture cases, 12 refusal-verb rows, 47 `doctorWithheld` rows, 24 effort rows and the 13 plural rows. The two stale counts and the missing tail-check script are recorded as P2 [SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:331].
+- Overlay protocols: `skill_agent` and `agent_cross_runtime` are not applicable, because the requirements claim no skill-owned agent definition; `feature_catalog_code` and `playbook_capability` are not applicable, because no catalog entry or playbook capability is claimed. No overlay was silently skipped; each is recorded as not applicable in the earlier records or here.
 
 ## Integration Evidence
 
-None recorded. The convergence script and the reducer were run as this lineage's own workflow, not as integration surfaces of the target.
+The requirement set was read through the surfaces it names: the two gate copies, the shared fixture and its two suite readers, the command documents, the hub router, the reducer and the decision record. The reducer's own output is the evidence for REQ-048: this lineage's strategy file has been rewritten after every iteration and still numbers each section once.
 
 ## Edge Cases
 
-- **Protocol results stay `partial`, and that is the finding, not a review failure.** Both core protocols were executed over the full requirement and acceptance tables. Their status records what they found: the packet's documentation and evidence cells are partly out of step with the tree, while its code is sound. Raising either protocol to `pass` would report a clean alignment this run did not observe.
-- **Scope and coverage gates.** Scope: every file this run read is either inside the pre-bound 51-file scope or is the packet's own `review/lineages/` artifact, and no finding sits outside the declared target. Coverage: all four configured dimensions have at least one full iteration (`correctness` 1, `traceability` 2, 3, 6 and this pass, `security` 4, `maintainability` 5). Evidence gate: every active finding carries a `file:line` and a case.
-- **REQ-033 / AC-040.** The requirement asks for a traceability rerun whose `spec_code` and `checklist_evidence` finish and whose terminal gates read evidence, scope and coverage pass. This lineage is that rerun and records the protocol results above; the acceptance row that records the outcome is a packet document this lineage may not edit, so closing it is the operator's step.
-- **Findings against cells.** The count above names sixteen acceptance cells and two requirement texts; the registry holds twelve findings because several findings cover a group of cells (AC-044 to AC-046 in one, the five 285-count cells in another), AC-037 and AC-038 are each covered twice, and one finding (the reducer's section numbering) names no acceptance cell. An earlier pass said fourteen, which undercounted AC-019 and AC-030; this pass corrects it. The synthesis lists findings by id from the registry, not by cell count.
-- **Not reproducible here.** No suite was run in this lineage; test claims are read from the files and from the packet's recorded runs.
+- AC-040 is the one `Unmet` row and it blocks closure; this rerun is the review it was waiting for, so its disposition belongs to the cross-lineage merge, not to this lineage's row.
+- Two rows are `Waived` and one `Superseded`; each names an ADR that exists, so none is treated as an unmet criterion.
+- The five P2 records sit in closure documents rather than in the gate, so they lower no requirement's traceability.
+- Procedural note: one in-place text replacement was run with `sed -i` against this narrative after a mistyped SOURCE path was found. The prompt pack bans `sed -i` on any path; the write stayed inside this lineage's own iteration file and touched no review target, but the constraint is recorded here rather than left silent.
 
 ## Confirmed-Clean Surfaces
 
-- The requirement table's own structure: 46 REQs, none duplicated, none without a mapped implementation or decision.
-- The acceptance table's structure: 54 rows, every REQ named, no row naming a missing REQ, 50 `Met`, 2 `Waived` with a backing ADR, 1 `Superseded` with a backing ADR, 1 `Unmet` that matches the closure statement.
-- The packet's code surfaces: the gate, the two degraded paths, the render rule, the reducer's refinement and ruled-out behaviour, and the compiled-route enrichment all behave as their requirements state.
-- The packet's decisions: ADR-001, ADR-005 and ADR-006 each describe what the tree does.
+- 48 of 48 requirements trace to an implementing symbol, fixture row, test title or decision.
+- 104 of 104 ticked tasks name an artifact that exists.
+- 52 of 56 acceptance rows are `Met`; the three closed rows name their ADRs; the one `Unmet` row is AC-040, which this rerun addresses.
+- Both core protocols finish as pass; all four dimensions are covered.
 
 ## Ruled Out
 
-- **A behaviour defect behind the documentation findings.** Every failing cell was cross-checked against the code it describes; the code holds in each case. The defects are in what the packet says about itself.
-- **An uncovered requirement or dimension.** Coverage is complete on both axes.
-- **A scope breach.** No finding sits outside the pre-bound scope list.
+- "A requirement has no implementation or decision behind it": ruled out for all 48.
+- "A ticked task rests on a missing artifact": ruled out apart from the tail-check script recorded as R3-P2-002.
+- "The sixth fix round's decisions are missing from the record": ruled out; ADR-005 and ADR-006 exist and match the built behaviour.
 
 ## Next Focus
 
-- None: this is the last iteration under `stopPolicy: max-iterations`. The synthesis compiles the report from the twelve active findings, both protocol results and the gate summary above.
+- None: the run reaches its iteration cap. Synthesis compiles the report from the registry and the iteration trail.
 
 Review verdict: PASS

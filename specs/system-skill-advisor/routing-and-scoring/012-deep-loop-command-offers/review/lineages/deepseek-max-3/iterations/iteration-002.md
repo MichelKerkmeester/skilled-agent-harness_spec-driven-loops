@@ -1,29 +1,28 @@
-# Review Iteration 002
+# Review Iteration 002 — security (with the operator traceability focus)
 
 ## Dispatcher
 
-- Mode: review
-- Dimension: traceability (operator focus continued)
-- Iteration: 2 of 7
-- Focus this pass: `checklist_evidence` for the sixth fix round -- `tasks.md` T065 to T101 and the `Met` rows AC-030 to AC-042
-- Executor: this lineage process (cli-pi, deepseek-v4.1-flash-1017); no nested dispatch
+- Mode: `review`; target agent: `@deep-review` (LEAF, single iteration).
+- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
+- Lineage: sessionId `fanout-deepseek-max-3-1795546920757-7pyjry`, generation 1, lineageMode `new`, executor cli-pi (deepseek-v4.1-flash-1017).
+- Setup bindings (unchanged from iteration 1; emitted there in full): target, maxIterations=7, convergence=0.1, mode=review, dimensions=correctness/security/traceability/maintainability, specFolder.
+- Review focus for this iteration: the operator's traceability focus carried into the sixth round's degraded paths — REQ-028, REQ-030 and REQ-038 read from requirement to code to the test that pins them, with the security question asked of each: can a string the caller or the child supplies reach a rendered brief, an argv, or an executed command?
+- `steer.md` is absent at this iteration.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:130-200`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:240-326`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:86-95`
-- `.skilled/changelog/skilled/v4.2.0.0.md:759`
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:215-225`, `:688-760`, `:897`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5165`, `:5646`, `:5745`, `:5820`
-- `.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:112-126`
-- `.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts:206`, `:253`
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:850-870`, `:1020-1040`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json`, `results-spec-baseline.json`, `results-fresh-review.json`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489` (`trackedCommandForOwner`), `:1503` (`degradedRecommendations`), `:1554` (typed-row branch), `:1656` (degraded wiring)
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:187` (`parseRecommendations`), `:233` (`typedCommandForRecommendation`), `:245` (`withTypedCommand`), `:283` (`spawn` with args array), `:419` (stdin `--stdin` dispatch), `:455` (parse-then-type wiring)
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:108` (`INSTRUCTION_LABEL_PATTERN`), `:163` (`sanitizeSkillLabel`), `:248` (typed command renders plainly), `:519` (renderer as prompt-boundary guard)
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245` (`PASTED_REPLY_CUE`), `:267` (`stripLeadingPastedReply`)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:545` (`scoredPrompt`), `:642` (`attachTypedCommand(…, scoredPrompt)`)
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233` (pasted-reply strip plus 10,000-unit cut), `:256` (`spawn` of the shim), `:276` (the comment on stdin versus argv)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888` (`_advisor_prompt_head`), `:5181` (`_LEAD_WINDOW`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts:24` (`runAdvisorSubprocess` feed)
+- `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts:152` (the tracked-command case)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:252` (REQ-028), `:254` (REQ-030), `:262` (REQ-038)
 
-## Findings
-
-New findings this pass. The operator focus is addressed by replaying each sixth-round task's `Verify:` command and reading the line it cites, rather than trusting the "Observed" sentence.
+## Findings - New
 
 ### P0 Findings
 
@@ -31,66 +30,55 @@ None.
 
 ### P1 Findings
 
-1. **Sixth-round task evidence cells cite offsets and a row count the tree no longer holds, so the ticked tasks cannot be re-walked** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:141` -- T066 says the refusal leads sit at `command-attach.ts:581`; that line is `LOOP_RUN_SYMPTOMS`, and `RUN_ASK_REFUSAL_LEADS` is at `:688`. The same task cites `skill_advisor.py:4993` for `_RUN_ASK_NEGATED_RE`; the pattern is at `:5165`. T067 (`tasks.md:142`) cites `RUN_REFUSED` at `:790` (actual `:897`), the stuck branch at `:1404` (the `RUN_REFUSED` read is elsewhere) and `_RUN_REFUSED_RE` at `:5404` (actual `:5646`), then records "26 `doctorWithheld` rows" where the fixture holds 47. T076 (`tasks.md:154`) and T087 (`:174`) cite `RUN_ASK_REFUSAL_LEADS` at `:581`, the drift-guard pairs at `:68`/`:83`/`:90` (the `VOCABULARY_PAIRS` array starts at `:80`, and the file holds 22 pairs, not the fifteen those rows count), and T081 (`tasks.md:163`) cites the served-head assertion at `typed-on-stuck-serving.vitest.ts:107` where it is `:112`. The behaviour each task claims is present; the evidence pointer is not, so a closure reviewer cannot reproduce the observation from the cell.
-   - Finding class: `stale-evidence`
-   - Scope proof: `tasks.md` is a closure doc inside the review target; every cited symbol lives in a declared scope file.
-   - Affected surface hints: `tasks.md` T066/T067/T076/T081/T087/T092, `lib/command-attach.ts`, `scripts/skill_advisor.py`, `tests/fixtures/deep-loop-offer-cases.json`
-   - Case: A closure reviewer replays T066's verify command from the cited lines and reads `LOOP_RUN_SYMPTOMS` and a continued-request regex, so the ticked task looks like it was observed against different code.
-   - Claim adjudication:
-     ```json
-     {"type":"traceability","claim":"Five sixth-round task rows cite line offsets that no longer hold the symbol they name, and one records a fixture row count (26) the fixture contradicts (47).","evidenceRefs":["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:141","specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:142","specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:154",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5165"],"counterevidenceSought":"Searched each symbol by name before calling the cell stale; every symbol exists, so this is a citation defect and not a missing implementation.","alternativeExplanation":"The sixth-round tree's offsets were correct when written; the eighth and ninth rounds inserted lines above them and only the implementation-summary citations were refreshed (T101).","finalSeverity":"P1","confidence":0.95,"downgradeTrigger":"If the packet convention treats a nearby anchor as an acceptable citation, the three cells that still sit inside the right function drop to P2; the count and the pairs figure stay P1."}
-     ```
-   - refines: `R1-P1-003`
+None new. The P1 carried from iteration 1 (REQ-033 unmet and unwaived) remains active and is what keeps this iteration's verdict at CONDITIONAL.
 
 ### P2 Findings
 
-1. **AC-029 records a suite count the changelog no longer carries** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:86` -- The row says the changelog's suite row "quotes 184 files, 3,188 passed, 4 skipped and none failed, which is what the eighth-round rerun reads". The changelog row reads "186 files, 3,415 passed, 4 skipped, none failed; Python scorer 136 passed, none failed on 347 shared cases" (`.skilled/changelog/skilled/v4.2.0.0.md:759`). REQ-022's actual requirement (the changelog quotes the final suite count) is still met; only the recorded numbers are behind.
-   - Finding class: `stale-evidence`
-   - Scope proof: both files are packet-adjacent closure docs named in REQ-022.
-   - Affected surface hints: `acceptance-criteria.md` AC-029, `.skilled/changelog/skilled/v4.2.0.0.md`
-   - Case: A reader compares AC-029 with the changelog row it cites and finds two different "final" suite counts.
+None. See `## Confirmed-Clean Surfaces` and `## Ruled Out` for what the security pass did establish.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Note |
-|----------|--------|----------|------|
-| `spec_code` | partial | `spec.md:243`, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688` | No new requirement-level contradiction this pass; REQ-031 and REQ-033 remain as recorded. |
-| `checklist_evidence` | partial | `tasks.md:141`, `tasks.md:154`, `acceptance-criteria.md:86` | Every sixth-round task has an observation, but five cells point at the wrong line and one count is stale. |
-| `skill_agent` | notApplicable | - | Not in this pass. |
-| `agent_cross_runtime` | notApplicable | - | Not in this pass. |
+| Protocol | Status | Evidence |
+|---|---|---|
+| `spec_code` | partial | REQ-028, REQ-030 and REQ-038 traced from requirement to code to test this iteration; the full REQ sweep is the traceability pass |
+
+- REQ-028 ("`/deep:review:confirm` renders `/deep:review (ask)` with no `A ` text on both degraded paths"): `render.ts:250` prints the offer only when `recommendation.typed !== true`; `degradedRecommendations` keeps the tracked row as a command row (`skill-advisor-cli.ts:1554-1575`); `withTypedCommand` marks the subprocess row (`subprocess.ts:245-263`). `degradedRecommendations` keeps command, policy and owner only through `trackedCommandForOwner` (`skill-advisor-cli.ts:1489`) or `commandRowFor`. Confirmed by read; both named tests exist at the cited lines.
+- REQ-030 ("the Python gate reads the same 10,000-code-unit head, bounded prefix scans, 96,000-character prompt under one second"): `ADVISOR_PROMPT_MAX_CHARS = 10_000` (`schemas/advisor-tool-schemas.ts:257`) with `.max()` at `:262`; `_advisor_prompt_head` counts UTF-16 units and never splits a character (`scripts/skill_advisor.py:888-898`); the hook fallback strips the pasted reply and cuts to the same limit before it spawns (`hooks/lib/skill-advisor-cli-fallback.ts:233`); both prefix scans are windowed (`lib/command-attach.ts:748`, `scripts/skill_advisor.py:5181`). Confirmed by read; the timing itself was not re-run.
+- REQ-038 ("a supplied command reaches a degraded brief only where the tracked table names it for that row's skill"): `trackedCommandForOwner` requires an own-key hit in `TRACKED_COMMANDS` **and** `tracked.ownerSkillId === skill` (`skill-advisor-cli.ts:1489-1494`); the typed branch then either prints the command row or falls through to a plain `skill` row that carries no `command`, `policy`, `ownerSkillId` or `typed` field (`:1561-1575`, `:1592`). Confirmed by read and by the case at `cli-degraded-command-contract.vitest.ts:152`.
 
 ## Integration Evidence
 
-- `MODE_SUFFIXES` holds seven entries (`command-attach.ts:215`) and the typed-command guard reads every one of them (`tests/command-attach-guards.vitest.ts:1023-1038`), so REQ-031's rationale for that list is sound even though its line pointer is not.
-- `typed-on-stuck-serving.vitest.ts:112-124` asserts `command: '/deep:review'`, `policy: 'ask'` and `typed: true` on the served head, and asserts `attachCommand` still answers `/doctor:deep-loop` at `:114`, so AC-036's behaviour is pinned one line below its cited cell.
-- Both presentation Next Steps tables and both YAML `next_steps` lists carry `--extend=N` and `/doctor:deep-loop --scope=<mode>` (`deep-research.yaml:2265-2270`, `deep-review.yaml:2530-2536`, `deep-research-presentation.txt:478`, `deep-review-presentation.txt:583`), so AC-014's stricter wording holds.
-- All four probe result files hold 69 rows (`scratch/probes/results-after.json`, `results-spec-baseline.json`, `results-fresh-review.json`, `probes-spec-baseline.json`), so CHK-021's count is accurate.
+- Native handler boundary: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:545` strips a pasted earlier reply once and passes the same `scoredPrompt` to `enrichCompiledRoutes` and `attachTypedCommand` (`:642`), so the served head and the compiled-route step read one text.
+- Subprocess boundary: `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:419` sends the prompt on stdin with `--stdin`, and `:283` spawns an argument vector with `shell` unset.
+- Hook boundary: `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:276` records why the prompt travels on stdin rather than argv ("any local user can read from the process table"), and `:233` applies the same strip and cap the native handler applies.
 
 ## Edge Cases
 
-- Historical rows are not stale by definition: `implementation-summary.md:165-172` and `tasks.md:140` label their numbers by round (203 cases in the sixth round, 285 in the eighth). They are only defects where a row claims the final tree, which is how AC-028 and AC-042 read.
-- T084 and CHK-020 are legitimately open because AC-040 is `Unmet`; the Checklist Summary's 11 of 12 P0 count matches the boxes.
-- CHK-040's counts (4, 1, 2), CHK-042's empty `convene` search and CHK-FIX-005's three matrix axes all reproduce, so the checklist is not uniformly stale.
+- The security pass could not produce a finding: every path that prints a command filters it through `TRACKED_COMMANDS`, so the worst an unvalidated child string can do is collapse that row to its owner skill. A clean result is recorded as clean rather than converted into a hardening P2.
+- One parity detail was checked and deliberately not reported: the hook fallback cuts with `String.prototype.slice` at 10,000 UTF-16 units (`hooks/lib/skill-advisor-cli-fallback.ts:233`) and could split a surrogate pair, while `_advisor_prompt_head` never splits one (`scripts/skill_advisor.py:888-898`). The TS cut matches the zod `.max(10_000)` the schema enforces, the lone surrogate cannot break JSON, and the Python side re-cuts the head anyway, so the reach is a cosmetic payload difference rather than a defect.
+- The served-head behavior for a typed-on-stuck prompt was not executed in this iteration (it needs the real `advisor_recommend` head); the reading rests on `attachTypedCommand` and the fixture's `servedReviewKept` column, and is carried as read-only evidence.
 
 ## Confirmed-Clean Surfaces
 
-- AC-014: both YAMLs and both presentation files carry the extension and doctor rows (`deep-research.yaml:2268`, `deep-review.yaml:2534`).
-- AC-031: `doctor-handoff-command.vitest.ts:206` and `:253` exercise the fused row and the withhold step; the fixture's refusal rows read as recorded.
-- AC-032: `typed-two-commands-*` rows carry `typedRunsKept: ["/deep:review"]` (`deep-loop-offer-cases.json:125-126`).
-- AC-039: `reduce-state.cjs:995` and the two named test files exist and exercise a cross-file refinement (`tests/unit/reduce-state-refinement-other-file.vitest.ts:87-144`).
+- No untracked string reaches a rendered command: every `command` printed by the native path comes from `MODE_COMMANDS` / `TRACKED_COMMANDS`, and the degraded path additionally requires `trackedCommandForOwner` (`skill-advisor-cli.ts:1489-1494`).
+- No shell interpolation on either child path: `subprocess.ts:283` spawns an argv with no `shell` option, `hooks/lib/skill-advisor-cli-fallback.ts:256` spawns `process.execPath` with an argv, and both send the prompt on stdin.
+- The renderer refuses free-form text: `render.ts:519` states the renderer ignores reasons, descriptions, stdout/stderr and prompt text, and `sanitizeSkillLabel` (`:163-178`) drops control characters, newlines and instruction-shaped labels.
+- Instruction-shaped labels are blocked by `INSTRUCTION_LABEL_PATTERN` (`render.ts:108-109`), which covers `SYSTEM:`/`INSTRUCTION:`/`IGNORE:`/`EXECUTE:`, fenced code, and "ignore previous instructions".
+- Bounded input at every entry: MCP schema `.max(10_000)` (`schemas/advisor-tool-schemas.ts:262`), hook fallback cap (`hooks/lib/skill-advisor-cli-fallback.ts:233`), Python head (`scripts/skill_advisor.py:888`), and windowed prefix scans on both copies.
 
 ## Ruled Out
 
-- "The checklist summary is miscounted": ruled out. Twelve P0 boxes, eleven checked, with CHK-020 the single open one; thirteen P1 and one P2 all checked.
-- "A probe artifact is missing": ruled out. Every file the tasks cite under `scratch/probes/` exists, and each result file holds the 69 rows it claims.
+- "A command pasted inside an earlier reply is marked typed on the native served head, while the degraded path strips it": the handler strips once at `advisor-recommend.ts:545` and feeds the stripped `scoredPrompt` to both `enrichCompiledRoutes` and `attachTypedCommand` (`:642`); `subprocess.ts:251` and `skill-advisor-cli.ts:1511` strip too. A direct call to `typedCommandForTop` with the raw prompt does mark it, but the handler never makes that call, so the divergence is not in reach.
+- "REQ-028 names `parseRecommendations` but the typed marking happens elsewhere": `parseRecommendations` (`subprocess.ts:187-236`) already preserves `command`, `policy`, `ownerSkillId` and `typed` from the child, and `withTypedCommand` only adds what the child omitted. The requirement's parenthetical holds.
+- "The 10,000-unit cut is a security-relevant truncation an attacker can use to smuggle a second instruction past the window": both copies cut the head and then scan windowed prefixes of that head; no scan reads the uncut tail, and the renderer prints no prompt text.
 
 ## Next Focus
 
 - Dimension: traceability
-- Focus area: finish `spec_code` for the sixth and ninth rounds -- REQ-023 to REQ-046 against their producers, with ADR-005 and ADR-006 read as the decision records the focus names
-- Reason: requirement mapping covered REQ-001 to REQ-030 and the checklist pass is now exhausted for new angles; the later requirements and their ADRs are the remaining core-protocol work
-- Rotation status: traceability continues; correctness, security and maintainability remain
-- Blocked/productive carry-forward: productive (symbol-by-symbol replay)
-- Required evidence: each REQ's producer line and the ADR section that records the exception
+- Focus area: the core `spec_code` protocol over every requirement, sixth round first (REQ-023 to REQ-034) and then REQ-001 to REQ-022 and REQ-035 to REQ-048, each mapped to the code that implements it or the decision that records it.
+- Reason: the operator focus names `spec_code` as unfinished, and the first two iterations only sampled it; the traceability dimension now owns a full sweep.
+- Rotation status: correctness and security complete; traceability in progress; maintainability remains.
+- Blocked / productive carry-forward: nothing blocked. The fixture probe and the evidence-citation sweep are both productive and will be reused.
+- Required evidence: `spec.md` requirement tables, `decision-record.md` ADR-001 to ADR-008, `command-attach.ts`, `skill_advisor.py`, `explicit.ts`, `render.ts`, `reduce-state.cjs`, and the two command documents.
 
 Review verdict: CONDITIONAL

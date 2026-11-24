@@ -49,3 +49,6 @@ specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks
 .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts
 .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-duplicate-command.vitest.ts
 .skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-plural-noun.vitest.ts
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-numbering.vitest.ts
+.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/next-focus.txt
+specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md

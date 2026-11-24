@@ -1,0 +1,659 @@
+{
+ "nodes": [
+  {
+   "id": "file-001",
+   "kind": "FILE",
+   "label": ".skilled/changelog/skilled/v4.2.0.0.md",
+   "path": ".skilled/changelog/skilled/v4.2.0.0.md"
+  },
+  {
+   "id": "file-002",
+   "kind": "FILE",
+   "label": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+   "path": ".skilled/commands/deep/assets/deep-research-presentation.txt"
+  },
+  {
+   "id": "file-003",
+   "kind": "FILE",
+   "label": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+   "path": ".skilled/commands/deep/assets/deep-review-presentation.txt"
+  },
+  {
+   "id": "file-004",
+   "kind": "FILE",
+   "label": ".skilled/commands/deep/research.md",
+   "path": ".skilled/commands/deep/research.md"
+  },
+  {
+   "id": "file-005",
+   "kind": "FILE",
+   "label": ".skilled/commands/deep/review.md",
+   "path": ".skilled/commands/deep/review.md"
+  },
+  {
+   "id": "file-006",
+   "kind": "FILE",
+   "label": ".skilled/hooks/injection-contract.md",
+   "path": ".skilled/hooks/injection-contract.md"
+  },
+  {
+   "id": "file-007",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+   "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+  },
+  {
+   "id": "file-008",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+  },
+  {
+   "id": "file-009",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+  },
+  {
+   "id": "file-010",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
+  },
+  {
+   "id": "file-011",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+  },
+  {
+   "id": "file-012",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts"
+  },
+  {
+   "id": "file-013",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+  },
+  {
+   "id": "file-014",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+   "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+  },
+  {
+   "id": "file-015",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts"
+  },
+  {
+   "id": "file-016",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts"
+  },
+  {
+   "id": "file-017",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts"
+  },
+  {
+   "id": "file-018",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts"
+  },
+  {
+   "id": "file-019",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts"
+  },
+  {
+   "id": "file-020",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
+  },
+  {
+   "id": "file-021",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py"
+  },
+  {
+   "id": "file-022",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts"
+  },
+  {
+   "id": "file-023",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+  },
+  {
+   "id": "file-024",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
+  },
+  {
+   "id": "file-025",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md"
+  },
+  {
+   "id": "file-026",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md"
+  },
+  {
+   "id": "file-027",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+  },
+  {
+   "id": "file-028",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
+  },
+  {
+   "id": "file-029",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md"
+  },
+  {
+   "id": "file-030",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md"
+  },
+  {
+   "id": "file-031",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md"
+  },
+  {
+   "id": "file-032",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md"
+  },
+  {
+   "id": "file-033",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+   "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+  },
+  {
+   "id": "file-034",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+   "path": ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+  },
+  {
+   "id": "file-035",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/tests/unit/reduce-state-refinement-other-file.vitest.ts",
+   "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/reduce-state-refinement-other-file.vitest.ts"
+  },
+  {
+   "id": "file-036",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-refinements.vitest.ts",
+   "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-refinements.vitest.ts"
+  },
+  {
+   "id": "file-037",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+  },
+  {
+   "id": "file-038",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+  },
+  {
+   "id": "file-039",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts"
+  },
+  {
+   "id": "file-040",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-typed-command.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-typed-command.vitest.ts"
+  },
+  {
+   "id": "file-041",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-ask-routing.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-ask-routing.vitest.ts"
+  },
+  {
+   "id": "file-042",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts"
+  },
+  {
+   "id": "file-043",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/multi-typed-command-gates.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/multi-typed-command-gates.vitest.ts"
+  },
+  {
+   "id": "file-044",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/stage-one-loop-subject.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/stage-one-loop-subject.vitest.ts"
+  },
+  {
+   "id": "file-045",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts"
+  },
+  {
+   "id": "file-046",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts"
+  },
+  {
+   "id": "file-047",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs",
+   "path": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs"
+  },
+  {
+   "id": "file-048",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+   "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts"
+  },
+  {
+   "id": "file-049",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts",
+   "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts"
+  },
+  {
+   "id": "file-050",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-duplicate-command.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-duplicate-command.vitest.ts"
+  },
+  {
+   "id": "file-051",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-plural-noun.vitest.ts",
+   "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-plural-noun.vitest.ts"
+  },
+  {
+   "id": "file-052",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-numbering.vitest.ts",
+   "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-numbering.vitest.ts"
+  },
+  {
+   "id": "file-053",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/next-focus.txt",
+   "path": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/next-focus.txt"
+  },
+  {
+   "id": "file-054",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md",
+   "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md"
+  },
+  {
+   "id": "slice-012",
+   "kind": "SLICE",
+   "label": "packet-012-deep-loop-command-offers"
+  }
+ ],
+ "edges": [
+  {
+   "id": "covers-001",
+   "source": "slice-012",
+   "target": "file-001",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-002",
+   "source": "slice-012",
+   "target": "file-002",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-003",
+   "source": "slice-012",
+   "target": "file-003",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-004",
+   "source": "slice-012",
+   "target": "file-004",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-005",
+   "source": "slice-012",
+   "target": "file-005",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-006",
+   "source": "slice-012",
+   "target": "file-006",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-007",
+   "source": "slice-012",
+   "target": "file-007",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-008",
+   "source": "slice-012",
+   "target": "file-008",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-009",
+   "source": "slice-012",
+   "target": "file-009",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-010",
+   "source": "slice-012",
+   "target": "file-010",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-011",
+   "source": "slice-012",
+   "target": "file-011",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-012",
+   "source": "slice-012",
+   "target": "file-012",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-013",
+   "source": "slice-012",
+   "target": "file-013",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-014",
+   "source": "slice-012",
+   "target": "file-014",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-015",
+   "source": "slice-012",
+   "target": "file-015",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-016",
+   "source": "slice-012",
+   "target": "file-016",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-017",
+   "source": "slice-012",
+   "target": "file-017",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-018",
+   "source": "slice-012",
+   "target": "file-018",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-019",
+   "source": "slice-012",
+   "target": "file-019",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-020",
+   "source": "slice-012",
+   "target": "file-020",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-021",
+   "source": "slice-012",
+   "target": "file-021",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-022",
+   "source": "slice-012",
+   "target": "file-022",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-023",
+   "source": "slice-012",
+   "target": "file-023",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-024",
+   "source": "slice-012",
+   "target": "file-024",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-025",
+   "source": "slice-012",
+   "target": "file-025",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-026",
+   "source": "slice-012",
+   "target": "file-026",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-027",
+   "source": "slice-012",
+   "target": "file-027",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-028",
+   "source": "slice-012",
+   "target": "file-028",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-029",
+   "source": "slice-012",
+   "target": "file-029",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-030",
+   "source": "slice-012",
+   "target": "file-030",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-031",
+   "source": "slice-012",
+   "target": "file-031",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-032",
+   "source": "slice-012",
+   "target": "file-032",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-033",
+   "source": "slice-012",
+   "target": "file-033",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-034",
+   "source": "slice-012",
+   "target": "file-034",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-035",
+   "source": "slice-012",
+   "target": "file-035",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-036",
+   "source": "slice-012",
+   "target": "file-036",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-037",
+   "source": "slice-012",
+   "target": "file-037",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-038",
+   "source": "slice-012",
+   "target": "file-038",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-039",
+   "source": "slice-012",
+   "target": "file-039",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-040",
+   "source": "slice-012",
+   "target": "file-040",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-041",
+   "source": "slice-012",
+   "target": "file-041",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-042",
+   "source": "slice-012",
+   "target": "file-042",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-043",
+   "source": "slice-012",
+   "target": "file-043",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-044",
+   "source": "slice-012",
+   "target": "file-044",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-045",
+   "source": "slice-012",
+   "target": "file-045",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-046",
+   "source": "slice-012",
+   "target": "file-046",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-047",
+   "source": "slice-012",
+   "target": "file-047",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-048",
+   "source": "slice-012",
+   "target": "file-048",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-049",
+   "source": "slice-012",
+   "target": "file-049",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-050",
+   "source": "slice-012",
+   "target": "file-050",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-051",
+   "source": "slice-012",
+   "target": "file-051",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-052",
+   "source": "slice-012",
+   "target": "file-052",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-053",
+   "source": "slice-012",
+   "target": "file-053",
+   "relation": "COVERS"
+  },
+  {
+   "id": "covers-054",
+   "source": "slice-012",
+   "target": "file-054",
+   "relation": "COVERS"
+  }
+ ]
+}

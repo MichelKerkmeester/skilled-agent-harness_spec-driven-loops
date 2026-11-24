@@ -1,21 +1,19 @@
-# Iteration 006 - Maintainability (the closure documents as one record)
+# Review Iteration 006
 
 ## Dispatcher
 
-- Mode: review, lineage `deepseek-max-1`, generation 1, iteration 6 of 7.
-- Dimension: maintainability - whether the packet reads as one coherent record: `implementation-summary.md`, `plan.md`, `timeline.md`, the changelog, packet 013's pointer and the decision record, checked for statements that contradict each other or the tree.
-- Operator review focus: the requirement, task and acceptance layers are mapped; this iteration asks whether a later reader can follow the same trail without meeting a scaffold or a superseded number.
+- Mode: review; target agent `deep-review`; lineage `deepseek-max-1`; generation 7; session `fanout-deepseek-max-1-1795546920757-7pyjry`.
+- Iteration 6 of 7 (stopPolicy `max-iterations`).
+- Dimension: `maintainability`. Focus: the reducer's own strategy writer as it behaves in this lineage, and how well the two gate copies are held together by the drift guard after four rounds of additions.
+- Operator review focus, carried: the traceability protocols stay closed; this iteration asks whether a reader of the packet - or the next deep-review run - can follow what the code does and what the strategy says, which is the property the packet's REQ-046 and REQ-048 already tried to protect.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md` (all 49 lines)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:1` to `:20` (frontmatter and continuity), `:154` to `:157`, `:165` to `:172`, `:236` to `:238`, `:258` to `:268` (limitations 1 to 8)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md:17`, `:35`, `:51`, `:68` (`## FIX ADDENDUM: AFFECTED SURFACES`), `:90`, `:102`, `:114`, `:126`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:23` (status), `:296` to `:301` (SC rows)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:86` (AC-029), `:97` (AC-040), `:137` (closure statement)
-- `.skilled/changelog/skilled/v4.2.0.0.md:482` to `:484`, `:755` to `:760`
-- `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:245`, `:266`, `:322` to `:324`
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:217` (`extractSection`), `:369` (the `Next Focus` lookup), `:393` (`normalizeText` over the extracted section), `:2518` (`pickReviewBaseFocus`), `:2643` (`replaceAnchorSection` call).
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md` (`## 12. NEXT FOCUS` as the reducer wrote it) and `deep-review-dashboard.md:146` (`## 11. NEXT FOCUS`).
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:434` (`PATTERN_PAIRS`), `:450` (the assertion that reads it), `:80` (`VOCABULARY_PAIRS`).
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (the 18 `_..._RE = re.compile` templates the fallback hand-mirrors).
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:330` to `:1155` (the exported vocabulary and the patterns built from it).
 
 ## Findings - New
 
@@ -25,59 +23,59 @@ None.
 
 ### P1 Findings
 
-None. The packet's own closure machinery - status, closure statement, summary counts, limitations and the decision record - is internally consistent; the two findings are a stale quotation and an unbuilt timeline.
+None new. `R1-P1-001` and `R4-P1-001` remain active.
 
 ### P2 Findings
 
-1. **AC-029 quotes a changelog suite count the changelog no longer carries** -- `.skilled/changelog/skilled/v4.2.0.0.md:759` -- AC-029 states that the row "quotes 184 files, 3,188 passed, 4 skipped and none failed, which is what the eighth-round rerun reads". The row reads "186 files, 3,415 passed, 4 skipped, none failed; Python scorer 136 passed, none failed on 347 shared cases", which is the ninth-round figure. The criterion's substance - the changelog states the refusal rule, names the brief options and the typed `(ask)`, and quotes a suite count - holds; the quotation in the acceptance cell is one round behind the file.
-   Finding class: closure quotation drift.
-   Scope proof: direct read of `.skilled/changelog/skilled/v4.2.0.0.md:759` and of the AC-029 cell at `acceptance-criteria.md:86`.
-   Affected surface hints: `acceptance-criteria.md` AC-029 cell.
-   Case: a reader diffing the cell against the changelog finds two different suite counts and cannot tell which round the row is certifying.
+6. **The reducer's Next Focus projection captures the iteration verdict and flattens the focus block** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md:171` -- `extractSection` (`reduce-state.cjs:217`) reads from a `##` heading to the next `##` heading or end of file, and the iteration contract puts `Review verdict: <X>` after `## Next Focus` with no heading behind it, so the verdict is inside the extracted section. `normalizeText` (`:393`) then collapses the whole block to one line. The result is visible in this lineage: `deep-review-strategy.md` `## 12. NEXT FOCUS` and `deep-review-dashboard.md:146` both end with "Review verdict: CONDITIONAL", and the seven focus fields read as one run-on paragraph. `pickReviewBaseFocus` (`:2518`) reads the same field back, so the text a reader and the next run treat as the focus carries a verdict statement, and the field the next iteration reads cannot be read at a glance.
+   Finding class: `class-of-bug` (every iteration file ends with the verdict after Next Focus, so every projection of it is affected).
+   Scope proof: `reduce-state.cjs` is in the seeded scope, and both artefacts that show the defect are inside this lineage's write surface.
+   Affected surface hints: `extractSection` and the `Next Focus` lookup in `reduce-state.cjs`; the strategy template's section 12; the dashboard's section 11; the iteration prompt's Next Focus contract, which does not say the verdict must sit under a heading.
+   Case: run any iteration whose narrative ends with the mandatory verdict line, reduce the state, and open the strategy's Next Focus section: the focus field now ends with the verdict of the iteration it came from. A reader looking for the next focus finds a verdict sentence inside it, and a model given the strategy as context can mistake the verdict for guidance about the next iteration.
 
-2. **`timeline.md` is an unfilled template, dated and never written** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:18` -- the file still carries `> [One line: what this timeline tracks.]`, `**Subject:** [SUBJECT]`, `**Owner:** [NAME OR ROLE]`, two `<!-- FILL: ... -->` instructions, two `**[EVENT OR CHANGE]**. Outcome: [RESULTING STATE OR DECISION].` lines and `**[MILESTONE]:** target [YYYY-MM-DD OR CONDITION]`. Its metadata says started 2026-11-22 and last updated 2026-11-22, while the packet has since run nine fix rounds and four review generations.
-   Finding class: documentation gap.
-   Scope proof: `sed -n '18,44p'` of the file and a placeholder search that returns 4 lines; the packet validator passes because a timeline is not a validated Level 2 document, so nothing else catches it.
-   Affected surface hints: `timeline.md` (whole file), `implementation-summary.md` as the document that should summarise the same history.
-   Case: a new reader opening the packet's chronological record gets brackets and instruction text instead of the nine rounds' history.
+7. **The drift guard compares one regex pattern while the fallback hand-mirrors eighteen** -- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:434` -- `PATTERN_PAIRS` holds a single entry, `['_NAMED_LOOP_MODE_RE', NAMED_LOOP_MODE]`, and `:450` asserts only that pair. `VOCABULARY_PAIRS` does hold the word lists together entry for entry, and `NUMERIC_PAIRS` holds the two numbers, but the grammar built from those lists is hand-written twice: `skill_advisor.py` carries 18 `_..._RE = re.compile` templates (the request alternation, the object gap, the count back-pointers, the passes grammar, the effort and question patterns, the mode cues) with no counterpart in `PATTERN_PAIRS`. A one-sided grammar edit therefore passes both suites unless a fixture row happens to exercise the exact sentence shape it changes, and AC-053's grammar rows cover four grammars (refusal gap, question lead, past-run read, stuck symptom), not eighteen. The two copies read alike today - the whitespace probe in iteration 4 returned the same six results from both copies' logic, and the 20-list comparison found no drift - so this is a guard-coverage gap, not an observed divergence.
+   Finding class: `matrix/evidence` (the check covers one pair of eighteen).
+   Scope proof: the test file is in the seeded scope and the claim rests on its two pair tables and on a count of the fallback's compiled patterns.
+   Affected surface hints: `PATTERN_PAIRS` and `pythonPatternSource` in `tests/deep-loop-offer-cases.vitest.ts`; `_LOOP_REQUEST_RE`, `_LOOP_COUNT`, `_LOOP_MULTI_PASS`, `_ITERATIVE_ASK` and the mode-cue patterns in `scripts/skill_advisor.py`; REQ-045's "pins the grammar of each exception" clause.
+   Case: change the object-gap quantifier from `{0,3}` to `{0,4}` in `command-attach.ts` only. Both suites keep passing, the 22 vocabulary pairs still match, the numeric pairs still match, and the two copies now answer a different set of prompts until a user happens to type one the four grammar rows do not cover.
 
 ## Traceability Checks
 
-Not re-run in this iteration beyond what the findings cite; both core protocols were recorded in iterations 2 and 4.
+- `spec_code` and `checklist_evidence` stay `pass` from iteration 3. REQ-048's numbering clause is checked again here in the field: after two reducer passes this lineage's strategy still carries `## 12. NEXT FOCUS` once, so that requirement holds; the finding above is about the section's content, not its number.
 
 ## Integration Evidence
 
-- `.skilled/changelog/skilled/v4.2.0.0.md:759` is the changelog row the packet's own acceptance row points at, and it is also the only closure document besides `tasks.md` T101 that matches the tree's 347 shared cases.
-- `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123` still resolves and still states packet 013's degraded-path evidence for its REQ-006, so the cross-packet pointer REQ-034 owns is live.
+- Reducer: `runtime/scripts/reduce-state.cjs` `extractSection`, the `Next Focus` lookup, `normalizeText` and `replaceAnchorSection`, exercised on this lineage four times.
+- Artifacts: `deep-review-strategy.md` and `deep-review-dashboard.md` in this lineage, read after each reducer pass.
+- Drift guard: `tests/deep-loop-offer-cases.vitest.ts` `VOCABULARY_PAIRS`, `NUMERIC_PAIRS`, `PATTERN_PAIRS` and the `pythonPatternSource` reader, against `scripts/skill_advisor.py`.
 
 ## Edge Cases
 
-- **SC-004 sits after SC-006** in `spec.md:301`, because it was added by a later round. The order is readable and every id resolves, so it is recorded here rather than raised as a finding.
-- **`plan.md` is the original plan and is not updated for the ninth round.** Its `## FIX ADDENDUM: AFFECTED SURFACES` section carries the later surfaces, and its scope is frozen by the packet's own workflow, so no finding is raised for the plan's age.
-- **The changelog's earlier suite row (`2,450 passed`) is a different build.** It sits in the same table as a historical row, and nothing in the packet cites it as current.
+- Ambiguity: the verdict line could be kept out of the extracted section either by a heading or by the extractor stopping at the first line that is not part of the block. The finding names the mechanism, not a preferred fix.
+- Contradiction, adjudicated: AC-053 says the guard pins the grammar of each exception, which is true for the four grammars its fixture rows exercise, and REQ-045 says the guard compares "the mode vocabulary on every surface that carries it", which is true. Finding 7 is filed against the gap between those statements and the 18 hand-mirrored templates, not against either statement.
+- Missing dependency: the Python templates were counted from source rather than executed.
+- Partial success: the maintainability check is qualitative; the two findings are the ones with artefacts behind them, and weaker signals (seven exports referenced only inside their own module) were deliberately not filed.
 
 ## Confirmed-Clean Surfaces
 
-- `implementation-summary.md` limitations 1 to 8 are sequential and current; limitation 6 states the ADR-005 exception and limitation 8 states the served-brief gap with its evidence.
-- `implementation-summary.md:13` and `:14` name the ninth round and this rerun as the next safe action, which is what is happening.
-- `spec.md:23` states "In Progress: the traceability review rerun is open", and `acceptance-criteria.md:137` states `Closeable: No` with AC-040 as the reason - the two documents agree with each other and with this run.
-- `tasks.md:322` to `:324` match the checkboxes behind them; `timeline.md` is the only document in the packet that fails to carry the history.
+- REQ-048's numbering clause holds in the field: two reducer passes later, section 12 still appears once, with the template's number.
+- The vocabulary and numeric drift guards hold on the tree: 22 pairs and 2 numbers match between the copies.
+- No in-scope code comment carries an artifact label (iteration 3's sweep), which is the maintainability property the repository's comment rule asks for.
 
 ## Ruled Out
 
-- "The packet's status and closure statement disagree": both say the run is open and name AC-040.
-- "The limitations list lost the typed-on-stuck line": limitation 6 states it in the ADR-005 wording.
-- "The cross-packet pointer to packet 013 is dead": `013-.../implementation-summary.md:123` resolves and states the degraded-path evidence.
-
-## SCOPE VIOLATIONS
-
-None.
+- "The strategy file gains a second heading with the same number": ruled out. The reducer's heading absorption works; section 12 appears once after two passes.
+- "Seven dead exports mean the module carries unused code": ruled out as a finding. `RUN_REFUSED` is read through `isRunRefused`, the pattern fragments are part of the exported surface the tests read by name, and none of them is unreachable code; calling them dead would be a phantom issue.
+- "The two gate copies have already drifted": ruled out. Twenty vocabulary lists, two numbers and the whitespace probe all agree; finding 7 is about the guard's size, not a drift.
 
 ## Next Focus
 
-- Dimension: security
-- Focus: the trust boundaries of the gate and of this review's own inputs - prompt-as-data handling, regex cost on attacker-controlled length, secret exposure in the changed code, and the `ask` policy guarantee that no deep command starts on its own
-- Reason: security is the last configured dimension; the gate reads an untrusted prompt string on every hook, which is the packet's only real trust boundary.
-- Rotation status: maintainability closes; security completes the configured set.
+- Dimension: `traceability` (close-out).
+- Focus area: cross-reference verification of the in-scope integration surfaces (commands, skills, runtime mirrors) and a final consistency pass over this lineage's own artefacts - iterations 1 to 6, strategy, state log, deltas and registry.
+- Reason: every dimension now has a full iteration; the last iteration under the cap is reserved for the cross-reference overlay and for proving the lineage's own state is coherent before synthesis.
+- Rotation status: all four canonical dimensions covered; this is the close-out pass.
+- Blocked/productive carry-forward: productive - the reducer artefacts and the guard tables both yielded findings a reading of the code alone would miss; carry the artefact-first method.
+- Required evidence: one overlay `traceabilityChecks` result per protocol run (or `notApplicable` with a reason), and the artefact-consistency proof for this lineage.
+- Recovery note: none.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

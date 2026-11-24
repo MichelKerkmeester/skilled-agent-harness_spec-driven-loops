@@ -1,0 +1,25 @@
+const fs = require("fs");
+const cases = JSON.parse(fs.readFileSync(".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json", "utf8")).cases;
+const byPrefix = (p) => cases.filter((c) => c.id.startsWith(p));
+const refusal = byPrefix("refusal-verb-");
+const effort = byPrefix("effort-");
+const plural = byPrefix("plural-");
+const noedit = byPrefix("no-edit-");
+const refusedCue = byPrefix("refused-cue-");
+const report = (label, rows, key) => {
+  const t = rows.filter((r) => r[key] === true).length;
+  const f = rows.filter((r) => r[key] === false).length;
+  console.log(label, "rows=" + rows.length, key + ":true=" + t, "false=" + f);
+};
+report("refusal-verb", refusal, "asksForLoopRun");
+console.log("  refusal ids:", refusal.map((r) => r.id + "=" + r.asksForLoopRun).join(", "));
+console.log("doctorWithheld rows", cases.filter((c) => c.doctorWithheld !== undefined).length, "true", cases.filter((c) => c.doctorWithheld === true).length, "false", cases.filter((c) => c.doctorWithheld === false).length);
+report("effort", effort, "asksForLoopRun");
+console.log("  effort false ids:", effort.filter((r) => r.asksForLoopRun === false).map((r) => r.id).join(","));
+console.log("  effort true ids:", effort.filter((r) => r.asksForLoopRun === true).map((r) => r.id).join(","));
+report("plural", plural, "asksForLoopRun");
+report("no-edit", noedit, "asksForLoopRun");
+console.log("  no-edit readOnlyRunKept:", noedit.map((r) => r.id + "=" + (r.readOnlyRunKept || "none")).join(","));
+report("refused-cue", refusedCue, "asksForLoopRun");
+console.log("typedRunsKept rows", cases.filter((c) => c.typedRunsKept !== undefined).length);
+console.log("servedRun none", cases.filter((c) => c.servedRun === "none").map((c) => c.id).join(","));

@@ -1,112 +1,22 @@
 {
-  "sessionId": "fanout-deepseek-max-2-1795544069299-46zw3s",
+  "sessionId": "fanout-deepseek-max-2-1795546920757-7pyjry",
   "parentSessionId": "2026-11-24T18:14:20.000Z",
-  "generation": 6,
+  "generation": 7,
   "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 7,
-    "timestamp": "2026-11-24T18:36:09.042Z"
+    "timestamp": "2026-11-24T19:11:50.600Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "R1-P2-001",
-      "severity": "P2",
-      "title": "REQ-031 and AC-038 describe fifteen compared lists and ten per-entry lists; the drift guard compares twenty-two and pins twelve",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "line": 243,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P2-002",
-      "severity": "P2",
-      "title": "AC-036 cites evidence lines that do not hold the typed-on-stuck evidence it claims",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 93,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P2-003",
-      "severity": "P2",
-      "title": "AC-037 cites the wrong lines for the bounded window and the fixture-parity suite",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 94,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
       "findingId": "R2-P2-001",
       "severity": "P2",
-      "title": "REQ-012 still states the superseded six-row near-miss check, and its only acceptance row is Superseded",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "line": 224,
+      "title": "AC-040's evidence cell points at a review report this restart archived",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+      "line": 97,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -134,9 +44,9 @@
     {
       "findingId": "R3-P2-001",
       "severity": "P2",
-      "title": "Five acceptance cells quote the Python fixture count as 285 while the tree holds 347 cases",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 66,
+      "title": "T092's no-stale-count claim fails on two counts in its own file",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+      "line": 184,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -164,9 +74,9 @@
     {
       "findingId": "R3-P2-002",
       "severity": "P2",
-      "title": "AC-029 and AC-028 quote suite counts the cited changelog row does not carry",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 86,
+      "title": "The tail-check script T104 names is not in the tree",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+      "line": 206,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -192,99 +102,9 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R3-P2-003",
+      "findingId": "R4-P2-001",
       "severity": "P2",
-      "title": "AC-031 counts 26 doctorWithheld fixture rows; the fixture carries 47",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 88,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R3-P2-004",
-      "severity": "P2",
-      "title": "AC-032 says four multi-typed rows pin both loops in both orders; two of the four pin one loop against a non-loop command",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 89,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R3-P2-005",
-      "severity": "P2",
-      "title": "AC-033's mode-cue anchor lands inside commandOnlyMentioned, not on the loop that skips a subject-read mode name",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 90,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R3-P2-006",
-      "severity": "P2",
-      "title": "AC-034's Python anchor is a blank line; the stage-one copy it names is 250 lines further down",
+      "title": "AC-034's CLI head scores have no artifact, and the one recorded head shows the pre-fix result",
       "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
       "line": 91,
       "description": "",
@@ -295,12 +115,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 3,
+      "firstSeen": 4,
+      "lastSeen": 4,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 4,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -312,11 +132,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R3-P2-007",
+      "findingId": "R6-P2-001",
       "severity": "P2",
-      "title": "Three cells in the sixth-round range pin fixture rows eight to thirteen lines away from where they now sit",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 101,
+      "title": "The declared change set stops at REQ-046 while its rows serve REQ-047 and REQ-048",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+      "line": 195,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -325,12 +145,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 3,
+      "firstSeen": 6,
+      "lastSeen": 6,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 6,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -338,36 +158,6 @@
       ],
       "dimensions": [
         "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R5-P2-001",
-      "severity": "P2",
-      "title": "The reducer renumbers four machine sections, so every template-derived strategy ends with two section 4, 5, 9 and 11 headings",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-      "line": 2580,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 5,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 5,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
       ],
       "mergedFindingIds": []
     }
@@ -377,9 +167,7 @@
   "terminalGates": {
     "run": 7,
     "stopReason": "maxIterationsReached",
-    "failedRequiredGateIds": [
-      "coverage"
-    ]
+    "failedRequiredGateIds": []
   },
   "persistentSameSeverity": [],
   "severityChanged": [],
@@ -393,9 +181,9 @@
   "findingsBySeverity": {
     "P0": 0,
     "P1": 0,
-    "P2": 12
+    "P2": 5
   },
-  "openFindingsCount": 12,
+  "openFindingsCount": 5,
   "resolvedFindingsCount": 0,
   "convergenceScore": 1,
   "graphConvergenceScore": 0,
@@ -403,96 +191,438 @@
   "graphBlockers": [],
   "graphSignals": {},
   "candidateCoverage": {
-    "covered": [],
-    "ruledOut": [],
+    "covered": [
+      "missing_artifact",
+      "record_drift",
+      "stale_evidence",
+      "state_transition",
+      "unbacked_claim"
+    ],
+    "ruledOut": [
+      "contract_mismatch",
+      "duplication_cost",
+      "input_handling",
+      "policy_bypass",
+      "spec_mismatch",
+      "stale_evidence",
+      "state_transition"
+    ],
     "deferred": [],
     "blocked": [],
-    "byBugClass": {}
+    "byBugClass": {
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "contract_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3,
+          4,
+          7
+        ]
+      },
+      "spec_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          7
+        ]
+      },
+      "missing_artifact": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          7
+        ]
+      },
+      "unbacked_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "policy_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "input_handling": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "record_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "duplication_cost": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      }
+    }
   },
   "searchDebt": [],
-  "ruledOutCandidates": [],
-  "cleanSearchProof": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "the gate reads refusal, subject, past-run, stuck and question forms before it returns true",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1116"
+      ],
+      "reason": "verified by direct read of every predicate the ask path calls"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json"
+      ],
+      "bugClass": "contract_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "recomputed the three group comparisons over the recorded rows",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json:1"
+      ],
+      "reason": "no row differs from its recorded expectation"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "every named symbol resolved at the line the requirement or acceptance row names",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80"
+      ],
+      "reason": "direct read of each cited surface"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_evidence",
+      "disposition": "ruled_out",
+      "rationale": "each title was opened",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:112"
+      ],
+      "reason": "direct read of each cited title"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/command-metadata.json"
+      ],
+      "bugClass": "policy_bypass",
+      "disposition": "ruled_out",
+      "rationale": "the table and the metadata agree",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/command-metadata.json:9"
+      ],
+      "reason": "read both surfaces"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "input_handling",
+      "disposition": "ruled_out",
+      "rationale": "no prompt-derived pattern exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:748"
+      ],
+      "reason": "read every dynamic pattern site"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "duplication_cost",
+      "disposition": "ruled_out",
+      "rationale": "the duplication is guarded on every list and on the named-mode pattern",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80"
+      ],
+      "reason": "read the guard and its pair count"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "the audit of iterations 2, 4 and 6 closes with no implementation gap",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220"
+      ],
+      "reason": "every requirement names a live symbol, fixture row, test or ADR"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "the gate reads refusal, subject, past-run, stuck and question forms before it returns true",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1116"
+      ],
+      "proof": "verified by direct read of every predicate the ask path calls"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json"
+      ],
+      "bugClass": "contract_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "recomputed the three group comparisons over the recorded rows",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json:1"
+      ],
+      "proof": "no row differs from its recorded expectation"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "every named symbol resolved at the line the requirement or acceptance row names",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80"
+      ],
+      "proof": "direct read of each cited surface"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_evidence",
+      "disposition": "ruled_out",
+      "rationale": "each title was opened",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:112"
+      ],
+      "proof": "direct read of each cited title"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/command-metadata.json"
+      ],
+      "bugClass": "policy_bypass",
+      "disposition": "ruled_out",
+      "rationale": "the table and the metadata agree",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/command-metadata.json:9"
+      ],
+      "proof": "read both surfaces"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "input_handling",
+      "disposition": "ruled_out",
+      "rationale": "no prompt-derived pattern exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:748"
+      ],
+      "proof": "read every dynamic pattern site"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "duplication_cost",
+      "disposition": "ruled_out",
+      "rationale": "the duplication is guarded on every list and on the named-mode pattern",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80"
+      ],
+      "proof": "read the guard and its pair count"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "the audit of iterations 2, 4 and 6 closes with no implementation gap",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220"
+      ],
+      "proof": "every requirement names a live symbol, fixture row, test or ADR"
+    }
+  ],
   "searchCoverage": {
-    "requiredBugClasses": [],
-    "covered": [],
-    "ruledOut": [],
+    "requiredBugClasses": [
+      "spec_mismatch",
+      "stale_evidence",
+      "missing_artifact"
+    ],
+    "covered": [
+      "stale_evidence",
+      "missing_artifact"
+    ],
+    "ruledOut": [
+      "spec_mismatch"
+    ],
     "deferred": [],
     "blocked": [],
-    "graphCoverageMode": null
+    "graphCoverageMode": "graph"
   },
   "traceability": {
     "summary": {
       "required": 2,
       "executed": 2,
-      "pass": 0,
-      "partial": 2,
+      "pass": 2,
+      "partial": 0,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 4,
-      "gatingFailures": 2
+      "notApplicable": 0,
+      "gatingFailures": 0
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json:1",
-          ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:81",
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:247",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:259",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1615",
+          ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2362",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:412",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:508"
+        ],
+        "evidenceRefs": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:247",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:259",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1615",
+          ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2362",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:412",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:508"
         ],
         "gateClass": "hard",
         "protocolId": "spec_code",
-        "status": "partial",
-        "summary": "executed over REQ-001..REQ-046: forty-four hold, REQ-012 and REQ-031 do not"
+        "status": "pass",
+        "summary": "48 of 48 requirements trace to an implementing symbol, fixture row, test title or decision; five P2 records are advisories"
       },
       {
         "applicable": true,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:66",
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:95",
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:101"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:331",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58"
+        ],
+        "evidenceRefs": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:331",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58"
         ],
         "gateClass": "hard",
         "protocolId": "checklist_evidence",
-        "status": "partial",
-        "summary": "executed over all 54 rows: thirty-eight hold, sixteen do not (seven anchor drift, nine stale counts or overstated coverage)"
-      },
-      {
-        "applicable": false,
-        "evidence": [],
-        "gateClass": "advisory",
-        "protocolId": "skill_agent",
-        "status": "notApplicable",
-        "summary": "the target claims no skill-owned agent definition"
-      },
-      {
-        "applicable": false,
-        "evidence": [],
-        "gateClass": "advisory",
-        "protocolId": "agent_cross_runtime",
-        "status": "notApplicable",
-        "summary": "no agent definition is claimed by the requirements"
-      },
-      {
-        "applicable": false,
-        "evidence": [],
-        "gateClass": "advisory",
-        "protocolId": "feature_catalog_code",
-        "status": "notApplicable",
-        "summary": "no feature-catalog entry is claimed"
-      },
-      {
-        "applicable": false,
-        "evidence": [],
-        "gateClass": "advisory",
-        "protocolId": "playbook_capability",
-        "status": "notApplicable",
-        "summary": "no playbook capability is claimed"
+        "status": "pass",
+        "summary": "104 ticked tasks and 56 acceptance rows audited; counts recomputed; two stale task counts recorded as P2"
       }
     ],
-    "unfinishedCoreProtocols": [
-      "spec_code",
-      "checklist_evidence"
-    ]
+    "unfinishedCoreProtocols": []
   },
   "divergence": {
     "started": [],

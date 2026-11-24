@@ -1,27 +1,25 @@
-# Review Iteration 004
+# Review Iteration 004 — maintainability (with the operator traceability focus)
 
 ## Dispatcher
 
-- Mode: review
-- Dimension: correctness (operator focus carried alongside)
-- Iteration: 4 of 7
-- Focus this pass: branch order in the two gate copies for prompts that combine a loop ask with a refusal, a stuck symptom or a no-edit clause; deferred versus routed mode selection
-- Executor: this lineage process (cli-pi, deepseek-v4.1-flash-1017); no nested dispatch
+- Mode: `review`; target agent: `@deep-review` (LEAF, single iteration).
+- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
+- Lineage: sessionId `fanout-deepseek-max-3-1795546920757-7pyjry`, generation 1, lineageMode `new`, executor cli-pi (deepseek-v4.1-flash-1017).
+- Setup bindings (unchanged; emitted in full at iteration 1).
+- Review focus for this iteration: the operator's traceability focus read against the closure-record layer — REQ-034's "the closure docs match the built behaviour" and the tenth round's own record, which is the newest part of the sixth-to-tenth round chain the focus names.
+- `steer.md` is absent at this iteration.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:618-790`, `:860-1135`, `:1537-1700`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5346-5365`, `:5700-5770`
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489-1585`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1-2`, `:253-330`
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:236-300`
-- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2892-2915`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:247`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:702-760`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:196` (Known Limitations), `:240-253` (sixth-round paragraph), `:255` (seventh), `:257` (eighth), `:259` (ninth), `:261` (tenth), `:263-275` (What stays open)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:187-212` (ninth and tenth rounds), `:327-336` (Verification Summary)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` (all 56 `Evidence:` tails)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`, `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/render.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` (comment hygiene and dead-code scan)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80` (`VOCABULARY_PAIRS`), `:434` (`PATTERN_PAIRS`), `:497` (four-surface vocabulary)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2405-2470` (`replaceAnchorSection`)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/` (listed, to test whether an evidence-tail checker lives there)
 
-## Findings
-
-New findings this pass. The operator focus is addressed by checking that the traceability claims REQ-035 to REQ-044 make are backed by branch order in both gate copies, not only by fixture columns.
+## Findings - New
 
 ### P0 Findings
 
@@ -29,62 +27,58 @@ None.
 
 ### P1 Findings
 
-None. The combined-clause order in both copies matches the requirements the packet states: the refusal leads are read before the loop ask, the stuck reading cancels on an unrefused run ask, and the no-edit guard spares a read-only loop mode.
+None new.
 
 ### P2 Findings
 
-1. **`servedRun: null` cannot tell "no mode named" from "both modes kept", so the Python suite cannot catch a drop-to-zero regression** -- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2902` -- For a `null` row the Python parity test accepts any row count other than one (`served_ok = len(served_modes) != 1`), so zero kept rows and two kept rows both pass. The native test pins the same row to `undefined` (`tests/deep-loop-offer-cases.vitest.ts:280-282`). The columns therefore encode two different answers under one value, and the shared fixture cannot catch a fallback change that drops every run row for "run two deep loops on the cache layer" -- a change that would already contradict ADR-008's two-row reading.
-   - Finding class: `test-oracle`
-   - Scope proof: both suites and the fixture are named scope files for this review.
-   - Affected surface hints: `tests/python/test_skill_advisor.py`, `tests/deep-loop-offer-cases.vitest.ts`, `tests/fixtures/deep-loop-offer-cases.json`, `scripts/skill_advisor.py`
-   - Case: A fallback edit that drops both deep run rows for a mode-free ask leaves `servedRun: null` true and every suite green, even though the brief then offers nothing where the ADR says the reader keeps the choice.
+1. **The tenth round's citation claim names a checker that does not exist** -- specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:261 -- The tenth-round paragraph states: "Every acceptance and task citation now names its evidence by symbol, test title, fixture row id, summary row label or task id, and each acceptance row ends with one `Evidence:` tail that a script checks against the tree, so a later edit above a cited line no longer breaks a cell silently." The tree contradicts both halves. (a) No script checks an `Evidence:` tail: `rg -rln 'Evidence tail' .skilled/commands .skilled/skills` returns nothing, and the packet's `scratch/` holds only `behaviour/`, `probes/`, `corpus-before.json`, `decisions.md` and `routing-analysis.md`. (b) The tails still cite line numbers: 56 of 56 acceptance rows end with an `Evidence: \`path:line\`` cell, and AC-040's cell proves the failure mode the sentence claims is closed — the cited `review/review-report.md:71` no longer resolves after the restart (P2 finding R1-P2-001). A reader taking the paragraph at face value stops checking cells by hand, which is the one thing that would have caught AC-040.
+   Finding class: `closure-record`
+   Scope proof: read the paragraph at `implementation-summary.md:261`, counted the acceptance tails (`rg -c 'Evidence: \`[^\`]+:[0-9]+\`' acceptance-criteria.md` → 56), and searched `.skilled/commands`, `.skilled/skills` and the packet `scratch/` for a checker that reads them (none).
+   Affected surface hints: `implementation-summary.md`, `acceptance-criteria.md`, `tasks.md`, `scratch/`
+   Case: a maintainer edits a paragraph above a cited line; nothing re-checks the acceptance cell, and the tenth round's record says something would.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Note |
-|----------|--------|----------|------|
-| `spec_code` | partial | `spec.md:247`, `decision-record.md:732` | REQ-035's mode-free clause remains the one requirement-level open item carried from iteration 3. |
-| `checklist_evidence` | partial | `tasks.md:148`, `acceptance-criteria.md:84` | The stale pointers and counts recorded in iterations 1 to 3 are unchanged by this pass. |
-| `skill_agent` | notApplicable | - | Not in this pass. |
-| `agent_cross_runtime` | notApplicable | - | Not in this pass. |
+| Protocol | Status | Evidence |
+|---|---|---|
+| `spec_code` | fail | unchanged from iteration 3: REQ-031 drift (P2) and REQ-033 unmet (P1) |
+| `checklist_evidence` | not run this iteration | the task and acceptance rows are iteration 5's protocol; this iteration read the closure prose only. The iteration record wrote `notApplicable` for this row, which is a bookkeeping error: the protocol does apply and is simply deferred, so iteration 5 records its real result and this note is the correction |
+
+- REQ-034 ("the closure docs match the built behaviour"): confirmed for the sixth-round clauses in iteration 1 (fixture header, limitations 6-8, changelog, packet 013 row, Verification Summary). The tenth round's paragraph is one round past REQ-034's scope and is the finding above.
+- REQ-048 (reducer section numbering): re-confirmed — `replaceAnchorSection` (`reduce-state.cjs:2405-2470`) resolves the ordinal from the anchor span or the authored heading, and `golden-review-default/next-focus.txt` carries `## 12. NEXT FOCUS`. The reducer also kept this lineage's own section numbers when it rewrote the strategy.
+- Comment hygiene on every changed code file: clean. `rg -n '^\s*(//|#|\*).*\b(ADR-[0-9]|REQ-[0-9]|CHK-|AC-[0-9]|T[0-9]{3}\b)'` over the nine in-scope code files returns only `P0/P1/P2` severity terms in `reduce-state.cjs` docblocks (`:242`, `:279`, `:2205`, `:2885-2886`), which are domain vocabulary rather than task ids, and no `specs/` path appears in any code comment.
+- Dead-code scan: every `export const` word list in `command-attach.ts` is read somewhere (`rg -c` per name; the lowest count is 2 for `RUN_REFUSED`, i.e. its declaration and one reader), and no `TODO`/`FIXME`/`XXX`/`HACK` marker exists in the nine files.
 
 ## Integration Evidence
 
-- `asksForLoopRun` gates the ask on `hasLoopAsk` minus the past-run, stuck, writing-about and question readings in that order (`command-attach.ts:1132-1139`); the Python copy applies the same four exceptions in `asks_for_loop_run`.
-- `isStuckRunComplaint` cancels on an unrefused run ask or a counted ask and ignores a negated symptom (`command-attach.ts:667-670`), so REQ-018's "not stuck, run 5 more iterations" reads as a run.
-- `COUNT_AS_SUBJECT` and `PASS_NOUN` together keep "several passes of the linter failed, review the config" from reading as an ask (`command-attach.ts:390`, `:1090-1100`), which is the gate half of REQ-027.
-- `attachCommand` answers a stuck complaint before either route branch, then restores a typed command at the handler layer (`command-attach.ts:1546-1558`, `advisor-recommend.ts:436+`), which is ADR-005's shape.
-- `deferredLoopCommand` and `routedLoopMode` both read `loopAskCues`, so refused phrases and subject-only loop names settle no mode on either route (`command-attach.ts:1625-1690`).
-- `trackedCommandForOwner` resolves a legacy bridge id through the alias group (`skill-advisor-cli.ts:1489-1495`), so REQ-038's degraded row survives the folded skill id.
+- The strategy/dashboard writers are reducer-owned: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` rewrote `## 12. NEXT FOCUS`, `## 6. COMPLETED DIMENSIONS`, `## 7. RUNNING FINDINGS` and `## 10. EXHAUSTED APPROACHES` in this lineage's strategy on every pass, which is the documented ownership boundary.
+- `implementation-summary.md` is the continuity target the workflow names (`generate-context.js` routes there or to `decision-record.md`/`handover.md`); this iteration read it as the closure record, not as a write target.
 
 ## Edge Cases
 
-- `namesDeepRun` intentionally keeps the doctor on a past-tense fault ("the deep research run was stuck yesterday"), because the comment states a fault in the same prompt names a state to read (`command-attach.ts:642-651`). Recorded as an accepted behaviour, not a finding.
-- The 400-character lead window drops a refusal further away than that; the comment names the trade-off, and no prompt in the fixture puts a refusal more than a few words from the command, so no case of a wrong offer was found.
-- `attachCommand`'s no-edit guard reads the routed `workflowMode` before `routedLoopMode` resolves the ask; both deep modes are in `READ_ONLY_LOOP_MODES`, so no current prompt is affected.
+- The sixth-round paragraph says "The guard compares eleven pairs" (`implementation-summary.md:251`) while the tree holds 22. That paragraph describes the sixth round, when eleven was accurate, and T087/T092 record the growth to twelve then fifteen. A historical paragraph is not drift, so it is not reported; it is listed here because a reader comparing it with AC-038's 22 needs the round boundary to reconcile them.
+- The tenth round's claim could be read as an intention ("a script checks…" meaning a future one). There is no wording that marks it as future work, and the same paragraph's purpose is to record what was built, so it is reported.
 
 ## Confirmed-Clean Surfaces
 
-- Refusal leads, typed-command mentions, doc-path mentions and the second-typed-command case all keep the branch order the requirements state (`command-attach.ts:1616`, `:1634`).
-- The Python gate's doctor drop reads the same three inputs as the native withhold: mention, ask, and refusal or no-edit (`skill_advisor.py:5715-5728`).
-- The degraded CLI path prints a supplied command only through the tracked table (`skill-advisor-cli.ts:1571-1580`).
-- Both copies read the same 10,000-code-unit head before the gate (`skill-advisor.py:1056`, `lib/skill-advisor-brief.ts:481`).
+- No ephemeral artifact label in any in-scope code comment; no spec path in a code comment.
+- No dead exported word list and no TODO/FIXME marker in the nine code files.
+- The reducer's section-numbering fix is pinned by a unit test and by the golden `next-focus.txt` fixture, and it held while rewriting this lineage's own strategy.
+- The closure docs' ten rounds each name the review they answer, the commit they were built at and the counts they measured; the round boundaries are legible.
 
 ## Ruled Out
 
-- "A refusal is lost when a typed command is also present": ruled out. `typesThisCommand` only bypasses the wording gate for the command actually typed, and `commandOnlyMentioned` still drops a refused naming (`command-attach.ts:1616`, `:1646`).
-- "A negated symptom still reads as a stuck run": ruled out. The symptom pattern carries a negation lookbehind and the fixture row for REQ-018 reads as a run.
-- "The no-edit guard withholds a read-only loop": ruled out by the routed and deferred branches, each sparing `READ_ONLY_LOOP_MODES`.
+- "The sixth-round paragraph's eleven pairs is stale": it is a historical statement about the sixth round, and the later rounds record the growth (T087 twelfth pair, T092 fifteen). Not drift.
+- "The reducer flattening a multi-line Next Focus into one line is a defect": the reducer owns the anchor body and the template requires only the fields, so the flattening loses formatting but no content. Not a finding.
+- "The closure docs' five different suite totals for one suite are contradictory": each total carries its commit stamp (3,029 at the sixth round, 3,188 at the eighth, 3,415 at `3db3085bcf0`, 3,418 on the final tree), and AC-028 states which is the final tree. Not drift.
 
 ## Next Focus
 
-- Dimension: security
-- Focus area: the trust boundary between the advisor child process and the degraded brief, plus any prompt-supplied string that reaches a command row
-- Reason: correctness found the branch order sound; the degraded path carries child-supplied command text and is the one place a prompt can influence what the reader sees
-- Rotation status: security starts; maintainability remains
-- Blocked/productive carry-forward: productive (reading the caller alongside the callee)
-- Required evidence: the exact field each path trusts and a case that shows an untrusted value being dropped
-
-Active P1 findings carried into this iteration: R1-P1-001, R1-P1-002, R1-P1-003, R3-P1-001. This iteration added none, so the verdict stays CONDITIONAL.
+- Dimension: traceability
+- Focus area: the core `checklist_evidence` protocol — every ticked `[x]` task in `tasks.md` (135 boxes across ten rounds) and every `Met` row in `acceptance-criteria.md` checked for evidence that exists in the tree.
+- Reason: `spec_code` is finished and `checklist_evidence` is the one core protocol the coverage gate still lists as unfinished; the operator focus names both.
+- Rotation status: correctness, security, traceability-half and maintainability complete; the second traceability pass finishes the protocols.
+- Blocked / productive carry-forward: the evidence-citation sweep and the fixture probe are productive; nothing is blocked.
+- Required evidence: `tasks.md` task lines and their `Observed` tails, `acceptance-criteria.md` 56 rows, `implementation-summary.md` verification rows, and the artifacts each names.
 
 Review verdict: CONDITIONAL

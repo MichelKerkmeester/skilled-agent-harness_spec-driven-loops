@@ -1,9 +1,9 @@
 {
   "topic": "Review: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "sessionId": "fanout-deepseek-max-3-1795544069299-46zw3s",
-  "parentSessionId": "2026-11-24T18:14:20.000Z",
+  "sessionId": "fanout-deepseek-max-3-1795546920757-7pyjry",
+  "parentSessionId": "2026-11-24T19:01:50.000Z",
   "lineageMode": "new",
-  "generation": 6,
+  "generation": 7,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 7,
@@ -30,7 +30,7 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "createdAt": "2026-11-24T18:16:36.264Z",
+  "createdAt": "2026-11-24T19:03:48Z",
   "status": "complete",
   "releaseReadinessState": "in-progress",
   "executionMode": "auto",
@@ -120,7 +120,7 @@
     ],
     "promotionMode": "advisory-only"
   },
-  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
   "reviewScopeFiles": [
     ".skilled/changelog/skilled/v4.2.0.0.md",
     ".skilled/commands/deep/assets/deep-research-presentation.txt",
@@ -172,14 +172,14 @@
     ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
     ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts",
     ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-duplicate-command.vitest.ts",
-    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-plural-noun.vitest.ts"
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-plural-noun.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-numbering.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/next-focus.txt",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md"
   ],
-  "resource_map_present": false,
+  "stopPolicy": "max-iterations",
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3",
   "resource_map": {
     "emit": true
-  },
-  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3",
-  "fanout": {
-    "label": "deepseek-max-3"
   }
 }
