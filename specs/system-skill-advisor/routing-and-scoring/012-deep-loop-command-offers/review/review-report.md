@@ -1,120 +1,85 @@
 ---
-title: "Deep Review Report: deep-loop command offers"
-description: "Three-lineage fan-out review (Opus 5.5 at medium, 5 iterations each) of the deep-loop offer gate, its Python fallback and the 013 typed-command hint. Verdict FAIL on the coverage gate, with 0 P0, 2 P1 (one duplicated issue) and 18 P2."
+title: "Deep Review Report: deep-loop command offers, traceability rerun"
+description: "Three-lineage fan-out review (DeepSeek V4.1 Flash at max thinking through pi, 5 iterations each) with traceability as its focus, run after the sixth fix round. Verdict FAIL on the coverage gate, with 0 P0, 2 P1 and 12 P2, almost all of them closure-doc drift."
 ---
 
-# Deep Review Report: deep-loop command offers
+# Deep Review Report: deep-loop command offers, traceability rerun
 
 ## 1. Executive Summary
 
-- **Overall verdict:** FAIL
-- **hasAdvisories:** false
-- **Counts the verdict used:** P0 0, P1 2, P2 18, search debt 0, failed required gates `["coverage"]` (from `fanout-merge.cjs` and `review-verdict.cjs`).
-- **Why FAIL:** no P0 was found. The verdict is FAIL because the required `coverage` gate failed in all three lineages with reason `traceability-incomplete`: the core `checklist_evidence` protocol never finished in any lineage, and lineage 2 also left `spec_code` unfinished. All four dimensions were covered in every lineage. This is a gap in what the review finished, not a defect found in the code.
-- **Self-check outcomes (fan-out root, recorded for reference, not appended):** `O3-R3-P1-006` and `R1-P1-001--7fc71951ce1c` are the same issue raised by lineages 3 and 2 at `advisor-recommend.ts:434`. The Referee confirmed it at P1. Lineage 1 raised the same claim and its own self-check downgraded it to P2 (`R1-P1-001--bc6c20dfcd5f`).
-- **Review scope:** spec folder `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`, 32 files: both packets' docs, `command-attach.ts`, `skill_advisor.py`, `explicit.ts`, the 013 hint path (`render.ts`, `advisor-recommend.ts`, `subprocess.ts`, `advisor-tool-schemas.ts`, `skill-advisor-cli-fallback.ts`), the `/deep:*` command docs and their tests.
-- **Operator review focus:** The deep-loop offer gate in command-attach.ts and the Python fallback in skill_advisor.py, plus the typed-command hint from packet 013
-- **Run shape:** 3 `cli-claude-code` lineages, `claude-opus-5-5` at reasoning effort `medium`, `--sandbox-mode=danger-full-access`, `--concurrency=3`, `--stop-policy=max-iterations`, 5 iterations each (15 in total). Provider cost reported by the runner: $20.30 (lineage 1 $7.04, lineage 2 $7.70, lineage 3 $5.57).
+- **Verdict:** FAIL. The `coverage` gate fails, and there is no P0.
+- **Counts:** 0 P0, 2 P1, 12 P2, 1 search debt item.
+- **Why it fails:** both P1s are closure-doc statements that contradict the built tree, so `spec_code` cannot finish. Lineages 2 and 3 record `traceability-incomplete`, and lineage 1 records `coverage-too-young`.
+- **What it does not find:** no defect in the code the sixth round changed. Every finding is in packet docs, the changelog or the coverage of the TS/Python vocabulary drift guard.
+- **Run:** generation 3, a restart of generation 2 (archived at `review-archive/20261124T090549Z`). 3 lineages of `cli-pi` on `deepseek-v4.1-flash-1017` at `--thinking max`, stop policy `max-iterations`, 5 iterations each.
 
 ## 2. Planning Trigger
 
-`/speckit:plan` is required: the verdict is FAIL. The only code-independent blocker is the unfinished traceability coverage. The P1 is a closure-record fix, and the P2s are optional hardening.
-
-```json
-{
-  "Planning Packet": true,
-  "triggered": true,
-  "verdict": "FAIL",
-  "hasAdvisories": false,
-  "activeFindings": {"P0": 0, "P1": 2, "P2": 18},
-  "remediationWorkstreams": ["WS1 closure record for the typed-on-stuck exception", "WS2 finish checklist_evidence and spec_code traceability", "WS3 refusal vocabulary", "WS4 Python fallback cost on long prompts", "WS5 typed flag on the degraded brief path", "WS6 vocabulary drift guard"],
-  "specSeed": ["Record the operator-confirmed typed-on-stuck exception in REQ-020, SC-005 and AC-027"],
-  "planSeed": ["Rerun traceability with checklist_evidence over tasks.md and acceptance-criteria.md"],
-  "findingClasses": "UNKNOWN",
-  "affectedSurfacesSeed": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts", ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py", ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts", ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts", ".skilled/skills/system-skill-advisor/runtime/lib/render.ts", "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"],
-  "fixCompletenessRequired": false
-}
-```
+The two P1s block task T084 and AC-040, which wait on this review finishing `spec_code` and `checklist_evidence`. A seventh fix round should correct the closure docs and widen the drift guard, then rerun this review.
 
 ## 3. Active Finding Registry
 
-`findingClass`, `scopeProof` and `affectedSurfaceHints` are empty in the merged registry, so they read UNKNOWN here. Every finding is in scope (scope gate pass) and cites file:line (evidence gate pass).
-
 ### P1
 
-- **O3-R3-P1-006 / R1-P1-001--7fc71951ce1c** (correctness, lineages 3 and 2). `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:434`. AC-027 is marked Met with evidence that both gates withhold the run command on the four REQ-020 prompts. But `attachTypedCommand` puts the typed `/deep:review (ask)` back on the top row for "my deep review run is stuck, /deep:review again", while the Python gate drops it. SC-005 says every REQ-015 to REQ-020 prompt gives its stated result through the prompt hook. The behaviour itself is the operator's choice (limit 6, confirmed 2026-11-23). The defect is that REQ-020, SC-005 and AC-027 still state parity and hook results without that exception. Fix: amend those three rows to carve out the typed-on-stuck case, and add a serving-layer case that pins it.
+- **R1-P1-001**, `implementation-summary.md:247`: limitation 8 places the gap in the wrong layer. The Python gate (`_apply_deep_loop_offer_gate`) keeps the run row whenever `asks_for_loop_run` is true, typed or not. The command is lost later: `analyze_request` serves the `system-deep-loop` hub, and `degradedRecommendations` attaches only a typed command. The served fallback brief still carries no command for an untyped ask. The gap is real and predates the round, but the limitation's wording is wrong.
+- **R3-P2-001** (raised P1 on refinement), `spec.md:223`: REQ-011 is contradicted by the tree and no acceptance row owns it.
 
 ### P2
 
-- **O3-R2-P2-003 / R1-P2-001** `command-attach.ts:440`. Common refusal verbs ("skip", "avoid", "instead of", "refuse", "no need for") do not withhold the deep command, in either copy. This extends known limit 7.
-- **O3-R2-P2-004** `command-attach.ts:837`. A stuck-run complaint attaches the run-policy `/doctor:deep-loop` even when the prompt says not to run anything.
-- **O3-R1-P2-001** `command-attach.ts:238`. A typed deep command is lost when the prompt also types a longer, different command.
-- **R5-P2-002** `command-attach.ts:574`. A bare loop name ("deep loop", "review loop") is not read as an ask. That narrows decision D2 without a recorded decision.
-- **R5-P2-001** `command-attach.ts:908`. The named-mode shortcut reads a loop name the gate treated as the subject, so a review request can get `/deep:research`.
-- **O3-R5-P2-009** `command-attach.ts:384`. The review mode cue misses the "-ing" form of the defect-check verbs its comment says it covers.
-- **R2-P2-001--04bbace09a42** `command-attach.ts:784`. `commandOnlyMentioned` rescans the prefix once per occurrence: quadratic, bounded by the 10K prompt cap.
-- **O3-R5-P2-010** `lib/scorer/lanes/explicit.ts:449`. The stage-one loop rule reads raw loop wording without the gate's subject and refusal exceptions.
-- **O3-R2-P2-005** `skill_advisor.py:4718`. The Python loop-ask scan is quadratic and can pass the 3 s fallback timeout on long prompts.
-- **R2-P2-001--0cd52b194113** `skill_advisor.py:5596`. The Python fallback runs per-match gate scans on an uncapped prompt.
-- **O3-R4-P2-008** `skill_advisor.py:4529`. The Python gate hand-inlines vocabulary lists that the TS gate keeps as data, so a list edit must be retyped.
-- **R3-P2-001** `lib/subprocess.ts:200`. The Python-subprocess brief path drops `command`, `policy` and `typed`, so a typed deep command renders the A/B/C offer.
-- **O3-R1-P2-002** `lib/render.ts:250`. The degraded (Python) path drops the typed flag, so a typed deep command still gets the three offer options. Same root as R3-P2-001.
-- **R4-P2-001--5008634720d6** `tests/deep-loop-offer-cases.vitest.ts:72`. The drift guard covers only the three exported phrase lists. Inline regex vocabulary such as `COUNT_WORDS` can drift.
-- **R4-P2-001--f90c95d81ceb** `tests/deep-loop-offer-cases.vitest.ts:57`. The typed-command parity column is pinned at different layers, and no deep-loop typed case exists at the serving layer.
-- **R1-P1-001--bc6c20dfcd5f** `advisor-recommend.ts:428`. Lineage 1's form of the P1 above, downgraded to P2 by its own self-check.
-- **O3-R3-P2-007** `acceptance-criteria.md:65`. AC-008's evidence cell says accepted as Met while its status is Waived.
+- **R3-P2-003--f5960ef9e383**, `spec.md:223`: REQ-011 names a third hub alias the tree does not carry, and no ADR amends it.
+- **R3-P2-003--9fc68403427e**, `tasks.md:36`: a ticked task's stated verification no longer holds.
+- **R4-P2-001--17d99d69800b**, `acceptance-criteria.md:89`: AC-032 and T069 cite a blank line for `typedCommandIn`.
+- **R3-P2-002** and **R4-P2-004**, `acceptance-criteria.md:58`: eleven to thirteen Met rows cite an `implementation-summary.md` line that does not hold their evidence. These are one issue.
+- **R4-P2-002**, `implementation-summary.md:13`: the continuity metadata of both closure docs predates the sixth round.
+- **R3-P2-004** and **R4-P2-001--83aef84e72cd**, `.skilled/changelog/skilled/v4.2.0.0.md:759`: the changelog quotes the fifth-round advisor suite count. One issue.
+- **R5-P2-001** and **R1-P2-002**, `command-attach.ts:580` and `deep-loop-offer-cases.vitest.ts:62`: the drift guard does not see the refusal-lead alternation (`RUN_ASK_NEGATED_SOURCE`), which is inline in both copies. One issue.
+- **R1-P2-001**, `deep-loop-offer-cases.vitest.ts:206`: the per-entry fixture rule covers three of the five lists REQ-031 names. `LOOP_ARTIFACT_NOUNS` and `PAST_RUN_READ_VERBS` have no per-entry case check.
+- **R5-P2-005**, `command-attach.ts:592`: two constants are duplicated as literals in both copies with no parity assertion.
 
 ## 4. Remediation Workstreams
 
-1. **WS1 (P1):** amend REQ-020, SC-005 and AC-027 to record the operator-confirmed typed-on-stuck exception, and add a serving-layer typed case for it.
-2. **WS2 (gate):** finish the `checklist_evidence` protocol (and `spec_code` for lineage 2's scope) so the coverage gate can pass on a rerun.
-3. **P2 advisories, separate:** WS3 refusal vocabulary (O3-R2-P2-003, R1-P2-001, O3-R2-P2-004). WS4 Python fallback cost on long prompts (O3-R2-P2-005, R2-P2-001--0cd52b194113, R2-P2-001--04bbace09a42). WS5 typed flag on the degraded brief path (R3-P2-001, O3-R1-P2-002). WS6 vocabulary drift guard (R4-P2-001--5008634720d6, O3-R4-P2-008). The rest are single-site fixes.
+1. **Closure docs:** reword limitation 8 to the layer the gap is in, amend or retire REQ-011 with an ADR and an owning AC row, repoint every AC evidence cell and the T069 citation to the line that holds its evidence, fix the ticked task at `tasks.md:36`, refresh the continuity metadata and correct the changelog count.
+2. **Drift guard:** export the refusal-lead alternation as a list on both sides and add it to the drift table, extend the per-entry rule to the two missing lists, and pin the two duplicated constants.
+3. **Rerun this review** with the same focus, so T084 and AC-040 can close.
 
 ## 5. Spec Seed
 
-- REQ-020: state that a typed `/deep:review` on a stuck-run complaint keeps the typed command on the served head, by operator decision.
-- SC-005: exclude that prompt from "gives its stated result through the prompt hook", or state its hook result.
-- AC-027: say the parity holds at the gate layer, and name the served-path exception.
-- AC-008: make the evidence cell agree with the Waived status.
+No new requirement. REQ-011 needs an amendment or a recorded retirement, and REQ-031's coverage claim needs the two missing lists.
 
 ## 6. Plan Seed
 
-- T1: amend the four spec and AC rows above.
-- T2: add a serving-layer typed case for "my deep review run is stuck, /deep:review again".
-- T3: rerun `/deep:review` with traceability as the focus, so `checklist_evidence` finishes.
-- T4 (optional): carry `typed`, `command` and `policy` through the subprocess brief path.
+One docs pass and one code pass of the drift guard, each checked by the advisor suites and `validate.sh --strict`, then this review again.
 
 ## 7. Traceability Status
 
 ### Core Protocols
 
-- `spec_code`: finished in lineages 1 and 3, unfinished in lineage 2.
-- `checklist_evidence`: unfinished in all three lineages. This is why the coverage gate fails.
+- `spec_code`: partial in lineages 2 and 3, because of the two P1s. Lineage 1 mapped REQ-001 to REQ-034 and ADR-005 and ADR-006 but its coverage gate read the run as too young.
+- `checklist_evidence`: still incomplete, because of the AC evidence pointers above.
 
 ### Overlay Protocols
 
-- `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`: recorded per lineage in each `lineages/*/review-report.md`. None is a gate here.
+Recorded per lineage in each `lineages/*/review-report.md`. None is a gate here.
 
-`AC_COVERAGE`: advisory. The packet is Level 2 with `acceptance-criteria.md` and a complete `implementation-summary.md`. The P1 and O3-R3-P2-007 are the AC rows this review contradicts.
+`AC_COVERAGE`: advisory. AC-032, AC-040 and the Met rows citing `implementation-summary.md` are the rows this review contradicts.
 
 ## 8. Deferred Items
 
-- The known limitations 1 to 7 in the 012 implementation-summary were treated as known context. O3-R2-P2-003 and R1-P2-001 widen limit 7.
-- The merged registry carries no `frontier` object, so there are no frontier follow-ups.
+- Known limitations 1 to 7 were treated as known context.
+- The pre-existing fallback gap behind limitation 8 is not a finding of this review. Only the limitation's wording is.
 
 ## Dimension Expansion Map
 
-No pivots ran: convergence mode `default`, stop policy `max-iterations`. No saturated directions, overrides or remaining frontier are recorded.
+No pivots ran: convergence mode `default`, stop policy `max-iterations`.
 
 ## 9. Search Ledger
 
-*No search-depth state captured (legacy v1 record)*. The merged `searchCoverage`, `candidateCoverage`, `searchDebt` and `ruledOutCandidates` are empty at the root. Per-lineage search ledgers are in `lineages/*/deep-review-findings-registry.json`. hasSearchDebt: false.
+One search debt item is open in the merged registry. Per-lineage search ledgers are in `lineages/*/deep-review-state.jsonl`.
 
 ## 10. Audit Appendix
 
-- **Convergence:** stop reason `maxIterationsReached` in every lineage, 5 of 5 iterations each. All four dimensions covered in each lineage.
-- **Terminal gates:** evidence pass, scope pass, coverage fail (`traceability-incomplete`), identical in all three lineages.
-- **Orchestration note:** lineages 1 and 2 finished all five iterations and their own synthesis, but did not record the `terminal_gates` row, so the first runner pass reported them failed. The orchestrator ran the same `terminal-gates.cjs` against each lineage's own config, state log and registry, appended the result through the append gateway (ledger sequence 8 in each), and reran the fan-out, which marked all three `skipped_complete` without spawning. The computed gate rows match lineage 3's own recorded row.
-- **Run history:** an earlier single-executor run (generation 1) was stopped before its first iteration wrote anything and is archived at `review-archive/20261124T044309Z`. This run is generation 2.
-- **Per-lineage verdicts:** lineage 1 PASS, lineage 2 CONDITIONAL, lineage 3 FAIL. The merged verdict uses strongest restriction plus the failed coverage gate.
-- **Sources reviewed:** the 32 files in `fanout-review-scope.txt`.
+- **Convergence:** stop reason `maxIterationsReached` in every lineage, 5 of 5 iterations each, all four dimensions covered.
+- **Terminal gates:** evidence pass and scope pass in all three lineages. Coverage fails: `traceability-incomplete` in lineages 2 and 3, `coverage-too-young` in lineage 1.
+- **Orchestration note:** the first runner pass rejected lineage 1, because its iteration 4 record claims 09:24:30 while the gateway committed it at 09:15:00 and the lineage process ended at 09:19:17. The model wrote a wrong timestamp into a real iteration. A rerun with `--only-lineage deepseek-max-1` marked the lineage `skipped_complete`, so its five iterations stand as written. Its terminal gate row reads run 6, which matches the timestamp fault.
+- **Per-lineage verdicts:** FAIL in all three. The merged verdict uses strongest restriction plus the failed coverage gate.
+- **Sources reviewed:** the 46 files in `fanout-review-scope.txt`, the previous 32 plus every file the sixth round touched.

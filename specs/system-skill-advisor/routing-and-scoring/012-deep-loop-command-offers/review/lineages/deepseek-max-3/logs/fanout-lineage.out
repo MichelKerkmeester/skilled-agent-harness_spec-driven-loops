@@ -1,0 +1,13 @@
+All artifacts are on disk and verified. Final state of lineage `deepseek-max-3`:
+
+- **Init**: config (5-iteration cap, `max-iterations`), run opened through the append gateway, 47-node/46-edge coverage graph seeded.
+- **5 iterations executed inline** (no nested dispatch), each with narrative + gateway-recorded state row + delta + strategy update + reducer pass:
+  1. correctness → 1 P1, 1 P2
+  2. security → clean (4 surfaces ruled out)
+  3. traceability / `spec_code` → 1 P2 (REQ-011 third alias absent, only a scratch-log decision)
+  4. traceability / `checklist_evidence` → 1 P2 (13 `Met` rows' evidence pointers drifted)
+  5. maintainability → 1 P2 (400-char window and 10,000-unit head duplicated with no parity assertion)
+- **Synthesis**: terminal gates recomputed from state — `evidence: pass`, `scope: pass`, `coverage: fail` (both core protocols `partial`); `terminal_gates` and `synthesis_complete` rows recorded via the gateway with `stopReason: maxIterationsReached`; `review-report.md` compiled with all 9 core sections, Planning Packet, Dimension Expansion Map and Search Ledger; config flipped to `complete`; final reducer pass refreshed dashboard (all 5 iterations complete, FAIL).
+- **Verdict**: FAIL — 0 P0, 1 P1, 4 P2, failed required gate `coverage`; release readiness `in-progress`. Everything I wrote stayed inside the lineage; containment shows no violation.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max-3

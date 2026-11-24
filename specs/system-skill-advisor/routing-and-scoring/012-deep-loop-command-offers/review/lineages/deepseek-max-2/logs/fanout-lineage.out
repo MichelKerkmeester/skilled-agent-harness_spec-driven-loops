@@ -1,0 +1,23 @@
+## Review Lineage Complete — deepseek-max-2
+
+**Focus:** traceability across five iterations (correctness → security → traceability → maintainability → traceability second pass), with the bound operator focus run on every pass.
+
+**Findings:** 6 active — P0 0, P1 1, P2 5.
+- **P1** `spec.md:223` — REQ-011 still names three research aliases; the tree ships two (`hub-router.json:34`, `ROUTER.md:63`). The drop is a recorded operator decision (D8, T022) but the requirement was never amended and no acceptance row owns the clause — the same closure-record class the sixth round fixed for REQ-020.
+- **P2** eleven `Met` AC rows point at `implementation-summary.md:155` for evidence at `:153`; T001's stated check prints 11 where it claims 9; the changelog quotes 2,696 against the final 3,029; AC-032/T069 cite a blank line (`command-attach.ts:250`, function at `:251`); both `_memory.continuity` blocks predate the sixth round.
+
+**What was proven clean:** all 34 REQ rows checked; a 38-prompt live matrix matched every REQ-015 to REQ-027 outcome with zero mismatches; the recorded 69-row probe pair is identical to baseline on all 34 keep/negative rows; no unprompted-spend path (both deep commands are `policy: ask` with `ask_first: ["spend"]`); no ambient state or secret in the gate; no ReDoS shape (worst 9.9 ms at 40,012 chars); checklist counts, waiver map and ADR set all reconcile.
+
+**newFindingsRatio:** 0.0 → 0.0 → 1.0 → 1.0 → 0.333. **Dimensions:** 4/4 covered.
+
+**Terminal gates:** evidence pass, scope pass, **coverage fail** (`traceability-incomplete`: `spec_code` and `checklist_evidence` close `partial`/hard on the drift above). Verdict **FAIL**; stop reason **maxIterationsReached** at the cap of 5. I considered and rejected recording either core protocol as advisory to clear the gate — `reduce-state.cjs:1574` exists to prevent exactly that.
+
+**Integration evidence:** both command docs step 0, both presentation offer sections, both YAML messages/next steps, hub aliases and doctor sentence, compiled contracts, shared fixture header, hook evidence file.
+
+**Recommended next focus:** remediation only — amend REQ-011 (or restore the alias with an AC row), repoint the twelve anchors, refresh both continuity blocks, then rerun traceability so AC-040's coverage gate can read pass.
+
+**Files written:** `iterations/iteration-001..005.md`, `deltas/iter-001..005.jsonl`, `deep-review-strategy.md` (in place), `review-report.md`, `resource-map.md`; iteration records and the synthesis record handed to `append-mode-event.cjs` (state log is gateway-only); reducer run after every append. No write landed outside the lineage.
+
+**Status:** complete (verdict FAIL, release-readiness `in-progress`).
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max-2
