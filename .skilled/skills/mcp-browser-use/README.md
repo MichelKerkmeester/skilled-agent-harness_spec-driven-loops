@@ -5,7 +5,7 @@ trigger_phrases:
   - "mcp-browser-use"
   - "browser use hub"
   - "chrome devtools aside bladebro"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # mcp-browser-use
@@ -63,10 +63,14 @@ The manifest regenerates when packets change, so read it as a snapshot.
 
 ## 4. CHANGELOG
 
-Releases live in `changelog/` with one file per release, named `v[version].md`. Each entry opens with the release title and the reason, then lists what changed and the files changed.
+Releases live in `changelog/` with one file per release, named `v[version].md`. Each entry opens with the release title and the reason, then lists what changed and how to upgrade.
 
 | Release | Entry |
 |---|---|
+| 1.1.5.0 | [`changelog/v1.1.5.0.md`](./changelog/v1.1.5.0.md) |
+| 1.1.4.0 | [`changelog/v1.1.4.0.md`](./changelog/v1.1.4.0.md) |
+| 1.1.3.0 | [`changelog/v1.1.3.0.md`](./changelog/v1.1.3.0.md) |
+| 1.1.2.0 | [`changelog/v1.1.2.0.md`](./changelog/v1.1.2.0.md) |
 | 1.1.1.0 | [`changelog/v1.1.1.0.md`](./changelog/v1.1.1.0.md) |
 | 1.1.0.0 | [`changelog/v1.1.0.0.md`](./changelog/v1.1.0.0.md) |
 | 1.0.0.0 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) |

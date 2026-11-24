@@ -67,20 +67,24 @@ phase and binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-research | `001-research/goal.md` |
-| 002-hub-scaffold | `002-hub-scaffold/goal.md` |
-| 003-mode-relocation | `003-mode-relocation/goal.md` |
-| 004-bladebro-mode | `004-bladebro-mode/goal.md` |
-| 005-routing-and-surfaces | `005-routing-and-surfaces/goal.md` |
-| 006-verification | `006-verification/goal.md` |
-| 007-bladebro-parity-and-changelogs | `007-bladebro-parity-and-changelogs/goal.md` |
-| 008-live-runs-and-playbook-fixes | `008-live-runs-and-playbook-fixes/goal.md` |
-| 009-sk-code-browser-evidence | `009-sk-code-browser-evidence/goal.md` |
-| 010-mcp-tooling-browser-pointers | `010-mcp-tooling-browser-pointers/goal.md` |
-| 011-bdg-eval-port-note | `011-bdg-eval-port-note/goal.md` |
-| 012-browser-hub-doc-topic | `012-browser-hub-doc-topic/goal.md` |
-| 013-fix-alignment-findings-for-browser-hub-docs | `013-fix-alignment-findings-for-browser-hub-docs/goal.md` |
-| 014-fix-deep-review-findings | `014-fix-deep-review-findings/goal.md` |
+| 001 | `001-research/goal.md` |
+| 002 | `002-hub-scaffold/goal.md` |
+| 003 | `003-mode-relocation/goal.md` |
+| 004 | `004-bladebro-mode/goal.md` |
+| 005 | `005-routing-and-surfaces/goal.md` |
+| 006 | `006-verification/goal.md` |
+| 007 | `007-bladebro-parity-and-changelogs/goal.md` |
+| 008 | `008-live-runs-and-playbook-fixes/goal.md` |
+| 009 | `009-sk-code-browser-evidence/goal.md` |
+| 010 | `010-mcp-tooling-browser-pointers/goal.md` |
+| 011 | `011-bdg-eval-port-note/goal.md` |
+| 012 | `012-browser-hub-doc-topic/goal.md` |
+| 013 | `013-fix-alignment-findings-for-browser-hub-docs/goal.md` |
+| 014 | `014-fix-deep-review-findings/goal.md` |
+| 015 | `015-fix-follow-up-review-findings/goal.md` |
+| 016 | `016-fix-second-follow-up-findings/goal.md` |
+| 017 | `017-fleet-front-door-stdin/goal.md` |
+| 018 | `018-triage-gen4-p2-findings/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -126,11 +130,13 @@ and findings belong here.
 | Plan + research session | done | 12 hy4 iterations, 002-006 refined, 10 decisions in decision-record.md, validate 7/7 PASSED |
 | Session 84103bdd: engine, live runs, benchmark | Done, alignment open | compiled engine serving (6/6 route), Bladebro live incl. Aside attach 3/3, playbooks recorded, two-stage replay 6/6; alignment lanes done, critic next |
 | Alignment fixes and closeout | Done | 28 findings fixed or decided (Q005-Q008 in 006 decision-record); validate --strict --recursive PASSED parent + 6 children; advisor suite 2570 pass |
-| Deep review 2026-11-24 | Done, FAIL | Four opus-medium lineages, 28 iterations: 0 P0, 2 distinct P1, 18 distinct P2. Report at `review/review-report.md` |
+| Deep review 2026-11-24 | Done, FAIL | Four opus-medium lineages, 28 iterations: 0 P0, 2 distinct P1, 18 distinct P2. Report at `review-archive/20261124T070727Z-restart/review-report.md` |
 | 014 deep review fixes | Done | Committed `ec3ed74ad01` with the advisor change `dbea9ff4a25`; replay 48 of 49 |
 | 015 follow-up review fixes | Done | Bundle, Aside, installer and advisor id-noun fixes; replay 51 of 52 |
 | Generation-4 DeepSeek re-review | Done, FAIL on coverage | 0 P0, 7 P1 (5 confirmed, 1 refuted, 1 duplicate); pi-2 fully gate-proven. Report at `review/review-report.md` |
 | 016 second follow-up fixes | Done | Contained-match router rule, `in aside`, Aside docs on the wrapper, stdin heredoc, Node 20; replay 55 of 56 |
+| 017 fleet stdin front door | Done | Every hub passes the task on stdin through a quoted heredoc (Q011); bin suite 197 of 197; commit `991fe6d127a` |
+| 018 generation-4 P2 triage | Done | 24 P2 checked against source: fixes for the ones that held; see `018-triage-gen4-p2-findings/implementation-summary.md` |
 
 ### Deviations and findings
 

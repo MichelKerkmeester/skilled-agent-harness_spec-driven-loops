@@ -2,7 +2,7 @@
 name: mcp-browser-use
 description: "Parent hub for three browser modes: Chrome DevTools, Aside and Bladebro. Routes by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.4.0
+version: 1.1.5.0
 metadata:
   family: mcp
 ---

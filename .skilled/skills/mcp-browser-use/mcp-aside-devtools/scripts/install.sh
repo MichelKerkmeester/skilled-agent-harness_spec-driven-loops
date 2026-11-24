@@ -36,8 +36,9 @@ WHAT THIS SCRIPT DOES:
     3. Downloads the official installer (https://releases.aside.com/install.sh)
        to a temporary file, checks its sha256 against the pinned digest and
        runs it only on a match.
-       Honors the installer env overrides ASIDE_CLI_VERSION, ASIDE_CLI_BASE_URL,
-       ASIDE_CLI_INSTALL_DIR, ASIDE_CLI_BIN_DIR when set in the environment.
+       Honors the installer env overrides ASIDE_CLI_VERSION, ASIDE_CLI_INSTALL_DIR
+       and ASIDE_CLI_BIN_DIR. Refuses ASIDE_CLI_BASE_URL, because the archive
+       the installer downloads is not verified.
     4. Verifies with `aside --version` and reports sign-in state read-only.
 
 NOTES:
@@ -76,6 +77,14 @@ if command -v aside >/dev/null 2>&1 && [ "$FORCE_INSTALL" != "true" ]; then
   ok "aside already installed: $(command -v aside) ($version)"
   info "Use --force to run the official installer anyway."
   exit 0
+fi
+
+# The pin covers the installer script, not the archive it downloads, so a changed
+# download source would put an unverified binary on PATH.
+if [ -n "${ASIDE_CLI_BASE_URL:-}" ]; then
+  err "ASIDE_CLI_BASE_URL is set. This wrapper verifies the installer, not the archive it downloads, so it refuses a changed download source."
+  info "Unset ASIDE_CLI_BASE_URL, or read and run the official installer yourself."
+  exit 1
 fi
 
 command -v curl >/dev/null 2>&1 || { err "curl not found — required to fetch the installer"; exit 1; }

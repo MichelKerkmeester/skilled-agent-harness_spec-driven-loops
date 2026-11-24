@@ -1,7 +1,7 @@
 ---
 title: "Aside CLI Installation Guide"
 description: "Install the Aside AI-browser CLI on macOS, sign in, understand the permission tiers and verify the Aside MCP wiring for Code Mode."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Aside CLI Installation Guide
@@ -71,7 +71,7 @@ The Developer settings page inside the Aside app can also install, update, or re
 
 ### Installer Environment Overrides
 
-The installer honors: `ASIDE_CLI_VERSION`, `ASIDE_CLI_BASE_URL`, `ASIDE_CLI_INSTALL_DIR`, `ASIDE_CLI_BIN_DIR`. Default shim location: `~/.local/bin/aside` — ensure `~/.local/bin` is on `PATH`.
+The installer honors: `ASIDE_CLI_VERSION`, `ASIDE_CLI_BASE_URL`, `ASIDE_CLI_INSTALL_DIR`, `ASIDE_CLI_BIN_DIR`. The packaged wrapper refuses `ASIDE_CLI_BASE_URL`, because it verifies the installer script and not the archive the script downloads. Default shim location: `~/.local/bin/aside` — ensure `~/.local/bin` is on `PATH`.
 
 > Install-target layout note: research descriptions of the app-bundle layout diverge (`Aside CLI.app` vs `~/.aside/cli`); both trace to the same installer. Capture your installed layout as a fixture if you need to document it.
 

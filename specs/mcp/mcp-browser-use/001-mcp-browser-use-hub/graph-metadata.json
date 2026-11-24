@@ -134,12 +134,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +147,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Browser",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -220,7 +220,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-24T11:41:57.986Z",
+    "last_save_at": "2026-11-24T12:05:04.040Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,10 +228,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f416f4a79235db853e5e85df5f3797bab65f82155a9e42cc99e567ce61ae4975",
+    "source_fingerprint": "sha256:c74a66dbba7d6ca7fcb459942327d627eb807c25f0aba843f9d2cdda4805b394",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4928d5b6d1ff1051ea69dfea12b0af144ad3fb8d6af3223cc6fed0dec38a97f0",
+      "spec.md": "07c2daf4abf8289bc981183163dbf57e4605733dc528847f56d8d01fac5f3de1",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
     "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",

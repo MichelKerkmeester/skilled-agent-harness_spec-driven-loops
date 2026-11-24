@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub"
     last_updated_at: "2026-11-24T08:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Closed 017: every hub passes the task to its front door on stdin"
-    next_safe_action: "Triage the generation-4 P2 findings in 018"
+    recent_action: "Closed 018: the generation-4 P2 findings triaged and fixed"
+    next_safe_action: "Operator decides the advisor lexical-anchor rule"
     blockers: []
     key_files:
       - "014-fix-deep-review-findings/spec.md"
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress: phases 001 to 017 are Complete and 018 is Pending. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. The follow-up deep review (014 decision Q002) returned CONDITIONAL without recorded stop gates, and 015 fixed the findings that held against source. The generation-4 DeepSeek re-review (`review/review-report.md`) found five more P1s that held, and 016 fixed them. 017 moved every hub's front-door instruction to stdin (Q011) |
+| **Status** | Complete except 005: phases 001 to 004 and 006 to 018 are Complete, and 005 is Partial. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. The follow-up deep review (014 decision Q002) returned CONDITIONAL without recorded stop gates, and 015 fixed the findings that held against source. The generation-4 DeepSeek re-review (`review/review-report.md`) found five more P1s that held, and 016 fixed them. 017 moved every hub's front-door instruction to stdin (Q011) |
 | **Created** | 2026-11-21 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -132,7 +132,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 15 | 015-fix-follow-up-review-findings/ | Fix the findings the follow-up deep review confirmed | Complete |
 | 16 | 016-fix-second-follow-up-findings/ | Fix the findings the generation-4 review confirmed | Complete |
 | 17 | 017-fleet-front-door-stdin/ | Pass the task to every hub's compiled front door on stdin through a quoted heredoc, across all 8 hubs and the sk-doc templates (Q011) | Complete |
-| 18 | 018-triage-gen4-p2-findings/ | Check each of the 24 generation-4 P2 findings against source and fix the ones that hold (Q011) | Pending |
+| 18 | 018-triage-gen4-p2-findings/ | Check each of the 24 generation-4 P2 findings against source and fix the ones that hold (Q011) | Complete |
 
 ### Phase Transition Rules
 
