@@ -489,12 +489,75 @@ function escapePhrase(phrase: string): string {
 // that the build passes" asks for no review at all. The scorer reads the defect
 // check on its own as well, because its verbs also read as a request to explain.
 // The -ing form asks the same way, as in "a deep loop checking the parser for bugs".
-export const DEFECT_CHECK = /\b(?:check(?:ing)?|inspect(?:ing)?|scan(?:ning)?|examin(?:e|ing)|go(?:ing)? over|look(?:ing)? over)\b(?:\s+[\w./-]+){0,5}?\s+for\s+(?:[\w-]+\s+){0,2}?(?:bugs?|defects?|mistakes?|errors?|vulnerabilit(?:y|ies)|issues?|problems?|regressions?|flaws?)\b/;
+// The verbs and the defect nouns are data, one list each, so the fallback's own
+// copy of this cue is compared with the vocabulary rather than with a pattern.
+export const DEFECT_CHECK_VERBS: readonly string[] = [
+  'check',
+  'checking',
+  'inspect',
+  'inspecting',
+  'scan',
+  'scanning',
+  'examine',
+  'examining',
+  'go over',
+  'going over',
+  'look over',
+  'looking over',
+];
+export const DEFECT_CHECK_NOUNS: readonly string[] = [
+  'bug',
+  'bugs',
+  'defect',
+  'defects',
+  'mistake',
+  'mistakes',
+  'error',
+  'errors',
+  'vulnerability',
+  'vulnerabilities',
+  'issue',
+  'issues',
+  'problem',
+  'problems',
+  'regression',
+  'regressions',
+  'flaw',
+  'flaws',
+];
+export const DEFECT_CHECK = new RegExp(
+  `\\b(?:${DEFECT_CHECK_VERBS.map(escapePhrase).join('|')})\\b`
+  + `(?:\\s+[\\w./-]+){0,5}?\\s+for\\s+(?:[\\w-]+\\s+){0,2}?`
+  + `(?:${DEFECT_CHECK_NOUNS.map(escapePhrase).join('|')})\\b`,
+);
 // The -ing form carries the cue too, as in "a deep loop reviewing the session store".
-export const MODE_CUES: Readonly<Record<string, RegExp>> = {
-  research: /\b(?:research(?:ing)?|investigat(?:e|es|ing|ion)|look into|find out)\b/,
-  review: new RegExp(`\\b(?:review(?:ing)?|audit(?:ing)?)\\b|${DEFECT_CHECK.source}`),
+// The words are data, one list per mode, so the vocabulary a reviewer has to
+// judge stays visible and cheap to correct, and the fallback's own copy of these
+// cues can be compared with it instead of parsed back out of a pattern. A list of
+// words cannot carry a character class, so each verb is spelled in every form it
+// is read in.
+export const MODE_CUE_WORDS: Readonly<Record<string, readonly string[]>> = {
+  research: ['research', 'researching', 'investigate', 'investigates', 'investigating', 'investigation', 'look into', 'find out'],
+  review: ['review', 'reviewing', 'audit', 'auditing'],
 };
+
+function modeCue(words: readonly string[]): RegExp {
+  return new RegExp(`\\b(?:${words.map(escapePhrase).join('|')})\\b`);
+}
+
+export const MODE_CUES: Readonly<Record<string, RegExp>> = {
+  research: modeCue(MODE_CUE_WORDS.research),
+  review: new RegExp(`${modeCue(MODE_CUE_WORDS.review).source}|${DEFECT_CHECK.source}`),
+};
+
+// A loop run reads the code and reports on it, and the report it writes is its
+// own output rather than the change the reader ruled out, so a mode listed here
+// stays the answer to a no-edit request. The doctor is the one deep-loop command
+// that adds files, and it keeps that guard.
+export const READ_ONLY_LOOP_MODES: readonly string[] = [
+  'research',
+  'review',
+];
 
 // A run that is stuck, never converges or whose graph looks stale is a fault in
 // an existing run, so it asks for a diagnosis rather than for a new run. The
@@ -542,19 +605,60 @@ const LOOP_RUN_REQUESTED = /\b(?:run|start|use|launch|kick off|do|rerun|re-run) 
 // can be trusted as an ask the reader still wants.
 const LOOP_RUN_REQUESTED_ALL = new RegExp(LOOP_RUN_REQUESTED.source, 'g');
 
+// A rerun can point back at the run the prompt already names, as in "run it
+// again" or "rerun that", so the pronoun is how a reader asks for the same run a
+// second time without spelling its name. The pronouns are data, one spelling per
+// line, so the vocabulary a reviewer has to judge stays visible and the Python
+// fallback's own copy can be compared with it.
+export const RERUN_PRONOUNS: readonly string[] = [
+  'it',
+  'that',
+  'this',
+  'that one',
+  'this one',
+];
+const RERUN_PRONOUN = `(?:${RERUN_PRONOUNS.map(escapePhrase).join('|')})`;
+// "again" and "once more" say the run happens a second time, so a use verb takes
+// the pronoun only with one of them after it: "run it by hand" names a manner and
+// "don't run it" refuses the run. A rerun verb says the same on its own.
+const RERUN_MARKER = '(?:again|once again|once more)';
+const PRONOUN_RERUN_ASK_SOURCE = `\\b(?:rerun|re-run) ${RERUN_PRONOUN}\\b`
+  + `|\\b(?:run|do|start|launch|kick off) ${RERUN_PRONOUN} ${RERUN_MARKER}\\b`;
+const PRONOUN_RERUN_ASK = new RegExp(PRONOUN_RERUN_ASK_SOURCE);
+// A global pattern, because every occurrence has to be read before one of them
+// can be trusted as an ask the reader still wants.
+const PRONOUN_RERUN_ASK_ALL = new RegExp(PRONOUN_RERUN_ASK_SOURCE, 'g');
+
+// The pronoun names no run on its own, so the prompt has to name the deep run the
+// rerun repeats: "run it again" about a test suite asks for no loop at all.
+function hasUnrefusedPronounRerun(lower: string): boolean {
+  return LOOP_RUN_SUBJECT.test(lower)
+    && [...lower.matchAll(PRONOUN_RERUN_ASK_ALL)].some((match) => !runAskNegatedAt(lower, match.index));
+}
+
 // The deep loop's doctor reads a deep run's own state, so a prompt that names no
 // deep run, as in "the model needed more iterations to converge", has nothing for
-// it to read, however many of its keywords the prompt shares.
+// it to read, however many of its keywords the prompt shares. A run the reader
+// asked to repeat, as in "run it again", or whose finished output they asked to
+// read, as in "summarize the deep reviews from last week", names a run without
+// asking about its state, so the doctor has nothing to read there either. A
+// fault reported in the same prompt does name a state to read, so it keeps the
+// doctor the way it keeps the run ask.
 export function namesDeepRun(text: string): boolean {
-  return LOOP_RUN_SUBJECT.test(text.toLowerCase().replace(/[‘’]/g, "'"));
+  const lower = text.toLowerCase().replace(/[‘’]/g, "'");
+  return LOOP_RUN_SUBJECT.test(lower) && !hasUnrefusedPronounRerun(lower)
+    && (isStuckRunComplaint(lower) || !isPastRunRead(lower));
 }
 
 // A run ask that a refusal leads, as in "don't run another deep review", forbids
 // the run instead of asking for it, so it leaves the stuck reading standing. Only
 // an ask the reader still wants cancels the complaint, because a complaint that
 // also refuses the loop asks for the diagnosis and not for the run it refused.
+// A pronoun rerun, as in "run it again", asks for the same run, so it cancels the
+// reading as well.
 function hasUnrefusedRunAsk(lower: string): boolean {
-  return [...lower.matchAll(LOOP_RUN_REQUESTED_ALL)].some((match) => !runAskNegatedAt(lower, match.index));
+  return [...lower.matchAll(LOOP_RUN_REQUESTED_ALL)].some((match) => !runAskNegatedAt(lower, match.index))
+    || hasUnrefusedPronounRerun(lower);
 }
 
 // A counted run ask, as in "run 5 more iterations", asks for more of the run
@@ -572,7 +676,10 @@ const COUNTED_RUN_ASK = new RegExp(
   `\\b(?:run|start|launch|kick off|do|rerun|re-run) (?:(?:an?|another) )?(?:${LOOP_COUNT.source})`,
   'g',
 );
-const EXPLICIT_RUN_ASK = new RegExp(`${LOOP_RUN_REQUESTED.source}|${COUNTED_RUN_ASK.source}`, 'g');
+const EXPLICIT_RUN_ASK = new RegExp(
+  `${LOOP_RUN_REQUESTED.source}|${COUNTED_RUN_ASK.source}|${PRONOUN_RERUN_ASK.source}`,
+  'g',
+);
 
 // The refusal leads are data, one lead per line, so the vocabulary a reviewer
 // has to judge stays visible and a test can compare it with the Python
@@ -914,11 +1021,14 @@ const LOOP_ARTIFACT_AFTER = new RegExp(`^(?:'s)? (?:${LOOP_ARTIFACT_NOUNS.map(es
 // loop's result would go, as in "the deep review loop is too slow" or "deep
 // research runs cost too much", so the name is what the reader complains about
 // rather than what they ask for. The same word as a manner belongs to the
-// request, as in "run a fast deep review on the parser", so the word is read
-// only in a complaint's shape. The effort words are data, one per line; the loop
-// noun, the verb and the intensifier around them stay in the pattern, and a cost
-// complaint is a fixed idiom because its measure word describes rather than
-// names.
+// request, as in "run a fast deep review on the parser" or "run a deep review
+// slower", so the word is read only in a complaint's shape: a verb or copula
+// carries it, or a change verb makes it the complement of the loop's name. A
+// bare effort word after a run the reader asked for says how to run it, so with
+// neither of those it stays a manner. The effort words are data, one per line;
+// the loop noun, the verb and the intensifier around them stay in the pattern,
+// and a cost complaint is a fixed idiom because its measure word describes
+// rather than names.
 export const LOOP_EFFORT_WORDS: readonly string[] = [
   'slow',
   'slower',
@@ -928,12 +1038,37 @@ export const LOOP_EFFORT_WORDS: readonly string[] = [
   'long',
   'longer',
 ];
+const LOOP_EFFORT_WORD = `(?:${LOOP_EFFORT_WORDS.map(escapePhrase).join('|')})`;
+// The verb and the intensifier a complaint puts around its effort word are the
+// grammar an English clause needs rather than vocabulary a reviewer judges, so
+// they stay in the pattern. The verb is what makes the effort word a complaint:
+// with it the loop name is a clause's subject, and without it the word can only
+// describe a run the reader asked for.
+const LOOP_EFFORT_COPULA = '(?:is|are|was|were|gets?|got|feels?|seems?|runs?|takes?|costs?)';
+const LOOP_EFFORT_INTENSIFIER = '(?:too|very|so|really|quite|way)';
 const LOOP_EFFORT_AFTER = new RegExp(
-  `^(?: (?:loop|run|pass|iterations?|runs?))?`
-  + `(?: (?:is|are|was|were|gets?|got|feels?|seems?|runs?|takes?|costs?))?`
-  + `(?: (?:too|very|so|really|quite|way))?`
-  + ` (?:${LOOP_EFFORT_WORDS.map(escapePhrase).join('|')})\\b`
-  + '|^(?: (?:runs?|pass|passes|iterations?))? costs? too much\\b',
+  `^(?: (?:loop|run|pass|iterations?|runs?))? ${LOOP_EFFORT_COPULA}`
+  + `(?: ${LOOP_EFFORT_INTENSIFIER})? ${LOOP_EFFORT_WORD}\\b`
+  + `|^(?: (?:runs?|pass|passes|iterations?))? costs? too much\\b`,
+);
+// A change verb makes the loop name its object and an effort word its
+// complement, as in "make the deep review faster" or "making the research loop
+// faster", so the word asks for a change to the loop rather than a run of it.
+// Only a complement that follows the name at once is read that way, because a
+// change verb that produces a loop, as in "make a deep review of the parser",
+// still asks for the run. The verbs are data, one per line, so the vocabulary a
+// reviewer has to judge stays visible.
+export const LOOP_EFFORT_CHANGE_VERBS: readonly string[] = [
+  'make',
+  'makes',
+  'making',
+  'made',
+];
+const LOOP_EFFORT_CHANGE_LEAD = windowedPattern(
+  `\\b(?:${LOOP_EFFORT_CHANGE_VERBS.map(escapePhrase).join('|')}) ${LOOP_OBJECT_GAP}$`,
+);
+const LOOP_EFFORT_COMPLEMENT_AFTER = new RegExp(
+  `^(?: (?:loop|run|pass|iterations?|runs?))?(?: ${LOOP_EFFORT_INTENSIFIER})? ${LOOP_EFFORT_WORD}\\b`,
 );
 
 // A run that already happened is reported with its own past verb right after the
@@ -960,12 +1095,14 @@ const COUNT_NOUN = /(?:pass(?:es)?|rounds?|iterations?)$/;
 const ITERATIONS_OF_SUBJECT = /^ of (?!(?:(?:the|this|that|my|our|a|an) )?(?:deep[- ])?(?:review|research|audit|investigation|analysis|loop)\b|(?:it|this|that)\b|(?:the|this|that|my|our) [a-z-]+ (?:review|research|audit|investigation|analysis)\b)/;
 const COUNT_AS_SUBJECT = /^(?: of (?:[\w'-]+ ){0,2}?[\w'-]+)? (?:failed|ran|took|were|was|had|showed|found|produced|returned|crashed|broke|timed out|succeeded|completed|finished|didn't|did not)\b/;
 
-// The edit and effort leads are read on the bounded window before the phrase.
-// The patterns after it are anchored at its end, so they read the rest of the
-// prompt whole.
+// The edit, effort and change leads are read on the bounded window before the
+// phrase. The patterns after it are anchored at its end, so they read the rest
+// of the prompt whole, and the effort complement needs both readings: the change
+// verb in front of the name and the word behind it.
 function namesLoopSubject(phrase: string, lowered: string, start: number, after: string): boolean {
   if (endsBefore(LOOP_EDIT_LEAD, lowered, start) || endsBefore(LOOP_EFFORT_LEAD, lowered, start)) return true;
   if (LOOP_ARTIFACT_AFTER.test(after) || LOOP_EFFORT_AFTER.test(after)) return true;
+  if (LOOP_EFFORT_COMPLEMENT_AFTER.test(after) && endsBefore(LOOP_EFFORT_CHANGE_LEAD, lowered, start)) return true;
   if (RUN_REPORTED_AFTER.test(after)) return true;
   if (HYPHEN_COUNT.test(phrase) && !HYPHEN_COUNT_MEASURES_LOOP.test(after)) return true;
   if (/iterations?$/.test(phrase) && ITERATIONS_OF_SUBJECT.test(after)) return true;
@@ -973,7 +1110,9 @@ function namesLoopSubject(phrase: string, lowered: string, start: number, after:
 }
 
 // Any one loop phrase that is neither refused nor the request's subject asks
-// for the run, so "don't summarize it, run a deep review" still asks.
+// for the run, so "don't summarize it, run a deep review" still asks. A pronoun
+// rerun names the run the prompt already names rather than the loop's own words,
+// so it is read here too, as in "the deep review didn't finish, run it again".
 function hasLoopAsk(lowered: string): boolean {
   for (const match of lowered.matchAll(LOOP_REQUEST_ALL)) {
     const after = lowered.slice(match.index + match[0].length);
@@ -981,7 +1120,7 @@ function hasLoopAsk(lowered: string): boolean {
     if (namesLoopSubject(match[0], lowered, match.index, after)) continue;
     return true;
   }
-  return false;
+  return hasUnrefusedPronounRerun(lowered);
 }
 
 // Loop wording also names a loop the reader is not asking to start: a past run
@@ -1270,6 +1409,7 @@ interface CommandNamingPatterns {
   readonly namedAsDocument: RegExp;
   readonly requestedOpeningSentence: RegExp;
   readonly requestedByUseVerb: RegExp;
+  readonly requestedAfterComma: RegExp;
 }
 
 const COMMAND_NAMING_CACHE = new Map<string, CommandNamingPatterns>();
@@ -1291,6 +1431,10 @@ function commandNamingPatterns(current: string): CommandNamingPatterns {
     namedAsDocument: windowedPattern(`\\b(?:the|this|that) ${name}$`),
     requestedOpeningSentence: windowedPattern(`(?:^|[.!?;:\\n] *)(?:(?:please|now|just|then|and) )*${name}$`),
     requestedByUseVerb: windowedPattern(`\\b${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}(?:the )?${name}$`),
+    // A comma joins a clause to the command that answers it, so a naming behind
+    // one asks for a run-policy command the way a sentence opener does, as in
+    // "my run is stuck, /doctor:deep-loop".
+    requestedAfterComma: windowedPattern(`, *(?:(?:please|now|just|then|and) )*${name}$`),
   };
   if (COMMAND_NAMING_CACHE.size >= COMMAND_NAMING_CACHE_LIMIT) COMMAND_NAMING_CACHE.clear();
   COMMAND_NAMING_CACHE.set(current, patterns);
@@ -1301,8 +1445,14 @@ function commandNamingPatterns(current: string): CommandNamingPatterns {
 // whole rest of the prompt for them; the request leads before it are short.
 function commandRunRequested(patterns: CommandNamingPatterns, text: string, nameEnd: number, withdrawn: boolean): boolean {
   if (withdrawn) return false;
-  return endsBefore(patterns.requestedOpeningSentence, text, nameEnd)
-    || endsBefore(patterns.requestedByUseVerb, text, nameEnd);
+  if (endsBefore(patterns.requestedOpeningSentence, text, nameEnd)) return true;
+  if (endsBefore(patterns.requestedByUseVerb, text, nameEnd)) return true;
+  if (!endsBefore(patterns.requestedAfterComma, text, nameEnd)) return false;
+  // A comma asks for the command only where the clause it joins refuses
+  // nothing: "no fix please, /x" names the command inside the refusal rather
+  // than asking for it. That clause is read inside the window a lead is read
+  // in, so a prompt of any length still pays one bounded read per naming.
+  return !isRunRefused(text.slice(Math.max(0, nameEnd - LEAD_WINDOW), nameEnd));
 }
 
 // A prompt names a command to refuse it or to ask about it as often as it names
@@ -1419,9 +1569,12 @@ export function attachCommand(
   const workflowMode = onlyTarget.workflowMode;
   if (typeof workflowMode !== 'string' || workflowMode === '') return undefined;
 
-  // A reader who rules out a change gets no command from either path, so the hub
-  // route never offers what the scorer already withholds.
-  if (isNoEditRequest(prompt)) return undefined;
+  // A reader who rules out a change gets no writing command from either path, so
+  // the hub route never offers what the scorer already withholds. A loop mode
+  // only reads the code, so its run survives the no-edit wording.
+  if (isNoEditRequest(prompt) && !(skillId === 'system-deep-loop' && READ_ONLY_LOOP_MODES.includes(workflowMode))) {
+    return undefined;
+  }
 
   // Own-key lookup on both levels: the table is data read from a generated
   // object, so an inherited name such as `constructor` must not resolve to a
@@ -1429,15 +1582,24 @@ export function attachCommand(
   if (!Object.prototype.hasOwnProperty.call(modeCommands, skillId)) return undefined;
   const commands = modeCommands[skillId];
   if (!Object.prototype.hasOwnProperty.call(commands, workflowMode)) return undefined;
+  // The hub's router scores fixed phrases, and one of those phrases can be a loop
+  // name the request only works on: "run a deep loop to review the research loop
+  // config" scores the research phrase while the ask is a review of that loop.
+  // A routed mode the prompt's own ask never names therefore gives way to the
+  // mode the ask does name, read the way a deferred route reads it, so the two
+  // offer paths cannot disagree on what the prompt asked for.
+  const servedMode = skillId === 'system-deep-loop'
+    ? routedLoopMode(prompt, workflowMode, commands)
+    : workflowMode;
 
   // A route can pick the mode because the prompt named its command, so a naming
   // that refused or asked about the command must not produce the offer.
-  if (commandOnlyMentioned(prompt, commands[workflowMode])) return undefined;
+  if (commandOnlyMentioned(prompt, commands[servedMode])) return undefined;
 
   // A correction inside one document is not a request for a creation workflow,
   // which scaffolds, reviews and validates a whole one.
   if (
-    SMALL_EDIT_GATED_COMMANDS.has(commands[workflowMode])
+    SMALL_EDIT_GATED_COMMANDS.has(commands[servedMode])
     && SMALL_EDIT_REQUEST.test(prompt.toLowerCase())
     && !CREATION_REQUEST.test(prompt.toLowerCase())
     && CORRECTION_VERB.test(prompt.toLowerCase())
@@ -1450,56 +1612,110 @@ export function attachCommand(
   // answers a short question with a short answer, so no other skill consults the
   // wording list.
   if (skillId === 'system-deep-loop') {
-    const typesThisCommand = typedCommandsIn(prompt).includes(commands[workflowMode]);
+    const typesThisCommand = typedCommandsIn(prompt).includes(commands[servedMode]);
     if (!typesThisCommand && !asksForLoopRun(prompt)) return undefined;
   }
 
-  return commands[workflowMode];
+  return commands[servedMode];
 }
 
 // The hub's router reads fixed phrases, so it defers on "run 8 more review
 // iterations" though the prompt asks for the loop and names one mode. A loop
 // request with exactly one mode cue names that mode as surely as a router
 // phrase does, while a cue for both modes or for neither leaves the choice to
-// the reader. The refusal and mention guards apply here as on a routed mode.
+// the reader. The refusal and mention guards apply here as on a routed mode: a
+// phrase the prompt refuses names the run it ruled out rather than the mode.
 function deferredLoopCommand(
   skillId: string,
   prompt: string,
   modeCommands: Readonly<Record<string, Readonly<Record<string, string>>>>,
 ): string | undefined {
   if (!Object.prototype.hasOwnProperty.call(modeCommands, skillId)) return undefined;
-  const lowered = lowerFolded(prompt);
-  if (!asksForLoopRun(prompt) || isNoEditRequest(prompt)) return undefined;
+  if (!asksForLoopRun(prompt)) return undefined;
   const commands = modeCommands[skillId];
-  // A loop name that is the request's subject, as in "review the research loop
-  // config", names what is worked on, not the loop to run. It neither settles the
-  // mode nor counts as a topic cue, so its words are blanked before the cues are
-  // read, and "run a deep loop to review the research loop config" is a review.
-  const named = new Set<string>();
-  let cueText = lowered;
-  for (const match of lowered.matchAll(NAMED_LOOP_MODE)) {
+  const mode = askedLoopMode(loopAskCues(lowerFolded(prompt)), commands);
+  if (mode === undefined) return undefined;
+  // A loop mode reads the code and reports on it, so ruling out a change does
+  // not withhold the run the prompt names; a writing mode would keep the guard.
+  if (isNoEditRequest(prompt) && !READ_ONLY_LOOP_MODES.includes(mode)) return undefined;
+  const command = commands[mode];
+  return commandOnlyMentioned(prompt, command) ? undefined : command;
+}
+
+// A routed mode stands only when the prompt's own ask names it, read on the same
+// ask text the deferred route reads. An ask that names both modes or neither
+// leaves the router's answer alone, because it is then the only reading there is.
+function routedLoopMode(
+  prompt: string,
+  routedMode: string,
+  commands: Readonly<Record<string, string>>,
+): string {
+  const cues = loopAskCues(lowerFolded(prompt));
+  if (askNamesMode(cues, routedMode)) return routedMode;
+  return askedLoopMode(cues, commands) ?? routedMode;
+}
+
+// The words a mode is read from: every loop phrase the prompt refuses or only
+// works on is blanked first, so a run the reader ruled out, or a loop name that
+// is the object of another verb, settles nothing. Each blank keeps its phrase's
+// length, so every offset still points at the same words.
+interface LoopAskCues {
+  readonly text: string;
+  readonly named: ReadonlySet<string>;
+}
+
+function loopAskCues(lowered: string): LoopAskCues {
+  let text = '';
+  let cursor = 0;
+  for (const match of lowered.matchAll(LOOP_REQUEST_ALL)) {
     const index = match.index ?? 0;
-    const after = lowered.slice(index + match[0].length);
-    if (namesLoopSubject(match[0], lowered, index, after)) {
-      cueText = cueText.slice(0, index) + ' '.repeat(match[0].length) + cueText.slice(index + match[0].length);
+    const end = index + match[0].length;
+    if (!runAskNegatedAt(lowered, index) && !LOOP_ASK_REFUSED_AFTER.test(lowered.slice(end))) continue;
+    text += lowered.slice(cursor, index) + ' '.repeat(end - index);
+    cursor = end;
+  }
+  text += lowered.slice(cursor);
+  const named = new Set<string>();
+  for (const match of text.matchAll(NAMED_LOOP_MODE)) {
+    const index = match.index ?? 0;
+    const after = text.slice(index + match[0].length);
+    if (namesLoopSubject(match[0], text, index, after)) {
+      text = text.slice(0, index) + ' '.repeat(match[0].length) + text.slice(index + match[0].length);
       continue;
     }
     named.add((match[1] ?? match[2]) === 'research' ? 'research' : 'review');
   }
-  const cued = named.size === 1
-    ? [...named].filter((mode) => Object.prototype.hasOwnProperty.call(commands, mode))
+  return { text, named };
+}
+
+// The single mode the ask names, or undefined when it names both or neither. A
+// name that qualifies the loop's own unit settles the mode; the looser topic
+// words are counted only when no such name was read.
+function askedLoopMode(cues: LoopAskCues, commands: Readonly<Record<string, string>>): string | undefined {
+  const cued = cues.named.size === 1
+    ? [...cues.named].filter((mode) => Object.prototype.hasOwnProperty.call(commands, mode))
     : Object.keys(MODE_CUES).filter((mode) => (
-      MODE_CUES[mode].test(cueText) && Object.prototype.hasOwnProperty.call(commands, mode)
+      MODE_CUES[mode].test(cues.text) && Object.prototype.hasOwnProperty.call(commands, mode)
     ));
-  if (cued.length !== 1) return undefined;
-  const command = commands[cued[0]];
-  return commandOnlyMentioned(prompt, command) ? undefined : command;
+  return cued.length === 1 ? cued[0] : undefined;
+}
+
+// Whether the ask names this mode at all, which a routed mode has to answer to
+// stand. The router's own phrase is blanked out of the ask text before this read,
+// so a phrase the request only works on cannot vouch for the mode it scored.
+function askNamesMode(cues: LoopAskCues, mode: string): boolean {
+  return cues.named.has(mode)
+    || (Object.prototype.hasOwnProperty.call(MODE_CUES, mode) && MODE_CUES[mode].test(cues.text));
 }
 
 // A mode word that qualifies the loop's own unit names the mode outright, as in
 // "run 5 research iterations on review tooling", where "review" is the topic.
-// One such name settles the mode before the looser topic cues are counted.
-const NAMED_LOOP_MODE = /\b(?:deep[- ](research|review)|(research|review|audit)[- ](?:loop|iterations?|passes|rounds|runs?))\b/g;
+// One such name settles the mode before the looser topic cues are counted. The
+// deep name is read in both numbers, because the wording list carries the plural
+// ask and the cue read cannot see it: its word boundary stops inside "reviews".
+// The pattern is exported so the drift guard can compare its grammar with the
+// fallback's transcription of it, which no word list would cover.
+export const NAMED_LOOP_MODE = /\b(?:deep[- ](research|review)(?:s|es)?|(research|review|audit)[- ](?:loop|iterations?|passes|rounds?|runs?))\b/g;
 
 // A hub that withholds its command because the prompt names no single mode must
 // still tell the reader why no command came with it, and only a hub whose modes

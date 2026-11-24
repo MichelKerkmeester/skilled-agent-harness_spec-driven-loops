@@ -2899,6 +2899,36 @@ def test_deep_loop_offer_gate_parity():
                 )
                 if kept_runs != sorted(case["typedRunsKept"]):
                     wrong.append((case["id"], "typed run rows kept", kept_runs))
+            # A run ask that names a mode is served by that mode's row alone, and
+            # an ask that names no single mode keeps both, which is the same answer
+            # the native deferred route gives when it offers no command.
+            if "servedRun" in case:
+                served_rows = advisor._apply_deep_loop_offer_gate(
+                    [{"skill": skill} for skill in advisor._DEEP_LOOP_RUN_ROWS], case["prompt"].lower()
+                )
+                served_modes = sorted(
+                    advisor._DEEP_LOOP_RUN_ROWS[row["skill"]].rsplit(":", 1)[-1] for row in served_rows
+                )
+                if case["servedRun"] is None:
+                    served_ok = len(served_modes) != 1
+                else:
+                    served_ok = served_modes == [case["servedRun"]]
+                if not served_ok:
+                    wrong.append((case["id"], "served run", served_modes, case["servedRun"]))
+            # A prompt that rules out a change keeps the run row of a read-only
+            # loop mode, because the run only reads the code it reports on.
+            if "readOnlyRunKept" in case:
+                run_row = {
+                    "review": "command-spec-kit-deep-review",
+                    "research": "command-spec-kit-deep-research",
+                }[case["readOnlyRunKept"]]
+                kept = bool(advisor._apply_deep_loop_offer_gate(
+                    [{"skill": run_row}], case["prompt"].lower()
+                ))
+                if not advisor.is_no_edit_request(case["prompt"]):
+                    wrong.append((case["id"], "no-edit wording not read", case["prompt"]))
+                elif not kept:
+                    wrong.append((case["id"], "read-only run row kept", kept))
             if "doctorWithheld" in case:
                 doctor_kept = bool(advisor._apply_deep_loop_offer_gate(
                     [{"skill": "command-doctor-deep-loop"}], case["prompt"].lower()

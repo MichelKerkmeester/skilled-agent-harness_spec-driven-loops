@@ -29,6 +29,7 @@ interface OfferCase {
   readonly prompt: string;
   readonly typedReviewKept?: boolean;
   readonly servedReviewKept?: boolean;
+  readonly readOnlyRunKept?: 'review' | 'research';
 }
 
 const COMPILED_ROUTING_FLAG = 'SPECKIT_COMPILED_ROUTING';
@@ -54,6 +55,10 @@ const REVIEW_ROUTE = {
 const FIXTURE_PATH = join(dirname(fileURLToPath(import.meta.url)), 'fixtures', 'deep-loop-offer-cases.json');
 const typedCases = (JSON.parse(readFileSync(FIXTURE_PATH, 'utf8')) as { cases: OfferCase[] }).cases
   .filter((entry) => entry.typedReviewKept !== undefined);
+// A no-edit clause rules out a change, and the loop mode only reads the code, so
+// the served head carries the same run a plain ask does.
+const readOnlyReviewCases = (JSON.parse(readFileSync(FIXTURE_PATH, 'utf8')) as { cases: OfferCase[] }).cases
+  .filter((entry) => entry.readOnlyRunKept === 'review');
 
 // The served answer lives in the fixture beside the gate answer, so a single row
 // pins both layers and they cannot drift apart. The two differ on the stuck case:
@@ -162,6 +167,18 @@ describe('typed command against the stuck-run diagnosis on the served head', () 
     expect(typedCases.length).toBeGreaterThan(0);
     expect(typedCases.every((entry) => entry.servedReviewKept !== undefined)).toBe(true);
   });
+
+  it.each(readOnlyReviewCases.map((entry) => [entry.id, entry] as const))(
+    'serves the read-only run on the no-edit case %s',
+    async (_id, entry) => {
+      const head = await servedHead(entry.prompt);
+
+      expect(head).toEqual(expect.objectContaining({
+        command: '/deep:review',
+        policy: 'ask',
+      }));
+    },
+  );
 
   it.each(typedCases.map((entry) => [entry.id, entry] as const))(
     'serves the fixture typed case %s as expected',

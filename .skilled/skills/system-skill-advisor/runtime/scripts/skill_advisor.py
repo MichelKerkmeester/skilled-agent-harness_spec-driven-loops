@@ -4669,6 +4669,90 @@ _MODE_SUFFIX_LIST = (
     "with-research",
 )
 
+# A loop run reads the code and reports on it, and the report it writes is its
+# own output rather than the change the reader ruled out, so a mode listed here
+# stays the answer to a no-edit request. The doctor is the one deep-loop command
+# that adds files, and it keeps that guard.
+_READ_ONLY_LOOP_MODE_LIST = (
+    "research",
+    "review",
+)
+
+# The words one deep-loop mode is read from, one list per mode, so this copy and
+# the native gate read one vocabulary and a test can compare the two rather than
+# trust that they were transcribed together. A verb is spelled in every form it
+# is read in, because a list of words cannot carry a character class.
+_RESEARCH_MODE_CUE_LIST = (
+    "research",
+    "researching",
+    "investigate",
+    "investigates",
+    "investigating",
+    "investigation",
+    "look into",
+    "find out",
+)
+_REVIEW_MODE_CUE_LIST = (
+    "review",
+    "reviewing",
+    "audit",
+    "auditing",
+)
+# A check or an inspection aimed at defects is a review in plain words, so it
+# counts beside review and audit. The defect noun is required, because "check that
+# the build passes" asks for no review at all, and the verbs and the nouns are
+# data so the native gate's own lists can be compared with them.
+_DEFECT_CHECK_VERB_LIST = (
+    "check",
+    "checking",
+    "inspect",
+    "inspecting",
+    "scan",
+    "scanning",
+    "examine",
+    "examining",
+    "go over",
+    "going over",
+    "look over",
+    "looking over",
+)
+_DEFECT_CHECK_NOUN_LIST = (
+    "bug",
+    "bugs",
+    "defect",
+    "defects",
+    "mistake",
+    "mistakes",
+    "error",
+    "errors",
+    "vulnerability",
+    "vulnerabilities",
+    "issue",
+    "issues",
+    "problem",
+    "problems",
+    "regression",
+    "regressions",
+    "flaw",
+    "flaws",
+)
+_DEFECT_CHECK_PATTERN = (
+    r"\b(?:" + "|".join(re.escape(word) for word in _DEFECT_CHECK_VERB_LIST) + r")\b"
+    + r"(?:\s+[\w./-]+){0,5}?\s+for\s+(?:[\w-]+\s+){0,2}?"
+    + r"(?:" + "|".join(re.escape(word) for word in _DEFECT_CHECK_NOUN_LIST) + r")\b"
+)
+_MODE_CUE_WORDS = {
+    "research": _RESEARCH_MODE_CUE_LIST,
+    "review": _REVIEW_MODE_CUE_LIST,
+}
+_MODE_CUE_PATTERNS = {
+    mode: re.compile(
+        r"\b(?:" + "|".join(re.escape(word) for word in words) + r")\b"
+        + ("|" + _DEFECT_CHECK_PATTERN if mode == "review" else "")
+    )
+    for mode, words in _MODE_CUE_WORDS.items()
+}
+
 _LOOP_PASS_GAP = r"(?:(?:more|extra|additional|full|deep|review|research|audit|iterative) ){0,2}"
 _LOOP_PASS_NOUN = (
     r"(?:passes\b(?! of (?!(?:review|research|audit|investigation|the|it|this|that|these|those|my|our)\b)[a-z])"
@@ -4766,9 +4850,12 @@ _LOOP_ARTIFACT_AFTER_RE = re.compile(
 # loop's result would go, as in "the deep review loop is too slow" or "deep
 # research runs cost too much", so the name is what the reader complains about
 # rather than what they ask for. The same word as a manner belongs to the
-# request, as in "run a fast deep review on the parser", so the word is read only
-# in a complaint's shape. A cost complaint is a fixed idiom because its measure
-# word describes the cost rather than naming it.
+# request, as in "run a fast deep review on the parser" or "run a deep review
+# slower", so the word is read only in a complaint's shape: a verb or copula
+# carries it, or a change verb makes it the complement of the loop's name. A
+# bare effort word after a run the reader asked for says how to run it, so with
+# neither of those it stays a manner. A cost complaint is a fixed idiom because
+# its measure word describes the cost rather than naming it.
 _LOOP_EFFORT_WORD_LIST = (
     "slow",
     "slower",
@@ -4778,12 +4865,38 @@ _LOOP_EFFORT_WORD_LIST = (
     "long",
     "longer",
 )
+_LOOP_EFFORT_WORD = r"(?:" + "|".join(re.escape(word) for word in _LOOP_EFFORT_WORD_LIST) + r")"
+# The verb and the intensifier a complaint puts around its effort word are the
+# grammar an English clause needs rather than vocabulary a reviewer judges, so
+# they stay in the pattern. The verb is what makes the effort word a complaint:
+# with it the loop name is a clause's subject, and without it the word can only
+# describe a run the reader asked for.
+_LOOP_EFFORT_COPULA = r"(?:is|are|was|were|gets?|got|feels?|seems?|runs?|takes?|costs?)"
+_LOOP_EFFORT_INTENSIFIER = r"(?:too|very|so|really|quite|way)"
 _LOOP_EFFORT_AFTER_RE = re.compile(
-    r"(?: (?:loop|run|pass|iterations?|runs?))?"
-    r"(?: (?:is|are|was|were|gets?|got|feels?|seems?|runs?|takes?|costs?))?"
-    r"(?: (?:too|very|so|really|quite|way))? "
-    r"(?:" + "|".join(re.escape(word) for word in _LOOP_EFFORT_WORD_LIST) + r")\b"
-    r"|(?: (?:runs?|pass|passes|iterations?))? costs? too much\b"
+    r"(?: (?:loop|run|pass|iterations?|runs?))? " + _LOOP_EFFORT_COPULA
+    + r"(?: " + _LOOP_EFFORT_INTENSIFIER + r")? " + _LOOP_EFFORT_WORD + r"\b"
+    + r"|(?: (?:runs?|pass|passes|iterations?))? costs? too much\b"
+)
+# A change verb makes the loop name its object and an effort word its
+# complement, as in "make the deep review faster" or "making the research loop
+# faster", so the word asks for a change to the loop rather than a run of it.
+# Only a complement that follows the name at once is read that way, because a
+# change verb that produces a loop, as in "make a deep review of the parser",
+# still asks for the run.
+_LOOP_EFFORT_CHANGE_VERB_LIST = (
+    "make",
+    "makes",
+    "making",
+    "made",
+)
+_LOOP_EFFORT_CHANGE_LEAD_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(word) for word in _LOOP_EFFORT_CHANGE_VERB_LIST) + r") "
+    + _LOOP_OBJECT_GAP + r"\Z"
+)
+_LOOP_EFFORT_COMPLEMENT_AFTER_RE = re.compile(
+    r"(?: (?:loop|run|pass|iterations?|runs?))?(?: " + _LOOP_EFFORT_INTENSIFIER + r")? "
+    + _LOOP_EFFORT_WORD + r"\b"
 )
 # A run that already happened is reported with its own past verb right after the
 # loop's name, as in "how many deep reviews ran yesterday", so the name is that
@@ -4842,6 +4955,27 @@ _LOOP_RUN_SYMPTOM_RE = re.compile(
 _LOOP_RUN_REQUESTED_RE = re.compile(
     r"\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}"
     r"(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))(?:s|es)?\b"
+)
+# A rerun can point back at the run the prompt already names, as in "run it
+# again" or "rerun that", so the pronoun is how a reader asks for the same run a
+# second time without spelling its name. The pronouns are data, one spelling per
+# line, so a reviewer judges the vocabulary and this copy is compared with the
+# native one.
+_RERUN_PRONOUN_LIST = (
+    "it",
+    "that",
+    "this",
+    "that one",
+    "this one",
+)
+_RERUN_PRONOUN = r"(?:" + "|".join(re.escape(word) for word in _RERUN_PRONOUN_LIST) + r")"
+# "again" and "once more" say the run happens a second time, so a use verb takes
+# the pronoun only with one of them after it: "run it by hand" names a manner and
+# "don't run it" refuses the run. A rerun verb says the same on its own.
+_RERUN_MARKER = r"(?:again|once again|once more)"
+_PRONOUN_RERUN_ASK_RE = re.compile(
+    r"\b(?:rerun|re-run) " + _RERUN_PRONOUN + r"\b"
+    + r"|\b(?:run|do|start|launch|kick off) " + _RERUN_PRONOUN + " " + _RERUN_MARKER + r"\b"
 )
 _PAST_RUN_READ_VERB_RE = re.compile(
     r"\b(?:" + "|".join(re.escape(word) for word in _PAST_RUN_READ_VERB_LIST) + r")\b"
@@ -4908,7 +5042,9 @@ _LOOP_RUN_BY_PRONOUN_RE = re.compile(
 _COUNTED_RUN_ASK_RE = re.compile(
     r"\b(?:run|start|launch|kick off|do|rerun|re-run) (?:(?:an?|another) )?(?:" + _LOOP_COUNT + r")"
 )
-_EXPLICIT_RUN_ASK_RE = re.compile(_LOOP_RUN_REQUESTED_RE.pattern + r"|" + _COUNTED_RUN_ASK_RE.pattern)
+_EXPLICIT_RUN_ASK_RE = re.compile(
+    _LOOP_RUN_REQUESTED_RE.pattern + r"|" + _COUNTED_RUN_ASK_RE.pattern + r"|" + _PRONOUN_RERUN_ASK_RE.pattern
+)
 # A typed command starts where a word, a quote or a bracket ends it, and ends at
 # a mode suffix or where its name stops, so `/deep:review.md` names a file.
 _TYPED_DEEP_COMMAND_RE = re.compile(
@@ -4937,16 +5073,33 @@ def _fold_quotes(text: str) -> str:
     return text.lower().replace("‘", "'").replace("’", "'")
 
 
+def _has_unrefused_pronoun_rerun(lower: str) -> bool:
+    """True when the prompt reruns a named deep run by pronoun, and still wants it.
+
+    The pronoun names no run on its own, so the prompt has to name the deep run the
+    rerun repeats: "run it again" about a test suite asks for no loop at all.
+    """
+    return bool(
+        _LOOP_RUN_SUBJECT_RE.search(lower)
+        and any(
+            not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
+            for match in _PRONOUN_RERUN_ASK_RE.finditer(lower)
+        )
+    )
+
+
 def _has_unrefused_run_ask(lower: str) -> bool:
     """True when the prompt asks for a run that no refusal leads.
 
     A run ask a refusal leads, as in "don't run another deep review", forbids the
-    run instead of asking for it, so it leaves a stuck reading standing.
+    run instead of asking for it, so it leaves a stuck reading standing. A pronoun
+    rerun, as in "run it again", asks for the same run, so it cancels the reading
+    as well.
     """
     return any(
         not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
         for match in _LOOP_RUN_REQUESTED_RE.finditer(lower)
-    )
+    ) or _has_unrefused_pronoun_rerun(lower)
 
 
 def is_stuck_run_complaint(text: str) -> bool:
@@ -4966,6 +5119,25 @@ def is_stuck_run_complaint(text: str) -> bool:
             not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
             for match in _COUNTED_RUN_ASK_RE.finditer(lower)
         )
+    )
+
+
+def names_deep_run(text: str) -> bool:
+    """True when the prompt names a deep run whose live state the doctor can read.
+
+    A prompt that names no deep run, as in "the model needed more iterations to
+    converge", has nothing for the doctor to read, however many of its keywords
+    the prompt shares. A run the reader asked to repeat, as in "run it again", or
+    whose finished output they asked to read, as in "summarize the deep reviews
+    from last week", names a run without asking about its state, so the doctor
+    has nothing to read there either. A fault reported in the same prompt does
+    name a state to read, so it keeps the doctor the way it keeps the run ask.
+    """
+    lower = _fold_quotes(text)
+    return bool(
+        _LOOP_RUN_SUBJECT_RE.search(lower)
+        and not _has_unrefused_pronoun_rerun(lower)
+        and (is_stuck_run_complaint(lower) or not is_past_run_read(lower))
     )
 
 
@@ -5088,13 +5260,19 @@ def _is_loop_question(lower: str) -> bool:
 def _names_loop_subject(phrase: str, lower: str, start: int, end: int) -> bool:
     """True when the loop phrase is what the request is about, not what it asks for.
 
-    The edit and effort leads are read on the bounded window before the phrase.
-    The patterns after it are anchored at its end, so they match from there
-    without a copy of the rest of the prompt.
+    The edit, effort and change leads are read on the bounded window before the
+    phrase. The patterns after it are anchored at its end, so they match from
+    there without a copy of the rest of the prompt, and the effort complement
+    needs both readings: the change verb in front of the name and the word behind
+    it.
     """
     if _ends_before(_LOOP_EDIT_LEAD_RE, lower, start) or _ends_before(_LOOP_EFFORT_LEAD_RE, lower, start):
         return True
     if _LOOP_ARTIFACT_AFTER_RE.match(lower, end) or _LOOP_EFFORT_AFTER_RE.match(lower, end):
+        return True
+    if _LOOP_EFFORT_COMPLEMENT_AFTER_RE.match(lower, end) and _ends_before(
+        _LOOP_EFFORT_CHANGE_LEAD_RE, lower, start
+    ):
         return True
     if _RUN_REPORTED_AFTER_RE.match(lower, end):
         return True
@@ -5106,14 +5284,19 @@ def _names_loop_subject(phrase: str, lower: str, start: int, end: int) -> bool:
 
 
 def _has_loop_ask(lower: str) -> bool:
-    """True when one loop phrase is neither refused nor the request's subject."""
+    """True when one loop phrase is neither refused nor the request's subject.
+
+    A pronoun rerun names the run the prompt already names rather than the loop's
+    own words, so it is read here too, as in "the deep review didn't finish, run it
+    again".
+    """
     for match in _LOOP_REQUEST_RE.finditer(lower):
         if _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start()) or _LOOP_ASK_REFUSED_AFTER_RE.match(lower, match.end()):
             continue
         if _names_loop_subject(match.group(0), lower, match.start(), match.end()):
             continue
         return True
-    return False
+    return _has_unrefused_pronoun_rerun(lower)
 
 
 def asks_for_loop_run(prompt: str) -> bool:
@@ -5126,6 +5309,52 @@ def asks_for_loop_run(prompt: str) -> bool:
         and not is_writing_about_topic(lower)
         and not _is_loop_question(lower)
     )
+# A mode word that qualifies the loop's own unit names the mode outright, as in
+# "run 5 research iterations on review tooling", where "review" is the topic. The
+# deep name is read in both numbers, because the wording list carries the plural
+# ask and the cue read cannot see it: its word boundary stops inside "reviews".
+_NAMED_LOOP_MODE_RE = re.compile(
+    r"\b(?:deep[- ](research|review)(?:s|es)?|(research|review|audit)[- ](?:loop|iterations?|passes|rounds?|runs?))\b"
+)
+
+
+def _loop_ask_cues(lower: str) -> Tuple[str, Set[str]]:
+    """The ask text with its refused and subject phrases blanked, plus the modes it names.
+
+    A phrase the prompt refuses names the run the reader ruled out, and a loop
+    name that is the object of another verb names what is worked on, so neither
+    settles the mode. Each blank keeps its phrase's length, so every offset still
+    points at the same words.
+    """
+    text = lower
+    for match in _LOOP_REQUEST_RE.finditer(lower):
+        if not (
+            _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
+            or _LOOP_ASK_REFUSED_AFTER_RE.match(lower, match.end())
+        ):
+            continue
+        text = text[: match.start()] + " " * (match.end() - match.start()) + text[match.end():]
+    named: Set[str] = set()
+    for match in _NAMED_LOOP_MODE_RE.finditer(text):
+        if _names_loop_subject(match.group(0), text, match.start(), match.end()):
+            text = text[: match.start()] + " " * (match.end() - match.start()) + text[match.end():]
+            continue
+        named.add("research" if (match.group(1) or match.group(2)) == "research" else "review")
+    return text, named
+
+
+def _asked_loop_mode(lower: str) -> Optional[str]:
+    """The single deep-loop mode the ask names, or None when it names both or neither.
+
+    A name that qualifies the loop's own unit settles the mode; the looser topic
+    words are counted only when no such name was read. Two cued modes leave the
+    choice to the reader as surely as none does, so both answer None.
+    """
+    text, named = _loop_ask_cues(lower)
+    if len(named) == 1:
+        return next(iter(named))
+    cued = [mode for mode, pattern in _MODE_CUE_PATTERNS.items() if pattern.search(text)]
+    return cued[0] if len(cued) == 1 else None
 
 
 # The native gate reads how a prompt names a command before it trusts the name,
@@ -5298,6 +5527,10 @@ def _command_naming_patterns(command: str) -> Dict[str, "re.Pattern[str]"]:
         "requested_by_use_verb": re.compile(
             r"\b" + _CMD_USE_VERB + " " + _CMD_GAP_WORDS + r"(?:the )?" + name + r"\Z"
         ),
+        # A comma joins a clause to the command that answers it, so a naming
+        # behind one asks for a run-policy command the way a sentence opener
+        # does, as in "my run is stuck, /doctor:deep-loop".
+        "requested_after_comma": re.compile(r", *(?:(?:please|now|just|then|and) )*" + name + r"\Z"),
     }
 
 
@@ -5313,9 +5546,18 @@ def _command_run_requested(patterns: Dict[str, "re.Pattern[str]"], text: str, na
     """True when a run-policy command's naming carries positive evidence of a request."""
     if _forward_search(text, _CMD_RUN_WITHDRAWN_RE)(name_end) != -1:
         return False
-    return _ends_before(patterns["requested_opening_sentence"], text, name_end) or _ends_before(
-        patterns["requested_by_use_verb"], text, name_end
-    )
+    if _ends_before(patterns["requested_opening_sentence"], text, name_end):
+        return True
+    if _ends_before(patterns["requested_by_use_verb"], text, name_end):
+        return True
+    if not _ends_before(patterns["requested_after_comma"], text, name_end):
+        return False
+    # A comma asks for the command only where the clause it joins refuses
+    # nothing: "no fix please, /x" names the command inside the refusal rather
+    # than asking for it. That clause is read inside the window a lead is read
+    # in, so a prompt of any length still pays one bounded read per naming.
+    clause = text[max(0, name_end - _LEAD_WINDOW):name_end]
+    return not is_run_refused(clause)
 
 
 _SENTENCE_END_RE = re.compile(r"[.!\n]")
@@ -5447,24 +5689,37 @@ def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str)
     on a stuck run, because the reader named the workflow they want and the native
     handler serves that typed command over the diagnosis too. A piece written
     about the loop holds the hub back too, because the hub's aliases are the
-    topic's own words.
+    topic's own words. A no-edit clause rules out a change to the code, which a
+    read-only loop mode never makes, so the run row stays as the native gate keeps
+    it and only the doctor row drops. A run ask that names a mode is served by that
+    mode alone, so the other mode's row drops as the native gate withholds it,
+    while an ask that names both modes or neither leaves the choice to the reader.
     """
     typed = _typed_deep_commands(prompt_lower)
     run_asked = asks_for_loop_run(prompt_lower)
     stuck = is_stuck_run_complaint(prompt_lower)
     writing_about = not typed and is_writing_about_topic(prompt_lower)
+    no_edit = is_no_edit_request(prompt_lower)
+    asked_mode = _asked_loop_mode(prompt_lower)
     # A doctor command the reader asked for is the request itself, so refusal and
     # no-edit words limit what it repairs rather than drop it. A naming that only
     # refuses or asks about the doctor is not a request, and neither is a bare
     # naming of a command whose policy is run, so both drop the row as the native
-    # gate drops it.
+    # gate drops it. A prompt that names no live deep run, because it asks to
+    # repeat a run or to read a finished one's output, leaves the doctor nothing
+    # to read, so its row drops as the native withhold drops it.
     doctor_typed = bool(_TYPED_DOCTOR_RE.search(prompt_lower))
     doctor_only_mentioned = _deep_command_only_mentioned(prompt_lower, "/doctor:deep-loop")
     doctor_asked = doctor_typed and not _deep_command_only_mentioned(
         prompt_lower, "/doctor:deep-loop", require_evidence=True
     )
     doctor_dropped = doctor_only_mentioned or (
-        (is_run_refused(prompt_lower) or is_no_edit_request(prompt_lower)) and not doctor_asked
+        not doctor_asked
+        and (
+            not names_deep_run(prompt_lower)
+            or is_run_refused(prompt_lower)
+            or no_edit
+        )
     )
     gated: List[Dict[str, Any]] = []
     for rec in ranked:
@@ -5477,6 +5732,14 @@ def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str)
                 continue
             typed_here = command in typed
             if (stuck and not typed_here) or (not typed_here and not run_asked):
+                continue
+            # A read-only loop mode never changes the code the wording rules out,
+            # so its row stays; a writing mode would keep the guard.
+            if no_edit and command.rsplit(":", 1)[-1] not in _READ_ONLY_LOOP_MODE_LIST:
+                continue
+            # A typed command is the reader's own choice of mode, so it stands; an
+            # offered row answers the mode the ask names and no other.
+            if not typed_here and asked_mode is not None and command.rsplit(":", 1)[-1] != asked_mode:
                 continue
             if typed_here:
                 rec["typed"] = True
@@ -5514,9 +5777,9 @@ def _keep_deep_loop_hub_on_command_mention(
     if any(rec.get("skill") in _DEEP_LOOP_RUN_ROW_IDS for rec in ranked):
         return ranked
 
-    # A doctor diagnoses a run, so it answers no prompt that names no run, whatever
-    # else that prompt names.
-    names_run = bool(_LOOP_RUN_SUBJECT_RE.search(prompt_lower))
+    # A doctor diagnoses a run, so it answers no prompt that names no live run,
+    # whatever else that prompt names.
+    names_run = names_deep_run(prompt_lower)
     kept: List[Dict[str, Any]] = []
     for rec in ranked:
         if rec.get("skill") == "command-doctor-deep-loop" and not names_run:

@@ -105,13 +105,16 @@ describe('command attach for a single routed mode', () => {
 
     const modes = Object.entries(MODE_COMMANDS['system-deep-loop']);
     expect(modes.length).toBeGreaterThan(0);
-    const [effortPhrase] = LOOP_WORDING;
-    expect(effortPhrase).toBeTruthy();
+
+    // The probe names the loop without naming a mode, because a prompt that names
+    // one mode answers for that mode whichever mode the route picked, and this
+    // case is about the route's own row.
+    const modeNeutralAsk = 'run a deep loop on the parser';
 
     for (const [mode, command] of modes) {
       const route = singleRoute(mode);
       expect(attachCommand('system-deep-loop', route, PLAIN_PROMPT), mode).toBeUndefined();
-      expect(attachCommand('system-deep-loop', route, `explain the scorer ${effortPhrase}`), mode).toBe(command);
+      expect(attachCommand('system-deep-loop', route, modeNeutralAsk), mode).toBe(command);
       expect(attachCommand('system-deep-loop', route, `run ${command} for me`), mode).toBe(command);
     }
 

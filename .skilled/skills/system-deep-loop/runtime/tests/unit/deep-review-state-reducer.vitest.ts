@@ -1605,3 +1605,119 @@ describe('reduceReviewState expansive frontier', () => {
     expect(result.dashboard).not.toContain('ANCHOR:frontier');
   });
 });
+
+// A direction one iteration ruled out is a candidate the next pass may reopen on
+// new evidence; only a direction that more than one iteration's evidence confirms
+// is exhausted. The strategy has to render those two evidence levels differently,
+// because a one-pass ruling written as BLOCKED / "Do NOT retry" freezes work the
+// run has not actually disproved.
+describe('reduceReviewState — exhausted approaches separate one-pass rulings from repeated evidence', () => {
+  const ONE_PASS = 'A dead export left behind by the packet: every added export has a reader.';
+  const REPEATED = 'A stale comment that contradicts its pattern: every changed comment states the grammar beside it.';
+
+  function writeExhaustedFixture(reviewDir: string) {
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 7,
+      reviewTarget: 'exhausted-approach-evidence',
+      reviewDimensions: ['correctness', 'security', 'traceability', 'maintainability'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), [
+      '# Deep Review Strategy',
+      '',
+      '<!-- ANCHOR:review-dimensions -->',
+      '## 3. REVIEW DIMENSIONS (remaining)',
+      '- [ ] correctness',
+      '- [ ] security',
+      '- [ ] traceability',
+      '- [ ] maintainability',
+      '<!-- /ANCHOR:review-dimensions -->',
+      '',
+      '<!-- ANCHOR:completed-dimensions -->',
+      '## 4. COMPLETED DIMENSIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:completed-dimensions -->',
+      '',
+      '<!-- ANCHOR:running-findings -->',
+      '## 5. RUNNING FINDINGS',
+      '- P0 (Blockers): 0',
+      '<!-- /ANCHOR:running-findings -->',
+      '',
+      '<!-- ANCHOR:exhausted-approaches -->',
+      '## 9. EXHAUSTED APPROACHES (do not retry)',
+      '[None yet]',
+      '<!-- /ANCHOR:exhausted-approaches -->',
+      '',
+      '## 11. RULED OUT DIRECTIONS',
+      '[None yet]',
+      '',
+      '<!-- ANCHOR:next-focus -->',
+      '## 11. NEXT FOCUS',
+      '[None yet]',
+      '<!-- /ANCHOR:next-focus -->',
+      '',
+    ].join('\n'));
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+    // REPEATED is named by both sections of run 1 and again by run 2, so a count
+    // of rows would read three attempts from two passes of evidence.
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Maintainability',
+      '',
+      '## Confirmed-Clean Surfaces',
+      '',
+      `- ${ONE_PASS}`,
+      `- ${REPEATED}`,
+      '',
+      '## Dead Ends',
+      '',
+      `- ${REPEATED}`,
+      '',
+    ].join('\n'));
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-002.md'), [
+      '# Iteration 2: Maintainability',
+      '',
+      '## Confirmed-Clean Surfaces',
+      '',
+      `- ${REPEATED}`,
+      '',
+    ].join('\n'));
+  }
+
+  function exhaustedEntries(strategy: string): string[] {
+    return sectionAfter(strategy, '## 9. EXHAUSTED APPROACHES (do not retry)', '<!-- /ANCHOR:exhausted-approaches -->')
+      .split('\n\n')
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+  }
+
+  function entryFor(entries: string[], direction: string): string {
+    const entry = entries.find((candidate) => candidate.startsWith(`### ${direction}`));
+    if (!entry) throw new Error(`Missing exhausted-approaches entry for: ${direction}`);
+    return entry;
+  }
+
+  it('renders a one-pass direction as ruled out with a reopen condition', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExhaustedFixture(reviewDir);
+
+    const entries = exhaustedEntries(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).strategy);
+    const entry = entryFor(entries, ONE_PASS);
+
+    expect(entry).toContain(`### ${ONE_PASS} -- RULED OUT (iteration 1, 1 attempt)`);
+    expect(entry).toContain('- Reopen when:');
+    expect(entry).not.toContain('BLOCKED');
+    expect(entry).not.toContain('Do NOT retry');
+  });
+
+  it('still renders a direction two iterations confirmed as blocked and not to be retried', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExhaustedFixture(reviewDir);
+
+    const entries = exhaustedEntries(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).strategy);
+    const entry = entryFor(entries, REPEATED);
+
+    expect(entry).toContain(`### ${REPEATED} -- BLOCKED (iteration 2, 2 attempts)`);
+    expect(entry).toContain(`- Do NOT retry: ${REPEATED}`);
+    expect(entry).not.toContain('Reopen when');
+  });
+});

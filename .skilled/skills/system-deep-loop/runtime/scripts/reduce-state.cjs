@@ -2356,6 +2356,11 @@ function renderSearchDebtSection(registry) {
   ].join('\n');
 }
 
+// A direction is exhausted only when more than one iteration's evidence confirms
+// it. A single ruling is a candidate the next iteration may reopen on new
+// evidence, so it must not be written as a permanent prohibition.
+const MIN_BLOCKED_ATTEMPTS = 2;
+
 function buildExhaustedApproaches(iterationFiles) {
   const grouped = new Map();
 
@@ -2374,20 +2379,31 @@ function buildExhaustedApproaches(iterationFiles) {
   return Array.from(grouped.entries())
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([entry, runs]) => {
-      const attemptCount = runs.length;
+      // Counting distinct runs keeps one iteration that named the same direction
+      // in two sections from reading as two passes of evidence.
+      const attemptCount = new Set(runs).size;
       const lastRun = Math.max(...runs);
+      if (attemptCount < MIN_BLOCKED_ATTEMPTS) {
+        return [
+          `### ${entry} -- RULED OUT (iteration ${lastRun}, ${attemptCount} attempt)`,
+          `- What was tried: ${entry}`,
+          '- Why ruled out: One pass of evidence did not support this direction.',
+          '- Reopen when: a later iteration carries evidence that contradicts that pass.',
+        ].join('\n');
+      }
       return [
         `### ${entry} -- BLOCKED (iteration ${lastRun}, ${attemptCount} attempts)`,
         `- What was tried: ${entry}`,
-        `- Why blocked: Repeated iteration evidence ruled this direction out.`,
+        '- Why blocked: Repeated iteration evidence ruled this direction out.',
         `- Do NOT retry: ${entry}`,
       ].join('\n');
     })
     .join('\n\n');
 }
 
-/** Replaces a machine-owned strategy section, matched by anchor id and then by heading; when neither exists it appends the section under `createMissing`, and otherwise throws a MISSING_ANCHOR error. */
+/** Replaces a machine-owned strategy section, matched by anchor id and then by heading; when neither exists it appends the section under `createMissing`, and otherwise throws a MISSING_ANCHOR error. A heading authored directly above the anchor marker is absorbed into the replacement so normalizing a heading-first file never leaves two headings for one section. */
 function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
+  const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
   const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
   const replacement = [
     `<!-- ANCHOR:${anchorId} -->`,
@@ -2397,9 +2413,22 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
     `<!-- /ANCHOR:${anchorId} -->`,
   ].join('\n');
 
+  // A strategy seeded in the heading-first dialect carries the section heading
+  // above the marker rather than inside it, so replacing only the marker span
+  // would write a second heading beside the authored one and every later pass
+  // would keep both. Dropping the authored heading lets the replacement own it.
+  const authoredHeading = new RegExp(
+    `(^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n(?=<!-- ANCHOR:${anchorId} -->)`,
+    'i',
+  );
+
   // Function replacements keep `$`-sequences in section text literal.
   if (pattern.test(content)) {
-    return content.replace(pattern, () => replacement);
+    // The separator group keeps the blank line the authored heading sat under.
+    const normalized = authoredHeading.test(content)
+      ? content.replace(authoredHeading, (_match, separator) => separator)
+      : content;
+    return normalized.replace(pattern, () => replacement);
   }
 
   // The strategy template wraps machine-managed sections in a different
@@ -2407,7 +2436,6 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   // by anchor id. Fall back to matching the heading itself so a freshly
   // templated file is normalized in place instead of leaving the original
   // section untouched and appending a duplicate one alongside it.
-  const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
   const headingPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
   if (headingPattern.test(content)) {
     return content.replace(headingPattern, () => `\n${replacement}`);
