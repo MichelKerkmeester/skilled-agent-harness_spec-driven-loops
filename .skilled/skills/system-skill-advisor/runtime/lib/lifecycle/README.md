@@ -1,9 +1,8 @@
 ---
 title: "Lifecycle Library: Advisor Skill State Transitions"
-description: "Age, archive, rollback and status helpers for skill-advisor lifecycle metadata."
+description: "Age, archive and status helpers for skill-advisor lifecycle metadata."
 trigger_phrases:
   - "advisor lifecycle"
-  - "advisor rollback"
 ---
 
 # Lifecycle Library: Advisor Skill State Transitions
@@ -12,12 +11,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/lifecycle/` contains helpers for advisor-facing skill lifecycle metadata. It covers age haircuts, archive handling, rollback metadata and status values.
+`lib/lifecycle/` contains helpers for advisor-facing skill lifecycle metadata. It covers age haircuts, archive handling and status values.
 
 Current state:
 
 - Applies age and archive rules to skill metadata.
-- Strips the derived block for rollback.
 - Encodes lifecycle status values.
 
 ---
@@ -28,7 +26,6 @@ Current state:
 lifecycle/
 +-- age-haircut.ts        # Age-based ranking adjustment helpers
 +-- archive-handling.ts   # Archive state handling
-+-- rollback.ts           # Rollback metadata helpers
 +-- status-values.ts      # Lifecycle status constants
 `-- README.md
 ```
@@ -41,7 +38,6 @@ lifecycle/
 |---|---|
 | `age-haircut.ts` | Applies age-based adjustment to lifecycle-aware ranking. |
 | `archive-handling.ts` | Handles archived skill metadata. |
-| `rollback.ts` | Strips the derived block from in-memory metadata. |
 | `status-values.ts` | Defines lifecycle status constants. |
 
 ---
@@ -58,7 +54,6 @@ Main flow:
 
 ```text
 skill lifecycle metadata
-  -> rollback handling
   -> archive and age adjustment
   -> status evaluation
   -> advisor ranking or redirect decision
@@ -71,7 +66,6 @@ skill lifecycle metadata
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `status-values.ts` | TypeScript module | Lifecycle status constants. |
-| `rollback.ts` | TypeScript module | Rollback metadata helper. |
 
 ---
 

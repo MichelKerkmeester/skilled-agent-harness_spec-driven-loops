@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor ci filter dead helpers",
+      "run the advisor suite on hook only changes",
+      "advisor ci filter dead helpers plan",
+      "advisor ci filter dead helpers tasks",
+      "advisor ci filter dead helpers acceptance criteria",
+      "030-advisor-ci-filter-dead-helpers operator decisions",
+      "advisor ci filter dead helpers implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "filter",
+      "dead",
+      "helpers",
+      "run",
+      "suite",
+      "hook",
+      "only",
+      "changes",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/skill-advisor-stress.yml",
+      ".skilled/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/route-exclusions.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compat/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/compat/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/config/README.md",
+      ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-stress.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-advisor-stress.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sanitizer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "archive-handling.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-derived-metadata.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "route-exclusions.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/route-exclusions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compat/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dead",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The workflow that runs the advisor test suite, `.github/workflows/skill-advisor-stress.yml`, filters on `runtime/`, the launcher and the OpenCode plugin, but not on `system-skill-advisor/hooks/`",
+    "created_at": "2026-11-24T11:35:40Z",
+    "last_save_at": "2026-11-24T12:22:58.592Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5a66fc3e7dc511bf174e0650cea0e25b5f9994b36fe79aa94fcf9094c2d4cc67",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1b78635fa2bad4da81b4249cf4fc77188ce4570b9aafc1534546c386c68578b8",
+      "plan.md": "620676d0ea04b7f27aeb3e30c8b2aae18016fed21ebee41f1108bebacedd9693",
+      "tasks.md": "7d3984cf4d2882072db8065be4b400bdecbf693bc7362c4cd6977f1d42b99ad3",
+      "decision-record.md": "8cb618f345c2c227ee5b0ec7f034985d74a7c81c8668281a7ff65118924f666f",
+      "implementation-summary.md": "f850110e964369fc5671cf20fbc089ffb6e84384259e71aa6f49a055b58f8831"
+    },
+    "last_active_at": null
+  }
+}

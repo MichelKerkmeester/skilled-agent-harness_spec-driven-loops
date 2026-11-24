@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes",
+  "spec_folder": "cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes",
+  "parent_id": "cli-orca/003-cli-orca-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli orca post alignment doc fixes",
+      "skills index family counts",
+      "cli orca post alignment doc fixes plan",
+      "cli orca post alignment doc fixes tasks",
+      "005-post-alignment-doc-fixes operator decisions",
+      "post alignment doc fixes implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "orca",
+      "post",
+      "alignment",
+      "doc",
+      "skills",
+      "index",
+      "family",
+      "counts",
+      "plan",
+      "tasks",
+      "005-post-alignment-doc-fixes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/README.txt",
+      ".skilled/changelog/skilled/v4.2.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Correct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow None",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A `/local-skilled-alignment` run over the removal commits found two gaps",
+    "created_at": "2026-11-24T13:17:32Z",
+    "last_save_at": "2026-11-24T13:35:46.800Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e9d0b961de02132b238fc4243a76199ff001c5750dba33f77e23c3abee527458",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b51baa9e695038d6a5754389090d642733e31ecb69976d574e8789fca5f1486e",
+      "plan.md": "136ec72ce6316a62767408410dc2d19f08dee234f85d6c1fc573bc19f568e256",
+      "tasks.md": "93401555c08552c0521050b63618218098180f0c7d87946458ec996211c73343",
+      "decision-record.md": "de6fb39e8cde437f0c0d389d4487d1fbc266333972b65261b24b122e7e79fffa",
+      "implementation-summary.md": "a9eb7adbd20820c9dc102df5ccaaa62928ffdb7b99455e5c736e31d49acaf0e6"
+    },
+    "last_active_at": null
+  }
+}

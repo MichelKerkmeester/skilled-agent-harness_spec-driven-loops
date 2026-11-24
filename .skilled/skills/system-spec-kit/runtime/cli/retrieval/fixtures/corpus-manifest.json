@@ -1,5 +1,5 @@
 {
-  "corpusHash": "836a1e1e78b3793c0351051dddcac2350761d4328dd8a97d36d331ae9da42068",
+  "corpusHash": "40fcfd7a24ac22d3369a57a3f18321cb9c3221c3747723a368fb82f93699521f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29501,
+  "includedPathCount": 29518,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7368,6 +7368,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.10.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.11.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.13.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
@@ -11211,6 +11212,11 @@
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/plan.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/spec.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/tasks.md",
+    "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/decision-record.md",
+    "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/implementation-summary.md",
+    "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/plan.md",
+    "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/spec.md",
+    "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/tasks.md",
     "specs/cli-orca/003-cli-orca-deprecation/spec.md",
     "specs/commands/001-command-contract-reconciliation/acceptance-criteria.md",
     "specs/commands/001-command-contract-reconciliation/implementation-summary.md",
@@ -17371,6 +17377,11 @@
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/plan.md",
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/spec.md",
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/tasks.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/decision-record.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/implementation-summary.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/plan.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/spec.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -20099,6 +20110,12 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
@@ -29533,7 +29550,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ce1751ca8df00d58eda1c93551012933ba0ae4094d30c4679294b121c2fb1e0f",
+  "manifestHash": "014b2f2f4814219fed3805818e82ab34b34e23a44f88c39453eecc921015feec",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32373,6 +32390,10 @@
     },
     {
       "path": "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/scratch",
       "reason": "excluded directory"
     },
     {
@@ -37224,6 +37245,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/worktree-lifecycle/z_archive",
       "reason": "excluded directory"
     },
@@ -38437,6 +38462,10 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers/scratch",
       "reason": "excluded directory"
     },
     {

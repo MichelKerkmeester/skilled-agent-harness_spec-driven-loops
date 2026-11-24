@@ -9,7 +9,8 @@
     "sk-git/worktree-lifecycle/003-worktree-dependency-provisioning",
     "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression",
     "sk-git/worktree-lifecycle/005-personal-name-scrub",
-    "sk-git/worktree-lifecycle/006-provision-private-command-links"
+    "sk-git/worktree-lifecycle/006-provision-private-command-links",
+    "sk-git/worktree-lifecycle/007-provision-dev-dependencies"
   ],
   "manual": {
     "depends_on": [],

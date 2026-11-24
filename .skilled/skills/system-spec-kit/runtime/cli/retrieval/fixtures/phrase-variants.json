@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce1751ca8df00d58eda1c93551012933ba0ae4094d30c4679294b121c2fb1e0f",
+  "manifestHash": "014b2f2f4814219fed3805818e82ab34b34e23a44f88c39453eecc921015feec",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1534,6 +1534,9 @@
     "005 plan q4 quantization": [
       "005 plan q4 quantization"
     ],
+    "005 post alignment doc fixes operator decisions": [
+      "005-post-alignment-doc-fixes operator decisions"
+    ],
     "005 post program cleanup": [
       "005 post-program cleanup"
     ],
@@ -2040,6 +2043,9 @@
     ],
     "007 plan voyage cleanup": [
       "007 plan voyage cleanup"
+    ],
+    "007 provision dev dependencies operator decisions": [
+      "007-provision-dev-dependencies operator decisions"
     ],
     "007 review doc reconciliation operator decisions": [
       "007-review-doc-reconciliation operator decisions"
@@ -6937,6 +6943,9 @@
     "029 test suite": [
       "029 test suite"
     ],
+    "030 advisor ci filter dead helpers operator decisions": [
+      "030-advisor-ci-filter-dead-helpers operator decisions"
+    ],
     "030 clean infrastructure full matrix stress design": [
       "030-clean-infrastructure-full-matrix-stress-design"
     ],
@@ -9126,6 +9135,21 @@
     "advisor child timing tasks": [
       "advisor child timing tasks"
     ],
+    "advisor ci filter dead helpers": [
+      "advisor ci filter dead helpers"
+    ],
+    "advisor ci filter dead helpers acceptance criteria": [
+      "advisor ci filter dead helpers acceptance criteria"
+    ],
+    "advisor ci filter dead helpers implementation summary": [
+      "advisor ci filter dead helpers implementation summary"
+    ],
+    "advisor ci filter dead helpers plan": [
+      "advisor ci filter dead helpers plan"
+    ],
+    "advisor ci filter dead helpers tasks": [
+      "advisor ci filter dead helpers tasks"
+    ],
     "advisor cleanup": [
       "advisor cleanup"
     ],
@@ -9964,9 +9988,6 @@
     ],
     "advisor resolver task": [
       "advisor resolver task"
-    ],
-    "advisor rollback": [
-      "advisor rollback"
     ],
     "advisor routing and local install": [
       "advisor routing and local install"
@@ -25142,6 +25163,15 @@
     "cli orca plan": [
       "cli orca plan"
     ],
+    "cli orca post alignment doc fixes": [
+      "cli orca post alignment doc fixes"
+    ],
+    "cli orca post alignment doc fixes plan": [
+      "cli orca post alignment doc fixes plan"
+    ],
+    "cli orca post alignment doc fixes tasks": [
+      "cli orca post alignment doc fixes tasks"
+    ],
     "cli orca removal baseline": [
       "cli orca removal baseline"
     ],
@@ -25162,6 +25192,9 @@
     ],
     "cli orca removal tests": [
       "cli orca removal tests"
+    ],
+    "cli orca skill removed": [
+      "cli-orca skill removed"
     ],
     "cli orca tasks": [
       "cli orca tasks",
@@ -91368,6 +91401,9 @@
     "post adr 012 embedder survey": [
       "post-adr-012 embedder survey"
     ],
+    "post alignment doc fixes implementation summary": [
+      "post alignment doc fixes implementation summary"
+    ],
     "post arc docs sweep summary": [
       "post-arc docs sweep summary"
     ],
@@ -93389,6 +93425,18 @@
     ],
     "provision command for a fresh clone": [
       "provision command for a fresh clone"
+    ],
+    "provision dev dependencies": [
+      "provision dev dependencies"
+    ],
+    "provision dev dependencies implementation summary": [
+      "provision dev dependencies implementation summary"
+    ],
+    "provision dev dependencies plan": [
+      "provision dev dependencies plan"
+    ],
+    "provision dev dependencies tasks": [
+      "provision dev dependencies tasks"
     ],
     "provision private command links": [
       "provision private command links"
@@ -105789,6 +105837,9 @@
     "run tests mjs process group kill": [
       "run-tests.mjs process group kill"
     ],
+    "run the advisor suite on hook only changes": [
+      "run the advisor suite on hook only changes"
+    ],
     "run the quality gate": [
       "run the quality gate"
     ],
@@ -117559,6 +117610,9 @@
     "sk git 1 11 12 0": [
       "sk-git 1.11.12.0"
     ],
+    "sk git 1 11 13 0": [
+      "sk-git 1.11.13.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -117885,6 +117939,9 @@
     ],
     "sk git v1 11 12 0": [
       "sk-git v1.11.12.0"
+    ],
+    "sk git v1 11 13 0": [
+      "sk-git v1.11.13.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -121124,6 +121181,9 @@
     ],
     "skills folder cleanup": [
       "skills folder cleanup"
+    ],
+    "skills index family counts": [
+      "skills index family counts"
     ],
     "skills root lists skills only": [
       "skills root lists skills only"
@@ -129284,6 +129344,9 @@
     ],
     "system spec kit mcp sidecar research": [
       "system-spec-kit mcp sidecar research"
+    ],
+    "system spec kit missing dev dependencies in worktree": [
+      "system-spec-kit missing dev dependencies in worktree"
     ],
     "system spec kit own changelog": [
       "system-spec-kit own changelog"
@@ -139170,8 +139233,14 @@
     "worktree provisioning drift": [
       "worktree provisioning drift"
     ],
+    "worktree provisioning nested lockfile": [
+      "worktree provisioning nested lockfile"
+    ],
     "worktree provisioning plan": [
       "worktree provisioning plan"
+    ],
+    "worktree provisioning skips nested lockfile package": [
+      "worktree provisioning skips nested lockfile package"
     ],
     "worktree provisioning skips sk doc": [
       "worktree provisioning skips sk-doc"
