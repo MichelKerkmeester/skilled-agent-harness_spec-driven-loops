@@ -1,33 +1,29 @@
-# Review Iteration 001 — correctness
-
-- Run: `fanout-deepseek-max-3-1795511183570-92w0ez`, lineage `deepseek-max-3`, generation 3, mode `new`
-- Iteration: 1 of 5 (stop policy `max-iterations`; convergence is telemetry only)
-- Dimension: correctness
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder)
-- Operator review focus (covered in addition to the dimension): traceability — finish `spec_code` and `checklist_evidence`; check every REQ against the code or decision that records it, and every ticked task and `Met` row against evidence that really exists, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
-- How this iteration addressed the focus: it read the sixth-round gate predicates at the exact lines the acceptance rows cite (`RUN_ASK_NEGATED_SOURCE`, `RUN_REFUSED`, `typedCommandsIn`, `DEFECT_CHECK`, `LEAD_WINDOW`, the Python refusal and long-prompt copies), and it checked one closure-doc claim against the code and the packet's own test. It records the first `spec_code` result; `checklist_evidence` starts in iteration 4.
+# Review Iteration 001
 
 ## Dispatcher
 
-Loaded and executed inline as the `@deep-review` LEAF agent for lineage `deepseek-max-3` of a detached fan-out. No nested dispatch was used.
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Session: `fanout-deepseek-max-3-1795514074741-gl47kr`, generation 4, lineageMode `new`, parent `2026-11-24T09:54:34.000Z`
+- Iteration 1 of 5. Dimension: correctness. Operator review focus bound: traceability (`spec_code` + `checklist_evidence`).
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder). Scope: the 46 paths in `review-scope-files.txt`.
+- Setup bindings: target=`specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`, maxIterations=5, convergence=0.1, mode=review, dimensions=correctness,security,traceability,maintainability, specFolder=`specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`.
+- No `steer.md` exists in this lineage at iteration 1, so this iteration carries no lead ruling.
+
+## Dimension
+
+Correctness of the deep-loop offer gate in both copies: the refusal, stuck-run, typed-command, deferred-route and bounded-window predicates the sixth and seventh rounds changed, judged against the outcome each prompt states in `spec.md`.
+
+The operator focus was addressed by opening the `spec_code` protocol: the gate rows REQ-015 to REQ-030 were each exercised or read against the code that implements them, so the traceability pass in iterations 3 to 5 starts from settled gate behaviour rather than restating prose.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:240-330` (`typedCommandIn`, `typedCommandsIn`, `typedCommandForTop`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:520-620` (`isStuckRunComplaint`, negation leads, `LEAD_WINDOW`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:660-1010` (`isRunRefused`, `namesLoopSubject`, `hasLoopAsk`, `asksForLoopRun`, `commandOnlyMentioned` head)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1253-1400` (`attachCommand` stuck branch, typed gate, `deferredLoopCommand`)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4839-4996` (`is_stuck_run_complaint`, `asks_for_loop_run`, `advisor_prompt_head`)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5265-5360` (`_RUN_REFUSED_RE`, `_RUN_ASK_NEGATED_RE`, `_apply_deep_loop_offer_gate`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074-1092` (`withholdDeepLoopDoctorWithoutRun`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:447-480` (`passesAsked`, loop lanes)
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:428-449` (`attachTypedCommand`)
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1490-1565` (`degradedRecommendations` typed marker)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (203 cases; typed, doctor and refusal columns)
-- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2919-3000` (fallback, doctor and typed serving tests)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:55-235` (vocabulary pairs, per-entry cases, fused doctor row)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:219-248` (limitations)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:56-99` (AC-030 to AC-042)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1291-1367` (`attachCommand`), `:1369-1411` (`deferredLoopCommand`), `:569-618` (`RUN_ASK_REFUSAL_LEADS`, `refusalLeadSource`, `RUN_ASK_NEGATED_SOURCE`), `:629-646` (`LEAD_WINDOW`, `endsBefore`), `:251-295` (`typedCommandIn`, `typedCommandsIn`), `:551-556` (`isStuckRunComplaint`), `:930-963` (`asksForLoopRun`), `:1406` (`NAMED_LOOP_MODE`)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5343-5400` (`_apply_deep_loop_offer_gate`), `:4628` (`_RUN_ASK_REFUSAL_LEAD_LIST`), `:4921-4926` (`_LEAD_WINDOW`, `_lead_window_ends_before`), `:888-899` (`_advisor_prompt_head`), `:52` (`ADVISOR_PROMPT_MAX_CHARS`), `:5333` (`is_run_refused`), `:5021` (`asks_for_loop_run`), `:4864` (`is_stuck_run_complaint`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074-1090` (`withholdDeepLoopDoctorWithoutRun`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2` (fixture header, which names the layer each typed column pins)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:185-215` (gate and served columns), `:249-298` (per-entry vocabulary coverage)
+- `.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:107-121` (typed-on-stuck served head)
+- Live module probes: `attachCommand` over 40 prompts and `_apply_deep_loop_offer_gate` over 14, executed in this iteration against the working tree.
 
 ## Findings - New
 
@@ -37,71 +33,77 @@ None.
 
 ### P1 Findings
 
-1. **Implementation-summary limitation 8 states the opposite of the built Python fallback** — `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:247` — the limitation says "The Python fallback offers a deep-loop command only when the prompt types one. The fallback keeps the run row a typed prompt earned and drops the rest", and names "run a deep review on the parser" and "do 3 rounds of review on the scheduler" as serving `system-deep-loop` with no command through the fallback. The gate the fallback serves with keeps an untyped run ask: `_apply_deep_loop_offer_gate` drops a run row only when `(stuck and not typed_here) or (not typed_here and not run_asked)` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5348]`, and `run_asked = asks_for_loop_run(prompt_lower)` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5319]`. The packet's own passing Python test asserts the opposite of the limitation: it asks `analyze_request("run a deep review on the parser")` for a `command-spec-kit-deep-review` row and requires it to exist and be unmarked `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2988]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2994]`, and a sibling test requires a counted ask ("run 5 iterations of deep research on vector indexes") to keep its row `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2927]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2932]`. The shared fixture also pins "run a deep review on the parser" as `asksForLoopRun: true` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:117]`. A reader of the closure record is told the daemon-down fallback withholds commands for ordinary run asks when it in fact offers them.
-   Finding class: incorrect-documentation (behaviour claim)
-   Scope proof: the claim, the gate it describes and the test that pins the behaviour are all inside the reviewed scope files (`implementation-summary.md`, `scripts/skill_advisor.py`, `tests/python/test_skill_advisor.py`, `tests/fixtures/deep-loop-offer-cases.json`).
-   Affected surface hints: `implementation-summary.md` closure record; any operator deciding whether the Python fallback is degraded enough to need a fix; REQ-034's "closure docs match the built behaviour" class.
-   Case: an operator reads limitation 8 to decide whether a daemon-down fallback needs remediation for untyped run asks; the record says those asks get no command, while `_apply_deep_loop_offer_gate` keeps the row whenever `asks_for_loop_run` is true.
-   ```json
-   {"type":"claim_adjudication","claim":"implementation-summary limitation 8 states that the Python fallback offers a deep-loop command only when the prompt types one, including for 'run a deep review on the parser'","evidenceRefs":["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:247",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5319",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5348",".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2988",".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:117"],"counterevidenceSought":"searched for a second gate path that would drop the row after `_apply_deep_loop_offer_gate`, and for a narrower reading in which limitation 8 describes only the CLI `degradedRecommendations` path","alternativeExplanation":"the limitation may describe only the CLI degraded path (degradedRecommendations, which attaches only a typed command), but its stated clause 'offers a deep-loop command only when the prompt types one' and its named fallback heads describe the Python gate, which is the served fallback","finalSeverity":"P1","confidence":"high","downgradeTrigger":"if the packet owner narrows limitation 8 to the CLI degraded path and removes the Python-fallback examples, the claim becomes true and the finding drops to P2 wording"}
-   ```
+None.
 
 ### P2 Findings
 
-2. **The refusal-vocabulary parity guard does not cover `RUN_ASK_NEGATED_SOURCE`** — `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:62` — REQ-031 requires that "the two copies of any list differ" fails a test, and the guard compares eleven pairs `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:62]`. The refusal leads are two hand-kept pattern strings, `RUN_ASK_NEGATED_SOURCE` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:581]` and `_RUN_ASK_NEGATED_RE` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4868]`, and no pair compares them, so a lead added to the TypeScript string alone passes every vocabulary test unless a fixture case happens to use the new word. The two copies are currently in step (skip guard, avoid, instead of, rather than, refuse, even-think are present on both sides), so this is a guard-coverage gap rather than present drift.
-   Finding class: missing-test-coverage
-   Scope proof: both pattern sources and the guard that omits them are reviewed scope files; the gap is provable by reading the pair list and the two patterns.
-   Affected surface hints: the deep-loop refusal gate on both runtimes; future edits to refusal vocabulary.
-   Case: a developer adds "no interest in" to `RUN_ASK_NEGATED_SOURCE` only; the vocabulary guard still passes, and the Python fallback starts offering a command the native gate withholds until a fixture row happens to expose it.
-   ```json
-   {"type":"claim_adjudication","claim":"no drift guard compares the refusal-lead vocabulary between command-attach.ts and skill_advisor.py","evidenceRefs":[".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:62",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:581",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4868"],"counterevidenceSought":"looked for a per-entry fixture requirement that would fail on an unadded refusal verb, and for a separate parity test","alternativeExplanation":"the refusal lead is a pattern rather than a word list, so a pair-based guard may be impossible without restructuring; REQ-031 names five named lists and does not name this one","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"if REQ-031 is read as covering only the five named lists, this is hardening rather than a requirement gap"}
-   ```
+None.
 
 ## Traceability Checks
 
-| Protocol | Level | Status | Evidence | Note |
-|----------|-------|--------|----------|------|
-| `spec_code` | core | partial | `command-attach.ts:581`, `command-attach.ts:738`, `command-attach.ts:1347`, `skill_advisor.py:4868`, `skill_advisor.py:5271` | REQ-023, REQ-024, REQ-025 and REQ-026 code predicates read at the cited lines and present on both copies. The REQ-027 to REQ-034 sweep continues in iteration 3, and `checklist_evidence` runs in iteration 4. |
-| `checklist_evidence` | core | not run | - | Planned for iteration 4. |
+- **`spec_code` (core, hard): partial.** Opened in this iteration. The gate rows REQ-015, REQ-016, REQ-017, REQ-018, REQ-019, REQ-023, REQ-024, REQ-025, REQ-026, REQ-028, REQ-029 and REQ-030 were each checked against the producer that implements them; REQ-001 to REQ-014, REQ-020 to REQ-022, REQ-027 and REQ-031 to REQ-034 are deferred to iterations 3 and 5. Evidence: `command-attach.ts:1291`, `command-attach.ts:1369`, `skill_advisor.py:5343`, `fusion.ts:1074`, `skill_advisor.py:888`, `command-attach.ts:629`.
+- **`checklist_evidence` (core, hard)**: not run in this iteration; it is scheduled for iterations 4 and 5.
 
-A `partial` result is recorded rather than `pass` because the focus commits this run to the full REQ sweep; only REQ-023 to REQ-026 were checked here.
+Observed results, one line per requirement this iteration settled:
+
+| Requirement | Observed | Evidence |
+|---|---|---|
+| REQ-015 | all six refusal prompts return no command; "do a deep review of the parser" returns `/deep:review` | `command-attach.ts:1291`, probe |
+| REQ-016 | both loop questions return no command | `command-attach.ts:965`, probe |
+| REQ-017 | "run a deep-review of the auth module" and the curly-apostrophe research loop both attach | `command-attach.ts:551`, probe |
+| REQ-018 | "the deep research run is not stuck, run 5 more iterations" attaches `/deep:research` | `command-attach.ts:521`, probe |
+| REQ-019 | the nine subject prompts return no command on either route; the three controls keep theirs | `command-attach.ts:905`, probe |
+| REQ-023 | six refusal verbs withhold; "skip straight to", "don't hesitate", "don't forget" all keep `/deep:review` | `command-attach.ts:569`, probe |
+| REQ-024 | both stuck-and-refusing prompts drop the doctor row in `attachCommand`, in the fused row and in the Python gate; the bare complaint keeps `/doctor:deep-loop` | `command-attach.ts:1301`, `fusion.ts:1074`, `skill_advisor.py:5343`, probe |
+| REQ-025 | both two-command prompts keep `/deep:review`; `typedCommandsIn` returns `["/deep:review","/create:changelog"]` | `command-attach.ts:274`, probe |
+| REQ-026 | "run a deep loop to review the research loop config" and "run a deep loop checking the parser for bugs" both resolve `/deep:review` on a deferred route | `command-attach.ts:1369`, probe |
+| REQ-028 | the degraded render paths carry `command`, `policy` and `typed` through, which the CLI and subprocess suites pin | `subprocess.ts`, `skill-advisor-cli.ts`, tests read |
+| REQ-029 | `attachCommand` answers `/doctor:deep-loop` while the served head answers `/deep:review` with `typed: true`, asserted at `typed-on-stuck-serving.vitest.ts:107` | `advisor-recommend.ts:428`, test read |
+| REQ-030 | a 96,150-character refusal prompt stays withheld in 12 ms, a 96,000-character run ask attaches in 11 ms, and both copies cut at 10,000 code units with a 400-unit lead window | `command-attach.ts:629`, `skill_advisor.py:888`, `skill_advisor.py:4921`, probe |
+
+The Python gate was exercised directly over the REQ-020, REQ-023, REQ-024, REQ-025, REQ-027 and REQ-030 prompts and agreed with the TypeScript gate on every row tested, apart from the route-scoped difference the fixture header documents (the Python gate keeps every run row a prompt asks for; the native gate is handed one route).
 
 ## Integration Evidence
 
-- Deep-loop gate surface: `attachCommand` is the single attach point for `/deep:review` and `/deep:research` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1253]`; the served handler applies `attachTypedCommand` after it `[SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:428]`.
-- Fused row surface: `withholdDeepLoopDoctorWithoutRun` runs inside fusion `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1487]` and withholds on a refused run `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1084]`.
-- Fallback surface: `_apply_deep_loop_offer_gate` is called on the served head `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:6166]`.
+- `.skilled/commands/deep/review.md` and `.skilled/commands/deep/research.md`: read as the command entry points the offer is taught in; no routing claim of this iteration rests on them.
+- `.skilled/skills/system-deep-loop/deep-review/SKILL.md`: loaded as the owning mode packet for this loop.
+- `.skilled/skills/system-deep-loop/hub-router.json` and `ROUTER.md`: not exercised this iteration; REQ-011's alias rows are iteration 3's.
 
 ## Edge Cases
 
-- **Ambiguous ownership of limitation 8's layer.** The claim could be read as the CLI degraded path rather than the Python gate. Resolved by keeping the P1 on the sentence as written (it names fallback heads for Python-only prompts) and naming the narrowing that would drop it to P2 in `downgradeTrigger`.
-- **Unverifiable counts.** The suite counts in AC-028 and AC-042 (184 files, 3,029 passed; `pass=136`) cannot be re-run inside this lineage's write surface, so they are treated as recorded observations checked against their cited lines, not as re-verified facts.
-- **Line-offset citations.** `typedCommandIn` is cited as `command-attach.ts:250` while the export begins at `:251`. Treated as a one-line offset with no evidentiary effect; not reported.
+- **Cross-route probe is not a defect.** `"do 5 research iterations on caching"` returns `/deep:research` on a research route and `/deep:review` on a review route. The gate attaches the command of the route it is handed, and the fixture pins each typed and gate row on one route of that command's mode (`.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2`), so the requirement's "keep theirs" is a claim about the route the scorer picks, not about every route. Recorded as an interpretation, not a finding.
+- **Python keeps both run rows on a keep case.** The Python gate has no route, so a keep prompt keeps both `/deep:*` rows it was given. The fixture header states this asymmetry, and REQ-020 claims parity at the gate layer rather than row-for-row equality.
+- **The typed-on-stuck split is deliberate.** `attachCommand` answers the doctor and the served head answers the typed command, which ADR-005 records and REQ-029 requires. The two layers disagreeing is the documented behaviour, so a reader comparing them is seeing the decision, not drift.
+- **`dist/` is absent from this worktree**, so the probe harness and the vitest suite cannot be rerun here. Every behavioural claim above was produced by importing the TypeScript and Python modules directly, which is the producer, not the built shim.
 
 ## Confirmed-Clean Surfaces
 
-- `typedCommandsIn` returns every typed command in reading order with one key per start index, and `typedCommandIn` still returns the longest key `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:251]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:274]`.
-- The deep gate reads the typed list, not `typedCommandIn`, so a second typed command no longer hides the first `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1319]`.
-- `DEFECT_CHECK` reads the -ing forms and the deferred cue blanks a loop name that `namesLoopSubject` reads as the subject `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:480]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1347]`.
-- The stuck branch honours a typed doctor, a refused run and a mention-only naming, then answers the diagnosis `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1262]`.
-- The Python refusal vocabulary carries the same leads as the TypeScript source, including the "skip … to" exception `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4868]`.
-- Fixture evidence columns match their stated counts: 203 cases, 26 `doctorWithheld` rows, 11 `refusal-verb-` ids, 5 `typedReviewKept`/`servedReviewKept` pairs and 4 `typedRunsKept` rows `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:117]`.
-- The Python long-prompt head counts UTF-16 code units the way the native schema does, and caps at the same 10,000 units `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257]`.
+- The refusal-lead alternation withholds all six REQ-023 verbs and keeps all three control prompts (`command-attach.ts:569-618`).
+- The stuck-run branch withholds the doctor on a refusing complaint and keeps it otherwise, in both copies and in the fused row (`command-attach.ts:1301`, `fusion.ts:1074`, `skill_advisor.py:5343`).
+- A second typed command never hides a typed `/deep:*` command (`command-attach.ts:274`).
+- A deferred route resolves one mode cue only, and two cues resolve none (`command-attach.ts:1369-1411`).
+- The lead window bounds the per-phrase scan, so a 96,150-character prompt costs 12 ms rather than time quadratic in its length (`command-attach.ts:629-646`).
+- The Python head cut counts UTF-16 code units, so a prompt with astral characters is cut where the native schema cuts it (`skill_advisor.py:888-899`).
 
 ## Ruled Out
 
-- **"A second typed command hides the first" (REQ-025 regression).** Ruled out: the deep gate reads `typedCommandsIn(prompt).includes(...)` and the served head walks the same ordered list `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1320]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:305]`.
-- **"The refusal lead also swallows the idiom controls" ("don't forget/hesitate to run a deep review").** Ruled out: the lead allows at most two words before the loop name, and both idioms place four `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:581]`; the fixture pins both as asks `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:136]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:137]`.
-- **"A refusing stuck complaint still gets the fused doctor row."** Ruled out: `doctorRefused` reads `isRunRefused` before the row survives `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1084]`, and the fixture pins the withheld rows `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:138]`.
-- **"The stage-one lane still boosts a past-run pass count."** Ruled out: `passesAsked` requires `asksForLoopRun` or `isStuckRunComplaint` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454]`.
+- **A refusal that still offers the command:** ruled out for all six REQ-023 verbs and for the six REQ-015 prompts, by probe on both copies.
+- **A bare-naming false offer:** ruled out; "refactor the deep research scorer", "review our multi-pass compiler" and the other seven REQ-019 subject prompts return no command on either route.
+- **A quadratic scan left in the lead reads:** ruled out; `endsBefore` slices a 400-character window rather than the whole prefix (`command-attach.ts:629-646`), and the 96,150-character probe completed in 12 ms.
+- **A type/length divergence between the two copies on the head and the window:** ruled out; both read `10_000` and `400` (`advisor-tool-schemas.ts:257`, `skill_advisor.py:52`, `skill_advisor.py:4921`), and the drift guard compares the two numbers against the Python source (`deep-loop-offer-cases.vitest.ts:80-83`).
+- **A typed command hidden by a longer second command:** ruled out by probe over both REQ-025 prompts.
 
 ## Next Focus
 
 - Dimension: security
-- Focus area: trust boundary and input handling on the review gate: the 10,000-unit head, the 400-character lead window, regex backtracking on adversarial prompts, command-name injection through the prompt, and the subprocess/degraded path's handling of a prompt-supplied command string.
-- Reason: iteration 1 closed the functional reading of the sixth-round predicates; the remaining risk on this surface is input-shaped (long prompts, crafted command names) rather than semantic.
-- Rotation status: correctness reviewed (PASS with advisories); security, traceability and maintainability remain.
-- Blocked/productive carry-forward: none blocked. Productive: reading the cited line before the claim it supports.
-- Required evidence: a `file:line` for each security claim; the 10,000-unit and 400-character windows; the command-naming boundary regex; the degraded path's command carry.
+- Focus area: trust boundaries of the gate and its serving layers, the no-edit guard ordering, command-naming quote handling and the secrets surface in the changed files.
+- Reason: rotation continues to the second canonical dimension with correctness settled.
+- Rotation status: 1 of 4 dimensions covered.
+- Blocked/productive carry-forward: productive category "read the producer, then exercise it live" carried this iteration and should carry the security pass.
+- Required evidence: file:line for each guard and a probe or test for each security-relevant prompt shape.
 
-Review verdict: CONDITIONAL
+## Verdict
+
+No active P0 and no active P1, so the iteration passes on its own findings. The run's verdict is not settled here: `spec_code` is still partial and `checklist_evidence` has not run.
+
+Review verdict: PASS

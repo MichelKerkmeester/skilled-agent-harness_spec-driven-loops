@@ -1,9 +1,9 @@
 {
   "topic": "Review: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "sessionId": "fanout-deepseek-max-3-1795511183570-92w0ez",
-  "parentSessionId": "2026-11-24T09:06:03.000Z",
+  "sessionId": "fanout-deepseek-max-3-1795514074741-gl47kr",
+  "parentSessionId": "2026-11-24T09:54:34.000Z",
   "lineageMode": "new",
-  "generation": 3,
+  "generation": 4,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 5,
@@ -12,7 +12,7 @@
     "minIterations": 2,
     "convergenceMode": "default",
     "depthMode": "default",
-    "stopPolicy": "fail-closed"
+    "stopPolicy": "max-iterations"
   },
   "expansiveDepth": {
     "maxDepth": 3,
@@ -30,7 +30,7 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "createdAt": "2026-11-24T09:08:04.000Z",
+  "createdAt": "2026-11-24T09:56:49.000Z",
   "status": "complete",
   "releaseReadinessState": "in-progress",
   "executionMode": "auto",
@@ -39,7 +39,7 @@
     "model": "deepseek-v4.1-flash-1017",
     "reasoningEffort": "max",
     "serviceTier": null,
-    "sandboxMode": null,
+    "sandboxMode": "danger-full-access",
     "timeoutSeconds": 900
   },
   "mode": "review",
@@ -120,6 +120,11 @@
     ],
     "promotionMode": "advisory-only"
   },
+  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
   "reviewScopeFiles": [
     ".skilled/changelog/skilled/v4.2.0.0.md",
     ".skilled/commands/deep/assets/deep-research-presentation.txt",
@@ -168,10 +173,5 @@
     ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts",
     ".skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts"
   ],
-  "resource_map_present": false,
-  "stopPolicy": "max-iterations",
-  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3",
-  "resource_map": {
-    "emit": false
-  }
+  "stopPolicy": "max-iterations"
 }

@@ -1,0 +1,176 @@
+{
+  "topic": "Review: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "sessionId": "fanout-deepseek-max-1-1795511183570-92w0ez",
+  "parentSessionId": "2026-11-24T09:06:03.000Z",
+  "lineageMode": "new",
+  "generation": 3,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "depthMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "createdAt": "2026-11-24T09:07:50.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.depthMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/changelog/skilled/v4.2.0.0.md",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt",
+    ".skilled/commands/deep/research.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/hooks/injection-contract.md",
+    ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+    ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+    ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
+    ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+    ".skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+    ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/reduce-state-refinement-other-file.vitest.ts",
+    ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-refinements.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+    ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-typed-command.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-ask-routing.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/multi-typed-command-gates.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/stage-one-loop-subject.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

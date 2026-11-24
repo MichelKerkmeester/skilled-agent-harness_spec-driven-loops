@@ -1,15 +1,1 @@
-Review lineage complete. Summary of what was produced and verified:
-
-**Lineage** `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1`
-
-- **Initialized**: config (generation 3, session `fanout-deepseek-max-1-1795511183570-92w0ez`), run opened through the append gateway, seeded 47-node coverage graph.
-- **5 iterations executed inline** (correctness → security → traceability/`spec_code` → traceability/`checklist_evidence` → maintainability), each with its narrative, delta, gateway-recorded iteration row and reducer pass. All five pass `verify-iteration.cjs` (narrative + route proof + delta).
-- **Findings**: P0=0, P1=0, P2=3
-  - `R1-P2-001` — drift guard's per-entry fixture rule covers six of eleven compared lists (REQ-031/AC-038 overstated), `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:206`
-  - `R4-P2-001` — release changelog still quotes the fifth-round suite count (2,696 vs 3,029), `.skilled/changelog/skilled/v4.2.0.0.md:759`
-  - `R5-P2-001` — refusal-lead alternation is inline in both copies and outside the drift guard, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580`
-- **Verdict**: `FAIL` — not from a P0/P1, but because the terminal `coverage` gate read `coverage-too-young` (the fourth dimension was first covered in the cap iteration). Evidence and scope gates pass.
-- **Synthesis**: `review-report.md` (9 sections + Planning Packet + Dimension Expansion Map + Search Ledger + Audit Appendix), `resource-map.md`, dashboard/registry marked COMPLETE with `terminalStop: maxIterationsReached`, `synthesis_complete` recorded through the gateway. State limitations (missing per-pass graph telemetry 3–5, post-stop graph repair, no continuity save) are recorded in the report appendix.
-- **Write discipline**: every write stayed inside the lineage; no repo tooling (`validate.sh`, `generate-context.js`, git writes) was run; the state log was written only by the append gateway.
-
 FANOUT_LINEAGE_COMPLETE:deepseek-max-1

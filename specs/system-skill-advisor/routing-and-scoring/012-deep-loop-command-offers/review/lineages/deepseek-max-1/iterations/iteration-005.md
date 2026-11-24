@@ -1,76 +1,91 @@
-# Deep Review Iteration 005 - Maintainability
+# Review Iteration 005
 
 ## Dispatcher
-- Target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder)
-- Iteration: 5 of 5 (final iteration under the cap)
-- Dimension: maintainability
-- Operator review focus: The traceability focus is already complete (iterations 3 and 4). This iteration adds the maintainability judgment on the sixth-round surfaces the focus reads, so the final report can state all four dimensions with evidence.
-- Scope: the sixth-round additions in the two gate copies, the shared fixture guard, and the closure docs.
+
+LEAF deep-review iteration 5 of 5, lineage `deepseek-max-1`, session `fanout-deepseek-max-1-1795514074741-gl47kr`, generation 4, lineageMode `new`.
+Mode review; dimension `maintainability`, with the `security` dimension's trust-boundary questions answered in the same pass.
+Operator review focus: the sixth fix round's closure records and the packet's final consistency, checked against the tree.
+
+This is the last pass under `maxIterations: 5`. It re-read the changed code for comment hygiene, naming, duplication controls and unsafe prompt handling, then reconciled the closure documents' state fields.
 
 ## Files Reviewed
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:568]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:592]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:747]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1000]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1064]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4859]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4868]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4886]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:61]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:226]
-- [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2]
-- [SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:223]
-- [SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:641]
+
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:196-1424` (comment text, naming, exported surface)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4628-4930,5227-5410` (comment text, generator path, trust boundary)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1035-1135`, `explicit.ts:445-500`
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:60-100,230-298`
+- `.skilled/hooks/injection-contract.md:55-75,195-210` (the comment-hygiene block)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:1-40,230-260`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:1-30,600-660`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:294-300`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:87-100`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md`
+- `git diff 00741c4c738^..HEAD -- .skilled/skills/system-skill-advisor/runtime/lib` (added-line scan)
 
 ## Findings - New
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
+
 None.
 
 ### P2 Findings
 
-1. **The drift guard cannot see the sixth round's highest-churn vocabulary: the refusal-lead alternation is inline in both copies** -- .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580 -- The round added `skip`, `skipping`, `avoid`, `avoiding`, `instead of`, `rather than`, `refuse`, `refused to` and `do not even think about` to `RUN_ASK_NEGATED_SOURCE`, a `String.raw` pattern stored inline. The Python copy repeats the same alternation inline inside `_RUN_ASK_NEGATED_RE` (`skill_advisor.py:4868`). The drift guard compares eleven list pairs (`deep-loop-offer-cases.vitest.ts:61`) and the test file states the reason: "a word added to one side alone still passes every case that never uses that word." That reasoning applies exactly as much to this inline alternation, which is not exported and not compared. The two command-lead groups follow the opposite pattern (`command-attach.ts:1000`, `:1064` build their patterns from exported word lists), so the round already has the better shape available.
-Finding class: pattern-drift-risk
-Scope proof: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580
-Affected surface hints: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4868, .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:61, .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json
-Case: a later round adds "refrain from" to the TypeScript alternation only; every fixture case that does not use the phrase still passes in both suites, and no parity test compares the two refusal patterns.
+1. **The decision record's continuity block is still the template scaffold, and the implementation summary's is one round behind** -- `decision-record.md:11` -- `decision-record.md` still reads `last_updated_by: "template-author"`, `recent_action: "Initialized decision record template"`, `next_safe_action: "Replace continuity placeholders"`, an all-zero `session_dedup.fingerprint` and `completion_pct: 0`. `implementation-summary.md:11-14` was saved at 09:24 by the prior review and states `recent_action: "Traceability deep review finished with verdict FAIL after 15 iterations across 3 lineages"` with `next_safe_action: "Fix the seventh-round closure docs and drift guard, then rerun the traceability review"`, both of which the seventh round and this rerun have since done. A reader who opens either closure doc to learn its current state is told the packet is at its scaffold or at the pre-fix FAIL.
+   Finding class: instance-only (stale continuity metadata in two closure docs).
+   Scope proof: `decision-record.md:11-21` holds the template values; `implementation-summary.md:11-14` holds the 09:24 save; `git log --oneline` shows the seventh round at `a0ee07d8a71` and this rerun after it.
+   Affected surface hints: `decision-record.md:11-21`, `implementation-summary.md:11-14`, `tasks.md:294-300`.
+   Case: an operator resuming the packet reads `decision-record.md`'s continuity block for the last action and is sent to "Replace continuity placeholders"; reading the implementation summary's block is sent back to fix docs the tree already carries.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|---|---|---|---|
-| `checklist_evidence` | pass (complete) | specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:291, .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:206 | Completed in iteration 4; the two overstated claims it recorded are R1-P2-001 and R4-P2-001. |
-| `spec_code` | pass (complete) | specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:235, .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580 | Completed in iteration 3 for REQ-001 to REQ-034 and ADR-005/ADR-006. |
+### spec_code
+
+- All 34 REQ rows have been checked across this run: REQ-001 to REQ-012 in iteration 1, REQ-013 to REQ-022 in iteration 2, REQ-023 to REQ-034 in iteration 3, with the closure band re-read in iteration 4. No REQ is unimplemented and none is contradicted by the tree; the defects found are in the closure records that describe the implementation.
+- REQ-033 is this rerun; its `spec_code` half is satisfied and its `checklist_evidence` half is recorded with the residual defects.
+
+### checklist_evidence
+
+- The closure band AC-030 to AC-043 was re-read in iteration 4; the four residual defects are active P2 findings (`iter1-P2-fixture-count`, `iter2-P2-suite-counts`, `iter4-P2-ac014-evidence-pointer`, plus this iteration's continuity finding). No `Met` row for a behavioural clause is contradicted.
+
+### Security posture (same pass)
+
+- No secret material in the changed gate files: `rg -n -i 'api[_-]?key|token=|password|secret'` prints nothing.
+- No dynamic code execution on the prompt path: the only `exec(` hits are `RegExp.exec` (`command-attach.ts:704,722,1160`); there is no `eval`, no `new Function`, and no shell interpolation of the prompt.
+- The untrusted prompt is bounded twice: the schema caps it at `ADVISOR_PROMPT_MAX_CHARS = 10_000` (`advisor-tool-schemas.ts:257`), and both gates read refusals and leads on a 400-character window (`command-attach.ts:629`, `skill_advisor.py:4921`), so a repeated phrase cannot drive quadratic work.
+- The gate opens no file and writes nothing on the recommendation path; the only write in `skill_advisor.py` is `emit_routing_projection`, a separate explicit generator subcommand with its own `--check` mode, not reachable from `analyze_request`.
 
 ## Integration Evidence
-- The two command-lead groups are exported lists with a shared parity pair (`command-attach.ts:1000`, `:1064`; `deep-loop-offer-cases.vitest.ts:70` to `:72`), which shows the maintainable shape the refusal leads did not take.
-- `integer`-free reasoning notes stay short and durable in `attachCommand` (`:1254` to `:1273`), and no sixth-round comment embeds a REQ, AC, ADR or task id; the framework comment-hygiene rule is respected across the changed code.
+
+- Comment hygiene holds: no added line in `runtime/lib` over the packet's commits carries a `REQ-`, `ADR-`, `AC-0`, `CHK-`, `T0xx` or `specs/` label in a comment (`git diff -U0 00741c4c738^..HEAD -- runtime/lib | rg '^\+' | rg` prints nothing), which is the .skilled/hooks/injection-contract.md hard block.
+- The drift guard is the maintainability control for the two-language duplication: twelve vocabulary pairs and two numeric constants, each read from the Python source, so the copies cannot silently diverge.
 
 ## Edge Cases
-- The refusal alternation's two-word gap is grammar, not vocabulary, and the comment explains why the gap stays; extracting only the words would leave the gap inline. The recommendation is therefore to export the word alternation, not to restructure the pattern.
-- A shared exported list would still need a fixture case per entry to be complete, which is the same rule R1-P2-001 states for the two lists already exported.
-- The Python copy's inline pattern uses `\Z` where the TypeScript copy uses `$`; both read at the bounded window's end, so no behavioural drift exists today.
+
+- `decision-record.md`'s continuity block is scaffold because the doc was created from a template and never saved through `generate-context`; that is different from a save that went stale, and both are recorded in one finding because the reader-visible effect is the same.
+- `implementation-summary.md`'s continuity block truthfully records the last save (a FAIL review). It is stale only relative to the seventh round and this rerun; a continuity save would fix it, and this review may not run one.
+- `completion_pct: 90` in the implementation summary and `0` in the decision record describe different things (work completion vs scaffold), so the two are not a contradiction in themselves.
 
 ## Confirmed-Clean Surfaces
-- No sixth-round comment carries an ephemeral artifact label (REQ, AC, ADR, CHK, packet number or spec path) in `command-attach.ts`, `render.ts`, `advisor-recommend.ts`, `subprocess.ts`, `skill-advisor-cli.ts`, `explicit.ts`, `fusion.ts`, `skill_advisor.py` or `reduce-state.cjs`.
-- The shared fixture header (`deep-loop-offer-cases.json:2`) documents each column's layer, which keeps the two-suite contract readable.
-- `refinesSameLocation` (`reduce-state.cjs:995`) carries a comment stating the durable why (freed ids, overwritten wording), not a reference to the finding that prompted it.
+
+- Comment hygiene, secret scan, dynamic-code scan, prompt bounds, and the gate's read-only path all hold.
+- Naming and structure follow the repository pattern: data lists are exported arrays with a why-comment, patterns are built from them, and the duplicated Python copies are pinned by a test.
+- The strategy file, dashboard and registry are reducer-owned and consistent with the iteration records after five passes.
 
 ## Ruled Out
-- Duplicated `attachCommand`/Python gate logic as an unmanaged copy: the divergence is explicit in ADR-005 and limitation 8, and each side has a named layer contract.
-- Comment-hygiene violations in the changed code: `rg` over the eight changed modules finds no REQ/AC/ADR/task id in a code comment; the only match is the hygiene directive text itself in `render.ts:131`.
-- List re-declaration drift in `explicit.ts`: the stage-one rule imports its predicates from `command-attach.ts` rather than copying them.
+
+- A prompt-injection or ReDoS opening in the changed gate: ruled out by the bounded head, the bounded lead window and the absence of dynamic execution.
+- A comment-hygiene violation in the changed code: ruled out by the added-line scan over the packet's commits.
+- A further behavioural REQ mismatch beyond those already recorded: ruled out by the four-pass REQ sweep; the remaining defects are documentation-state defects.
 
 ## Next Focus
-- Dimension: none (all four dimensions complete)
-- Focus area: synthesis reads the three open P2s and the four protocol rows
-- Reason: maxIterations=5 is reached; the next step is the workflow's synthesis phase
-- Rotation status: correctness complete, security complete, traceability complete, maintainability complete
-- Required evidence: none further under the cap
 
-## Review Verdict
+- None. This is the last iteration under `maxIterations: 5`; the run proceeds to synthesis with stop reason `maxIterationsReached`.
+- Rotation status: all four canonical dimensions covered (traceability 1-2-4, correctness 3, maintainability and security 5).
+- Blocked/productive carry-forward: the productive category "observed command, then read the cited line" carried the run; the exhausted category "two-language gate divergence" is closed for this tree.
+- Required evidence for synthesis: six active P2 findings, the two protocol statuses, the terminal gate rows and the four-dimension coverage record.
+
 Review verdict: PASS

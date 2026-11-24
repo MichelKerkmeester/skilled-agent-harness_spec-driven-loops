@@ -1,29 +1,32 @@
-# Deep Review Report - 012-deep-loop-command-offers
+# Review Report - deepseek-max-1
 
-Lineage: `deepseek-max-1` (fan-out lineage, generation 3, session `fanout-deepseek-max-1-1795511183570-92w0ez`)
-Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder)
-Iterations: 5 of 5 | Stop reason: `maxIterationsReached`
+**Target**: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder, Level 2)
+**Lineage**: `fanout-deepseek-max-1-1795514074741-gl47kr`, generation 4, lineageMode `new`, parent `2026-11-24T09:54:34.000Z`
+**Iterations**: 5 of 5 | **Stop reason**: `maxIterationsReached`
+**Verdict**: **FAIL** | hasAdvisories: false | Active findings: P0=0 P1=0 P2=6
+**Terminal gates**: evidence `pass`, scope `pass`, coverage `fail` (`traceability-incomplete`)
 
 ---
 
 ## 1. Executive Summary
 
-**Overall verdict: FAIL**
+**Overall verdict: FAIL.** The failure is a required quality gate, not a behaviour defect: no P0 or P1 finding is active, and six P2 findings remain. The coverage gate fails because the `checklist_evidence` core protocol could not be closed to `pass`: four `Met` acceptance rows carry evidence that does not exist as recorded, and two closure-doc state blocks are stale. The verdict is the one `review-verdict.cjs` derives from the registry and the terminal-gates row (`activeP0=0`, `activeP1=0`, `activeP2=6`, failed gate `coverage`), and it overrides the per-iteration self-reports, which read PASS because each iteration raised only P2 findings.
 
-- `hasAdvisories`: false. The verdict is FAIL because a required quality gate failed at the terminal stop, not because an advisory P2 exists on its own.
-- P0/P1/P2 counts the verdict used: **P0=0, P1=0, P2=3**.
-- Failed required gates at the terminal stop: **`coverage`** (`reasonCode: coverage-too-young`). Evidence and scope both pass (`all-findings-cited`).
-- Self-check outcomes: no P0 or P1 finding existed to replay, so the adversarial self-check made no severity change. The three P2 findings below are the registry's active set unchanged.
-- Review scope summary: 46 files in the pre-bound scope file, covering the advisor offer gate in TypeScript and Python, the handler and render layers, the shared 203-case fixture, the reducer that consumes review findings, and the packet's own docs. Five iterations covered correctness, security, traceability (`spec_code`), traceability (`checklist_evidence`) and maintainability.
-- Operator review focus: Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
+**P0/P1/P2 counts**: 0 / 0 / 6, the counts the verdict used.
 
-Why FAIL rather than PASS with advisories: the coverage terminal gate requires a stabilization pass after the last dimension changes coverage (`coverageAge >= 1`). Maintainability, the fourth dimension, could only be covered in iteration 5, the iteration cap. The gate therefore read `coverage-too-young` at the stop and no further iteration was available under `maxIterations=5`. The finding set itself is P2-only: the sixth-round behavior is implemented, and the three P2s are two documentation/guard gaps and one guard-coverage risk.
+**Self-check outcomes**: no P0 or P1 finding was raised, so the adversarial self-check and the claim-adjudication record are empty by construction. Every P2 was read against its cited line; the two count findings and the pointer finding were reconfirmed by reading the target files, not by restating an earlier iteration.
+
+**Review scope**: 46 files from `review-scope-files.txt`, covering the advisor gate (`command-attach.ts`, `skill_advisor.py`), the scorer lanes (`explicit.ts`, `fusion.ts`), the render and handler layers, the two command documents and presentation assets, the shared fixture and the gate tests, the deep-loop reducer and closure scripts, and the packet's six canonical docs plus packet 013's summary.
+
+**Operator review focus**: Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
+
+**Dimension coverage**: correctness, security, traceability and maintainability each have a full iteration: traceability in iterations 1, 2 and 4; correctness in 3; maintainability and security in 5.
 
 ---
 
 ## 2. Planning Trigger
 
-`/speckit:plan` is **required**: the verdict is FAIL and one required gate failed at the stop, so remediation must be planned rather than shipped as advisory.
+`/speckit:plan` is **required**: the run stopped FAIL on the coverage gate with six active P2 findings.
 
 ```json
 {
@@ -31,34 +34,49 @@ Why FAIL rather than PASS with advisories: the coverage terminal gate requires a
   "verdict": "FAIL",
   "hasAdvisories": false,
   "activeFindings": [
-    {"id": "R1-P2-001", "severity": "P2", "title": "The drift guard's per-entry fixture rule skips two of the five lists REQ-031 names", "file": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:206", "dimension": "correctness", "findingClass": "missing-test-coverage"},
-    {"id": "R4-P2-001", "severity": "P2", "title": "The release changelog still quotes the fifth-round advisor suite count", "file": ".skilled/changelog/skilled/v4.2.0.0.md:759", "dimension": "traceability", "findingClass": "doc-code-drift"},
-    {"id": "R5-P2-001", "severity": "P2", "title": "The drift guard cannot see the sixth round's highest-churn vocabulary: the refusal-lead alternation is inline in both copies", "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580", "dimension": "traceability", "findingClass": "pattern-drift-risk"}
+    "iter1-P2-fixture-count",
+    "iter1-P2-req006-test-file",
+    "iter1-P2-ac012-req-link",
+    "iter2-P2-suite-counts",
+    "iter4-P2-ac014-evidence-pointer",
+    "iter5-P2-continuity-metadata"
   ],
   "remediationWorkstreams": [
-    {"id": "WS-1", "priority": 1, "gate": "coverage", "action": "Run one stabilization iteration after the last dimension changes coverage, or raise maxIterations above the dimension count, so the coverage terminal gate can pass."},
-    {"id": "WS-2", "priority": 2, "finding": "R1-P2-001", "action": "Extend the per-entry fixture rule to every compared vocabulary list, starting with LOOP_ARTIFACT_NOUNS and PAST_RUN_READ_VERBS, or narrow REQ-031 and AC-038 to the lists actually guarded."},
-    {"id": "WS-3", "priority": 2, "finding": "R4-P2-001", "action": "Refresh the v4.2.0.0 tests table's advisor suite row to the sixth-round count (184 files, 3,029 passed, 203 fixture cases), or state that the row snapshots the fifth round."},
-    {"id": "WS-4", "priority": 2, "finding": "R5-P2-001", "action": "Export the refusal-lead words as a list in both copies and add the pair to the drift guard, as the command-decline and command-ask leads already are."}
+    "W1 Closing-doc counts",
+    "W2 Acceptance-row links and pointers",
+    "W3 Closure-doc continuity metadata",
+    "W4 Rerun the traceability review after the fixes"
   ],
   "specSeed": [
-    "REQ-031 should scope its 'every list entry has a fixture case' clause to the lists the guard iterates, or the guard should iterate every compared list.",
-    "REQ-022's 'quotes the final suite count' clause should name which round's count the release table carries.",
-    "A new REQ should state the coverage-stabilization requirement so a max-iterations stop at the last dimension is expected rather than a gate failure."
+    "REQ-006: name the test file that holds the loop-ask and depth-word cases, or record the relocation in the requirement",
+    "No new requirement; the other fixes are acceptance-row and continuity corrections"
   ],
   "planSeed": [
-    "Add a drift-guard iteration over LOOP_ARTIFACT_NOUNS and PAST_RUN_READ_VERBS fixtures.",
-    "Export RUN_ASK_NEGATED_SOURCE's word alternation and add its parity pair.",
-    "Update the v4.2.0.0 tests table row and AC-029's cited count, or label the row as the fifth-round snapshot.",
-    "Add one confirmation iteration or raise the cap when four dimensions are configured."
+    "Correct the suite/fixture counts in AC-030, AC-037 and AC-042 to the seventh-round run, and name which run is final",
+    "Repoint AC-014 to the completed-packet message line and correct AC-012's requirement link",
+    "Populate decision-record.md's continuity block and refresh implementation-summary.md's block after the seventh round",
+    "Rerun this review with the same focus so AC-040 and CHK-020 can close"
   ],
-  "findingClasses": ["missing-test-coverage", "doc-code-drift", "pattern-drift-risk"],
+  "findingClasses": {
+    "instance-only": [
+      "iter1-P2-req006-test-file",
+      "iter1-P2-ac012-req-link",
+      "iter4-P2-ac014-evidence-pointer",
+      "iter5-P2-continuity-metadata"
+    ],
+    "matrix/evidence": [
+      "iter1-P2-fixture-count",
+      "iter2-P2-suite-counts"
+    ]
+  },
   "affectedSurfacesSeed": [
-    ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
-    ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
-    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-    ".skilled/changelog/skilled/v4.2.0.0.md"
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+    ".skilled/changelog/skilled/v4.2.0.0.md",
+    ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
   ],
   "fixCompletenessRequired": true
 }
@@ -68,140 +86,152 @@ Why FAIL rather than PASS with advisories: the coverage terminal gate requires a
 
 ## 3. Active Finding Registry
 
-| ID | Severity | Title | Dimension | File:line | Evidence | Impact | Fix recommendation | Disposition | Finding class | Scope proof | Affected surface hints |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| R1-P2-001 | P2 | The drift guard's per-entry fixture rule skips two of the five lists REQ-031 names | correctness | .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:206 | Iteration 001 read of the guard's six per-entry rules and eleven parity pairs | A list entry could be added to both copies with no fixture exercising it | Iterate every compared list, or narrow REQ-031 and AC-038 | active | missing-test-coverage | .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:226 | command-attach.ts LOOP_ARTIFACT_NOUNS (:809) and PAST_RUN_READ_VERBS (:646); skill_advisor.py `_LOOP_ARTIFACT_NOUN_LIST`, `_PAST_RUN_READ_VERB_LIST` |
-| R4-P2-001 | P2 | The release changelog still quotes the fifth-round advisor suite count | traceability | .skilled/changelog/skilled/v4.2.0.0.md:759 | Iteration 004 read of the release test table against the sixth-round verification rows | A reader sees 2,696 while the tree records 3,029 | Refresh the row or label it as the fifth-round snapshot | active | doc-code-drift | .skilled/changelog/skilled/v4.2.0.0.md:759 | acceptance-criteria.md AC-029 (:86), implementation-summary.md:166, AC-042 (:99) |
-| R5-P2-001 | P2 | The drift guard cannot see the sixth round's highest-churn vocabulary: the refusal-lead alternation is inline in both copies | traceability (reducer-derived; raised under maintainability) | .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580 | Iteration 005 read of the exported lists against the inline `RUN_ASK_NEGATED_SOURCE` | A one-sided refusal-verb edit passes both suites | Export the alternation as a list and add its parity pair | active | pattern-drift-risk | .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580 | skill_advisor.py `_RUN_ASK_NEGATED_RE` (:4868); deep-loop-offer-cases.vitest.ts:61 |
+<!-- MACHINE-OWNED: START -->
+| ID | Severity | Title | Dimension | File:line | Disposition |
+|----|----------|-------|-----------|-----------|-------------|
+| `iter1-P2-fixture-count` | P2 | AC-030, AC-037 and AC-042 quote `cases=203` while the shared fixture holds 248 cases | traceability | `acceptance-criteria.md:87` | active |
+| `iter1-P2-req006-test-file` | P2 | REQ-006 names a test file that does not hold the loop-ask and depth-word cases it describes | traceability | `spec.md:213` | active |
+| `iter1-P2-ac012-req-link` | P2 | AC-012 is linked to REQ-007 while its criterion tests the corpus recapture | traceability | `acceptance-criteria.md:69` | active |
+| `iter2-P2-suite-counts` | P2 | The closure docs disagree on the final advisor suite counts | traceability | `tasks.md:163` | active |
+| `iter4-P2-ac014-evidence-pointer` | P2 | AC-014 cites a config field where its completed-message clause is checked at a different line | traceability | `acceptance-criteria.md:71` | active |
+| `iter5-P2-continuity-metadata` | P2 | The decision record continuity block is still template scaffold and the implementation summary continuity is one round behind | maintainability | `decision-record.md:11` | active |
+<!-- MACHINE-OWNED: END -->
+
+Per-finding detail:
+
+1. **`iter1-P2-fixture-count`** (`acceptance-criteria.md:87`): the Python parity test prints `cases={len(cases)}` over `tests/fixtures/deep-loop-offer-cases.json`, which holds 248 cases; the three Met rows say 203, the count before the seventh-round commit `7b0660c9b6e` added 45 rows. Fix: state 248 or the seventh-round number, and name the run. findingClass `matrix/evidence`; scopeProof: fixture census plus the two git revisions; affected surfaces the three rows and the fixture.
+2. **`iter1-P2-req006-test-file`** (`spec.md:213`): REQ-006 says `command-attach.vitest.ts` holds the loop-ask and depth-word cases; that file holds three unrelated describe blocks, and the cases live in `command-attach-guards.vitest.ts:530-540` and its loop-ask groups. AC-009 already records the relocation and still reads `Met`. findingClass `instance-only`.
+3. **`iter1-P2-ac012-req-link`** (`acceptance-criteria.md:69`): the row is linked to REQ-007 but its Given/When/Then tests the corpus recapture. AC-011 already closes REQ-007's three clauses. findingClass `instance-only`.
+4. **`iter2-P2-suite-counts`** (`tasks.md:163`, refines `iter1-P2-fixture-count`): T081 and AC-042 record 3,029 passed with `cases=203`; T087 and the changelog record 3,126 passed. Both call their run final. findingClass `matrix/evidence`.
+5. **`iter4-P2-ac014-evidence-pointer`** (`acceptance-criteria.md:71`): the row's completed-message clause is at `deep-research.yaml:663`, but its Evidence cell cites `:68`, the `lineage_mode` field. findingClass `instance-only`.
+6. **`iter5-P2-continuity-metadata`** (`decision-record.md:11`): the decision record still holds `template-author` / `Initialized decision record template` / an all-zero fingerprint / `completion_pct: 0`; the implementation summary's block records the pre-fix FAIL review as its last action. findingClass `instance-only`.
 
 ---
 
 ## 4. Remediation Workstreams
 
-### P0
-None.
+**W1 - Closing-doc counts (P2: `iter1-P2-fixture-count`, `iter2-P2-suite-counts`).**
+Reconcile AC-030, AC-037, AC-042 and T081 with the seventh-round run: 184 files, 3,126 passed, 4 skipped, 0 failed; `PY pass=136, fail=0`; 248 fixture cases. State which run is the final one, and update the changelog only if it is not the seventh-round run. Do not rewrite the historical sixth-round rows (AC-028, T059-T061): they are accurate for their round.
 
-### P1
-None.
+**W2 - Acceptance-row links and pointers (P2: `iter1-P2-req006-test-file`, `iter1-P2-ac012-req-link`, `iter4-P2-ac014-evidence-pointer`).**
+Name `command-attach-guards.vitest.ts` in REQ-006 or record the relocation as an ADR; relink AC-012 to its real requirement (REQ-012 or REQ-021) or rewrite its criterion to REQ-007's compiled-contract clause; repoint AC-014's Evidence cell to `deep-research.yaml:663`.
 
-### P2 advisories (ordered)
-1. **WS-1 - coverage stabilization (gate, not a finding).** The terminal coverage gate failed at the stop because the fourth dimension was first covered in the cap iteration. Plan one extra iteration (or `--extend=1`) before closing the packet; no code change is required for the findings themselves.
-2. **WS-2 - R1-P2-001.** Make the drift guard's per-entry rule iterate every list in `VOCABULARY_PAIRS`, or amend REQ-031 and AC-038 to name only the iterated lists.
-3. **WS-3 - R4-P2-001.** Refresh the changelog's advisor suite row to the tree's final count, or state that the row snapshots the fifth round.
-4. **WS-4 - R5-P2-001.** Export the refusal-lead word alternation in both copies and add the pair to the drift guard.
+**W3 - Closure-doc continuity (P2: `iter5-P2-continuity-metadata`).**
+Populate `decision-record.md`'s `_memory.continuity` block from the packet's real state, and refresh `implementation-summary.md`'s block after the seventh round. Use `/speckit:save` or `generate-context.js`; hand-editing the fingerprint is not the repair.
+
+**W4 - Rerun (AC-040 / CHK-020).**
+After W1 to W3, rerun `/deep:review` on this packet with traceability as its focus. AC-040 and CHK-020 can close only when that rerun's terminal gates read evidence, scope and coverage pass.
 
 ---
 
 ## 5. Spec Seed
 
-- REQ-031: scope the "every list entry has a fixture case" clause to the lists the guard actually iterates, or extend the guard to all compared lists.
-- REQ-022 / AC-029: say which round's suite count the v4.2.0.0 tests table records.
-- REQ-033: name the coverage-stabilization pass the terminal gate requires, so a max-iterations stop on the last dimension is a planned state rather than a surprise FAIL.
-- ADR-006: the decision is implemented and pinned; no change requested.
+- **REQ-006**: replace "`command-attach.vitest.ts` holds a passing case for each loop-ask clause and a passing `undefined` case for each depth word" with the file that actually holds them, or state that the cases moved and name AC-009.
+- **REQ-012 / AC-019**: no change; ADR-001 already records the supersession of the near-miss count and the ID framing.
+- **REQ-011**: no change; ADR-007 records the alias amendment and AC-043 owns it.
+- **No new requirement.** The remaining five findings are corrections to existing rows and state blocks, not missing behaviour.
 
 ---
 
 ## 6. Plan Seed
 
-1. Extend `deep-loop-offer-cases.vitest.ts` to iterate `LOOP_ARTIFACT_NOUNS` and `PAST_RUN_READ_VERBS` entries against fixture cases, adding cases for any entry that lacks one.
-2. Export the refusal-lead alternation from `command-attach.ts` and mirror it as a named Python tuple; add the pair to `VOCABULARY_PAIRS`.
-3. Update `.skilled/changelog/skilled/v4.2.0.0.md:759` to the sixth-round count and adjust AC-029's citation, or label the row as the fifth-round snapshot.
-4. When closing this packet, run `/deep:review` with one extra iteration so the coverage gate records a stabilization pass.
+- T-New-1: correct the three count cells and T081; verify with `node -e` over the fixture and a read of T087 and `v4.2.0.0.md:759`.
+- T-New-2: fix the three acceptance-row links/pointers; verify each cell resolves to a line holding its observation.
+- T-New-3: refresh both closure docs' continuity blocks through the continuity writer; verify the frontmatter carries a non-zero fingerprint and a current `last_updated_at`.
+- T-New-4: rerun the deep review with the same focus; verify terminal gates `evidence`, `scope`, `coverage` all pass and AC-040 reads `Met`.
 
 ---
 
 ## 7. Traceability Status
 
-### State limitations recorded at synthesis
-- **Convergence telemetry gap (passes 3 to 5).** Under `stopPolicy: max-iterations`, convergence is telemetry until the cap. The executor recorded a `graph_convergence_evaluated` row for the pass before iteration 1 and the pass before iteration 2, and for the terminal pass; passes 3 to 5 ran without one. The iteration records, deltas and reducer outputs are complete; only the per-pass graph telemetry is thin.
-- **Coverage graph repair.** The first `step_graph_upsert` calls after each iteration passed empty canonical node/edge sets, so the graph held the seed nodes and the finding nodes but no DIMENSION-to-FILE COVERS edges; at the stop it read 0% dimension coverage (45 gaps) and `STOP_BLOCKED`. The graph was then rebuilt from each iteration record through `upsert.cjs`, and a read-only convergence pass read 100% coverage, `STOP_ALLOWED`, score 1. The terminal evidence/scope/coverage gates and the verdict are computed from the registry and state log, so they did not read the repaired graph and are unchanged: verdict FAIL, failed gate `coverage` (`coverage-too-young`).
-- **Superseded graph row.** The terminal graph row first appended after synthesis carried the pre-repair signals; the repaired row with the same `iteration-6` scope was appended after it and is the one the reducer's graph summary reflects.
-- **No continuity save.** The lineage may not run `generate-context.js`, so packet continuity was not written from this lineage; the fan-out root owns that step.
+### Core Protocols
 
-### Core protocols
-| Protocol | Status | Evidence | Drift |
-|---|---|---|---|
-| `spec_code` | pass | .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:580, .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:428, .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2 | REQ-031's per-entry half is the only REQ-level drift (R1-P2-001); REQ-033 is satisfied by this run; all other REQ-023 to REQ-034 rows map to a line or a decision. |
-| `checklist_evidence` | pass | specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:291, specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:87 | T084 and AC-040 remain honestly open/unmet; all other ticked sixth-round tasks and Met rows have a real tree surface; Verification Summary arithmetic (12 P0/11, 13 P1, 1 P2) matches. |
+| Protocol | Level | Status | Evidence | Unresolved drift |
+|----------|-------|--------|----------|------------------|
+| `spec_code` | core | **pass** | All 34 REQ rows checked: REQ-001 to REQ-012 (iteration 1), REQ-013 to REQ-022 (iteration 2), REQ-023 to REQ-034 (iteration 3), closure band re-read (iteration 4). The 69-probe file, the shared fixture and both gate copies were read. | None. The remaining defects are in the closure records that describe the implementation, not in the implementation. |
+| `checklist_evidence` | core | **partial** (gating failure) | All 43 acceptance rows read: 39 `Met`, 2 `Waived`, 1 `Superseded`, 1 `Unmet`. The tasks.md Verification Summary matches its boxes (12 P0 with CHK-020 open, 13 P1, 1 P2); 87 T-tasks with 86 ticked. | Four `Met` rows carry evidence that does not hold as recorded: AC-030/AC-037/AC-042 counts, AC-014's pointer. AC-012's requirement link is wrong. |
 
-### Overlay protocols
-| Protocol | Status | Note |
-|---|---|---|
-| `skill_agent` | notApplicable | The target is a spec packet plus runtime code; no skill contract changed in this round. |
-| `agent_cross_runtime` | notApplicable | No agent definition changed. |
-| `feature_catalog_code` | notApplicable | The round touched no feature catalog entry. |
-| `playbook_capability` | notApplicable | The round touched no playbook. |
+### Overlay Protocols
 
-### AC_COVERAGE
-- `AC_COVERAGE`: **not assessed as a signal in this lineage**. `acceptance-criteria.md` exists, but the lifecycle gate needs `implementation-summary.md` at in-progress or later and this runner did not execute the validator. The packet's own AC-040 is `Unmet` and T084 is unticked, which this run is the missing rerun for.
+| Protocol | Level | Status | Notes |
+|----------|-------|--------|-------|
+| `skill_agent` | overlay | notApplicable | the target is a spec folder; no skill/agent pair is under review |
+| `agent_cross_runtime` | overlay | notApplicable | no agent mirror in scope |
+| `feature_catalog_code` | overlay | notApplicable | no catalog claim in scope |
+| `playbook_capability` | overlay | notApplicable | no playbook in scope |
 
-### Resource Map Coverage Gate
-- `resource-map.md` is not present at init (`resource_map_present: false`), so the coverage gate is skipped, per the workflow's conditional section rule.
+**AC_COVERAGE**: `exempt` - the packet holds no `checklist.md`, so the validation signal does not apply.
 
 ---
 
 ## 8. Deferred Items
 
-- The published head scores in REQ-027 (sk-code 0.8754, sk-doc 0.82, hub 0.8763 on the keep case) were not re-measured; this lineage may not run the advisor. They remain the packet's measurement.
-- The suite and Python run counts (184 files / 3,029 passed; `pass=136`) are the packet's recorded numbers, not re-executed here.
-- R5-P2-001's reducer-derived dimension is `traceability` while the iteration raised it under maintainability; the difference is a reducer projection artifact, not a second finding.
-- No frontier nodes exist (default depth mode), so there is no exhausted or blocked frontier work to list.
+- `AC-040` (`Unmet`) and `CHK-020` (open) are deferred to W4, the rerun after the doc fixes. They are the only open boxes in the packet and they are open on purpose.
+- The two behavioural boundaries that are documented and accepted were not treated as findings: a refusal more than 400 characters before a loop phrase is outside the bounded window (REQ-030's stated design), and an untyped loop ask reaches the degraded fallback brief as the hub with no command (limitation 8, a pre-existing gap).
+- No exhausted or blocked frontier nodes exist: this is a default-depth run, so the registry carries no `frontier` object.
 
----
+### Dimension Expansion Map
 
-## Dimension Expansion Map
-
-- Completed pivots: 0
-- Failed pivots: 0
-- Audited overrides: 0
-- Swept directions: none; `convergenceMode` is default, not divergent.
-- Remaining frontier: none recorded (depth mode default).
+- Completed pivots: 0. Failed pivots: 0. Audited overrides: 0.
+- Saturated directions: none. Remaining frontier: none (default depth).
+- Divergence state is empty; this run reviewed breadth by rotating the four canonical dimensions, not by pivoting.
 
 ---
 
 ## 9. Search Ledger
 
-- `searchCoverage`: required bug classes none, covered none, ruledOut none, deferred none, blocked none, `graphCoverageMode` null.
-- `candidateCoverage`: empty.
-- `searchDebt`: empty; `hasSearchDebt: false`.
-- `ruledOutCandidates`: empty.
-- `cleanSearchProof`: empty.
+- `searchCoverage`: requiredBugClasses `[]`, covered `[]`, ruledOut `[]`, deferred `[]`, blocked `[]`, graphCoverageMode `null`.
+- `candidateCoverage`: covered `[]`, ruledOut `[]`, deferred `[]`, blocked `[]`.
+- `searchDebt`: `[]`, so hasSearchDebt is false.
+- `ruledOutCandidates`: `[]`. `cleanSearchProof`: `[]`.
 
-*No search-depth state captured (legacy v1 record).* The five iterations each record their ruled-out directions in their own narrative and in `deltas/iter-00N.jsonl`.
+*No search-depth state captured (legacy v1 record).* The run's ruled-out directions are recorded per iteration in the strategy and in the audit appendix below.
 
 ---
 
 ## 10. Audit Appendix
 
 ### Convergence summary
-- Stop reason: `maxIterationsReached` (iteration count 5 = `maxIterations` 5), computed by `convergence.cjs`; `stopPolicy` was `max-iterations`, so convergence was telemetry until the cap.
-- Terminal gates: evidence `pass` (`all-findings-cited`), scope `pass` (`all-findings-in-scope`), coverage `fail` (`coverage-too-young`). This failed gate is why the verdict is FAIL.
-- Loop counters at the stop: stuck 0, consecutive failures 0.
+
+- Iterations: 5. Stop reason: `maxIterationsReached` (the configured cap; convergence before the cap is telemetry only on `--stop-policy=max-iterations`).
+- Per-iteration new-finding ratios: 1.00 (3 new P2), 0.14 (1 refinement), 0.00 (clean), 0.20 (1 new P2), 0.17 (1 new P2). Convergence score after the last reduce: 0.83.
+- Active findings over time: 3, 4, 4, 5, 6. No finding was resolved; none was downgraded or called a false positive.
+- Verdict derivation: `review-verdict.cjs --registry-path ... --state-log ...` reads active P0=0, active P1=0, active P2=6 and the terminal-gates row (`failedRequiredGateIds: ["coverage"]`), and returns `FAIL`, `hasAdvisories=false`.
 
 ### Coverage summary
-- correctness, security, traceability, maintainability: all four covered.
-- `spec_code` and `checklist_evidence`: both executed and passing as protocol rows, with the REQ-031 caveat carried as R1-P2-001.
-- Files read across iterations: 46-file scope sampled on every iteration; the gate, handler, render, fixture, reducer and closure docs were read directly.
+
+- Dimensions: 4/4 covered (correctness, security, traceability, maintainability).
+- Files: 46 scope files; every packet doc and every gate file was read at least once; the probe file and the fixture were read programmatically in full.
+- Requirements: 34/34 checked. Acceptance rows: 43/43 read.
 
 ### Ruled-out claims
-- Quadratic prefix scan on long prompts (REQ-030): bounded 400-character windows in both copies.
-- ReDoS or command injection in the new refusal grammar: bounded quantifiers, argv arrays, prompt on stdin.
-- Missing REQ-025 or REQ-026 Python parity: typed run rows and TS-only deferred cues are as documented.
-- Verification Summary count mismatch: arithmetic matches the ticked boxes.
-- Comment-hygiene violation in the sixth-round code: none found.
+
+- A false command on any gain, keep or negative probe row: all 69 probe rows read `freshness: live`, `exit 0`.
+- A remaining `autonomous research` alias or a council-word boost: `rg` over the hub files and the gate prints nothing.
+- A broken `path:line` citation in the packet docs: 116 references resolve, 0 missing, 0 past end of file.
+- A TypeScript/Python divergence on the typed rows, the stuck-refusal rows or the doctor rows: the shared fixture columns and both gate copies agree.
+- A builder that tunes on a holdout row: the three split readers skip or label holdout rows.
+- A prompt-injection or ReDoS opening in the changed gate: bounded head (10,000), bounded lead window (400), no dynamic execution, no file writes on the recommendation path.
+- A comment-hygiene violation in the changed code: the added-line scan over the packet's commits prints nothing.
+- A Verification Summary miscount: 12 P0 / 13 P1 / 1 P2 with 11/13/1 verified matches the CHK boxes.
 
 ### Sources reviewed
-- Iteration files `iterations/iteration-001.md` to `iteration-005.md` and their `deltas/iter-001.jsonl` to `iter-005.jsonl`.
-- Registry `deep-review-findings-registry.json` (reducer-owned), dashboard `deep-review-dashboard.md`, strategy `deep-review-strategy.md`.
-- The 46 paths in `review-scope-files.txt`, plus `decision-record.md` ADR-005 and ADR-006.
 
-### Core protocols
-- `spec_code`: see §7.
-- `checklist_evidence`: see §7.
+- Gate: `command-attach.ts`, `skill_advisor.py`, `fusion.ts`, `explicit.ts`, `render.ts`, `handlers/advisor-recommend.ts`, `schemas/advisor-tool-schemas.ts`, `skill-advisor-cli.ts`.
+- Tests and evidence: `deep-loop-offer-cases.vitest.ts`, `command-attach.vitest.ts`, `command-attach-guards.vitest.ts`, `typed-on-stuck-serving.vitest.ts`, `doctor-handoff-command.vitest.ts`, `stage-one-loop-subject.vitest.ts`, `command-brief-golden.vitest.ts`, `subprocess-typed-fields.vitest.ts`, `cli-degraded-command-contract.vitest.ts`, `tests/python/test_skill_advisor.py`, the shared fixture, `command-prompts.jsonl`, the three probe result files and `compare.mjs`.
+- Docs and decisions: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `decision-record.md` (ADR-001 to ADR-007), the two command documents, both presentation files, both YAML workflows, `hub-router.json`, `ROUTER.md`, the deep-loop hub `SKILL.md`, the changelog, and packet 013's summary.
+- Runtime: `reduce-state.cjs`, `synthesis-closeout.cjs`, `terminal-gates.cjs`, `review-verdict.cjs`, `convergence.cjs`, and the reducer refinement tests.
 
-### Overlay protocols
-- All four overlay protocols were not applicable to this target; each is named in §7 rather than left blank.
+### Cross-Reference Appendix
+
+**Core Protocols**: `spec_code` pass; `checklist_evidence` partial (gating failure, four row-level defects).
+
+**Overlay Protocols**: all four `notApplicable` (spec-folder target, no agent mirror, no catalog claim, no playbook).
+
+### Provenance caveat
+
+The ledger receipts are authoritative for ordering. The `timestamp` fields on the iteration records for iterations 3 to 5 were taken from an estimate rather than the clock at write time and run ahead of the gateway's `committed_at` values; the iteration files, deltas and this report do not depend on those values. Any later reader should order the iterations by `iteration` and the ledger `sequence`, not by the self-reported timestamps.
 
 ---
 
-Review verdict: FAIL
+*Generated by deep-review lineage `deepseek-max-1` at 2026-11-24T10:04Z. This report is the lineage's own artifact; the merged root report is the authoritative rollup.*

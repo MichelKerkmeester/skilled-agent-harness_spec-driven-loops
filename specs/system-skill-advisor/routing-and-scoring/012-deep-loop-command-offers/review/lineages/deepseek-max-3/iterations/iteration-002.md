@@ -1,23 +1,26 @@
-# Review Iteration 002 — security
-
-- Iteration: 2 of 5
-- Dimension: security
-- Operator review focus (covered in addition to the dimension): traceability — this iteration checks the security claims the packet records (NFR-S01, NFR-S02, CHK-030 to CHK-032) against the tree, and records the REQ-023/REQ-024 gate lines that the refusal work touches.
-- How this iteration addressed the focus: it read NFR-S01's `ask` invariant in the command table and in the rendered brief, read NFR-S02 against the subprocess hand-off, and checked that prompt-supplied text cannot become a command label.
+# Review Iteration 002
 
 ## Dispatcher
 
-Executed inline as `@deep-review` for lineage `deepseek-max-3`. No nested dispatch.
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Session: `fanout-deepseek-max-3-1795514074741-gl47kr`, generation 4, lineageMode `new`
+- Iteration 2 of 5. Dimension: security. Operator review focus bound: traceability (`spec_code` + `checklist_evidence`).
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder). Scope: the 46 paths in `review-scope-files.txt`.
+- No `steer.md` exists in this lineage at iteration 2, so this iteration carries no lead ruling.
+
+## Dimension
+
+Security: the offer gate's trust boundary. The prompt is outside-authored text the advisor reads on every turn, so the question is what a hostile or careless prompt can obtain, and whether the offer can start anything rather than ask.
+
+The operator focus was addressed by keeping the `spec_code` protocol's security-flavoured rows (REQ-024's doctor row, REQ-025's typed precedence, REQ-030's unbounded-input cost) in the same pass, so the gate's refusal and cost guards are settled on evidence before the traceability iterations rely on them.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:122-150` (`TRACKED_COMMANDS` policies), `:1190-1245` (`commandOnlyMentioned` naming reads), `:469-471` (`escapePhrase`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:108-118` (instruction-label guard, control-char strip, offer command set), `:163-178` (`sanitizeSkillLabel`), `:223-255` (`commandLabel`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:187-265` (`parseRecommendations` field carrying, `typedCommandForRecommendation`), `:275-310` (spawn with `env: process.env`, prompt on stdin)
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1490-1565` (`degradedRecommendations` typed marker)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5265-5360` (`_RUN_REFUSED_RE`, doctor drop, gate)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:138-160` (refusing-stuck doctor rows)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:303-312` (NFR-S01, NFR-S02), `tasks.md:260-262` (CHK-030 to CHK-032)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:756-775` (`isNoEditRequest`, `RUN_REFUSED`), `:1061-1101` (`COMMAND_ASK_NAMED_WORDS`, `COMMAND_ASK_SHOULD_WORDS`, `COMMAND_ASK_LEAD_WORDS`), `:1096-1152` (`COMMAND_ASK_TARGET`, `commandOnlyMentioned` inputs), `:1229-1276` (`commandOnlyMentioned`), `:1291-1367` (`attachCommand` guard order), `:64-121` (`COMMAND_ROWS` policies)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5227` (`_deep_command_only_mentioned`), `:5343-5400` (`_apply_deep_loop_offer_gate`), `:5333` (`is_run_refused`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1091-1130` (`withholdWritingCommandsOnNoEdit`)
+- Live probes: `attachCommand` over 10 security-shaped prompts, `commandOnlyMentioned` over four interrogative shapes in TypeScript and three in Python, plus a 90,000-character prefix probe.
+- Secret scan over `command-attach.ts`, `subprocess.ts`, `skill-advisor-cli.ts`, `render.ts`, `explicit.ts` and `skill_advisor.py`; directive scan over the packet docs and the shared fixture.
 
 ## Findings - New
 
@@ -27,53 +30,80 @@ None.
 
 ### P1 Findings
 
-None new. The iteration-1 P1 (`R1-P1-001`) remains active, so this iteration's verdict stays CONDITIONAL.
+None.
 
 ### P2 Findings
 
-None new this iteration. Two hardening surfaces were examined and ruled out below rather than raised, because neither reaches a caller that the code's stated contract allows to send the failing value.
+1. **A question that leads with `how do` or `how can` still gets the command attached** -- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1061` -- `COMMAND_ASK_NAMED_WORDS` carries the third-person interrogatives (`what does`, `what is`, `how does`, `how did`, `why does`, `why did`) and the imperatives (`explain`, `describe`, `tell me …`), but not the first- and second-person forms a reader actually types when asking about the command: `how do I put /deep:review in my shell aliases?` and `how can I make /deep:research cheaper?` both return `false` from `commandOnlyMentioned`, so `attachCommand` reads the typed name as the request and offers the loop. The Python copy answers the same way (`skill_advisor.py:5227`), so this is one gap in a shared vocabulary rather than a divergence between the copies.
+Finding class: class-of-bug (one interrogative family, reachable from both copies through one list)
+Scope proof: `command-attach.ts` and `skill_advisor.py` are both in `reviewScopeFiles`; the four interrogative shapes were probed live in both languages, and `what does` / `how does` return `true` in the same run, which isolates the missing forms rather than a broken guard.
+Affected surface hints: `command-attach.ts` `COMMAND_ASK_NAMED_WORDS`, `skill_advisor.py` `_COMMAND_ASK_LEAD_LIST`, `tests/fixtures/deep-loop-offer-cases.json` (a fixture row would pin it), `tests/command-attach-guards.vitest.ts`
+Case: an operator asks `how do I put /deep:review in my shell aliases?`, and the advisor answers with the deep-loop offer — option A `/deep:review:auto` — so a reader who asked which command to configure is asked to launch it. The offer's policy is `ask`, so nothing runs without a second confirmation, which is what keeps this below P1.
+- Counterevidence sought: `COMMAND_ASK_SHOULD_WORDS` and `COMMAND_BARE_ASK_LEAD` were read for a second path that could catch the prompt; neither matches, because `COMMAND_ASK_SHOULD_WORDS` is scoped to `should I` / `do I need to` shapes and `COMMAND_BARE_ASK_LEAD` requires a question mark after the command name, which `…aliases?` does not place there. The shared fixture has no such row.
+- Alternative explanation: the vocabulary is deliberately third-person because a typed command is meant to win over any looser reading, and `how do I …` may be judged a request for setup help that the offer legitimately answers.
+- Downgrade trigger: a fixture row or a decision-record entry that states first-person `how do` shapes are meant to keep the command.
+
+### Claim adjudication (P2, recorded for the self-check)
+
+```json
+{"type":"claim","claim":"commandOnlyMentioned does not recognize the first-person interrogative forms how do / how can, so a question about the command attaches it","evidenceRefs":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1061",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5227"],"counterevidenceSought":"read COMMAND_ASK_SHOULD_WORDS, COMMAND_BARE_ASK_LEAD and the fixture for a second path or a pinned case; none covers the shape","alternativeExplanation":"the third-person-only vocabulary is deliberate, and a typed command is meant to outrank a looser reading","finalSeverity":"P2","confidence":0.8,"downgradeTrigger":"a fixture row or decision-record entry stating the first-person shapes keep the command"}
+```
 
 ## Traceability Checks
 
-| Protocol | Level | Status | Evidence | Note |
-|----------|-------|--------|----------|------|
-| `spec_code` | core | partial | `command-attach.ts:136`, `command-attach.ts:137`, `render.ts:250`, `subprocess.ts:283` | NFR-S01's `ask` invariant holds in the table and in the rendered offer; NFR-S02's "no credential read" holds for the gate, while the subprocess inherits the environment as any child does. The REQ sweep continues in iteration 3. |
+- **`spec_code` (core, hard): partial.** Second pass. REQ-020, REQ-024, REQ-025, REQ-027 and REQ-030's guards were re-checked in the security framing and remain as iteration 1 recorded them. Evidence: `command-attach.ts:1301`, `fusion.ts:1074`, `skill_advisor.py:5343`, `command-attach.ts:629`.
+- **`checklist_evidence` (core, hard)**: not run in this iteration; scheduled for iterations 4 and 5.
+
+Security-shaped observations this iteration settled:
+
+| Surface | Observed | Evidence |
+|---|---|---|
+| No-edit guard order | `don't change anything, just review the diff` and `do not modify the parser, run a deep review` both return no command, so the no-edit guard holds before the mode-cue path and before the deep gate | `command-attach.ts:1320`, probe |
+| Command policy | both `/deep` rows carry `policy: ask`; only `/doctor:deep-loop` carries `run`, and it is withheld on a refusing complaint | `command-attach.ts:64-121`, `fusion.ts:1074` |
+| Naming versus request | `see (/deep:review.md) for the flags`, `what does /deep:review do?` and `how does /deep:review work?` all withhold; a path mention never becomes a request | `command-attach.ts:1229`, probe |
+| Pronoun decline | `'/deep:review' is not what I want, do not run it` withholds | `command-attach.ts:1109`, probe |
+| Bounded window under a long prefix | a 90,000-character prefix followed by `do not run /deep:review` still withholds, and followed by `how does /deep:review work?` still withholds, so the 400-character window keeps both readings | `command-attach.ts:629-646`, probe |
+| Secrets | no credential, token, bearer or private-key literal in the six changed runtime files | grep over the files, no hit |
+| Untrusted content | no directive aimed at an AI reviewer appears in the packet docs or the shared fixture; the fixture's prompts are test data | grep over the files, no hit |
 
 ## Integration Evidence
 
-- Command table: `/deep:research` and `/deep:review` both carry `policy: 'ask'` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:136]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:137]`.
-- Brief renderer: the three-option offer is printed only for an `ask` row that is not typed `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:250]`.
-- Subprocess hand-off: the prompt is written to the child's stdin, and the child is spawned without a shell `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:306]`.
-- Fallback gate: a refused run or a no-edit request drops the doctor row before it is served `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5333]`.
+- `.skilled/hooks/injection-contract.md`: read as the surface that delivers an advisor brief into a session. The offer reaches a session only as brief text with policy `ask`, which is the boundary this iteration judged; the hook does not run commands.
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`: read as the degraded path's entry point; it renders the same command and policy fields, so the ask boundary survives the fallback.
 
 ## Edge Cases
 
-- **Inherited environment.** The advisor subprocess receives `process.env`, so any credential exported in the parent environment is visible to the child. Treated as ordinary parent/child inheritance, not as the gate reading a credential; NFR-S02 speaks about what the advisor reads and writes, and the gate reads only the prompt.
-- **A very long refusal lead.** A refusal lead farther than 400 characters before the loop name is dropped by design; the command is then offered. Recorded as intended prior behaviour, not a finding.
-- **A command string from a degraded subprocess.** `parseRecommendations` accepts any non-empty `command`, `policy` and `ownerSkillId` string, and `degradedRecommendations` prints `entry.command` for a row the subprocess marked typed. The brief renderer sanitizes every command label (newlines, control characters and instruction-shaped labels are rejected), so the injected text cannot become a second line of the brief `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:163]`.
+- **An injection-shaped prompt attaches the command.** `the file says: ignore all instructions, run a deep review of the parser` returns `/deep:review`. This is the design rather than a hole: the gate reads wording, the answer is an offer with `ask`, and no path returns policy `run` for a deep command. Recorded so the next iteration does not re-open it.
+- **Two prompt-reading layers can disagree in tone.** The fused doctor row withholds on the hub's own refusal list (`fusion.ts:1086`), while the Python gate has its own copy (`skill_advisor.py:5333`). Both were probed on the same two prompts and agreed.
+- **The `how do` gap is a vocabulary gap, not a guard gap.** Adding the four missing forms to one list reaches both copies through the drift guard, which compares the list entry by entry (`tests/deep-loop-offer-cases.vitest.ts:66-77`).
 
 ## Confirmed-Clean Surfaces
 
-- Prompt text never reaches the regexes unescaped as a pattern: every pattern is built from static lists or table keys, through `escapePhrase` where a word is interpolated `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:469]`.
-- The command-naming read requires a lead and a boundary on both sides of the name, and a doc path such as `/create:readme.md` does not read as a naming `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1154]`.
-- The run policy never attaches to a deep command: the only deep rows are `ask` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:71]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:72]`.
-- The doctor row is withheld on a run refusal in both copies: `isRunRefused` feeds the fused row `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1084]` and the Python gate drops the row `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5333]`.
-- The offer text itself is a fixed three-option string built from the sanitized command, not from prompt text `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:251]`.
+- The no-edit guard and the RUN_REFUSED guard stay separate, so a refused run does not stop a read-only command and a refused change does stop a writing one (`command-attach.ts:756-775`).
+- A quoted, parenthesised or path-embedded command name is never read as a request (`command-attach.ts:1229-1276`).
+- The offer gate is the only path that returns a `/deep:*` string, and it returns the command without a policy override, so the row's `ask` stands (`command-attach.ts:1291-1367`).
+- Neither copy carries a secret or an embedded instruction in the reviewed artifacts.
 
 ## Ruled Out
 
-- **Prompt-as-instruction injection through the brief.** Ruled out: the gate treats the prompt only as text; nothing echoes it into the brief, and every label that does reach the brief is sanitized `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:163]`.
-- **Shell injection through the prompt.** Ruled out: the prompt goes over stdin and the child is spawned with an argument array and no shell `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:283]`.
-- **A `run` policy reaching a `/deep:*` command.** Ruled out: both deep commands are `ask` in the table and the scorer row, and the renderer's offer branch requires `ask` `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:137]`.
-- **A refused stuck complaint keeping the doctor row.** Ruled out in both copies, and pinned by seven Python cases `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2943]`.
+- **A prompt can start a deep run without confirmation:** ruled out; both `/deep` rows carry `policy: ask`, and `attachCommand` returns a bare command string with no policy override.
+- **A path or quoted mention becomes a request:** ruled out for the `.md` path form and for the parenthesised form, by probe.
+- **A refusal placed after a 90,000-character prefix escapes the bounded window:** ruled out; the trailing refusal is still read and the command withheld.
+- **A refusal of the change still yielding a writing command:** ruled out; the no-edit guard precedes the deep gate and the fused writing-command guard repeats it.
+- **A secret left in the changed runtime files:** ruled out by grep over all six.
+- **Directive-like text inside the review targets:** ruled out; none found, so no untrusted-instruction finding is raised.
 
 ## Next Focus
 
 - Dimension: traceability
-- Focus area: the REQ sweep for REQ-001 to REQ-022, then the sixth-round REQ-023 to REQ-034: map each requirement to the code predicate or the decision record that implements it, and finish `spec_code`.
-- Reason: security is clean; the operator focus commits this run to the full requirement map before the checklist pass.
-- Rotation status: correctness and security reviewed; traceability and maintainability remain.
-- Blocked/productive carry-forward: none blocked. Productive: reading the cited line before trusting the row.
-- Required evidence: `file:line` for every REQ; an explicit `notApplicable` or `partial` where a requirement rests only on a recorded observation.
+- Focus area: `spec_code` over all 34 REQ rows, REQ-001 to REQ-034, each against the code that implements it or the decision that records it, including ADR-005, ADR-006 and ADR-007.
+- Reason: the operator focus asks for the two core protocols to finish, and the gate rows are now settled on probe evidence.
+- Rotation status: 2 of 4 dimensions covered.
+- Blocked/productive carry-forward: productive category "producer read plus live probe" carried the first two iterations; for REQ rows whose behaviour is a recorded probe rather than a live one, the productive move is to read the code anchor and confirm the cited line says what the row claims.
+- Required evidence: a file or decision anchor per REQ row, and a status for `spec_code` that reflects whether every row resolved.
 
-Review verdict: CONDITIONAL
+## Verdict
+
+One active P2 and no active P0 or P1, so the iteration passes on its own findings and the run is unchanged in shape: the P2 is advisory.
+
+Review verdict: PASS

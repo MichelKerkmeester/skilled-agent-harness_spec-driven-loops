@@ -16,17 +16,17 @@ Reducer-generated observability surface for the active review packet.
 <!-- ANCHOR:status -->
 ## 2. STATUS
 - Review Target: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers (spec-folder)
-- Started: 2026-11-24T09:08:04.000Z
+- Started: 2026-11-24T09:56:49.000Z
 - Status: COMPLETE
 - Iteration: 5 of 5
 - Provisional Verdict: FAIL
 - Failed required gates at stop: coverage
 - hasSearchDebt: false
 - hasAdvisories: false
-- Session ID: fanout-deepseek-max-3-1795511183570-92w0ez
-- Parent Session: 2026-11-24T09:06:03.000Z
+- Session ID: fanout-deepseek-max-3-1795514074741-gl47kr
+- Parent Session: 2026-11-24T09:54:34.000Z
 - Lifecycle Mode: new
-- Generation: 3
+- Generation: 4
 - continuedFromRun: none
 - stopReason: maxIterationsReached
 
@@ -47,8 +47,8 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 1 |
-| P2 (Suggestions) | 4 |
+| P1 (Required) | 0 |
+| P2 (Suggestions) | 5 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -57,11 +57,11 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | correctness | correctness | 1.00 | 0/1/1 | complete |
-| 2 | security | security | 0.00 | 0/0/0 | complete |
-| 3 | traceability | traceability | 0.17 | 0/0/1 | complete |
-| 4 | traceability/checklist_evidence | traceability | 0.14 | 0/0/1 | complete |
-| 5 | maintainability | maintainability | 0.13 | 0/0/1 | complete |
+| 1 | correctness | correctness | 0.00 | 0/0/0 | complete |
+| 2 | security | security | 1.00 | 0/0/1 | complete |
+| 3 | traceability | traceability | 0.75 | 0/0/3 | complete |
+| 4 | traceability | traceability | 0.00 | 0/0/0 | complete |
+| 5 | maintainability | maintainability | 0.20 | 0/0/1 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -69,10 +69,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 5 |
-| security | covered | 0 |
-| traceability | covered | 0 |
-| maintainability | covered | 0 |
+| correctness | covered | 0 |
+| security | covered | 1 |
+| traceability | covered | 3 |
+| maintainability | covered | 1 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
@@ -89,8 +89,8 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.17 -> 0.14 -> 0.13
-- convergenceScore: 0.88
+- Last 3 ratios: 0.75 -> 0.00 -> 0.20
+- convergenceScore: 0.80
 - openFindings: 5
 - persistentSameSeverity: 0
 - severityChanged: 0
@@ -105,45 +105,55 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graph
-- candidateCoverage: covered=19, ruledOut=12, deferred=0, blocked=0
+- candidateCoverage: covered=17, ruledOut=15, deferred=0, blocked=0
 
 ### Search Debt
 [None yet]
 
 ### Ruled-Out Candidates
-- iteration 1 gate_predicate_correctness (ruled_out): read at the gate and pinned by fixture controls; evidence=command-attach.ts:1320, command-attach.ts:1347, deep-loop-offer-cases.json:136, deep-loop-offer-cases.json:137
-- iteration 2 prompt_injection (ruled_out): read at the renderer and the hand-off; evidence=render.ts:163, subprocess.ts:306
-- iteration 2 policy_downgrade (ruled_out): read at both layers; evidence=command-attach.ts:137, render.ts:250
-- iteration 2 secret_exposure (ruled_out): out-of-contract hardening; no caller sends a failing value; evidence=subprocess.ts:283
-- iteration 3 probe_regression (ruled_out): direct result-file comparison; evidence=results-after.json:1
-- iteration 3 corpus_regression (ruled_out): read from the committed baseline; evidence=command-routing-baseline.json:1
-- iteration 4 waiver_backing (ruled_out): read the decision record headings and the waiver cells; evidence=decision-record.md:33
-- iteration 4 checklist_count (ruled_out): counted every CHK line; evidence=tasks.md:291
-- iteration 4 test_row_claim (ruled_out): read each cited line; evidence=typed-on-stuck-serving.vitest.ts:107, test_skill_advisor.py:2902, command-brief-golden.vitest.ts:353
-- iteration 5 dead_branch (ruled_out): walked each call site; evidence=command-attach.ts:1319
-- iteration 5 stale_comment (ruled_out): read each comment against the branch below it; evidence=command-attach.ts:591
+- iteration 1 logic_error (ruled_out): verified by live probe of the producer; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:569, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4628
+- iteration 1 state_transition (ruled_out): verified by live probe and direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1301, .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074
+- iteration 1 boundary_condition (ruled_out): verified by timing the producer; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:629, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4921
+- iteration 1 logic_error (ruled_out): verified by live probe and the serving test; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:274, .skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:107
+- iteration 2 trust_boundary (ruled_out): verified by direct read of the row table and the return path; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:64, .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1291
+- iteration 2 secret_exposure (ruled_out): grep over all six changed files returned no credential literal; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1
+- iteration 2 unbounded_input (ruled_out): verified by probe at 90,000 characters; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:629
+- iteration 2 injection (ruled_out): grep over the packet docs and fixture returned no hit; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:1
+- iteration 3 spec_code_drift (ruled_out): probe pair and direct searches agree with the rows; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json:1, .skilled/skills/system-deep-loop/hub-router.json:34
+- iteration 3 decision_supersession (ruled_out): ADR-001 states the D1 replacement explicitly; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:56
+- iteration 4 false_tick (ruled_out): fifteen reruns plus a whole-row read found no false tick; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:36
+- iteration 4 missing_adr (ruled_out): three ADRs read in full; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33
+- iteration 4 summary_miscount (ruled_out): counts agree; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:298
+- iteration 4 stale_evidence (ruled_out): nine cells read by content; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:93
+- iteration 5 comment_hygiene (ruled_out): grep over eight files returned no hit; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:569
+- iteration 5 drift_guard_coverage (ruled_out): read of the reader and its assertion; evidence=.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:120
 
 ### Clean Search Proof
-- iteration 1 gate_predicate_correctness (ruled_out): read at the gate and pinned by fixture controls; evidence=command-attach.ts:1320, command-attach.ts:1347, deep-loop-offer-cases.json:136, deep-loop-offer-cases.json:137
-- iteration 2 prompt_injection (ruled_out): read at the renderer and the hand-off; evidence=render.ts:163, subprocess.ts:306
-- iteration 2 policy_downgrade (ruled_out): read at both layers; evidence=command-attach.ts:137, render.ts:250
-- iteration 2 secret_exposure (ruled_out): out-of-contract hardening; no caller sends a failing value; evidence=subprocess.ts:283
-- iteration 3 probe_regression (ruled_out): direct result-file comparison; evidence=results-after.json:1
-- iteration 3 corpus_regression (ruled_out): read from the committed baseline; evidence=command-routing-baseline.json:1
-- iteration 4 waiver_backing (ruled_out): read the decision record headings and the waiver cells; evidence=decision-record.md:33
-- iteration 4 checklist_count (ruled_out): counted every CHK line; evidence=tasks.md:291
-- iteration 4 test_row_claim (ruled_out): read each cited line; evidence=typed-on-stuck-serving.vitest.ts:107, test_skill_advisor.py:2902, command-brief-golden.vitest.ts:353
-- iteration 5 dead_branch (ruled_out): walked each call site; evidence=command-attach.ts:1319
-- iteration 5 stale_comment (ruled_out): read each comment against the branch below it; evidence=command-attach.ts:591
+- iteration 1 logic_error (ruled_out): verified by live probe of the producer; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:569, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4628
+- iteration 1 state_transition (ruled_out): verified by live probe and direct read; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1301, .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1074
+- iteration 1 boundary_condition (ruled_out): verified by timing the producer; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:629, .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4921
+- iteration 1 logic_error (ruled_out): verified by live probe and the serving test; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:274, .skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:107
+- iteration 2 trust_boundary (ruled_out): verified by direct read of the row table and the return path; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:64, .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1291
+- iteration 2 secret_exposure (ruled_out): grep over all six changed files returned no credential literal; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1
+- iteration 2 unbounded_input (ruled_out): verified by probe at 90,000 characters; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:629
+- iteration 2 injection (ruled_out): grep over the packet docs and fixture returned no hit; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:1
+- iteration 3 spec_code_drift (ruled_out): probe pair and direct searches agree with the rows; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json:1, .skilled/skills/system-deep-loop/hub-router.json:34
+- iteration 3 decision_supersession (ruled_out): ADR-001 states the D1 replacement explicitly; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:56
+- iteration 4 false_tick (ruled_out): fifteen reruns plus a whole-row read found no false tick; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:36
+- iteration 4 missing_adr (ruled_out): three ADRs read in full; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33
+- iteration 4 summary_miscount (ruled_out): counts agree; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:298
+- iteration 4 stale_evidence (ruled_out): nine cells read by content; evidence=specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:93
+- iteration 5 comment_hygiene (ruled_out): grep over eight files returned no hit; evidence=.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:569
+- iteration 5 drift_guard_coverage (ruled_out): read of the reader and its assertion; evidence=.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:120
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- None. This is the terminal iteration: the cap is reached and synthesis follows. - Rotation status: correctness, security, traceability (`spec_code` and `checklist_evidence`) and maintainability all reviewed. - Carry-forward for synthesis: `R1-P1-001` active (docs claim), `R1-P2-002`, `R3-P2-003`, `R4-P2-004` and `R5-P2-005` active; protocol statuses `spec_code: partial`, `checklist_evidence: partial`. - Required evidence for the report: the five finding ids, the protocol table, the acceptance counts, and this run's own terminal gates. Review verdict: CONDITIONAL
+- None. This is the last iteration under `maxIterations: 5`; the run proceeds to synthesis with stop reason `maxIterationsReached`. - Rotation status: fourth rotation complete; all four canonical dimensions are covered and both core protocols are at pass. - Blocked/productive carry-forward: the productive category "resolve the citation against its declared base, then read the line" carried the two traceability passes; the exhausted category "probe with a wrong argument order" from the template's prior run does not apply here. - Required evidence for synthesis: five active P2 findings, two protocol statuses at pass with file:line references, the terminal gate rows, and the four-dimension coverage record.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 1 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 5 active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.
 
 <!-- /ANCHOR:active-risks -->
