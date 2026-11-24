@@ -131,7 +131,8 @@ _memory:
 | Q001 | The packet lives at `specs/cli-orca/003-cli-orca-deprecation`. | Not stated. | none | ../spec.md |
 | Q002 | The work runs in a new git worktree. | Not stated. | none | ../spec.md |
 | Q003 | Full removal, including `.skilled/changelog/cli-orca`; `specs/` and released changelogs stay. | Not stated. | none | ../spec.md |
-| Q004 | The reason is low use against steady upkeep. | Not stated. | none | ../spec.md |
+| Q004 | The problem statement gives low use against steady upkeep as the reason. | Not stated. | None | Q004 row, ../spec.md |
+| Q005 | Remove cli-orca fully, including its .skilled/changelog/cli-orca link. | Not stated. | None | Q003 row, ../spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -176,14 +177,43 @@ Full removal incl. changelog dir
 ```
 
 ### Q004
+<!-- source: claude:ff6a7339-90f8-496d-b18b-2c3b56947423:toolu_01AuroMxvg1YdgF4AmFyuhX7:3 -->
 
 Question:
 ```text
 Why is cli-orca being deprecated? This goes in the problem statement.
 ```
 
+Options:
+```text
+Unused / upkeep cost
+Orca no longer used
+Replaced by something else
+```
+
 Answer:
 ```text
 Unused / upkeep cost
 ```
+
+### Q005
+<!-- source: claude:ff6a7339-90f8-496d-b18b-2c3b56947423:toolu_01AuroMxvg1YdgF4AmFyuhX7:2 -->
+
+Question:
+```text
+How complete should the removal be? (Precedent: Hermes and sk-vision chose full removal, no stubs, specs/ and released changelogs kept as history.)
+```
+
+Options:
+```text
+Full removal, keep history (Recommended)
+Full removal incl. changelog dir
+Soft deprecation
+```
+
+Answer:
+```text
+Full removal incl. changelog dir
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->

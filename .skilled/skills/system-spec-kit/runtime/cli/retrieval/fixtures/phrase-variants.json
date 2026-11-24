@@ -1,5 +1,5 @@
 {
-  "manifestHash": "620df98a0021197957da087b6c4dd2f9caa6498d72e69b5306b4a8ac0c76dc1c",
+  "manifestHash": "014b2f2f4814219fed3805818e82ab34b34e23a44f88c39453eecc921015feec",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1534,6 +1534,9 @@
     "005 plan q4 quantization": [
       "005 plan q4 quantization"
     ],
+    "005 post alignment doc fixes operator decisions": [
+      "005-post-alignment-doc-fixes operator decisions"
+    ],
     "005 post program cleanup": [
       "005 post-program cleanup"
     ],
@@ -2040,6 +2043,9 @@
     ],
     "007 plan voyage cleanup": [
       "007 plan voyage cleanup"
+    ],
+    "007 provision dev dependencies operator decisions": [
+      "007-provision-dev-dependencies operator decisions"
     ],
     "007 review doc reconciliation operator decisions": [
       "007-review-doc-reconciliation operator decisions"

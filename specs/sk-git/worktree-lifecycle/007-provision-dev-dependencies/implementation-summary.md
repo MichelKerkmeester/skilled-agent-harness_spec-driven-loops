@@ -8,16 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/worktree-lifecycle/007-provision-dev-dependencies"
-    last_updated_at: "2026-11-24T11:29:35Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Fixed the npm walk boundary and added the regression case"
-    next_safe_action: "Operator review, then commit and push the worktree branch"
+    last_updated_at: "2026-11-24T13:35:49Z"
+    last_updated_by: "generate-context"
+    recent_action: "Recorded the decisions that opened and scoped this packet"
+    next_safe_action: "None; packet complete"
+    packet_purpose: "Purpose: A package with its own `package-lock.json` counts as installed only when its dependency is under its own install root, so every new worktree provisions with no failed build."
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1f69fe9664feca699b9377617f629fe8cc9f77f7f62663a5ba446393275f7b81"
       session_id: "scaffold-007-provision-dev-dependencies"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "ff6a7339-90f8-496d-b18b-2c3b56947423"
+      workspace: "/Users/michelkerkmeester/worktrees/public/536-provision-dev-dependencies"
+      savedAt: "2026-11-24T13:35:49Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

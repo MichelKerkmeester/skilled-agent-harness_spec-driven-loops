@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-git/worktree-lifecycle/007-provision-dev-dependencies",
   "description": "Provision a nested npm package even when an ancestor installed a same-named dependency",
   "keywords": [
@@ -12,14 +13,15 @@
     "same-named",
     "dependency"
   ],
-  "lastUpdated": "2026-11-24T11:29:35.475Z",
+  "lastUpdated": "2026-11-24T13:35:49.498Z",
   "specId": "007",
   "folderSlug": "provision-dev-dependencies",
   "parentChain": [
     "sk-git",
     "worktree-lifecycle"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-11-26_14-35__opened-and-fixed-the-worktree-provisioning-bug.md"
+  ]
 }

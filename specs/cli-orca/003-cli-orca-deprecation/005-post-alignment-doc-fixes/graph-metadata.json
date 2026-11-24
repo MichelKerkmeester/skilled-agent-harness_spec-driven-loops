@@ -15,6 +15,7 @@
       "skills index family counts",
       "cli orca post alignment doc fixes plan",
       "cli orca post alignment doc fixes tasks",
+      "005-post-alignment-doc-fixes operator decisions",
       "post alignment doc fixes implementation summary"
     ],
     "key_topics": [
@@ -29,7 +30,7 @@
       "counts",
       "plan",
       "tasks",
-      "implementation"
+      "005-post-alignment-doc-fixes"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/README.txt",
       ".skilled/changelog/skilled/v4.2.0.0.md"
@@ -58,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -179,32 +187,28 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A `/local-skilled-alignment` run over the removal commits found two gaps",
     "created_at": "2026-11-24T13:17:32Z",
-    "last_save_at": "2026-11-24T13:20:37.331Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-24T13:35:46.800Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8412cf7896dbccd3638003ea575626b7422c54be221c64c7c9320748cb30bc9e",
+    "source_fingerprint": "sha256:e9d0b961de02132b238fc4243a76199ff001c5750dba33f77e23c3abee527458",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b51baa9e695038d6a5754389090d642733e31ecb69976d574e8789fca5f1486e",
       "plan.md": "136ec72ce6316a62767408410dc2d19f08dee234f85d6c1fc573bc19f568e256",
       "tasks.md": "93401555c08552c0521050b63618218098180f0c7d87946458ec996211c73343",
-      "implementation-summary.md": "56a9a4beabba028811e723eaf97125cf04f1e34ad804b44a3c827ffd88d3fc08"
+      "decision-record.md": "de6fb39e8cde437f0c0d389d4487d1fbc266333972b65261b24b122e7e79fffa",
+      "implementation-summary.md": "a9eb7adbd20820c9dc102df5ccaaa62928ffdb7b99455e5c736e31d49acaf0e6"
     },
     "last_active_at": null
   }

@@ -8,16 +8,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes"
-    last_updated_at: "2026-11-24T13:17:33Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Fixed the skills index counts and added the removal to the v4.2.0.0 release notes"
+    last_updated_at: "2026-11-24T13:35:46Z"
+    last_updated_by: "generate-context"
+    recent_action: "Fixed all eight alignment findings and rechecked the skilled-alignment run"
     next_safe_action: "None; phase complete"
+    packet_purpose: "Purpose: The skills index counts are correct, and the open release notes tell readers the skill is gone."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/README.txt"
+      - ".skilled/changelog/skilled/v4.2.0.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:23919b6a02a8aac6fed1e6de1a647cdbb2f37b2e9c07f533b25990aa24e93a7f"
       session_id: "scaffold-005-post-alignment-doc-fixes"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "ff6a7339-90f8-496d-b18b-2c3b56947423"
+      workspace: "/Users/michelkerkmeester/worktrees/public/536-provision-dev-dependencies"
+      savedAt: "2026-11-24T13:35:46Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

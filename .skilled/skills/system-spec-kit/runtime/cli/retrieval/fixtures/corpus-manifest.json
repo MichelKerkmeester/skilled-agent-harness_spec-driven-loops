@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c620d63151318dbacfd7151323e9c49851e375168e1b6e27bfe48bf025357ffc",
+  "corpusHash": "40fcfd7a24ac22d3369a57a3f18321cb9c3221c3747723a368fb82f93699521f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29516,
+  "includedPathCount": 29518,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11212,6 +11212,7 @@
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/plan.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/spec.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/tasks.md",
+    "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/decision-record.md",
     "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/implementation-summary.md",
     "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/plan.md",
     "specs/cli-orca/003-cli-orca-deprecation/005-post-alignment-doc-fixes/spec.md",
@@ -17376,6 +17377,7 @@
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/plan.md",
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/spec.md",
     "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/tasks.md",
+    "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/decision-record.md",
     "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/implementation-summary.md",
     "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/plan.md",
     "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/spec.md",
@@ -29548,7 +29550,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "620df98a0021197957da087b6c4dd2f9caa6498d72e69b5306b4a8ac0c76dc1c",
+  "manifestHash": "014b2f2f4814219fed3805818e82ab34b34e23a44f88c39453eecc921015feec",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
