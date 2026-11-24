@@ -1,0 +1,315 @@
+{
+  "sessionId": "fanout-pi-2-1795504079797-ay97sx",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "stuckRecovery",
+    "totalIterations": 6,
+    "timestamp": "2026-11-24T07:16:08.095Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "PI2-I2-P1-001",
+      "severity": "P1",
+      "title": "A bare staging category hint still lifts mcp-browser-use to the 0.82 task-intent floor on non-browser prompts",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "PI2-I1-P2-001",
+      "severity": "P2",
+      "title": "Parent goal log still reports phase 014 as In Progress",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+      "line": 135,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "PI2-I1-P2-002",
+      "severity": "P2",
+      "title": "Research lane table still offers an ungated npx -y bladebro launch",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+      "line": 57,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "PI2-I2-P2-001",
+      "severity": "P2",
+      "title": "promptNamesIdNoun accepts any generic noun as the skill name",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 332,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "PI2-I3-P2-001",
+      "severity": "P2",
+      "title": "The live-attach MCP manual is callable with no stated operator gate",
+      "file": ".utcp_config.json",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "PI2-I4-P2-001",
+      "severity": "P2",
+      "title": "ROUTER.md Chrome DevTools keyword list has drifted from the router it documents",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 5
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 5,
+      "executed": 5,
+      "pass": 4,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:98"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "Compiled vocabulary builds from hub-router.json and fails closed on an unknown class"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md:84"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "AC-002 remains the one unevidenced row"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/README.md:1"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "summary": "Catalog present per mode; nothing contradicts the catalog tree"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/README.md:1"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "Stage two passes every replay row"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/SKILL.md:60"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "Hub SKILL.md and ROUTER.md both state the own-Chrome attach rule"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

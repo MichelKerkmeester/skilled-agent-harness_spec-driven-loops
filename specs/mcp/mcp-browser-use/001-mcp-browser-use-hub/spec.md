@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-11-24T08:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Closed 014: every deep review finding fixed at its source"
-    next_safe_action: "Run the follow-up deep review after the 014 commit"
+    next_safe_action: "Plan and build phase 015 from review/review-report.md"
     blockers: []
     key_files:
       - "014-fix-deep-review-findings/spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2a13155f-ba79-49ab-9967-8fdff087389a"
       parent_session_id: "587eb5dd-b522-4898-9ee2-a03a0563e3ad"
-    completion_pct: 100
+    completion_pct: 93
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete: phases 001 to 014 are Complete and all seven goal criteria hold. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. A follow-up deep review runs after the 014 commit (014 decision Q002) |
+| **Status** | In Progress: phases 001 to 014 are Complete. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. The follow-up deep review (014 decision Q002) returned CONDITIONAL without recorded stop gates, and phase 015 fixes the findings it confirmed |
 | **Created** | 2026-11-21 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -129,6 +129,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 12 | 012-browser-hub-doc-topic/ | Give `/local-doc-alignment` an `mcp-browser-use` topic and run it with Devin lanes (Level 1) | Complete |
 | 13 | 013-fix-alignment-findings-for-browser-hub-docs/ | Fix every finding from 012's two alignment runs: hub docs and scripts against bdg 0.6.10 and Code Mode, plus the own-Chrome routing lift (Level 1) | Complete |
 | 14 | 014-fix-deep-review-findings/ | Fix every finding of the 2026-11-24 deep review: installer helper parity, the Bladebro npx gate and install order, the bdg pin, Aside docs, routing vocabulary and packet state (Level 2) | Complete |
+| 15 | 015-fix-follow-up-review-findings/ | Fix the findings the follow-up deep review confirmed | Draft |
 
 ### Phase Transition Rules
 
@@ -154,6 +155,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 011-bdg-eval-port-note | 012-browser-hub-doc-topic | The Chrome DevTools guide explains the bdg `dom eval` port failure | `rg -q 'Issue: .bdg dom eval. or a form command reports "Session target not found"'` on the guide exits 0 |
 | 012-browser-hub-doc-topic | 013-fix-alignment-findings-for-browser-hub-docs | Both alignment runs wrote a findings report for the browser hub | The doc run holds 91 findings and the skilled run 21 in their `findings.json` |
 | 013-fix-alignment-findings-for-browser-hub-docs | 014-fix-deep-review-findings | 013 is committed, and a deep review of phases 001 to 013 has recorded its open findings | `review/deep-review-findings-registry.json` lists 33 open findings, and `review/review-report.md` ends with its verdict |
+| 014-fix-deep-review-findings | 015-fix-follow-up-review-findings | 014 Complete and the follow-up review merged | `review/review-report.md` lists each finding with its check |
 <!-- /ANCHOR:phase-map -->
 
 ---

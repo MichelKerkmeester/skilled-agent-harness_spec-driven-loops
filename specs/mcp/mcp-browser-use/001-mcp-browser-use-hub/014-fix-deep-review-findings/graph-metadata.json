@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The deep review of phases 001 to 013 returned FAIL",
     "created_at": "2026-11-24T05:19:39Z",
-    "last_save_at": "2026-11-24T07:04:34.881Z",
+    "last_save_at": "2026-11-24T07:46:42.097Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:974d63251a1efdfba622c41943385c433b4f27e361225ac6448e3aeadbafa1a4",
+    "source_fingerprint": "sha256:6516d6ffa33982b92de5ac016c592da7f9ec7445e42fd751cb467a3843ed9085",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd595d1e61574e97f8c160cad031d3f2e7598372622c804f2e2f4aa9909e5148",
       "plan.md": "9b9e689d3a566a863b9e0304dcd6815eafac5b8a7212d880cafb49595cbc91ef",
       "tasks.md": "e0d92ffdeb473bdb5579710d3d620dd9444452159e64cdd0d452d370eea8a96d",
-      "decision-record.md": "23e671d9e047960eeb247a33b4a6c6c8c20912e84ed8f328c6b175f2b6e0df02",
+      "decision-record.md": "5e7f9185ccb061f2bc7b77c8e10da162bc9e0a20de530ea8b4e3dc57bc451331",
       "implementation-summary.md": "cac64663d60312a3eae210dc57677591025e7bc3b7f5357831aacc9530e1d8a8"
     },
     "last_active_at": null

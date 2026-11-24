@@ -38,6 +38,7 @@ _memory:
 | Q002 | Run a follow-up deep review of the hub epic after the 014 commit, with the ClickUp report folder and the changed scorer files added to its scope. | Not stated. | None | implementation-summary.md, parent spec.md |
 | Q003 | Ship the anchored scorer fix and re-baseline the ratchet's `unknown_count` from 13 to 14. | The one moved corpus row was already wrong and now abstains, and no correct answer changed. | None | spec.md scope, plan.md lane S, advisor changelog 2.0.2.0 |
 | Q004 | Keep investigating after the first gate moved four pinned slices, then land the narrower anchor (variant E) and re-pin the command slice, one doctor row and three divergence-ledger rows. | Each remaining move went toward the expected answer, or ranked the exact command a prompt names above a hub it reached on one shared word. | Q003 for the gate's shape | spec.md scope, plan.md lane S, implementation-summary.md |
+| Q005 | Merge the four DeepSeek lineages of the follow-up review with the missing stop gates stated, check each P1 against source, and open a phase-015 fix packet for the confirmed ones. | A rerun would also return CONDITIONAL, because the findings stand. | None | `../review/review-report.md` |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -124,6 +125,26 @@ Answer:
 ```text
 Keep investigating
 Land E, re-pin all (Recommended)
+```
+
+### Q005
+<!-- source: claude:f7099de4-e8ec-43e6-a849-849dabb1c94c:review-run:0 -->
+
+Question (condensed from the text asked):
+```text
+The follow-up deep review ran on four DeepSeek lineages. Each reached CONDITIONAL with no P0, but none ran the terminal-gates step, so the runner failed all four. How should I proceed?
+```
+
+Options:
+```text
+Merge, verify, then fix (Recommended)
+Rerun on Luna xhigh fast
+Merge and stop here
+```
+
+Answer:
+```text
+Merge, verify, then fix (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

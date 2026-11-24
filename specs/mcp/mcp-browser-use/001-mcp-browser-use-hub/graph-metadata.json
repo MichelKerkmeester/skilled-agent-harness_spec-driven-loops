@@ -17,7 +17,8 @@
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs",
-    "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings"
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -130,6 +131,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -148,12 +155,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Browser",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -161,12 +162,6 @@
       },
       {
         "name": "Installing Bladebro",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -216,7 +211,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-24T07:02:19.161Z",
+    "last_save_at": "2026-11-24T07:47:21.985Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,10 +219,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a71055c13cbec53a18bc46dd46273caecb23d454a17f86b5397008628b6a4c27",
+    "source_fingerprint": "sha256:497aa5cf2eba9e04b50ba4f72ceac26cb2e5afbb1b6eadf011d8e77bd3d1beb4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d431d7c924bcfe16215251a31c7c96dfcd8d108d2682fb5af2eb4f8a9770ea4",
+      "spec.md": "e4f6402d814316a899c7ae650dd3232bcf10bfcd00b0586bcec593914a430117",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
     "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",

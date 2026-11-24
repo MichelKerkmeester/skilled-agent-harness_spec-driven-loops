@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix follow up review findings",
+      "phase 15 fix follow up review findings",
+      "fix follow up review findings plan",
+      "fix follow up review findings tasks",
+      "fix follow up review findings acceptance criteria",
+      "fix follow up review findings goal",
+      "fix follow up review findings decision record",
+      "fix follow up review findings implementation summary"
+    ],
+    "key_topics": [
+      "follow",
+      "review",
+      "findings",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision",
+      "record",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-browser-use/hub-router.json",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json",
+      ".skilled/skills/mcp-browser-use/SKILL.md",
+      ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh",
+      ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "repl-evidence-capture.sh",
+        "kind": "script",
+        "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The follow-up deep review after phase 014 returned CONDITIONAL, with 10 P1 findings across four lineages",
+    "created_at": "2026-11-24T07:44:38Z",
+    "last_save_at": "2026-11-24T07:45:29.180Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0364bd0abea22387fac1c1d3c7e178592d0c1eb5e5e0842c092b6d9f7ec0d4cd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a6d462158a8df949a1f7c657565d0a88d0d98654feda6674edfd9ed7e29342f9",
+      "plan.md": "b5a8732408e3a6b9e4bc62c4f8821f1c41410c9a10d4f6666edab73fe816cba1",
+      "tasks.md": "1a7b00d666c29f3ac7d0a5472914f4c05f59b8e1d69e70ed81cf5a9cef3c89c5",
+      "decision-record.md": "13abeb5b4f8ae96ad6c619e4fef69de9f6fcb6c2b35b2fb36cb5b6f76d99452b",
+      "implementation-summary.md": "f551f875c7e1f318ec57d5575e62486280e2bddfaa4d1e4ae5735cb9e1c067f7"
+    },
+    "last_active_at": null
+  }
+}

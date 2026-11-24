@@ -1,23 +1,23 @@
 {
-  "run_id": "1795495435655-lf6jf3",
+  "run_id": "1795504079797-ay97sx",
   "loop_type": "review",
   "spec_folder": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub",
   "base_artifact_dir": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review",
   "total_cli_lineages": 4,
   "orphaned_lineages": [],
   "total": 4,
-  "succeeded": 4,
-  "failed": 0,
-  "all_failed": false,
+  "succeeded": 0,
+  "failed": 4,
+  "all_failed": true,
   "completed_with_containment_advisory": 0,
   "gauges": {
     "lag": 0,
     "pending": 0,
-    "failed": 0
+    "failed": 4
   },
   "failure_classes": {
     "timeout": 0,
-    "exit": 0,
+    "exit": 4,
     "salvage_miss": 0,
     "artifact_miss": 0,
     "projection_refusal": 0,
@@ -27,41 +27,45 @@
   },
   "lineages": [
     {
-      "label": "opus-1",
-      "status": "succeeded",
-      "failure_class": null,
+      "label": "pi-1",
+      "status": "failed",
+      "failure_class": "exit",
       "exit_code": 0,
-      "rerun_command": null
+      "rerun_command": null,
+      "rerun_note": "archive specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-1 first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --loop-type review --review-focus-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-focus.txt --review-target-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-target.txt --review-target-type spec-folder --review-scope-file specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-scope.txt --fanout-config-json-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review --convergence-threshold 0.1 --stop-policy convergence --convergence-mode default --depth-mode default --only-lineage pi-1"
     },
     {
-      "label": "opus-2",
-      "status": "succeeded",
-      "failure_class": null,
+      "label": "pi-2",
+      "status": "failed",
+      "failure_class": "exit",
       "exit_code": 0,
-      "rerun_command": null
+      "rerun_command": null,
+      "rerun_note": "archive specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2 first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --loop-type review --review-focus-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-focus.txt --review-target-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-target.txt --review-target-type spec-folder --review-scope-file specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-scope.txt --fanout-config-json-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review --convergence-threshold 0.1 --stop-policy convergence --convergence-mode default --depth-mode default --only-lineage pi-2"
     },
     {
-      "label": "opus-3",
-      "status": "succeeded",
-      "failure_class": null,
+      "label": "vibe-1",
+      "status": "failed",
+      "failure_class": "exit",
       "exit_code": 0,
-      "rerun_command": null
+      "rerun_command": null,
+      "rerun_note": "archive specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-1 first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --loop-type review --review-focus-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-focus.txt --review-target-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-target.txt --review-target-type spec-folder --review-scope-file specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-scope.txt --fanout-config-json-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review --convergence-threshold 0.1 --stop-policy convergence --convergence-mode default --depth-mode default --only-lineage vibe-1"
     },
     {
-      "label": "opus-4",
-      "status": "succeeded",
-      "failure_class": null,
+      "label": "vibe-2",
+      "status": "failed",
+      "failure_class": "exit",
       "exit_code": 0,
-      "rerun_command": null
+      "rerun_command": null,
+      "rerun_note": "archive specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-2 first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --loop-type review --review-focus-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-focus.txt --review-target-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-target.txt --review-target-type spec-folder --review-scope-file specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-scope.txt --fanout-config-json-file /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/MEGA/Development/Skilled/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review --convergence-threshold 0.1 --stop-policy convergence --convergence-mode default --depth-mode default --only-lineage vibe-2"
     }
   ],
   "provider_cost_usd": {
-    "total": 33.848248,
+    "total": null,
     "by_lineage": {
-      "opus-1": 7.486314,
-      "opus-2": 8.199933,
-      "opus-3": 8.867522,
-      "opus-4": 9.294479
+      "pi-1": null,
+      "pi-2": null,
+      "vibe-1": null,
+      "vibe-2": null
     }
   }
 }

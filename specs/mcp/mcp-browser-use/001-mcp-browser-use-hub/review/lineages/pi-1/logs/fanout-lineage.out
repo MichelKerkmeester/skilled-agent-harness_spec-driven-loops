@@ -1,0 +1,22 @@
+The lineage is complete. Final state:
+
+**pi-1 deep review — 5 iterations, converged stop, verdict CONDITIONAL (0 P0 / 2 P1 / 5 P2)**
+
+| Iteration | Dimension | New findings |
+|---|---|---|
+| 1 | correctness | 1 P1 + 1 P2 |
+| 2 | security | 1 P1 + 1 P2 |
+| 3 | traceability | 1 P2 |
+| 4 | maintainability | 2 P2 |
+| 5 | cross-reference | 0 (ratio 0 → stop candidate) |
+
+Landed findings:
+- **pi1-I1-P1-001** `fusion.ts:332` — `promptNamesIdNoun` lets ordinary nouns (`mode`, `code`, `design`…) satisfy `hasNamedAnchor`, so one shared word still reaches the 0.82 floor, contradicting the v2.0.2.0 changelog promise.
+- **pi1-I2-P1-001** `INSTALL-GUIDE.md:361` — four registration blocks teach `chrome-devtools-mcp@latest`, contradicting 014's "no unpinned fetch" claim.
+- P2s: AC-002 evidence overstatement, ungated pinned-npx launch in `.utcp_config.json`, stale derived `in_progress` in two `graph-metadata.json` files (AC-008's agreement claim false), duplicated Bladebro pin/digests with no test, and the guide's four copies of one manual block.
+
+Verified: `spec_code` and `checklist_evidence` pass (criteria 1/2/3/5/6 inspected directly; 4/7 recorded-only, named as such), `playbook_capability` and `feature_catalog_code` pass, `skill_agent`/`agent_cross_runtime` notApplicable; all six required bug classes covered, search debt 0, all nine legal-stop gates pass (`STOP_ALLOWED`, weighted score 1.0).
+
+Ledger integrity: all nine records went through `append-mode-event.cjs` (sequences 1–9) — run init, five iterations, claim adjudication, graph convergence, synthesis complete — with the reducer run after each; config status `complete`, release readiness `converged`; a report at `review/lineages/pi-1/review-report.md`, five iteration files, five deltas, strategy and dashboard. `git add` staging was skipped on purpose (git writes are outside this lineage's authority; the step is non-fatal).
+
+FANOUT_LINEAGE_COMPLETE:pi-1
