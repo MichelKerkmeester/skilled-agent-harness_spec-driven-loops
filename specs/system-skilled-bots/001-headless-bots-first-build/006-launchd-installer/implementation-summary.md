@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer"
-    last_updated_at: "2026-11-24T14:41:08Z"
+    last_updated_at: "2026-11-24T15:10:26Z"
     last_updated_by: "generate-context"
-    recent_action: "Live model fire passed under launchd"
+    recent_action: "Live drain fire passed under launchd"
     next_safe_action: "Close the open checklist rows of phases 003, 004, 005 and 007"
     packet_purpose: "Purpose: An operator can install a bot's schedule as a disabled launchd agent, enable it on purpose, see it fire and stop it at the scheduler."
     blockers: []
@@ -19,15 +19,16 @@ _memory:
       - ".skilled/bin/bots.cjs"
       - ".skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts"
       - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/live-model-fire-result.txt"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/live-drain-fire-result.txt"
     session_dedup:
-      fingerprint: "sha256:a0eb9e2325e3632e0ada67602dfd06a3b0972e66c04868851b9939bbc1a87d2e"
+      fingerprint: "sha256:019549ae43ac38854ba8ad471f015430f25584ce5e6f1afb0a11372e3f0eb949"
       session_id: "implement-006-launchd-installer"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-24T14:41:08Z"
+      savedAt: "2026-11-24T15:10:26Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -178,6 +179,7 @@ Proof, in the order it ran:
 | Executor pin (REQ-019) | 4 tests in `tests/installer.vitest.ts:693` to `:726`; both mutations fail their test (`scratch/mutation-executor-pin.txt`); suite 35 files, 377 tests passed, exit 0 (baseline 373); typecheck exit 0 (`scratch/bots-suite-executor-pin.txt`) |
 | Drain executor pin (REQ-020) | `tests/installer.vitest.ts:726`; removing the prepend fails it (`scratch/mutation-executor-pin.txt`); suite 35 files, 378 tests passed, exit 0 (baseline 377); typecheck exit 0 (`scratch/bots-suite-drain-pin.txt`) |
 | Live model fire | 2026-11-24, `scratch/live-model-fire-result.txt`: launchd's bare PATH resolves no `vibe` (line 3), the install record pins `/Users/michelkerkmeester/.local/bin/vibe` (line 21) and the job file carries no `PATH` (line 22). The bot fired on the 14:40:00Z slot on time (line 39), `cli-mistral-vibe` with `deepseek-flash` under a read-only sandbox ended `converged` (line 42) and printed `PONG` (line 56); uninstall left no job file and `print` exit 113 (lines 67 to 68) |
+| Live drain fire | 2026-11-24, `scratch/live-drain-fire-result.txt`: launchd's bare PATH resolves no `vibe` (line 2), the bot had no install record of its own (line 8), the drain record pinned every resolvable executor (line 25) and its job file carries no `PATH` (line 27). After one enqueue the drain job emptied the inbox into `done` with nothing quarantined (lines 38 to 40); `cli-mistral-vibe` with `deepseek-flash` under a read-only sandbox ended `converged` and printed `PONG` (lines 45, 59, 62); uninstall left no job file and `print` exit 113 (lines 70 to 71) |
 | Security review (CHK-130) | `scratch/security-review.txt`. Install record labels are now checked as hub labels; the new test fails on the old code. Suite 35 files, 373 tests passed, exit 0 (baseline 372); typecheck exit 0 |
 <!-- /ANCHOR:verification -->
 
@@ -187,7 +189,7 @@ Proof, in the order it ran:
 ## Known Limitations
 
 1. **The live run used a bot that never calls a model.** The disabled hold, the real fire, the drain job and the clean uninstall ran on 2026-11-23, but the bot's precheck prints `[SILENT]`, so the fire ended refused and only the slot fields were proven.
-2. **Executor pins are taken at install.** A scheduled fire uses its bot's pinned path and a queued run uses the drain job's pins. An executor installed or moved after that is not seen until the bot or the drain job is installed again, and a moved one reads `executor-missing` in the check. One real model run under launchd passed on 2026-11-24 (Verification, Live model fire).
+2. **Executor pins are taken at install.** A scheduled fire uses its bot's pinned path and a queued run uses the drain job's pins. An executor installed or moved after that is not seen until the bot or the drain job is installed again, and a moved one reads `executor-missing` in the check. One real scheduled run and one real queued run under launchd passed on 2026-11-24 (Verification, Live model fire and Live drain fire), both with `vibe` only.
 12. **The uninstall sweep's root per swept bot is not tested on its own.** Since an install of a second state home is now refused, two jobs of one identity can only carry different state homes when they predate that check; the sweep resolves each swept bot's root from its own job file, and the existing sweep test covers the shared-root case.
 3. **ADR-003 was settled after the build.** The probe ran on 2026-11-23, after T007, and confirmed the mechanism already built.
 4. **Entry conditions met late.** Phase 2 closed on 2026-11-24, after this phase was built. Its probe settled the weekday rule on emit, so weekday-only and day-only crons now install.

@@ -655,6 +655,7 @@ The queue lives under the state root keyed by repository identity (research.md Â
 | Q010 | Build the executor path pin for scheduled runs next. | Not stated. | None | REQ-019, AC-019, T031 to T034 |
 | Q011 | Extend the executor pin to queued runs the drain job starts. | Not stated. | None | REQ-020, AC-020, T035 to T037 |
 | Q012 | Run one live model fire under launchd to prove the pinned executor. | Not stated. | None | implementation-summary.md Verification, scratch/live-model-fire.sh |
+| Q013 | Run one live queued model fire through the drain job under launchd. | Not stated. | None | implementation-summary.md Verification, scratch/live-drain-fire.sh |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -761,6 +762,27 @@ Stop here
 Answer:
 ```text
 Live model fire test
+```
+
+### Q013
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_01T8Jm11jznJL9B1zbHxe9L6:1 -->
+
+Question:
+```text
+The executor pin is proven live for scheduled runs. What should I do next on system-skilled-bots?
+```
+
+Options:
+```text
+Close 003/004/005/007 (Recommended)
+Live drain fire test
+Prepare the merge to main
+Stop here
+```
+
+Answer:
+```text
+Live drain fire test
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

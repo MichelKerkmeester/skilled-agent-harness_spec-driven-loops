@@ -119,6 +119,7 @@ and findings belong here.
 | Executor pin for scheduled runs | done | installer.vitest.ts:693-726; suite 377/377; mutations fail |
 | Drain executor pin for queued runs | done | installer.vitest.ts:726; suite 378/378; mutation fails |
 | Live model fire under launchd | done | 006 scratch/live-model-fire-result.txt:42,56 converged, PONG |
+| Live drain fire under launchd | done | 006 scratch/live-drain-fire-result.txt:45,59 converged, PONG |
 
 ### Deviations and findings
 

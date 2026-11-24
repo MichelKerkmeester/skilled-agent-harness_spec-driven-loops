@@ -1,0 +1,73 @@
+date: 2026-11-24T15:09:02Z  macOS: 27.0.1  domain: gui/501
+launchd PATH resolves vibe: none
+--- approve the bot, no schedule
+$ bots enable pong
+bots: warning: no installed schedule found for pong; only the run-layer switch applies. If a schedule should exist, check bots/config.json stateRoot and XDG_STATE_HOME
+bots: pong no longer disabled
+exit=0
+bot install record present: none
+--- install and enable the drain job
+$ bots schedule install drain
+  render	0
+  lint	0
+  disable	0	first-install
+  bootout	-	not loaded; nothing to boot out
+  move	0	/Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-drain-probe.drain.plist
+  bootstrap	5	held (first-install): Bootstrap failed: 5: Input/output error
+Try re-running the command as root for richer errors.
+  print	1	not loaded: held disabled
+  read-back	0
+bots: installed com.skilled.bots.local_2fbots-drain-probe.drain at /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-drain-probe.drain.plist
+bots: held disabled (first-install); nothing fires until: bots enable drain
+bots: next fire: UNKNOWN
+bots: check: ok
+exit=0
+drain record executors: [{"kind":"cli-codex","path":"/opt/homebrew/bin/codex"},{"kind":"cli-claude-code","path":"/Users/michelkerkmeester/.local/bin/claude"},{"kind":"cli-opencode","path":"/Users/michelkerkmeester/.local/bin/opencode"},{"kind":"cli-cursor","path":"/Users/michelkerkmeester/.local/bin/cursor-agent"},{"kind":"cli-devin","path":"/Users/michelkerkmeester/.local/bin/devin"},{"kind":"cli-pi","path":"/Users/michelkerkmeester/.local/bin/pi"},{"kind":"cli-deepseek-harness","path":"/Users/michelkerkmeester/.local/bin/dsh"},{"kind":"cli-mistral-vibe","path":"/Users/michelkerkmeester/.local/bin/vibe"}]
+label: com.skilled.bots.local_2fbots-drain-probe.drain
+job EnvironmentVariables: {"SKILLED_BOTS_STATE_ROOT":"\/var\/folders\/3c\/zfqcqsts0kn19cgblj82gqhm0000gn\/T\/bots-drain-VrT5Nq\/state","SKILLED_BOTS_IDENTITY":"local\/bots-drain-probe"}
+$ bots enable drain
+  enable	0	com.skilled.bots.local_2fbots-drain-probe.drain
+  bootstrap	0	com.skilled.bots.local_2fbots-drain-probe.drain
+  print	0	com.skilled.bots.local_2fbots-drain-probe.drain
+bots: drain enabled
+exit=0
+--- enqueue one request
+$ /Users/michelkerkmeester/.local/bin/node /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-drain-VrT5Nq/consumer/.skilled/bin/bots.cjs enqueue pong --source live-probe --event-id evt-1795532944 --repo /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-drain-VrT5Nq/consumer
+bots: enqueued rq-301f9fbecfd6de6a3ae84ee74634152a
+exit=0
+inbox after: [] (expect empty)
+done: rq-301f9fbecfd6de6a3ae84ee74634152a.json
+quarantine: 
+record: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-drain-VrT5Nq/state/local%2Fbots-drain-probe/records/20261124T150904Z-d4b0003d.json
+{
+  "source": "live-probe",
+  "exit": {
+    "reason": "converged",
+    "class": null,
+    "needsYouItemId": null,
+    "refusal": null
+  },
+  "executor": {
+    "isolation": "shared",
+    "sandbox": "read-only",
+    "executorKind": "cli-mistral-vibe",
+    "model": "deepseek-flash"
+  }
+}
+run folder: /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/local%2Fbots-drain-probe/runs/20261124T150904Z-d4b0003d
+stdout.log (first 20 lines):
+PONG
+agent log:
+[executor-audit] child stdout 5 bytes, not echoed
+rq-301f9fbecfd6de6a3ae84ee74634152a ran
+--- uninstall
+$ bots schedule uninstall drain
+  bootout	0	com.skilled.bots.local_2fbots-drain-probe.drain
+  delete	0	com.skilled.bots.local_2fbots-drain-probe.drain
+bots: removed com.skilled.bots.local_2fbots-drain-probe.drain
+bots: run folders and run records were left in place
+exit=0
+hub job files left for this identity: 0
+print after uninstall: exit=113
+scratch: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-drain-VrT5Nq
+DONE
