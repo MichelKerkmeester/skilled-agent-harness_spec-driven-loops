@@ -8,14 +8,15 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T09:24:07Z"
+    last_updated_at: "2026-11-24T11:14:31Z"
     last_updated_by: "generate-context"
-    recent_action: "Traceability deep review finished with verdict FAIL after 15 iterations across 3 lineages"
-    next_safe_action: "Fix the seventh-round closure docs and drift guard, then rerun the traceability review"
+    recent_action: "Eighth fix round committed, docs at the final tree"
+    next_safe_action: "Rerun the traceability review at 7 iterations per lineage so T084 and AC-040 can close"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/review-report.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:7220985625e3d464b944bb777a267782f32dc6e88eba4dd057714755b390db4f"
       session_id: "scaffold-012-deep-loop-command-offers"
@@ -24,10 +25,10 @@ _memory:
       runtime: "claude"
       sessionId: "520c649a-ce93-4135-91b0-cec71dd35a54"
       workspace: "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review"
-      savedAt: "2026-11-24T09:24:07Z"
+      savedAt: "2026-11-24T11:14:31Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-deep-loop-command-offers |
-| **Completed** | 2026-11-23, closed again after the fresh-review round; reopened 2026-11-24 for the sixth fix round (`tasks.md` T066 to T085) and again for the seventh fix round (`tasks.md` T086 and T087), whose docs corrections and drift-guard widening are done, with the traceability review rerun (T084) still open |
+| **Completed** | 2026-11-23, closed again after the fresh-review round; reopened 2026-11-24 for the sixth fix round (`tasks.md` T066 to T085), again for the seventh fix round (`tasks.md` T086 and T087), and again for the eighth (`tasks.md` T088 to T093), which fixes the four code findings of the second traceability rerun at `2520456bd3f` and brings these docs to the final tree, with the traceability review rerun (T084) still open |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -170,9 +171,15 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Sixth round: corpus | `false_offer` 0 of 57 |
 | Sixth round: independent verification | A verification pass over the whole diff raised one P2 and three P1s. The P2, a drift guard that skipped the command decline and ask leads, is fixed. The three P1s are one gap that predates the round, recorded as limitation 8 |
 | Seventh round: advisor suite and Python suite | `npx vitest run` in `$ADV` reports 184 files, 3,126 passed, 4 skipped, 0 failed; `python3 tests/python/test_skill_advisor.py` prints `pass=136, fail=0` |
-| Seventh round: drift guard | The refusal-lead alternation is an exported list on both sides and the twelfth compared pair, `LOOP_ARTIFACT_NOUNS` and `PAST_RUN_READ_VERBS` each have a per-entry case, and `LEAD_WINDOW` and `ADVISOR_PROMPT_MAX_CHARS` are read back from the Python source and compared (`tests/deep-loop-offer-cases.vitest.ts:77`, `:84`, `:241`, `:249`, `:256`, `:265`, `:273`, `:293`) |
+| Seventh round: drift guard | The refusal-lead alternation is an exported list on both sides and then the twelfth compared pair, `LOOP_ARTIFACT_NOUNS` and `PAST_RUN_READ_VERBS` each have a per-entry case, and `LEAD_WINDOW` and `ADVISOR_PROMPT_MAX_CHARS` are read back from the Python source and compared; the eighth round reads those surfaces at `tests/deep-loop-offer-cases.vitest.ts:83`, `:90`, `:247`, `:255`, `:262`, `:271`, `:293`, `:303` and `:313` |
 | Seventh round: closure docs | REQ-011 names the two aliases the hub carries with ADR-007 and AC-043, limitation 8 states the served-brief layer, every repointed acceptance evidence cell resolves to the line that holds its observation, and `validate.sh --strict` passes on this packet |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
+| Eighth round: the four code findings | Plural loop names ask for the run, `how do` and `how can` questions and effort complaints do not, and the degraded brief prints a supplied command only where the tracked table names it for that row's skill. The cases are in `tests/fixtures/deep-loop-offer-cases.json` (285 cases), read by both suites, with the degraded path pinned in `tests/cli-degraded-command-contract.vitest.ts` |
+| Eighth round: advisor suite | `npx vitest run` in `$ADV` reports 184 files, 3,188 passed, 4 skipped, 0 failed, exit 0 |
+| Eighth round: Python suite and shared fixture | `python3 tests/python/test_skill_advisor.py` prints `cases=285` and `pass=136, fail=0`, and the fixture holds 285 cases |
+| Eighth round: 69 probes | All 69 lines read `exit 0 live`, and the compare against `results-final-958fa81-worktree.json` prints `changes=0 guarded_failures=0`, so the eighth-round gate changes moved no probe |
+| Eighth round: vocabulary drift guard | It compares fifteen vocabulary pairs and the two numbers, and ten of the fifteen lists carry a per-entry case; the five that cannot are named with their reasons in `spec.md` REQ-031 |
+| Eighth round: closure docs | Every count and evidence cell the review named now names the final tree, REQ-006 points at the fixture and the guards file, REQ-031 at the lists a fixture row can pin, REQ-039 owns the corpus recapture, and `validate.sh --strict` passes |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -237,6 +244,8 @@ A sixth round fixed the findings of a three-lineage deep review of this packet (
 - **A new known limitation:** the Python fallback serves the hub without a command for an untyped loop ask (limitation 8).
 
 A seventh round corrected the closure-doc drift the traceability review found (`review/review-report.md`, three lineages, FAIL on its coverage gate). Limitation 8 was rewritten to the layer the gap is in, REQ-011 was amended from three research aliases to the two the hub carries (ADR-007) and gained AC-043 as its owning row, thirteen acceptance evidence cells and the T069 line citation were repointed to the lines that hold their evidence, the ticked decision-count task and the changelog suite count were corrected to what the tree shows, and the drift guard gained the refusal-lead pair, the two pinned numbers and a per-entry case for the two lists that had none. The rerun of that review (T084, AC-040) stays open.
+
+An eighth round fixed the four code findings and the closure-doc drift the second traceability rerun found (`review/review-report.md`, three DeepSeek V4.1 Flash lineages of five iterations, FAIL on its coverage gate). At `2520456bd3f` the gate learned plural loop names, so "run two deep reviews of the auth module" asks for the run while a plural loop that reports a past run, names a symptom or asks a question still does not; a question leading with "how do" or "how can" stays a question, so "how can a deep research loop stop early?" asks for no run while a run the same prompt adds in a later clause still counts; and a complaint about a loop's own speed or cost is no run ask, so "the deep review loop is too slow" and "improve the deep review" carry no command while "run a fast deep review on the parser" and "improve the parser with a deep review" keep it. On the degraded CLI path a supplied command string now prints only where the tracked table names it for the row's own skill, so a string the child process invented cannot reach the brief. The docs pass corrected the counts the seventh round left stale, repointed every evidence cell that landed beside its evidence, moved REQ-006's test-file pointer to the shared fixture and the guards file, and narrowed REQ-031 to the ten lists a fixture row can pin, with the five that cannot named and their reasons given. REQ-039 now owns the corpus recapture. T084 and AC-040 stay open.
 
 What stays open:
 1. **The blind -04 holdouts score 2 of 3.**

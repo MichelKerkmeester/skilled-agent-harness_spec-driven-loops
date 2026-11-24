@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-22T11:08:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized decision record template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-24T11:15:08Z"
+    last_updated_by: "claude-code"
+    recent_action: "Recorded ADR-005 to ADR-007 for the sixth and seventh fix rounds"
+    next_safe_action: "Record any decision the traceability rerun raises"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
