@@ -1,0 +1,19 @@
+{
+  "findings": [
+    {"id":"f-iter003-001","label":"Apps are per organization and come from three sources: OpenBot's catalogue, the app directory, and servers added by their address.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-002","label":"Each app carries the actions it offers and the bots that may use each one, so the grant is per app action per bot, not per app.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-003","label":"Account mode is a per-app switch with two values: personal (each person's own account) or shared (one account OpenBot holds for everybody in the organization).","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-004","label":"Switching to shared is itself an approval change: it gives each bot that uses the app an approval and makes the app ask before every action that changes something.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-005","label":"The account-mode switch is transactional: every account it leaves behind is ended at the app's service first, and nothing changes unless all of them ended.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-006","label":"Connecting returns one of three next steps: consent (the app's own sign-in page address), form (the boxes an app that takes a key asks for), or connected.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-007","label":"Coming back from a sign-in page proves nothing: confirmConnection asks the app whether the account is really connected and records its answer, because a connection can be ended at the app itself.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-008","label":"A key connection is verified by one safe read-only call, on demand and never on page load, because it counts against the person's own limits at the app.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-009","label":"Authorizations are per action in one answer: authorized, waiting for the person's consent, waiting for an administrator, or unknown.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter003-010","label":"An OAuth client is only needed for a catalogue app whose vendor will not let OpenBot register one itself, and the client secret is kept in the vault and never answered.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"looking for a refresh-token endpoint","reason":"there is none; OpenBot re-asks the app through confirmConnection and recheck"},
+    {"direction":"treating the OAuth client as the normal path","reason":"it is the exception for vendors that refuse dynamic registration"}
+  ]
+}

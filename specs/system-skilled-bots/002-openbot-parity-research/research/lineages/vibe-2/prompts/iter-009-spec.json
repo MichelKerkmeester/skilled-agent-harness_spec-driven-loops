@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {"id":"f-iter009-001","label":"NeedsYouItem has no field for what a run was granted: it carries id, runId, botId, identity, question, options, createdAt, expiresAt, evidence, prompt, specFolder, answer and resumeRequestId, so an approval cannot say which app or secret it is approving.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"]},
+    {"id":"f-iter009-002","label":"The status index has six tables (meta, generations, runs, deliveries, items, retired) and none has a column for a grant, a secret name or an app.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts"]},
+    {"id":"f-iter009-003","label":"runs carries summary as a NOT NULL text, so the activity feed's per-run line is already a single string the runner writes and a grant summary can ride there without a schema change.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts"]},
+    {"id":"f-iter009-004","label":"DELIVERY_CHANNELS is ['desktop'] and desktop is the one channel that does not acknowledge, so the only delivery channel is the one that cannot confirm.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts"]},
+    {"id":"f-iter009-005","label":"There is no memory anywhere in the runtime: a case-insensitive grep for memory across the skill matches only node_modules and one line of bots-author/SKILL.md, so memory today is the agent's context files and the spec-kit rather than a store.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/"]},
+    {"id":"f-iter009-006","label":"RunRecord has nine top-level blocks and posture is the only one describing what the run was allowed to do, so apps and secretsUsed belong there and nowhere else.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts"]},
+    {"id":"f-iter009-007","label":"FRONTMATTER_KEYS is a closed set of twelve keys and an unknown key is a hard refusal, so apps is a deliberate thirteenth entry rather than a free addition.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/definition.ts"]},
+    {"id":"f-iter009-008","label":"The git-hook trigger is opt-in and off by default, so a routine that starts on a pull request needs the repository to say so first.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts"]},
+    {"id":"f-iter009-009","label":"Only one of the three stores needs a schema change: the needs-you item needs a grants field so an approval can name what it approves, while the secret store and connector registry ride in runs.summary and posture.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts"]},
+    {"id":"f-iter009-010","label":"Memory is the part with no coupling at all because it does not exist, which is why it should be built last rather than first.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"a grants table in the status index","reason":"the index is a projection of files and a grant is already in the run record, so a table would be a second source of truth for the same fact"},
+    {"direction":"a new delivery channel for approvals","reason":"desktop is the only channel and it does not acknowledge, so the honest move is to fix the acknowledgement rather than add a channel"},
+    {"direction":"building memory now","reason":"it couples to nothing, so it can be added at any time and should be added last"}
+  ]
+}

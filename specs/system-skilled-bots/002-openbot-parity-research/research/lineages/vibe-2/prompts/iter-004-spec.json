@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {"id":"f-iter004-001","label":"The computer is a container of its own, not a mode of the server: entrypoint /app/bin/openbot-computer, so a bot's shell reads only what that service is given, with no database address, keys or licence.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-002","label":"The computer is loopback-only because it drives a browser holding real logins, and COMPUTER_TOKEN is the request control.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-003","label":"The browser is headed by default on the container's own X server because bot checks such as Cloudflare's challenge treat headless worse; headless is opt-in.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-004","label":"Browser capacity is bounded by count, idle time and memory: 8 browsers, 30 minutes idle, and closing at 85 percent of container memory down to ten points under.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-005","label":"Files persist on two volumes, agent-workspace:/workspace and agent-profiles:/profiles, the second so logins survive container restarts.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-006","label":"A shared computer still separates bots: COMPUTER_SEPARATE_WORKSPACES gives every bot without a computer of its own its own folder of files, and its shell starts there.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-007","label":"The supervisor is the only holder of the Docker socket, which is root-equivalent on the host, and it exposes only bot-level verbs.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-008","label":"Each per-bot computer is created from the same image with its own token derived from the deployment token and whose computer it is, so a bot that reads its own token opens no other.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-009","label":"gVisor is opt-in, not default: COMPUTER_RUNTIME=runsc runs every computer under gVisor when the host has it, and unset means an ordinary container sharing the host kernel.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-010","label":"Egress is per bot: EGRESS_PROXY_<BOT> is derived from the bot's id, so there is no fixed list to write out.","sources":["specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml"]},
+    {"id":"f-iter004-011","label":"Start cost is real and budgeted: a sleeping or new computer costs a node, a pod and a browser launch, over a minute and a half on a busy day, so the server waits 180 seconds rather than reporting a failed step.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"treating the computer as a sandbox mode","reason":"it is a separate service with its own image, entrypoint, volumes and token"},
+    {"direction":"assuming gVisor is the boundary","reason":"it is opt-in; the documented default is an ordinary container sharing the host kernel"}
+  ]
+}

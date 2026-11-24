@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {"id":"f-iter007-001","label":"Skilled's connector surface is one repo-wide UTCP config with 14 MCP servers, each declared as a manual_call_templates entry with call_template_type mcp and a config.mcpServers block.","sources":[".utcp_config.json"]},
+    {"id":"f-iter007-002","label":"Server environment comes from one dotenv file via load_variables_from with variable_loader_type dotenv and an env_file_path, so every server and every bot shares one secret path today.","sources":[".utcp_config.json"]},
+    {"id":"f-iter007-003","label":"The MCP surface is reached through one launcher: .mcp.json declares a single code_mode server that runs .skilled/bin/mcp-code-mode-launcher.cjs with UTCP_CONFIG_FILE.","sources":[".mcp.json"]},
+    {"id":"f-iter007-004","label":"The launcher resolves a Node interpreter and hands off to the MCP server under it; it is 181 lines and does no per-bot filtering.","sources":[".skilled/bin/mcp-code-mode-launcher.cjs"]},
+    {"id":"f-iter007-005","label":"The runner already has an environment allowlist: commonlyAdmittedKeys derives the keys every executor kind admits and commonEnv gives a precheck only that part.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"]},
+    {"id":"f-iter007-006","label":"The smallest registry is a per-run filtered UTCP config: the runner writes a temporary config containing only the servers the bot's apps list names and points UTCP_CONFIG_FILE at it, which is one file write and one environment variable on machinery that already exists.","sources":[".utcp_config.json",".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"]},
+    {"id":"f-iter007-007","label":"The grant belongs in BOT.md frontmatter beside posture, because FRONTMATTER_KEYS is already the closed set of bot fields and apps is one more.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/definition.ts"]},
+    {"id":"f-iter007-008","label":"The record belongs on HonoredPosture beside secretsUsed, so one block answers what a run could reach and what it used.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts"]},
+    {"id":"f-iter007-009","label":"OpenBot's per-action grant is the model to copy at the smallest scale: each app comes with the actions it offers and the bots that may use each one.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter007-010","label":"No OAuth server is needed for a small team: OpenBot's own OAuth client is the exception for vendors that refuse dynamic registration, and turnstone's per-user OAuth is opt-in and dark by default.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml","specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"building an OAuth server","reason":"it is the largest single piece of OpenBot's app layer and the one a small team can skip, because a shared account or a key covers the common case"},
+    {"direction":"per-person connections","reason":"they need a sign-in surface and a session store, while a small team on one host can share one account per app, which is OpenBot's own shared account mode"},
+    {"direction":"a connector catalogue","reason":"none of the eight repos ships one a small team would use, and the UTCP config already names the servers this team actually has"}
+  ]
+}

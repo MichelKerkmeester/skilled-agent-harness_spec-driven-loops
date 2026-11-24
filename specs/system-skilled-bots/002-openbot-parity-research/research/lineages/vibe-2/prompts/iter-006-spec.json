@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {"id":"f-iter006-001","label":"The secret store belongs under the user-level state root beside needs-you items and run records, because that is the existing rule: a run can neither forge nor clear what lives there.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"]},
+    {"id":"f-iter006-002","label":"posture.secrets should become a name resolved against that store rather than a free string, since today it is carried on the definition and never resolved.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/definition.ts"]},
+    {"id":"f-iter006-003","label":"The smallest injection for a CLI-first product is a command variable, not a page field: the value enters the child process environment only, so the bot's shell can use it and the prompt cannot.","sources":["specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md"]},
+    {"id":"f-iter006-004","label":"The existing leak guard stays the second line: collectKnownSecrets plus findSecretLiteral refuse a value that reaches a prompt, a question or answer, or a delivery message.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"]},
+    {"id":"f-iter006-005","label":"The run record already has the right slot: HonoredPosture carries isolation, sandbox, executorKind and model, so secretsUsed as a list of names is one field on an existing block.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts"]},
+    {"id":"f-iter006-006","label":"Approval should reuse needs-you rather than invent a gate: an unattended run that needs a decision ends and leaves one item the operator answers later, with its state derived and never stored.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"]},
+    {"id":"f-iter006-007","label":"The store must be per identity like every other state file, because identityStatePaths already keys everything by identity under the state root.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts"]},
+    {"id":"f-iter006-008","label":"The CLI already has the exit vocabulary for a parked secret request: exit code 5 is awaiting decision.","sources":[".skilled/bin/bots.cjs"]},
+    {"id":"f-iter006-009","label":"Encryption-key handling should follow turnstone's rule: a key accepted only from a config file and not from environment variables, with an ordered list for rotation where the first key encrypts new writes and all keys are tried on read.","sources":["specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md"]},
+    {"id":"f-iter006-010","label":"The store should be write-only at every surface, following OpenBot's rule that nothing in the API reads a secret back out.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"a page-field injection like OpenBot's masked box","reason":"skilled bots has no browser, so there is no field to fill"},
+    {"direction":"a proxy-injection like rakazo's secret_request","reason":"it needs a server that makes the outbound call, which a small team does not need"},
+    {"direction":"an external password manager like OpenMausBot's Bitwarden","reason":"it adds a service, a CLI dependency and a sync loop"}
+  ]
+}

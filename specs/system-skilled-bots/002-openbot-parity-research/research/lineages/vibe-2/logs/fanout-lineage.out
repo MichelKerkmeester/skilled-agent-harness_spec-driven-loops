@@ -1,0 +1,16 @@
+All thirteen iterations are recorded and the synthesis is closed out.
+
+**What landed in `specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2`:**
+
+| Artifact | State |
+|---|---|
+| `deep-research-state.jsonl` | 15 rows — config, 13 iterations, synthesis — all gateway-written |
+| `iterations/iteration-001..013.md` | 13 files, 130 findings total |
+| `deltas/iter-001..013.jsonl` | 13 files, iteration row plus one finding row each |
+| `research.md` | 8 parts, terminal verdict, small-team section, skip list, ranked build order, 28-row eliminated-alternatives table, 41 source markers |
+| `findings-registry.json`, `deep-research-dashboard.md`, `deep-research-strategy.md` | reducer-owned, refreshed, `corruptionCount: 0` |
+| synthesis record | `stopReason: "maxIterationsReached"`, `totalIterations: 13`, `answeredCount: 6` |
+
+**The answer the lineage reached.** The three missing stores are a secret store, a connector registry and a run folder the bot is told about — and the third already exists as evidence, so it needs 20–40 lines rather than a container. The connector registry is a per-run filtered UTCP config plus an `apps:` frontmatter key (150–250 lines), the secret store is a per-identity file with child-environment injection and `secretsUsed` on `HonoredPosture` (200–300 lines), and both need one shared schema change: a `grants` field on the needs-you item. A CLI matches the OpenBot app experience for this slice because the four surfaces are already four verbs; the Tauri shell adds a window, an auto-updater and OS integration, none of which this slice uses. The reuse list is three Apache-2.0 TypeScript files from rakazo and one MIT file from OpenBot — and openhuman is GPL-3.0, so nothing from it can be lifted.
+
+FANOUT_LINEAGE_COMPLETE:vibe-2

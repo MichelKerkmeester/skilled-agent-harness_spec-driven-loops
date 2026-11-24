@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-devin","model":"deepseek-v4-1-flash-max","label":"devin","count":2,"iterations":13},{"kind":"cli-mistral-vibe","model":"deepseek-flash","label":"vibe","count":2,"iterations":13}],"concurrency":4}

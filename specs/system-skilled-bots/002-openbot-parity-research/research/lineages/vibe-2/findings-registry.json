@@ -1,0 +1,2486 @@
+{
+  "sessionId": "fanout-vibe-2-1795547239490-2piovn",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 13,
+    "answeredCount": 6,
+    "totalQuestions": 6,
+    "timestamp": "2026-11-24T19:20:03.860Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-how-do-the-reference-repos-connect-a-bot-to-apps-and-secrets-and-give-it-a-compu",
+      "inboxId": "F-1-004",
+      "text": "How do the reference repos connect a bot to apps and secrets and give it a computer, compared with Skilled's MCP and Code Mode and the bots worktree isolation?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-does-openbot-s-vault-actually-store-and-inject-a-secret-what-is-encrypted-wh",
+      "inboxId": "F-2-005",
+      "text": "How does OpenBot's vault actually store and inject a secret: what is encrypted, what a bot can see, and when a person must approve a use?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-does-openbot-s-app-connection-registry-authorize-an-app-oauth-client-account",
+      "inboxId": "F-2-006",
+      "text": "How does OpenBot's app/connection registry authorize an app (OAuth client, account mode, refresh, scopes) and what would Skilled need to match it?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-is-openbot-s-computer-provisioned-and-bounded-supervisor-container-image-san",
+      "inboxId": "F-2-007",
+      "text": "How is OpenBot's computer provisioned and bounded (supervisor, container image, sandbox provider, per-tenant token) and what is the smallest equivalent for a small team?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 4,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-do-turnstone-main-openmausbot-main-and-rakazo-main-do-for-apps-secrets-and-",
+      "inboxId": "F-2-008",
+      "text": "What do turnstone-main, OpenMausBot-main and rakazo-main do for apps, secrets and a bot's computer, and which of the three is simplest to copy?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-6-what-is-the-smallest-secret-store-skilled-bots-can-add-that-keeps-a-value-write-",
+      "inboxId": "F-3-009",
+      "text": "What is the smallest secret store skilled bots can add that keeps a value write-only, injects it without the bot reading it, and records each use in the run record?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 6,
+      "frontierStatus": "answered",
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-how-do-the-reference-repos-connect-a-bot-to-apps-and-secrets-and-give-it-a-compu",
+      "inboxId": "F-1-004",
+      "text": "How do the reference repos connect a bot to apps and secrets and give it a computer, compared with Skilled's MCP and Code Mode and the bots worktree isolation?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-2-how-does-openbot-s-vault-actually-store-and-inject-a-secret-what-is-encrypted-wh",
+      "inboxId": "F-2-005",
+      "text": "How does OpenBot's vault actually store and inject a secret: what is encrypted, what a bot can see, and when a person must approve a use?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-3-how-does-openbot-s-app-connection-registry-authorize-an-app-oauth-client-account",
+      "inboxId": "F-2-006",
+      "text": "How does OpenBot's app/connection registry authorize an app (OAuth client, account mode, refresh, scopes) and what would Skilled need to match it?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-4-how-is-openbot-s-computer-provisioned-and-bounded-supervisor-container-image-san",
+      "inboxId": "F-2-007",
+      "text": "How is OpenBot's computer provisioned and bounded (supervisor, container image, sandbox provider, per-tenant token) and what is the smallest equivalent for a small team?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 4,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-5-what-do-turnstone-main-openmausbot-main-and-rakazo-main-do-for-apps-secrets-and-",
+      "inboxId": "F-2-008",
+      "text": "What do turnstone-main, OpenMausBot-main and rakazo-main do for apps, secrets and a bot's computer, and which of the three is simplest to copy?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-6-what-is-the-smallest-secret-store-skilled-bots-can-add-that-keeps-a-value-write-",
+      "inboxId": "F-3-009",
+      "text": "What is the smallest secret store skilled bots can add that keeps a value write-only, injects it without the bot reading it, and records each use in the run record?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 6,
+      "frontierStatus": "answered"
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-7-of-those-three-only-two-are-acted-on-posture-ts-resolves-sandbox-against-the-exe",
+      "text": "Of those three, only two are acted on. `posture.ts` resolves `sandbox` against the executor matrix and refuses a kind that cannot honor it; `secrets` is carried through the definition and never resolved to any store. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/posture.ts:99]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-1-openbot-s-app-is-a-connected-account-not-a-plugin-the-api-describes-connections-",
+      "text": "OpenBot's **app** is a connected account, not a plugin: the API describes connections as \"a person's connections to apps: the accounts they signed in with so their Bots can act there for them, and an app's one shared account when an administrator connects it for everybody\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-4-openbot-s-computer-is-a-per-identity-container-with-a-browser-a-command-line-and",
+      "text": "OpenBot's **computer** is a per-identity container with a browser, a command line and files that persist between tasks, and it is keyed by `person:<id>` or `bot:<id>`; each computer gets its own `HMAC-SHA256(COMPUTER_TOKEN, label)` so a bot that reads its own computer's token can open that computer and no other. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:6]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-6-skilled-bots-declares-a-posture-but-has-no-store-behind-it-bot-md-frontmatter-ac",
+      "text": "Skilled bots **declares** a posture but has no store behind it: `BOT.md` frontmatter accepts `isolation`, `sandbox` and `secrets` as three declared strings on a `Posture` block. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-9-skilled-s-computer-is-a-git-worktree-not-a-machine-a-bot-that-declares-isolation",
+      "text": "Skilled's \"computer\" is a **git worktree, not a machine**: a bot that declares `isolation: worktree` edits in a tree of its own, placed outside the checkout, with the launcher's shared paths linked in; there is no browser, no persistent home and no command line beyond the executor's. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:5]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-10-skilled-s-app-surface-is-mcp-through-code-mode-external-tools-are-reached-by-exe",
+      "text": "Skilled's app surface is **MCP through Code Mode**: external tools are reached by executing TypeScript against MCP servers with progressive tool loading, which gives tool access but no per-person connection record, no OAuth flow and no per-use approval. [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-8-skilled-s-only-secret-machinery-is-a-leak-guard-not-a-vault-collectknownsecrets-",
+      "text": "Skilled's only secret machinery is a **leak guard, not a vault**: `collectKnownSecrets` harvests env vars and `.env*` values that look like secrets, and `findSecretLiteral` refuses text that contains one before it reaches a prompt, a question/answer or a delivery message. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-vault-is-deliberately-not-one-of-the-eight-primitives-it-sits-beside-the-eig",
+      "text": "The **vault** is deliberately *not* one of the eight primitives. It \"sits beside the eight, in your settings\", holds saved logins and keys, and \"a Bot never sees what is in it\"; apps and the computer \"both draw on the vault, and neither keeps secrets of its own\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:105]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-computer-has-a-human-handoff-built-in-a-durable-request-scoped-browser-hando",
+      "text": "The computer has a **human handoff** built in: a durable, request-scoped browser handoff with `waiting | taken | completed | cancelled | expired | interrupted`, and a secret request where a person types a value into the page and the bot never reads it. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-vault-page-is-two-stores-behind-one-page-logins-are-the-private-sign-in-form",
+      "text": "The vault page is **two stores behind one page**: logins are the private sign-in form's in both editions, keys are the personal edition's own, and the team edition keeps an admin's keys under Admin while a member stores none. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:1-181",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:1-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/manage/credentials-page.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:1-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts:1-110",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-70",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/mcp-code-mode/SKILL.md:1-45"
+      ]
+    },
+    {
+      "id": "finding-2-1-a-credential-is-encrypted-and-write-only-encrypt-a-secret-and-keep-it-in-the-org",
+      "text": "A credential is **encrypted and write-only**: \"Encrypt a secret and keep it in the organization's vault under one key: a kind, a provider and a key id. A key holds one live credential, so adding one for a key that already has one replaces it, and the one it replaces is revoked in the same write … The secret is write-only: no answer includes it, now or later.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4416]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-4-a-saved-login-is-per-person-per-site-and-using-it-is-the-approval-sign-in-with-o",
+      "text": "A saved login is **per person, per site**, and using it *is* the approval: \"Sign in with one of the person's saved logins for exactly this site, which is the person's confirmation to use it this once. Refused while the password manager is off, and for a login saved for any other site.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-6-injection-into-a-page-is-a-masked-box-not-a-value-the-bot-calls-computer-request",
+      "text": "Injection into a page is a **masked box, not a value**: the bot calls `computer_request_secret` with a field ref and a short label, a person types into a masked box that goes straight into the field, and \"you never see it\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:125]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-9-permissions-are-split-so-a-reader-sees-what-exists-but-never-a-secret-credential",
+      "text": "Permissions are split so a reader sees **what exists but never a secret**: `credentials:read` is \"Read which credentials the vault keeps … never a secret\", and `saved-logins:read` is \"Read which logins the signed-in person saved, never a password.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-bot-is-told-the-outcome-never-the-value-and-only-a-typed-value-counts-as-an-",
+      "text": "The bot is told the **outcome, never the value**, and only a typed value counts as an answer: \"only `secretEnded` naming this request as supplied is an answer; anything else is said as nothing typed, with the reason the computer gave, and the Bot is told not to submit the form.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:20]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-list-endpoint-cannot-leak-a-credential-says-what-it-is-for-and-whether-it-is",
+      "text": "The list endpoint **cannot leak**: \"A credential says what it is for and whether it is live, and never holds its secret: nothing in the API reads a secret back out.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-request-must-not-click-the-field-first-because-a-click-on-a-password-field-i",
+      "text": "The request must **not click the field first**, because a click on a password field is itself a credential typed on a website and hands that step to the person: \"Do not click or type into the field first: the value goes into the field that ref names, and clicking a password field hands that step to the person instead.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:92]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-saved-login-list-shows-site-and-username-only-a-password-is-write-only-and-t",
+      "text": "The saved-login list shows **site and username only**: \"a password is write-only, and this list can delete one but never show it. A saved login is used only when you confirm it in a sign-in form.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:27]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-10-the-two-stores-have-different-owners-logins-belong-to-the-person-in-both-edition",
+      "text": "The two stores have **different owners**: logins belong to the person in both editions, keys belong to the organization's admin in the team edition and to the person in the personal edition. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:13]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-vault-is-per-organization-not-per-bot-and-not-global-each-organization-has-i",
+      "text": "The vault is **per organization**, not per bot and not global: \"Each organization has its own vault, and another organization's credentials are never listed.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4367-4532",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104-18110",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18285-18350",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979-22028",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:10-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:1-45",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:118-132",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:88-110"
+      ]
+    },
+    {
+      "id": "finding-3-8-a-key-connection-is-verified-by-one-safe-read-only-call-on-demand-the-call-count",
+      "text": "A key connection is verified by **one safe read-only call, on demand**: \"The call counts against the person's own limits at the app, so make it when the person asks, never on page load.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6012]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-3-account-mode-is-a-per-app-switch-with-two-values-personal-each-person-s-own-acco",
+      "text": "Account mode is a **per-app switch** with two values: `personal` (each person's own account) or `shared` (one account OpenBot holds for everybody in the organization). [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5556]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-10-an-oauth-client-is-only-needed-for-a-catalogue-app-whose-vendor-won-t-let-openbo",
+      "text": "An OAuth client is only needed for a **catalogue app whose vendor won't let OpenBot register one itself**; the client secret \"is kept in the vault and never answered.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-1-apps-are-per-organization-and-come-from-three-sources-the-ones-from-openbot-s-ca",
+      "text": "Apps are **per organization** and come from three sources: \"the ones from OpenBot's catalogue, the ones added from the app directory, and servers added by their address.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-9-authorizations-are-per-action-in-one-answer-authorized-waiting-for-the-person-s-",
+      "text": "Authorizations are **per action, in one answer**: authorized, waiting for the person's consent, waiting for an administrator to set something up, or unknown. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6157]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-7-coming-back-from-a-sign-in-page-proves-nothing-confirmconnection-asks-the-app-wh",
+      "text": "Coming back from a sign-in page **proves nothing**: `confirmConnection` asks the app whether the account is really connected and records its answer, \"because a connection can be ended at the app itself.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5963]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-6-connecting-returns-one-of-three-next-steps-consent-answers-the-address-of-the-ap",
+      "text": "Connecting returns **one of three next steps**: `consent` answers the address of the app's own sign-in page, `form` answers the boxes an app that takes a key asks for, and `connected` means the account is already connected. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5892]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-2-each-app-carries-the-actions-it-offers-and-the-bots-that-may-use-each-one-so-the",
+      "text": "Each app carries **the actions it offers and the bots that may use each one**, so the grant is per app action per bot, not per app. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-4-switching-to-shared-is-itself-an-approval-change-it-gives-each-bot-that-uses-the",
+      "text": "Switching to shared is **itself an approval change**: it \"gives each Bot that uses the app an approval, the one in approvals or its default, and makes the app ask before every action that changes something.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5556]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-switch-is-transactional-every-account-the-switch-leaves-behind-is-ended-at-t",
+      "text": "The switch is **transactional**: \"Every account the switch leaves behind is ended at the app's service first. Nothing changes unless all of them ended, and the problem's problems then names each account that didn't.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5556]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5195-5320",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5546-5575",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5617-5640",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5728",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5882-5915",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5953-5970",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6002-6020",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:6100-6175"
+      ]
+    },
+    {
+      "id": "finding-4-6-a-shared-computer-still-separates-bots-computer-separate-workspaces-on-gives-eve",
+      "text": "A shared computer still **separates bots**: `COMPUTER_SEPARATE_WORKSPACES: \"on\"` gives every bot without a computer of its own \"its own folder of files and its shell starts there\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:401]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-4-browser-capacity-is-bounded-by-count-idle-time-and-memory-computer-max-browsers-",
+      "text": "Browser capacity is **bounded by count, idle time and memory**: `COMPUTER_MAX_BROWSERS` defaults to 8, `COMPUTER_BROWSER_IDLE_MS` to 30 minutes, and at 85% of the container's memory it closes browsers nobody is using, least recently used first, down to ten points under. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:386]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-8-each-per-bot-computer-is-created-from-the-same-image-with-its-own-token-derived-",
+      "text": "Each per-bot computer is created **from the same image with its own token**, derived from the deployment token and whose computer it is, so \"a Bot that reads its own computer's token opens no other.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:461]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-10-egress-is-per-bot-egress-proxy-bot-is-derived-from-the-bot-s-id-so-there-is-no-f",
+      "text": "Egress is **per bot**: `EGRESS_PROXY_<BOT>` is \"derived from the Bot's id, so there is no fixed list to write out the way COMPUTER_TOKEN is.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:367]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-5-files-persist-on-two-volumes-agent-workspace-workspace-and-agent-profiles-profil",
+      "text": "Files persist on **two volumes**: `agent-workspace:/workspace` and `agent-profiles:/profiles`, the second \"so logins survive container restarts\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:420]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-9-gvisor-is-opt-in-not-default-computer-runtime-runsc-runs-every-computer-under-gv",
+      "text": "gVisor is **opt-in, not default**: `COMPUTER_RUNTIME=runsc` runs every computer under gVisor \"when the host has it. Left unset each computer is an ordinary container and shares the host kernel.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:470]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-2-it-is-loopback-only-because-this-process-drives-a-browser-holding-real-logins-co",
+      "text": "It is **loopback-only** because \"this process drives a browser holding real logins; COMPUTER_TOKEN is the request control, and loopback keeps the surface off routed networks.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:360]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-11-start-cost-is-real-and-budgeted-a-computer-that-was-asleep-or-is-new-costs-a-nod",
+      "text": "Start cost is **real and budgeted**: a computer that was asleep or is new \"costs a node, a pod and a browser launch to come up, and on a busy day that has taken over a minute and a half\", so the server waits 180 s rather than reporting a failed step. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-browser-is-headed-by-default-on-the-container-s-own-x-server-because-bot-che",
+      "text": "The browser is **headed by default** on the container's own X server, because \"bot checks such as Cloudflare's challenge\" treat headless worse; `headless` is opt-in for a smaller footprint. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:381]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-computer-is-a-container-of-its-own-not-a-mode-of-the-server-entrypoint-app-b",
+      "text": "The computer is **a container of its own, not a mode of the server**: entrypoint `/app/bin/openbot-computer`, \"so what a Bot's shell can read is what this service is given below and not one setting of the server's: no database address, no keys, no licence.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:352]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-supervisor-is-the-only-holder-of-the-docker-socket-which-is-root-equivalent-",
+      "text": "The supervisor is the **only holder of the Docker socket**, which is \"root-equivalent on the host\", and it \"only exposes Bot-level verbs\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:435]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:342-470",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1-16",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/bot-browser.ts:1-40",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:40-90"
+      ]
+    },
+    {
+      "id": "finding-5-1-all-three-are-apache-2-0-so-code-can-be-lifted-with-attribution-and-a-notice-sou",
+      "text": "All three are **Apache 2.0**, so code can be lifted with attribution and a NOTICE. [SOURCE: specs/system-skilled-bots/context/turnstone-main/LICENSE:1] [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1] [SOURCE: specs/system-skilled-bots/context/rakazo-main/LICENSE:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-10-openmausbot-delegates-secrets-to-an-external-password-manager-bitwarden-beside-1",
+      "text": "OpenMausBot **delegates secrets to an external password manager**: Bitwarden (beside 1Password) connected in Settings → Vault, with `bw://<item>[/<field>]` references, values read at the moment a bot uses one and masked wherever text crosses to a bot or a transcript. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:3]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-11-openmausbot-s-computer-is-the-desktop-itself-an-electron-main-process-with-a-cua",
+      "text": "OpenMausBot's computer is **the desktop itself**: an Electron main process with a CUA host spawning `cua-driver` over a private socket, plus a `WebContentsView` pool with per-bot persist partitions driven over CDP. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:12]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-12-openmausbot-s-connector-is-a-host-agent-with-its-own-sandbox-profiles-an-apparmo",
+      "text": "OpenMausBot's connector is a **host agent with its own sandbox profiles** — an AppArmor profile and a seccomp JSON — rather than a cloud service. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-3-rakazo-injects-by-proxying-the-request-not-by-handing-over-the-value-the-bot-cal",
+      "text": "rakazo **injects by proxying the request**, not by handing over the value: the bot calls `secret_request` with `name`, `url` and `method`, and the backend decrypts and injects. [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:25]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-4-rakazo-states-the-boundary-as-a-rule-the-model-has-no-tool-for-reading-these-val",
+      "text": "rakazo states the boundary as a rule: \"The model has no tool for reading these values … Injecting a site credential into an AI-controlled shell command, file or arbitrary environment variable would let those commands read it, so those paths are not exposed.\" [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-5-rakazo-s-computer-is-a-pluggable-sandbox-provider-e2b-daytona-boat-docker-deskto",
+      "text": "rakazo's computer is a **pluggable sandbox provider** (E2B / Daytona / Boat / Docker / desktop-fake) behind an `AgentHomeStore`, and the agent runtime runs in the API/worker process, not inside the sandbox. [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:3]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-2-rakazo-s-secret-model-is-the-closest-to-a-drop-in-the-bot-calls-request-secret-w",
+      "text": "rakazo's secret model is the **closest to a drop-in**: the bot calls `request_secret` with a reference name and an HTTPS service origin, the value is encrypted in Postgres `vault_credentials`, and `list_secrets` returns names, destinations and auth configuration without values. [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:3]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-6-turnstone-does-per-user-mcp-server-oauth-2-1-pkce-delegation-so-each-user-author",
+      "text": "turnstone does **per-(user, MCP server) OAuth 2.1 + PKCE delegation**, so each user authorizes a remote MCP server with their own identity \"rather than sharing a single bearer token across the deployment.\" [SOURCE: specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:3]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-8-turnstone-keeps-tokens-in-one-encrypted-store-with-a-deployment-keyring-a-fernet",
+      "text": "turnstone keeps tokens in **one encrypted store with a deployment keyring**: a Fernet key in `config.toml`, accepted only from that file and not from environment variables, with an ordered list for rotation where the first key encrypts new writes and all keys are tried on read. [SOURCE: specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-7-turnstone-s-per-user-oauth-is-opt-in-per-mcp-servers-row-and-dark-by-default-loc",
+      "text": "turnstone's per-user OAuth is **opt-in per `mcp_servers` row and dark by default**: \"Local-auth Turnstone installs with no `oauth_user` rows exercise zero new code paths.\" [SOURCE: specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-5-9-turnstone-s-sandbox-is-kernel-enforced-and-layered-landlock-for-filesystem-netwo",
+      "text": "turnstone's sandbox is **kernel-enforced and layered**: Landlock for filesystem, network namespace + seccomp + HTTP CONNECT proxy for network, `setuid` drop for process, and proxy-level secret resolution so API keys never sit in sandbox memory. [SOURCE: specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:5]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:1-35",
+        "specs/system-skilled-bots/context/turnstone-main/docs/openshell.md:1-20",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md:1-40",
+        "specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md:1-30",
+        "specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:1-40",
+        "specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md:1-35"
+      ]
+    },
+    {
+      "id": "finding-6-2-posture-secrets-should-become-a-name-resolved-against-that-store-not-a-free-stri",
+      "text": "`posture.secrets` should become a **name resolved against that store**, not a free string; today it is carried on the definition and never resolved. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-6-approval-should-reuse-needs-you-rather-than-invent-a-gate-an-unattended-run-that",
+      "text": "Approval should **reuse needs-you rather than invent a gate**: an unattended run that needs a human decision \"ends instead of waiting, and leaves one item the operator answers later\", and the item's state is derived from its fields, never stored. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:5]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-9-encryption-key-handling-should-follow-turnstone-s-rule-rather-than-invent-one-a-",
+      "text": "Encryption-key handling should **follow turnstone's rule rather than invent one**: a key accepted only from a config file and not from environment variables, with an ordered list for rotation where the first key encrypts new writes and all keys are tried on read. [SOURCE: specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-4-the-leak-guard-already-exists-and-stays-the-second-line-collectknownsecrets-plus",
+      "text": "The **leak guard already exists and stays the second line**: `collectKnownSecrets` plus `findSecretLiteral` refuse a value that reaches a prompt, a question/answer or a delivery message. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-8-the-cli-already-has-the-exit-vocabulary-for-a-parked-secret-request-exit-code-5-",
+      "text": "The CLI **already has the exit vocabulary** for a parked secret request: exit code 5 is \"awaiting decision\". [SOURCE: .skilled/bin/bots.cjs:54]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-run-record-already-has-the-right-slot-honoredposture-carries-isolation-sandb",
+      "text": "The run record **already has the right slot**: `HonoredPosture` carries `isolation`, `sandbox`, `executorKind` and `model`, so a `secretsUsed: string[]` of names — never values — is one field on an existing block. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-smallest-injection-that-works-for-a-cli-first-product-is-a-command-variable-",
+      "text": "The smallest injection that works for a CLI-first product is a **command variable, not a page field**: the value goes into the child process environment only, so the bot's shell can use it and the prompt cannot. rakazo names this exact boundary and exposes it deliberately. [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-store-belongs-under-the-user-level-state-root-beside-needs-you-items-and-run",
+      "text": "The store belongs **under the user-level state root**, beside needs-you items and run records, because that is the existing rule: \"The item lives under the user-level state root so a run can neither forge nor clear one.\" [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:5]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-7-the-store-must-be-per-identity-like-every-other-state-file-identitystatepaths-al",
+      "text": "The store must be **per identity**, like every other state file: `identityStatePaths` already keys everything by identity under the state root. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-6-10-the-store-should-be-write-only-at-every-surface-following-openbot-s-rule-that-no",
+      "text": "The store should be **write-only at every surface**, following OpenBot's rule that \"nothing in the API reads a secret back out\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-230",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-45",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:100-190",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-290",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:52-58",
+        ".skilled/bin/bots.cjs:20-60",
+        "specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:37",
+        "specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md:8",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375"
+      ]
+    },
+    {
+      "id": "finding-7-10-no-oauth-server-is-needed-for-a-small-team-openbot-s-own-oauth-client-is-the-exc",
+      "text": "**No OAuth server is needed for a small team**: OpenBot's own OAuth client is the exception for vendors that refuse dynamic registration, and turnstone's per-user OAuth is opt-in and dark by default. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626] [SOURCE: specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-9-openbot-s-per-action-grant-is-the-model-to-copy-at-the-smallest-scale-each-app-c",
+      "text": "OpenBot's **per-action grant is the model to copy at the smallest scale**: \"Each app comes with the actions it offers and the Bots that may use each one.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-2-server-environment-comes-from-one-dotenv-file-load-variables-from-with-variable-",
+      "text": "Server environment comes from **one dotenv file**: `load_variables_from` with `variable_loader_type: dotenv` and an `env_file_path`. That is the current secret path — one shared file for every server and every bot. [SOURCE: .utcp_config.json:2]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-1-skilled-s-connector-surface-is-one-repo-wide-utcp-config-with-14-mcp-servers-eac",
+      "text": "Skilled's connector surface is **one repo-wide UTCP config with 14 MCP servers**, each declared as a `manual_call_templates` entry with `call_template_type: mcp` and a `config.mcpServers` block. [SOURCE: .utcp_config.json:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-6-so-the-smallest-registry-is-a-per-run-filtered-utcp-config-the-runner-writes-a-t",
+      "text": "So the smallest registry is a **per-run filtered UTCP config**: the runner writes a temporary config containing only the servers the bot's `apps:` list names, and points `UTCP_CONFIG_FILE` at it. That is one file write and one environment variable, using machinery that already exists.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-7-the-grant-belongs-in-bot-md-frontmatter-beside-posture-because-frontmatter-keys-",
+      "text": "The grant belongs in **BOT.md frontmatter beside `posture`**, because `FRONTMATTER_KEYS` is already the closed set of bot fields and `apps` is one more. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-launcher-resolves-a-node-interpreter-and-hands-off-to-the-mcp-server-under-i",
+      "text": "The launcher **resolves a Node interpreter and hands off** to the MCP server under it; it is 181 lines and does no per-bot filtering. [SOURCE: .skilled/bin/mcp-code-mode-launcher.cjs:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-mcp-surface-is-reached-through-one-launcher-mcp-json-declares-a-single-code-",
+      "text": "The MCP surface is reached through **one launcher**: `.mcp.json` declares a single `code_mode` server that runs `.skilled/bin/mcp-code-mode-launcher.cjs` with `UTCP_CONFIG_FILE`. [SOURCE: .mcp.json:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-8-the-record-belongs-on-honoredposture-beside-secretsused-so-one-block-answers-wha",
+      "text": "The record belongs on **`HonoredPosture` beside `secretsUsed`**, so one block answers \"what could this run reach and what did it use\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-runner-already-has-an-environment-allowlist-commonlyadmittedkeys-derives-the",
+      "text": "The runner **already has an environment allowlist**: `commonlyAdmittedKeys` derives the keys every executor kind admits, and `commonEnv` gives a precheck only that part. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:191]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".utcp_config.json:1-40",
+        ".mcp.json:1-15",
+        ".skilled/bin/mcp-code-mode-launcher.cjs:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:185-215",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5203",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:5626",
+        "specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md:5"
+      ]
+    },
+    {
+      "id": "finding-8-7-cli-devin-never-passes-sandbox-at-all-confinement-is-the-fan-out-s-post-hoc-writ",
+      "text": "`cli-devin` **never passes `--sandbox` at all**: \"confinement is the fan-out's post-hoc write-containment guard, not an OS boundary\". [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:313]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-10-of-those-three-only-the-browser-is-genuinely-unavailable-to-a-terminal-and-it-is",
+      "text": "Of those three, **only the browser is genuinely unavailable to a terminal**, and it is unavailable for a stated reason: bot checks such as Cloudflare's challenge treat headless worse. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-9-openbot-s-computer-gives-three-things-a-worktree-cannot-a-headed-browser-on-its-",
+      "text": "OpenBot's computer gives **three things a worktree cannot**: a headed browser on its own X server, profiles that survive restarts, and a shell whose environment is the container's rather than the server's. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-1-skilled-bots-already-keeps-a-per-run-folder-runfolderpath-resolves-to-skilledtre",
+      "text": "Skilled bots **already keeps a per-run folder**: `runFolderPath` resolves to `<skilledTree>/.skilled/skills/.state/system-skilled-bots/<identity>/runs/<runId>`, created owner-only at mode `0700`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:366]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-4-so-the-workspace-volume-openbot-gets-from-agent-workspace-workspace-already-exis",
+      "text": "So the **\"workspace volume\" OpenBot gets from `agent-workspace:/workspace` already exists** in skilled bots as the run folder. The gap is not persistence — it is that the run folder is treated as *evidence* and never as a working directory the bot is told about.",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-6-the-cli-opencode-comment-states-the-exact-limit-workspace-write-denies-external-",
+      "text": "The `cli-opencode` comment states the exact limit: \"workspace-write denies external_directory to the file tools only (Bash can still write outside the working directory)\". [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:307]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-run-folder-is-refused-when-the-skilled-tree-is-a-linked-worktree-because-wor",
+      "text": "The run folder is **refused when the Skilled tree is a linked worktree**, \"because worktree cleanup would delete the evidence\", and refused when the path is not gitignored, \"so a vendored tree that lacks the ignore line never puts run files in its git status\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:414]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-run-folder-is-retained-per-bot-runfoldersperbot-200-and-the-reaper-keeps-any",
+      "text": "The run folder is **retained per bot**: `runFoldersPerBot: 200`, and the reaper keeps any run folder whose needs-you item is still open or awaiting resume. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:83] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:521]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-5-the-sandbox-is-not-a-container-executor-preventive-sandbox-capability-is-true-fo",
+      "text": "The sandbox is **not a container**: `EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY` is true for only `cli-codex`, `cli-cursor` and `cli-deepseek-harness`. Every other kind's \"sandbox\" is a tool gate or an approval mode. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:299]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-11-the-smallest-addition-is-therefore-not-a-container-it-is-a-telling-the-bot-its-r",
+      "text": "The smallest addition is therefore **not a container**: it is (a) telling the bot its run folder and starting its shell there, and (b) an opt-in headed browser behind one command rather than a per-bot computer. [INFERENCE: from findings 4, 5 and 10 — the run folder already provides persistence, the sandbox is executor-dependent rather than container-provided, and the only capability with no terminal equivalent is a headed browser]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-8-8-the-worktree-is-a-tree-of-the-repo-not-a-home-it-links-the-launcher-s-shared-pat",
+      "text": "The worktree is **a tree of the repo, not a home**: it links the launcher's shared paths \"instead of a full install, so setup needs no network\", and removal unlinks each recorded link \"as a link, never followed\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:5]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:355-440",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:33,83",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:505-535",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-60",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-335",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+      ]
+    },
+    {
+      "id": "finding-9-10-memory-is-the-part-with-no-coupling-at-all-because-it-does-not-exist-adding-it-l",
+      "text": "**Memory is the part with no coupling at all**, because it does not exist: adding it later touches nothing that exists today, which is why it should be last rather than first. [INFERENCE: from finding 5]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-9-only-one-of-the-three-stores-needs-a-schema-change-the-needs-you-item-needs-a-gr",
+      "text": "**Only one of the three stores needs a schema change**: the needs-you item needs a `grants` field so an approval can name what it is approving. The secret store and the connector registry need no index change, because their names can ride in `runs.summary` and `posture`. [INFERENCE: from findings 1, 2, 3 and 6]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-4-delivery-channels-is-desktop-and-desktop-is-the-one-channel-that-does-not-acknow",
+      "text": "`DELIVERY_CHANNELS` is **`['desktop']`**, and `desktop` is the one channel that does not acknowledge (`CHANNEL_ACKNOWLEDGES: { desktop: false }`). The only delivery channel is the one that cannot confirm. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-7-frontmatter-keys-is-a-closed-set-of-twelve-keys-and-an-unknown-key-is-a-hard-ref",
+      "text": "`FRONTMATTER_KEYS` is a **closed set of twelve keys**, and an unknown key is a hard refusal (`unknown-key`), so `apps` is a deliberate thirteenth entry rather than a free addition. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-1-needsyouitem-has-no-field-for-what-a-run-was-granted-it-carries-id-runid-botid-i",
+      "text": "`NeedsYouItem` has **no field for what a run was granted**: it carries `id`, `runId`, `botId`, `identity`, `question`, `options`, `createdAt`, `expiresAt`, `evidence`, `prompt`, `specFolder`, `answer` and `resumeRequestId`. An approval therefore cannot say \"this run wants to use github\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-6-runrecord-has-nine-top-level-blocks-identity-request-dispatch-budget-posture-exi",
+      "text": "`RunRecord` has **nine top-level blocks** — `identity`, `request`, `dispatch`, `budget`, `posture`, `exit`, `evidence`, `delivery` — and `posture` is the only one that describes what the run was *allowed* to do, so `apps` and `secretsUsed` belong there and nowhere else. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-3-runs-carries-summary-as-a-not-null-text-so-the-activity-feed-s-per-run-line-is-a",
+      "text": "`runs` carries `summary` as a `NOT NULL` text, so the activity feed's per-run line is **already a single string the runner writes** — a grant summary can ride there without a schema change. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:167]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-8-the-git-hook-trigger-is-opt-in-and-off-by-default-opt-in-for-git-hook-triggers-o",
+      "text": "The git-hook trigger is **opt-in and off by default**: \"Opt-in for git-hook triggers; off unless the repository says so.\" A routine that starts on a pull request therefore needs the repository to say so first. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-status-index-has-six-tables-meta-generations-runs-deliveries-items-retired-a",
+      "text": "The status index has **six tables** — `meta`, `generations`, `runs`, `deliveries`, `items`, `retired` — and **none has a column for a grant, a secret name or an app**. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-9-5-there-is-no-memory-anywhere-in-the-runtime-a-case-insensitive-grep-for-memory-ac",
+      "text": "There is **no memory anywhere in the runtime**: a case-insensitive grep for `memory` across the skill matches only `node_modules` and one line of `bots-author/SKILL.md`. Memory today is the agent's context files and the spec-kit, not a store. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1-40",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165-200",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45-50",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1-30",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+        ".skilled/skills/system-skilled-bots/ (grep for memory)"
+      ]
+    },
+    {
+      "id": "finding-10-10-verdict-a-cli-matches-the-openbot-app-experience-for-this-slice-the-four-surface",
+      "text": "**Verdict: a CLI matches the OpenBot app experience for this slice.** The four surfaces are already four verbs, the exit codes already name the states, and the TUI is optional polish rather than a missing capability. [INFERENCE: from findings 1, 2, 3 and 8]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-3-status-json-is-the-machine-readable-form-so-a-tui-would-be-a-renderer-over-an-ex",
+      "text": "`status --json` is the **machine-readable form**, so a TUI would be a renderer over an existing command rather than a new API. [SOURCE: .skilled/bin/bots.cjs:18]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-7-of-those-four-only-the-auto-updater-matters-to-a-small-team-and-it-matters-only-",
+      "text": "Of those four, **only the auto-updater matters to a small team**, and it matters only if the team installs the product rather than running it from a checkout. [INFERENCE: from findings 5 and 6 — a window is a preference, a bundled CLI is a packaging choice, and OS integration serves the browser and voice features this slice does not have]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-4-openbot-s-app-is-forty-plus-component-folders-admin-approvals-audit-bots-browser",
+      "text": "OpenBot's app is **forty-plus component folders** — `admin`, `approvals`, `audit`, `bots`, `browser`, `channels`, `computer`, `connections`, `decisions`, `delivery`, `desktop`, `gallery`, `learning`, `manage`, `memory`, `moves`, `needs-you`, `notifications`, `onboarding`, `passwords`, `plan`, `plugins`, `recorder`, `responsibilities`, `routines`, `settings`, `skills`, `tasks`, `team-grants`, `teams`, `vault`, `what-if`. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/components/]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-6-so-the-desktop-shell-adds-four-things-a-terminal-cannot-a-window-a-bundled-cli-a",
+      "text": "So the desktop shell adds **four things a terminal cannot**: a window, a bundled CLI, an auto-updater, and OS integration (a microphone on macOS, `pkexec` on Linux). [SOURCE: specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-1-the-bots-cli-already-has-thirteen-verbs-covering-the-four-app-surfaces-run-a-con",
+      "text": "The `bots` CLI **already has thirteen verbs covering the four app surfaces**: `run` (a conversation), `inbox` and `answer` (the approvals inbox), `status` (the activity feed), and `schedule install` plus `status` (the routine list). [SOURCE: .skilled/bin/bots.cjs:18]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-8-the-apps-computer-slice-needs-none-of-the-four-a-connector-grant-is-a-frontmatte",
+      "text": "The apps/computer slice **needs none of the four**: a connector grant is a frontmatter edit, a secret is a `bots secret set`, and a computer is a run folder. [INFERENCE: from iterations 6, 7 and 8]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-2-the-cli-has-a-documented-exit-vocabulary-that-maps-to-the-app-s-states-0-complet",
+      "text": "The CLI has a **documented exit vocabulary that maps to the app's states**: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision. [SOURCE: .skilled/bin/bots.cjs:54]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-9-the-one-genuine-terminal-gap-is-the-masked-field-and-a-terminal-can-close-it-ope",
+      "text": "The one genuine terminal gap is the **masked field**, and a terminal can close it: OpenBot's secret injection needs a person to type into a box the bot cannot read, and a no-echo prompt is the same guarantee with less machinery. [INFERENCE: from iteration 2 finding 6 and iteration 6 finding 3]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-10-5-the-tauri-shell-is-a-1000-800-window-wrapping-the-same-web-app-with-a-bundled-cl",
+      "text": "The Tauri shell is **a 1000×800 window wrapping the same web app**, with a bundled CLI, an auto-updater and platform signing. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1]",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/bin/bots.cjs:18-60",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1-50",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/ (directory listing)"
+      ]
+    },
+    {
+      "id": "finding-11-9-every-store-is-already-shared-not-per-person-because-identity-is-the-repository-",
+      "text": "**Every store is already shared, not per-person**, because identity is the *repository* rather than the person: everyone who runs a bot in one checkout resolves the same identity and therefore the same secret store, connector grants and run folders. Per-person memory would need a new key beside `identityKey`. [INFERENCE: from finding 4]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-3-a-pinned-value-that-is-not-owner-name-is-refused-rather-than-skipped-so-a-damage",
+      "text": "A pinned value that is not `owner/name` is **refused rather than skipped**, \"so a damaged job never falls back to the checkout\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/identity.ts:57]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-4-identity-becomes-a-filesystem-key-through-encodeuricomponent-identity-tolowercas",
+      "text": "Identity becomes a **filesystem key** through `encodeURIComponent(identity.toLowerCase())`, so every store is already per-identity by construction. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/identity.ts:102]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-7-only-admin-and-member-are-assignable-owner-is-not-in-assignablerole-source-specs",
+      "text": "Only `admin` and `member` are **assignable**; `owner` is not in `AssignableRole`. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23505]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-5-openbot-has-three-roles-owner-admin-and-member-an-owner-or-an-admin-governs-it-i",
+      "text": "OpenBot has **three roles**: `owner`, `admin` and `member`. \"An owner or an admin governs it: its people, its sign-in and its policy. A member uses it.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-1-skilled-bots-has-no-sign-in-identity-is-owner-name-resolved-from-four-sources-in",
+      "text": "Skilled bots has **no sign-in**: identity is `owner/name`, resolved from four sources in precedence order — the installed job's pinned environment variable, the checkout's `bots/config.json`, the environment, then the git origin remote. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-8-so-the-smallest-roles-model-for-a-small-team-is-two-roles-not-three-the-person-w",
+      "text": "So the smallest roles model for a small team is **two roles, not three**: the person who owns the machine — implicit, because they own the checkout — and everyone else. [INFERENCE: from findings 5 and 7 — `owner` is not assignable in OpenBot either, so it is a property of the deployment rather than a grant]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-2-the-pinned-value-outranks-the-config-for-a-stated-reason-a-run-with-checkout-wri",
+      "text": "The pinned value **outranks the config** for a stated reason: \"a run with checkout write access could edit to move every lookup under another identity's empty folders\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-6-the-role-list-is-extensible-and-forward-compatible-a-client-reads-a-role-it-does",
+      "text": "The role list is **extensible and forward-compatible**: \"a client reads a role it doesn't know as a member.\" [SOURCE: specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-11-10-the-smallest-sign-in-is-none-the-checkout-s-remote-is-the-identity-and-a-shared-",
+      "text": "The smallest sign-in is **none**: the checkout's remote is the identity, and a shared host is one Unix user. Adding a sign-in would put a second identity system beside the one every path already uses. [INFERENCE: from findings 1, 3 and 4]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20-120",
+        "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491-23510",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+      ]
+    },
+    {
+      "id": "finding-12-1-the-licences-differ-and-one-is-a-hazard-openbot-is-mit-openmausbot-rakazo-turnst",
+      "text": "**The licences differ, and one is a hazard.** OpenBot is **MIT**; OpenMausBot, rakazo, turnstone and buzz are **Apache 2.0**; OpenGhost and hermes-muse are **MIT**; and **openhuman is GPL-3.0** — copyleft, so nothing from it can be lifted into a permissively licensed product. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/LICENSE:1] [SOURCE: specs/system-skilled-bots/context/openhuman-main/LICENSE:1]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-12-6-openbot-s-shared-computer-start-ts-is-13-lines-the-container-spec-is-configurati",
+      "text": "OpenBot's `shared/computer-start.ts` is **13 lines**: the container spec is configuration, not code, so there is nothing to lift. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-12-5-openbot-s-shared-computer-token-ts-is-70-lines-of-typescript-mit-and-is-a-self-c",
+      "text": "OpenBot's `shared/computer-token.ts` is **70 lines of TypeScript, MIT**, and is a self-contained HMAC derivation with a versioned label — liftable as-is if per-bot tokens are ever needed. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-12-2-rakazo-s-packages-core-src-integrations-vault-ts-is-174-lines-of-typescript-apac",
+      "text": "rakazo's `packages/core/src/integrations/vault.ts` is **174 lines of TypeScript**, Apache 2.0, and is the closest drop-in for the secret store's policy layer: `siteHost`, `secretAnswerRefusal` and the fixed-refusal vocabulary. [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-12-4-rakazo-s-packages-core-src-messages-secret-matcher-ts-is-199-lines-and-is-the-le",
+      "text": "rakazo's `packages/core/src/messages/secret-matcher.ts` is **199 lines** and is the leak-detection equivalent of skilled bots' `findSecretLiteral`. [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-12-3-rakazo-s-packages-core-src-node-secrets-guard-ts-is-188-lines-and-is-a-placehold",
+      "text": "rakazo's `packages/core/src/node/secrets-guard.ts` is **188 lines** and is a **placeholder guard, not a store**: it refuses dev placeholders at startup rather than holding a value. [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-12-8-so-the-reuse-list-is-three-typescript-files-from-rakazo-and-one-from-openbot-all",
+      "text": "So the reuse list is **three TypeScript files from rakazo and one from OpenBot**, all permissive, totalling about 630 lines of reference rather than code to copy wholesale. [INFERENCE: from findings 2, 3, 4 and 5]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-12-7-turnstone-s-keyring-is-python-fernet-so-its-rule-is-liftable-and-its-code-is-not",
+      "text": "turnstone's keyring is **Python** (Fernet), so its *rule* is liftable and its code is not. [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+        "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+      ]
+    },
+    {
+      "id": "finding-13-8-memory-is-last-and-out-of-scope-for-this-lineage-because-it-couples-to-nothing-a",
+      "text": "**Memory is last and out of scope for this lineage**, because it couples to nothing and the other three pairs own it. [INFERENCE: from iteration 9 finding 10]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    },
+    {
+      "id": "finding-13-2-secrets-is-already-a-checked-key-in-that-set-so-the-secret-store-s-frontmatter-h",
+      "text": "`secrets` is **already a checked key** in that set, so the secret store's frontmatter half is a resolution step rather than a new key. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    },
+    {
+      "id": "finding-13-1-the-checker-s-refusal-vocabulary-is-a-named-reason-set-id-invalid-isolation-inva",
+      "text": "The checker's refusal vocabulary is a **named-reason set** — `id-invalid`, `isolation-invalid`, `sandbox`, `secrets`, `trigger-kind-invalid`, `delivery-invalid` and so on — so a new `apps` key adds `apps-invalid` and `apps-unknown-server` in the same style rather than a new error mechanism. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    },
+    {
+      "id": "finding-13-4-the-first-slice-is-therefore-the-run-folder-as-working-directory-because-it-is-t",
+      "text": "The first slice is therefore the **run folder as working directory**, because it is the only one that touches nothing and its failure mode is a bot writing in the wrong place rather than a leak. [INFERENCE: from iteration 8 findings 4 and 11]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    },
+    {
+      "id": "finding-13-7-the-fourth-slice-is-the-grants-field-on-the-needs-you-item-which-both-stores-nee",
+      "text": "The fourth slice is the **`grants` field on the needs-you item**, which both stores need and neither can add alone. [INFERENCE: from iteration 9 finding 9]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    },
+    {
+      "id": "finding-13-3-the-order-follows-from-coupling-not-size-the-run-folder-touches-nothing-iteratio",
+      "text": "The order follows from **coupling, not size**: the run folder touches nothing (iteration 9), the connector registry needs one schema change, and the secret store needs the same one. [INFERENCE: from iteration 9 findings 9 and 10]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    },
+    {
+      "id": "finding-13-5-the-second-slice-is-the-connector-registry-because-it-is-a-whitelist-over-an-exi",
+      "text": "The second slice is the **connector registry**, because it is a whitelist over an existing config and its failure mode is a refusal rather than a leak. [INFERENCE: from iteration 7 findings 6 and 7]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    },
+    {
+      "id": "finding-13-6-the-third-slice-is-the-secret-store-because-it-is-the-only-one-whose-failure-mod",
+      "text": "The third slice is the **secret store**, because it is the only one whose failure mode is a leak, so it should land after the two that cannot leak. [INFERENCE: from iteration 6 findings 3 and 4]",
+      "addedAtIteration": 13,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107",
+        "iterations/iteration-006.md through iteration-012.md (this lineage's own records)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-c44edef0da76",
+      "text": "Reading `OpenBot-main/docs/configuration.md` for the vault: the file is 130 KB of deployment configuration and contains no vault section, so the vault's shape had to come from the app components and the API instead.",
+      "contentHash": "c44edef0da76",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6ce0bdea8993",
+      "text": "Searching for a `vault/` or `secret/` directory at the repo root of `OpenBot-main` returns nothing; the vault lives in `app/src/components/vault/` and `app/src/components/manage/`, and the server side is behind the API rather than a named module.",
+      "contentHash": "6ce0bdea8993",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-876d1da514c8",
+      "text": "Treating `posture.secrets` as an existing feature: grepping the runtime for `secrets` returns only the definition field and the leak guard, so there is nothing to compare against yet.",
+      "contentHash": "876d1da514c8",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d33206c50ba8",
+      "text": "`app/src/components/manage/credentials-page.tsx` is the admin view of the same credential list, not a second store; reading it added the noun split (\"key\" in the personal edition, \"credential\" in the team edition) and nothing else.",
+      "contentHash": "d33206c50ba8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a11071a255a6",
+      "text": "Looking for a client-side decryption path: every read endpoint returns metadata only, so there is nothing to decrypt in the app. The secret never leaves the server except into a page field.",
+      "contentHash": "a11071a255a6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7a1d51a72a70",
+      "text": "Treating \"saved login\" and \"credential\" as one store: they have different owners, different permissions and different use paths, so a parity build needs both or an explicit decision to ship one.",
+      "contentHash": "7a1d51a72a70",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-32be3c695fea",
+      "text": "`app/src/components/connections` is a UI surface over the same endpoints; it added no new contract facts beyond the three connect outcomes already in the API description.",
+      "contentHash": "32be3c695fea",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-eb5d14e732fc",
+      "text": "Looking for a refresh-token endpoint: there is none. Refresh is implicit in the connection record plus `confirmConnection` and `recheck`, which re-ask the app rather than rotating a token the client holds.",
+      "contentHash": "eb5d14e732fc",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a6d302318950",
+      "text": "Treating the OAuth client as the normal path: it is the exception for vendors that refuse dynamic registration, so a parity build should not start there.",
+      "contentHash": "a6d302318950",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-66ef2e5201ed",
+      "text": "Assuming gVisor is the boundary: it is opt-in, and the documented default is an ordinary container sharing the host kernel. The real boundary is the container plus the per-computer token.",
+      "contentHash": "66ef2e5201ed",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-abe61f4a8194",
+      "text": "Searching for a `supervisor/` or `agent-computer/` directory in this checkout: both are published images referenced by name, so their source is not here. The compose file's comments are the contract, and they are unusually explicit about why each setting exists.",
+      "contentHash": "abe61f4a8194",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1a7b3ba83dd8",
+      "text": "Treating the computer as a sandbox mode: it is a separate service with its own image, entrypoint, volumes and token. A sandbox flag on an executor cannot stand in for it.",
+      "contentHash": "1a7b3ba83dd8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-78750027dbaf",
+      "text": "Copying OpenMausBot's computer: it is an Electron desktop shell driving a native CUA driver, which is the desktop path D4 deprioritises and the largest possible lift.",
+      "contentHash": "78750027dbaf",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-19de4edcc01b",
+      "text": "Copying turnstone's OAuth stack wholesale: it is a Python service with a Fernet keyring and a per-server admin form, sized for a multi-node deployment rather than a few people on one host.",
+      "contentHash": "19de4edcc01b",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-07481b9beeb4",
+      "text": "Looking for a shared \"vault\" module across the three: each solves it differently (Postgres table, Fernet store, external password manager), so there is no single thing to lift. The reusable part is the *shape*, not the code.",
+      "contentHash": "07481b9beeb4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3057e028744f",
+      "text": "Treating any of the three as a connector catalogue: none ships a catalogue of apps; rakazo and turnstone both assume you bring the service, and OpenMausBot assumes you bring the password manager.",
+      "contentHash": "3057e028744f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-cdcead3bca7f",
+      "text": "A page-field injection like OpenBot's masked box: skilled bots has no browser, so there is no field to fill. The command variable is the equivalent primitive.",
+      "contentHash": "cdcead3bca7f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-95d423aeec76",
+      "text": "A proxy-injection like rakazo's `secret_request`: it needs a server that makes the outbound call, which skilled bots does not have and a small team does not need.",
+      "contentHash": "95d423aeec76",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-848f2c4ec012",
+      "text": "An external password manager like OpenMausBot's Bitwarden: it adds a service, a CLI dependency and a sync loop for a team of a few people.",
+      "contentHash": "848f2c4ec012",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-0321a57f4408",
+      "text": "Looking for an existing encryption helper in the runtime: there is none, so the key handling has to be specified rather than reused. Turnstone's config-only rule is the cheapest correct answer.",
+      "contentHash": "0321a57f4408",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-46a23c755992",
+      "text": "A connector catalogue: none of the eight repos ships one that a small team would use, and the UTCP config already names the servers this team actually has.",
+      "contentHash": "46a23c755992",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-b9c832ab7e8a",
+      "text": "Building an OAuth server: it is the largest single piece of OpenBot's app layer and the one a small team can skip, because a shared account or a key covers the common case.",
+      "contentHash": "b9c832ab7e8a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-3075e5b92d7f",
+      "text": "Looking for an existing per-bot MCP filter: there is none. The launcher is a pass-through, so the filter has to be added at the config-file level rather than inside the launcher.",
+      "contentHash": "3075e5b92d7f",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-bdc989e2ed73",
+      "text": "Per-person connections: they need a sign-in surface and a session store. A small team on one host can share one account per app, which is OpenBot's own `shared` account mode.",
+      "contentHash": "bdc989e2ed73",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-f46d18419b1a",
+      "text": "A per-bot container: it is the largest piece of OpenBot's computer and it exists to serve a browser farm. A small team runs one bot at a time on one machine.",
+      "contentHash": "f46d18419b1a",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-c4371846d0f3",
+      "text": "A profiles volume: the operator's own browser profile is the profiles volume, and it is already logged in.",
+      "contentHash": "c4371846d0f3",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-9fd8d2c72d2d",
+      "text": "gVisor: OpenBot itself leaves it unset by default, and the executor kinds that matter already give an OS boundary.",
+      "contentHash": "9fd8d2c72d2d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-ea0dc048c5ca",
+      "text": "Looking for a browser capability in the executor matrix: there is none. `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX` covers web *search*, not a browser, so a headed browser is not something any executor kind can be asked for.",
+      "contentHash": "ea0dc048c5ca",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-2a851e9f3ee5",
+      "text": "A new delivery channel for approvals: `desktop` is the only channel and it does not acknowledge, so the honest move is to fix the acknowledgement rather than add a channel.",
+      "contentHash": "2a851e9f3ee5",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c61fc65b94ba",
+      "text": "Adding a `grants` table to the status index: the index is a projection of files, and a grant is already in the run record, so a table would be a second source of truth for the same fact.",
+      "contentHash": "c61fc65b94ba",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-3c6b1cd18f68",
+      "text": "Building memory now: it couples to nothing, so it can be added at any time and should be added last.",
+      "contentHash": "3c6b1cd18f68",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-3db354e6f252",
+      "text": "Looking for a memory module under a different name (`context`, `notes`, `knowledge`): the runtime has none. The nearest thing is the spec-kit's own packet documents, which are per-spec rather than per-bot.",
+      "contentHash": "3db354e6f252",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1ea472d125a2",
+      "text": "A browser inside the product: the operator's own browser already has the logins, which is what OpenBot's profiles volume exists to preserve.",
+      "contentHash": "1ea472d125a2",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-69c1d438ba32",
+      "text": "A Tauri shell: it wraps a web app that does not exist, and its value is packaging rather than capability.",
+      "contentHash": "69c1d438ba32",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-81c92435eaaf",
+      "text": "Building a TUI now: the four surfaces are four verbs, and a TUI over `status --json` is a rendering exercise that can follow the stores rather than precede them.",
+      "contentHash": "81c92435eaaf",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-fbe8c48e695b",
+      "text": "Looking for a terminal UI in the other seven repos: none ships one. OpenMausBot is Electron, OpenBot is Tauri plus a web app, and the rest are servers or CLIs without a TUI.",
+      "contentHash": "fbe8c48e695b",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-02430c208367",
+      "text": "A sign-in system: it would be a second identity beside the one every path already uses, and the first thing it would have to do is agree with `identityKey`.",
+      "contentHash": "02430c208367",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-e62b237258d3",
+      "text": "Looking for a per-person key in the state root: there is none. `identityStatePaths` keys by identity only, and `retired` records identities rather than people.",
+      "contentHash": "e62b237258d3",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-711c85236b45",
+      "text": "Per-person secret stores: they would break the shared-account case, which is the common case for a small team and is OpenBot's own `shared` account mode.",
+      "contentHash": "711c85236b45",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-fd81a63b1af9",
+      "text": "Three roles: OpenBot's own `owner` is not assignable, so a small team's two roles are the same shape with the deployment owner implicit.",
+      "contentHash": "fd81a63b1af9",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-c80577941051",
+      "text": "Copying OpenBot's connection registry: it is an OpenAPI description of a server this product does not have, so the shape transfers and the code does not.",
+      "contentHash": "c80577941051",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-0bdb1cc63c7d",
+      "text": "Lifting anything from openhuman: GPL-3.0 is copyleft, and a permissive product cannot absorb it.",
+      "contentHash": "0bdb1cc63c7d",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-5c3313635eb3",
+      "text": "Lifting turnstone's OAuth runtime: it is Python, and the per-user path is dark by default, so the rule is worth more than the code.",
+      "contentHash": "5c3313635eb3",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-5ccb278da5d1",
+      "text": "Looking for a TypeScript secret store in OpenBot: there is none. OpenBot's vault is server-side and its client only renders forms, so the only liftable TypeScript store in the eight repos is rakazo's.",
+      "contentHash": "5ccb278da5d1",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-5442526fa77f",
+      "text": "Building all four slices as one packet: the first two prove the design, and the last two depend on what the first two learn about the run record.",
+      "contentHash": "5442526fa77f",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-446531352db6",
+      "text": "Building memory in this packet: it is another pair's share and it couples to nothing here.",
+      "contentHash": "446531352db6",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-7ecdb4cd4bf9",
+      "text": "Looking for a dependency that forces the secret store before the connector registry: there is none. The two share only the `grants` field, which is slice 4 and can land after both.",
+      "contentHash": "7ecdb4cd4bf9",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-0de936030bd8",
+      "text": "Starting with the secret store: it is the largest slice and the only one that can leak, so starting there puts the risk first and the proof last.",
+      "contentHash": "0de936030bd8",
+      "addedAtIteration": 13
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 13,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 130,
+    "sourceFindings": 130,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {
+      "code": 152,
+      "other": 12
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-004",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "OpenBot-main/api, OpenBot-main/docs/configuration.md, turnstone-main, OpenMausBot-main, rakazo-main, .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        "question": "How do the reference repos connect a bot to apps and secrets and give it a computer, compared with Skilled's MCP and Code Mode and the bots worktree isolation?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-2-005",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "OpenBot-main/app/src/components/vault, OpenBot-main/app/src/components/manage, OpenBot-main/api/openapi.yaml",
+        "question": "How does OpenBot's vault actually store and inject a secret: what is encrypted, what a bot can see, and when a person must approve a use?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 2
+      },
+      {
+        "nodeId": "F-2-006",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "OpenBot-main/api/openapi.yaml, OpenBot-main/app/src/components/connections",
+        "question": "How does OpenBot's app/connection registry authorize an app (OAuth client, account mode, refresh, scopes) and what would Skilled need to match it?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 3
+      },
+      {
+        "nodeId": "F-2-007",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "OpenBot-main/shared/computer-token.ts, OpenBot-main/shared/computer-start.ts, OpenBot-main/shared/bot-browser.ts",
+        "question": "How is OpenBot's computer provisioned and bounded (supervisor, container image, sandbox provider, per-tenant token) and what is the smallest equivalent for a small team?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 4
+      },
+      {
+        "nodeId": "F-2-008",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "turnstone-main, OpenMausBot-main, rakazo-main",
+        "question": "What do turnstone-main, OpenMausBot-main and rakazo-main do for apps, secrets and a bot's computer, and which of the three is simplest to copy?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 5
+      },
+      {
+        "nodeId": "F-3-009",
+        "parentId": "F-2-005",
+        "depth": 3,
+        "scope": ".skilled/skills/system-skilled-bots/runtime/lib, .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts, .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "question": "What is the smallest secret store skilled bots can add that keeps a value write-only, injects it without the bot reading it, and records each use in the run record?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 6
+      }
+    ],
+    "stats": {
+      "total": 6,
+      "open": 0,
+      "active": 0,
+      "answered": 6,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "activeNodeId": null,
+    "budget": {
+      "depth1": {
+        "allotted": 6.5,
+        "spent": 1
+      },
+      "depth2": {
+        "allotted": 10.05,
+        "spent": 4
+      },
+      "depth3": {
+        "allotted": 8,
+        "spent": 1
+      }
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

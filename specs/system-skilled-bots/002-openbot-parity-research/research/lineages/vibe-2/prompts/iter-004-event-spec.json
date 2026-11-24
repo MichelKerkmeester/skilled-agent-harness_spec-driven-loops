@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "findingsCount": 11,
+  "newInfoRatio": 1.0,
+  "noveltyJustification": "All 11 findings are new to this lineage: the computer's container boundary, loopback rule, headed browser, capacity limits, two volumes, per-bot workspace separation, supervisor socket, per-computer token, opt-in gVisor, per-bot egress and the 180 s start budget.",
+  "keyQuestions": ["How is OpenBot's computer provisioned and bounded (supervisor, container image, sandbox provider, per-tenant token) and what is the smallest equivalent for a small team?"],
+  "answeredQuestions": ["How is OpenBot's computer provisioned and bounded (supervisor, container image, sandbox provider, per-tenant token) and what is the smallest equivalent for a small team?"],
+  "ruledOut": [
+    "treating the computer as a sandbox mode (it is a separate service with its own image, entrypoint, volumes and token)",
+    "assuming gVisor is the boundary (it is opt-in; the default is an ordinary container sharing the host kernel)"
+  ],
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:352",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:360",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:381",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:386",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:401",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:420",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:435",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:461",
+    "specs/system-skilled-bots/context/OpenBot-main/docker-compose.yml:470",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+  ],
+  "edgeCase": "missing-dependency"
+}

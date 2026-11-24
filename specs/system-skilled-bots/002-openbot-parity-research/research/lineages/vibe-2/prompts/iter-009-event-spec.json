@@ -1,0 +1,25 @@
+{
+  "status": "insight",
+  "findingsCount": 10,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "6 of 10 findings are new code facts (the NeedsYouItem field list, the six status-index tables, runs.summary, the single non-acknowledging delivery channel, the absent memory store, the closed twelve-key frontmatter set) and 4 are coupling conclusions drawn from them; a 0.10 simplicity bonus applies because the coupling table reduces three stores to one schema change.",
+  "keyQuestions": [],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "a grants table in the status index (the index is a projection of files, so a table would be a second source of truth)",
+    "a new delivery channel for approvals (desktop is the only channel and it does not acknowledge, so fix the acknowledgement instead)",
+    "building memory now (it couples to nothing, so it can be added at any time and should be last)"
+  ],
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:1",
+    ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:165",
+    ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:167",
+    ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45",
+    ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:1",
+    ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92",
+    ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:50",
+    ".skilled/skills/system-skilled-bots/runtime/lib/"
+  ],
+  "edgeCase": "ambiguous-input"
+}

@@ -1,0 +1,26 @@
+{
+  "status": "insight",
+  "findingsCount": 11,
+  "newInfoRatio": 0.85,
+  "noveltyJustification": "7 of 11 findings are new code facts (the run-folder path and its two refusals, the 200-run retention, the three-kind preventive-sandbox map, the opencode and devin comments, the worktree link rule) and 4 restate prior evidence or draw the design conclusion; a 0.10 simplicity bonus applies because the answer collapses the container question to a working directory and a documented command.",
+  "keyQuestions": [],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "a per-bot container (it exists to serve a browser farm, and a small team runs one bot at a time)",
+    "gVisor (OpenBot leaves it unset by default and the executor kinds that matter already give an OS boundary)",
+    "a profiles volume (the operator's own browser profile already is one)"
+  ],
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:366",
+    ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:414",
+    ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:83",
+    ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:521",
+    ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:5",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:299",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:307",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:313",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1"
+  ],
+  "edgeCase": "ambiguous-input"
+}

@@ -1,0 +1,1 @@
+Terminal versus desktop: can a CLI or TUI give the OpenBot app experience (conversations, approvals inbox, activity feed, routine list), and what would a desktop shell add that a terminal cannot?

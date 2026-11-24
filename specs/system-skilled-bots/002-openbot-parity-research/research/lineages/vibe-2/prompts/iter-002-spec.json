@@ -1,0 +1,21 @@
+{
+  "findings": [
+    {"id":"f-iter002-001","label":"A credential is encrypted and write-only: one live credential per key, a replacement revokes the one it replaces in the same write, and no answer includes the secret now or later.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter002-002","label":"The credential list cannot leak: it says what a credential is for and whether it is live, and nothing in the API reads a secret back out.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter002-003","label":"The vault is per organization, not per bot and not global: another organization's credentials are never listed.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter002-004","label":"A saved login is per person and per site, and using it is the approval: signing in with it is the person's confirmation to use it this once, refused for a login saved for any other site.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter002-005","label":"The saved-login list shows site and username only; a password is write-only and the list can delete one but never show it.","sources":["specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx"]},
+    {"id":"f-iter002-006","label":"Injection into a page is a masked box, not a value: the bot names a field ref and a label, a person types into the box, and the bot never sees the value.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts"]},
+    {"id":"f-iter002-007","label":"The bot is told the outcome and never the value, and only a typed value counts as an answer; any other ending is reported as nothing typed with the computer's reason.","sources":["specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts"]},
+    {"id":"f-iter002-008","label":"A secret request must not click the field first, because a click on a password field is itself a credential typed on a website and hands that step to the person.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts"]},
+    {"id":"f-iter002-009","label":"Permissions split so a reader sees what exists but never a secret: credentials:read and saved-logins:read both say never a secret.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter002-010","label":"The vault's two stores have different owners: logins belong to the person in both editions, keys belong to the organization's admin in the team edition and to the person in the personal edition.","sources":["specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx"]}
+  ],
+  "proposals": [
+    {"parentId":"F-2-005","question":"What is the smallest secret store skilled bots can add that keeps a value write-only, injects it without the bot reading it, and records each use in the run record?","scope":".skilled/skills/system-skilled-bots/runtime/lib, .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts, .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts","evidence":".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249"}
+  ],
+  "ruledOut": [
+    {"direction":"looking for a client-side decryption path","reason":"every read endpoint returns metadata only, so the app never holds the secret"},
+    {"direction":"treating saved logins and credentials as one store","reason":"different owners, permissions and use paths"}
+  ]
+}

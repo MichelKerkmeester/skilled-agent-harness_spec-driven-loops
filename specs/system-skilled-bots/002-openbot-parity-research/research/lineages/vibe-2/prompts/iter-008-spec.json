@@ -1,0 +1,21 @@
+{
+  "findings": [
+    {"id":"f-iter008-001","label":"Skilled bots already keeps a per-run folder at <skilledTree>/.skilled/skills/.state/system-skilled-bots/<identity>/runs/<runId>, created owner-only at mode 0700.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts"]},
+    {"id":"f-iter008-002","label":"The run folder is refused when the Skilled tree is a linked worktree because worktree cleanup would delete the evidence, and refused when the path is not gitignored so a vendored tree never puts run files in its git status.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts"]},
+    {"id":"f-iter008-003","label":"The run folder is retained per bot at 200 runs, and the reaper keeps any run folder whose needs-you item is still open or awaiting resume.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts",".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts"]},
+    {"id":"f-iter008-004","label":"The workspace volume OpenBot gets from agent-workspace:/workspace already exists in skilled bots as the run folder; the gap is that the run folder is treated as evidence and never as a working directory the bot is told about.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts","specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts"]},
+    {"id":"f-iter008-005","label":"The sandbox is not a container: EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY is true for only cli-codex, cli-cursor and cli-deepseek-harness, and every other kind's sandbox is a tool gate or an approval mode.","sources":[".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"]},
+    {"id":"f-iter008-006","label":"The cli-opencode comment states the exact limit: workspace-write denies external_directory to the file tools only, and Bash can still write outside the working directory.","sources":[".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"]},
+    {"id":"f-iter008-007","label":"cli-devin never passes --sandbox at all, because confinement there is the fan-out's post-hoc write-containment guard rather than an OS boundary.","sources":[".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"]},
+    {"id":"f-iter008-008","label":"The worktree is a tree of the repo and not a home: it links the launcher's shared paths instead of a full install so setup needs no network, and removal unlinks each recorded link as a link and never follows it.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts"]},
+    {"id":"f-iter008-009","label":"OpenBot's computer gives three things a worktree cannot: a headed browser on its own X server, profiles that survive restarts, and a shell whose environment is the container's rather than the server's.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts"]},
+    {"id":"f-iter008-010","label":"Of those three only the browser is genuinely unavailable to a terminal, and it is unavailable for a stated reason: bot checks such as Cloudflare's challenge treat headless worse.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts"]},
+    {"id":"f-iter008-011","label":"The smallest addition is not a container but two small things: telling the bot its run folder and starting its shell there, and an opt-in headed browser behind one command rather than a per-bot computer.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts","specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"a per-bot container","reason":"it is the largest piece of OpenBot's computer and exists to serve a browser farm, while a small team runs one bot at a time on one machine"},
+    {"direction":"gVisor","reason":"OpenBot itself leaves it unset by default, and the executor kinds that matter already give an OS boundary"},
+    {"direction":"a profiles volume","reason":"the operator's own browser profile is the profiles volume and is already logged in"}
+  ]
+}

@@ -1,0 +1,6 @@
+{"id":"F-1-003","text":"How do the reference repos build bot memory (per-bot and shared) and skills (written, recorded from a demonstration, proposed from use), and how would those map onto Skilled skills and the spec-kit?","source":"frontier","origin":"frontier","injectedAtIteration":0}
+{"id":"F-2-004","text":"How does an OpenBot memory reviewState (unreviewed, confirmed, edited) map onto a skilled-bots needs-you item?","source":"frontier","origin":"frontier","injectedAtIteration":1}
+{"id":"F-2-005","text":"What is the smallest on-disk memory store for a few people on one machine: one JSONL per person plus a per-bot overlay?","source":"frontier","origin":"frontier","injectedAtIteration":1}
+{"id":"F-2-006","text":"How does an OpenBot memory source sync clock (nextSyncAt, syncStatus) map onto our cron and queue triggers?","source":"frontier","origin":"frontier","injectedAtIteration":1}
+{"id":"F-2-007","text":"What does the hermes-muse skills/companion format look like, and is it liftable as a skill store?","source":"frontier","origin":"frontier","injectedAtIteration":1}
+{"id":"F-2-008","text":"How does an OpenBot LearningProposal review (pending_review, approved, rejected with evidence) map onto a Skilled skill proposal?","source":"frontier","origin":"frontier","injectedAtIteration":1}

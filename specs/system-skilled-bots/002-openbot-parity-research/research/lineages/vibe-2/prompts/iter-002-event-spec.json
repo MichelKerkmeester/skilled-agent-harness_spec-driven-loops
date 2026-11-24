@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "findingsCount": 10,
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "8 of 10 findings are fully new (write-only credentials, per-organization vault, saved-login confirmation, masked-box injection, typed-only outcome, no-click rule, permission split, two owners); 2 restate the two-store split and the vault-beside-the-eight fact from iteration 1.",
+  "keyQuestions": ["How does OpenBot's vault actually store and inject a secret: what is encrypted, what a bot can see, and when a person must approve a use?"],
+  "answeredQuestions": ["How does OpenBot's vault actually store and inject a secret: what is encrypted, what a bot can see, and when a person must approve a use?"],
+  "ruledOut": [
+    "looking for a client-side decryption path (every read endpoint returns metadata only)",
+    "treating saved logins and credentials as one store (different owners, permissions and use paths)"
+  ],
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4416",
+    "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:4375",
+    "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:18104",
+    "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:21979",
+    "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/saved-logins.tsx:27",
+    "specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx:13",
+    "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/computers/secret.ts:20",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/bot-prompt.ts:125",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:92"
+  ],
+  "edgeCase": "missing-dependency"
+}

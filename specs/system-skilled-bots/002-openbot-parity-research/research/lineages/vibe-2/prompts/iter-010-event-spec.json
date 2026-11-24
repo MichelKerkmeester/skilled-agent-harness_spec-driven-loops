@@ -1,0 +1,22 @@
+{
+  "status": "insight",
+  "findingsCount": 10,
+  "newInfoRatio": 0.75,
+  "noveltyJustification": "5 of 10 findings are new code facts (the thirteen CLI verbs, the six exit codes, status --json, the forty-plus component folders, the Tauri shell's four additions) and 5 are the verdict drawn from them; a 0.10 simplicity bonus applies because the verdict collapses eight app surfaces to four existing verbs.",
+  "keyQuestions": [],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "building a TUI now (the four surfaces are four verbs, so a TUI is a rendering exercise that can follow the stores)",
+    "a Tauri shell (it wraps a web app that does not exist, and its value is packaging rather than capability)",
+    "a browser inside the product (the operator's own browser already has the logins)"
+  ],
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    ".skilled/bin/bots.cjs:18",
+    ".skilled/bin/bots.cjs:54",
+    "specs/system-skilled-bots/context/OpenBot-main/app/src/components/",
+    "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json:1",
+    "specs/system-skilled-bots/context/OpenBot-main/desktop/"
+  ],
+  "edgeCase": "ambiguous-input"
+}

@@ -1,0 +1,22 @@
+{
+  "findings": [
+    {"id":"f-iter005-001","label":"All three repos are Apache 2.0, so code can be lifted with attribution and a NOTICE.","sources":["specs/system-skilled-bots/context/turnstone-main/LICENSE","specs/system-skilled-bots/context/OpenMausBot-main/LICENSE","specs/system-skilled-bots/context/rakazo-main/LICENSE"]},
+    {"id":"f-iter005-002","label":"rakazo's secret model is the closest to a drop-in: request_secret with a reference name and an HTTPS origin, encrypted in Postgres vault_credentials, and list_secrets returns metadata without values.","sources":["specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md"]},
+    {"id":"f-iter005-003","label":"rakazo injects by proxying the request, not by handing over the value: secret_request takes name, url and method and the backend decrypts and injects.","sources":["specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md"]},
+    {"id":"f-iter005-004","label":"rakazo states the boundary as a rule: the model has no tool for reading the values, and injecting a credential into a shell command, file or environment variable is deliberately not exposed.","sources":["specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md"]},
+    {"id":"f-iter005-005","label":"rakazo's computer is a pluggable sandbox provider (E2B, Daytona, Boat, Docker, desktop-fake) behind an AgentHomeStore, with the agent runtime in the API/worker process rather than in the sandbox.","sources":["specs/system-skilled-bots/context/rakazo-main/docs/computer-runtime.md"]},
+    {"id":"f-iter005-006","label":"turnstone does per-(user, MCP server) OAuth 2.1 plus PKCE delegation, so each user authorizes a remote MCP server with their own identity instead of sharing one bearer token.","sources":["specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md"]},
+    {"id":"f-iter005-007","label":"turnstone's per-user OAuth is opt-in per mcp_servers row and dark by default: an install with no oauth_user rows exercises zero new code paths.","sources":["specs/system-skilled-bots/context/turnstone-main/docs/mcp-oauth.md"]},
+    {"id":"f-iter005-008","label":"turnstone keeps tokens in one encrypted store with a deployment keyring: a Fernet key in config.toml only, with an ordered list for rotation where the first key encrypts new writes and all keys are tried on read.","sources":["specs/system-skilled-bots/context/turnstone-main/docs/oauth-storage.md"]},
+    {"id":"f-iter005-009","label":"turnstone's sandbox is kernel-enforced and layered: Landlock for filesystem, network namespace plus seccomp plus an HTTP CONNECT proxy for network, setuid drop for process, and proxy-level secret resolution so keys never sit in sandbox memory.","sources":["specs/system-skilled-bots/context/turnstone-main/docs/openshell.md"]},
+    {"id":"f-iter005-010","label":"OpenMausBot delegates secrets to an external password manager: Bitwarden beside 1Password in Settings to Vault, with bw:// references, values read at use and masked wherever text crosses to a bot.","sources":["specs/system-skilled-bots/context/OpenMausBot-main/docs/bitwarden.md"]},
+    {"id":"f-iter005-011","label":"OpenMausBot's computer is the desktop itself: an Electron main process with a CUA host spawning cua-driver over a private socket, plus a WebContentsView pool with per-bot persist partitions driven over CDP.","sources":["specs/system-skilled-bots/context/OpenMausBot-main/docs/computer-use-integration.md"]},
+    {"id":"f-iter005-012","label":"OpenMausBot's connector is a host agent with its own AppArmor and seccomp profiles rather than a cloud service.","sources":["specs/system-skilled-bots/context/OpenMausBot-main/connector/profiles/omb-home-narrow.apparmor"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"copying OpenMausBot's computer","reason":"an Electron desktop shell driving a native CUA driver, the largest possible lift"},
+    {"direction":"copying turnstone's OAuth stack wholesale","reason":"a Python multi-node service with a Fernet keyring, sized for a deployment not a small team"},
+    {"direction":"treating any of the three as a connector catalogue","reason":"none ships one; all three assume you bring the service"}
+  ]
+}

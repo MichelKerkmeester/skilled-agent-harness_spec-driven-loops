@@ -1,0 +1,31 @@
+{
+  "status": "insight",
+  "findingsCount": 8,
+  "newInfoRatio": 0.85,
+  "noveltyJustification": "7 of 8 findings are new facts (the eight licences including the GPL-3.0 hazard, the three rakazo TypeScript file sizes, the OpenBot computer-token and computer-start sizes, and turnstone's Python keyring) and 1 is the reuse conclusion; a 0.10 simplicity bonus applies because the reuse list collapses to four permissive TypeScript files.",
+  "keyQuestions": [],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "lifting anything from openhuman (GPL-3.0 is copyleft and a permissive product cannot absorb it)",
+    "lifting turnstone's OAuth runtime (it is Python and the per-user path is dark by default, so the rule is worth more than the code)",
+    "copying OpenBot's connection registry (it is an OpenAPI description of a server this product does not have)"
+  ],
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+    "specs/system-skilled-bots/context/openhuman-main/LICENSE:1",
+    "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+    "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+    "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+    "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+    "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+    "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+    "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:1",
+    "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1",
+    "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:1",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:1",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts:1",
+    "specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py:1"
+  ],
+  "edgeCase": "contradictory-evidence"
+}

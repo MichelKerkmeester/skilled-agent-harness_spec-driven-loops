@@ -1,0 +1,1 @@
+Bot computer design beyond a worktree: what a terminal genuinely cannot give, and the smallest addition that closes the gap, given that skilled bots already keeps a per-run folder with retention and that only two executor kinds give an OS-level sandbox

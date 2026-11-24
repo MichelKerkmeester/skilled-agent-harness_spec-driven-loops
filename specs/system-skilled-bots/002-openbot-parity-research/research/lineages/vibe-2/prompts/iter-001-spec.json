@@ -1,0 +1,24 @@
+{
+  "findings": [
+    {"id":"f-iter001-001","label":"OpenBot app = a connected account, not a plugin: one connection per person per app, plus an admin-shared account for everybody.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter001-002","label":"The vault is not one of the eight primitives: it sits beside them, holds logins and keys, and no bot sees its contents; apps and the computer both draw on it and neither keeps secrets of its own.","sources":["specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md"]},
+    {"id":"f-iter001-003","label":"The vault page is two stores behind one page: logins in both editions, keys only in the personal edition, with the team edition keeping admin keys under Admin.","sources":["specs/system-skilled-bots/context/OpenBot-main/app/src/components/vault/vault-page.tsx"]},
+    {"id":"f-iter001-004","label":"OpenBot's computer is a per-identity container keyed person:<id> or bot:<id>, each with its own HMAC-SHA256(COMPUTER_TOKEN,label) so one bot's shell cannot reach another computer.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts"]},
+    {"id":"f-iter001-005","label":"The computer carries a durable request-scoped browser handoff (waiting/taken/completed/cancelled/expired/interrupted) and a secret request a person types into the page.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts"]},
+    {"id":"f-iter001-006","label":"Skilled BOT.md declares isolation, sandbox and secrets as three strings on a Posture block.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/definition.ts"]},
+    {"id":"f-iter001-007","label":"Only sandbox and isolation are acted on; posture.secrets is carried through the definition and never resolved to a store.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/posture.ts"]},
+    {"id":"f-iter001-008","label":"Skilled's only secret machinery is a leak guard: collectKnownSecrets harvests environment variables and dotenv-file values, and findSecretLiteral refuses text containing one.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"]},
+    {"id":"f-iter001-009","label":"Skilled's computer is a git worktree, not a machine: no browser, no persistent home, no command line beyond the executor's.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts"]},
+    {"id":"f-iter001-010","label":"Skilled's app surface is MCP through Code Mode: tool access with no per-person connection record, no OAuth flow and no per-use approval.","sources":[".skilled/skills/mcp-code-mode/SKILL.md"]}
+  ],
+  "proposals": [
+    {"parentId":"F-1-004","question":"How does OpenBot's vault actually store and inject a secret: what is encrypted, what a bot can see, and when a person must approve a use?","scope":"OpenBot-main/app/src/components/vault, OpenBot-main/app/src/components/manage, OpenBot-main/api/openapi.yaml","evidence":"specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:105"},
+    {"parentId":"F-1-004","question":"How does OpenBot's app/connection registry authorize an app (OAuth client, account mode, refresh, scopes) and what would Skilled need to match it?","scope":"OpenBot-main/api/openapi.yaml, OpenBot-main/app/src/components/connections","evidence":"specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:63"},
+    {"parentId":"F-1-004","question":"How is OpenBot's computer provisioned and bounded (supervisor, container image, sandbox provider, per-tenant token) and what is the smallest equivalent for a small team?","scope":"OpenBot-main/shared/computer-token.ts, OpenBot-main/shared/computer-start.ts, OpenBot-main/shared/bot-browser.ts","evidence":"specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts:6"},
+    {"parentId":"F-1-004","question":"What do turnstone-main, OpenMausBot-main and rakazo-main do for apps, secrets and a bot's computer, and which of the three is simplest to copy?","scope":"turnstone-main, OpenMausBot-main, rakazo-main","evidence":"specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:74"}
+  ],
+  "ruledOut": [
+    {"direction":"reading OpenBot-main/docs/configuration.md for the vault","reason":"the file is deployment configuration and holds no vault section"},
+    {"direction":"treating posture.secrets as an existing feature","reason":"grep returns only the definition field and the leak guard"}
+  ]
+}

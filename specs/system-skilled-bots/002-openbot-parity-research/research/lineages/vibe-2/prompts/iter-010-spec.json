@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {"id":"f-iter010-001","label":"The bots CLI already has thirteen verbs covering the four app surfaces: run for a conversation, inbox and answer for the approvals inbox, status for the activity feed, and schedule install plus status for the routine list.","sources":[".skilled/bin/bots.cjs"]},
+    {"id":"f-iter010-002","label":"The CLI has a documented exit vocabulary that maps to the app's states: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision.","sources":[".skilled/bin/bots.cjs"]},
+    {"id":"f-iter010-003","label":"status --json is the machine-readable form, so a TUI would be a renderer over an existing command rather than a new API.","sources":[".skilled/bin/bots.cjs"]},
+    {"id":"f-iter010-004","label":"OpenBot's app is forty-plus component folders, from admin and approvals through vault and what-if, which is the size of the surface a desktop shell wraps.","sources":["specs/system-skilled-bots/context/OpenBot-main/app/src/components/"]},
+    {"id":"f-iter010-005","label":"The Tauri shell is a 1000x800 window wrapping the same web app, with a bundled CLI, an auto-updater and platform signing.","sources":["specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json"]},
+    {"id":"f-iter010-006","label":"The desktop shell adds four things a terminal cannot: a window, a bundled CLI, an auto-updater, and OS integration such as a microphone on macOS and pkexec on Linux.","sources":["specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json"]},
+    {"id":"f-iter010-007","label":"Of those four only the auto-updater matters to a small team, and only if the team installs the product rather than running it from a checkout.","sources":["specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/tauri.conf.json"]},
+    {"id":"f-iter010-008","label":"The apps and computer slice needs none of the four: a connector grant is a frontmatter edit, a secret is a bots secret set, and a computer is a run folder.","sources":[".skilled/bin/bots.cjs",".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts"]},
+    {"id":"f-iter010-009","label":"The one genuine terminal gap is the masked field, and a no-echo prompt closes it: the person types into a prompt the bot cannot read, which is the same guarantee with less machinery.","sources":["specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml"]},
+    {"id":"f-iter010-010","label":"Verdict: a CLI matches the OpenBot app experience for this slice, because the four surfaces are already four verbs, the exit codes already name the states, and the TUI is optional polish rather than a missing capability.","sources":[".skilled/bin/bots.cjs"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"building a TUI now","reason":"the four surfaces are four verbs, so a TUI over status --json is a rendering exercise that can follow the stores rather than precede them"},
+    {"direction":"a Tauri shell","reason":"it wraps a web app that does not exist, and its value is packaging rather than capability"},
+    {"direction":"a browser inside the product","reason":"the operator's own browser already has the logins, which is what OpenBot's profiles volume exists to preserve"}
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "topic": "OpenBot parity for skilled bots, scoped to a small team. Goal: get as close to OpenBot as possible with only the parts a small team needs, no extras, preferring a terminal or CLI experience over a desktop app when it can match OpenBot's.\n\nInputs (read-only): eight reference repos under specs/system-skilled-bots/context/ (OpenBot-main is the primary reference; also OpenMausBot-main, rakazo-main, openhuman-main, OpenGhost-main, hermes-muse-main, turnstone-main, buzz-main), and the built skilled-bots runtime under .skilled/skills/system-skilled-bots/ (BOT.md definitions, bots CLI at .skilled/bin/bots.cjs, manual/queue/git-hook/launchd triggers, needs-you items, worktree isolation, desktop delivery, status index).\n\nOpenBot frames a bot as eight parts in four pairs (OpenBot-main/docs/how-openbot-works.md): conversations and routines, memory and skills, apps and computer, approvals and activity. For each of the eight parts answer: what OpenBot does and how it is built; what the other seven repos do better or more simply; what skilled bots has today; and the smallest change that closes the gap, with its size and risk.\n\nAlso answer:\n1. Terminal versus desktop: can a CLI or TUI give the OpenBot app experience (conversations with a bot, an approvals inbox, an activity feed, a routine list)? Which repos ship a terminal UI or a desktop shell worth copying, and what would a desktop shell (OpenBot uses Tauri) add that a terminal cannot?\n2. Conversations: interactive chat with a bot and its memory from the terminal, including several bots in one conversation.\n3. Routines: routines written as sentences, event starts (new mail, a pull request) and \"until\" outcomes, mapped onto our cron, queue and git-hook triggers.\n4. Memory and skills: per-bot and shared memory, skills recorded or proposed from use, and how they map onto Skilled skills and the spec-kit.\n5. Apps and computer: connectors and a secret vault against our MCP and Code Mode, and a bot's computer against our worktrees.\n6. Approvals and activity against our needs-you items, run records and bots status.\n7. Small team: who can talk to, approve for and change a bot; shared versus per-person memory; the smallest sign-in and roles model that works for a few people on one machine or a shared host.\n8. A skip list: enterprise, multi-tenant, Kubernetes, managed-upgrade and mobile parts we do not need, each with its reason.\n9. Reuse: code we can lift directly, with repo, path and license.\n\nCite every claim with [SOURCE: path:line]. End with a ranked build order a first build packet can start from.\n",
+  "research_topic": "OpenBot parity for skilled bots, scoped to a small team: the eight bot parts (conversations, routines, memory, skills, apps, computer, approvals, activity), terminal versus desktop, small-team roles, a skip list, reusable code, and a ranked build order.",
+  "specFolder": "specs/system-skilled-bots/002-openbot-parity-research",
+  "artifactDir": "specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2",
+  "fanout_lineage_artifact_dir": "specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2",
+  "loopType": "research",
+  "maxIterations": 13,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "depthMode": "expansive",
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "createdAt": "2026-11-24T20:08:00.000Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-mistral-vibe",
+    "model": "deepseek-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "depthMode": "expansive",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
+  },
+  "lineage": {
+    "label": "vibe-2",
+    "sessionId": "fanout-vibe-2-1795547239490-2piovn",
+    "parentSessionId": "2026-11-24T19:07:11.298Z",
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart",
+      "completed-continue"
+    ],
+    "deferredModes": [
+      "fork"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "resource_map": {
+    "emit": true,
+    "resource_map_present": false
+  },
+  "resource_map_present": false,
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {"id":"f-iter013-001","label":"The checker's refusal vocabulary is a named-reason set such as id-invalid, isolation-invalid, sandbox, secrets and trigger-kind-invalid, so a new apps key adds apps-invalid and apps-unknown-server in the same style rather than a new error mechanism.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/definition.ts"]},
+    {"id":"f-iter013-002","label":"secrets is already a checked key in that set, so the secret store's frontmatter half is a resolution step rather than a new key.","sources":[".skilled/skills/system-skilled-bots/runtime/lib/definition.ts"]},
+    {"id":"f-iter013-003","label":"The build order follows from coupling rather than size: the run folder touches nothing, the connector registry needs one schema change, and the secret store needs the same one.","sources":["iterations/iteration-009.md"]},
+    {"id":"f-iter013-004","label":"The first slice is the run folder as working directory, because it is the only one that touches nothing and its failure mode is a bot writing in the wrong place rather than a leak.","sources":["iterations/iteration-008.md"]},
+    {"id":"f-iter013-005","label":"The second slice is the connector registry, because it is a whitelist over an existing config and its failure mode is a refusal rather than a leak.","sources":["iterations/iteration-007.md"]},
+    {"id":"f-iter013-006","label":"The third slice is the secret store, because it is the only one whose failure mode is a leak, so it lands after the two that cannot leak.","sources":["iterations/iteration-006.md"]},
+    {"id":"f-iter013-007","label":"The fourth slice is the grants field on the needs-you item, which both stores need and neither can add alone.","sources":["iterations/iteration-009.md"]},
+    {"id":"f-iter013-008","label":"Memory is last and out of scope for this lineage, because it couples to nothing and another pair owns it.","sources":["iterations/iteration-009.md"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"starting with the secret store","reason":"it is the largest slice and the only one that can leak, so starting there puts the risk first and the proof last"},
+    {"direction":"building all four slices as one packet","reason":"the first two prove the design and the last two depend on what the first two learn about the run record"},
+    {"direction":"building memory in this packet","reason":"it is another pair's share and couples to nothing here"}
+  ]
+}

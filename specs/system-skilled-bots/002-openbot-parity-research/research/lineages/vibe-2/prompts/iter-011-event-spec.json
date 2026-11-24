@@ -1,0 +1,23 @@
+{
+  "status": "insight",
+  "findingsCount": 10,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "6 of 10 findings are new code facts (the four-source identity resolution, the pinned-outranks-config rule, the refusal, the identityKey encoding, OpenBot's three roles, the non-assignable owner) and 4 are the roles model drawn from them; a 0.10 simplicity bonus applies because the model collapses six questions to one fact: the identity is the repository.",
+  "keyQuestions": [],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "a sign-in system (it would be a second identity beside the one every path already uses)",
+    "three roles (OpenBot's own owner is not assignable, so a small team's two roles are the same shape with the deployment owner implicit)",
+    "per-person secret stores (they would break the shared-account case, which is OpenBot's own shared account mode)"
+  ],
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:20",
+    ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:57",
+    ".skilled/skills/system-skilled-bots/runtime/lib/identity.ts:102",
+    "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23491",
+    "specs/system-skilled-bots/context/OpenBot-main/api/openapi.yaml:23505",
+    "specs/system-skilled-bots/context/OpenBot-main/app/src/components/team-grants/team-grants-row.tsx"
+  ],
+  "edgeCase": "ambiguous-input"
+}

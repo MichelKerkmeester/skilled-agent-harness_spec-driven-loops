@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {"id":"f-iter012-001","label":"The licences differ and one is a hazard: OpenBot is MIT, OpenMausBot, rakazo, turnstone and buzz are Apache 2.0, OpenGhost and hermes-muse are MIT, and openhuman is GPL-3.0, so nothing from it can be lifted into a permissively licensed product.","sources":["specs/system-skilled-bots/context/OpenBot-main/LICENSE","specs/system-skilled-bots/context/openhuman-main/LICENSE"]},
+    {"id":"f-iter012-002","label":"rakazo's packages/core/src/integrations/vault.ts is 174 lines of TypeScript under Apache 2.0 and is the closest drop-in for the secret store's policy layer, carrying siteHost, secretAnswerRefusal and the fixed-refusal vocabulary.","sources":["specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts"]},
+    {"id":"f-iter012-003","label":"rakazo's packages/core/src/node/secrets-guard.ts is 188 lines and is a placeholder guard rather than a store: it refuses dev placeholders at startup instead of holding a value.","sources":["specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts"]},
+    {"id":"f-iter012-004","label":"rakazo's packages/core/src/messages/secret-matcher.ts is 199 lines and is the leak-detection equivalent of skilled bots' findSecretLiteral.","sources":["specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts"]},
+    {"id":"f-iter012-005","label":"OpenBot's shared/computer-token.ts is 70 lines of MIT TypeScript and is a self-contained HMAC derivation with a versioned label, liftable as-is if per-bot tokens are ever needed.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts"]},
+    {"id":"f-iter012-006","label":"OpenBot's shared/computer-start.ts is 13 lines, so the container spec is configuration rather than code and there is nothing to lift.","sources":["specs/system-skilled-bots/context/OpenBot-main/shared/computer-start.ts"]},
+    {"id":"f-iter012-007","label":"turnstone's keyring is Python using Fernet, so its rule is liftable and its code is not.","sources":["specs/system-skilled-bots/context/turnstone-main/tests/test_mcp_crypto.py"]},
+    {"id":"f-iter012-008","label":"The reuse list is three TypeScript files from rakazo and one from OpenBot, all permissive, totalling about 630 lines of reference rather than code to copy wholesale.","sources":["specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts","specs/system-skilled-bots/context/OpenBot-main/shared/computer-token.ts"]}
+  ],
+  "proposals": [],
+  "ruledOut": [
+    {"direction":"lifting anything from openhuman","reason":"GPL-3.0 is copyleft and a permissively licensed product cannot absorb it"},
+    {"direction":"lifting turnstone's OAuth runtime","reason":"it is Python and the per-user path is dark by default, so the rule is worth more than the code"},
+    {"direction":"copying OpenBot's connection registry","reason":"it is an OpenAPI description of a server this product does not have, so the shape transfers and the code does not"}
+  ]
+}
