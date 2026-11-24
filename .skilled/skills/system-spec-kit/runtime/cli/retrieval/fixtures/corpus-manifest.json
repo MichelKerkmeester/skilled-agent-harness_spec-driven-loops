@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2d7865e8444746ecc2e6c8191f1a517e4457b4dce031785c46bb016a4af03877",
+  "corpusHash": "9366fbcd3b93aafee1701c2c8c8bfafb10949d5c60e44bac7577c96337827528",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29569,
+  "includedPathCount": 29577,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -234,6 +234,7 @@
     ".skilled/skills/cli-classifier/changelog/v0.7.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.1.0.md",
+    ".skilled/skills/cli-classifier/changelog/v0.8.10.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.2.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.3.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.4.0.md",
@@ -367,6 +368,7 @@
     ".skilled/skills/cli-external-orchestration/changelog/v1.8.0.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v2.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v2.1.0.0.md",
+    ".skilled/skills/cli-external-orchestration/changelog/v2.1.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/README.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/ROUTER.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
@@ -2386,6 +2388,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.1.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.10.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.10.1.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.10.2.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.2.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.3.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.4.2.0.md",
@@ -3120,6 +3123,7 @@
     ".skilled/skills/sk-code/changelog/v3.12.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.4.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.5.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3627,6 +3631,7 @@
     ".skilled/skills/sk-design/changelog/v3.0.0.0.md",
     ".skilled/skills/sk-design/changelog/v3.0.1.0.md",
     ".skilled/skills/sk-design/changelog/v3.0.2.0.md",
+    ".skilled/skills/sk-design/changelog/v3.0.3.0.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/flowchart-natural.md",
     ".skilled/skills/sk-design/manual-testing-playbook/holdout/ind-flowchart.md",
     ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
@@ -6578,6 +6583,7 @@
     ".skilled/skills/sk-doc/changelog/v2.0.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.1.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.10.0.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.10.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.2.0.md",
@@ -7251,6 +7257,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.15.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.15.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.16.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.16.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md",
@@ -7663,6 +7670,7 @@
     ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.2.0.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.2.1.0.md",
     ".skilled/skills/system-deep-loop/deep-research/README.md",
     ".skilled/skills/system-deep-loop/deep-research/ROUTER.md",
     ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
@@ -29601,7 +29609,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "454a849ee42064e36321e3799cd05fede7bafb7feb86d015e94c8c1d591188a3",
+  "manifestHash": "f86bb66dec71f43e2617f674b43488ebb770d46dfa2fd4b128fbd892597e7012",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

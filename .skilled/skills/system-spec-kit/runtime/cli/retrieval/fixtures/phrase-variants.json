@@ -1,5 +1,5 @@
 {
-  "manifestHash": "454a849ee42064e36321e3799cd05fede7bafb7feb86d015e94c8c1d591188a3",
+  "manifestHash": "f86bb66dec71f43e2617f674b43488ebb770d46dfa2fd4b128fbd892597e7012",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22430,6 +22430,9 @@
     "cli classifier 0 8 1 0": [
       "cli-classifier 0.8.1.0"
     ],
+    "cli classifier 0 8 10 0": [
+      "cli-classifier 0.8.10.0"
+    ],
     "cli classifier 0 8 2 0": [
       "cli-classifier 0.8.2.0"
     ],
@@ -22600,6 +22603,9 @@
     ],
     "cli classifier v0 8 1 0": [
       "cli-classifier v0.8.1.0"
+    ],
+    "cli classifier v0 8 10 0": [
+      "cli-classifier v0.8.10.0"
     ],
     "cli classifier v0 8 2 0": [
       "cli-classifier v0.8.2.0"
@@ -23962,6 +23968,9 @@
     "cli external orchestration 2 1 0 0": [
       "cli-external-orchestration 2.1.0.0"
     ],
+    "cli external orchestration 2 1 1 0": [
+      "cli-external-orchestration 2.1.1.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -24123,6 +24132,9 @@
     ],
     "cli external orchestration v2 1 0 0": [
       "cli-external-orchestration v2.1.0.0"
+    ],
+    "cli external orchestration v2 1 1 0": [
+      "cli-external-orchestration v2.1.1.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -55274,6 +55286,9 @@
     "fromscan recheck bypass": [
       "fromScan recheck bypass"
     ],
+    "front door prompt stdin": [
+      "front door prompt stdin"
+    ],
     "front page readme template": [
       "front page readme template"
     ],
@@ -72335,6 +72350,9 @@
     "mcp tooling 1 10 1 0": [
       "mcp-tooling 1.10.1.0"
     ],
+    "mcp tooling 1 10 2 0": [
+      "mcp-tooling 1.10.2.0"
+    ],
     "mcp tooling 1 2 0 0": [
       "mcp-tooling 1.2.0.0"
     ],
@@ -72571,6 +72589,9 @@
     ],
     "mcp tooling v1 10 1 0": [
       "mcp-tooling v1.10.1.0"
+    ],
+    "mcp tooling v1 10 2 0": [
+      "mcp-tooling v1.10.2.0"
     ],
     "mcp tooling v1 2 0 0": [
       "mcp-tooling v1.2.0.0"
@@ -83508,6 +83529,9 @@
     ],
     "parent hub scaffold": [
       "parent hub scaffold"
+    ],
+    "parent hub scaffold prompt stdin": [
+      "parent hub scaffold prompt stdin"
     ],
     "parent hub task list": [
       "parent hub task list"
@@ -111909,6 +111933,9 @@
     "sk code 3 12 4 0": [
       "sk-code 3.12.4.0"
     ],
+    "sk code 3 12 5 0": [
+      "sk-code 3.12.5.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -114159,6 +114186,9 @@
     "sk code v3 12 4 0": [
       "sk-code v3.12.4.0"
     ],
+    "sk code v3 12 5 0": [
+      "sk-code v3.12.5.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -115841,6 +115871,9 @@
     "sk create skill 1 16 0 0": [
       "sk-create-skill 1.16.0.0"
     ],
+    "sk create skill 1 16 1 0": [
+      "sk-create-skill 1.16.1.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -115987,6 +116020,9 @@
     ],
     "sk create skill v1 16 0 0": [
       "sk-create-skill v1.16.0.0"
+    ],
+    "sk create skill v1 16 1 0": [
+      "sk-create-skill v1.16.1.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -116194,6 +116230,9 @@
     ],
     "sk design 3 0 2 0": [
       "sk-design 3.0.2.0"
+    ],
+    "sk design 3 0 3 0": [
+      "sk-design 3.0.3.0"
     ],
     "sk design advisor identity": [
       "sk-design advisor identity"
@@ -116889,6 +116928,9 @@
     "sk design v3 0 2 0": [
       "sk-design v3.0.2.0"
     ],
+    "sk design v3 0 3 0": [
+      "sk-design v3.0.3.0"
+    ],
     "sk doc": [
       "sk doc"
     ],
@@ -116918,6 +116960,9 @@
     ],
     "sk doc 2 10 0 0": [
       "sk-doc 2.10.0.0"
+    ],
+    "sk doc 2 10 1 0": [
+      "sk-doc 2.10.1.0"
     ],
     "sk doc 2 2 0 0": [
       "sk-doc 2.2.0.0"
@@ -117455,6 +117500,9 @@
     ],
     "sk doc v2 10 0 0": [
       "sk-doc v2.10.0.0"
+    ],
+    "sk doc v2 10 1 0": [
+      "sk-doc v2.10.1.0"
     ],
     "sk doc v2 2 0 0": [
       "sk-doc v2.2.0.0"
@@ -127842,6 +127890,9 @@
     "system deep loop 2 2 0 0": [
       "system-deep-loop 2.2.0.0"
     ],
+    "system deep loop 2 2 1 0": [
+      "system-deep-loop 2.2.1.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -128108,6 +128159,9 @@
     ],
     "system deep loop v2 2 0 0": [
       "system-deep-loop v2.2.0.0"
+    ],
+    "system deep loop v2 2 1 0": [
+      "system-deep-loop v2.2.1.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
