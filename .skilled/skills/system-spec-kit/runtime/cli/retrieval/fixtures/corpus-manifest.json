@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5c71eae9c09b6280efb229a0f1917d2f01479ad8bfeb285a1e4f02ea3657bd64",
+  "corpusHash": "eb791bf2c23caba270876eb4840fb46aa3e0d250632e926c68bb37835ce07185",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29510,
+  "includedPathCount": 29501,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16103,11 +16103,6 @@
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/008-cli-pi/tasks.md",
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/goal.md",
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/spec.md",
-    "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca/goal.md",
-    "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca/implementation-summary.md",
-    "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca/plan.md",
-    "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca/spec.md",
-    "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca/tasks.md",
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/004-mcp-code-mode/goal.md",
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/004-mcp-code-mode/implementation-summary.md",
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/004-mcp-code-mode/plan.md",
@@ -17063,10 +17058,6 @@
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/tasks.md",
-    "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/implementation-summary.md",
-    "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/plan.md",
-    "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/spec.md",
-    "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/tasks.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/implementation-summary.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/spec.md",
@@ -29542,7 +29533,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0f03c4a01ae7c36ae187174efb2bedaf72762a832db0d516e41aeda79624b1f5",
+  "manifestHash": "2ab2f2008cd0a4e4a74413e3d585be0ac7524cb75d0d2d23912d6e7a208319af",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36113,10 +36104,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/004-mcp-code-mode/scratch",
       "reason": "excluded directory"
     },
@@ -36918,10 +36905,6 @@
     },
     {
       "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/scratch",
       "reason": "excluded directory"
     },
     {

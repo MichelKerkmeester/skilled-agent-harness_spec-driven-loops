@@ -26,7 +26,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 11 of 22 |
 | **Predecessor** | 010-align-cli-classifier |
-| **Successor** | 012-align-cli-orca |
+| **Successor** | 013-align-mcp-code-mode |
 | **Handoff Criteria** | The recheck battery passes 142 checks and every recheck failure is derived, so it re-mints at commit, or was fixed after the recheck. The fix lane left no LEFT or OUTSIDE item, and the cli-external-orchestration router parses as it does at HEAD. |
 <!-- /ANCHOR:metadata -->
 

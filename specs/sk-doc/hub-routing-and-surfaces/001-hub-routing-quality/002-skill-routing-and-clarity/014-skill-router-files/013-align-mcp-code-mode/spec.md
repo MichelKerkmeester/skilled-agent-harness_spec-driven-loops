@@ -25,7 +25,7 @@ contextType: "general"
 | **Branch** | `worktrees/274-packet-router-migration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 13 of 22 |
-| **Predecessor** | 012-align-cli-orca |
+| **Predecessor** | 011-align-cli-external-orchestration |
 | **Successor** | 014-align-mcp-tooling |
 | **Handoff Criteria** | The recheck battery passes 48 checks and every recheck failure is derived, so it re-mints at commit, or was fixed after the recheck. Every LEFT and OUTSIDE item carries a disposition, and the mcp-code-mode router parses as it does at HEAD. |
 <!-- /ANCHOR:metadata -->

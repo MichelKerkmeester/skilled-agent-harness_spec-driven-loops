@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7258,
-    "ok": 20624,
+    "ok": 20615,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29510,
+  "documentsScanned": 29501,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0f03c4a01ae7c36ae187174efb2bedaf72762a832db0d516e41aeda79624b1f5",
+  "manifestHash": "2ab2f2008cd0a4e4a74413e3d585be0ac7524cb75d0d2d23912d6e7a208319af",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46327,
+      "ok": 46317,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -61560,10 +61560,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/004-mcp-code-mode/scratch",
       "reason": "excluded directory"
     },
@@ -62365,10 +62361,6 @@
     },
     {
       "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/scratch",
       "reason": "excluded directory"
     },
     {

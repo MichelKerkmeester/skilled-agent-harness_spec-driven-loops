@@ -6,7 +6,6 @@
   "children_ids": [
     "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/001-cli-classifier",
     "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration",
-    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca",
     "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/004-mcp-code-mode",
     "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling",
     "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code",
@@ -57,7 +56,6 @@
       "010-sk-prompt/scratch/tools/drive-v3.sh",
       "001-cli-classifier/goal.md",
       "002-cli-external-orchestration/goal.md",
-      "003-cli-orca/goal.md",
       "004-mcp-code-mode/goal.md",
       "005-mcp-tooling/goal.md",
       "006-sk-code/goal.md",
@@ -69,7 +67,8 @@
       "012-system-skill-advisor/goal.md",
       "013-system-spec-kit/goal.md",
       "014-sk-create-skill-refinements/goal.md",
-      "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt"
+      "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt",
+      "010-sk-prompt/scratch/tools/queue-v3.txt"
     ],
     "entities": [
       {
@@ -106,6 +105,12 @@
         "name": "leaves.txt",
         "kind": "file",
         "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt",
+        "source": "derived"
+      },
+      {
+        "name": "queue-v3.txt",
+        "kind": "file",
+        "path": "010-sk-prompt/scratch/tools/queue-v3.txt",
         "source": "derived"
       },
       {
@@ -213,7 +218,7 @@
     ],
     "causal_summary": "The render checks added to `validatedocument.py` catch the mechanical defects: joined labels, setext headings, bare URLs, empty overviews, repeated text, misnumbered or misplaced sections",
     "created_at": "2026-11-04T07:15:52Z",
-    "last_save_at": "2026-11-19T17:48:11.984Z",
+    "last_save_at": "2026-11-24T18:14:02.921Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +226,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d57518f434110be6c19be0a16ddfd72d1eabac5b3dfd6986a6edfca7f25b139d",
+    "source_fingerprint": "sha256:d15648aee8571a12d8e2628e02de56af5645d35cb7d35b689638b321ead90ab5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be25c6dc6cb31ca2f6e8c8ac48c8385856a30a6af50941e2ce10b60840ddcb2b",
+      "spec.md": "02e206321064b36768ee070ae1f6376b5b60f45cceb7440ecfcfd4f38944db63",
       "decision-record.md": "cc05515b249b8e77974d369f02a9ba96cd62c16d35add71d5d72924389e86c4e"
     },
     "last_active_child_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements",

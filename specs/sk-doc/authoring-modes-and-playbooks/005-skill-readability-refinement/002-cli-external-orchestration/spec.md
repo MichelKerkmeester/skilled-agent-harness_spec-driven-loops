@@ -27,7 +27,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 13 |
 | **Predecessor** | 001-cli-classifier |
-| **Successor** | 003-cli-orca |
+| **Successor** | 004-mcp-code-mode |
 | **Handoff Criteria** | [To be defined during planning] |
 <!-- /ANCHOR:metadata -->
 
