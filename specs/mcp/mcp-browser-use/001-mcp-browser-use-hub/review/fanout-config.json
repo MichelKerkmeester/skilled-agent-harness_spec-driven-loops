@@ -1,1 +1,1 @@
-{"executors":[{"kind":"cli-mistral-vibe","model":"deepseek-flash","label":"vibe","count":1,"iterations":5},{"kind":"cli-claude-code","model":"claude-opus-5-5","reasoningEffort":"medium","configDir":"~/.claude-account2","sandboxMode":"danger-full-access","label":"claude2","count":1,"iterations":5}],"concurrency":2}
+{"executors":[{"kind":"cli-claude-code","model":"claude-opus-5-5","reasoningEffort":"medium","configDir":"~/.claude-account2","sandboxMode":"danger-full-access","label":"opus","count":4}],"concurrency":4}

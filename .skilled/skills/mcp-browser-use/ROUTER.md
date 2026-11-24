@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-browser-use routing"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -32,7 +32,9 @@ Generic browser-automation phrasing names no tool, so it fires no intent here an
 - **Chrome DevTools leaves.** The CDP patterns and session-management references load for inspection, console, network, screenshot and HAR work.
 - **Lighthouse and performance-trace leaves.** A Lighthouse or performance-trace request loads the MCP-lane leaf and the registered manual snapshot. Core Web Vitals phrasing alone is shared with frontend code work, so it selects this mode in `hub-router.json` but is not advertised to the advisor. `bdg` ships no Lighthouse command, so these run through Code Mode.
 - **Aside leaves.** The Aside CLI reference and the MCP wiring guide load for deterministic signed-in REPL runs and captured REPL evidence.
-- **Bladebro leaves.** The Bladebro CLI reference and the MCP wiring guide load for stealth browsing, agentic branching and work in a caller-owned browser.
+- **Bladebro leaves.** The Bladebro CLI reference and the MCP wiring guide load for stealth browsing, agentic branching and work in a caller-owned or already-open browser.
+- **Own Chrome versus a caller-owned browser.** A request that names the user's own Chrome, such as "my own chrome" or "signed-in chrome", goes to Chrome DevTools, whose live instance `chrome_devtools_live --autoConnect` attaches to the Chrome the user already has open. A request for a caller-owned or already-open browser that names no Chrome goes to Bladebro. A request that names both returns an ordered bundle, Chrome DevTools first by tie-break order.
+- **Narrow aliases.** Ordinary English words never route on their own. Bare "aside", "lighthouse", "har" and "rb" each match unrelated prose, so the maps below carry verb or page forms instead, such as "use aside", "run lighthouse", "export a har of" and "bladebro rb".
 
 ---
 
@@ -48,10 +50,10 @@ DEFAULT_RESOURCE = []
 SHARED_CONTROL_RESOURCES = []
 
 INTENT_SIGNALS = {
-    "CHROME_DEVTOOLS":  {"weight": 4, "keywords": ["chrome devtools", "open devtools", "via devtools", "use devtools", "in devtools", "devtools console", "browser debug", "bdg", "cdp", "chrome-devtools", "mcp-chrome-devtools", "inspect the dom", "screenshot capture", "console errors", "network requests", "har export", "export a har", "har file", "cdp domain", "capture browser screenshots", "chrome_devtools_live", "chrome devtools live", "remote debugging", "chrome autoconnect", "my own chrome", "signed-in chrome", "logged in chrome"]},
-    "LIGHTHOUSE_TRACE": {"weight": 4, "keywords": ["lighthouse", "lighthouse audit", "performance trace"]},
-    "ASIDE_DEVTOOLS":   {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "aside daemon", "aside account", "aside devtools", "mcp-aside-devtools", "capture repl evidence", "repl evidence capture", "deterministic signed-in proof", "sandboxed playwright repl", "replay this signed-in", "signed-in replay"]},
-    "BLADEBRO":         {"weight": 4, "keywords": ["bladebro", "bladebro cli", "bladebro mcp", "stealth browser", "rb attach", "rb status", "agentic signed-in", "stealth signed-in", "agentic branching", "anti-detection browser", "attach to my open browser", "caller-owned browser", "browser i already have open", "already-open browser"]},
+    "CHROME_DEVTOOLS":  {"weight": 4, "keywords": ["chrome devtools", "open devtools", "via devtools", "use devtools", "in devtools", "devtools console", "browser debug", "bdg", "cdp", "chrome-devtools", "mcp-chrome-devtools", "inspect the dom", "screenshot capture", "console errors", "network requests", "har export", "export a har of", "capture a har", "save a har", "as a har file", "export the network log", "cdp domain", "capture browser screenshots", "chrome_devtools_live", "chrome devtools live", "remote debugging", "chrome autoconnect", "my own chrome", "signed-in chrome", "logged in chrome"]},
+    "LIGHTHOUSE_TRACE": {"weight": 4, "keywords": ["lighthouse audit", "run lighthouse", "run a lighthouse", "record a performance trace", "capture a performance trace", "chrome performance trace"]},
+    "ASIDE_DEVTOOLS":   {"weight": 4, "keywords": ["use aside", "run aside", "open aside", "with aside", "aside browser", "aside cli", "aside mcp", "aside repl", "aside daemon", "aside account", "aside devtools", "mcp-aside-devtools", "capture repl evidence", "repl evidence capture", "deterministic signed-in proof", "sandboxed playwright repl", "replay this signed-in", "replay the signed-in", "signed-in replay", "fill out the form in my signed-in", "fill in the form in my signed-in"]},
+    "BLADEBRO":         {"weight": 4, "keywords": ["bladebro", "bladebro cli", "bladebro mcp", "stealth browser", "bladebro rb", "agentic signed-in", "stealth signed-in", "agentic branching", "anti-detection browser", "attach to my open browser", "caller-owned browser", "browser i already have open", "already-open browser", "already open browser", "without getting flagged as a bot", "attach to the browser i have open", "without bot detection", "avoid bot detection"]},
 }
 
 RESOURCE_MAP = {

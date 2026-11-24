@@ -11,17 +11,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub"
-    last_updated_at: "2026-11-21T12:30:00Z"
-    last_updated_by: "planning-worker"
-    recent_action: "Amended D2 with the operator's lane rule"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-24T08:30:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed 014: every deep review finding fixed at its source"
+    next_safe_action: "Run the follow-up deep review after the 014 commit"
     blockers: []
-    key_files: []
+    key_files:
+      - "014-fix-deep-review-findings/goal.md"
+      - "review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-11-21-browser-use-hub-plan"
-      parent_session_id: null
-    completion_pct: 0
+      session_id: "2a13155f-ba79-49ab-9967-8fdff087389a"
+      parent_session_id: "587eb5dd-b522-4898-9ee2-a03a0563e3ad"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -44,12 +46,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Research first: 001 runs 10 iterations before any build; 002-006 are refined from its synthesis. |
+| D1 | Research first: 001 runs 10 iterations before any build. |
 | D2 | Each mode uses its CLI (`bladebro`, `aside`, `bdg`) when installed, and its MCP server via Code Mode when the CLI is missing or the task needs other Code Mode tools, parallel isolated sessions or an MCP-only capability. |
 | D3 | `mcp-tooling` keeps its six other modes unchanged. |
-| D4 | Judgment work: Opus 5.5 medium, second Claude account. Bulk mechanical work: opencode-go/hy4-flash-free#high or Vibe deepseek-flash, Opus-reviewed. |
-| D5 | Installing Bladebro needs an operator yes. Rollback: `npm uninstall -g bladebro` and remove its profile directory. |
-| D6 | Mode folder names are decided by 001-research. |
+| D4 | Judgment work: Opus 5.5 medium, second Claude account. Bulk work: opencode-go/hy4-flash-free#high or Vibe deepseek-flash, Opus-reviewed. |
+| D5 | Installing Bladebro needs an operator yes. Rollback: `npm uninstall -g bladebro` plus its profile directory. |
+| D6 | 001-research decides the mode folder names. |
 | D7 | A mode is integrated only when both its routing stages pass. |
 | D8 | No commits without the operator's instruction. |
 
@@ -78,6 +80,7 @@ phase and binds as if written here.
 | 011-bdg-eval-port-note | `011-bdg-eval-port-note/goal.md` |
 | 012-browser-hub-doc-topic | `012-browser-hub-doc-topic/goal.md` |
 | 013-fix-alignment-findings-for-browser-hub-docs | `013-fix-alignment-findings-for-browser-hub-docs/goal.md` |
+| 014-fix-deep-review-findings | `014-fix-deep-review-findings/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -123,6 +126,8 @@ and findings belong here.
 | Plan + research session | done | 12 hy4 iterations, 002-006 refined, 10 decisions in decision-record.md, validate 7/7 PASSED |
 | Session 84103bdd: engine, live runs, benchmark | Done, alignment open | compiled engine serving (6/6 route), Bladebro live incl. Aside attach 3/3, playbooks recorded, two-stage replay 6/6; alignment lanes done, critic next |
 | Alignment fixes and closeout | Done | 28 findings fixed or decided (Q005-Q008 in 006 decision-record); validate --strict --recursive PASSED parent + 6 children; advisor suite 2570 pass |
+| Deep review 2026-11-24 | Done, FAIL | Four opus-medium lineages, 28 iterations: 0 P0, 2 distinct P1, 18 distinct P2. Report at `review/review-report.md` |
+| 014 deep review fixes | In Progress | Phase-added with its binding row. Five fix lanes running |
 
 ### Deviations and findings
 
@@ -131,6 +136,8 @@ and findings belong here.
 | Parent goal.md not produced by --with-goal | Written by hand from the sk-create-goal phase-parent template |
 | Parent over the 4,000-character durable budget after the 007 and 008 binding rows | The slice measured 4165 characters. The three `FILL` template comments were removed (cut order step 3 in `budget-and-handoff.md`). It now measures 3704. No criterion and no decision changed |
 | D1 note cut from the durable slice for the 013 binding row | 001-research ran 12 iterations, 2 of them operator-added for a setup fix. D1 stands. D2's examples of an MCP-only capability, Chrome's `lighthouse_audit` and performance traces, were cut too (cut order step 5). It measures 3984. No criterion and no decision changed |
+| Decision prose cut for the 014 binding row | The row took the slice to 4058. Cut order step 5: D1 dropped "002-006 are refined from its synthesis" (done, recorded in those phases), D4 "Bulk mechanical work" became "Bulk work", D5 and D6 reworded. It measures 3998. No criterion and no decision changed |
+| 014 fix lanes ran as opus-medium subagents in one session | D4 names a second Claude account. The operator asked for an opus-medium swarm of native agents, and the orchestrating session checks each lane's diff |
 | 013 judgment work ran on opus-medium subagents in one session | D4 names a second Claude account. The orchestrating session checked each subagent's edits instead |
 | Brief estimated about 30 referencing files outside mcp-tooling | `rg -l` counted 45 on 2026-11-21, several of them generated fixtures and benchmark reports; 003 carries the measured list |
 <!-- /ANCHOR:log -->

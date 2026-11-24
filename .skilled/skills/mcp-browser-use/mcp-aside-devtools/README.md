@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.9.0
+version: 1.1.10.0
 ---
 
 # mcp-aside-devtools
@@ -186,7 +186,7 @@ Yes. `aside mcp` speaks stdio and the `aside` manual is registered in `.utcp_con
 
 ### Does Aside capture console logs or network traffic?
 
-You can collect them yourself through the Playwright `page` API in the REPL. Register `page.on('console', ...)` or `page.on('request', ...)` and keep the events you need. There is no dedicated capture tool and no native HAR export. A live capture needs a bound authorized session, so treat the pattern as unconfirmed until it runs against one.
+Not on Aside 1.26.626.1517. The live runs showed that `page.on('console', ...)`, `page.on('request', ...)` and `page.on('response', ...)` each throw. The error points to `page.console.logs()`, which has not been run yet. There is no dedicated capture tool and no native HAR export. What works is `page.evaluate(...)`, which reads page state such as page-visible cookie names and storage keys.
 
 ### Can I run parallel Aside sessions?
 

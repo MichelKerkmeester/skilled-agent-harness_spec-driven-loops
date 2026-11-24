@@ -16,7 +16,8 @@
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/010-mcp-tooling-browser-pointers",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",
-    "mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs"
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -55,8 +56,11 @@
       "spec.md",
       "goal.md",
       "decision-record.md",
+      "014-fix-deep-review-findings/spec.md",
+      "review/review-report.md",
       ".skilled/skills/mcp-tooling/mode-registry.json",
       "001-research/research/research.md",
+      "review/deep-review-findings-registry.json",
       ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
       "003-mode-relocation/spec.md",
       "006-verification/spec.md",
@@ -68,10 +72,7 @@
       "006-verification/goal.md",
       "007-bladebro-parity-and-changelogs/goal.md",
       "008-live-runs-and-playbook-fixes/goal.md",
-      "009-sk-code-browser-evidence/goal.md",
-      "010-mcp-tooling-browser-pointers/goal.md",
-      "011-bdg-eval-port-note/goal.md",
-      "012-browser-hub-doc-topic/goal.md"
+      "009-sk-code-browser-evidence/goal.md"
     ],
     "entities": [
       {
@@ -93,9 +94,21 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".skilled/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-findings-registry.json",
+        "kind": "config",
+        "path": "review/deep-review-findings-registry.json",
         "source": "derived"
       },
       {
@@ -153,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -160,12 +179,6 @@
       },
       {
         "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -203,7 +216,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-23T21:29:16.636Z",
+    "last_save_at": "2026-11-24T07:02:19.161Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +224,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b0f557d9495594845e9aeaf5a2037168c8a0a5b167d58b09fd078cfce34641fa",
+    "source_fingerprint": "sha256:a71055c13cbec53a18bc46dd46273caecb23d454a17f86b5397008628b6a4c27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64a83f120f71e4a9e541fc2a6c9486faa7a2d5ab5b5b3f190f228e20e64da57e",
+      "spec.md": "1d431d7c924bcfe16215251a31c7c96dfcd8d108d2682fb5af2eb4f8a9770ea4",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
-    "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",
-    "last_active_at": "2026-11-23T18:56:18.815Z"
+    "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",
+    "last_active_at": "2026-11-24T06:19:01.481Z"
   }
 }

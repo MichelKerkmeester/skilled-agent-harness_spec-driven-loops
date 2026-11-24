@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The advisor still sends browser requests to `mcp-tooling`: a Chrome DevTools request scores `mcp-tooling` at 0.95 today",
     "created_at": "2026-11-21T08:11:45Z",
-    "last_save_at": "2026-11-21T23:06:44.282Z",
+    "last_save_at": "2026-11-24T07:03:24.091Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32fb49bcf5eda23dd2355ad632a551df8be613e5db2dd78ca08440e5a9f6dfd3",
+    "source_fingerprint": "sha256:db73903a97c107f009a62153c645308caee2d17096cbbfdd5daa0edc86e5add7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "22579220fd2d47bbc00d215ff3b798888f021c03ae8f6ea707d602572db7d3d6",
+      "spec.md": "ae9049740457551a1f2b770869d62dd4867b57647221571f668d1a221c6e5f7f",
       "plan.md": "eb241935cb3d3370aa661285a103886e9f144b618787e7ea86e3a049005eeef7",
-      "tasks.md": "4240c18b0756ef9a1ef93ac7685bc526a9a7ec5e1dd98a70e090f22e7a7f2003",
-      "implementation-summary.md": "c5edb368404a290f273df917a8c65805e2cbfc353f0f61408fd561300a18b0d3"
+      "tasks.md": "ba650d84763965de102be0cc306ea7b131f98cb08e044be757c302ba2e109709",
+      "implementation-summary.md": "a1727408d3824eabf343afb1e4abd6a5fbe29fc832256b67db8c36ef0963840a"
     },
     "last_active_at": null
   }

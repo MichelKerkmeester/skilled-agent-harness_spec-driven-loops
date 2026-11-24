@@ -10,7 +10,7 @@ trigger_phrases:
   - "browser session state persistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Advanced Session Management
@@ -198,7 +198,7 @@ check_session_health() {
   # Check if bdg is installed
   command -v bdg >/dev/null 2>&1 || {
     echo "ERROR: bdg not installed"
-    echo "Install: npm install -g browser-debugger-cli@alpha"
+    echo "Install: npm install -g browser-debugger-cli@0.6.10"
     return 1
   }
 

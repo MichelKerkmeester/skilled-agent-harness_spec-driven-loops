@@ -5,7 +5,7 @@ trigger_phrases:
   - "mcp-browser-use"
   - "browser use hub"
   - "chrome devtools aside bladebro"
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # mcp-browser-use
@@ -39,9 +39,9 @@ Each mode is one packet folder with its own `SKILL.md`, `ROUTER.md` and changelo
 
 | Packet | Kind | Use it for | Pointer |
 |---|---|---|---|
-| `mcp-chrome-devtools/` | workflow | Chrome DevTools inspection, debugging, Lighthouse audits and performance traces | [`README.md`](./mcp-chrome-devtools/README.md) |
+| `mcp-chrome-devtools/` | workflow | Chrome DevTools inspection, debugging, Lighthouse audits, performance traces and attaching to the user's own Chrome | [`README.md`](./mcp-chrome-devtools/README.md) |
 | `mcp-aside-devtools/` | workflow | Deterministic signed-in REPL runs and captured REPL evidence | [`README.md`](./mcp-aside-devtools/README.md) |
-| `mcp-bladebro/` | workflow | Stealth browsing, agentic branching and caller-owned browser attachment | [`README.md`](./mcp-bladebro/README.md) |
+| `mcp-bladebro/` | workflow | Stealth browsing, agentic branching and attachment to a caller-owned or already-open browser that names no Chrome | [`README.md`](./mcp-bladebro/README.md) |
 
 The tie-break order is Chrome DevTools, then Aside, then Bladebro. It settles overlap between debugging and stealth work. It also settles overlap between signed-in proof and agentic signed-in work.
 

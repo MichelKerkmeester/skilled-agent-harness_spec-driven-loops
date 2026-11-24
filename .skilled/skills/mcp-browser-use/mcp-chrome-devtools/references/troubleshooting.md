@@ -11,7 +11,7 @@ trigger_phrases:
   - "session target not found"
 importance_tier: normal
 contextType: implementation
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Troubleshooting Guide
@@ -59,7 +59,7 @@ Find root cause before attempting fixes - symptom fixes create cascading failure
 
 ```bash
 # 1. Check bdg installation
-command -v bdg || echo "bdg not found - install with: npm install -g browser-debugger-cli@alpha"
+command -v bdg || echo "bdg not found - install with: npm install -g browser-debugger-cli@0.6.10"
 
 # 2. Check bdg version
 bdg --version 2>&1
@@ -101,7 +101,7 @@ echo $PATH
 
 1. **Install bdg**:
    ```bash
-   npm install -g browser-debugger-cli@alpha
+   npm install -g browser-debugger-cli@0.6.10
    ```
 
 2. **Fix PATH if npm bin not in PATH**:
@@ -129,7 +129,7 @@ echo $PATH
 
 **Symptoms**:
 ```bash
-$ npm install -g browser-debugger-cli@alpha
+$ npm install -g browser-debugger-cli@0.6.10
 npm ERR! code EACCES
 npm ERR! syscall access
 ```
@@ -143,9 +143,9 @@ ls -la $(npm config get prefix)
 
 **Solutions**:
 
-1. **Use npx (no global install needed)**:
+1. **Use npx (no global install needed)**. This still downloads and runs the package, so it is an install. An agent runs it only after the operator says yes:
    ```bash
-   npx browser-debugger-cli@alpha https://example.com
+   npx browser-debugger-cli@0.6.10 https://example.com
    ```
 
 2. **Fix npm permissions** (recommended):
@@ -155,12 +155,12 @@ ls -la $(npm config get prefix)
    echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
    source ~/.bashrc
 
-   npm install -g browser-debugger-cli@alpha
+   npm install -g browser-debugger-cli@0.6.10
    ```
 
 3. **Use sudo** (not recommended):
    ```bash
-   sudo npm install -g browser-debugger-cli@alpha
+   sudo npm install -g browser-debugger-cli@0.6.10
    ```
 
 ---
@@ -870,7 +870,7 @@ BDG_DEBUG=1 bdg status 2>&1
 
 Before reporting issues, try these:
 
-- [ ] bdg installed globally (`npm install -g browser-debugger-cli@alpha`)
+- [ ] bdg installed globally (`npm install -g browser-debugger-cli@0.6.10`)
 - [ ] bdg in PATH (`command -v bdg`)
 - [ ] Chrome/Chromium installed and accessible
 - [ ] Session started before CDP commands

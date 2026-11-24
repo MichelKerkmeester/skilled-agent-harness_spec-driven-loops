@@ -1,7 +1,7 @@
 ---
 title: "BB-002 -- Pinned npm install"
 description: "This scenario validates the pinned Bladebro npm install for `BB-002`. It focuses on the global package and its native darwin package arriving without a postinstall script."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BB-002 -- Pinned npm install
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-Plan step 3. The install runs only after the operator yes. The package runs no postinstall script, which is why installing before the digest check in BB-003 is safe.
+Plan step 3. The install runs only after the operator yes. The install runs with `--ignore-scripts`, so no package code runs before the digest check in BB-003, even if a later release adds a lifecycle script.
 
 ### Why This Matters
 
@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `BB-002` and confirm the
 
 ### Commands
 
-1. `npm install -g bladebro@4.8.2`
+1. `npm install -g --ignore-scripts bladebro@4.8.2`
 
 ### Expected
 

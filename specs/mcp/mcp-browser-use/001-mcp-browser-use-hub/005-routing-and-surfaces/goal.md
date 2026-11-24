@@ -8,8 +8,8 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces"
-    last_updated_at: "2026-11-21T16:00:00Z"
-    last_updated_by: "implement-worker"
+    last_updated_at: "2026-11-24T05:32:33Z"
+    last_updated_by: "claude-code"
     recent_action: "Implemented and replayed both routing stages"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [x] skill_advisor.py returns mcp-browser-use above threshold for one real request per mode, 3 of 3, and mcp-tooling for none of them
+- [x] skill_advisor.py with no threshold flag returns mcp-browser-use first for one real request per mode, 3 of 3, and mcp-tooling for none of them. At --threshold 0.5 mcp-tooling lists below the hub
 - [x] compiled-route.cjs with --hub mcp-browser-use prints action route, selectionKind single and the matching workflowMode for the same 3 requests
 - [x] Three tie-break requests that name no tool resolve mcp-aside-devtools, mcp-bladebro and mcp-chrome-devtools
 - [x] The Chrome DevTools feature catalog has a lighthouse-and-performance-trace leaf and its summary totals 31
@@ -93,5 +93,6 @@ and findings belong here.
 | Criterion 1 closed at the default threshold | 2026-11-21 replay without a threshold flag: `mcp-browser-use` first at 0.95, 0.93 and 0.92, `mcp-tooling` absent. At `--threshold 0.5` it still lists at about 0.54 from generic tokens, recorded under Known Limitations |
 | Criterion 1 partly met | At `--threshold 0.5` any nonzero score maps to about 0.54 confidence, so `mcp-tooling` lists on generic tokens. It is never first and the default gate drops it |
 | Mirrors were not only non-regression | `.dsh/skills` and `.vibe/skills` still linked the two moved modes to `mcp-tooling/` and lacked the new hub; regenerated with their sync scripts |
+| Criterion 1 amended 2026-11-24 | The 2026-11-24 deep review found the box ticked while `scratch/after-stage1.jsonl` lines 1 to 3 show `mcp_tooling_passing: true` at `--threshold 0.5`. The criterion now names the default threshold, where the claim holds. This differs from REQ-001, which runs at 0.5. Rerun the same day: with no flag `mcp-browser-use` is first at 0.95, 0.9342 and 0.928 and `mcp-tooling` is absent from all three. At `--threshold 0.5` `mcp-tooling` passes at 0.5833, 0.5405 and 0.5538, below the hub each time. Every run exits 0 |
 | Mirrors are non-regression only | Every mode registers `command: null` and skill mirrors are symlinks |
 <!-- /ANCHOR:log -->

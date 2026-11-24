@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside not working"
   - "aside troubleshoot"
   - "aside unbound profile"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Troubleshoot (failure classification and recovery)
@@ -23,7 +23,7 @@ All troubleshooting capabilities are READ-ONLY: diagnose, classify, report — r
 
 The recipes: `command not found: aside` means CLI missing or `~/.local/bin` off PATH — report the official installer as operator-invoked guidance, never install. Built-in models failing after sign-out fail closed by design — recover via `aside account use <id>` or re-sign-in; BYO API-key providers keep working. `This task is not bound to a browser profile` is PROFILE_UNBOUND — the supported binding procedure is **UNKNOWN** (undocumented); surface the error verbatim and stop, never improvise a binding workaround. A killed `aside mcp` child shows EOF/broken-pipe symptoms — distinguish from DAEMON_UNAVAILABLE via stderr, then respawn cleanly and confirm no leaked processes. MCP inventory drift from the documented single `repl` tool is a finding, not a failure — re-run discovery and save a fresh fixture.
 
-Guarded probes cover the capability gaps: console capture (Playwright `page.on('console', ...)`) and network capture (`page.on('request'/'response', ...)`) have **no verified contract** — a clean "unsupported, fail closed" outcome is a valid PASS, and no parity with `bdg console --list` or HAR export is ever claimed. Human-only boundaries (MFA, CAPTCHA, identity checks, vault unlock, approvals) pause tasks; plan for resumable waiting, never bypasses.
+Guarded probes cover the capability gaps. On Aside 1.26.626.1517, `page.on('console', ...)`, `page.on('request', ...)` and `page.on('response', ...)` each throw, so console and network capture are gaps there. A clean "unsupported, fail closed" outcome is a valid PASS. No parity with `bdg console --list` or HAR export is ever claimed. Human-only boundaries (MFA, CAPTCHA, identity checks, vault unlock, approvals) pause tasks. Plan for resumable waiting, never bypasses.
 
 ---
 

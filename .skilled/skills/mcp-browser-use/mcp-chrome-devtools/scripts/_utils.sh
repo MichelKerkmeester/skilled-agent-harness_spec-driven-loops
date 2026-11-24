@@ -157,7 +157,7 @@ check_command() {
 }
 
 check_node_version() {
-    local min_version="${1:-20}"
+    local min_version="${1:-18}"
 
     if ! check_command "node" "Node.js"; then
         log_error "Node.js is not installed"

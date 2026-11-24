@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix deep review findings",
+      "phase 14 fix deep review findings",
+      "browser hub deep review remediation",
+      "fix deep review findings plan",
+      "fix deep review findings tasks",
+      "fix deep review findings acceptance criteria",
+      "fix deep review findings goal",
+      "014-fix-deep-review-findings operator decisions",
+      "fix deep review findings implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "findings",
+      "phase",
+      "browser",
+      "hub",
+      "remediation",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-code-mode/scripts/_utils.sh",
+      ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/_utils.sh",
+      ".skilled/bin/tests/mcp-installers.test.cjs",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_utils.sh",
+        "kind": "script",
+        "path": ".skilled/skills/mcp-code-mode/scripts/_utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-installers.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/mcp-installers.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Lanes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review of phases 001 to 013 returned FAIL",
+    "created_at": "2026-11-24T05:19:39Z",
+    "last_save_at": "2026-11-24T07:04:34.881Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:974d63251a1efdfba622c41943385c433b4f27e361225ac6448e3aeadbafa1a4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cd595d1e61574e97f8c160cad031d3f2e7598372622c804f2e2f4aa9909e5148",
+      "plan.md": "9b9e689d3a566a863b9e0304dcd6815eafac5b8a7212d880cafb49595cbc91ef",
+      "tasks.md": "e0d92ffdeb473bdb5579710d3d620dd9444452159e64cdd0d452d370eea8a96d",
+      "decision-record.md": "23e671d9e047960eeb247a33b4a6c6c8c20912e84ed8f328c6b175f2b6e0df02",
+      "implementation-summary.md": "cac64663d60312a3eae210dc57677591025e7bc3b7f5357831aacc9530e1d8a8"
+    },
+    "last_active_at": null
+  }
+}

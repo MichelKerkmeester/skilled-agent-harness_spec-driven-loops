@@ -1,15 +1,19 @@
 # Fan-Out Attribution
 
-Loop type: **review**  |  Lineage count: **2**
+Loop type: **review**  |  Lineage count: **4**
 
 | Label | Kind | Model | Iterations | Convergence | Salvaged | Verdict |
 |-------|------|-------|-----------|-------------|----------|---------|
-| claude2 | cli-claude-code | claude-opus-5-5 | 5 | 0.938 | 0 | CONDITIONAL |
-| vibe | cli-mistral-vibe | deepseek-flash | 5 | 0.41700000000000004 | 0 | CONDITIONAL |
+| opus-1 | cli-claude-code | claude-opus-5-5 | 7 | 1 | 0 | FAIL |
+| opus-2 | cli-claude-code | claude-opus-5-5 | 7 | 1 | 0 | FAIL |
+| opus-3 | cli-claude-code | claude-opus-5-5 | 7 | 0.974 | 0 | FAIL |
+| opus-4 | cli-claude-code | claude-opus-5-5 | 7 | 1 | 0 | FAIL |
 
 | Label | Provider cost (USD) |
 |-------|---------------------|
-| claude2 | 5.718219 |
-| vibe | unknown |
+| opus-1 | 7.486314 |
+| opus-2 | 8.199933 |
+| opus-3 | 8.867522 |
+| opus-4 | 9.294479 |
 
-Total provider cost (USD): unknown
+Total provider cost (USD): 33.848248

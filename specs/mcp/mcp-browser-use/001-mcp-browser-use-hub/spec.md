@@ -11,17 +11,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub"
-    last_updated_at: "2026-11-21T12:30:00Z"
-    last_updated_by: "planning-worker"
-    recent_action: "Recorded the operator answer on D2 and amended the parent goal"
-    next_safe_action: "Start 002-hub-scaffold"
+    last_updated_at: "2026-11-24T08:30:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed 014: every deep review finding fixed at its source"
+    next_safe_action: "Run the follow-up deep review after the 014 commit"
     blockers: []
-    key_files: []
+    key_files:
+      - "014-fix-deep-review-findings/spec.md"
+      - "review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-11-21-browser-use-hub-plan"
-      parent_session_id: null
-    completion_pct: 0
+      session_id: "2a13155f-ba79-49ab-9967-8fdff087389a"
+      parent_session_id: "587eb5dd-b522-4898-9ee2-a03a0563e3ad"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,9 +50,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete: all seven goal criteria hold; 005 records three requirements not met as written (REQ-003, REQ-008, REQ-009) |
+| **Status** | Complete: phases 001 to 014 are Complete and all seven goal criteria hold. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. A follow-up deep review runs after the 014 commit (014 decision Q002) |
 | **Created** | 2026-11-21 |
-| **Branch** | `worktrees/505-mcp-browser-use-hub` |
+| **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | mcp/mcp-browser-use/001-mcp-browser-use-hub |
 | **Predecessor** | None |
@@ -126,6 +128,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 11 | 011-bdg-eval-port-note/ | Explain in the Chrome DevTools troubleshooting guide why bdg 0.6.10 `dom eval` fails with `Session target not found` off port 9222, with two fixes. mcp-chrome-devtools 1.0.27.0 (Level 1) | Complete |
 | 12 | 012-browser-hub-doc-topic/ | Give `/local-doc-alignment` an `mcp-browser-use` topic and run it with Devin lanes (Level 1) | Complete |
 | 13 | 013-fix-alignment-findings-for-browser-hub-docs/ | Fix every finding from 012's two alignment runs: hub docs and scripts against bdg 0.6.10 and Code Mode, plus the own-Chrome routing lift (Level 1) | Complete |
+| 14 | 014-fix-deep-review-findings/ | Fix every finding of the 2026-11-24 deep review: installer helper parity, the Bladebro npx gate and install order, the bdg pin, Aside docs, routing vocabulary and packet state (Level 2) | Complete |
 
 ### Phase Transition Rules
 
@@ -143,13 +146,14 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 003-mode-relocation | 004-bladebro-mode | Both packets resolve under the new hub, no stale path remains, and the mutation guard sees their scripts | 003's old-path `rg` pair, changelogs and benchmark reports excluded, prints no match, and `check-mcp-mutation-class.test.sh` passes its `mcp-browser-use/` case |
 | 004-bladebro-mode | 005-routing-and-surfaces | Bladebro packet is registered in the hub registry and router | Hub registry lists three modes |
 | 005-routing-and-surfaces | 006-verification | A real browser request reaches each mode through both routing stages | Advisor replay plus hub-router replay per mode |
-| 006-verification | 007-bladebro-parity-and-changelogs | [Criteria TBD] | [Verification TBD] |
+| 006-verification | 007-bladebro-parity-and-changelogs | Each mode playbook records a run, and the two-stage routing benchmark records one request per mode plus three tie-breaks | `parent-skill-check.cjs .skilled/skills/mcp-browser-use` ends with `OK`, and the 2026-11-21 replay under `benchmark/reports/compiled-routing/` reads PASS 6 of 6 |
 | 007-bladebro-parity-and-changelogs | 008-live-runs-and-playbook-fixes | The 13 Aside signed-in scenarios that 007 deferred to an operator yes run live, and the Bladebro attach-mode gap is covered by a scenario | Each recorded run folder's `results.csv` matches its README tally, and `validate-playbook-package.cjs` exits 0 for the three browser packages |
 | 008-live-runs-and-playbook-fixes | 009-sk-code-browser-evidence | The `sk-code-frontend` row in sk-code's `ROUTER.md` names the `mcp-browser-use` hub and its three browser modes | `parent-skill-check.cjs .skilled/skills/sk-code` exits 0, and `verify-router-sync.cjs` prints `router-sync: 5/5 checks passed` |
 | 009-sk-code-browser-evidence | 010-mcp-tooling-browser-pointers | sk-code names the hub for frontend evidence, and RD-006 passes live | RD-006 `PASS 1/1` recorded in sk-code's benchmark reports |
 | 010-mcp-tooling-browser-pointers | 011-bdg-eval-port-note | No live mcp-tooling doc names a browser packet as a standalone skill | The stale-pointer grep in 010's spec.md prints 0, and `parent-skill-check.cjs .skilled/skills/mcp-tooling` exits 0 |
-| 011-bdg-eval-port-note | 012-browser-hub-doc-topic | The Chrome DevTools guide explains the bdg `dom eval` port failure | `rg -c 'Session target not found\|returnByValue'` on the guide prints 3 |
+| 011-bdg-eval-port-note | 012-browser-hub-doc-topic | The Chrome DevTools guide explains the bdg `dom eval` port failure | `rg -q 'Issue: .bdg dom eval. or a form command reports "Session target not found"'` on the guide exits 0 |
 | 012-browser-hub-doc-topic | 013-fix-alignment-findings-for-browser-hub-docs | Both alignment runs wrote a findings report for the browser hub | The doc run holds 91 findings and the skilled run 21 in their `findings.json` |
+| 013-fix-alignment-findings-for-browser-hub-docs | 014-fix-deep-review-findings | 013 is committed, and a deep review of phases 001 to 013 has recorded its open findings | `review/deep-review-findings-registry.json` lists 33 open findings, and `review/review-report.md` ends with its verdict |
 <!-- /ANCHOR:phase-map -->
 
 ---

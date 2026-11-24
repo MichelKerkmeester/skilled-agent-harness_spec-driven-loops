@@ -1,29 +1,23 @@
 {
-  "run_id": "1795300286921-qfagh7",
+  "run_id": "1795495435655-lf6jf3",
   "loop_type": "review",
   "spec_folder": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub",
-  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review",
-  "total_cli_lineages": 1,
-  "orphaned_lineages": [
-    {
-      "label": "claude2",
-      "index": 1,
-      "started_at_iso": "2026-11-21T22:19:40.210Z"
-    }
-  ],
-  "total": 1,
-  "succeeded": 0,
-  "failed": 1,
-  "all_failed": true,
+  "base_artifact_dir": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review",
+  "total_cli_lineages": 4,
+  "orphaned_lineages": [],
+  "total": 4,
+  "succeeded": 4,
+  "failed": 0,
+  "all_failed": false,
   "completed_with_containment_advisory": 0,
   "gauges": {
     "lag": 0,
     "pending": 0,
-    "failed": 1
+    "failed": 0
   },
   "failure_classes": {
     "timeout": 0,
-    "exit": 1,
+    "exit": 0,
     "salvage_miss": 0,
     "artifact_miss": 0,
     "projection_refusal": 0,
@@ -33,18 +27,41 @@
   },
   "lineages": [
     {
-      "label": "claude2",
-      "status": "failed",
-      "failure_class": "exit",
+      "label": "opus-1",
+      "status": "succeeded",
+      "failure_class": null,
       "exit_code": 0,
-      "rerun_command": null,
-      "rerun_note": "archive /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/claude2 first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --loop-type review --review-focus-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-focus.txt --review-target-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-target.txt --review-target-type spec-folder --review-scope-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-review-scope.txt --fanout-config-json-file /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review --convergence-threshold 0.10 --stop-policy max-iterations --convergence-mode default --depth-mode default --only-lineage claude2"
+      "rerun_command": null
+    },
+    {
+      "label": "opus-2",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "opus-3",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "opus-4",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
     }
   ],
   "provider_cost_usd": {
-    "total": 5.718219,
+    "total": 33.848248,
     "by_lineage": {
-      "claude2": 5.718219
+      "opus-1": 7.486314,
+      "opus-2": 8.199933,
+      "opus-3": 8.867522,
+      "opus-4": 9.294479
     }
   }
 }

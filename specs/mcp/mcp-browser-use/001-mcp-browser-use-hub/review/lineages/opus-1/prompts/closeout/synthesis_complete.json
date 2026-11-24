@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-opus-1-1795495435655-lf6jf3","sessionId":"fanout-opus-1-1795495435655-lf6jf3"},"data":{"mode":"review","totalIterations":7,"activeP0":0,"activeP1":1,"activeP2":8,"dimensionCoverage":1,"verdict":"FAIL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

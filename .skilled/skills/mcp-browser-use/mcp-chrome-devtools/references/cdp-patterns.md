@@ -10,7 +10,7 @@ trigger_phrases:
   - "pipe bdg output to jq"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # CDP Patterns & Command Examples
@@ -358,7 +358,7 @@ bdg cdp Tracing.getCategories
 SCRATCH="${TMPDIR:-/tmp}"
 
 # Check bdg availability
-command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; exit 1; }
+command -v bdg || { echo "Install: npm install -g browser-debugger-cli@0.6.10"; exit 1; }
 
 # Start session
 bdg https://example.com 2>&1

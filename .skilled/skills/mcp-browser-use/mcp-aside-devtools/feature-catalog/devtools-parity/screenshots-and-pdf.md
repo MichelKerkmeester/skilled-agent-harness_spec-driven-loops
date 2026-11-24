@@ -6,8 +6,8 @@ trigger_phrases:
   - "aside full page screenshot"
   - "aside element screenshot"
   - "aside pdf"
-last_updated: "2026-07-17"
-version: 1.0.2.0
+last_updated: "2026-11-24"
+version: 1.0.3.0
 ---
 
 # Screenshots, Element Captures, and PDF (DevTools parity)
@@ -66,7 +66,7 @@ Verify every capture inside the same evaluation: size > 0 and magic bytes (`8950
 | File | Layer | Role |
 |---|---|---|
 | `references/discovery-fixture-2026-07-16.json` | Fixture | Documents `page.screenshot`/`locator.screenshot`/`page.pdf` option sets |
-| `examples/repl-evidence-capture.sh` | Example | Older open-then-screenshot script with a shell PNG-magic check; it does not hold on 1.26.626.1517 |
+| `examples/repl-evidence-capture.sh` | Example | Open, screenshot and PNG-magic check in one `aside repl` evaluation, the ASD-007 form. It has not yet been run as a script against a live Aside. |
 
 ### Validation And Tests
 

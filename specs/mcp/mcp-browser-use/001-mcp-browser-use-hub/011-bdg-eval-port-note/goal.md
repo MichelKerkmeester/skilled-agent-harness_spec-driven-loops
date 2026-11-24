@@ -8,7 +8,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note"
-    last_updated_at: "2026-11-23T15:45:00Z"
+    last_updated_at: "2026-11-24T05:32:33Z"
     last_updated_by: "claude-code"
     recent_action: "Added the bdg dom eval port entry to the Chrome DevTools troubleshooting guide"
     next_safe_action: "Commit and push once the operator says so"
@@ -53,7 +53,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `rg -c 'Session target not found|returnByValue'` on the guide prints 3
+- [x] `rg -q '^### Issue: .*Session target not found'` and `rg -q returnByValue` on the guide each exit 0
 - [x] `parent-skill-check.cjs .skilled/skills/mcp-browser-use` prints `OK` with 0 warnings and exits 0
 - [x] `validate.sh specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --recursive --strict` prints `RESULT: PASSED` for every folder
 <!-- /ANCHOR:completion -->
@@ -82,5 +82,6 @@ and findings belong here.
 |------|------|
 | Worktree provisioning | sk-git's provisioning failed four builds because `system-spec-kit` had no `node_modules`. `npm ci` there, the runtime and CLI builds, and a second `provision` run fixed it, with 0 failures |
 | Two daemons started by accident | `bdg --version` and `bdg cleanup` each started a bdg daemon with no browser. Both were stopped by pid. No further `bdg` command ran |
+| Criterion 1 amended 2026-11-24 | The 2026-11-24 deep review found the count criterion stale. `rg -c 'Session target not found\|returnByValue'` prints 5 now, since 013 added lines to the guide. A count breaks each time the guide grows, so the criterion now checks that the section heading and the `returnByValue` fix are present. Rerun the same day: the heading check matches `troubleshooting.md:467` and both `rg -q` runs exit 0 |
 | Adjacent defects in the same guide | §5 suggests `CHROME_DEBUGGING_PORT`, which bdg 0.6.10 never reads. §7 passes JSON as a second positional argument, and `bdg cdp` takes `--params`. Both left unchanged for the operator |
 <!-- /ANCHOR:log -->

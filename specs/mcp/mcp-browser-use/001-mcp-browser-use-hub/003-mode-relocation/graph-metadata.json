@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The Chrome DevTools and Aside packets live under `.skilled/skills/mcp-tooling/`",
     "created_at": "2026-11-21T08:11:42Z",
-    "last_save_at": "2026-11-21T18:38:28.187Z",
+    "last_save_at": "2026-11-24T05:35:46.167Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c3287c3f3ed0d91783ae5d441e529c6148569dce55595769ace376fd30afe54",
+    "source_fingerprint": "sha256:d32a365e2d2d2851495a0fbd763e3353e266d12c6146c05a5e76078af1c4e75d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e3ec9d11211fb846f91b56331772445d439dc28cc097c4b21e18a406de26c68b",
       "plan.md": "d21636df2c46e76910b397445b0ba4811225f522c3c20a1e9c5ecaf04d939db5",
       "tasks.md": "3dba41a6d3385a7573fa5d40b9731d6b134f0ba0d7e1ed9c363252eef3145aab",
-      "implementation-summary.md": "ef76dd7ffed6c57e81fe6328636e97ee5f1939e850daed141b3784b55509ecab"
+      "implementation-summary.md": "abc06de9fa5b1ea4b62bcd83ded11f839bc98c85930e54c200155d0a8b49378f"
     },
     "last_active_at": null
   }

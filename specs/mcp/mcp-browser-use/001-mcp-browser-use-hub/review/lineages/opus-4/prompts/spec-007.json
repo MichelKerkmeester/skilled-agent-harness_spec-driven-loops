@@ -1,0 +1,6 @@
+{"iteration":7,"focus":"stuck-recovery: severity escalation review of active P2s","dimensions":["traceability","maintainability"],
+"filesReviewed":["specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/acceptance-criteria.md:60",".skilled/skills/system-spec-kit/references/validation/validation-rules.md:93","specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:97",".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:12"],
+"findings":[],
+"traceability":[{"protocolId":"checklist_evidence","status":"partial","gateClass":"hard","applicable":true,"evidence":["specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/acceptance-criteria.md:94"],"evidenceRefs":["specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/acceptance-criteria.md:60"],"summary":"AC rows Met and consistent with validation; closure prose and 003/004 goal state still stale"}],
+"ruledOut":[{"direction":"P1 upgrade of 003 closure drift","reason":"AC_CLOSURE reads Met rows; no completion claim is invalid"}],
+"newFindingsRatio":0.0,"noveltyJustification":"Escalation review; all five P2s keep their severity, no new findings.","durationMs":300000}
