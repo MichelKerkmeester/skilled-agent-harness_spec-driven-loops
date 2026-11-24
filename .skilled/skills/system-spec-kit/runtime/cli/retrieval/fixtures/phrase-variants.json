@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a32d9a4694e55b035710a39f560c69977b81979853ad3f1d697efda70fb99d14",
+  "manifestHash": "d298ad9ce8fed3491f8f0acb07657b217445aa0a1ecd544c278a55a395751b37",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44431,6 +44431,9 @@
     "doctor command guidance timeline": [
       "doctor command guidance timeline"
     ],
+    "doctor command owner skill agent tag": [
+      "doctor command owner skill_agent tag"
+    ],
     "doctor command plumbing": [
       "doctor command plumbing"
     ],
@@ -44523,6 +44526,9 @@
     ],
     "doctor commands inventory and extract tasks": [
       "doctor commands inventory and extract tasks"
+    ],
+    "doctor commands manual testing playbook": [
+      "doctor commands manual testing playbook"
     ],
     "doctor commands release notes": [
       "doctor commands release notes"
@@ -45000,6 +45006,9 @@
     "doctor overlay status apply": [
       "doctor overlay status apply"
     ],
+    "doctor ownership alignment findings": [
+      "doctor ownership alignment findings"
+    ],
     "doctor ownership split": [
       "doctor ownership split"
     ],
@@ -45077,6 +45086,12 @@
     ],
     "doctor playbook git tasks": [
       "doctor-playbook-git tasks"
+    ],
+    "doctor playbook into system skilled doctor": [
+      "doctor playbook into system-skilled-doctor"
+    ],
+    "doctor playbook into the skill": [
+      "doctor playbook into the skill"
     ],
     "doctor playbook invocation rewrite": [
       "doctor playbook invocation rewrite"
@@ -82466,6 +82481,9 @@
     "overview renumbering": [
       "overview renumbering"
     ],
+    "own all doctor commands phase parent spec": [
+      "own all doctor commands phase parent spec"
+    ],
     "own chrome attach routing lift": [
       "own chrome attach routing lift"
     ],
@@ -82517,8 +82535,26 @@
     "ownership hierarchy": [
       "ownership hierarchy"
     ],
+    "ownership transfer": [
+      "ownership transfer"
+    ],
+    "ownership transfer acceptance criteria": [
+      "ownership transfer acceptance criteria"
+    ],
+    "ownership transfer implementation summary": [
+      "ownership transfer implementation summary"
+    ],
+    "ownership transfer plan": [
+      "ownership transfer plan"
+    ],
+    "ownership transfer tasks": [
+      "ownership transfer tasks"
+    ],
     "owning mode for frontmatter": [
       "owning mode for frontmatter"
+    ],
+    "owns every doctor command": [
+      "owns every doctor command"
     ],
     "ox alpha routes": [
       "ox alpha routes"
@@ -84970,6 +85006,9 @@
     "phase 1 model effort atomic replay": [
       "phase 1 model effort atomic replay"
     ],
+    "phase 1 ownership transfer": [
+      "phase 1 ownership transfer"
+    ],
     "phase 1 package strict": [
       "phase 1 package strict"
     ],
@@ -86086,6 +86125,9 @@
     "phase 2 pins imports dual export": [
       "phase 2 pins imports dual export"
     ],
+    "phase 2 playbook consolidation": [
+      "phase 2 playbook consolidation"
+    ],
     "phase 2 playbook path repair": [
       "phase 2 playbook path repair"
     ],
@@ -86520,6 +86562,9 @@
     ],
     "phase 3 agent mirror checker relocation": [
       "phase 3 agent mirror checker relocation"
+    ],
+    "phase 3 alignment fixes": [
+      "phase 3 alignment fixes"
     ],
     "phase 3 cache optimizer": [
       "phase 3 cache optimizer"
@@ -90405,6 +90450,21 @@
     ],
     "playbook common pitfalls": [
       "playbook common pitfalls"
+    ],
+    "playbook consolidation": [
+      "playbook consolidation"
+    ],
+    "playbook consolidation acceptance criteria": [
+      "playbook consolidation acceptance criteria"
+    ],
+    "playbook consolidation implementation summary": [
+      "playbook consolidation implementation summary"
+    ],
+    "playbook consolidation plan": [
+      "playbook consolidation plan"
+    ],
+    "playbook consolidation tasks": [
+      "playbook consolidation tasks"
     ],
     "playbook contract regression proof": [
       "playbook contract regression proof"
@@ -128676,6 +128736,9 @@
     ],
     "system skilled doctor manual testing": [
       "system-skilled-doctor manual testing"
+    ],
+    "system skilled doctor owns every doctor command": [
+      "system-skilled-doctor owns every doctor command"
     ],
     "system skilled doctor playbook": [
       "system-skilled-doctor playbook"
