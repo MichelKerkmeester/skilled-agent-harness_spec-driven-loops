@@ -1,33 +1,26 @@
-# Review Iteration 6
+# Review Iteration 006
 
 ## Dispatcher
 
-- Mode: review, single review iteration (fan-out lineage `deepseek-max-3`).
-- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
-- Iteration 6 of 7, stop policy `max-iterations`.
-- `steer.md` is still absent.
-- Operator focus: the overlay protocols below are the remaining traceability surfaces the focus names.
+- Mode: review
+- Dimension: maintainability (operator focus carried alongside)
+- Iteration: 6 of 7
+- Focus this pass: duplication between the two gate copies, the exported word lists and their guard, and the maintenance cost the closure docs impose on every further round
+- Executor: this lineage process (cli-pi, deepseek-v4.1-flash-1017); no nested dispatch
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (comment scan)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (comment scan)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/render.ts`
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (comment scan)
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts`
-- `.skilled/agents/deep-review.md:1` to `:572`
-- `.claude/agents/deep-review.md` (body, frontmatter excluded)
-- `.opencode/agents/deep-review.md` (link target)
-- `.skilled/skills/system-deep-loop/deep-review/SKILL.md:1` to `:260`
-- `.skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md`, `deep-loop-mode-classification/depth-mode-flag.md`, `deep-loop-mode-classification/completed-run-extension-flag.md`
-- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:1` to `:25`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:369-460`, `:688-1055`, `:1336-1400`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5165-5220`, `:5442-5480`
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80-120`, `:246-370`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1-2`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:243`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:140-200`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:84-95`
 
-## Operator Focus
+## Findings
 
-The operator focus names the two core protocols; both remain in the state recorded in iteration 3 and 5. This iteration adds the four overlay protocols the focus's cross-reference contract lists. Two are applicable and pass, and two are not applicable because the packet changes the advisor gate rather than the deep-loop runtime or its playbooks.
-
-## Findings by Severity
+New findings this pass. The operator focus is addressed by measuring whether the traceability evidence the review found stale has a maintenance cause that a future round can prevent.
 
 ### P0 Findings
 
@@ -39,53 +32,57 @@ None.
 
 ### P2 Findings
 
-No new finding. R2-P2-001, R2-P2-002 and R4-P2-001 remain active.
+1. **Nothing fails when REQ-031's documented counts drift from the guard, which is how the drift survived the ninth round** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:243` -- The guard asserts that every entry of `VOCABULARY_PAIRS` matches its Python tuple and that ten lists carry a per-entry case (`tests/deep-loop-offer-cases.vitest.ts:448-460`), but no test reads the counts REQ-031 states ("fifteen compared lists", "ten lists", "eighteen" refusal leads). The counts and the array can therefore diverge silently in either direction, which is what happened: the tree holds 22 pairs and 16 refusal leads while the requirement still names 15 and 18. A one-line assertion that reads the REQ line, or a doc cell generated from `VOCABULARY_PAIRS.length`, would have failed the ninth round's commit.
+   - Finding class: `maintainability-gap`
+   - Scope proof: `spec.md` and the guard are both named scope files.
+   - Affected surface hints: `spec.md` REQ-031, `tests/deep-loop-offer-cases.vitest.ts`, `lib/command-attach.ts`, `scripts/skill_advisor.py`
+   - Case: A round adds three lists and leaves the requirement's counts alone; the guard stays green, and the next reviewer files the same drift finding again.
+
+2. **Closure evidence is cited by line number, so every code insertion above a cited symbol invalidates a Met or ticked cell** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:184` -- Nine cells across `acceptance-criteria.md` and `tasks.md` name a line that no longer holds the symbol they claim (iterations 1 to 3), and T092/T101 both claim every cell was refreshed. Two mechanisms make this recurrent: the docs cite offsets, and each fix round inserts lines above them (`RUN_ASK_REFUSAL_LEADS` moved from `:581` to `:688` while the requirement list itself grew). Citing the symbol name beside the line, or a test name, would survive the next insertion; a check that each cell's line still contains the named token would catch it at commit time.
+   - Finding class: `maintainability-gap`
+   - Scope proof: the closure docs and the cited code are all inside the packet's scope.
+   - Affected surface hints: `acceptance-criteria.md` AC-033 to AC-038, `tasks.md` T066/T067/T074/T076/T081/T087/T092/T101
+   - Case: A later round inserts a word list above `RUN_REFUSED`; every cell that cites its old line now points at unrelated code and no gate notices.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | Carried from iteration 3; REQ-038 and NFR-S01 re-read in iteration 5. |
-| `checklist_evidence` | partial | The two P2 evidence drifts remain (R2-P2-001, R2-P2-002). |
-| `skill_agent` | pass | `.skilled/agents/deep-review.md:37` states the same 0.10 convergence default the skill states at `deep-review/SKILL.md:19`; both state the P0/P1/P2 scale, the LEAF-only rule and the read-only target contract. The agent's write allowlist at `:33` matches the skill's state files. |
-| `agent_cross_runtime` | pass | The `.claude/agents/deep-review.md` body is identical to `.skilled/agents/deep-review.md` line for line (572 lines each) except the path convention at line 5 and the two related-agent paths at 571 to 572, which name `.claude/agents/` in the mirror. `.opencode/agents/deep-review.md` is a full copy whose body and frontmatter are byte-identical to the canonical file (572 lines, empty diff). |
-| `feature_catalog_code` | notApplicable | The `system-deep-loop` catalog describes the hub, its `--depth-mode` and `--extend` flags; it makes no claim about the advisor's command gate, which is the surface this packet changes. The flag claims it does make were read against `deep-research.yaml:663`, `deep-review.yaml:736` and the two Next Steps blocks, and they hold. |
-| `playbook_capability` | notApplicable | The deep-review manual-testing playbook covers the deep-review runtime scenarios; it makes no claim about the advisor's offer gate, so there is no playbook precondition for this packet's change to check. |
+| Protocol | Status | Evidence | Note |
+|----------|--------|----------|------|
+| `spec_code` | partial | `spec.md:243`, `spec.md:247` | REQ-031's drift now has a maintenance cause; REQ-035's mode-free clause remains open. |
+| `checklist_evidence` | partial | `tasks.md:184`, `acceptance-criteria.md:93` | Citation drift carried from iterations 1 to 3. |
+| `skill_agent` | notApplicable | - | Not in this pass. |
+| `agent_cross_runtime` | notApplicable | - | Not in this pass. |
 
 ## Integration Evidence
 
-- `.skilled/agents/deep-review.md:37` and `deep-review/SKILL.md:19` are the two places the 0.10 threshold is stated; both agree.
-- `.opencode/agents/deep-review.md` is a full copy of the canonical agent; its body and frontmatter are byte-identical, so the only translated mirror is the Claude one.
-- `feature-catalog/feature-catalog.md:21` describes the hub's classification role and does not claim the advisor gate's behavior, so the packet's change does not invalidate it.
+- The drift guard reads the Python lists out of the source text rather than importing them (`tests/deep-loop-offer-cases.vitest.ts:80-120`, `:448`), so a renamed list fails rather than comparing empty -- a maintainability strength worth keeping.
+- `VOCABULARY_PAIRS` and `NUMERIC_PAIRS` (`deep-loop-offer-cases.vitest.ts:80`, `:109`) are the only machine-checked coupling between the two copies; `NAMED_LOOP_MODE` is compared by `PATTERN_PAIRS` (`:435-445`).
+- Comment hygiene is clean: no `REQ-`, `ADR-` or spec-path label appears in a comment in `command-attach.ts`, `explicit.ts`, `fusion.ts`, `skill-advisor-cli.ts`, `subprocess.ts`, `advisor-recommend.ts` or `reduce-state.cjs`.
 
 ## Edge Cases
 
-- The mirror's frontmatter is translated by design (`mode`, `temperature`, `permission` in the canonical file; `tools` in the Claude mirror), so a raw frontmatter diff would report a false difference. The body comparison excludes it and records why.
-- `feature_catalog_code` and `playbook_capability` are recorded as `notApplicable` with `applicable: false` rather than omitted, because the packet's traceability contract lists them as overlays and an omitted protocol would read as pending.
-- Comment hygiene: a scan for `REQ-`, `ADR-`, `CHK-`, task ids and `specs/` over every changed code file found one match, the `HYGIENE_DIRECTIVE` string in `render.ts:131` that states the policy itself. It is not an embedded label in a comment, so no violation was raised.
+- The Python list tuples are read from source rather than imported, so a syntactically valid but semantically duplicated entry would pass the compare. No such case exists today.
+- A generated doc cell would remove one drift class but add a codegen step to the packet; recorded as an option, not required.
+- Historical per-round numbers in `implementation-summary.md` are expected to differ from the final tree and are not defects; only rows claiming the final tree are.
 
 ## Confirmed-Clean Surfaces
 
-- Comment hygiene: no ephemeral label in any changed code file or test; the only match is the policy string.
-- Skill-to-agent: the canonical agent and the review skill agree on the threshold, the severity scale, the LEAF-only rule and the writable packet paths.
-- Cross-runtime: the Claude mirror body matches the canonical body except the directory names the mirror must use; the OpenCode copy matches the canonical file in body and frontmatter with an empty diff.
-- Feature catalog: no claim about the advisor gate; the flag claims it does carry match the command docs.
-- Playbook: no scenario covers the advisor gate, so no precondition is contradicted.
+- `command-attach.ts` exports every vocabulary list that builds a pattern (`:369`, `:450`, `:494`, `:508`, `:581`, `:688`, `:802`, `:918`, `:970`, `:981`, `:1032`, `:1133`, `:1197`, `:1336`), so the drift guard has a stable surface to read.
+- The sentinel comments above `LOOP_NAMES`, `DEFECT_CHECK`, `RUN_REFUSED` and the stage-one rule state the durable why, not a round or requirement label.
+- The strategy/dashboard/report files are reducer-owned, so iteration artifacts do not hand-maintain them.
 
 ## Ruled Out
 
-- "The Claude mirror has drifted from the canonical agent": ruled out; the body is identical apart from the two path conventions the mirror must apply.
-- "The feature catalog still describes the old depth-word gate": ruled out; the catalog has no advisor-gate claim at all.
-- "A changed code comment carries a requirement or task id": ruled out; the scan found only the policy string in `render.ts`.
-- "The manual-testing playbook depends on the old offer behavior": ruled out; it carries no offer scenario.
+- "The two gate copies have drifted on a vocabulary list": ruled out on the lists the guard compares; a scratch edit to one copy fails the guard by design (`tests/deep-loop-offer-cases.vitest.ts:448-460`).
+- "A code comment carries an ephemeral label": ruled out by a search of the changed modules for `REQ-`, `ADR-` and `specs/` in comment lines.
 
 ## Next Focus
 
-- Dimension: cross-reference and final coverage (no dimension remains).
-- Focus area: the review's own state, the terminal gates, the acceptance-coverage signal, and one last pass over the two P2 documentation findings for the fix shape.
-- Reason: all four dimensions have a full iteration; the last pass is the fallback cross-reference analysis the skill requires when the queue is empty.
-- Rotation status: maintainability moves to completed clean; the queue is empty.
-- Carry-forward: R2-P2-001, R2-P2-002 and R4-P2-001 stay active advisories.
-- Required evidence: the four dimension coverages, the two core protocol states, the overlay states, and the stop reason.
+- Dimension: traceability
+- Focus area: close the run's core protocols honestly -- re-read the open P1 evidence, record the terminal traceability status, and prepare the synthesis inputs (registry, terminal gates, verdict)
+- Reason: seven iterations are nearly spent; the last pass belongs to the operator's named focus and to an honest terminal record
+- Rotation status: final pass
+- Blocked/productive carry-forward: productive (symbol-plus-doc reading); blocked directions are the accepted ADR waivers, which are not retried
+- Required evidence: every active finding's file:line re-read once, and the terminal gate rows
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

@@ -1,0 +1,62 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+
+const L = 'specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2';
+const D = 'specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers';
+const ts = readFileSync(`${L}/state-events/iter-006-ts.txt`, 'utf8').trim();
+
+const record = {
+  type: 'iteration',
+  iteration: 6,
+  run: 6,
+  mode: 'review',
+  target_agent: 'deep-review',
+  agent_definition_loaded: true,
+  resolved_route: 'Resolved route: mode=review target_agent=deep-review',
+  status: 'complete',
+  focus: 'traceability',
+  dimensions: ['traceability'],
+  filesReviewed: [
+    `${D}/decision-record.md:412`,
+    `${D}/decision-record.md:508`,
+    `${D}/spec.md:235`,
+    '.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:485',
+    '.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:330',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4806',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:1',
+    `${D}/implementation-summary.md:140`,
+    `${D}/acceptance-criteria.md:49`,
+  ],
+  findingsCount: 0,
+  findingsSummary: { P0: 0, P1: 0, P2: 0 },
+  findingsNew: { P0: 0, P1: 0, P2: 0 },
+  findingDetails: [],
+  traceabilityChecks: {
+    summary: { required: 2, executed: 2, pass: 0, partial: 2, fail: 0, blocked: 0, notApplicable: 0, gatingFailures: 0 },
+    results: [
+      { protocolId: 'spec_code', status: 'partial', gateClass: 'hard', applicable: true, evidence: [`${D}/decision-record.md:412`, `${D}/decision-record.md:508`, '.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:330', '.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:485'], summary: 'REQ-023..REQ-046 mapped and ADR-005 and ADR-006 hold; forty-four of forty-six requirements hold, REQ-012 and REQ-031 do not' },
+      { protocolId: 'checklist_evidence', status: 'partial', gateClass: 'hard', applicable: true, evidence: [`${D}/acceptance-criteria.md:49`, `${D}/acceptance-criteria.md:493`], summary: '46 REQs and 54 AC rows map both ways; 50 Met, 2 Waived, 1 Superseded, 1 Unmet; the failing cells are those recorded in iterations 1 and 3' },
+    ],
+  },
+  newFindingsRatio: 0.0,
+  noveltyJustification: 'No new findings: the second traceability half confirmed both sixth-round decisions and the remaining requirements. The ratio is 0.0 by contract because nothing new was found; the confirmation rests on the probe and map output recorded in the narrative.',
+  sessionId: 'fanout-deepseek-max-2-1795544069299-46zw3s',
+  generation: 6,
+  lineageMode: 'new',
+  timestamp: ts,
+  durationMs: 300000,
+  graphEvents: [
+    { type: 'node', id: 'evidence:adr-005-006-verified', kind: 'EVIDENCE', label: 'ADR-005 and ADR-006 verified against gate, handler and Python copy' },
+    { type: 'node', id: 'dimension:traceability', kind: 'DIMENSION', label: 'traceability' },
+    { type: 'edge', id: 'evidence:adr-005-006-verified->dimension:traceability', source: 'evidence:adr-005-006-verified', target: 'dimension:traceability', relation: 'EVIDENCE_FOR' },
+  ],
+};
+
+writeFileSync(`${L}/state-events/iter-006-record.json`, `${JSON.stringify(record)}\n`);
+const delta = [JSON.stringify(record)];
+delta.push(JSON.stringify({ type: 'classification', detail: 'Second traceability half: ADR-005, ADR-006, REQ-039, REQ-042 to REQ-045 verified; requirement-to-acceptance map complete in both directions.', iteration: 6 }));
+delta.push(JSON.stringify({ type: 'traceability_check', protocolId: 'spec_code', status: 'partial', iteration: 6, evidence: 'decision-record.md:412,508; command-attach.ts:330; deep-loop-offer-cases.vitest.ts:485' }));
+delta.push(JSON.stringify({ type: 'traceability_check', protocolId: 'checklist_evidence', status: 'partial', iteration: 6, evidence: 'acceptance-criteria.md:49; 46 REQs, 54 AC rows, both directions complete' }));
+delta.push(JSON.stringify({ type: 'ruled_out', direction: 'A decision record the code does not implement', reason: 'ADR-005 and ADR-006 each describe what the gate, handler and Python copy do', iteration: 6 }));
+delta.push(JSON.stringify({ type: 'ruled_out', direction: 'A requirement with no acceptance row', reason: 'the requirement-to-row map is complete in both directions', iteration: 6 }));
+writeFileSync(`${L}/deltas/iter-006.jsonl`, `${delta.join('\n')}\n`);
+console.log('built iteration 6', ts);

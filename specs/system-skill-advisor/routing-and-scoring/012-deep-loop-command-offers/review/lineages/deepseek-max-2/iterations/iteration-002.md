@@ -1,24 +1,27 @@
-# Iteration 2 - Traceability: spec_code across REQ-001..REQ-039
+# Review Iteration 002
 
-## Dimension
+## Dispatcher
 
-Traceability, `spec_code` protocol: every requirement in `spec.md` against the code that implements it or the decision record that owns it. The operator focus is the whole of this iteration, so the pass is the focus's first half.
+- Lineage `deepseek-max-2`, iteration 2 of 7, mode `review`, `AUTONOMOUS`.
+- Dimension: **traceability** (`spec_code`), first half. Operator focus carried: the sixth-round requirements (REQ-023 to REQ-034) are re-read where this iteration's range touches them (`spec.md:243` REQ-031 was checked at the gate layer in iteration 1).
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (`spec-folder`).
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:1-357` (all 39 requirements, success criteria, scope table)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33-603` (ADR-001..ADR-007)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:56-105` (the AC table and its evidence cells)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:240-1519`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:440-500`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1-290`
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:532,808,963,998`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4480-5230,5482,5566,6298`
-- `.skilled/commands/deep/assets/deep-research-presentation.txt:1-70`, `deep-review-presentation.txt:1-70`
-- `.skilled/commands/deep/research.md:86`, `.skilled/commands/deep/review.md:81`
-- `.skilled/skills/system-deep-loop/hub-router.json`, `ROUTER.md`, `SKILL.md:20`, `deep-research/SKILL.md`, `deep-review/SKILL.md`
-- `.skilled/changelog/skilled/v4.2.0.0.md:482-484,759`
-- `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:31` to `:146` - problem statement, the decision this packet follows, and the measured-behaviour block (69 probe lines).
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:199` to `:234` - REQ-001 to REQ-022.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:56` to `:87` - AC-001 to AC-030.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` to `:120` - ADR-001 in full (context, decision, five-row replacement check, consequences).
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json` - all 69 rows, read mechanically against `results-spec-baseline.json`.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/probes-spec-baseline.json` - the 69 probe definitions, read for the N9 and D1 prompts.
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` - 247 rows, read mechanically for the near-miss set.
+- `.skilled/commands/deep/assets/deep-review-presentation.txt:13` to `:60` - the offer section and its flag table.
+- `.skilled/commands/deep/assets/deep-research-presentation.txt` and `.skilled/commands/deep/assets/deep-review-presentation.txt` - step 6, the Next Steps tables and the `--extend=N` and `/doctor:deep-loop --scope=` rows.
+- `.skilled/commands/deep/research.md:86` and `.skilled/commands/deep/review.md:81` - step 0 in both command documents.
+- `.skilled/commands/deep/assets/deep-research.yaml:2265` and `.skilled/commands/deep/assets/deep-review.yaml` - the `next_steps` lists.
+- `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` and `deep-review.contract.markdown` - the generated headers, with every recorded source digest recomputed.
+- `.skilled/skills/system-deep-loop/hub-router.json:34`, `.skilled/skills/system-deep-loop/ROUTER.md:63` and `.skilled/skills/system-deep-loop/SKILL.md:20` - the research aliases and the doctor command.
+- `.skilled/changelog/skilled/v4.2.0.0.md:212` and `:474` to `:496` - the brief-options line, the refusal, typed-on-stuck and question rules, and the suite row at `:759`.
 
 ## Findings - New
 
@@ -32,74 +35,64 @@ None.
 
 ### P2 Findings
 
-1. **AC-041's evidence cell cites three lines that do not hold its content** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:98` -- the cell says `implementation-summary.md:232` carries the sixth-round paragraph and that `:258` and `:259` state the typed-on-stuck exception and the word-rule miss, with `:260` recording the served-brief gap. On the tree, line 232 is blank, the sixth-round paragraph opens at 233, limitation 6 sits at 259, limitation 7 at 260 and limitation 8 at 261. The same drift is repeated in `tasks.md:164` (T082), which names `:258`, `:259` and `:260` for the three limitations. The row still reads `Met`, so the closure record asserts an observation this tree cannot reproduce by reading the cited lines.
-Finding class: evidence-pointer
-Scope proof: the three cells were opened line by line on this tree; the target lines were printed and their content compared with the wording of the cell.
-Affected surface hints: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:98`, `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:164`, `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:233-261`
-Case: a reader following AC-041 to check REQ-034 lands on a blank line at `:232` and reads limitation 7's text where the cell promises limitation 6.
-
-```json
-{"type":"claim-adjudication","claim":"AC-041 and T082 cite line numbers that land one line beside the content they describe, and one that is blank.","evidenceRefs":["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:98","specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:232","specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:259"],"counterevidenceSought":"Printed lines 230-236 and 252-262 of implementation-summary.md, searched the file for the sixth-round paragraph and for limitations 6-8, and checked whether a later edit could have been intended as the cited content; no other line holds the described text.","alternativeExplanation":"A blank line at :232 means an earlier edit removed a line above, so the citation was true when written and the drift is a side effect rather than a wrong observation.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"Withdraw if the lines are corrected on this tree, or if the citation convention is declared to tolerate one-line drift."}
-```
+1. **REQ-012 still states the superseded six-row near-miss check, and its only acceptance row is `Superseded`, so a P1 requirement has no live criterion** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:224` -- REQ-012 says "N7, N9, D1, V7, H6 and A3 each appear in `command-prompts.jsonl` as a `near-miss` row, and no new guard is added for them". `command-prompts.jsonl` holds 247 rows and 31 `near-miss` rows, and none of them carries any of those six ids; the near-miss ids are `nm-<skill>-NN`. ADR-001 (`decision-record.md:33`) decided that AC-019 is `Superseded` and that D10's outcome replaces the count check with a five-row id check (N7 as `nm-system-deep-loop-02`, N9 as `-03`, V7 as `-05`, H6 as `nm-sk-code-02`, A3 as `nm-sk-code-03`, D1 as the positive `cmd-doctor-deep-loop-plain-tune-02`). That five-row check holds exactly on the tree: each named row exists, is `row_type: "near-miss"`, and carries the probe prompt it was recorded from. REQ-012 itself was never amended, unlike REQ-011 (amended in text by ADR-007) and REQ-035 (amended by ADR-008), so `spec.md` and `acceptance-criteria.md` disagree about what REQ-012 requires, and its acceptance row is wedged at `Superseded` with no requirement text saying so.
+Case: a reviewer closing the packet walks the P1 table, reaches REQ-012, searches the corpus for the six ids, finds none, then finds AC-019 `Superseded`; the packet has no row that both states what REQ-012 now requires and checks it, so the requirement is either silently unverified or read as failing.
+Finding class: specification-decision-divergence
+Scope proof: the requirement, its acceptance row and ADR-001 are all inside the declared spec-folder target; the corpus is inside the pre-bound scope list; every cited row id was looked up and its prompt compared with the probe definition.
+Affected surface hints: `spec.md` REQ-012; `acceptance-criteria.md` AC-019; `decision-record.md` ADR-001; `command-prompts.jsonl`.
 
 ## Traceability Checks
 
 | Protocol | Status | Evidence |
 |----------|--------|----------|
-| `spec_code` | pass | Every REQ names a producer or a decision; one closure cell cites drifted lines (finding 1) |
+| `spec_code` | partial | REQ-001 to REQ-022 are now mapped to code, probes or decisions. REQ-001 to REQ-011, REQ-013 to REQ-022 hold; REQ-012 does not (finding 1). REQ-023 to REQ-031 were mapped in iteration 1 with REQ-031 failing there; REQ-032 to REQ-046 are not yet mapped. |
+| `checklist_evidence` | partial | AC-001 to AC-030 were opened this iteration as the acceptance side of the same requirements. Their cells are checked in full in the next iteration; this pass only used AC-019 (the `Superseded` row behind finding 1) and the count cells that belong to REQ-006, REQ-021 and REQ-022. |
 
-- REQ-001..REQ-004 -> `asksForLoopRun` and `attachCommand` (`command-attach.ts:993`, `:1387`); the probe block they quote lives in `scratch/probes/results-after.json` (2,366 lines, 69 rows).
-- REQ-005 -> `### Offer From an Advisor Brief` once per presentation file, option A with `:auto` and `--spec-folder=<the Gate 3 answer>` (`deep-research-presentation.txt:58`, `deep-review-presentation.txt:59`), and step 0 in both command documents (`research.md:86`, `review.md:81`).
-- REQ-006 -> fixture holds 285 cases, 11 of them `refusal-verb-`, and the built copy reproduced the sampled readings; the depth-word group is `command-attach-guards.vitest.ts:532-541`.
-- REQ-007 -> `compiled/` carries no `ASK with SINGLE prompt` (0 matches across the directory).
-- REQ-008 -> stage-one loop rule (`explicit.ts:454`) with the subject and refusal gates.
-- REQ-009 -> `--extend=N` 8 times in each presentation file and 6 in each deep YAML; `doctor:deep-loop --scope=` once in each presentation file.
-- REQ-010 -> `communication-handoff.md` named twice per presentation file, `ASK with SINGLE prompt` 0 times, `Autonomous (Recommended)` and `Native (Recommended, default)` once each.
-- REQ-011 -> both hub files carry the two research aliases and neither carries `autonomous research`; `comprehensive research`/`deep investigation` 0 in `deep-research/SKILL.md`, `audit spec folder`/`pre-release review` 0 in `deep-review/SKILL.md`, and `doctor:deep-loop` once in the hub `SKILL.md`.
-- REQ-012 -> 31 `near-miss` rows in `command-prompts.jsonl` (ADR-001 supersedes the count in AC-019).
-- REQ-013 -> the three deep-family holdout rows are the `-04` ids: `cmd-doctor-deep-loop-plain-holdout-04`, `cmd-deep-research-plain-holdout-04`, `cmd-deep-review-plain-holdout-04`.
-- REQ-014 -> N9 is withheld through `isPastRunRead` (`command-attach.ts:717`), reproduced on the built copy.
-- REQ-015..REQ-020 -> refusal, question, spelling, denied-symptom, subject and Python-parity readings (`command-attach.ts:581-1130`, `skill_advisor.py:5482`), sampled on the built copy.
-- REQ-021 -> the packet records drift 0 on 227 prompts (`acceptance-criteria.md:85-86`, `:99`); this lineage independently confirmed the fifteen list pairs agree.
-- REQ-022 -> changelog states the refusal exception (`:482`), the typed-on-stuck head (`:483`) and the refusal verbs (`:484`), and quotes 184 files, 3,188 passed at `:759`; AC-008 reads `Waived` with ADR-003.
-- REQ-023..REQ-031 -> fixture counts and the cited test lines hold: 26 `doctorWithheld` rows, `typed-stuck` at `:123`, guards groups at `:808`, `:963`, `:998`, golden render at `:353`/`:364`, degraded CLI at `:81`, Python typed row at `:5482`, stage-one copy at `:5566`.
-- REQ-032 -> `reduce-state.cjs:1017-1105` keeps a cross-file refinement as its own entry and `refinesSameLocation` guards the fold; the unit test `reduce-state-refinement-other-file.vitest.ts` holds 12 `refines` lines.
-- REQ-033 -> this lineage is the rerun; the terminal gates are computed at synthesis, and the finding list above is what the rerun has so far.
-- REQ-034 -> fixture header names the layer each typed column pins, changelog lines hold, 013 records the degraded-path evidence at `:123`; the AC-041 pointer drift is finding 1.
-- REQ-035..REQ-039 -> plural, question, complaint, degraded-supplied-command and corpus requirements each map to a gate branch or a test, and the fixture keeps 285 cases with the eighth-round rows at `:253-290`.
-- ADR ownership: ADR-001 supersedes AC-019, ADR-002 waives AC-017, ADR-003 waives AC-008, ADR-005 owns the typed-on-stuck exception, ADR-006 owns the bare-loop-name reading and ADR-007 amends REQ-011; each is present in `decision-record.md` at the headings listed above.
+Observed measurements behind the `spec_code` row (read-only, run from probes under the lineage):
+
+- **REQ-001.** `results-after.json` reads `V6 system-deep-loop cmd=/deep:review pol=ask`, `H1a` the same, `H1b` and `E1` `/deep:research pol=ask`, `E3` `/deep:review pol=ask`: five of five gain rows carry the command and policy the requirement states.
+- **REQ-002.** `R7` reads `system-deep-loop cmd=- pol=-`; the thirteen no-gain ids (V3, V8, V5, R2b, R3, R3b, R6, A1, A4, A8, H6, H8, H9) carry no `/deep:*` command in the top row, and `V5` tops `sk-code` with mode `sk-code-review`.
+- **REQ-003.** All seventeen keep rows carry the same command and policy as `results-spec-baseline.json` (`drift=0`).
+- **REQ-004.** All seventeen negative rows carry the same top skill and `cmd=` value as the baseline (`drift=0`).
+- **REQ-006.** Every one of the 69 probe rows reads `freshness: live` with `exit: 0`, which is the rebuilt-`dist` clause; the depth-word `it.each` at `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:538` to `:545` holds one `undefined` case per depth word the problem statement lists (thorough, thoroughly, in depth, exhaustive, deep dive, everything you can, final verdict), and the shared fixture supplies the loop-ask column for both suites (347 cases, parity measured in iteration 1).
+- **REQ-007.** Both compiled contracts record a `sourceDigests` header, and all 31 recorded source digests recompute to the current file contents (`deep-research` 16 sources, `deep-review` 15 sources, `stale=0`), so the contracts are regenerated from the edited sources. The mirror and command-reference gates were not run; see Edge Cases.
+- **REQ-005, REQ-008 to REQ-011, REQ-022.** Each is verified against the file that carries it: the offer section and the flag table (`.skilled/commands/deep/assets/deep-review-presentation.txt:13` to `:60`), both step-0 paragraphs (`.skilled/commands/deep/research.md:86`, `.skilled/commands/deep/review.md:81`), both `next_steps` lists (`.skilled/commands/deep/assets/deep-research.yaml:2268`), the question-tool and recommended-option lines in both presentation files, the absence of the council words from `command-attach.ts` and `explicit.ts`, both research aliases present in `hub-router.json:34` and `ROUTER.md:63` with no `autonomous research` anywhere, the four dropped depth phrases absent from their skill files, and the changelog's refusal, typed-on-stuck and question rules at `.skilled/changelog/skilled/v4.2.0.0.md:482` to `:486` plus the brief-options line at `:212`.
+- **REQ-014.** N9's probe prompt is exactly `summarize the research.md from the last deep research run` and the same row reads `cmd=-`, so the requirement holds on its own row and not on a neighbour's.
+- **REQ-015 to REQ-020.** Every quoted prompt in those six requirements resolves to a shared fixture row with the flag the requirement states: seven of seven for REQ-015, two of two for REQ-016, two of two for REQ-017, one for REQ-018, twelve of twelve for REQ-019, four of four for REQ-020.
+- **REQ-013 and REQ-021.** Both carry measurement claims that this environment cannot reproduce: the holdout rows' authorship, and the 227-prompt predicate comparison. Their acceptance cells say so; see Edge Cases.
 
 ## Integration Evidence
 
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts` reads the shared fixture for the TypeScript gate and `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` reads the same file, which is the parity surface REQ-006 and REQ-021 claim.
-- `.skilled/commands/deep/assets/deep-research-presentation.txt` is the document the AI opens on the advisor's `ask` policy; the offer section it carries is what REQ-005 and REQ-010 point at.
+None recorded. The command documents, the YAML `next_steps` lists and the compiled contracts were read as the integration surface for REQ-005, REQ-007 and REQ-009, and each is named above with the line that was read.
 
 ## Edge Cases
 
-- A historical row that quotes an older count ("Sixth round: ... `cases=203`") is round-scoped and was not counted as stale; only a row that asserts current evidence was judged (implementation-summary:166-167 and :233 are round records, not current claims).
-- The near-miss ids are `nm-*`, not the probe ids N7/N9/D1/V7/H6/A3 that AC-019 names; ADR-001 supersedes that row, so the id mismatch is not a separate finding.
-- The `Met` rows that cite a probe result rather than a file line (AC-001..AC-005, AC-013, AC-021) were read as packet evidence, because this lineage cannot rerun the 69-probe harness without writing outside its surface.
+- **Evidence outside reach, disclosed (REQ-013).** AC-020's own cell says the lane reports are not kept in the packet, so the "separate worker wrote the holdout rows" clause rests on `implementation-summary.md`. The three `-04` holdout rows do exist and the three `-01` rows are gone, which is the part the tree can show. Recorded as a disclosed limitation, not a finding.
+- **Evidence outside reach, disclosed (REQ-021).** The 227-prompt predicate comparison and the full vitest run are recorded in AC-028/AC-042 and were not rerun here; this lineage proves parity on the shared fixture instead (347 cases, both copies) and says so rather than implying the larger number.
+- **Not run, on purpose (REQ-007's gates).** `sync-runtime-mirrors.cjs --check` and `validate-command-references.cjs` were not executed: this lineage may not run repo-wide tooling that could write. The compiled-contract digests were recomputed instead, which proves the regeneration half of the requirement.
+- **Contradiction recorded, not adjudicated (suite counts).** AC-009 and AC-030 say the Python suite prints `cases=285` and AC-028 says `184 files, 3,188 passed`, while the tree's fixture holds 347 cases, the parity test prints `cases=len(cases)`, and AC-048 plus the changelog record `186 files, 3,415 passed`. The requirement text is unaffected, so this is carried to the acceptance pass rather than raised here.
 
 ## Confirmed-Clean Surfaces
 
-- Every `path:line` cell of AC-030..AC-039, AC-042..AC-047 resolves to the line that holds the described content: `command-attach.ts:1483`, `:492`; `skill_advisor.py:5009`, `:888`, `:6298`, `:5482`, `:5566`; fixture `:123`, `:138`; `typed-on-stuck-serving.vitest.ts:107`, `:148`; `advisor-recommend-typed-command.vitest.ts:91`; `command-brief-golden.vitest.ts:353`, `:364`; `subprocess-typed-fields.vitest.ts:88`; `cli-degraded-command-contract.vitest.ts:81`; `doctor-handoff-command.vitest.ts:206`, `:253`; `test_skill_advisor.py:2902`; `deep-loop-offer-cases.vitest.ts:211`; `stage-one-loop-subject.vitest.ts:20`, `:26`.
-- The Verification Summary's box counts hold: 12 P0 items with one open (CHK-020), 13 P1, 1 P2.
-- `spec.md` Scope's sixth-round file table matches the files that carry the changes.
+- `results-after.json` against `results-spec-baseline.json`: keep and negative groups drift 0 over 34 rows, all 69 rows live and exit 0.
+- `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` and `deep-review.contract.markdown`: 31 of 31 recorded source digests match the current sources.
+- `command-prompts.jsonl`: the five near-miss ids ADR-001 names all exist, all are `near-miss` rows, and each carries the probe prompt it was recorded from.
+- Both presentation files and both command documents: the offer section, the three options, the recommended marks and the step-0 pointer are present in each.
 
 ## Ruled Out
 
-- A stale suite count across the closure docs: the sixth, seventh and eighth rounds each quote their own totals, and the changelog quotes the eighth (`3,188`), which is the current tree's row.
-- A missing ADR behind a waiver: the four returned rows (`Waived` AC-008, AC-017; `Superseded` AC-019; and the ADR-005 exception in AC-027) each name an ADR present in `decision-record.md`.
-- A REQ whose producer does not exist: all 39 map to a branch, a test line, an ADR or a packet record.
+- **REQ-007's compiled-contract staleness.** The recorded digests could have lagged the edited command docs; all 31 recompute.
+- **REQ-022's changelog omission.** The changelog could have failed to name the typed-on-stuck exception or the refusal verbs; both rules are stated at `.skilled/changelog/skilled/v4.2.0.0.md:483` and `:484`, and the brief options at `:212`.
+- **REQ-014 resting on a neighbour's probe.** N9's prompt matches the requirement's quoted prompt exactly, so the row is its own evidence.
 
 ## Next Focus
 
-- Dimension: traceability
-- Focus area: `checklist_evidence` - every ticked task in `tasks.md` and every `Met` row in `acceptance-criteria.md` against evidence that exists in the tree
-- Reason: `spec_code` is finished; the second core protocol is the focus's remaining half
-- Rotation status: correctness and `spec_code` covered; `checklist_evidence` next
-- Blocked/productive carry-forward: line-by-line citation opening is PRODUCTIVE and continues
-- Required evidence: a task id, its cited path, and the content found there
-- Recovery note: none
+- Dimension: traceability (`checklist_evidence`).
+- Focus area: every `Met` row from AC-001 to AC-054, with the cited line printed and the claimed content checked; the count cells (AC-009, AC-028, AC-029, AC-030, AC-037) first, because they already disagree with each other.
+- Reason: `checklist_evidence` is the second core protocol, the acceptance table is the closure gate, and iteration 1 already found three anchors that do not hold their evidence.
+- Rotation status: `spec_code` has covered REQ-001 to REQ-031; REQ-032 to REQ-046 move to iteration 6.
+- Blocked/productive carry-forward: productive - resolving a citation to what it actually prints is cheap and catches drift; blocked - the vitest and Python suites cannot be rerun in this lineage, so only file evidence and the committed probe/parity output count.
+- Required evidence: one printed line per cited `path:line`, and the closure statement's own claims against `tasks.md`.
+- Recovery note: if a citation resolves to a line whose content still supports the claim only loosely, record the looseness rather than a finding.
 
 Review verdict: PASS

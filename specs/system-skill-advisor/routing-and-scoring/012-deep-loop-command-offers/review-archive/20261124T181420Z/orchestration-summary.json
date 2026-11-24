@@ -1,0 +1,60 @@
+{
+  "run_id": "1795518961022-7ms9ak",
+  "loop_type": "review",
+  "spec_folder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 2,
+  "failed": 1,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "deepseek-max-1",
+      "status": "failed",
+      "failure_class": "exit",
+      "exit_code": 0,
+      "rerun_command": null,
+      "rerun_note": "archive /Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1 first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers --loop-type review --review-focus-file /Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/fanout-review-focus.txt --review-target-file /Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/fanout-review-target.txt --review-target-type spec-folder --review-scope-file specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/fanout-review-scope.txt --fanout-config-json-file /Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review --convergence-threshold 0.1 --stop-policy max-iterations --convergence-mode default --depth-mode default --max-iterations 7 --only-lineage deepseek-max-1"
+    },
+    {
+      "label": "deepseek-max-2",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "deepseek-max-3",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    }
+  ],
+  "provider_cost_usd": {
+    "total": null,
+    "by_lineage": {
+      "deepseek-max-1": null,
+      "deepseek-max-2": null,
+      "deepseek-max-3": null
+    }
+  }
+}

@@ -1,25 +1,23 @@
-# Review Iteration 004 — deepseek-max-1
-
-**Dimension:** security (D2)
-**Protocol:** behavior execution + code read
-**Focus:** the gate's handling of untrusted prompt text: regex cost on very long inputs, the bounded lead window, and the trust boundary at the degraded brief where a child-supplied command string could reach the reader.
+# Iteration 004 - Traceability (seventh to ninth round: REQ-035 to REQ-046, AC-043 to AC-054)
 
 ## Dispatcher
 
-- Run: `fanout-deepseek-max-1-1795518961022-7ms9ak`, generation 1, label `deepseek-max-1`.
-- Execution: this process; no nested dispatch ran.
-- Config: `maxIterations=7`, `stopPolicy=max-iterations`.
-- Steering channel: `steer.md` is absent at iteration 4.
+- Mode: review, lineage `deepseek-max-1`, generation 1, iteration 4 of 7.
+- Dimension: traceability, fourth slice: the last three rounds - REQ-035 to REQ-046 against the gate and the scorer, AC-043 to AC-054 against their cells, ADR-007 and ADR-008 read as the decisions.
+- Operator review focus: this slice closes the requirement sweep the focus asks for; after it, every REQ-001 to REQ-046 has been read against its producer.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:630-680,1320-1360,1400-1490`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888,5000-5030,5441-5470`
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1485-1520,1560-1600`
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:180-240`
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:996-1010`
-- `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts:150-185`
-- `.skilled/hooks/injection-contract.md:1-60`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:247` to `:258` (REQ-035 to REQ-046), `:285`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:101` to `:111` (AC-044 to AC-054)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:603` (ADR-007), `:702` (ADR-008)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` parsed: `plural-*` rows at `:262` to `:278`, `how-*` rows at `:279` to `:285`, `effort-*` rows at `:286` to `:309`, `no-edit-*` at `:310` to `:312`, `refused-cue-*` at `:313` to `:317`, `-served` rows at `:318` to `:325`, `typed-doctor-*` at `:328`, grammar rows at `:332`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:634` (`hasUnrefusedPronounRerun`), `:649`, `:661`, `:773` (`LOOP_ASK_REFUSED_AFTER`), `:1119`, `:1123`, `:1592`, `:1648` (`routedLoopMode`), `:1673`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454`, `:457`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489`, `:1571`
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2362` (`MIN_BLOCKED_ATTEMPTS`), `:2386`, `:2420`; `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363`
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:80`, `:423`, `:448`, `:483`, `:485`; `tests/scorer/deep-loop-plural-noun.vitest.ts:26`; `tests/scorer/doctor-handoff-command.vitest.ts:206`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json` (`metrics.false_offer` = 0 of 57, `attachedMetrics.false_offer_attached` = 1 of 57, 155 recorded rows, `capturedAtSha a139ac3b248`), `command-prompts.jsonl` (247 rows, 31 `near-miss`)
 
 ## Findings - New
 
@@ -29,69 +27,73 @@ None.
 
 ### P1 Findings
 
-None.
+None. Every behaviour claim in the last three rounds holds on the tree; the one finding is the fixture-span citation in three rows.
 
 ### P2 Findings
 
-1. **A typed `/doctor:deep-loop` after a stuck complaint is withheld as "only mentioned"** -- `command-attach.ts:1401` -- The gate's own comment says a doctor command the reader typed and asked for is the request itself, and the shared fixture header says a bare naming on a stuck run keeps it. Measured: `commandOnlyMentioned("the deep research run is stuck, /doctor:deep-loop", "/doctor:deep-loop")` returns `true`, so `attachCommand` returns `undefined` for that prompt, while the near-identical "the loop stalled. /doctor:deep-loop now" returns `/doctor:deep-loop`.
-   Case: an operator whose research run is stuck writes "the deep research run is stuck, /doctor:deep-loop" and receives the hub with no command, though they typed the diagnosis command they want. The bare command alone, and the same command after "the loop stalled.", both keep it, so the withholding depends on the symptom word used.
-   Finding class: `typed-request-withheld` (false negative; no wrong command is offered and the operator can still type the command).
-   Scope proof: `command-attach.ts` is a `reviewScopeFiles` entry; the three prompts were evaluated against the built `dist` gate and the `commandOnlyMentioned` result was read directly. This finding surfaced during the trust-boundary pass but is a correctness defect, tagged `correctness`.
-   Affected surface hints: `command-attach.ts:1401`, `command-attach.ts:1325` (`commandOnlyMentioned`), fixture doctor rows `:138-156`.
+1. **AC-044, AC-045 and AC-046 cite fixture spans that the ninth round moved** -- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:253` -- AC-044 says the eight plural run rows run "from `plural-deep-reviews-use-verb` to `plural-review-loops` (`:253`)" and the five negatives "from `plural-deep-reviews-stuck` to `plural-deep-reviews-question` (`:261`)". The eight run rows are `:262` to `:269` and the five negative rows are `:270`, `:271`, `:272`, `:277` and `:278` - the range now also contains two past-summary rows and two effort rows that are not plural rows at all. AC-045 cites `:266` and `:271` for the two `how do` / `how can` question rows, which are at `:279` and `:280`, with the run-after-question row at `:284`; AC-046 cites `:273` for the complaint family, which opens at `:286`, and `:286` for the four effort controls, which are at `:299` to `:302`. All three rows' substance holds when the rows are located by id.
+   Finding class: evidence-pointer drift.
+   Scope proof: a parse of the fixture prints each id with its line, and the values match the three criteria (`asksForLoopRun` true on the eight, false on the five, false on the thirteen complaints and true on the four controls).
+   Affected surface hints: `acceptance-criteria.md` AC-044, AC-045, AC-046 cells.
+   Case: a reader slicing `:253` to `:261` for the plural run rows gets ten past-run and effort rows and none of the eight.
 
 ## Traceability Checks
 
 | Protocol | Status | Evidence |
 |---|---|---|
-| `spec_code` | partial (carried) | Iterations 1 and 3 findings stand. |
-| `checklist_evidence` | pass (carried) | Iteration 2 result stands. |
+| `spec_code` (REQ-035 to REQ-046) | pass | Every requirement maps to a producer, a fixture column or a test line, and every substance claim was confirmed against the tree; three AC cells carry a stale fixture span, recorded as R4-P2-001. |
 
-What this iteration actually ran:
+Requirement by requirement:
 
-1. **Regex cost on adversarial inputs through the built native gate.** 96,000-character prompts (one repeated letter; repeated "do not run /deep:review."; repeated refusal clause; repeated "deep review"; repeated "iterations"; a 90,000-character nested loop request) all completed under 17 ms for `asksForLoopRun` + `isStuckRunComplaint` + `attachCommand` together. No catastrophic backtracking observed in the native patterns.
-2. **The same inputs through the Python gate.** Worst case 35 ms for a 96,000-character refusal prompt; 6 ms for a repeated-letter prompt; 3 ms for the 10,000-character case. The Python head cut (`_advisor_prompt_head`) bounds the work as REQ-030 states.
-3. **The bounded lead window.** `LEAD_WINDOW = 400` at `command-attach.ts:641`, used by `endsBefore` with a 16-character context; the window is fixed, so a refusal lead more than 400 characters before a match is out of scope by design rather than by accident.
-4. **The degraded-path trust boundary.** `degradedRecommendations` reads a child-supplied `entry.command` only through `trackedCommandForOwner`, which requires the command to exist in `TRACKED_COMMANDS` and its owner to match the row's skill or the skill's alias (`skill-advisor-cli.ts:1489-1495`). The contract test at `cli-degraded-command-contract.vitest.ts:152` keeps a tracked command and `:178` drops an unknown string and another skill's command. A prompt cannot make the child print an arbitrary command through this path.
-5. **Untrusted-content handling in the hook contract.** `.skilled/hooks/injection-contract.md` treats injected text as data; nothing in the reviewed files takes instruction from prompt content beyond pattern matching.
+- REQ-035: the plural rows read as asks (`plural-*` `:262` to `:269` true, `:270` to `:278` false), `explicit.ts:457` reads `loops?`, and the mode-free row `plural-deep-loops-served` carries `servedRun: null` as ADR-008 amends.
+- REQ-036: `how-do-run-deep-review` and `how-can-research-loop-stop` read false, `how-do-then-run-deep-review` reads true, and `LOOP_QUESTION_AUXILIARIES` is the 22nd compared pair at `deep-loop-offer-cases.vitest.ts:87`.
+- REQ-037: the thirteen complaint rows read false and the four controls read true; `LOOP_EFFORT_WORDS` and `LOOP_EFFORT_LEADS` carry per-entry cases at `:333` and `:338`.
+- REQ-038: `trackedCommandForOwner` at `skill-advisor-cli.ts:1489`, read at `:1571`, and `cli-degraded-command-contract.vitest.ts:152`/`:178` pin both the kept and the dropped case.
+- REQ-039: `metrics.false_offer` is `{count: 0, total: 57}` and `attachedMetrics.false_offer_attached` is `{count: 1, total: 57}` - the one attached row is V7, which T047 records as unchanged. The corpus holds 31 `near-miss` rows over 247 commits of case history.
+- REQ-040: `no-edit-*` rows `:310` to `:312` carry `readOnlyRunKept` `review`, `review`, `research`, and `READ_ONLY_LOOP_MODES` is compared as a pair.
+- REQ-041: `LOOP_ASK_REFUSED_AFTER` at `command-attach.ts:773` gates the cue blanking at `:1119` and `:1673`; the five `refused-cue-*` rows read the asked mode.
+- REQ-042: `routedLoopMode` is defined at `:1648` and read on the routed single-target branch at `:1592`.
+- REQ-043: `hasUnrefusedPronounRerun` at `:634`, read at `:649`, `:661` and `:1123`; the pronoun rows read true and the past-summary rows carry `doctorWithheld: true`.
+- REQ-044: effort-manner rows at `:303` to `:305` read true while the complaint at `:306` reads false; `typed-doctor-comma-joined` at `:328` carries `doctorWithheld: false`.
+- REQ-045: the mode-surface block at `:485` asserts `MODE_CUES`, `MODE_CUE_WORDS` and `HUB_ROUTER.routerSignals` against `SERVED_MODES`, which is `Object.keys(MODE_COMMANDS[DEEP_LOOP_HUB])` at `:483` - the command table is the reference, so all four surfaces are compared. `NAMED_LOOP_MODE` is compared with `_NAMED_LOOP_MODE_RE` at `:423`.
+- REQ-046: `MIN_BLOCKED_ATTEMPTS = 2` at `:2362` with its use at `:2386`, the authored-heading absorption at `:2420`, and `enrichCompiledRoutes` at `advisor-recommend.ts:363` with its duplicate set.
+
+Decisions:
+
+- ADR-007 (`decision-record.md:603`) amends REQ-011 to the two aliases the hub carries; iteration 1 confirmed both are present and `autonomous research` is absent.
+- ADR-008 (`:702`) amends REQ-035 for the mode-free plural; the fixture row above carries the null it describes.
 
 ## Integration Evidence
 
-- Native gate: built `dist/runtime/lib/command-attach.js`, executed directly for timing and predicate reads.
-- Python gate: `skill_advisor.py` imported directly for timing and predicate reads.
-- Degraded brief: `skill-advisor-cli.ts:1489` + `cli-degraded-command-contract.vitest.ts:152,178`.
-- Hook contract: `.skilled/hooks/injection-contract.md`.
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:457` is the scorer surface REQ-035's plural promise rides on; without it the hub lane is never pushed for a plural loop noun even though the gate serves the command.
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363` is the served-head enrichment REQ-046 changes, and its duplicate set is what keeps a derived command from being offered twice.
 
 ## Edge Cases
 
-- **Timing is a measurement on this host, not a proof.** The inputs cover the shapes that would trigger catastrophic backtracking; a different machine could shift absolute numbers, but the bounded windows and precompiled patterns are what rule out quadratic growth, and the shape holds.
-- **The typed-doctor gap is not a security defect.** It is recorded at P2 and tagged correctness, because it withholds an offer rather than exposing anything.
-- **Doctor rows from the doctor skill itself are out of this gate's scope.** "how many passes does /doctor:deep-loop need" surfaces `/doctor:deep-loop` from `command-doctor-deep-loop`, not from `attachCommand`; the gate returns no command for it. Recorded as context, not as a finding against this packet.
+- AC-050's "sweep of 338 prompts" and AC-053's "3,729 generated grammar prompts" have no committed artifact under `scratch/probes/`. They are corroborating prose on a code anchor that does resolve, so they are recorded as unverifiable rather than as findings.
+- AC-039's "3 files, 108 tests passed" and AC-054's "190 files, 3,632 passed" are run claims this read-only review cannot reproduce; the test files they name exist.
+- The baseline stores only totals (57), so AC-012's "0 over the 35 rows that existed before" cannot be re-derived from the committed file; `implementation-summary.md:156` carries it as a recorded observation.
 
 ## Confirmed-Clean Surfaces
 
-- No catastrophic backtracking in either gate copy on 96,000-character adversarial prompts (native ≤ 17 ms, Python ≤ 35 ms).
-- The lead window is fixed and documented, and the Python head is the same 10,000-unit head the native schema accepts.
-- The degraded path cannot print an untracked or foreign command.
-- Injection text is treated as data by the hook contract.
+- AC-043, AC-047, AC-048, AC-049, AC-050, AC-051, AC-052, AC-053, AC-054: their code anchors resolve and their stated behaviour exists in the tree.
+- REQ-035 to REQ-046: no requirement-level gap found. This is the first slice in the run that closes with a single finding.
 
 ## Ruled Out
 
-- **ReDoS on repeated refusal text.** Ruled out: 96k and 10k refusal prompts finish in single-digit milliseconds, and the refusal scan is windowed.
-- **A crafted prompt can smuggle a command through the degraded brief.** Ruled out: `trackedCommandForOwner` gates the string on the tracked table and the row's owner.
-- **The Python gate's head cut diverges from the native schema.** Ruled out: both read the same 10,000-unit head and the long-prompt fixture cases pin the withheld result.
+- "The mode guard covers only the deferred route": `routedLoopMode` is read at `:1592` (the routed single-target branch) and defined at `:1648`.
+- "A mode-free plural ask still serves a command": `plural-deep-loops-served` carries `servedRun: null`, matching ADR-008 and the singular row.
+- "The corpus `false_offer_attached` count regressed": it is 1 of 57, the V7 near-miss row the packet added by design.
+
+## SCOPE VIOLATIONS
+
+None.
 
 ## Next Focus
 
-- **Dimension:** maintainability
-- **Focus area:** the two gate copies' vocabulary lists, the drift guard's coverage, and the readability of the 400-character window and cue logic; plus the docs' description of these mechanisms.
-- **Reason:** security is covered; maintainability is the last canonical dimension the coverage gate needs.
-- **Rotation status:** security complete; maintainability next.
-- **Required evidence:** exported list definitions, guard lines and doc statements at `file:line`.
+- Dimension: correctness
+- Focus: the gate's served behaviour on the prompts the packet names, read through the built module rather than the prose, plus the state machine of the refusals and the typed-over-stuck precedence
+- Reason: traceability is complete across all four slices; correctness is the next configured dimension and it is where a claim can be true in code yet wrong in effect.
+- Rotation status: traceability closes with `spec_code` `pass` on substance and `checklist_evidence` `partial` on the citation layer; correctness starts next.
 
-## Assessment
-
-Dimensions addressed: security
-
-The security surface is clean: bounded windows, precompiled patterns, no observed super-linear cost, and a degraded path that refuses untrusted command strings. One correctness P2 was surfaced and tagged accordingly. No P0.
-
-Review verdict: CONDITIONAL
+Review verdict: PASS

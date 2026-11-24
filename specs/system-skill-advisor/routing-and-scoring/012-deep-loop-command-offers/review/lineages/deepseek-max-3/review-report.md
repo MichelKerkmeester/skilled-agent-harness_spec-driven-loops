@@ -1,256 +1,216 @@
-# Deep Review Report
+# Deep Review Report -- 012-deep-loop-command-offers
 
-**Target:** `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`
-**Mode:** review, spec-folder target, Level 2
-**Run:** `fanout-deepseek-max-3-1795518961022-7ms9ak` (fan-out lineage, generation 5)
-**Iterations:** 7 of 7
-**Stop reason:** `maxIterationsReached`
-**Executor:** cli-pi, deepseek-v4.1-flash-1017
-
----
+- Mode: review
+- Target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder, Level 2)
+- Run: lineage `deepseek-max-3`, generation 1, 7 iterations (cap), stop reason `maxIterationsReached`
+- Executor: cli-pi, deepseek-v4.1-flash-1017
+- Verdict: **FAIL** (four active P1 findings and the required coverage gate failing at the stop)
 
 ## 1. Executive Summary
 
-**Overall verdict: FAIL.** No active P0 or P1 exists, but the terminal `coverage` gate fails with reason `traceability-incomplete`, and the review verdict table makes a required quality gate failing at the stop a FAIL. The registry-only derivation would read CONDITIONAL on the three P2 findings and the one search-debt row; the gate is the release-blocking input, and the dashboard records the same FAIL.
+The review walked every requirement in `spec.md` to its producer, its shared-fixture row, its test or its ADR, then walked every ticked task and every `Met` acceptance row to the line it cites. The code-side behaviour the packet claims is largely present: the explicit loop gate, the stage-one lane, the refusal and stuck-run exceptions, the typed-on-stuck head, the degraded-path hardening, the long-prompt bound and the refinement split all exist and are pinned by tests. What does not hold is the record around the code.
 
-**Ledger note:** the `synthesis_complete` row records the value the workflow's registry-only derivation produced (CONDITIONAL). The terminal gate row and the reducer dashboard record FAIL. The fan-out merge reads the gate and the active counts, so FAIL is the release verdict; the registry-only value is kept visible rather than overwritten.
+- **Overall verdict:** FAIL
+- **hasAdvisories:** false
+- **Active findings the verdict used:** P0 = 0, P1 = 4, P2 = 8
+- **Self-check outcomes:** the adversarial pass re-read all four active P1 findings against the tree and confirmed each; no severity change and no false positive was called, so the counts the verdict used are the counts the registry carries.
+- **Required gates at the stop:** evidence `pass`, scope `pass`, coverage `fail` (`traceability-incomplete`). `spec_code` and `checklist_evidence` both end `partial`, because the contradicted text and the contradicting code are both still in the tree.
+- **Review scope:** 51 files from `review-scope-files.txt` plus the packet's own docs; 7 iterations across traceability (1-3, 7), correctness (4), security (5) and maintainability (6).
+- **Operator review focus:** Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
 
-**Required quality gates at the terminal stop:** `evidence` pass, `scope` pass, **`coverage` fail** with reason `traceability-incomplete`. The coverage gate fails because the `checklist_evidence` core protocol is `partial` on a hard gate: thirteen `Met` acceptance rows cite the row above the evidence they name, and one more row's sentence about `review/` no longer describes the tree. The fan-out merge escalates any lineage whose required gate is still failing at its stop to a merged FAIL; this lineage reports the failure rather than hiding it.
-
-**Counts the verdict used:** P0 = 0, P1 = 0, P2 = 3. Search debt = 1 deferred test-execution row.
-
-**Self-check outcomes:** no active P0 or P1 existed, so the adversarial self-check had nothing to adjudicate; no finding was confirmed, downgraded or called a false positive.
-
-**Review scope:** 46 pre-bound scope files (the advisor gate copies, shared fixture, guard and serving tests, command assets, deep-loop runtime reducer and its tests, and packet 013 docs), plus the packet docs required for traceability. All 39 REQs, all 47 acceptance rows and all 93 task rows were read. The two core protocols were exercised; `spec_code` reads `pass`, `checklist_evidence` reads `partial`.
-
-**Operator review focus:** Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
-
----
+Why FAIL and not CONDITIONAL: the verdict rule turns any required quality gate still failing at the terminal stop into FAIL. The coverage gate fails because the two core traceability protocols cannot pass while the findings below stand. This reproduces the same gate failure the third rerun recorded (AC-040), now with a different finding set.
 
 ## 2. Planning Trigger
 
-`/speckit:plan` **is required**. The packet is not closeable: AC-040 is `Unmet`, the coverage gate fails on the evidence-cell drift, and one code advisory needs a fixture and a two-copy fix.
+`/speckit:plan` is required. The findings are documentation, contract and test-oracle fixes; none requires a code change to the gate's shipped behaviour except the mode-free fallback decision in R3-P1-001.
 
 ```json
 {
   "triggered": true,
   "verdict": "FAIL",
   "hasAdvisories": false,
-  "requiredGateFailure": ["coverage"],
-  "activeFindings": ["R2-P2-001", "R2-P2-002", "R4-P2-001"],
+  "activeFindings": [
+    {"id": "R1-P1-001", "severity": "P1", "findingClass": "spec-drift", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:243"},
+    {"id": "R1-P1-002", "severity": "P1", "findingClass": "stale-evidence", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:84"},
+    {"id": "R1-P1-003", "severity": "P1", "findingClass": "stale-evidence", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:93"},
+    {"id": "R3-P1-001", "severity": "P1", "findingClass": "spec-drift", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:732"},
+    {"id": "R2-P1-001", "severity": "P2", "findingClass": "stale-evidence", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:141"},
+    {"id": "R1-P2-001", "severity": "P2", "findingClass": "stale-evidence", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:88"},
+    {"id": "R1-P2-002", "severity": "P2", "findingClass": "stale-evidence", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:87"},
+    {"id": "R2-P2-001", "severity": "P2", "findingClass": "stale-evidence", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:86"},
+    {"id": "R3-P2-001", "severity": "P2", "findingClass": "spec-drift", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:181"},
+    {"id": "R4-P2-001", "severity": "P2", "findingClass": "test-oracle", "file": ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2902"},
+    {"id": "R6-P2-001", "severity": "P2", "findingClass": "maintainability-gap", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:243"},
+    {"id": "R6-P2-002", "severity": "P2", "findingClass": "maintainability-gap", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:184"}
+  ],
   "remediationWorkstreams": [
-    {
-      "id": "WS-1",
-      "severity": "P2",
-      "title": "Repoint the acceptance evidence cells",
-      "findings": ["R2-P2-001", "R2-P2-002"],
-      "surface": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-    },
-    {
-      "id": "WS-2",
-      "severity": "P2",
-      "title": "Read the effort word in a complaint shape, not after any loop name",
-      "findings": ["R4-P2-001"],
-      "surface": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts, runtime/scripts/skill_advisor.py, tests/fixtures/deep-loop-offer-cases.json"
-    }
+    {"order": 1, "id": "WS-1", "findingIds": ["R1-P1-001", "R6-P2-001"], "action": "Restate REQ-031 and AC-038 against the built guard (22 compared pairs, 12 per-entry lists, 16 refusal leads) and add a check that reads the counts, so the next round cannot drift silently."},
+    {"order": 2, "id": "WS-2", "findingIds": ["R1-P1-002", "R1-P2-001", "R1-P2-002", "R2-P2-001"], "action": "Refresh every closure count that claims the final tree: fixture cases 347, suite 186 files/3,415 passed, refusal-verb rows 12, doctorWithheld rows 47, changelog suite row 186/3,415."},
+    {"order": 3, "id": "WS-3", "findingIds": ["R1-P1-003", "R2-P1-001", "R6-P2-002"], "action": "Re-point every stale evidence cell to the symbol's current line (or cite the symbol name beside the line) across AC-033 to AC-038 and T066/T067/T074/T076/T081/T087/T092/T101."},
+    {"order": 4, "id": "WS-4", "findingIds": ["R3-P1-001", "R4-P2-001"], "action": "Decide the mode-free plural ask on the fallback: either drop both run rows or amend REQ-035/ADR-008 to state that the fallback keeps both ask-policy rows, then give `servedRun` an encoding that can tell none from both."},
+    {"order": 5, "id": "WS-5", "findingIds": ["R3-P2-001"], "action": "Extend the Files to Change table to the eighth and ninth rounds, naming the enrichment handler and the three new test files."}
   ],
   "specSeed": [
-    "AC-001 to AC-017, AC-021, AC-028 and AC-041 cite implementation-summary.md rows one line early; repoint them and keep AC-040's review/ sentence true.",
-    "A request that puts an effort word after the loop name (\"run a deep review longer than the last one\") is withheld; define the manner-vs-complaint rule explicitly."
+    "Restate REQ-031's counts from the built guard and add the per-entry list table as data, not prose.",
+    "Amend REQ-035 or ADR-008 so the mode-free plural ask names the result on each served head.",
+    "Extend the Files to Change table through the ninth round."
   ],
   "planSeed": [
-    "Repoint every drifted evidence cell in acceptance-criteria.md and re-read each row on the cited line.",
-    "Add fixture cases for a post-name effort manner and its control, then align both gate copies.",
-    "Rerun the traceability review so checklist_evidence can read pass and the coverage gate can pass."
+    "Fix the closure counts first; they are the rows AC-028, AC-030, AC-037, AC-041 and AC-042 depend on.",
+    "Re-point the citation cells and add a token-at-line check to the closure validation.",
+    "Resolve the fallback decision, then rerun `/deep:review` on this packet to close AC-040."
   ],
-  "findingClasses": ["instance-only", "class-of-bug"],
+  "findingClasses": ["spec-drift", "stale-evidence", "test-oracle", "maintainability-gap"],
   "affectedSurfacesSeed": [
-    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+    "spec.md REQ-031, REQ-035, §3 Files to Change",
+    "decision-record.md ADR-008",
+    "acceptance-criteria.md AC-028 to AC-042",
+    "tasks.md T066 to T101 and the Verification Summary",
+    "implementation-summary.md per-round rows",
+    ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
     ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
   ],
   "fixCompletenessRequired": true
 }
 ```
 
----
-
 ## 3. Active Finding Registry
 
-### R2-P2-001 -- Acceptance evidence cells point one row above the closure-pass and limitation rows they cite
+| ID | Severity | Title | Dimension | File:line | Finding class | Disposition |
+|----|----------|-------|-----------|-----------|---------------|-------------|
+| R1-P1-001 | P1 | REQ-031 states a guard scope the tree does not hold, and AC-038 repeats it | traceability | `spec.md:243` | spec-drift | active |
+| R1-P1-002 | P1 | Closure records promise a fixture of 285 cases while the shared fixture holds 347 | traceability | `acceptance-criteria.md:84` | stale-evidence | active |
+| R1-P1-003 | P1 | Several Met evidence cells cite a line that holds unrelated code | traceability | `acceptance-criteria.md:93` | stale-evidence | active |
+| R3-P1-001 | P1 | ADR-008 records the mode-free plural ask as no command, but the Python fallback keeps both run commands | traceability | `decision-record.md:732` | spec-drift | active |
+| R2-P1-001 | P2 | A sixth-round task evidence cell points at a line the later rounds shifted (folded refinement of R1-P1-003; the reducer replaced the target wording with this refinement's) | traceability | `tasks.md:141` | stale-evidence | active |
+| R1-P2-001 | P2 | AC-031's doctorWithheld row count is stale (26 stated, 47 in the fixture) | traceability | `acceptance-criteria.md:88` | stale-evidence | active |
+| R1-P2-002 | P2 | AC-030's refusal-row count is stale (11 stated, 12 in the fixture) | traceability | `acceptance-criteria.md:87` | stale-evidence | active |
+| R2-P2-001 | P2 | AC-029 records a suite count the changelog no longer carries (184/3,188 vs 186/3,415) | traceability | `acceptance-criteria.md:86` | stale-evidence | active |
+| R3-P2-001 | P2 | The declared change set in spec.md stops at the sixth round | traceability | `spec.md:181` | spec-drift | active |
+| R4-P2-001 | P2 | `servedRun: null` cannot tell no-mode from both-modes, so the Python suite cannot catch a drop-to-zero regression | correctness | `tests/python/test_skill_advisor.py:2902` | test-oracle | active |
+| R6-P2-001 | P2 | Nothing fails when REQ-031's documented counts drift from the guard | maintainability | `spec.md:243` | maintainability-gap | active |
+| R6-P2-002 | P2 | Closure evidence is cited by line number, so every insertion above a cited symbol invalidates a cell | maintainability | `tasks.md:184` | maintainability-gap | active |
 
-- **Severity:** P2
-- **Dimension:** traceability
-- **File:line:** `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58`
-- **Evidence:** AC-001 to AC-005, AC-010, AC-013, AC-016 and AC-021 cite `implementation-summary.md:153` (the fourth-round corpus row) instead of `:154` (the closure-pass probe row); AC-011 cites `:154` instead of `:155`; AC-012 cites `:155` instead of `:156`; AC-017 cites `:156` instead of `:157`; AC-028 cites `:177` to `:178` and misses the probe row at `:180`; AC-041 cites `:232`, `:230`, `:258`, `:259` and `:260` for the paragraph at `:233`, the reversed line at `:231`, limitations 6 and 7 at `:259` and `:260`, and limitation 8 at `:261`.
-- **Impact:** a reader following a `Met` row lands on the neighbouring observation; the checklist-evidence protocol cannot pass while its pointers are wrong, which is what fails the coverage gate.
-- **Fix recommendation:** repoint the cells to the named rows, preferably by row label rather than a bare line number, and re-read each on the cited line.
-- **Disposition:** active
-- **Finding class:** instance-only
-- **Scope proof:** every pointer is in the acceptance table; each cited line was opened at the stated number.
-- **Affected surface hints:** `acceptance-criteria.md`; the row labels in `implementation-summary.md` are the durable anchors.
-
-### R2-P2-002 -- AC-040 says `review/` still holds the pre-fix report, but the report is archived
-
-- **Severity:** P2
-- **Dimension:** traceability
-- **File:line:** `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:135`
-- **Evidence:** `review/` holds no `review-report.md`; the prior reports are at `review-archive/20261124T090549Z/review-report.md`, `review-archive/20261124T095434Z/review-report.md` and `review-archive/20261124T111600Z/review-report.md`.
-- **Impact:** the row's `Unmet` status is still correct, but its sentence about where the report lives misleads a reader.
-- **Fix recommendation:** send the row to `review-archive/20261124T111600Z/review-report.md`, or state that the root report is archived before a rerun.
-- **Disposition:** active
-- **Finding class:** instance-only
-- **Scope proof:** `ls` of `review/` and a `find` for `review-report*.md` returned the three archive paths and no root report.
-- **Affected surface hints:** `acceptance-criteria.md` AC-040; `review-archive/20261124T111600Z/review-report.md`.
-
-### R4-P2-001 -- An effort word after the loop name withholds the command even when it is a manner on the request
-
-- **Severity:** P2
-- **Dimension:** correctness
-- **File:line:** `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:931`
-- **Evidence:** `LOOP_EFFORT_AFTER` leaves every group before the effort word optional, so it matches `" longer"` after any loop name; `_LOOP_EFFORT_AFTER_RE` at `skill_advisor.py:4781` has the same shape, read at `:5097`. The fixture pins the complaint (`deep-loop-offer-cases.json:276`) and three manner controls before the name, but no post-name manner.
-- **Impact:** "run a deep review longer than the last one on the parser" gets no `/deep:review`; the prompt asks for a run and receives nothing.
-- **Fix recommendation:** require a complaint shape (a subject or verb before the effort word) before treating it as a complaint, add a post-name manner fixture and its control, and mirror it in Python.
-- **Disposition:** active
-- **Finding class:** class-of-bug
-- **Scope proof:** the pattern is at `command-attach.ts:931` to `:938`, read at `:968`; the Python copy is at `skill_advisor.py:4781` to `:4789`, read at `:5097`.
-- **Affected surface hints:** `command-attach.ts`, `skill_advisor.py`, `deep-loop-offer-cases.json`, `command-attach-guards.vitest.ts`.
-
----
+Supporting detail, fix guidance and the typed claim-adjudication packets for the four P1 findings are in `iterations/iteration-001.md`, `iterations/iteration-002.md` and `iterations/iteration-003.md`. The registry entry for R2-P1-001 carries the refinement's wording because a same-file refinement replaces its target's wording by design (`reduce-state.cjs:1069-1087`); the original P1 text and the refined cell are both recorded in iteration 2.
 
 ## 4. Remediation Workstreams
 
-### P0 -- none
+### P0
 
-### P1 -- none
+None.
+
+### P1
+
+1. **WS-1 -- REQ-031's guard scope.** Restate the counts from `VOCABULARY_PAIRS` (22), the per-entry blocks (12) and `RUN_ASK_REFUSAL_LEADS` (16), and either generate the sentences or add an assertion so the requirement cannot drift again. Touches `spec.md:243`, `acceptance-criteria.md:95`.
+2. **WS-2 -- Closure counts.** Replace 285 with 347 for the fixture, 184/3,188 with 186/3,415 for the suite, 11 with 12 refusal rows, 26 with 47 `doctorWithheld` rows, and align AC-029 with the changelog row at `.skilled/changelog/skilled/v4.2.0.0.md:759`. Touches `acceptance-criteria.md:84-88`, `tasks.md:140` and `:184`, `implementation-summary.md:177-181`.
+3. **WS-3 -- Evidence cells.** Re-point AC-033 `:1483` -> `command-attach.ts:1682`/`:1102`, AC-034 `:5566` -> `skill_advisor.py:5820`, AC-036 `:5482` -> `:5745` and `typed-on-stuck-serving.vitest.ts:112`, AC-037 `:641` -> `:748` and `:5009` -> `:5181` and `:6298` -> `:6561`, AC-038 `:68`/`:83`/`:90`/`:303`/`:313` -> `:80`/`:83`/`:109`/`:448`/`:313`, and the same offsets in T066/T067/T074/T076/T081/T087/T092/T101.
+4. **WS-4 -- Mode-free fallback.** Choose one of: drop both run rows in `_apply_deep_loop_offer_gate` when `asked_mode is None`, or amend REQ-035/ADR-008 to say the fallback keeps both ask-policy rows. Then split `servedRun` into a value that distinguishes "none" from "both" so the guard can test it.
 
 ### P2 advisories
 
-**WS-1 -- Repoint the acceptance evidence cells (R2-P2-001, R2-P2-002).**
-1. Open `implementation-summary.md` and record the row label for each cited observation: closure probe, advisor suite, corpus, alias replay, sixth-round paragraph, reversed stuck-drop line, limitations 6, 7 and 8.
-2. Repoint AC-001 to AC-005, AC-010, AC-013, AC-016, AC-021, AC-011, AC-012, AC-017, AC-028 and AC-041 to those rows.
-3. Rewrite AC-040's sentence to name `review-archive/20261124T111600Z/review-report.md` (or the current archive) instead of `review/`.
-4. Re-read every changed cell on its cited line before closing the workstream.
-
-**WS-2 -- Read the effort word in a complaint shape (R4-P2-001).**
-1. Add a fixture row for "run a deep review longer than the last one on the parser" (`asksForLoopRun: true`) and a control that keeps the complaint at `:276`.
-2. Require the complaint's subject or verb before `LOOP_EFFORT_WORDS` matches, in `command-attach.ts` and `_LOOP_EFFORT_AFTER_RE`.
-3. Run the two gate files and the Python suite; the shared fixture must agree on both sides.
-
----
+- R1-P2-001, R1-P2-002, R2-P2-001: stale supporting counts, fixed by WS-2.
+- R2-P1-001 (folded): the citation cell is fixed by WS-3.
+- R3-P2-001: extend the change-set table.
+- R4-P2-001: the oracle encoding, fixed with WS-4.
+- R6-P2-001, R6-P2-002: the two maintenance mechanisms; the assertions named in WS-1 and WS-3 close them.
 
 ## 5. Spec Seed
 
-- State that a `Met` row's evidence must open on the observation it names, and that a bare line number is a weak anchor after a table grows.
-- State the effort rule as a shape: a subject or verb plus an effort word is a complaint; an effort word as the manner of a requested run keeps the command.
-- Keep AC-040's statement about the prior report accurate for the archive layout a rerun leaves behind.
-
----
+- REQ-031 should read: "The guard compares 22 vocabulary pairs and two numeric constants; 12 lists carry a per-entry case, and 10 do not, for the reasons named." Drop the hard-coded count prose in favour of either a generated sentence or a stated invariant.
+- REQ-035 should name the served result on both heads for the mode-free plural ask, or state that only the native head offers no command.
+- §3 should gain "Added by the eighth and ninth rounds (REQ-035 to REQ-046)" with `handlers/advisor-recommend.ts`, `tests/scorer/deep-loop-plural-noun.vitest.ts`, `tests/handlers/advisor-recommend-duplicate-command.vitest.ts` and `runtime/tests/unit/deep-review-strategy-heading.vitest.ts`.
+- The closure statement should stop saying "nothing else in the packet blocks closure" while a `Met` row rests on stale evidence; either fix the rows or mark the dependent criteria `Unmet`.
 
 ## 6. Plan Seed
 
-- [ ] Repoint the thirteen acceptance cells named in R2-P2-001 and the AC-040 sentence in R2-P2-002.
-- [ ] Add the post-name effort fixture and its complaint control, then fix both gate copies.
-- [ ] Rerun the fixture, the guard file and the Python suite.
-- [ ] Rerun `/deep:review` on this packet with traceability as its focus so `checklist_evidence` can pass and AC-040 can close.
-
----
+1. Correct the four categories of closure evidence in one pass (counts, cells, change set, AC-029), because they share the same review round.
+2. Add two checks: a doc-count assertion for REQ-031 and a token-at-line check for every `acceptance-criteria.md` and `tasks.md` cell.
+3. Resolve WS-4 on the fallback and pin both served heads with a row that distinguishes none from both.
+4. Rerun `/deep:review` with traceability as the focus so AC-040 and T084 can close.
 
 ## 7. Traceability Status
 
 ### Core Protocols
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | All 39 REQs map to a producer, a decision or a captured run. REQ-001 to REQ-005 to `results-after.json`; REQ-006 to REQ-008 to the fixture and the guard file; REQ-009 to REQ-012 to the YAML, the presentations and the corpus; REQ-013 to REQ-022 to the hook capture and the fixture; REQ-023 to REQ-030 to both gate copies and the degraded path; REQ-031 to REQ-039 to the drift guard, the reducer, the corpus and the closure docs. |
-| `checklist_evidence` | partial | 47 rows: 43 `Met`, 2 `Waived`, 1 `Superseded`, 1 `Unmet` (AC-040). Thirteen `Met` cells and AC-041's limitation block point one row early; AC-040's `review/` sentence is stale. The two `Waived` rows name ADR-002 and ADR-003; the `Superseded` row names ADR-001; all three exist. |
+| Protocol | Status | Evidence | Unresolved drift |
+|----------|--------|----------|------------------|
+| `spec_code` | partial | `spec.md:243`, `spec.md:247`, `decision-record.md:732` | REQ-031's counts; REQ-035's mode-free served answer |
+| `checklist_evidence` | partial | `acceptance-criteria.md:84`, `:93`, `tasks.md:184` | Nine stale cells; four stale counts |
+
+Every other REQ (REQ-001 to REQ-030 and REQ-036 to REQ-046) resolves to a producer line, a fixture row, a test or an ADR, and those resolutions are recorded in the iteration narratives.
 
 ### Overlay Protocols
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `skill_agent` | pass | `.skilled/agents/deep-review.md:37` and `deep-review/SKILL.md:19` agree on 0.10; both state P0/P1/P2, LEAF-only and the same writable packet paths. |
-| `agent_cross_runtime` | pass | The Claude mirror body differs only in the path convention and two related-agent paths; the OpenCode copy is byte-identical to the canonical agent. |
-| `feature_catalog_code` | notApplicable | The catalog makes no advisor-gate claim; its `--depth-mode` and `--extend` claims match the command docs. |
-| `playbook_capability` | notApplicable | The deep-review manual-testing playbook has no offer-gate scenario. |
+| Protocol | Status | Note |
+|----------|--------|------|
+| `skill_agent` | notApplicable | The packet edits skill docs but the reviewed claims are code and closure records, not a SKILL.md-to-agent contract. |
+| `agent_cross_runtime` | notApplicable | No runtime mirror carried a changed claim in this run's evidence. |
+| `feature_catalog_code` | notApplicable | No catalog entry names the deep-loop offer. |
+| `playbook_capability` | notApplicable | No playbook precondition is in scope. |
 
-### AC_COVERAGE
-
-Status: **advisory-shortfall**. 46 of 47 rows resolve (43 `Met` + 2 `Waived` + 1 `Superseded`); AC-040 stays `Unmet` because this review cannot write the packet's root report and the two evidence drifts keep `checklist_evidence` partial. The row is the closure gate, so the packet remains uncloseable.
-
----
+**AC_COVERAGE:** `advisory-shortfall` -- 53 of 54 criteria are `Met`, `Waived` or `Superseded`; AC-040 is `Unmet`, which is this run's own gate. The signal is advisory while the validation rule stays INFO.
 
 ## 8. Deferred Items
 
-- **Search debt:** one deferred row, `SL-003`, bug class `test_execution`. The advisor vitest, Python and probe suites were not re-executed in this lineage because those runs write build and cache output outside the lineage write surface; the tests and their assertions were read instead. This debt is why the registry-derived verdict is CONDITIONAL rather than PASS. The next `/deep:review` over this packet, run where the suites may execute, should clear it.
-- **Frontier:** the registry carries no `frontier` object, so there is no follow-up node to list.
-- **Advisories:** R2-P2-001, R2-P2-002 and R4-P2-001 above are advisory-only for the release verdict; they do not raise an active P0 or P1.
+- The registry carries no `frontier` object (default depth), so no frontier follow-up nodes are listed.
+- The accepted waivers (AC-008/ADR-003, AC-017/ADR-002, AC-019/ADR-001) are traced, not re-opened; they do not block this verdict.
+- The `deferred` search-debt list is empty; no bug class was deferred or blocked in this run.
 
----
+### Dimension Expansion Map
 
-## Dimension Expansion Map
-
-Reducer-owned divergence: no completed pivot, no failed pivot, no audited override, no saturated direction, no remaining frontier and no current pivot focus. The run took the fixed dimension order plus the cross-reference fallback; no Council artifact was produced and no direction was overridden.
-
----
+- Completed pivots: 0. Failed pivots: 0. Audited overrides: 0.
+- Saturated directions: none recorded. Divergence mode is `default`; the frontier store is empty.
+- Remaining frontier: none.
 
 ## 9. Search Ledger
 
-- **`searchCoverage`:** required bug classes were `spec_code_drift`, `checklist_evidence_drift`, `test_execution`, plus the correctness and security classes raised later. `spec_code_drift`, `checklist_evidence_drift`, `effort_manner_false_negative`, `command_injection`, `prompt_dos`, `secret_exposure`, `comment_hygiene`, `mirror_drift`, `catalog_drift`, `playbook_gap`, `status_contradiction`, `waiver_backing` and `count_drift` are covered or ruled out. `test_execution` is deferred. `graphCoverageMode` is `graph`.
-- **`candidateCoverage`:** covered `checklist_evidence_drift`, `effort_manner_false_negative` and `spec_code_drift`; 12 classes ruled out; 1 deferred.
-- **`searchDebt`:** one row, `SL-003`, deferred, `test_execution`. `hasSearchDebt: true`. The release verdict is already FAIL on the coverage gate; the debt is the reason a registry-only derivation would still read CONDITIONAL rather than PASS.
-- **`ruledOutCandidates` / `cleanSearchProof`:** 17 ledger rows, each with evidence refs at `command-attach.ts`, `skill_advisor.py`, the fixture, the corpus or the packet docs. The clean-search rows are the first-pass traceability and security probes; they cite the producer or test that closes each class.
-- **Unresolved:** none beyond the deferred row.
-
----
+- `searchCoverage`: required bug classes `spec_drift`, `stale_evidence`, `mode_parity`; all three covered. `graphCoverageMode`: `graphless_fallback`.
+- `candidateCoverage`: 11 bug classes covered across the run (`spec_drift`, `stale_evidence`, `missing_implementation`, `mode_parity`, `branch_order`, `test_oracle`, `command_injection`, `untrusted_render`, `policy_escalation`, `doc_code_drift`, `unguarded_duplication`); six ruled out with a cited reason; none deferred or blocked.
+- `searchDebt`: empty. `hasSearchDebt`: false.
+- `ruledOutCandidates`: 10 rows (SL-004, SL-005, SL-008, SL-012, SL-014, SL-015, SL-016, SL-017, SL-020), each with a `proof` string.
+- `cleanSearchProof`: the same 10 rows, each naming the read that eliminated the candidate.
 
 ## 10. Audit Appendix
 
-### Convergence Summary
+### Convergence
 
-- Iterations: 7 of 7; stop reason `maxIterationsReached`.
-- Dimension order: traceability (1-3), correctness (4), security (5), maintainability and overlays (6), cross-reference fallback (7).
-- New findings by iteration: 0, 2, 0, 1, 0, 0, 0.
-- No iteration failed or timed out; no stuck recovery, pause or manual stop.
+| Iteration | Dimension | newFindingsRatio | New findings | Active totals after |
+|-----------|-----------|------------------|--------------|---------------------|
+| 1 | traceability | 1.00 | 3 P1, 2 P2 | 0 / 3 / 2 |
+| 2 | traceability | 0.15 | 1 P1, 1 P2 | 0 / 4 / 3 |
+| 3 | traceability | 0.22 | 1 P1, 2 P2 | 0 / 4 / 5 |
+| 4 | correctness | 0.03 | 1 P2 | 0 / 4 / 6 |
+| 5 | security | 0.00 | none | 0 / 4 / 6 |
+| 6 | maintainability | 0.06 | 2 P2 | 0 / 4 / 8 |
+| 7 | traceability | 0.00 | none (re-read) | 0 / 4 / 8 |
 
-### Coverage Summary
+Stop reason: `maxIterationsReached` (cap 7, stop policy `max-iterations`). Terminal gates: evidence pass, scope pass, coverage fail.
 
-| Dimension | Iterations | Verdict |
-|-----------|------------|---------|
-| traceability | 1, 2, 3, 7 | PASS with two P2 advisories |
-| correctness | 4 | PASS with one P2 advisory |
-| security | 5 | PASS, no finding |
-| maintainability | 6 | PASS, no finding |
+### Coverage
 
-Evidence density: all three active findings carry a `file:line`; the evidence gate passes. Scope: all three findings sit inside the review target; the scope gate passes. Coverage: four of four dimensions covered, but the `checklist_evidence` core protocol is partial on a hard gate, so the coverage gate fails.
+- Dimensions: correctness, security, traceability, maintainability -- 4 of 4 covered.
+- Files: 51 scope files plus the packet docs; every finding names a scope file or a packet doc.
+- Iteration artifacts: `iterations/iteration-001.md` to `iteration-007.md`; deltas `deltas/iter-001.jsonl` to `iter-007.jsonl`.
 
-State-integrity note: the reducer's dimension table records all three P2 findings under `correctness` because the delta finding-row schema does not carry a dimension field. The iteration artifacts and this report record R2-P2-001 and R2-P2-002 under `traceability` and R4-P2-001 under `correctness`. The counts agree (3 active P2, 0 resolved); only the reducer's dimension attribution differs, and it changes no verdict input.
+### Ruled-out claims
 
-### Ruled-Out Claims
+See Search Ledger; the six implementation candidates (refusal vocabulary, typed-on-stuck decision, probe artifacts, ADR-006 verb rule, branch order, vocabulary duplication) and the three security candidates (command injection, untrusted render, policy escalation) were eliminated by direct reads, not by absence of evidence.
 
-- The served typed-on-stuck column exists only in TypeScript -- false; Python reads it.
-- REQ-031's Python vocabulary has no named copy -- false; all fifteen tuples exist.
-- REQ-025 changed `typedCommandIn` for other callers -- false; it still keeps the longest key.
-- The bounded window is native-only -- false; Python reads the same 400.
-- Keep or negative probe groups moved -- false; 0 changes against the baseline over 34 rows.
-- A child-supplied command can reach the brief -- false; the tracked table gates it.
-- A changed code comment carries an ephemeral label -- false; only the policy string matches.
-- The packet claims closure while AC-040 is open -- false; all four status surfaces keep it open.
-- A waived row names a missing ADR -- false; ADR-001, ADR-002 and ADR-003 exist.
+### Sources reviewed
 
-### Sources Reviewed
+- Packet docs: `spec.md`, `acceptance-criteria.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, `plan.md`, `timeline.md`.
+- Scope code: `command-attach.ts`, `skill_advisor.py`, `explicit.ts`, `fusion.ts`, `subprocess.ts`, `skill-advisor-cli.ts`, `render.ts`, `prompt-policy.ts`, `advisor-recommend.ts`, `reduce-state.cjs`, the shared fixture and the named tests.
+- Companion packet 013's implementation summary for the degraded-path evidence.
 
-- Packet docs: `spec.md`, `acceptance-criteria.md`, `decision-record.md`, `tasks.md`, `implementation-summary.md`, `plan.md`.
-- Captured evidence: `scratch/probes/results-after.json`, `results-spec-baseline.json`, `fresh-review-hook.txt`, `scratch/behaviour/F6-sample-1.md`, `command-prompts.jsonl`, `command-routing-baseline.json`.
-- Advisor code: `command-attach.ts`, `skill_advisor.py`, `skill-advisor-cli.ts`, `subprocess.ts`, `render.ts`, `fusion.ts`, `explicit.ts`, `advisor-recommend.ts`, `advisor-tool-schemas.ts`, the hook fallback.
-- Tests: `deep-loop-offer-cases.vitest.ts`, `command-attach-guards.vitest.ts`, `typed-on-stuck-serving.vitest.ts`, `cli-degraded-command-contract.vitest.ts`, `command-brief-golden.vitest.ts`, `subprocess-typed-fields.vitest.ts`, `test_skill_advisor.py`, and the reducer's two unit files.
-- Deep-loop runtime: `reduce-state.cjs`.
-- Skill and agent surfaces: `.skilled/agents/deep-review.md`, both runtime mirrors, `deep-review/SKILL.md`, the deep-loop hub and its feature catalog, the manual-testing playbook.
-- Command assets: both deep presentation files, `research.md`, `review.md`, both deep YAMLs, the compiled directory, the changelog.
+### Scope note
 
-### Cross-Reference Appendix
+One iteration-5 narrative records a `sed -i` use on its own file under `## SCOPE VIOLATIONS`. It touched only the lineage's iteration file; no reviewed target or reducer output was modified.
 
-**Core Protocols:** `spec_code` pass; `checklist_evidence` partial (evidence-cell drift, R2-P2-001 and R2-P2-002).
+### Cross-reference appendix
 
-**Overlay Protocols:** `skill_agent` pass; `agent_cross_runtime` pass; `feature_catalog_code` notApplicable; `playbook_capability` notApplicable.
+- Core: `spec_code` partial, `checklist_evidence` partial (above).
+- Overlay: `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability` all `notApplicable` for this target.
+
+---
+
+*Compiled by the `deepseek-max-3` lineage at the iteration cap. The verdict a release decision reads is recomputed by the cross-lineage merge from the findings registry; this report states the counts that verdict used.*

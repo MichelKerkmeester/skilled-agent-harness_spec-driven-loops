@@ -1,6 +1,6 @@
 ---
-title: Deep Review Strategy - 012 Deep-Loop Command Offers
-description: Session tracking for the fan-out review lineage deepseek-max-2 over the deep-loop command-offer packet.
+title: Deep Review Strategy - 012 Deep-Loop Command Offers (deepseek-max-2)
+description: Session tracking for the fan-out review lineage deepseek-max-2 over the deep-loop command-offer packet, focused on the traceability protocols.
 trigger_phrases:
   - "deep review strategy 012"
   - "command offers review strategy"
@@ -13,27 +13,30 @@ version: 1.0.0.0
 
 ## 2. TOPIC
 
-Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder target): the deep-loop command-offer routing that turns a deep research/review ask into a typed command offer in the skill-advisor brief, plus the sixth fix round recorded as REQ-023..REQ-034, AC-030..AC-042, ADR-005 and ADR-006.
+Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder target): the deep-loop command-offer routing that turns a deep research/review ask into a typed command offer in the skill-advisor brief, plus every fix round the packet records, with the operator focus on the sixth round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
 
-## 3. REVIEW DIMENSIONS (remaining)
+---
+
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
 [All dimensions complete]
 
 <!-- /ANCHOR:review-dimensions -->
-
 ## 4. NON-GOALS
 
-- Reworking the scoring model or lane weights beyond what the packet's REQs claim.
-- Reviewing packets other than 012 (013 appears only where 012 cites it as a dependency).
-- Running the repository's suites as proof work: evidence is read from the tree and, where required, from tests read as sources.
+- Reworking the scoring model, lane weights or fusion arithmetic beyond what the packet's REQs claim.
+- Reviewing packets other than 012; packet 013 appears only where 012 cites it as a dependency.
+- Running the repository's suites, build or git commands as proof work: evidence is read from the tree, and tests are read as sources.
+
+---
 
 ## 5. STOP CONDITIONS
 
 - `stopPolicy: max-iterations` with `maxIterations: 7`: the loop runs to the cap and convergence is telemetry only.
 - Early stop only through the workflow's own blockers (three consecutive failed iterations, pause sentinel, duration).
 
-## 4. COMPLETED DIMENSIONS
+---
+
 <!-- ANCHOR:completed-dimensions -->
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
@@ -42,158 +45,152 @@ Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-
 - [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
-
-## 5. RUNNING FINDINGS
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
 - P1 (Required): 0
-- P2 (Suggestions): 5
+- P2 (Suggestions): 12
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
-
 ## 8. WHAT WORKED
 
-- Sampling the exported predicates on the built copy for each REQ paragraph: it turns a prose claim into an observed result in one call and is cheap enough to repeat per REQ group (iteration 1)
-- The entry-for-entry list comparison between `command-attach.ts` and `skill_advisor.py`: it settles REQ-031's parity claim without reading the grammar twice (iteration 1)
-- Opening every `path:line` cell in the AC table against the tree, one print per cited line: it finds anchor drift that a count check cannot see (iteration 2)
+- Running the 347-case shared fixture through both gate copies read-only (TypeScript through tsx, Python through importlib): it proves the two copies agree on every pinned column in two calls and turned a suspected divergence class into a clean surface (iteration 1)
+- Reading a REQ paragraph beside the test that pins it, then counting what the test actually holds: it surfaces a stale count in one pass where re-reading prose would not (iteration 1)
+- Resolving every `path:line` cell in the AC table against the tree and printing the line it lands on: anchor drift becomes visible without running the suite (iteration 1)
+
+---
 
 ## 9. WHAT FAILED
 
-- Reading the whole `skill_advisor.py` gate for parity: the file is 6,791 lines and the fifteen lists are the only mechanically comparable part, so a full read here would spend the iteration budget for less evidence (iteration 1)
-- Trusting a `Met` cell's line numbers without opening them: two of AC-041's anchors land one line off and one is blank, which only a direct print shows (iteration 2)
+- Reading `command-attach.ts` top to bottom before the probes: the predicate graph is only judgeable through its outcomes, so the full read cost more than the probe it preceded (iteration 1)
+- Treating the AC's cited line numbers as likely correct: three of the four spot-checked anchors were stale, so each citation now needs its line printed before it is trusted (iteration 1)
 
-## 9. EXHAUSTED APPROACHES (do not retry)
+---
+
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### `needsMode` surviving beside a typed command producing a contradictory brief: `commandLabel` reads the typed command first and only suppresses the generated row. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `needsMode` surviving beside a typed command producing a contradictory brief: `commandLabel` reads the typed command first and only suppresses the generated row.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `needsMode` surviving beside a typed command producing a contradictory brief: `commandLabel` reads the typed command first and only suppresses the generated row.
+### **A behaviour defect behind the documentation findings.** Every failing cell was cross-checked against the code it describes; the code holds in each case. The defects are in what the packet says about itself. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: **A behaviour defect behind the documentation findings.** Every failing cell was cross-checked against the code it describes; the code holds in each case. The defects are in what the packet says about itself.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A `dist` stale against the source: the built copy reproduced the source's readings on every sampled REQ prompt. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: A `dist` stale against the source: the built copy reproduced the source's readings on every sampled REQ prompt.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A `dist` stale against the source: the built copy reproduced the source's readings on every sampled REQ prompt.
+### **A closeout that drops a refinement link.** `synthesis-closeout.cjs:406` reads the key the reducer writes. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: **A closeout that drops a refinement link.** `synthesis-closeout.cjs:406` reads the key the reducer writes.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A `Met` row whose evidence artifact is missing: all nine cited scratch artifacts exist. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: A `Met` row whose evidence artifact is missing: all nine cited scratch artifacts exist.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A `Met` row whose evidence artifact is missing: all nine cited scratch artifacts exist.
+### **A closure statement that claims more than its rows allow.** `Closeable: No` matches AC-040's `Unmet`; no other row is `Unmet`. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: **A closure statement that claims more than its rows allow.** `Closeable: No` matches AC-040's `Unmet`; no other row is `Unmet`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A brief printing the offer options for a typed command: the renderer checks `typed !== true` before it builds the option text. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: A brief printing the offer options for a typed command: the renderer checks `typed !== true` before it builds the option text.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A brief printing the offer options for a typed command: the renderer checks `typed !== true` before it builds the option text.
+### **A corpus count the packet invents.** The baseline file exists and the recorded counts agree with the cells that cite them. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: **A corpus count the packet invents.** The baseline file exists and the recorded counts agree with the cells that cite them.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A command-injection path through the child spawn: the call uses an argv vector, no shell, and a fixed in-repo entrypoint. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: A command-injection path through the child spawn: the call uses an argv vector, no shell, and a fixed in-repo entrypoint.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A command-injection path through the child spawn: the call uses an argv vector, no shell, and a fixed in-repo entrypoint.
+### **A decision record that the code does not implement.** ADR-005 and ADR-006 each describe precisely what the gate, the handler and the Python copy do. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: **A decision record that the code does not implement.** ADR-005 and ADR-006 each describe precisely what the gate, the handler and the Python copy do.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it.
+### **A derived command offered twice.** The `alreadyOffered` set is seeded and extended in the same pass. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: **A derived command offered twice.** The `alreadyOffered` set is seeded and extended in the same pass.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A criteria row whose waiver ADR is absent: all four returned rows name a present ADR. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: A criteria row whose waiver ADR is absent: all four returned rows name a present ADR.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A criteria row whose waiver ADR is absent: all four returned rows name a present ADR.
+### **A lost typed command when two commands are typed.** `typedCommandIn` returns the longest key by design, and the served head reads the ordered list instead, so the "longest wins" behaviour is not a defect. REQ-025 states this split explicitly. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: **A lost typed command when two commands are typed.** `typedCommandIn` returns the longest key by design, and the served head reads the ordered list instead, so the "longest wins" behaviour is not a defect. REQ-025 states this split explicitly.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A dead export left behind by the packet: every added export has at least one reader. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A dead export left behind by the packet: every added export has at least one reader.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A dead export left behind by the packet: every added export has at least one reader.
+### **A mode surface the drift guard misses.** The command table, the cue words, the router signals and the shared patterns are all compared. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: **A mode surface the drift guard misses.** The command table, the cue words, the router signals and the shared patterns are all compared.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A denial-of-service path through the gate regexes: bounded windows and linear scans keep the worst sampled prompt under 15 ms. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: A denial-of-service path through the gate regexes: bounded windows and linear scans keep the worst sampled prompt under 15 ms.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A denial-of-service path through the gate regexes: bounded windows and linear scans keep the worst sampled prompt under 15 ms.
+### **A Python/TypeScript predicate divergence.** Both copies agree on all 347 fixture cases; the divergence class that earlier rounds found is not present at the gate layer. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: **A Python/TypeScript predicate divergence.** Both copies agree on all 347 fixture cases; the divergence class that earlier rounds found is not present at the gate layer.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A dimension left uncovered: all four are recorded as covered in the registry. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A dimension left uncovered: all four are recorded as covered in the registry.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A dimension left uncovered: all four are recorded as covered in the registry.
+### **A refinement that loses its own entry in the reducer.** The same-file fold and the other-file split both behave as decided, and the closeout reads the same link. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: **A refinement that loses its own entry in the reducer.** The same-file fold and the other-file split both behave as decided, and the closeout reads the same link.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A duplicated offer literal that has already drifted: the two copies agree word for word. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A duplicated offer literal that has already drifted: the two copies agree word for word.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A duplicated offer literal that has already drifted: the two copies agree word for word.
+### **A refusal-verb gap in the gate.** Hunted for a common refusal verb the fixture misses; the nineteen `RUN_ASK_REFUSAL_LEADS` entries plus the `do not even think about` idiom cover the six REQ-023 prompts and the three keep controls, and the conjunction rule (`command-attach.ts:735`) keeps "skip it and deep review the parser" a request. No gap reached the gate. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: **A refusal-verb gap in the gate.** Hunted for a common refusal verb the fixture misses; the nineteen `RUN_ASK_REFUSAL_LEADS` entries plus the `do not even think about` idiom cover the six REQ-023 prompts and the three keep controls, and the conjunction rule (`command-attach.ts:735`) keeps "skip it and deep review the parser" a request. No gap reached the gate.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A finding outside the declared scope: all five files are scope entries. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A finding outside the declared scope: all five files are scope entries.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A finding outside the declared scope: all five files are scope entries.
+### **A requirement with no acceptance row.** The map is complete in both directions. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: **A requirement with no acceptance row.** The map is complete in both directions.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A finding whose evidence did not survive the cap: four re-read clean, and the fifth's wording holds while its line is corrected. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A finding whose evidence did not survive the cap: four re-read clean, and the fifth's wording holds while its line is corrected.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A finding whose evidence did not survive the cap: four re-read clean, and the fifth's wording holds while its line is corrected.
+### **A ruled-out direction written as a permanent prohibition.** One-attempt rulings carry a reopen line; only repeated evidence blocks. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: **A ruled-out direction written as a permanent prohibition.** One-attempt rulings carry a reopen line; only repeated evidence blocks.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns.
+### **A scope breach.** No finding sits outside the pre-bound scope list. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: **A scope breach.** No finding sits outside the pre-bound scope list.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A label-injection path from the fallback's JSON: the tracked-table check gates every supplied command, and the label sanitizer handles the remaining text. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: A label-injection path from the fallback's JSON: the tracked-table check gates every supplied command, and the label sanitizer handles the remaining text.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A label-injection path from the fallback's JSON: the tracked-table check gates every supplied command, and the label sanitizer handles the remaining text.
+### **A Verification Summary that disagrees with the boxes behind it.** Counted mechanically; it agrees. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: **A Verification Summary that disagrees with the boxes behind it.** Counted mechanically; it agrees.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A missing ADR behind a waiver: the four returned rows (`Waived` AC-008, AC-017; `Superseded` AC-019; and the ADR-005 exception in AC-027) each name an ADR present in `decision-record.md`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: A missing ADR behind a waiver: the four returned rows (`Waived` AC-008, AC-017; `Superseded` AC-019; and the ADR-005 exception in AC-027) each name an ADR present in `decision-record.md`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A missing ADR behind a waiver: the four returned rows (`Waived` AC-008, AC-017; `Superseded` AC-019; and the ADR-005 exception in AC-027) each name an ADR present in `decision-record.md`.
+### **AC-036 to AC-038 being the only drifted cells.** AC-033, AC-034, AC-044, AC-045 and AC-046 carry the same defect class, so the earlier finding is not an isolated slip. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: **AC-036 to AC-038 being the only drifted cells.** AC-033, AC-034, AC-044, AC-045 and AC-046 carry the same defect class, so the earlier finding is not an isolated slip.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A parity drift between the two gate copies: all fifteen compared lists agree entry for entry, and the two numbers REQ-031 names agree. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: A parity drift between the two gate copies: all fifteen compared lists agree entry for entry, and the two numbers REQ-031 names agree.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A parity drift between the two gate copies: all fifteen compared lists agree entry for entry, and the two numbers REQ-031 names agree.
+### **An uncovered requirement or dimension.** Coverage is complete on both axes. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: **An uncovered requirement or dimension.** Coverage is complete on both axes.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A prompt-echo path: the brief prints skill ids, commands and policy words from tracked tables, never the prompt body. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: A prompt-echo path: the brief prints skill ids, commands and policy words from tracked tables, never the prompt body.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A prompt-echo path: the brief prints skill ids, commands and policy words from tracked tables, never the prompt body.
+### **Command injection through a degraded row's supplied string.** The string is only printed when it is a tracked command owned by (or merged into) the row's own skill; three hostile strings were dropped. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: **Command injection through a degraded row's supplied string.** The string is only printed when it is a tracked command owned by (or merged into) the row's own skill; three hostile strings were dropped.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A quadratic cost in the lead scans: bounded windows keep 96,000-character prompts in single-digit milliseconds. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: A quadratic cost in the lead scans: bounded windows keep 96,000-character prompts in single-digit milliseconds.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A quadratic cost in the lead scans: bounded windows keep 96,000-character prompts in single-digit milliseconds.
+### **Prototype pollution through a compiled route.** Every lookup on the route and on both command tables is an own-key check, and the six malformed shapes all fail closed. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: **Prototype pollution through a compiled route.** Every lookup on the route and on both command tables is an own-key check, and the six malformed shapes all fail closed.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A REQ whose producer does not exist: all 39 map to a branch, a test line, an ADR or a packet record. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: A REQ whose producer does not exist: all 39 map to a branch, a test line, an ADR or a packet record.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A REQ whose producer does not exist: all 39 map to a branch, a test line, an ADR or a packet record.
+### **ReDoS through the loop-ask grammar.** Long repeated prompts stayed under 7 ms; the window bound and the forward-search cache remove the quadratic shape REQ-030 records. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: **ReDoS through the loop-ask grammar.** Long repeated prompts stayed under 7 ms; the window bound and the forward-search cache remove the quadratic shape REQ-030 records.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A row losing `needsMode` when a command is absent: the false branch adds it only when the route defers and no command was produced. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: A row losing `needsMode` when a command is absent: the false branch adds it only when the route defers and no command was produced.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A row losing `needsMode` when a command is absent: the false branch adds it only when the route defers and no command was produced.
+### **REQ-007's compiled-contract staleness.** The recorded digests could have lagged the edited command docs; all 31 recompute. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: **REQ-007's compiled-contract staleness.** The recorded digests could have lagged the edited command docs; all 31 recompute.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A stale suite count across the closure docs: the sixth, seventh and eighth rounds each quote their own totals, and the changelog quotes the eighth (`3,188`), which is the current tree's row. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: A stale suite count across the closure docs: the sixth, seventh and eighth rounds each quote their own totals, and the changelog quotes the eighth (`3,188`), which is the current tree's row.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A stale suite count across the closure docs: the sixth, seventh and eighth rounds each quote their own totals, and the changelog quotes the eighth (`3,188`), which is the current tree's row.
+### **REQ-014 resting on a neighbour's probe.** N9's prompt matches the requirement's quoted prompt exactly, so the row is its own evidence. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: **REQ-014 resting on a neighbour's probe.** N9's prompt matches the requirement's quoted prompt exactly, so the row is its own evidence.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A terminal gate that would fail on this record: evidence is vacuous with no P0/P1, scope is 5 of 5, coverage is 4 of 4. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A terminal gate that would fail on this record: evidence is vacuous with no P0/P1, scope is 5 of 5, coverage is 4 of 4.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A terminal gate that would fail on this record: evidence is vacuous with no P0/P1, scope is 5 of 5, coverage is 4 of 4.
+### **REQ-022's changelog omission.** The changelog could have failed to name the typed-on-stuck exception or the refusal verbs; both rules are stated at `.skilled/changelog/skilled/v4.2.0.0.md:483` and `:484`, and the brief options at `:212`. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: **REQ-022's changelog omission.** The changelog could have failed to name the typed-on-stuck exception or the refusal verbs; both rules are stated at `.skilled/changelog/skilled/v4.2.0.0.md:483` and `:484`, and the brief options at `:212`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### A ticked task with no evidence at all: the three citation-free boxes each carry a rationale or a readable claim. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: A ticked task with no evidence at all: the three citation-free boxes each carry a rationale or a readable claim.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A ticked task with no evidence at all: the three citation-free boxes each carry a rationale or a readable claim.
-
-### A typed command losing a policy on the served head: the typed row sets policy, owner and typed in one overwrite. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: A typed command losing a policy on the served head: the typed row sets policy, owner and typed in one overwrite.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A typed command losing a policy on the served head: the typed row sets policy, owner and typed in one overwrite.
+### **Secret exposure through argv.** The prompt travels on stdin. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: **Secret exposure through argv.** The prompt travels on stdin.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
 <!-- /ANCHOR:exhausted-approaches -->
-
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
 - Completed pivots: 0
 - Failed pivots: 0
@@ -204,75 +201,114 @@ Review of `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-
 
 ## 11. RULED OUT DIRECTIONS
 
-- A parity drift between the two gate copies: the fifteen compared lists agree entry for entry, and `LEAD_WINDOW`/`ADVISOR_PROMPT_MAX_CHARS` agree (iteration 1, evidence: `command-attach.ts:330-935`, `skill_advisor.py:4480-5230`)
-- A quadratic lead scan: bounded windows keep 96,000-character prompts in single-digit milliseconds (iteration 1, evidence: built `command-attach.js` timed on four long prompts)
-- A contradictory brief when `needsMode` survives beside a typed command: `commandLabel` reads the typed command first (`render.ts:227`) (iteration 1)
-- A requirement without a producer: all 39 REQ ids resolve to a branch, test line, ADR or packet record (iteration 2)
-- A waiver whose ADR is missing: ADR-001, 002, 003, 005, 006 and 007 all exist at their headings (iteration 2)
+- A refusal-verb gap in the gate: the nineteen `RUN_ASK_REFUSAL_LEADS` entries plus the `do not even think about` idiom cover the six REQ-023 prompts and the three keep controls, and the conjunction rule keeps "skip it and deep review the parser" a request (iteration 1, evidence: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688`)
+- A lost typed command when two commands are typed: `typedCommandIn` returning the longest key is the documented split, and the served head reads the ordered list instead (iteration 1, evidence: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:304`)
+- A Python/TypeScript predicate divergence at the gate layer: both copies agree on all 347 fixture cases (iteration 1, evidence: `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1`)
 
-## 11. NEXT FOCUS
+---
+
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none - the iteration cap is reached - Focus area: synthesis - Reason: `stopPolicy: max-iterations` with `maxIterations: 7` stops the loop here; the next step compiles `review-report.md` from this registry - Rotation status: every configured dimension covered; correctness and traceability reviewed twice - Blocked/productive carry-forward: nothing blocked - Required evidence: the registry, this narrative and the delta agree on five open P2 rows and no P0/P1 - Recovery note: none Review verdict: PASS
+- None: this is the last iteration under `stopPolicy: max-iterations`. The synthesis compiles the report from the twelve active findings, both protocol results and the gate summary above. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
-
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- Target pointers: the 012 packet docs (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`), the two offer producers (`runtime/lib/command-attach.ts`, `runtime/scripts/skill_advisor.py`), the scorer lane (`runtime/lib/scorer/lanes/explicit.ts`), the presentation assets under `.skilled/commands/deep/assets/`, and the suites that pin the behavior (`tests/deep-loop-offer-cases.vitest.ts`, `tests/fixtures/deep-loop-offer-cases.json`, `tests/python/test_skill_advisor.py`).
-- Behavior claims to verify: REQ-001..REQ-039 in `spec.md`; AC-001..AC-047 in `acceptance-criteria.md`; the ticked tasks in `tasks.md`; ADR-001..ADR-007 in `decision-record.md`.
-- Reuse and conventions: one typed-offer grammar shared by the TypeScript lane and the Python fallback; the fixture file is the parity oracle; the brief's head length budget is pinned by a suite.
-- Review risks and gaps: `resource-map.md` is absent, so the coverage gate is skipped; runtime mirrors (`.claude/`, `.opencode/`) are downstream packaging surfaces and are not review targets; the 013 packet is a sibling dependency, not in scope.
+- Target pointers: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (offer gate) and its Python mirror `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`; the shared fixture `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json`; the two deep presentation files and their command docs; the deep-review reducer and closeout scripts under `.skilled/skills/system-deep-loop/runtime/scripts/`.
+- Behavior claims: REQ-001 to REQ-046 in `spec.md` §4, SC-001 to SC-006 in §5, the AC table in `acceptance-criteria.md`, and ADR-001 to ADR-009 in `decision-record.md`. The operator focus is the sixth round: REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006.
+- Reuse and conventions: the gate is one predicate set mirrored in TypeScript and Python; the shared fixture is the only coupling that keeps the two copies from drifting, and probe reruns (`scratch/probes/`) are the recorded measurement channel.
+- Review risks and gaps: the scope list is a pre-bound 51-file list; evidence cells in the AC table are the most drift-prone surface; a probe run is not reproducible here, so measured claims are checked against the committed probe output rather than rerun.
 
-### Prior Context (continuity ladder)
-
-- `handover.md`: not present at the packet root.
-- `_memory.continuity`: read from `implementation-summary.md` where present.
-- A prior completed lineage for this packet exists under `review-archive/20261124T111600Z/`; it is read-only evidence of earlier findings and is not this lineage's state.
+---
 
 ## 14. CROSS-REFERENCE STATUS
-<!-- ANCHOR:cross-reference -->
+<!-- MACHINE-OWNED: START -->
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | pass | 2 | All 39 REQ ids mapped to a producer, test line, ADR or packet record; one closure cell cites drifted lines (R2-P2-001) |
-| `checklist_evidence` | core | pending | - | - |
-| `skill_agent` | overlay | pending | - | - |
-| `agent_cross_runtime` | overlay | pending | - | - |
-| `feature_catalog_code` | overlay | pending | - | - |
-| `playbook_capability` | overlay | pending | - | - |
-<!-- /ANCHOR:cross-reference -->
+| `spec_code` | core | partial | 1 | REQ-023 to REQ-031 mapped; REQ-031's counts fail (P2-1) |
+| `checklist_evidence` | core | partial | 1 | AC-030 to AC-038 opened; AC-036 to AC-038 anchors fail (P2-1..3) |
+| `skill_agent` | overlay | notApplicable | - | The target is a spec folder whose implementation is runtime code plus commands, not a skill-owned agent definition |
+| `agent_cross_runtime` | overlay | notApplicable | - | No agent definition is claimed by this packet's REQs |
+| `feature_catalog_code` | overlay | notApplicable | - | No feature catalog entry is claimed by this packet's REQs |
+| `playbook_capability` | overlay | notApplicable | - | No playbook capability is claimed by this packet's REQs |
+<!-- MACHINE-OWNED: END -->
+
+---
 
 ## 15. FILES UNDER REVIEW
-<!-- ANCHOR:files-under-review -->
+<!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | D1 | 1 | 0 P0, 0 P1, 1 P2 | partial |
-| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` | D3 | 2 | 0 P0, 0 P1, 1 P2 | partial |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | - | - | - | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | - | - | - | pending |
-| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | - | - | - | pending |
-| `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | - | - | - | pending |
-| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md` | - | - | - | pending |
-| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md` | - | - | - | pending |
-| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md` | - | - | - | pending |
-| remaining 038 scope files | - | - | - | pending |
-<!-- /ANCHOR:files-under-review -->
+| .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts | D1, D3 | 1 | 1 | partial |
+| .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py | D1, D3 | 1 | 2 | partial |
+| .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/lib/render.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts | D1, D3 | 1 | 0 | partial |
+| .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts | D1, D3 | 1 | 0 | partial |
+| .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts | D1, D3 | 1 | 0 | partial |
+| .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json | D1, D3 | 1 | 1 | partial |
+| .skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/command-head-length.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts | D1, D3 | 1 | 1 | partial |
+| .skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py | D3 | 1 | 1 | partial |
+| .skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-typed-command.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-duplicate-command.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-ask-routing.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-plural-noun.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/scorer/multi-typed-command-gates.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/scorer/stage-one-loop-subject.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts | D3 | 1 | 1 | partial |
+| .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs | - | - | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs | - | - | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/reduce-state-refinement-other-file.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-refinements.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts | - | - | 0 | pending |
+| .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs | - | - | 0 | pending |
+| .skilled/commands/deep/review.md | - | - | 0 | pending |
+| .skilled/commands/deep/research.md | - | - | 0 | pending |
+| .skilled/commands/deep/assets/deep-review-presentation.txt | - | - | 0 | pending |
+| .skilled/commands/deep/assets/deep-research-presentation.txt | - | - | 0 | pending |
+| .skilled/hooks/injection-contract.md | - | - | 0 | pending |
+| .skilled/changelog/skilled/v4.2.0.0.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md | D3 | 1 | 1 | partial |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md | D3 | 1 | 3 | partial |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md | - | - | 0 | pending |
+| specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md | - | - | 0 | pending |
+<!-- MACHINE-OWNED: END -->
+
+---
 
 ## 16. REVIEW BOUNDARIES
-<!-- ANCHOR:review-boundaries -->
+<!-- MACHINE-OWNED: START -->
 - Max iterations: 7
-- Convergence threshold: 0.10 (telemetry only under `stopPolicy: max-iterations`)
+- Convergence threshold: 0.10
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-max-2-1795518961022-7ms9ak, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-max-2-1795544069299-46zw3s, parentSessionId=2026-11-24T18:14:20.000Z, generation=6, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
-- Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-24T11:17:12.795Z
-<!-- /ANCHOR:review-boundaries -->
+- Cross-reference checks: core=spec_code, checklist_evidence; overlay=skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability
+- Started: 2026-11-24T18:16:30Z
+<!-- MACHINE-OWNED: END -->

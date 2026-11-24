@@ -1,17 +1,30 @@
 ---
-title: Deep Review Strategy
-description: Persistent review brain for the deepseek-max-1 lineage over packet 012, tracking dimension coverage, findings, exhausted approaches and next focus.
-trigger_phrases:
-  - "deep review strategy 012 deepseek-max-1"
-importance_tier: normal
-contextType: planning
+title: Deep Review Strategy - 012-deep-loop-command-offers (lineage deepseek-max-1)
+description: Traceability review of the deep-loop command offer packet, one dimension and one protocol slice per iteration.
+version: 1.0.0
 ---
 
-# Deep Review Strategy - Packet 012 / lineage deepseek-max-1
+# Deep Review Strategy - Lineage deepseek-max-1
+
+## 1. OVERVIEW
+
+### Purpose
+
+Persistent tracking for this review lineage: which dimensions remain, what was found (P0/P1/P2), which review approaches worked or failed, and where the next iteration looks.
+
+### Usage
+
+- Init: the lineage executor wrote this file before the first iteration.
+- Per iteration: the iteration reads Next Focus, reviews the assigned slice, updates dimensions, counts and Next Focus.
+- Mutability: mutable in place; the reducer may rewrite any machine-owned block.
+
+---
 
 ## 2. TOPIC
-Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
-Operator focus: finish the `spec_code` and `checklist_evidence` protocols over REQ-001..REQ-039, every ticked task and every `Met` acceptance row, with the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006) and the seventh/eighth rounds (REQ-035 to REQ-039, AC-043 to AC-047) read against the tree.
+
+Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (`spec-folder`), generation 1 of fan-out lineage `deepseek-max-1`.
+
+Operator review focus, bound on every iteration: finish the `spec_code` and `checklist_evidence` traceability protocols. Check every REQ in `spec.md` against the code that implements it or the decision that records it, and every ticked task in `tasks.md` and every `Met` row in `acceptance-criteria.md` against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
 
 ---
 
@@ -20,20 +33,20 @@ Operator focus: finish the `spec_code` and `checklist_evidence` protocols over R
 [All dimensions complete]
 
 <!-- /ANCHOR:review-dimensions -->
-
----
-
 ## 4. NON-GOALS
-- Implementing fixes for any finding.
-- Running the repository's build, test or validation tooling: every such command writes outside this lineage's write surface, so test-run claims are read from the tree and from the packet's recorded runs, never re-executed here.
-- Re-reviewing packet 013's own requirements except where packet 012's REQ-034 cites them as closure evidence.
-- Broadening code findings outside `reviewScopeFiles`; packet docs, commands, skills and hub routing tables are cited as traceability context only.
+
+- Whether the gate rules are the right product decision. The operator decided them (D1, D2, ADR-005, ADR-006, ADR-008).
+- Rebuilding the advisor and rerunning its suites as a release gate. The closure docs cite their runs; this review checks that those citations resolve against the tree.
+- Changing any reviewed file. The review is observation-only.
+- Packet 013's own closure state beyond the REQ-034 evidence pointer this packet owns.
 
 ---
 
 ## 5. STOP CONDITIONS
-- `config.stopPolicy` is `max-iterations` with `maxIterations=7`: the loop runs all seven iterations and convergence is telemetry only.
-- Hard stop on three consecutive failed iterations, or on an unreadable state file.
+
+- All four configured dimensions covered and both core traceability protocols recorded, then the `max-iterations` cap (7) ends the run with `maxIterationsReached`.
+- An active P0 that makes a REQ claim false forces the FAIL verdict whatever the coverage.
+- No write outside the lineage directory.
 
 ---
 
@@ -45,167 +58,144 @@ Operator focus: finish the `spec_code` and `checklist_evidence` protocols over R
 - [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
-
----
-
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 4
-- P2 (Suggestions): 8
+- P1 (Required): 0
+- P2 (Suggestions): 19
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
-
----
-
 ## 8. WHAT WORKED
-- **Executing the served head over 50 requirement prompts instead of reading the AC rows:** the two P1s came from comparing the built advisor's first recommendation with the requirement text, which no fixture column checks (iteration 1).
-- **Reading the branch condition beside the measurement:** `attachCommand` consults the mode-cue guard only on a deferred route, which turned a plausible pass into a reachability finding (iteration 1).
-- **Reading the closure rows' status column first:** AC-040 is already `Unmet` and the closure statement says No, so the review does not have to prove or disprove closure before checking the `Met` rows (iteration 1).
-- **Resolving every citation mechanically with the right base directories:** all 47 criteria and 123 tasks resolved with 0 misses, which freed the checklist pass to look at pointer meaning rather than file existence (iteration 2).
-- **Splitting the predicate from the cue read:** evaluating both on the same prompt isolated the refusal bug to `cueText`, a five-line fix rather than a rewrite (iteration 3).
-- **Measuring regex cost on six adversarial 96k shapes:** the security pass needed numbers, not suspicion, and got single-digit to 17 ms native and 35 ms Python (iteration 4).
-- **Comparing the guard's pairs with the grammar helpers beside them:** the gap between what the guard checks and what must agree was visible only by reading both (iteration 5).
-- **Re-running every active finding's prompt before synthesis:** no P1 had gone stale, so the verdict rests on live measurements (iteration 6).
-- **Parsing the hub keyword classes and diffing them against `ROUTER.md`:** equality is a fact, not a reading (iteration 7).
+
+- Reading the exact cited line in each `Met` row rather than the row's prose: it separated the claims that hold from the pointers that moved, in one pass (iteration 1)
+- Counting the checkboxes and re-reading the summary rows: the Verification Summary arithmetic is exact, which removed a whole suspected class in one call (iteration 2)
+- Searching the changed code for the forbidden label pattern instead of trusting CHK-011: the hygiene gate is genuinely clean (iteration 2)
+- Tracing each sixth-round requirement to its producer symbol and then to the fixture column that pins it: every behaviour claim held, so the slice closed on two count cells (iteration 3)
 
 ---
 
 ## 9. WHAT FAILED
-- **Treating the shared fixture's `asksForLoopRun` column as proof of the offer:** it is a gate predicate, and two REQ-035 run rows read `true` while no served row carries a command (iteration 1).
-- **Reading REQ-026 as covering the routed path:** the requirement says "on a deferred route", and the router never defers for that prompt, so the requirement and its AC both pass while the product still offers research (iteration 1).
-- **Leaning on the packet's own suite counts:** this lineage may not run builds or tests, so every suite number in the report is inherited evidence; the review states that limit instead of closing it (iterations 2, 4).
-- **Two process deviations, disclosed:** one `sed -i` was used inside the lineage to correct a typo in iteration 7 (the prompt pack bans that tool form even inside the write surface), and one empty scratch file was created at `/tmp/na.txt` before it was replaced by a heredoc that same turn. Both are recorded here rather than hidden; neither touched a file outside the lineage except that empty temp file.
+
+- Grepping a symbol name and accepting the first hit: the symbol exists, so a stale citation can pass a name-only check while the quoted line is wrong (iteration 1)
+- Checking a Python list anchor against the test module instead of the script module: three anchors looked blank until the wrong-file read was caught (iteration 2)
+- Trusting a cell's count without re-running the cell's own command: `rg -c 'refusal-verb-'` printed 12 against the cell's 11 (iteration 3)
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### **A crafted prompt can smuggle a command through the degraded brief.** Ruled out: `trackedCommandForOwner` gates the string on the tracked table and the row's owner. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **A crafted prompt can smuggle a command through the degraded brief.** Ruled out: `trackedCommandForOwner` gates the string on the tracked table and the row's owner.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A crafted prompt can smuggle a command through the degraded brief.** Ruled out: `trackedCommandForOwner` gates the string on the tracked table and the row's owner.
+### "A deep command can start without the operator": both deep rows are `ask`, and the `run` row is the diagnosis only. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: "A deep command can start without the operator": both deep rows are `ask`, and the `run` row is the diagnosis only.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **A depth trigger survived in another runtime's mirror.** Ruled out: the sweep printed no match. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **A depth trigger survived in another runtime's mirror.** Ruled out: the sweep printed no match.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A depth trigger survived in another runtime's mirror.** Ruled out: the sweep printed no match.
+### "A mode-free plural ask still serves a command": `plural-deep-loops-served` carries `servedRun: null`, matching ADR-008 and the singular row. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: "A mode-free plural ask still serves a command": `plural-deep-loops-served` carries `servedRun: null`, matching ADR-008 and the singular row.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **A finding points at a moved line.** Ruled out: all twelve re-resolve. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **A finding points at a moved line.** Ruled out: all twelve re-resolve.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A finding points at a moved line.** Ruled out: all twelve re-resolve.
+### "A no-edit clause still withholds a read-only loop": `run a deep review of the parser but don't change anything` serves `/deep:review`. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: "A no-edit clause still withholds a read-only loop": `run a deep review of the parser but don't change anything` serves `/deep:review`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **A missing per-entry case for the ten pinned lists.** Ruled out: the case lines exist at `:247` to `:293`. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **A missing per-entry case for the ten pinned lists.** Ruled out: the case lines exist at `:247` to `:293`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A missing per-entry case for the ten pinned lists.** Ruled out: the case lines exist at `:247` to `:293`.
+### "A prompt can be interpreted by a shell": the spawn shape is argv-only and the prompt travels on stdin. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: "A prompt can be interpreted by a shell": the spawn shape is argv-only and the prompt travels on stdin.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **A typed command loses to another typed command.** Ruled out: every dual-typed prompt keeps the expected deep command with `typed: true`. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **A typed command loses to another typed command.** Ruled out: every dual-typed prompt keeps the expected deep command with `typed: true`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A typed command loses to another typed command.** Ruled out: every dual-typed prompt keeps the expected deep command with `typed: true`.
+### "A refused loop phrase still supplies the mode cue": the deferred route serves the asked mode for `run deep reviews on the parser, but skip the deep research`. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: "A refused loop phrase still supplies the mode cue": the deferred route serves the asked mode for `run deep reviews on the parser, but skip the deep research`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **A waiver names a missing ADR.** Ruled out: ADR-001, ADR-002 and ADR-003 all exist at `decision-record.md:33,128,223`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **A waiver names a missing ADR.** Ruled out: ADR-001, ADR-002 and ADR-003 all exist at `decision-record.md:33,128,223`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A waiver names a missing ADR.** Ruled out: ADR-001, ADR-002 and ADR-003 all exist at `decision-record.md:33,128,223`.
+### "A spec label or path leaked into the changed code comments": the hygiene search over five changed files prints nothing. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: "A spec label or path leaked into the changed code comments": the hygiene search over five changed files prints nothing.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **AC-031's "26 fixture rows carry `doctorWithheld`" is wrong.** Ruled out: the fixture has 26 key occurrences (16 true, 10 false); the 27th textual match is the `$comment` header. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **AC-031's "26 fixture rows carry `doctorWithheld`" is wrong.** Ruled out: the fixture has 26 key occurrences (16 true, 10 false); the 27th textual match is the `$comment` header.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **AC-031's "26 fixture rows carry `doctorWithheld`" is wrong.** Ruled out: the fixture has 26 key occurrences (16 true, 10 false); the 27th textual match is the `$comment` header.
+### "REQ-001 to REQ-004 regressed into code": the probe artifact is a 69-row array and the keep/negative rows are quoted from it; nothing in the gate contradicts them. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: "REQ-001 to REQ-004 regressed into code": the probe artifact is a 69-row array and the keep/negative rows are quoted from it; nothing in the gate contradicts them.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **Comment-hygiene violations in the changed code.** Ruled out: the sweep printed no match across all changed files. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **Comment-hygiene violations in the changed code.** Ruled out: the sweep printed no match across all changed files.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Comment-hygiene violations in the changed code.** Ruled out: the sweep printed no match across all changed files.
+### "T076's whole array-anchor list is stale": ten of its fifteen anchors land on or inside the list they name. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: "T076's whole array-anchor list is stale": ten of its fifteen anchors land on or inside the list they name.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **Fixture size drift.** Ruled out: the fixture holds 285 cases and every row that cites `cases=285` matches. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **Fixture size drift.** Ruled out: the fixture holds 285 cases and every row that cites `cases=285` matches.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Fixture size drift.** Ruled out: the fixture holds 285 cases and every row that cites `cases=285` matches.
+### "The built module lags the ninth-round source": every ninth-round behaviour the probe exercised is served from `dist`. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: "The built module lags the ninth-round source": every ninth-round behaviour the probe exercised is served from `dist`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **Hub router and ROUTER.md drifted.** Ruled out: the parsed keyword sets are equal. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **Hub router and ROUTER.md drifted.** Ruled out: the parsed keyword sets are equal.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Hub router and ROUTER.md drifted.** Ruled out: the parsed keyword sets are equal.
+### "The corpus `false_offer_attached` count regressed": it is 1 of 57, the V7 near-miss row the packet added by design. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: "The corpus `false_offer_attached` count regressed": it is 1 of 57, the V7 near-miss row the packet added by design.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **Plural counts are unread.** Ruled out: digits, spelled counts and "a dozen" all ask, and "don't run two deep reviews" withholds. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **Plural counts are unread.** Ruled out: digits, spelled counts and "a dozen" all ask, and "don't run two deep reviews" withholds.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Plural counts are unread.** Ruled out: digits, spelled counts and "a dozen" all ask, and "don't run two deep reviews" withholds.
+### "The cross-packet pointer to packet 013 is dead": `013-.../implementation-summary.md:123` resolves and states the degraded-path evidence. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: "The cross-packet pointer to packet 013 is dead": `013-.../implementation-summary.md:123` resolves and states the degraded-path evidence.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **ReDoS on repeated refusal text.** Ruled out: 96k and 10k refusal prompts finish in single-digit milliseconds, and the refusal scan is windowed. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **ReDoS on repeated refusal text.** Ruled out: 96k and 10k refusal prompts finish in single-digit milliseconds, and the refusal scan is windowed.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **ReDoS on repeated refusal text.** Ruled out: 96k and 10k refusal prompts finish in single-digit milliseconds, and the refusal scan is windowed.
+### "The deep-loop names in the hub router were dropped": both aliases are present in `hub-router.json:34` and mirrored at `ROUTER.md:63`. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: "The deep-loop names in the hub router were dropped": both aliases are present in `hub-router.json:34` and mirrored at `ROUTER.md:63`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **REQ-027's stage-one claim is stale.** Ruled out: the served head for "several passes of the linter failed, review the config" returns `sk-code` with no command and no hub row, which is what AC-034 records. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **REQ-027's stage-one claim is stale.** Ruled out: the served head for "several passes of the linter failed, review the config" returns `sk-code` with no command and no hub row, which is what AC-034 records.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **REQ-027's stage-one claim is stale.** Ruled out: the served head for "several passes of the linter failed, review the config" returns `sk-code` with no command and no hub row, which is what AC-034 records.
+### "The fused doctor row ignores a refusal": `withholdDeepLoopDoctorWithoutRun` calls `isRunRefused` at `fusion.ts:1084`, and the two withhold cases pass. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: "The fused doctor row ignores a refusal": `withholdDeepLoopDoctorWithoutRun` calls `isRunRefused` at `fusion.ts:1084`, and the two withhold cases pass.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **REQ-029 regressed to the diagnosis.** Ruled out: "my deep review run is stuck, /deep:review again" returns `/deep:review (ask)` with `typed: true`, matching ADR-005. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **REQ-029 regressed to the diagnosis.** Ruled out: "my deep review run is stuck, /deep:review again" returns `/deep:review (ask)` with `typed: true`, matching ADR-005.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **REQ-029 regressed to the diagnosis.** Ruled out: "my deep review run is stuck, /deep:review again" returns `/deep:review (ask)` with `typed: true`, matching ADR-005.
+### "The limitations list lost the typed-on-stuck line": limitation 6 states it in the ADR-005 wording. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: "The limitations list lost the typed-on-stuck line": limitation 6 states it in the ADR-005 wording.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **REQ-036's how-to exception is over-broad.** Ruled out: "how do I run a deep review? then run a deep review on the parser" keeps `/deep:review`, so the question exception does not swallow a later run clause. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **REQ-036's how-to exception is over-broad.** Ruled out: "how do I run a deep review? then run a deep review on the parser" keeps `/deep:review`, so the question exception does not swallow a later run clause.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **REQ-036's how-to exception is over-broad.** Ruled out: "how do I run a deep review? then run a deep review on the parser" keeps `/deep:review`, so the question exception does not swallow a later run clause.
+### "The mode guard covers only the deferred route": `routedLoopMode` is read at `:1592` (the routed single-target branch) and defined at `:1648`. -- RULED OUT (iteration 4, 1 attempt)
+- What was tried: "The mode guard covers only the deferred route": `routedLoopMode` is read at `:1592` (the routed single-target branch) and defined at `:1648`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **REQ-037's effort controls leak.** Ruled out: the four control prompts ("run a fast deep review…", "run a faster…", "run a deep review on the slow path…", "improve the parser with a deep review") all keep `/deep:review (ask)`. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **REQ-037's effort controls leak.** Ruled out: the four control prompts ("run a fast deep review…", "run a faster…", "run a deep review on the slow path…", "improve the parser with a deep review") all keep `/deep:review (ask)`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **REQ-037's effort controls leak.** Ruled out: the four control prompts ("run a fast deep review…", "run a faster…", "run a deep review on the slow path…", "improve the parser with a deep review") all keep `/deep:review (ask)`.
+### "The mode guard runs only on the deferred route": the routed research route serves `/deep:review` for the ask that names review. -- RULED OUT (iteration 5, 1 attempt)
+- What was tried: "The mode guard runs only on the deferred route": the routed research route serves `/deep:review` for the ask that names review.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **The doctor is withheld on every stuck complaint.** Ruled out: four of six variants keep it. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **The doctor is withheld on every stuck complaint.** Ruled out: four of six variants keep it.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The doctor is withheld on every stuck complaint.** Ruled out: four of six variants keep it.
+### "The offer section is missing from one presentation file": both files carry the heading and the composed flag. -- RULED OUT (iteration 1, 1 attempt)
+- What was tried: "The offer section is missing from one presentation file": both files carry the heading and the composed flag.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **The doctor lane fires on a refused fix.** Ruled out: "the deep review run is stuck and I don't want a fix" drops the doctor row. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The doctor lane fires on a refused fix.** Ruled out: "the deep review run is stuck and I don't want a fix" drops the doctor row.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The doctor lane fires on a refused fix.** Ruled out: "the deep review run is stuck and I don't want a fix" drops the doctor row.
+### "The packet's status and closure statement disagree": both say the run is open and name AC-040. -- RULED OUT (iteration 6, 1 attempt)
+- What was tried: "The packet's status and closure statement disagree": both say the run is open and name AC-040.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **The doubled-mode prompt double-counts.** Ruled out: "run two deep review loops on the parser" resolves to review. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The doubled-mode prompt double-counts.** Ruled out: "run two deep review loops on the parser" resolves to review.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The doubled-mode prompt double-counts.** Ruled out: "run two deep review loops on the parser" resolves to review.
+### "The Python head counts characters rather than UTF-16 units": `_advisor_prompt_head` adds two units above `0xFFFF` before comparing with `ADVISOR_PROMPT_MAX_CHARS`. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: "The Python head counts characters rather than UTF-16 units": `_advisor_prompt_head` adds two units above `0xFFFF` before comparing with `ADVISOR_PROMPT_MAX_CHARS`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **The guard silently compares empty lists.** Ruled out: it reads the Python tuples out of the source and fails on a renamed list, as AC-038 records. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The guard silently compares empty lists.** Ruled out: it reads the Python tuples out of the source and fails on a renamed list, as AC-038 records.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The guard silently compares empty lists.** Ruled out: it reads the Python tuples out of the source and fails on a renamed list, as AC-038 records.
+### "The refusal vocabulary is missing a lead the fixture pins": the list at `:688` builds the pattern at `:736`, and all six refusal rows read false. -- RULED OUT (iteration 3, 1 attempt)
+- What was tried: "The refusal vocabulary is missing a lead the fixture pins": the list at `:688` builds the pattern at `:736`, and all six refusal rows read false.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **The no-edit guard withholds every deep offer.** Ruled out: "review the parser in several passes, no code changes" keeps `/deep:review`. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **The no-edit guard withholds every deep offer.** Ruled out: "review the parser in several passes, no code changes" keeps `/deep:review`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The no-edit guard withholds every deep offer.** Ruled out: "review the parser in several passes, no code changes" keeps `/deep:review`.
+### "The renderer can be steered by prompt text": it declares and implements that it never reads it. -- RULED OUT (iteration 7, 1 attempt)
+- What was tried: "The renderer can be steered by prompt text": it declares and implements that it never reads it.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **The Python gate's head cut diverges from the native schema.** Ruled out: both read the same 10,000-unit head and the long-prompt fixture cases pin the withheld result. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The Python gate's head cut diverges from the native schema.** Ruled out: both read the same 10,000-unit head and the long-prompt fixture cases pin the withheld result.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The Python gate's head cut diverges from the native schema.** Ruled out: both read the same 10,000-unit head and the long-prompt fixture cases pin the withheld result.
-
-### **The typed-stuck exception leaked to untyped complaints.** Ruled out: the untyped stuck complaint still returns `/doctor:deep-loop`. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The typed-stuck exception leaked to untyped complaints.** Ruled out: the untyped stuck complaint still returns `/doctor:deep-loop`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The typed-stuck exception leaked to untyped complaints.** Ruled out: the untyped stuck complaint still returns `/doctor:deep-loop`.
-
-### **The Verification Summary overcounts verified P0s.** Ruled out: 11 of 12 P0 boxes are checked, matching `11/12`. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The Verification Summary overcounts verified P0s.** Ruled out: 11 of 12 P0 boxes are checked, matching `11/12`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The Verification Summary overcounts verified P0s.** Ruled out: 11 of 12 P0 boxes are checked, matching `11/12`.
+### "The Verification Summary overstates what was verified": it states 11 of 12 P0, exactly matching the one open P0 box at `:266`. -- RULED OUT (iteration 2, 1 attempt)
+- What was tried: "The Verification Summary overstates what was verified": it states 11 of 12 P0, exactly matching the one open P0 box at `:266`.
+- Why ruled out: One pass of evidence did not support this direction.
+- Reopen when: a later iteration carries evidence that contradicts that pass.
 
 <!-- /ANCHOR:exhausted-approaches -->
-
----
-
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
 - Completed pivots: 0
 - Failed pivots: 0
@@ -215,65 +205,81 @@ Operator focus: finish the `spec_code` and `checklist_evidence` protocols over R
 - Remaining frontier: none recorded
 
 ## 11. RULED OUT DIRECTIONS
-[Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
+
+- "REQ-001 to REQ-004 regressed into code": the 69-row probe artifact backs the gain, keep and negative lines, and the gate contradicts none of them (iteration 1)
+- "The Verification Summary overstates what was verified": it states 11 of 12 P0, exactly matching the one open P0 box at `tasks.md:266` (iteration 2)
+- "T076's whole array-anchor list is stale": ten of its fifteen anchors land on or inside the list they name (iteration 2)
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- None: `maxIterations=7` is reached. The synthesis phase compiles `review-report.md` from the registry.
+No dimension remains: traceability (1 to 4), correctness (5), maintainability (6) and security (7) are all covered and the run stopped at the `max-iterations` cap. The next run inherits one open criterion, AC-040, and the five remediation workstreams in `review-report.md` (W1 to W5, all closure-record re-anchoring); nothing in the code needs a change.
 
 <!-- /ANCHOR:next-focus -->
-
----
-
 ## 13. KNOWN CONTEXT
+
+Prior work, read at init:
+
+- `spec.md` states 46 requirements over nine rounds; the sixth round is REQ-023..REQ-034.
+- `acceptance-criteria.md` holds AC-001..AC-054. AC-040 (the deep-review rerun) reads `Unmet` and is the row this run decides.
+- `tasks.md` holds T001..T101 with `Observed <date>` evidence cells; the Verification Summary counts 12 P0 / 13 P1 / 1 P2 items.
+- `implementation-summary.md`, `decision-record.md` (ADR-001..ADR-008) and `.skilled/changelog/skilled/v4.2.0.0.md` carry the closure prose.
+- Prior review reports sit in `review/` and `review-archive/`; generations 1 to 5 all returned FAIL, last on coverage and scope.
+- The reviewed tree is the advisor gate (`runtime/lib/command-attach.ts`, `runtime/scripts/skill_advisor.py`, scorer lanes, `fusion.ts`, `skill-advisor-cli.ts`, `subprocess.ts`), the deep command documents and the deep-loop reducer.
 
 ### Bounded Context Snapshot
 
-- **Target pointers:** the deep-loop command gate (`command-attach.ts`, `skill_advisor.py`), the shared fixture (`tests/fixtures/deep-loop-offer-cases.json`), the drift guard and served-layer tests, the deep presentation and command assets, the two deep YAML workflows, the reducer refinement fold, and the packet's own spec, plan, tasks, acceptance criteria, decision record and implementation summary.
-- **Behavior claims:** REQ-001 to REQ-039 and AC-001 to AC-047; SC-001 to SC-006; ADR-001 to ADR-007.
-- **Reuse and conventions:** reviews report findings with `file:line` evidence; suite and probe results are read from the packet's recorded runs because this lineage may not run builds or tests.
-- **Review risks and gaps:** `dist` is the served artifact, so a stale build would hide a source change; the prior generation-4 lineage recorded coverage-too-young on maintainability, so dimension breadth must start by iteration 2.
+- Target pointers: the 51 files in `review-scope-files.txt`.
+- Behavior claims to verify: each REQ states an observable result; each `Met` AC row cites a `path:line` or a command result; each `[x]` task cites an `Observed` cell.
+- Reuse and conventions: the shared fixture `tests/fixtures/deep-loop-offer-cases.json` is the single case source both gate copies read; the drift guard compares the two vocabularies.
+- Review risks and gaps: evidence cells may cite a line that moved; suite and fixture counts changed across rounds; `review/` artifacts are context, not review target.
 
 ---
 
 ## 14. CROSS-REFERENCE STATUS
 <!-- MACHINE-OWNED: START -->
+
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | pending | - | - |
-| `checklist_evidence` | core | pending | - | - |
-| `skill_agent` | overlay | pending | - | - |
-| `agent_cross_runtime` | overlay | pending | - | - |
-| `feature_catalog_code` | overlay | pending | - | - |
-| `playbook_capability` | overlay | pending | - | - |
-<!-- /MACHINE-OWNED: END -->
+| `spec_code` | core | pass | 4 | REQ-001..REQ-046 map to code and decisions; citation drift tracked as P2 |
+| `checklist_evidence` | core | partial | 2 | T065..T101 substance holds; nine cells drifted |
+| `skill_agent` | overlay | pending | - | [details] |
+| `agent_cross_runtime` | overlay | pending | - | [details] |
+| `feature_catalog_code` | overlay | pending | - | [details] |
+| `playbook_capability` | overlay | pending | - | [details] |
+<!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
+
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| - | - | - | - | - |
-<!-- /MACHINE-OWNED: END -->
+| .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts | [D3] | 1 | [0 P0, 0 P1, 6 P2 across cells] | partial |
+| .skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts | [D3] | 1 | [0 P0, 0 P1, 3 P2] | partial |
+| .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py | [D3] | 2 | [0 P0, 0 P1, 3 P2] | partial |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md | [D3] | 2 | [0 P0, 0 P1, 9 P2] | partial |
+| specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md | [D3] | 1 | [0 P0, 0 P1, 6 P2] | partial |
+<!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 16. REVIEW BOUNDARIES
 <!-- MACHINE-OWNED: START -->
-- Max iterations: 7
-- Convergence threshold: 0.1
+- Max iterations: 7 (stopPolicy `max-iterations`)
+- Convergence threshold: 0.10
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-max-1-1795518961022-7ms9ak, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-max-1-1795544069299-46zw3s, parentSessionId=null, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-24T11:16:48.000Z
-<!-- /MACHINE-OWNED: END -->
+- Started: 2026-11-24T18:16:03Z
+- Artifact dir: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1`
+<!-- MACHINE-OWNED: END -->

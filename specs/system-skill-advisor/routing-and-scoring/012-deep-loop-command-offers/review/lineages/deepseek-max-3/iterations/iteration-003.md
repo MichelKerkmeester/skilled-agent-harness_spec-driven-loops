@@ -1,100 +1,102 @@
-# Review Iteration 3
+# Review Iteration 003
 
 ## Dispatcher
 
-- Mode: review, single review iteration (fan-out lineage `deepseek-max-3`).
-- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
-- Iteration 3 of 7, stop policy `max-iterations`.
-- `steer.md` is still absent, so no lead ruling applied.
-- Operator focus: finish `spec_code` and `checklist_evidence`.
+- Mode: review
+- Dimension: traceability (operator focus continued)
+- Iteration: 3 of 7
+- Focus this pass: `spec_code` for REQ-023 to REQ-046, with ADR-005 and ADR-006 read as the decision records the operator focus names
+- Executor: this lineage process (cli-pi, deepseek-v4.1-flash-1017); no nested dispatch
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:57` to `:251` (REQ-001 to REQ-022, SC-001 to SC-006, measured behavior)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:58` to `:94` (AC-001 to AC-029)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:153` to `:158`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:5` to `:130` (T001 to T036, first five rounds)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` to `:410` (ADR-001 to ADR-004)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-after.json` (69 rows)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/results-spec-baseline.json` (69 rows)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/fresh-review-hook.txt:1` to `:29`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/behaviour/F6-sample-1.md:23` to `:26`
-- `.skilled/commands/deep/assets/deep-research-presentation.txt:13` to `:70`, `:236`, `:246`, `:478`
-- `.skilled/commands/deep/assets/deep-review-presentation.txt:13` to `:70`, `:267`, `:277`, `:583`
-- `.skilled/commands/deep/research.md:86`, `.skilled/commands/deep/review.md:81`
-- `.skilled/commands/deep/assets/deep-research.yaml:660` to `:663`, `:2252` to `:2269`
-- `.skilled/commands/deep/assets/deep-review.yaml:736`, `:2534` to `:2535`
-- `.skilled/skills/system-deep-loop/SKILL.md:20`
-- `.skilled/skills/system-deep-loop/deep-research/SKILL.md`, `.skilled/skills/system-deep-loop/deep-review/SKILL.md`, `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (holdout, split and near-miss counts)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:240-300`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:412-500`, `:508-600`, `:702-790`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:96-115`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:940-1225`, `:1660-1700`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5346-5365`, `:5700-5770`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:178-330`
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:236-300`, `:478-520`
+- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2892-2915`
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:919-962`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363-430`
 
-## Operator Focus
+## Findings
 
-This iteration finished the requirement sweep: REQ-001 to REQ-022 were read against the captured probe run and the files each names, and AC-001 to AC-029 were checked against the same artifacts. The two P2 findings from iteration 2 stay active and are re-confirmed, not duplicated. `spec_code` can now move to `pass`: all thirty-nine REQs have a producer or a decision. `checklist_evidence` stays `partial` because the thirteen evidence pointers have not been repointed.
-
-## Findings by Severity
+New findings this pass. The operator focus is addressed by reading ADR-005 and ADR-006 against their implementations, then replaying every REQ-035 to REQ-044 prompt through the shared fixture's expected columns.
 
 ### P0 Findings
 
-None.
+None. The fallback divergence below is a contract-level contradiction with an accepted alternative reading, so it does not meet the P0 bar after the adversarial pass.
 
 ### P1 Findings
 
-None.
+1. **ADR-008 records the mode-free plural ask as "serves the hub with no command", but the Python fallback keeps both run commands** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:732` -- ADR-008 states "The shared fixture row `plural-deep-loops-served` reads `servedRun: null` in both copies", and REQ-035 says "run two deep loops on the cache layer ... serves the hub with no command" (`spec.md:247`). The native deferred route does return `undefined` for that prompt (`.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:280-282`), but the Python suite reads the same `servedRun: null` as "not exactly one mode" and accepts *two* kept rows (`tests/python/test_skill_advisor.py:2902-2913`); `_apply_deep_loop_offer_gate` keeps every run row whose mode is not excluded when `asked_mode` is `None` (`scripts/skill_advisor.py:5734-5744`). So on a fallback runtime the reader is served `/deep:review (ask)` and `/deep:research (ask)` for a prompt the packet says carries no command. The fixture header calls the two answers equivalent ("which is the same answer the native deferred route gives when it offers no command", `deep-loop-offer-cases.json:2`), which is true of the reader's freedom to choose and false of the served rows.
+   - Finding class: `spec-drift`
+   - Scope proof: all four files are in the review target or the declared scope file list; the Python gate is a named integration surface in `spec.md` Files to Change.
+   - Affected surface hints: `spec.md` REQ-035, `decision-record.md` ADR-008, `scripts/skill_advisor.py`, `tests/python/test_skill_advisor.py`, `tests/fixtures/deep-loop-offer-cases.json`
+   - Case: On a fallback runtime, "run two deep loops on the cache layer" serves both the review and the research command with `ask`, while the same prompt on the native head serves the hub with no command.
+   - Claim adjudication:
+     ```json
+     {"type":"traceability","claim":"REQ-035 and ADR-008 say a mode-free plural ask serves the hub with no command, while the Python fallback keeps both deep run rows for that prompt.","evidenceRefs":["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:247","specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:732",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5734",".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2902"],"counterevidenceSought":"Read ADR-008's consequences and the fixture header for a statement that the fallback's two ask-policy rows are the intended equivalent; the header asserts equivalence without naming the two-row outcome, and the ADR's risk row names single-side divergence as the thing to prevent.","alternativeExplanation":"The ADR's 'no command' may describe only the native served head, and keeping both ask-policy rows may be the fallback's way of leaving the choice with the reader.","finalSeverity":"P1","confidence":0.75,"downgradeTrigger":"If ADR-008 is amended to state that the fallback keeps both ask-policy rows, or the fallback drops them, this becomes P2 or resolves."}
+     ```
 
 ### P2 Findings
 
-No new P2 in this iteration. Carried forward and re-verified:
-- **R2-P2-001** -- acceptance evidence cells point one row above the closure-pass and limitation rows they cite.
-- **R2-P2-002** -- AC-040 says `review/` still holds the pre-fix report, but the report is in `review-archive/20261124T111600Z/`.
+1. **The declared change set in spec.md stops at the sixth round** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:181` -- The `Files to Change` tables cover the first round and "Added by the sixth round (REQ-023 to REQ-034)" (`:181-193`). The eighth and ninth rounds create or modify files no table names: `.skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-plural-noun.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-duplicate-command.vitest.ts`, `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts`, and `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` (the last one carries REQ-046's enrichment). A search of `spec.md` for those names prints nothing.
+   - Finding class: `spec-drift`
+   - Scope proof: `spec.md` is the review target and every omitted path is inside the packet's own scope.
+   - Affected surface hints: `spec.md` §3, `handlers/advisor-recommend.ts`, `tests/scorer/deep-loop-plural-noun.vitest.ts`, `tests/handlers/advisor-recommend-duplicate-command.vitest.ts`, `tests/unit/deep-review-strategy-heading.vitest.ts`
+   - Case: A reader auditing which files the packet touches from `spec.md` alone misses the enrichment handler and three test files the later requirements depend on.
+
+2. **T074 cites a fixture line that holds a different case** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:148` -- T074 says the `bare-loop-name` row is at `tests/fixtures/deep-loop-offer-cases.json:169`; that line holds `typed-doctor-no-edit`, and `bare-loop-name` is at `:178`. The rule itself is pinned (the row reads `asksForLoopRun: false`), so only the pointer is stale.
+   - Finding class: `stale-evidence`
+   - Scope proof: packet task row and fixture are both inside the target scope.
+   - Affected surface hints: `tasks.md` T074, `tests/fixtures/deep-loop-offer-cases.json`
+   - Case: A reader opening `:169` to confirm the ADR-006 row finds an unrelated typed-doctor case instead.
+   - refines: `R2-P1-001`
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | REQ-001 to REQ-005 verified against `results-after.json`: the five gain rows carry `system-deep-loop` with `/deep:review` or `/deep:research` and `pol=ask`; R7 and all thirteen no-gain rows carry no `/deep:*` in any of three rows; the seventeen keep rows keep their command and policy; the seventeen negative rows keep their top skill and `cmd=`. A row-by-row compare of `results-after.json` with `results-spec-baseline.json` found 0 changes across the keep and negative groups. REQ-006 to REQ-008 verified at `deep-loop-offer-cases.vitest.ts:68` to `:318`, `command-attach-guards.vitest.ts:532` to `:541`, and `explicit.ts:454`. REQ-009 to REQ-012 verified at `deep-research.yaml:663`, `deep-review.yaml:736`, both presentation Next Steps rows, and `command-prompts.jsonl` (31 near-miss rows). REQ-013 to REQ-022 verified at `fresh-review-hook.txt:1` to `:28`, the fixture rows, and ADR-003 to ADR-005. |
-| `checklist_evidence` | partial | AC-001 to AC-029 opened. The underlying observations hold: the probe rows match, the presentation sections exist at `:13` with A/B/C, step 0 exists in both command docs, the YAML next steps exist, the depth triggers are gone from both mode skills, and `ASK with SINGLE prompt` is gone from the compiled assets. AC-041 and AC-040 still carry the two P2 drifts. Verification Summary counts match `tasks.md:309` to `:311`. |
+| Protocol | Status | Evidence | Note |
+|----------|--------|----------|------|
+| `spec_code` | partial | `spec.md:247`, `decision-record.md:732`, `tests/python/test_skill_advisor.py:2902` | REQ-035's mode-free clause is the one requirement-level contradiction in this pass; REQ-023 to REQ-034 and REQ-036 to REQ-046 map cleanly. |
+| `checklist_evidence` | partial | `tasks.md:148`, `acceptance-criteria.md:101` | T074's pointer is stale; every REQ-035 to REQ-044 prompt is present in the fixture with the expected column. |
+| `skill_agent` | notApplicable | - | Not in this pass. |
+| `agent_cross_runtime` | notApplicable | - | Not in this pass. |
 
 ## Integration Evidence
 
-- `results-after.json` is the captured rerun every probe-based row cites; the comparison against `results-spec-baseline.json` was done in memory and touched no file.
-- `fresh-review-hook.txt:1` to `:28` is the prompt-hook capture AC-022 to AC-027 cite.
-- `command-prompts.jsonl` holds 92 holdout rows, 109 `none` rows and 46 tune rows, with 31 `near-miss` rows, which matches ADR-001's recorded corpus state.
+- `LOOP_REQUEST` reads the loop names only behind use, continue or want verbs (`command-attach.ts:949-954`), which is what ADR-006 (`decision-record.md:508-560`) records; the fixture's `bare-loop-name` row confirms the no-ask outcome.
+- `loopAskCues` blanks a refused loop phrase before the mode cue is read (`command-attach.ts:1668-1685`), so REQ-041's four controls behave as the guard block asserts (`command-attach-guards.vitest.ts:919-955`).
+- `enrichCompiledRoutes` strips `command`, `policy`, `ownerSkillId` and `typed` from a row it withholds (`handlers/advisor-recommend.ts:422-426`), so REQ-046's second clause holds.
+- The mode vocabulary is compared on every carrier by the guard (`deep-loop-offer-cases.vitest.ts:485-492`), and `hub-router.json` carries exactly `research` and `review` signals.
+- `typedCommandIn` still returns the longest typed key (`command-attach.ts:251-265`), so REQ-025's "keeps its longest-key result for every other caller" holds.
 
 ## Edge Cases
 
-- The completion block at `deep-research.yaml:2253` does not name `--extend=N`; the completed-packet detection message at `:663` does. REQ-009 and AC-014 use the phrase "completed-packet message", which matches `:663`, so this is recorded as an ambiguity in the requirement wording rather than a finding.
-- `results-after.json` is a captured artifact; it was read, not regenerated, because a probe run writes result files outside the lineage. The capture is internally consistent and its 69 rows match the baseline's 69.
-- AC-029 cites `changelog:759` for a three-clause sentence; that line holds the suite-count clause, while the refusal-rule clauses are at `:482` to `:484`. The claims are all true in the file, so this is recorded as a pointer-precision caveat, not a new finding.
+- REQ-035's mode-free clause is internally split: REQ-035 and ADR-008 say "no command", the fixture header says both copies "leave the choice with the reader", and only the native test asserts `undefined`. Recorded as P1 above; the native path is not at fault.
+- AC-034's `skill_advisor.py:5566` points at a blank line while `_is_loop_workflow_request` is at `:5820`; this repeats the citation cluster already filed as `R1-P1-003` and is not re-filed.
+- The sixth-round tasks' historical counts (203 cases, 26 doctorWithheld rows) are not defects in themselves; only rows that claim the final tree are.
 
 ## Confirmed-Clean Surfaces
 
-- Probe gain group: V6, H1a, H1b, E1 and E3 all top `system-deep-loop` with the expected command and `pol=ask`.
-- Probe lose and no-gain groups: R7 and the thirteen no-gain rows carry no `/deep:*` command; V5 still tops `sk-code`.
-- Probe keep and negative groups: 0 changes against the baseline across 34 rows.
-- Stage-one rows: R2 tops `system-spec-kit`, V2, V4 and H10 top the hub with `/deep:review`, H7 with `/deep:research`, and no negative row moved.
-- Presentation offer sections: `deep-research-presentation.txt:13` to `:70` and `deep-review-presentation.txt:13` to `:70` hold the heading, the one question with A/B/C, the recommended `:auto` form with `--spec-folder=<the Gate 3 answer>`, option B `:confirm`, option C no loop, the native default, and fan-out only on two or more named executors or independent takes.
-- Command documents: step 0 points at the offer section at `research.md:86` and `review.md:81`, and counts a missing policy as `ask`.
-- YAML: the completed-packet message names `--extend=N` and `--restart` at `deep-research.yaml:663`, and both `next_steps` lists carry the `--extend=N` and `/doctor:deep-loop --scope=` rows.
-- Setup: both presentation files name the question tool from `communication-handoff.md` §5, mark Autonomous `(Recommended)` and Native `(Recommended, default)`, and hold no `ASK with SINGLE prompt`.
-- Mode packets: `deep-research/SKILL.md` has no `comprehensive research` or `deep investigation`; `deep-review/SKILL.md` has no `audit spec folder` or `pre-release review`; the hub `SKILL.md` names `/doctor:deep-loop` at `:20`; the quick-reference example uses `=` flags.
-- Corpus: 31 near-miss rows, three deep-family holdout rows in the `-04` series, and the fixture's 285 cases.
+- All eight REQ-035 run prompts, the five no-run prompts, the three REQ-036 questions, the thirteen REQ-037 complaints, the four REQ-037 controls, the three REQ-040 no-edit prompts, the four REQ-041 refused-cue prompts, the four REQ-043 prompts and the six REQ-044 prompts are present in the shared fixture with the expected `asksForLoopRun`, `servedRun`, `doctorWithheld` and `readOnlyRunKept` values.
+- ADR-005's native half is pinned at `typed-on-stuck-serving.vitest.ts:112-124`, including `typed: true`; its Python half is read at `tests/python/test_skill_advisor.py:2875`.
+- `COMMAND_ASK_LEAD_WORDS` exists in both copies (`command-attach.ts:1336`, `skill_advisor.py:5442`), as REQ-031 names it.
 
 ## Ruled Out
 
-- "The keep or negative groups moved after the ninth round": ruled out; the in-memory compare of `results-after.json` against `results-spec-baseline.json` reported 0 changes across all 34 rows.
-- "The deep-research presentation is missing the fan-out condition": ruled out; the flag table at `:54` says fan-out appears only on two or more executors or models, or independent takes.
-- "The compiled contracts still teach the old setup prompt": ruled out; `rg -c 'ASK with SINGLE prompt'` over `.skilled/commands/deep/assets/compiled/` printed nothing.
-- "AC-019's 31 near-miss count is stale": ruled out; `rg -c '"row_type":"near-miss"'` prints 31.
+- "A REQ-035 to REQ-044 prompt is missing from the fixture": ruled out by a prompt-by-prompt lookup -- every one resolves, with its column.
+- "The mode vocabulary is out of sync with the hub router": ruled out. The guard compares `MODE_CUES`, `MODE_CUE_WORDS` and `hub-router.json` `routerSignals` on the same sorted mode list (`deep-loop-offer-cases.vitest.ts:487-492`).
 
 ## Next Focus
 
-- Dimension: correctness.
-- Focus area: the two gate copies and the scorer paths that the requirements pin, read for logic defects the fixture may not cover: the refusal gap, the bounded window, the deferred mode cue, `typedCommandsIn`, and `trackedCommandForOwner`.
-- Reason: traceability has all thirty-nine requirements mapped and both protocols exercised; correctness is the next dimension with no coverage.
-- Rotation status: traceability moves to completed for this run; correctness, security and maintainability remain.
-- Carry-forward: R2-P2-001 and R2-P2-002 stay active advisories; the unexecuted suite runs stay an evidence limit.
-- Required evidence: a file:line and a concrete input for every correctness finding; P0 candidates get the full three-pass check.
+- Dimension: correctness
+- Focus area: the gate's decision order for prompts that combine a loop ask with a refusal, a stuck symptom or a no-edit clause, and the deferred/routed mode selection
+- Reason: traceability has covered both core protocols and surfaced its drift; the combined-clause logic is the highest-risk behaviour the packet changes and has not been read as code
+- Rotation status: correctness starts; security and maintainability remain
+- Blocked/productive carry-forward: productive (fixture columns as the oracle)
+- Required evidence: exact branch order in `command-attach.ts`/`skill_advisor.py` and a case that distinguishes each branch
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

@@ -1,23 +1,21 @@
-# Review Iteration 006 — deepseek-max-1
-
-**Dimension:** correctness (D1, follow-up)
-**Protocol:** behavior execution + code read
-**Focus:** a second correctness pass over the guard interactions the first pass did not exercise — no-edit wording, the typed-doctor path — and a re-verification that the three P1 findings still reproduce.
+# Iteration 006 - Maintainability (the closure documents as one record)
 
 ## Dispatcher
 
-- Run: `fanout-deepseek-max-1-1795518961022-7ms9ak`, generation 1, label `deepseek-max-1`.
-- Execution: this process; no nested dispatch ran.
-- Config: `maxIterations=7`, `stopPolicy=max-iterations`.
-- Steering channel: `steer.md` is absent at iteration 6.
+- Mode: review, lineage `deepseek-max-1`, generation 1, iteration 6 of 7.
+- Dimension: maintainability - whether the packet reads as one coherent record: `implementation-summary.md`, `plan.md`, `timeline.md`, the changelog, packet 013's pointer and the decision record, checked for statements that contradict each other or the tree.
+- Operator review focus: the requirement, task and acceptance layers are mapped; this iteration asks whether a later reader can follow the same trail without meeting a scaffold or a superseded number.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:760-790,1280-1375,1400-1500`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4940-5000,5441-5470`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:138-156`
-- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:236-250`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:250-300`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md` (all 49 lines)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:1` to `:20` (frontmatter and continuity), `:154` to `:157`, `:165` to `:172`, `:236` to `:238`, `:258` to `:268` (limitations 1 to 8)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md:17`, `:35`, `:51`, `:68` (`## FIX ADDENDUM: AFFECTED SURFACES`), `:90`, `:102`, `:114`, `:126`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:23` (status), `:296` to `:301` (SC rows)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:86` (AC-029), `:97` (AC-040), `:137` (closure statement)
+- `.skilled/changelog/skilled/v4.2.0.0.md:482` to `:484`, `:755` to `:760`
+- `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:245`, `:266`, `:322` to `:324`
 
 ## Findings - New
 
@@ -27,89 +25,59 @@ None.
 
 ### P1 Findings
 
-1. **A no-edit clause withholds a read-only deep-loop offer** -- `command-attach.ts:1424` -- `attachCommand` returns `undefined` for any prompt `isNoEditRequest` matches, on both the routed (`:1424`) and deferred (`:1472`) paths. That guard is shared by every writing command, but a deep review and a deep research do not edit the tree, so "don't change anything" cannot make either offer unsafe. Measured: "run a deep review of the parser but don't change anything", "do a deep review of the parser, don't edit any files" and "run a deep review on the parser and don't touch anything" all return the hub with no command, while "review the parser in several passes, no code changes" and "run a deep research on caches without editing code" keep theirs — the same intent, opposite outcomes, decided by which phrase the pattern happens to list.
-   Case: an operator writes "run a deep review of the parser but don't change anything", the natural way to ask for a read-only audit, and receives no `/deep:review` offer at all.
-   Finding class: `correctness` (false negative on a read-only workflow; no wrong command is offered).
-   Scope proof: `command-attach.ts` is a `reviewScopeFiles` entry; the five prompts were measured through the built `dist` gate, and the two guard call sites were read at `:1424` and `:1472`. `NO_EDIT_REQUEST` is at `:767`.
-   Affected surface hints: `command-attach.ts:1424`, `command-attach.ts:1472`, `command-attach.ts:767` (`NO_EDIT_REQUEST`), `command-attach.ts:775-790` (the separate run-refusal list whose comment explains the distinction).
-
-   ```json
-   {
-     "type": "correctness",
-     "claim": "isNoEditRequest is applied to deep-loop commands even though neither deep workflow edits files, so a read-only constraint withholds the offer.",
-     "evidenceRefs": [
-       "advisor_recommend('run a deep review of the parser but don't change anything') -> hub, no command",
-       "advisor_recommend('review the parser in several passes, no code changes') -> /deep:review ask",
-       "command-attach.ts:1424",
-       "command-attach.ts:1472",
-       "command-attach.ts:767"
-     ],
-     "counterevidenceSought": "Checked whether the no-edit guard is deliberate for deep commands: the adjacent comment says it gates every writing command and keeps the run-refusal list separate because that says nothing about whether a file may change. A deep review writes no file, so the stated reason does not reach it. Also checked that the inverse phrasings keep the command, confirming the outcome is phrase-dependent rather than a general refusal rule.",
-     "alternativeExplanation": "The team may read any no-edit wording as 'do not start a multi-pass process', not only 'do not write'. That reading would make the withholding intentional but would leave the two keeping phrasings inconsistent.",
-     "finalSeverity": "P1",
-     "confidence": 0.86,
-     "downgradeTrigger": "Downgrade to P2 if the team records that no-edit wording is a blanket stop signal and accepts the identical-intent inconsistency."
-   }
-   ```
+None. The packet's own closure machinery - status, closure statement, summary counts, limitations and the decision record - is internally consistent; the two findings are a stale quotation and an unbuilt timeline.
 
 ### P2 Findings
 
-2. **A typed `/doctor:deep-loop` after a comma is read as a mention, not a request** -- `command-attach.ts:1325` -- Refines `ITER4-P2-001`. `commandOnlyMentioned` treats a `run`-policy command as requested only when it opens a sentence or follows a use verb (`requestedOpeningSentence` / `requestedByUseVerb`, `:1301-1303`). "the deep research run is stuck, /doctor:deep-loop" has neither, so it withholds, while "my research run is stuck; /doctor:deep-loop please" keeps (the semicolon opens a sentence) and "the loop stalled. /doctor:deep-loop now" keeps (the period does). The shared fixture header's claim that "a bare naming on a stuck run keeps it" is broader than the code.
-   Case: the same diagnosis request is offered or withheld by punctuation: a comma withholds, a semicolon or period keeps.
-   Finding class: `typed-request-withheld` (refinement of `ITER4-P2-001`; documentation and behavior disagree at the margin).
-   Scope proof: measured through the built gate and by calling `commandOnlyMentioned` directly; the two pattern anchors were read at `:1301-1303`.
-   Affected surface hints: `command-attach.ts:1325`, `command-attach.ts:1301-1303`, fixture header at `deep-loop-offer-cases.json:2`, rows `:138-156`.
+1. **AC-029 quotes a changelog suite count the changelog no longer carries** -- `.skilled/changelog/skilled/v4.2.0.0.md:759` -- AC-029 states that the row "quotes 184 files, 3,188 passed, 4 skipped and none failed, which is what the eighth-round rerun reads". The row reads "186 files, 3,415 passed, 4 skipped, none failed; Python scorer 136 passed, none failed on 347 shared cases", which is the ninth-round figure. The criterion's substance - the changelog states the refusal rule, names the brief options and the typed `(ask)`, and quotes a suite count - holds; the quotation in the acceptance cell is one round behind the file.
+   Finding class: closure quotation drift.
+   Scope proof: direct read of `.skilled/changelog/skilled/v4.2.0.0.md:759` and of the AC-029 cell at `acceptance-criteria.md:86`.
+   Affected surface hints: `acceptance-criteria.md` AC-029 cell.
+   Case: a reader diffing the cell against the changelog finds two different suite counts and cannot tell which round the row is certifying.
+
+2. **`timeline.md` is an unfilled template, dated and never written** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:18` -- the file still carries `> [One line: what this timeline tracks.]`, `**Subject:** [SUBJECT]`, `**Owner:** [NAME OR ROLE]`, two `<!-- FILL: ... -->` instructions, two `**[EVENT OR CHANGE]**. Outcome: [RESULTING STATE OR DECISION].` lines and `**[MILESTONE]:** target [YYYY-MM-DD OR CONDITION]`. Its metadata says started 2026-11-22 and last updated 2026-11-22, while the packet has since run nine fix rounds and four review generations.
+   Finding class: documentation gap.
+   Scope proof: `sed -n '18,44p'` of the file and a placeholder search that returns 4 lines; the packet validator passes because a timeline is not a validated Level 2 document, so nothing else catches it.
+   Affected surface hints: `timeline.md` (whole file), `implementation-summary.md` as the document that should summarise the same history.
+   Case: a new reader opening the packet's chronological record gets brackets and instruction text instead of the nine rounds' history.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|---|---|---|
-| `spec_code` | partial (carried) | Iterations 1 and 3 findings re-verified this iteration. |
-| `checklist_evidence` | pass (carried) | Iteration 2 result stands. |
-
-What this iteration actually ran:
-
-1. **Re-verification of the three active P1s.** "run a deep loop to review the research loop config" still returns `/deep:research (ask)`; "run two deep loops on the cache layer" still returns the hub with no command; "run deep reviews on the parser, but skip the deep research" still returns `/deep:research (ask)`. The three P1s reproduce.
-2. **14 no-edit and constraint prompts.** The three "don't change anything / don't edit / don't touch" prompts withhold; the two equivalent "no code changes / without editing code" prompts keep; the typed doctor variants split by punctuation as finding 2 records.
-3. **Typed-layer battery.** `/doctor:deep-loop` alone, "please run /doctor:deep-loop on this packet", "the loop stalled. /doctor:deep-loop now" and "my research run is stuck; /doctor:deep-loop please" all keep the doctor; "the deep research run is stuck, /doctor:deep-loop" withholds.
-4. **Typed command battery.** `/deep:review:confirm`, `/deep:review:auto`, `/deep:research:auto`, "run /deep:review on the parser, then /create:changelog", "/deep:review the parser and then /doctor:deep-loop" and "/speckit:save and /deep:review the parser" all keep `/deep:*` with `typed: true`, matching REQ-025 and REQ-029.
+Not re-run in this iteration beyond what the findings cite; both core protocols were recorded in iterations 2 and 4.
 
 ## Integration Evidence
 
-- Native gate: built `dist/runtime/lib/command-attach.js`, executed for all measurements.
-- Python gate: read only; the no-edit guard and the typed-doctor path are native, and the Python copy has no mode-cue or command-naming layer.
-- Shared fixture: header claim at `:2`, doctor rows at `:138-156`.
-- Guard tests: `command-attach-guards.vitest.ts:236-250` covers `commandOnlyMentioned` for the doctor command.
+- `.skilled/changelog/skilled/v4.2.0.0.md:759` is the changelog row the packet's own acceptance row points at, and it is also the only closure document besides `tasks.md` T101 that matches the tree's 347 shared cases.
+- `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123` still resolves and still states packet 013's degraded-path evidence for its REQ-006, so the cross-packet pointer REQ-034 owns is live.
 
 ## Edge Cases
 
-- **No-edit wording is ambiguous by nature.** The finding rests on the intent "read-only audit", which is what a deep review is; a reader who means "start nothing" is also expressible, but the guard cannot tell the two apart and the packet has no requirement pinning the choice.
-- **The typed-doctor refinement changes no severity.** It narrows `ITER4-P2-001` to its root cause and corrects the fixture header's claim.
+- **SC-004 sits after SC-006** in `spec.md:301`, because it was added by a later round. The order is readable and every id resolves, so it is recorded here rather than raised as a finding.
+- **`plan.md` is the original plan and is not updated for the ninth round.** Its `## FIX ADDENDUM: AFFECTED SURFACES` section carries the later surfaces, and its scope is frozen by the packet's own workflow, so no finding is raised for the plan's age.
+- **The changelog's earlier suite row (`2,450 passed`) is a different build.** It sits in the same table as a historical row, and nothing in the packet cites it as current.
 
 ## Confirmed-Clean Surfaces
 
-- The three active P1s reproduce; none is stale.
-- Typed commands keep their command in every combination tested, including two typed commands where one is not a deep command.
-- The run-refusal list stays separate from the no-edit list, and the doctor refuses on the eight run-refusal prompts the fixture lists.
+- `implementation-summary.md` limitations 1 to 8 are sequential and current; limitation 6 states the ADR-005 exception and limitation 8 states the served-brief gap with its evidence.
+- `implementation-summary.md:13` and `:14` name the ninth round and this rerun as the next safe action, which is what is happening.
+- `spec.md:23` states "In Progress: the traceability review rerun is open", and `acceptance-criteria.md:137` states `Closeable: No` with AC-040 as the reason - the two documents agree with each other and with this run.
+- `tasks.md:322` to `:324` match the checkboxes behind them; `timeline.md` is the only document in the packet that fails to carry the history.
 
 ## Ruled Out
 
-- **A typed command loses to another typed command.** Ruled out: every dual-typed prompt keeps the expected deep command with `typed: true`.
-- **The doctor is withheld on every stuck complaint.** Ruled out: four of six variants keep it.
-- **The no-edit guard withholds every deep offer.** Ruled out: "review the parser in several passes, no code changes" keeps `/deep:review`.
+- "The packet's status and closure statement disagree": both say the run is open and name AC-040.
+- "The limitations list lost the typed-on-stuck line": limitation 6 states it in the ADR-005 wording.
+- "The cross-packet pointer to packet 013 is dead": `013-.../implementation-summary.md:123` resolves and states the degraded-path evidence.
+
+## SCOPE VIOLATIONS
+
+None.
 
 ## Next Focus
 
-- **Dimension:** traceability (overlay verification)
-- **Focus area:** the overlay protocols `skill_agent` and `agent_cross_runtime` over the deep-loop skill and its agent mirrors, plus a final consistency check that every active finding still points at the line it named.
-- **Reason:** the run has covered the four canonical dimensions; the last iteration is best spent on the cross-runtime traceability the packet itself changed, and on verifying the accumulated record before synthesis.
-- **Rotation status:** correctness complete; overlay verification last.
-- **Required evidence:** the deep-loop `SKILL.md`, `deep-review`/`deep-research` packets, agent mirrors and the command documents at `file:line`.
+- Dimension: security
+- Focus: the trust boundaries of the gate and of this review's own inputs - prompt-as-data handling, regex cost on attacker-controlled length, secret exposure in the changed code, and the `ask` policy guarantee that no deep command starts on its own
+- Reason: security is the last configured dimension; the gate reads an untrusted prompt string on every hook, which is the packet's only real trust boundary.
+- Rotation status: maintainability closes; security completes the configured set.
 
-## Assessment
-
-Dimensions addressed: correctness
-
-The second correctness pass found one more real defect: the no-edit guard is shared with writing commands and withholds a read-only deep-loop offer on a common phrasing. The typed-doctor P2 is refined to its punctuation-dependent root cause. The three earlier P1s all still reproduce, so the verdict stays CONDITIONAL with no P0.
-
-Review verdict: CONDITIONAL
+Review verdict: PASS

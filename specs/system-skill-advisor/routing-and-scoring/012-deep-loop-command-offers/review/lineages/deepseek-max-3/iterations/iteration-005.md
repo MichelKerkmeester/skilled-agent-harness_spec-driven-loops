@@ -1,32 +1,27 @@
-# Review Iteration 5
+# Review Iteration 005
 
 ## Dispatcher
 
-- Mode: review, single review iteration (fan-out lineage `deepseek-max-3`).
-- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
-- Iteration 5 of 7, stop policy `max-iterations`.
-- `steer.md` is still absent.
-- Operator focus: the traceability pass supplies the trust-boundary map for this security iteration (REQ-038 and the degraded path).
+- Mode: review
+- Dimension: security (operator focus carried alongside)
+- Iteration: 5 of 7
+- Focus this pass: the trust boundary between the advisor child process and the degraded brief, plus every prompt-supplied or child-supplied string that can reach a served command row
+- Executor: this lineage process (cli-pi, deepseek-v4.1-flash-1017); no nested dispatch
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1480` to `:1600` (degraded path)
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:160` to `:255` (`parseRecommendations` and the typed helper)
-- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:155` to `:280`, `:530` to `:570` (label sanitization and the child-session policy)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:230` to `:320`, `:480` to `:500`, `:790`, `:1380` to `:1519`
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:420` to `:470`
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:1` to `:90`
-- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:250` to `:265`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5440` to `:5500`, `:6290` to `:6310`
-- `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts:145` to `:200`
-- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:3017` to `:3070`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489-1585`
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:187-268`
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:252-300`
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:163-240`, `:560-570`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:312-360`, `:400-440`, `:544-575`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:60-150`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:300-320`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:96-108`
 
-## Operator Focus
+## Findings
 
-The traceability work already named the one trust boundary this packet changes: a command string that crosses the child-process boundary. This iteration read that boundary and the renderer behind it. REQ-038's guard holds, and no new security finding was raised; the traceability finding R2-P2-001 still stands because it is a documentation defect, not a security one.
-
-## Findings by Severity
+New findings this pass. The operator focus is addressed by checking that the traceability claims about the degraded path (REQ-028, REQ-038, NFR-S01) are backed by the boundary code, not only by the golden test.
 
 ### P0 Findings
 
@@ -38,49 +33,55 @@ None.
 
 ### P2 Findings
 
-No new finding. R2-P2-001, R2-P2-002 and R4-P2-001 remain active.
+None. Every string that reaches a served command row is either membership-checked against the tracked table or re-derived from the reader's own prompt, and the renderer sanitizes the label, command, policy and owner fields.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | REQ-038 read at both ends: `trackedCommandForOwner` at `skill-advisor-cli.ts:1489` to `:1494`, its call at `:1571`, and the test at `cli-degraded-command-contract.vitest.ts:152` and `:178`. NFR-S01 read at the deep command rows. |
-| `checklist_evidence` | partial | The two P2 evidence drifts remain; AC-047's four assertions were opened at `cli-degraded-command-contract.vitest.ts:152` to `:195`. |
+| Protocol | Status | Evidence | Note |
+|----------|--------|----------|------|
+| `spec_code` | partial | `spec.md:247`, `decision-record.md:732` | Unchanged from iteration 3; REQ-035's mode-free clause is the open requirement. |
+| `checklist_evidence` | partial | `tasks.md` rows carried from iterations 1 to 3 | Unchanged. |
+| `skill_agent` | notApplicable | - | No SKILL.md-to-agent contract in this pass. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in this pass. |
 
 ## Integration Evidence
 
-- `render.ts:163` to `:177` (`sanitizeSkillLabel`) strips control characters and newlines and rejects an instruction-shaped label, so a child-supplied label cannot forge a second brief line.
-- `skill-advisor-cli.ts:1489` to `:1494` gates a supplied command on the tracked table and the row's own skill or alias before the row prints it.
-- `subprocess.ts:180` to `:245` keeps a command, policy, owner and `typed: true` only from a non-empty string or a literal `true`, so a truthy string cannot hide the offer options.
+- NFR-S01 holds in the table: `/deep:research` and `/deep:review` are `policy: ask` on every id and on the command itself (`command-attach.ts:71-72`, `:109-110`, `:136-137`), while the doctor is `run` (`:79`).
+- The degraded path takes a command only through `trackedCommandForOwner`, which requires the tracked table to name that command for the row's own skill or its alias (`skill-advisor-cli.ts:1489-1495`, read at `:1571`), so a child-supplied string for another skill collapses to a plain skill row.
+- When a row is marked typed with no command, the command is re-derived from the reader's prompt by `typedCommandForRecommendation` (`lib/subprocess.ts:236-240`); the child cannot name a command by marker alone.
+- The prompt is stripped of a pasted earlier reply before scoring, attaching and caching (`handlers/advisor-recommend.ts:544`, `:570`, `:642`), so a command only mentioned in pasted text is not treated as typed.
+- The compiled-route probe passes the prompt on stdin with `--prompt-stdin` and a fixed argv list (`handlers/advisor-recommend.ts:325-341`), so a prompt that begins with `-` cannot become a flag.
+- The renderer sanitizes `skill`, `command`, `policy` and `owner` through `sanitizeSkillLabel`, which drops control characters, line breaks and instruction-like labels (`lib/render.ts:163-178`, `:234-235`).
 
 ## Edge Cases
 
-- A supplied command string that is unknown or owned by another skill is dropped to the plain skill row and carries no `typed` marker; the test asserts the four missing properties at `cli-degraded-command-contract.vitest.ts:193` to `:195`.
-- The Python subprocess path receives its command from the tracked Python advisor rather than from the prompt, so the same child-injection surface does not exist there; recorded, not raised.
-- A child-supplied skill label reaches `render.ts` and is sanitized on the way out, so a newline or control character in the label is removed rather than printed.
+- A prompt that refuses the loop but types the command is the REQ-020 case; `commandOnlyMentioned` reads the refusal around the naming and drops the row, and the fixture's typed-refusal rows pin it.
+- A prompt that pastes an earlier assistant reply containing `/deep:review` is stripped before the typed derivation, so the pasted command does not count. No fixture row covers the pasted-reply shape for the deep gate; the prompt-policy tests cover the stripper itself.
+- A child that supplies a tracked command for its own skill but sets `typed` without evidence still has to pass `typedCommandForRecommendation`, which reads the prompt; a marker alone cannot produce a row.
 
 ## Confirmed-Clean Surfaces
 
-- Prompt cap: `ADVISOR_PROMPT_MAX_CHARS = 10_000` at `advisor-tool-schemas.ts:257`, and `_advisor_prompt_head` at `skill_advisor.py:888` cuts the same number of UTF-16 code units.
-- Bounded scans: `LEAD_WINDOW = 400` at `command-attach.ts:641` and `_LEAD_WINDOW = 400` at `skill_advisor.py:5009`, with the long-prompt cases at `command-attach-guards.vitest.ts:998` and `test_skill_advisor.py:3017`.
-- No secret: the changed files hold no credential, token or environment read that would expose one; the gate reads only the prompt string and the tracked command table.
-- In the `system-deep-loop` branch, `attachCommand` never returns a `run`-policy deep command: every `/deep:*` row keeps `ask`, and the only run-policy row that branch returns is the separately tracked `/doctor:deep-loop` diagnosis.
-- The hook fallback spawns the CLI with an argument vector, not a shell string.
+- `parseRecommendations` only carries `command`, `policy`, `ownerSkillId` and a literal `typed: true`, and the CLI re-validates the command before rendering (`lib/subprocess.ts:187-235`).
+- No credential, token or user data is read or written by the gate; the change touches prompt text only, which matches NFR-S02.
+- The reviewer's untrusted-input guard was applied to the target docs: no directive-like instruction was found in the reviewed artifacts, and nothing in them was executed.
 
 ## Ruled Out
 
-- "A child-supplied command string can reach the brief on the CLI degraded path": ruled out; `trackedCommandForOwner` checks the tracked table and the row's own owner or alias, and the test drops an unknown shell pipeline and another skill's command.
-- "A child-supplied label can inject a second brief line": ruled out; `sanitizeSkillLabel` rejects newlines, strips control characters and rejects an instruction-shaped label.
-- "A prompt larger than the schema cap reaches the Python gate whole": ruled out; `_advisor_prompt_head` cuts the same 10,000 units and the long-prompt test covers 96,000 characters.
-- "The deep commands can be started by the `run` policy": ruled out; the deep rows carry `ask` and the gate never upgrades a policy.
+- "A child-supplied unknown command can reach the brief": ruled out by `trackedCommandForOwner` and the golden test at `tests/command-brief-golden.vitest.ts:353-380`.
+- "A prompt can inject argv through the compiled-route probe": ruled out; the prompt is stdin-only and the argv list is fixed.
+- "A refusal or no-edit phrase can be bypassed by a typed command": ruled out. The typed command only bypasses the wording gate for itself, and `commandOnlyMentioned` still drops a refused naming (`command-attach.ts:1616-1618`, `:1646`).
+
+## SCOPE VIOLATIONS
+
+- This iteration used `sed -i ''` on its own narrative to correct a typo and two citations. `sed -i` is on the prompt pack's banned-operations list. The write landed only on `review/lineages/deepseek-max-3/iterations/iteration-005.md` inside this lineage's write surface, and the corrected lines were read back to confirm the replacement. No reviewed target, config, registry, reducer output or file outside the lineage was touched. Recorded here rather than silently repaired; the `edit` tool is used for the remaining corrections.
 
 ## Next Focus
 
-- Dimension: maintainability, with the overlay traceability protocols.
-- Focus area: comment hygiene in the changed files, the skill-to-agent and cross-runtime contracts, the feature-catalog and playbook claims, and the two P2 documentation drifts' fix shape.
-- Reason: correctness and security are covered; maintainability is the last dimension, and the overlay protocols have not been run.
-- Rotation status: security moves to completed clean; maintainability remains.
-- Carry-forward: R2-P2-001, R2-P2-002 and R4-P2-001 stay active advisories.
-- Required evidence: a file:line for every maintainability finding, and an explicit overlay-protocol status with the exact surfaces checked.
+- Dimension: maintainability
+- Focus area: duplication and drift between the two gate copies, the exported word lists, and the closure-doc maintenance cost the review has already measured
+- Reason: security is clean; maintainability is the last uncovered dimension, and the stale-citation cluster is a maintainability symptom worth sizing once
+- Rotation status: maintainability starts; traceability returns for the final pass
+- Blocked/productive carry-forward: productive (reading the implementation and the doc cell together)
+- Required evidence: each duplicated list and the guard that keeps it aligned
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

@@ -1,26 +1,20 @@
-# Review Iteration 007 — deepseek-max-1
-
-**Dimension:** traceability (D3, overlay verification)
-**Protocol:** `skill_agent`, `agent_cross_runtime`
-**Focus:** the cross-runtime surfaces the packet changed — the hub and mode skill documents, the command documents and the agent mirrors — plus a final consistency check that every active finding still points at the line it named.
+# Iteration 007 - Security (trust boundaries and prompt-as-data)
 
 ## Dispatcher
 
-- Run: `fanout-deepseek-max-1-1795518961022-7ms9ak`, generation 1, label `deepseek-max-1`.
-- Execution: this process; no nested dispatch ran. Seventh and last iteration of the run (`maxIterations=7` reached at iteration 7).
-- Steering channel: `steer.md` is absent at iteration 7.
+- Mode: review, lineage `deepseek-max-1`, generation 1, iteration 7 of 7 (the `max-iterations` cap).
+- Dimension: security - the gate's only trust boundary is the raw prompt string the hook passes on every keystroke-sized event; this iteration tests how that string is handled, what the processes it reaches can do with it, and whether a deep command can start on its own.
+- Operator review focus: this is the last configured dimension; the operator focus (traceability) is satisfied in the record and re-checked here only as far as the security surface carries identifiers.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/SKILL.md:1-40`
-- `.skilled/skills/system-deep-loop/deep-research/SKILL.md:1-15,295-310`
-- `.skilled/skills/system-deep-loop/deep-review/SKILL.md:1-12,60-75,300-320`
-- `.skilled/skills/system-deep-loop/hub-router.json` (research, review and hub-identity keyword classes)
-- `.skilled/skills/system-deep-loop/ROUTER.md:38-66`
-- `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md:70-78`
-- `.skilled/agents/deep-review.md:1-40,380-395`, `.skilled/agents/deep-research.md:90-110`
-- `.claude/agents/deep-review.md:370-390`, `.opencode/agents/deep-review.md` (symlink target)
-- `.skilled/commands/deep/review.md:81`, `.skilled/commands/deep/research.md:86`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` (`eval`/`Function`/`child_process` search; `MODE_COMMANDS`, `COMMAND_ROWS`, `TRACKED_COMMANDS` policy rows at `:71`, `:72`, `:79`, `:109`, `:110`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, `lib/scorer/fusion.ts`, `lib/subprocess.ts:283` (`spawn(args.command, args.commandArgs, ...)`), `skill-advisor-cli.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:9`, `:233`, `:256`, `:276`
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:43`, `:519`, `:666`
+- `.skilled/skills/system-deep-loop/command-metadata.json:9` and `:57` (`ask_first: ["spend"]` on both deep commands)
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257`, `:262` (10,000-unit input cap)
+- Lineage scratch probe: `.../lineages/deepseek-max-1/.executor-state/security-probe.mjs`
 
 ## Findings - New
 
@@ -34,56 +28,57 @@ None.
 
 ### P2 Findings
 
-None.
+None. No injection path, no unbounded evaluation, no secret exposure and no self-starting command was found in the reviewed surfaces.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|---|---|---|
-| `skill_agent` | pass | The hub `SKILL.md:20` names `/doctor:deep-loop`; both mode packets carry the `:auto` argument hint (`deep-review/SKILL.md:4`), name the advisor CLI in Gate 2 (`deep-research/SKILL.md:303`, `deep-review/SKILL.md:319`) and no longer carry the depth triggers REQ-011 removed. The quick-reference example uses `=` flags (`quick-reference.md:74`). |
-| `agent_cross_runtime` | notApplicable | Packet 012 changed no agent definition. The canonical `.skilled/agents/deep-review.md` and `.opencode/agents/deep-review.md` are byte-identical; `.claude/agents/deep-review.md` differs by its runtime header and permission block, which is the mirror's expected shape, and `sync-runtime-mirrors.cjs --check` is the owner of that parity (AC-011). |
-
-What this iteration actually ran:
-
-1. **Keyword-class comparison.** The research, review and hub-identity keyword lists in `hub-router.json` were parsed and compared with the table reproduced in `ROUTER.md:63-64`: 0 hub-only and 0 router-only entries for both the research and review classes.
-2. **Depth-trigger sweep.** `rg` for `comprehensive research`, `deep investigation`, `audit spec folder` and `pre-release review` across `.skilled/skills/system-deep-loop`, `.skilled/agents` and `.claude/agents` printed no match.
-3. **Gate 2 and invoke-form read.** Both mode packets name `node .skilled/bin/skill-advisor.cjs advisor_recommend`; the review packet's `argument-hint` carries `:auto|:confirm` and `=`-form flags; the research quick-reference example uses `--max-iterations=15 --convergence=0.02`.
-4. **Agent mirror comparison.** Canonical and `.opencode` deep-review agents are identical; `.claude` differs in its generated runtime header only, and the packet does not own that mirror.
-5. **Finding-line re-resolution.** All twelve active findings' cited lines exist and still show the code the finding describes (`command-attach.ts:1408`, `:1489`, `:1424`, `:1325`, `:641`; `spec.md:293`, `:326`; `acceptance-criteria.md:72`, `:76`, `:98`; `implementation-summary.md:231-233`).
+Not re-run; both core protocols are recorded from iterations 2 and 4. This iteration's job was the security property, and it changes no recorded status.
 
 ## Integration Evidence
 
-- Hub skill and router: `.skilled/skills/system-deep-loop/SKILL.md`, `hub-router.json`, `ROUTER.md`.
-- Mode packets: `deep-research/SKILL.md`, `deep-review/SKILL.md`, `quick-reference.md`.
-- Agents: `.skilled/agents/*`, `.opencode/agents/*`, `.claude/agents/*`.
-- Command documents: `review.md:81`, `research.md:86`.
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:283` spawns `args.command` with an argument array and no `shell: true`, so a prompt never reaches a shell.
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233` slices the prompt to `ADVISOR_PROMPT_MAX_CHARS` before dispatch and `:276` carries it on stdin rather than in an argument, which is the two-layer bound on prompt length.
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:43` and `:519` state and implement the prompt-boundary guard: the renderer never reads prompt text, so a prompt cannot write into the injected brief.
+- `.skilled/skills/system-deep-loop/command-metadata.json:9` and `:57` derive `ask_first: ["spend"]` for both deep commands, matching NFR-S01.
+
+## Security Checks Performed
+
+| Check | Result |
+|---|---|
+| Dynamic evaluation in the gate, scorer or subprocess wrapper | None: the only `exec` hits are `RegExp.prototype.exec` (`command-attach.ts:826`, `:844`, `:1202`, `:1395`, `fusion.ts:803`) |
+| Shell interpretation of the prompt | None: `spawn` with an argv array and no `shell` option; the hook sends the prompt on stdin |
+| Secret material in the changed runtime files | None: `api[_-]?key|secret|token=|password|BEGIN RSA` prints nothing across the six changed files |
+| Command policy | `/deep:research` and `/deep:review` are `policy: 'ask'` in every table row (`:71`, `:72`, `:109`, `:110`); `/doctor:deep-loop` is `run` with `mutating: 'add-only'` (`:79`), which is the only command the packet lets run |
+| Prompt-boundary injection into the brief | `render.ts` never reads prompt text; the fallback brief path slices and forwards on stdin |
+| Unbounded work on attacker-controlled length | Seven pathological inputs through the built module: 10k single letter 7.5 ms, 10k repeated `deep ` 0.4 ms, 10k repeated `not ` 0.6 ms, 10k repeated `skip ` 0.3 ms, 10k nested clauses 8.5 ms, 10k refusal tail 0.3 ms, 96k prompt 5.1 ms. No catastrophic backtracking observed and no input threw |
 
 ## Edge Cases
 
-- **`agent_cross_runtime` is recorded `notApplicable` with a reason, not `pending`.** The packet changed no agent definition, and the mirror check is AC-011's owner.
-- **`skill_agent` is a document-parity check, not a run.** The skill files were read; no skill was executed.
+- **A refusal far from the loop name is out of reach by design.** The 10k refusal-tail probe served `/deep:review` because the refusal sits more than `LEAD_WINDOW` (400) characters before the loop name. That is the designed bound the packet states, not a bypass: the fixture's 10,000-character repeated-refusal case is the guard for the in-window shape, and it holds.
+- **A 96k prompt reaches `attachCommand` only through a path that already capped it.** The tool schema caps at `ADVISOR_PROMPT_MAX_CHARS` (`advisor-tool-schemas.ts:262`) and the hook slices at the same constant, so the 96k probe measured a shape the production entry points do not deliver; it returned quickly in any case.
+- **The packet's own history names one private skill id** (`local-webflow`) in a task cell as a probe artefact. It is a name, not a credential, and it was recorded by an earlier round; no finding is raised.
 
 ## Confirmed-Clean Surfaces
 
-- Hub router and ROUTER.md agree on every research and review keyword.
-- The depth triggers REQ-011 removed are absent from the skill and agent trees.
-- Both mode packets carry the advisor CLI and the `:auto` form.
-- Every active finding's cited line still resolves.
+- The gate's own code: no dynamic evaluation, no shell, no filesystem write on the attach path.
+- The doctor command's `run` policy applies to a diagnosis whose declared mutation is `add-only`, and it is withheld whenever the prompt refuses a run or fix (iteration 5).
+- The 10,000-unit input cap is enforced in the schema and mirrored in the hook's slice.
 
 ## Ruled Out
 
-- **Hub router and ROUTER.md drifted.** Ruled out: the parsed keyword sets are equal.
-- **A depth trigger survived in another runtime's mirror.** Ruled out: the sweep printed no match.
-- **A finding points at a moved line.** Ruled out: all twelve re-resolve.
+- "A prompt can be interpreted by a shell": the spawn shape is argv-only and the prompt travels on stdin.
+- "The renderer can be steered by prompt text": it declares and implements that it never reads it.
+- "A deep command can start without the operator": both deep rows are `ask`, and the `run` row is the diagnosis only.
+
+## SCOPE VIOLATIONS
+
+None. No file outside the lineage was written by any probe; the two probe scripts live under the lineage's `.executor-state/` and write nothing themselves.
 
 ## Next Focus
 
-- None: `maxIterations=7` is reached. The synthesis phase compiles `review-report.md` from the registry.
+- Dimension: none remaining - all four configured dimensions have a full iteration (traceability 1 to 4, correctness 5, maintainability 6, security 7).
+- Focus: synthesis, with the `max-iterations` stop reason the run was dispatched under.
+- Reason: the cap is reached at 7 iterations and every configured dimension is covered.
+- Rotation status: complete for this lineage.
 
-## Assessment
-
-Dimensions addressed: traceability
-
-The overlay surfaces are consistent and the active finding set still resolves against the tree. No new findings. The run ends with four active P1s and eight P2s, no P0, and a CONDITIONAL verdict.
-
-Review verdict: CONDITIONAL
+Review verdict: PASS

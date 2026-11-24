@@ -1,17 +1,22 @@
-# Iteration 5 - Maintainability: the reducer's strategy contract
+# Review Iteration 005
 
-## Dimension
+## Dispatcher
 
-Maintainability, judged on the maintenance surface the packet added or touched: the deep-loop reducer that keeps the review's own state coherent, the comment truth of the changed code, the two-copy parity cost, and the fixture's growth. The operator focus is carried as the closeout question: does the packet's own evidence chain survive another run?
+- Lineage `deepseek-max-2`, iteration 5 of 7, mode `review`, `AUTONOMOUS`.
+- Dimension: **maintainability**. Operator focus carried as the reducer and closeout slice of the sixth round: REQ-032, REQ-046 and REQ-034's closure-doc clause.
+- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (`spec-folder`).
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2355-2465`, `:2480-2600` (strategy update, anchor replacement, exhausted-approach rendering)
-- `.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:1-120` (refinement closeout)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:24-1519` (comment truth and export reach)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:440-500`
-- `.skilled/hooks/injection-contract.md:50-60` (the brief's offer sentence)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md` (this lineage's state, observed as the reducer's output)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:985` to `:1045` - `refinesSameLocation` and the dedupe that consumes it.
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2355` to `:2400` - `MIN_BLOCKED_ATTEMPTS` and `buildExhaustedApproaches`.
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2410` to `:2445` and `:2570` to `:2620` - `replaceAnchorSection`, its heading fallback, and the six sections the reducer writes.
+- `.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:406` and around it - the closeout's refinement lookup.
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363` to `:441` - `enrichCompiledRoutes` and its `alreadyOffered` guard.
+- `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md:39` to `:135` - the shipping template's section numbering.
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts:1` to `:60` - what the heading regression covers.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:234` to `:269` - the sixth-round paragraph and limitations 4 to 8.
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md` - this lineage's own strategy, as the reducer's output.
 
 ## Findings - New
 
@@ -25,71 +30,61 @@ None.
 
 ### P2 Findings
 
-1. **The strategy updater duplicates a machine-owned heading it was meant to normalize** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2396` -- `replaceAnchorSection` writes `## <heading>` inside the replacement block, and it takes that branch whenever the anchor markers already exist. A strategy authored in the shape the shipped template uses - heading first, machine marker under it - therefore ends with the heading twice: the author's own heading above the anchor and the reducer's copy inside it. The heading fallback below (`:2407`) exists to stop exactly this, but it is unreachable once the anchor branch has matched, so the duplication is permanent: a second reducer pass leaves both headings in place.
-Finding class: state-format
-Scope proof: the reducer is the only writer of that block, the duplicate is visible in the strategy this lineage produced, and a second identical pass did not remove it.
-Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2390-2416`, `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` (heading-first template shape), every `deep-review-strategy.md` rendered from that template
-Case: a run that starts from the shipped strategy template and then reduces once shows "## 3. REVIEW DIMENSIONS (remaining)" twice, and the same for the completed-dimensions and next-focus sections; here 3 sections carry 6 headings after two passes.
-
-```json
-{"type":"claim-adjudication","claim":"The anchor branch of the strategy updater inserts its own heading and never removes the author's, so a heading-first strategy ends up with each machine heading duplicated and stays that way.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2396",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2407"],"counterevidenceSought":"Read both branches of replaceAnchorSection and the heading fallback; re-ran the reducer on the same input and counted the heading, which stayed at two.","alternativeExplanation":"The duplicate may be read as a second, authored section rather than a defect, and a later read may take the authored heading as the live one.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"Withdraw if the strategy template is changed to place the heading inside the anchor markers, or if the updater learns to drop a heading immediately above the anchor."}
-```
-
-2. **A direction ruled out once is rendered as a blocked approach that must not be retried** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363` -- `buildExhaustedApproaches` folds `iteration.ruledOut` into the exhausted-approach section and renders each entry as `BLOCKED (iteration N, 1 attempts)` with "Why blocked: Repeated iteration evidence ruled this direction out" and "Do NOT retry". A direction ruled out in a single pass with direct evidence was never attempted-and-blocked, and the review prompt tells later iterations not to re-enter anything listed there, so one pass of evidence freezes the direction for the rest of the run.
-Finding class: state-semantics
-Scope proof: the renderer is the only producer of that section; its three fixed lines are visible in this lineage's strategy for four one-pass directions.
-Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2359-2387`, `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md:74-87` (the template's exhausted-approach section), the iteration prompt's "swept or saturated" guard
-Case: iteration 2 ruled out a waiver with a missing ADR by reading the decision record once; iteration 5's strategy now reads "A waiver whose ADR is missing: ... -- BLOCKED (iteration 2, 1 attempts) ... Do NOT retry", so a later iteration is told not to re-check a direction that was only settled by evidence.
-
-```json
-{"type":"claim-adjudication","claim":"buildExhaustedApproaches treats a single-pass ruled-out direction as an exhausted, blocked approach and instructs later iterations not to retry it.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2380"],"counterevidenceSought":"Read the renderer and the template's section contract; checked the rendered output in this lineage's strategy, which shows four such entries with '1 attempts'.","alternativeExplanation":"Folding ruled-out directions into one 'do not repeat' list may be deliberate economy: the loop should not spend depth re-proving what one pass settled, and the wording 'Do NOT retry' then means 'do not re-open without new evidence'.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"Withdraw if the template or the state-format doc states that ruled-out directions are intentionally frozen after one pass."}
-```
+1. **The reducer renumbers four machine sections, so every template-derived strategy ends with two §4, two §5, two §9 and two §11 headings** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2580` -- The shipping template numbers its sections `## 6. COMPLETED DIMENSIONS`, `## 7. RUNNING FINDINGS`, `## 10. EXHAUSTED APPROACHES (do not retry)` and `## 12. NEXT FOCUS` (`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md:61`, `:72`, `:96`, `:128`). `replaceAnchorSection` is called with the headings `4. COMPLETED DIMENSIONS`, `5. RUNNING FINDINGS`, `9. EXHAUSTED APPROACHES (do not retry)` and `11. NEXT FOCUS` (`reduce-state.cjs:2580`, `:2581`, `:2585`, `:2614`), and it writes the replacement as `## ${heading}`, so a strategy created from the template gains a second §4, §5, §9 and §11 beside the sections that already hold those numbers. This lineage's own strategy shows the result: `## 4. NON-GOALS` at `:25` and `## 4. COMPLETED DIMENSIONS` at `:41`, `## 5. STOP CONDITIONS` at `:33` and `## 5. RUNNING FINDINGS` at `:48`, `## 9. WHAT FAILED` at `:63` and `## 9. EXHAUSTED APPROACHES` at `:71`, `## 11. RULED OUT DIRECTIONS` at `:146` and `## 11. NEXT FOCUS` at `:155`. The heading regression (`deep-review-strategy-heading.vitest.ts`) exercises the `10A` insertion and both heading dialects, so nothing pins the numbering a fresh template gets.
+Case: an operator or a later agent cites "strategy §5" in a handover; two sections carry that number, one holding the stop conditions and one holding the finding counts, so the reference is ambiguous in every run this reducer has written.
+Finding class: reducer-output-defect
+Scope proof: the reducer, the template and the produced strategy are all inside the pre-bound scope list; the produced file is this lineage's own artifact, so the defect is observed rather than inferred.
+Affected surface hints: `reduce-state.cjs` section writers; `deep-review-strategy.md` template numbering; every deep-review strategy file the reducer touches.
 
 ## Traceability Checks
 
 | Protocol | Status | Evidence |
 |----------|--------|----------|
-| `spec_code` | pass | Held from iteration 2; the maintainability pass added no requirement drift |
-| `checklist_evidence` | pass | Held from iteration 4; the two findings above are not claimed by any ticked task |
+| `spec_code` | partial | REQ-032, REQ-034 and REQ-046 were mapped this iteration. REQ-032 and REQ-046 hold in code and in this lineage's own reducer output; REQ-034's closure-doc clause holds for the cells it names. The requirement-to-code map now covers REQ-001 to REQ-046, with REQ-012 and REQ-031 failing and REQ-023 to REQ-030, REQ-035 to REQ-046 holding. |
+| `checklist_evidence` | partial | AC-039, AC-041 and AC-054 were re-read against the tree and all three hold. The cells that fail are those recorded in iterations 1 and 3. |
 
-- REQ-032's refinement fold was read again for maintenance: `refinesSameLocation` and the storage-key split are commented with the reason each branch exists, and the unit suite that pins them is `reduce-state-refinement-other-file.vitest.ts` (12 `refines` references).
-- REQ-031's parity guard is a behavioural comparison, not just a list comparison: `test_skill_advisor.py:2854` reads the shared fixture and compares `asks_for_loop_run`, `is_stuck_run_complaint`, `is_writing_about_topic`, the served column and the typed columns on every case, so grammar drift fails the same test as vocabulary drift.
-- Evidence: `[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2854]`
+Observed measurements behind the rows (read-only, plus the reducer this lineage is required to run):
+
+- **REQ-032 holds.** `refinesSameLocation` (`reduce-state.cjs:995`) returns false when both sides name a file and the paths differ, and false when the target declares a dimension and the refinement declares another; a same-file, same-dimension refinement still folds. `synthesis-closeout.cjs:406` reads the same `refines` key when it resolves a target, so the closeout does not lose the link.
+- **REQ-046's first clause holds on a produced artifact.** `MIN_BLOCKED_ATTEMPTS = 2` (`reduce-state.cjs:2362`) writes a single-attempt direction as `### <direction> -- RULED OUT (iteration N, 1 attempt)` with a `- Reopen when:` line, and only two attempts produce `BLOCKED` with `- Do NOT retry:`. This lineage's strategy now carries six one-attempt directions, each written with its reopen line and none written as a permanent prohibition.
+- **REQ-046's second clause holds.** The authored heading is stripped before replacement (`reduce-state.cjs:2420` to `:2430`), so a strategy that already carries `## 11. RULED OUT DIRECTIONS` above the anchor does not gain a second copy of that heading. That is the one section the reducer replaces by plain heading rather than by anchor, and its single-heading behaviour is what the finding above shows does *not* hold for the four anchor sections.
+- **REQ-046's third clause holds.** `enrichCompiledRoutes` (`advisor-recommend.ts:363`) seeds `alreadyOffered` from every command the output already carries, adds to it whenever it keeps a command, and strips `command`, `policy`, `ownerSkillId` and `typed` from a withheld row (`:421` to `:425`), so a derived command reaches the reader once and a withheld row offers nothing.
+- **REQ-034's closure-doc clause holds for the cells it names.** `implementation-summary.md:238` carries the sixth-round paragraph, `:236` says the stuck-run drop was reversed, `:266` states the typed-on-stuck exception, `:267` the one remaining word-rule miss and `:268` the served-brief gap. The changelog's three rules are at `v4.2.0.0.md:482` to `:484`, and packet 013's degraded-path evidence is at `013-deep-loop-offer-in-hint/implementation-summary.md:123`.
+- **AC-039, AC-041 and AC-054 hold.** `reduce-state.cjs:995` implements the refinement rule, the Verification Summary counts agree with the boxes (iteration 3), and `reduce-state.cjs:2362` with `deep-review-strategy-heading.vitest.ts:37` implement and pin the ruled-out and heading behaviour AC-054 names.
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` writes the strategy file the review prompt reads on the next iteration, and `/deep:review`'s workflow calls it after every iteration; both findings sit on that one hand-off.
-- `.skilled/hooks/injection-contract.md:56` carries a second literal copy of the brief's offer sentence; it agrees with `render.ts:251` word for word today, so no finding is raised, but the pair is unguarded.
+None recorded. `synthesis-closeout.cjs` was read only for its `refines` lookup, which is named above; no closeout run was performed.
 
 ## Edge Cases
 
-- A strategy authored with the heading already inside the anchor markers is unaffected by finding 1; this lineage's file was authored heading-first, which is what the shipped template models.
-- Two reducer passes were run to test whether the duplicate self-heals; it does not, so the finding is not an artifact of one pass.
-- The second finding's severity is held at P2 and its confidence at medium: the wording can be read as deliberate economy, and nothing in the packet states which reading is intended.
-- Comment truth: no reviewed code comment embeds an ADR, REQ, CHK, task id or spec path, so the repository's comment-hygiene prohibition holds across every changed source file.
+- **Defect observed through this lineage's own artifact.** Finding 1 is not inference: the reducer is required work for this lineage, and its output is the strategy file named. The same defect would appear in any lineage started from the shipping template, so it is not specific to this packet — recorded here because the reducer is in the packet's scope and REQ-046 is a claim about how the reducer writes the strategy.
+- **Duplicated ruled-out text, not reported.** `buildExhaustedApproaches` groups `deadEnds` and `ruledOut` by their full sentence, so a long ruling becomes a long heading. It is verbose, but it is the author's own text and the reducer cannot shorten it without dropping evidence. Recorded as a design cost, not a finding.
+- **Not reproducible here.** The three unit files behind REQ-032 and REQ-046 were read as sources rather than run.
 
 ## Confirmed-Clean Surfaces
 
-- Comment hygiene: a scan of every changed source file for `REQ-`, `ADR-`, `CHK-`, `specs/`, `AC-0NN` and `T0NN` inside comment lines returns nothing.
-- Dead exports: every export of `command-attach.ts` that the packet added has a reader in the runtime or its tests (`namesDeepRun` 3, `LOOP_REQUEST` 2, `RUN_REFUSED` 2, `SMALL_EDIT_WORDING` 2, the rest higher).
-- Comment truth in the gate: the `LOOP_WORDING` comment's claim that each phrase is listed in both spellings is true of the list (`deep research`/`deep researches`/`deep-research`/`deep-researches`, `deep review`/`deep reviews`/`deep-review`/`deep-reviews`).
-- The offer sentence in the hook contract and the one in `render.ts` agree exactly, so the brief cannot teach a different option set than its contract.
+- `refinesSameLocation` and its callers: the other-file rule, the other-dimension rule and the same-file fold all behave as REQ-032 states.
+- `buildExhaustedApproaches`: one attempt produces a reopenable ruling, two produce a blocked one, and distinct runs are deduplicated.
+- `enrichCompiledRoutes`: commands are offered once, the top row keeps the command, and a withheld row leaves no command field behind.
+- `synthesis-closeout.cjs`: reads the same `refines` key as the reducer.
+- `implementation-summary.md:236` to `:238` and `:266` to `:268`: every line AC-041 cites holds the content the cell describes.
 
 ## Ruled Out
 
-- A comment that contradicts its pattern in the changed gate code: every changed block's comment states the grammar beside it.
-- A dead export left behind by the packet: every added export has at least one reader.
-- A duplicated offer literal that has already drifted: the two copies agree word for word.
-- A fixture that only the TypeScript suite reads: the Python suite reads the same 285 cases and compares the served and typed columns.
+- **A refinement that loses its own entry in the reducer.** The same-file fold and the other-file split both behave as decided, and the closeout reads the same link.
+- **A ruled-out direction written as a permanent prohibition.** One-attempt rulings carry a reopen line; only repeated evidence blocks.
+- **A derived command offered twice.** The `alreadyOffered` set is seeded and extended in the same pass.
+- **A closeout that drops a refinement link.** `synthesis-closeout.cjs:406` reads the key the reducer writes.
 
 ## Next Focus
 
-- Dimension: correctness
-- Focus area: second pass over the served-head composition (`attachCommand` -> `attachTypedCommand`) and the two degraded paths, where iteration 1 sampled predicates but did not follow the row from the handler to the rendered label end to end
-- Reason: maintainability found the reducer weak spots; the served-head path is the one place where correctness and traceability meet and it has not been followed end to end
-- Rotation status: all four canonical dimensions covered; this is a second pass for depth
-- Blocked/productive carry-forward: the reducer's exhausted-approach list now freezes four directions; none of them is the served-head path, so this focus is clear
-- Required evidence: a file:line per branch from handler to label, with one built-copy behaviour sample
-- Recovery note: none
+- Dimension: traceability (`spec_code`), second half. Operator focus carried directly: REQ-032 to REQ-046, ADR-005 and ADR-006, re-read against the code and the decision text after the failures found in iteration 1.
+- Focus area: the remaining requirement block and the two decision records, including whether each decision's stated rule is what the tree implements.
+- Reason: `spec_code` needs its second half to be complete before the final pass, and the sixth-round decision records have not been checked as decisions yet.
+- Rotation status: `correctness`, `security` and `maintainability` complete; `traceability` has two of three passes done.
+- Blocked/productive carry-forward: productive - reading the decision record beside the code it decided, since a decision that disagrees with the code is a LOGIC-SYNC concern; blocked - none.
+- Required evidence: one `file:line` per requirement and per decision rule.
+- Recovery note: none.
 
 Review verdict: PASS

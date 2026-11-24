@@ -1,29 +1,28 @@
-# Review Iteration 7
+# Review Iteration 007
 
 ## Dispatcher
 
-- Mode: review, single review iteration (fan-out lineage `deepseek-max-3`).
-- Resolved route: `Resolved route: mode=review target_agent=deep-review`.
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder).
-- Iteration 7 of 7, stop policy `max-iterations`.
-- `steer.md` is still absent.
-- Operator focus: this is the cross-reference pass the operator focus asked for after the requirement sweep.
+- Mode: review
+- Dimension: traceability (final pass, operator focus)
+- Iteration: 7 of 7 (cap)
+- Focus this pass: close the core protocols honestly -- re-read every active P1 evidence, record the terminal traceability status for `spec_code` and `checklist_evidence`, and hand synthesis an accurate registry
+- Executor: this lineage process (cli-pi, deepseek-v4.1-flash-1017); no nested dispatch
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:44` to `:140` (metadata, criteria, closure statement)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:300` to `:316` (Verification Summary and Completion Criteria)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:1` to `:55`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:20` to `:60` (status and measured behavior)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3/deep-review-state.jsonl`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3/deep-review-findings-registry.json`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-3/deep-review-strategy.md`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:243`, `:247`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:84-95`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:184`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:732`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5482`, `:5745`
+- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2902`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1-2`
+- `review/lineages/deepseek-max-3/deep-review-findings-registry.json`
 
-## Operator Focus
+## Findings
 
-The four review dimensions each had a full iteration, and the two core protocols were exercised against every requirement: `spec_code` reads `pass` and `checklist_evidence` reads `partial` because of the two P2 evidence drifts. This iteration is the cross-reference fallback: it checks that the packet's own closure state agrees with the review and that no dimension or protocol is left without a recorded state.
-
-## Findings by Severity
+New findings this pass: none. The last pass re-reads the active evidence rather than opening new ground, because the operator focus asks for a finished `spec_code` and `checklist_evidence` record and the cap leaves no iteration to repair a new class.
 
 ### P0 Findings
 
@@ -31,60 +30,54 @@ None.
 
 ### P1 Findings
 
-None.
+None new. Four P1 findings remain active from iterations 1 and 3, each re-read below and still true:
+
+- `R1-P1-001` -- `spec.md:243` still says "fifteen compared lists", "ten lists" and "eighteen" refusal leads; the guard still holds `VOCABULARY_PAIRS.length === 22` and `RUN_ASK_REFUSAL_LEADS.length === 16` (`command-attach.ts:688`).
+- `R1-P1-002` -- `acceptance-criteria.md:84` still records `cases=285` on "the final tree"; the fixture still holds 347 cases.
+- `R1-P1-003` -- `acceptance-criteria.md:93` still points at `skill_advisor.py:5482` for the `typed` marker, which is set at `:5745`; the other cited offsets are unchanged.
+- `R3-P1-001` -- `decision-record.md:732` still says the mode-free row "reads `servedRun: null` in both copies"; the Python parity test still accepts any row count other than one (`tests/python/test_skill_advisor.py:2912`), so the fallback keeps both run rows.
 
 ### P2 Findings
 
-No new finding. The three active advisories stand:
-- **R2-P2-001** -- acceptance evidence cells point one row above the closure-pass and limitation rows.
-- **R2-P2-002** -- AC-040 says `review/` still holds the pre-fix report, but the report is archived.
-- **R4-P2-001** -- an effort word after the loop name withholds the command even when it is a manner on the request.
+None new. Eight P2 findings remain active, all re-read as still present.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | All thirty-nine REQs mapped. Every packet status line agrees: `spec.md:23` says the traceability rerun is open, `implementation-summary.md:50` says T084 is still open, and `tasks.md` holds T084 and CHK-020 open. |
-| `checklist_evidence` | partial | 47 acceptance rows hold 43 `Met`, 2 `Waived`, 1 `Superseded` and 1 `Unmet` (AC-040). The two `Waived` rows name ADR-002 and ADR-003, and the `Superseded` row names ADR-001; all three ADRs exist. Verification Summary 11/12 P0, 13/13 P1, 1/1 P2 matches the unchecked CHK-020 and the ticked boxes. |
-| `skill_agent` | pass | Recorded in iteration 6. |
-| `agent_cross_runtime` | pass | Recorded in iteration 6. |
-| `feature_catalog_code` | notApplicable | Recorded in iteration 6 with the reason. |
-| `playbook_capability` | notApplicable | Recorded in iteration 6 with the reason. |
+| Protocol | Status | Evidence | Note |
+|----------|--------|----------|------|
+| `spec_code` | partial | `spec.md:243`, `spec.md:247`, `decision-record.md:732` | Every REQ in `spec.md` resolves to a producer, a fixture row, a test or an ADR. Two requirement-level contradictions remain open: REQ-031's stated guard scope and REQ-035's mode-free served answer on the fallback. This is the terminal status for the run; neither can be raised to `pass` while the finding stands. |
+| `checklist_evidence` | partial | `acceptance-criteria.md:84`, `acceptance-criteria.md:93`, `tasks.md:184` | Every ticked task and `Met` row has an observation, and the probe artifacts they cite all exist. Nine evidence cells cite a line that no longer holds the claimed symbol, and four rows record counts the tree contradicts. Terminal status: `partial`. |
+| `skill_agent` | notApplicable | - | No SKILL.md-to-agent contract in this focus. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in this focus. |
 
 ## Integration Evidence
 
-- `tasks.md:309` to `:311` is the Verification Summary the acceptance rows cite, and it matches the open CHK-020.
-- `acceptance-criteria.md:130` is the closure statement that keeps the packet uncloseable on AC-040.
-- The lineage state log holds seven `type:"iteration"` records, one per dispatch, with the route proof on each.
+- The terminal state is derived from the reducer-owned registry, not from prose: 0 P0, 4 P1, 8 P2 active, dimension coverage 4 of 4.
+- The four P1 records each carry a typed claim-adjudication packet in their iteration narratives (iterations 1 and 3), with `evidenceRefs`, `counterevidenceSought`, `alternativeExplanation`, `finalSeverity`, `confidence` and `downgradeTrigger`.
+- The reducer keeps the cross-file refinement `R2-P1-001` as its own entry with its `refines` link (registry `findingId R2-P1-001`, `refines R1-P1-003`), which is REQ-032's behaviour observed on a live run rather than only in its unit test.
 
 ## Edge Cases
 
-- AC coverage is 46 of 47 resolved (43 `Met` plus 2 `Waived` plus 1 `Superseded`); the one `Unmet` row is AC-040, which is this review. The review cannot close its own row because it is read-only and the packet's report is written under the lineage, not at the packet root. Synthesis states that rather than flipping the row.
-- The `review/` root has no `review-report.md` because the root fan-out runner archives the prior report before spawning the lineages; this is the same fact as R2-P2-002, recorded once rather than re-raised.
-- The dimension queue is empty, so this cross-reference pass is the documented fallback; it is not a fifth dimension and adds no coverage claim.
+- The run stops on `maxIterationsReached`, not convergence. The measured ratios were 1.00, 0.15, 0.22, 0.03, 0.00 and 0.06; only the first two exceed 0.10, and convergence was never claimed.
+- `AC-040` remains `Unmet` and `CHK-020` remains open. That is the packet's own record of the same coverage gap this run reproduces, not a new finding.
+- The scope gate reads the 51 files in `review-scope-files.txt`; all findings name a file inside that list or a packet doc.
 
 ## Confirmed-Clean Surfaces
 
-- Packet status agreement: `spec.md:23`, `acceptance-criteria.md:130`, `implementation-summary.md:50` and `tasks.md` all keep T084 and AC-040 open, and none claims the packet is closed.
-- Waiver integrity: AC-008 names ADR-003, AC-017 names ADR-002 and AC-019 names ADR-001; all three ADRs exist at `decision-record.md:33`, `:128` and `:223`.
-- Verification Summary: P0 12 total and 11 verified, P1 13/13, P2 1/1, matching the boxes the file holds.
-- State integrity: the lineage state log holds one config row and seven iteration records; the registry holds three active P2 findings, zero resolved, and no corruption.
-- Review artifact integrity: seven iteration files and seven delta files exist, each delta's first line matching its iteration record.
+- The probe artifacts exist and hold the row counts they claim (69 rows in each of the four result files).
+- Every REQ-023 to REQ-044 prompt the packet names is present in the shared fixture with the expected column.
+- Comment hygiene holds in every changed module.
+- Security's trust boundary holds: tracked-command membership, prompt re-derivation and label sanitization.
 
 ## Ruled Out
 
-- "The packet claims closure while AC-040 is open": ruled out; all four status surfaces keep it open.
-- "A waived or superseded row names a missing ADR": ruled out; ADR-001, ADR-002 and ADR-003 exist.
-- "The Verification Summary counts boxes the file does not hold": ruled out; 11 of 12 P0, 13 of 13 P1 and 1 of 1 P2 match the ticked and open boxes.
-- "A dimension has no recorded status": ruled out; correctness, security, traceability and maintainability each read complete in the strategy, and the two overlays that apply read pass.
+- "A P1 could be raised to `pass` from a re-read": ruled out. The contradicted text and the contradicting code were both re-read this pass and are unchanged, so the honest terminal status is `partial` for both core protocols.
+- "A new class is worth opening at the cap": ruled out. The cap gives no iteration to substantiate a new finding, and the persona forbids speculative findings.
 
 ## Next Focus
 
-- Dimension: none remaining; synthesis follows.
-- Focus area: compile the report from the three active P2 advisories, state the coverage and the search debt, and derive the verdict from the refreshed registry.
-- Reason: the iteration cap is reached with every dimension covered.
-- Rotation status: all four dimensions complete; the cross-reference fallback is done.
-- Carry-forward: R2-P2-001, R2-P2-002 and R4-P2-001 enter synthesis as active advisories; the one deferred test-execution row enters as search debt.
-- Required evidence: the refreshed registry counts, the merged verdict inputs, the stop reason `maxIterationsReached` and the report's nine sections.
+- None. The run reaches its iteration cap after this pass and enters synthesis.
+- Synthesis inputs: registry (0 P0, 4 P1, 8 P2), terminal gate rows, verdict, release-readiness state.
+- Required evidence for the report: every active finding's file:line, the two core protocol statuses, and the measured convergence ratios.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

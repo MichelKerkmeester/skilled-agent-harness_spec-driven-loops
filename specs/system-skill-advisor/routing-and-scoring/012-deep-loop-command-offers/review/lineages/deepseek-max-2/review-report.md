@@ -1,198 +1,218 @@
 # Deep Review Report - 012 Deep-Loop Command Offers
 
-Lineage: `fanout-deepseek-max-2-1795518961022-7ms9ak` (generation 1, lineage mode `new`)
-Target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`
-Report compiled 2026-11-24 from 7 iterations.
+Run: `fanout-deepseek-max-2-1795544069299-46zw3s` (lineage `deepseek-max-2`, generation 6) | 7 iterations | stop reason `maxIterationsReached`.
 
 ## 1. Executive Summary
 
-- **Overall verdict: PASS**
-- **hasAdvisories: true** (5 active P2 findings, no P0 and no P1)
-- **Counts the verdict used: P0 = 0, P1 = 0, P2 = 5** (read from `deep-review-findings-registry.json` by `review-verdict.cjs`)
-- **Stop reason: `maxIterationsReached`** (`stopPolicy: max-iterations`, `maxIterations: 7`)
-- **Terminal gates: evidence pass, scope pass, coverage pass** (`terminal-gates.cjs`, exit 0, no failed required gate)
-- **Self-check outcomes:** the adversarial self-check had no active P0 or P1 to adjudicate, so it changed no severity. Each of the five P2 findings carries its typed claim-adjudication packet from the iteration that raised it, and iteration 7 re-read every cited line at the cap.
-- **Review scope:** 46 files (`review-scope-files.txt`): the 012 and 013 packet documents, the advisor gate and its Python copy, the served-head handler, the renderer, the two degraded paths, the fixture and eleven test files, and the deep-loop reducer.
-- **Operator review focus (verbatim):** Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
-- **How the focus was covered:** iteration 2 finished `spec_code` across all 39 REQ ids against producers and ADRs; iteration 4 finished `checklist_evidence` across 123 task boxes and 47 criteria rows; iterations 1, 5, 6 and 7 carried the same question into the gate, the reducer and the served head.
+**Overall verdict: FAIL**
+
+- **hasAdvisories**: false (the verdict is FAIL, so advisories are not the reason it stops).
+- **Active findings, as the verdict used them**: P0 = 0, P1 = 0, P2 = 12. These are the counts `review-verdict.cjs` read from `deep-review-findings-registry.json` after the last reducer pass, with the terminal-gates row in the state log.
+- **Why FAIL with no P0 and no P1**: the coverage terminal gate fails. `terminal-gates.cjs` reads `evidence: pass`, `scope: pass`, `coverage: fail` with reasonCode `traceability-incomplete`, because both core traceability protocols ran to completion but did not settle: the packet's requirement text and acceptance evidence are still out of step with the tree. A required quality gate failing at the terminal stop is a FAIL in this workflow, not an advisory.
+- **Self-check outcomes**: this run raised no P0 or P1 candidate, so the Hunter/Skeptic/Referee pass had nothing to adjudicate. The twelve P2 findings were classified directly from file evidence; none was downgraded or marked a false positive, and the final pass re-read the sixteen failing acceptance cells without changing a severity. One count correction is recorded: an earlier pass named fourteen failing cells, the final pass names sixteen.
+- **Review scope summary**: 51 pre-bound files (10 advisor runtime sources, 17 advisor tests and fixtures, 6 deep-loop runtime sources and tests, 4 command documents, 2 repo docs, 6 packet-012 docs, 4 packet-013 docs), reviewed across four dimensions: `correctness` (iteration 1), `traceability` (iterations 2, 3, 6, 7), `security` (iteration 4) and `maintainability` (iteration 5).
+- **Operator review focus** (verbatim): Traceability: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md against the code that implements it or the decision that records it, and every ticked task in tasks.md and every Met row in acceptance-criteria.md against evidence that really exists in the tree, including the sixth fix round (REQ-023 to REQ-034, AC-030 to AC-042, ADR-005, ADR-006).
+
+What the run found, in one sentence: the gate, the two degraded paths, the render rule and the reducer all behave as the packet's requirements and decisions say they do, while the packet's own record of itself has drifted — two requirement statements no longer match the tree, sixteen acceptance cells cite counts or lines that do not hold, and the reducer writes duplicate section numbers into every strategy file.
 
 ## 2. Planning Trigger
 
-`/speckit:plan` is **not required** for this verdict. The run is a PASS with advisories: five P2 findings, no blocker and no missing quality gate. `/create:changelog` is the packet's next step; the advisories below can be scheduled at the operator's discretion.
+`/speckit:plan` is required. The verdict is FAIL on the coverage gate, and the remediation is a documentation and evidence repair pass over `spec.md` and `acceptance-criteria.md`, plus one runtime fix in the deep-review reducer. None of the work changes the offer gate's behaviour.
 
-```json Planning Packet
+```json
 {
-  "triggered": false,
-  "verdict": "PASS",
-  "hasAdvisories": true,
-  "activeFindings": [
-    { "id": "R1-P2-001", "severity": "P2", "dimension": "correctness", "title": "A pronoun rerun after a symptom is read as a doctor ask", "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:566" },
-    { "id": "R2-P2-001", "severity": "P2", "dimension": "traceability", "title": "AC-041's evidence cell cites three lines that do not hold its content", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:98" },
-    { "id": "R5-P2-001", "severity": "P2", "dimension": "maintainability", "title": "The strategy updater duplicates a machine-owned heading it was meant to normalize", "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2394" },
-    { "id": "R5-P2-002", "severity": "P2", "dimension": "maintainability", "title": "A direction ruled out once is rendered as a blocked approach that must not be retried", "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363" },
-    { "id": "R6-P2-001", "severity": "P2", "dimension": "correctness", "title": "The duplicate-command guard cannot withhold a command", "file": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:412" }
-  ],
+  "triggered": true,
+  "verdict": "FAIL",
+  "hasAdvisories": false,
+  "activeFindings": 12,
   "remediationWorkstreams": [
-    { "order": 1, "kind": "advisory", "workstream": "Closure-doc pointer correction", "findings": ["R2-P2-001"], "action": "Re-point AC-041's cell and T082 at implementation-summary.md:233, :259, :260 and :261." },
-    { "order": 2, "kind": "advisory", "workstream": "Reducer state-format", "findings": ["R5-P2-001", "R5-P2-002"], "action": "Make the anchor replacement drop a heading directly above the marker, and render ruled-out directions apart from exhausted approaches." },
-    { "order": 3, "kind": "advisory", "workstream": "Gate edge and dead guard", "findings": ["R1-P2-001", "R6-P2-001"], "action": "Decide whether a pronoun rerun should cancel the doctor reading, and either wire the duplicate-command guard or delete it with its comment." }
+    {
+      "id": "R-1",
+      "priority": "P2",
+      "title": "Re-pin the acceptance evidence to the tree",
+      "findingIds": ["R1-P2-002", "R1-P2-003", "R3-P2-005", "R3-P2-006", "R3-P2-007"],
+      "scope": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"],
+      "fixCompleteness": "one printed line per corrected citation"
+    },
+    {
+      "id": "R-2",
+      "priority": "P2",
+      "title": "Restate the counts the packet quotes",
+      "findingIds": ["R1-P2-001", "R3-P2-001", "R3-P2-002", "R3-P2-003", "R3-P2-004"],
+      "scope": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md", "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"],
+      "fixCompleteness": "each count recomputed from the file it describes and written into the cell"
+    },
+    {
+      "id": "R-3",
+      "priority": "P2",
+      "title": "Amend REQ-012 to ADR-001's five-row check",
+      "findingIds": ["R2-P2-001"],
+      "scope": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"],
+      "fixCompleteness": "the requirement states the live check and names ADR-001"
+    },
+    {
+      "id": "R-4",
+      "priority": "P2",
+      "title": "Fix the reducer's strategy section numbering",
+      "findingIds": ["R5-P2-001"],
+      "scope": [".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md"],
+      "fixCompleteness": "one heading per section number in a freshly produced strategy, with a regression case"
+    }
   ],
   "specSeed": [
-    "Record the pronoun-rerun reading (doctor versus rerun) as a decision row rather than leaving it implicit in the gate.",
-    "Give the reducer's strategy contract a stated heading shape so the anchor and heading ownership is written down once."
+    "REQ-012 restated as the five-row near-miss id check ADR-001 decided, with the ADR named in the requirement text as REQ-011 and REQ-035 already do",
+    "REQ-031 restated from the drift guard's actual surface: twenty-two compared lists, twelve with a per-entry case, ten compared without one, each list named",
+    "A requirement that the acceptance evidence cell prints the line it cites, so a count or an anchor cannot drift again unseen"
   ],
   "planSeed": [
-    "One lane corrects the AC-041 and T082 citations and re-reads the three limitation lines.",
-    "One lane makes reduce-state.cjs's anchor replacement idempotent for a heading-first strategy and separates ruled-out directions from exhausted approaches, with a unit case for each.",
-    "One lane either wires the duplicate-command guard in enrichCompiledRoutes or deletes it and its comment."
+    "Recompute and rewrite every count quoted in the acceptance table from the file it describes: the fixture's case count, the doctor-row count, the multi-typed row count, the suite counts and the changelog's own counts",
+    "Reprint every `path:line` citation in AC-033, AC-034, AC-036, AC-037, AC-044, AC-045, AC-046 and AC-038 and correct the ones that do not hold their claim",
+    "Amend REQ-012 in spec.md and cite ADR-001; keep AC-019 `Superseded`",
+    "Change the reducer's four machine section headings to the template's numbers, or renumber the template to match, and pin the result with a heading regression case",
+    "Rerun the advisor suite, the Python suite and the probe set after the documentation pass, then rerun `/deep:review` with traceability as its focus so this coverage gate can pass"
   ],
-  "findingClasses": ["behaviour-edge", "evidence-pointer", "state-format", "state-semantics", "dead-guard"],
+  "findingClasses": [
+    "specification-accuracy",
+    "evidence-traceability",
+    "specification-decision-divergence",
+    "stale-measurement",
+    "overstated-evidence",
+    "evidence-anchor-drift",
+    "reducer-output-defect"
+  ],
   "affectedSurfacesSeed": [
-    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-    ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
-    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md (REQ-012, REQ-031)",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md (AC-009, AC-019, AC-028 to AC-034, AC-036 to AC-038, AC-042, AC-044 to AC-046)",
+    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs (section writers)",
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md (section numbers)"
   ],
-  "fixCompletenessRequired": false
+  "fixCompletenessRequired": true
 }
 ```
 
 ## 3. Active Finding Registry
 
-| ID | Sev | Dimension | Title | File:line | Finding class | Scope proof | Affected surface hints |
-|----|-----|-----------|-------|-----------|---------------|-------------|------------------------|
-| R1-P2-001 | P2 | correctness | A pronoun rerun after a symptom is read as a doctor ask | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:566` | behaviour-edge | Both exported predicates exercised on the built copy of the reviewed source | `command-attach.ts:560-572`, `:1414-1424`, `fusion.ts`, `command-attach-guards.vitest.ts` |
-| R2-P2-001 | P2 | traceability | AC-041's evidence cell cites three lines that do not hold its content | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:98` | evidence-pointer | Each cited line printed and compared with the cell's wording | `acceptance-criteria.md:98`, `tasks.md:164`, `implementation-summary.md:233-261` |
-| R5-P2-001 | P2 | maintainability | The strategy updater duplicates a machine-owned heading it was meant to normalize | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2394` (registry row records `:2396`, corrected in iteration 7) | state-format | Reducer re-run left the duplicate in place; the reducer is the only writer of that block | `reduce-state.cjs:2390-2416`, `deep-review-strategy.md` template |
-| R5-P2-002 | P2 | maintainability | A direction ruled out once is rendered as a blocked approach that must not be retried | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2363` | state-semantics | The renderer is the only producer of that section; its three fixed lines appear for four one-pass directions | `reduce-state.cjs:2359-2387`, the iteration prompt's swept-direction guard |
-| R6-P2-001 | P2 | correctness | The duplicate-command guard cannot withhold a command | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:412` | dead-guard | Single writer before the map, none inside it; the false branch keeps prior fields by construction | `advisor-recommend.ts:383-390`, `:409-424`, `render.ts:227` |
+| ID | Sev | Title | Dimension | file:line | findingClass | Disposition |
+|----|-----|-------|-----------|-----------|--------------|-------------|
+| R1-P2-001 | P2 | REQ-031 and AC-038 describe fifteen compared lists and ten per-entry lists; the drift guard compares twenty-two and pins twelve | correctness (operator focus) | `spec.md:243`, `acceptance-criteria.md:95` | specification-accuracy | active |
+| R1-P2-002 | P2 | AC-036 cites evidence lines that do not hold the typed-on-stuck evidence it claims | correctness (operator focus) | `acceptance-criteria.md:93` | evidence-traceability | active |
+| R1-P2-003 | P2 | AC-037 cites the wrong lines for the bounded window and the fixture-parity suite | correctness (operator focus) | `acceptance-criteria.md:94` | evidence-traceability | active |
+| R2-P2-001 | P2 | REQ-012 still states the superseded six-row near-miss check, and its only acceptance row is Superseded | traceability | `spec.md:224` | specification-decision-divergence | active |
+| R3-P2-001 | P2 | Five acceptance cells quote the Python fixture count as 285 while the tree holds 347 cases | traceability | `acceptance-criteria.md:66` | stale-measurement | active |
+| R3-P2-002 | P2 | AC-029 and AC-028 quote suite counts the cited changelog row does not carry | traceability | `acceptance-criteria.md:86` | stale-measurement | active |
+| R3-P2-003 | P2 | AC-031 counts 26 doctorWithheld fixture rows; the fixture carries 47 | traceability | `acceptance-criteria.md:88` | stale-measurement | active |
+| R3-P2-004 | P2 | AC-032 says four multi-typed rows pin both loops in both orders; two of the four pin one loop against a non-loop command | traceability | `acceptance-criteria.md:89` | overstated-evidence | active |
+| R3-P2-005 | P2 | AC-033's mode-cue anchor lands inside commandOnlyMentioned, not on the loop that skips a subject-read mode name | traceability | `acceptance-criteria.md:90` | evidence-anchor-drift | active |
+| R3-P2-006 | P2 | AC-034's Python anchor is a blank line; the stage-one copy it names is 250 lines further down | traceability | `acceptance-criteria.md:91` | evidence-anchor-drift | active |
+| R3-P2-007 | P2 | Three cells in the sixth-round range pin fixture rows eight to thirteen lines away from where they now sit | traceability | `acceptance-criteria.md:101` | evidence-anchor-drift | active |
+| R5-P2-001 | P2 | The reducer renumbers four machine sections, so every template-derived strategy ends with two section 4, 5, 9 and 11 headings | maintainability | `reduce-state.cjs:2580` | reducer-output-defect | active |
 
-Evidence and impact per finding:
+Evidence, impact and fix for each finding:
 
-- **R1-P2-001** - Impact: a reader who reports a run that did not finish and asks to rerun it with "run it again" gets `/doctor:deep-loop`, while "run 2 more iterations" gets the run. Recommendation: add the pronoun rerun to the run-ask reading or record the doctor-first choice in the decision record. Evidence: observed on the built copy (`isStuckRunComplaint` true, `asksForLoopRun` false, `isRunRefused` false).
-- **R2-P2-001** - Impact: AC-041 reads `Met` while its cited lines land one line early and one is blank, so a reader cannot reproduce the observation from the cell. Recommendation: re-point the cell and T082 at `implementation-summary.md:233`, `:259`, `:260`, `:261`. Evidence: the three lines printed and compared.
-- **R5-P2-001** - Impact: every strategy rendered heading-first from the shipped template carries each machine heading twice after one reducer pass, and a second pass keeps both. Recommendation: drop a heading immediately above the anchor, or move the heading inside the markers in the template. Evidence: heading count stayed at 2 for the review-dimensions section across two passes (6 headings across three sections).
-- **R5-P2-002** - Impact: a direction settled by one pass of evidence is written into the section the iteration prompt says must not be re-entered, with "Repeated iteration evidence" wording that is not true of a single pass. Recommendation: render ruled-out directions in their own block, or state "settled in one pass" and drop "Do NOT retry". Evidence: `deadEnds.concat(ruledOut)` at `:2363` and the three fixed lines at `:2380-2383`.
-- **R6-P2-001** - Impact: the guard's comment promises the hub will not offer a command another row already offers, but the set is never extended inside the map and the withholding branch spreads the row first, so the command survives. Recommendation: add to the set as commands are attached, or delete the guard and its comment. Evidence: `alreadyOffered` writers/readers and both branches read line by line.
-
-Every finding above carries `findingClass`, `scopeProof` and `affectedSurfaceHints`, and its typed claim-adjudication packet lives in the iteration that raised it (iterations 1, 2, 5, 5 and 6 respectively).
+- **R1-P2-001.** Evidence: `VOCABULARY_PAIRS` holds twenty-two pairs (`deep-loop-offer-cases.vitest.ts:81` to `:102`); the per-entry guard covers twelve lists (`:300`, `:308`, `:315`, `:324`, `:333`, `:338`, `:346`, `:355`, `:365`); AC-038 pins the pairs to `:68` (a blank line) and `:303` (a per-entry assertion). Impact: a maintainer cannot tell from REQ-031 which lists lack per-entry coverage. Fix: restate REQ-031 and AC-038 from the guard's actual surface. Scope proof: both cells and the test are inside the declared target, and both were read at the named ranges. Surfaces: `spec.md` REQ-031, `acceptance-criteria.md` AC-038, the drift guard.
+- **R1-P2-002.** Evidence: `typed-on-stuck-serving.vitest.ts:107` is `} else {`; the assertion is at `:111` to `:114`. `skill_advisor.py:5482` is the command-ask lead construction, not the typed-run row. Impact: REQ-029's `Met` rests on evidence that is not where the cell says. Fix: re-pin both citations. Scope proof: the cell and both files are inside scope; both lines printed. Surfaces: AC-036, the serving test, the Python gate.
+- **R1-P2-003.** Evidence: `command-attach.ts:641` is a comment inside `namesDeepRun` (`LEAD_WINDOW` is at `:748`); `skill_advisor.py:5009` is `"did"` (`_LEAD_WINDOW` is at `:5181`); `test_skill_advisor.py:3017` is an `except` clause (the parity test is at `:2854`). Impact: a reader changing the window finds neither copy's constant. Fix: re-pin all three. Scope proof: cell and all four files inside scope; each line printed. Surfaces: AC-037, the two window constants, the Python parity test.
+- **R2-P2-001.** Evidence: `command-prompts.jsonl` holds 247 rows and 31 `near-miss` rows, none carrying N7, N9, D1, V7, H6 or A3; ADR-001 decided the replacement five-row id check, and all five ids plus the positive D1 row exist and match their probe prompts. Impact: a P1 requirement and its only acceptance row disagree about what is required. Fix: amend REQ-012 to the five-row check and name ADR-001. Scope proof: requirement, row, ADR and corpus inside scope; every id looked up. Surfaces: `spec.md` REQ-012, AC-019, ADR-001, the corpus.
+- **R3-P2-001.** Evidence: the fixture holds 347 cases; the parity test reports `cases=len(cases)`; the changelog records "347 shared cases"; five cells say 285. Impact: the final Python count is wrong in five places. Fix: write 347, or the count the suite prints at the moment of the fix. Scope proof: cells and fixture inside scope; count produced from the fixture. Surfaces: AC-009, AC-028, AC-030, AC-037, AC-042.
+- **R3-P2-002.** Evidence: `v4.2.0.0.md:759` reads "186 files, 3,415 passed, 4 skipped, none failed ... 347 shared cases"; AC-029 says the row quotes 184 files and 3,188 passed, and AC-028 repeats 184/3,188 while AC-048 records 186/3,415. Impact: two final figures for one tree. Fix: correct AC-028 and AC-029 to the row's own numbers. Scope proof: cells and the changelog line inside scope; line printed. Surfaces: AC-028, AC-029, AC-048, the changelog.
+- **R3-P2-003.** Evidence: the fixture carries 47 `doctorWithheld` rows; AC-031 says 26. Impact: understates the pinned doctor behaviour by nearly half. Fix: recount and rewrite. Scope proof: cell and fixture inside scope; count produced from the fixture. Surfaces: AC-031, the fixture's doctor columns.
+- **R3-P2-004.** Evidence: the four `typedRunsKept` rows are `typed-two-commands-changelog` (`["/deep:review"]`), `typed-two-commands-doctor` (`["/deep:review"]`), `typed-both-loops-research-first` and `typed-both-loops-review-first` (both loops). Impact: half the claimed cross-loop coverage is really loop-versus-non-loop coverage. Fix: say what the four rows pin. Scope proof: cell and rows inside scope; each row read. Surfaces: AC-032, the fixture's typed rows, the multi-typed test.
+- **R3-P2-005.** Evidence: `command-attach.ts:1483` is `.replace(/[^\S\n]+/g, ' ')` inside `commandOnlyMentioned`; the mode-cue loop is `:1679` to `:1688`. Impact: one hop of re-derivation for every reader of REQ-026. Fix: re-pin. Scope proof: cell and both ranges inside scope; both printed. Surfaces: AC-033, `loopAskCues`, the deferred-cue guard group.
+- **R3-P2-006.** Evidence: `skill_advisor.py:5566` is blank; `_is_loop_workflow_request` is at `:5820`, called at `:5856`. Impact: the Python half of REQ-027 looks missing. Fix: re-pin. Scope proof: cell, blank line and definition inside scope; both printed. Surfaces: AC-034, the Python stage-one copy, the stage-one test.
+- **R3-P2-007.** Evidence: the plural rows now sit at `:262` to `:269` (cited `:253`/`:261`), the question rows at `:279`/`:284` (cited `:266`/`:271`), the effort rows at `:286` and the controls at `:299` (cited `:273`/`:286`). Impact: three `Met` cells point at other rows. Fix: re-pin all six. Scope proof: cells and every cited and actual line inside scope; each printed. Surfaces: AC-044, AC-045, AC-046, the fixture blocks.
+- **R5-P2-001.** Evidence: the template numbers its machine sections 6, 7, 10 and 12 (`deep-review-strategy.md:61`, `:72`, `:96`, `:128`); the reducer writes 4, 5, 9 and 11 (`reduce-state.cjs:2580`, `:2581`, `:2585`, `:2614`); this lineage's strategy now holds two §4, two §5, two §9 and two §11 headings. Impact: a section number is ambiguous in every produced strategy. Fix: align the reducer's headings with the template, or renumber the template, and add a heading regression case. Scope proof: reducer, template and the produced file inside scope; the produced file is this run's own artifact. Surfaces: the reducer's section writers, the template, every deep-review strategy.
 
 ## 4. Remediation Workstreams
 
-P0: none.
+Ordered: no P0 and no P1 work exists, so the P2 advisories are grouped by the file that carries the fix.
 
-P1: none.
+1. **R-1 - Re-pin the acceptance evidence** (R1-P2-002, R1-P2-003, R3-P2-005, R3-P2-006, R3-P2-007). One pass over `acceptance-criteria.md`, printing each cited line and correcting the anchor where it does not hold the claim. All seven anchor failures are in the same file and need no code change.
+2. **R-2 - Restate the counts** (R1-P2-001, R3-P2-001, R3-P2-002, R3-P2-003, R3-P2-004). Recompute each quoted count from the file it describes: the fixture's case count, its `doctorWithheld` count, its multi-typed row count, the changelog's suite row, and the drift guard's compared and per-entry list counts. Then write those numbers into the cells that quote them and into REQ-031.
+3. **R-3 - Amend REQ-012** (R2-P2-001). One requirement rewrite that names ADR-001's five-row check; AC-019 stays `Superseded`.
+4. **R-4 - Fix the reducer's numbering** (R5-P2-001). One runtime change plus a regression case. This is the only change that touches code, and it does not touch the offer gate.
 
-P2 advisories, ordered by user-visible value:
-
-1. **Closure-doc pointer correction (R2-P2-001).** One edit in `acceptance-criteria.md:98` and the matching sentence in `tasks.md:164`. Cheapest fix in the set and the one that unblocks a reader of the closure record.
-2. **Reducer state-format (R5-P2-001, R5-P2-002).** Two focused changes in `reduce-state.cjs` with a unit case each: an idempotent anchor replacement, and a rendered separation between a ruled-out direction and an exhausted approach.
-3. **Gate edge and dead guard (R1-P2-001, R6-P2-001).** Two decisions rather than two mechanics: whether a pronoun rerun cancels the doctor reading, and whether the duplicate-command guard should be wired or deleted.
+After R-1 to R-4, rerun the advisor suite, the Python suite and the 69-probe set, then rerun `/deep:review` with traceability as its focus. That rerun is what can close AC-040 and REQ-033; this run cannot, because the acceptance row lives in a document this lineage may not edit.
 
 ## 5. Spec Seed
 
-- Add a decision row for the pronoun rerun reading, so the gate's intent is recorded where its other readings are.
-- State the strategy file's heading contract (heading inside the anchor, or heading above it) in the deep-review state documentation, so the reducer and the template agree.
-- If the duplicate-command guard is kept, state in the served-head contract that a command is offered at most once across the rendered rows.
+- REQ-012 becomes: "The five prompts D10 recorded as near misses whose outcome did not change sit in the corpus as `near-miss` rows under the ids ADR-001 names (N7 `nm-system-deep-loop-02`, N9 `-03`, V7 `-05`, H6 `nm-sk-code-02`, A3 `nm-sk-code-03`), and D1 sits as the positive `cmd-doctor-deep-loop-plain-tune-02` row. No builder reads a `holdout` row."
+- REQ-031 becomes a statement of the guard's real surface: the drift guard compares twenty-two vocabulary pairs plus two numbers, and pins a per-entry case for twelve of the lists; the ten without one are named with the reason each cannot be pinned by a single row.
+- A new requirement, or a clause on REQ-034: "Every acceptance evidence cell names the line that holds the evidence it claims, and every count it quotes is recomputed at the round that writes it."
+- SC-006 should name the coverage-gate outcome explicitly (it currently names the rerun without its gate result), so a future round can tell an observed pass from an intended one.
 
 ## 6. Plan Seed
 
-- Correct AC-041's and T082's line citations, then re-read the three limitation lines to confirm the anchors.
-- Make `replaceAnchorSection` idempotent for a heading-first strategy and add a reducer case that asserts one heading per machine section after two passes.
-- Separate `ruledOut` from `deadEnds` in `buildExhaustedApproaches`, or relabel the block and drop the "Do NOT retry" wording for a single-pass direction.
-- Decide the pronoun-rerun reading and pin it with a guards case either way.
-- Decide the duplicate-command guard: wire `alreadyOffered` inside the map, or delete the set and its comment.
+- T-1: print `deep-loop-offer-cases.vitest.ts:80` to `:112` and `:300` to `:370`, count the pairs and the per-entry blocks, and rewrite REQ-031 and AC-038 from the count.
+- T-2: count `doctorWithheld`, `typedRunsKept`, `servedReviewKept` and the total case count in the fixture, and rewrite AC-031, AC-032, AC-009, AC-028, AC-030, AC-037 and AC-042.
+- T-3: print `.skilled/changelog/skilled/v4.2.0.0.md:759` and rewrite AC-029's quoted counts.
+- T-4: print each of `command-attach.ts:1483`, `command-attach.ts:641`, `skill_advisor.py:5009`, `skill_advisor.py:5566`, `typed-on-stuck-serving.vitest.ts:107`, `test_skill_advisor.py:3017` and the six fixture lines AC-044 to AC-046 cite, then correct the seven cells.
+- T-5: rewrite REQ-012 and cite ADR-001.
+- T-6: change the reducer's four headings and add a `deep-review-strategy-heading` case that asserts a freshly templated strategy holds each section number once.
+- T-7: rerun the suites and the probe set, then rerun `/deep:review` and record AC-040 from that rerun.
 
 ## 7. Traceability Status
 
-Core protocols:
+### Core Protocols
 
 | Protocol | Status | Evidence | Unresolved drift |
 |----------|--------|----------|------------------|
-| `spec_code` | pass | All 39 REQ ids mapped to a producer branch, a test or fixture line, an ADR, or a packet record (iterations 2 and 7) | none |
-| `checklist_evidence` | pass | 120 ticked boxes each carry a resolved citation or an explicit N/A rationale; 47 criteria rows read 43 Met, 2 Waived, 1 Superseded, 1 Unmet; all nine cited scratch artifacts exist (iterations 4 and 7) | none |
+| `spec_code` | partial | REQ-001 to REQ-046 mapped. Probe rows at `scratch/probes/results-after.json` (69 rows, all `live`, exit 0); the compiled contracts' 31 source digests all match; ADR-001, ADR-005 and ADR-006 each describe what the tree does. | REQ-012 (`spec.md:224`) and REQ-031 (`spec.md:243`) state checks the tree no longer implements. |
+| `checklist_evidence` | partial | All 54 acceptance rows opened; 38 hold their evidence; the `Verification Summary` matches its 26 boxes (12 P0 / 13 P1 / 1 P2, CHK-020 open) and T084 is the one open task, both disclosed. | 16 rows fail: seven cite an anchor that does not hold the claim (AC-033, AC-034, AC-036, AC-037, AC-044, AC-045, AC-046) and nine quote a count or coverage the tree contradicts (AC-009, AC-019, AC-028, AC-029, AC-030, AC-031, AC-032, AC-038, AC-042). |
 
-Overlay protocols: `skill_agent`, `agent_cross_runtime`, `feature_catalog_code` and `playbook_capability` were **not run** in this lineage; each iteration reviewed a canonical dimension, and the overlay set is left out rather than recorded as pending. The one overlay-adjacent surface that was checked is the runtime mirror: mirrors are downstream packaging surfaces and none was read as a source of truth.
+### Overlay Protocols
 
-AC_COVERAGE: **exempt**. The target is Level 2, but the packet carries no `checklist.md`, which is the gate's precondition.
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `skill_agent` | notApplicable | The packet claims no skill-owned agent definition. |
+| `agent_cross_runtime` | notApplicable | No agent definition is claimed by any requirement. |
+| `feature_catalog_code` | notApplicable | No feature-catalog entry is claimed. |
+| `playbook_capability` | notApplicable | No playbook capability is claimed. |
+
+### AC_COVERAGE
+
+`advisory-shortfall`: 53 of 54 acceptance rows are `Met`, `Waived` or `Superseded`; AC-040 is `Unmet`, which is the row this run's own result is meant to close. Advisory only — it is not what fails the verdict; the coverage gate's `traceability-incomplete` is.
 
 ## 8. Deferred Items
 
-- The overlay traceability protocols (`skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`) were not exercised. A follow-up run could take them if the packet's next round touches agent, catalog or playbook surfaces.
-- The 69-probe harness and the two suites were not re-run: this lineage's write surface could not host the harness, and the packet's own round records are the evidence for those numbers. Iterations 1, 2 and 4 corroborated the parts that can be checked offline (gate behaviour on the built copy, list parity, citation resolution).
-- `implementation-summary.md:233` still says "one 203-case fixture" inside the sixth-round paragraph. It is a round-scoped record rather than a current claim, so it is not a finding; a later docs pass may prefer "the 203-case fixture of that round".
+- **AC-040 and REQ-033** are the two records this run cannot write. This lineage produced the rerun; the operator or the implementing agent records the outcome in the packet.
+- **The two `Waived` and one `Superseded` rows** (AC-008 with ADR-003, AC-017 with ADR-002, AC-019 with ADR-001) are deliberately not re-litigated. ADR-001's replacement check was verified and holds; the waivers stand on their decisions.
+- **The env passthrough in `runAdvisorSubprocess`** (`subprocess.ts:285`) and the unsanitized `skillId` on a degraded row (`skill-advisor-cli.ts:1541`) were recorded as hardening that is not in reach — first-party data only. They are listed here so a future round can decide whether to narrow them.
 
 ## Dimension Expansion Map
 
-- Completed pivots: 0
-- Failed pivots: 0
-- Audited overrides: 0
-- Saturated directions: none
-- Selected review directions: correctness (iteration 1), traceability `spec_code` (2), security (3), traceability `checklist_evidence` (4), maintainability (5), correctness second pass (6), traceability closeout (7)
-- Remaining frontier: none recorded (default depth mode; no frontier store)
+No pivot ran in this lineage: `divergence.completed`, `failed` and `overrides` are empty, no direction was swept, and the frontier mode was `default`, so no node store was created. Breadth came from the dimension rotation (correctness, traceability twice, security, maintainability) and from the operator focus being carried into every iteration. This section records breadth only and changes nothing above.
 
 ## 9. Search Ledger
 
-- `searchCoverage.requiredBugClasses` across the run: `state_transition`, `boundary_condition`, `producer_consumer_mismatch`, `spec_to_code_gap`, `stale_evidence_pointer`, `unbacked_waiver`, `injection`, `input_validation`, `unbounded_work`, `prompt_echo`, `state_format_drift`, `stale_comment`, `dead_export`, `unguarded_duplication`, `dead_branch`, `field_loss`, `shadowed_typed_command`, `stale_policy`, `unresolved_citation`, `stale_task_claim`, `missing_evidence_artifact`, `stale_finding_evidence`, `out_of_scope_finding`, `uncovered_dimension`.
-- `candidateCoverage.covered`: 20 of those classes were actively searched and cleared; 5 produced findings (`state_transition`, `stale_evidence_pointer`, `state_format_drift`, `dead_branch`, `stale_finding_evidence`).
-- `searchDebt`: [] - no deferred or blocked bug class remains.
-- `ruledOutCandidates` and `cleanSearchProof`: 19 ledger rows were ruled out with a stated reason (list parity, spawn boundary, label sanitizer, regex cost, prompt echo, ADR backing, citation resolution, scope and coverage), each recorded in its iteration's delta.
-- `hasSearchDebt: false`.
+*No search-depth state captured (legacy v1 record).*
+
+This run used the v1 record shape. The searches it performed are enumerated in each iteration's narrative under Files Reviewed and in the confirmed-clean and ruled-out sections; there is no deferred or blocked bug class, so `hasSearchDebt` is false.
 
 ## 10. Audit Appendix
 
-### Convergence summary
+### Convergence Summary
 
-| Iteration | Dimension | Focus | New findings (P0/P1/P2) | newFindingsRatio |
-|-----------|-----------|-------|--------------------------|------------------|
-| 1 | correctness | The gate's loop-ask grammar and gate-layer REQs | 0/0/1 | 1.0 |
-| 2 | traceability | `spec_code` over REQ-001..REQ-039 | 0/0/1 | 1.0 |
-| 3 | security | Trust boundaries, spawn, label, policy | 0/0/0 | 0.0 |
-| 4 | traceability | `checklist_evidence` over tasks and criteria | 0/0/0 | 0.0 |
-| 5 | maintainability | Reducer strategy contract and comment truth | 0/0/2 | 1.0 |
-| 6 | correctness (second pass) | Served head end to end | 0/0/1 | 1.0 |
-| 7 | traceability (closeout) | Re-read every filed finding, correct one anchor | 0/0/0 | 0.1 |
+- Stop reason `maxIterationsReached` at 7 of 7 iterations; `stopPolicy: max-iterations`, so the convergence vote was telemetry. The graph's last decision was `STOP_ALLOWED` with score 1.0 and signals `dimensionCoverage 1, findingStability 1, p0ResolutionRate 1, evidenceDensity 1.25, hotspotSaturation 1`.
+- Ratios by iteration: 1.0, 0.25, 0.636, 0.0, 0.083, 0.0, 0.0. The run found twelve P2 in the first three iterations and nothing new after them.
+- Stuck count 0: no two consecutive iterations produced zero new findings with a productive alternative untried.
 
-Coverage: 4 of 4 configured dimensions; the registry's `convergenceScore` reads 0.9 (the latest iteration's ratio). Stop reason `maxIterationsReached`, with all three terminal gates passing.
+### Coverage Summary
 
-### Coverage summary
+- Dimensions: `correctness` (iteration 1), `traceability` (iterations 2, 3, 6 and the final pass), `security` (iteration 4), `maintainability` (iteration 5). Four of four covered, with traceability covered three times.
+- Files: the 51-file scope was read across the iterations; the packet's own `review/lineages/` artifacts are outside the reviewed set.
+- Terminal gates: `evidence: pass` (`all-findings-cited`), `scope: pass` (`all-findings-in-scope`), `coverage: fail` (`traceability-incomplete`).
 
-- 46 scope files; every configured dimension carried a completed pass, and correctness, traceability and the reducer each carried a second pass.
-- The iteration cap, not convergence, ended the run: `stopPolicy: max-iterations` makes the ratio signals telemetry only.
+### Ruled-Out Claims
 
-### Ruled-out claims
+- Python/TypeScript predicate divergence: both copies agree on all 347 fixture cases.
+- A refusal-verb gap in the gate: the nineteen refusal leads plus the `do not even think about` idiom cover the pins.
+- A lost typed command when two commands are typed: the ordered-list read is the documented split.
+- Prototype pollution through a compiled route, command injection through a degraded supplied string, ReDoS through the loop-ask grammar, secret exposure through argv: each exercised and each fails closed.
+- Compiled contracts lagging the edited sources: 31 of 31 digests match.
+- A closure statement or Verification Summary that overstates: both agree with their rows and boxes.
+- A decision record the code does not implement: ADR-001, ADR-005 and ADR-006 each match the tree.
+- A behaviour defect behind the documentation findings: every failing cell was cross-checked and the code holds.
 
-- No list parity drift between the TypeScript gate and the Python fallback: fifteen lists and two numbers agree entry for entry.
-- No quadratic gate cost: 96,000- to 100,000-character prompts answer in 0.8-14.4 ms.
-- No shell, label or prompt-echo injection path: argv-only spawn, control-byte stripping and a sanitizer that rejects newlines.
-- No REQ without a producer, no waiver without an ADR, no ticked task without evidence, no `Met` artifact missing except the AC-041 anchors.
-- No dead export and no comment that contradicts its pattern in the changed gate code.
+### Sources Reviewed
 
-### Sources reviewed
-
-- Packet: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md` (012) and four documents of 013.
-- Advisor runtime: `lib/command-attach.ts`, `lib/scorer/lanes/explicit.ts`, `lib/scorer/fusion.ts`, `lib/render.ts`, `lib/subprocess.ts`, `handlers/advisor-recommend.ts`, `skill-advisor-cli.ts`, `schemas/advisor-tool-schemas.ts`, `hooks/lib/skill-advisor-cli-fallback.ts`, `scripts/skill_advisor.py`.
-- Tests and fixtures: `tests/fixtures/deep-loop-offer-cases.json`, eleven TypeScript suites, the Python suite.
-- Commands and hooks: `.skilled/commands/deep/{review,research}.md`, both presentation assets, `.skilled/hooks/injection-contract.md`.
-- Deep-loop runtime: `scripts/reduce-state.cjs`, `scripts/synthesis-closeout.cjs` and their two unit suites.
-- Changelog: `.skilled/changelog/skilled/v4.2.0.0.md`.
-
-### Cross-reference appendix
-
-Core Protocols:
-- `spec_code` - pass, iterations 2 and 7.
-- `checklist_evidence` - pass, iterations 4 and 7.
-
-Overlay Protocols:
-- `skill_agent` - not run this lineage.
-- `agent_cross_runtime` - not run this lineage.
-- `feature_catalog_code` - not run this lineage.
-- `playbook_capability` - not run this lineage.
-
-### Execution notes
-
-- This lineage ran its iterations inline as the dispatched executor, as its dispatch required; no nested CLI or sub-agent was spawned.
-- Every state record reached the ledger through `append-mode-event.cjs` (9 ledger rows: run-initialized, seven iteration records, terminal gates); the state log was never written directly, and `reduce-state.cjs` refreshed the registry, dashboard and strategy after every iteration.
-- The packet lock was acquired only for the synthesis phase; the iterations relied on the gateway's own fencing and a single writer.
-- No file outside `review/lineages/deepseek-max-2/` was created or modified by this lineage.
+51 pre-bound files, the packet's `scratch/probes/results-after.json`, `probes-spec-baseline.json` and `command-prompts.jsonl` corpus, the changelog, and the deep-loop reducer, closeout, convergence and terminal-gates scripts. Every citation used in this report resolves to a line that was printed during the run.
