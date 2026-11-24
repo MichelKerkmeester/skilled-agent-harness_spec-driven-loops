@@ -39,6 +39,10 @@ _memory:
 | Q003 | Open child 030 for the CI path filter and the four dead helpers. | Not stated. | None | spec.md, REQ-001, REQ-002 |
 | Q004 | Report the other sessions' pending answers instead of recording them here. | Not stated. | None | implementation-summary.md |
 | Q005 | Build 030 with one-change briefs on cli-pi DeepSeek V4.1 Flash max. | Not stated. | None | plan.md, tasks.md T004-T012 |
+| Q006 | Both system-skill-advisor and sk-git get a changelog entry. | Not stated. | None | system-skill-advisor/changelog/v2.0.5.0.md, sk-git/changelog/v1.11.15.0.md |
+| Q007 | Both entries take a patch bump: advisor 2.0.5.0, sk-git 1.11.15.0. | Not stated. | None | SKILL.md version of each skill, both changelog entries |
+| Q008 | The changelog command ran through cli-pi DeepSeek workers with the markdown persona. | Not stated. | None | both changelog entries |
+| Q009 | Worktree 540 and its branch were removed after the template alignment landed. | Not stated. | None | commit 582d2f3814c |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -142,6 +146,85 @@ Luna xhigh after reset
 Answer:
 ```text
 DeepSeek Flash, cli-pi (Recommended)
+```
+
+### Q006
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_0127BVSHbr4zVCgR2zuKJzUL:0 -->
+
+Question:
+```text
+Which components get a changelog entry? system-skill-advisor is at 2.0.4.0, and that entry covers another session's lexical-anchor work, not ours. sk-git is at 1.11.14.0, which covers the 007 lockfile fix.
+```
+
+Options:
+```text
+Both (Recommended)
+system-skill-advisor only
+sk-git only
+```
+
+Answer:
+```text
+Both (Recommended)
+```
+
+### Q007
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_0127BVSHbr4zVCgR2zuKJzUL:1 -->
+
+Question:
+```text
+Version bump? 029 removed lifecycle code and the catalog and playbook entries for it, but none of it was public advisor API. 030 and 008 are fixes.
+```
+
+Options:
+```text
+Patch for both (Recommended)
+Minor for the advisor
+Auto-detect
+```
+
+Answer:
+```text
+Patch for both (Recommended)
+```
+
+### Q008
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_0127BVSHbr4zVCgR2zuKJzUL:2 -->
+
+Question:
+```text
+The command hard-blocks unless the @markdown agent runs it, and you ruled out Claude agents earlier. How should it run?
+```
+
+Options:
+```text
+cli-pi DeepSeek, markdown (Recommended)
+Native @markdown agent
+Luna xhigh, cli-codex
+```
+
+Answer:
+```text
+cli-pi DeepSeek, markdown (Recommended)
+```
+
+### Q009
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833oolu_018VtRHypXzbSAoMFFWHAkqb:0 -->
+
+Question:
+```text
+The corrected entries are on origin/main (582d2f3814c). Should I remove worktree 540 (/Users/michelkerkmeester/worktrees/public/540-changelog-template-alignment) and its branch? It is clean and fully on origin/main. Removing it first stops the advisor daemon its provisioning started, then deletes its gitignored node_modules, dist and database. To undo, re-create it from origin/main.
+```
+
+Options:
+```text
+Remove it (Recommended)
+Keep it
+```
+
+Answer:
+```text
+Remove it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

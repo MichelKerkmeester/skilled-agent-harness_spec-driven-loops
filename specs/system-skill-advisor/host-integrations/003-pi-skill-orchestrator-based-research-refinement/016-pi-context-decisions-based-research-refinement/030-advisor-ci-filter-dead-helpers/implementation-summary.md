@@ -8,26 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers"
-    last_updated_at: "2026-11-24T12:22:58Z"
+    last_updated_at: "2026-11-24T18:31:27Z"
     last_updated_by: "generate-context"
-    recent_action: "Built 030; all 17 gates pass"
-    next_safe_action: "Commit 030 and land it on origin/main"
+    recent_action: "Advisor changelog v2.0.5.0 aligned with template, landed 582d2f3814c"
+    next_safe_action: "None; packet complete"
     packet_purpose: "Purpose: A hooks-only change runs the advisor suite in CI, and no advisor code or doc names a helper that production never calls."
     blockers: []
     key_files:
-      - ".github/workflows/skill-advisor-stress.yml"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/tests/route-exclusions.vitest.ts"
+      - ".skilled/skills/system-skill-advisor/changelog/v2.0.5.0.md"
+      - ".skilled/skills/sk-git/changelog/v1.11.15.0.md"
     session_dedup:
-      fingerprint: "sha256:31559a79ea4845cd6e74874940d6a97d75cf54b2ce853c8cce83faeb0faa208b"
+      fingerprint: "sha256:d198077ccf34041ab21610f7000d683e060dfa522a0c46a69c03791b33521cbe"
       session_id: "scaffold-030-advisor-ci-filter-dead-helpers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
-      workspace: "/Users/michelkerkmeester/worktrees/public/537-advisor-ci-filter-dead-helpers"
-      savedAt: "2026-11-24T12:22:58Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-24T18:31:27Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The workflow that runs the advisor test suite, `.github/workflows/skill-advisor-stress.yml`, filters on `runtime/`, the launcher and the OpenCode plugin, but not on `system-skill-advisor/hooks/`",
     "created_at": "2026-11-24T11:35:40Z",
-    "last_save_at": "2026-11-24T12:22:58.592Z",
+    "last_save_at": "2026-11-24T18:31:27.057Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a66fc3e7dc511bf174e0650cea0e25b5f9994b36fe79aa94fcf9094c2d4cc67",
+    "source_fingerprint": "sha256:f08b47a1502ff87598919d41ead0d6756248fe2d7e707c3da206e277383fee4b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b78635fa2bad4da81b4249cf4fc77188ce4570b9aafc1534546c386c68578b8",
       "plan.md": "620676d0ea04b7f27aeb3e30c8b2aae18016fed21ebee41f1108bebacedd9693",
       "tasks.md": "7d3984cf4d2882072db8065be4b400bdecbf693bc7362c4cd6977f1d42b99ad3",
-      "decision-record.md": "8cb618f345c2c227ee5b0ec7f034985d74a7c81c8668281a7ff65118924f666f",
-      "implementation-summary.md": "f850110e964369fc5671cf20fbc089ffb6e84384259e71aa6f49a055b58f8831"
+      "decision-record.md": "5611eeff43d534673b32fd5e5f047e072ebf43b242d630a13d9add39890e96ae",
+      "implementation-summary.md": "f0478557274ec93638f5f26522825d5f17def8a7c459c234f1916594310cc420"
     },
     "last_active_at": null
   }

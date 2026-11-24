@@ -220,7 +220,7 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-24T12:22:58.665Z",
+    "last_save_at": "2026-11-24T18:31:27.166Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -235,6 +235,6 @@
       "decision-record.md": "f63f6ef4836e6961c21c58b76b17b2e648e70bcebe7bc52822d2a21c737cbd80"
     },
     "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers",
-    "last_active_at": "2026-11-24T12:22:58.665Z"
+    "last_active_at": "2026-11-24T18:31:27.166Z"
   }
 }
