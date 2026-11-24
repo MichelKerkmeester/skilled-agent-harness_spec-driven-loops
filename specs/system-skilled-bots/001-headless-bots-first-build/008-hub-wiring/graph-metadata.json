@@ -190,12 +190,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase 7 the runner, queue, installer and status work from their CLI, but no hub, mode or command points at them",
     "created_at": "2026-11-22T10:48:34Z",
-    "last_save_at": "2026-11-23T18:39:11.722Z",
+    "last_save_at": "2026-11-24T11:13:46.220Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b6557247ece9b6e729222db5ec876bf54ff40ae7bccf6b3bff3e2bcd5c899bd",
+    "source_fingerprint": "sha256:dd49c1f44ccf4bd514229e788b3791bdb8b83fbc52bed6451a269a80048ec546",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1a0199dde14e714ae4572e5c5cb2c744f588d23deeb6864cbfecf230c0719aaf",
+      "spec.md": "4b7fc5c648942f08bb8a560e6358198ac585b6d4786c82f250f7730f36e808a2",
       "plan.md": "4dbd56d1865a8931a2cb24dec699a3d0d037bc7f6b521f6456c84bd7a1aacb2d",
-      "tasks.md": "c4656b00d3e2d30fe5603ce3a94974fe588aeedbf15334cf18d6116ed492ecee",
+      "tasks.md": "9b46ad6c701c0a211ba6a9ea10c245058ce7dd41874367f3c1ac7385a2446b4f",
       "decision-record.md": "304cc7556755fce86e18f3147d9d3903f2cce59c4f8d3c7dd2a360fc4ad7059d",
-      "implementation-summary.md": "aba8772833288deafc095a1de944f3368dc05166c7c11a52bd5679287f6d5360"
+      "implementation-summary.md": "3be7f7b9f643decf62c7365d18c57e11df77fd0eb16238c11e4df872fd00ef9c"
     },
     "last_active_at": null
   }

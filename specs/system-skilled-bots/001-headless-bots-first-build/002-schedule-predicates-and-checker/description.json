@@ -1,18 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker",
   "description": "Phase 2: schedule-predicates-and-checker",
   "keywords": [
     "phase",
     "schedule-predicates-and-checker"
   ],
-  "lastUpdated": "2026-11-22T10:48:28.262Z",
+  "lastUpdated": "2026-11-24T11:18:08.695Z",
   "specId": "002",
   "folderSlug": "schedule-predicates-and-checker",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "24-11-26_12-13__read-the-weekday-probe-it-fired-monday-2026-11-23.md",
+    "24-11-26_12-17__recorded-the-operator-rule-for-an-unclean-weekday.md",
+    "24-11-26_12-18__recorded-the-operator-rule-for-an-unclean-weekday.md"
+  ]
 }

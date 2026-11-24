@@ -36,7 +36,7 @@ contextType: "general"
 ### Pre-Task Checklist
 Before starting any task, verify:
 1. [ ] `spec.md` scope is unchanged, including the out-of-scope line for `.skilled/commands/doctor/`
-2. [ ] T001 and T002 pass, so phases 2, 3 and 5 are closed
+2. [x] T001 and T002 pass, so phases 2, 3 and 5 are closed
 3. [ ] ADR-003 records the T003 probe before T007 starts
 4. [ ] The task's P0 and P1 checklist rows are identified
 5. [ ] No real `launchctl` call runs outside T003 and T015 to T020
@@ -62,8 +62,8 @@ A task waiting on an earlier phase or on the operator is marked `[B]` with the r
 ## Phase 1: Setup
 <!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [B] T001 Confirm phases 2, 3 and 5 are closed (`../002-schedule-predicates-and-checker/acceptance-criteria.md`, `../003-manual-runner/acceptance-criteria.md`, `../005-request-pipeline/acceptance-criteria.md`). Verify: `rg -c --include-zero '\| Unmet \|' ../002-schedule-predicates-and-checker/acceptance-criteria.md ../003-manual-runner/acceptance-criteria.md ../005-request-pipeline/acceptance-criteria.md` prints `<file>:0` for each of the three files. Evidence: `scratch/entry-conditions.txt`: phase 2 still has 3 Unmet rows (its live weekday probe); phases 3 and 5 print 0. Built anyway on the brief; the translator's lone-day-field refusal is the guard this dependency wanted.
-- [B] T002 Confirm the phase 2 weekday probe result is recorded (`../002-schedule-predicates-and-checker/implementation-summary.md`). Verify: `rg -n 'Weekday' ../002-schedule-predicates-and-checker/implementation-summary.md` prints the result line naming `Weekday` with its dates, and `rg -n 'Probe observation' ../002-schedule-predicates-and-checker/decision-record.md` prints the full record. Evidence: `scratch/entry-conditions.txt`: phase 2 records "Probe observation: not yet observed". Weekday-only and day-only crons stay refused by the translator, so no weekday schedule can be installed.
+- [x] T001 Confirm phases 2, 3 and 5 are closed (`../002-schedule-predicates-and-checker/acceptance-criteria.md`, `../003-manual-runner/acceptance-criteria.md`, `../005-request-pipeline/acceptance-criteria.md`). Verify: `rg -c --include-zero '\| Unmet \|' ../002-schedule-predicates-and-checker/acceptance-criteria.md ../003-manual-runner/acceptance-criteria.md ../005-request-pipeline/acceptance-criteria.md` prints `<file>:0` for each of the three files. Evidence: 2026-11-24, all three files print `:0` (`scratch/entry-conditions-2026-11-24.txt:2`). Phase 2 closed once its weekday probe ran. The phase was built before this held, on the brief, and the translator's lone-day-field refusal guarded that gap until the probe settled it.
+- [x] T002 Confirm the phase 2 weekday probe result is recorded (`../002-schedule-predicates-and-checker/implementation-summary.md`). Verify: `rg -n 'Weekday' ../002-schedule-predicates-and-checker/implementation-summary.md` prints the result line naming `Weekday` with its dates, and `rg -n 'Probe observation' ../002-schedule-predicates-and-checker/decision-record.md` prints the full record. Evidence: 2026-11-24, the result line prints at `implementation-summary.md:58` and the record at `decision-record.md:50` (`scratch/entry-conditions-2026-11-24.txt:7`, `scratch/entry-conditions-2026-11-24.txt:10`). The probe fired only on its weekday, so the translator now emits a lone `Weekday` key and a weekday schedule installs.
 - [x] T003 Probe how `bootstrap` treats a disabled label with a throwaway plist that only appends a timestamp (`scratch/probe-disabled.plist`). Verify: the outcome of `launchctl disable`, then `launchctl bootstrap`, then `launchctl print`, then one calendar minute, is written in `decision-record.md` ADR-003 with the exact exit codes, the macOS version and the domain target (`gui/<uid>` or `user/<uid>`) each command accepted, and `ls LA | grep -c probe` prints 0 after cleanup. Evidence: Done: live, 2026-11-23, macOS 27.0.1 (26A434), domain `gui/501` accepted: `disable` exit 0, `bootstrap` on the disabled label exit 5 (Input/output error, job not loaded), `print` exit 113, and no fire across one held slot (`scratch/live-install-result.txt:8`, `scratch/live-install-result.txt:26`, `scratch/live-install-result.txt:29`). The probe ran on the real test bot through `scratch/live-install.sh` rather than a separate throwaway plist; 0 job files remained (`scratch/live-install-result.txt:123`).
 <!-- /ANCHOR:phase-1 -->
 
@@ -160,7 +160,7 @@ A task blocked on an earlier phase is marked `[B]` with the phase named, and no 
 
 - [x] CHK-001 [P0] Requirements documented in spec.md: `rg -c '^\| REQ-' spec.md` prints 17 Evidence: 18 rows: REQ-001 to REQ-018. The count of 17 here predates REQ-018.
 - [x] CHK-002 [P0] Technical approach defined in plan.md: `rg -n '^## 4' plan.md` prints one line Evidence: `## 4. IMPLEMENTATION PHASES` at plan.md line 85.
-- [B] CHK-003 [P1] Phases 2, 3 and 5 closed: T001 and T002 verified Evidence: T001 and T002 blocked, see above.
+- [x] CHK-003 [P1] Phases 2, 3 and 5 closed: T001 and T002 verified Evidence: both verified on 2026-11-24 (`scratch/entry-conditions-2026-11-24.txt`).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -228,11 +228,11 @@ A task blocked on an earlier phase is marked `[B]` with the phase named, and no 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 10 | 7/10 |
-| P1 Items | 22 | 19/22 |
+| P0 Items | 10 | 8/10 |
+| P1 Items | 22 | 20/22 |
 | P2 Items | 5 | 4/5 |
 
-**Verification Date**: 2026-11-23, builder pass; the live rows wait on the orchestrator
+**Verification Date**: 2026-11-24, T001, T002 and CHK-003 closed from the phase 2 probe. CHK-120 and the rows marked open above still wait
 <!-- /ANCHOR:summary -->
 
 ---

@@ -76,12 +76,12 @@ describe('translateCron: expansion', () => {
 });
 
 describe('translateCron: day-field rules', () => {
-  it('follows the current single-day-field rule for the weekday worked example', () => {
-    // Refused until a fire log confirms a lone Weekday key fires only on matching days.
-    expect(SINGLE_DAY_FIELD_RULE).toBe('refuse');
-    expect(refusal('0 9 * * 1-5')).toBe('cron-single-day-field-unverified');
-    expect(refusal('0 0 1 * *')).toBe('cron-single-day-field-unverified');
-    expect(refusal('@weekly')).toBe('cron-single-day-field-unverified');
+  it('emits a lone day field alone for the weekday worked example', () => {
+    // A fire log showed a lone Weekday key fires only on its weekday.
+    expect(SINGLE_DAY_FIELD_RULE).toBe('emit');
+    expect(entries('0 9 * * 1-5')).toEqual([1, 2, 3, 4, 5].map((Weekday) => ({ Weekday, Hour: 9, Minute: 0 })));
+    expect(entries('0 0 1 * *')).toEqual([{ Day: 1, Hour: 0, Minute: 0 }]);
+    expect(entries('@weekly')).toEqual([{ Weekday: 0, Hour: 0, Minute: 0 }]);
   });
 
   it('refuses a day pair cron reads as AND, which launchd cannot express', () => {

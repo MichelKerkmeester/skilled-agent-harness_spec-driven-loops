@@ -82,6 +82,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | Criteria drawn from spec.md section 5 and acceptance-criteria.md |
+| Weekday probe read and removed | done | fired Mon 2026-11-23 only; SINGLE_DAY_FIELD_RULE emit; AC-001/002/011 Met |
 
 ### Deviations and findings
 

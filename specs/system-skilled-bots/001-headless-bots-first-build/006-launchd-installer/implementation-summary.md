@@ -8,31 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer"
-    last_updated_at: "2026-11-23T08:31:05Z"
+    last_updated_at: "2026-11-24T11:13:43Z"
     last_updated_by: "generate-context"
-    recent_action: "Live install passed twice; 18 of 18 rows Met"
-    next_safe_action: "Record the weekday probe in phase 002 after 2026-11-24, then close T001, T002 and CHK-003"
+    recent_action: "Closed T001, T002 and CHK-003 after phase 2 recorded the weekday probe"
+    next_safe_action: "Run the plan.md rollback once on the test bot for CHK-120"
     packet_purpose: "Purpose: An operator can install a bot's schedule as a disabled launchd agent, enable it on purpose, see it fire and stop it at the scheduler."
-    blockers:
-      - "Four rows await the live launchd install"
-      - "Executors not on launchd's bare PATH"
+    blockers: []
     key_files:
-      - ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts"
-      - ".skilled/bin/bots.cjs"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/entry-conditions-2026-11-24.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "implement-006-launchd-installer"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5"
+      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-23T08:31:05Z"
+      savedAt: "2026-11-24T11:13:43Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 75
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -187,7 +182,7 @@ Proof, in the order it ran:
 2. **Executors under the bare PATH are open.** A scheduled run starts the runner with an absolute interpreter, but the runner finds an executor such as `codex` on `PATH`, which launchd leaves bare, and the job carries no environment beyond the state home. A real scheduled dispatch fails until that is decided. Raised in `spec.md` open questions.
 12. **The uninstall sweep's root per swept bot is not tested on its own.** Since an install of a second state home is now refused, two jobs of one identity can only carry different state homes when they predate that check; the sweep resolves each swept bot's root from its own job file, and the existing sweep test covers the shared-root case.
 3. **ADR-003 waits on the probe.** The built mechanism does not depend on the probe's answer, but the record stays Proposed until the live script reports the exit codes and the domain target.
-4. **Entry conditions.** Phase 2 has three Unmet rows and no weekday probe result. Weekday-only and day-only crons stay refused by the translator, so nothing this phase installs depends on them.
+4. **Entry conditions met late.** Phase 2 closed on 2026-11-24, after this phase was built. Its probe settled the weekday rule on emit, so weekday-only and day-only crons now install.
 5. **Next fire time stays UNKNOWN.** launchd reports none for a calendar job.
 6. **A re-pin prints no schedule warning yet.** Follow-up for system-skilled-doctor: the hook point is phase_6_reread in `.skilled/commands/doctor/assets/doctor-overlay-repin.yaml`, which runs `overlay-engine.cjs status` after any engine write. The flow could call `checkInstallsFor({ checkoutRoot })` from `installer.ts` there and list the schedules that return `needs-reinstall` with `pin-changed`. This phase edits nothing under `.skilled/commands/doctor/`; until the follow-up lands, phase 7's `bots status` shows the rows.
 7. **The drain job meets phase 5's retry bound sooner.** It relaunches about once a minute while a retried request sits in the inbox, so a request that hits `lease-held` behind a long scheduled run of the same bot reaches `retry-bound` in two or three minutes. Reported, not changed: the bound is phase 5's.

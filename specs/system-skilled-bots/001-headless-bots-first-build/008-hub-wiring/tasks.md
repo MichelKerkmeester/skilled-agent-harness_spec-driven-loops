@@ -35,7 +35,7 @@ Shell variables: `H` is `.skilled/skills/system-skilled-bots`. `PSC` is `node .s
 ## Phase 1: Setup
 <!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [B] T001 Confirm phases 001 to 007 are closed (`../00[1-7]-*/acceptance-criteria.md`). Verify: `rg -c '\| Unmet \|' ../00[1-7]-*/acceptance-criteria.md` prints no file with a count above 0. Evidence: `rg -c` prints `../002-schedule-predicates-and-checker/acceptance-criteria.md:3`: phase 002 keeps three Unmet weekday-probe rows, so the precondition is not met. Recorded, not patched here.
+- [x] T001 Confirm phases 001 to 007 are closed (`../00[1-7]-*/acceptance-criteria.md`). Verify: `rg -c '\| Unmet \|' ../00[1-7]-*/acceptance-criteria.md` prints no file with a count above 0. Evidence: 2026-11-24, `rg -c` prints no file, exit 1, after phase 002 closed its three weekday-probe rows (`../006-launchd-installer/scratch/entry-conditions-2026-11-24.txt:13`).
 - [x] T002 Re-capture the Measured Behavior block with the phase 1 skill root in place (`spec.md`). Verify: `$PSC $H` output is pasted verbatim with its exit status. Evidence: Re-captured in `spec.md` Measured Behavior: the HEAD skill root held only `assets`, `runtime`, `scripts` and the gate exited 2; after the build the gate exits 0 (`scratch/parent-skill-check.txt:66`).
 - [x] T003 Read the two workflow contracts in full (`.skilled/commands/create/skill-parent.md`, `.skilled/commands/create/command.md`). Verify: each contract's owned assets are named in `plan.md` section 6 with no missing path. Evidence: Both contracts read and followed; owned assets named in `plan.md` section 6.
 - [x] T004 Settle the mode aliases and record them (`decision-record.md` ADR-002). Verify: `rg -n 'ADR-002' decision-record.md` shows the alias list per mode. Evidence: ADR-002 carries the final alias list and the four aliases dropped after the doctor-routing replay.
@@ -135,7 +135,7 @@ A task blocked by a defect in phases 1 to 7 is marked `[B]` and the defect goes 
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available: phases 001 to 007 closed per T001. Not met: phase 002 keeps three Unmet rows (T001).
+- [x] CHK-003 [P1] Dependencies identified and available: phases 001 to 007 closed per T001. Evidence: T001 verified on 2026-11-24.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -213,11 +213,11 @@ N/A. This phase fixes no reported finding. The rows stay unchecked and do not bl
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 6/8 |
-| P1 Items | 10 | 7/10 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 10 | 9/10 |
 | P2 Items | 2 | 1/2 |
 
-**Verification Date**: 2026-11-23
+**Verification Date**: 2026-11-24
 <!-- /ANCHOR:summary -->
 
 ---

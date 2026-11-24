@@ -1,0 +1,29 @@
+Weekday probe result, label com.skilled.probe.weekday, macOS 27.0.1, domain gui/501
+
+Installed: 2026-11-22T18:46:04+0100 Sun (plist mtime in ~/Library/LaunchAgents)
+Calendar entry: {Hour: 12, Minute: 0, Weekday: 1}
+Program: /bin/sh -c "/bin/date '+%Y-%m-%dT%H:%M:%S%z %a' >> $HOME/.local/state/skilled-probe/weekday.log"
+
+Matching day:     Mon 2026-11-23, slot 12:00
+Non-matching day: Tue 2026-11-24, slot 12:00
+
+$ probe-weekday.sh status   (run 2026-11-24 12:07:11 CET, exit 0)
+	runs = 1
+	last exit code = 0
+	descriptor = { "Minute" => 0, "Hour" => 12, "Weekday" => 1 }
+Fire log (whole file):
+2026-11-23T12:00:04+0100 Mon
+
+Host wake check: `pmset -g log` has its last Sleep entry at 2026-11-21 11:45:19 and its
+last Wake at 2026-11-21 11:45:48, and no Sleep, Wake or DarkWake entry on 2026-11-22,
+2026-11-23 or 2026-11-24. Power-log assertions are present at 2026-11-24 12:00:12 and
+12:00:43, so the host was awake through the Tuesday slot. The Monday fire is 4 seconds
+after its slot, so it is not a catch-up after wake.
+
+Result: a lone Weekday key fired on its weekday and did not fire the next day.
+The translator rule SINGLE_DAY_FIELD_RULE is set to emit.
+
+$ probe-weekday.sh remove   (exit 0)
+removed
+$ ls ~/Library/LaunchAgents | rg com.skilled.probe    -> no output, exit 1
+$ launchctl print gui/501/com.skilled.probe.weekday   -> exit 113

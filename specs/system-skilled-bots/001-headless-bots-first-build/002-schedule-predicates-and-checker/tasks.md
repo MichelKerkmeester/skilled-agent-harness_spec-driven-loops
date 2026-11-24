@@ -36,7 +36,7 @@ contextType: "general"
 <!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
 - [x] T001 Write the probe plist by hand: label `com.skilled.probe.weekday`, `StartCalendarInterval` of one dictionary with `Hour`, `Minute` and one `Weekday`, program `/bin/sh -c` appending `date` to a log outside the checkout (`P`). Verify: `plutil -lint P` prints `OK`. Evidence: [DEVIATION: the orchestrator barred writing into `~/Library/LaunchAgents`] written as `scratch/com.skilled.probe.weekday.plist` with a weekday placeholder plus `scratch/probe-weekday.sh` (install, status, remove), not run. `plutil -lint` on a copy with Weekday 1 printed `OK`, exit 0. `bash -n` exit 0.
-- [B] T002 Bootstrap the probe on the first day of the phase and copy its plist text into the decision record (`P`, `decision-record.md`). Verify: `launchctl print gui/$(id -u)/com.skilled.probe.weekday` exits 0 and shows `state`. [B] Blocked: awaiting operator approval to load the launchd probe. Install command: `scratch/probe-weekday.sh install <weekday>`.
+- [x] T002 Bootstrap the probe on the first day of the phase and copy its plist text into the decision record (`P`, `decision-record.md`). Verify: `launchctl print gui/$(id -u)/com.skilled.probe.weekday` exits 0 and shows `state`. Evidence: installed 2026-11-22 18:46 with Weekday 1 by `scratch/probe-weekday.sh install 1` after the operator's yes. `status` on 2026-11-24 printed `state = not running`, `runs = 1`, exit 0 (`scratch/probe-result.txt:10`). The plist text is under Probe observation in `decision-record.md`.
 - [x] T003 [P] Confirm the phase 1 parser, field predicates and identity resolver import from a scratch script (`scratch/import-check.cjs`). Verify: `node scratch/import-check.cjs` exits 0. Evidence: [DEVIATION: no scratch file kept, so scratch stays clean] the checker loads the definition parser, config reader, identity resolver, translator and label grammar through the runtime tsx, and its run over `scripts/fixtures/clean` exited 0.
 <!-- /ANCHOR:phase-1 -->
 
@@ -61,13 +61,13 @@ contextType: "general"
 ## Phase 3: Verification
 <!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [B] T011 Read the probe log after one matching and one non-matching day and record dates, plist text and log lines (`decision-record.md`). Also write one result line naming `Weekday`, the dates and the fire log lines in `implementation-summary.md`, which phase 6 T002 reads. Check the host wake log (`pmset -g log`) so a catch-up fire after wake is not read as a non-matching fire. Verify: `rg -n 'Probe observation' decision-record.md` prints one line with the log excerpt under it, and `rg -n 'Weekday' implementation-summary.md` prints the result line with dates. [B] Blocked: awaiting operator approval to load the launchd probe.
-- [B] T012 Set the weekday-only translator rule from the probe result: emit the key alone, or refuse with an invariant id (`S/runtime/lib/cron-translator.ts`). Verify: the test for `0 9 * * 1-5` asserts the outcome the decision record names. [B] Blocked: awaiting operator approval to load the launchd probe. Until then the rule is refuse (`SINGLE_DAY_FIELD_RULE`), the conservative choice.
-- [B] T013 If the probe forces a refusal, write the handoff to phase 1 for the worked example in its spec (`implementation-summary.md`). Verify: `rg -n '0 9 \* \* 1-5' implementation-summary.md` prints the handoff line, or the decision record says emit and no handoff is needed. [B] Blocked: awaiting operator approval to load the launchd probe. The handoff is written provisionally in `implementation-summary.md`.
+- [x] T011 Read the probe log after one matching and one non-matching day and record dates, plist text and log lines (`decision-record.md`). Also write one result line naming `Weekday`, the dates and the fire log lines in `implementation-summary.md`, which phase 6 T002 reads. Check the host wake log (`pmset -g log`) so a catch-up fire after wake is not read as a non-matching fire. Verify: `rg -n 'Probe observation' decision-record.md` prints one line with the log excerpt under it, and `rg -n 'Weekday' implementation-summary.md` prints the result line with dates. Evidence: Monday 2026-11-23 fired at 12:00:04, Tuesday 2026-11-24 did not, and `pmset -g log` shows no sleep from 2026-11-22 to 2026-11-24 (`scratch/probe-result.txt:15`). Recorded under Probe observation in `decision-record.md` and as the result line in `implementation-summary.md`.
+- [x] T012 Set the weekday-only translator rule from the probe result: emit the key alone, or refuse with an invariant id (`S/runtime/lib/cron-translator.ts`). Verify: the test for `0 9 * * 1-5` asserts the outcome the decision record names. Evidence: `SINGLE_DAY_FIELD_RULE` is `emit`, and the test asserts five `Weekday` dictionaries for `0 9 * * 1-5`, one `Day` dictionary for `0 0 1 * *` and one `Weekday 0` dictionary for `@weekly`. `npm test` passed 35 files and 372 tests, and `npm run typecheck` exited 0.
+- [x] T013 If the probe forces a refusal, write the handoff to phase 1 for the worked example in its spec (`implementation-summary.md`). Verify: `rg -n '0 9 \* \* 1-5' implementation-summary.md` prints the handoff line, or the decision record says emit and no handoff is needed. Evidence: the decision record says emit, so no handoff is needed. The provisional handoff in `implementation-summary.md` is replaced by that outcome.
 - [x] T014 Run the translator and the slot lister over the shared fixture set, including one daylight-saving boundary under a fixed `TZ` (`S/runtime/tests/`). Verify: the agreement test passes and lists the boundary case by name. Evidence: the agreement test passes with `spring-forward boundary, 02:30 daily` and a fall-back case under `TZ=Europe/Amsterdam`.
 - [x] T015 Prove the checker imports its predicates (`S/scripts/bot-check.cjs`). Verify: `rg -n 'cli-opencode|3600|@reboot' S/scripts/bot-check.cjs` prints nothing. Evidence: the `rg` printed nothing, exit 1.
 - [x] T016 Prove nothing schedules a bot (`S/`). Verify: `rg -n 'launchctl bootstrap|com\.skilled\.bots\.' S --glob '!**/tests/**' --glob '!**/*.md'` prints only the label grammar constant. Evidence: the `rg` printed one line, the `LABEL_PREFIX` constant in `runtime/lib/label.ts`.
-- [B] T017 Remove the probe (`P`). Verify: after `launchctl bootout gui/$(id -u)/com.skilled.probe.weekday` and `rm P`, `ls ~/Library/LaunchAgents | rg com.skilled.probe` prints nothing. [B] Blocked: awaiting operator approval to load the launchd probe. Nothing was loaded, so `ls ~/Library/LaunchAgents \| rg com.skilled.probe` prints nothing today; removal is `scratch/probe-weekday.sh remove`.
+- [x] T017 Remove the probe (`P`). Verify: after `launchctl bootout gui/$(id -u)/com.skilled.probe.weekday` and `rm P`, `ls ~/Library/LaunchAgents | rg com.skilled.probe` prints nothing. Evidence: `scratch/probe-weekday.sh remove` printed `removed`, exit 0. `ls ~/Library/LaunchAgents | rg com.skilled.probe` printed nothing, exit 1, and `launchctl print` for the label exited 113 (`scratch/probe-result.txt:26`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,10 +76,10 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] The probe observation is in `decision-record.md` and the probe plist is gone
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
+- [x] The probe observation is in `decision-record.md` and the probe plist is gone
 <!-- /ANCHOR:completion -->
 
 ---
@@ -121,7 +121,7 @@ The probe wait is not a block. Other tasks continue while it runs. Only T011 wai
 - [x] CHK-001 [P0] Requirements documented in spec.md: `rg -c '^\| REQ-' spec.md` prints 11 Evidence: prints 12, not 11: REQ-012 (the no-identity invariant) was added by the 2026-11-22 operator decision after this line was written.
 - [x] CHK-002 [P0] Technical approach defined in plan.md: `rg -n '^## 3' plan.md` prints one line Evidence: `## 3. ARCHITECTURE` at plan.md line 55.
 - [x] CHK-003 [P1] Phase 1 predicates import: `node scratch/import-check.cjs` exits 0 Evidence: the checker imports them through the runtime tsx; the clean run exits 0 (see T003).
-- [B] CHK-004 [P0] The probe is installed on day one: `launchctl print gui/$(id -u)/com.skilled.probe.weekday` exits 0 [B] Blocked: awaiting operator approval to load the launchd probe.
+- [x] CHK-004 [P0] The probe is installed on day one: `launchctl print gui/$(id -u)/com.skilled.probe.weekday` exits 0 Evidence: installed 2026-11-22, and `status` printed the loaded job, exit 0 (`scratch/probe-result.txt:10`). [DEVIATION: installed on the operator's yes, after the code was built, not on day one.]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -142,8 +142,8 @@ The probe wait is not a block. Other tasks continue while it runs. Only T011 wai
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [B] CHK-020 [P0] Every row in `acceptance-criteria.md` is `Met` with its evidence named Blocked: AC-001, AC-002 and AC-011 stay Unmet, awaiting operator approval to load the launchd probe. The other ten are Met.
-- [B] CHK-021 [P0] The probe was observed on a matching and a non-matching day [B] Blocked: awaiting operator approval to load the launchd probe.
+- [x] CHK-020 [P0] Every row in `acceptance-criteria.md` is `Met` with its evidence named Evidence: AC-001, AC-002 and AC-011 were closed on 2026-11-24 from the probe record, and every row is Met.
+- [x] CHK-021 [P0] The probe was observed on a matching and a non-matching day Evidence: it fired Monday 2026-11-23 and stayed silent Tuesday 2026-11-24 with the host awake (`scratch/probe-result.txt:15`).
 - [x] CHK-022 [P1] The daylight-saving boundary case passes in the agreement test Evidence: `spring-forward boundary, 02:30 daily` passes, plus the explicit gap and repeat test.
 - [x] CHK-023 [P1] A missing target makes the checker exit 2 Evidence: `node bot-check.cjs /nope` printed `FAIL: target-missing: /nope is not a folder`, exit 2.
 <!-- /ANCHOR:testing -->
@@ -166,8 +166,8 @@ The probe wait is not a block. Other tasks continue while it runs. Only T011 wai
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md` and `decision-record.md` name the same weekday rule and dictionary cap Evidence: `rg -n '128\|refuse'` finds the cap of 128 and the interim refuse rule in spec.md (In Scope), plan.md (section 5) and decision-record.md (ADR-001, ADR-002).
-- [B] CHK-041 [P1] The probe record in `decision-record.md` holds dates, plist text and log lines [B] Blocked: awaiting operator approval to load the launchd probe.
-- [B] CHK-042 [P2] The worked-example handoff to phase 1 is written when the probe forces a refusal [B] Blocked: awaiting operator approval to load the launchd probe. A provisional handoff for `0 9 * * 1-5` is already in implementation-summary.md.
+- [x] CHK-041 [P1] The probe record in `decision-record.md` holds dates, plist text and log lines Evidence: Probe observation holds the install date, both slot dates, the plist as loaded and the one fire log line.
+- [x] CHK-042 [P2] The worked-example handoff to phase 1 is written when the probe forces a refusal Evidence: not needed. The probe settled on emit, so `0 9 * * 1-5` translates and phase 1's example stands.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -189,11 +189,11 @@ The probe wait is not a block. Other tasks continue while it runs. Only T011 wai
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 6/9 |
-| P1 Items | 11 | 10/11 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 9 | 9/9 |
+| P1 Items | 11 | 11/11 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-22. CHK-004, CHK-020, CHK-021, CHK-041 and CHK-042 are blocked, awaiting operator approval to load the launchd probe.
+**Verification Date**: 2026-11-24. The weekday probe closed CHK-004, CHK-020, CHK-021, CHK-041 and CHK-042.
 <!-- /ANCHOR:summary -->
 
 ---

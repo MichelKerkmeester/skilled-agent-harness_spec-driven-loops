@@ -8,7 +8,7 @@ trigger_phrases:
   - "bots cli inventory"
   - "feature catalog"
 last_updated: "2026-11-23"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # system-skilled-bots: Feature Catalog
@@ -101,7 +101,7 @@ Turns a cron expression into launchd calendar dictionaries that fire exactly as 
 
 #### Current Reality
 
-Every-minute cron becomes `StartInterval 60`, and other expressions expand to a capped, ordered list of `StartCalendarInterval` dictionaries. `@reboot`, power macros, malformed fields and day-field combinations launchd would read differently are refused by id. A schedule that restricts only one day field, such as weekdays, is refused today until a fire log confirms launchd's behavior.
+Every-minute cron becomes `StartInterval 60`, and other expressions expand to a capped, ordered list of `StartCalendarInterval` dictionaries. `@reboot`, power macros, malformed fields and day-field combinations launchd would read differently are refused by id. A schedule that restricts only one day field, such as weekdays, is emitted with that key alone, as a live fire log confirmed launchd fires it only on matching days.
 
 #### Source Files
 

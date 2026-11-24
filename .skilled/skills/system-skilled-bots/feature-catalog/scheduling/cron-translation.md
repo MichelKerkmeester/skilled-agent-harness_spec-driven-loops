@@ -6,7 +6,7 @@ trigger_phrases:
   - "cron to launchd"
   - "StartCalendarInterval"
   - "cron refusal id"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Cron translation (translateCron)
@@ -25,7 +25,7 @@ An every-minute schedule becomes `StartInterval 60`. Any other five-field expres
 
 Each refusal carries an id from one shared list: an empty or malformed expression, a wrong field count, an out-of-range value, a `%` stdin marker, an unknown macro, `@reboot` (launchd's load-time run also fires on every load) and a power-condition macro with no calendar form. When both day fields are restricted but one is written with a star, cron and launchd disagree on whether both must match, so that form is refused as `cron-day-fields-and`.
 
-A schedule that restricts only one of the two day fields, such as `0 9 * * 1-5` or `@weekly`, is refused today as `cron-single-day-field-unverified`. launchd documents a missing key as a wildcard but never states how a lone Weekday or Day key behaves, and no fire log has confirmed it. The rule is one constant in the translator, so the form can be admitted once a fire log confirms it.
+A schedule that restricts only one of the two day fields, such as `0 9 * * 1-5` or `@weekly`, is emitted with that key alone. launchd documents a missing key as a wildcard but never states how a lone Weekday or Day key behaves, so a live probe settled it: a job with a lone `Weekday` fired on its weekday and stayed silent the next day with the host awake. A lone `Day` key takes the same rule by inference, because the same wildcard sentence covers both keys. The rule is one constant in the translator, and setting it back to refuse restores the refusal as `cron-single-day-field-unverified`.
 
 ---
 

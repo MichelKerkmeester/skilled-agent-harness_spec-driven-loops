@@ -1,0 +1,13 @@
+$ rg -c --include-zero "\| Unmet \|" ../002-schedule-predicates-and-checker/acceptance-criteria.md ../003-manual-runner/acceptance-criteria.md ../005-request-pipeline/acceptance-criteria.md   (2026-11-24, from 006-launchd-installer)
+../002-schedule-predicates-and-checker/acceptance-criteria.md:0
+../003-manual-runner/acceptance-criteria.md:0
+../005-request-pipeline/acceptance-criteria.md:0
+
+$ rg -n "Weekday probe result" ../002-schedule-predicates-and-checker/implementation-summary.md
+58:Weekday probe result: a lone `Weekday` key fires only on its weekday. The probe, set to Weekday 1 at 12:00, fired on Monday 2026-11-23 at
+
+$ rg -n "Probe observation" ../002-schedule-predicates-and-checker/decision-record.md
+50:**Probe observation:** fired on Monday only. The probe was installed on Sunday 2026-11-22 at 18:46:04 with Weekday 1 at 12:00, so Monday 
+
+$ rg -c "\| Unmet \|" ../00[1-7]-*/acceptance-criteria.md   (from 008-hub-wiring)
+no output, exit 1

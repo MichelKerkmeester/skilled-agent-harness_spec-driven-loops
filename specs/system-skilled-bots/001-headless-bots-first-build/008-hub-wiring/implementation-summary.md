@@ -8,28 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/008-hub-wiring"
-    last_updated_at: "2026-11-23T18:39:11Z"
+    last_updated_at: "2026-11-24T11:13:46Z"
     last_updated_by: "generate-context"
-    recent_action: "Review 5 approved; f4c318d856a pushed"
-    next_safe_action: "Run alignment, docs and Opus review"
+    recent_action: "Closed T001 and CHK-003 after phase 002 closed"
+    next_safe_action: "None: the phase is complete"
     packet_purpose: "Purpose: A natural request for each of the four modes reaches that mode through both routing stages on this hub, from every runtime, and a re-pin of a vendored consumer leaves its `bots/` folder untouched."
-    blockers:
-      - "Weekday probe after Tue 12:00"
+    blockers: []
     key_files:
-      - ".skilled/skills/system-skilled-bots/hub-router.json"
-      - "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/implementation-summary.md"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/entry-conditions-2026-11-24.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:21df69c6a05bfccb18bab3775f336b71f33360556cfb5b4c420f9c8c0a3aa5fb"
       session_id: "scaffold-008-hub-wiring"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "f92f3b25-76c2-4213-b120-9a39aa45a9f9"
+      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-23T18:39:11Z"
+      savedAt: "2026-11-24T11:13:46Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-hub-wiring |
-| **Completed** | Not yet. Every acceptance row is Met (2026-11-23); the packet stays In Progress until T001 closes, which waits on phase 002's weekday probe |
+| **Completed** | 2026-11-24. Every acceptance row was Met on 2026-11-23, and T001 closed once phase 002's weekday probe ran |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -164,7 +162,7 @@ Deviations, each recorded rather than absorbed:
 5. **Stage-two phrases name example bots.** The router matches contiguous text, and every hub phrase contains `bot` except `answer a needs-you`, so `run my nightly bot` routes but `pause the weekly-cleanup bot` defers. Wider coverage needs bot-anchored phrasing that does not pull generic tokens such as `hand` into the advisor's lexical lane. The match also runs inside longer words, so `the robot needs you` and `list my chatbot runs` route to status and `answer dependabot's needs-you question` routes to run at stage two. Stage one gives none of them a forced load (0.618 at most), so they misroute only once the hub is already loaded. `answer a needs-you form for HR` is captured at both stages (0.852, then run) through `answer a needs-you`, the one phrase without `bot`. These were found in review 5 and are recorded, not fixed.
 6. **Non-bot `launchd` prompts lead at stage one.** `set up a launchd schedule`, `install a launchd schedule for my backup script`, `write a launchd plist` and `pause the launchd agent` rank the hub first at 0.82 to 0.85, partly through the bare keyword `launchd` in the hub `SKILL.md` Keywords comment. With that keyword stripped, `pause the launchd agent` still scored 0.82 (`specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/fix5-log.txt:115`), so another source contributes, likely the `launchd` domain and the `launchd schedule` key topic in `graph-metadata.json` (inferred, not stripped). Other examples review 5 found include `my launchd daemon keeps crashing` and `configure a launchd job to rotate logs`. Stage two defers on all of them (`specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-two-fix6.jsonl:25`), and no other skill owns launchd. The keyword stays because removing it dropped an in-domain blind corpus row below the 0.8 bar and failed the advisor routing slice (operator answer Q013). The bare `needs-you` keyword was removed, and the `needs you` capture it caused is gone (`specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/stage-one-fix6.txt:18`).
 7. **Proposed workflow amendment, not applied.** `create-skill-parent-auto.yaml` should fill `command-metadata.json` from its template when the hub owns commands, and its presentation should not default to "hub owns no slash commands". Its `update` output scope also omits the packet README, ROUTER and changelog, the hub playbook, benchmark and `shared/README.md`.
-8. **Precondition.** T001 stays blocked until phase 002's weekday probe closes its rows.
+8. **Precondition met late.** T001 closed on 2026-11-24, after this phase was built, once phase 002's weekday probe closed its rows.
 <!-- /ANCHOR:limitations -->
 
 ---

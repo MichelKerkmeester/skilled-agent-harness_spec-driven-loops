@@ -6,15 +6,16 @@
     "phase",
     "hub-wiring"
   ],
-  "lastUpdated": "2026-11-23T18:39:11.722Z",
+  "lastUpdated": "2026-11-24T11:13:46.220Z",
   "specId": "008",
   "folderSlug": "hub-wiring",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "23-11-26_19-39__closed-phase-008-s-review-loop-reviews-2-to-5.md"
+    "23-11-26_19-39__closed-phase-008-s-review-loop-reviews-2-to-5.md",
+    "24-11-26_12-13__closed-t001-and-chk-003-once-phases-001-to-007.md"
   ]
 }

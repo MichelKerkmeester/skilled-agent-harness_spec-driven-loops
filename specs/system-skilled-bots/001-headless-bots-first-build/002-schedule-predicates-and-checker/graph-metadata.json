@@ -38,7 +38,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,7 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/probe-result.txt",
       ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/slot-lister.ts",
@@ -100,6 +101,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-result.txt",
+        "kind": "file",
+        "path": "scratch/probe-result.txt",
         "source": "derived"
       },
       {
@@ -181,12 +188,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,8 +208,8 @@
     ],
     "causal_summary": "A bot author writes a cron string, and launchd only takes calendar dictionaries that hold one integer per key",
     "created_at": "2026-11-22T10:48:27Z",
-    "last_save_at": "2026-11-22T17:12:06.537Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-24T11:18:08.695Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -219,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9beb85f79922bb20dde938ff3a576ac22c9efdc45003a187a3e966bb221c294",
+    "source_fingerprint": "sha256:7f7c224f36de0b380e962ea10d8941b58d53a19525cf1ec290437f98f6f0c1d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31ffd1c0b3980ff56171524d84f0f53e725bb50188d3cb2171913a424565ee27",
+      "spec.md": "4fdfcfc3404b9a02ab83b2f735e0cd753185ab32e3755822f3d05c3f6c9e20a0",
       "plan.md": "ef317025ba919f25eb4e0f2f5b0a7ff3f851202694668cee5b614b539ef4d14c",
-      "tasks.md": "afb0bca05c7b5e8870b5916771457257bf4f122aeb7038eb580bd847b96249ef",
-      "decision-record.md": "0fe04a9ef146f4f42d1ba80d6a1152fd694f18279bd9179156a7c3d4f43f2dc5",
-      "implementation-summary.md": "8a6ad432611d3b17f58bfac2dd005b1fb7182e5a99675da504c92f621aadc2f9"
+      "tasks.md": "9104fb70da46e914e3b41c405b3daee5f83ad211c6458e83a64891b62d8c7f93",
+      "decision-record.md": "093cd388f448e99b6cb7a12e1a9e5d2bd7af0d1965b51a8c12117bc688ddb35b",
+      "implementation-summary.md": "949179e00d5a6dfb6762636dac2b258e472926afc6ef397565a67c4853d5acf6"
     },
     "last_active_at": null
   }

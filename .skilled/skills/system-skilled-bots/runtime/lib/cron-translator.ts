@@ -59,11 +59,14 @@ export const EVERY_MINUTE_INTERVAL = 60;
 /**
  * What the translator does with a cron that restricts only one of the two
  * day fields. launchd documents a missing key as a wildcard but never states
- * how a lone Weekday or Day key behaves, and no fire log has confirmed it
- * yet. Until one does, the form is refused rather than guessed.
+ * how a lone Weekday or Day key behaves. A live fire log settled it: a job
+ * with Hour, Minute and a lone Weekday fired on its weekday and stayed silent
+ * the next day with the host awake, so the key is emitted alone. A lone Day
+ * key takes the same rule because the same wildcard sentence covers both.
+ * Setting this back to refuse restores the refusal by its own id.
  */
 export type SingleDayFieldRule = 'emit' | 'refuse';
-export const SINGLE_DAY_FIELD_RULE: SingleDayFieldRule = 'refuse';
+export const SINGLE_DAY_FIELD_RULE: SingleDayFieldRule = 'emit';
 
 /** Every refusal id the translator can return, so the checker and tests share one list. */
 export const CRON_REFUSALS = [

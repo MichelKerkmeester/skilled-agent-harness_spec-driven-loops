@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress. Every acceptance row is Met; T001 waits on phase 002's weekday probe |
+| **Status** | Complete. Every acceptance row is Met, and T001 closed on 2026-11-24 |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/008-hub-wiring` |
 | **Parent Spec** | ../spec.md |

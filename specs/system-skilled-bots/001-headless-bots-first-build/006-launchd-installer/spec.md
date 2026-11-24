@@ -324,7 +324,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Open follow-up, not fixed here: uninstall and its orphan sweep ignore the clone rule. `holdingClone` in `installer.ts` is used only by install, so `bots schedule uninstall` run from a second clone of the same identity boots out and deletes a label the first clone installed. Should uninstall refuse with `label-held-by-clone` too? Open, for the orchestrator.
 - Open follow-up, not fixed here: the needs-reinstall check never looks at the recorded Node interpreter path. A job whose `interpreter` was removed or upgraded away still reads `ok`, and its next fire fails before the runner starts. Should the check add an `interpreter-missing` reason? Open, for the orchestrator.
 - With `XDG_STATE_HOME` unset, a fired job resolved `$HOME/.local/state` from launchd's `HOME`, so an install from a shell with another `HOME` diverged. Answered and built on 2026-11-23: the job always carries the resolved state home when the config names none (NFR-S02), and the agents folder comes from the account's home too.
-- Entry conditions T001 and T002 do not hold: phase 2 has three Unmet rows and no weekday probe result. The phase was built on the orchestrator's brief; the translator refuses weekday-only and day-only crons until the probe settles them.
+- Entry conditions T001 and T002: answered on 2026-11-24. Phase 2 closed once its weekday probe ran, and the translator now emits a lone `Weekday` or `Day` key. The phase was built before that, on the orchestrator's brief.
 <!-- /ANCHOR:questions -->
 
 ---

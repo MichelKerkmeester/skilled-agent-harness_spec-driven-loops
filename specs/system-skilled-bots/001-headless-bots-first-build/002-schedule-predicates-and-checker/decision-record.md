@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted, 2026-11-24: emit |
 | **Date** | 2026-11-22 |
 | **Deciders** | Phase implementer, decided by the probe evidence. Not an operator decision |
 
@@ -47,9 +47,41 @@ _memory:
 
 The man page says a missing calendar key is a wildcard and describes the either-matches rule only when both `Day` and `Weekday` are set (research.md §7, `/usr/share/man/man5/launchd.plist.5` lines 448 to 479). No iteration tested whether `{Hour: 9, Minute: 0, Weekday: 1}` fires on Mondays only (research.md §16 Q1). The hub's own worked example, `0 9 * * 1-5`, depends on the answer (research.md §5). This decision blocks phase close.
 
-**Probe observation:** not yet observed. Record here the install date, the plist text, every fire timestamp from the probe log and the weekday of each, across at least one matching and one non-matching day.
+**Probe observation:** fired on Monday only. The probe was installed on Sunday 2026-11-22 at 18:46:04 with Weekday 1 at 12:00, so Monday 2026-11-23 was the matching day and Tuesday 2026-11-24 the non-matching day. The whole fire log is one line:
 
-**Probe status (2026-11-22):** not loaded. The orchestrator barred loading any launchd agent or writing into `~/Library/LaunchAgents` until the operator says yes, because loading an agent is an install on the operator's machine. The plist template and its install, status and remove script wait, unrun, in `scratch/com.skilled.probe.weekday.plist` and `scratch/probe-weekday.sh`. `plutil -lint` passed on a copy with Weekday 1.
+```text
+2026-11-23T12:00:04+0100 Mon
+```
+
+`probe-weekday.sh status`, run on 2026-11-24 at 12:07:11, printed `runs = 1` and `last exit code = 0`, exit 0. The host stayed awake through both slots: `pmset -g log` has its last Sleep entry on 2026-11-21 and no Sleep, Wake or DarkWake entry from 2026-11-22 to 2026-11-24. The Monday fire landed 4 seconds after its slot, so it is no catch-up fire. The full record is in `scratch/probe-result.txt`. The probe plist as loaded:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.skilled.probe.weekday</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string>
+    <string>-c</string>
+    <string>/bin/date '+%Y-%m-%dT%H:%M:%S%z %a' &gt;&gt; "$HOME/.local/state/skilled-probe/weekday.log"</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>12</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+    <key>Weekday</key>
+    <integer>1</integer>
+  </dict>
+</dict>
+</plist>
+```
+
+**Probe status (2026-11-24):** removed. `probe-weekday.sh remove` printed `removed`, exit 0. Then `ls ~/Library/LaunchAgents | rg com.skilled.probe` printed nothing, exit 1, and `launchctl print gui/501/com.skilled.probe.weekday` exited 113.
 
 ### Constraints
 
@@ -68,6 +100,8 @@ The man page says a missing calendar key is a wildcard and describes the either-
 **How it works**: Install the probe on day one. Read its log after one matching and one non-matching day. Set the translator rule and its test to the observed result. If the rule is refuse, hand the change of the worked example to phase 1 and research.md §5.
 
 **Interim rule until the probe runs**: refuse. A cron that restricts only one of the two day fields fails translate with `cron-single-day-field-unverified`, behind the one constant `SINGLE_DAY_FIELD_RULE` in `cron-translator.ts`. Refusing is the conservative side of this decision's own alternatives: a wrong emit could fire an unattended bot every day, and a wrong refuse only blocks an install. The same refusal covers `0 9 * * 1-5`, `0 0 1 * *`, `@weekly`, `@monthly` and `@yearly`. If the probe fires only on matching days, the flip is that constant plus its test.
+
+**Outcome (2026-11-24)**: the probe fired only on its matching day, so `SINGLE_DAY_FIELD_RULE` is now `emit`. A lone `Weekday` or `Day` key is emitted alone, and the test asserts the dictionaries for `0 9 * * 1-5`, `0 0 1 * *` and `@weekly`. The worked example needs no handoff to phase 1.
 
 **Found while building**: cron reads the two day fields as AND, not OR, when either field starts with `*` (for example `*/2` beside a weekday). launchd's documented two-key rule is either-match, so that form has no exact translation and is refused with `cron-day-fields-and`.
 <!-- /ANCHOR:adr-001-decision -->
@@ -531,6 +565,7 @@ The research names the checker a new doctor command (research.md §6). The comma
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
+| Q001 | If the weekday probe did not fire cleanly, phase 002 would stay open with the probe installed for another Monday, while 006 and 008 still closed. | Not stated. | None | ADR-001, AC-001, scratch/probe-result.txt |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -539,6 +574,26 @@ The research names the checker a new doctor command (research.md §6). The comma
 ## Appendix: Verbatim Operator Answers
 
 Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
+
+### Q001
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_01SrMxhpdYJTUNuvdUrkGKVk:1 -->
+
+Question:
+```text
+Today's 12:00 probe is the evidence that the Monday-only schedule rule holds. What should I do if it doesn't fire cleanly, for example because the Mac is asleep at 12:00 and launchd fires it late or not at all?
+```
+
+Options:
+```text
+Leave 002 open (Recommended)
+Close on Monday alone
+```
+
+Answer:
+```text
+Leave 002 open (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

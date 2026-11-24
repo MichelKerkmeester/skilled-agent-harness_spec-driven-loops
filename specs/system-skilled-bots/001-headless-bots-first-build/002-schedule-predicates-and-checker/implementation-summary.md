@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Translator, label grammar, slot lister and definition checker built and tested, 109 tests pass. The weekday probe is written but not loaded, awaiting operator approval, so the phase cannot close."
+description: "Translator, label grammar, slot lister and definition checker built and tested. The weekday probe fired only on its weekday, so a lone day field is emitted and the phase is closed."
 trigger_phrases:
   - "schedule predicates and checker implementation summary"
 importance_tier: "normal"
@@ -8,18 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker"
-    last_updated_at: "2026-11-22T17:10:00Z"
-    last_updated_by: "phase-builder"
-    recent_action: "Built and tested the schedule predicates and the checker; probe written, not loaded"
-    next_safe_action: "Load the weekday probe once the operator approves"
-    blockers:
-      - "Weekday probe awaits operator approval to load a launchd agent"
-    key_files: []
+    last_updated_at: "2026-11-24T11:18:08Z"
+    last_updated_by: "generate-context"
+    recent_action: "Recorded the weekday probe and set the day rule to emit"
+    next_safe_action: "None: the phase is complete"
+    packet_purpose: "Purpose: Every cron string either becomes calendar entries that fire as cron would or is refused with a named reason, and every `BOT.md` is checked by one script that imports the same predicates the installer will use."
+    blockers: []
+    key_files:
+      - ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts"
+      - ".skilled/skills/system-skilled-bots/runtime/tests/cron-translator.vitest.ts"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/scratch/probe-result.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c4340e581d57513d0cdaf711447fd6b184ad55169b5607bc7d799d20d0ca1734"
       session_id: "scaffold-002-schedule-predicates-and-checker"
       parent_session_id: null
-    completion_pct: 80
+    session_ref:
+      runtime: "claude"
+      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
+      workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
+      savedAt: "2026-11-24T11:18:08Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-schedule-predicates-and-checker |
-| **Completed** | Not complete. Code built 2026-11-22. The weekday probe awaits operator approval |
+| **Completed** | 2026-11-24. Code built 2026-11-22, weekday probe observed 2026-11-23 and 2026-11-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -55,9 +65,9 @@ A cron string now either becomes launchd calendar dictionaries that fire as cron
 - **Slot lister** (`slot-lister.ts`). Reads only translator output. Uses local wall-clock time, drops a time inside a spring-forward gap and lists a repeated time once.
 - **Checker** (`bot-check.cjs`). Reads `bots/<id>/BOT.md` under a checkout and prints one `PASS|FAIL|WARN|INFO: <id>: <message>` line per finding. Exits 0, 1 or 2. `--strict` turns the one advisory finding, `folder-id-mismatch`, into a failure.
 
-Weekday probe result: not observed. The `Weekday`-only probe has no dates and no fire log yet. Loading it awaits operator approval. Until it runs, the translator refuses a lone `Weekday` or `Day` key with `cron-single-day-field-unverified`.
+Weekday probe result: a lone `Weekday` key fires only on its weekday. The probe, set to Weekday 1 at 12:00, fired on Monday 2026-11-23 at 12:00:04 and did not fire on Tuesday 2026-11-24, with the host awake through both slots (`scratch/probe-result.txt`). The translator therefore emits a lone `Weekday` or `Day` key, so `0 9 * * 1-5` becomes five dictionaries.
 
-Provisional handoff to phase 1: while that interim rule stands, the worked example `0 9 * * 1-5` is refused. If the probe confirms the refusal, phase 1's spec and research.md §5 must change the example. If the probe shows a lone `Weekday` fires only on matching days, the rule flips to emit and no handoff is needed.
+No handoff to phase 1 is needed: the worked example `0 9 * * 1-5` translates as written.
 
 ### Files Changed
 
@@ -71,7 +81,8 @@ Provisional handoff to phase 1: while that interim rule stands, the worked examp
 | `.skilled/skills/system-skilled-bots/scripts/fixtures/` | Create | `clean` plus 13 one-defect fixtures, one per hard invariant |
 | `.skilled/skills/system-skilled-bots/runtime/tests/{cron-translator,label,slot-lister,bot-check}.vitest.ts` | Create | 53 tests |
 | `.skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts` | Modify (additive) | 2 tests for `checkExecutorBounds`, the bound read from the executor schema |
-| `scratch/com.skilled.probe.weekday.plist`, `scratch/probe-weekday.sh` | Create | The probe, ready to run and not run |
+| `scratch/com.skilled.probe.weekday.plist`, `scratch/probe-weekday.sh` | Create | The probe, run from 2026-11-22 to 2026-11-24 and removed |
+| `scratch/probe-result.txt` | Create | The probe's status output, fire log, wake check and removal |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -96,8 +107,8 @@ Proof, in the order it ran:
 
 | Decision | Why |
 |----------|-----|
-| A lone day field is refused until the probe runs (ADR-001, still Proposed) | A wrong emit could fire an unattended bot every day. A wrong refusal only blocks an install. The flip is one constant and its test |
-| [DEVIATION: the plan says install the probe on day one] The probe is written to `scratch/` and not loaded | The orchestrator barred loading any launchd agent until the operator says yes |
+| A lone day field is emitted alone (ADR-001, Accepted 2026-11-24) | It was refused until the probe ran, because a wrong emit could fire an unattended bot every day. The probe fired only on its weekday, so the constant and its test flipped to emit |
+| [DEVIATION: the plan says install the probe on day one] The probe was loaded on 2026-11-22 after the code was built | The orchestrator barred loading any launchd agent until the operator said yes |
 | Refuse a day-field pair that cron reads as AND (`cron-day-fields-and`) | Cron needs both day fields to match when either starts with `*`. launchd's two-key rule is either-match, so this form has no exact translation |
 | Cap of 128 dictionaries (ADR-002, Accepted) | Covers the 48 and 96 forms and names the count when it refuses |
 | Local wall clock: drop gap times, keep the first occurrence of a repeated time (ADR-003, Accepted) | The lister feeds accounting, so it never invents or doubles a slot |
@@ -121,9 +132,11 @@ Proof, in the order it ran:
 | `rg -n 'cli-opencode\|3600\|@reboot' scripts/bot-check.cjs` | no match, exit 1 |
 | `rg -n 'launchctl bootstrap' .skilled/skills/system-skilled-bots` | no match, exit 1 |
 | `git status --porcelain` hash of the skill before and after checking all fixtures | identical |
-| `ls ~/Library/LaunchAgents \| rg com.skilled.probe` | no match. Nothing was loaded |
+| `ls ~/Library/LaunchAgents \| rg com.skilled.probe` after `probe-weekday.sh remove` | no match, exit 1. `launchctl print` for the label exits 113 |
+| Weekday probe, 2026-11-22 to 2026-11-24 | One fire, Monday 12:00:04, none on Tuesday with the host awake (`scratch/probe-result.txt`) |
+| `npm test` and `npm run typecheck` after the flip to emit | 35 files, 372 tests passed. Typecheck exit 0 |
 | `plutil -lint` on the probe plist with Weekday 1, `bash -n` on the script | `OK`, exit 0. Both exit 0 |
-| Acceptance criteria | 10 of 13 Met. AC-001, AC-002 and AC-011 Unmet, awaiting operator approval to load the launchd probe |
+| Acceptance criteria | Every row Met |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -131,8 +144,8 @@ Proof, in the order it ran:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The phase cannot close yet.** The weekday probe must run across a matching and a non-matching day after the operator approves loading it. To run it, use `scratch/probe-weekday.sh install <weekday>` with tomorrow's weekday, then `status` after two days, then `remove`.
-2. **Weekday-only and day-only crons are refused for now.** That covers `0 9 * * 1-5`, `@weekly`, `@monthly` and `@yearly`, until the probe settles the rule.
+1. **A lone `Day` key is inferred, not observed.** The probe tested a lone `Weekday` only. `0 0 1 * *`, `@monthly` and `@yearly` take the same rule because launchd's one wildcard sentence covers both keys.
+2. **One week observed.** The probe saw one matching and one non-matching day. It did not test every weekday or a host that sleeps through the slot.
 3. **launchd at a daylight-saving change is unverified.** The lister's rule is tested only against its own fixture under `TZ=Europe/Amsterdam`.
 4. **No body-secret invariant.** It waits for the runner's secret detector and is not duplicated here.
 5. **Bot layout is this phase's choice.** The checker reads `bots/<id>/BOT.md`. The runner's lookup by id must agree, and neither spec states the layout.

@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/002-schedule-predicates-and-checker` |
 | **Parent Spec** | ../spec.md |
@@ -234,10 +234,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Does a `Weekday`-only calendar entry fire only on that weekday? Answered by the probe, not by the operator. Blocks close (research.md §16 Q1).
+- Does a `Weekday`-only calendar entry fire only on that weekday? Answered by the probe on 2026-11-24: yes. It fired on Monday and not on Tuesday with the host awake, so the translator emits the key alone (decision-record.md ADR-001).
 - What does launchd do with a calendar slot that a daylight-saving change skips or repeats? UNKNOWN. The lister's rule is decided in `decision-record.md`. launchd's own behavior stays unverified.
 - How does the checker detect a secret literal in the body? Phase 3 decides the detector. This phase ships the invariant id only once that predicate exists, or defers it to phase 3. Deferred: the detector does not exist yet, so the checker ships no body-secret invariant.
-- Is loading the weekday probe approved? Loading a launchd agent is an install on the operator's machine and waits for the operator's yes. The plist and its install, status and remove script are ready in `scratch/`. Until the probe runs, the translator refuses a lone day field, the conservative side of ADR-001.
+- Is loading the weekday probe approved? Answered: the operator said yes, the probe ran from 2026-11-22 to 2026-11-24 and was removed.
 - Where does a bot's file live under `bots/`? This phase reads `bots/<id>/BOT.md`, one folder per bot, and warns when the folder name differs from the id. The runner's lookup by id should use the same layout; neither spec states it.
 <!-- /ANCHOR:questions -->
 

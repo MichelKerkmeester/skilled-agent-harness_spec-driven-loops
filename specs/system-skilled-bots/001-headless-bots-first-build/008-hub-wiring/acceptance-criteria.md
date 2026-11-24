@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 008-hub-wiring
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-23
 <!-- /ANCHOR:metadata -->
 
@@ -92,5 +92,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Every criterion is Met. The packet stays In Progress until T001 closes, which waits on phase 002's weekday probe.
+Every criterion is Met.
 <!-- /ANCHOR:closure -->
