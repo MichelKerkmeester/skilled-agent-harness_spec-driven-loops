@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4c4f04966725ef5ff82c0df1df16b038f7aaa832fa54e9c39a84dd9b075ecaeb",
+  "corpusHash": "9ca1715a900493e2a82c8ff0a97f9d988d0f1d72041a310845895fbc0aa86d8a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29519,
+  "includedPathCount": 29560,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2011,6 +2011,10 @@
     ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-21--two-stage-replay--compiled/source.md",
     ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/README.md",
     ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/source.md",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--p2-triage/README.md",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--p2-triage/source.md",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--second-follow-up/README.md",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--second-follow-up/source.md",
     ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/README.md",
     ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/source.md",
     ".skilled/skills/mcp-browser-use/changelog/v1.0.0.0.md",
@@ -2018,6 +2022,8 @@
     ".skilled/skills/mcp-browser-use/changelog/v1.1.1.0.md",
     ".skilled/skills/mcp-browser-use/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-browser-use/changelog/v1.1.3.0.md",
+    ".skilled/skills/mcp-browser-use/changelog/v1.1.4.0.md",
+    ".skilled/skills/mcp-browser-use/changelog/v1.1.5.0.md",
     ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/ambiguous-defer.md",
     ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/aside-browser-automation.md",
     ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/bladebro-stealth-browser.md",
@@ -8333,6 +8339,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v2.0.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v2.0.4.0.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/anti-stuffing.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/df-idf-corpus.md",
@@ -13451,6 +13458,30 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/spec.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/timeline.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/acceptance-criteria.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/decision-record.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/timeline.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/acceptance-criteria.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/decision-record.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/timeline.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/acceptance-criteria.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/decision-record.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/timeline.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/decision-record.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
@@ -13464,6 +13495,8 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T044326Z-restart/review-report.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/fanout-attribution.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/review-report.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T090321Z-restart/fanout-attribution.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T090321Z-restart/review-report.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-attribution.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/review-report.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
@@ -20566,6 +20599,14 @@
     "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/timeline.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -29551,7 +29592,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5a360811115153b22eba260fa7309972029a2aa1c54f9a6037d4492c4774e2e1",
+  "manifestHash": "75c070c74a3f6aa021112e578c78eb4718150854cb56b5051e051b8915dc0414",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34186,6 +34227,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T221729Z-stopped-run2/lineages",
       "reason": "excluded directory"
     },
@@ -34195,6 +34248,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T090321Z-restart/lineages",
       "reason": "excluded directory"
     },
     {
@@ -38755,6 +38812,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/scratch",
       "reason": "excluded directory"
     },
     {

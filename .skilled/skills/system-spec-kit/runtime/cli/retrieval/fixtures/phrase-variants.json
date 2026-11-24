@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5a360811115153b22eba260fa7309972029a2aa1c54f9a6037d4492c4774e2e1",
+  "manifestHash": "75c070c74a3f6aa021112e578c78eb4718150854cb56b5051e051b8915dc0414",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16957,6 +16957,12 @@
     "browser hub doc topic tasks": [
       "browser hub doc topic tasks"
     ],
+    "browser hub id and alias bundle": [
+      "browser hub id and alias bundle"
+    ],
+    "browser hub p2 advisories": [
+      "browser hub p2 advisories"
+    ],
     "browser hub routing": [
       "browser hub routing"
     ],
@@ -30370,6 +30376,9 @@
     ],
     "compiled route probe criteria": [
       "compiled route probe criteria"
+    ],
+    "compiled route prompt stdin heredoc": [
+      "compiled route prompt stdin heredoc"
     ],
     "compiled route raw prompt pasted reply": [
       "compiled route raw prompt pasted reply"
@@ -53841,6 +53850,30 @@
     "fix script filesystem scope": [
       "fix script filesystem scope"
     ],
+    "fix second follow up findings": [
+      "fix second follow up findings"
+    ],
+    "fix second follow up findings acceptance criteria": [
+      "fix second follow up findings acceptance criteria"
+    ],
+    "fix second follow up findings decision record": [
+      "fix second follow up findings decision record"
+    ],
+    "fix second follow up findings goal": [
+      "fix second follow up findings goal"
+    ],
+    "fix second follow up findings implementation summary": [
+      "fix second follow up findings implementation summary"
+    ],
+    "fix second follow up findings plan": [
+      "fix second follow up findings plan"
+    ],
+    "fix second follow up findings tasks": [
+      "fix second follow up findings tasks"
+    ],
+    "fix second follow up findings timeline": [
+      "fix second follow up findings timeline"
+    ],
     "fix sidecar investigation findings": [
       "fix sidecar investigation findings"
     ],
@@ -54164,6 +54197,30 @@
     ],
     "fleet flip complete": [
       "fleet flip complete"
+    ],
+    "fleet front door stdin": [
+      "fleet front door stdin"
+    ],
+    "fleet front door stdin acceptance criteria": [
+      "fleet front door stdin acceptance criteria"
+    ],
+    "fleet front door stdin decision record": [
+      "fleet front door stdin decision record"
+    ],
+    "fleet front door stdin goal": [
+      "fleet front door stdin goal"
+    ],
+    "fleet front door stdin implementation summary": [
+      "fleet front door stdin implementation summary"
+    ],
+    "fleet front door stdin plan": [
+      "fleet front door stdin plan"
+    ],
+    "fleet front door stdin tasks": [
+      "fleet front door stdin tasks"
+    ],
+    "fleet front door stdin timeline": [
+      "fleet front door stdin timeline"
     ],
     "fleet gate closeout": [
       "fleet gate closeout"
@@ -67658,6 +67715,33 @@
     "levels research manifest": [
       "levels.research manifest"
     ],
+    "lexical anchor distinctive word": [
+      "lexical anchor distinctive word"
+    ],
+    "lexical anchor narrowing": [
+      "lexical anchor narrowing"
+    ],
+    "lexical anchor narrowing acceptance criteria": [
+      "lexical anchor narrowing acceptance criteria"
+    ],
+    "lexical anchor narrowing decision record": [
+      "lexical anchor narrowing decision record"
+    ],
+    "lexical anchor narrowing goal": [
+      "lexical anchor narrowing goal"
+    ],
+    "lexical anchor narrowing implementation summary": [
+      "lexical anchor narrowing implementation summary"
+    ],
+    "lexical anchor narrowing plan": [
+      "lexical anchor narrowing plan"
+    ],
+    "lexical anchor narrowing tasks": [
+      "lexical anchor narrowing tasks"
+    ],
+    "lexical anchor narrowing timeline": [
+      "lexical anchor narrowing timeline"
+    ],
     "lexical candidate pool": [
       "lexical candidate pool"
     ],
@@ -70304,6 +70388,12 @@
     "mcp browser use 1 1 3 0": [
       "mcp-browser-use 1.1.3.0"
     ],
+    "mcp browser use 1 1 4 0": [
+      "mcp-browser-use 1.1.4.0"
+    ],
+    "mcp browser use 1 1 5 0": [
+      "mcp-browser-use 1.1.5.0"
+    ],
     "mcp browser use advisor routing": [
       "mcp-browser-use advisor routing"
     ],
@@ -70354,6 +70444,12 @@
     ],
     "mcp browser use v1 1 3 0": [
       "mcp-browser-use v1.1.3.0"
+    ],
+    "mcp browser use v1 1 4 0": [
+      "mcp-browser-use v1.1.4.0"
+    ],
+    "mcp browser use v1 1 5 0": [
+      "mcp-browser-use v1.1.5.0"
     ],
     "mcp child restart needed": [
       "mcp child restart needed"
@@ -77641,6 +77737,9 @@
     ],
     "narrative skill readme": [
       "narrative skill readme"
+    ],
+    "narrow the advisor s shared lexical anchor": [
+      "narrow the advisor s shared lexical anchor"
     ],
     "narrow the alignment drift guard so it skips": [
       "narrow the alignment drift guard so it skips"
@@ -85800,6 +85899,9 @@
     "phase 16 ended goal mark match": [
       "phase 16 ended goal mark match"
     ],
+    "phase 16 fix second follow up findings": [
+      "phase 16 fix second follow up findings"
+    ],
     "phase 16 follow up fix sweep": [
       "phase 16 follow up fix sweep"
     ],
@@ -85850,6 +85952,9 @@
     ],
     "phase 17 dsh rc3 repin": [
       "phase 17 dsh rc3 repin"
+    ],
+    "phase 17 fleet front door stdin": [
+      "phase 17 fleet front door stdin"
     ],
     "phase 17 gold checker": [
       "phase 17 gold checker"
@@ -85946,6 +86051,9 @@
     ],
     "phase 18 tasks": [
       "phase 18 tasks"
+    ],
+    "phase 18 triage gen4 p2 findings": [
+      "phase 18 triage gen4 p2 findings"
     ],
     "phase 18 vibe compaction context": [
       "phase 18 vibe compaction context"
@@ -128250,6 +128358,9 @@
     "system skill advisor 2 0 3 0": [
       "system-skill-advisor 2.0.3.0"
     ],
+    "system skill advisor 2 0 4 0": [
+      "system-skill-advisor 2.0.4.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -128615,6 +128726,9 @@
     ],
     "system skill advisor v2 0 3 0": [
       "system-skill-advisor v2.0.3.0"
+    ],
+    "system skill advisor v2 0 4 0": [
+      "system-skill-advisor v2.0.4.0"
     ],
     "system skilled bots first build": [
       "system-skilled-bots first build"
@@ -132836,6 +132950,30 @@
     ],
     "triage and fix the readme reference and derived": [
       "triage and fix the readme reference and derived"
+    ],
+    "triage gen4 p2 findings": [
+      "triage gen4 p2 findings"
+    ],
+    "triage gen4 p2 findings acceptance criteria": [
+      "triage gen4 p2 findings acceptance criteria"
+    ],
+    "triage gen4 p2 findings decision record": [
+      "triage gen4 p2 findings decision record"
+    ],
+    "triage gen4 p2 findings goal": [
+      "triage gen4 p2 findings goal"
+    ],
+    "triage gen4 p2 findings implementation summary": [
+      "triage gen4 p2 findings implementation summary"
+    ],
+    "triage gen4 p2 findings plan": [
+      "triage gen4 p2 findings plan"
+    ],
+    "triage gen4 p2 findings tasks": [
+      "triage gen4 p2 findings tasks"
+    ],
+    "triage gen4 p2 findings timeline": [
+      "triage gen4 p2 findings timeline"
     ],
     "trial log jsonl 74 rows": [
       "trial log jsonl 74 rows"
