@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T19:01:17Z"
+    last_updated_at: "2026-11-24T19:58:05Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded ADR-008 for the ninth fix round"
+    recent_action: "Recorded ADR-009 for the eleventh fix round"
     next_safe_action: "Record any decision the traceability rerun raises"
     blockers: []
     key_files: []
@@ -788,6 +788,100 @@ REQ-035 listed "run two deep loops on the cache layer" among the plural prompts 
 **How to roll back**: give the deferred route a default mode in both gate copies, change the fixture row's `servedRun`, and amend REQ-035 and AC-051 with a new record.
 <!-- /ANCHOR:adr-008-impl -->
 <!-- /ANCHOR:adr-008 -->
+
+---
+
+<!-- ANCHOR:adr-009 -->
+## ADR-009: Waive AC-020's blind-writer clause, which no kept record can check
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Operator, answering "Fix all, rerun gen 8 (Recommended)" on the fifth traceability rerun, which found the row `Met` without the evidence its own cell says is missing |
+
+---
+
+<!-- ANCHOR:adr-009-context -->
+### Context
+
+AC-020 checks REQ-013 in two parts: the three deep-family holdout rows were replaced, and no builder's report says it read a holdout row. The replacement is in the tree. The builder lane reports were never committed, so the second part rested on a summary sentence, and the row still read `Met`.
+
+### Constraints
+
+- A row may not read `Met` on evidence the packet cannot show.
+- The lane reports cannot be recovered, so the clause cannot be checked later either.
+<!-- /ANCHOR:adr-009-context -->
+
+---
+
+<!-- ANCHOR:adr-009-decision -->
+### Decision
+
+**We chose**: waive the blind-writer clause and keep the replacement check, so AC-020 reads `Waived` with this record.
+
+**How it works**: AC-020 keeps its row-id check of the replaced holdouts. REQ-013 names this record for the clause no kept artifact can show.
+<!-- /ANCHOR:adr-009-decision -->
+
+---
+
+<!-- ANCHOR:adr-009-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Waive the unkept clause** | The row states only what the tree shows | The blind-writer claim stays unproven | 8/10 |
+| Keep `Met` on the summary sentence | No change | A closure reader cannot confirm it | 2/10 |
+| Write fresh holdouts again with kept reports | Proves the clause | Replaces rows already scored, for a check of process rather than behaviour | 4/10 |
+<!-- /ANCHOR:adr-009-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-009-consequences -->
+### Consequences
+
+**What improves**:
+- Every `Met` row rests on evidence in the tree.
+
+**What it costs**:
+- REQ-013's second clause is recorded as unverified.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later holdout rewrite repeats the gap | L | A rewrite keeps its lane report in `scratch/` |
+<!-- /ANCHOR:adr-009-consequences -->
+
+---
+
+<!-- ANCHOR:adr-009-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found a `Met` row whose own cell names missing evidence |
+| 2 | **Beyond Local Maxima?** | PASS | Rewriting the holdouts with kept reports was weighed |
+| 3 | **Sufficient?** | PASS | One status, one requirement sentence and this record |
+| 4 | **Fits Goal?** | PASS | The holdouts still score blind, and only the proof of the process is waived |
+| 5 | **Open Horizons?** | PASS | A later rewrite with kept reports can set the row back to `Met` |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-009-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-009-impl -->
+### Implementation
+
+**What changes**:
+- AC-020 reads `Waived` with ADR-009, and REQ-013 names this record.
+
+**How to roll back**: rewrite the three deep-family holdouts with a kept lane report, then set AC-020 back to `Met` with that report as its evidence.
+<!-- /ANCHOR:adr-009-impl -->
+<!-- /ANCHOR:adr-009 -->
 
 ---
 

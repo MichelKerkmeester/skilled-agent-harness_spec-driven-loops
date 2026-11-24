@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-24T19:01:21.231Z",
+    "last_save_at": "2026-11-24T19:58:08.753Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af95c58c018955dd5d8e86a29d850e7ec242e8010730892b33d324d1811219ad",
+    "source_fingerprint": "sha256:82ae74106b89f9a42fa7fff65e392976f2c9ceb5f51b78c6f9c06bee5188ce54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6690b9f24eebaa31a15c161566b9bb199ff0b2ac2a29881f7887a8fe30b5ef81",
+      "spec.md": "0cd208e05cffe71dbb82fc65332b03a74418cadd8d686c6b2e665810a1798322",
       "plan.md": "5a7198e12814c1af10049669e7f0b63fa5f9dcc16d905525b9c34abddf7ea45c",
-      "tasks.md": "f446a475f537cbc85af9daee48f722b2a03e3c8871ce0a3b71ec4b5b0eb7965a",
-      "decision-record.md": "a9cc137081e0c0a982ea0e1685f7dee9827059accd067afb22ae82d454a52cdd",
-      "implementation-summary.md": "59b60187251186d503d46b72649dda6da0e70ed88b2e3e7b6b13fabde22d89d5"
+      "tasks.md": "a03b890463c25f860a3ee1aa4e8c5ae2e0b3eb11bca1e8122c79628cc5aa6c6a",
+      "decision-record.md": "f6688df50e3d2fb1f853af4c0958c7c672474378d337fdd73af57a4da73477e4",
+      "implementation-summary.md": "ca47bfac9b098716f52bde3600b4d1e33892d7d926b2775880d5ce5f518c4e05"
     },
     "last_active_at": null
   }
