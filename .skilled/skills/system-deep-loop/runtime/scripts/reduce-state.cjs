@@ -1586,9 +1586,12 @@ const TRACEABILITY_META_KEYS = new Set([
   'status', 'iteration', 'core', 'overlay',
 ]);
 
-// The review contract's gate class per protocol. A recorded result that omits
-// its class is classed here, so an omitted field cannot quietly turn a hard
-// protocol into an advisory one or the reverse.
+// The review contract's gate class per protocol. The contract, not the
+// reviewer, decides which protocols gate the stop, so a protocol named here
+// takes this class whatever its recorded result says: neither an omitted field
+// nor a reviewer's own `gateClass` can turn a hard protocol advisory or an
+// advisory one hard. Only a protocol the contract does not name keeps the
+// class its record carries.
 const TRACEABILITY_PROTOCOL_GATE_CLASSES = {
   spec_code: 'hard',
   checklist_evidence: 'hard',
@@ -1648,8 +1651,9 @@ function traceabilityResult(protocolId, value) {
     ...record,
     protocolId,
     status,
-    gateClass: normalizeText(record.gateClass)
-      || TRACEABILITY_PROTOCOL_GATE_CLASSES[protocolId]
+    gateClass: (Object.prototype.hasOwnProperty.call(TRACEABILITY_PROTOCOL_GATE_CLASSES, protocolId)
+      ? TRACEABILITY_PROTOCOL_GATE_CLASSES[protocolId]
+      : normalizeText(record.gateClass))
       || 'advisory',
     applicable: typeof record.applicable === 'boolean' ? record.applicable : status !== 'notApplicable',
   };
