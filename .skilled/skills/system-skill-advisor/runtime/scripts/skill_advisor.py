@@ -4621,6 +4621,31 @@ _LOOP_WANT_LEAD_LIST = (
     "spin up",
 )
 
+# The refusal leads a run ask can start with, one lead per line, so the vocabulary
+# a reviewer has to judge stays visible and a test can compare it with the native
+# gate's exported list. "refuse" is the plain form, because the pattern takes
+# "d" and "to" after it.
+_RUN_ASK_REFUSAL_LEAD_LIST = (
+    "do not",
+    "don't",
+    "dont",
+    "never",
+    "no need to",
+    "need not",
+    "needn't",
+    "no need for",
+    "without",
+    "not asking for",
+    "not looking for",
+    "skip",
+    "skipping",
+    "avoid",
+    "avoiding",
+    "instead of",
+    "rather than",
+    "refuse",
+)
+
 # A mode suffix chains, as in `:auto:with-research`, so the alternation over
 # these words is the unit a typed command repeats.
 _MODE_SUFFIX_LIST = (
@@ -4856,21 +4881,31 @@ def is_stuck_run_complaint(text: str) -> bool:
     )
 
 
+# Two leads carry grammar of their own: "skip" followed by "to", as in "skip
+# straight to the deep review", jumps ahead to the run and asks for it, and a
+# refusal verb may take "to" after it, as in "refused to run a deep review".
+def _refusal_lead_source(lead: str) -> str:
+    """One lead as a pattern, with the grammar that ``skip`` and ``refuse`` carry."""
+    word = re.escape(lead)
+    if lead == "skip":
+        return word + r"(?!\s+(?:(?:straight|right|ahead|directly)\s+)?to\b)"
+    if lead == "refuse":
+        return word + r"(?:d)?(?:\s+to)?"
+    return word
+
+
 # A run ask with a negation within two words before it forbids the run. A bare
 # "no" refuses only the loop name right after it, and a bare "not" is left out
 # because "why not run a deep review" proposes the run. Refusal verbs lead the
-# same way, but "skip" followed by "to", as in "skip straight to the deep
-# review", jumps ahead to the run and asks for it. The two-word gap stays as it
-# is, because "don't hesitate to run a deep review" asks for the run four words
-# after the negation; "do not even think about" is a lead of its own. A refusal
-# verb takes its own object, so a conjunction in its gap starts a new clause, as
-# in "skip it and deep review the parser", and the loop name after it is asked for.
+# same way. The two-word gap stays as it is, because "don't hesitate to run a
+# deep review" asks for the run four words after the negation; "do not even think
+# about" is a lead of its own. A conjunction in the gap starts a new clause, as
+# in "skip it and deep review the parser", so the run the second clause names is
+# asked for.
 _RUN_ASK_NEGATED_RE = re.compile(
-    r"(?:\b(?:do not|don't|dont|never|no need to|need not|needn't|no need for|without|not asking for|not looking for"
-    r"|(?:do not|don't|dont|never) even (?:think about|consider))"
-    r"\s+(?:[\w'-]+\s+){0,2}"
-    r"|\b(?:skip(?!\s+(?:(?:straight|right|ahead|directly)\s+)?to\b)|skipping|avoid|avoiding"
-    r"|instead of|rather than|refused?(?:\s+to)?)"
+    r"(?:\b(?:"
+    + "|".join(_refusal_lead_source(lead) for lead in _RUN_ASK_REFUSAL_LEAD_LIST)
+    + r"|(?:do not|don't|dont|never) even (?:think about|consider))"
     r"\s+(?:(?!(?:and|then|but|or)\s)[\w'-]+\s+){0,2}|\bno\s+)\Z"
 )
 
