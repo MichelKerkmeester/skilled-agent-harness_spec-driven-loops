@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers"
-    last_updated_at: "2026-11-24T18:31:27Z"
+    last_updated_at: "2026-11-24T18:44:39Z"
     last_updated_by: "generate-context"
     recent_action: "Advisor changelog v2.0.5.0 aligned with template, landed 582d2f3814c"
     next_safe_action: "None; packet complete"
@@ -18,14 +18,14 @@ _memory:
       - ".skilled/skills/system-skill-advisor/changelog/v2.0.5.0.md"
       - ".skilled/skills/sk-git/changelog/v1.11.15.0.md"
     session_dedup:
-      fingerprint: "sha256:d198077ccf34041ab21610f7000d683e060dfa522a0c46a69c03791b33521cbe"
+      fingerprint: "sha256:f910f9311d1dfd6d72dc0f15dc250c6b3ad13e12d8c8a17edfbb00363f36f32d"
       session_id: "scaffold-030-advisor-ci-filter-dead-helpers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-24T18:31:27Z"
+      savedAt: "2026-11-24T18:44:39Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

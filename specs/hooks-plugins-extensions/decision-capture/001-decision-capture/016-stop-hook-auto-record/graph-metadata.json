@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/016-stop-hook-auto-record",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stop hook auto record",
+      "phase 16 stop hook auto record",
+      "auto record operator answers at stop",
+      "stop hook auto record plan",
+      "stop hook auto record tasks",
+      "stop hook auto record acceptance criteria",
+      "016-stop-hook-auto-record operator decisions",
+      "stop hook auto record implementation summary"
+    ],
+    "key_topics": [
+      "stop",
+      "hook",
+      "auto",
+      "record",
+      "phase",
+      "operator",
+      "answers",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "016-stop-hook-auto-record"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts",
+      ".skilled/hooks/decision-capture/README.md",
+      ".skilled/hooks/session-lifecycle/README.md",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "capture-core.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-stop.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/decision-capture/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The decision-capture hook queues every answered question, but nothing writes the queue into a decision record until someone runs `/speckit:save --full-auto`",
+    "created_at": "2026-11-24T18:37:57Z",
+    "last_save_at": "2026-11-24T18:45:20.343Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0fe33d3ea1e72c4beac6369aac42c7e15a72b156fa57f28d329c3dc9fc591d46",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d1bd3ef93c7d12074b25be1dafbef775f4e819e80d30f883e84a5312b64a21b6",
+      "plan.md": "a6387b27a86ed6375ed2ef0d4f312239ac72bc2176843dd0c74c7cba711e10f7",
+      "tasks.md": "ab84619e1fa416d5365bee14d4665160974d224a5cc33986a9b07a691162d6b9",
+      "decision-record.md": "d25329559dd26ae3e3e9d6de8a6955ef4915682eff48f122800a12d8a456d8b2",
+      "implementation-summary.md": "8cd1f855d2fcb4431e5525b1d7ee87936dae5833f3bc34c3fbcb086637cbd630"
+    },
+    "last_active_at": null
+  }
+}
