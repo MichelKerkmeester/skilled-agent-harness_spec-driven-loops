@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.11.13.0
+version: 1.11.14.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, worktree-branch, branch-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
@@ -153,7 +153,7 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
 8. **Provision a worktree before you trust anything it reports** - Every dependency tree here is gitignored, so a fresh worktree has none of them and fails in ways that read as broken code. A build can exit 0 having compiled nothing, and a hub-conformance check that copies a skill into a temp directory loses that skill's dependencies and reports a correct hub broken.
-    - `worktree-naming.sh create` installs them, and `--no-provision` opts out. `worktree-naming.sh provision [dir]` fixes a worktree made another way. Both are idempotent.
+    - `worktree-naming.sh create` installs them, and `--no-provision` opts out. `worktree-naming.sh provision [dir]` fixes a worktree made another way. `provision` is idempotent; every `create` allocates a new numbered worktree.
     - Both also recreate the operator's private `local-*` commands from the primary checkout in the form it holds them, a file as a copy, a relative link as the same link and a folder as one shared link, because git ignores them and a new worktree would otherwise start without them. An existing path is never replaced.
     - `provision` rebuilds a listed build output when it is missing or when its tracked sources changed since provisioning last built it, so it also refreshes a checkout whose built plugin went stale after a pull.
     - Provisioning **installs** by default, but what binds is narrower than the technique: **no path shared into a worktree may resolve a repository-internal reference back to the source checkout.**

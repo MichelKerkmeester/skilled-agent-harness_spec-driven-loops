@@ -71,7 +71,7 @@ ls: .skilled/skills/system-spec-kit/node_modules/typescript: No such file or dir
 ### In Scope
 - Stop the npm dependency walk at the package's install root, the nearest folder from the package up to the worktree root that holds a `package-lock.json`.
 - Add a regression case: a nested lockfile package installs even when an ancestor already holds the same dependency, and a workspace member with no lockfile still counts its workspace root's install.
-- Addendum from the `/local-doc-alignment` and `/local-skilled-alignment` runs: record the fix as sk-git v1.11.13.0, and correct five docs that describe provisioning wrongly. `doctor-mcp-install.md` told the reader to restore Code Mode's dependencies with a command that never installs them. Two CI docs undercounted the setup-action callers or cited stale lines, one undersold what the walk checks, and `SECURITY.md` said every listed tree installs.
+- Addendum from the `/local-doc-alignment` and `/local-skilled-alignment` runs: record the fix as sk-git v1.11.13.0, and correct five docs that describe provisioning wrongly. `doctor-mcp-install.md` told the reader to restore Code Mode's dependencies with a command that never installs them. Two CI docs undercounted the setup-action callers or cited stale lines, one undersold what the walk checks, and `SECURITY.md` said every listed tree installs. The recheck then found that sk-git `SKILL.md` called `create` idempotent, which it is not.
 
 ### Out of Scope
 - Checking every dependency instead of the first one. The first-dependency probe is right once the walk stops at the right root.

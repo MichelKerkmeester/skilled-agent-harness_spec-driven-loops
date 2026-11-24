@@ -1,5 +1,5 @@
 {
-  "corpusHash": "40fcfd7a24ac22d3369a57a3f18321cb9c3221c3747723a368fb82f93699521f",
+  "corpusHash": "4c4f04966725ef5ff82c0df1df16b038f7aaa832fa54e9c39a84dd9b075ecaeb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29518,
+  "includedPathCount": 29519,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7369,6 +7369,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.11.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.13.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.14.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
@@ -29550,7 +29551,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "014b2f2f4814219fed3805818e82ab34b34e23a44f88c39453eecc921015feec",
+  "manifestHash": "5a360811115153b22eba260fa7309972029a2aa1c54f9a6037d4492c4774e2e1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

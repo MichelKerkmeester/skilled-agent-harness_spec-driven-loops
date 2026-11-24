@@ -54,6 +54,7 @@ contextType: "implementation"
 - [x] T007 Compare shellcheck warnings (`shellcheck -S warning`). Verify: 2 at HEAD and 2 after.
 - [x] T008 Record the fix as v1.11.13.0 (`.skilled/skills/sk-git/changelog/v1.11.13.0.md`, `SKILL.md`). Verify: `validate_document.py` prints `Total issues: 0`.
 - [x] T009 Fix the five provisioning docs the alignment report named (`doctor-mcp-install.md`, `.github/workflows/README.md`, `job-shape-rules.md`, `SECURITY.md`). Verify: `grep -n 'actions/setup$' .github/workflows/*.yml` prints lines 63, 103, 103, 145 and 266, as cited.
+- [x] T010 Correct the sk-git `SKILL.md` claim that `create` is idempotent, found by the doc-alignment recheck (`.skilled/skills/sk-git/SKILL.md`, v1.11.14.0). Verify: `grep -c 'Both are idempotent' .skilled/skills/sk-git/SKILL.md` prints 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
