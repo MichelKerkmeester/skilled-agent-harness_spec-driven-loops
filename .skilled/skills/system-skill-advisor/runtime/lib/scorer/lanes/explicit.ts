@@ -43,7 +43,6 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   git: [['sk-git', 1]],
   github: [['sk-git', 0.95]],
   gitkraken: [['sk-git', 0.9]],
-  har: [['mcp-browser-use', 0.75]],
   javascript: [['sk-code', 0.65]],
   json: [['sk-code', 0.4]],
   jsonl: [['sk-code', 0.45], ['system-spec-kit', 0.35]],

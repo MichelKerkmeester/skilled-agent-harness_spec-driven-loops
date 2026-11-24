@@ -217,17 +217,6 @@
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "rr-iter3-069",
-      "corpus": "labeled",
-      "prompt": "Rename `gate3-baseline-notes.md` to `gate3-eval-notes.md` and sweep the local references.",
-      "gold": "system-spec-kit",
-      "promptHash": "sha256:194dfc374d0a19713238047e9c4970dd8d3e012b0055a222ef472e355b99d31f",
-      "localTop": "none",
-      "nativeTop": "mcp-tooling",
-      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
-      "approvedAt": "2026-08-15"
-    },
-    {
       "id": "rr-iter3-070",
       "corpus": "labeled",
       "promptHash": "sha256:d6f003a119d87306020a4b1ac54baed0fc551262b4a5159181699d94b07b6259",
@@ -654,17 +643,6 @@
       "approvedAt": "2026-09-07"
     },
     {
-      "id": "harder:ce0726a9d0f5",
-      "corpus": "harder",
-      "prompt": "Run repeated evidence-gathering passes until the question stops producing new information, then synthesize.",
-      "gold": "deep-research",
-      "promptHash": "sha256:ce0726a9d0f59b7774681ff7bab2c326215e15c45396e8cdb3e19082f8b99e53",
-      "localTop": "none",
-      "nativeTop": "sk-code",
-      "reason": "reviewed 2026-11-19: the semantic lane default weight dropped to 0, which removes the test-regime token-overlap term that kept native on sk-doc, so native moves to sk-code. Local abstains and gold is deep-research, which neither side reaches",
-      "approvedAt": "2026-11-19"
-    },
-    {
       "id": "rr-iter2-020",
       "corpus": "labeled",
       "prompt": "Audit whether `memory_save` prompts are documented consistently across packet docs.",
@@ -696,17 +674,6 @@
       "nativeTop": "mcp-tooling",
       "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
       "approvedAt": "2026-09-22"
-    },
-    {
-      "id": "harder:4c8fe4462488",
-      "corpus": "harder",
-      "prompt": "Make several independent passes over this change, stop when findings converge, and rank the release risks.",
-      "gold": "deep-review",
-      "promptHash": "sha256:4c8fe4462488e7eedb3bc3f5d1c89b73de2cc62555589c5dbb55b8a41dc6e801",
-      "localTop": "none",
-      "nativeTop": "sk-doc",
-      "reason": "both scorers stopped lifting sk-code from the generic word findings; local now abstains and native routes weakly to sk-doc, and neither reached the deep-review gold before or after",
-      "approvedAt": "2026-10-10"
     },
     {
       "id": "rr-iter2-006",

@@ -326,6 +326,14 @@ function promptMentionsSkill(promptLower: string, skill: SkillProjection): boole
   return phrases.some((phrase) => matchesPhraseBoundary(promptLower, phrase.toLowerCase()));
 }
 
+// The last segment of a skill id is the noun that names it ("doctor" in
+// system-skilled-doctor). Short segments such as "use" or "doc" are left out,
+// because they occur in ordinary prompts that name nothing.
+function promptNamesIdNoun(promptLower: string, skillId: string): boolean {
+  const noun = skillId.split('-').at(-1) ?? '';
+  return noun.length >= 4 && matchesPhraseBoundary(promptLower, noun);
+}
+
 function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean {
   if (isRouteExcludedSkillId(skill.id)) return false;
   if (skill.lifecycleStatus === 'archived' || skill.lifecycleStatus === 'future') return false;
@@ -340,6 +348,7 @@ function isAdvisorSelfRecommendationSkill(skillId: string): boolean {
 function confidenceFor(args: {
   liveNormalized: number;
   directScore: number;
+  hasNamedAnchor: boolean;
   readOnlyExplainer: boolean;
   hasTaskIntent: boolean;
   readOnlyRouteAllowed: boolean;
@@ -368,7 +377,14 @@ function confidenceFor(args: {
   if (args.derivedDominant && args.directScore < C.derivedDominantDirectScoreCeiling) {
     return { value: C.derivedDominantConfidence, floored: false };
   }
+  // The task-intent floor lifts a skill on a weak direct score, so it needs the
+  // prompt to name the skill: an explicit-lane hit, a declared lexical hint, a
+  // lexical match of moderate strength or the noun its id ends in. One or two
+  // shared words ("aside", "trace", "form") are what an out-of-domain prompt
+  // carries, and such a skill keeps the confidence it earned. A strong direct
+  // score still lifts through the branch below.
   if (args.hasTaskIntent
+    && args.hasNamedAnchor
     && (args.directScore >= C.taskIntentDirectScoreFloor
       || args.liveNormalized >= C.taskIntentLiveNormalizedFloor)) {
     // Token-stuffing dispersion guard. Without this, a prompt
@@ -619,8 +635,10 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
   // wording lifts too. It needs the attach verb: "my own Chrome" or
   // "logged-in Chrome" alone also opens questions about browser settings and
   // profiles, and a bare "signed-in dashboard" names a page, not a browser.
+  // A bare "performance trace" also names SQL and server traces, so it lifts
+  // only beside a browser word.
   if (skillId === 'mcp-browser-use'
-    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser)|(attach|connect)(es|ed|ing)? (to |with )?my (own|signed[- ]in|logged[- ]in) chrome|chrome[_ -]?devtools[_ -]live)\b/.test(promptLower)) {
+    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|(chrome|browser) performance trace|inspect (the )?(network|dom|page|element|browser)|(attach|connect)(es|ed|ing)? (to |with )?my (own|signed[- ]in|logged[- ]in) chrome|chrome[_ -]?devtools[_ -]live)\b/.test(promptLower)) {
     return true;
   }
   if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {
@@ -1204,15 +1222,19 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
       }
     }
 
-    const directScore = Math.max(
-      contributions.find((contribution) => contribution.lane === 'explicit_author')?.rawScore ?? 0,
-      contributions.find((contribution) => contribution.lane === 'lexical')?.rawScore ?? 0,
-    );
+    const explicitContribution = contributions.find((contribution) => contribution.lane === 'explicit_author');
+    const lexicalContribution = contributions.find((contribution) => contribution.lane === 'lexical');
+    const directScore = Math.max(explicitContribution?.rawScore ?? 0, lexicalContribution?.rawScore ?? 0);
+    const hasNamedAnchor = (explicitContribution?.rawScore ?? 0) > 0
+      || (lexicalContribution?.evidence.some((entry) => entry.startsWith('hint:')) ?? false)
+      || (lexicalContribution?.rawScore ?? 0) >= SCORING_CALIBRATION.confidence.taskIntentLexicalAnchorFloor
+      || promptNamesIdNoun(promptLower, skill.id);
     const derivedDominant = isDerivedDominant(contributions);
     const liveNormalized = score / liveTotal;
     const confidenceResult = confidenceFor({
       liveNormalized,
       directScore,
+      hasNamedAnchor,
       readOnlyExplainer,
       hasTaskIntent,
       readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill),

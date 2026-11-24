@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "a139ac3b248",
+  "capturedAtSha": "52f0bcb9a98",
   "corpusSha256": "sha256:8092a113b3804a58bcfd403daa30d9a9cce8180670e12920bfe8bd019ee78eab",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -25,7 +25,7 @@
         "total": 46
       },
       "holdout": {
-        "correct": 2,
+        "correct": 3,
         "total": 44
       }
     },
@@ -35,7 +35,7 @@
         "total": 46
       },
       "holdout": {
-        "correct": 3,
+        "correct": 4,
         "total": 44
       }
     },
@@ -581,8 +581,8 @@
         },
         "holdout": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         }
       }
     },
@@ -1620,14 +1620,14 @@
     },
     "mns-chat-03": {
       "expected_command": null,
-      "top": "system-skilled-doctor",
+      "top": null,
       "top1": false,
       "top3": false,
       "offered": false
     },
     "mns-chat-04": {
       "expected_command": null,
-      "top": "mcp-tooling",
+      "top": null,
       "top1": false,
       "top3": false,
       "offered": false
@@ -1760,7 +1760,7 @@
     },
     "sv-02": {
       "expected_command": null,
-      "top": "system-spec-kit",
+      "top": null,
       "top1": false,
       "top3": false,
       "offered": false
@@ -2006,9 +2006,9 @@
         "total": 46
       },
       "holdout": {
-        "own": 2,
+        "own": 3,
         "attached": 2,
-        "combined": 4,
+        "combined": 5,
         "total": 44
       }
     },
@@ -2024,12 +2024,12 @@
       },
       "holdout": {
         "total": 44,
-        "own": 2,
+        "own": 3,
         "ownerLed": 7,
         "routed": 4,
         "withCommand": 2,
         "attached": 2,
-        "neither": 35
+        "neither": 34
       }
     },
     "plain_by_family": {
@@ -2083,9 +2083,9 @@
           "total": 18
         },
         "holdout": {
-          "own": 1,
+          "own": 2,
           "attached": 1,
-          "combined": 2,
+          "combined": 3,
           "total": 17
         }
       },
