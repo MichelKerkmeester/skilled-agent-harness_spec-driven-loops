@@ -1,9 +1,1 @@
-Lineage `deepseek-max-1` is complete and verified on disk.
-
-- **Iterations:** 7/7, stop reason `maxIterationsReached`; all four dimensions covered; `spec_code` and `checklist_evidence` both `pass` (0 gating failures).
-- **Verdict:** PASS, hasAdvisories true — 0 P0, 0 P1, 5 P2 (all with full repo-relative paths, claim packets and counterevidence searches).
-- **Findings:** zero-width format characters still lose a loop phrase (security/hardening); REQ-011 names a retired list; CHK-001 counts 52 requirement rows against 53; AC-028's evidence tail lands on the eighth round for the eleventh round's counts; the open-questions section keeps an N9 decision AC-021 already answered.
-- **Artifacts in the lineage:** `iterations/iteration-001..007.md`, `deltas/iter-001..007.jsonl`, gateway-backed `deep-review-state.jsonl` (config + 7 iterations + `synthesis_complete` with `stopReason: maxIterationsReached`), reducer-refreshed registry/dashboard/strategy, `review-report.md`; no `terminal_gates` row written.
-- **Write surface:** the lineage directory only — the root `review/` and sibling `deepseek-max-2` entries in `git status` belong to the fan-out root and the other lineages, not this process.
-
 FANOUT_LINEAGE_COMPLETE:deepseek-max-1

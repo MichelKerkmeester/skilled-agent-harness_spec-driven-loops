@@ -16,16 +16,16 @@ Reducer-generated observability surface for the active review packet.
 <!-- ANCHOR:status -->
 ## 2. STATUS
 - Review Target: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers (spec-folder)
-- Started: 2026-11-24T20:44:12.287Z
+- Started: 2026-11-24T21:46:25.380Z
 - Status: COMPLETE
 - Iteration: 7 of 7
-- Provisional Verdict: PASS
+- Provisional Verdict: CONDITIONAL
 - hasSearchDebt: false
-- hasAdvisories: true
-- Session ID: fanout-deepseek-max-1-1795552859377-13gxwk
-- Parent Session: 2026-11-24T19:58:39.000Z
-- Lifecycle Mode: restart
-- Generation: 9
+- hasAdvisories: false
+- Session ID: fanout-deepseek-max-1-1795556727682-axtzf8
+- Parent Session: 2026-11-24T21:45:00.000Z
+- Lifecycle Mode: new
+- Generation: 10
 - continuedFromRun: none
 - stopReason: maxIterationsReached
 
@@ -46,8 +46,8 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 0 |
-| P2 (Suggestions) | 5 |
+| P1 (Required) | 1 |
+| P2 (Suggestions) | 6 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -56,13 +56,13 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | correctness | correctness | 0.00 | 0/0/0 | complete |
-| 2 | security | security | 1.00 | 0/0/1 | complete |
-| 3 | traceability | traceability | 0.50 | 0/0/1 | complete |
-| 4 | maintainability | maintainability | 0.00 | 0/0/0 | complete |
-| 5 | traceability | traceability | 0.50 | 0/0/2 | complete |
+| 1 | correctness | correctness | 1.00 | 0/1/1 | complete |
+| 2 | security | security | 0.14 | 0/0/1 | complete |
+| 3 | maintainability | maintainability | 0.29 | 0/0/2 | complete |
+| 4 | traceability | traceability | 0.13 | 0/0/1 | complete |
+| 5 | traceability | traceability | 0.00 | 0/0/0 | complete |
 | 6 | traceability | traceability | 0.00 | 0/0/0 | complete |
-| 7 | traceability | traceability | 0.20 | 0/0/1 | complete |
+| 7 | traceability | traceability | 0.11 | 0/0/1 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -70,10 +70,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 0 |
+| correctness | covered | 2 |
 | security | covered | 1 |
-| traceability | covered | 4 |
-| maintainability | covered | 0 |
+| traceability | covered | 2 |
+| maintainability | covered | 2 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
@@ -90,9 +90,9 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.50 -> 0.00 -> 0.20
-- convergenceScore: 0.80
-- openFindings: 5
+- Last 3 ratios: 0.00 -> 0.00 -> 0.11
+- convergenceScore: 0.89
+- openFindings: 7
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -111,17 +111,17 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none remaining (all four configured dimensions are covered and both core protocols read `pass`)
-- Focus area: synthesis of this lineage's findings into its own review report; the cross-lineage merge and the release verdict belong to the fan-out root.
-- Reason: the iteration cap is reached, the stop policy is `max-iterations`, and the remaining work is synthesis rather than another review pass.
-- Rotation status: correctness, security, traceability and maintainability all covered; `spec_code` and `checklist_evidence` at `pass`.
-- Blocked/productive carry-forward: productive; no approach was blocked.
-- Required evidence: the findings registry the reducer owns, and the four P2 rows this run recorded.
-- No recovery note: this pass was not a recovery iteration.
+- Dimension: synthesis
+- Focus area: stop at the iteration cap and synthesize the lineage report from the registry, the seven iteration files and the terminal gates.
+- Reason: seven of seven iterations are complete; the remaining work is the synthesis record and the report.
+- Rotation status: all three traceability passes and all four dimensions are complete.
+- Blocked/productive carry-forward: no blocked direction; the active P1 and the six P2s are the carried findings.
+- Required evidence: the registry counts, the seven iteration files and the terminal-gate computation.
+- Recovery note: none.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 5 active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.
+- 1 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 
 <!-- /ANCHOR:active-risks -->

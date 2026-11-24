@@ -1,109 +1,76 @@
-# Review Iteration 6
+# Iteration 6 - Traceability
 
 ## Dispatcher
 
-- Resolved route: mode=review target_agent=deep-review
-- Run: `fanout-deepseek-max-3-1795552859377-13gxwk`, lineage `deepseek-max-3`, generation 1
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder)
-- Dimension: traceability
-- Steer file: absent at dispatch time
-- Operator review focus addressed: the last requirement and acceptance batch. It checks `REQ-040` to `REQ-053` against the two gate copies and the newest fix round, and `AC-044` to `AC-061` against the fixture columns, the reducer rules and the closure rows that cite the twelfth round.
+Dimension: traceability. Operator focus: finish `spec_code` by checking REQ-022 and REQ-034 against the closure records, and classify the overlay protocols. This iteration raises one P2 on the changelog's suite count and completes the four overlays.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:260-300`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:101-119`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:187-222`
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:703-900`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:269-365`
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:193-200, 1000-1145, 1690-1765`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1056-1095`
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:384-430`
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:500-540, 671-710`
-- `.skilled/system-deep-loop/runtime/scripts/reduce-state.cjs:200-240, 1011-1040, 2378-2480`
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-numbering.vitest.ts:1-90`
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/next-focus-iteration-verdict.vitest.ts:1-60`
+- `.skilled/changelog/skilled/v4.2.0.0.md:482` to `:484`, `:759`
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:86` (AC-029), `:98` (AC-041)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:261` (the sixth-round paragraph), `:291` (limitation 6), `:292` (limitation 7), `:293` (limitation 8)
+- `specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123` (Reopened: degraded paths)
+- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` and `.skilled/skills/system-deep-loop/deep-research/SKILL.md` (argument hints, depth triggers, Gate 2 line)
+- `.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:23`, `:63`, `:106`, `:111`
+- `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33`, `:41`, `:47`, `:63`
 
-## Findings by Severity
+## Findings
 
 ### P0 Findings
 
-None.
+(none)
 
 ### P1 Findings
 
-None new in this iteration. Iteration 1's active P1 keeps the verdict at CONDITIONAL.
+(none)
 
 ### P2 Findings
 
-None new in this iteration. The four open P2s from iterations 1 to 4 remain active.
+1. **The v4.2.0.0 changelog's suite row quotes the eleventh round's counts as the release total, and AC-029 reads `Met` on it** -- `.skilled/changelog/skilled/v4.2.0.0.md:759` -- the row reads "186 files, 3,518 passed, 4 skipped, none failed; Python scorer 136 passed, none failed on 359 shared cases". The thirteenth round's tree reads 187 files, 3,557 passed, 4 skipped, 0 failed and Python `cases=368`, `pass=138, fail=0` (`implementation-summary.md:202`, `:203`; AC-028 at `acceptance-criteria.md:85`). REQ-022 says the changelog "quotes the final suite count", and AC-029 says the row "quotes the final suite count ... which is what the eleventh-round rerun reads", which is the contradiction: the row is explicitly an eleventh-round figure presented as the final one, one round after the tree moved.
+   Finding class: instance-only (one changelog row and one acceptance claim).
+   Scope proof: both files are in `review-scope-files.txt`; the count is checked against the fixture and the implementation summary's thirteenth round.
+   Affected surface hints: `.skilled/changelog/skilled/v4.2.0.0.md` row 759; `acceptance-criteria.md` AC-029; REQ-022.
+   Case: a release reader takes 3,518 as the release total, while the last recorded run on the tree is 3,557.
 
 ## Traceability Checks
 
-- `spec_code` (partial, `REQ-040` to `REQ-053`):
-  - `REQ-040`: the three no-edit prompts return `True` from the fallback gate and the fixture carries `readOnlyRunKept` values `review`, `review` and `research`; `NO_EDIT_REQUEST` does not withhold a read-only loop (`command-attach.ts:920`, `:1621`). Evidence: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1621`.
-  - `REQ-041`: all four refuse-one-mode prompts return `True`, and `loopAskCues` blanks only the refused phrase before the mode cue is read (`command-attach.ts:1713-1735`). Evidence: `command-attach.ts:1713`.
-  - `REQ-042`: `routedLoopMode` reads the ask's mode on the routed single-target branch and the fallback's `_asked_loop_mode` returns `review` for the routed prompt. Evidence: `command-attach.ts:1694`.
-  - `REQ-043`: the two pronoun reruns return `True`, `run it again to reproduce the crash` returns `False`, and both past-summary prompts return `False`; `hasUnrefusedPronounRerun` requires a named run. Evidence: `command-attach.ts:635`.
-  - `REQ-044`: the three manner prompts return `True`, the longer-than complaint returns `False`, and the fallback gate keeps `/doctor:deep-loop` on all three typed-doctor prompts. Evidence: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5743`.
-  - `REQ-045`: the mode vocabulary is asserted on the four surfaces (`deep-loop-offer-cases.vitest.ts:760-777`), `NAMED_LOOP_MODE` is compared with `_NAMED_LOOP_MODE_RE` (`:504`), and the fixture carries the refusal-gap, past-run, stuck-symptom and question cases. Evidence: `tests/deep-loop-offer-cases.vitest.ts:504`.
-  - `REQ-046`: one ruling renders as `RULED OUT` with a reopen condition (`MIN_BLOCKED_ATTEMPTS`, `reduce-state.cjs:2378-2417`), `replaceAnchorSection` absorbs an authored heading (`:2453`), and `enrichCompiledRoutes` adds every command it keeps to `alreadyOffered` (`advisor-recommend.ts:389-427`). Evidence: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2378`.
-  - `REQ-047`: the fallback gate keeps no run row for `run a deep loop on the cache layer`, `run two deep loops on the cache layer` or `run 5 iterations of research and review on the parser`; the four `servedRun: none` fixture rows agree. Evidence: `tests/fixtures/deep-loop-offer-cases.json:330`.
-  - `REQ-048`: `replaceAnchorSection` keeps the number the file already gives a section; the numbering test exists and the golden next-focus fixture records `## 12. NEXT FOCUS`. Evidence: `reduce-state.cjs:2421-2447`.
-  - `REQ-049`: the four whitespace prompts (double space, tab, line break, non-breaking space) return `True`; `lowerFolded` collapses every run of whitespace in both copies. Evidence: `command-attach.ts:884`.
-  - `REQ-050`: both negated refusals return `True`; `RUN_ASK_REFUSAL_CANCEL_LEADS` and its Python tuple hold the cancelling leads. Evidence: `command-attach.ts:716`.
-  - `REQ-051`: the pattern guard compares or excuses every compiled gate pattern (43 today); iteration 3 records the one accounting gap in the coverage test (finding 3). Evidence: `tests/deep-loop-offer-cases.vitest.ts:571`.
-  - `REQ-052`: `stripReviewVerdict` ends the projected section at the `Review verdict:` line (`reduce-state.cjs:227`) and the unit test exists. Evidence: `reduce-state.cjs:227`.
-  - `REQ-053`: `DEEP_LOOP_DOCTOR_COMMAND` is declared once, in `command-attach.ts:197`; `fusion.ts` imports it and builds `DOCTOR_NAMING_LED` from it. Observed: `rg "const DEEP_LOOP_DOCTOR_COMMAND" .skilled/skills/system-skill-advisor/runtime/lib` prints one line. Evidence: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:197`.
-  - `REQ-033` (pending closure): this rerun's `spec_code` and `checklist_evidence` results are recorded in this iteration as partial and are raised to pass in iteration 7, when the full range is traced.
-- `checklist_evidence` (partial, `AC-044` to `AC-061`):
-  - `AC-044`: the fixture holds 21 `plural-*` rows; the eight run rows read `true`, the five past/symptom/question rows read `false`, and the eight `-served` rows carry their modes. Observed in the fixture.
-  - `AC-045`: `how-do-run-deep-review` and `how-can-research-loop-stop` read `false`, `how-do-then-run-deep-review` reads `true`.
-  - `AC-046`: 24 `effort-*` rows, 17 `false` and 7 `true`, matching the cell.
-  - `AC-047`: the three named test titles exist in `cli-degraded-command-contract.vitest.ts`; `trackedCommandForOwner` is read at `skill-advisor-cli.ts:1571`.
-  - `AC-048` to `AC-052`: the `no-edit-*`, `refused-cue-*`, `stuck-rerun-*`/`past-summary-*`/`effort-manner-*`/`typed-doctor-*` rows read their columns as the cells state; the fixture totals match.
-  - `AC-051`: the eight plural `-served` rows carry `review`, `review`, `review`, `research`, `research`, `none`, `research`, `review`, matching the cell.
-  - `AC-053` to `AC-055`: the drift-guard tables, the reducer rules and the `servedRun: none` rows are present; `AC-054`'s `MIN_BLOCKED_ATTEMPTS`, `authoredHeading` and `alreadyOffered` sites all exist at the cited files.
-  - `AC-056` and `AC-060`: the numbering and next-focus unit tests exist, and the code paths they pin are the ones the cells name.
-  - `AC-057` to `AC-059`: the whitespace rows read `true`, the negated-refusal rows read their columns, and the pattern guard holds 40 compared pairs and 38 excused names (iteration 3's finding 3 covers the accounting edge).
-  - `AC-061`: one `DEEP_LOOP_DOCTOR_COMMAND` declaration, imported by `fusion.ts`.
-  - `T112` to `T114`: `T112` is reproduced by commit `257bda24512` and the single declaration; `T113`'s closure rows (REQ-025 without the removed caller, ADR-007 scoped to the hub alias lists, the timeline through generation 8) all read as recorded; `T114`'s focus rewrite is the `review/fanout-review-focus.txt` text this run carries, which names all four dimensions, full repo-relative finding paths, the current REQ/AC/ADR ranges and the no-`terminal_gates` instruction.
-
-Both protocols remain `partial`; iteration 7 raises them to `pass` with the full-range evidence and records the final stop state.
+- `spec_code` (core): stays `fail` from iteration 4. REQ-022 is now checked and contradicted by R6-P2-001; REQ-034 holds: the sixth-round paragraph (`implementation-summary.md:261`), limitations 6 and 7 (`:291`, `:292`), the changelog's typed-on-stuck and refusal lines (`:482` to `:484`), the Verification Summary and packet 013's degraded-path row (`013/implementation-summary.md:123`) all state the built behaviour. The earlier contradictions (REQ-016, REQ-047) stand.
+- `checklist_evidence` (core): stays `fail` from iteration 5 (R5-P2-001).
+- `feature_catalog_code` (overlay): `pass` for the protocol execution. The `enrichCompiledRoutes` half, the doctor-row half and the shared-file row (`:63`) match the code; the routed-mode omission is R3-P2-001, carried as a finding rather than a protocol verdict.
+- `skill_agent` (overlay): `pass`. Both mode packets were changed by this packet and read against the agent contract: `deep-review/SKILL.md` carries the attached `:auto` form and no depth triggers, `deep-research/SKILL.md` carries the advisor CLI on its Gate 2 line and no depth triggers, and neither names a workflow the `@deep-review` agent cannot run. The agent definition `.skilled/agents/deep-review.md` is outside the review scope and was read as context only.
+- `agent_cross_runtime` (overlay): `notApplicable` with `applicable: false`. No agent definition and no runtime mirror is in the packet's change set or in `review-scope-files.txt`; the runtime mirrors are generated by `sync-runtime-mirrors.cjs`, which is outside the review scope.
+- `playbook_capability` (overlay): `pass`. NC-012's procedure, expected signals and failure triage (`command-offer-fit-gates.md:63`, `:106`, `:111`) match the gate as read: a refusal, a question and a no-edit request withhold a writing command, a read-only deep run keeps its command, and the failure path names `NO_EDIT_REQUEST`/`isNoEditRequest()` as the producers to inspect.
 
 ## Integration Evidence
 
-- `PYTHONDONTWRITEBYTECODE=1 python3` evaluated the fallback gate for every `REQ-040`, `REQ-041`, `REQ-043`, `REQ-044`, `REQ-047` and `REQ-049` prompt, including the mode-free and whitespace variants.
-- The shared fixture was read as data for the `plural-*`, `effort-*`, `no-edit-*`, `refused-cue-*`, `negated-refusal-*`, `typed-doctor-*`, `stuck-rerun-*` and `loop-wording-*` groups.
-- The twelfth-round commit `257bda24512` was read as the evidence for `REQ-053` and `T112`; `T113`'s rows were checked in `tasks.md` and `decision-record.md`.
+- The changelog is the release-facing record for the advisor runtime; its suite row is the one a release reader quotes, and REQ-022 names it as the doc that must state what was measured.
+- AC-029's evidence cell is the only place that ties REQ-022 to the changelog row, so a stale row is not caught by any other acceptance row.
+- Packet 013's degraded-path row is the cross-packet evidence REQ-034 asks for, and it cites the three test files that pin the degraded heads.
 
 ## Edge Cases
 
-- `REQ-033` remains the one requirement whose status is this run's to settle; it is not a file claim, so it is recorded as pending until iteration 7.
-- `T114`'s verification ("the focus asks for all four dimensions...") is satisfied by the focus file this run was dispatched with; the file is not a code artifact and is read as configuration input.
-- The twelfth-round suite counts are recorded observations; the suite was not rerun because a build would write outside the lineage.
+- The changelog row's numbers were true in the eleventh round and are dated by the surrounding release narrative, not invented; the defect is the word "final" in REQ-022/AC-029 against the actual last run.
+- A changelog row that quoted the thirteenth-round counts would need re-updating on every later run, which is why the tenth round moved acceptance evidence to names; this row still carries numbers.
+- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` is listed in the review scope, while `.skilled/agents/deep-review.md` is not; the agent read is context, and no finding is filed against it.
 
 ## Confirmed-Clean Surfaces
 
-- Every `REQ-040` to `REQ-053` prompt named in the requirement text returns its stated result from the fallback gate, except the interaction finding 1 records for `REQ-036`.
-- The fixture groups behind `AC-044` to `AC-052` match the cells' counts and columns exactly.
-- `REQ-053`'s single-declaration claim holds in the tree as built by `257bda24512`.
-- `T112` to `T114` are pinned by the commit, the single declaration, the scoped ADRs and the focus file this run carries.
+- REQ-034 holds on all five of its clauses, including the two limitation rewrites and the packet 013 row.
+- Both mode SKILL.md files carry the changes REQ-011 names and no stale depth triggers.
+- The playbook's no-edit statement matches the code's read-only exception, and its failure path names the two producers that decide it.
+- The catalog's doctor-row and compiled-route statements match the handler and the fixture.
 
 ## Ruled Out
 
-- A second `DEEP_LOOP_DOCTOR_COMMAND` declaration: the `rg` prints one line.
-- A missing `REQ-053` import in the scorer: `fusion.ts` imports the constant and builds its naming pattern from it.
-- A stale `T113` scope: REQ-025 no longer names the removed caller, ADR-007 is scoped to the hub alias lists, and the timeline carries generation 8.
-- A fixture/total drift in `AC-044` to `AC-052`: every count matches.
+- "The changelog states the refusal rule as it was before the build" -- ruled out: the three lines at `:482` to `:484` state the refusal exception, the typed-on-stuck head and the turned-down loop.
+- "Packet 013 has no degraded-path evidence for its REQ-006" -- ruled out: `013/implementation-summary.md:123` names both degraded heads and the test that pins each.
+- "An overlay has no applicable surface" -- ruled out for `skill_agent`, `feature_catalog_code` and `playbook_capability`; only `agent_cross_runtime` is `notApplicable`, and it is recorded with `applicable: false`.
 
 ## Next Focus
 
-- Dimension: traceability
-- Focus area: close `spec_code` and `checklist_evidence` with the full-range evidence, restate the active findings and their paths, and prepare the synthesis state
-- Reason: iteration 7 is the last configured iteration and the one that must leave both core protocols at `pass` with a non-empty evidence list, so the terminal coverage gate can read them
-- Rotation status: traceability in progress; both protocols raised to pass in iteration 7
-- Blocked/productive carry-forward: the whole evidence set from iterations 4 to 6 is productive; no new discovery is needed
-- Required evidence: a file:line evidence list per core protocol covering the full REQ and AC ranges
+Dimension: traceability
+Focus area: the final pass -- re-read the two active code findings against the tree, confirm the verdict, and check that the state the lineage will hand the merge (registry, protocols, findings) matches the iteration narratives.
+Reason: iteration 7 is the last under the cap; no new discovery is expected, so the work is confirmation and an honest close.
+Required evidence: a final read of R1-P1-001 and R4-P2-001 at their cited lines, and a consistency check across the six iteration files and the registry.
 
 Review verdict: CONDITIONAL

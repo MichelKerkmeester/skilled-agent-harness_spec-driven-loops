@@ -1,33 +1,31 @@
-# Iteration 3 - traceability
+# Iteration 3 - maintainability
 
 ## Dispatcher
 
-- Lineage: `deepseek-max-1`, generation 9, run `fanout-deepseek-max-1-1795552859377-13gxwk`
-- Dimension: traceability
+- Lineage: `deepseek-max-1`, generation 10, run `fanout-deepseek-max-1-1795556727682-axtzf8`
+- Dimension: maintainability
 - Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`
-- Operator focus addressed: `spec_code` for the first two thirds of the requirement table — REQ-001 to REQ-034, each mapped to the code that implements it or the ADR that records it, as the focus asks; REQ-035 to REQ-053 follow in a later pass.
+- Operator focus addressed: the maintainability pass reads the thirteenth round's test and projection surfaces (the drift guard, the brief ownership test, the reducer unit cases) and the closure rows that describe them, then checks whether each guard can fail for the class it claims.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:220` (REQ-001 to REQ-034 rows)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` (ADR-001 to ADR-009)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:331` (`LOOP_WORDING`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:441` (`LOOP_COUNT`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:451` (`LOOP_NAMES`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:540` (`MODE_CUE_WORDS`, `MODE_CUES`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:689` (`RUN_ASK_REFUSAL_LEADS` and its two companion lists)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:995` (`LOOP_REQUEST`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1016` (`LOOP_EFFORT_LEADS`, `LOOP_EFFORT_WORDS`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454` (stage-one passes rule)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1` (359 rows)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:1` (near-miss rows)
-- `.skilled/commands/deep/assets/deep-review-presentation.txt:13` and `.skilled/commands/deep/assets/deep-research-presentation.txt:13` (offer section)
-- `.skilled/commands/deep/assets/deep-review-presentation.txt:30` and `.skilled/commands/deep/assets/deep-research-presentation.txt:30` (question tool line)
-- `.skilled/commands/deep/assets/deep-review.yaml:2535` and `.skilled/commands/deep/assets/deep-research.yaml:2269` (`/doctor:deep-loop --scope=` next step)
-- `.skilled/commands/deep/research.md:86` and `.skilled/commands/deep/review.md:81` (step 0 pointer)
-- `.skilled/skills/system-deep-loop/hub-router.json:34` and `.skilled/skills/system-deep-loop/ROUTER.md:63` (research aliases)
-- `.skilled/skills/system-deep-loop/deep-research/SKILL.md:303` and `.skilled/skills/system-deep-loop/deep-review/SKILL.md:308` (Gate 2 advisor CLI line)
-- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1` (compiled contract)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2392` (`splitRuledOutEntry`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2409` (`buildExhaustedApproaches`)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts:1610` (the ruled-out cases)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-numbering.vitest.ts:64` (the template-numbering cases)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/next-focus-iteration-verdict.vitest.ts:27` (the Next Focus fixture)
+- `.skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts:89` (the two ownership cases)
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:184` (`ownedCommandRecommendation`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:313` (`trackedCommandForOwner`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:490` (`PATTERN_PAIRS`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:574` (`PATTERNS_NOT_COMPARED`)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:678` (the reason assertion)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2` (the fixture header)
+- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2905` (the served-column reader)
+- `.skilled/skills/system-skill-advisor/runtime/lib/README.md:146` (the command-attach paragraph)
+- `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33` (the offer section)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:222` (T115 to T121)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:202` (the thirteenth-round rows)
 
 ## Findings - New
 
@@ -37,101 +35,85 @@ None.
 
 ### P1 Findings
 
-None.
+None new. Carried forward: `L1-P1-001` (a refused run ask after a loop question is read as an ask) is still active.
 
 ### P2 Findings
 
-1. **REQ-011 names `DEPTH_WORDING`, a surface the tree no longer carries** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:235` -- The requirement says `ask the council`, `convene` and `several models` "leave `DEPTH_WORDING`". No file under `.skilled/` contains that identifier; the depth-wording gate it names was replaced by the loop-ask rule, and the words themselves are absent from `command-attach.ts`, so only the outcome clause is checkable. A reader tracing REQ-011 cannot find the list it names, and a future search for the list returns nothing, which makes the requirement read as stale even though its behaviour holds. Impact is traceability only: the council words are gone and `explicit.ts` carries no `several models` boost, so nothing in the product is wrong.
-   - Finding class: docs-drift
-   - Scope proof: `spec.md` and `lib/command-attach.ts` are both on `review-scope-files.txt`; the absence was checked by searching `.skilled` for the identifier and reading `LOOP_WORDING` and `LOOP_REQUEST`, the lists that replaced it.
-   - Affected surface hints: REQ-011, ADR-007, CHK-011's grep set, the drift guard's list names.
-   - Case: a reader checking REQ-011 runs `rg DEPTH_WORDING .skilled`, gets nothing, and cannot tell whether the requirement is stale or the list was renamed; the durable evidence for the same clause is `LOOP_WORDING` at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:331` plus the absence of the three council words.
+1. **A ruled-out reason that quotes a spaced `--` inside a code span is cut in two** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2396` -- `splitRuledOutEntry` finds the first `\s+--\s+` or em dash anywhere in the entry, including one inside Markdown backticks. The T120 fix added the split so a reason survives, but the separator scan does not respect a code span, so an entry such as "only `\s+--\s+` and `\s+—\s+` split an entry" is cut at the operator quoted inside the span. This iteration's own strategy projection shows the result: the direction becomes "only `\s+" and the reason becomes "\s+` or a bare `—` split an entry." The two halves are no longer the direction and reason the review wrote.
+   - Finding class: `class-of-bug`
+   - Scope proof: `reduce-state.cjs` is on `review-scope-files.txt`; the separator, both callers and the projection output were read at this revision, and the cut is visible in `deep-review-strategy.md` section 10 of this lineage after the iteration 1 reducer pass.
+   - Affected surface hints: `splitRuledOutEntry`, `buildExhaustedApproaches`, the `Exhausted Approaches` strategy section, the T120 unit cases
+   - Case: an iteration rules out the direction "separator scans" and writes "only `\s+--\s+` and `\s+—\s+` split an entry" as the reason; the projection splits it at the `--` inside the backticks and writes a direction that ends mid-code-span.
+   - Fix direction: mask Markdown code spans before the separator scan (or scan for a separator outside a backtick pair), the way a reader sees the text.
    - Claim adjudication:
-     - `type`: `stale_identifier_in_requirement`
-     - `claim`: REQ-011 cites an identifier (`DEPTH_WORDING`) that exists in no file under `.skilled/`, so the requirement's first clause cannot be verified against the tree by the name it gives.
-     - `evidenceRefs`: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:235`, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:331`, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:995`
-     - `counterevidenceSought`: searched `.skilled` for the identifier (no hit), checked whether the list survives under another name by reading the exported word lists near the gate, and confirmed the three council words appear in neither `command-attach.ts` nor `explicit.ts`, so the behaviour the clause describes is real.
-     - `alternativeExplanation`: `DEPTH_WORDING` may be the historical name of a list deleted with the depth gate, in which case the requirement is describing a past state and the name is history rather than a live pointer.
+     - `type`: `markdown_awareness_gap`
+     - `claim`: the ruled-out separator scan is not code-span aware, so a spaced `--` or an em dash quoted inside backticks is treated as the direction/reason boundary.
+     - `evidenceRefs`: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2396`, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2400`, `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/deep-review-strategy.md:83`
+     - `counterevidenceSought`: checked whether `normalizeText` strips backticks before the split (it does not run before the separator scan), whether the T120 unit cases include a code span with a spaced `--` (none do), and whether a later pass re-merges the halves (it does not; the split text is the key).
+     - `alternativeExplanation`: the split may be intentional because the strategy text is plain prose and backticks are only decoration; but the same decoration is common in a review note, and the result is a direction that no longer names the direction.
      - `finalSeverity`: P2
-     - `confidence`: 0.78
-     - `downgradeTrigger`: if the packet records `DEPTH_WORDING` as the retired list's name in `decision-record.md` or the plan, the row drops to a wording note and no edit is owed.
+     - `confidence`: 0.95
+     - `downgradeTrigger`: if the reducer documents that a ruled-out entry must not quote a spaced separator inside a code span, the finding becomes a wording note on the iteration template instead.
+
+2. **The brief ownership test cannot tell the child's policy and owner from the tracked table's** -- `.skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts:113` -- The second case feeds `{skill: "sk-doc", command: "/create:readme", policy: "start", ownerSkillId: "sk-doc"}`. Those are exactly the tracked table's values for `/create:readme`, so the assertion that the rendered row carries `start` and `sk-doc` passes whether the brief keeps the child's fields or overrides them with the table's. The first case covers only a command the table does not track. No case gives the child a policy or owner that differs from the table, so the security finding's passthrough has no test that can fail for it.
+   - Finding class: `test-isolation` (a test that cannot fail for the class it claims to pin)
+   - Scope proof: the test, the helper and both consumers are on `review-scope-files.txt`; the test's two rows and the table's `/create:readme` and `/deep:review` entries were read at this revision, and the assertion values were compared with `COMMAND_ROWS`.
+   - Affected surface hints: `buildSkillAdvisorBrief command ownership`, `ownedCommandRecommendation`, `trackedCommandForOwner`, the CLAUDE/advisor brief test set
+   - Case: a regression makes `ownedCommandRecommendation` return the tracked table's policy and owner (the change the security finding recommends); the existing second case still passes because both sides are `start`/`sk-doc`, so the test reports green while the behavior changed.
+   - Fix direction: add a case whose child row says `policy: "run"` (or `ownerSkillId: "sk-code"`) for a tracked command and assert the table's value is what renders, or assert the mismatched field is dropped.
+   - Claim adjudication:
+     - `type`: `test_cannot_fail`
+     - `claim`: the ownership test's accepted row uses the same policy and owner the tracked table holds, so it cannot distinguish the child's values from the table's and does not cover the field-level passthrough.
+     - `evidenceRefs`: `.skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts:113`, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:76`, `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:191`
+     - `counterevidenceSought`: checked whether another test file feeds a mismatched policy on the brief path (`rg "policy: 'run'" tests` finds CLI and renderer cases, not this brief path), whether the first case's stripped row could catch it (it has no tracked command, so it tests the strip), and whether the table's `/create:readme` values differ from the fixture (they do not).
+     - `alternativeExplanation`: the case may be written to pin the positive path only, with the field-level contract left to the renderer's own tests; but the renderer's tests do not cover a subprocess row, so the gap is on this path alone.
+     - `finalSeverity`: P2
+     - `confidence`: 0.9
+     - `downgradeTrigger`: if the packet treats the accepted row's fields as always table-derived by construction, the second case is a smoke test and the gap is only a coverage note.
 
 ## Traceability Checks
 
-- `spec_code` — partial. REQ-001 to REQ-034 are mapped below. The map is one file:line or one ADR section per requirement, read at this revision; the clauses that assert a measured probe outcome (REQ-001 to REQ-004, REQ-008, REQ-014) are traced to the rule and the fixture row that pin them, not re-measured, because the probe result files are outside this review's scope. REQ-035 to REQ-053 are not mapped yet, so the protocol stays partial.
-
-  | Requirement | Evidence anchor | Status |
-  |---|---|---|
-  | REQ-001 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:331` (`LOOP_WORDING`) + fixture `asksForLoopRun` rows | traced |
-  | REQ-002 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:995` (`LOOP_REQUEST` opens on an ask, not on depth wording) | traced |
-  | REQ-003 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1580` (`attachCommand` command table) + fixture typed rows | traced |
-  | REQ-004 | `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1` negative rows | traced |
-  | REQ-005 | `.skilled/commands/deep/assets/deep-review-presentation.txt:13`, `.skilled/commands/deep/assets/deep-research-presentation.txt:13`, `.skilled/commands/deep/research.md:86`, `.skilled/commands/deep/review.md:81` | traced |
-  | REQ-006 | `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:539` (depth-word `undefined` cases) + 359-case fixture | traced |
-  | REQ-007 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1`; `ASK with SINGLE prompt` count 0 across `compiled/` | traced |
-  | REQ-008 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454` | traced |
-  | REQ-009 | `.skilled/commands/deep/assets/deep-research.yaml:2269`, `.skilled/commands/deep/assets/deep-review.yaml:2535`, both presentation files (11 to 14 matching lines each) | traced |
-  | REQ-010 | `.skilled/commands/deep/assets/deep-review-presentation.txt:30` and `:267` and `:277`; the research twin at the same anchors | traced |
-  | REQ-011 | `.skilled/skills/system-deep-loop/hub-router.json:34`, `.skilled/skills/system-deep-loop/ROUTER.md:63`, `ADR-007` (`decision-record.md:603`); `DEPTH_WORDING` absent — see P2 above | traced with a naming defect |
-  | REQ-012 | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` (`ADR-001`) + 31 `near-miss` rows in the corpus | traced |
-  | REQ-013 | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:796` (`ADR-009`) + the `-04` holdout row | traced |
-  | REQ-014 | fixture row for the summary prompt + `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1027` (`LOOP_ARTIFACT_NOUNS`) | traced |
-  | REQ-015 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:689` (`RUN_ASK_REFUSAL_LEADS`) | traced |
-  | REQ-016 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1027` (question readings) + fixture `how-*` rows | traced |
-  | REQ-017 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:884` (curly-apostrophe fold) | traced |
-  | REQ-018 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1580` stuck branch + negated-symptom fixture row | traced |
-  | REQ-019 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1027` (`LOOP_ARTIFACT_NOUNS`) + `ADR-004` (`decision-record.md:317`) | traced |
-  | REQ-020 | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:244` + `ADR-005` (`decision-record.md:412`) + the Python gate at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5743` | traced |
-  | REQ-021 | `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1` (359 rows read by both suites) | traced |
-  | REQ-022 | `.skilled/changelog/skilled/v4.2.0.0.md:759` + `ADR-003` (`decision-record.md:223`) | traced |
-  | REQ-023 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:689` and `:716` (refusal verbs and cancel leads) | traced |
-  | REQ-024 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1600` and `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1082` | traced |
-  | REQ-025 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` `typedCommandIn`, pinned by `.skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts:176` | traced |
-  | REQ-026 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1694` (`routedLoopMode`) and the deferred path | traced |
-  | REQ-027 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454` (subject read before the loop lane) | traced |
-  | REQ-028 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` typed-row render path + `.skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts:353` | traced |
-  | REQ-029 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1590` + `.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts` | traced |
-  | REQ-030 | `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257` + `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888` | traced |
-  | REQ-031 | `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121` (`VOCABULARY_PAIRS`, 24 rows read by counting the list) | traced |
-  | REQ-032 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1011` | traced |
-  | REQ-033 | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97` (`AC-040`, still `Unmet`) | traced, outcome open |
-  | REQ-034 | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:198` (twelfth-round rows) | traced |
-
-- `checklist_evidence` — partial. The acceptance citation set was verified in iteration 1 and the security checklist rows in iteration 2; the task checklist and the closure counts are scheduled for the next traceability pass.
+- `spec_code` — partial. The reducer slice was mapped: REQ-059 at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2392`, REQ-052 at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227`, REQ-048 at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2450`, REQ-032 at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1011`; REQ-058 at `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:184`. REQ-001 to REQ-031 and REQ-033 to REQ-051 remain unmapped in this lineage, so the protocol stays `partial`.
+- `checklist_evidence` — partial. T115 to T121 were read against their named symbols and the evidence-tail checker reports `problems=0` on this tree (`python3 specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/evidence-tails.py`). The ownership test's coverage gap is not named by any AC row; the checklist is therefore `partial`.
 
 ## Integration Evidence
 
-- Command surface: `.skilled/commands/deep/review.md:81` and `.skilled/commands/deep/research.md:86` each carry the step 0 pointer the offer section needs; both files point at the same presentation section, so the two modes teach one offer.
-- Workflow surface: `.skilled/commands/deep/assets/deep-review.yaml:2535` and `.skilled/commands/deep/assets/deep-research.yaml:2269` carry the `/doctor:deep-loop --scope=<mode>` next step, and both YAMLs carry `--extend=N` in their completed-packet and next-step text (11 matching lines each).
-- Hub surface: `.skilled/skills/system-deep-loop/hub-router.json:34` and `.skilled/skills/system-deep-loop/ROUTER.md:63` carry `iterative research` and `multi-round research`, and `autonomous research` appears in neither, which is ADR-007's amended scope.
-- Skill surface: `.skilled/skills/system-deep-loop/deep-research/SKILL.md:303` and `.skilled/skills/system-deep-loop/deep-review/SKILL.md:308` name the advisor CLI on the Gate 2 line; neither carries `comprehensive research`, `deep investigation`, `audit spec folder` or `pre-release review` any more.
+- Reducer surface: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` is the reducer this lineage runs after every iteration; the two functions the findings name are the ones that wrote this lineage's `Exhausted Approaches` section.
+- Hook test surface: `.skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts` pins the hook brief that `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-fallback.ts` renders.
+- Fixture surface: `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` is read by both `tests/deep-loop-offer-cases.vitest.ts` and `tests/python/test_skill_advisor.py`; the header names the column contract and the two readers implement it at line 208 and line 2905 respectively.
+- Command docs: `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33` and `.skilled/skills/system-skill-advisor/runtime/lib/README.md:146` describe the gate and the ownership check; both were read and neither claims the brief uses the table's policy.
 
 ## Edge Cases
 
-- A requirement that asserts a measured probe outcome cannot be re-measured from inside a read-only review, because the probe result files are outside the review scope. Those rows are marked traced-to-rule rather than met, and the distinction is kept in the table above rather than flattened into `pass`.
-- `REQ-033` states a rerun must pass its coverage gate, while `AC-040` reads `Unmet`. The pair is consistent with the open review round, so the requirement is traced to its own acceptance row and left open rather than reported as drift.
-- `DEPTH_WORDING` absent from the tree is treated as a naming defect in REQ-011 (reported) rather than as a missing implementation, because the behaviour the clause describes is present under the loop-ask rule.
+- The `PATTERNS_NOT_COMPARED` reason test asserts only `reason.length > 0`, so a one-character reason would satisfy it. This is recorded as a boundary of the guard rather than a finding: the table is a human-readable excuse list and every current entry carries a substantive reason.
+- The `QUANTIFIER_PAIRS` test checks that both sources contain the count string, not that it sits in the same grammar position. Recorded as a known limit of a source-text comparison, not a defect.
+- The fixture's `servedRun` column is optional; the header says "where present", and the readers check only a present value. A new row can omit it, which is a documented choice rather than drift.
+- The reducer's `buildExhaustedApproaches` also groups by full entry text (iteration 1's P2). The code-span finding is a second, independent failure of the same splitter; both are in the projection and neither is covered by the T120 unit cases.
 
 ## Confirmed-Clean Surfaces
 
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1` — 359 cases, the count AC-028, AC-029 and AC-042 state, and the file both suites read.
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:1` — 31 `near-miss` rows, which is the count AC-019 says supersedes its 15.
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:331` and `:995` — the loop-ask rule is built from exported word lists, so the drift guard can compare each list with its Python twin.
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-numbering.vitest.ts:64` -- the test seeds the shipped template, asserts `strategyWarning` is null, and checks that the four machine sections keep the template's numbers and survive a second pass unchanged.
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/next-focus-iteration-verdict.vitest.ts:27` -- the fixture carries the focus lines above a `Review verdict:` line and the test reads the projection back as separate non-empty lines with the verdict absent.
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:686` -- the compiled-name accounting and its reverse direction are both present and read the gate slice, not the whole file.
+- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2905` -- the Python suite reads `servedRun` when present and rejects a value outside `review|research|none`, matching the TypeScript reader at `tests/deep-loop-offer-cases.vitest.ts:335`.
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2` -- the header states the layer each column pins, including the typed-on-stuck exception and the explicit `none` value.
 
 ## Ruled Out
 
-- `REQ-006` naming the wrong test file: ruled out. The requirement as amended names the shared fixture and `command-attach-guards.vitest.ts`, and that file holds the depth-word `undefined` cases at `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:539`.
-- `REQ-025`'s claim that `typedCommandIn` has no production reader: ruled out as drift. The export exists, the boundary tests import it (`.skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts:176`), and no production path was found calling it.
-- `REQ-011`'s alias clause against the hub: ruled out. Both hub files carry the two aliases and neither carries `autonomous research`, so ADR-007's narrowed clause holds.
+- "The strategy-numbering test passes over a skipped rewrite": ruled out. It asserts `strategyWarning` is null and would fail if a machine section were left untouched.
+- "The Next Focus test masks a flattened projection": ruled out. It reads the projected section as separate lines and asserts the verdict is absent.
+- "The fixture's served column can be `null`": ruled out. Both readers accept only `review`, `research` or `none`; a null is not a value either reader accepts.
+- "The reason test accepts a stale name": ruled out after T118. The reverse test checks each excused name is still assigned in the gate slice; only the *quality* of the reason is unchecked.
+- "The ownership test's first case covers the field passthrough": ruled out. The first case's command is untracked, so it exercises only the strip path.
 
 ## Next Focus
 
-- Dimension: maintainability
-- Focus area: the comment-hygiene rule on the changed code, duplication between the two gate copies, and whether the reducer's projections stay readable as the packet grows.
-- Reason: three dimensions will be covered after this pass; maintainability is the last canonical dimension the coverage gate needs, and it carries a hard repo rule about comments.
-- Rotation status: correctness, security and traceability started; maintainability remains.
-- Blocked/productive carry-forward: productive — the requirement table resolves quickly against the gate's exported lists.
-- Required evidence: comment scan over the changed code, the list-pair guard, and the reducer's section writers.
-- No recovery note: this pass was not a recovery iteration.
+- Dimension: traceability
+- Focus area: `spec_code`: map every REQ-001 to REQ-052 to its code, test or decision, starting with the earliest requirements, and run the overlay protocols where they apply.
+- Reason: maintainability found two P2s in the test/projection surfaces; the focus's main promise, a complete REQ-to-code map, is still only one sixth done.
+- Rotation status: correctness, security and maintainability done; traceability remains, four iterations available.
+- Blocked/productive carry-forward: productive -- the reducer projection and the test tables are readable directly; no blocked direction.
+- Required evidence: one file:line per requirement, with the decision record cited where a requirement is a decision rather than code.
+- Recovery note: none.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

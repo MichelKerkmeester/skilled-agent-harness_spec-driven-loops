@@ -1,71 +1,82 @@
 # Review Iteration 002
 
 ## Dispatcher
-Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; dimension=security.
-Artifact directory: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2`. Read-only review; no `steer.md` exists in this lineage.
+
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Executor: `cli-pi` model `deepseek-v4.1-flash-1017`, run inline by lineage `deepseek-max-2` (generation 1, lineage mode `new`).
+- Iteration 2 of 7, stop policy `max-iterations`.
+- Dimension: **correctness**. Operator focus applied: no `gateClass` on protocol results, findings only on files in `review-scope-files.txt`, no `terminal_gates` row. This iteration covers the second of the four dimensions, inside the window the focus sets (correctness, security and maintainability each once within iterations 1 to 4).
 
 ## Files Reviewed
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489` (`trackedCommandForOwner`)
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1513` (`degradedRecommendations`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:187` (`parseRecommendations`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:245` (`withTypedCommand`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:383` (`runAdvisorSubprocess`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:466` (`buildSkillAdvisorBrief`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:227` (`commandLabel`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:198` (`parentNamedOnly`)
-- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257` (prompt cap)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:136` (`TRACKED_COMMANDS` policy)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5743` (`_apply_deep_loop_offer_gate`)
-- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:149` (hook wiring of the brief builder)
 
-## Findings by Severity
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227,262,675,700,713,807,923,1014,1086,1192,1213,2381,2392,2413,2445`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:847,893,917,926,960,981,1285,1300,1595,1640,1676`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5105,5124,5283,5328,5353`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1064,1079,1084`
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (368 cases)
+- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts` (`VOCABULARY_PAIRS`, `PATTERNS_NOT_COMPARED` regions)
+- `deep-review-strategy.md` and `deep-review-findings-registry.json` produced by the reducer for iteration 1 (read to judge the reducer's own output)
+
+## Findings - New
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
-None.
+
+1. **The reducer publishes `findingClass`, `scopeProof` and `affectedSurfaceHints` as null or empty for a finding whose delta row omits them, and it never reads the three fix-completeness lines the iteration narrative must carry** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:713` -- The registry entry for a finding is built from the delta row's `findingClass`, `scopeProof` and `affectedSurfaceHints` (`reduce-state.cjs:713`, `:717`, `:718`), under a comment that says those fields are preserved "so registry consumers do not need to re-open raw delta files for scope and surface hints" (`:715`). The narrative parser reads only title, file, line and description from a numbered finding (`:923`, `parseNumberedFindingLine`), and a run that recorded any delta row makes its whole narrative yield to the structured rows (`:1226`). So the only path those three values have into the registry is a delta row, and the delta row shape the run's own prompt pack documents carries none of them. Observed live in this lineage: iteration 1's narrative and its `findingDetails` both stated `findingClass: evidence-cell-stale`, a `scopeProof` string and one `affectedSurfaceHints` entry, and the registry entry for `R1-P2-001` holds `findingClass: null`, `scopeProof: null`, `affectedSurfaceHints: []`. The synthesis step builds the Planning Packet's `findingClasses` and `affectedSurfacesSeed` from this state, so every finding produced by a leaf that follows the documented delta shape reaches `/speckit:plan` as `UNKNOWN`.
+   Finding class: `producer-consumer-gap`
+   Scope proof: `reduce-state.cjs` is a review-scope file; the value loss is readable in the lineage's own reducer-owned registry, and the field names sit at the lines cited.
+   Affected surface hints: `reduce-state.cjs` `parseNumberedFindingLine` and the delta-row builder; the report's Active Finding Registry columns `findingClass`, `scopeProof`, `affectedSurfaceHints`; the Planning Packet keys `findingClasses`, `affectedSurfacesSeed`.
+   Case: a leaf writes the delta row the run's prompt pack documents (`{"type":"finding","id","severity","title","file","iteration"}`) and puts the three required lines in the narrative, which is what the agent contract asks for; the reducer then stores nulls, and the review report's Planning Packet reads `UNKNOWN` for that finding's class and surfaces.
+   ```json
+   {"type":"claim-adjudication","claim":"A finding whose delta row omits findingClass, scopeProof and affectedSurfaceHints loses them even when the narrative carries them, because the narrative parser reads none of the three and a run with delta rows skips its narrative entirely.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:713",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:715",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:923",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1226","deep-review-findings-registry.json#R1-P2-001"],"counterevidenceSought":"Read the reducer's narrative parser and its dedup order to see whether the narrative path or a later merge restores the fields; read the registry entry the reducer wrote for this lineage's own iteration 1.","alternativeExplanation":"The delta row is by design the only machine-readable finding surface, and the narrative is prose for a human reader, so the null is the documented contract rather than a loss.","finalSeverity":"P1","confidence":0.82,"downgradeTrigger":"Downgrade to P2 if the delta row's schema is declared the authoritative finding record and expanded to carry the three fields, because the residual defect is then a documentation gap in a file outside this review's scope."}
+   ```
 
 ### P2 Findings
-1. **The hook brief renders a child-supplied command without the owner check the CLI path applies** -- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:231` -- The twelfth round added `trackedCommandForOwner` so a command string that crossed the child-process boundary prints only where the tracked table names it for the row's own skill, and it wired that check into `degradedRecommendations` only. The other degraded consumer, `buildSkillAdvisorBrief`, still takes `runAdvisorSubprocess` output straight to `renderSharedBrief` and `renderAdvisorBrief`, and `commandLabel` prints `recommendation.command ?? row?.command` with `recommendation.policy ?? row?.policy` after `sanitizeSkillLabel`, which normalises text and does not consult the table. A row the Python child emits with a `command` and a `policy` therefore prints verbatim on the hook path and is dropped on the CLI path.
-Finding class: instance-only (a missing guard on one of two consumers of the same boundary).
-Scope proof: the print site is `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:231`; the unvetted input arrives at `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:541` through `runAdvisorSubprocess`, whose rows come from `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:187`; the vetted sibling is `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1571`.
-Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/lib/render.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`, `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`.
-Case: the two command tables drift, as they did for the `deep-review` alias group, and the Python child reports `command: "/doctor:deep-loop"` on a `system-deep-loop` run row that the native table no longer attributes to that skill; the next prompt hook prints `system-deep-loop → /doctor:deep-loop (run)` as the offer, while the same row through the CLI fallback prints the bare skill, so the reader sees a runnable command on one degraded path and none on the other.
-Claim adjudication:
-```json
-{"type":"incomplete_fix","claim":"REQ-038's owner check is applied on the CLI degraded path but not on the hook brief path, so a child-supplied command and policy render unvetted there.","evidenceRefs":["skilled/skills/system-skill-advisor/runtime/lib/render.ts:231",".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1571",".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:541",".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:187"],"counterevidenceSought":"read parseRecommendations to see whether the child can supply a command at all (it can, whenever the field is a non-empty string), read render.ts for any owner or table lookup inside commandLabel (none: only sanitizeSkillLabel and a mutating-class lookup), and read the Python gate for the source of the command field (its own command table, so the string is table-derived, not prompt-derived, which is what keeps this P2 rather than P1).","alternativeExplanation":"The Python command table and the native TRACKED_COMMANDS are generated from one source, so drift is impossible and the missing check can never print a foreign command.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"a test or generator proves both tables are built from one shared source and cannot drift, which would make the missing check unobservable."}
-```
+
+None this iteration.
 
 ## Traceability Checks
-- `spec_code` (core, hard), status `partial`: REQ-038's rule is confirmed present at [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489] (`Object.hasOwn(TRACKED_COMMANDS, command)` plus the owner or alias match) and read where the supplied string reaches the row at [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1571]. Its absence from the hook path is the P2 above; the requirement text names the CLI degraded path only, so the requirement itself is not contradicted.
-- NFR-S01 and CHK-031: both deep commands carry policy `ask` in the tracked table ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:122]) and the probe rows all read `pol=ask` (`scratch/probes/results-after.json`), so no deep command is started under `run`.
+
+| Protocol | Level | Status | Evidence | Summary |
+|---|---|---|---|---|
+| `spec_code` | core | pass | `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1285]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5124]` | The three rules the newest requirements claim are implemented as claimed in both copies: the iteration count is read only inside the question's own clause (`questionClause` and `_loop_question_clause`), `then` is a clause mark (`explicitRunOutranks` and `_explicit_run_outranks`), and the prompt fold reads the five zero-width characters plus every whitespace run in both languages (`lowerFolded` and `_fold_quotes`). |
+| `checklist_evidence` | core | partial | `[SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:66]` | Carried from iteration 1: four rows still state the older fixture count. The full ticked-task sweep is iteration 5. |
 
 ## Integration Evidence
-- Hook surface checked: `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:149` types `buildBrief?: typeof buildSkillAdvisorBrief` and uses it as the primary builder, which is what makes the unvetted render path live rather than dead code.
-- CLI fallback surface checked: `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:552` (`buildSkillAdvisorBriefFromCli`) parses the CLI's own `recommendations`, so it inherits the CLI's vetting and is not the gap.
+
+- `reduce-state.cjs:1226` (`yieldsToStructured`) is the join between the two producer surfaces, and the prompt pack's delta example is the surface it depends on; both were read for finding 1.
+- `command-attach.ts:1676` (`isNoEditRequest(prompt) && !(skillId === 'system-deep-loop' && READ_ONLY_LOOP_MODES.includes(workflowMode))`) shows REQ-040's read-only exception on the routed branch, and `:1653` shows the same exception on the stuck-run branch, so the two branches agree.
+- `fusion.ts:1064` builds the doctor-naming pattern from the one `DEEP_LOOP_DOCTOR_COMMAND` export (`command-attach.ts:202`), as REQ-053 states.
 
 ## Edge Cases
-- **Child session.** `parentNamedOnly` downgrades a `start` or `ask` policy to "parent-named only" for a child session ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:198]), so the missing owner check cannot let a child session start a run; the printed command still reaches an interactive reader as runnable text, which is why the finding is scored P2 rather than higher.
-- **Prompt-derived command.** `withTypedCommand` overwrites the top row with a command derived from the prompt ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:251]), so the typed case does not depend on the child's string; only an untyped row carries the child's own field.
+
+- **The run's delta-row example omits the three fix-completeness fields.** `prompt-pack-iteration.md.tmpl` (outside the review scope, so recorded here rather than as a finding) documents `{"type":"finding","id","severity","title","file","iteration"}` and never names `findingClass`, `scopeProof` or `affectedSurfaceHints`, while `reduce-state.cjs:675` documents them as part of the row. Finding 1 names the reducer side; the pack side is the same gap seen from the producer.
+- **This lineage's iteration 1 ran without a coverage graph.** The init seed step was skipped, and the reducer's `graphSignals` stay empty because no `graph_convergence` event exists on a `max-iterations` run. Ruled out as a defect: convergence is telemetry under this stop policy, and the orchestrator computes terminal gates after the run.
+- **Exhausted-approach headings carry markdown bold.** The reducer's `splitRuledOutEntry` keeps a direction's `**` markers when the narrative writes `**X** -- reason`, so the strategy's section 10 headings read `### **X** -- RULED OUT`. Not filed: the narrative style is this lineage's own choice, and the direction text is still readable.
 
 ## Confirmed-Clean Surfaces
-- **Prompt length is capped before scoring.** `prompt: z.string().min(1).max(ADVISOR_PROMPT_MAX_CHARS)` with 10,000 characters ([SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257]), so a pasted long prompt cannot drive the gate's regex work unbounded through the tool schema.
-- **Rejected supplied commands lose every command field.** `trackedCommandForOwner` returns undefined and the row is pushed as a plain skill with no `command`, `policy`, `ownerSkillId` or `typed` ([SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1593]).
-- **A mention is not a request.** `commandOnlyMentioned` runs before the deep-loop ask gate on the routed path ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1643]), so a doc path or a refusal of a typed command yields no offer.
+
+- `stripReviewVerdict` (`reduce-state.cjs:227`) cuts the Next Focus section at the verdict line and keeps the authored line breaks; the projection in this lineage's strategy holds all six focus lines and no verdict.
+- `splitRuledOutEntry` (`reduce-state.cjs:2392`) cuts only on a spaced double hyphen or an em dash, so `--extend=N` and a kebab-case name stay whole.
+- `explicitRunOutranks` (`command-attach.ts:847`) reads the ask to its end and treats a whole-word `then` as a clause mark; `isPastRunRead` and `isWritingAboutTopic` both consult it before withholding.
+- The Python fold (`skill_advisor.py:5124`) spells the same five zero-width characters and the same whitespace collapse as `lowerFolded` (`command-attach.ts:917`).
 
 ## Ruled Out
-1. **A child can inject an arbitrary command through `parseRecommendations`** -- the parser accepts any non-empty string ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:187]). Ruled out as a live injection: the Python rows' command comes from its own command table ([SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:2391]), and the gate there sets only the `typed` marker ([SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5811]); the prompt never supplies the string, so the realistic case is table drift, which is what the P2 records.
-2. **The deep gate could start a run without asking** -- both deep commands carry `ask` ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:122]) and the probe rows read `pol=ask`; `parentNamedOnly` additionally downgrades a non-read-only `run` in a child session ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:198]).
-3. **A long prompt makes the gate quadratic** -- ruled out as a security cost: the tool schema caps the prompt at 10,000 characters ([SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257]) and the lead scans are bounded ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:784]).
+
+- **The implicit-clause defect the question rule could have** -- ruled out: `questionClause` bounds the count with `QUESTION_CLAUSE_END` before `ITERATION_COUNT` tests it, so a count in a later clause cannot reach the test.
+- **A doctor row surviving on a run-refusing stuck complaint** -- ruled out: the stuck branch returns `undefined` when `isRunRefused` holds (`command-attach.ts:1653`), and `withholdDeepLoopDoctorWithoutRun` reads the same predicate.
+- **A no-edit clause withholding a read-only loop** -- ruled out on both branches by `READ_ONLY_LOOP_MODES` (`command-attach.ts:1676`).
 
 ## Next Focus
-- Dimension: maintainability
-- Focus area: the drift-guard and shared-fixture design that keeps two gate copies honest (`tests/deep-loop-offer-cases.vitest.ts`, the fixture schema, and the reducer owner boundaries).
-- Reason: third configured dimension; no P0 or P1 to carry forward.
-- Rotation status: correctness and security reviewed (2/4).
-- Required evidence: file:line for each guard pair and for the fixture columns the suites read.
-- Blocked/productive carry-forward: security's P2 is a maintainability-adjacent gap; the maintainability pass must not re-report it.
-- Recovery note: not applicable.
 
-Review verdict: PASS
+- Dimension: security
+- Focus area: the trust and safety boundaries the packet's own code touches: the served command's policy, the degraded-path command vetting, and the typed-command override
+- Reason: correctness produced one structural finding; security is the third of the four dimensions the focus requires before the last iteration
+- Rotation status: traceability done, correctness done, security next, maintainability in iteration 4
+- Blocked/productive carry-forward: `spec_code` stays productive; `checklist_evidence` still `partial`
+- Required evidence: `file:line` for every boundary claim, and the input a hostile or mistaken caller could send
+
+Review verdict: CONDITIONAL

@@ -1,29 +1,35 @@
-# Iteration 6 - traceability
+# Iteration 6 - traceability (spec_code, part 3, decisions and the remaining overlays)
 
 ## Dispatcher
 
-- Lineage: `deepseek-max-1`, generation 9, run `fanout-deepseek-max-1-1795552859377-13gxwk`
+- Lineage: `deepseek-max-1`, generation 10, run `fanout-deepseek-max-1-1795556727682-axtzf8`
 - Dimension: traceability
 - Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`
-- Operator focus addressed: `spec_code` for the remaining requirement slice, REQ-035 to REQ-052, so the protocol that has been `partial` all run can finish with every requirement mapped to the code that implements it or the ADR that records it.
+- Operator focus addressed: this pass closes `spec_code` by mapping REQ-053 to REQ-059 to the reducer, the doctor-name export and the two hook paths, then checks every ADR the packet's waived or superseded rows name, and records the two overlays that do not apply to this change set.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:259` (REQ-035 to REQ-052 rows)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:635` (`hasUnrefusedPronounRerun`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1027` (`LOOP_ARTIFACT_NOUNS`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1201` (`LOOP_QUESTION_AUXILIARIES`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1694` (`routedLoopMode`)
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1713` (`loopAskCues`)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227` (`stripReviewVerdict`)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2378` (`MIN_BLOCKED_ATTEMPTS`)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2419` (`replaceAnchorSection`)
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` (`enrichCompiledRoutes` duplicate guard)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5743` (`_apply_deep_loop_offer_gate`)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (`PATTERNS_NOT_COMPARED`)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:743` (mode vocabulary describe)
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:269` (plural rows)
-- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1` (baseline provenance)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:277` (REQ-053 to REQ-059)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:118` (AC-061 to AC-067)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` (ADR-001)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:128` (ADR-002)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:223` (ADR-003)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:317` (ADR-004)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:412` (ADR-005)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:508` (ADR-006)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:603` (ADR-007)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:703` (ADR-008)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:796` (ADR-009)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:202` (`DEEP_LOOP_DOCTOR_COMMAND`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:27` (the import) and `:1064` (the naming pattern)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1075` (`withholdDeepLoopDoctorWithoutRun`)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:421` (the duplicate-command withhold)
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:184` (the brief owner check)
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1558` (the CLI owner check)
+- `.skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts:89` (the ownership cases)
+- `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-duplicate-command.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:370` (`parseIterationFile`)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts:1704` (the ruled-out cases)
 
 ## Findings - New
 
@@ -33,72 +39,68 @@ None.
 
 ### P1 Findings
 
-None.
+None new. Carried forward: `L1-P1-001` (a refused run ask after a loop question is read as an ask) is still active.
 
 ### P2 Findings
 
-None.
+None new. The earlier P2s remain active; this pass confirms that two of them sit on requirement text that does not claim more than the code does:
+- `L2-P2-001` is beyond REQ-058's text: the command is vetted as the requirement says, while the policy and owner passthrough is an additional hardening gap.
+- `L3-P2-001` and `L1-P2-001` are both in REQ-059's projection area; the requirement says a ruled-out item's reason becomes its "Why ruled out" line, which a single entry does, and neither the code-span cut nor the grouping key is named by the requirement.
 
 ## Traceability Checks
 
-- `spec_code` — pass. REQ-035 to REQ-052 are mapped below, which completes the map opened in iteration 3 for REQ-001 to REQ-034. Every requirement resolves to a live anchor at this revision; the three requirements that rest on a measured outcome (REQ-039, REQ-044, REQ-051) also name the record that holds the measurement. Evidence for the raised status: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1201` (REQ-036), `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1713` (REQ-026 and REQ-042), and `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (REQ-051).
-
-  | Requirement | Evidence anchor | Status |
-  |---|---|---|
-  | REQ-035 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:451` (`LOOP_NAMES`, plural forms) + 21 plural fixture rows + `ADR-008` (`decision-record.md:703`) | traced |
-  | REQ-036 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1201` (`LOOP_QUESTION_AUXILIARIES`) + `how-do-*` fixture rows | traced |
-  | REQ-037 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1016` (`LOOP_EFFORT_LEADS`) and `:1078` (`LOOP_EFFORT_WORDS`) + 24 `effort-*` rows | traced |
-  | REQ-038 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489` (`trackedCommandForOwner`) | traced |
-  | REQ-039 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1` — 155 rows, `capturedAtSha` `a139ac3b248`, last committed by this packet on 2026-11-23 | traced |
-  | REQ-040 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:920` (`NO_EDIT_REQUEST`) + three `no-edit-*` rows | traced |
-  | REQ-041 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1713` (`loopAskCues` reads only the phrases still asked for) + five `refused-cue-*` rows | traced |
-  | REQ-042 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1694` (`routedLoopMode`) on the routed single-target branch | traced |
-  | REQ-043 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:635` (`hasUnrefusedPronounRerun`) + `stuck-rerun-*` and `past-summary-*` rows | traced |
-  | REQ-044 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1078` + `typed-doctor-*` rows (four rows keep the typed doctor) | traced |
-  | REQ-045 | `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:743` (mode vocabulary on every surface) + `MODE_CUE_WORDS` at `:540` | traced |
-  | REQ-046 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2378` and `:2419`, plus `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` | traced |
-  | REQ-047 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5743` (`_apply_deep_loop_offer_gate`) + four `servedRun: "none"` fixture rows | traced |
-  | REQ-048 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2419` (`replaceAnchorSection` keeps the file's ordinal) | traced |
-  | REQ-049 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:884` and `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5098` + `loop-wording-*` rows | traced |
-  | REQ-050 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:716` (`RUN_ASK_REFUSAL_CANCEL_LEADS`) + `negated-refusal-*` rows | traced |
-  | REQ-051 | `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (38 patterns listed with a reason) | traced |
-  | REQ-052 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227` and the dashboard writer at `:2896` | traced |
-
-- `checklist_evidence` — pass, carried from iteration 5. Nothing in this pass contradicts the row-level verdicts; the two P2 findings from that pass are recorded against `CHK-001` and `AC-028` and do not reopen the protocol.
+- `spec_code` — partial (all REQ-001 to REQ-059 are now mapped; the active P1 keeps REQ-015 from passing alone). The REQ-053 to REQ-059 slice:
+  - REQ-053: one declaration at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:202`; the scorer imports it at `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:27` and builds `DOCTOR_NAMING_LED` from it at `:1064`; no second declaration exists under `lib` or `handlers`.
+  - REQ-054: `isLoopQuestion` at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1295` with `questionClause` and `ITERATION_COUNT`; the Python twin at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5338`; fixture rows `how-do-run-count-in-later-clause`, `how-can-stop-loop-count-in-later-clause` and `how-do-run-count-in-question-clause`.
+  - REQ-055: `explicitRunOutranks` at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:849` with the `\bthen\b` clause mark; Python at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5283`; fixture rows `past-report-then-run-review`, `past-research-then-run-research` and `past-report-and-run-notes`.
+  - REQ-056: `lowerFolded` at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:917` and `_fold_quotes` at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5124` carry U+200B, U+200C, U+200D, U+2060 and U+FEFF; fixture rows `loop-wording-zero-width`, `loop-wording-byte-order-mark` and `question-zero-width-control`.
+  - REQ-057: `gateCompiled` and the two accounting tests at `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:686` and `:717`; `PATTERNS_NOT_COMPARED` carries a reason per name.
+  - REQ-058: `ownedCommandRecommendation` at `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:184` calls `trackedCommandForOwner` at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:313`; the CLI calls the same helper at `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1558`; `tests/brief-command-owner-check.vitest.ts` pins both cases.
+  - REQ-059: `parseIterationFile` at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:370` reads only `Ruled Out` and `Dead Ends`, never `Confirmed-Clean`; `splitRuledOutEntry` at `:2392` projects a reason. The unit cases at `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts:1704` and `:1734` pin both.
+  - Decisions: ADR-001 (AC-019 superseded), ADR-002 (the multi-round alias kept), ADR-003 (AC-008 waived), ADR-004 (loop-as-subject), ADR-005 (typed-on-stuck), ADR-006 (bare loop name), ADR-007 (two aliases), ADR-008 (mode-free plural asks), ADR-009 (AC-020 waived) all exist at the lines named above, and each waived or superseded acceptance row names its ADR.
+  - Every requirement now has a code, fixture, probe or decision pointer. The protocol remains `partial` only because REQ-015's general refusal rule is violated by `L1-P1-001`; no other requirement is unmapped.
+- `checklist_evidence` — partial. AC-061 to AC-067 were read row by row and each cited symbol exists; AC-040 remains `Unmet`. The task checklist is the remaining pass.
+- `skill_agent` — notApplicable (`applicable: false`). The declared change set touches no agent definition under `.skilled/agents/`, and this lineage read no agent file as a change target; the agent surface is not part of this packet.
+- `agent_cross_runtime` — notApplicable (`applicable: false`). The packet changes no runtime mirror; the only mirror paths named in the scope are the compiled command contracts, which are covered by REQ-007 and AC-011, not by an agent mirror.
 
 ## Integration Evidence
 
-- Reduction surface: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` implements REQ-046, REQ-048 and REQ-052, and every one of those writers was read here rather than inferred from the requirement text.
-- Handler surface: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` is the compiled-route enrichment REQ-046's second clause names; the duplicate guard seeds its set from the rows' existing commands and strips every command field from the row it withholds.
-- Corpus surface: `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1` holds the recaptured baseline; `git log` on that path names this packet's 2026-11-23 commit, so the recapture REQ-039 asks for is in the tree, and the pinned `capturedAt` (2026-10-11) is the scorer's fixed scoring date rather than a stale capture.
+- Doctor surface: `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:202` is the one name both the attach layer and the scorer read; `fusion.ts` imports it rather than declaring a copy.
+- Hook surface: `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:184` and `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1558` both call `trackedCommandForOwner`; the two consumers differ only in whether they keep the helper's returned policy and owner (`L2-P2-001`).
+- Reducer surface: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` is the reducer this lineage runs; its `parseIterationFile` and `splitRuledOutEntry` are the two functions REQ-059 names.
+- Decision surface: `decision-record.md` is the packet's decision record; the nine ADRs named above are the only ones the waived or superseded rows need.
 
 ## Edge Cases
 
-- REQ-039's two provenance fields read old at first sight: `capturedAt` is the scorer's pinned scoring date and `capturedAtSha` is the HEAD at capture time (`a139ac3b248`, a 2026-11-23 commit of this packet). Reading them against the file's own commit history resolves the apparent staleness, so neither is reported.
-- REQ-044 mixes two grammars — an effort word used as manner, and a typed `/doctor:deep-loop` after a clause break. The map treats them as one requirement with two fixture families (`effort-manner-*`, `typed-doctor-*`), because the requirement states both in one row.
-- REQ-047's mode-free rows are four, not the three the requirement names; the fourth is the singular `run-deep-loop` row that AC-055 also lists, so the extra row strengthens the requirement rather than drifting from it.
+- REQ-058's text claims the *command* check, not the policy or owner passthrough; the security finding is therefore recorded as hardening beyond the requirement rather than as a REQ-058 failure. Both statements can be true: the requirement passes and the code still has a P2.
+- AC-067's observation that "the two new cases failed before the edit" is a historical claim; this pass reads the current tests and does not re-run them, so the claim is taken as recorded.
+- The `skill_agent` and `agent_cross_runtime` overlays are `notApplicable` rather than `pass`; an absent surface is not evidence that it works.
+- ADR-002's "keep or drop" record is a decision, not a code pointer; REQ-011's alias clause is checked against the two hub files, and ADR-002 is checked as the record that leaves them there.
 
 ## Confirmed-Clean Surfaces
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:451` — `LOOP_NAMES` carries the plural loop nouns, and the fixture holds 21 `plural-*` rows, so REQ-035's plural clause and its mode-free amendment are both pinned.
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:743` — the mode-vocabulary describe pins the command table, `MODE_CUES`, `MODE_CUE_WORDS` and the hub router on the same modes, which is REQ-045's clause.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:227` — the Next Focus projection ends at the verdict marker and the dashboard writer pushes the multi-line string whole, so REQ-052's two clauses hold.
-- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:386` — the compiled-route enrichment offers a derived command once and strips command, policy, owner and typed fields from a row it withholds.
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:202` and `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1064` -- one export, one import, one naming pattern.
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1075` -- the doctor row is withheld on a refused run and on a no-edit request, and the fused row agrees with the attach row on the fixture's `doctorWithheld` cases.
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:421` -- a withheld duplicate command strips `command`, `policy`, `ownerSkillId` and `typed`, so no field of the row still offers it.
+- `.skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts:89` -- the untracked-command case strips the command and the tracked case keeps it; the field-level passthrough is the uncovered half (`L2-P2-001`).
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:377` and `:381` -- `Confirmed-Clean` is not read as a ruled-out section, and `Dead Ends` is read only when the file carries one.
 
 ## Ruled Out
 
-- REQ-039's baseline as stale: ruled out. `capturedAt` is the pinned scoring date, `capturedAtSha` is a 2026-11-23 commit, and the file's last commit is this packet's, so the recapture is in the tree.
-- REQ-047 as short of rows: ruled out. The fourth mode-free row is the singular prompt AC-055 also names.
-- REQ-035's mode-free clause against ADR-008: ruled out. The four `servedRun: "none"` rows are exactly what ADR-008 records, and the hub still serves the ask without a command.
+- "The doctor name has a second declaration": ruled out. `rg "DEEP_LOOP_DOCTOR_COMMAND" lib handlers` finds the export and its uses, not a copy.
+- "ADR-009 is cited but absent": ruled out. The record exists at `decision-record.md:796` and AC-020 names it.
+- "A waived row names no decision": ruled out. AC-008, AC-017, AC-020 and AC-019 each name ADR-003, ADR-002, ADR-009 and ADR-001 respectively.
+- "REQ-059 still reads Confirmed-Clean": ruled out. The parser reads `Ruled Out` and `Dead Ends` only.
+- "The duplicate-command guard withholds the command but leaves the policy behind": ruled out. The withheld branch destructures `command`, `policy`, `ownerSkillId` and `typed` before returning.
 
 ## Next Focus
 
 - Dimension: traceability
-- Focus area: closure-doc consistency and the ADR set — ADR-001 to ADR-009 against the tree, the changelog's loop-offer claims, the timeline's last round, and the report inputs synthesis needs.
-- Reason: both core protocols are now at `pass`; the last iteration under the cap is spent on the remaining traceability surface rather than on a new dimension.
-- Rotation status: all four dimensions covered; both core protocols at pass.
-- Blocked/productive carry-forward: productive — the ADR set is small and each ADR names the row that owns it.
-- Required evidence: one check per ADR and per changelog claim, plus the round record the timeline carries.
-- No recovery note: this pass was not a recovery iteration.
+- Focus area: `checklist_evidence`: read every checked task in `tasks.md` and every `Met`/`Waived`/`Superseded` row in `acceptance-criteria.md` against the evidence the row names, including the thirteenth round T115 to T121, and confirm the Verification Summary agrees with the boxes.
+- Reason: `spec_code` is now fully mapped and the overlays are recorded; the remaining protocol is the checklist, and it is the one the focus says to finish.
+- Rotation status: traceability pass 3 of 4 complete.
+- Blocked/productive carry-forward: productive -- the tasks and acceptance files are the two surfaces left, and the citation checker already reports `problems=0`.
+- Required evidence: one row-level pass over T001 to T122 and AC-001 to AC-067, plus the Verification Summary counts.
+- Recovery note: none.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

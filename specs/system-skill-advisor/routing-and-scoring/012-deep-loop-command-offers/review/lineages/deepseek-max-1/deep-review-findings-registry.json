@@ -1,22 +1,82 @@
 {
-  "sessionId": "fanout-deepseek-max-1-1795552859377-13gxwk",
-  "parentSessionId": "2026-11-24T19:58:39.000Z",
-  "generation": 9,
-  "lineageMode": "restart",
+  "sessionId": "fanout-deepseek-max-1-1795556727682-axtzf8",
+  "parentSessionId": "2026-11-24T21:45:00.000Z",
+  "generation": 10,
+  "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 7,
-    "timestamp": "2026-11-24T20:49:33.070Z"
+    "timestamp": "2026-11-24T22:00:38.827Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
+      "findingId": "L1-P1-001",
+      "severity": "P1",
+      "title": "A refused run ask in the question's later clause is read as the run the question asks for",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 1303,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
       "findingId": "L1-P2-001",
       "severity": "P2",
-      "title": "Zero-width format characters inside a loop phrase still lose the offer",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-      "line": 884,
+      "title": "Two iterations that rule out one direction are written as two one-attempt directions",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "line": 2414,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "L2-P2-001",
+      "severity": "P2",
+      "title": "The hook brief vets a child-supplied command but still trusts the child's policy and owner",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+      "line": 191,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -42,11 +102,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "L1-P2-002",
+      "findingId": "L3-P2-001",
       "severity": "P2",
-      "title": "REQ-011 names DEPTH_WORDING, a surface the tree no longer carries",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "line": 235,
+      "title": "A ruled-out reason that quotes a spaced -- inside a code span is cut in two",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "line": 2396,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -54,7 +114,7 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "maintainability",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -67,76 +127,76 @@
         }
       ],
       "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "L3-P2-002",
+      "severity": "P2",
+      "title": "The brief ownership test cannot tell the child's policy and owner from the tracked table's",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts",
+      "line": 113,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "L4-P2-001",
+      "severity": "P2",
+      "title": "The continuity metadata still names generation 8 as the latest round",
+      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+      "line": 13,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
         "traceability"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "L1-P2-003",
+      "findingId": "L7-P2-001",
       "severity": "P2",
-      "title": "CHK-001 still counts 52 requirement rows, and the tree has 53",
+      "title": "T053 still says AC-008 reads Met, while the row reads Waived",
       "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
-      "line": 268,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 5,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 5,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "L1-P2-004",
-      "severity": "P2",
-      "title": "AC-028 cites the eighth-round row for the eleventh round suite counts",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
-      "line": 85,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 5,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 5,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "L1-P2-005",
-      "severity": "P2",
-      "title": "The open-questions section still carries a decision the packet has since answered",
-      "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
-      "line": 390,
+      "line": 114,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -176,12 +236,12 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 0,
-    "P2": 5
+    "P1": 1,
+    "P2": 6
   },
-  "openFindingsCount": 5,
+  "openFindingsCount": 7,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.8,
+  "convergenceScore": 0.89,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
@@ -206,40 +266,86 @@
   },
   "traceability": {
     "summary": {
-      "required": 2,
-      "executed": 2,
+      "required": 4,
+      "executed": 4,
       "pass": 2,
-      "partial": 0,
+      "partial": 2,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 0
+      "notApplicable": 2,
+      "gatingFailures": 2
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33",
-          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1027"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:277",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1213"
         ],
-        "gateClass": "hard",
         "protocolId": "spec_code",
-        "status": "pass",
-        "summary": "ADR-001 to ADR-009 confirmed against the rows that own them; REQ-001 to REQ-053 remain mapped"
+        "status": "partial",
+        "summary": "all REQ-001 to REQ-059 mapped; the active P1 keeps REQ-015 from passing alone",
+        "gateClass": "hard"
       },
       {
         "applicable": true,
         "evidence": [
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:78",
-          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:341"
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:63",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:349",
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/evidence-tails.py:1"
         ],
-        "gateClass": "hard",
         "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "all 67 AC rows and all checked tasks read; 62 Met, 3 Waived, 1 Superseded, 1 Unmet; evidence-tails problems=0; one stale T053 status phrase",
+        "gateClass": "hard"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33",
+          ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:363"
+        ],
+        "protocolId": "feature_catalog_code",
         "status": "pass",
-        "summary": "The four ADR-owning acceptance rows read Waived or Superseded with their ADR; every AC citation still resolves"
+        "summary": "the advisor-recommend leaf matches the command contract and the duplicate guard",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:23",
+          ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:972"
+        ],
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "NC-012's prompts and expected signals match the guards test",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:277"
+        ],
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "no agent definition is in the declared change set",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:277"
+        ],
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "no runtime mirror is in the declared change set",
+        "gateClass": "advisory"
       }
     ],
-    "unfinishedCoreProtocols": []
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
   },
   "divergence": {
     "started": [],

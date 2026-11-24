@@ -70,3 +70,8 @@ specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/time
 specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/ac034-served-head.jsonl
 specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/cites.py
 specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/evidence-tails.py
+.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+.skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts
+.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md
+.skilled/skills/system-skill-advisor/runtime/lib/README.md

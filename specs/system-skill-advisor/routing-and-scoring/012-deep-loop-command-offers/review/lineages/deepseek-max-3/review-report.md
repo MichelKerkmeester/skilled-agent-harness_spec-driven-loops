@@ -1,60 +1,59 @@
-# Deep Review Report — 012 deep loop command offers (lineage deepseek-max-3)
+# Deep Review Report - 012-deep-loop-command-offers (lineage deepseek-max-3)
+
+Lineage `deepseek-max-3` of a three-lineage fan-out. Seven iterations, stop policy `max-iterations`, stop reason `maxIterationsReached`. Target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec folder, Level 2).
 
 ## 1. Executive Summary
 
 - **Overall verdict:** CONDITIONAL
-- **hasAdvisories:** false (the verdict is CONDITIONAL; the four P2s are listed but do not set the advisory flag)
-- **Counts the verdict used:** P0 = 0, P1 = 1, P2 = 4, read from the lineage registry by `review-verdict.cjs` (active P0 0, active P1 1, active P2 4, search debt 0, failed required gate ids none)
-- **Self-check outcomes:** no active P0 existed, so no full Hunter/Skeptic/Referee replay was required. The one P1 (finding 1) received a compact skeptic/referee pass in iteration 1 and its claim packet is recorded there. The adversarial self-check at synthesis made no calls: no P0/P1 was downgraded or called a false positive.
-- **Review scope:** 72 seeded files: the packet docs (`spec.md`, `acceptance-criteria.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, `plan.md`, `timeline.md`), the advisor gate and its Python fallback, the scorer lanes, the renderer and subprocess layer, the degraded CLI and hook fallback, the shared fixture and its suites, the deep command documents and workflow YAMLs, the hub router, and the deep-loop reducer.
-- **Operator review focus (verbatim):** Traceability is the lead focus: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md (REQ-001 to REQ-053) against the code that implements it or the decision that records it (ADR-001 to ADR-009), and every ticked task in tasks.md and every Met row in acceptance-criteria.md (AC-001 to AC-061) against evidence that really exists in the tree, including the twelfth fix round (T112 to T114). Cover all four configured dimensions, because the coverage gate needs each one recorded before the last iteration. Give correctness, security and maintainability one iteration each within iterations 1 to 4, and spend the rest on traceability. Record every finding's file as its full repo-relative path, such as specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md, never a bare file name. The scope gate matches full paths only. Do not write a terminal_gates row yourself. The orchestrator computes it with terminal-gates.cjs after the run.
-- **Iterations:** 7 of 7 (stopPolicy = max-iterations, stop reason `maxIterationsReached`). Dimensions covered: correctness (iteration 1), security (2), maintainability (3), traceability (4 to 7).
-- **Stop reason:** the configured cap was reached. Convergence was read as telemetry only, as the dispatch directed.
+- **hasAdvisories:** false (the verdict is not PASS; four P2 findings are active)
+- **Active findings:** P0=0, P1=1, P2=4 -- these are the counts the verdict used, read from `deep-review-findings-registry.json` after the final reducer pass
+- **Self-check outcomes:** R1-P1-001 was re-read and re-executed at its cited lines on both gate copies in iteration 7 and confirmed at P1; no finding was downgraded or called a false positive. The four P2 findings were re-read and confirmed as they stand.
+- **Review scope:** 77 files listed in `review-scope-files.txt`, covering the advisor gate in both languages and its tests, the deep command documents and assets, the hub routing files, the review reducer and its tests, the packet's own docs, packet 013's closure rows, and the feature catalog, playbook and module README. All four configured dimensions were covered: correctness (iteration 1), security (iteration 2), maintainability (iteration 3), traceability (iterations 4 to 7).
+- **Operator review focus (verbatim):** "Lead with traceability: finish spec_code and checklist_evidence. Check every REQ in spec.md against its code or decision, and every ticked task in tasks.md and Met row in acceptance-criteria.md against real evidence, including the thirteenth round (T115 onward). Cover all four dimensions before the last iteration: correctness, security and maintainability one iteration each within iterations 1 to 4, the rest traceability. Write no gateClass on protocol results: the reducer assigns hard to the two core protocols and advisory to the overlays. File findings only on files in review-scope-files.txt, with full repo-relative paths, never bare file names. A defect in an unlisted file goes under Edge Cases. Do not write a terminal_gates row: the orchestrator computes it after the run."
+
+### What this lineage found
+
+The packet's gate, its two copies, its tests and its closure records were checked end to end. The two served copies agree on all 368 shared fixture prompts and on 72 hand-built prompts, run through both implementations. Five defects remain:
+
+1. **R1-P1-001 (P1, correctness):** a plain question about the loop still serves `/deep:review` when its auxiliary or its "how long" shape is outside the question grammar, in both copies.
+2. **R3-P2-001 (P2, maintainability):** the feature catalog and the module README omit the routed-mode substitution, describing a routed route as serving the route's mode.
+3. **R4-P2-001 (P2, traceability):** REQ-047's "both copies serve no run row for an ask that names no mode" does not hold on a routed single-target route; the Python gate drops the row and the native gate keeps the routed mode's command.
+4. **R5-P2-001 (P2, traceability):** AC-009, AC-030 and AC-037 state final-tree suite counts (841 tests, 359 cases) the tree no longer has (368 cases; 187 files, 3,557 passed on the thirteenth round).
+5. **R6-P2-001 (P2, traceability):** the v4.2.0.0 changelog's suite row quotes the eleventh round's 186 files / 3,518 passed / 359 cases as the release total, and AC-029 reads `Met` on it.
 
 ## 2. Planning Trigger
 
-`/speckit:plan` is required: one active P1 remains (the how-to question defect in both gate copies) and it should be fixed before the next review rerun.
+`/speckit:plan` is **required**: the verdict is CONDITIONAL, one P1 remains active, and two core traceability protocols are recorded as `fail` (they ran to completion and found contradictions).
 
 ```json
 {
-  "title": "Planning Packet",
   "triggered": true,
   "verdict": "CONDITIONAL",
   "hasAdvisories": false,
-  "activeFindings": [
-    {"id": "1", "severity": "P1", "dimension": "correctness", "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1238", "title": "A digit iteration count in an unrelated trailing clause turns a how-to question into a run ask"},
-    {"id": "2", "severity": "P2", "dimension": "correctness", "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:828", "title": "The past-run outranking reads only punctuation as a clause break, so a run ask introduced by then is swallowed"},
-    {"id": "3", "severity": "P2", "dimension": "maintainability", "file": ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:691", "title": "The drift guard's coverage test only recognizes Python pattern names ending in _RE and never checks an excused name exists"},
-    {"id": "4", "severity": "P2", "dimension": "maintainability", "file": ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1", "title": "Both suites read the same fixture rows, so a misreading shared by the two copies passes the parity test"},
-    {"id": "5", "severity": "P2", "dimension": "traceability", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:68", "title": "AC-011's verification cell describes an unresolved reference the reference check no longer reports"}
-  ],
+  "activeFindings": {"P0": 0, "P1": 1, "P2": 4},
   "remediationWorkstreams": [
-    {"id": "WS-1", "title": "Scope the digit iteration count to the question's own clause, in both gate copies", "findings": ["1"]},
-    {"id": "WS-2", "title": "Treat a bare then/and/but clause opener as a clause break in explicitRunOutranks, in both copies", "findings": ["2"]},
-    {"id": "WS-3", "title": "Widen the drift-guard coverage test to every compiled gate name and resolve each excused name", "findings": ["3"]},
-    {"id": "WS-4", "title": "Keep a differential sweep or add the count-plus-question rows so a shared misreading fails a test", "findings": ["4"]},
-    {"id": "WS-5", "title": "Drop the stale unresolved-reference clause from AC-011", "findings": ["5"]}
+    "W1 question grammar: extend the question reading and add fixture rows (R1-P1-001)",
+    "W2 routed-branch parity: make the routed branch honour the no-mode rule or record the divergence as intended (R4-P2-001)",
+    "W3 routed-mode docs: name routedLoopMode in the catalog and the module README (R3-P2-001)",
+    "W4 closure counts: restate AC-009/AC-030/AC-037 and the changelog row against the last run (R5-P2-001, R6-P2-001)"
   ],
   "specSeed": [
-    "REQ-036: say that a digit iteration count in a trailing statement does not turn a how-do question into a request",
-    "REQ-051: say that the coverage test accounts for every compiled gate name, not only names ending in _RE",
-    "T039: say which clause openers count (punctuation plus then/and/but) or narrow the task to punctuation",
-    "AC-011: correct the reference-check description to the clean pass the tree now reports"
+    "REQ-016 states a general rule its examples do not cover; name the question shapes the gate reads, including how-long and the modal auxiliaries",
+    "REQ-047 and REQ-042 need one sentence saying which copy's rule wins on a routed single-target route"
   ],
   "planSeed": [
-    "Scope ITERATION_COUNT / _LOOP_DIGIT_COUNT_RE to the question clause in command-attach.ts and skill_advisor.py, with a shared fixture row for the trailing-count form",
-    "Extend the clause-mark search in explicitRunOutranks / _explicit_run_outranks to the conjunction openers, with fixture rows",
-    "Change the coverage regex to every `_X = re.compile(` name and assert each PATTERNS_NOT_COMPARED name exists",
-    "Add a checked differential-sweep artifact, or fixture rows for the question-plus-count interaction",
-    "Correct AC-011's verification text"
+    "Add the missing question shapes to LOOP_QUESTION_AUXILIARIES and LOOP_QUESTION (and the Python copies), with fixture rows in both suites",
+    "Decide the routed-branch rule, then make both copies and the servedRun fixture column exercise it",
+    "Update the catalog and README sentences for routedLoopMode",
+    "Restate the three acceptance cells and the changelog row with the current run's counts, or scope them to their round"
   ],
-  "findingClasses": ["class-of-bug", "instance-only", "matrix/evidence"],
+  "findingClasses": {"class-of-bug": 2, "instance-only": 3},
   "affectedSurfacesSeed": [
-    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
-    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-    ".skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts",
-    ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json",
-    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+    "command-attach.ts LOOP_QUESTION_AUXILIARIES / LOOP_QUESTION / routedLoopMode",
+    "skill_advisor.py _LOOP_QUESTION_AUXILIARY_LIST / _LOOP_QUESTION_RE / _apply_deep_loop_offer_gate",
+    "tests/fixtures/deep-loop-offer-cases.json and both suites",
+    "feature-catalog/cli-surface/advisor-recommend.md and runtime/lib/README.md",
+    "acceptance-criteria.md AC-009, AC-030, AC-037, AC-029 and changelog v4.2.0.0 row 759"
   ],
   "fixCompletenessRequired": true
 }
@@ -62,117 +61,102 @@
 
 ## 3. Active Finding Registry
 
-| ID | Sev | Dimension | file:line | Title |
-|----|-----|-----------|-----------|-------|
-| 1 | P1 | correctness | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1238` | A digit iteration count in an unrelated trailing clause turns a how-to question into a run ask |
-| 2 | P2 | correctness | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:828` | The past-run outranking reads only punctuation as a clause break, so a run ask introduced by "then" is swallowed |
-| 3 | P2 | maintainability | `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:691` | The drift guard's coverage test only recognizes Python pattern names ending in `_RE` and never checks an excused name exists |
-| 4 | P2 | maintainability | `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:1` | Both suites read the same fixture rows, so a misreading shared by the two copies passes the parity test |
-| 5 | P2 | traceability | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:68` | AC-011's verification cell describes an unresolved reference the reference check no longer reports |
+| ID | Severity | Title | Dimension | File:line | Finding class | Scope proof | Affected surfaces | Disposition |
+|----|----------|-------|-----------|-----------|---------------|-------------|-------------------|-------------|
+| R1-P1-001 | P1 | A plain question about the loop still serves `/deep:review` when its auxiliary or its "how long" shape is outside the question grammar | correctness | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1236` | class-of-bug | Gate in target and scope; both copies executed on the prompts | `LOOP_QUESTION_AUXILIARIES`, `LOOP_QUESTION`, Python copies, fixture, README and catalog | active |
+| R3-P2-001 | P2 | Both in-scope docs omit the routed-mode substitution | maintainability | `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:33` | instance-only | Both docs in scope; rule at `command-attach.ts:1747` | catalog paragraph and row 63; README row 146 | active |
+| R4-P2-001 | P2 | REQ-047's both-copies clause does not hold on a routed single-target route | traceability | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1747` | class-of-bug | Gate and fixture in scope; both copies executed | `routedLoopMode`, `_apply_deep_loop_offer_gate`, `servedRun` fixture column | active |
+| R5-P2-001 | P2 | Three acceptance rows state final-tree suite counts the tree no longer has | traceability | `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:66` | instance-only | Acceptance file in scope; counts checked against the fixture and AC-028 | AC-009, AC-030, AC-037; T121 | active |
+| R6-P2-001 | P2 | The changelog's suite row quotes the eleventh round's counts as the release total | traceability | `.skilled/changelog/skilled/v4.2.0.0.md:759` | instance-only | Changelog in scope; count checked against the thirteenth round | changelog row 759; AC-029 | active |
 
-**1.** Evidence: `isLoopQuestion` tests `ITERATION_COUNT` over the whole prompt before it reads the question grammar (`command-attach.ts:1238`, `:1247`; the Python copy is `skill_advisor.py:5063`, `:5305-5317`). Observed through the fallback: `how do I run a deep review on this?` returns `False`, while `how do I run a deep review on this? it took 5 iterations last time` returns `True`. Impact: the advisor offers a long, multi-pass run for a question that `REQ-036` says carries no command. Fix: scope the count test to the question's own clause; keep the existing "how do I run a deep review? then run a deep review on the parser" control. `findingClass`: class-of-bug. `scopeProof`: exactly two readers, both fixed by the same change; the fixture pins the question without the trailing count but no row pins the combined form. `affectedSurfaceHints`: ["command-attach.ts isLoopQuestion", "skill_advisor.py _is_loop_question", "shared fixture how-do rows", "command-attach-guards.vitest.ts"].
-
-**2.** Evidence: `explicitRunOutranks` searches `[,.;!?\n]` for the clause mark (`command-attach.ts:828`; `skill_advisor.py:5279`). Observed: `read the deep review report then run a deep review on the parser` returns `False`, while the same prompt with a comma before `then` returns `True` and is a fixture row (`summary-then-another-review`). Impact: a prompt that asks to read a past report and then run a fresh review loses the offer. Fix: add the conjunction openers to the clause-mark read, or narrow the task wording. `findingClass`: instance-only. `scopeProof`: only the two implementations read a clause mark; no fixture row covers the punctuation-less form. `affectedSurfaceHints`: ["command-attach.ts explicitRunOutranks", "skill_advisor.py _explicit_run_outranks", "past-run fixture rows"].
-
-**3.** Evidence: `compiled` is collected with `^(_[A-Z0-9_]+_RE) = re\.compile\(` (`deep-loop-offer-cases.vitest.ts:691`), and the `PATTERNS_NOT_COMPARED` rows are only asserted to carry a non-empty reason (`:675`). All 43 gate names end in `_RE` today, so the gap is latent; 14 excused names without `_RE` (`_MODE_CUE_PATTERNS` at `:596`, `_LOOP_MULTI_PASS` at `:597`, `_CMD_DECLINE_LEADS` at `:606`) are never resolved. Impact: `REQ-051`'s promise ("a new Python gate pattern that is neither compared nor listed fails a test") does not hold for a name outside the convention. Fix: match every compiled name and assert each excused name exists. `findingClass`: class-of-bug. `scopeProof`: one coverage test; today's tree passes, so the finding is about the guard's coverage, not a current failure. `affectedSurfaceHints`: ["deep-loop-offer-cases.vitest.ts coverage test", "PATTERNS_NOT_COMPARED table", "skill_advisor.py gate compile names"].
-
-**4.** Evidence: both suites drive `asksForLoopRun` from the same 359 rows (`deep-loop-offer-cases.vitest.ts:111`; `test_skill_advisor.py:2854`). Finding 1 is the working example: both copies agree on a prompt no row pins, so the parity test is green while both are wrong. The differential sweeps the tasks cite (227 prompts, 3,729 grammar prompts) are recorded as prose and no script reproduces them. Impact: a shared misreading survives the guard. Fix: keep a sweep as a checked artifact, or add interaction rows. `findingClass`: matrix/evidence. `scopeProof`: the two suites are the only fixture readers. `affectedSurfaceHints`: ["shared fixture", "python parity test", "vitest fixture reader", "scratch probe sweeps"].
-
-**5.** Evidence: AC-011's cell says the reference check "reports one unresolved reference, the pre-existing `speckit-resume.yaml` path" (`acceptance-criteria.md:68`), while the command it names prints `OK  command references resolve across 84 asset file(s)` and exits 0, and the evidence row it points at has said so all along (`implementation-summary.md:157`). Impact: the row's evidence no longer reproduces the sentence beside it. Fix: drop the parenthetical. `findingClass`: instance-only. `scopeProof`: one acceptance cell; no other doc repeats the claim. `affectedSurfaceHints`: ["acceptance-criteria.md AC-011", "implementation-summary.md Closure pass: advisor suite"].
+Evidence for each finding, including the claim-adjudication packet for R1-P1-001, is in `iterations/iteration-001.md` to `iteration-006.md`.
 
 ## 4. Remediation Workstreams
 
-- **P0:** none.
-- **P1:** WS-1 (finding 1) — scope the digit count to the question clause in both gate copies, with a shared fixture row for the trailing-count form.
-- **P2 advisories:** WS-2 (finding 2), WS-3 (finding 3), WS-4 (finding 4), WS-5 (finding 5), in that order.
+**W1 -- question grammar (P1, R1-P1-001).** Add the missing question shapes to the shared question reading in both copies: a `how long` alternative and the modal auxiliaries the list omits (`will`, `has`, `have`, `might`, `must`, `shall`, `was`, `were`). Add one fixture row per shape and one guard case, then re-run both suites. Fix completeness: the bug class is the closed question vocabulary; the producer is the one regex pair, so the same-class inventory is those two files plus their fixture rows.
+
+**W2 -- routed-branch parity (P2, R4-P2-001).** Decide whether a routed route may serve a mode the ask never names. If it may, state that in REQ-047 and pin it with a fixture row on a routed route; if it may not, make `routedLoopMode` return undefined when the ask names no mode and extend the `served run` test to a routed route.
+
+**W3 -- routed-mode docs (P2, R3-P2-001).** Add one sentence naming `routedLoopMode` to the catalog paragraph and the README row.
+
+**W4 -- closure counts (P2, R5-P2-001 and R6-P2-001).** Restate AC-009, AC-030 and AC-037 and the changelog row against the last recorded run, or date each cell to its round as AC-042 does.
 
 ## 5. Spec Seed
 
-- `REQ-036`: add that a digit iteration count in a separate statement about a past run does not turn a how-do question into a request.
-- `REQ-051`: restate the coverage promise in terms of every compiled gate pattern, naming the `_RE` convention if it stays.
-- `T039`: name the clause openers that count, or narrow the task to punctuation and record the choice.
-- `AC-011`: correct the reference-check description to the clean pass the tree reports.
-- `AC-040`: keep `Unmet` until the orchestrator's `terminal-gates.cjs` reads this run's gates; the rerun itself is this lineage.
+- REQ-016: replace "a question about the loop" with the shapes the gate reads, and say what a question outside those shapes does.
+- REQ-047/REQ-042: one sentence on the routed single-target route when the ask names no mode.
+- REQ-022: say whether "the final suite count" means the last run on the tree or the run at the time of writing.
 
 ## 6. Plan Seed
 
-1. Extract the count test in `isLoopQuestion`/`_is_loop_question` to the question's clause, then add a fixture row for `how do I run a deep review on this? it took 5 iterations last time` with `asksForLoopRun: false`.
-2. Add `then|and|but|so` as clause openers in `explicitRunOutranks`/`_explicit_run_outranks`, with a fixture row for the punctuation-less form and the existing comma row as the control.
-3. Change the coverage regex in `deep-loop-offer-cases.vitest.ts` to every `_X = re.compile(` name, and assert every `PATTERNS_NOT_COMPARED` name exists in the gate source.
-4. Add the interaction rows to the shared fixture, or restore the generated-prompt sweep as a checked artifact under `scratch/`.
-5. Edit AC-011's verification cell; rerun `evidence-tails.py` and `validate.sh --strict`.
+- Task: extend `LOOP_QUESTION_AUXILIARIES` and `LOOP_QUESTION` in `command-attach.ts` and `_LOOP_QUESTION_AUXILIARY_LIST`/`_LOOP_QUESTION_RE` in `skill_advisor.py`; add shared fixture rows and a guards case.
+- Task: settle the routed-branch rule and update `routedLoopMode`, the fixture's `servedRun` coverage and REQ-047.
+- Task: update the catalog and README sentences for the routed rule.
+- Task: restate the three acceptance cells and the changelog row.
+- Verify: both suites green, the new fixture rows read their columns in both copies, and `validate.sh <packet> --strict` prints `RESULT: PASSED`.
 
 ## 7. Traceability Status
 
-### Core Protocols
+**Core protocols**
 
 | Protocol | Status | Evidence | Drift |
 |----------|--------|----------|-------|
-| `spec_code` | pass | `REQ-001` to `REQ-019` (iteration 4): probes, offer docs, mirror/reference gates, aliases, near-miss/holdout rows, every stated prompt. `REQ-020` to `REQ-039` (5): typed parity, refusals, double-typed, mode cues, stage-one, degraded paths, long-prompt bound, drift guard, reducer rules, closure docs, corpus. `REQ-040` to `REQ-053` (6): no-edit, refused cue, routed mode, pronoun rerun, effort manner, mode-free, whitespace, negation, pattern guard, numbering, next-focus, doctor constant. | The `REQ-036` interaction (finding 1) and the `T039` clause reading (finding 2) |
-| `checklist_evidence` | pass | `AC-001` to `AC-029` (4), `AC-030` to `AC-043` (5), `AC-044` to `AC-061` (6): every `Evidence: path:N (anchor)` tail resolves (`problems=0`), every fixture count matches, every named test title exists, `T084` is the only open task and `AC-040` the only open criterion. | `AC-011`'s description (finding 5) |
+| `spec_code` | fail | 59 REQs mapped; `command-attach.ts:1213`, `:1727`, `:1747`, `explicit.ts:454`, `fusion.ts:1064`, `command-attach.ts:313`, `reduce-state.cjs:1014`, `:2392`, the corpus rows and the four command assets | REQ-016 contradicted by R1-P1-001; REQ-047 partly by R4-P2-001; REQ-022 by R6-P2-001 |
+| `checklist_evidence` | fail | 122 tasks and 67 AC rows checked; evidence tails resolve (`problems=0`); CHK counts match; fixture counts match AC-030/AC-031/AC-044/AC-046 | R5-P2-001: three `Met` rows rest on stale final-tree counts |
 
-### Overlay Protocols
+**Overlay protocols**
 
-| Protocol | Status | Notes |
-|----------|--------|-------|
-| `skill_agent` | notApplicable | No agent definition is part of this packet's change set |
-| `agent_cross_runtime` | notApplicable | No runtime mirror is a change target; the mirror check is read as `REQ-007` evidence |
-| `feature_catalog_code` | notApplicable | No feature-catalog entry is in scope |
-| `playbook_capability` | notApplicable | No playbook is in scope |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `feature_catalog_code` | pass | catalog paragraph, doctor row and shared-file row match the code; the routed-mode omission is R3-P2-001 |
+| `skill_agent` | pass | both mode `SKILL.md` files carry their changes and name no workflow the agent cannot run |
+| `agent_cross_runtime` | notApplicable (`applicable: false`) | no agent definition or runtime mirror in the change set or the scope |
+| `playbook_capability` | pass | NC-012 procedure, expected signals and failure triage match the gate |
 
-### AC Coverage
-
-`AC_COVERAGE`: advisory-shortfall. The packet holds 61 rows: 56 `Met`, 3 `Waived` (AC-008, AC-017, AC-020 with ADR-003, ADR-002, ADR-009), 1 `Superseded` (AC-019 with ADR-001) and 1 `Unmet` (AC-040, the rerun this lineage supplies). The validation rule that emits the signal is advisory, so it does not change the verdict.
+**AC_COVERAGE:** exempt. The packet has `acceptance-criteria.md` but no `checklist.md`, so the validation signal does not apply; the acceptance table is the closure gate and is reviewed as `checklist_evidence`.
 
 ## 8. Deferred Items
 
-- The four P2 findings are advisory follow-ups for the next packet; none changes the verdict.
-- Two packet rows that are open by record remain open: `T084` (the rerun task) and `AC-040` (the rerun criterion). This lineage is the rerun; their status is the orchestrator's to compute after `terminal-gates.cjs`.
-- The native `dist/` rebuild was not performed by this read-only review; the kept probe artifact records `freshness: live` instead.
+- REQ-033 / AC-040 (the review rerun itself) and T084 are open by design; this lineage's own protocols are recorded above and the orchestrator computes the terminal gates.
+- The three named mode-free prompts ("run a deep loop on the cache layer" and its two siblings) route deferred in the observed run, so R4-P2-001 is a latent difference until a routed single-target route reaches a mode-free ask.
+- The advisor `dist` is gitignored and outside the review scope; its freshness is taken from the recorded probe runs, not re-checked here.
+- REQ-007's mirror and reference checks are scripts outside the scope; their recorded output is the evidence.
+- `dimensionCoverageGate` failed at the final convergence check with no dimension missing: `traceabilityCovered` is false because both core protocols are `fail`. At the cap the stop is forced with that gate recorded as synthesis evidence.
 
 ## Dimension Expansion Map
 
+- Saturated directions: none. All four dimensions were covered once; traceability was revisited in iterations 4 to 7 by design, not because it saturated.
 - Completed pivots: 0. Failed pivots: 0. Audited overrides: 0.
-- Saturated directions: none; this was a default-depth run, so no expansion frontier was seeded.
-- Selected review directions: the gate's word rules (correctness), the prompt and child-process boundary (security), the drift guard and fixture oracle (maintainability), and the REQ/AC/ADR trace (traceability).
-- Remaining frontier: none recorded.
+- Remaining frontier: none recorded (default depth mode, no frontier store).
+- Breadth only: this section does not alter the verdict, the registry or the self-check.
 
 ## 9. Search Ledger
 
-*No search-depth state captured (legacy v1 record).* This lineage recorded v1 iteration records, so `searchCoverage`, `candidateCoverage`, `searchDebt` and `cleanSearchProof` are absent; the search work is recorded in the iteration narratives and the `ruled_out` rows of each delta. No search debt is open.
+*No search-depth state captured (legacy v1 record).* The run used the v1 iteration-record contract; `searchCoverage`, `candidateCoverage`, `searchDebt` and `ruledOutCandidates` are empty, `hasSearchDebt` is false, and no bug-class row is deferred or blocked. Ruled-out directions are listed in the Audit Appendix.
 
 ## 10. Audit Appendix
 
-### Convergence Summary
+**Convergence summary.** Seven iterations, each `complete`. Dimension coverage 4 of 4. Convergence score 0.25 at the final pass; the stop was forced by the iteration cap (`maxIterationsReached`), not by convergence, and the coverage gate was the one blocker recorded with it.
 
-- Iterations: 7 of 7; stop reason `maxIterationsReached`; verdict CONDITIONAL; release readiness `in-progress`.
-- New-finding ratios: iteration 1 = 1.0 (two new findings), 2 = 0.0, 3 = 1.0 (two new findings), 4 = 1.0 (one new), 5 = 0.0, 6 = 0.0, 7 = 0.0.
-- Registry: 5 open findings (0 P0, 1 P1, 4 P2) and 0 resolved.
+**Coverage summary.** 77 scope files; the gate, its tests, the docs, the hub routing files, the reducer and the packet's own records were read. The 368-case fixture was executed through both copies (0 divergences) and 72 further prompts were run through both (0 divergences). Probe, suite and corpus reruns were not re-executed: each writes outside the lineage's write surface, so their recorded output is the evidence.
 
-### Coverage Summary
+**Ruled-out claims.**
 
-- Dimensions: correctness, security, traceability, maintainability — all recorded.
-- Files reviewed across the run: the packet docs, `command-attach.ts`, `skill_advisor.py`, `render.ts`, `subprocess.ts`, `prompt-policy.ts`, `fusion.ts`, `explicit.ts`, `advisor-recommend.ts`, `skill-advisor-cli.ts`, the hook fallback, the schemas, the fixture and its five suites, the reducer and its unit tests, the presentation files, the command documents, both deep YAMLs, `hub-router.json`, `ROUTER.md` and the hub `SKILL.md`.
+- The bare loop name `deep loop` opens the gate -- no; it needs a use, continue or want verb (ADR-006).
+- A statement naming the loop is a false offer -- no; the packet defines naming `deep research` or `deep review` as an ask.
+- The `how many` question shape is broken -- no; both rows withhold in both copies.
+- The docs still state the pre-T121 no-edit rule -- no; all three name the read-only exception.
+- A prompt can inject a line into the brief -- no; the brief renders typed fields only.
+- A child process can attach an arbitrary command -- no; both paths read one owner check.
+- A child session can start an ask-policy run -- no; the policy word is parent-named for a child.
+- The Verification Summary miscounts the CHK boxes -- no; 12/13/1 matches.
+- A waiver names a missing ADR -- no; ADR-001, ADR-002, ADR-003 and ADR-009 exist.
+- The changelog states the pre-build refusal rule -- no; rows 482 to 484 state it as built.
+- Packet 013 has no degraded-path evidence -- no; its implementation summary row names both heads.
+- A seventh-iteration finding was missed -- no; both active code findings re-executed and the counts re-read.
 
-### Ruled-out Claims
+**Cross-reference appendix -- Core Protocols.** `spec_code`: 59 REQs mapped, two contradictions and one closure contradiction recorded. `checklist_evidence`: 122 tasks and 67 AC rows, three stale cells recorded.
 
-- No TypeScript/Python pattern divergence in the bounded-window search (all 359 fixture rows agree).
-- No command injection or secret exposure on the offer path (stdin, argv arrays, no shell).
-- No probe-artifact/cell mismatch (69 rows, four groups, zero changed keep or negative rows).
-- No closure-count drift outside `AC-011` (summary, tails, boxes and ADRs agree).
-- No second `DEEP_LOOP_DOCTOR_COMMAND` declaration.
+**Cross-reference appendix -- Overlay Protocols.** `feature_catalog_code` pass; `skill_agent` pass; `agent_cross_runtime` not applicable; `playbook_capability` pass.
 
-### Sources Reviewed
-
-`spec.md`, `acceptance-criteria.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, `timeline.md`; `scratch/probes/results-after.json`, `results-spec-baseline.json`, `fresh-review-hook.txt`, `ac034-served-head.jsonl`; `scratch/citations/evidence-tails.py`; `command-attach.ts`, `skill_advisor.py`, `render.ts`, `subprocess.ts`, `prompt-policy.ts`, `scorer/fusion.ts`, `scorer/lanes/explicit.ts`, `handlers/advisor-recommend.ts`, `skill-advisor-cli.ts`, `hooks/lib/skill-advisor-cli-fallback.ts`, `schemas/advisor-tool-schemas.ts`; the shared fixture and `deep-loop-offer-cases.vitest.ts`, `command-attach-guards.vitest.ts`, `typed-on-stuck-serving.vitest.ts`, `command-brief-golden.vitest.ts`, `subprocess-typed-fields.vitest.ts`, `cli-degraded-command-contract.vitest.ts`, `test_skill_advisor.py`; `reduce-state.cjs`, `deep-review-strategy-numbering.vitest.ts`, `next-focus-iteration-verdict.vitest.ts`; the deep presentation files, `research.md`, `review.md`, `deep-research.yaml`, `deep-review.yaml`, `hub-router.json`, `ROUTER.md`, `SKILL.md`; `command-prompts.jsonl`, `command-routing-baseline.json`, `.skilled/changelog/skilled/v4.2.0.0.md`, `013-deep-loop-offer-in-hint/implementation-summary.md`.
-
-### Cross-reference Appendix
-
-#### Core Protocols
-
-- `spec_code`: pass; evidence list in §7.
-- `checklist_evidence`: pass; evidence list in §7.
-
-#### Overlay Protocols
-
-- `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`: notApplicable, reason in §7.
+**Sources reviewed.** `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, packet 013's spec/plan/tasks/implementation-summary; `command-attach.ts`, `skill_advisor.py`, `explicit.ts`, `fusion.ts`, `advisor-recommend.ts`, `subprocess.ts`, `skill-advisor-cli.ts`, `skill-advisor-brief.ts`, `render.ts`, `reduce-state.cjs`, `synthesis-closeout.cjs`; the fixture, both suites and the Python suite; the two deep command documents, both presentation files and both YAML assets; `hub-router.json`, `ROUTER.md`, `SKILL.md`, `graph-metadata.json`, `quick-reference.md`; the feature catalog, the playbook and the module README; `.skilled/changelog/skilled/v4.2.0.0.md`.

@@ -1,76 +1,84 @@
 # Review Iteration 003
 
 ## Dispatcher
-Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; dimension=maintainability.
-Artifact directory: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2`. Read-only review; no `steer.md` exists in this lineage.
+
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Executor: `cli-pi` model `deepseek-v4.1-flash-1017`, run inline by lineage `deepseek-max-2` (generation 1, lineage mode `new`).
+- Iteration 3 of 7, stop policy `max-iterations`.
+- Dimension: **security**. Operator focus applied: no `gateClass` on protocol results, findings only on review-scope files, no `terminal_gates` row. Security is the third of the four dimensions the focus requires before the last iteration.
 
 ## Files Reviewed
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2380` (`buildExhaustedApproaches`)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374` (ruled-out section selection)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407` (`ruledOut` extraction)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:217` (`extractSection`)
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2421` (`replaceAnchorSection`)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:503` (`PATTERN_PAIRS`)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571` (`PATTERNS_NOT_COMPARED`)
-- `.skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121` (`VOCABULARY_PAIRS`)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md:44` (this lineage's own exhausted-approaches projection)
 
-## Findings by Severity
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:42,76,77,84,141,202,313,317,328,1650,1653,1676`
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:45,189,191,192,580`
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:46,205,215,257`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1558,1560,1566,1567`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` (`enrichCompiledRoutes` duplicate guard)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1064,1079,1084`
+- `.skilled/skills/system-deep-loop/command-metadata.json` (`ask_first`, the two deep command rows)
+- `spec.md` NFR-S01, NFR-S02, REQ-038, REQ-044, REQ-053, REQ-058
+
+## Findings - New
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
-None.
+
+1. **The hook brief keeps the child process's `policy` and `ownerSkillId` on a row whose command the tracked table names, while the CLI degraded path takes both from the tracked table** -- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:191` -- `trackedCommandForOwner` (`command-attach.ts:313`) returns the authoritative `{command, policy, ownerSkillId}` from `TRACKED_COMMANDS`, where `/deep:review` and `/deep:research` are both `policy: 'ask'` (`command-attach.ts:76`, `:77`, `:141`). The CLI degraded path consumes that result, printing `typed.policy` and `typed.ownerSkillId` (`skill-advisor-cli.ts:1566`, `:1567`). The brief calls the same function at `skill-advisor-brief.ts:191` but uses it only as a boolean: on success it returns `recommendation` unchanged (`:192`), so the `policy` and `ownerSkillId` strings that arrived from the child (`subprocess.ts:215`, `:216`, both accepted as any non-empty string) are what the head prints. A child row of `{"skill":"system-deep-loop","command":"/deep:review","policy":"run"}` therefore renders as `/deep:review (run)` on the hook brief while the tracked table says `ask`, which is the exact statement NFR-S01 forbids ("The `run` policy never starts a deep command. Both `/deep` commands keep `ask`").
+   Finding class: `trust-boundary-inconsistency`
+   Scope proof: all three files are review-scope files; the tracked table rows and both call sites were read directly, and the child-side acceptance of any non-empty string is at the cited line.
+   Affected surface hints: `skill-advisor-brief.ts` `ownedCommandRecommendation`; `subprocess.ts` `parseRecommendations`; `command-attach.ts` `TRACKED_COMMANDS` and `trackedCommandForOwner`; the brief text a hook injects, which is what an AI acts on.
+   Case: the Python fallback (or any child) emits a tracked deep command with `policy: "run"`; the hook brief prints `→ /deep:review (run)`, and an AI reading the brief starts a multi-pass run without the offer question the `ask` policy exists to force.
+   ```json
+   {"type":"claim-adjudication","claim":"The hook brief prints the child-supplied policy and owner for a tracked command, where the CLI path prints the tracked ones, so a child row can present a /deep command as policy run.","evidenceRefs":[".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:191",".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:192",".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1566",".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:215",".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:76"],"counterevidenceSought":"Read the tracked table for both deep commands, the CLI degraded path that shares the same helper, and parseRecommendations to see whether policy is validated against a vocabulary; also checked whether the brief re-derives the policy anywhere after the owner check.","alternativeExplanation":"The child is the repository's own Python advisor, so a `run` policy on a deep command cannot arise from a real producer today, which would make this hardening rather than a live defect.","finalSeverity":"P1","confidence":0.78,"downgradeTrigger":"Downgrade to P2 if parseRecommendations validates `policy` against the run/start/ask vocabulary and the tracked table, because the brief would then only ever see an authoritative value."}
+   ```
 
 ### P2 Findings
-1. **The reducer writes a ruled-out direction as a heading and drops the reason that closed it** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2404` -- `buildExhaustedApproaches` keys on the whole list item from the iteration's `## Ruled Out` section ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407]) and writes it twice: once as `### ${entry} -- RULED OUT` and again as `- What was tried: ${entry}`, while the reason becomes one fixed sentence (`- Why ruled out: One pass of evidence did not support this direction.`, [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2406]). The reviewer's actual evidence for closing the direction never reaches the strategy, which is the document the next iteration reads to avoid re-entering it.
-Finding class: class-of-bug (the projection discards the field it exists to carry).
-Scope proof: the key is the full normalized item at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407`; the two print sites are `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2404` and `:2405`; the same loss occurs on the blocked branch at `:2411` and `:2413`.
-Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/skills/system-deep-loop/runtime/tests/unit`.
-Case: an iteration writes the direction and its evidence as the leaf template asks, "Bounded window loses a distant refusal -- the pattern span is smaller than the window", and the strategy's `## 10. EXHAUSTED APPROACHES` then reads `### Bounded window loses a distant refusal -- the pattern span is smaller than the window -- RULED OUT (iteration 1, 1 attempt)` with `- Why ruled out: One pass of evidence did not support this direction.` This lineage's own strategy shows the shape at [SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md:52], where eight headings are whole sentences and every `Why` line is the generic one, so a later agent reading the strategy learns which directions are closed but not why, and the reopen test ("a later iteration carries evidence that contradicts that pass") has nothing to test against.
-Claim adjudication:
-```json
-{"type":"data_loss","claim":"The exhausted-approaches projection keeps the direction text but replaces the reviewer's closing reason with a fixed sentence, so the strategy cannot carry the evidence that closed a direction.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2404",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2406","specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-2/deep-review-strategy.md:44"],"counterevidenceSought":"read buildExhaustedApproaches in full for a reason split (there is none: the item is a single string), checked whether the iteration file is still pointed at from the strategy (it is not), and read extractListItems to see whether a separator convention exists (it strips only the bullet).","alternativeExplanation":"the template intends the strategy to hold a one-line direction and the iteration file to hold the reason, so nothing is lost for a reader who opens both.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"a documented contract that the strategy carries directions only, with the iteration file named as the reason's home, would make the loss intentional and this advisory only."}
-```
-2. **A confirmed-clean surface is read as an exhausted direction when the iteration carries no `Ruled Out` heading** -- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374` -- The section reader falls back from `Ruled Out` to `Confirmed-Clean Surfaces` and then to `Confirmed-Clean`, and every item it finds becomes a `ruledOut` direction that `buildExhaustedApproaches` writes as `RULED OUT` or `BLOCKED`. A clean surface is a pass, not a direction the run refuses to enter again.
-Finding class: instance-only (one fallback chain conflates two opposite outcomes).
-Scope proof: the fallback chain is at `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374` and feeds `ruledOut` at `:407`; the projection that mislabels it is at `:2402`.
-Affected surface hints: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/skills/system-deep-loop/runtime/tests/unit`.
-Case: an iteration file written in the older dialect, which holds `## Confirmed-Clean` but no `## Ruled Out` section, is reduced; 129 such files exist under `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/*/lineages/*/iterations/`, so a resumed or extended run over an archived packet writes each clean surface into the strategy as a direction it may not re-enter, and the "Do NOT retry" wording arrives after a second pass.
-Claim adjudication:
-```json
-{"type":"misclassification","claim":"When an iteration file has no Ruled Out section, the reducer treats its Confirmed-Clean items as ruled-out directions and projects them as exhausted approaches.","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:374",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:407",".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2402"],"counterevidenceSought":"searched the reducer for a second consumer of the fallback (none), checked the archived iteration files for the heading the fallback matches (129 files carry `## Confirmed-Clean`), and looked for a guard that skips the fallback when the section is a pass section (none).","alternativeExplanation":"the fallback exists for legacy files whose only closing section was named Confirmed-Clean and whose items were directions after all.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"a unit test showing a legacy file's Confirmed-Clean items are directions would make the fallback correct for its original inputs and leave only the naming risk."}
-```
+
+None this iteration.
 
 ## Traceability Checks
-No protocol was run this iteration: the maintainability pass read the reducer and the drift guard, and no REQ row changed status. `spec_code` stays `partial` from iterations 1 and 2 and is completed in the traceability iterations.
+
+| Protocol | Level | Status | Evidence | Summary |
+|---|---|---|---|---|
+| `spec_code` | core | pass | `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:313]`, `[SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:191]` | REQ-058's claim that both paths call one `trackedCommandForOwner` holds; the finding is that one of the two paths uses only half of what it returns. |
+| `checklist_evidence` | core | partial | `[SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:123]` | Carried: AC-066 states the owner check and is `Met`, and it is the row the finding narrows (the policy field it does not mention). Full ticked-task sweep is iteration 5. |
 
 ## Integration Evidence
-- Drift-guard surface named: `PATTERN_PAIRS` (12), `ANCHORED_PATTERN_PAIRS` (8), `FRAGMENT_PAIRS` (16) and `QUANTIFIER_PAIRS` (4) compare 40 pairs, and `PATTERNS_NOT_COMPARED` lists 38 names, each with its reason ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571]).
-- Reducer projection surface named: `buildExhaustedApproaches` is the only writer of the strategy's `## 10` section, and this lineage's strategy is the artifact it writes.
+
+- `command-attach.ts:76` and `:77` are the tracked rows both `/deep` commands resolve through: `/deep:research` and `/deep:review`, each `policy: 'ask'`, `ownerSkillId: 'system-deep-loop'`; `:84` shows `/doctor:deep-loop` at `policy: 'run'`, which is the read-only diagnosis command and not a deep run.
+- `skill-advisor-cli.ts:1558` and `skill-advisor-brief.ts:191` are the two REQ-058 call sites; they are the same helper, consumed differently.
+- `fusion.ts:1064` builds the doctor-naming pattern from `DEEP_LOOP_DOCTOR_COMMAND`, so the scorer and the attach layer cannot disagree on the command string (REQ-053).
 
 ## Edge Cases
-- **Legacy section dialect.** `extractSection` matches a heading exactly, without a numeric prefix ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:217]), which is why the caller passes `'3. REVIEW DIMENSIONS (remaining)'` with its number at [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:417]. A strategy numbered differently from the template would lose that section read; the reducer's write path tolerates both forms through `headingCore`, so only the read is strict. Recorded as an edge case, not a finding: the template this packet uses numbers the section as the caller expects.
-- **Two headings, one number.** `replaceAnchorSection` keeps the ordinal the file already gives a section ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2430]) and absorbs an authored heading above the anchor ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2453]), so a strategy built from the template keeps `## 3`, `## 6`, `## 7` and `## 12` once each, which is what this lineage's file shows.
+
+- **A child row naming a command the table does not track.** Both paths drop the command, the policy and the owner, so the row falls back to its skill alone; the same helper and the same result on both paths, so no finding.
+- **A child row with no `command` at all.** The brief returns the row unchanged, which is correct because there is nothing to vet.
+- **The served head's typed-command override.** `attachTypedCommand` re-derives the typed command from the prompt through `typedCommandForTop`, which reads `TRACKED_COMMANDS`, so a prompt cannot inject a command by typing an untracked one.
+- **`/doctor:deep-loop` at `policy: 'run'`.** Intentional: the command is read-only, and REQ-024 withholds it on a complaint that refuses any run or fix.
 
 ## Confirmed-Clean Surfaces
-- **The drift guard's coverage story is complete.** Every compiled gate pattern is compared, pasted into a compared fragment, or listed with a reason, and the lists total 40 compared pairs plus 38 reasoned exclusions ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:503], [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:571]).
-- **The vocabulary guard reads lists, not literals.** `VOCABULARY_PAIRS` carries one row per exported list with its Python tuple name ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121]), so a one-sided edit fails rather than drifting.
-- **No dead caller for the typed single-command reading.** `typedCommandIn` stays exported as the boundary-test reading and the production paths use `typedCommandsIn` ([SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:252], [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:275]), matching REQ-025's text.
+
+- `trackedCommandForOwner` uses `Object.hasOwn(TRACKED_COMMANDS, command)` before any lookup, so an inherited key such as `constructor` cannot resolve to a command.
+- `parseRecommendations` throws on a non-array payload, a non-object row, and a missing skill or non-numeric confidence, so a malformed child cannot reach the brief as a half-formed row.
+- `ownedCommandRecommendation` strips `command`, `policy`, `ownerSkillId` and the typed marker together when the command is not tracked, so a rejected command never leaves a dangling owner.
+- `withholdDeepLoopDoctorWithoutRun` and the stuck branch of `attachCommand` read the same `RUN_REFUSED` predicate, so the scorer and the attach layer cannot disagree on a run-refusing complaint.
 
 ## Ruled Out
-1. **The strategy's numbered reads are inconsistent** — `extractSection(strategyContent, '3. REVIEW DIMENSIONS (remaining)')` passes the number, so a numbered template reads correctly; the strictness is a documented edge case rather than a live defect for this packet's template.
-2. **The reducer can duplicate a machine-owned heading** — the ordinal is taken from the file and the authored heading is absorbed, so this lineage's strategy holds one `## 3`, `## 6`, `## 7` and `## 12`.
-3. **The fixture is a second source of truth for behaviour** — the fixture holds only input/expected columns and both suites read it ([SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/deep-loop-offer-cases.vitest.ts:121]); no behaviour is encoded in the fixture that the gate does not implement, because each column is asserted against the gate's own return.
+
+- **A typed command surviving on an untracked command string** -- ruled out: `typedCommandForTop` skips a command that is not a key of `TRACKED_COMMANDS` (`command-attach.ts:328`).
+- **The `policy` field's type being unvalidated into a non-string** -- ruled out at the boundary: `parseRecommendations` keeps only a non-empty string, so the defect is the value's authority, not its type.
+- **A secret or credential surface in the changed code** -- ruled out by reading: the packet's code reads the prompt string and static command tables only, matching NFR-S02.
 
 ## Next Focus
-- Dimension: traceability
-- Focus area: `spec_code` — every REQ-001 to REQ-053 against the code or the ADR that records it, beginning with the closure records the twelfth round touched (REQ-025, REQ-053, REQ-031) and the REQ rows whose evidence is a probe or a fixture column.
-- Reason: the lead focus; the last four iterations are traceability.
-- Rotation status: 3 of 4 dimensions recorded; traceability remains.
-- Required evidence: `file:line` for each REQ's implementing symbol or ADR section, full repo-relative paths only.
-- Blocked/productive carry-forward: the two reducer P2s are code findings and must not be re-reported as doc findings.
-- Recovery note: not applicable.
 
-Review verdict: PASS
+- Dimension: maintainability
+- Focus area: the two-copy drift guard and the vocabulary tables it compares, plus the doc comments that carry the rules
+- Reason: the fourth and last canonical dimension, and the packet's cost is concentrated in duplicated rule text
+- Rotation status: security done; maintainability in iteration 4; traceability returns for iterations 5 to 7
+- Blocked/productive carry-forward: `checklist_evidence` still `partial`
+- Required evidence: `file:line` for each duplicated list and each guard that compares it
+
+Review verdict: CONDITIONAL

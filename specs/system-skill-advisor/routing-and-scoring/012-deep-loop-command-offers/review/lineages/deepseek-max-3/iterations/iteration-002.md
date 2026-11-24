@@ -1,79 +1,73 @@
-# Review Iteration 2
+# Iteration 2 - Security
 
 ## Dispatcher
 
-- Resolved route: mode=review target_agent=deep-review
-- Run: `fanout-deepseek-max-3-1795552859377-13gxwk`, lineage `deepseek-max-3`, generation 1
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder)
-- Dimension: security
-- Steer file: absent at dispatch time
-- Operator review focus addressed: the security pass the focus asks for inside iterations 1 to 4. It covered the trust boundaries the focus's REQ set depends on (`REQ-030` cost bound, `REQ-038` degraded command ownership, `REQ-047` mode-free withholding, `REQ-053` doctor name) and records no active finding; the REQ-by-REQ trace and the core protocols stay in iterations 4 to 7.
+Dimension: security. Operator focus: check every REQ against the code or decision that records it. This iteration reads the prompt-to-brief trust boundary that the gate feeds -- the renderer, the subprocess boundary, the degraded CLI path and the child-session downgrade -- and it keeps the REQ sweep open (REQ-038 and REQ-058 are checked here; the rest are iteration 4). No active security finding is raised.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:205-315, 780-1010, 1428-1570`
-- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:150-330, 400-470`
-- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:105-300`
-- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:230-285`
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1484-1600`
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:150-290`
-- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:255-270`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:52, 888-905, 5743-5860`
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:163` (`sanitizeSkillLabel`), `:189` (`doctorCommandString`), `:207` (`policyWord`), `:227` (`commandLabel`), `:512` (`renderAdvisorBrief` prompt-boundary comment)
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:189` (`ownedCommandRecommendation`), `:580` (map over subprocess rows)
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:283` (`spawn`), `:310` (`child.stdin?.write`), `:383` (`runAdvisorSubprocess`)
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1490` (`degradedRecommendations`), `:1555` (typed row derivation)
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:313` (`trackedCommandForOwner`), `:1623` (`asRecord`)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:312` (`compiledRouteForRecommendation`), `:363` (`enrichCompiledRoutes`)
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:618` (hook renders through the same `renderAdvisorBrief`)
 
-## Findings by Severity
+## Findings
 
 ### P0 Findings
 
-None.
+(none)
 
 ### P1 Findings
 
-None new in this iteration. The P1 raised in iteration 1 (`A digit iteration count in an unrelated trailing clause turns a how-to question into a run ask`) is still active and keeps this iteration's verdict at CONDITIONAL.
+(none)
 
 ### P2 Findings
 
-None new in this iteration.
+(none)
 
 ## Traceability Checks
 
-No core or overlay protocol was completed in this iteration; the security dimension does not run the traceability protocols. `spec_code` and `checklist_evidence` start in iteration 4.
+- `spec_code` (core): `partial`, carried from iteration 1. REQ-038 and REQ-058 checked this iteration and hold: `trackedCommandForOwner` (`command-attach.ts:313`) rejects a command the tracked table does not name for the row's skill, the CLI reads it where a supplied string reaches the row (`skill-advisor-cli.ts:1558`), and the hook brief maps every subprocess row through the same check (`skill-advisor-brief.ts:580`). The remaining REQs are iteration 4.
+- `checklist_evidence` (core): not run this iteration; iteration 5 owns it.
 
 ## Integration Evidence
 
-Not applicable: the security pass read library and hook code only.
+- Claude hook path: `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:618` renders through `renderAdvisorBrief`, so the fallback and the CLI brief pass the same prompt-boundary guard.
+- CLI degraded path: `skill-advisor-cli.ts:1490` builds its rows from the child's JSON and strips `command`, `policy`, `ownerSkillId` and `typed` when `trackedCommandForOwner` returns undefined.
+- Subprocess boundary: `subprocess.ts:283` spawns with an argv array and no shell; the prompt is written to stdin at `:310`, never into argv.
 
 ## Edge Cases
 
-- `dist/` is absent from the tree (gitignored, rebuilt by `npm run build`), so the native TypeScript gate could not be executed. The Python fallback was executed in place with `PYTHONDONTWRITEBYTECODE=1`; no bytecode, build output, or file outside the lineage was written.
-- The cost bound was measured on the fallback only: a 96,000-character prompt is cut to 10,000 code units in 1 ms, a 10,000-character prompt of repeated `do not run /deep:review.` returns `asksForLoopRun: false` in 4 ms and `commandOnlyMentioned: true` in 17 ms. The native side is read from source, not measured.
-- Ambiguity: a prompt that asks for a typed command and later repeats a refusal of the same name (`run /deep:review on the parser, then do not run /deep:review`) is offered by both copies. The reading is defensible as "ask first, refuse a rerun", so it is recorded as an edge case rather than a finding.
+- `subprocess.ts:285` passes `env: process.env` to the Python child. That is the workspace's own environment and the script path is fixed from `workspaceRoot` (`:388`), so no prompt-controlled path or binary reaches the spawn; recorded as a boundary note, not a finding.
+- `.skilled/skills/system-skill-advisor/runtime/dist/` is gitignored and outside `review-scope-files.txt`; whether the shipped bundle mirrors this source is verified only by the freshness probe recorded in the closure docs, not by this review.
+- `renderAdvisorBrief` was not executed directly (its module graph pulls the native `better-sqlite3` binding under the review runner); the boundary claims rest on the source reads cited above, not on a rendered sample.
 
 ## Confirmed-Clean Surfaces
 
-- Prompt text is never placed in argv: both the CLI fallback (`skill-advisor-cli-fallback.ts:276-279`) and the Python subprocess (`subprocess.ts:283-300`) write it to stdin, and both spawns are `spawn()` with an argv array and no `shell`.
-- The native prompt is capped at `ADVISOR_PROMPT_MAX_CHARS = 10000` by the input schema (`advisor-tool-schemas.ts:257-262`); the Python head counts UTF-16 code units the way JavaScript does and never splits a character (`skill_advisor.py:888-901`), so both copies read the same head.
-- The lead reads are bounded to a 400-character window (`command-attach.ts:784-798`, `skill_advisor.py:5230-5245`), and the repeated-prompt timing above shows no quadratic blowup.
-- The compiled-route subprocess passes the prompt on stdin and refuses a front door that predates `--prompt-stdin` rather than falling back to argv (`advisor-recommend.ts:302-337`).
-- The degraded CLI path renders only a command string the tracked table names for the row's own skill; an unknown or other-skill string collapses the row to its skill (`skill-advisor-cli.ts:1564-1595`; `trackedCommandForOwner` at `:1489`).
-- `render.ts` rejects a label that carries a newline, strips C0/DEL control characters, collapses whitespace, and rejects instruction-shaped labels before printing a command or owner (`render.ts:163-179`).
-- `modeCommands` and each command map are read through `hasOwnProperty`, so an inherited name cannot resolve to a command (`command-attach.ts:1628-1630`).
-- Both deep-loop commands keep policy `ask` in `COMMAND_ROWS` (`command-attach.ts:64-122`), so a prompt-influenced offer cannot start a run by itself.
+- **Prompt cannot forge a brief line.** `renderAdvisorBrief` is documented and implemented as the prompt-boundary guard (`render.ts:512`): it renders typed advisor output only and ignores free-form reasons, descriptions, stdout/stderr and prompt text. `reason` appears only in a diagnostics object (`render.ts:294`), never in the rendered lines.
+- **Labels cannot carry newlines or instructions.** `sanitizeSkillLabel` (`render.ts:163`) refuses a label that folds to more than one line and refuses an instruction-shaped label; `command`, `policy` and `owner` all pass through it (`render.ts:232`).
+- **A child-supplied command is vetted twice.** `ownedCommandRecommendation` (`skill-advisor-brief.ts:189`) strips the command, policy and owner from a subprocess row the tracked table does not vouch for, and `degradedRecommendations` (`skill-advisor-cli.ts:1555`) does the same on the CLI path; both call the one `trackedCommandForOwner`.
+- **A dispatched child cannot start an ask-policy run.** `policyWord` (`render.ts:207`) replaces the policy word with the parent-named marker for a child session when the policy is `start` or `ask`, or `run` with a mutating class that is not `read-only` (`render.ts:196`), and the offer text is only rendered when the word is exactly `ask` (`render.ts:250`), so the downgrade cannot be bypassed by a command row.
+- **Own-key lookups close the prototype surface.** The generated command tables are read with `hasOwnProperty` (`command-attach.ts:1681`, `:1683`) and `Object.hasOwn` (`:314`), so an inherited name such as `constructor` resolves to nothing.
+- **Compiled routes are narrowed before use.** `asRecord` (`command-attach.ts:1623`) rejects arrays and non-objects, `enrichCompiledRoutes` requires an own-key command row, and `compiledRouteForRecommendation` passes the prompt to the front door on stdin (`advisor-recommend.ts:337`), never as an argv element.
+- **No secret or dynamic-code surface in the reviewed files.** No credential literal, `eval`, `new Function` or shell string appears in `command-attach.ts`, `render.ts`, `subprocess.ts`, `skill-advisor-brief.ts`, `skill-advisor-cli.ts` or `reduce-state.cjs`.
+- **The reducer writes only inside its artifact directory.** `reduce-state.cjs` resolves every output from the artifact root it is given; no reviewed file writes to a prompt-controlled path.
 
 ## Ruled Out
 
-- Command injection through the prompt: no shell string is built from prompt text anywhere on the offer path; the only spawns use argv arrays and stdin.
-- Secret exposure through the hook child: `childEnvForCli` forwards the caller's environment to the repo's own CLI, adds only the socket dir and the prompt-time marker, and no prompt text is placed in the environment (`skill-advisor-cli-fallback.ts:207-213`).
-- Visual spoofing of a rendered command with bidi or zero-width characters: `sanitizeSkillLabel` does not strip bidi controls, but the `command` field it prints is not prompt-derived on any current caller (the native handler passes an internal table command; the Python child passes its own tracked rows), so no attacker-controlled value reaches it. Recorded as a hardening gap if a future caller ever forwards a model-supplied command string, not an active finding.
-- Prototype pollution through a child-supplied recommendation object: `isRecord` rejects arrays and non-objects, and every field is read by name with a type check (`subprocess.ts:163-230`).
-- Regex injection through a tracked command name: the naming patterns escape every command spelling with `escapePhrase` (`command-attach.ts:1467-1469`), and the command grammar admits only `[a-z0-9_:-]`.
+- "A prompt can inject a line into the brief by carrying a newline and a command": ruled out; the brief is built from typed fields and the label sanitizer refuses multi-line labels (`render.ts:163`).
+- "The Python fallback can attach an arbitrary command string": ruled out for REQ-038's cases; an unknown string or another skill's string loses the command, policy, owner and typed marker in both the CLI and the brief path.
+- "A `run`-policy doctor can be started from a dispatched child": ruled out; `parentNamedOnly` treats `run` plus a non-`read-only` class as parent-named (`render.ts:196`).
+- "The compiled-route subprocess is prompt-injectable through argv": ruled out; the prompt is stdin only and the hub id and surface hint are fixed tokens.
 
 ## Next Focus
 
-- Dimension: maintainability
-- Focus area: the drift and parity machinery (`tests/deep-loop-offer-cases.vitest.ts` `VOCABULARY_PAIRS`/`PATTERN_PAIRS`/`PATTERNS_NOT_COMPARED`), the repeated clause and count predicates, and the closure-doc citation format across the packet's docs
-- Reason: the fourth configured dimension must be recorded before iteration 4, and iteration 3 is its slot; traceability then takes iterations 4 to 7 as the focus directs
-- Rotation status: correctness and security reviewed; maintainability next; traceability remains
-- Blocked/productive carry-forward: the two gate copies remain productive; the fixture and its drift guard are the surface for this pass
-- Required evidence: file:line reads of each exported list and pattern plus the guard rows that compare them
+Dimension: maintainability
+Focus area: whether the in-scope documentation still describes the gate as built -- `runtime/lib/README.md`, `feature-catalog/cli-surface/advisor-recommend.md` and `manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md` against `routedLoopMode` and the no-edit exception.
+Reason: the ninth and thirteenth rounds changed the routed-mode rule and the no-edit rule; the docs are the next thing a maintainer reads.
+Required evidence: a read of each doc sentence against the code path it names, cited at `path:line`.
 
 Review verdict: CONDITIONAL

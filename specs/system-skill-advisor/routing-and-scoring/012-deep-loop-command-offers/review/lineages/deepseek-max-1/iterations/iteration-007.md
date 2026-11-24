@@ -1,30 +1,22 @@
-# Iteration 7 - traceability
+# Iteration 7 - traceability (checklist_evidence)
 
 ## Dispatcher
 
-- Lineage: `deepseek-max-1`, generation 9, run `fanout-deepseek-max-1-1795552859377-13gxwk`
+- Lineage: `deepseek-max-1`, generation 10, run `fanout-deepseek-max-1-1795556727682-axtzf8`
 - Dimension: traceability
 - Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`
-- Operator focus addressed: the last slice of the focus — ADR-001 to ADR-009 checked against the rows that own them, the changelog and timeline claims read against the tree, and the packet's open-questions section read as a closure record. This is the last iteration under the cap, and both core protocols already read `pass`.
+- Operator focus addressed: this pass reads every row in `acceptance-criteria.md` and every checked task and checklist row in `tasks.md`, including T115 to T122, and checks each row's stated status against the row it describes and the Verification Summary against the boxes.
 
 ## Files Reviewed
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:33` (ADR-001)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:128` (ADR-002)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:223` (ADR-003)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:317` (ADR-004)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:412` (ADR-005)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:508` (ADR-006)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:603` (ADR-007)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:703` (ADR-008)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:796` (ADR-009)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:388` (open questions)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:45` (generation 8 and the twelfth round)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:57` (AC-040 milestone)
-- `.skilled/changelog/skilled/v4.2.0.0.md:482` (stuck-run refusal exception)
-- `.skilled/changelog/skilled/v4.2.0.0.md:484` (typed-on-stuck head)
-- `.skilled/changelog/skilled/v4.2.0.0.md:759` (final suite count)
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:78` (`AC-021`)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:63` (AC-001 to AC-067)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:13` (the continuity block)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:37` (T001 to T122)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:276` (CHK-001 to CHK-051)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:349` (Verification Summary)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/evidence-tails.py:1` (the citation checker)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:13` (the continuity block)
+- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:13` (the continuity block)
 
 ## Findings - New
 
@@ -34,75 +26,70 @@ None.
 
 ### P1 Findings
 
-None.
+None new. Carried forward: `L1-P1-001` (a refused run ask after a loop question is read as an ask) is still active.
 
 ### P2 Findings
 
-1. **The open-questions section still carries a decision the packet has since answered** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:390` -- The first open question says that if the rerun still shows `cmd=/deep:research` on N9, the operator must choose between a waiver and a narrower reading. `AC-021` records the opposite outcome — N9 prints `cmd=-` with no `/deep:*` command in any row, "so no waiver is needed" — so the contingency can no longer fire, and a release reader meets an open decision beside the row that closed it. The second bullet is an assumption the packet states as held ("The packet assumes no"), not an open question. Impact is record clarity only; no requirement, acceptance row or behaviour depends on the section.
-   - Finding class: docs-drift
-   - Scope proof: `spec.md` and `acceptance-criteria.md` are both on `review-scope-files.txt`; both anchors were read at this revision, and the N9 outcome is the one `AC-021` records.
-   - Affected surface hints: `spec.md` §10, `AC-021`, `REQ-014`, the packet metadata's `Status` line.
-   - Case: a reader opens `spec.md` §10 to see what is still undecided, finds the N9 waiver question, then opens `AC-021` and reads that the condition did not occur; nothing in §10 says the question was closed by the rerun.
+1. **T053 still says AC-008 reads `Met`, while the row reads `Waived`** -- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:114` -- T053 is checked and its own Verify clause says "AC-008 reads `Met` with the 1 of 4 rate stated in the row". AC-008 is `Waived` under ADR-003, and T062 records the waiver ("record AC-008 as waived ... Verify: AC-008 reads `Waived` with `ADR-003`"). The two ticked tasks therefore make opposite claims about the same row, and a release reader who follows T053 sees a waiver the checklist calls a pass. A scripted comparison of every `<AC-id> reads <status>` phrase in `tasks.md` against the status column finds exactly this one contradiction.
+   - Finding class: `docs-drift`
+   - Scope proof: `tasks.md` and `acceptance-criteria.md` are both on `review-scope-files.txt`; the full T001 to T122 and AC-001 to AC-067 set was parsed at this revision, and the contradiction is the only status mismatch the comparison returns.
+   - Affected surface hints: `T053`, `T062`, `AC-008`, `ADR-003`, the Verification Summary's P0/P1 counts, the continuity block in `tasks.md` if one is added later
+   - Case: a reader checks T053's verification, expects AC-008 to read `Met`, and finds `Waived`; the checklist and the acceptance file disagree on whether the offer-rate criterion passed or was waived.
+   - Fix direction: rewrite T053's Verify clause to "AC-008 records the 1 of 4 rate and reads `Waived` with ADR-003", keeping the sample evidence it already names.
    - Claim adjudication:
-     - `type`: `stale_open_question`
-     - `claim`: `spec.md` §10 presents the N9 waiver as an open operator decision although `AC-021` records the rerun outcome that makes the waiver unnecessary.
-     - `evidenceRefs`: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:390`, `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:78`
-     - `counterevidenceSought`: checked whether `AC-021` still reads `Met` with the no-waiver observation (it does), whether a later ADR records the waiver (none does, because none was needed), and whether the section is labelled as history (it is labelled `OPEN QUESTIONS`, and its second bullet is an assumption rather than a question).
-     - `alternativeExplanation`: the section may be kept as the reasoning trail for a reader who wants to know why a waiver was considered, in which case the fix is to mark the item resolved rather than to delete it.
+     - `type`: `stale_verification_phrase`
+     - `claim`: T053's stated verification says AC-008 reads `Met`, while AC-008's status cell reads `Waived` with ADR-003 and T062 records the waiver.
+     - `evidenceRefs`: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:114`, `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md:127`, `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:65`
+     - `counterevidenceSought`: checked whether T053 is superseded by a later task (T062 is a separate waiver task, not a replacement), whether the status cell could read `Met` in a superseded row (it reads `Waived` with `ADR-003`), and whether another task carries the same phrase (T062 carries the opposite one).
+     - `alternativeExplanation`: T053 may have been written before the operator waived AC-008 and never re-pointed; the sample evidence it names is still real, so only the status word is stale.
      - `finalSeverity`: P2
-     - `confidence`: 0.8
-     - `downgradeTrigger`: if the packet intends §10 to preserve decision history, the item needs a resolved marker and the severity stays a wording note.
+     - `confidence`: 0.97
+     - `downgradeTrigger`: if the packet intends T053 to record the pre-waiver state as history, the row needs a "superseded by T062" marker; it would then be a wording note rather than a defect.
 
 ## Traceability Checks
 
-- `spec_code` — pass, carried and completed. REQ-001 to REQ-053 are mapped (iterations 3 and 6), and this pass adds nothing that changes a mapping; the ADR table below confirms each amendment is the decision the requirement cites.
-- `checklist_evidence` — pass, carried from iteration 5. This pass adds the ADR-side check of the four rows that name an ADR: `AC-008` (ADR-003), `AC-017` (ADR-002), `AC-019` (ADR-001) and `AC-020` (ADR-009) each read `Waived` or `Superseded` with the ADR in the last column, and each ADR states the clause it waives.
-
-  | ADR | Recorded decision | Owning row | Tree check |
-  |---|---|---|---|
-  | ADR-001 | Supersede `AC-019`'s near-miss count with the five-row check | `AC-019` (`Superseded`) | 31 near-miss rows in the corpus, the count the row says supersedes 15 |
-  | ADR-002 | Keep the `multi-round research` alias | `AC-017` (`Waived`) | both hub files carry the alias; the out-of-domain replay is recorded |
-  | ADR-003 | Waive `AC-008` on the measured offer rate | `AC-008` (`Waived`) | F6's 1-of-4 rate is stated in the row and in `implementation-summary.md` limitation 5 |
-  | ADR-004 | Narrow D2 so a loop name about the loop's own code is not an ask | `REQ-019` | `LOOP_ARTIFACT_NOUNS` at `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1027` and the subject rows |
-  | ADR-005 | A typed deep command outranks the stuck-run diagnosis on the served head | `AC-027`, `AC-036` | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1590` and the typed-stuck fixture row |
-  | ADR-006 | A bare loop name is not a loop ask | `REQ-035`'s mode-free clause | four `servedRun: "none"` fixture rows and the hub row with no command |
-  | ADR-007 | Amend REQ-011 to the two research aliases the hub carries | `AC-043` | `hub-router.json` and `ROUTER.md` carry both aliases; `autonomous research` is absent from both |
-  | ADR-008 | Amend REQ-035 so a mode-free plural loop serves the hub without a command | `AC-051` | `plural-deep-loops-served` reads `servedRun: "none"` |
-  | ADR-009 | Waive `AC-020`'s blind-writer clause | `AC-020` (`Waived`) | the lane reports are not in the packet, which is what the ADR records |
+- `spec_code` — partial (unchanged from iteration 6; all REQ-001 to REQ-059 mapped, the active P1 keeps REQ-015 from passing alone).
+- `checklist_evidence` — partial. Every acceptance row (AC-001 to AC-067) was read: 62 `Met`, 3 `Waived` (AC-008 under ADR-003, AC-017 under ADR-002, AC-020 under ADR-009), 1 `Superseded` (AC-019 under ADR-001) and 1 `Unmet` (AC-040, the traceability rerun). Every `Met` row carries an `Evidence:` tail and `python3 .../scratch/citations/evidence-tails.py` reports `problems=0`. Every checked task (T001 to T122, 121 of 122; T084 open by design) and every checked checklist row (CHK-001 to CHK-051, 25 of 26; CHK-020 open by design) was read. The Verification Summary's 12 P0 / 13 P1 / 1 P2 totals match the rows, and 11/12 P0 verified matches the one open CHK-020. The protocol stays `partial` for the `T053` contradiction: the checklist's evidence is complete, but one of its stated verifications disagrees with the row it cites.
+- The two `notApplicable` overlays from iteration 6 stay `notApplicable`; no agent or mirror file is in the change set.
 
 ## Integration Evidence
 
-- Changelog surface: `.skilled/changelog/skilled/v4.2.0.0.md:482` withholds the diagnosis on a stuck complaint that also refuses a run or a fix, and `:484` names the typed-on-stuck head; `:759` quotes 186 files, 3,518 passed and 359 Python cases, which is the eleventh and twelfth-round count.
-- Timeline surface: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:45` carries generation 8 and the twelfth round, and its milestone at `:57` records AC-040 as `In Progress` with the review report as evidence, which is the state this run is closing.
-- Decision surface: all nine ADRs read `Accepted` (`decision-record.md:39` and the eight section headers), and each names the requirement or acceptance row that owns its outcome.
+- Checklist surface: `tasks.md` is the closure checklist the focus names; its T rows, CHK rows and Verification Summary were read together with the AC file.
+- Citation surface: `scratch/citations/evidence-tails.py` is the checker T121 and T104 name; it reports `problems=0` on this tree.
+- Continuity surface: the `_memory` blocks in `acceptance-criteria.md`, `implementation-summary.md` and `decision-record.md` are the resume surface; `L4-P2-001` records their stale round labels and is carried forward here.
+- Acceptance surface: `acceptance-criteria.md` is the document that decides closure; AC-040 is the one row that keeps the packet open, and it is open by design while this lineage runs.
 
 ## Edge Cases
 
-- The timeline's AC-040 milestone points at `review/review-report.md`, which a restart moves into `review-archive/` before the new run writes its own report. The pointer is forward-looking rather than dangling: the milestone is `In Progress`, and the report this lineage feeds the merge with is written at its synthesis step.
-- `ADR-009` is a waiver, not a fix. The row it waives stays `Waived` rather than `Met`, so the unverifiable clause remains visible; treating the ADR as a closure of the clause would hide it.
-- The second open question is an assumption, not a question. It is folded into the one finding above rather than reported as a second item, because a reader would act on both with the same edit.
+- T084 (the review rerun) and CHK-020 (all criteria met) are unchecked by design; they are not findings, because the run they wait for is this one and AC-040 is the row that records it.
+- AC-040's `Unmet` status is not a defect in this pass: the row names a rerun that is executing, and a review cannot mark its own rerun complete.
+- The continuity blocks in `implementation-summary.md` and `decision-record.md` are already represented by `L4-P2-001`; they are not re-filed here.
+- The evidence-tail checker proves a path and line exist and that the anchor text sits on that line; it does not prove the claim the row makes, so the row-level read above is the evidence for the claim.
 
 ## Confirmed-Clean Surfaces
 
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:78` — `AC-021` reads `Met` with the N9 outcome stated and cites `implementation-summary.md:156`, whose anchor is the spec-baseline probe row.
-- `.skilled/changelog/skilled/v4.2.0.0.md:759` — the suite count row quotes 186 files, 3,518 passed, 4 skipped and 359 shared cases, which matches the eleventh and twelfth-round rows in `implementation-summary.md`.
-- `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md:45` — the last entry carries the eleventh round, generation 8 and the twelfth round, so the timeline is no longer one round short, which was a generation-8 finding.
+- `acceptance-criteria.md` -- all 67 rows read; 62 `Met`, 3 `Waived`, 1 `Superseded`, 1 `Unmet`, and every waiver or supersession names an ADR that exists.
+- `tasks.md:349` -- the Verification Summary's 12 P0 / 13 P1 / 1 P2 totals match the checkbox counts, and 11/12 P0 matches the one open P0 row.
+- `scratch/citations/evidence-tails.py` -- `problems=0` on the final tree; every acceptance row has one `Evidence: path:N (anchor)` tail and no task row carries a stray line-number citation.
+- `tasks.md` T115 to T122 -- the thirteenth-round rows name the code, test or document they changed and each named symbol exists.
+- `tasks.md` T062 -- the waiver row and AC-008 agree; only T053 disagrees.
 
 ## Ruled Out
 
-- Changelog claiming refused asks are skipped: ruled out. The chart carries the exception at `.skilled/changelog/skilled/v4.2.0.0.md:482`, which withholds the diagnosis only when the complaint also refuses a run or a fix.
-- Timeline one round short: ruled out. The generation-8 entry at `timeline.md:45` names the twelfth round and the P2 set it answers.
-- ADR status as drift: ruled out. Every ADR reads `Accepted`, and every waiving ADR names the row it waives.
-- The timeline's report pointer as dangling: ruled out for the reason in the edge cases — the milestone is in progress and a restart archives the prior report by design.
+- "A Met row lacks evidence": ruled out. The checker fails any row without a tail or with an anchor that is not on the named line, and it reports zero problems.
+- "The Verification Summary counts do not match the boxes": ruled out. The counts are 12/13/1 and the checked boxes are 12 P0 rows with one open, 13 P1 and 1 P2.
+- "AC-040 is stale": ruled out. It records the rerun as not observed, and this generation is that rerun.
+- "A waived row names a missing ADR": ruled out. ADR-001, ADR-002, ADR-003 and ADR-009 all exist at the lines the rows name.
+- "T084 is a defect": ruled out. The task is the review rerun itself; it stays open until the rerun reports.
 
 ## Next Focus
 
-- Dimension: none remaining (all four configured dimensions are covered and both core protocols read `pass`)
-- Focus area: synthesis of this lineage's findings into its own review report; the cross-lineage merge and the release verdict belong to the fan-out root.
-- Reason: the iteration cap is reached, the stop policy is `max-iterations`, and the remaining work is synthesis rather than another review pass.
-- Rotation status: correctness, security, traceability and maintainability all covered; `spec_code` and `checklist_evidence` at `pass`.
-- Blocked/productive carry-forward: productive; no approach was blocked.
-- Required evidence: the findings registry the reducer owns, and the four P2 rows this run recorded.
-- No recovery note: this pass was not a recovery iteration.
+- Dimension: synthesis
+- Focus area: stop at the iteration cap and synthesize the lineage report from the registry, the seven iteration files and the terminal gates.
+- Reason: seven of seven iterations are complete; the remaining work is the synthesis record and the report.
+- Rotation status: all three traceability passes and all four dimensions are complete.
+- Blocked/productive carry-forward: no blocked direction; the active P1 and the six P2s are the carried findings.
+- Required evidence: the registry counts, the seven iteration files and the terminal-gate computation.
+- Recovery note: none.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

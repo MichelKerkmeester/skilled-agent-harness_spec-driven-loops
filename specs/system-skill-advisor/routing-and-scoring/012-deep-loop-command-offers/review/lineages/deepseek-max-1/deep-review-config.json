@@ -1,9 +1,9 @@
 {
   "topic": "Review: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "sessionId": "fanout-deepseek-max-1-1795552859377-13gxwk",
-  "parentSessionId": "2026-11-24T20:40:59.000Z",
+  "sessionId": "fanout-deepseek-max-1-1795556727682-axtzf8",
+  "parentSessionId": "2026-11-24T21:45:00.000Z",
   "lineageMode": "new",
-  "generation": 9,
+  "generation": 10,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 7,
@@ -30,15 +30,15 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
-  "createdAt": "2026-11-24T20:44:12.287Z",
+  "createdAt": "2026-11-24T21:46:25.380Z",
   "status": "complete",
   "executionMode": "auto",
   "executor": {
-    "kind": "native",
-    "model": null,
-    "reasoningEffort": null,
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
     "serviceTier": null,
-    "sandboxMode": null,
+    "sandboxMode": "danger-full-access",
     "timeoutSeconds": 900
   },
   "mode": "review",
@@ -50,7 +50,7 @@
     "traceability",
     "maintainability"
   ],
-  "reviewFocus": "Traceability is the lead focus: finish the spec_code and checklist_evidence protocols. Check every REQ in spec.md (REQ-001 to REQ-053) against the code that implements it or the decision that records it (ADR-001 to ADR-009), and every ticked task in tasks.md and every Met row in acceptance-criteria.md (AC-001 to AC-061) against evidence that really exists in the tree, including the twelfth fix round (T112 to T114). Cover all four configured dimensions, because the coverage gate needs each one recorded before the last iteration. Give correctness, security and maintainability one iteration each within iterations 1 to 4, and spend the rest on traceability. Record every finding's file as its full repo-relative path, such as specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md, never a bare file name. The scope gate matches full paths only. Do not write a terminal_gates row yourself. The orchestrator computes it with terminal-gates.cjs after the run.",
+  "reviewFocus": "Lead with traceability: finish spec_code and checklist_evidence. Check every REQ in spec.md against its code or decision, and every ticked task in tasks.md and Met row in acceptance-criteria.md against real evidence, including the thirteenth round (T115 onward). Cover all four dimensions before the last iteration: correctness, security and maintainability one iteration each within iterations 1 to 4, the rest traceability. Write no gateClass on protocol results: the reducer assigns hard to the two core protocols and advisory to the overlays. File findings only on files in review-scope-files.txt, with full repo-relative paths, never bare file names. A defect in an unlisted file goes under Edge Cases. Do not write a terminal_gates row: the orchestrator computes it after the run.",
   "severityThreshold": "P2",
   "crossReference": {
     "core": [
@@ -192,12 +192,28 @@
     ".skilled/skills/system-deep-loop/runtime/tests/unit/next-focus-iteration-verdict.vitest.ts",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/ac034-served-head.jsonl",
     "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/cites.py",
-    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/evidence-tails.py"
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/citations/evidence-tails.py",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/brief-command-owner-check.vitest.ts",
+    ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md",
+    ".skilled/skills/system-skill-advisor/runtime/lib/README.md"
   ],
   "stopPolicy": "max-iterations",
   "resource_map": {
-    "emit": true
+    "emit": false
   },
-  "releaseReadinessState": "in-progress",
-  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1"
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash-1017",
+        "reasoningEffort": "max",
+        "count": 3,
+        "label": "deepseek-max"
+      }
+    ],
+    "concurrency": 3
+  },
+  "releaseReadinessState": "in-progress"
 }

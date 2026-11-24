@@ -1,90 +1,89 @@
-# Review Iteration 1
+# Iteration 1 - Correctness
 
 ## Dispatcher
 
-- Resolved route: mode=review target_agent=deep-review
-- Run: `fanout-deepseek-max-3-1795552859377-13gxwk`, lineage `deepseek-max-3`, generation 1
-- Review target: `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` (spec-folder)
-- Dimension: correctness
-- Steer file: absent at dispatch time
-- Operator review focus addressed: this iteration is the correctness pass the focus asks for within iterations 1 to 4. It read the two gate copies the focus's REQ set rests on (`REQ-035` to `REQ-053`) and reports the word-rule gap it found; the REQ-by-REQ trace and the `spec_code` / `checklist_evidence` protocols are scheduled for iterations 4 to 7, as the focus directs.
+Dimension: correctness. Operator focus: begin `spec_code` and `checklist_evidence`, and check every REQ against the code or decision that records it. This iteration reads the shared deep-loop offer gate in both copies, because it is the surface the packet exists to change and the one the thirteenth round (T115 to T118) last touched. `spec_code` is opened here (REQ-016 and REQ-011 checked) and stays `partial` until the full REQ sweep in iteration 4.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:205-330, 380-520, 580-1010, 1150-1781`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5200-5440, 5743-5860`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (`cases`, 359 rows)
-- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1484-1600`
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:200-240, 1000-1045, 2378-2420`
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1213` (`asksForLoopRun`), `:1236` (`LOOP_QUESTION_AUXILIARIES`), `:1256` (`LOOP_QUESTION`), `:1266` (`LOOP_HOW_TO_QUESTION`), `:1275` (`ITERATION_COUNT`), `:1281` (`LOOP_RUN_BY_PRONOUN`), `:1295` (`isLoopQuestion`), `:1690` (`servedMode`), `:1747` (`routedLoopMode`)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5030` (`_LOOP_QUESTION_AUXILIARY_LIST`), `:5050` (`_LOOP_QUESTION_RE`), `:5338` (`_is_loop_question`), `:5807` (`asked_mode`), `:5848` (mode-equal row gate)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` (question and refusal rows)
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:1176` (deferred-route mode cases)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454` (`passesAsked`)
 
-## Findings by Severity
+## Findings
 
 ### P0 Findings
 
-None.
+(none)
 
 ### P1 Findings
 
-1. **A digit iteration count in an unrelated trailing clause turns a how-to question into a run ask** -- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1238` -- `isLoopQuestion` tests `ITERATION_COUNT` over the whole prompt before it reads the question grammar, so any `\d+ ... iterations` anywhere defeats the question reading even when the count is a separate statement about a past run.
-Case: the prompt `how do I run a deep review on this? it took 5 iterations last time` is a how-to question plus a past fact; it reads `asksForLoopRun: true` in the Python copy, and the native gate follows the same branch.
-- Finding class: class-of-bug
-- Scope proof: `rg -n "ITERATION_COUNT|_LOOP_DIGIT_COUNT_RE"` finds exactly the two gate copies and no other reader; both run the count test before the how-to branch, so the same-class site is the Python mirror at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5063,5305`.
-- Affected surface hints: ["command-attach.ts isLoopQuestion", "skill_advisor.py _is_loop_question", "shared fixture how-do rows", "command-attach-guards.vitest.ts"]
-```json
-{
-  "type": "correctness",
-  "claim": "A how-do/how-can question that also states a digit iteration count about a past or unrelated matter serves a /deep:* command, though REQ-036 says such a question carries none.",
-  "evidenceRefs": ["command-attach.ts:1238", "command-attach.ts:1247", "skill_advisor.py:5063", "skill_advisor.py:5310"],
-  "counterevidenceSought": "Read the code comment that says 'Only a digit count turns the question back into a request' and the fixture rows how-do-run-deep-review, how-can-research-loop-stop and how-do-then-run-deep-review; all three lack a trailing digit count, so no case pins the combined form.",
-  "alternativeExplanation": "The count rule was written to recover requests such as 'how do I run a deep review for 5 iterations'. That reading survives if the count is scoped to the question's own clause; the current whole-prompt test also fires on a separate factual clause, which is not a request.",
-  "finalSeverity": "P1",
-  "confidence": 0.86,
-  "downgradeTrigger": "Downgrade to P2 if the operator rules that any prompt carrying a bare iteration count is a request regardless of clause, in which case REQ-036 should say so."
-}
-```
+1. **A plain question about the loop still serves `/deep:review` when its auxiliary or its "how long" shape is outside the question grammar** -- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1236` -- `LOOP_QUESTION_AUXILIARIES` carries seventeen auxiliaries and `LOOP_QUESTION` (`:1256`) admits only `how|why|when|what <aux> <loop subject>`, `how many ... <aux> <loop subject>` and `explain|describe how ... <loop subject>`. A question phrased with an auxiliary outside the list, or with a word between `how` and the auxiliary, matches no alternative, so `isLoopQuestion` (`:1295`) answers false and the broad `LOOP_WORDING` branch ("deep review" or "deep research", `:348`, read by `LOOP_REQUEST` at `:1030`) opens the gate. The Python copy reads the same grammar (`:5030`, `:5050`, `:5338`) and answers the same way. Verified by direct call on both copies: `asksForLoopRun("how long does a deep review take?")`, `"how long will a deep review take?"`, `"how will the deep review decide to stop?"` and `"how has the deep review been going?"` all return true, `attachCommand` on a routed single review route returns `/deep:review` for each, and the Python gate keeps `command-spec-kit-deep-review` for each. `spec.md` REQ-016 states that a question about the loop carries no command; its two fixture rows cover only the `how many` shape (`question-how-many-iterations`, `question-how-many-passes`).
+   Finding class: class-of-bug (the question reading is a closed vocabulary and a closed grammar shape).
+   Scope proof: the gate is inside the declared review target, in `review-scope-files.txt`, and the finding cites the two copies and the executed calls that produce the false offer.
+   Affected surface hints: `command-attach.ts` `LOOP_QUESTION_AUXILIARIES` and `LOOP_QUESTION`; `skill_advisor.py` `_LOOP_QUESTION_AUXILIARY_LIST` and `_LOOP_QUESTION_RE`; the shared fixture and both suites; `.skilled/skills/system-skill-advisor/runtime/lib/README.md` and `feature-catalog/cli-surface/advisor-recommend.md` both state that a question about the loop gets no run.
+   Case: "how long does a deep review take?" typed as a request for information -- the served head carries `system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop)`.
+
+   ```json
+   {
+     "type": "claim",
+     "claim": "A question about the loop whose auxiliary or shape is outside the question grammar opens the deep-loop command gate in both copies.",
+     "evidenceRefs": [
+       ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1236",
+       ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1256",
+       ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1295",
+       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5030",
+       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5338",
+       ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:98"
+     ],
+     "counterevidenceSought": "Checked whether the broad 'names deep research or deep review' ask in spec.md section 2 makes any such prompt an ask by definition, and whether the policy word limits the damage. The broad rule does cover the prompt literally; the policy is ask, so nothing runs without a yes. Checked the corpus and fixture for a question row outside the how-many shape: none exists, which is why the suites never see it.",
+     "alternativeExplanation": "The auxiliary list is deliberately finite and the two examples in REQ-016 are the whole check; a how-long question is an accepted false offer whose cost is one declined question.",
+     "finalSeverity": "P1",
+     "confidence": 0.82,
+     "downgradeTrigger": "If REQ-016's two examples are read as the exhaustive check rather than as instances of its general sentence, this becomes P2 hardening."
+   }
 
 ### P2 Findings
 
-2. **The past-run outranking reads only punctuation as a clause break, so a run ask introduced by "then" is swallowed** -- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:828` -- `explicitRunOutranks` searches `[,.;!?\n]` for the clause mark after a past-run or writing-about reading; a bare `then`/`and`/`but` clause opener never counts, so an explicit run ask after it does not outrank the reading.
-Case: `read the deep review report then run a deep review on the parser` reads `asksForLoopRun: false` in the Python copy, although the second clause asks for a run; the fixture's `summary-then-another-review` row carries a comma, which is why it passes.
-- Finding class: instance-only
-- Scope proof: `rg -n "clauseMark|clause_mark"` finds only these two implementations; the shared fixture has no punctuation-less "then" row, so no existing case contradicts the gap.
-- Affected surface hints: ["command-attach.ts explicitRunOutranks", "skill_advisor.py _explicit_run_outranks", "past-run fixture rows"]
+(none)
 
 ## Traceability Checks
 
-No core or overlay protocol was completed in this iteration. `spec_code` and `checklist_evidence` start in iteration 4, per the operator focus.
+- `spec_code` (core): `partial`. REQ-016 checked and contradicted by R1-P1-001 (question grammar); REQ-011 checked clean -- both hub files carry `iterative research` and `multi-round research`, neither carries `autonomous research` (`hub-router.json:34`, `ROUTER.md:63`), and the hub `SKILL.md:20` names `/doctor:deep-loop`. The remaining 57 REQs are scheduled for iteration 4.
+- `checklist_evidence` (core): not run this iteration; iteration 5 owns it.
 
 ## Integration Evidence
 
-Not applicable: this iteration read the gate copies and the reducer only; no command, workflow, skill, MCP tool, caller agent, or mirror surface was claimed as covered.
+- `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` is the hub's command-attach layer, called from `handlers/advisor-recommend.ts:363` (`enrichCompiledRoutes`); the served head reads it through the compiled-route subprocess at `handlers/advisor-recommend.ts:334`.
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is the fallback server's gate, read through `lib/subprocess.ts:383` (`runAdvisorSubprocess`).
+- The shared fixture is read by both suites: `tests/deep-loop-offer-cases.vitest.ts:257` and `tests/python/test_skill_advisor.py` `test_deep_loop_offer_gate_parity`.
 
 ## Edge Cases
 
-- The review target's built `dist/` is absent from the tree (gitignored, rebuilt by `npm run build`), so the native gate was read from source and the Python fallback was executed in place with `PYTHONDONTWRITEBYTECODE=1`; no build was run and nothing outside the lineage was written.
-- The fixture was checked for `asksForLoopRun`, `stuckRun`, and `writingAbout` parity against the Python copy: 359 cases, 0 mismatches. That confirms the pinned surface only; an unpinned input class can still drift, which is how finding 1 was found.
-- Ambiguity: whether a bare "then" is a clause mark is a wording judgment, so finding 2 keeps P2 and states its reopen condition rather than being escalated.
+- The auxiliary list is exported and compared by the drift guard, so adding an auxiliary is a two-copy edit plus a fixture pair; the gap is in the grammar shape (`how long`, `how <aux>` with an adverb), not only the vocabulary.
+- A misspelt or paraphrased question ("what's the runtime of a deep review?") carries no loop wording at all and is unaffected.
+- `NO_EDIT_REQUEST`, refusal and past-run readings are all short-circuited by `asksForLoopRun`'s own order; this finding is only about the question branch.
 
 ## Confirmed-Clean Surfaces
 
-- `typedCommandIn` / `typedCommandsIn` / `typedCommandForTop`: the longest-key and per-position rules match REQ-025's description, and the retired-name mapping is applied after selection (`command-attach.ts:250-314`).
-- The degraded CLI path renders only commands the tracked table names for the row's skill, and an unknown or other-skill string collapses the row to its skill (`skill-advisor-cli.ts:1564-1595`); REQ-038 holds on the read.
-- The reducer's `refinesSameLocation`, `stripReviewVerdict`, `replaceAnchorSection`, and `MIN_BLOCKED_ATTEMPTS` implementations match REQ-032, REQ-046, REQ-048 and REQ-052 as worded.
-- `asksForLoopRun` over the whole 359-row fixture agrees with the Python copy, so none of the pinned REQ-015 to REQ-053 prompts regressed in this pass.
+- `asksForLoopRun`'s refusal, past-run, writing-about and stuck-run readings were exercised on the 368-case fixture and on 72 hand-built prompts through both copies: 0 divergences between TypeScript and Python.
+- The thirteenth-round clause rule (`questionClause`, `:1285`) and the whole-word `then` rule (`explicitRunOutranks`, `:847`) behave as T115 and T116 claim on every probe tried, including `"read the deep review report then run a deep review on the parser"` (asks) and `"summarize the deep review report and run notes"` (withheld).
+- The zero-width fold (`lowerFolded`, `:917`) reads U+200B, U+200C, U+200D, U+2060 and U+FEFF as whitespace in both copies, and collapses runs of ordinary whitespace, as REQ-049 and REQ-056 state.
+- The stage-one `passesAsked` rule (`explicit.ts:454`) requires `asksForLoopRun` or `isStuckRunComplaint`, so it cannot hand the hub a lane the gate withholds.
 
 ## Ruled Out
 
-- A TypeScript/Python pattern divergence: the two copies use equivalent bounded-window searches (`LEAD_WINDOW`/`_LEAD_WINDOW` = 400, `endsBefore` vs `search(pos,end)`), and every fixture row agreed; no divergence was found.
-- A prototype-pollution or inherited-key read in `modeCommands` / `commands`: both levels are read with `hasOwnProperty` before use (`command-attach.ts:1628-1630`).
-- A quadratic prompt scan in `commandOnlyMentioned`: the occurrence positions are monotonic and `forwardSearch` caches each scan, so the path is linear in the number of namings.
+- "The bare loop name `deep loop` opens the gate": ruled out. `LOOP_REQUEST` reads `deep loop` only behind a use, continue or want verb, which is ADR-006's rule; `"deep loop: audit the payments flow"` returns false in both copies.
+- "A statement about the loop always opens the gate": not a defect by itself. `spec.md` section 2 defines naming `deep research` or `deep review` as an explicit loop ask; only the question carve-out in REQ-016 changes that, which is where R1-P1-001 sits.
+- "The `how many` carve-out is broken": ruled out. `"how many iterations does deep research run by default?"` and `"how many passes does the deep review do"` are withheld by both copies.
 
 ## Next Focus
 
-- Dimension: security
-- Focus area: untrusted prompt and child-process text in `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`, `runtime/lib/render.ts`, `runtime/lib/subprocess.ts` and `runtime/skill-advisor-cli.ts`; the 10,000-character head and 400-character lead window as the cost and reach boundary
-- Reason: the configured four dimensions must each be recorded, and security is the next risk-ordered dimension; iterations 4 to 7 then run the traceability protocols the operator focus leads with
-- Rotation status: correctness reviewed once; security and maintainability remain unrecorded
-- Blocked/productive carry-forward: the two gate copies were the productive read surface; the fixture parity check is worth repeating for the security pass
-- Required evidence: file:line reads of every trust boundary that consumes prompt text or a child-supplied command string
+Dimension: security
+Focus area: the prompt-to-brief trust boundary -- `lib/render.ts`, `lib/skill-advisor-brief.ts`, `lib/subprocess.ts`, `skill-advisor-cli.ts` and the child-session downgrade.
+Reason: the gate feeds a model-visible brief, so the next risk is what a prompt or a child process can inject into it.
+Required evidence: a read of the render path and the subprocess argv/stdin handling; file:line for every claim.
 
 Review verdict: CONDITIONAL
