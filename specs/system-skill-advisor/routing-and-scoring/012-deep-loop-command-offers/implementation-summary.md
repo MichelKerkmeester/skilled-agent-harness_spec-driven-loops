@@ -8,30 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-23T21:00:47Z"
+    last_updated_at: "2026-11-24T05:06:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Merged origin/main, reran every gate and pushed to main as 54322bd4bbe"
-    next_safe_action: "None: the packet is complete and on main"
+    recent_action: "Deep review finished with verdict FAIL, remediation round requested"
+    next_safe_action: "Commit the review, then plan and build the sixth fix round"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
-      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/probes/fresh-review-hook.txt"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/review-report.md"
     session_dedup:
-      fingerprint: "sha256:9df8d533445293a282dbbcecaceee0958575e206d975a2096b7d5472d41702f2"
+      fingerprint: "sha256:7220985625e3d464b944bb777a267782f32dc6e88eba4dd057714755b390db4f"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "520c649a-ce93-4135-91b0-cec71dd35a54"
-      workspace: "/Users/michelkerkmeester/worktrees/public/531-continuity-close-012-013"
-      savedAt: "2026-11-23T21:00:47Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/533-deep-loop-offers-deep-review"
+      savedAt: "2026-11-24T05:06:29Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-deep-loop-command-offers |
-| **Completed** | 2026-11-23, closed again after the fresh-review round |
+| **Completed** | 2026-11-23, closed again after the fresh-review round; reopened 2026-11-24 for the sixth fix round (`tasks.md` T066 to T085), whose build and closure docs are done with the traceability review rerun (T084) still open |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -165,6 +161,14 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Merge of origin/main | Main brought `a299bbcba42`, which edited the same gate. Its curly-apostrophe helper `lowerFolded`, its negated loop questions ("why doesn't my deep review converge") and its exported `LOOP_WANT_LEADS` were kept beside this round's `hasLoopAsk` and "how many" questions, in TypeScript and Python. Its new test, which wants a shared run case for every loop word, failed on this round's `deep-research` spelling, so the case `hyphen-deep-research` was added. The trigger index and its three fixtures were regenerated, not hand-merged (`--check` exit 0) |
 | Merged tree: suites | `npm run build` exit 0, then 180 files, 2735 passed, 4 skipped, 0 failed. Python `pass=130, fail=0` with 118 fixture cases. TypeScript and Python predicates agree on 227 prompts |
 | Merged tree: probes | 69 probes `exit 0 live`, 0 changes against `results-final-958fa81-worktree.json`, so main introduced no probe change |
+| Sixth round: advisor `npm run build` and `npx vitest run` | exit 0, then 184 files, 3029 passed, 4 skipped, 0 failed (baseline 2735 passed on the merged tree) |
+| Sixth round: Python suite | `python3 tests/python/test_skill_advisor.py` prints `cases=203` and `pass=136, fail=0` |
+| Sixth round: shared fixture and drift guard | The 203 cases pass in both suites. The drift guard compares eleven vocabulary pairs across the two copies, and a scratch edit adding `sixty` to the TypeScript count words alone failed it before the edit was reverted |
+| Sixth round: 69 probes | Every line reads `exit 0 live`, and the compare against `results-final-958fa81-worktree.json` prints `changes=0 guarded_failures=0` |
+| Sixth round: deep-loop runtime | `npx vitest run tests/unit` reports 190 files, 3626 passed, 2 skipped, 0 failed (baseline 3625) |
+| Sixth round: reducer replay | A replay of the three lineages on a temp copy gave 0 missing structured findings. The committed `review/` folder is unchanged and stays as the record of the pre-fix round |
+| Sixth round: corpus | `false_offer` 0 of 57 |
+| Sixth round: independent verification | A verification pass over the whole diff raised one P2 and three P1s. The P2, a drift guard that skipped the command decline and ask leads, is fixed. The three P1s are one gap that predates the round, recorded as limitation 8 |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -214,7 +218,20 @@ A fifth round fixed the gate gaps a fresh review found outside the probe set. Th
 - **Spellings:** "deep-review" and "deep-research" count, except inside a path such as `deep-review.md`. A curly apostrophe reads as a straight one in the run-ask and write-about checks.
 - **Denied symptoms:** "the deep research run is not stuck, run 5 more iterations" gets `/deep:research`. A negation before a state word denies the symptom, and a counted run ask cancels the stuck reading unless a refusal leads it.
 - **Loop as subject (ADR-004):** an edit verb before the name, or a code, file or result noun or a result verb after it, makes the loop the subject. So do iterations of something that is not the loop, a count that did something ("several passes of the linter failed") and a hyphen count or `multi-pass` that describes another noun. A wanted loop "for every PR" or one "that approves PRs" is a standing process. Probe H10, "a multi-pass security and correctness audit", first lost its command, so up to three words may stand before the loop's noun.
-- **Python typed check:** the fallback now reads a typed `/deep:*` command with the TypeScript boundary rule, and it ports the ask-policy part of `commandOnlyMentioned`. A stuck run drops the run row even when the command is typed, as `attachCommand` does.
+- **Python typed check:** the fallback now reads a typed `/deep:*` command with the TypeScript boundary rule, and it ports the ask-policy part of `commandOnlyMentioned`. A stuck run dropped the run row even when the command was typed, which the sixth round reversed under ADR-005.
+
+A sixth round fixed the findings of a three-lineage deep review of this packet (`review/review-report.md`), which returned FAIL on its coverage gate. The operator asked for the round to run autonomously (Q035). It was built in worktree `worktrees/533-deep-loop-offers-deep-review`, with the two gate copies and the shared fixture edited by four serial lanes and four parallel lanes beside them. Both gates read one 203-case fixture, so every prompt below is checked in TypeScript and in Python:
+
+- **Refusals in more verbs:** "skip the deep review and just answer", "avoid deep research", "instead of a deep review", "no need for a deep review", "I refuse a deep review here" and "do not even think about running a deep review" carry no command. A refusal lead stops at a conjunction, and "skip straight to the deep review of the parser" still asks.
+- **A stuck run that refuses a run or a fix:** "the deep research run is stuck. please don't run anything" and "my deep research run is stuck and I don't want a fix" lose the `/doctor:deep-loop` row, both at the gate and in the fused doctor row, in both copies.
+- **Two typed commands:** each typed `/deep:*` keeps its own command, so "run /deep:review on the parser, then /create:changelog" and "/deep:review the parser and then /doctor:deep-loop" keep `/deep:review`.
+- **A deferred route's mode cue** reads only loop names that are asks, and the defect check reads its -ing forms, so "run a deep loop checking the parser for bugs" picks review.
+- **The typed-on-stuck exception (ADR-005):** the Python fallback keeps the typed run row on a stuck complaint and marks it `typed`, so both served heads read `/deep:review (ask)` and the native and fallback split limitation 6 recorded is gone.
+- **The degraded brief paths** carry the command, its policy, its owner and the typed marker, so a command the prompt typed prints plain `/deep:review (ask)` on the CLI degraded path and on the Python subprocess path, while an untyped deep row keeps its three options.
+- **Long prompts:** each match is read against a 400-character window in both copies, and the Python gate reads the same 10,000-unit head the native schema accepts, so a 96,000-character prompt finishes the gate in about 0.1 seconds.
+- **The vocabulary drift guard:** the count words, run symptoms, artifact-after nouns, past-run read verbs, iterative verbs and the two command lead lists are exported arrays in TypeScript and named tuples in Python. The guard compares eleven pairs and needs a fixture case per entry, and a one-sided edit fails it.
+- **The reducer:** a refinement filed against another file or dimension keeps its own registry entry, and a replay of the three lineages gave 0 missing structured findings.
+- **A new known limitation:** the Python fallback offers a deep-loop command only when the prompt types one (limitation 8).
 
 What stays open:
 1. **The blind -04 holdouts score 2 of 3.**
@@ -225,6 +242,7 @@ What stays open:
 3. **"Write a memo on" is not read as writing about a topic.** "write a memo on iterative research funding for the grant committee" gets `/deep:research pol=ask`, and so does the same memo on "deep research funding", which was a loop ask before this packet. No guard is added for one phrasing.
 4. **The multi-round research alias also catches a memo about research funding.** The operator kept it for K2 (ADR-002), so that memo can surface the hub as a skill suggestion with no command.
 5. **The F6 session asks the offer only some of the time.** Three `claude -p` runs on "extend the finished deep review by 3 iterations" each stopped before spending, but none asked the offer with options A, B and C. The plan-mode run (`scratch/behaviour/F6-plan-mode.md`, $0.22) composed `/deep:review <packet> :auto --extend=3` and wrote a plan for approval. The run outside plan mode (`scratch/behaviour/F6.md`, $0.18) asked the spec-folder question and named `--extend=3` as the command it would run, after reading only the flag table. Step 0 of both command documents now names the three options, and the flag table sends a composed flag into option A. The run after that edit (`scratch/behaviour/F6-after-step0.md`, $0.16) asked which review was meant before it opened the command document, so the edit was never read. The session acts on the brief's `ask` alone, and the offer format lives one document away from it. Three more samples after the edit split: sample 1 (`scratch/behaviour/F6-sample-1.md`, $0.20) loaded `/deep:review` and asked the offer with `--extend=3` in the recommended option A, while samples 2 and 3 ($0.11 and $0.17) asked which review was meant first, since about 30 finished reviews exist. So 1 of 4 runs since the edit asked the offer, and AC-008 is recorded as waived under ADR-003 with that rate disclosed. The earlier F6 recording answered another prompt ("8 more") and is kept as `scratch/behaviour/F6-other-prompt.md`.
-6. **A typed command on a stuck run.** "my deep review run is stuck, /deep:review again" gets `/doctor:deep-loop` from `attachCommand` and no run row from the Python gate, but the typed-command path still puts `/deep:review (ask)` on the head. The typed command is the reader's own choice, so it was left to outrank the diagnosis. The operator confirmed that choice on 2026-11-23.
-7. **Known misses of the word rules.** "Skip the deep review on this branch" is not read as a refusal, because "skip" also opens requests. "multi-pass compiler design review" offers the loop again, since three words may now stand before the loop's noun.
+6. **A typed command on a stuck run.** "my deep review run is stuck, /deep:review again" gets `/doctor:deep-loop` from `attachCommand`, and the served head carries the typed `/deep:review (ask)` by operator decision (ADR-005). The Python fallback keeps and marks the same run row, so the two served heads agree, but the diagnosis no longer reaches a reader who typed the command. The reader chose the run, and the `ask` policy still stops before any spend.
+7. **One known miss of the word rules.** "multi-pass compiler design review" offers the loop again, since three words may now stand before the loop's noun. The refusal leads leave "skip to the deep review of the parser" and "skip it and deep review the parser" asking, and withhold on "skip the deep review on this branch".
+8. **The Python fallback offers a deep-loop command only when the prompt types one.** The fallback keeps the run row a typed prompt earned and drops the rest, so "run a deep review on the parser", "do 3 rounds of review on the scheduler" and "my deep research run is stuck, don't fix it yet, just diagnose it" serve `/deep:review`, `/deep:review` and `/doctor:deep-loop` through the native gate, and `system-deep-loop` with no command through the fallback. The gap predates this round: the same three prompts served the same fallback heads at `bd771c9cbae`, and `degradedRecommendations` only ever attached a command the prompt typed, so nothing here regressed. The fallback serves only when the daemon is unreachable.
 <!-- /ANCHOR:limitations -->

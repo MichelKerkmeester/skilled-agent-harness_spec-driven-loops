@@ -76,6 +76,13 @@ describe('deep-loop ask routing', () => {
     expect(passingSkills('start an iterative research run on font loading')[0]).toBe('system-deep-loop');
   });
 
+  // A piece about loops that also types a loop command asks for the run, so a
+  // longer command typed for another hub must not cost the hub its pass.
+  it('keeps the hub passing for a piece about loops that also types a loop command', () => {
+    const prompt = 'write a blog post about deep review loops, then /deep:review the parser and /create:changelog';
+    expect(passingSkills(prompt)).toContain('system-deep-loop');
+  });
+
   it('ranks the hub first for a review asked for over several passes', () => {
     expect(passingSkills('review the lexer over several passes')[0]).toBe('system-deep-loop');
   });

@@ -47,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-deep-loop-offer-in-hint |
-| **Completed** | 2026-11-23, closed again after the fresh-review round |
+| **Completed** | 2026-11-23, closed again after the fresh-review round; the degraded-path evidence its REQ-006 needed was added 2026-11-24 by packet 012's sixth round |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -120,6 +120,7 @@ The advisor was built, the brief command printed the new head, and the full suit
 | Packet 012's rate after its routing-step edit, for comparison | 1 of 4 asked the full offer |
 | Reopened: final head | An untyped loop ask prints `Advisor: live; use system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.95/0.12 pass.` A typed command prints `Advisor: live; use system-deep-loop → /deep:review (ask) 0.94/0.12 pass.` (`scratch/typed-head-hook.txt`) |
 | Reopened: suite | 180 files, 2696 passed, 4 skipped, 0 failed. Each new golden and head-length case fails with its rule reverted |
+| Reopened: degraded paths | A command the prompt typed also prints `/deep:review (ask)` with no `A ` option text on the CLI degraded path (`.skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts:353`) and on the Python subprocess path (`.skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts:88`). A deep command row that reaches the degraded renderer unmarked keeps its three options (`command-brief-golden.vitest.ts:364`), so the fix hides no choice from a reader who did not type the command. The local scorer's legacy mode id and the rows the prompt only named are covered by `.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts:81` and `:69` |
 | Pi hand check | Not run. The Pi rendering of the longer head was never checked by hand |
 <!-- /ANCHOR:verification -->
 

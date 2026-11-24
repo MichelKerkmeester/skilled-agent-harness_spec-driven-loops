@@ -20,10 +20,14 @@ import {
 } from './skill-advisor-cli-manifest.js';
 
 import { disabledRecommendOutput } from './lib/advisor-disabled.js';
-import { commandRowFor } from './lib/command-attach.js';
+import { TRACKED_COMMANDS, commandRowFor } from './lib/command-attach.js';
 import { stripLeadingPastedReply } from './lib/prompt-policy.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT } from './lib/compat/contract.js';
-import { runAdvisorSubprocess, type AdvisorRecommendation } from './lib/subprocess.js';
+import {
+  runAdvisorSubprocess,
+  typedCommandForRecommendation,
+  type AdvisorRecommendation,
+} from './lib/subprocess.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -1485,20 +1489,25 @@ async function runLocalScorer(prompt: string): Promise<readonly AdvisorRecommend
 }
 
 // The local scorer names command ids, but a reader can only act on a command they
-// typed or on the skill that owns it. A row whose bare slash command appears in
-// the prompt keeps its command fields, and every other row collapses to its owner
-// skill so the degraded brief names a skill that exists instead of a raw row id.
+// typed or on the skill that owns it. A row whose command the prompt typed keeps
+// its command fields, and every other row collapses to its owner skill so the
+// degraded brief names a skill that exists instead of a raw row id. The first row
+// may also be a legacy mode id standing for the hub that owns a typed command, and
+// it carries that command the way the native path's top row does, which is the
+// row the subprocess pass marks and the only row it marks.
 export function degradedRecommendations(
   entries: readonly AdvisorRecommendation[],
   prompt: string,
 ): Array<Record<string, unknown>> {
   const offeredSkills = new Set<string>();
+  const offeredCommands = new Set<string>();
   const recommendations: Array<Record<string, unknown>> = [];
   // A command named only in a pasted earlier reply is not one the user typed.
   const task = stripLeadingPastedReply(prompt);
 
-  for (const entry of entries) {
+  for (const [position, entry] of entries.entries()) {
     if (entry.passes_threshold !== true) continue;
+    const isLeading = position === 0;
     const base = {
       confidence: entry.confidence,
       uncertainty: entry.uncertainty,
@@ -1506,20 +1515,32 @@ export function degradedRecommendations(
     };
     const row = commandRowFor(entry.skill);
 
-    if (row && task.includes(row.command.split(' ')[0])) {
-      recommendations.push({
-        skillId: entry.skill,
-        kind: 'command',
-        command: row.command,
-        ...(row.policy ? { policy: row.policy } : {}),
-        ownerSkillId: row.ownerSkillId,
-        ...base,
-      });
-      offeredSkills.add(entry.skill);
-      continue;
-    }
-
     if (row) {
+      const bare = row.command.split(' ')[0];
+      // A tracked command counts as typed only where the reader typed it as a
+      // command: a path, a longer name, or a refusal of the command names it
+      // without asking for it, and marking those typed would hide the offer's
+      // no-loop option from a reader who declined the loop. A command the tracked
+      // table does not know keeps the plain mention test, and is never marked
+      // typed because only a tracked deep command renders an offer to hide.
+      const tracked = Object.hasOwn(TRACKED_COMMANDS, bare);
+      const typedHere = tracked
+        ? typedCommandForRecommendation(entry.skill, task)?.command === bare
+        : task.includes(bare);
+      if (typedHere && !offeredCommands.has(bare)) {
+        recommendations.push({
+          skillId: entry.skill,
+          kind: 'command',
+          command: row.command,
+          ...(row.policy ? { policy: row.policy } : {}),
+          ownerSkillId: row.ownerSkillId,
+          ...(tracked ? { typed: true } : {}),
+          ...base,
+        });
+        offeredSkills.add(entry.skill);
+        offeredCommands.add(bare);
+        continue;
+      }
       if (offeredSkills.has(row.ownerSkillId)) continue;
       recommendations.push({
         skillId: row.ownerSkillId,
@@ -1530,6 +1551,36 @@ export function degradedRecommendations(
       continue;
     }
 
+    // The typed row is the row the subprocess pass marked, so a marker on the
+    // entry is read as it stands and the derivation is anchored to the leading
+    // entry. Anchoring it to the first row that survived the threshold filter
+    // instead would hand the command to the row below a marked row that failed
+    // the threshold, and the head would then name a row the marker never named.
+    const typed = entry.typed === true
+      ? entry.command === undefined
+        ? typedCommandForRecommendation(entry.skill, task)
+        : { command: entry.command, policy: entry.policy, ownerSkillId: entry.ownerSkillId }
+      : isLeading
+        ? typedCommandForRecommendation(entry.skill, task)
+        : undefined;
+    if (typed && !offeredCommands.has(typed.command)) {
+      recommendations.push({
+        skillId: entry.skill,
+        command: typed.command,
+        ...(typed.policy ? { policy: typed.policy } : {}),
+        ...(typed.ownerSkillId ? { ownerSkillId: typed.ownerSkillId } : {}),
+        typed: true,
+        ...base,
+      });
+      offeredSkills.add(entry.skill);
+      if (typed.ownerSkillId) offeredSkills.add(typed.ownerSkillId);
+      offeredCommands.add(typed.command);
+      continue;
+    }
+
+    // A typed row already offered this skill as its command's owner, and a second
+    // row for that owner would print the same skill twice.
+    if (offeredSkills.has(entry.skill)) continue;
     recommendations.push({ skillId: entry.skill, ...base });
     offeredSkills.add(entry.skill);
   }

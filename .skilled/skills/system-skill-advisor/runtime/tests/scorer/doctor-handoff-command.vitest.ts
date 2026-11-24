@@ -16,6 +16,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import type {
   AdvisorProjection,
   AdvisorScoringOptions,
+  AdvisorScoredRecommendation,
   AdvisorScoringResult,
 } from '../../lib/scorer/types.js';
 
@@ -192,6 +193,20 @@ describe('doctor hand-off command', () => {
     expect(passingDoctorIds(prompt)).toEqual([]);
   });
 
+  // The fused row, not only the withhold step. The plain "is stuck" complaint
+  // reaches the doctor through the hub's command, so its fused row does not pass
+  // on its own; "never converges" does, and the same complaint with a refusal of
+  // any run or fix withholds it.
+  it.each([
+    ["the deep research run is stuck. please don't run anything", false],
+    ["my deep research run is stuck and I don't want a fix", false],
+    ["my deep research run is stuck and never converges. please don't run anything", false],
+    ["my deep research run is stuck and never converges and I don't want a fix", false],
+    ['my deep research run is stuck and never converges', true],
+  ])('passes the deep-loop doctor on "%s": %s', (prompt, passes) => {
+    expect(passingDoctorIds(prompt).includes('command-doctor-deep-loop')).toBe(passes);
+  });
+
   it.each([
     ['AGENTS.md is missing the shipped sections', 'command-doctor-agents-md-check'],
     ['the symlink to the skilled checkout is broken', 'command-doctor-helper'],
@@ -212,5 +227,56 @@ describe('runnableDoctorBridgeId', () => {
 
   it('finds no bridge the projection does not hold', () => {
     expect(runnableDoctorBridgeId('/doctor:ci report', BRIDGE_PROJECTION)).toBeUndefined();
+  });
+});
+
+// The deep loop's doctor runs a diagnosis and offers repairs, so a stuck-run
+// complaint that refuses any run or fix keeps the row from passing, and so does a
+// naming that refuses or asks about the doctor rather than asking for it. The
+// plain complaint and a request for the doctor keep it.
+describe('withholdDeepLoopDoctorWithoutRun', () => {
+  const DOCTOR_ROW = {
+    skill: 'command-doctor-deep-loop',
+    kind: 'command',
+    passes_threshold: true,
+  } as unknown as AdvisorScoredRecommendation;
+
+  async function doctorPasses(prompt: string): Promise<boolean> {
+    const { withholdDeepLoopDoctorWithoutRun } = await import('../../lib/scorer/fusion.js');
+    const [row] = withholdDeepLoopDoctorWithoutRun([DOCTOR_ROW], prompt.toLowerCase());
+    return row.passes_threshold;
+  }
+
+  it.each([
+    "the deep research run is stuck. please don't run anything",
+    "my deep research run is stuck and I don't want a fix",
+  ])('withholds the doctor on %s', async (prompt) => {
+    expect(await doctorPasses(prompt)).toBe(false);
+  });
+
+  // A naming that refuses or asks about the doctor is not a request for it, and
+  // the row must not survive on the strength of the reader having typed it.
+  it.each([
+    "my deep research run is stuck, don't run /doctor:deep-loop",
+    'my deep research run is stuck, never run /doctor:deep-loop, just explain',
+    'my deep research run is stuck, no fix please, /doctor:deep-loop',
+    "what does /doctor:deep-loop do? don't run anything",
+    'what does the /doctor:deep-loop command do?',
+  ])('withholds the doctor on a refused or questioned naming: %s', async (prompt) => {
+    expect(await doctorPasses(prompt)).toBe(false);
+  });
+
+  it('keeps the doctor on a plain stuck-run complaint', async () => {
+    expect(await doctorPasses('my deep research run is stuck')).toBe(true);
+  });
+
+  // A bare naming on a stuck run is the reader typing the command they want, so
+  // the row stays even though the naming carries no use verb.
+  it('keeps the doctor the reader named on a stuck run', async () => {
+    expect(await doctorPasses('my deep research run is stuck, /doctor:deep-loop')).toBe(true);
+  });
+
+  it('keeps the doctor the reader asked for despite the refusal', async () => {
+    expect(await doctorPasses("my deep research run is stuck, don't fix anything, just run /doctor:deep-loop")).toBe(true);
   });
 });

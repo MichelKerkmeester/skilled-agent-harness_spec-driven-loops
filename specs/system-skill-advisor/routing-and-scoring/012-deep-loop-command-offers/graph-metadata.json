@@ -34,7 +34,7 @@
       "decision"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -179,6 +179,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -195,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Offer From",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
     "created_at": "2026-11-22T11:08:37Z",
-    "last_save_at": "2026-11-23T21:00:47.450Z",
+    "last_save_at": "2026-11-24T08:33:19.697Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5803a6e0dc3881a2b805b646121f600593c054d6f41e9e57b1bb8e9e32aa2c19",
+    "source_fingerprint": "sha256:f25d2f1b74a20e59c042edc2f3323b16db86da87db3962e58179626a3aa91f7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d726852b57851dcd002658a1b57f6cf1134a4b8b027b9b49533f70c12d3f743",
+      "spec.md": "628679e94003575dcf46a48dd70421b38a84cbf7f727d7fb275ce8c5e9f4d4fe",
       "plan.md": "5a7198e12814c1af10049669e7f0b63fa5f9dcc16d905525b9c34abddf7ea45c",
-      "tasks.md": "e1ce6dc82b93714b6dfec908ffd98d34f043f0b6ad695340082929a439d92359",
-      "decision-record.md": "d994be9a6e25b6bf315c45620d503d92c6c98d141f49c4f74c4502a372c16497",
-      "implementation-summary.md": "f4442830df88d1b238e141a12ad67d376c575432f9b0e481dba2e3d150dbc61f"
+      "tasks.md": "e810c7932e098d011b09493b2a56ef69d094cf668474ea4f838abd0d42fa7aff",
+      "decision-record.md": "4e3d9b78f2c8401b980388e74f5a8e88776a4753632754265fd459d79b361ad0",
+      "implementation-summary.md": "ee40abe2d433c2626d47bbec2d55751358b53745d38c223d601c8d8c962a4b04"
     },
     "last_active_at": null
   }
