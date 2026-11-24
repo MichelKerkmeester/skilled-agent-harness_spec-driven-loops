@@ -6,7 +6,7 @@
     "phase",
     "stop-hook-auto-record"
   ],
-  "lastUpdated": "2026-11-24T19:06:23.971Z",
+  "lastUpdated": "2026-11-24T19:45:21.315Z",
   "specId": "016",
   "folderSlug": "stop-hook-auto-record",
   "parentChain": [
@@ -14,9 +14,10 @@
     "decision-capture",
     "001-decision-capture"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "24-11-26_19-45__planned-the-stop-hook-auto-record-child-the.md",
-    "24-11-26_20-06__built-the-stop-hook-auto-record-child-the-claude.md"
+    "24-11-26_20-06__built-the-stop-hook-auto-record-child-the-claude.md",
+    "24-11-26_20-45__stop-hook-auto-record-child-landed-on-main-and.md"
   ]
 }

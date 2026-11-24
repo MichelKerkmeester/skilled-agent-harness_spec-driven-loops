@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The decision-capture hook queues every answered question, but nothing writes the queue into a decision record until someone runs `/speckit:save --full-auto`",
     "created_at": "2026-11-24T18:37:57Z",
-    "last_save_at": "2026-11-24T19:06:23.971Z",
+    "last_save_at": "2026-11-24T19:45:21.315Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c856d9c26cc4936b361059ec6786aedd4a7e781f57d096cbc3610e27d45b0d70",
+    "source_fingerprint": "sha256:a8ce04e246e282a91dc85e24f52889446fcf302e83b3b453db6e0881cd16c939",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cedd3ba39f746d364d92ebcaa5027a7c6af54fd64140105859e054de055b470e",
       "plan.md": "687a4f3d664d9e980a1c36a12989ff50222d91f25f890009937cc5396d99fea1",
       "tasks.md": "5c181acca1278a91fdde4dc25560711a976dd360388bc32d4e509ef815acb729",
-      "decision-record.md": "d25329559dd26ae3e3e9d6de8a6955ef4915682eff48f122800a12d8a456d8b2",
-      "implementation-summary.md": "55c53f0d904a4f247f9643158c69aa915cb6ccfc7f5e878b24a5c68b71771480"
+      "decision-record.md": "6120ae7a54957cbcd6397d5e6818e9f2266b00b09a7940dcdbbd478e7429a288",
+      "implementation-summary.md": "6d86a081cb5de50e898b12966e6a6c7cbe3f4074735adf6b63d6ea5a69b7232f"
     },
     "last_active_at": null
   }
