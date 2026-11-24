@@ -21,6 +21,7 @@ import {
   NO_EDIT_REQUEST,
   typedCommandForTop,
   typedCommandIn,
+  typedCommandsIn,
 } from '../lib/command-attach.js';
 
 // The only route shape that names a command unambiguously: one decision and one
@@ -802,6 +803,29 @@ describe('command attach on a deep-loop prompt', () => {
   });
 });
 
+// A refusal verb close before the loop name withholds the run as a negation
+// does, while "skip straight to" and a negation four words back still ask.
+describe('command attach on a refusal verb', () => {
+  it.each([
+    'skip the deep review and just answer',
+    'avoid deep research; answer from memory',
+    'there is no need for a deep review',
+    'instead of a deep review, just explain the bug',
+    'I refuse a deep review here',
+    'do not even think about running a deep review',
+  ])('gives no command on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    'skip straight to the deep review of the parser',
+    "don't hesitate to run a deep review",
+    "don't forget to run a deep review on the parser",
+  ])('keeps /deep:review on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/deep:review');
+  });
+});
+
 describe('typed command boundaries', () => {
   it('does not read a file name with an extension as a typed command', () => {
     expect(typedCommandIn('see /create:sk-skill.md for details')).toBeUndefined();
@@ -892,6 +916,62 @@ describe('typed command boundaries', () => {
   });
 });
 
+// A prompt can type two workflows. The longest typed name is not the only one
+// asked for, so a gate that asks whether its own command was typed reads every
+// typed command, and a deferred route reads its mode past a loop name that is
+// only the subject of the request.
+describe('more than one typed command', () => {
+  it('lists every typed command in the order it was typed', () => {
+    expect(typedCommandsIn('run /deep:review on the parser, then /create:changelog')).toEqual(['/deep:review', '/create:changelog']);
+  });
+
+  it('reads one command where two names start at the same place, and maps a retired name', () => {
+    expect(typedCommandsIn('/create:skill-parent for the hub, then /create:skill for a leaf')).toEqual(['/create:skill-parent', '/create:sk-skill']);
+    expect(typedCommandIn('/create:skill-parent for the hub, then /create:skill for a leaf')).toBe('/create:skill-parent');
+  });
+
+  it.each([
+    'run /deep:review on the parser, then /create:changelog',
+    '/deep:review the parser and then /doctor:deep-loop',
+  ])('keeps a typed deep command beside a longer typed command: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/deep:review');
+  });
+
+  it('offers no deep command beside a typed command when the loop is neither typed nor asked for', () => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), 'look at the parser, then /create:changelog')).toBeUndefined();
+  });
+
+  it('delivers the typed command the leading skill owns when a longer one belongs to another skill', () => {
+    const prompt = 'run /deep:review on the parser, then /create:changelog';
+    expect(typedCommandForTop('system-deep-loop', prompt)?.command).toBe('/deep:review');
+    expect(typedCommandForTop('sk-doc', prompt)?.command).toBe('/create:changelog');
+    expect(typedCommandForTop('mcp-tooling', prompt)).toBeUndefined();
+  });
+
+  it('skips a refused typed command and delivers the next one the leading skill owns', () => {
+    expect(typedCommandForTop('sk-doc', "don't run /create:skill-parent, run /create:changelog")?.command).toBe('/create:changelog');
+  });
+
+  it('keeps a typed doctor on a stuck run beside a longer typed command', () => {
+    const prompt = "my deep research run is stuck, don't fix anything, just run /doctor:deep-loop and later /create:manual-testing-playbook";
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/doctor:deep-loop');
+  });
+
+  it.each([
+    'run a deep loop to review the research loop config',
+    'run a deep loop checking the parser for bugs',
+  ])('names the review mode on a deferred route: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe('/deep:review');
+  });
+
+  it.each([
+    'run a deep loop to fix the research loop config',
+    'run a deep loop checking that the build passes',
+  ])('leaves a deferred route without a command when only a subject or no defect is named: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+});
+
 describe('generated command table', () => {
   it('holds no separate policy table', async () => {
     expect('COMMAND_POLICIES' in await import('../lib/command-attach.js')).toBe(false);
@@ -907,5 +987,38 @@ describe('generated command table', () => {
     for (const field of fields) {
       expect(sentence).toContain('`' + field + '`');
     }
+  });
+});
+
+// A pasted prompt can repeat a refusal or a loop name thousands of times. The
+// gate reads the words before each naming on a bounded window, so such a prompt
+// costs time linear in its length and keeps the answer a short prompt gets. The
+// ceilings are generous on purpose: they catch the quadratic cost, which ran to
+// seconds, not a slow machine.
+describe('long prompts', () => {
+  const REFUSALS = 'do not run /deep:review. '.repeat(400);
+  const NO_LOOP = 'no deep review '.repeat(667);
+
+  it('reads a 10,000-character repeated refusal as a refusal, in bounded time', () => {
+    expect(REFUSALS.length).toBe(10_000);
+    const started = performance.now();
+    expect(commandOnlyMentioned(REFUSALS, '/deep:review')).toBe(true);
+    expect(attachCommand('system-deep-loop', SINGLE('review'), REFUSALS)).toBeUndefined();
+    expect(performance.now() - started).toBeLessThan(1_000);
+  });
+
+  it('reads a 10,000-character repeated "no deep review" as no loop ask', () => {
+    expect(asksForLoopRun(NO_LOOP)).toBe(false);
+  });
+
+  it('still reads a request that follows the repeated refusals', () => {
+    expect(commandOnlyMentioned(`${REFUSALS}now run /deep:review on the parser`, '/deep:review')).toBe(false);
+    expect(asksForLoopRun(`${NO_LOOP}but run a deep review on the parser`)).toBe(true);
+  });
+
+  it('reads a refusal whose lead sits just before the name after a long prompt', () => {
+    const padding = 'the parser and the lexer were refactored last week. '.repeat(200);
+    expect(commandOnlyMentioned(`${padding}do not run /deep:review`, '/deep:review')).toBe(true);
+    expect(asksForLoopRun(`${padding}skip the deep review`)).toBe(false);
   });
 });

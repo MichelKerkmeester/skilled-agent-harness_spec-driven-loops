@@ -31,7 +31,7 @@ import subprocess
 import sys
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
@@ -4471,6 +4471,167 @@ def _executor_lift_id(executor_id: str) -> str:
 # and fails in the other means the copies drifted. Python's lookbehind takes only
 # fixed widths, so the native alternation of back-references is spelled as one
 # lookbehind per word.
+#
+# The vocabulary below is data, one word or phrase per line, so the words a
+# reviewer has to judge stay visible and cheap to correct, and a test can read
+# them rather than parse them back out of a pattern. Each pattern is built from
+# its list, so this copy and the native gate's exported lists drift only when a
+# list drifts.
+_COUNT_WORD_LIST = (
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
+    "twenty",
+    "thirty",
+    "forty",
+    "fifty",
+    "dozen",
+)
+
+# A run that hangs is listed in both spellings, because a list of words cannot
+# carry a character class.
+_LOOP_RUN_SYMPTOM_LIST = (
+    "stuck",
+    "hang",
+    "hangs",
+    "hanging",
+    "hung",
+    "frozen",
+    "stalled",
+    "stalls",
+    "spins",
+    "spinning",
+    "stale",
+    "empty",
+)
+
+_LOOP_ARTIFACT_NOUN_LIST = (
+    "scorer",
+    "scoring",
+    "config",
+    "configs",
+    "configuration",
+    "settings",
+    "module",
+    "script",
+    "scripts",
+    "implementation",
+    "prompt",
+    "prompts",
+    "template",
+    "templates",
+    "schema",
+    "runner",
+    "reducer",
+    "logic",
+    "tests",
+    "docs",
+    "documentation",
+    "yaml",
+    "json",
+    "findings",
+    "results",
+    "dashboard",
+    "command file",
+    "found",
+    "flagged",
+    "reported",
+    "raised",
+    "produced",
+    "surfaced",
+    "returned",
+    "generated",
+    "turned up",
+)
+
+# `summarise` and `summarize` are one verb in two spellings, and a list of words
+# cannot carry a character class, so both are listed.
+_PAST_RUN_READ_VERB_LIST = (
+    "summarize",
+    "summarise",
+    "summary",
+    "recap",
+    "explain",
+    "read",
+    "tell me",
+    "walk me through",
+    "go through",
+    "what did",
+    "show me",
+    "pull out",
+    "extract",
+)
+
+# `analyse` and `analyze` are one verb in two spellings, listed twice for the
+# same reason as the read verbs.
+_ITERATIVE_VERB_LIST = (
+    "review",
+    "research",
+    "audit",
+    "investigate",
+    "inspect",
+    "check",
+    "scan",
+    "examine",
+    "analyze",
+    "analyse",
+    "look into",
+    "go over",
+)
+
+_LOOP_WORDING_LIST = (
+    "deep research",
+    "deep-research",
+    "deep review",
+    "deep-review",
+    "multi-pass",
+)
+
+_LOOP_NAME_LIST = (
+    "deep loop",
+    "research loop",
+    "review loop",
+)
+
+_LOOP_WANT_LEAD_LIST = (
+    "i'd like",
+    "i would like",
+    "we'd like",
+    "we would like",
+    "i want",
+    "we want",
+    "i need",
+    "we need",
+    "give me",
+    "spin up",
+)
+
+# A mode suffix chains, as in `:auto:with-research`, so the alternation over
+# these words is the unit a typed command repeats.
+_MODE_SUFFIX_LIST = (
+    "auto",
+    "confirm",
+    "autopilot",
+    "unattended",
+    "with-context",
+    "with-phases",
+    "with-research",
+)
 
 _LOOP_PASS_GAP = r"(?:(?:more|extra|additional|full|deep|review|research|audit|iterative) ){0,2}"
 _LOOP_PASS_NOUN = (
@@ -4487,9 +4648,13 @@ _LOOP_COUNT_BACK_POINTER = "".join(
     rf"(?<!\b{word} )"
     for word in ("first", "last", "previous", "past", "prior", "earlier", "those", "these", "the", "both")
 ) + r"(?<!(?<!\bstop )\bafter )"
+# An article may precede `dozen`, spelling the same count, so it hangs off that
+# entry as the pattern is built rather than in the list, which keeps one bare
+# word per line.
 _LOOP_COUNT_WORDS = (
-    r"(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen"
-    + r"|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|(?:a )?dozen)"
+    r"(?:"
+    + "|".join(("(?:a )?" if word == "dozen" else "") + re.escape(word) for word in _COUNT_WORD_LIST)
+    + r")"
 )
 _LOOP_COUNT_LEAD = (
     _LOOP_COUNT_BACK_POINTER
@@ -4501,7 +4666,7 @@ _LOOP_COUNT = (
     + _LOOP_PASS_GAP + _LOOP_PASS_NOUN + ")"
 )
 _ITERATIVE_ACTIVITY = r"(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|pass(?:es)?|rounds?|loop)"
-_ITERATIVE_VERB = r"(?:review|research|audit|investigate|inspect|check|scan|examine|analy[sz]e|look into|go over)"
+_ITERATIVE_VERB = r"(?:" + "|".join(re.escape(word) for word in _ITERATIVE_VERB_LIST) + r")"
 _ITERATIVE_ASK = (
     r"\b(?:iterative|looped) " + _ITERATIVE_ACTIVITY + r"\b"
     + r"|\biteratively " + _ITERATIVE_VERB + r"\b"
@@ -4518,8 +4683,8 @@ _ITERATIVE_ASK = (
 # ways a prompt asks for the loop by how the work runs rather than by its name.
 _LOOP_PASSES_ASK_RE = re.compile(_ITERATIVE_ASK + r"|" + _LOOP_MULTI_PASS + r"|" + _LOOP_COUNT)
 _LOOP_USE_VERB = r"(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)"
-_LOOP_NAME = r"(?:deep loop|research loop|review loop)"
-_LOOP_WANT_LEAD = r"(?:i'd like|i would like|we'd like|we would like|i want|we want|i need|we need|give me|spin up)"
+_LOOP_NAME = r"(?:" + "|".join(re.escape(word) for word in _LOOP_NAME_LIST) + r")"
+_LOOP_WANT_LEAD = r"(?:" + "|".join(re.escape(word) for word in _LOOP_WANT_LEAD_LIST) + r")"
 _LOOP_CONTINUE_VERB = r"(?:continue|resume|extend|restart)"
 _LOOP_OBJECT_GAP = (
     r"(?:(?!(?:until|while|when|whenever|unless|if|once|before|after|because|so|then|and|but|or|for|on|in|of"
@@ -4527,7 +4692,9 @@ _LOOP_OBJECT_GAP = (
 )
 # A wording phrase stops at a path or a file name, so `deep-review.md` names a file.
 _LOOP_REQUEST_RE = re.compile(
-    r"(?<![\w/.-])(?:deep research|deep-research|deep review|deep-review|multi-pass)(?![\w-]|[./]\w)"
+    r"(?<![\w/.-])(?:"
+    + "|".join(re.escape(word) for word in _LOOP_WORDING_LIST)
+    + r")(?![\w-]|[./]\w)"
     + r"|\b(?:(?:" + _LOOP_USE_VERB + r"|" + _LOOP_CONTINUE_VERB + r") " + _LOOP_OBJECT_GAP + _LOOP_NAME
     + r"|" + _LOOP_WANT_LEAD + r" (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?" + _LOOP_NAME
     + r"(?! (?:that|which|for (?:every|each|all|any))\b)"
@@ -4539,10 +4706,12 @@ _LOOP_REQUEST_RE = re.compile(
 _LOOP_EDIT_LEAD_RE = re.compile(
     r"\b(?:refactor|fix|edit|modify|rewrite|debug|patch|rename|tweak|tune|clean up) " + _LOOP_OBJECT_GAP + r"\Z"
 )
+# The possessive before the nouns and the word boundary after them are grammar
+# rather than vocabulary, so they stay in the pattern.
 _LOOP_ARTIFACT_AFTER_RE = re.compile(
-    r"(?:'s)? (?:scorer|scoring|config|configs|configuration|settings|module|script|scripts|implementation|prompt"
-    r"|prompts|template|templates|schema|runner|reducer|logic|tests|docs|documentation|yaml|json|findings|results"
-    r"|dashboard|command file|found|flagged|reported|raised|produced|surfaced|returned|generated|turned up)\b"
+    r"(?:'s)? (?:"
+    + "|".join(re.escape(word) for word in _LOOP_ARTIFACT_NOUN_LIST)
+    + r")\b"
 )
 # A hyphen count or `multi-pass` measures the loop only when it qualifies the
 # loop's own work or ends the phrase.
@@ -4577,11 +4746,18 @@ _LOOP_RUN_SUBJECT_RE = re.compile(
 )
 # A state word that a negation leads, as in "the run is not stuck", denies the
 # symptom. Python's lookbehind takes fixed widths, so each negation gets its own.
+# "spinning up" starts a run rather than describing one that is stuck, so that
+# exclusion stays in the pattern beside the negation lookbehinds: they are
+# grammar rather than vocabulary.
 _LOOP_RUN_SYMPTOM_RE = re.compile(
     r"\b(?:"
     + "".join(rf"(?<!\b{word} )" for word in ("not", "isn't", "wasn't", "aren't", "weren't", "longer", "never"))
-    + r"(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|spins|spinning(?! up)|stale|empty)"
-    r"|never (?:converges?|finishes|stops|ends|fires)"
+    + r"(?:"
+    + "|".join(
+        re.escape(word) + ("(?! up)" if word == "spinning" else "") for word in _LOOP_RUN_SYMPTOM_LIST
+    )
+    + r")"
+    + r"|never (?:converges?|finishes|stops|ends|fires)"
     r"|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot|without) (?:converg\w*|finish\w*|progress\w*|mov\w*|fir\w*)"
     r"|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)"
     r"|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\b"
@@ -4591,7 +4767,7 @@ _LOOP_RUN_REQUESTED_RE = re.compile(
     r"(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))\b"
 )
 _PAST_RUN_READ_VERB_RE = re.compile(
-    r"\b(?:summari[sz]e|summary|recap|explain|read|tell me|walk me through|go through|what did|show me|pull out|extract)\b"
+    r"\b(?:" + "|".join(re.escape(word) for word in _PAST_RUN_READ_VERB_LIST) + r")\b"
 )
 _PAST_RUN_OUTPUT_RE = re.compile(
     r"\b(?:last|previous|prior|earlier|yesterday's|finished|completed) (?:[\w'-]+ ){0,2}?(?:deep[- ])?(?:research|review|loop|run)\b"
@@ -4624,32 +4800,57 @@ _EXPLICIT_RUN_ASK_RE = re.compile(_LOOP_RUN_REQUESTED_RE.pattern + r"|" + _COUNT
 # a mode suffix or where its name stops, so `/deep:review.md` names a file.
 _TYPED_DEEP_COMMAND_RE = re.compile(
     r"(?:^|(?<=[\s`'\"(*\[~>“‘«′‹]))/deep:(research|review)"
-    r"(?=(?::(?:auto|confirm|autopilot|unattended|with-(?:context|phases|research)))+(?![a-z0-9_:-])"
-    r"|(?![a-z0-9_:-]|[/.][a-z0-9_]))"
+    r"(?=(?::(?:"
+    + "|".join(re.escape(word) for word in _MODE_SUFFIX_LIST)
+    + r"))+(?![a-z0-9_:-])"
+    + r"|(?![a-z0-9_:-]|[/.][a-z0-9_]))"
 )
-_DEEP_LOOP_RUN_ROWS = {
-    "command-spec-kit-deep-research": "/deep:research",
-    "command-spec-kit-deep-review": "/deep:review",
+# Each loop command's row id before and after the command-bridge rename. The
+# gate sees the bridge id, and the renamed row carries the typed mark on to the
+# owning skill, so a typed command is looked up by either id.
+_DEEP_LOOP_COMMAND_ROWS = {
+    "/deep:research": ("command-spec-kit-deep-research", "deep-research"),
+    "/deep:review": ("command-spec-kit-deep-review", "deep-review"),
 }
+_DEEP_LOOP_RUN_ROWS = {
+    bridge_id: command for command, (bridge_id, _) in _DEEP_LOOP_COMMAND_ROWS.items()
+}
+_DEEP_LOOP_RUN_ROW_IDS = frozenset(
+    row_id for row_ids in _DEEP_LOOP_COMMAND_ROWS.values() for row_id in row_ids
+)
 
 
 def _fold_quotes(text: str) -> str:
     return text.lower().replace("‘", "'").replace("’", "'")
 
 
+def _has_unrefused_run_ask(lower: str) -> bool:
+    """True when the prompt asks for a run that no refusal leads.
+
+    A run ask a refusal leads, as in "don't run another deep review", forbids the
+    run instead of asking for it, so it leaves a stuck reading standing.
+    """
+    return any(
+        not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
+        for match in _LOOP_RUN_REQUESTED_RE.finditer(lower)
+    )
+
+
 def is_stuck_run_complaint(text: str) -> bool:
     """True when the prompt reports a fault in an existing deep run.
 
     A counted run ask, as in "run 5 more iterations", asks for more of the run,
-    so it cancels the stuck reading unless a refusal leads it.
+    so it cancels the stuck reading unless a refusal leads it. An explicit run
+    ask cancels it only while the reader still wants that run, because a
+    complaint that also refuses the loop asks for the diagnosis, not the run.
     """
     lower = _fold_quotes(text)
     return bool(
         _LOOP_RUN_SUBJECT_RE.search(lower)
         and _LOOP_RUN_SYMPTOM_RE.search(lower)
-        and not _LOOP_RUN_REQUESTED_RE.search(lower)
+        and not _has_unrefused_run_ask(lower)
         and not any(
-            not _RUN_ASK_NEGATED_RE.search(lower[:match.start()])
+            not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
             for match in _COUNTED_RUN_ASK_RE.finditer(lower)
         )
     )
@@ -4657,21 +4858,72 @@ def is_stuck_run_complaint(text: str) -> bool:
 
 # A run ask with a negation within two words before it forbids the run. A bare
 # "no" refuses only the loop name right after it, and a bare "not" is left out
-# because "why not run a deep review" proposes the run.
+# because "why not run a deep review" proposes the run. Refusal verbs lead the
+# same way, but "skip" followed by "to", as in "skip straight to the deep
+# review", jumps ahead to the run and asks for it. The two-word gap stays as it
+# is, because "don't hesitate to run a deep review" asks for the run four words
+# after the negation; "do not even think about" is a lead of its own. A refusal
+# verb takes its own object, so a conjunction in its gap starts a new clause, as
+# in "skip it and deep review the parser", and the loop name after it is asked for.
 _RUN_ASK_NEGATED_RE = re.compile(
-    r"(?:\b(?:do not|don't|dont|never|no need to|need not|needn't|without|not asking for|not looking for)"
-    r"\s+(?:[\w'-]+\s+){0,2}|\bno\s+)\Z"
+    r"(?:\b(?:do not|don't|dont|never|no need to|need not|needn't|no need for|without|not asking for|not looking for"
+    r"|(?:do not|don't|dont|never) even (?:think about|consider))"
+    r"\s+(?:[\w'-]+\s+){0,2}"
+    r"|\b(?:skip(?!\s+(?:(?:straight|right|ahead|directly)\s+)?to\b)|skipping|avoid|avoiding"
+    r"|instead of|rather than|refused?(?:\s+to)?)"
+    r"\s+(?:(?!(?:and|then|but|or)\s)[\w'-]+\s+){0,2}|\bno\s+)\Z"
 )
+
+
+# The leads the gate reads before a phrase are a few words long, so each one is
+# read on a bounded window that ends where the phrase starts rather than on the
+# whole prefix. Reading the whole prefix once per phrase made a long prompt that
+# repeats a phrase cost time quadratic in its length. The window leaves room for
+# an or-list of several commands before a name. The search bounds keep the text
+# around the window, so the text-start anchor cannot fire at the cut and a word
+# boundary there reads the real character before it: a lead longer than the
+# window is lost and none is invented. The native gate reads the same window.
+_LEAD_WINDOW = 400
+
+
+def _ends_before(pattern: "re.Pattern[str]", text: str, end: int) -> bool:
+    """True when the pattern matches inside the bounded window that ends at ``end``."""
+    return pattern.search(text, max(0, end - _LEAD_WINDOW), end) is not None
+
+
+def _forward_search(text: str, pattern: "re.Pattern[str]"):
+    """First match start at or after a position, for positions that only grow.
+
+    An answer stays good until the caller passes it, so the prompt is scanned
+    about once rather than once per naming.
+    """
+    found = -2
+
+    def first_from(start: int) -> int:
+        nonlocal found
+        if found == -1 or found >= start:
+            return found
+        match = pattern.search(text, start)
+        found = match.start() if match else -1
+        return found
+
+    return first_from
 
 
 def _explicit_run_outranks(lower: str, reading_at: int) -> bool:
     """True when an explicit run ask comes before a reading or opens its own clause after it."""
+    # The first clause mark after the reading is found once, because every run
+    # ask after it opens a clause of its own and every one before it does not.
+    clause_mark: Optional[int] = None
     for match in _EXPLICIT_RUN_ASK_RE.finditer(lower):
-        if _RUN_ASK_NEGATED_RE.search(lower[:match.start()]):
+        if _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start()):
             continue
         if match.start() < reading_at:
             return True
-        if re.search(r"[,.;!?\n]", lower[reading_at:match.start()]):
+        if clause_mark is None:
+            found = re.compile(r"[,.;!?\n]").search(lower, reading_at)
+            clause_mark = found.start() if found else -1
+        if clause_mark != -1 and clause_mark < match.start():
             return True
     return False
 
@@ -4704,25 +4956,28 @@ def _is_loop_question(lower: str) -> bool:
     )
 
 
-def _names_loop_subject(phrase: str, before: str, after: str) -> bool:
-    """True when the loop phrase is what the request is about, not what it asks for."""
-    if _LOOP_EDIT_LEAD_RE.search(before) or _LOOP_ARTIFACT_AFTER_RE.match(after):
+def _names_loop_subject(phrase: str, lower: str, start: int, end: int) -> bool:
+    """True when the loop phrase is what the request is about, not what it asks for.
+
+    The edit lead is read on the bounded window before the phrase. The patterns
+    after it are anchored at its end, so they match from there without a copy of
+    the rest of the prompt.
+    """
+    if _ends_before(_LOOP_EDIT_LEAD_RE, lower, start) or _LOOP_ARTIFACT_AFTER_RE.match(lower, end):
         return True
-    if _HYPHEN_COUNT_RE.search(phrase) and not _HYPHEN_COUNT_MEASURES_LOOP_RE.match(after):
+    if _HYPHEN_COUNT_RE.search(phrase) and not _HYPHEN_COUNT_MEASURES_LOOP_RE.match(lower, end):
         return True
-    if re.search(r"iterations?\Z", phrase) and _ITERATIONS_OF_SUBJECT_RE.match(after):
+    if re.search(r"iterations?\Z", phrase) and _ITERATIONS_OF_SUBJECT_RE.match(lower, end):
         return True
-    return bool(_COUNT_NOUN_RE.search(phrase) and _COUNT_AS_SUBJECT_RE.match(after))
+    return bool(_COUNT_NOUN_RE.search(phrase) and _COUNT_AS_SUBJECT_RE.match(lower, end))
 
 
 def _has_loop_ask(lower: str) -> bool:
     """True when one loop phrase is neither refused nor the request's subject."""
     for match in _LOOP_REQUEST_RE.finditer(lower):
-        before = lower[:match.start()]
-        after = lower[match.end():]
-        if _RUN_ASK_NEGATED_RE.search(before) or _LOOP_ASK_REFUSED_AFTER_RE.match(after):
+        if _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start()) or _LOOP_ASK_REFUSED_AFTER_RE.match(lower, match.end()):
             continue
-        if _names_loop_subject(match.group(0), before, after):
+        if _names_loop_subject(match.group(0), lower, match.start(), match.end()):
             continue
         return True
     return False
@@ -4747,20 +5002,123 @@ def asks_for_loop_run(prompt: str) -> bool:
 _CMD_USE_VERB = r"(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)"
 _CMD_GAP_WORDS = r"(?:[a-z']+ ){0,2}"
 _CMD_NOT_WORD = r"(?<!\bwhy )not"
+
+
+# A lead word is used as a pattern, so a phrase that carries punctuation a regex
+# would read as a metacharacter is escaped before it is trusted, and the one word
+# that carries a guard keeps its guard.
+def _command_lead_word(word: str) -> str:
+    """One lead word as a pattern, guarded where the word needs a guard."""
+    return _CMD_NOT_WORD if word == "not" else re.escape(word)
+
+
+def _command_lead(words: Tuple[str, ...], tail: str) -> str:
+    """One lead shape: its words as a single alternation, then the grammar after them."""
+    return "(?:" + "|".join(_command_lead_word(word) for word in words) + ") " + tail
+
+
+# A command the reader refuses is named without being asked for, so this tuple
+# holds the words that mark that naming. A refusal reaches the command either
+# through a use verb, as in "don't run /x", or by naming the command's own work,
+# as in "skip the /x", so the vocabulary splits by the grammar each shape takes,
+# and each entry below holds the words of one shape. A lead must sit directly
+# before the command so a later clause cannot refuse an earlier request, and a gap
+# holds plain words only so a refusal before a comma cannot swallow the request
+# after it. A reader who stops using a command names it only to refuse it.
+_COMMAND_DECLINE_LEAD_LIST = (
+    (
+        "do not",
+        "don't",
+        "dont",
+        "never",
+        "not",
+        "won't",
+        "wont",
+        "no longer",
+        "cannot",
+        "can't",
+        "no need to",
+        "need not",
+        "needn't",
+    ),
+    (
+        "skip",
+        "skipping",
+        "without",
+        "instead of",
+        "rather than",
+        "avoid",
+        "stop",
+        "stopped",
+        "quit",
+        "not",
+    ),
+)
+# A verb-led refusal holds a gap either side of the use verb, so "don't rush to
+# run /x" still refuses it, while the exceptions are idioms such as "don't forget
+# to run /x", which ask for the run.
+_CMD_DECLINE_VERB_TAIL = (
+    r"(?!(?:forget|hesitate|fail|mind)\b)" + _CMD_GAP_WORDS + _CMD_USE_VERB + " " + _CMD_GAP_WORDS
+)
+# A work-led refusal holds no use verb in its gap, so "skip the /x" refuses it.
+_CMD_DECLINE_WORK_TAIL = r"(?:(?!" + _CMD_USE_VERB + r"\b)[a-z']+ ){0,2}"
+_CMD_DECLINE_VERB_WORDS, _CMD_DECLINE_WORK_WORDS = _COMMAND_DECLINE_LEAD_LIST
 _CMD_DECLINE_LEADS = (
-    r"(?:do not|don't|dont|never|" + _CMD_NOT_WORD + r"|won't|wont|no longer|cannot|can't|no need to|need not"
-    r"|needn't) (?!(?:forget|hesitate|fail|mind)\b)" + _CMD_GAP_WORDS + _CMD_USE_VERB + " " + _CMD_GAP_WORDS,
-    r"(?:skip|skipping|without|instead of|rather than|avoid|stop|stopped|quit|" + _CMD_NOT_WORD + r") (?:(?!"
-    + _CMD_USE_VERB + r"\b)[a-z']+ ){0,2}",
+    _command_lead(_CMD_DECLINE_VERB_WORDS, _CMD_DECLINE_VERB_TAIL),
+    _command_lead(_CMD_DECLINE_WORK_WORDS, _CMD_DECLINE_WORK_TAIL),
 )
 _CMD_OR_LIST = (
     r"(?:(?:the )?\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: [a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*"
 )
+# A command the reader asks about is named without being asked for, so this tuple
+# holds the words that mark that naming. A question word names the command
+# directly, as in "what does /x do", or reaches it through a use verb, as in
+# "should i run /x", so the vocabulary splits by the grammar each shape takes
+# again. A lead must sit directly before the command so a later clause cannot turn
+# an earlier request into a question, and a gap holds plain words only so a
+# question before a comma cannot swallow the request after it.
+_COMMAND_ASK_LEAD_LIST = (
+    (
+        "what does",
+        "what is",
+        "what's",
+        "what would",
+        "what will",
+        "what did",
+        "how does",
+        "how did",
+        "why does",
+        "why did",
+        "explain",
+        "describe",
+        "tell me what",
+        "tell me how",
+        "tell me about",
+        "tell me why",
+        "difference between",
+        "differ from",
+        "differs from",
+        "different from",
+        "undo what",
+        "ran",
+        "already ran",
+        "was running",
+    ),
+    (
+        "should i",
+        "should we",
+        "do i need to",
+        "when would i",
+    ),
+)
+# A named command may carry `the` before it and `command` after it, as in "what
+# does the /x command do", and a question that reaches the command through a use
+# verb carries that verb first.
+_CMD_ASK_TARGET = r"(?:the )?(?:command )?"
+_CMD_ASK_NAMED_WORDS, _CMD_ASK_SHOULD_WORDS = _COMMAND_ASK_LEAD_LIST
 _CMD_ASK_LEADS = (
-    r"(?:what does|what is|what's|what would|what will|what did|how does|how did|why does|why did|explain|describe"
-    r"|tell me what|tell me how|tell me about|tell me why|difference between|differ from|differs from|different from"
-    r"|undo what|ran|already ran|was running) (?:the )?(?:command )?",
-    r"(?:should i|should we|do i need to|when would i) " + _CMD_USE_VERB + r" (?:the )?(?:command )?",
+    _command_lead(_CMD_ASK_NAMED_WORDS, _CMD_ASK_TARGET),
+    _command_lead(_CMD_ASK_SHOULD_WORDS, _CMD_USE_VERB + " " + _CMD_ASK_TARGET),
 )
 _CMD_BARE_ASK_LEAD = r"(?:is|does|can|will|would) (?:the )?"
 _CMD_ASKED_BY_PRONOUN_RE = re.compile(
@@ -4787,74 +5145,280 @@ def _fold_command_text(prompt: str) -> str:
     return re.sub(r" *\n\s*", "\n", text)
 
 
-def _deep_command_only_mentioned(prompt: str, command: str) -> bool:
-    """True when every naming of the command refuses it or asks about it."""
+@lru_cache(maxsize=64)
+def _command_naming_patterns(command: str) -> Dict[str, "re.Pattern[str]"]:
+    """Each command's naming patterns, built once rather than per occurrence.
+
+    One alternation of every lead answers what testing each lead in turn did.
+    """
+    name = re.escape(command)
+    leads = "|".join("(?:" + lead + ")" for lead in _CMD_DECLINE_LEADS + _CMD_ASK_LEADS)
+    return {
+        "occurrences": re.compile(r"(?:^|[^a-z0-9_/])" + name + r"(?![a-z0-9_-]|[./][a-z0-9])"),
+        "led": re.compile(r"(?:^|[^a-z0-9_/])(?:" + leads + ")" + _CMD_OR_LIST + name + r"\Z"),
+        "bare_lead": re.compile(r"(?:^|[^a-z0-9_/])" + _CMD_BARE_ASK_LEAD + _CMD_OR_LIST + name + r"\Z"),
+        "bare_lead_opens_sentence": re.compile(r"(?:^|[.!?\n] *)" + _CMD_BARE_ASK_LEAD + _CMD_OR_LIST + name + r"\Z"),
+        "named_as_document": re.compile(r"\b(?:the|this|that) " + name + r"\Z"),
+        "requested_opening_sentence": re.compile(
+            r"(?:^|[.!?;:\n] *)(?:(?:please|now|just|then|and) )*" + name + r"\Z"
+        ),
+        "requested_by_use_verb": re.compile(
+            r"\b" + _CMD_USE_VERB + " " + _CMD_GAP_WORDS + r"(?:the )?" + name + r"\Z"
+        ),
+    }
+
+
+# A run-policy command acts without asking, so an unled naming of one is a request
+# only on positive evidence: a use verb shortly before it, or the name opening the
+# prompt or a sentence. A withdrawal word after the name takes the request back.
+_CMD_RUN_WITHDRAWN_RE = re.compile(
+    r"\?|\b(?:not|don't|dont|never|cancel|scratch that|hold off|wait|undo|is it|should i|nevermind|never mind)\b"
+)
+
+
+def _command_run_requested(patterns: Dict[str, "re.Pattern[str]"], text: str, name_end: int) -> bool:
+    """True when a run-policy command's naming carries positive evidence of a request."""
+    if _forward_search(text, _CMD_RUN_WITHDRAWN_RE)(name_end) != -1:
+        return False
+    return _ends_before(patterns["requested_opening_sentence"], text, name_end) or _ends_before(
+        patterns["requested_by_use_verb"], text, name_end
+    )
+
+
+_SENTENCE_END_RE = re.compile(r"[.!\n]")
+_QUESTION_MARK_RE = re.compile(r"\?")
+
+
+def _deep_command_only_mentioned(prompt: str, command: str, *, require_evidence: bool = False) -> bool:
+    """True when every naming of the command refuses it or asks about it.
+
+    ``require_evidence`` also counts a naming that carries no use verb and opens
+    no sentence as a naming rather than a request. A command whose policy is run
+    acts without asking, so the native gate reads its unled naming that way, and
+    the deep-loop gate asks for the same reading when it decides whether the
+    reader asked for the doctor.
+    """
     text = _fold_command_text(prompt)
-    name = re.escape(command.lower())
-    occurrences = list(re.finditer(r"(?:^|[^a-z0-9_/])" + name + r"(?![a-z0-9_-]|[./][a-z0-9])", text))
+    patterns = _command_naming_patterns(command.lower())
+    occurrences = list(patterns["occurrences"].finditer(text))
     if not occurrences:
         return False
+    # The clause and sentence reads look forward from a naming, and the namings
+    # come in order, so each look starts where the last one left off.
+    clause_end_from = _forward_search(text, _CMD_CLAUSE_SPLIT_RE)
+    sentence_end_from = _forward_search(text, _SENTENCE_END_RE)
+    question_from = _forward_search(text, _QUESTION_MARK_RE)
     for occurrence in occurrences:
-        before = text[:occurrence.end()]
-        tail = text[occurrence.end():]
-        clause = _CMD_CLAUSE_SPLIT_RE.split(tail)[0]
+        name_end = occurrence.end()
+        clause_end = clause_end_from(name_end)
+        clause = text[name_end:] if clause_end == -1 else text[name_end:clause_end]
         if _CMD_DECLINED_BY_PRONOUN_RE.search(clause):
             continue
         if _CMD_ASKED_BY_PRONOUN_RE.search(clause):
             return False
         if (
-            _CMD_AS_DOCUMENT_RE.match(tail)
+            _CMD_AS_DOCUMENT_RE.match(text, name_end)
             and not re.search(r"\bthen\b", clause)
-            and re.search(r"\b(?:the|this|that) " + name + r"\Z", before)
+            and _ends_before(patterns["named_as_document"], text, name_end)
         ):
             continue
-        if any(
-            re.search(r"(?:^|[^a-z0-9_/])" + lead + _CMD_OR_LIST + name + r"\Z", before)
-            for lead in _CMD_DECLINE_LEADS + _CMD_ASK_LEADS
-        ):
+        if _ends_before(patterns["led"], text, name_end):
             continue
-        if not re.search(r"(?:^|[^a-z0-9_/])" + _CMD_BARE_ASK_LEAD + _CMD_OR_LIST + name + r"\Z", before):
+        if not _ends_before(patterns["bare_lead"], text, name_end):
+            if require_evidence and not _command_run_requested(patterns, text, name_end):
+                continue
             return False
-        sentence = re.split(r"[.!\n]", tail, maxsplit=1)[0]
-        if "?" not in sentence and not re.search(
-            r"(?:^|[.!?\n] *)" + _CMD_BARE_ASK_LEAD + _CMD_OR_LIST + name + r"\Z", before
-        ):
+        sentence_end = sentence_end_from(name_end)
+        question = question_from(name_end)
+        asked = question != -1 and (sentence_end == -1 or question < sentence_end)
+        if not asked and not _ends_before(patterns["bare_lead_opens_sentence"], text, name_end):
             return False
     return True
 
 
-def _typed_deep_command(prompt_lower: str) -> Optional[str]:
-    """The /deep:* command the prompt types, the longest when it types both."""
-    typed = {f"/deep:{match.group(1)}" for match in _TYPED_DEEP_COMMAND_RE.finditer(prompt_lower)}
-    return max(typed, key=len) if typed else None
+def _typed_deep_commands_in_order(prompt_lower: str) -> List[str]:
+    """Every /deep:* command the prompt types, in the order it typed them.
+
+    A prompt can type both loops, as in "/deep:research caching then /deep:review
+    the parser", and each typed command keeps its own row, so the set is read
+    whole rather than narrowed to one command that would hide the other. The
+    order is kept because the command typed first is the one asked for first.
+    """
+    ordered: List[str] = []
+    for match in _TYPED_DEEP_COMMAND_RE.finditer(prompt_lower):
+        command = f"/deep:{match.group(1)}"
+        if command not in ordered:
+            ordered.append(command)
+    return ordered
+
+
+def _typed_deep_commands(prompt_lower: str) -> Set[str]:
+    """Every /deep:* command the prompt types, whichever loop it belongs to."""
+    return set(_typed_deep_commands_in_order(prompt_lower))
+
+
+# Wording that refuses any run or any fix, as in "please don't run anything". The
+# doctor command runs a diagnosis and offers repairs, so the fallback drops its
+# row on this wording, as the native scorer withholds it. A refused run names no
+# particular run, so "don't run another deep review" or "don't run it again"
+# refuses a rerun and still leaves the doctor, and a counting word before "again"
+# keeps that reading, as in "don't run that one again". "Yet" postpones the
+# action rather than refusing it, so it leaves the diagnosis as the answer, as in
+# "don't fix it yet, just diagnose it", while a postponed doctor is the thing
+# postponed and stays a refusal. The verb "do" takes only an object that names
+# nothing in particular, because "don't do it by hand" refuses a manner rather
+# than the work. A bare "no fix" counts only when it closes the request.
+_RUN_REFUSED_RE = re.compile(
+    r"\b(?:(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix|do)"
+    r" (?:anything|any commands?)(?! yet\b)\b"
+    r"|(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix)"
+    r" (?:it|this|that)(?! (?:one )?again\b| yet\b)\b"
+    r"|(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix|do) the doctor\b"
+    r"|(?:do not|don't|dont) (?:want|need) (?:a|any) fix(?:es)?\b"
+    r"|(?:do not|don't|dont) (?:want|need) (?:you )?to (?:run|fix|change) (?:anything|it|this|that)\b"
+    r"|no fix(?:es)?(?:,? please\b| (?:needed|wanted|required)\b|[.!]*$))"
+)
+
+# Wording that asks for an answer and rules out a change, spelled as the native
+# no-edit pattern spells it. The doctor command adds files, so the native scorer
+# withholds its row on this wording as it does every writing command, and the
+# fallback drops the doctor row to match.
+_NO_EDIT_RE = re.compile(
+    r"\b(no edits?|make no changes|no changes yet|without making changes"
+    r"|(?:do not|don't|dont) (?:make (?:any )?changes|change|edit|modify|touch"
+    r"|(?:create|write|add|delete|remove) (?:it|this|that|anything|any files?))"
+    r"|read-only only|no edits yet|only; do not|just show|just list)\b"
+)
+
+_TYPED_DOCTOR_RE = re.compile(
+    r"(?:^|(?<=[\s`'\"(*\[~>“‘«′‹]))/doctor:deep-loop(?![a-z0-9_:-]|[/.][a-z0-9_])"
+)
+
+
+def is_run_refused(text: str) -> bool:
+    """True when the prompt refuses any run or any fix."""
+    return bool(_RUN_REFUSED_RE.search(_fold_quotes(text)))
+
+
+def is_no_edit_request(text: str) -> bool:
+    """True when the prompt asks for an answer and rules out a change."""
+    return bool(_NO_EDIT_RE.search(_fold_quotes(text)))
 
 
 def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str) -> List[Dict[str, Any]]:
     """Drop deep-loop run rows the prompt never asks for, as the native gate does.
 
     A typed command asks for that command unless the prompt only refuses it or
-    asks about it. A stuck run is answered by the doctor, so it drops the run rows
-    even when one is typed. A piece written about the loop holds the hub back
-    too, because the hub's aliases are the topic's own words.
+    asks about it, and its row is marked ``typed``. A stuck run is answered by the
+    doctor, so it drops the run rows the reader did not type. A typed run row stays
+    on a stuck run, because the reader named the workflow they want and the native
+    handler serves that typed command over the diagnosis too. A piece written
+    about the loop holds the hub back too, because the hub's aliases are the
+    topic's own words.
     """
-    typed = _typed_deep_command(prompt_lower)
+    typed = _typed_deep_commands(prompt_lower)
     run_asked = asks_for_loop_run(prompt_lower)
     stuck = is_stuck_run_complaint(prompt_lower)
-    writing_about = typed is None and is_writing_about_topic(prompt_lower)
+    writing_about = not typed and is_writing_about_topic(prompt_lower)
+    # A doctor command the reader asked for is the request itself, so refusal and
+    # no-edit words limit what it repairs rather than drop it. A naming that only
+    # refuses or asks about the doctor is not a request, and neither is a bare
+    # naming of a command whose policy is run, so both drop the row as the native
+    # gate drops it.
+    doctor_typed = bool(_TYPED_DOCTOR_RE.search(prompt_lower))
+    doctor_only_mentioned = _deep_command_only_mentioned(prompt_lower, "/doctor:deep-loop")
+    doctor_asked = doctor_typed and not _deep_command_only_mentioned(
+        prompt_lower, "/doctor:deep-loop", require_evidence=True
+    )
+    doctor_dropped = doctor_only_mentioned or (
+        (is_run_refused(prompt_lower) or is_no_edit_request(prompt_lower)) and not doctor_asked
+    )
     gated: List[Dict[str, Any]] = []
     for rec in ranked:
         skill = rec.get("skill")
-        command = _DEEP_LOOP_RUN_ROWS.get(skill)
-        if command is not None and (
-            stuck
-            or _deep_command_only_mentioned(prompt_lower, command)
-            or (command != typed and not run_asked)
-        ):
+        if skill == "command-doctor-deep-loop" and doctor_dropped:
             continue
+        command = _DEEP_LOOP_RUN_ROWS.get(skill)
+        if command is not None:
+            if _deep_command_only_mentioned(prompt_lower, command):
+                continue
+            typed_here = command in typed
+            if (stuck and not typed_here) or (not typed_here and not run_asked):
+                continue
+            if typed_here:
+                rec["typed"] = True
         if writing_about and skill == "system-deep-loop":
             continue
         gated.append(rec)
     return gated
+
+
+def _deep_loop_command_named(prompt_lower: str) -> bool:
+    """True when the prompt names a loop command, in any form it is named.
+
+    A question about the command, a refusal of it and a doc path such as
+    ``/deep:review.md`` all name it without the name being an invocation, so the
+    same reading answers for both the offer below and the order after it.
+    """
+    return any(command in prompt_lower for command in _DEEP_LOOP_COMMAND_ROWS)
+
+
+def _keep_deep_loop_hub_on_command_mention(
+    ranked: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> List[Dict[str, Any]]:
+    """Serve the hub when the prompt only names a loop command.
+
+    A reader who asks about a command, refuses it or cites its doc file is asking
+    about the workflow rather than for a run, so every run row stays withheld and
+    the native path answers with the hub itself, carrying no command and no
+    diagnosis. The hub's row scores under the confidence threshold on a prompt
+    that never repeats the loop's wording, so without the lift the fallback serves
+    nothing at all.
+    """
+    if not _deep_loop_command_named(prompt_lower):
+        return ranked
+    if any(rec.get("skill") in _DEEP_LOOP_RUN_ROW_IDS for rec in ranked):
+        return ranked
+
+    # A doctor diagnoses a run, so it answers no prompt that names no run, whatever
+    # else that prompt names.
+    names_run = bool(_LOOP_RUN_SUBJECT_RE.search(prompt_lower))
+    kept: List[Dict[str, Any]] = []
+    for rec in ranked:
+        if rec.get("skill") == "command-doctor-deep-loop" and not names_run:
+            continue
+        if rec.get("skill") == MERGED_DEEP_SKILL_ID:
+            rec["confidence"] = max(float(rec.get("confidence", 0.0)), _LOOP_OWNER_CONFIDENCE_FLOOR)
+            rec["uncertainty"] = min(float(rec.get("uncertainty", 1.0)), _LOOP_OWNER_UNCERTAINTY_CAP)
+            _append_reason_note(rec, "[deep-loop offer: command only named, hub served without it]")
+        kept.append(rec)
+    return kept
+
+
+def _order_deep_loop_rows(
+    ranked: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> List[Dict[str, Any]]:
+    """Lead with the run row of the command the reader typed first.
+
+    A prompt that types both loops asks for the one it typed first, and the native
+    path serves that command's row whatever the other one scores. The remaining
+    rows follow by confidence, so a row the caller can act on never sits below one
+    that only scores higher on a lane the reader never mentioned.
+    """
+    leading: Optional[Dict[str, Any]] = None
+    for command in _typed_deep_commands_in_order(prompt_lower):
+        row_ids = _DEEP_LOOP_COMMAND_ROWS.get(command, ())
+        leading = next((rec for rec in ranked if rec.get("skill") in row_ids), None)
+        if leading is not None:
+            break
+    ordered = sorted(
+        (rec for rec in ranked if rec is not leading),
+        key=lambda rec: float(rec.get("confidence", 0.0)),
+        reverse=True,
+    )
+    return [leading, *ordered] if leading is not None else ordered
 
 
 def _is_loop_workflow_request(prompt_lower: str) -> bool:
@@ -4862,8 +5426,13 @@ def _is_loop_workflow_request(prompt_lower: str) -> bool:
 
     `iterative` and an uncounted `iterations` also describe a subject, as in "the
     iterative solver", so they count only through the pattern the offer gate reads.
+    The count still has to ask for a run as the offer gate reads one, so "several
+    passes of the linter failed" reports runs that already happened. A stuck run
+    that quotes its passes keeps the reading, as the native lane does.
     """
-    loop_word = _LOOP_PASSES_ASK_RE.search(prompt_lower)
+    loop_word = bool(_LOOP_PASSES_ASK_RE.search(prompt_lower)) and (
+        asks_for_loop_run(prompt_lower) or is_stuck_run_complaint(prompt_lower)
+    )
     if (loop_word or _RESEARCH_LOOP_RE.search(prompt_lower)) and re.search(r"\bresearch\b", prompt_lower):
         return True
     return bool((loop_word or _REVIEW_LOOP_RE.search(prompt_lower)) and re.search(r"\breview\b", prompt_lower))
@@ -5586,6 +6155,18 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
         ),
         reverse=True,
     )
+    # The offer gate reads the deep-loop run rows by their command names, and the
+    # bridge rename below turns a top run row into its owner skill. Gating after
+    # the rename would let a refused, questioned or merely cited /deep:* command
+    # reach the head under the owner's name, and would drop the typed mark.
+    # The gate reads the same head the native advisor accepts, so a loop ask or a
+    # refusal past that head counts in neither, and a pasted prompt cannot make
+    # the fallback's per-phrase reads outrun its time budget.
+    prompt_head = _advisor_prompt_head(prompt_lower)
+    ranked = _apply_deep_loop_offer_gate(ranked, prompt_head)
+    # Refusing or questioning a command is not refusing the workflow that serves it,
+    # so the hub stays the answer while every run row stays withheld.
+    ranked = _keep_deep_loop_hub_on_command_mention(ranked, prompt_head)
     ranked = normalize_command_bridge_recommendations(ranked, prompt_lower)
     refresh_passes_threshold(ranked)
     ranked = _apply_workflow_owner_guard(ranked, prompt_lower)
@@ -5593,7 +6174,13 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # candidate loop skipped, so the exclusion is applied once more at the end.
     if excluded_skill_ids:
         ranked = [rec for rec in ranked if rec.get("skill") not in excluded_skill_ids]
-    ranked = _apply_deep_loop_offer_gate(ranked, prompt_lower)
+
+    # A prompt that names a loop command is served in the order the reader asked
+    # for, which the kind-priority sort above cannot know. The naming is read from
+    # the same head the gate reads, so the offer and the order agree on what the
+    # prompt asked.
+    if _deep_loop_command_named(prompt_head):
+        ranked = _order_deep_loop_rows(ranked, prompt_head)
 
     # Internal sort metadata should not leak in advisor output.
     for rec in ranked:

@@ -209,7 +209,19 @@ const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
 const COMMAND_START_BOUNDARY = /[\s`'"(*[~>\u201c\u2018\u00ab\u2032\u2039]/;
 const COMMAND_CONTINUATION = /[a-z0-9_:-]/;
 const WORD_CHARACTER = /[a-z0-9_]/;
-const MODE_SUFFIX = /^(?::(?:auto|confirm|autopilot|unattended|with-(?:context|phases|research)))+(?![a-z0-9_:-])/;
+// The suffix words are data, one per line, because the Python fallback keeps its
+// own copy of the same vocabulary and a test reads both lists so the two copies
+// fail the build when one gains a word the other never got.
+export const MODE_SUFFIXES: readonly string[] = [
+  'auto',
+  'confirm',
+  'autopilot',
+  'unattended',
+  'with-context',
+  'with-phases',
+  'with-research',
+];
+const MODE_SUFFIX = new RegExp(`^(?::(?:${MODE_SUFFIXES.map(escapePhrase).join('|')}))+(?![a-z0-9_:-])`);
 
 // A command that was renamed is still typed from habit. Its old name reads as
 // the command that replaced it, so the reader lands on the live workflow and
@@ -219,22 +231,30 @@ const RETIRED_COMMANDS: Readonly<Record<string, string>> = {
   '/create:skill': '/create:sk-skill',
 };
 
+// Whether `key` is typed at `index`: it starts where a command can start and ends
+// on a boundary, a mode suffix or a `:with-*` modifier.
+function typedAt(lowered: string, index: number, key: string): boolean {
+  const before = index === 0 ? '' : lowered[index - 1];
+  const after = lowered[index + key.length] ?? '';
+  const next = lowered[index + key.length + 1] ?? '';
+  const startsAtBoundary = before === '' || COMMAND_START_BOUNDARY.test(before);
+  const hasModeSuffix = MODE_SUFFIX.test(lowered.slice(index + key.length));
+  const continuesName =
+    !hasModeSuffix
+    && (COMMAND_CONTINUATION.test(after) || ((after === '/' || after === '.') && WORD_CHARACTER.test(next)));
+  const endsAtBoundary = after === '' || !continuesName;
+  return startsAtBoundary && endsAtBoundary;
+}
+
+const TYPED_COMMAND_KEYS: readonly string[] = [...Object.keys(TRACKED_COMMANDS), ...Object.keys(RETIRED_COMMANDS)];
+
 export function typedCommandIn(prompt: string): string | undefined {
   const lowered = prompt.toLowerCase();
   let found: string | undefined;
-  for (const key of [...Object.keys(TRACKED_COMMANDS), ...Object.keys(RETIRED_COMMANDS)]) {
+  for (const key of TYPED_COMMAND_KEYS) {
     let index = lowered.indexOf(key);
     while (index !== -1) {
-      const before = index === 0 ? '' : lowered[index - 1];
-      const after = lowered[index + key.length] ?? '';
-      const next = lowered[index + key.length + 1] ?? '';
-      const startsAtBoundary = before === '' || COMMAND_START_BOUNDARY.test(before);
-      const hasModeSuffix = MODE_SUFFIX.test(lowered.slice(index + key.length));
-      const continuesName =
-        !hasModeSuffix
-        && (COMMAND_CONTINUATION.test(after) || ((after === '/' || after === '.') && WORD_CHARACTER.test(next)));
-      const endsAtBoundary = after === '' || !continuesName;
-      if (startsAtBoundary && endsAtBoundary) {
+      if (typedAt(lowered, index, key)) {
         if (found === undefined || key.length > found.length) found = key;
         break;
       }
@@ -243,6 +263,31 @@ export function typedCommandIn(prompt: string): string | undefined {
   }
   if (found !== undefined && Object.hasOwn(RETIRED_COMMANDS, found)) return RETIRED_COMMANDS[found];
   return found;
+}
+
+// Every command the prompt types, in the order the reader typed them. A prompt
+// can type two workflows, as in "run /deep:review, then /create:changelog", and
+// the longest of them says nothing about whether the other was asked for, so a
+// gate that asks "was this command typed" reads this list. Only two keys that
+// start at the same place compete, and the longer one wins there, so
+// `/group:name-parent` is never also read as `/group:name`.
+export function typedCommandsIn(prompt: string): string[] {
+  const lowered = prompt.toLowerCase();
+  const atIndex = new Map<number, string>();
+  for (const key of TYPED_COMMAND_KEYS) {
+    let index = lowered.indexOf(key);
+    while (index !== -1) {
+      if (typedAt(lowered, index, key)) {
+        const held = atIndex.get(index);
+        if (held === undefined || key.length > held.length) atIndex.set(index, key);
+      }
+      index = lowered.indexOf(key, index + 1);
+    }
+  }
+  const ordered = [...atIndex.entries()].sort(([left], [right]) => left - right).map(([, key]) => (
+    Object.hasOwn(RETIRED_COMMANDS, key) ? RETIRED_COMMANDS[key] : key
+  ));
+  return [...new Set(ordered)];
 }
 
 // A typed command travels on the recommendation that leads, so it is delivered
@@ -254,14 +299,18 @@ export interface TypedCommand {
   readonly ownerSkillId: string;
 }
 
+// A prompt that types two commands delivers the first one the leading skill owns
+// or carries, so a longer command typed for another skill does not hide it.
 export function typedCommandForTop(topSkillId: string, prompt: string): TypedCommand | undefined {
-  const command = typedCommandIn(prompt);
-  if (command === undefined || !Object.hasOwn(TRACKED_COMMANDS, command)) return undefined;
-  if (commandOnlyMentioned(prompt, command)) return undefined;
-  const row = TRACKED_COMMANDS[command];
-  const sameCommandRow = commandRowFor(topSkillId)?.command === command;
-  if (topSkillId !== row.ownerSkillId && !sameCommandRow) return undefined;
-  return { command, policy: row.policy, ownerSkillId: row.ownerSkillId };
+  for (const command of typedCommandsIn(prompt)) {
+    if (!Object.hasOwn(TRACKED_COMMANDS, command)) continue;
+    if (commandOnlyMentioned(prompt, command)) continue;
+    const row = TRACKED_COMMANDS[command];
+    const sameCommandRow = commandRowFor(topSkillId)?.command === command;
+    if (topSkillId !== row.ownerSkillId && !sameCommandRow) continue;
+    return { command, policy: row.policy, ownerSkillId: row.ownerSkillId };
+  }
+  return undefined;
 }
 
 // Deep-loop commands open a long, multi-pass run, so one attached to a prompt
@@ -290,11 +339,29 @@ export const LOOP_WORDING: readonly string[] = [
 // unit ("in several iterations", "more iterations"). Counted iterations are
 // LOOP_COUNT's.
 const ITERATIVE_ACTIVITY = '(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|pass(?:es)?|rounds?|loop)';
-const ITERATIVE_VERB = '(?:review|research|audit|investigate|inspect|check|scan|examine|analy[sz]e|look into|go over)';
+// The verbs are data, one per line, so the vocabulary a reviewer has to judge
+// stays visible and cheap to correct. `analyse` and `analyze` are one verb in
+// two spellings, and a list of words cannot carry a character class, so both
+// are listed.
+export const ITERATIVE_VERBS: readonly string[] = [
+  'review',
+  'research',
+  'audit',
+  'investigate',
+  'inspect',
+  'check',
+  'scan',
+  'examine',
+  'analyze',
+  'analyse',
+  'look into',
+  'go over',
+];
+const ITERATIVE_VERB_PATTERN = `(?:${ITERATIVE_VERBS.map(escapePhrase).join('|')})`;
 export const ITERATIVE_ASK = new RegExp(
   `\\b(?:iterative|looped) ${ITERATIVE_ACTIVITY}\\b`
-  + `|\\biteratively ${ITERATIVE_VERB}\\b`
-  + `|\\b${ITERATIVE_VERB}\\b(?: [\\w./'-]+){0,6}? iteratively\\b`
+  + `|\\biteratively ${ITERATIVE_VERB_PATTERN}\\b`
+  + `|\\b${ITERATIVE_VERB_PATTERN}\\b(?: [\\w./'-]+){0,6}? iteratively\\b`
   + '|\\b(?:in|over|through) (?:(?:several|multiple|many|a few|successive|repeated) )?iterations\\b'
   // "the model needed more iterations to converge" reports what a process took,
   // so a verb of taking or using before the amount leaves it a description.
@@ -332,8 +399,36 @@ export const MULTI_PASS = new RegExp(`\\b(?:multiple|several|(?<!\\bhow )many) $
 // iterations", names runs that already happened rather than asking for more,
 // while "stop after 10 iterations" sets the length of the run it asks for.
 const COUNT_BACK_POINTER = '(?<!\\b(?:first|last|previous|past|prior|earlier|those|these|the|both|(?<!\\bstop )after) )';
-const COUNT_WORDS = '(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|(?:a )?dozen)';
-const LOOP_COUNT_LEAD = `${COUNT_BACK_POINTER}(?:[2-9]|\\d{2,}|${COUNT_WORDS}|(?:1|one)(?= (?:more|extra|additional|further)\\b))`;
+// An article may precede `dozen`, spelling the same count, so it hangs off that
+// entry as the pattern is built rather than in the list, which keeps one bare
+// word per line.
+export const COUNT_WORDS: readonly string[] = [
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+  'eleven',
+  'twelve',
+  'thirteen',
+  'fourteen',
+  'fifteen',
+  'sixteen',
+  'seventeen',
+  'eighteen',
+  'nineteen',
+  'twenty',
+  'thirty',
+  'forty',
+  'fifty',
+  'dozen',
+];
+const COUNT_WORDS_PATTERN = `(?:${COUNT_WORDS.map((word) => (word === 'dozen' ? '(?:a )?' : '') + escapePhrase(word)).join('|')})`;
+const LOOP_COUNT_LEAD = `${COUNT_BACK_POINTER}(?:[2-9]|\\d{2,}|${COUNT_WORDS_PATTERN}|(?:1|one)(?= (?:more|extra|additional|further)\\b))`;
 export const LOOP_COUNT = new RegExp(
   `\\b${LOOP_COUNT_LEAD}[- ](?:[a-z-]+ ){0,2}?iterations?\\b`
   + `|\\b${LOOP_COUNT_LEAD}(?:-(?:rounds?|pass(?:es)?)\\b| ${PASS_GAP}${PASS_NOUN})`,
@@ -381,7 +476,8 @@ function escapePhrase(phrase: string): string {
 // counts beside review and audit. The defect noun is required, because "check
 // that the build passes" asks for no review at all. The scorer reads the defect
 // check on its own as well, because its verbs also read as a request to explain.
-export const DEFECT_CHECK = /\b(?:check|inspect|scan|examine|go over|look over)\b(?:\s+[\w./-]+){0,5}?\s+for\s+(?:[\w-]+\s+){0,2}?(?:bugs?|defects?|mistakes?|errors?|vulnerabilit(?:y|ies)|issues?|problems?|regressions?|flaws?)\b/;
+// The -ing form asks the same way, as in "a deep loop checking the parser for bugs".
+export const DEFECT_CHECK = /\b(?:check(?:ing)?|inspect(?:ing)?|scan(?:ning)?|examin(?:e|ing)|go(?:ing)? over|look(?:ing)? over)\b(?:\s+[\w./-]+){0,5}?\s+for\s+(?:[\w-]+\s+){0,2}?(?:bugs?|defects?|mistakes?|errors?|vulnerabilit(?:y|ies)|issues?|problems?|regressions?|flaws?)\b/;
 // The -ing form carries the cue too, as in "a deep loop reviewing the session store".
 export const MODE_CUES: Readonly<Record<string, RegExp>> = {
   research: /\b(?:research(?:ing)?|investigat(?:e|es|ing|ion)|look into|find out)\b/,
@@ -403,8 +499,36 @@ const LOOP_RUN_SUBJECT = /\b(?:deep[- ](?:research|review|loop)|(?:research|revi
 // "spinning up" starts a run rather than describing one that is stuck. A state
 // word that a negation leads, as in "the run is not stuck", denies the symptom,
 // while the negated verbs further on, as in "not converging", are symptoms.
-const LOOP_RUN_SYMPTOM = /\b(?:(?<!\b(?:not|isn't|wasn't|aren't|weren't|longer|never) )(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|spins|spinning(?! up)|stale|empty)|never (?:converges?|finishes|stops|ends|fires)|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot|without) (?:converg\w*|finish\w*|progress\w*|mov\w*|fir\w*)|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\b/;
+// The state words are data, one word per line, so the vocabulary a reviewer has
+// to judge stays visible. `hang` is listed beside `hangs` so both spellings
+// read, and the `spinning up` exclusion and the negation lookbehind stay in the
+// pattern, because they are grammar rather than vocabulary.
+export const LOOP_RUN_SYMPTOMS: readonly string[] = [
+  'stuck',
+  'hang',
+  'hangs',
+  'hanging',
+  'hung',
+  'frozen',
+  'stalled',
+  'stalls',
+  'spins',
+  'spinning',
+  'stale',
+  'empty',
+];
+const LOOP_RUN_SYMPTOMS_PATTERN = `(?:${LOOP_RUN_SYMPTOMS.map((word) => escapePhrase(word) + (word === 'spinning' ? '(?! up)' : '')).join('|')})`;
+const LOOP_RUN_SYMPTOM = new RegExp(
+  `\\b(?:(?<!\\b(?:not|isn't|wasn't|aren't|weren't|longer|never) )${LOOP_RUN_SYMPTOMS_PATTERN}`
+  + '|never (?:converges?|finishes|stops|ends|fires)'
+  + `|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot|without) (?:converg\\w*|finish\\w*|progress\\w*|mov\\w*|fir\\w*)`
+  + '|stopped (?:converg\\w*|progress\\w*|moving)|keeps? (?:running|repeating|looping)'
+  + `|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\\b`,
+);
 const LOOP_RUN_REQUESTED = /\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))\b/;
+// A global pattern, because every occurrence has to be read before one of them
+// can be trusted as an ask the reader still wants.
+const LOOP_RUN_REQUESTED_ALL = new RegExp(LOOP_RUN_REQUESTED.source, 'g');
 
 // The deep loop's doctor reads a deep run's own state, so a prompt that names no
 // deep run, as in "the model needed more iterations to converge", has nothing for
@@ -413,13 +537,21 @@ export function namesDeepRun(text: string): boolean {
   return LOOP_RUN_SUBJECT.test(text.toLowerCase().replace(/[‘’]/g, "'"));
 }
 
+// A run ask that a refusal leads, as in "don't run another deep review", forbids
+// the run instead of asking for it, so it leaves the stuck reading standing. Only
+// an ask the reader still wants cancels the complaint, because a complaint that
+// also refuses the loop asks for the diagnosis and not for the run it refused.
+function hasUnrefusedRunAsk(lower: string): boolean {
+  return [...lower.matchAll(LOOP_RUN_REQUESTED_ALL)].some((match) => !runAskNegatedAt(lower, match.index));
+}
+
 // A counted run ask, as in "run 5 more iterations", asks for more of the run
 // whatever state the reader reports it in, so it cancels the stuck reading
 // unless a refusal leads it.
 export function isStuckRunComplaint(text: string): boolean {
   const lower = text.toLowerCase().replace(/[‘’]/g, "'");
-  return LOOP_RUN_SUBJECT.test(lower) && LOOP_RUN_SYMPTOM.test(lower) && !LOOP_RUN_REQUESTED.test(lower)
-    && ![...lower.matchAll(COUNTED_RUN_ASK)].some((match) => !RUN_ASK_NEGATED.test(lower.slice(0, match.index)));
+  return LOOP_RUN_SUBJECT.test(lower) && LOOP_RUN_SYMPTOM.test(lower) && !hasUnrefusedRunAsk(lower)
+    && ![...lower.matchAll(COUNTED_RUN_ASK)].some((match) => !runAskNegatedAt(lower, match.index));
 }
 
 // A run asked for in so many words: a use verb on a deep loop's name, or on a
@@ -437,7 +569,47 @@ const EXPLICIT_RUN_ASK = new RegExp(`${LOOP_RUN_REQUESTED.source}|${COUNTED_RUN_
 // only the loop name right after it, as in "no deep review, please", and "not
 // asking for" refuses what it names, while a bare "not" is left out because
 // "why not run a deep review" proposes the run.
-const RUN_ASK_NEGATED = /(?:\b(?:do not|don't|dont|never|no need to|need not|needn't|without|not asking for|not looking for)\s+(?:[\w'-]+\s+){0,2}|\bno\s+)$/;
+// Refusal verbs lead the same way, as in "skip the deep review" or "avoid deep
+// research", but "skip" followed by "to", as in "skip straight to the deep
+// review", jumps ahead to the run and asks for it. The two-word gap stays as it
+// is, because "don't hesitate to run a deep review" and "don't forget to run a
+// deep review" ask for the run four words after the negation; the one longer
+// refusal, "do not even think about", is a lead of its own. A refusal verb takes
+// its own object, so a conjunction in its gap starts a new clause, as in "skip it
+// and deep review the parser", and the loop name after it is asked for.
+const RUN_ASK_NEGATED_SOURCE = String.raw`(?:\b(?:do not|don't|dont|never|no need to|need not|needn't|no need for|without|not asking for|not looking for|(?:do not|don't|dont|never) even (?:think about|consider))\s+(?:[\w'-]+\s+){0,2}|\b(?:skip(?!\s+(?:(?:straight|right|ahead|directly)\s+)?to\b)|skipping|avoid|avoiding|instead of|rather than|refused?(?:\s+to)?)\s+(?:(?!(?:and|then|but|or)\s)[\w'-]+\s+){0,2}|\bno\s+)$`;
+
+// The leads the gate reads before a phrase are a few words long, so each one is
+// read on a bounded window that ends where the phrase starts rather than on the
+// whole prefix. Reading the whole prefix once per phrase made a long prompt that
+// repeats a phrase cost time quadratic in its length. The window leaves room for
+// an or-list of several commands before a name. A lead has to start inside the
+// window, and the search starts there over a slice that keeps a few characters of
+// real text in front, so the text-start anchor cannot fire at the cut and a word
+// boundary or lookbehind there reads the real characters before it. A lead longer
+// than the window is lost and none is invented. The Python fallback reads the
+// same window through its search bounds.
+const LEAD_WINDOW = 400;
+const LEAD_CONTEXT = 16;
+
+// A global pattern, because only a global pattern starts its search at a set
+// position.
+function windowedPattern(source: string): RegExp {
+  return new RegExp(source, 'g');
+}
+
+function endsBefore(pattern: RegExp, text: string, end: number): boolean {
+  const start = Math.max(0, end - LEAD_WINDOW);
+  const context = Math.min(start, LEAD_CONTEXT);
+  pattern.lastIndex = context;
+  return pattern.test(text.slice(start - context, end));
+}
+
+const RUN_ASK_NEGATED = windowedPattern(RUN_ASK_NEGATED_SOURCE);
+
+function runAskNegatedAt(lower: string, index: number): boolean {
+  return endsBefore(RUN_ASK_NEGATED, lower, index);
+}
 
 // A refusal can also follow the loop name, as in "a deep review is not needed".
 // It keys on a need word, so "the deep research run is not stuck" stays a
@@ -449,11 +621,18 @@ const LOOP_ASK_REFUSED_AFTER = /^(?: (?:run|loop|pass|iterations?))? (?:(?:is|ar
 // research to explain why the last CI run failed", or when it opens a clause of
 // its own after them. A run ask inside the topic, as in "write a blog post about
 // how to run a deep review", is part of what the piece covers.
+// The first clause mark after the reading is found once, because every run ask
+// after it opens a clause of its own and every one before it does not.
 function explicitRunOutranks(lower: string, readingAt: number): boolean {
+  let clauseMark: number | undefined;
   for (const match of lower.matchAll(EXPLICIT_RUN_ASK)) {
-    if (RUN_ASK_NEGATED.test(lower.slice(0, match.index))) continue;
+    if (runAskNegatedAt(lower, match.index)) continue;
     if (match.index < readingAt) return true;
-    if (/[,.;!?\n]/.test(lower.slice(readingAt, match.index))) return true;
+    if (clauseMark === undefined) {
+      const found = lower.slice(readingAt).search(/[,.;!?\n]/);
+      clauseMark = found === -1 ? -1 : readingAt + found;
+    }
+    if (clauseMark !== -1 && clauseMark < match.index) return true;
   }
   return false;
 }
@@ -461,13 +640,31 @@ function explicitRunOutranks(lower: string, readingAt: number): boolean {
 // A request to read, summarize or explain what a past run produced wants that
 // output, not another run. A continue, resume or extend verb asks for the run
 // again, so it keeps the offer.
-const PAST_RUN_READ_VERB = /\b(?:summari[sz]e|summary|recap|explain|read|tell me|walk me through|go through|what did|show me|pull out|extract)\b/;
+// The read verbs are data, one per line, so the vocabulary a reviewer has to
+// judge stays visible. `summarise` and `summarize` are one verb in two
+// spellings, so both are listed.
+export const PAST_RUN_READ_VERBS: readonly string[] = [
+  'summarize',
+  'summarise',
+  'summary',
+  'recap',
+  'explain',
+  'read',
+  'tell me',
+  'walk me through',
+  'go through',
+  'what did',
+  'show me',
+  'pull out',
+  'extract',
+];
+const PAST_RUN_READ_VERB_PATTERN = new RegExp(`\\b(?:${PAST_RUN_READ_VERBS.map(escapePhrase).join('|')})\\b`);
 const PAST_RUN_OUTPUT = /\b(?:last|previous|prior|earlier|yesterday's|finished|completed) (?:[\w'-]+ ){0,2}?(?:deep[- ])?(?:research|review|loop|run)\b|\b(?:research|review(?:-report)?)\.md\b|\b(?:research|review) report\b|\bdeep[- ](?:research|review) (?:output|report|results|findings|produced|concluded|found|wrote)\b/;
 const RUN_CONTINUED = /\b(?:continue|resume|extend|rerun|re-run|more iterations?|\d+ more)\b/;
 
 export function isPastRunRead(text: string): boolean {
   const lower = text.toLowerCase().replace(/[‘’]/g, "'");
-  const readVerb = PAST_RUN_READ_VERB.exec(lower);
+  const readVerb = PAST_RUN_READ_VERB_PATTERN.exec(lower);
   return readVerb !== null && PAST_RUN_OUTPUT.test(lower) && !RUN_CONTINUED.test(lower)
     && !explicitRunOutranks(lower, readVerb.index);
 }
@@ -521,6 +718,27 @@ export const NO_EDIT_REQUEST = /\b(no edits?|make no changes|no changes yet|with
 // folded to the straight form before the pattern reads it.
 export function isNoEditRequest(text: string): boolean {
   return NO_EDIT_REQUEST.test(text.toLowerCase().replace(/[\u2018\u2019]/g, "'"));
+}
+
+// Wording that refuses any run or any fix, as in "please don't run anything" or
+// "I don't want a fix". The doctor command runs a diagnosis and offers repairs,
+// so a stuck-run complaint with this wording gets no doctor. It is kept apart
+// from the no-edit pattern because that one gates every writing command, and
+// refusing a run says nothing about whether a file may change. A refused run
+// names no particular run, as in "don't run any commands" or "don't run it", so
+// "don't run another deep review" or "don't run it again" refuses a rerun and
+// still leaves the doctor as the answer; a counting word before "again" keeps
+// that reading, as in "don't run that one again". "Yet" postpones the action
+// rather than refusing it, so it leaves the diagnosis as the answer, as in
+// "don't fix it yet, just diagnose it", while a postponed doctor is the thing
+// postponed and stays a refusal. The verb "do" takes only an object that names
+// nothing in particular, because "don't do it by hand" refuses a manner rather
+// than the work. A bare "no fix" counts only when it closes the request, as in
+// "no fix please", because "no fix I tried works" reports a failed repair.
+export const RUN_REFUSED = /\b(?:(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix|do) (?:anything|any commands?)(?! yet\b)\b|(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix) (?:it|this|that)(?! (?:one )?again\b| yet\b)\b|(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix|do) the doctor\b|(?:do not|don't|dont) (?:want|need) (?:a|any) fix(?:es)?\b|(?:do not|don't|dont) (?:want|need) (?:you )?to (?:run|fix|change) (?:anything|it|this|that)\b|no fix(?:es)?(?:,? please\b| (?:needed|wanted|required)\b|[.!]*$))/;
+
+export function isRunRefused(text: string): boolean {
+  return RUN_REFUSED.test(text.toLowerCase().replace(/[\u2018\u2019]/g, "'"));
 }
 
 // A refusal or a question reaches its command through a use verb, so the two
@@ -584,8 +802,49 @@ const LOOP_REQUEST_ALL = new RegExp(LOOP_REQUEST.source, 'g');
 // loop config" or "fix the bugs the deep review found". The edit verb reaches
 // the name across the same gap a use verb does, so "fix the parser with a deep
 // review" still asks for the run.
-const LOOP_EDIT_LEAD = new RegExp(`\\b(?:refactor|fix|edit|modify|rewrite|debug|patch|rename|tweak|tune|clean up) ${LOOP_OBJECT_GAP}$`);
-const LOOP_ARTIFACT_AFTER = /^(?:'s)? (?:scorer|scoring|config|configs|configuration|settings|module|script|scripts|implementation|prompt|prompts|template|templates|schema|runner|reducer|logic|tests|docs|documentation|yaml|json|findings|results|dashboard|command file|found|flagged|reported|raised|produced|surfaced|returned|generated|turned up)\b/;
+const LOOP_EDIT_LEAD = windowedPattern(`\\b(?:refactor|fix|edit|modify|rewrite|debug|patch|rename|tweak|tune|clean up) ${LOOP_OBJECT_GAP}$`);
+// The artifact nouns are data, one per line, so the vocabulary a reviewer has to
+// judge stays visible. The possessive before them and the word boundary after
+// them stay in the pattern.
+export const LOOP_ARTIFACT_NOUNS: readonly string[] = [
+  'scorer',
+  'scoring',
+  'config',
+  'configs',
+  'configuration',
+  'settings',
+  'module',
+  'script',
+  'scripts',
+  'implementation',
+  'prompt',
+  'prompts',
+  'template',
+  'templates',
+  'schema',
+  'runner',
+  'reducer',
+  'logic',
+  'tests',
+  'docs',
+  'documentation',
+  'yaml',
+  'json',
+  'findings',
+  'results',
+  'dashboard',
+  'command file',
+  'found',
+  'flagged',
+  'reported',
+  'raised',
+  'produced',
+  'surfaced',
+  'returned',
+  'generated',
+  'turned up',
+];
+const LOOP_ARTIFACT_AFTER = new RegExp(`^(?:'s)? (?:${LOOP_ARTIFACT_NOUNS.map(escapePhrase).join('|')})\\b`);
 
 // A hyphen count or `multi-pass` is an adjective, so it measures the loop only
 // when it qualifies the loop's own work or ends the phrase, as in "a three-pass
@@ -604,8 +863,10 @@ const COUNT_NOUN = /(?:pass(?:es)?|rounds?|iterations?)$/;
 const ITERATIONS_OF_SUBJECT = /^ of (?!(?:(?:the|this|that|my|our|a|an) )?(?:deep[- ])?(?:review|research|audit|investigation|analysis|loop)\b|(?:it|this|that)\b|(?:the|this|that|my|our) [a-z-]+ (?:review|research|audit|investigation|analysis)\b)/;
 const COUNT_AS_SUBJECT = /^(?: of (?:[\w'-]+ ){0,2}?[\w'-]+)? (?:failed|ran|took|were|was|had|showed|found|produced|returned|crashed|broke|timed out|succeeded|completed|finished|didn't|did not)\b/;
 
-function namesLoopSubject(phrase: string, before: string, after: string): boolean {
-  if (LOOP_EDIT_LEAD.test(before) || LOOP_ARTIFACT_AFTER.test(after)) return true;
+// The edit lead is read on the bounded window before the phrase. The patterns
+// after it are anchored at its end, so they read the rest of the prompt whole.
+function namesLoopSubject(phrase: string, lowered: string, start: number, after: string): boolean {
+  if (endsBefore(LOOP_EDIT_LEAD, lowered, start) || LOOP_ARTIFACT_AFTER.test(after)) return true;
   if (HYPHEN_COUNT.test(phrase) && !HYPHEN_COUNT_MEASURES_LOOP.test(after)) return true;
   if (/iterations?$/.test(phrase) && ITERATIONS_OF_SUBJECT.test(after)) return true;
   return COUNT_NOUN.test(phrase) && COUNT_AS_SUBJECT.test(after);
@@ -615,10 +876,9 @@ function namesLoopSubject(phrase: string, before: string, after: string): boolea
 // for the run, so "don't summarize it, run a deep review" still asks.
 function hasLoopAsk(lowered: string): boolean {
   for (const match of lowered.matchAll(LOOP_REQUEST_ALL)) {
-    const before = lowered.slice(0, match.index);
     const after = lowered.slice(match.index + match[0].length);
-    if (RUN_ASK_NEGATED.test(before) || LOOP_ASK_REFUSED_AFTER.test(after)) continue;
-    if (namesLoopSubject(match[0], before, after)) continue;
+    if (runAskNegatedAt(lowered, match.index) || LOOP_ASK_REFUSED_AFTER.test(after)) continue;
+    if (namesLoopSubject(match[0], lowered, match.index, after)) continue;
     return true;
   }
   return false;
@@ -673,17 +933,77 @@ function isLoopQuestion(lowered: string): boolean {
 }
 
 // `why not` proposes the command rather than refusing it, so the word refuses
-// only where no `why` stands before it.
+// only where no `why` stands before it. The guard is grammar that reaches one
+// word, so it stays in the pattern while the word itself is listed as data.
 const COMMAND_NOT_WORD = '(?<!\\bwhy )not';
 
-// A command the reader refuses is named without being asked for, so this list
-// holds the leads that mark that naming. A lead must sit directly before the
-// command so a later clause cannot refuse an earlier request, and a gap holds
-// plain words only so a refusal before a comma cannot swallow the request after
-// it. A reader who stops using a command names it only to refuse it.
+// A lead word is used as a pattern, so a phrase that carries punctuation a regex
+// would read as a metacharacter is escaped before it is trusted, and the one word
+// that carries a guard keeps its guard.
+function commandLeadWord(word: string): string {
+  return word === 'not' ? COMMAND_NOT_WORD : escapePhrase(word);
+}
+
+// One lead shape is its words as a single alternation, then the grammar that
+// follows them.
+function commandLead(words: readonly string[], tail: string): string {
+  return `(?:${words.map(commandLeadWord).join('|')}) ${tail}`;
+}
+
+// A command the reader refuses is named without being asked for, so these lists
+// hold the words that mark that naming. A refusal reaches the command either
+// through a use verb, as in "don't run /x", or by naming the command's own work,
+// as in "skip the /x", so the vocabulary splits by the grammar each shape takes.
+// A lead must sit directly before the command so a later clause cannot refuse an
+// earlier request, and a gap holds plain words only so a refusal before a comma
+// cannot swallow the request after it. A reader who stops using a command names
+// it only to refuse it.
+const COMMAND_DECLINE_VERB_WORDS: readonly string[] = [
+  'do not',
+  "don't",
+  'dont',
+  'never',
+  'not',
+  "won't",
+  'wont',
+  'no longer',
+  'cannot',
+  "can't",
+  'no need to',
+  'need not',
+  "needn't",
+];
+// A refusal that names the work takes it as its object, as in "skip the /x",
+// while "skip it and run /x" asks for the run.
+const COMMAND_DECLINE_WORK_WORDS: readonly string[] = [
+  'skip',
+  'skipping',
+  'without',
+  'instead of',
+  'rather than',
+  'avoid',
+  'stop',
+  'stopped',
+  'quit',
+  'not',
+];
+// A verb-led refusal holds a gap either side of the use verb, so "don't rush to
+// run /x" still refuses it, while the exceptions are idioms such as "don't
+// forget to run /x", which ask for the run.
+const COMMAND_DECLINE_VERB_TAIL = `(?!(?:forget|hesitate|fail|mind)\\b)${COMMAND_GAP_WORDS}${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}`;
+// A work-led refusal holds no use verb in its gap, so "skip the /x" refuses it.
+const COMMAND_DECLINE_WORK_TAIL = `(?:(?!${COMMAND_USE_VERB}\\b)[a-z']+ ){0,2}`;
+
+// The refusal vocabulary also reads as one flat list, because the Python fallback
+// keeps its own copy of it and a test compares the two, so a word added to one
+// side alone fails.
+export const COMMAND_DECLINE_LEAD_WORDS: readonly string[] = [
+  ...COMMAND_DECLINE_VERB_WORDS,
+  ...COMMAND_DECLINE_WORK_WORDS,
+];
 export const COMMAND_DECLINE_LEADS: readonly string[] = [
-  `(?:do not|don't|dont|never|${COMMAND_NOT_WORD}|won't|wont|no longer|cannot|can't|no need to|need not|needn't) (?!(?:forget|hesitate|fail|mind)\\b)${COMMAND_GAP_WORDS}${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}`,
-  `(?:skip|skipping|without|instead of|rather than|avoid|stop|stopped|quit|${COMMAND_NOT_WORD}) (?:(?!${COMMAND_USE_VERB}\\b)[a-z']+ ){0,2}`,
+  commandLead(COMMAND_DECLINE_VERB_WORDS, COMMAND_DECLINE_VERB_TAIL),
+  commandLead(COMMAND_DECLINE_WORK_WORDS, COMMAND_DECLINE_WORK_TAIL),
 ];
 
 // A refusal or a question over an or-list covers every command the list joins,
@@ -694,14 +1014,60 @@ export const COMMAND_DECLINE_LEADS: readonly string[] = [
 // doctor command takes, so `do not run /x now or /y` refuses both.
 const COMMAND_OR_LIST = '(?:(?:the )?\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: [a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*';
 
-// A command the reader asks about is named without being asked for, so this list
-// holds the leads that mark that naming. A lead must sit directly before the
-// command so a later clause cannot turn an earlier request into a question, and
-// a gap holds plain words only so a question before a comma cannot swallow the
-// request after it.
+// A command the reader asks about is named without being asked for, so these
+// lists hold the words that mark that naming. A question word names the command
+// directly, as in "what does /x do", or reaches it through a use verb, as in
+// "should i run /x", so the vocabulary splits by the grammar each shape takes
+// again. A lead must sit directly before the command so a later clause cannot
+// turn an earlier request into a question, and a gap holds plain words only so a
+// question before a comma cannot swallow the request after it.
+const COMMAND_ASK_NAMED_WORDS: readonly string[] = [
+  'what does',
+  'what is',
+  "what's",
+  'what would',
+  'what will',
+  'what did',
+  'how does',
+  'how did',
+  'why does',
+  'why did',
+  'explain',
+  'describe',
+  'tell me what',
+  'tell me how',
+  'tell me about',
+  'tell me why',
+  'difference between',
+  'differ from',
+  'differs from',
+  'different from',
+  'undo what',
+  'ran',
+  'already ran',
+  'was running',
+];
+const COMMAND_ASK_SHOULD_WORDS: readonly string[] = [
+  'should i',
+  'should we',
+  'do i need to',
+  'when would i',
+];
+// A named command may carry `the` before it and `command` after it, as in "what
+// does the /x command do", and a question that reaches the command through a use
+// verb carries that verb first.
+const COMMAND_ASK_TARGET = '(?:the )?(?:command )?';
+
+// The question vocabulary also reads as one flat list, because the Python
+// fallback keeps its own copy of it and a test compares the two, so a word added
+// to one side alone fails.
+export const COMMAND_ASK_LEAD_WORDS: readonly string[] = [
+  ...COMMAND_ASK_NAMED_WORDS,
+  ...COMMAND_ASK_SHOULD_WORDS,
+];
 export const COMMAND_ASK_LEADS: readonly string[] = [
-  "(?:what does|what is|what's|what would|what will|what did|how does|how did|why does|why did|explain|describe|tell me what|tell me how|tell me about|tell me why|difference between|differ from|differs from|different from|undo what|ran|already ran|was running) (?:the )?(?:command )?",
-  `(?:should i|should we|do i need to|when would i) ${COMMAND_USE_VERB} (?:the )?(?:command )?`,
+  commandLead(COMMAND_ASK_NAMED_WORDS, COMMAND_ASK_TARGET),
+  commandLead(COMMAND_ASK_SHOULD_WORDS, `${COMMAND_USE_VERB} ${COMMAND_ASK_TARGET}`),
 ];
 
 // A bare ask word opens a statement as often as a question, so it marks a naming
@@ -739,12 +1105,71 @@ const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|document
 // The words after the name can still take the request back or turn it into a
 // question, as in "/doctor:speckit, cancel that" or "/doctor:install - is it
 // safe?", so any of those after the name leaves the naming a mention.
-const RUN_COMMAND_WITHDRAWN = /\?|\b(?:not|don't|dont|never|cancel|scratch that|hold off|wait|undo|is it|should i|nevermind|never mind)\b/;
+const RUN_COMMAND_WITHDRAWN = /\?|\b(?:not|don't|dont|never|cancel|scratch that|hold off|wait|undo|is it|should i|nevermind|never mind)\b/g;
 
-function runCommandRequested(before: string, after: string, name: string): boolean {
-  if (RUN_COMMAND_WITHDRAWN.test(after)) return false;
-  return new RegExp(`(?:^|[.!?;:\\n] *)(?:(?:please|now|just|then|and) )*${name}$`).test(before)
-    || new RegExp(`\\b${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}(?:the )?${name}$`).test(before);
+// A naming's clause ends where the next command name starts.
+const COMMAND_CLAUSE_END = /(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/g;
+
+// The first match at or after a position, for callers whose positions only grow,
+// as a name's occurrences do. An answer stays good until the caller passes it, so
+// the prompt is scanned about once rather than once per occurrence, which kept a
+// prompt that repeats a command from costing time quadratic in its length.
+function forwardSearch(text: string, pattern: RegExp): (from: number) => number {
+  const global = new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : `${pattern.flags}g`);
+  let found = -2;
+  return (from: number): number => {
+    if (found === -1 || found >= from) return found;
+    global.lastIndex = from;
+    found = global.exec(text)?.index ?? -1;
+    return found;
+  };
+}
+
+// Each command's patterns are built once and kept, because building them per
+// occurrence cost as much as reading them. The names come from the command
+// tables, so the cache stays small; the bound only guards a caller that passes
+// arbitrary names.
+interface CommandNamingPatterns {
+  readonly occurrences: RegExp;
+  readonly led: RegExp;
+  readonly bareLead: RegExp;
+  readonly bareLeadOpensSentence: RegExp;
+  readonly namedAsDocument: RegExp;
+  readonly requestedOpeningSentence: RegExp;
+  readonly requestedByUseVerb: RegExp;
+}
+
+const COMMAND_NAMING_CACHE = new Map<string, CommandNamingPatterns>();
+const COMMAND_NAMING_CACHE_LIMIT = 256;
+
+function commandNamingPatterns(current: string): CommandNamingPatterns {
+  const cached = COMMAND_NAMING_CACHE.get(current);
+  if (cached) return cached;
+  const spellings = [current, ...Object.keys(RETIRED_COMMANDS).filter((retired) => RETIRED_COMMANDS[retired] === current)]
+    .sort((left, right) => right.length - left.length);
+  const name = `(?:${spellings.map(escapePhrase).join('|')})`;
+  // One alternation of every lead answers what testing each lead in turn did.
+  const leads = [...COMMAND_DECLINE_LEADS, ...COMMAND_ASK_LEADS].map((lead) => `(?:${lead})`).join('|');
+  const patterns: CommandNamingPatterns = {
+    occurrences: new RegExp(`(?:^|[^a-z0-9_/])${name}(?![a-z0-9_-]|[./][a-z0-9])`, 'g'),
+    led: windowedPattern(`(?:^|[^a-z0-9_/])(?:${leads})${COMMAND_OR_LIST}${name}$`),
+    bareLead: windowedPattern(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`),
+    bareLeadOpensSentence: windowedPattern(`(?:^|[.!?\\n] *)${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`),
+    namedAsDocument: windowedPattern(`\\b(?:the|this|that) ${name}$`),
+    requestedOpeningSentence: windowedPattern(`(?:^|[.!?;:\\n] *)(?:(?:please|now|just|then|and) )*${name}$`),
+    requestedByUseVerb: windowedPattern(`\\b${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}(?:the )?${name}$`),
+  };
+  if (COMMAND_NAMING_CACHE.size >= COMMAND_NAMING_CACHE_LIMIT) COMMAND_NAMING_CACHE.clear();
+  COMMAND_NAMING_CACHE.set(current, patterns);
+  return patterns;
+}
+
+// The withdrawal words can sit anywhere after the name, so the caller reads the
+// whole rest of the prompt for them; the request leads before it are short.
+function commandRunRequested(patterns: CommandNamingPatterns, text: string, nameEnd: number, withdrawn: boolean): boolean {
+  if (withdrawn) return false;
+  return endsBefore(patterns.requestedOpeningSentence, text, nameEnd)
+    || endsBefore(patterns.requestedByUseVerb, text, nameEnd);
 }
 
 // A prompt names a command to refuse it or to ask about it as often as it names
@@ -768,43 +1193,45 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
   const text = prompt
     .toLowerCase()
     .replace(/<\/?(?:code|kbd|samp|tt)>/g, '')
-    .replace(/[`*"\u201c\u201d[\]()~\u00ab\u00bb\u2032\u2039\u203a]/g, '')
-    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[`*"“”[\]()~«»′‹›]/g, '')
+    .replace(/[‘’]/g, "'")
     .replace(/(^|[^a-z0-9])'(?=\/[a-z])/g, '$1')
     .replace(/(\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*(?: [a-z][a-z0-9_-]*)?)'(?![a-z0-9])/g, '$1')
     .replace(/[^\S\n]+/g, ' ')
     .replace(/ *\n\s*/g, '\n');
   const current = command.toLowerCase();
-  const spellings = [current, ...Object.keys(RETIRED_COMMANDS).filter((retired) => RETIRED_COMMANDS[retired] === current)]
-    .sort((left, right) => right.length - left.length);
-  const name = `(?:${spellings.map(escapePhrase).join('|')})`;
+  const patterns = commandNamingPatterns(current);
   const runsWithoutAsking = TRACKED_COMMANDS[current]?.policy === 'run';
-  const occurrences = [...text.matchAll(new RegExp(`(?:^|[^a-z0-9_/])${name}(?![a-z0-9_-]|[./][a-z0-9])`, 'g'))];
+  const occurrences = [...text.matchAll(patterns.occurrences)];
   if (occurrences.length === 0) return false;
-  return occurrences.every((occurrence) => {
+  // The clause, the sentence and the withdrawal reads each look forward from a
+  // naming, and the namings come in order, so each look starts where the last
+  // one left off.
+  const clauseEndFrom = forwardSearch(text, COMMAND_CLAUSE_END);
+  const sentenceEndFrom = forwardSearch(text, /[.!\n]/);
+  const questionFrom = forwardSearch(text, /\?/);
+  const withdrawnFrom = forwardSearch(text, RUN_COMMAND_WITHDRAWN);
+  for (const occurrence of occurrences) {
     const nameEnd = (occurrence.index ?? 0) + occurrence[0].length;
-    const before = text.slice(0, nameEnd);
-    const tail = text.slice(nameEnd);
-    const clause = tail.split(/(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/)[0];
-    if (COMMAND_DECLINED_BY_PRONOUN.test(clause)) return true;
+    const clauseEnd = clauseEndFrom(nameEnd);
+    const clause = text.slice(nameEnd, clauseEnd === -1 ? text.length : clauseEnd);
+    if (COMMAND_DECLINED_BY_PRONOUN.test(clause)) continue;
     if (COMMAND_ASKED_BY_PRONOUN.test(clause)) return false;
-    if (COMMAND_AS_DOCUMENT.test(tail) && !/\bthen\b/.test(clause)
-      && new RegExp(`\\b(?:the|this|that) ${name}$`).test(before)) return true;
-    const led = COMMAND_DECLINE_LEADS.some((lead) => (
-      new RegExp(`(?:^|[^a-z0-9_/])${lead}${COMMAND_OR_LIST}${name}$`).test(before)
-    )) || COMMAND_ASK_LEADS.some((lead) => (
-      new RegExp(`(?:^|[^a-z0-9_/])${lead}${COMMAND_OR_LIST}${name}$`).test(before)
-    ));
-    if (led) return true;
-    const bareLead = new RegExp(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`).test(before);
-    if (!bareLead) return runsWithoutAsking && !runCommandRequested(before, tail, name);
-    const sentenceEnd = tail.search(/[.!\n]/);
-    const sentence = sentenceEnd === -1 ? tail : tail.slice(0, sentenceEnd);
+    if (COMMAND_AS_DOCUMENT.test(text.slice(nameEnd, nameEnd + LEAD_WINDOW)) && !/\bthen\b/.test(clause)
+      && endsBefore(patterns.namedAsDocument, text, nameEnd)) continue;
+    if (endsBefore(patterns.led, text, nameEnd)) continue;
+    if (!endsBefore(patterns.bareLead, text, nameEnd)) {
+      if (runsWithoutAsking && !commandRunRequested(patterns, text, nameEnd, withdrawnFrom(nameEnd) !== -1)) continue;
+      return false;
+    }
     // A chat question often leaves the question mark off, so a bare ask word that
     // opens a sentence still asks about the command.
-    return sentence.includes('?')
-      || new RegExp(`(?:^|[.!?\\n] *)${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`).test(before);
-  });
+    const sentenceEnd = sentenceEndFrom(nameEnd);
+    const question = questionFrom(nameEnd);
+    const asked = question !== -1 && (sentenceEnd === -1 || question < sentenceEnd);
+    if (!asked && !endsBefore(patterns.bareLeadOpensSentence, text, nameEnd)) return false;
+  }
+  return true;
 }
 
 // A compiled route arrives as unvalidated JSON from a separate process, so the
@@ -834,8 +1261,14 @@ export function attachCommand(
   if (!route) return undefined;
   // A complaint about a stuck run is answered by the hub's own diagnosis command,
   // whichever mode the route picked, because a new run would repeat the fault.
+  // A doctor command the reader typed and asked for is the request itself, so
+  // refusal and no-edit words limit what it repairs rather than withhold it, as
+  // the scorer keeps its typed row.
   if (skillId === 'system-deep-loop' && isStuckRunComplaint(prompt)) {
-    return isNoEditRequest(prompt) || commandOnlyMentioned(prompt, DEEP_LOOP_DOCTOR_COMMAND)
+    if (typedCommandsIn(prompt).includes(DEEP_LOOP_DOCTOR_COMMAND) && !commandOnlyMentioned(prompt, DEEP_LOOP_DOCTOR_COMMAND)) {
+      return DEEP_LOOP_DOCTOR_COMMAND;
+    }
+    return isNoEditRequest(prompt) || isRunRefused(prompt) || commandOnlyMentioned(prompt, DEEP_LOOP_DOCTOR_COMMAND)
       ? undefined
       : DEEP_LOOP_DOCTOR_COMMAND;
   }
@@ -884,7 +1317,7 @@ export function attachCommand(
   // answers a short question with a short answer, so no other skill consults the
   // wording list.
   if (skillId === 'system-deep-loop') {
-    const typesThisCommand = typedCommandIn(prompt) === commands[workflowMode];
+    const typesThisCommand = typedCommandsIn(prompt).includes(commands[workflowMode]);
     if (!typesThisCommand && !asksForLoopRun(prompt)) return undefined;
   }
 
@@ -902,16 +1335,28 @@ function deferredLoopCommand(
   modeCommands: Readonly<Record<string, Readonly<Record<string, string>>>>,
 ): string | undefined {
   if (!Object.prototype.hasOwnProperty.call(modeCommands, skillId)) return undefined;
-  const lowered = prompt.toLowerCase();
+  const lowered = lowerFolded(prompt);
   if (!asksForLoopRun(prompt) || isNoEditRequest(prompt)) return undefined;
   const commands = modeCommands[skillId];
-  const named = new Set([...lowered.matchAll(NAMED_LOOP_MODE)].map((match) => (
-    (match[1] ?? match[2]) === 'research' ? 'research' : 'review'
-  )));
+  // A loop name that is the request's subject, as in "review the research loop
+  // config", names what is worked on, not the loop to run. It neither settles the
+  // mode nor counts as a topic cue, so its words are blanked before the cues are
+  // read, and "run a deep loop to review the research loop config" is a review.
+  const named = new Set<string>();
+  let cueText = lowered;
+  for (const match of lowered.matchAll(NAMED_LOOP_MODE)) {
+    const index = match.index ?? 0;
+    const after = lowered.slice(index + match[0].length);
+    if (namesLoopSubject(match[0], lowered, index, after)) {
+      cueText = cueText.slice(0, index) + ' '.repeat(match[0].length) + cueText.slice(index + match[0].length);
+      continue;
+    }
+    named.add((match[1] ?? match[2]) === 'research' ? 'research' : 'review');
+  }
   const cued = named.size === 1
     ? [...named].filter((mode) => Object.prototype.hasOwnProperty.call(commands, mode))
     : Object.keys(MODE_CUES).filter((mode) => (
-      MODE_CUES[mode].test(lowered) && Object.prototype.hasOwnProperty.call(commands, mode)
+      MODE_CUES[mode].test(cueText) && Object.prototype.hasOwnProperty.call(commands, mode)
     ));
   if (cued.length !== 1) return undefined;
   const command = commands[cued[0]];

@@ -4,6 +4,8 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderAdvisorBrief } from '../lib/render.js';
+import { degradedRecommendations } from '../skill-advisor-cli.js';
+import { resultFromCliData } from '../../hooks/lib/skill-advisor-cli-fallback.js';
 
 const DIRECTIVES_LABEL = '\nDirectives:';
 // The advisor portion is capped at 80 tokens and the renderer estimates four
@@ -325,5 +327,68 @@ describe('command brief golden heads', () => {
     expect(head).toContain(' vs system-spec-kit → /speckit:save (start)');
     expect(head.length).toBeLessThanOrEqual(HEAD_CHARACTER_CAP);
     expect(head).not.toContain('command-');
+  });
+
+  // The local scorer answers when the daemon is down, and its rows reach the
+  // head through the same CLI normalizer the hook uses. A deep command the prompt
+  // typed must lose its offer options there too, while one it did not type keeps
+  // them, so both sides run the real degraded producer and the real normalizer.
+  describe('degraded local-scorer path', () => {
+    function degradedHead(skill: string, prompt: string): string {
+      const result = resultFromCliData({
+        data: {
+          freshness: 'stale',
+          recommendations: degradedRecommendations(
+            [{ skill, confidence: 0.94, uncertainty: 0.12, passes_threshold: true }],
+            prompt,
+          ),
+        } as never,
+        options: { maxTokens: 80 } as never,
+        startedAt: 0,
+        now: () => 1,
+      });
+      return headOf(renderAdvisorBrief({ ...result, metrics: { tokenCap: 80 } }));
+    }
+
+    it('prints a typed deep command plainly', () => {
+      const head = degradedHead('command-spec-kit-deep-review', '/deep:review:confirm the auth module');
+
+      expect(head).toContain('/deep:review (ask)');
+      expect(head).not.toContain('A /deep:review:auto');
+    });
+
+    // The degraded producer keeps a command row only when the prompt typed it,
+    // so an untyped deep row arrives as its owner skill. A command row that does
+    // reach the normalizer without the typed marker must still offer the modes,
+    // or the fix would have hidden the choice from every degraded deep row.
+    it('keeps the offer options on a degraded deep row that is not marked typed', () => {
+      const untyped = degradedRecommendations(
+        [{ skill: 'command-spec-kit-deep-review', confidence: 0.94, uncertainty: 0.12, passes_threshold: true }],
+        'review the auth module for regressions',
+      );
+      expect(untyped).toMatchObject([{ skillId: 'system-deep-loop', kind: 'skill' }]);
+      expect(untyped[0]).not.toHaveProperty('typed');
+
+      const result = resultFromCliData({
+        data: {
+          freshness: 'stale',
+          recommendations: [{
+            skillId: 'command-spec-kit-deep-review',
+            kind: 'command',
+            command: '/deep:review',
+            policy: 'ask',
+            ownerSkillId: 'system-deep-loop',
+            confidence: 0.94,
+            uncertainty: 0.12,
+          }],
+        } as never,
+        options: { maxTokens: 80 } as never,
+        startedAt: 0,
+        now: () => 1,
+      });
+      const head = headOf(renderAdvisorBrief({ ...result, metrics: { tokenCap: 80 } }));
+
+      expect(head).toContain('/deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop)');
+    });
   });
 });

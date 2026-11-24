@@ -19,11 +19,14 @@ import {
 import { normalize } from '../affordance-normalizer.js';
 import {
   asksForLoopRun,
+  COMMAND_ASK_LEADS,
+  COMMAND_DECLINE_LEADS,
   COMMAND_ROWS,
   commandOnlyMentioned,
   commandRowFor,
   DEFECT_CHECK,
   isNoEditRequest,
+  isRunRefused,
   isStuckRunComplaint,
   isWritingAboutTopic,
   ITERATIVE_ASK,
@@ -32,7 +35,7 @@ import {
   MULTI_PASS,
   namesDeepRun,
   TRACKED_COMMANDS,
-  typedCommandIn,
+  typedCommandsIn,
 } from '../command-attach.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
@@ -1034,9 +1037,14 @@ export function withholdLoopHubOnWritingAbout(
   promptLower: string,
 ): AdvisorScoredRecommendation[] {
   if (!isWritingAboutTopic(promptLower)) return [...ranked];
-  const typed = typedCommandIn(promptLower);
-  if (typed !== undefined && TRACKED_COMMANDS[typed]?.ownerSkillId === 'system-deep-loop'
-    && !commandOnlyMentioned(promptLower, typed)) return [...ranked];
+  // A prompt may type more than one command, and the longest of them says
+  // nothing about whether a loop run was asked for, so every typed command
+  // counts here.
+  const loopTyped = typedCommandsIn(promptLower).some((typed) => (
+    TRACKED_COMMANDS[typed]?.ownerSkillId === 'system-deep-loop'
+    && !commandOnlyMentioned(promptLower, typed)
+  ));
+  if (loopTyped) return [...ranked];
   return ranked.map((recommendation) => (
     recommendation.skill === 'system-deep-loop' && recommendation.passes_threshold
       ? { ...recommendation, passes_threshold: false }
@@ -1044,15 +1052,38 @@ export function withholdLoopHubOnWritingAbout(
   ));
 }
 
+const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
+
+// A naming of the doctor command that a refusal or a question leads is not a
+// request for it, while a bare naming on a stuck run is: the reader typed the
+// command they want. The leads are the hub's own, so a new refusal verb reaches
+// both layers from one list, and the marks a prompt may wrap a command name in
+// are skipped between the lead and the name.
+const DOCTOR_NAMING_LED = new RegExp(
+  `(?:^|[^a-z0-9_/])(?:${[...COMMAND_DECLINE_LEADS, ...COMMAND_ASK_LEADS].map((lead) => `(?:${lead})`).join('|')})`
+  + '[\\s`*"“”\\[\\]()~«»′‹›]*/doctor:deep-loop(?![a-z0-9_-]|[./][a-z0-9])',
+);
+
 // The doctor command's keywords share research, iteration and convergence words
 // with model training and test reports, so its row passes only on a prompt that
 // names a deep run or types the command itself. Its run policy would otherwise
-// start a diagnosis of a loop the reader never mentioned.
+// start a diagnosis of a loop the reader never mentioned. A reader who refuses
+// any run or fix wants the stuck run explained rather than diagnosed, and so does
+// a reader who refuses or asks about the doctor by name, so the row needs a
+// request for the doctor rather than a naming of it.
 export function withholdDeepLoopDoctorWithoutRun(
   ranked: readonly AdvisorScoredRecommendation[],
   promptLower: string,
 ): AdvisorScoredRecommendation[] {
-  if (namesDeepRun(promptLower) || typedCommandIn(promptLower) === '/doctor:deep-loop') return [...ranked];
+  const onlyMentioned = commandOnlyMentioned(promptLower, DEEP_LOOP_DOCTOR_COMMAND);
+  // A typed naming asks for the doctor only where the prompt asks for it rather
+  // than refusing or questioning it, as the hub's attach reads the same prompt.
+  // Any typed command counts, because a longer one typed for another hub must
+  // not hide the doctor.
+  const doctorAsked = typedCommandsIn(promptLower).includes(DEEP_LOOP_DOCTOR_COMMAND) && !onlyMentioned;
+  const doctorRefused = isRunRefused(promptLower)
+    || (onlyMentioned && DOCTOR_NAMING_LED.test(promptLower.replace(/[\u2018\u2019]/g, "'")));
+  if (doctorAsked || (namesDeepRun(promptLower) && !doctorRefused)) return [...ranked];
   return ranked.map((recommendation) => (
     recommendation.skill === 'command-doctor-deep-loop' && recommendation.passes_threshold
       ? { ...recommendation, passes_threshold: false }
@@ -1067,13 +1098,16 @@ export function withholdWritingCommandsOnNoEdit(
   promptLower: string,
 ): AdvisorScoredRecommendation[] {
   if (!isNoEditRequest(promptLower)) return [...ranked];
+  // Every typed command counts, so a longer one typed beside a writing command
+  // does not turn that writing command back into one the reader never asked for.
+  const typed = typedCommandsIn(promptLower);
   return ranked.map((recommendation) => {
     if (recommendation.kind !== 'command' || !recommendation.passes_threshold) return recommendation;
     if (commandRowFor(recommendation.skill)?.mutating === 'read-only') return recommendation;
     // A command the reader typed and asked for is the request, and the no-edit words limit its scope.
     const base = commandRowFor(recommendation.skill)?.command.split(' ')[0];
     if (base !== undefined
-      && typedCommandIn(promptLower) === base
+      && typed.includes(base)
       && !commandOnlyMentioned(promptLower, base)) return recommendation;
     return { ...recommendation, passes_threshold: false };
   });
@@ -1086,15 +1120,22 @@ export function rankTypedCommandOwnerFirst(
   ranked: readonly AdvisorScoredRecommendation[],
   promptLower: string,
 ): AdvisorScoredRecommendation[] {
-  const command = typedCommandIn(promptLower);
-  if (command === undefined || !Object.hasOwn(TRACKED_COMMANDS, command)) return [...ranked];
-  // A command the reader refused must not pull its owner to the front, because
-  // the ranking would then lead with the skill that offers it.
-  if (commandOnlyMentioned(promptLower, command)) return [...ranked];
-  const row = TRACKED_COMMANDS[command];
-  if (row.scorerRow) return [...ranked];
+  // A prompt may type more than one command, so every command with no scorer
+  // row of its own, and not refused, adds its owner to the owners that must
+  // lead. The highest-ranked passing one leads, which is the ranking the single
+  // typed command produced.
+  const owners = new Set<string>();
+  for (const typed of typedCommandsIn(promptLower)) {
+    const row = TRACKED_COMMANDS[typed];
+    if (row === undefined || row.scorerRow) continue;
+    // A command the reader refused must not pull its owner to the front, because
+    // the ranking would then lead with the skill that offers it.
+    if (commandOnlyMentioned(promptLower, typed)) continue;
+    owners.add(row.ownerSkillId);
+  }
+  if (owners.size === 0) return [...ranked];
   const ownerIndex = ranked.findIndex((recommendation) => (
-    recommendation.skill === row.ownerSkillId && recommendation.passes_threshold
+    owners.has(recommendation.skill) && recommendation.passes_threshold
   ));
   const owner = ranked[ownerIndex];
   if (!owner || ownerIndex === 0) return [...ranked];
