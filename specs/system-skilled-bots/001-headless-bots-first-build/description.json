@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-bots/001-headless-bots-first-build",
   "description": "Build system-skilled-bots: file-defined headless agent bots run on a schedule or event",
   "keywords": [
@@ -11,13 +12,14 @@
     "schedule",
     "event"
   ],
-  "lastUpdated": "2026-11-22T10:48:26.026Z",
+  "lastUpdated": "2026-11-24T12:45:25.994Z",
   "specId": "001",
   "folderSlug": "headless-bots-first-build",
   "parentChain": [
     "system-skilled-bots"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-11-26_13-45__closed-phase-6-ran-the-plan-md-rollback-by-hand.md"
+  ]
 }

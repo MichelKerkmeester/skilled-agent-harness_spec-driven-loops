@@ -35,11 +35,11 @@ contextType: "general"
 
 ### Pre-Task Checklist
 Before starting any task, verify:
-1. [ ] `spec.md` scope is unchanged, including the out-of-scope line for `.skilled/commands/doctor/`
+1. [x] `spec.md` scope is unchanged, including the out-of-scope line for `.skilled/commands/doctor/`
 2. [x] T001 and T002 pass, so phases 2, 3 and 5 are closed
-3. [ ] ADR-003 records the T003 probe before T007 starts
-4. [ ] The task's P0 and P1 checklist rows are identified
-5. [ ] No real `launchctl` call runs outside T003 and T015 to T020
+3. [x] ADR-003 records the T003 probe before T007 starts (deviation: recorded after T007 was built, once the live run on 2026-11-23 gave the exit codes)
+4. [x] The task's P0 and P1 checklist rows are identified
+5. [x] No real `launchctl` call runs outside T003 and T015 to T020 (CHK-120's hand rollback is the plan's own exception)
 
 ### Execution Rules
 | Rule | Description |
@@ -116,10 +116,10 @@ A task waiting on an earlier phase or on the operator is marked `[B]` with the r
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] The real-fire run record from T016 is quoted in `implementation-summary.md`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
+- [x] The real-fire run record from T016 is quoted in `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -181,7 +181,7 @@ A task blocked on an earlier phase is marked `[B]` with the phase named, and no 
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] Every row in `acceptance-criteria.md` is Met with observed evidence Evidence: Open: AC-002, AC-005, AC-008 and AC-009 wait on the live install.
+- [x] CHK-020 [P0] Every row in `acceptance-criteria.md` is Met with observed evidence Evidence: every row is Met; the live rows AC-002, AC-005, AC-008 and AC-009 cite `scratch/live-install-result.txt` and `scratch/live-install-result-xdg.txt` from 2026-11-23.
 - [x] CHK-021 [P0] The real fire in T016 ran under launchd's bare `PATH` Evidence: `scratch/live-install-result.txt:51` fired under launchd with only the bare PATH and the job file environment.
 - [x] CHK-022 [P1] The first-fire, moved-checkout, retargeted-link and re-pin edge cases are tested (T025) Evidence: `tests/slot-accounting.vitest.ts:92` (first fire), `tests/installer.vitest.ts:460` (moved checkout), `:601` (retargeted link), `:623` (re-pin).
 - [x] CHK-023 [P1] Lint failure, preflight refusal and kill-switch label each leave `~/Library/LaunchAgents` unchanged Evidence: In the stand-in agents folder: `tests/installer.vitest.ts:268`, `:380` to `:411`, `:347`. The real folder hash was the same before and after both suite runs (`scratch/entry-conditions.txt`).
@@ -244,7 +244,7 @@ A task blocked on an earlier phase is marked `[B]` with the phase named, and no 
 - [x] CHK-100 [P0] Architecture decisions documented in `decision-record.md`, and `plan.md` points at each one Evidence: `plan.md` lists ADR-001 to ADR-006 and points at `decision-record.md`.
 - [x] CHK-101 [P1] All ADRs have status: `rg -n '^\| \*\*Status\*\*' decision-record.md` prints six lines, ADR-002 Accepted Evidence: Six status lines, ADR-002 Accepted, the other five Proposed.
 - [x] CHK-102 [P1] Alternatives documented with rejection rationale in each ADR Evidence: Each ADR has its Alternatives Considered table.
-- [ ] CHK-103 [P1] ADR-002 is followed by T023 to T026, and ADR-003 records the T003 probe before T007 is built Evidence: Open: ADR-002 is followed by T023 to T026, but the T003 probe has not run; ADR-003 records the mechanism built without it.
+- [x] CHK-103 [P1] ADR-002 is followed by T023 to T026, and ADR-003 records the T003 probe before T007 is built Evidence: ADR-002 is followed by T023 to T026. ADR-003 now records the probe: `disable` exit 0, `bootstrap` exit 5, `print` exit 113, domain `gui/501` (`scratch/live-install-result.txt:12`, `:15`, `:26`). Deviation: the probe ran on 2026-11-23, after T007 was built; the built mechanism did not depend on its answer.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -264,10 +264,10 @@ A task blocked on an earlier phase is marked `[B]` with the phase named, and no 
 ## L3+: Deployment Readiness
 <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
 
-- [B] CHK-120 [P0] The `plan.md` rollback procedure was run once on the T015 test bot: disable, bootout, plist delete and install record delete, with `ls LA | grep -c 'com.skilled.bots.'` printing 0 after Evidence: awaiting orchestrator live install; the uninstall and rollback steps are in `scratch/live-install.sh`.
+- [x] CHK-120 [P0] The `plan.md` rollback procedure was run once on the T015 test bot: disable, bootout, plist delete and install record delete, with `ls LA | grep -c 'com.skilled.bots.'` printing 0 after Evidence: run by hand on 2026-11-24 through `scratch/rollback-run.sh`: `disable` exit 0, `bootout` exit 3 because a held job is not loaded, job file and install record deleted exit 0, then `print` exit 113 and the count 0 (`scratch/rollback-run-result.txt:24`, `:27`, `:29`, `:31`, `:33`, `:34`). Deviation: the T015 bot was already uninstalled on 2026-11-23, so a fresh held bot of the same shape stood in.
 - [x] CHK-121 [P1] Install output says the job is disabled, names `bots enable <id>` and prints the needs-reinstall check result Evidence: `.skilled/bin/bots.cjs:319` prints the held line naming `bots enable <id>`, `next fire: UNKNOWN` and the check result (code read; the live run shows the output).
 - [x] CHK-123 [P1] The enable, disable, uninstall and reinstall steps are written for the operator in `implementation-summary.md` Evidence: `implementation-summary.md` How It Was Delivered, operator steps.
-- [ ] CHK-124 [P2] The operator read those steps before the real fire in T016 Evidence: Operator-owned.
+- [ ] CHK-124 [P2] The operator read those steps before the real fire in T016 Evidence: Not met as written: the real fire ran on 2026-11-23 with no record of a read before it. On 2026-11-24 the operator was pointed at `scratch/live-install.sh` and approved the rollback run.
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -276,7 +276,7 @@ A task blocked on an earlier phase is marked `[B]` with the phase named, and no 
 ## L3+: Compliance Verification
 <!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
 
-- [ ] CHK-130 [P1] Security review of `installer.ts` covers path resolution, the kill-switch path and the install record Evidence: Left to the orchestrator's review.
+- [x] CHK-130 [P1] Security review of `installer.ts` covers path resolution, the kill-switch path and the install record Evidence: `scratch/security-review.txt`. One low finding fixed: install record labels are now checked as hub labels before uninstall deletes or enable bootstraps their job files, with a test that fails on the old code.
 - [x] CHK-131 [P1] No new package dependency is added: the phase 1 manifest diff shows none Evidence: `scratch/grep-gates.txt` lines 19-20: no diff in `package.json` or `package-lock.json`.
 - [x] CHK-132 [P2] A generated plist and an install record carry no secret (CHK-030 covers the plist) Evidence: The install record holds paths, labels, a kind, a pin and timestamps only.
 <!-- /ANCHOR:compliance-verify -->

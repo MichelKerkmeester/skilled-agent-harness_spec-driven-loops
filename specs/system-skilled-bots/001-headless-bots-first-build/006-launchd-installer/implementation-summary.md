@@ -8,26 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer"
-    last_updated_at: "2026-11-24T11:13:43Z"
+    last_updated_at: "2026-11-24T12:45:25Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed T001, T002 and CHK-003 after phase 2 recorded the weekday probe"
-    next_safe_action: "Run the plan.md rollback once on the test bot for CHK-120"
+    recent_action: "Hand rollback run, security review, record-label fix"
+    next_safe_action: "Decide how scheduled runs find executors under launchd's bare PATH"
     packet_purpose: "Purpose: An operator can install a bot's schedule as a disabled launchd agent, enable it on purpose, see it fire and stop it at the scheduler."
     blockers: []
     key_files:
-      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/entry-conditions-2026-11-24.txt"
+      - ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts"
+      - ".skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/rollback-run-result.txt"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/security-review.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:7d4c00accd5667ab67489c097b437c2eddf69abc67761eb3b1694d44bcf14411"
       session_id: "implement-006-launchd-installer"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-24T11:13:43Z"
+      savedAt: "2026-11-24T12:45:25Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-launchd-installer |
-| **Completed** | 2026-11-23: all 18 rows Met. T001, T002 and CHK-003 wait on the phase 2 weekday probe, and CHK-120 (rollback run by hand) is not run |
+| **Completed** | 2026-11-24: all 18 rows Met, the hand rollback run (CHK-120) and the security review (CHK-130) done |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -170,7 +173,9 @@ Proof, in the order it ran:
 | Network denied | 37 tests pass under a deny-network sandbox profile; a control `fetch` is blocked with EPERM (`scratch/network-denied.txt`) |
 | `~/Library/LaunchAgents` | Hash `0deff7da...` before the build and after the suite runs; no `com.skilled.bots.` file (`scratch/entry-conditions.txt`). The hash says nothing about launchd's own disabled-override list, which `enable` and `disable` write. That no real `launchctl` call ran rests on the code: every test hands the installer its scheduler seam, and the CLI's `enable` and `disable` reach the installer's scheduler steps only when an install record exists, which no suite state root holds outside a test's temp folder |
 | Acceptance criteria | 18 of 18 Met. The live install ran twice on 2026-11-23 (`scratch/live-install-result.txt`, `scratch/live-install-result-xdg.txt`): held disabled, one fire with slot and lateness, the drain emptied the inbox, uninstall left nothing. Five review rounds, the last fix verified by the orchestrator under operator answer Q008. Observed: install prints `next fire: UNKNOWN` for a held job |
-| Real fire (T016) | Not run. Its run record is quoted here once `scratch/live-install.sh` runs |
+| Real fire (T016) | Ran 2026-11-23 under launchd's bare PATH: `firedSlot` and `scheduledAt` 2026-11-23T10:35:00.000Z, `dispatchedAt` 10:35:05.602Z, `latenessSeconds` 6, `latenessClass` on-time, source `schedule` (`scratch/live-install-result.txt:50` to `:56`) |
+| Hand rollback (CHK-120) | 2026-11-24, `scratch/rollback-run-result.txt`: disable, bootout, delete the job file and the record, then no hub job file and `print` exit 113 |
+| Security review (CHK-130) | `scratch/security-review.txt`. Install record labels are now checked as hub labels; the new test fails on the old code. Suite 35 files, 373 tests passed, exit 0 (baseline 372); typecheck exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -178,10 +183,10 @@ Proof, in the order it ran:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The live half is not proven.** The disabled hold, the real fire, the drain job and the clean uninstall run only in `scratch/live-install.sh`, which needs the operator's yes. Its bot never calls a model: its precheck prints `[SILENT]`, so the fire ends refused and still writes the slot fields.
+1. **The live run used a bot that never calls a model.** The disabled hold, the real fire, the drain job and the clean uninstall ran on 2026-11-23, but the bot's precheck prints `[SILENT]`, so the fire ended refused and only the slot fields were proven.
 2. **Executors under the bare PATH are open.** A scheduled run starts the runner with an absolute interpreter, but the runner finds an executor such as `codex` on `PATH`, which launchd leaves bare, and the job carries no environment beyond the state home. A real scheduled dispatch fails until that is decided. Raised in `spec.md` open questions.
 12. **The uninstall sweep's root per swept bot is not tested on its own.** Since an install of a second state home is now refused, two jobs of one identity can only carry different state homes when they predate that check; the sweep resolves each swept bot's root from its own job file, and the existing sweep test covers the shared-root case.
-3. **ADR-003 waits on the probe.** The built mechanism does not depend on the probe's answer, but the record stays Proposed until the live script reports the exit codes and the domain target.
+3. **ADR-003 was settled after the build.** The probe ran on 2026-11-23, after T007, and confirmed the mechanism already built.
 4. **Entry conditions met late.** Phase 2 closed on 2026-11-24, after this phase was built. Its probe settled the weekday rule on emit, so weekday-only and day-only crons now install.
 5. **Next fire time stays UNKNOWN.** launchd reports none for a calendar job.
 6. **A re-pin prints no schedule warning yet.** Follow-up for system-skilled-doctor: the hook point is phase_6_reread in `.skilled/commands/doctor/assets/doctor-overlay-repin.yaml`, which runs `overlay-engine.cjs status` after any engine write. The flow could call `checkInstallsFor({ checkoutRoot })` from `installer.ts` there and list the schedules that return `needs-reinstall` with `pin-changed`. This phase edits nothing under `.skilled/commands/doctor/`; until the follow-up lands, phase 7's `bots status` shows the rows.

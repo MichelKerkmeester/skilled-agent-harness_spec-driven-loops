@@ -1,0 +1,24 @@
+Security review of runtime/lib/installer.ts, 2026-11-24, by the orchestrator (read by hand).
+Scope: path resolution, the kill-switch path and the install record.
+
+Path resolution
+- Bot id: every state path built from it goes through segmentOrThrow (state-root.ts installFile), and every label through buildBotLabel, which tests BOT_ID_PATTERN /^[a-z0-9][a-z0-9-]*$/ (label.ts:98). A bot id with "/" or ".." cannot reach a path. OK.
+- Identity: encoded into the label slug byte by byte to [a-z0-9-] or _hh (label.ts); IDENTITY_PATTERN gates it. OK.
+- Job file path: join(agentsDir, `${label}.plist`) (installer.ts plistPathFor). Safe only when the label is a hub label; see the finding below.
+- Runner and tree: realpathSync on the runner and the checkout; the record keeps both paths and the kind. OK.
+- Commands: spawnSync with an argument array and a timeout, never a shell string (installer.ts:272, :281). OK.
+- Plist text: every string and key goes through escapeXml (plist-render.ts:129), and the staged file is written 0600 then linted with plutil before it is moved. OK.
+- Orphan sweep: only file names starting with the hub label prefix and ending .plist in the agents folder, filtered to this identity or this checkout's --repo. OK.
+
+Kill-switch path
+- disableSchedule runs no preflight, so a broken runner cannot block a stop; it disables each label, then boots out a loaded one, and covers jobs found by --repo under another identity (installer.ts disableSchedule, disableUnrecorded). OK.
+- Install refuses label-kill-switch when the label is disabled and the record's hold is operator or null. No code path calls launchctl load (grep-gates.txt:4-5). OK.
+
+Install record
+- Written under the state root, folders 0700 (STATE_DIR_MODE), by temp file and rename. OK.
+- FINDING (low, fixed): readInstallRecord returned record.labels unchecked. uninstallSchedule deletes join(agentsDir, `${label}.plist`) for each recorded label and enableSchedule bootstraps that path, so a record holding "../outside" deletes <agentsDir>/../outside.plist. Writing the record needs the user's own access to a 0700 folder, so the reach is low, but the record is plain JSON and nothing else checks it.
+  Fix: readInstallRecord now returns null unless every label parses as a hub label (parseLabel). Uninstall then falls back to the label built from identity and bot id.
+  Test: tests/installer.vitest.ts "reads no record whose labels are not hub labels, so uninstall deletes nothing outside the agents folder". It fails on the old code (AssertionError: expected { schemaVersion: 1, ... } to be null) and passes on the new.
+- Note, not changed: uninstall reads the record before it builds the label; the read goes through installFile, so a bad bot id throws there, before any delete.
+
+Gates after the fix: bots suite 35 files, 373 tests passed, exit 0 (baseline 372, the delta is the new test); npm run typecheck exit 0.

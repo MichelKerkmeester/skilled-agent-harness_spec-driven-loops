@@ -8,23 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/008-hub-wiring"
-    last_updated_at: "2026-11-24T11:13:46Z"
+    last_updated_at: "2026-11-24T12:43:57Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed T001 and CHK-003 after phase 002 closed"
-    next_safe_action: "None: the phase is complete"
+    recent_action: "Completion boxes reconciled"
+    next_safe_action: "None for this phase"
     packet_purpose: "Purpose: A natural request for each of the four modes reaches that mode through both routing stages on this hub, from every runtime, and a re-pin of a vendored consumer leaves its `bots/` folder untouched."
     blockers: []
     key_files:
-      - "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch/entry-conditions-2026-11-24.txt"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/tasks.md"
     session_dedup:
-      fingerprint: "sha256:21df69c6a05bfccb18bab3775f336b71f33360556cfb5b4c420f9c8c0a3aa5fb"
+      fingerprint: "sha256:4f04faa87edbb53e5ee49f33edc0289583a7c1a263a9ac25d129cb2158075e8d"
       session_id: "scaffold-008-hub-wiring"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-24T11:13:46Z"
+      savedAt: "2026-11-24T12:43:57Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

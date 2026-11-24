@@ -249,8 +249,8 @@ Inferred, not run: because both lists come from git diffs between two commits, a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-11-22 |
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
 | **Deciders** | Phase 6 implementer, after the Setup probe |
 
 ---
@@ -281,6 +281,8 @@ A second gap follows. A first install held disabled and a label disabled as a ki
 - A held install runs `launchctl disable gui/<uid>/<label>` before the job file is moved into place, so a login that loads every file in the folder still skips it. It then runs `bootstrap` as step 5 and keeps its exit code as evidence, whatever it is. It runs `print`; if the host loaded the disabled label after all, it boots it out again, so the hold never depends on the unprobed exit code (`.skilled/skills/system-skilled-bots/runtime/lib/installer.ts:861`).
 - A first install and a kill switch are told apart by the install record, not by `print-disabled`: the record's `hold` is `first-install` for a fresh install, `definition` for a `BOT.md` that says `enabled: false`, and `operator` after `bots disable`. A reinstall stops with `label-kill-switch` when the label is disabled and the record's hold is `operator` or null (disabled by hand). A label disabled with no record left, as after an uninstall, installs again under a `first-install` hold: install never enables, so the label stays disabled either way.
 - The domain target is `gui/<uid>`, one constant in the default seams. The live script prints what each verb returned and settles it.
+
+**Probe result (2026-11-23, macOS 27.0.1, 26A434)**: `gui/501` was accepted by every verb. `disable` exited 0, `bootstrap` on the disabled label exited 5 (Input/output error) and left the job unloaded, `print` exited 113, and no run record appeared across one held 5-minute slot (`scratch/live-install-result.txt:12`, `:15`, `:26`, `:29`). The mechanism as built stands, so this record is Accepted.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---

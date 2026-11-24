@@ -1,0 +1,37 @@
+date: 2026-11-24T12:39:21Z  macOS: 27.0.1 (26A434)  domain: gui/501
+hub job files before: 0
+--- install held disabled
+$ bots schedule install tick
+  render	0
+  lint	0
+  disable	0	first-install
+  bootout	-	not loaded; nothing to boot out
+  move	0	/Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-rollback-probe.tick.0.plist
+  bootstrap	5	held (first-install): Bootstrap failed: 5: Input/output error
+Try re-running the command as root for richer errors.
+  print	1	not loaded: held disabled
+  read-back	0
+bots: installed com.skilled.bots.local_2fbots-rollback-probe.tick.0 at /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-rollback-probe.tick.0.plist
+bots: held disabled (first-install); nothing fires until: bots enable tick
+bots: next fire: UNKNOWN
+bots: check: ok
+exit=0
+label: com.skilled.bots.local_2fbots-rollback-probe.tick.0
+job file: /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-rollback-probe.tick.0.plist
+install record: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-rollback-bogbNr/state/local%2Fbots-rollback-probe/installs/tick.json
+--- plan.md rollback, by hand
+$ launchctl disable gui/501/com.skilled.bots.local_2fbots-rollback-probe.tick.0
+exit=0
+$ launchctl bootout gui/501/com.skilled.bots.local_2fbots-rollback-probe.tick.0
+Boot-out failed: 3: No such process
+exit=3 (non-zero expected: a held job is not loaded)
+$ rm /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-rollback-probe.tick.0.plist
+exit=0
+$ rm /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-rollback-bogbNr/state/local%2Fbots-rollback-probe/installs/tick.json
+exit=0
+--- after
+print: exit=113 (expect non-zero)
+ls LA | grep -c 'com.skilled.bots.': 0 (expect 0)
+install records left: 0 (expect 0)
+scratch: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-rollback-bogbNr
+DONE

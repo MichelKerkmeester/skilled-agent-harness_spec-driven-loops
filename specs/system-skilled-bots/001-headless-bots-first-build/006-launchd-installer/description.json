@@ -6,16 +6,17 @@
     "phase",
     "launchd-installer"
   ],
-  "lastUpdated": "2026-11-24T11:13:43.145Z",
+  "lastUpdated": "2026-11-24T12:44:09.159Z",
   "specId": "006",
   "folderSlug": "launchd-installer",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "23-11-26_09-31__phase-006-launchd-installer-built-by-a-builder-14.md",
-    "24-11-26_12-13__closed-t001-t002-and-chk-003-from-the-phase-2.md"
+    "24-11-26_12-13__closed-t001-t002-and-chk-003-from-the-phase-2.md",
+    "24-11-26_13-44__closed-phase-6-ran-the-plan-md-rollback-by-hand.md"
   ]
 }

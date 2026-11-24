@@ -36,7 +36,7 @@ After phase 5 a bot runs only when a person types a command, and no code turns a
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/006-launchd-installer` |
 | **Parent Spec** | ../spec.md |
@@ -311,13 +311,13 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 12. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- What exit code and output does `launchctl bootstrap` give for a label that `print-disabled` lists, and which domain target (`gui/<uid>` or `user/<uid>`) do `disable`, `print-disabled` and `bootstrap` accept on this host? `man launchctl` says a disabled service cannot be loaded and that `enable` and `disable` take the system, user and user-login domains; it does not name `gui/`. A Setup probe answers both before ADR-003 is settled.
+- What exit code and output does `launchctl bootstrap` give for a label that `print-disabled` lists, and which domain target (`gui/<uid>` or `user/<uid>`) do `disable`, `print-disabled` and `bootstrap` accept on this host? `man launchctl` says a disabled service cannot be loaded and that `enable` and `disable` take the system, user and user-login domains; it does not name `gui/`. Answered by the Setup probe on 2026-11-23: `bootstrap` on a disabled label exits 5 and leaves it unloaded, and `gui/<uid>` is accepted (decision-record.md ADR-003).
 - How does the installer tell a first install held disabled from a label disabled as a kill switch, since both appear in `print-disabled`? Not answered by research.md. ADR-003 must record the answer before T007 is built.
 - What does enabling a first install require from the operator? Proposed in decision-record.md ADR-004; operator-owned.
 - Should the system-skilled-doctor re-pin flow call the needs-reinstall check after a clean re-pin? The hook point is named in ADR-002. The edit is not planned here; operator decision.
 - Should a schedule keep firing while the same bot has an open needs-you item? Not designed here; phase 3 owns the item.
 - Level: settled. The operator raised this phase to Level 3 on 2026-11-22 (decision-record.md, Operator Decisions).
-- How first-install hold and kill switch are told apart: answered as built on 2026-11-23 by the install record's `hold` field (decision-record.md ADR-003, as built). The Setup probe still has to run live, from `scratch/live-install.sh`.
+- How first-install hold and kill switch are told apart: answered as built on 2026-11-23 by the install record's `hold` field (decision-record.md ADR-003, as built). The Setup probe ran live on 2026-11-23 and confirmed it (decision-record.md ADR-003, Accepted).
 - A needs-you hold on a schedule fire: answered by operator decision D9 and built (REQ-018, AC-018).
 - How does a scheduled run find its executor under launchd's bare `PATH`? The runner starts with an absolute interpreter, but it resolves `codex` and the other executor CLIs on `PATH`, and NFR-S02 keeps every environment value but the state home out of the job file. A real scheduled dispatch fails until this is decided; the live script uses a bot whose precheck skips dispatch. Open, for the operator.
 - The drain job relaunches about once a minute while a retried request waits, so phase 5's retry bound of three is reached in two or three minutes when a long run holds the lease. Should the bound or the throttle change? Open, for the operator.

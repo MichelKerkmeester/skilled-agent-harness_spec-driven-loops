@@ -621,7 +621,10 @@ function plistPathFor(seams: InstallerSeams, label: string): string {
 export function readInstallRecord(stateRoot: string, identity: string, botId: string): InstallRecord | null {
   try {
     const parsed = JSON.parse(readFileSync(installFile(stateRoot, identity, botId), 'utf8')) as InstallRecord;
-    return parsed.schemaVersion === 1 ? parsed : null;
+    if (parsed.schemaVersion !== 1) return null;
+    // The record is plain JSON on disk, and its labels name the job files that enable bootstraps and
+    // uninstall deletes, so a label that is not a hub label would reach outside the agents folder.
+    return Array.isArray(parsed.labels) && parsed.labels.every((label) => typeof label === 'string' && parseLabel(label).ok) ? parsed : null;
   } catch {
     return null;
   }

@@ -636,6 +636,21 @@ describe('needs-reinstall check', () => {
     expect(checkOf(world)).toMatchObject({ status: 'ok', reasons: [] });
   });
 
+  it('reads no record whose labels are not hub labels, so uninstall deletes nothing outside the agents folder', () => {
+    const world = installWorld();
+    mustInstall(world);
+    const recordPath = join(identityStatePaths(world.stateRoot, IDENTITY).installs, 'digest.json');
+    const record = JSON.parse(readFileSync(recordPath, 'utf8')) as { labels: string[] };
+    const outside = join(world.agentsDir, '..', 'outside.plist');
+    writeFileSync(outside, 'not a job\n');
+    writeFileSync(recordPath, JSON.stringify({ ...record, labels: ['../outside'] }));
+
+    expect(readInstallRecord(world.stateRoot, IDENTITY, 'digest')).toBeNull();
+    expect(uninstallSchedule(world.input()).ok).toBe(true);
+    expect(existsSync(outside)).toBe(true);
+    expect(readdirSync(world.agentsDir)).toEqual([]);
+  });
+
   it('flags a hub label with no record, and writes and calls nothing', () => {
     const world = installWorld();
     mustInstall(world);

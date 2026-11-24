@@ -58,7 +58,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-22 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet of the `system-skilled-bots` track) |
@@ -136,15 +136,15 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Reused pie
 
 | Phase | Folder | Focus | Depends on | Status |
 |-------|--------|-------|------------|--------|
-| 1 | 001-contracts-and-state-root/ | Run record with the `awaiting-decision` exit, needs-you item schema, `BOT.md` parser, `bots/config.json` with identity, retention and needs-you expiry keys, and the split state layout: control state user-level, run folders in the Skilled tree's gitignored `.state`. Checks what an overlay re-pin does to `.state` (research.md §5, §10, §11; ADR-001, ADR-002) | None | Draft |
-| 2 | 002-schedule-predicates-and-checker/ | Cron translator, label grammar, slot lister and definition checker, with the live weekday probe (research.md §6, §7) | 001 | Draft |
-| 3 | 003-manual-runner/ | `bots run <id>` end to end in a shared checkout, with the run and invocation stop layers. Writes needs-you items, holds a bot while one is open, builds the resumed prompt for a `resume` request and adds `bots inbox`. `bots answer` is phase 005's (research.md §8, §13; ADR-001, D9, D12) | 001 | Draft |
-| 4 | 004-worktree-isolation-and-delivery/ | Opt-in worktree runs and real delivery channels (research.md §10, §13) | 003, and 002's checker code merged (not 002 closed) | Draft |
-| 5 | 005-request-pipeline/ | Atomic enqueue, claim, quarantine, retry bound, `bots enqueue`, hand-run `bots drain`, the opt-in git hook, the `resume` request kind keyed by item id, `bots answer` as a queue producer and quarantine of held requests as `held-needs-you` (research.md §9; ADR-001, D9, D11, D12) | 003 | Draft |
-| 6 | 006-launchd-installer/ | Transactional install and uninstall, scheduler stop layer, fire-time slot accounting and the queue-drain agent. The install record keeps the resolved runner path and `.skilled` kind, and a post-repin check names its hook point in the overlay flow. A fire during a hold records a skipped slot (research.md §7; ADR-004, D9) | 002, 003, 005 | Draft |
-| 7 | 007-status-index/ | SQLite index and `bots status`, joined with `launchctl print`. Rows for open needs-you items, held bots, a changed runner path and a vanished run folder; retention per ADR-005 and D10 (research.md §12; ADR-001, ADR-004) | 003, 006 | Draft |
-| 8 | 008-hub-wiring/ | Four metadata modes, commands, mirrors, doctor asset, two-stage replay and staged re-pin. `inbox` maps onto the status mode and `answer` onto the run mode; the re-pin also checks that reinstall is reported when the runner path changes (research.md §14; ADR-001, ADR-004) | 001 to 007 | Draft |
-| 9 | 009-skilled-alignment-and-docs/ | [Phase 9 scope] | Pending |
+| 1 | 001-contracts-and-state-root/ | Run record with the `awaiting-decision` exit, needs-you item schema, `BOT.md` parser, `bots/config.json` with identity, retention and needs-you expiry keys, and the split state layout: control state user-level, run folders in the Skilled tree's gitignored `.state`. Checks what an overlay re-pin does to `.state` (research.md §5, §10, §11; ADR-001, ADR-002) | None | Complete |
+| 2 | 002-schedule-predicates-and-checker/ | Cron translator, label grammar, slot lister and definition checker, with the live weekday probe (research.md §6, §7) | 001 | Complete |
+| 3 | 003-manual-runner/ | `bots run <id>` end to end in a shared checkout, with the run and invocation stop layers. Writes needs-you items, holds a bot while one is open, builds the resumed prompt for a `resume` request and adds `bots inbox`. `bots answer` is phase 005's (research.md §8, §13; ADR-001, D9, D12) | 001 | In Progress |
+| 4 | 004-worktree-isolation-and-delivery/ | Opt-in worktree runs and real delivery channels (research.md §10, §13) | 003, and 002's checker code merged (not 002 closed) | In Progress |
+| 5 | 005-request-pipeline/ | Atomic enqueue, claim, quarantine, retry bound, `bots enqueue`, hand-run `bots drain`, the opt-in git hook, the `resume` request kind keyed by item id, `bots answer` as a queue producer and quarantine of held requests as `held-needs-you` (research.md §9; ADR-001, D9, D11, D12) | 003 | In Progress |
+| 6 | 006-launchd-installer/ | Transactional install and uninstall, scheduler stop layer, fire-time slot accounting and the queue-drain agent. The install record keeps the resolved runner path and `.skilled` kind, and a post-repin check names its hook point in the overlay flow. A fire during a hold records a skipped slot (research.md §7; ADR-004, D9) | 002, 003, 005 | Complete |
+| 7 | 007-status-index/ | SQLite index and `bots status`, joined with `launchctl print`. Rows for open needs-you items, held bots, a changed runner path and a vanished run folder; retention per ADR-005 and D10 (research.md §12; ADR-001, ADR-004) | 003, 006 | In Progress |
+| 8 | 008-hub-wiring/ | Four metadata modes, commands, mirrors, doctor asset, two-stage replay and staged re-pin. `inbox` maps onto the status mode and `answer` onto the run mode; the re-pin also checks that reinstall is reported when the runner path changes (research.md §14; ADR-001, ADR-004) | 001 to 007 | Complete |
+| 9 | 009-skilled-alignment-and-docs/ | sk-code and sk-doc alignment: code-folder READMEs, a feature catalog, runtime playbook scenarios, a Devin alignment run and a fresh Opus logic review | 001 to 008 | Complete |
 
 **Levels.** The operator raised phases 001, 003 and 006 to Level 3 (decision-record.md D8). Each child carries its own level. The parent stays a phase parent.
 

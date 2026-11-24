@@ -90,9 +90,9 @@ Shell variables: `H` is `.skilled/skills/system-skilled-bots`. `PSC` is `node .s
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 - [x] `implementation-summary.md` holds the verbatim gate, replay and re-pin outputs
 <!-- /ANCHOR:completion -->
 
