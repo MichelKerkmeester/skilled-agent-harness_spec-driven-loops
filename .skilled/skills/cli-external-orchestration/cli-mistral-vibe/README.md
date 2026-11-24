@@ -6,7 +6,7 @@ trigger_phrases:
   - "vibe print mode"
   - "delegate to vibe"
   - "vibe cli"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # cli-mistral-vibe
@@ -192,7 +192,7 @@ No. `--output` carries no exit code, and a denied tool call returns to the model
 
 ### Can a lineage dispatch Vibe?
 
-Yes, as a fan-out lineage beside a second executor group, through the shared runtime's `cli-mistral-vibe` executor kind. A single-executor run is refused. A lineage runs with `--auto-approve` and with no confinement, so give it only work you would let run unattended. The runner renders the repository's guard hooks into the lineage's home and passes `VIBE_SPEC_FOLDER`, so the guards and the goal slice still apply. The spec gate stays off there, because the runner sets `SYSTEM_SPEC_GATE_DISABLED=1` for every lineage.
+Yes, as a fan-out lineage beside a second executor group, through the shared runtime's `cli-mistral-vibe` executor kind. A single-executor run is refused. A lineage with no `sandboxMode` runs with `--auto-approve` and with no confinement, so give it only work you would let run unattended. A `read-only` lineage runs with only the `read_file` and `grep` tools, a compensating tool allowlist rather than an OS boundary, and `parseExecutorConfig` rejects any other `sandboxMode`. The runner renders the repository's guard hooks into the lineage's home and passes `VIBE_SPEC_FOLDER`, so the guards and the goal slice still apply. The spec gate stays off there, because the runner sets `SYSTEM_SPEC_GATE_DISABLED=1` for every lineage.
 
 ---
 

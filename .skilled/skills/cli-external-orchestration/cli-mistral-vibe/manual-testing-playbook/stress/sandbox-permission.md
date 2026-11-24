@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts"
 test_name: "forwards the asserted cli-mistral-vibe sandbox and permission flags"
 playbook_path: "cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/sandbox-permission.md"
 id: "cli-mistral-vibe-EC-007"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # EC-007 -- cli-mistral-vibe sandbox permission
@@ -28,7 +28,7 @@ This scenario runs the manifest-indexed hermetic stress test for `cli-mistral-vi
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, then capture stdout, stderr and the exit code.
 - Expected signals: the verbose Vitest reporter names the exact test as passed, and the final file and test summary is green.
 - Pass/fail: PASS when the command exits 0 and the named test is reported passed; FAIL when the test starts and exits non-zero or an assertion fails; SKIP only when Node or the checked-in Vitest dependency cannot start.
-- Recorded sandbox: none. Vibe exposes no confinement flag, so the adapter records no sandbox and no permission mode for this cell. The test asserts that a read-only request adds no `--sandbox` and no `--permission-mode` argument, and that the effective config claims no boundary.
+- Recorded sandbox: `read-only`, as a compensating control. Vibe exposes no confinement flag, so a read-only request runs with `--enabled-tools read_file --enabled-tools grep`, which disables every other tool in print mode. The test asserts that argv carries `--enabled-tools`, `read_file` and `grep` and no `--sandbox` or `--permission-mode` argument, and that the effective config records `sandboxMode` `read-only`, no permission mode and `sandboxEnforcement` `compensating`.
 - Live provider step: none. This stress cell is hermetic and needs no live provider step.
 
 ---

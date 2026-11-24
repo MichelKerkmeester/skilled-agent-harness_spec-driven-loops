@@ -6,7 +6,7 @@ trigger_phrases:
   - "bots-run routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -37,7 +37,7 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`RUN`** fires on run the bot, run a bot, bots run, drain the bot queue, bots drain, enqueue a bot run and bots enqueue at weight 4. It loads `references/run-queue-and-answer.md`.
+- **`RUN`** fires on run the bot, run a bot, bots run, drain the bot queue, drain the bot, bots drain, enqueue a bot run, queue a bot run and bots enqueue at weight 4. It loads `references/run-queue-and-answer.md`.
 - **`ANSWER`** fires on answer the bot, bots answer and answer a needs-you at weight 4. It loads `references/run-queue-and-answer.md`.
 
 A request that fires no intent returns `UNKNOWN_FALLBACK` with the checklist below.
@@ -65,7 +65,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 ]
 
 INTENT_SIGNALS = {
-    "RUN": {"weight": 4, "keywords": ["run the bot", "run a bot", "bots run", "drain the bot queue", "bots drain", "enqueue a bot run", "bots enqueue"]},
+    "RUN": {"weight": 4, "keywords": ["run the bot", "run a bot", "bots run", "drain the bot queue", "drain the bot", "bots drain", "enqueue a bot run", "queue a bot run", "bots enqueue"]},
     "ANSWER": {"weight": 4, "keywords": ["answer the bot", "bots answer", "answer a needs-you"]},
 }
 

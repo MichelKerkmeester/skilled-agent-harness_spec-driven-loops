@@ -19,7 +19,9 @@
     "discoveryClasses": [
       "hub-identity"
     ],
-    "discoveryClassesContract": "Classes listed here are hub discovery and defer evidence only. No mode's scoring classes reference them, so a prompt that matches only hub vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
+    "discoveryClassesContract": "Classes listed here are hub discovery and defer evidence only. No mode's scoring classes reference them, so a prompt that matches only hub vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode.",
+    "orderedKeywordContract": "A keyword that starts with ~ lists whole words that must appear in the prompt in that order, each at most three words after the one before, so ~pause bot matches pause the triage bot but not pause the robot. A hyphenated name such as release-notes counts as one word, and so does a word with an apostrophe inside it, such as michel's; a possessive 's is dropped, so ~bot schedule matches the bot's schedule but not the robot's schedule. Every other keyword is a contiguous phrase. Ordered keywords count only when no contiguous keyword matched any mode, so they never change a decision a contiguous keyword produces. They also stay out of a prompt that holds a word from orderedKeywordBlockers, the words of a request to write a bot, so start writing the bot defers instead of reaching run. build is not listed, because the build bot names a bot, and neither are write and create, because run the triage bot to write a summary asks for a run.",
+    "orderedKeywordBlockers": ["authoring", "building", "creating", "writing"]
   },
   "routerSignals": {
     "author": {
@@ -57,19 +59,19 @@
       "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer"]
     },
     "run-workflow": {
-      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot"]
+      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "~drain bot", "~run bot", "~start the bot", "~launch the bot"]
     },
     "schedule-aliases": {
       "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot"]
     },
     "schedule-workflow": {
-      "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot"]
+      "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "~bot schedule", "~pause bot", "~resume bot", "~enable bot", "~disable bot"]
     },
     "status-aliases": {
       "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me"]
     },
     "status-workflow": {
-      "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "status of my bots"]
+      "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "needs-you inbox", "bot's schedule needs"]
     }
   }
 }

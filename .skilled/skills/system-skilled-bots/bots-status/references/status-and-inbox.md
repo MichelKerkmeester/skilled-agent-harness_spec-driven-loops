@@ -7,7 +7,7 @@ trigger_phrases:
   - "which bots are installed"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Bot Status and Inbox
@@ -22,7 +22,7 @@ version: 1.0.0.0
 
 Give the status mode the two read verbs and the flags that change what they show, so a status answer never needs a write.
 
-### Usage
+### When to Use
 
 - Listing installed bots, their last run and its delivery.
 - Reading open and expired needs-you items.

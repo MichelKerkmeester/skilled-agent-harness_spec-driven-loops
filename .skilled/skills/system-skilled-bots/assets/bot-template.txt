@@ -15,7 +15,7 @@ delivery: {targets: [], onFailure: null}
 isolation: worktree
 # Sandbox class the executor must honor. Default: undeclared.
 sandbox: null
-# Secrets policy for the run. Default: undeclared.
+# Secrets policy, recorded on the definition only: this build does not enforce it. Default: undeclared.
 secrets: null
 # Command run first. A non-zero exit or [SILENT] output skips the run. Default: none.
 precheck: null

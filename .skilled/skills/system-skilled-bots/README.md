@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-bots"
   - "skilled bots hub"
   - "headless bots"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # system-skilled-bots
@@ -29,7 +29,7 @@ version: 1.0.1.0
 
 A bot is one `BOT.md` under a repository's `bots/` folder. The runtime under `runtime/` runs it by hand, from a launchd schedule or from a queued request, and keeps every piece of control state outside the consumer checkout. This hub is the route into that runtime: `hub-router.json` scores the request and picks one mode, and `mode-registry.json` maps that mode to its packet folder. The hub itself holds no per-mode logic.
 
-Every routing signal names a bot, so a request to run tests, schedule a meeting or read a build status never reaches the hub.
+Every routing signal names a bot or the bot-only term needs-you, so a request to run tests, schedule a meeting or read a build status never reaches the hub.
 
 ---
 
@@ -54,7 +54,7 @@ The tie-break order is status, author, schedule, then run, so a request that nam
 | [`hub-router.json`](./hub-router.json) | Stage-one signals, vocabulary and tie-break order | See how a request scores against each mode |
 | [`ROUTER.md`](./ROUTER.md) | Stage-two intent and resource maps | See which leaves a selected mode loads |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the reference files a mode loads |
-| [`assets/bot-template.md`](./assets/bot-template.md) | The `BOT.md` template | Start a new bot from it |
+| [`assets/bot-template.txt`](./assets/bot-template.txt) | The `BOT.md` template | Start a new bot from it |
 | [`scripts/bot-check.cjs`](./scripts/bot-check.cjs) | The read-only definition checker | Prove a `bots/` folder before anything installs it |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | The current-state feature inventory with source and test anchors | Find which module and test back a bot capability |
 

@@ -1,7 +1,7 @@
 ---
 title: "bots-run"
 description: "Run mode of system-skilled-bots: start a bot run, queue or drain run requests, and answer a needs-you item so its run continues."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # bots-run
@@ -66,17 +66,7 @@ Never start a run only to test routing. Routing is checked by replaying the requ
 
 ---
 
-## 5. RELATED
-
-- [`SKILL.md`](./SKILL.md): the run workflow, its rules and its success criteria.
-- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
-- [`references/run-queue-and-answer.md`](./references/run-queue-and-answer.md): the run verbs and their contract.
-- [`../README.md`](../README.md): the hub overview with all four modes.
-- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
-
----
-
-## 6. FILES
+## 5. FILES
 
 - `SKILL.md`: the run workflow, its rules and its success criteria.
 - `ROUTER.md`: the packet machine router.
@@ -85,7 +75,7 @@ Never start a run only to test routing. Routing is checked by replaying the requ
 
 ---
 
-## 7. VERIFICATION
+## 6. VERIFICATION
 
 The hub's structural gate verifies the packet's shape:
 
@@ -94,3 +84,13 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sys
 ```
 
 The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real run request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+
+---
+
+## 7. RELATED
+
+- [`SKILL.md`](./SKILL.md): the run workflow, its rules and its success criteria.
+- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
+- [`references/run-queue-and-answer.md`](./references/run-queue-and-answer.md): the run verbs and their contract.
+- [`../README.md`](../README.md): the hub overview with all four modes.
+- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.

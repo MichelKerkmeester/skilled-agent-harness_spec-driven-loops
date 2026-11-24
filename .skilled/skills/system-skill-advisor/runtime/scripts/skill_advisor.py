@@ -688,16 +688,27 @@ def _sanitize_native_label(value: Any) -> Optional[str]:
     return cleaned
 
 
-def _sanitize_native_label_list(value: Any) -> List[str]:
-    """Return prompt-safe native label arrays."""
+NATIVE_ID_PATTERN = re.compile(r"[a-z0-9][a-z0-9:_-]{0,159}")
+
+
+def _sanitize_native_id(value: Any) -> Optional[str]:
+    """Accept a structural native id (skill, command, redirect or mode id) by grammar.
+
+    Ids are single lowercase tokens, so free-text injection screening does not
+    apply to them: its word list would reject real ids such as command-bots-run,
+    because a hyphen is a word boundary. The grammar admits no whitespace,
+    markup or role prefix, which is what the free-text screen guards against.
+    """
+    if not isinstance(value, str):
+        return None
+    return value if NATIVE_ID_PATTERN.fullmatch(value) else None
+
+
+def _sanitize_native_id_list(value: Any) -> List[str]:
+    """Return the structural native ids in a list, dropping any that fail the grammar."""
     if not isinstance(value, list):
         return []
-    labels: List[str] = []
-    for item in value:
-        sanitized = _sanitize_native_label(item)
-        if sanitized:
-            labels.append(sanitized)
-    return labels
+    return [item for item in (_sanitize_native_id(entry) for entry in value) if item]
 
 
 def _run_native_bridge(payload: Dict[str, Any], timeout: float = NATIVE_TIMEOUT_SECONDS) -> Dict[str, Any]:
@@ -801,7 +812,7 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
             for shadow_item in shadow_recommendations:
                 if not isinstance(shadow_item, dict):
                     continue
-                shadow_skill_id = _sanitize_native_label(shadow_item.get("skillId"))
+                shadow_skill_id = _sanitize_native_id(shadow_item.get("skillId"))
                 if shadow_skill_id:
                     shadow_by_skill[shadow_skill_id] = shadow_item
 
@@ -809,7 +820,7 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
     for recommendation in recommendations:
         if not isinstance(recommendation, dict):
             continue
-        skill_id = _sanitize_native_label(recommendation.get("skillId"))
+        skill_id = _sanitize_native_id(recommendation.get("skillId"))
         if not skill_id:
             continue
         native_kind = recommendation.get("kind")
@@ -839,12 +850,12 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
             if status:
                 item["status"] = status
         if "redirectFrom" in recommendation:
-            item["redirect_from"] = _sanitize_native_label_list(recommendation["redirectFrom"])
+            item["redirect_from"] = _sanitize_native_id_list(recommendation["redirectFrom"])
         if "redirectTo" in recommendation:
-            redirect_to = _sanitize_native_label(recommendation["redirectTo"])
+            redirect_to = _sanitize_native_id(recommendation["redirectTo"])
             if redirect_to:
                 item["redirect_to"] = redirect_to
-        workflow_mode = _sanitize_native_label(recommendation.get("workflowMode"))
+        workflow_mode = _sanitize_native_id(recommendation.get("workflowMode"))
         if workflow_mode:
             item["workflowMode"] = workflow_mode
             item.setdefault("mode", workflow_mode)
@@ -2742,6 +2753,46 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "system-skilled-bots",
         "routing_enabled": True,
     },
+    "command-bots-author": {
+        "description": "",
+        "slash_markers": ["/bots:author", "bots:author"],
+        "owning_skill": "system-skilled-bots",
+        "inventory_id": "command-bots-author",
+        "command": "/bots:author",
+        "skill_id": "system-skilled-bots",
+        "owner_mode": "author",
+        "routing_enabled": True,
+    },
+    "command-bots-run": {
+        "description": "",
+        "slash_markers": ["/bots:run", "bots:run"],
+        "owning_skill": "system-skilled-bots",
+        "inventory_id": "command-bots-run",
+        "command": "/bots:run",
+        "skill_id": "system-skilled-bots",
+        "owner_mode": "run",
+        "routing_enabled": True,
+    },
+    "command-bots-schedule": {
+        "description": "",
+        "slash_markers": ["/bots:schedule", "bots:schedule"],
+        "owning_skill": "system-skilled-bots",
+        "inventory_id": "command-bots-schedule",
+        "command": "/bots:schedule",
+        "skill_id": "system-skilled-bots",
+        "owner_mode": "schedule",
+        "routing_enabled": True,
+    },
+    "command-bots-status": {
+        "description": "",
+        "slash_markers": ["/bots:status", "bots:status"],
+        "owning_skill": "system-skilled-bots",
+        "inventory_id": "command-bots-status",
+        "command": "/bots:status",
+        "skill_id": "system-skilled-bots",
+        "owner_mode": "status",
+        "routing_enabled": True,
+    },
     "command-prompt-improve": {
         "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
         "slash_markers": ["/prompt:improve", "prompt:improve"],
@@ -2791,42 +2842,6 @@ GENERATED_COMMAND_BRIDGES = {
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
         "routing_enabled": True,
-    },
-    "command-bots-author": {
-        "description": "",
-        "slash_markers": ["/bots:author"],
-        "inventory_id": "command-bots-author",
-        "command": "/bots:author",
-        "skill_id": "system-skilled-bots",
-        "owner_mode": "author",
-        "routing_enabled": False,
-    },
-    "command-bots-run": {
-        "description": "",
-        "slash_markers": ["/bots:run"],
-        "inventory_id": "command-bots-run",
-        "command": "/bots:run",
-        "skill_id": "system-skilled-bots",
-        "owner_mode": "run",
-        "routing_enabled": False,
-    },
-    "command-bots-schedule": {
-        "description": "",
-        "slash_markers": ["/bots:schedule"],
-        "inventory_id": "command-bots-schedule",
-        "command": "/bots:schedule",
-        "skill_id": "system-skilled-bots",
-        "owner_mode": "schedule",
-        "routing_enabled": False,
-    },
-    "command-bots-status": {
-        "description": "",
-        "slash_markers": ["/bots:status"],
-        "inventory_id": "command-bots-status",
-        "command": "/bots:status",
-        "skill_id": "system-skilled-bots",
-        "owner_mode": "status",
-        "routing_enabled": False,
     },
     "command-create-benchmark": {
         "description": "",

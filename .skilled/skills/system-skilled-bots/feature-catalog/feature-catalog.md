@@ -8,7 +8,7 @@ trigger_phrases:
   - "bots cli inventory"
   - "feature catalog"
 last_updated: "2026-11-23"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # system-skilled-bots: Feature Catalog
@@ -383,7 +383,7 @@ Routes a bot request to the author, run, schedule or status mode through the hub
 
 #### Current Reality
 
-`hub-router.json` picks one of four modes, a bundle or a defer, and `mode-registry.json` maps it to its packet and command: `/bots:author`, `/bots:run`, `/bots:schedule` or `/bots:status`. Every signal is anchored on the word bot, and a bot request that names no mode defers.
+`hub-router.json` picks one of four modes, a bundle or a defer, and `mode-registry.json` maps it to its packet and command: `/bots:author`, `/bots:run`, `/bots:schedule` or `/bots:status`. Every signal is anchored on the word bot or the bot-only term needs-you, and a bot request that names no mode defers.
 
 #### Source Files
 

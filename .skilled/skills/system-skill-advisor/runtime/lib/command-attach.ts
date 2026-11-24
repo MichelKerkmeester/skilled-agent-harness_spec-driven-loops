@@ -68,6 +68,10 @@ export interface TrackedCommand {
 
 // BEGIN GENERATED COMMAND ROWS
 export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
+  'command-bots-author': { command: '/bots:author', policy: 'start', mutating: 'mutates', ownerSkillId: 'system-skilled-bots' },
+  'command-bots-run': { command: '/bots:run', policy: 'ask', mutating: 'mutates', ownerSkillId: 'system-skilled-bots' },
+  'command-bots-schedule': { command: '/bots:schedule', policy: 'ask', mutating: 'mutates', ownerSkillId: 'system-skilled-bots' },
+  'command-bots-status': { command: '/bots:status', policy: 'run', mutating: 'read-only', ownerSkillId: 'system-skilled-bots' },
   'command-create-agent': { command: '/create:agent', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
   'command-create-changelog': { command: '/create:changelog', policy: 'ask', mutating: 'mutates', ownerSkillId: 'sk-doc' },
   'command-create-feature-catalog': { command: '/create:feature-catalog', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
@@ -127,10 +131,10 @@ export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
   'create:manual-testing-playbook': { command: '/create:manual-testing-playbook', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
 };
 export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {
-  '/bots:author': { policy: 'start', ownerSkillId: 'system-skilled-bots', scorerRow: false },
-  '/bots:run': { policy: 'ask', ownerSkillId: 'system-skilled-bots', scorerRow: false },
-  '/bots:schedule': { policy: 'ask', ownerSkillId: 'system-skilled-bots', scorerRow: false },
-  '/bots:status': { policy: 'run', ownerSkillId: 'system-skilled-bots', scorerRow: false },
+  '/bots:author': { policy: 'start', ownerSkillId: 'system-skilled-bots', scorerRow: true },
+  '/bots:run': { policy: 'ask', ownerSkillId: 'system-skilled-bots', scorerRow: true },
+  '/bots:schedule': { policy: 'ask', ownerSkillId: 'system-skilled-bots', scorerRow: true },
+  '/bots:status': { policy: 'run', ownerSkillId: 'system-skilled-bots', scorerRow: true },
   '/create:agent': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: true },
   '/create:benchmark': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/create:changelog': { policy: 'ask', ownerSkillId: 'sk-doc', scorerRow: false },

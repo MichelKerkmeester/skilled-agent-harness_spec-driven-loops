@@ -296,7 +296,7 @@ Sixteen skills ship with Skilled. Gate 2 loads one when the advisor matches it t
 
 **[mcp-browser-use](.skilled/skills/mcp-browser-use/README.md)** routes browser work to three modes: Chrome DevTools for inspection, debugging, Lighthouse and traces, Aside for deterministic signed-in proof, and Bladebro for stealth and agentic browsing.
 
-**[system-skilled-bots](.skilled/skills/system-skilled-bots/README.md)** runs file-defined headless bots. Its four modes author a bot's `BOT.md`, run a bot or answer its needs-you question, install or pause its launchd schedule, and show bot status and the needs-you inbox.
+**[system-skilled-bots](.skilled/skills/system-skilled-bots/README.md)** runs file-defined headless bots through four modes. `bots-author` writes a bot's `BOT.md`, and `bots-run` runs a bot or answers its needs-you question. `bots-schedule` installs or pauses its launchd schedule, and `bots-status` shows bot status and the needs-you inbox.
 
 ### Standalone Skills
 
@@ -604,7 +604,7 @@ Eleven agents own focused roles. Their source lives in the shared agents folder,
 
 ## 9. 💻 COMMANDS
 
-Forty-four commands ship in six groups in the [commands folder](.skilled/commands/). Each one is a Markdown file, and most hand their steps to a YAML workflow beside it.
+Forty-nine commands ship in seven groups in the [commands folder](.skilled/commands/). Each one is a Markdown file, and most hand their steps to a YAML workflow beside it.
 
 **Spec Kit (8).** `/speckit:complete`, `/speckit:plan`, `/speckit:implement`, `/speckit:resume`, `/speckit:save`, `/speckit:search`, `/speckit:handoff` and `/speckit:ai-council`. These run the spec workflow and its continuity, as [Everyday Workflows](#5--everyday-workflows) describes.
 
@@ -616,7 +616,9 @@ Forty-four commands ship in six groups in the [commands folder](.skilled/command
 
 **Prompt (1).** `/prompt:improve` turns a rough prompt into a structured one.
 
-**Doctor (17).** Health checks and repairs, listed under [Doctor Commands](#11--doctor-commands).
+**Bots (4).** `/bots:author`, `/bots:run`, `/bots:schedule` and `/bots:status` write, run, schedule and report on headless bots, one command for each `system-skilled-bots` mode.
+
+**Doctor (18).** Health checks and repairs, listed under [Doctor Commands](#11--doctor-commands).
 
 Four runtimes add a goal command of their own, listed under the [Goal](#goal) hook.
 
@@ -647,7 +649,7 @@ Each runtime also has a bridge in the CLI orchestration hub, which [CLI Orchestr
 
 ## 11. 🩺 DOCTOR COMMANDS
 
-Seventeen doctor commands check and repair the setup, one area each. Eleven belong to the `system-skilled-doctor` skill, which owns everything about Skilled inside a project. The rest sit with the skill they check, such as `/doctor:git` with sk-git. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe, and you can also just describe the problem in chat. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
+Eighteen doctor commands check and repair the setup, one area each. Eleven belong to the `system-skilled-doctor` skill, which owns everything about Skilled inside a project. The rest sit with the skill they check, such as `/doctor:git` with sk-git. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe, and you can also just describe the problem in chat. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
 
 | Command | What it does |
 | --- | --- |
@@ -668,6 +670,7 @@ Seventeen doctor commands check and repair the setup, one area each. Eleven belo
 | `/doctor:sk-skill` | Checks a skill against the Skilled format, or converts one |
 | `/doctor:sk-code` | Runs the sk-code setup checks, or checks and creates the quality config |
 | `/doctor:deep-loop` | Reads the coverage graphs and convergence of research and review runs |
+| `/doctor:bots` | Checks every `BOT.md` in a repository's `bots/` folder, read-only |
 
 &nbsp;
 

@@ -24,7 +24,7 @@ mutation_boundaries:
 
 upstream_assets:
   mode_contract: ".skilled/skills/system-skilled-bots/bots-author/SKILL.md"
-  template: ".skilled/skills/system-skilled-bots/assets/bot-template.md"
+  template: ".skilled/skills/system-skilled-bots/assets/bot-template.txt"
   presentation: ".skilled/commands/bots/assets/bots-author-presentation.txt"
 
 inputs:
@@ -35,7 +35,7 @@ inputs:
 
 execution:
   steps:
-    - "Check that .skilled/skills/system-skilled-bots/assets/bot-template.md and .skilled/skills/system-skilled-bots/bots-author/SKILL.md exist. If one is missing, report its path and stop with STATUS=FAIL."
+    - "Check that .skilled/skills/system-skilled-bots/assets/bot-template.txt and .skilled/skills/system-skilled-bots/bots-author/SKILL.md exist. If one is missing, report its path and stop with STATUS=FAIL."
     - "Load .skilled/skills/system-skilled-bots/bots-author/SKILL.md and follow its workflow."
     - "When {repo}/bots/{bot_id}/BOT.md is absent, copy the template there and replace the <your-bot-id> placeholder with {bot_id}. When it exists, read it first and edit only the fields the request names."
     - "Write the standing instructions in the body. An empty body fails the check."

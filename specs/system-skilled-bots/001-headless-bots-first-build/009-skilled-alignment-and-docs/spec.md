@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-23 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |
@@ -93,6 +93,7 @@ manual-testing-playbook.md
 - Add runtime scenario categories to `manual-testing-playbook/` through `/create:manual-testing-playbook`, covering author, run, schedule, request and status paths.
 - Run `/local-skilled-alignment` with `--lanes devin` (cli-devin, DeepSeek V4.1 Flash max) over the skill, and fix or record every finding.
 - Dispatch a fresh Opus xhigh review over all runtime logic, verify each finding, and fix the confirmed ones with a test.
+- Fix the verified alignment findings in the surfaces the epic changed outside the skill: the system-deep-loop read-only executor docs, the cli-external-orchestration OpenCode catalog entry, the Vibe EC-007 scenario, the root `README.md`, `.skilled/skills/README.txt`, `.skilled/commands/README.txt`, the `/bots:*` command assets, `.env.example` and the hook-flag and env references, and the regenerated skill graph. The root release notes `v4.2.0.0.md` are deferred by operator decision on 2026-11-23 ("Were not releasing yet").
 
 ### Out of Scope
 - The Tuesday weekday probe and the closure of phases 002, 006 and 008 - they wait on the 2026-11-24 launchd fire, tracked by the parent.
@@ -108,6 +109,23 @@ manual-testing-playbook.md
 | `.skilled/skills/system-skilled-bots/feature-catalog/**` | Create | Feature catalog root and entries |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/**` | Create/Modify | Runtime scenario categories and root index |
 | `.skilled/skills/system-skilled-bots/runtime/lib/*.ts`, `runtime/tests/*` | Modify | Only for verified review or alignment findings |
+| `.skilled/skills/system-skilled-bots/assets/bot-template.txt` (renamed from `bot-template.md`) and its references | Rename/Modify | The BOT.md template is machine-parsed, so it leaves the skill-doc frontmatter and document gates |
+| `.skilled/skills/system-deep-loop/**` read-only executor docs, `SKILL.md`, `changelog/` | Modify/Create | Docs still describe the cli-opencode read-only refusal this epic removed |
+| `.skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md`, `cli-mistral-vibe/manual-testing-playbook/stress/sandbox-permission.md` | Modify | Same pre-epic read-only wording |
+| `README.md`, `.skilled/skills/README.txt`, `.skilled/commands/README.txt`, `.skilled/commands/bots/assets/*` | Modify | Counts, the Bots command group and literal alignment fixes |
+| `.env.example`, `.skilled/hooks/hook-flags.env.example`, `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | The bots enqueue kill switch |
+| `.skilled/changelog/skilled/v4.2.0.0.md` | Deferred | Release notes for the bots hub and the read-only executor change. Deferred by operator decision ("Were not releasing yet"), so the file stays untouched |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Regenerate | Compiled graph is missing the bots hub |
+| `.skilled/skills/system-skilled-bots/hub-router.json`, `ROUTER.md`, `graph-metadata.json`, the three mode `ROUTER.md` files | Modify | Named-bot routing vocabulary, ordered keywords and the stage-one intent pins |
+| `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/**` and its authored copy under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/**` | Modify/Regenerate | The hub-local ordered-keyword engine, canary gold and the compiled policy |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/{system-skilled-bots,cli-external-orchestration}/manifest.json` and their `specs/sk-doc/.../013-live-activation` mirrors | Regenerate | Live manifests refreshed after the bots policy and the cli-mistral-vibe doc edits changed |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json`, `command-bridges.generated.json`, `routing-accuracy/command-routing-baseline.json`, `runtime/lib/command-attach.ts`, `runtime/lib/scorer/projection.ts`, `specs/sk-doc/.../shared/frozen-scorer-pins.json` | Modify/Regenerate | Activate the four `/bots:*` bridges. The bridge regeneration rewrote `projection.ts`, so the scorer pins were re-frozen |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `runtime/tests/python/test_skill_advisor.py` | Modify | The Python advisor screened structural ids with the free-text filter and dropped `command-bots-run` |
+| `.skilled/commands/deep/research.md`, `review.md`, `assets/deep-research-presentation.txt`, `assets/deep-review-presentation.txt`, `assets/deep-research.yaml`, `assets/deep-review.yaml`, `assets/compiled/*.contract.markdown` | Modify/Regenerate | The command contracts still said cli-opencode refuses read-only. Contracts recompiled |
+| `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md`, `README.md` | Modify | A read-only Vibe lineage gets only the read tools, not "no confinement" |
+| `.skilled/skills/system-skilled-bots/bots-*/README.md`, `bots-*/references/*.md`, `bots-author/SKILL.md` | Modify | Strict packaging: `When to Use` headings, RELATED as the last section, a shorter description |
+| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt`, `.github/actions/setup/action.yml` | Modify | A new worktree and the CI cache both need the bots `runtime/` dependencies |
+| `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | Regenerate | The README durable manifest gains the twelve new bots code folders |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -131,7 +149,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-004 | `feature-catalog/` exists and passes the sk-create-feature-catalog validator the command names. |
 | REQ-005 | The playbook gains runtime categories that pass the sk-create-manual-testing-playbook validator, and `node .skilled/bin/compiled-route-admission.cjs --hub system-skilled-bots` still reports no drift. |
-| REQ-006 | A `/local-skilled-alignment --lanes devin` run completes over the skill, and each of its findings is fixed or recorded with a reason. |
+| REQ-006 | A `/local-skilled-alignment` run completes over the skill, and each of its findings is fixed or recorded with a reason. Amended 2026-11-23: the `devin` lanes failed on an exhausted daily quota and on read-only permission mode rejecting every shell call, so the operator switched the run to `--lanes vibe-deepseek` (DeepSeek Flash, thinking max). |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

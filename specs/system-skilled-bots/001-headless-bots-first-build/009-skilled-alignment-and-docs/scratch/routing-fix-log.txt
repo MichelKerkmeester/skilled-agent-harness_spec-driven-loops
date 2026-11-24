@@ -1,0 +1,2485 @@
+routing-fix-log: system-skilled-bots named-bot routing, run start/launch vocabulary, /bots:* bridge activation
+worktree: /Users/michelkerkmeester/worktrees/public/system-skilled-bots (branch system-skilled-bots)
+replay script (kept outside the repo) is reproduced in full below so every replay row can be rerun
+note: em dashes in quoted tool output are rendered as "--" in this log
+
+----- replay.sh -----
+#!/usr/bin/env bash
+# Replay every probe through stage one (advisor_recommend) and stage two (compiled-route).
+# Usage: replay.sh <workspace>
+set -u
+cd "$1"
+IN=(
+"run|Run the release-notes bot now against this repository"
+"run|Queue a bot run for the triage bot from the new-issue event"
+"run|Drain the bot request queue"
+"schedule|Put the nightly bot on a launchd schedule"
+"schedule|Pause the triage bot until Monday"
+"schedule|Remove the bot's schedule and unload its launchd agent"
+"status|Show me which bots are installed and when each last ran"
+"status|Read the needs-you inbox for the bots"
+"status|Check whether the bot's schedule needs a reinstall"
+"run|start the bot"
+"run|launch the triage bot"
+)
+OOD=(
+"answer this question" "run the tests" "schedule a meeting for tomorrow" "status of the build" "author a skill" "check my email inbox"
+"answer the open question" "answer the open ticket" "answer the open issues" "answer the open" "answer the question"
+"answer my open questions" "answer the open pr comments" "answer the pending question" "open questions in the spec"
+"what do you need from me" "answer the open review threads" "my manager needs you to sign this"
+"it needs you to confirm the deploy" "the team needs you"
+"set up a launchd schedule" "install a launchd schedule for my backup script" "write a launchd plist"
+"schedule a cron job for the backup" "add a cron schedule to my script" "pause the launchd agent"
+"start the server" "launch the app" "pause the video" "drain the queue" "remove the cron job"
+"show me which packages are installed" "read my inbox" "my launchd agent is broken"
+"ADJ:drain the connection pool" "ADJ:queue a build run" "ADJ:enqueue a job run for the importer"
+"ADJ:start the dev server" "ADJ:start the robot vacuum" "ADJ:launch the browser"
+"ADJ:put my backup script on a launchd schedule" "ADJ:remove the cron job's schedule"
+"ADJ:the app needs a reinstall" "ADJ:my schedule needs a reinstall" "ADJ:reinstall node modules"
+"ADJ:check whether the plugin needs a reinstall" "ADJ:show me which apps are installed and when each last ran"
+"ADJ:write a system prompt for a support triage bot" "ADJ:pause the build until Monday" "ADJ:run the tests until they pass"
+)
+s1() {
+  printf '%s' "$(node -e 'process.stdout.write(JSON.stringify({prompt:process.argv[1]}))' "$1")" \
+    | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json 2>/dev/null \
+    | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const r=JSON.parse(s).data.recommendations||[];const top=r[0];const i=r.findIndex(x=>x.skillId==="system-skilled-bots");const j=r.findIndex(x=>x.skillId==="system-skilled-bots"||/^command-bots-/.test(x.skillId));process.stdout.write((top?top.skillId+"@"+(top.confidence??top.score??"")+(top.command?"["+top.command+"]":""):"none")+" bots_rank="+(j<0?"-":j+1))}catch(e){process.stdout.write("ERR "+e.message)}})'
+}
+s2() {
+  node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt "$1" 2>/dev/null \
+    | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const r=JSON.parse(s);const m=(r.targets||[]).map(t=>t.workflowMode||(t.destinationId&&t.destinationId.workflowMode)||JSON.stringify(t)).join("+");process.stdout.write(r.action+(m?":"+m:"")+(r.selectionKind?"("+r.selectionKind+")":"")+" hash="+String(r.effectivePolicyHash||r.servingAuthority||"").slice(0,12))}catch(e){process.stdout.write("ERR "+e.message)}})'
+}
+inpass=0; infail=0; oodfail=0; adjfail=0
+for row in "${IN[@]}"; do
+  exp="${row%%|*}"; p="${row#*|}"
+  a=$(s1 "$p"); b=$(s2 "$p")
+  ok1=no; case "$a" in system-skilled-bots@*|command-bots-*) ok1=yes;; esac
+  ok2=no; case "$b" in "route:$exp("*) ok2=yes;; esac
+  if [ $ok1 = yes ] && [ $ok2 = yes ]; then inpass=$((inpass+1)); else infail=$((infail+1)); fi
+  echo "IN  exp=$exp | s1 top=$a ok=$ok1 | s2 $b ok=$ok2 | $p"
+done
+for q in "${OOD[@]}"; do
+  tag=OOD; p="$q"; case "$q" in ADJ:*) tag=ADJ; p="${q#ADJ:}";; esac
+  a=$(s1 "$p"); b=$(s2 "$p")
+  bad1=no; case "$a" in system-skilled-bots@*|command-bots-*|command-doctor-bots@*) bad1=yes;; esac
+  bad2=no; case "$b" in route*) bad2=yes;; esac
+  if [ $tag = OOD ] && { [ $bad1 = yes ] || [ $bad2 = yes ]; }; then oodfail=$((oodfail+1)); fi
+  if [ $tag = ADJ ] && { [ $bad1 = yes ] || [ $bad2 = yes ]; }; then adjfail=$((adjfail+1)); fi
+  echo "$tag s1 top=$a bots-first=$bad1 | s2 $b routed=$bad2 | $p"
+done
+for t in "/bots:author weekly-digest --repo ~/code/acme" "/bots:run answer item-42 yes" "/bots:schedule pause nightly-cleanup" "/bots:status inbox --json"; do
+  py=$(python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "$t" 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print([(x["skill"],x.get("confidence")) for x in d[:3]])')
+  a=$(s1 "$t")
+  echo "TYPED py=$py | s1 top=$a | $t"
+done
+echo "SUMMARY in-pass=$inpass in-fail=$infail ood-fail=$oodfail adj-fail=$adjfail"
+----- end replay.sh -----
+
+=== [baseline: git HEAD and status of the files this fix may touch] 2026-11-23 23:08:14
+$ git rev-parse --short HEAD; git status --short -- .skilled/skills/system-skilled-bots/hub-router.json .skilled/skills/system-skilled-bots/ROUTER.md .skilled/skills/system-skilled-bots/graph-metadata.json .skilled/skills/system-skilled-bots/bots-run/ROUTER.md .skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md .skilled/skills/system-skilled-bots/bots-status/ROUTER.md .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges .skilled/skills/system-skill-advisor/runtime/lib .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy specs/sk-doc/z_archive/019-skill-routing-refactor .skilled/bin/lib/compiled-routing; echo status-done
+bd474396742
+status-done
+(exit 0)
+
+=== [baseline: compiled manifest freshness and serving hash] 2026-11-23 23:08:14
+$ node .skilled/bin/compiled-route-manifest.cjs freshness --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"15538f401738db83506fe9e46c4a249deab6a7ffb379e7721f704aca2d867fea","generation":1},"currentPolicyHash":"15538f401738db83506fe9e46c4a249deab6a7ffb379e7721f704aca2d867fea","manifestFingerprint":"f226ae9c1025a30c9f20814bb524a1dc2ea653b0b2a126767ad2c18a9fc69cb7"}
+(exit 0)
+
+=== [baseline: two-stage replay (stage one advisor_recommend at default thresholds, stage two compiled-route)] 2026-11-23 23:08:30
+$ bash <scratchpad>/replay.sh $PWD
+IN  exp=run | s1 top=sk-doc@0.82[/create:changelog] bots_rank=3 ok=no | s2 defer hash=15538f401738 ok=no | Run the release-notes bot now against this repository
+IN  exp=run | s1 top=system-skilled-bots@0.82 bots_rank=1 ok=yes | s2 defer hash=15538f401738 ok=no | Queue a bot run for the triage bot from the new-issue event
+IN  exp=run | s1 top=system-skilled-bots@0.82 bots_rank=1 ok=yes | s2 defer hash=15538f401738 ok=no | Drain the bot request queue
+IN  exp=schedule | s1 top=system-skilled-bots@0.8728 bots_rank=1 ok=yes | s2 defer hash=15538f401738 ok=no | Put the nightly bot on a launchd schedule
+IN  exp=schedule | s1 top=none bots_rank=- ok=no | s2 defer hash=15538f401738 ok=no | Pause the triage bot until Monday
+IN  exp=schedule | s1 top=system-skilled-bots@0.82 bots_rank=1 ok=yes | s2 defer hash=15538f401738 ok=no | Remove the bot's schedule and unload its launchd agent
+IN  exp=status | s1 top=none bots_rank=- ok=no | s2 route:status(single) hash=15538f401738 ok=yes | Show me which bots are installed and when each last ran
+IN  exp=status | s1 top=system-skilled-bots@0.82 bots_rank=1 ok=yes | s2 defer hash=15538f401738 ok=no | Read the needs-you inbox for the bots
+IN  exp=status | s1 top=none bots_rank=- ok=no | s2 defer hash=15538f401738 ok=no | Check whether the bot's schedule needs a reinstall
+IN  exp=run | s1 top=sk-code@0.82 bots_rank=2 ok=no | s2 defer hash=15538f401738 ok=no | start the bot
+IN  exp=run | s1 top=none bots_rank=- ok=no | s2 defer hash=15538f401738 ok=no | launch the triage bot
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer this question
+OOD s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | run the tests
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | schedule a meeting for tomorrow
+OOD s1 top=sk-code@0.82 bots_rank=3 bots-first=no | s2 defer hash=15538f401738 routed=no | status of the build
+OOD s1 top=sk-doc@0.8453[/create:sk-skill] bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | author a skill
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | check my email inbox
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the open question
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the open ticket
+OOD s1 top=sk-git@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the open issues
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the open
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the question
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer my open questions
+OOD s1 top=sk-git@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the open pr comments
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the pending question
+OOD s1 top=system-spec-kit@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | open questions in the spec
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | what do you need from me
+OOD s1 top=sk-code@0.9003 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | answer the open review threads
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | my manager needs you to sign this
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | it needs you to confirm the deploy
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | the team needs you
+OOD s1 top=system-skilled-bots@0.8261 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | set up a launchd schedule
+OOD s1 top=system-skilled-bots@0.8228 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | install a launchd schedule for my backup script
+OOD s1 top=system-skilled-bots@0.8549 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | write a launchd plist
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | schedule a cron job for the backup
+OOD s1 top=sk-code@0.8359 bots_rank=3 bots-first=no | s2 defer hash=15538f401738 routed=no | add a cron schedule to my script
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | pause the launchd agent
+OOD s1 top=mcp-tooling@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | start the server
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | launch the app
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | pause the video
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | drain the queue
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | remove the cron job
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | show me which packages are installed
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | read my inbox
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | my launchd agent is broken
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | drain the connection pool
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | queue a build run
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | enqueue a job run for the importer
+ADJ s1 top=mcp-tooling@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | start the dev server
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | start the robot vacuum
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | launch the browser
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | put my backup script on a launchd schedule
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | remove the cron job's schedule
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | the app needs a reinstall
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=15538f401738 routed=no | my schedule needs a reinstall
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | reinstall node modules
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | check whether the plugin needs a reinstall
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | show me which apps are installed and when each last ran
+ADJ s1 top=sk-prompt@0.9268 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | write a system prompt for a support triage bot
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | pause the build until Monday
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=15538f401738 routed=no | run the tests until they pass
+TYPED py=[] | s1 top=none bots_rank=- | /bots:author weekly-digest --repo ~/code/acme
+TYPED py=[('system-skilled-bots', 0.82), ('cli-classifier', 0.82)] | s1 top=system-skilled-bots@0.82[/bots:run] bots_rank=1 | /bots:run answer item-42 yes
+TYPED py=[('system-skilled-bots', 0.82)] | s1 top=system-skilled-bots@0.82[/bots:schedule] bots_rank=1 | /bots:schedule pause nightly-cleanup
+TYPED py=[('sk-code', 0.8641), ('system-skilled-bots', 0.82)] | s1 top=system-skilled-bots@0.82[/bots:status] bots_rank=1 | /bots:status inbox --json
+SUMMARY in-pass=0 in-fail=11 ood-fail=6 adj-fail=4
+(exit 0)
+
+=== [VOCABULARY CHANGE: run += start the bot, launch the bot, queue a bot run, drain the bot; schedule += bot on a launchd, remove the bot's schedule; status += needs-you inbox, schedule needs a reinstall (hub-router.json *-workflow classes, hub ROUTER.md INTENT_SIGNALS and status prose, packet ROUTER.md intents and prose); json check and diff] 2026-11-23 23:10:52
+$ node -e 'JSON.parse(require("fs").readFileSync(".skilled/skills/system-skilled-bots/hub-router.json","utf8"));console.log("json ok")' && git diff -U0 -- .skilled/skills/system-skilled-bots/hub-router.json .skilled/skills/system-skilled-bots/ROUTER.md .skilled/skills/system-skilled-bots/bots-run/ROUTER.md .skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md .skilled/skills/system-skilled-bots/bots-status/ROUTER.md
+json ok
+diff --git a/.skilled/skills/system-skilled-bots/ROUTER.md b/.skilled/skills/system-skilled-bots/ROUTER.md
+index d9a4b151f95..fd9e9e87807 100644
+--- a/.skilled/skills/system-skilled-bots/ROUTER.md
++++ b/.skilled/skills/system-skilled-bots/ROUTER.md
+@@ -35 +35 @@ Every keyword names a bot, so a bare verb like run, schedule or status fires not
+-- **Status leaves.** Reading bot status, the last bot run or the needs-you inbox loads the status and inbox reference. `bots inbox` routes here.
++- **Status leaves.** Reading bot status, the last bot run, the needs-you inbox or whether a schedule needs a reinstall loads the status and inbox reference. `bots inbox` routes here.
+@@ -52,3 +52,3 @@ INTENT_SIGNALS = {
+-    "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "bots:run"]},
+-    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bots:schedule"]},
+-    "STATUS":   {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "bots:status"]},
++    "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "start the bot", "launch the bot", "queue a bot run", "drain the bot", "bots:run"]},
++    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "remove the bot's schedule", "bots:schedule"]},
++    "STATUS":   {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "needs-you inbox", "schedule needs a reinstall", "bots:status"]},
+diff --git a/.skilled/skills/system-skilled-bots/bots-run/ROUTER.md b/.skilled/skills/system-skilled-bots/bots-run/ROUTER.md
+index a14185c7abf..f58eced0adf 100644
+--- a/.skilled/skills/system-skilled-bots/bots-run/ROUTER.md
++++ b/.skilled/skills/system-skilled-bots/bots-run/ROUTER.md
+@@ -40 +40 @@ loads before an intent selects it.
+-- **`RUN`** fires on run the bot, run a bot, bots run, drain the bot queue, bots drain, enqueue a bot run and bots enqueue at weight 4. It loads `references/run-queue-and-answer.md`.
++- **`RUN`** fires on run the bot, run a bot, start the bot, launch the bot, bots run, drain the bot queue, drain the bot, bots drain, enqueue a bot run, queue a bot run and bots enqueue at weight 4. It loads `references/run-queue-and-answer.md`.
+@@ -68 +68 @@ INTENT_SIGNALS = {
+-    "RUN": {"weight": 4, "keywords": ["run the bot", "run a bot", "bots run", "drain the bot queue", "bots drain", "enqueue a bot run", "bots enqueue"]},
++    "RUN": {"weight": 4, "keywords": ["run the bot", "run a bot", "start the bot", "launch the bot", "bots run", "drain the bot queue", "drain the bot", "bots drain", "enqueue a bot run", "queue a bot run", "bots enqueue"]},
+diff --git a/.skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md b/.skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md
+index 00e131ff7aa..245b4e68b9b 100644
+--- a/.skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md
++++ b/.skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md
+@@ -40 +40 @@ loads before an intent selects it.
+-- **`SCHEDULE`** fires on schedule a bot, bot schedule, bots schedule, cron bot, launchd bot and bot on a schedule at weight 4. It loads `references/schedule-lifecycle.md`.
++- **`SCHEDULE`** fires on schedule a bot, bot schedule, bots schedule, cron bot, launchd bot, bot on a schedule, bot on a launchd and remove the bot's schedule at weight 4. It loads `references/schedule-lifecycle.md`.
+@@ -68 +68 @@ INTENT_SIGNALS = {
+-    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "bot schedule", "bots schedule", "cron bot", "launchd bot", "bot on a schedule"]},
++    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "bot schedule", "bots schedule", "cron bot", "launchd bot", "bot on a schedule", "bot on a launchd", "remove the bot's schedule"]},
+diff --git a/.skilled/skills/system-skilled-bots/bots-status/ROUTER.md b/.skilled/skills/system-skilled-bots/bots-status/ROUTER.md
+index 58005f686b0..d79bf3bacdd 100644
+--- a/.skilled/skills/system-skilled-bots/bots-status/ROUTER.md
++++ b/.skilled/skills/system-skilled-bots/bots-status/ROUTER.md
+@@ -40,2 +40,2 @@ loads before an intent selects it.
+-- **`STATUS`** fires on bot status, bots status, last bot run, which bots are installed and bot runs at weight 4. It loads `references/status-and-inbox.md`.
+-- **`INBOX`** fires on bot inbox, bots inbox, what do the bots need from me, bot needs-you, open needs-you items and bot needs me at weight 4. It loads `references/status-and-inbox.md`.
++- **`STATUS`** fires on bot status, bots status, last bot run, which bots are installed, bot runs and schedule needs a reinstall at weight 4. It loads `references/status-and-inbox.md`.
++- **`INBOX`** fires on bot inbox, bots inbox, needs-you inbox, what do the bots need from me, bot needs-you, open needs-you items and bot needs me at weight 4. It loads `references/status-and-inbox.md`.
+@@ -68,2 +68,2 @@ INTENT_SIGNALS = {
+-    "STATUS": {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot runs"]},
+-    "INBOX": {"weight": 4, "keywords": ["bot inbox", "bots inbox", "what do the bots need from me", "bot needs-you", "open needs-you items", "bot needs me"]},
++    "STATUS": {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot runs", "schedule needs a reinstall"]},
++    "INBOX": {"weight": 4, "keywords": ["bot inbox", "bots inbox", "needs-you inbox", "what do the bots need from me", "bot needs-you", "open needs-you items", "bot needs me"]},
+diff --git a/.skilled/skills/system-skilled-bots/hub-router.json b/.skilled/skills/system-skilled-bots/hub-router.json
+index bc4ecc582bd..d70bb3001fc 100644
+--- a/.skilled/skills/system-skilled-bots/hub-router.json
++++ b/.skilled/skills/system-skilled-bots/hub-router.json
+@@ -60 +60 @@
+-      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot"]
++      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "start the bot", "launch the bot", "queue a bot run", "drain the bot"]
+@@ -66 +66 @@
+-      "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot"]
++      "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "remove the bot's schedule"]
+@@ -72 +72 @@
+-      "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "status of my bots"]
++      "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "needs-you inbox", "schedule needs a reinstall"]
+(exit 0)
+
+=== [signals check before regen (expected drift)] 2026-11-23 23:10:52
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+STALE system-skilled-bots          declared= 55 signals= 51 missing=  8 orphans=  0
+       + start the bot
+       + launch the bot
+       + queue a bot run
+       + drain the bot
+       + bot on a launchd
+       + remove the bot's schedule
+       + needs-you inbox
+       + schedule needs a reinstall
+
+checked=1 hub(s), missing=8, orphans=0
+RESULT: FAILED
+(exit 1)
+
+=== [regenerate graph-metadata intent signals] 2026-11-23 23:10:57
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub system-skilled-bots
+WROTE system-skilled-bots          declared= 55 signals= 51 added=  8 orphans=  0
+       + start the bot
+       + launch the bot
+       + queue a bot run
+       + drain the bot
+       + bot on a launchd
+       + remove the bot's schedule
+       + needs-you inbox
+       + schedule needs a reinstall
+
+checked=1 hub(s), added=8, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [signals check after regen] 2026-11-23 23:10:57
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+OK    system-skilled-bots          declared= 55 signals= 59 missing=  0 orphans=  0
+
+checked=1 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [skill graph scan] 2026-11-23 23:10:57
+$ node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text
+skill_graph_scan: completed
+generation: 132 -> 133
+scannedFiles: 29
+indexedFiles: 1
+indexedEdges: 63
+rejectedEdges: 0
+(exit 0)
+
+=== [advisor rebuild] 2026-11-23 23:10:58
+$ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 133 -> 134
+skillCount: 16
+(exit 0)
+
+=== [diagnostic: restore baseline graph-metadata.json (backup), rescan, rebuild, measure stage-one adjacency] 2026-11-23 23:14:23
+$ cp <scratchpad>/bak/.skilled_skills_system-skilled-bots_graph-metadata.json .skilled/skills/system-skilled-bots/graph-metadata.json && node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text | head -2 && node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text | head -2 && bash <scratchpad>/adj1.sh $PWD
+skill_graph_scan: completed
+generation: 135 -> 136
+advisor_rebuild: rebuilt
+reason: force
+ok         [('sk-code', 0.82), ('sk-git', 0.82), ('mcp-tooling', 0.82)] | start the cron job
+ok         [('sk-code', 0.82), ('sk-doc', 0.82), ('sk-git', 0.82)] | start the nightly build
+ok         [('sk-code', 0.82), ('mcp-tooling', 0.82), ('mcp-browser-use', 0.82)] | start the status page
+ok         [('sk-doc', 0.82), ('sk-code', 0.82), ('system-spec-kit', 0.82)] | start the inbox sync
+ok         [('mcp-tooling', 0.82), ('sk-code', 0.82), ('sk-git', 0.82)] | start the queue worker
+ok         [] | launch the queue worker
+ok         [] | launch the schedule editor
+ok         [] | launch the nightly job
+ok         [] | launch the cron job
+ok         [] | remove the cron job
+ok         [] | remove the queue
+ok         [] | remove the schedule
+BOTS-FIRST [('system-skilled-bots', 0.82)] | remove the launchd plist
+ok         [] | the app needs a reinstall
+ok         [] | reinstall the cron job
+BOTS-FIRST [('system-skilled-bots', 0.82)] | my schedule needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | the launchd agent needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | drain the queue
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('system-spec-kit', 0.82)] | queue a build run
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('cli-external-orchestration', 0.82)] | run the nightly build
+BOTS-FIRST [('system-skilled-bots', 0.82)] | pause the queue
+BOTS-FIRST [('system-skilled-bots', 0.82)] | enable the cron job
+(exit 0)
+
+=== [diagnostic: restore v1 graph-metadata.json (start, launch, queue a bot run, drain the bot, bot on a launchd, remove the bot's schedule, needs-you inbox, schedule needs a reinstall), rescan, rebuild, same adjacency set] 2026-11-23 23:14:32
+$ cp <scratchpad>/graph-metadata.after-v1.json .skilled/skills/system-skilled-bots/graph-metadata.json && node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text | head -2 && node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text | head -2 && bash <scratchpad>/adj1.sh $PWD
+skill_graph_scan: completed
+generation: 138 -> 139
+advisor_rebuild: rebuilt
+reason: force
+ok         [('sk-code', 0.82), ('system-skilled-bots', 0.82), ('sk-git', 0.82)] | start the cron job
+ok         [('sk-code', 0.82), ('system-skilled-bots', 0.82), ('sk-doc', 0.82)] | start the nightly build
+ok         [('sk-code', 0.82), ('mcp-tooling', 0.82), ('system-skilled-bots', 0.82)] | start the status page
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('sk-code', 0.82)] | start the inbox sync
+ok         [('mcp-tooling', 0.82), ('sk-code', 0.82), ('system-skilled-bots', 0.82)] | start the queue worker
+BOTS-FIRST [('system-skilled-bots', 0.82)] | launch the queue worker
+BOTS-FIRST [('system-skilled-bots', 0.82)] | launch the schedule editor
+BOTS-FIRST [('system-skilled-bots', 0.82)] | launch the nightly job
+BOTS-FIRST [('system-skilled-bots', 0.82)] | launch the cron job
+BOTS-FIRST [('system-skilled-bots', 0.82)] | remove the cron job
+BOTS-FIRST [('system-skilled-bots', 0.82)] | remove the queue
+BOTS-FIRST [('system-skilled-bots', 0.82)] | remove the schedule
+BOTS-FIRST [('system-skilled-bots', 0.82)] | remove the launchd plist
+BOTS-FIRST [('system-skilled-bots', 0.82)] | the app needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | reinstall the cron job
+BOTS-FIRST [('system-skilled-bots', 0.9363)] | my schedule needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.865)] | the launchd agent needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | drain the queue
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('system-spec-kit', 0.82)] | queue a build run
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('cli-external-orchestration', 0.82)] | run the nightly build
+BOTS-FIRST [('system-skilled-bots', 0.82)] | pause the queue
+BOTS-FIRST [('system-skilled-bots', 0.82)] | enable the cron job
+(exit 0)
+
+
+NOTE: another process is scanning this worktree (advisor generation advanced between this run's own scans: 129->132, 134->135, 137->138) and a new file appeared in 009/scratch. Tracked-file swaps for diagnostics stop here; later diagnostics use the stage-two dry run (s2dry.cjs, authored engine against a candidate hub-router.json) and the logged baseline.
+DECISION (v1 rejected): the adjacency run above shows the stage-one lexical lane gives a short prompt the 0.82 task-intent floor when it overlaps two hub tokens. Baseline 8 hub-first captures; v1 18. New captures came from the new tokens launch (4), remove (3, including the brief's own OOD 'remove the cron job'), reinstall (2) and start (1). Rule applied: a hub phrase stays only if it adds no new token to the hub's lexical candidates, or adds zero new hub-first captures. start the bot, launch the bot, remove the bot's schedule and schedule needs a reinstall are dropped; bot's schedule (schedule, possessive of the existing 'bot schedule') and bot's schedule needs (status) replace the last two.
+
+=== [VOCABULARY CHANGE (final): run += queue a bot run, drain the bot; schedule += bot on a launchd, bot's schedule; status += needs-you inbox, bot's schedule needs. Diff of the five router files] 2026-11-23 23:17:59
+$ node -e 'JSON.parse(require("fs").readFileSync(".skilled/skills/system-skilled-bots/hub-router.json","utf8"));console.log("json ok")' && git diff -U0 -- .skilled/skills/system-skilled-bots/hub-router.json .skilled/skills/system-skilled-bots/ROUTER.md .skilled/skills/system-skilled-bots/bots-run/ROUTER.md .skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md .skilled/skills/system-skilled-bots/bots-status/ROUTER.md | grep -E '^[+-][^+-]'
+json ok
+-    "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "bots:run"]},
+-    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bots:schedule"]},
+-    "STATUS":   {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "bots:status"]},
++    "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "drain the bot", "bots:run"]},
++    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "bot's schedule", "bots:schedule"]},
++    "STATUS":   {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "needs-you inbox", "bot's schedule needs", "bots:status"]},
+-    "RUN": {"weight": 4, "keywords": ["run the bot", "run a bot", "bots run", "drain the bot queue", "bots drain", "enqueue a bot run", "bots enqueue"]},
++    "RUN": {"weight": 4, "keywords": ["run the bot", "run a bot", "bots run", "drain the bot queue", "drain the bot", "bots drain", "enqueue a bot run", "queue a bot run", "bots enqueue"]},
+-    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "bot schedule", "bots schedule", "cron bot", "launchd bot", "bot on a schedule"]},
++    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "bot schedule", "bots schedule", "cron bot", "launchd bot", "bot on a schedule", "bot on a launchd", "bot's schedule"]},
+-    "STATUS": {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot runs"]},
+-    "INBOX": {"weight": 4, "keywords": ["bot inbox", "bots inbox", "what do the bots need from me", "bot needs-you", "open needs-you items", "bot needs me"]},
++    "STATUS": {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot runs", "bot's schedule needs"]},
++    "INBOX": {"weight": 4, "keywords": ["bot inbox", "bots inbox", "needs-you inbox", "what do the bots need from me", "bot needs-you", "open needs-you items", "bot needs me"]},
+-      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot"]
++      "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "drain the bot"]
+-      "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot"]
++      "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "bot's schedule"]
+-      "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "status of my bots"]
++      "keywords": ["bots:status", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "needs-you inbox", "bot's schedule needs"]
+(exit 0)
+
+=== [stage-two dry run (authored engine, live hub-router.json): 9 probes, D-05, OOD, in-word robot case] 2026-11-23 23:17:59
+$ node <scratchpad>/s2dry.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots - 'Run the release-notes bot now against this repository' 'Queue a bot run for the triage bot from the new-issue event' 'Drain the bot request queue' 'Put the nightly bot on a launchd schedule' 'Pause the triage bot until Monday' "Remove the bot's schedule and unload its launchd agent" 'Show me which bots are installed and when each last ran' 'Read the needs-you inbox for the bots' "Check whether the bot's schedule needs a reinstall" 'start the bot' 'launch the triage bot' 'drain the queue' 'remove the cron job' 'read my inbox' "the robot's schedule" "pause the bot's schedule"
+defer | [] | Run the release-notes bot now against this repository
+route:run(single) | [{"mode":"run","score":4}] | Queue a bot run for the triage bot from the new-issue event
+route:run(single) | [{"mode":"run","score":4}] | Drain the bot request queue
+route:schedule(single) | [{"mode":"schedule","score":4}] | Put the nightly bot on a launchd schedule
+defer | [] | Pause the triage bot until Monday
+route:schedule(single) | [{"mode":"schedule","score":4}] | Remove the bot's schedule and unload its launchd agent
+route:status(single) | [{"mode":"status","score":4}] | Show me which bots are installed and when each last ran
+route:status(single) | [{"mode":"status","score":4}] | Read the needs-you inbox for the bots
+route:status+schedule(orderedBundle) | [{"mode":"status","score":4},{"mode":"schedule","score":4}] | Check whether the bot's schedule needs a reinstall
+defer | [] | start the bot
+defer | [] | launch the triage bot
+defer | [] | drain the queue
+defer | [] | remove the cron job
+defer | [] | read my inbox
+route:schedule(single) | [{"mode":"schedule","score":4}] | the robot's schedule
+route:schedule(single) | [{"mode":"schedule","score":8}] | pause the bot's schedule
+(exit 0)
+
+=== [regenerate graph-metadata intent signals (final vocabulary)] 2026-11-23 23:18:06
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub system-skilled-bots
+WROTE system-skilled-bots          declared= 53 signals= 59 added=  2 orphans=  4
+       + bot's schedule
+       + bot's schedule needs
+       - start the bot
+       - launch the bot
+       - remove the bot's schedule
+       - schedule needs a reinstall
+
+checked=1 hub(s), added=2, orphans=4
+RESULT: PASSED
+(exit 0)
+
+=== [signals check after final regen] 2026-11-23 23:18:07
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots
+OK    system-skilled-bots          declared= 53 signals= 57 missing=  0 orphans=  0
+
+checked=1 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [graph-metadata diff against HEAD (intent_signals and provenance only)] 2026-11-23 23:18:12
+$ git diff -U0 -- .skilled/skills/system-skilled-bots/graph-metadata.json
+diff --git a/.skilled/skills/system-skilled-bots/graph-metadata.json b/.skilled/skills/system-skilled-bots/graph-metadata.json
+index 9ed5c2ac8e5..81b7beb9579 100644
+--- a/.skilled/skills/system-skilled-bots/graph-metadata.json
++++ b/.skilled/skills/system-skilled-bots/graph-metadata.json
+@@ -87 +87,7 @@
+-    "bot's needs-you"
++    "bot's needs-you",
++    "queue a bot run",
++    "drain the bot",
++    "bot on a launchd",
++    "needs-you inbox",
++    "bot's schedule",
++    "bot's schedule needs"
+@@ -226 +232,7 @@
+-    "bot's needs-you"
++    "bot's needs-you",
++    "queue a bot run",
++    "drain the bot",
++    "bot on a launchd",
++    "needs-you inbox",
++    "bot's schedule",
++    "bot's schedule needs"
+(exit 0)
+
+=== [skill graph scan (final vocabulary)] 2026-11-23 23:18:13
+$ node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text
+skill_graph_scan: completed
+generation: 143 -> 144
+scannedFiles: 29
+indexedFiles: 0
+indexedEdges: 63
+rejectedEdges: 0
+(exit 0)
+
+=== [advisor rebuild (final vocabulary)] 2026-11-23 23:18:13
+$ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 144 -> 145
+skillCount: 16
+(exit 0)
+
+=== [ACCEPTANCE: stage-one adjacency with the final vocabulary (must equal the 8 baseline captures)] 2026-11-23 23:18:16
+$ bash <scratchpad>/adj1.sh $PWD
+ok         [('sk-code', 0.82), ('sk-git', 0.82), ('mcp-tooling', 0.82)] | start the cron job
+ok         [('sk-code', 0.82), ('sk-doc', 0.82), ('sk-git', 0.82)] | start the nightly build
+ok         [('sk-code', 0.82), ('mcp-tooling', 0.82), ('mcp-browser-use', 0.82)] | start the status page
+ok         [('sk-doc', 0.82), ('sk-code', 0.82), ('system-spec-kit', 0.82)] | start the inbox sync
+ok         [('mcp-tooling', 0.82), ('sk-code', 0.82), ('sk-git', 0.82)] | start the queue worker
+ok         [] | launch the queue worker
+ok         [] | launch the schedule editor
+ok         [] | launch the nightly job
+ok         [] | launch the cron job
+ok         [] | remove the cron job
+ok         [] | remove the queue
+ok         [] | remove the schedule
+BOTS-FIRST [('system-skilled-bots', 0.82)] | remove the launchd plist
+ok         [] | the app needs a reinstall
+ok         [] | reinstall the cron job
+BOTS-FIRST [('system-skilled-bots', 0.82)] | my schedule needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | the launchd agent needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | drain the queue
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('system-spec-kit', 0.82)] | queue a build run
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('cli-external-orchestration', 0.82)] | run the nightly build
+BOTS-FIRST [('system-skilled-bots', 0.82)] | pause the queue
+BOTS-FIRST [('system-skilled-bots', 0.82)] | enable the cron job
+(exit 0)
+
+=== [concurrency check before editing bridge inputs: git status on advisor, bridge, routing-accuracy and frozen-pin paths] 2026-11-23 23:18:23
+$ git status --short -- .skilled/skills/system-skill-advisor specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared .skilled/skills/sk-doc/sk-create-command/assets; echo status-done; cmp <scratchpad>/bak/.skilled_skills_system-skill-advisor_runtime_scripts_command-bridges_scoring-compatibility.json .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json && echo scoring-compatibility-unchanged-since-backup
+status-done
+scoring-compatibility-unchanged-since-backup
+(exit 0)
+
+=== [BRIDGE CHANGE: add /bots:author, /bots:run, /bots:schedule, /bots:status hand rows to scoring-compatibility.json (TS: id = inventoryId, name = runnable, empty description, keywords and intentSignals = slash string plus the command-metadata ownedSignals, domains bots+command, readOnly on status; /bots:run also carries start the bot and launch the bot as a curated addition. python: slashMarkers and owningSkill). The deriver requires these fields for a non-doctor id, so the brief's four-field doctor shape cannot be used] 2026-11-23 23:19:16
+$ python3 <scratchpad>/add-bridge-rows.py .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json && git diff -- .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json
+added 4 typescript and 4 python rows
+diff --git a/.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json b/.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json
+index 79d422ec27f..9536974149e 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json
++++ b/.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json
+@@ -267,6 +267,103 @@
+       "order": 40,
+       "id": "command-doctor-bots",
+       "description": ""
++    },
++    {
++      "inventoryId": "command-bots-author",
++      "order": 41,
++      "id": "command-bots-author",
++      "name": "/bots:author",
++      "description": "",
++      "keywords": [
++        "/bots:author",
++        "author a bot",
++        "write a bot",
++        "new bot.md"
++      ],
++      "domains": [
++        "bots",
++        "command"
++      ],
++      "intentSignals": [
++        "/bots:author",
++        "author a bot",
++        "write a bot",
++        "new bot.md"
++      ]
++    },
++    {
++      "inventoryId": "command-bots-run",
++      "order": 42,
++      "id": "command-bots-run",
++      "name": "/bots:run",
++      "description": "",
++      "keywords": [
++        "/bots:run",
++        "run the bot",
++        "drain the bot queue",
++        "answer the bot",
++        "start the bot",
++        "launch the bot"
++      ],
++      "domains": [
++        "bots",
++        "command"
++      ],
++      "intentSignals": [
++        "/bots:run",
++        "run the bot",
++        "drain the bot queue",
++        "answer the bot",
++        "start the bot",
++        "launch the bot"
++      ]
++    },
++    {
++      "inventoryId": "command-bots-schedule",
++      "order": 43,
++      "id": "command-bots-schedule",
++      "name": "/bots:schedule",
++      "description": "",
++      "keywords": [
++        "/bots:schedule",
++        "schedule a bot",
++        "bot schedule",
++        "pause the bot"
++      ],
++      "domains": [
++        "bots",
++        "command"
++      ],
++      "intentSignals": [
++        "/bots:schedule",
++        "schedule a bot",
++        "bot schedule",
++        "pause the bot"
++      ]
++    },
++    {
++      "inventoryId": "command-bots-status",
++      "order": 44,
++      "id": "command-bots-status",
++      "name": "/bots:status",
++      "description": "",
++      "keywords": [
++        "/bots:status",
++        "bot status",
++        "bot inbox",
++        "which bots are installed"
++      ],
++      "domains": [
++        "bots",
++        "command"
++      ],
++      "intentSignals": [
++        "/bots:status",
++        "bot status",
++        "bot inbox",
++        "which bots are installed"
++      ],
++      "readOnly": true
+     }
+   ],
+   "python": [
+@@ -612,6 +709,50 @@
+       "order": 51,
+       "id": "command-doctor-bots",
+       "description": ""
++    },
++    {
++      "inventoryId": "command-bots-author",
++      "order": 52,
++      "id": "command-bots-author",
++      "description": "",
++      "slashMarkers": [
++        "/bots:author",
++        "bots:author"
++      ],
++      "owningSkill": "system-skilled-bots"
++    },
++    {
++      "inventoryId": "command-bots-run",
++      "order": 53,
++      "id": "command-bots-run",
++      "description": "",
++      "slashMarkers": [
++        "/bots:run",
++        "bots:run"
++      ],
++      "owningSkill": "system-skilled-bots"
++    },
++    {
++      "inventoryId": "command-bots-schedule",
++      "order": 54,
++      "id": "command-bots-schedule",
++      "description": "",
++      "slashMarkers": [
++        "/bots:schedule",
++        "bots:schedule"
++      ],
++      "owningSkill": "system-skilled-bots"
++    },
++    {
++      "inventoryId": "command-bots-status",
++      "order": 55,
++      "id": "command-bots-status",
++      "description": "",
++      "slashMarkers": [
++        "/bots:status",
++        "bots:status"
++      ],
++      "owningSkill": "system-skilled-bots"
+     }
+   ],
+   "pythonOwnerNormalization": {
+(exit 0)
+
+=== [bridge check before regen (expected stale)] 2026-11-23 23:19:22
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+{
+  "status": "stale",
+  "counts": {
+    "commandMetadata": 31,
+    "doctorRoutes": 36,
+    "generated": 67,
+    "typescriptActive": 51,
+    "pythonActive": 57
+  },
+  "changed": [
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+  ]
+}
+(exit 1)
+
+=== [derive command bridges (write)] 2026-11-23 23:19:22
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
+{
+  "status": "generated",
+  "counts": {
+    "commandMetadata": 31,
+    "doctorRoutes": 36,
+    "generated": 67,
+    "typescriptActive": 51,
+    "pythonActive": 57
+  },
+  "changed": [
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+  ]
+}
+(exit 0)
+
+=== [bridge check after regen] 2026-11-23 23:19:22
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+{
+  "status": "fresh",
+  "counts": {
+    "commandMetadata": 31,
+    "doctorRoutes": 36,
+    "generated": 67,
+    "typescriptActive": 51,
+    "pythonActive": 57
+  },
+  "changed": []
+}
+(exit 0)
+
+=== [generated files diff stat] 2026-11-23 23:19:22
+$ git diff --stat -- .skilled/skills/system-skill-advisor
+ .../runtime/lib/command-attach.ts                  |  12 +-
+ .../runtime/lib/scorer/projection.ts               | 145 ++++++++---------
+ .../command-bridges/command-bridges.generated.json | 173 ++++++++++++++++++---
+ .../command-bridges/scoring-compatibility.json     | 141 +++++++++++++++++
+ .../runtime/scripts/skill_advisor.py               |  76 ++++-----
+ 5 files changed, 411 insertions(+), 136 deletions(-)
+(exit 0)
+
+=== [advisor dist rebuild (dist is gitignored; the scorer reads dist)] 2026-11-23 23:19:34
+$ cd .skilled/skills/system-skill-advisor/runtime && npm run build 2>&1 | tail -15
+@spec-kit/system-skill-advisor dist build preparation recorded
+
+> build
+> npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json
+
+
+> @spec-kit/shared@1.7.2 build
+> tsc --build
+
+
+> postbuild
+> mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/ && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry default || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'default'});if(r.status!=='cached')throw new Error(r.message)") && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry skill-advisor-cli || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'skill-advisor-cli'});if(r.status!=='cached')throw new Error(r.message)")
+
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+(exit 0)
+
+=== [advisor rebuild after dist build] 2026-11-23 23:19:41
+$ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --workspace-root "$PWD" --format text
+advisor_rebuild: rebuilt
+reason: force
+freshness: live -> live
+generation: 148 -> 149
+skillCount: 16
+(exit 0)
+
+=== [CANARY CHANGE (authored fixture): add 5 routed cases for the bot phrasings that now route and 8 out-of-domain defer cases for the new keywords' neighbourhood. No existing case edited. The bundle probe (bot's schedule needs a reinstall) gets no gold, since it is not the single status route the probe asks for] 2026-11-23 23:20:08
+$ python3 <scratchpad>/add-canaries.py specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json && git diff --stat -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+cases 33
+ .../fixtures/canary-cases.v1.json                  | 163 +++++++++++++++++++++
+ 1 file changed, 163 insertions(+)
+(exit 0)
+
+=== [canary harness: build-artifacts (authored)] 2026-11-23 23:20:18
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+{"artifacts":5,"cases":33,"effectivePolicyHash":"8e2c5590b59dc1658283441fda1e007c2efd7560adff9a57741c83cf28c26474","graphHash":"55b8f2f7391390a34395f9ff6588ba2ccbac28a887ef930e8daa283067ed8662","status":"built"}
+(exit 0)
+
+=== [copy authored engine (lib, harness, fixtures) to the runtime closure] 2026-11-23 23:20:18
+$ A=specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots; R=.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots; for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do if cmp -s $A/$f $R/$f; then echo "same    $f"; else cp $A/$f $R/$f && echo "copied  $f"; fi; done; for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do cmp $A/$f $R/$f || echo MISMATCH $f; done; echo verified
+same    lib/policy-card.cjs
+same    lib/registry-compiler.cjs
+same    lib/router.cjs
+same    harness/build-artifacts.cjs
+copied  fixtures/canary-cases.v1.json
+verified
+(exit 0)
+
+=== [manifest freshness before refresh] 2026-11-23 23:20:18
+$ node .skilled/bin/compiled-route-manifest.cjs freshness --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":false,"causeCode":"stale-manifest","selectedPolicy":{"effectivePolicyHash":"15538f401738db83506fe9e46c4a249deab6a7ffb379e7721f704aca2d867fea","generation":1},"currentPolicyHash":"8e2c5590b59dc1658283441fda1e007c2efd7560adff9a57741c83cf28c26474","manifestFingerprint":"f226ae9c1025a30c9f20814bb524a1dc2ea653b0b2a126767ad2c18a9fc69cb7"}
+(exit 1)
+
+=== [manifest refresh] 2026-11-23 23:20:18
+$ node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"8e2c5590b59dc1658283441fda1e007c2efd7560adff9a57741c83cf28c26474","generation":1},"currentPolicyHash":"8e2c5590b59dc1658283441fda1e007c2efd7560adff9a57741c83cf28c26474","manifestFingerprint":"2cc8e5f8cc01fb412a5851cff166ff47d6b60e65a64d12a524257a82046b8d9d","refreshed":true}
+(exit 0)
+
+=== [mirror refreshed manifest bytes into the authored activation copy] 2026-11-23 23:20:18
+$ A=specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json; R=.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json; cp $R $A && cmp $A $R && echo identical && grep -o '"effectivePolicyHash":"[0-9a-f]\{12\}' $A | head -2
+identical
+"effectivePolicyHash":"8e2c5590b59d
+(exit 0)
+
+=== [gate: compiled-route-sync --check] 2026-11-23 23:20:24
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -4
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: compiled-route-guard] 2026-11-23 23:20:24
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-browser-use             fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+  system-skilled-bots         fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [two-stage replay after vocabulary, bridges, canary and manifest (stage one counts the hub or an owned command-bots-* row as a hit)] 2026-11-23 23:20:40
+$ bash <scratchpad>/replay.sh $PWD
+IN  exp=run | s1 top=sk-doc@0.82[/create:changelog] bots_rank=3 ok=no | s2 defer hash=8e2c5590b59d ok=no | Run the release-notes bot now against this repository
+IN  exp=run | s1 top=system-skilled-bots@0.8482[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=8e2c5590b59d ok=yes | Queue a bot run for the triage bot from the new-issue event
+IN  exp=run | s1 top=system-skilled-bots@0.9275[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=8e2c5590b59d ok=yes | Drain the bot request queue
+IN  exp=schedule | s1 top=system-skilled-bots@0.9441[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=8e2c5590b59d ok=yes | Put the nightly bot on a launchd schedule
+IN  exp=schedule | s1 top=none bots_rank=- ok=no | s2 defer hash=8e2c5590b59d ok=no | Pause the triage bot until Monday
+IN  exp=schedule | s1 top=system-skilled-bots@0.8709[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=8e2c5590b59d ok=yes | Remove the bot's schedule and unload its launchd agent
+IN  exp=status | s1 top=command-bots-status@0.82[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=8e2c5590b59d ok=yes | Show me which bots are installed and when each last ran
+IN  exp=status | s1 top=system-skilled-bots@0.9439[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=8e2c5590b59d ok=yes | Read the needs-you inbox for the bots
+IN  exp=status | s1 top=system-skilled-bots@0.852 bots_rank=1 ok=yes | s2 route:status+schedule(orderedBundle) hash=8e2c5590b59d ok=no | Check whether the bot's schedule needs a reinstall
+IN  exp=run | s1 top=command-bots-run@0.8632[/bots:run] bots_rank=1 ok=yes | s2 defer hash=8e2c5590b59d ok=no | start the bot
+IN  exp=run | s1 top=none bots_rank=- ok=no | s2 defer hash=8e2c5590b59d ok=no | launch the triage bot
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer this question
+OOD s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | run the tests
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | schedule a meeting for tomorrow
+OOD s1 top=sk-code@0.82 bots_rank=3 bots-first=no | s2 defer hash=8e2c5590b59d routed=no | status of the build
+OOD s1 top=sk-doc@0.8453[/create:sk-skill] bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | author a skill
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | check my email inbox
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the open question
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the open ticket
+OOD s1 top=sk-git@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the open issues
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the open
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the question
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer my open questions
+OOD s1 top=sk-git@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the open pr comments
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the pending question
+OOD s1 top=system-spec-kit@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | open questions in the spec
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | what do you need from me
+OOD s1 top=sk-code@0.9003 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | answer the open review threads
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | my manager needs you to sign this
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | it needs you to confirm the deploy
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | the team needs you
+OOD s1 top=system-skilled-bots@0.8261 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | set up a launchd schedule
+OOD s1 top=system-skilled-bots@0.8228 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | install a launchd schedule for my backup script
+OOD s1 top=system-skilled-bots@0.8549 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | write a launchd plist
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | schedule a cron job for the backup
+OOD s1 top=sk-code@0.8359 bots_rank=3 bots-first=no | s2 defer hash=8e2c5590b59d routed=no | add a cron schedule to my script
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | pause the launchd agent
+OOD s1 top=mcp-tooling@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | start the server
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | launch the app
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | pause the video
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | drain the queue
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | remove the cron job
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | show me which packages are installed
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | read my inbox
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | my launchd agent is broken
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | drain the connection pool
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | queue a build run
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | enqueue a job run for the importer
+ADJ s1 top=mcp-tooling@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | start the dev server
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | start the robot vacuum
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | launch the browser
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | put my backup script on a launchd schedule
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | remove the cron job's schedule
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | the app needs a reinstall
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | my schedule needs a reinstall
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | reinstall node modules
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | check whether the plugin needs a reinstall
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | show me which apps are installed and when each last ran
+ADJ s1 top=sk-prompt@0.9268 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | write a system prompt for a support triage bot
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | pause the build until Monday
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=8e2c5590b59d routed=no | run the tests until they pass
+TYPED py=[('command-bots-author', 0.82)] | s1 top=command-bots-author@0.82[/bots:author] bots_rank=1 | /bots:author weekly-digest --repo ~/code/acme
+TYPED py=[('system-skilled-bots', 0.82), ('cli-classifier', 0.82)] | s1 top=command-bots-run@0.8368[/bots:run] bots_rank=1 | /bots:run answer item-42 yes
+TYPED py=[('command-bots-schedule', 0.8527), ('system-skilled-bots', 0.82)] | s1 top=command-bots-schedule@0.8527[/bots:schedule] bots_rank=1 | /bots:schedule pause nightly-cleanup
+TYPED py=[('command-bots-status', 0.8764), ('sk-code', 0.8641), ('system-skilled-bots', 0.82)] | s1 top=command-bots-status@0.8764[/bots:status] bots_rank=1 | /bots:status inbox --json
+SUMMARY in-pass=6 in-fail=5 ood-fail=6 adj-fail=4
+(exit 0)
+
+=== [concurrency check before slice: advisor paths changed are only the five bridge files this run changed] 2026-11-23 23:20:51
+$ git status --short -- .skilled/skills/system-skill-advisor specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared; echo status-done
+ M .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts
+ M .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+status-done
+(exit 0)
+
+=== [gate: command routing slice before recapture (expected to fail where /bots:* rows moved)] 2026-11-23 23:20:58
+$ cd .skilled/skills/system-skill-advisor/runtime && npx --no-install vitest run tests/command-routing-slice.vitest.ts 2>&1 | grep -vE '^\s*$' | tail -80
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skill-advisor/runtime
+ ❯ tests/command-routing-slice.vitest.ts (12 tests | 2 failed) 6444ms
+     × matches the captured baseline row by row 2ms
+     × matches the captured totals 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > matches the captured baseline row by row
+AssertionError: command routing rows drifted from the committed baseline; re-capture with `node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write` when the change is intended: expected [ …(5) ] to deeply equal []
+- Expected
++ Received
+- []
++ [
++   "cmd-bots-author-typed-01: baseline {\"expected_command\":\"/bots:author\",\"top\":null,\"top1\":false,\"top3\":false,\"offered\":false} live {\"expected_command\":\"/bots:author\",\"top\":\"command-bots-author\",\"top1\":true,\"top3\":true,\"offered\":true}",
++   "cmd-bots-run-typed-01: baseline {\"expected_command\":\"/bots:run\",\"top\":\"system-skilled-bots\",\"top1\":false,\"top3\":false,\"offered\":false} live {\"expected_command\":\"/bots:run\",\"top\":\"command-bots-run\",\"top1\":true,\"top3\":true,\"offered\":true}",
++   "cmd-bots-schedule-typed-01: baseline {\"expected_command\":\"/bots:schedule\",\"top\":\"system-skilled-bots\",\"top1\":false,\"top3\":false,\"offered\":false} live {\"expected_command\":\"/bots:schedule\",\"top\":\"command-bots-schedule\",\"top1\":true,\"top3\":true,\"offered\":true}",
++   "cmd-bots-status-typed-01: baseline {\"expected_command\":\"/bots:status\",\"top\":\"system-skilled-bots\",\"top1\":false,\"top3\":false,\"offered\":false} live {\"expected_command\":\"/bots:status\",\"top\":\"command-bots-status\",\"top1\":true,\"top3\":true,\"offered\":true}",
++   "cmd-bots-status-plain-tune-01: baseline {\"expected_command\":\"/bots:status\",\"top\":null,\"top1\":false,\"top3\":false,\"offered\":false} live {\"expected_command\":\"/bots:status\",\"top\":\"command-bots-status\",\"top1\":true,\"top3\":true,\"offered\":true}",
++ ]
+ ❯ tests/command-routing-slice.vitest.ts:201:7
+    199|       drifted,
+    200|       `command routing rows drifted from the committed baseline; re-ca…
+    201|     ).toEqual([]);
+       |       ^
+    202|   });
+    203|
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > matches the captured totals
+AssertionError: expected { typed_recall_at_1: { …(2) }, …(6) } to deeply equal { typed_recall_at_1: { …(2) }, …(6) }
+- Expected
++ Received
+@@ -11,34 +11,34 @@
+      "holdout": {
+        "correct": 3,
+        "total": 49,
+      },
+      "tune": {
+-       "correct": 17,
++       "correct": 18,
+        "total": 50,
+      },
+    },
+    "plain_recall_at_1": {
+      "holdout": {
+        "correct": 2,
+        "total": 49,
+      },
+      "tune": {
+-       "correct": 15,
++       "correct": 16,
+        "total": 50,
+      },
+    },
+    "slash_variant": {
+      "named_total": 8,
+      "offered_on_partial": 0,
+      "partial_total": 4,
+      "reached_top3": 0,
+    },
+    "typed_reach_top3": {
+-     "correct": 29,
++     "correct": 33,
+      "total": 49,
+    },
+    "typed_recall_at_1": {
+-     "correct": 25,
++     "correct": 29,
+      "total": 49,
+    },
+  }
+ ❯ tests/command-routing-slice.vitest.ts:316:26
+    314|
+    315|   it('matches the captured totals', () => {
+    316|     expect(live.metrics).toEqual(baseline.metrics);
+       |                          ^
+    317|     expect(live.unreachable).toEqual(baseline.unreachable);
+    318|     // `capturedAtSha` is deliberately not compared: it names the comm…
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+ Test Files  1 failed (1)
+      Tests  2 failed | 10 passed (12)
+   Start at  23:20:52
+   Duration  6.53s (transform 91ms, setup 12ms, import 17ms, tests 6.44s, environment 0ms)
+(exit 1)
+
+=== [recapture command routing baseline (only the five /bots:* rows moved, all miss -> hit; no other row drifted)] 2026-11-23 23:21:13
+$ cd .skilled/skills/system-skill-advisor/runtime && node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write > /dev/null && cd - >/dev/null && git diff --stat -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json && git diff -U0 -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' | head -60
+ .../routing-accuracy/command-routing-baseline.json | 119 ++++++++++-----------
+ 1 file changed, 56 insertions(+), 63 deletions(-)
+-  "capturedAtSha": "928be8397fb",
++  "capturedAtSha": "bd474396742",
+-    "typescriptActive": 47,
+-    "pythonActive": 53
++    "typescriptActive": 51,
++    "pythonActive": 57
+-      "correct": 25,
++      "correct": 29,
+-      "correct": 29,
++      "correct": 33,
+-        "correct": 15,
++        "correct": 16,
+-        "correct": 17,
++        "correct": 18,
+-    "/bots:author",
+-    "/bots:run",
+-    "/bots:schedule",
+-    "/bots:status",
+-        "top1": 0,
+-        "top3": 0
++        "top1": 1,
++        "top3": 1
+-        "top1": 0,
+-        "top3": 0
++        "top1": 1,
++        "top3": 1
+-        "top1": 0,
+-        "top3": 0
++        "top1": 1,
++        "top3": 1
+-        "top1": 0,
+-        "top3": 0
++        "top1": 1,
++        "top3": 1
+-          "top1": 0,
+-          "top3": 0
++          "top1": 1,
++          "top3": 1
+-      "top": null,
+-      "top1": false,
+-      "top3": false,
+-      "offered": false
++      "top": "command-bots-author",
++      "top1": true,
++      "top3": true,
++      "offered": true
+-      "top": "system-skilled-bots",
+-      "top1": false,
+-      "top3": false,
+-      "offered": false
++      "top": "command-bots-run",
++      "top1": true,
++      "top3": true,
++      "offered": true
+-      "top": "system-skilled-bots",
+-      "top1": false,
+-      "top3": false,
+-      "offered": false
++      "top": "command-bots-schedule",
++      "top1": true,
+(exit 0)
+
+=== [gate: command routing slice after recapture] 2026-11-23 23:21:20
+$ cd .skilled/skills/system-skill-advisor/runtime && npx --no-install vitest run tests/command-routing-slice.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL|✓|×' | head
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+(exit 0)
+
+=== [frozen scorer check before refreeze (expected to fail on projection.ts)] 2026-11-23 23:21:27
+$ node -e "require('./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs').assertScorerFrozen(process.cwd(),'check'); console.log('scorer frozen: ok')" 2>&1 | tail -8
+    at node:internal/process/execution:485:12
+    at [eval]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:483:60)
+    at evalFunction (node:internal/process/execution:317:30)
+    at evalTypeScript (node:internal/process/execution:329:3)
+    at node:internal/main/eval_string:71:3
+
+Node.js v26.13.0
+(exit 1)
+
+=== [concurrency check before refreeze: frozen-pins file and scorer dir hold only this run's edits] 2026-11-23 23:21:27
+$ git status --short -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared .skilled/skills/system-skill-advisor/runtime/lib; echo status-done
+ M .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts
+status-done
+(exit 0)
+
+NOTE: the freeze failure head reads 'Error: scorer surface changed since the freeze -- re-freeze consciously before check: projection.ts'. projection.ts is the only changed scorer file, and its change is the deriver output for the four /bots:* rows. The brief authorizes the re-freeze when the bridge regeneration changes projection.ts.
+
+=== [refreeze scorer pins (projection.ts changed by the bridge regeneration)] 2026-11-23 23:21:38
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs --refreeze && git diff -U0 -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json | grep -E '^[+-] '
+frozen 22 scorer files -> /Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json
+-  "frozenAt": "2026-11-23T14:19:44.399Z",
++  "frozenAt": "2026-11-23T22:21:38.444Z",
+-    "projection.ts": "1b0e67a4c266a6c81394636695daa4562dfd5fb2d71eb7c924bf607b274deeb4",
++    "projection.ts": "be9dba1fb623c88d07e6b84a1916f28bc502ff7ef39a1da4296eb35892750935",
+(exit 0)
+
+=== [gate: frozen scorer after refreeze] 2026-11-23 23:21:38
+$ node -e "require('./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs').assertScorerFrozen(process.cwd(),'check'); console.log('scorer frozen: ok')"
+scorer frozen: ok
+(exit 0)
+
+=== [command-contract.json need: router generator check mode (walks only the contract's families)] 2026-11-23 23:21:50
+$ node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check 2>&1 | tail -12
+command-router drift check
+
+
+routers=42 clean=42 path-drift=0 shape-drift=0
+(exit 0)
+
+=== [command-contract.json need: which code reads it (advisor scorer and bridge deriver do not)] 2026-11-23 23:21:54
+$ grep -rln 'command-contract' .skilled/skills/system-skill-advisor/runtime/lib .skilled/skills/system-skill-advisor/runtime/scripts .skilled/bin/*.cjs .skilled/bin/lib/compiled-routing/014-runtime-engine 2>/dev/null; echo grep-rc=$? '(1 = no reader in advisor, bridge deriver or compiled-route runtime)'; grep -rln 'command-contract.json' .skilled --include='*.cjs' --include='*.mjs' --include='*.ts' --include='*.py' 2>/dev/null | grep -v node_modules
+grep-rc=1 (1 = no reader in advisor, bridge deriver or compiled-route runtime)
+.skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs
+.skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs
+.skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs
+.skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs
+.skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs
+.skilled/commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs
+.skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs
+.skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs
+(exit 0)
+
+=== [command-contract.json need: coverage note and families] 2026-11-23 23:21:55
+$ node -e 'const c=require("./.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json");console.log(Object.keys(c.families).join(","));console.log(c.metadata.coverage)'
+create,design,speckit,continuity,doctor,deep
+Covers the six router-shaped families only. Three shipped commands carry no entry here: /prompt:improve (the prompt group), the root-level utility /local-skilled-alignment and /speckit:handoff, a plain workflow command that takes no arguments and no modes. A consumer that walks this file walks the commands its router_path entries match, not every command under .skilled/commands.
+(exit 0)
+
+=== [gate: parent-skill-check (per-hub, explicit hub path)] 2026-11-23 23:22:12
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots 2>&1 | grep -E 'INFO: Parent skill|INFO: Resolved|^OK|^FAIL|^WARN|ERROR|FAIL:'
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+INFO: Resolved:     /Users/michelkerkmeester/worktrees/public/system-skilled-bots/.skilled/skills/system-skilled-bots
+OK: parent-skill-check -- all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [gate: leaf manifest generator check] 2026-11-23 23:22:12
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check 2>&1 | tail -4
+usage: generate-leaf-manifest.cjs --write|--check <skillDir> (or <skillDir> --write|--check)
+(exit 2)
+
+=== [gate: leaf manifest freshness] 2026-11-23 23:22:16
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs 2>&1 | tail -3
+OK    system-spec-kit  57c1a3d3f5857f97f1fe8cec18baa00b5c59a932439dc8f57f7fca445d5b1a8d
+
+checked=16 fresh=16 failed=0
+(exit 0)
+
+=== [gate: derived freshness] 2026-11-23 23:22:16
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs 2>&1 | tail -3
+
+checked=16 fresh=16 stale=0 errored=0
+(exit 0)
+
+=== [gate: skill root metadata] 2026-11-23 23:22:20
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs 2>&1 | tail -3
+OK   [S] system-spec-kit
+
+checked=16 passed=16 failed=0 fixed=0
+(exit 0)
+
+=== [gate: leaf manifest generator check (hub path; the previous call omitted the required skillDir)] 2026-11-23 23:22:28
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/system-skilled-bots 2>&1 | tail -4
+leaf-manifest.json OK (be5c5e562c295ebb7945e2f127f27d4799dd5eb368c95d0467a896b3edcb6dd2)
+(exit 0)
+
+=== [gate: hub vocabulary source (bots hub)] 2026-11-23 23:22:28
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-skilled-bots
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+(exit 0)
+
+=== [gate: router vocabulary reach (bots hub)] 2026-11-23 23:22:32
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+OK   system-skilled-bots          declared= 53 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 149
+RESULT: PASSED
+(exit 0)
+
+=== [gate: router intent signals check (all hubs)] 2026-11-23 23:22:32
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check 2>&1 | tail -3
+
+checked=16 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [gate: skill graph compiler validate] 2026-11-23 23:22:32
+$ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only 2>&1 | tail -4
+Discovered 16 skill graph-metadata.json files
+VALIDATION PASSED: all metadata files are valid
+(exit 0)
+
+=== [gate: doctor phrase reach] 2026-11-23 23:22:34
+$ node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs 2>&1 | tail -4
+PASS command-doctor-mcp-debug second "mcp-doctor.sh diagnostic script"
+PASS command-doctor-mcp-debug second "mcp tools are missing"
+PASS command-doctor-mcp-debug top "/doctor:mcp debug"
+STATUS=OK phrases=268 bridges=36
+(exit 0)
+
+=== [gate: compiled-routing foundation vitest] 2026-11-23 23:22:42
+$ cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts 2>&1 | tail -6
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  23:22:41
+   Duration  527ms (tests 97%, import 1%, worker 1%, transform 1%)
+(exit 0)
+
+=== [gate: compiled-route-*.test.cjs] 2026-11-23 23:22:53
+$ node --test .skilled/bin/tests/compiled-route-*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail)'
+ℹ tests 117
+ℹ pass 117
+ℹ fail 0
+(exit 0)
+
+=== [gate: admission (bots hub)] 2026-11-23 23:22:53
+$ node .skilled/bin/compiled-route-admission.cjs --hub system-skilled-bots
+  system-skilled-bots         pass                    8 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [gate: admission (all hubs)] 2026-11-23 23:22:53
+$ node .skilled/bin/compiled-route-admission.cjs --all
+  cli-classifier              pass                    4 pass, 0 drift, 0 stale, 0 n/a
+  cli-external-orchestration  pass                    7 pass, 0 drift, 0 stale, 3 n/a; 6 mode(s) without gold
+  mcp-browser-use             pass                    7 pass, 0 drift, 0 stale, 0 n/a
+  mcp-tooling                 pass                    12 pass, 0 drift, 0 stale, 0 n/a
+  sk-code                     pass                    9 pass, 0 drift, 0 stale, 0 n/a
+  sk-design                   pass                    4 pass, 0 drift, 0 stale, 0 n/a; 2 mode(s) without gold
+  sk-doc                      pass                    24 pass, 0 drift, 0 stale, 2 n/a; 6 mode(s) without gold
+  system-deep-loop            pass                    13 pass, 0 drift, 0 stale, 0 n/a
+  system-skilled-bots         pass                    8 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [gate: evaluateHub on the bots hub playbook gold (008 scratch helper)] 2026-11-23 23:22:53
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/evaluate-hub-candidate.cjs $PWD
+verdict: pass
+counts: {"pass":8,"drift":0,"stale-gold":0,"invalid":0,"broken":0,"n/a":0}
+coverage: {"modes":[{"workflowMode":"author","scenarios":1},{"workflowMode":"run","scenarios":2},{"workflowMode":"schedule","scenarios":1},{"workflowMode":"status","scenarios":2}],"uncovered":[],"negatives":2,"enforced":true,"short":false}
+  BOT-001 pass gold=author routed=author
+  BOT-007 pass gold=defer routed=-
+  BOT-008 pass gold=defer routed=-
+  BOT-006 pass gold=run routed=run
+  BOT-002 pass gold=run routed=run
+  BOT-003 pass gold=schedule routed=schedule
+  BOT-005 pass gold=status routed=status
+  BOT-004 pass gold=status routed=status
+(exit 0)
+
+=== [D-02 check: python skill_advisor on the typed /bots:author prompt (printed [] before this change)] 2026-11-23 23:23:07
+$ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py '/bots:author weekly-digest --repo ~/code/acme'
+[
+  {
+    "skill": "command-bots-author",
+    "kind": "command",
+    "confidence": 0.82,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.5,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "command-bots-author",
+      "liveScore": 0.5,
+      "shadowScore": 0.471429,
+      "delta": -0.028571,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]
+(exit 0)
+
+=== [D-02 check: python local fallback (SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1) on the four typed /bots:* prompts] 2026-11-23 23:23:17
+$ for t in '/bots:author weekly-digest --repo ~/code/acme' '/bots:run answer item-42 yes' '/bots:schedule pause nightly-cleanup' '/bots:status inbox --json'; do printf '%s => ' "$t"; SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "$t" | python3 -c 'import json,sys; d=json.load(sys.stdin); print([(x["skill"],x.get("confidence"),x.get("source")) for x in d[:3]])'; done
+/bots:author weekly-digest --repo ~/code/acme => Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[('command-bots-author', 0.95, 'local')]
+/bots:run answer item-42 yes => Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[('command-bots-run', 0.95, 'local')]
+/bots:schedule pause nightly-cleanup => Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[('command-bots-schedule', 0.95, 'local')]
+/bots:status inbox --json => Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.
+Skill graph: loaded from SQLite
+[('command-bots-status', 0.95, 'local')]
+(exit 0)
+
+=== [PROOF: name-free contiguous n-grams of the three named-bot forms and why each cannot be a stage-two keyword] 2026-11-23 23:23:39
+$ python3 <scratchpad>/ngram-proof.py
+== 'Run the release-notes bot now against this repository' (expected run; name tokens ['notes', 'release'])
+   'run'                            -> matches OOD ["run the tests", "run the tests until they pass"]
+   'the'                            -> stop words only: matches almost any prompt; matches OOD ["run the tests", "status of the build"]
+   'bot'                            -> matches OOD ["write a system prompt for a support triage bot", "list my chatbot runs"]; names no mode: every bot request in every mode, plus robot/chatbot
+   'now'                            -> stop words only: matches almost any prompt
+   'against'                        -> no bot token: nothing ties it to a bot request
+   'this'                           -> stop words only: matches almost any prompt; matches OOD ["answer this question"]
+   'repository'                     -> no bot token: nothing ties it to a bot request
+   'run the'                        -> matches OOD ["run the tests", "run the tests until they pass"]
+   'bot now'                        -> excluded in 008 Key Decisions (captured doctor prompts in the advisor slice)
+   'now against'                    -> no bot token: nothing ties it to a bot request
+   'against this'                   -> no bot token: nothing ties it to a bot request
+   'this repository'                -> no bot token: nothing ties it to a bot request
+   'bot now against'                -> adds stage-one token(s) ['against']; trailing context shaped to this probe
+   'now against this'               -> no bot token: nothing ties it to a bot request
+   'against this repository'        -> no bot token: nothing ties it to a bot request
+   'bot now against this'           -> adds stage-one token(s) ['against']; trailing context shaped to this probe
+   'now against this repository'    -> no bot token: nothing ties it to a bot request
+== 'Pause the triage bot until Monday' (expected schedule; name tokens ['triage'])
+   'pause'                          -> matches OOD ["pause the video", "pause the build until Monday"]
+   'the'                            -> stop words only: matches almost any prompt; matches OOD ["run the tests", "status of the build"]
+   'bot'                            -> matches OOD ["write a system prompt for a support triage bot", "list my chatbot runs"]; names no mode: every bot request in every mode, plus robot/chatbot
+   'until'                          -> matches OOD ["pause the build until Monday", "run the tests until they pass"]
+   'monday'                         -> matches OOD ["pause the build until Monday"]
+   'pause the'                      -> matches OOD ["pause the video", "pause the build until Monday"]
+   'bot until'                      -> adds stage-one token(s) ['until']; trailing context shaped to this probe
+   'until monday'                   -> matches OOD ["pause the build until Monday"]
+   'bot until monday'               -> adds stage-one token(s) ['until', 'monday']; trailing context shaped to this probe
+== 'launch the triage bot' (expected run; name tokens ['triage'])
+   'launch'                         -> matches OOD ["launch the app", "my launchd agent is broken"]
+   'the'                            -> stop words only: matches almost any prompt; matches OOD ["run the tests", "status of the build"]
+   'bot'                            -> matches OOD ["write a system prompt for a support triage bot", "list my chatbot runs"]; names no mode: every bot request in every mode, plus robot/chatbot
+   'launch the'                     -> matches OOD ["launch the app", "launch the browser"]
+(exit 0)
+
+=== [gate: runtime mirror parity (skills are symlinked; check mode only)] 2026-11-23 23:24:01
+$ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check 2>&1 | tail -3; node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check 2>&1 | grep -vE 'EXCLUDED' | tail -2; node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check 2>&1 | grep -vE 'EXCLUDED' | tail -2
+[runtime-mirror-sync] visibility claude 49/49, cursor 49/49
+[runtime-mirror-sync] PASS: 271 mirrors across 10 trees are in sync.
+[vibe-skill-sync] LINKS: 62
+[vibe-skill-sync] PASS: 62 skill links are in sync.
+[dsh-skill-sync] LINKS: 62
+[dsh-skill-sync] PASS: 62 skill links are in sync.
+(exit 0)
+
+=== SUMMARY: before/after per probe (both stages; from the baseline replay and the post-change replay above)
+stage one = advisor_recommend top at default thresholds (hub or an owned command-bots-* row counts); stage two = compiled-route action at policy 15538f401738 (before) and 8e2c5590b59d (after)
+probe                                                          | s1 before                    | s1 after                              | s2 before         | s2 after
+Run the release-notes bot now against this repository (run)    | sk-doc 0.82 (bots rank 3)    | sk-doc 0.82 (bots rank 3)             | defer             | defer
+Queue a bot run for the triage bot from the new-issue event    | bots 0.82                    | bots 0.8482 [/bots:run]               | defer             | route run
+Drain the bot request queue (run)                              | bots 0.82                    | bots 0.9275 [/bots:run]               | defer             | route run
+Put the nightly bot on a launchd schedule (schedule)           | bots 0.8728                  | bots 0.9441 [/bots:schedule]          | defer             | route schedule
+Pause the triage bot until Monday (schedule)                   | none                         | none                                  | defer             | defer
+Remove the bot's schedule and unload its launchd agent         | bots 0.82                    | bots 0.8709 [/bots:schedule]          | defer             | route schedule
+Show me which bots are installed and when each last ran        | none (hub capped at 0.25)    | command-bots-status 0.82              | route status      | route status
+Read the needs-you inbox for the bots (status)                 | bots 0.82                    | bots 0.9439 [/bots:status]            | defer             | route status
+Check whether the bot's schedule needs a reinstall (status)    | none                         | bots 0.852                            | defer             | route status+schedule (orderedBundle)
+D-05 start the bot (run)                                       | sk-code 0.82 (bots rank 2)   | command-bots-run 0.8632               | defer             | defer
+D-05 launch the triage bot (run)                               | none                         | none                                  | defer             | defer
+typed /bots:author weekly-digest --repo ~/code/acme            | none; python []              | command-bots-author 0.82; python same | n/a               | n/a
+OOD list (34 prompts, brief + fix5-trial.sh): stage one hub-first 6 before, the same 6 after (four launchd prompts settled under Q013, drain the queue, my launchd agent is broken); stage two routed 0 before, 0 after.
+Adjacency set (16 prompts in replay.sh): hub-first 4 before, the same 4 after. Wider adjacency set (adj1.sh, 22 prompts): 8 before, 8 after, identical rows.
+
+=== [gate: advisor suite (npx vitest run in system-skill-advisor/runtime)] 2026-11-23 23:26:26
+$ cd .skilled/skills/system-skill-advisor/runtime && npx --no-install vitest run 2>&1 | grep -E 'Test Files|Tests |FAIL|×' | head -40
+ Test Files  178 passed (178)
+      Tests  2478 passed | 4 skipped (2482)
+(exit 0)
+
+=== [gate: doctor script tests (node --test .skilled/commands/doctor/scripts/tests/*.test.cjs)] 2026-11-23 23:27:20
+$ node --test .skilled/commands/doctor/scripts/tests/*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail|cancelled)' | head -40
+ℹ tests 1674
+ℹ pass 1674
+ℹ fail 0
+ℹ cancelled 0
+(exit 0)
+
+=== gate: advisor suite result (ran in the background through logrun.sh; its block is above)
+ Test Files  178 passed (178)
+      Tests  2478 passed | 4 skipped (2482)
+(exit 0)
+
+=== [final: compiled-route-guard] 2026-11-23 23:27:35
+$ node .skilled/bin/compiled-route-guard.cjs | tail -2
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [final: compiled-route-sync --check] 2026-11-23 23:27:36
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [final: bridge drift guard] 2026-11-23 23:27:36
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+{
+  "status": "fresh",
+  "counts": {
+    "commandMetadata": 31,
+    "doctorRoutes": 36,
+    "generated": 67,
+    "typescriptActive": 51,
+    "pythonActive": 57
+  },
+  "changed": []
+}
+(exit 0)
+
+=== [final: frozen scorer] 2026-11-23 23:27:36
+$ node -e "require('./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs').assertScorerFrozen(process.cwd(),'check'); console.log('scorer frozen: ok')"
+scorer frozen: ok
+(exit 0)
+
+=== [final: command routing slice] 2026-11-23 23:27:44
+$ cd .skilled/skills/system-skill-advisor/runtime && npx --no-install vitest run tests/command-routing-slice.vitest.ts tests/doctor-routing-slice.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL|×'
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+(exit 0)
+
+=== [final: manifest freshness] 2026-11-23 23:27:44
+$ node .skilled/bin/compiled-route-manifest.cjs freshness --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"8e2c5590b59dc1658283441fda1e007c2efd7560adff9a57741c83cf28c26474","generation":1},"currentPolicyHash":"8e2c5590b59dc1658283441fda1e007c2efd7560adff9a57741c83cf28c26474","manifestFingerprint":"2cc8e5f8cc01fb412a5851cff166ff47d6b60e65a64d12a524257a82046b8d9d"}
+(exit 0)
+
+=== [final: two-stage replay from the final state] 2026-11-23 23:28:02
+$ bash <scratchpad>/replay.sh $PWD | grep -E '^(IN|TYPED|SUMMARY)|bots-first=yes|routed=yes'
+IN  exp=run | s1 top=sk-doc@0.82[/create:changelog] bots_rank=3 ok=no | s2 defer hash=8e2c5590b59d ok=no | Run the release-notes bot now against this repository
+IN  exp=run | s1 top=system-skilled-bots@0.8482[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=8e2c5590b59d ok=yes | Queue a bot run for the triage bot from the new-issue event
+IN  exp=run | s1 top=system-skilled-bots@0.9275[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=8e2c5590b59d ok=yes | Drain the bot request queue
+IN  exp=schedule | s1 top=system-skilled-bots@0.9441[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=8e2c5590b59d ok=yes | Put the nightly bot on a launchd schedule
+IN  exp=schedule | s1 top=none bots_rank=- ok=no | s2 defer hash=8e2c5590b59d ok=no | Pause the triage bot until Monday
+IN  exp=schedule | s1 top=system-skilled-bots@0.8709[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=8e2c5590b59d ok=yes | Remove the bot's schedule and unload its launchd agent
+IN  exp=status | s1 top=command-bots-status@0.82[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=8e2c5590b59d ok=yes | Show me which bots are installed and when each last ran
+IN  exp=status | s1 top=system-skilled-bots@0.9439[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=8e2c5590b59d ok=yes | Read the needs-you inbox for the bots
+IN  exp=status | s1 top=system-skilled-bots@0.852 bots_rank=1 ok=yes | s2 route:status+schedule(orderedBundle) hash=8e2c5590b59d ok=no | Check whether the bot's schedule needs a reinstall
+IN  exp=run | s1 top=command-bots-run@0.8632[/bots:run] bots_rank=1 ok=yes | s2 defer hash=8e2c5590b59d ok=no | start the bot
+IN  exp=run | s1 top=none bots_rank=- ok=no | s2 defer hash=8e2c5590b59d ok=no | launch the triage bot
+OOD s1 top=system-skilled-bots@0.8261 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | set up a launchd schedule
+OOD s1 top=system-skilled-bots@0.8228 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | install a launchd schedule for my backup script
+OOD s1 top=system-skilled-bots@0.8549 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | write a launchd plist
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | pause the launchd agent
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | drain the queue
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | my launchd agent is broken
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | queue a build run
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | enqueue a job run for the importer
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | put my backup script on a launchd schedule
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=8e2c5590b59d routed=no | my schedule needs a reinstall
+TYPED py=[('command-bots-author', 0.82)] | s1 top=command-bots-author@0.82[/bots:author] bots_rank=1 | /bots:author weekly-digest --repo ~/code/acme
+TYPED py=[('system-skilled-bots', 0.82), ('cli-classifier', 0.82)] | s1 top=command-bots-run@0.8368[/bots:run] bots_rank=1 | /bots:run answer item-42 yes
+TYPED py=[('command-bots-schedule', 0.8527), ('system-skilled-bots', 0.82)] | s1 top=command-bots-schedule@0.8527[/bots:schedule] bots_rank=1 | /bots:schedule pause nightly-cleanup
+TYPED py=[('command-bots-status', 0.8764), ('sk-code', 0.8641), ('system-skilled-bots', 0.82)] | s1 top=command-bots-status@0.8764[/bots:status] bots_rank=1 | /bots:status inbox --json
+SUMMARY in-pass=6 in-fail=5 ood-fail=6 adj-fail=4
+(exit 0)
+
+=== [final: scoped status of the files this run changed (the other modified hub files belong to concurrent work and were not touched here)] 2026-11-23 23:28:02
+$ git status --short -- .skilled/skills/system-skilled-bots/hub-router.json .skilled/skills/system-skilled-bots/ROUTER.md .skilled/skills/system-skilled-bots/graph-metadata.json .skilled/skills/system-skilled-bots/bots-run/ROUTER.md .skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md .skilled/skills/system-skilled-bots/bots-status/ROUTER.md .skilled/skills/system-skill-advisor .skilled/bin specs/sk-doc; echo status-done
+ M .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+ M .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json
+ M .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts
+ M .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+ M .skilled/skills/system-skilled-bots/ROUTER.md
+ M .skilled/skills/system-skilled-bots/bots-run/ROUTER.md
+ M .skilled/skills/system-skilled-bots/bots-schedule/ROUTER.md
+ M .skilled/skills/system-skilled-bots/bots-status/ROUTER.md
+ M .skilled/skills/system-skilled-bots/graph-metadata.json
+ M .skilled/skills/system-skilled-bots/hub-router.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/activation/acceptance.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/activation/manifest.candidate.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/PolicyCardV1.md
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/advisor-projection.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/destination-graph.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/policy.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/route-gold.typed.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json
+ M specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json
+status-done
+(exit 0)
+
+=== [cause of the pre-existing OOD captures (attribution; baseline showed the same rows)] 2026-11-23 23:28:17
+$ for p in 'drain the queue' 'my launchd agent is broken'; do printf '%s' "$(node -e 'process.stdout.write(JSON.stringify({prompt:process.argv[1],options:{includeAttribution:true}}))' "$p")" | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | python3 -c 'import json,sys; r=json.load(sys.stdin)["data"]["recommendations"][0]; print(sys.argv[1], "|", r["skillId"], r["confidence"], {l["lane"]:round(l["rawScore"],3) for l in r["laneBreakdown"]}, [(t["lane"],t.get("evidenceCount")) for t in r["why_recommended"]["topLanes"]])' "$p"; done
+drain the queue | system-skilled-bots 0.82 {'explicit_author': 0, 'lexical': 0.667, 'graph_causal': 0, 'derived_generated': 0} [('lexical', 2)]
+my launchd agent is broken | system-skilled-bots 0.82 {'explicit_author': 0.7, 'lexical': 0.333, 'graph_causal': 0, 'derived_generated': 0.149} [('explicit_author', 1), ('lexical', 1), ('derived_generated', 0)]
+(exit 0)
+
+=== OPEN ITEMS AND DEVIATIONS (from the evidence above)
+1. STOPPED, matcher change not made: Run the release-notes bot now..., Pause the triage bot until Monday, launch the triage bot, and start the bot at stage two.
+   Mechanism: the compiled router's containsSignal is a contiguous substring test and registry-compiler.cjs compiles only `keywords`, with no pattern, proximity or ordered-token shape, so "<verb> the <name> bot" can only be matched by a keyword that names the bot or one that also matches out-of-domain text. The PROOF block above lists every name-free n-gram and why each fails.
+   Seam for a fix: the hub-local router.cjs (authored and runtime copies, which the canary/guard/sync closure byte-checks), a new keyword shape in registry-compiler.cjs, and new canary gold. At stage one the explicit_author lane is also a phrase-boundary match, and its command-row near-phrase match needs three content words, so the same forms also need an explicit-lane or scorer change and a re-freeze.
+   Second seam: generate-router-intent-signals carries every ROUTER.md INTENT_SIGNALS phrase to graph-metadata, and ci-hub-vocabulary-source requires every hub-router.json term to appear in a ROUTER.md intent. So there is no stage-two-only vocabulary, and every hub phrase's tokens reach the stage-one lexical lane. That lane gives a short prompt that overlaps two hub tokens the 0.82 task-intent floor, which is why start, launch, remove and reinstall could not go into hub vocabulary.
+2. Check whether the bot's schedule needs a reinstall routes status+schedule (orderedBundle, status first) at stage two, not single status. bot's schedule (schedule) and bot's schedule needs (status) both match it. A single status route needs either a status phrase that adds a new token (reinstall, which captured 'the app needs a reinstall' and 'reinstall the cron job' at stage one) or a double-counted phrase. No canary gold was added for this probe.
+3. D-05 start the bot reaches /bots:run at stage one through the bridge row only. Stage two defers, see item 1.
+4. Pre-existing stage-one OOD captures, unchanged by this run: the four launchd prompts (Q013), 'my launchd agent is broken' (explicit_author 0.7 through the bare launchd keyword Q013 kept), and 'drain the queue' (lexical lane, two tokens drain+queue, present at baseline).
+5. Bridge row shape deviates from the brief: the deriver throws for a non-doctor id without TS name/keywords/domains/intentSignals and python slashMarkers, so the rows follow create:agent with id = inventoryId, name = runnable, empty description (as the brief asked), keywords = slash string + command-metadata ownedSignals, readOnly on /bots:status. start the bot and launch the bot on the /bots:run row are a curated addition beyond ownedSignals. Proposed README amendment: command-bridges/README.md section 4 describes the four-field row for doctor routes only; section 5 should say that a hub command (a skill with mode-registry.json and command-metadata.json) needs a full hand row in both lists, as create:agent has.
+6. command-contract.json: not needed for routing. No advisor, bridge-deriver or compiled-route code reads it; its readers are generate-command-routers.cjs (check: routers=42 clean=42) and the doctor contract tests (1674/1674 pass). Its metadata.coverage note is stale: it names three commands without entries, and the four /bots:* commands are also absent. Not edited.
+7. bots-status/ROUTER.md still lists 'open needs-you items' (token 'open', dropped from the hub in 008). Packet routers are not projected to stage one, so it has no OOD effect there. Noted, not changed.
+8. Observed, not investigated: for '/bots:run answer item-42 yes', skill_advisor.py (native path) lists system-skilled-bots first while advisor_recommend lists command-bots-run first. Both name the bots hub. The python local fallback lists command-bots-run.
+
+=== APPENDIX: helper scripts referenced above (kept outside the repo; reproduced verbatim)
+----- logrun.sh -----
+#!/usr/bin/env bash
+# Usage: logrun.sh "<label>" "<command>"  -- runs the command under bash with pipefail from the
+# worktree root, appends label, command, output and exit status to the routing-fix log.
+W=/Users/michelkerkmeester/worktrees/public/system-skilled-bots
+LOG=$W/specs/system-skilled-bots/001-headless-bots-first-build/009-skilled-alignment-and-docs/scratch/routing-fix-log.txt
+label="$1"; cmd="$2"
+cd "$W"
+out=$(bash -c "set -o pipefail; $cmd" 2>&1); rc=$?
+{
+  echo "=== [$label] $(date '+%Y-%m-%d %H:%M:%S')"
+  echo "\$ $cmd"
+  printf '%s\n' "$out"
+  echo "(exit $rc)"
+  echo
+} >> "$LOG"
+printf '%s\n' "$out"
+echo "(exit $rc)"
+exit $rc
+----- end logrun.sh -----
+----- adj1.sh -----
+#!/usr/bin/env bash
+# Stage-one top three for adjacency prompts that pair a candidate token with an existing hub token.
+cd "$1"
+for p in "start the cron job" "start the nightly build" "start the status page" "start the inbox sync" "start the queue worker" \
+         "launch the queue worker" "launch the schedule editor" "launch the nightly job" "launch the cron job" \
+         "remove the cron job" "remove the queue" "remove the schedule" "remove the launchd plist" \
+         "the app needs a reinstall" "reinstall the cron job" "my schedule needs a reinstall" "the launchd agent needs a reinstall" \
+         "drain the queue" "queue a build run" "run the nightly build" "pause the queue" "enable the cron job"; do
+  printf '%s' "$(node -e 'process.stdout.write(JSON.stringify({prompt:process.argv[1]}))' "$p")" | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json 2>/dev/null \
+   | python3 -c 'import json,sys; d=json.load(sys.stdin)["data"]["recommendations"]; top=d[0]["skillId"] if d else None; print(("BOTS-FIRST" if top=="system-skilled-bots" else "ok        "), [(r["skillId"], r.get("confidence")) for r in d[:3]], "|", sys.argv[1])' "$p"
+done
+----- end adj1.sh -----
+----- s2dry.cjs -----
+// Stage-two dry run against the live hub-router.json (or a candidate copy) using the authored engine.
+const path=require('path');const fs=require('fs');
+const N=path.resolve(process.argv[2]);const cand=process.argv[3]&&process.argv[3]!=='-'?process.argv[3]:null;
+const {sourceInputs}=require(path.join(N,'harness/build-artifacts.cjs'));
+const {compileRegistry,REGISTRY_SOURCE,SKILL_SOURCE,ROUTER_SOURCE}=require(path.join(N,'lib/registry-compiler.cjs'));
+const {evaluateRoute}=require(path.join(N,'lib/router.cjs'));
+const sb=sourceInputs(); if(cand) sb[ROUTER_SOURCE]=fs.readFileSync(cand);
+const snap=compileRegistry({activationGeneration:1,hubRegistry:JSON.parse(sb[REGISTRY_SOURCE].toString()),hubSkillMarkdown:sb[SKILL_SOURCE].toString(),sourceBytes:sb});
+const prompts=process.argv.slice(4);
+for(const p of prompts){const r=evaluateRoute(snap,{prompt:p});const d=r.decision;console.log([d.action+(d.action==='route'?':'+d.route.targets.map(t=>t.destinationId.workflowMode).join('+')+'('+d.route.selectionKind+')':''),JSON.stringify(r.trace.matchedScores),p].join(' | '));}
+----- end s2dry.cjs -----
+----- add-bridge-rows.py -----
+# Adds the four /bots:* hand rows to scoring-compatibility.json (TypeScript orders 41-44, python 52-55).
+import json, sys
+p = sys.argv[1]
+d = json.load(open(p))
+ts_ids = {e["inventoryId"] for e in d["typescript"]}
+py_ids = {e["inventoryId"] for e in d["python"]}
+assert max(e["order"] for e in d["typescript"]) == 40, "unexpected TS order max"
+assert max(e["order"] for e in d["python"]) == 51, "unexpected python order max"
+rows = [
+    ("author", ["author a bot", "write a bot", "new bot.md"], False),
+    ("run", ["run the bot", "drain the bot queue", "answer the bot", "start the bot", "launch the bot"], False),
+    ("schedule", ["schedule a bot", "bot schedule", "pause the bot"], False),
+    ("status", ["bot status", "bot inbox", "which bots are installed"], True),
+]
+for i, (mode, phrases, read_only) in enumerate(rows):
+    inv = f"command-bots-{mode}"
+    cmd = f"/bots:{mode}"
+    assert inv not in ts_ids and inv not in py_ids, inv
+    ts = {
+        "inventoryId": inv, "order": 41 + i, "id": inv, "name": cmd, "description": "",
+        "keywords": [cmd, *phrases], "domains": ["bots", "command"], "intentSignals": [cmd, *phrases],
+    }
+    if read_only:
+        ts["readOnly"] = True
+    d["typescript"].append(ts)
+    d["python"].append({
+        "inventoryId": inv, "order": 52 + i, "id": inv, "description": "",
+        "slashMarkers": [cmd, cmd[1:]], "owningSkill": "system-skilled-bots",
+    })
+open(p, "w").write(json.dumps(d, indent=2, ensure_ascii=False) + "\n")
+print("added 4 typescript and 4 python rows")
+----- end add-bridge-rows.py -----
+----- add-canaries.py -----
+# Adds canary cases for the bot phrasings that now route, and out-of-domain defer cases
+# that pin each new keyword's neighbourhood. Existing cases are left untouched.
+import json, sys
+p = sys.argv[1]
+s = open(p).read()
+d = json.loads(s)
+assert json.dumps(d, indent=2, ensure_ascii=False) + "\n" == s, "fixture formatting is not indent-2 roundtrip"
+ids = [c["id"] for c in d["cases"]]
+def route(cid, prompt, mode):
+    return {"id": cid, "prompt": prompt, "expectedAction": "route", "expectedSelectionKind": "single",
+            "expectedModes": [mode], "gold": {"expectedIntents": [mode], "expectedResources": []}}
+def defer(cid, prompt):
+    return {"id": cid, "prompt": prompt, "expectedAction": "defer",
+            "gold": {"expectedIntents": ["defer"], "expectedResources": []}}
+routed = [
+    route("run-queue-named-bot-run", "Queue a bot run for the triage bot from the new-issue event", "run"),
+    route("run-drain-bot-request-queue", "Drain the bot request queue", "run"),
+    route("schedule-named-bot-on-launchd", "Put the nightly bot on a launchd schedule", "schedule"),
+    route("schedule-remove-bots-schedule", "Remove the bot's schedule and unload its launchd agent", "schedule"),
+    route("status-read-needs-you-inbox", "Read the needs-you inbox for the bots", "status"),
+]
+ood = [
+    defer("out-of-domain-drain-queue", "drain the queue"),
+    defer("out-of-domain-remove-cron-job", "remove the cron job"),
+    defer("out-of-domain-read-inbox", "read my inbox"),
+    defer("out-of-domain-start-server", "start the server"),
+    defer("out-of-domain-launch-app", "launch the app"),
+    defer("out-of-domain-pause-video", "pause the video"),
+    defer("out-of-domain-installed-packages", "show me which packages are installed"),
+    defer("out-of-domain-launchd-agent-broken", "my launchd agent is broken"),
+]
+for c in routed + ood:
+    assert c["id"] not in ids, c["id"]
+at = ids.index("schedule-install-for-named-bot") + 1
+cases = d["cases"][:at] + routed + d["cases"][at:]
+ids2 = [c["id"] for c in cases]
+at2 = ids2.index("out-of-domain-install-health") + 1
+d["cases"] = cases[:at2] + ood + cases[at2:]
+open(p, "w").write(json.dumps(d, indent=2, ensure_ascii=False) + "\n")
+print("cases", len(d["cases"]))
+----- end add-canaries.py -----
+----- ngram-proof.py -----
+# For each named-bot probe, list every contiguous n-gram (after the matcher's lower-case and
+# hyphen-to-space fold) that does not contain the bot's name, and the reason each one cannot
+# serve as a stage-two keyword. The matcher is a plain substring test, so a keyword must be one
+# of these n-grams to fire on the probe.
+import re, json
+probes = {
+    "Run the release-notes bot now against this repository": ("run", {"release", "notes"}),
+    "Pause the triage bot until Monday": ("schedule", {"triage"}),
+    "launch the triage bot": ("run", {"triage"}),
+}
+ood = ["answer this question","run the tests","schedule a meeting for tomorrow","status of the build","author a skill","check my email inbox",
+       "start the server","launch the app","pause the video","drain the queue","remove the cron job","show me which packages are installed",
+       "read my inbox","my launchd agent is broken","pause the build until Monday","run the tests until they pass","pause the launchd agent",
+       "launch the browser","write a system prompt for a support triage bot","list my chatbot runs","the robot needs you"]
+settled = {"bot now": "excluded in 008 Key Decisions (captured doctor prompts in the advisor slice)", "hand": "settled drop", "question": "settled drop",
+           "open": "settled drop", "launchd schedule": "settled drop"}
+baseline_tokens = set("answer author bot bots create cron defined definition digest disable drain edit enable enqueue file four headless hub inbox installed json kick last launchd md mode modes needs new nightly off parent pause queue registry request resume routes run runs schedule skilled status system template through workflowmode write".split())
+stop = set("a about able actually agent all also an and any are as at be been being but by can could did do does even for from get give go going had has have he help her him how i if in into is it its just let like may me might more most must my need no not now of on only or other our please really she should skill skills so some tell that the them then these they thing things this those to tool try us used using very want was way we were what when where which who why will with would you your".split())
+fold = lambda s: re.sub(r"\s+", " ", re.sub(r"-+", " ", s.lower())).strip()
+for probe, (mode, names) in probes.items():
+    words = fold(probe).split()
+    print(f"== {probe!r} (expected {mode}; name tokens {sorted(names)})")
+    for n in range(1, 5):
+        for i in range(len(words) - n + 1):
+            g = words[i:i+n]
+            if names & set(g):
+                continue
+            gram = " ".join(g)
+            content = [w for w in g if w not in stop and len(w) > 1]
+            reasons = []
+            if not content:
+                reasons.append("stop words only: matches almost any prompt")
+            hits = [o for o in ood if gram in fold(o)]
+            if hits:
+                reasons.append("matches OOD " + json.dumps(hits[:2]))
+            if gram in settled:
+                reasons.append(settled[gram])
+            if "bot" not in g and not hits and content:
+                reasons.append("no bot token: nothing ties it to a bot request")
+            new = [w for w in content if w not in baseline_tokens]
+            if new and "bot" in g:
+                reasons.append(f"adds stage-one token(s) {new}; trailing context shaped to this probe")
+            if g == ["bot"]:
+                reasons.append("names no mode: every bot request in every mode, plus robot/chatbot")
+            print(f"   {gram!r:32} -> " + ("; ".join(reasons) if reasons else "NO REASON FOUND"))
+----- end ngram-proof.py -----
+=== [RECHECK after the bridges: 22-prompt adjacency set plus start/launch OOD and the bare in-domain phrases, flagging a hub OR command-bots-* top (adj2.sh = adj1.sh widened)] 2026-11-23 23:31:02
+$ bash <scratchpad>/adj2.sh $PWD
+ok         [('sk-code', 0.82), ('sk-git', 0.82), ('mcp-tooling', 0.82)] | start the cron job
+ok         [('sk-code', 0.82), ('sk-doc', 0.82), ('sk-git', 0.82)] | start the nightly build
+ok         [('sk-code', 0.82), ('mcp-tooling', 0.82), ('mcp-browser-use', 0.82)] | start the status page
+ok         [('sk-doc', 0.82), ('sk-code', 0.82), ('system-spec-kit', 0.82)] | start the inbox sync
+ok         [('mcp-tooling', 0.82), ('sk-code', 0.82), ('sk-git', 0.82)] | start the queue worker
+ok         [] | launch the queue worker
+ok         [] | launch the schedule editor
+ok         [] | launch the nightly job
+ok         [] | launch the cron job
+ok         [] | remove the cron job
+ok         [] | remove the queue
+ok         [] | remove the schedule
+BOTS-FIRST [('system-skilled-bots', 0.82)] | remove the launchd plist
+ok         [] | the app needs a reinstall
+ok         [] | reinstall the cron job
+BOTS-FIRST [('system-skilled-bots', 0.82)] | my schedule needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | the launchd agent needs a reinstall
+BOTS-FIRST [('system-skilled-bots', 0.82)] | drain the queue
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('system-spec-kit', 0.82)] | queue a build run
+BOTS-FIRST [('system-skilled-bots', 0.82), ('sk-doc', 0.82), ('cli-external-orchestration', 0.82)] | run the nightly build
+BOTS-FIRST [('system-skilled-bots', 0.82)] | pause the queue
+BOTS-FIRST [('system-skilled-bots', 0.82)] | enable the cron job
+ok         [('mcp-tooling', 0.82), ('sk-code', 0.82), ('cli-external-orchestration', 0.82)] | start the dev server
+ok         [('mcp-tooling', 0.82), ('sk-code', 0.82), ('mcp-code-mode', 0.82)] | start the server
+ok         [] | launch the app
+ok         [] | launch the browser
+BOTS-FIRST [('command-bots-run', 0.8632), ('sk-code', 0.82), ('system-skilled-bots', 0.82)] | start the bot
+BOTS-FIRST [('command-bots-run', 0.8632)] | launch the bot
+(exit 0)
+
+=== [in-word captures of the new keywords (same class as 008 Known Limitation 5): stage two] 2026-11-23 23:31:11
+$ for p in 'drain the bottleneck' "the robot's schedule" "check the chatbot's schedule needs" 'queue a bot runner' 'put the robot on a launchd job'; do printf '%s => ' "$p"; node .skilled/bin/compiled-route.cjs --hub system-skilled-bots --prompt "$p" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const r=JSON.parse(s);console.log(r.action+(r.targets&&r.targets.length?":"+r.targets.map(t=>t.workflowMode).join("+"):""))})'; done
+drain the bottleneck => route:run
+the robot's schedule => route:schedule
+check the chatbot's schedule needs => route:status+schedule
+queue a bot runner => route:run
+put the robot on a launchd job => route:schedule
+(exit 0)
+
+=== [in-word captures of the new keywords: stage one] 2026-11-23 23:31:12
+$ for p in 'drain the bottleneck' "the robot's schedule" "check the chatbot's schedule needs" 'queue a bot runner' 'put the robot on a launchd job'; do printf '%s' "$(node -e 'process.stdout.write(JSON.stringify({prompt:process.argv[1]}))' "$p")" | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | python3 -c 'import json,sys; d=json.load(sys.stdin)["data"]["recommendations"]; print(sys.argv[1], "=>", [(r["skillId"], r.get("confidence")) for r in d[:3]])' "$p"; done
+drain the bottleneck => []
+the robot's schedule => []
+check the chatbot's schedule needs => []
+queue a bot runner => [('system-skilled-bots', 0.82)]
+put the robot on a launchd job => [('system-skilled-bots', 0.82)]
+(exit 0)
+
+=== [attribution: in-word stage-one rows (explicit 0.7 = the bare launchd keyword, as 008 measured)] 2026-11-23 23:31:24
+$ for p in 'put the robot on a launchd job' 'put the robot on a cron job' 'queue a bot runner'; do printf '%s' "$(node -e 'process.stdout.write(JSON.stringify({prompt:process.argv[1],options:{includeAttribution:true,confidenceThreshold:0,uncertaintyThreshold:1}}))' "$p")" | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json | python3 -c 'import json,sys; d=json.load(sys.stdin)["data"]["recommendations"]; r=[x for x in d if x["skillId"]=="system-skilled-bots"]; r=r[0] if r else None; print(sys.argv[1], "|", (r["confidence"], {l["lane"]:round(l["rawScore"],3) for l in r["laneBreakdown"]}) if r else None)' "$p"; done
+put the robot on a launchd job | (0.82, {'explicit_author': 0.7, 'lexical': 0.25, 'graph_causal': 0, 'derived_generated': 0.112})
+put the robot on a cron job | (0.5596, {'explicit_author': 0, 'lexical': 0.25, 'graph_causal': 0, 'derived_generated': 0})
+queue a bot runner | (0.82, {'explicit_author': 0, 'lexical': 0.667, 'graph_causal': 0, 'derived_generated': 0.149})
+(exit 0)
+
+=== [python native-path discrepancy check: variant prompt (cache hypothesis) and the original] 2026-11-23 23:31:32
+$ for t in '/bots:run answer item-43 yes' '/bots:run answer item-42 yes'; do printf '%s => ' "$t"; python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "$t" | python3 -c 'import json,sys; d=json.load(sys.stdin); print([(x["skill"],x.get("confidence"),x.get("source")) for x in d[:3]])'; done
+/bots:run answer item-43 yes => [('system-skilled-bots', 0.82, 'native'), ('cli-classifier', 0.82, 'native')]
+/bots:run answer item-42 yes => [('system-skilled-bots', 0.82, 'native'), ('cli-classifier', 0.82, 'native')]
+(exit 0)
+
+=== [python native path for /bots:run at threshold 0 (is command-bots-run present below the top?)] 2026-11-23 23:31:42
+$ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py '/bots:run answer item-43 yes' --threshold 0 | python3 -c 'import json,sys; d=json.load(sys.stdin); print([(x["skill"],x.get("confidence"),round(x.get("score",0),3),x.get("passes_threshold")) for x in d[:6]])'
+[('system-skilled-bots', 0.82, 0.167, True), ('cli-classifier', 0.82, 0.099, True), ('system-skilled-doctor', 0.5604, 0.071, True), ('system-spec-kit', 0.5545, 0.061, True)]
+(exit 0)
+
+=== ADDENDUM after the post-bridge rechecks above
+- The summary line "adj1.sh 22 prompts: 8 before, 8 after" was first measured before the /bots:run row existed. The RECHECK block (adj2.sh, which also flags a command-bots-* top) reran it after the bridges, dist build and refreeze: the same 8 hub-first rows, no command-bots-* top on any out-of-domain prompt. start the dev server, start the server, launch the app and launch the browser stay off the hub. In-domain start the bot and launch the bot both lead with command-bots-run at 0.8632.
+- In-word captures of the new keywords (008 Known Limitation 5 class, recorded rather than fixed): at stage two, drain the bottleneck routes run, the robot's schedule routes schedule, check the chatbot's schedule needs routes status+schedule, and put the robot on a launchd job routes schedule. At stage one none of the first three gets a recommendation. put the robot on a launchd job reaches 0.82 through explicit_author 0.7, the bare launchd keyword (Q013); the same prompt with cron gets 0.5596. queue a bot runner reaches 0.82 through the lexical two-token floor (queue + bot).
+- Item 8 replaced: the cached-result hypothesis is falsified, because the variant /bots:run answer item-43 yes gives the same python native output. On skill_advisor.py's native path, command-bots-run is absent even at --threshold 0 (hub 0.82 first, cli-classifier second), while advisor_recommend ranks command-bots-run first at 0.8368 and the python local fallback (FORCE_LOCAL) ranks it first at 0.95. The cause is UNKNOWN and was not investigated further. The other three typed /bots:* prompts lead with their command row on all three paths. D-02's named check, /bots:author, passes on all three.
+- Every gate in this log ran against a working tree that also holds another process's uncommitted edits to the same hub (README.md, bots-author/*, playbook files, the bot-template rename, runtime/tests/definition.vitest.ts, changelogs). Results describe that combined tree.
+
+----- adj2.sh -----
+#!/usr/bin/env bash
+# Stage-one top three for adjacency prompts that pair a candidate token with an existing hub token.
+cd "$1"
+for p in "start the cron job" "start the nightly build" "start the status page" "start the inbox sync" "start the queue worker" \
+         "launch the queue worker" "launch the schedule editor" "launch the nightly job" "launch the cron job" \
+         "remove the cron job" "remove the queue" "remove the schedule" "remove the launchd plist" \
+         "the app needs a reinstall" "reinstall the cron job" "my schedule needs a reinstall" "the launchd agent needs a reinstall" \
+         "drain the queue" "queue a build run" "run the nightly build" "pause the queue" "enable the cron job" \
+         "start the dev server" "start the server" "launch the app" "launch the browser" "start the bot" "launch the bot"; do
+  printf '%s' "$(node -e 'process.stdout.write(JSON.stringify({prompt:process.argv[1]}))' "$p")" | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json 2>/dev/null \
+   | python3 -c 'import json,sys; d=json.load(sys.stdin)["data"]["recommendations"]; top=d[0]["skillId"] if d else None; print(("BOTS-FIRST" if top and (top=="system-skilled-bots" or top.startswith("command-bots-")) else "ok        "), [(r["skillId"], r.get("confidence")) for r in d[:3]], "|", sys.argv[1])' "$p"
+done
+----- end adj2.sh -----
+=== [ORDERED-KEYWORD BUILD (operator-approved option 1, stage two only). Step 1: syntax check of the edited authored router.cjs and registry-compiler.cjs, then compile the unchanged hub-router.json: the hash must still be 8e2c5590b59d, proving the plain-keyword path is byte-identical] 2026-11-24 05:27:20
+$ node -c specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/lib/router.cjs && node -c specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/lib/registry-compiler.cjs && echo syntax-ok && node <scratchpad>/hashcheck.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots - && git diff --stat -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/lib
+syntax-ok
+{"effectivePolicyHash":"8e2c5590b59dc1658283441fda1e007c2efd7560adff9a57741c83cf28c26474","graphHash":"55b8f2f7391390a34395f9ff6588ba2ccbac28a887ef930e8daa283067ed8662"}
+ .../lib/registry-compiler.cjs                      | 17 +++++++-
+ .../011-system-skilled-bots/lib/router.cjs         | 48 +++++++++++++++++++++-
+ 2 files changed, 63 insertions(+), 2 deletions(-)
+(exit 0)
+
+=== [Step 2: vocabulary (hub-router.json run-workflow += ~run bot, ~start bot, ~launch bot; schedule-workflow += ~pause bot, ~resume bot, ~enable bot, ~disable bot; routerPolicy.orderedKeywordContract; the same strings in ROUTER.md RUN and SCHEDULE intents plus a reading note). JSON check, diff, then confirm stage one is untouched] 2026-11-24 05:27:59
+$ node -e 'JSON.parse(require("fs").readFileSync(".skilled/skills/system-skilled-bots/hub-router.json","utf8"));console.log("json ok")' && diff <scratchpad>/bak2/hub-router.json .skilled/skills/system-skilled-bots/hub-router.json; diff <scratchpad>/bak2/ROUTER.md .skilled/skills/system-skilled-bots/ROUTER.md; echo diff-done
+json ok
+22c22,23
+<     "discoveryClassesContract": "Classes listed here are hub discovery and defer evidence only. No mode's scoring classes reference them, so a prompt that matches only hub vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
+---
+>     "discoveryClassesContract": "Classes listed here are hub discovery and defer evidence only. No mode's scoring classes reference them, so a prompt that matches only hub vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode.",
+>     "orderedKeywordContract": "A keyword that starts with ~ lists whole words that must appear in the prompt in that order, each at most three words after the one before, so ~pause bot matches pause the triage bot but not pause the robot. Every other keyword is a contiguous phrase. Ordered keywords count only for a mode that no contiguous keyword matched, so they never change a score a contiguous keyword produces."
+60c61
+<       "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "drain the bot"]
+---
+>       "keywords": ["bots run", "bots drain", "bots enqueue", "bots:run", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "drain the bot", "~run bot", "~start bot", "~launch bot"]
+66c67
+<       "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "bot's schedule"]
+---
+>       "keywords": ["bots schedule", "bot schedule", "bots:schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "bot's schedule", "~pause bot", "~resume bot", "~enable bot", "~disable bot"]
+52,53c52,53
+<     "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "drain the bot", "bots:run"]},
+<     "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "bot's schedule", "bots:schedule"]},
+---
+>     "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "drain the bot", "~run bot", "~start bot", "~launch bot", "bots:run"]},
+>     "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "bot's schedule", "~pause bot", "~resume bot", "~enable bot", "~disable bot", "bots:schedule"]},
+79a80
+> - A keyword that starts with `~` lists whole words that must appear in order, each at most three words after the one before, so `~pause bot` matches "pause the triage bot" but not "pause the robot". It counts only when no contiguous keyword reached that mode, and it never reaches the advisor, because the intent-signal generator carries only phrases that start with a letter.
+diff-done
+(exit 0)
+
+=== [stage one untouched: intent-signals check (no write) and graph-metadata.json byte-compare] 2026-11-24 05:27:59
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots && cmp <scratchpad>/bak2/graph-metadata.json .skilled/skills/system-skilled-bots/graph-metadata.json && echo graph-metadata-unchanged
+OK    system-skilled-bots          declared= 53 signals= 57 missing=  0 orphans=  0
+
+checked=1 hub(s), missing=0, orphans=0
+RESULT: PASSED
+graph-metadata-unchanged
+(exit 0)
+
+=== [stage-two BEFORE (served front door, policy 8e2c5590b59d, before the ordered-keyword build is served)] 2026-11-24 05:28:22
+$ cat <scratchpad>/s2-before.txt
+run | legacy legacy | Run the release-notes bot now against this repository
+run | legacy legacy | Queue a bot run for the triage bot from the new-issue event
+run | legacy legacy | Drain the bot request queue
+schedule | legacy legacy | Put the nightly bot on a launchd schedule
+schedule | legacy legacy | Pause the triage bot until Monday
+schedule | legacy legacy | Remove the bot's schedule and unload its launchd agent
+status | legacy legacy | Show me which bots are installed and when each last ran
+status | legacy legacy | Read the needs-you inbox for the bots
+status | legacy legacy | Check whether the bot's schedule needs a reinstall
+run | legacy legacy | start the bot
+run | legacy legacy | launch the triage bot
+run | legacy legacy | launch the bot
+run | legacy legacy | start the release-notes bot
+run | legacy legacy | run the triage bot against acme
+schedule | legacy legacy | resume the triage bot
+schedule | legacy legacy | enable the release-notes bot
+schedule | legacy legacy | disable the nightly digest bot for a week
+schedule | legacy legacy | pause the weekly-cleanup bot
+defer | legacy legacy | answer this question
+defer | legacy legacy | run the tests
+defer | legacy legacy | schedule a meeting for tomorrow
+defer | legacy legacy | status of the build
+defer | legacy legacy | author a skill
+defer | legacy legacy | check my email inbox
+defer | legacy legacy | answer the open question
+defer | legacy legacy | answer the open ticket
+defer | legacy legacy | answer the open issues
+defer | legacy legacy | answer the open
+defer | legacy legacy | answer the question
+defer | legacy legacy | answer my open questions
+defer | legacy legacy | answer the open pr comments
+defer | legacy legacy | answer the pending question
+defer | legacy legacy | open questions in the spec
+defer | legacy legacy | what do you need from me
+defer | legacy legacy | answer the open review threads
+defer | legacy legacy | my manager needs you to sign this
+defer | legacy legacy | it needs you to confirm the deploy
+defer | legacy legacy | the team needs you
+defer | legacy legacy | set up a launchd schedule
+defer | legacy legacy | install a launchd schedule for my backup script
+defer | legacy legacy | write a launchd plist
+defer | legacy legacy | schedule a cron job for the backup
+defer | legacy legacy | add a cron schedule to my script
+defer | legacy legacy | pause the launchd agent
+defer | legacy legacy | start the server
+defer | legacy legacy | launch the app
+defer | legacy legacy | pause the video
+defer | legacy legacy | drain the queue
+defer | legacy legacy | remove the cron job
+defer | legacy legacy | show me which packages are installed
+defer | legacy legacy | read my inbox
+defer | legacy legacy | my launchd agent is broken
+defer | legacy legacy | run the release script now
+defer | legacy legacy | pause the build until Monday
+defer | legacy legacy | drain the connection pool
+defer | legacy legacy | queue a build run
+defer | legacy legacy | enqueue a job run for the importer
+defer | legacy legacy | start the dev server
+defer | legacy legacy | start the robot vacuum
+defer | legacy legacy | launch the browser
+defer | legacy legacy | put my backup script on a launchd schedule
+defer | legacy legacy | remove the cron job's schedule
+defer | legacy legacy | the app needs a reinstall
+defer | legacy legacy | my schedule needs a reinstall
+defer | legacy legacy | reinstall node modules
+defer | legacy legacy | check whether the plugin needs a reinstall
+defer | legacy legacy | show me which apps are installed and when each last ran
+defer | legacy legacy | write a system prompt for a support triage bot
+defer | legacy legacy | run the tests until they pass
+defer | legacy legacy | pause the robot arm until Monday
+defer | legacy legacy | enable the chatbot widget
+defer | legacy legacy | run the tests on the robot branch
+inword | legacy legacy | drain the bottleneck
+inword | legacy legacy | the robot's schedule
+(exit 0)
+
+=== [INVARIANCE: every prompt in the advisor routing corpora, the canary fixture and the probe set, scored by the old engine + old vocabulary and by the new engine + new vocabulary. A mode scored before must keep its score; every changed decision is listed] 2026-11-24 05:29:00
+$ node <scratchpad>/invariance.cjs .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots <scratchpad>/bak2/hub-router.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl <scratchpad>/canary-prompts.txt <scratchpad>/s2prompts.txt
+node:internal/modules/cjs/loader:1607
+  throw err;
+  ^
+
+Error: Cannot find module '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs'
+Require stack:
+- <scratchpad>/invariance.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1603:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1145:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1169:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1196:12)
+    at Module._load (node:internal/modules/cjs/loader:1370:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1713:12)
+    at require (node:internal/modules/helpers:318:16)
+    at engine (<scratchpad>/invariance.cjs:6:24)
+    at Object.<anonymous> (<scratchpad>/invariance.cjs:14:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '<scratchpad>/invariance.cjs'
+  ]
+}
+
+Node.js v26.13.0
+(exit 1)
+
+=== [INVARIANCE (rerun after resolving the engine paths)] 2026-11-24 05:29:09
+$ node <scratchpad>/invariance.cjs .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots <scratchpad>/bak2/hub-router.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl <scratchpad>/canary-prompts.txt <scratchpad>/s2prompts.txt
+prompts=706 plain-score-violations=0 decisions-changed=11
+  CHANGED defer -> route:run | Run the release-notes bot now against this repository
+  CHANGED defer -> route:schedule | Pause the triage bot until Monday
+  CHANGED defer -> route:run | start the bot
+  CHANGED defer -> route:run | launch the triage bot
+  CHANGED defer -> route:run | launch the bot
+  CHANGED defer -> route:run | start the release-notes bot
+  CHANGED defer -> route:run | run the triage bot against acme
+  CHANGED defer -> route:schedule | resume the triage bot
+  CHANGED defer -> route:schedule | enable the release-notes bot
+  CHANGED defer -> route:schedule | disable the nightly digest bot for a week
+  CHANGED defer -> route:schedule | pause the weekly-cleanup bot
+(exit 0)
+
+=== [CANARY CHANGE (authored fixture): 9 routed cases for the ordered-keyword positives and 6 out-of-domain defer cases (run the release script now, pause the build until Monday, three whole-word negatives, one gap-bound negative). No existing case edited] 2026-11-24 05:29:37
+$ python3 <scratchpad>/add-canaries2.py specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json && git diff --numstat -- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json && python3 -c 'import json; a=json.load(open("<scratchpad>/bak2/canary-cases.before.json"))["cases"]; b={c["id"]:c for c in json.load(open("specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json"))["cases"]}; print("existing cases unchanged:", all(b[c["id"]]==c for c in a), len(a), "->", len(b))'
+cases 48
+364	0	specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json
+existing cases unchanged: True 33 -> 48
+(exit 0)
+
+=== [canary harness: build-artifacts (authored, ordered-keyword engine)] 2026-11-24 05:29:52
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs
+{"artifacts":5,"cases":48,"effectivePolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","graphHash":"456164eda20ce611326c32ddc841de0ca642d16c0dfc22a315e67fb091c16642","status":"built"}
+(exit 0)
+
+=== [existing canary decisions before vs after (typed gold decision fields, hashes excluded)] 2026-11-24 05:30:08
+$ python3 <scratchpad>/gold-compare.py <scratchpad>/bak2/route-gold.before.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/route-gold.typed.json
+existing scenarios=33 identical-decisions=33 differ=0 new=15
+NEW out-of-domain-ordered-chatbot-widget defer []
+NEW out-of-domain-ordered-gap-too-wide defer []
+NEW out-of-domain-ordered-robot-arm defer []
+NEW out-of-domain-ordered-robot-branch defer []
+NEW out-of-domain-pause-build defer []
+NEW out-of-domain-release-script defer []
+NEW run-ordered-launch-named-bot route ['system-skilled-bots/run']
+NEW run-ordered-launch-the-bot route ['system-skilled-bots/run']
+NEW run-ordered-run-named-bot-now route ['system-skilled-bots/run']
+NEW run-ordered-start-named-bot route ['system-skilled-bots/run']
+NEW run-ordered-start-the-bot route ['system-skilled-bots/run']
+NEW schedule-ordered-disable-named-bot route ['system-skilled-bots/schedule']
+NEW schedule-ordered-enable-named-bot route ['system-skilled-bots/schedule']
+NEW schedule-ordered-pause-named-bot route ['system-skilled-bots/schedule']
+NEW schedule-ordered-resume-named-bot route ['system-skilled-bots/schedule']
+(exit 0)
+
+=== [copy authored engine (lib, harness, fixtures) to the runtime closure] 2026-11-24 05:30:19
+$ A=specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots; R=.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots; for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do if cmp -s $A/$f $R/$f; then echo "same    $f"; else cp $A/$f $R/$f && echo "copied  $f"; fi; done; for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do cmp $A/$f $R/$f || echo MISMATCH $f; done; echo verified
+same    lib/policy-card.cjs
+copied  lib/registry-compiler.cjs
+copied  lib/router.cjs
+same    harness/build-artifacts.cjs
+copied  fixtures/canary-cases.v1.json
+verified
+(exit 0)
+
+=== [manifest refresh] 2026-11-24 05:30:19
+$ node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","generation":1},"currentPolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","manifestFingerprint":"751c36ca69fe5627050770f3e726b809682f3c803297487f0892099025652f03","refreshed":true}
+(exit 0)
+
+=== [mirror refreshed manifest bytes into the authored activation copy] 2026-11-24 05:30:19
+$ A=specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json; R=.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json; cp $R $A && cmp $A $R && echo identical && grep -o '"effectivePolicyHash":"[0-9a-f]\{12\}' $A | head -1
+identical
+"effectivePolicyHash":"fb26bc150ed8
+(exit 0)
+
+=== [gate: compiled-route-sync --check] 2026-11-24 05:30:29
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [gate: compiled-route-guard] 2026-11-24 05:30:29
+$ node .skilled/bin/compiled-route-guard.cjs | tail -11
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-browser-use             fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+  system-skilled-bots         fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [stage-two AFTER through the served front door (policy fb26bc150ed8), paired with the BEFORE dry run (old runtime engine + backed-up hub-router.json, policy 8e2c5590b59d)] 2026-11-24 05:30:32
+$ paste -d'#' <scratchpad>/s2-before.txt <scratchpad>/s2-after-live.txt | awk -F'#' '{split($1,b," [|] "); split($2,a," [|] "); sub(/ [0-9a-f]+$/,"",a[2]); ok="ok  "; if(b[1]=="defer" && a[2]!="defer") ok="FAIL"; if(b[1]!="defer" && b[1]!="inword" && a[2]!="route:"b[1]) ok="MISS"; print ok" | expect "b[1]" | before "b[2]" | after "a[2]" | "b[3]}'
+ok   | expect run | before defer | after route:run | Run the release-notes bot now against this repository
+ok   | expect run | before route:run | after route:run | Queue a bot run for the triage bot from the new-issue event
+ok   | expect run | before route:run | after route:run | Drain the bot request queue
+ok   | expect schedule | before route:schedule | after route:schedule | Put the nightly bot on a launchd schedule
+ok   | expect schedule | before defer | after route:schedule | Pause the triage bot until Monday
+ok   | expect schedule | before route:schedule | after route:schedule | Remove the bot's schedule and unload its launchd agent
+ok   | expect status | before route:status | after route:status | Show me which bots are installed and when each last ran
+ok   | expect status | before route:status | after route:status | Read the needs-you inbox for the bots
+MISS | expect status | before route:status+schedule | after route:status+schedule | Check whether the bot's schedule needs a reinstall
+ok   | expect run | before defer | after route:run | start the bot
+ok   | expect run | before defer | after route:run | launch the triage bot
+ok   | expect run | before defer | after route:run | launch the bot
+ok   | expect run | before defer | after route:run | start the release-notes bot
+ok   | expect run | before defer | after route:run | run the triage bot against acme
+ok   | expect schedule | before defer | after route:schedule | resume the triage bot
+ok   | expect schedule | before defer | after route:schedule | enable the release-notes bot
+ok   | expect schedule | before defer | after route:schedule | disable the nightly digest bot for a week
+ok   | expect schedule | before defer | after route:schedule | pause the weekly-cleanup bot
+ok   | expect defer | before defer | after defer | answer this question
+ok   | expect defer | before defer | after defer | run the tests
+ok   | expect defer | before defer | after defer | schedule a meeting for tomorrow
+ok   | expect defer | before defer | after defer | status of the build
+ok   | expect defer | before defer | after defer | author a skill
+ok   | expect defer | before defer | after defer | check my email inbox
+ok   | expect defer | before defer | after defer | answer the open question
+ok   | expect defer | before defer | after defer | answer the open ticket
+ok   | expect defer | before defer | after defer | answer the open issues
+ok   | expect defer | before defer | after defer | answer the open
+ok   | expect defer | before defer | after defer | answer the question
+ok   | expect defer | before defer | after defer | answer my open questions
+ok   | expect defer | before defer | after defer | answer the open pr comments
+ok   | expect defer | before defer | after defer | answer the pending question
+ok   | expect defer | before defer | after defer | open questions in the spec
+ok   | expect defer | before defer | after defer | what do you need from me
+ok   | expect defer | before defer | after defer | answer the open review threads
+ok   | expect defer | before defer | after defer | my manager needs you to sign this
+ok   | expect defer | before defer | after defer | it needs you to confirm the deploy
+ok   | expect defer | before defer | after defer | the team needs you
+ok   | expect defer | before defer | after defer | set up a launchd schedule
+ok   | expect defer | before defer | after defer | install a launchd schedule for my backup script
+ok   | expect defer | before defer | after defer | write a launchd plist
+ok   | expect defer | before defer | after defer | schedule a cron job for the backup
+ok   | expect defer | before defer | after defer | add a cron schedule to my script
+ok   | expect defer | before defer | after defer | pause the launchd agent
+ok   | expect defer | before defer | after defer | start the server
+ok   | expect defer | before defer | after defer | launch the app
+ok   | expect defer | before defer | after defer | pause the video
+ok   | expect defer | before defer | after defer | drain the queue
+ok   | expect defer | before defer | after defer | remove the cron job
+ok   | expect defer | before defer | after defer | show me which packages are installed
+ok   | expect defer | before defer | after defer | read my inbox
+ok   | expect defer | before defer | after defer | my launchd agent is broken
+ok   | expect defer | before defer | after defer | run the release script now
+ok   | expect defer | before defer | after defer | pause the build until Monday
+ok   | expect defer | before defer | after defer | drain the connection pool
+ok   | expect defer | before defer | after defer | queue a build run
+ok   | expect defer | before defer | after defer | enqueue a job run for the importer
+ok   | expect defer | before defer | after defer | start the dev server
+ok   | expect defer | before defer | after defer | start the robot vacuum
+ok   | expect defer | before defer | after defer | launch the browser
+ok   | expect defer | before defer | after defer | put my backup script on a launchd schedule
+ok   | expect defer | before defer | after defer | remove the cron job's schedule
+ok   | expect defer | before defer | after defer | the app needs a reinstall
+ok   | expect defer | before defer | after defer | my schedule needs a reinstall
+ok   | expect defer | before defer | after defer | reinstall node modules
+ok   | expect defer | before defer | after defer | check whether the plugin needs a reinstall
+ok   | expect defer | before defer | after defer | show me which apps are installed and when each last ran
+ok   | expect defer | before defer | after defer | write a system prompt for a support triage bot
+ok   | expect defer | before defer | after defer | run the tests until they pass
+ok   | expect defer | before defer | after defer | pause the robot arm until Monday
+ok   | expect defer | before defer | after defer | enable the chatbot widget
+ok   | expect defer | before defer | after defer | run the tests on the robot branch
+ok   | expect inword | before route:run | after route:run | drain the bottleneck
+ok   | expect inword | before route:schedule | after route:schedule | the robot's schedule
+(exit 0)
+
+=== [gate: compiled-routing foundation vitest] 2026-11-24 05:30:51
+$ cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts 2>&1 | tail -6
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  05:30:50
+   Duration  539ms (tests 97%, import 1%, transform 1%)
+(exit 0)
+
+=== [gate: compiled-route-*.test.cjs] 2026-11-24 05:31:02
+$ node --test .skilled/bin/tests/compiled-route-*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail)'
+ℹ tests 117
+ℹ pass 117
+ℹ fail 0
+(exit 0)
+
+=== [gate: admission (all hubs)] 2026-11-24 05:31:02
+$ node .skilled/bin/compiled-route-admission.cjs --all
+  cli-classifier              pass                    4 pass, 0 drift, 0 stale, 0 n/a
+  cli-external-orchestration  pass                    7 pass, 0 drift, 0 stale, 3 n/a; 6 mode(s) without gold
+  mcp-browser-use             pass                    7 pass, 0 drift, 0 stale, 0 n/a
+  mcp-tooling                 pass                    12 pass, 0 drift, 0 stale, 0 n/a
+  sk-code                     pass                    9 pass, 0 drift, 0 stale, 0 n/a
+  sk-design                   pass                    4 pass, 0 drift, 0 stale, 0 n/a; 2 mode(s) without gold
+  sk-doc                      pass                    24 pass, 0 drift, 0 stale, 2 n/a; 6 mode(s) without gold
+  system-deep-loop            pass                    13 pass, 0 drift, 0 stale, 0 n/a
+  system-skilled-bots         pass                    8 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [gate: evaluateHub on the bots hub playbook gold] 2026-11-24 05:31:02
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/evaluate-hub-candidate.cjs $PWD | head -3
+verdict: pass
+counts: {"pass":8,"drift":0,"stale-gold":0,"invalid":0,"broken":0,"n/a":0}
+coverage: {"modes":[{"workflowMode":"author","scenarios":1},{"workflowMode":"run","scenarios":2},{"workflowMode":"schedule","scenarios":1},{"workflowMode":"status","scenarios":2}],"uncovered":[],"negatives":2,"enforced":true,"short":false}
+(exit 0)
+
+=== [gate: parent-skill-check (per-hub, explicit hub path)] 2026-11-24 05:31:02
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots 2>&1 | grep -E 'INFO: Parent skill|^OK|^FAIL|^WARN|ERROR|FAIL:'
+INFO: Parent skill: .skilled/skills/system-skilled-bots
+OK: parent-skill-check -- all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [gate: hub vocabulary source (bots hub)] 2026-11-24 05:31:14
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-skilled-bots
+OK    system-skilled-bots          alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+(exit 0)
+
+=== [gate: router vocabulary reach (bots hub)] 2026-11-24 05:31:19
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots
+OK   system-skilled-bots          declared= 53 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 stale=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 152
+RESULT: PASSED
+(exit 0)
+
+=== [gate: router intent signals check (all hubs)] 2026-11-24 05:31:19
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check 2>&1 | tail -3
+
+checked=16 hub(s), missing=0, orphans=0
+RESULT: PASSED
+(exit 0)
+
+=== [gate: bridge drift guard] 2026-11-24 05:31:19
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+{
+  "status": "fresh",
+  "counts": {
+    "commandMetadata": 31,
+    "doctorRoutes": 36,
+    "generated": 67,
+    "typescriptActive": 51,
+    "pythonActive": 57
+  },
+  "changed": []
+}
+(exit 0)
+
+=== [gate: frozen scorer (no pinned scorer file was touched in this step, so no re-freeze)] 2026-11-24 05:31:19
+$ git diff --quiet <scratchpad>/bak2/skill-graph.json .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json && echo skill-graph-unchanged-since-coordinator-regen; git status --short -- .skilled/skills/system-skill-advisor/runtime/lib/scorer; node -e "require('./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs').assertScorerFrozen(process.cwd(),'check'); console.log('scorer frozen: ok')"
+skill-graph-unchanged-since-coordinator-regen
+ M .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts
+scorer frozen: ok
+(exit 0)
+
+=== [gate: leaf manifest (hub), derived freshness, skill root metadata, graph compiler] 2026-11-24 05:31:23
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/system-skilled-bots | tail -1; node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs | tail -1; node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs | tail -1; python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only | tail -1
+leaf-manifest.json OK (be5c5e562c295ebb7945e2f127f27d4799dd5eb368c95d0467a896b3edcb6dd2)
+checked=16 fresh=16 stale=0 errored=0
+checked=16 passed=16 failed=0 fixed=0
+VALIDATION PASSED: all metadata files are valid
+(exit 0)
+
+=== [gate: doctor script tests, ordered-keyword final state] 2026-11-24 05:34:15
+$ node --test .skilled/commands/doctor/scripts/tests/*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail|cancelled)' | head -40
+ℹ tests 1674
+ℹ pass 1674
+ℹ fail 0
+ℹ cancelled 0
+(exit 0)
+
+=== [two-stage replay after the ordered-keyword build (stage one must match the previous final replay; stage two now routes the named-bot forms)] 2026-11-24 05:34:36
+$ bash <scratchpad>/replay.sh $PWD | grep -E '^(IN|TYPED|SUMMARY)|bots-first=yes|routed=yes'
+IN  exp=run | s1 top=sk-doc@0.82[/create:changelog] bots_rank=3 ok=no | s2 route:run(single) hash=fb26bc150ed8 ok=yes | Run the release-notes bot now against this repository
+IN  exp=run | s1 top=system-skilled-bots@0.8482[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=fb26bc150ed8 ok=yes | Queue a bot run for the triage bot from the new-issue event
+IN  exp=run | s1 top=system-skilled-bots@0.9275[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=fb26bc150ed8 ok=yes | Drain the bot request queue
+IN  exp=schedule | s1 top=system-skilled-bots@0.944[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=fb26bc150ed8 ok=yes | Put the nightly bot on a launchd schedule
+IN  exp=schedule | s1 top=none bots_rank=- ok=no | s2 route:schedule(single) hash=fb26bc150ed8 ok=yes | Pause the triage bot until Monday
+IN  exp=schedule | s1 top=system-skilled-bots@0.8708[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=fb26bc150ed8 ok=yes | Remove the bot's schedule and unload its launchd agent
+IN  exp=status | s1 top=command-bots-status@0.82[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=fb26bc150ed8 ok=yes | Show me which bots are installed and when each last ran
+IN  exp=status | s1 top=system-skilled-bots@0.9437[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=fb26bc150ed8 ok=yes | Read the needs-you inbox for the bots
+IN  exp=status | s1 top=system-skilled-bots@0.852 bots_rank=1 ok=yes | s2 route:status+schedule(orderedBundle) hash=fb26bc150ed8 ok=no | Check whether the bot's schedule needs a reinstall
+IN  exp=run | s1 top=command-bots-run@0.8632[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=fb26bc150ed8 ok=yes | start the bot
+IN  exp=run | s1 top=none bots_rank=- ok=no | s2 route:run(single) hash=fb26bc150ed8 ok=yes | launch the triage bot
+OOD s1 top=system-skilled-bots@0.826 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | set up a launchd schedule
+OOD s1 top=system-skilled-bots@0.8227 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | install a launchd schedule for my backup script
+OOD s1 top=system-skilled-bots@0.8549 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | write a launchd plist
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | pause the launchd agent
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | drain the queue
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | my launchd agent is broken
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | queue a build run
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | enqueue a job run for the importer
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | put my backup script on a launchd schedule
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=fb26bc150ed8 routed=no | my schedule needs a reinstall
+TYPED py=[('command-bots-author', 0.82)] | s1 top=command-bots-author@0.82[/bots:author] bots_rank=1 | /bots:author weekly-digest --repo ~/code/acme
+TYPED py=[('system-skilled-bots', 0.82), ('cli-classifier', 0.82)] | s1 top=command-bots-run@0.8368[/bots:run] bots_rank=1 | /bots:run answer item-42 yes
+TYPED py=[('command-bots-schedule', 0.8527), ('system-skilled-bots', 0.82)] | s1 top=command-bots-schedule@0.8527[/bots:schedule] bots_rank=1 | /bots:schedule pause nightly-cleanup
+TYPED py=[('command-bots-status', 0.8764), ('sk-code', 0.8641), ('system-skilled-bots', 0.82)] | s1 top=command-bots-status@0.8764[/bots:status] bots_rank=1 | /bots:status inbox --json
+SUMMARY in-pass=7 in-fail=4 ood-fail=6 adj-fail=4
+(exit 0)
+
+=== [edge checks (candidate files outside the repo): one-word ordered keyword must fail the compile; a differently spelled word list must compile to the same graph] 2026-11-24 05:35:10
+$ node <scratchpad>/hashcheck.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots <scratchpad>/cand-bad.json 2>&1 | grep -E 'ORDERED_KEYWORD_INVALID|needs at least' | head -2; echo '--- live vs respelled'; node <scratchpad>/hashcheck.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots -; node <scratchpad>/hashcheck.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots <scratchpad>/cand-spell.json
+TypeError: run-workflow: ordered keyword "~run" needs at least two words
+  code: 'ORDERED_KEYWORD_INVALID'
+--- live vs respelled
+{"effectivePolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","graphHash":"456164eda20ce611326c32ddc841de0ca642d16c0dfc22a315e67fb091c16642"}
+{"effectivePolicyHash":"35e136cd7dc23e2d385740c458c742183c12a5a5f68fc6bb2f84e24915a9b3a1","graphHash":"456164eda20ce611326c32ddc841de0ca642d16c0dfc22a315e67fb091c16642"}
+(exit 0)
+
+=== [gate: advisor suite (npx vitest run in system-skill-advisor/runtime), ordered-keyword final state] 2026-11-24 05:35:12
+$ cd .skilled/skills/system-skill-advisor/runtime && npx --no-install vitest run 2>&1 | grep -E 'Test Files|Tests |FAIL|×' | head -40
+ Test Files  178 passed (178)
+      Tests  2478 passed | 4 skipped (2482)
+(exit 0)
+
+=== [comment-only correction in authored registry-compiler.cjs (the respelled-list check showed the graph hash matches but the policy hash differs, so the comment now says so). Recopy to runtime, rebuild canary, refresh and mirror the manifest] 2026-11-24 05:35:35
+$ A=specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots; R=.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots; node -c $A/lib/registry-compiler.cjs && cp $A/lib/registry-compiler.cjs $R/lib/registry-compiler.cjs && for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do cmp $A/$f $R/$f || echo MISMATCH $f; done; echo copies-identical; node $A/harness/build-artifacts.cjs && node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots && cp .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json && echo manifest-mirrored && python3 <scratchpad>/gold-compare.py <scratchpad>/bak2/route-gold.before.json $A/compiled/route-gold.typed.json | head -1
+copies-identical
+{"artifacts":5,"cases":48,"effectivePolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","graphHash":"456164eda20ce611326c32ddc841de0ca642d16c0dfc22a315e67fb091c16642","status":"built"}
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","generation":1},"currentPolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","manifestFingerprint":"751c36ca69fe5627050770f3e726b809682f3c803297487f0892099025652f03","refreshed":true}
+manifest-mirrored
+existing scenarios=33 identical-decisions=33 differ=0 new=15
+(exit 0)
+
+
+=== CORRECTION to the entry labelled "stage-two BEFORE (served front door, policy 8e2c5590b59d ...)"
+That capture is NOT the baseline. It ran after hub-router.json had already gained the ordered keywords,
+so the served manifest was stale and every prompt returned the legacy sentinel ("legacy legacy").
+The authoritative BEFORE is the dry run of the unmodified runtime engine (byte-identical to the
+pre-edit router.cjs, confirmed by cmp above) with the backed-up pre-edit hub-router.json, policy
+8e2c5590b59d (file s2-before.txt, produced by s2file.cjs). The AFTER is the served front door at
+policy fb26bc150ed8 (s2-after-live.txt). The paired table above uses exactly that split.
+=== [gap-bound probes: a kebab bot name folds to two words, so 'Run the release-notes bot' sits at exactly 3 intervening words with no slack] 2026-11-24 05:38:36
+$ node <scratchpad>/s2dry.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots - 'Run the release-notes bot' 'Run the new release-notes bot' 'run the nightly digest bot now' 'Pause the new weekly-cleanup bot'
+route:run(single) | [{"mode":"run","score":4}] | Run the release-notes bot
+defer | [] | Run the new release-notes bot
+route:run(single) | [{"mode":"run","score":4}] | run the nightly digest bot now
+defer | [] | Pause the new weekly-cleanup bot
+(exit 0)
+
+=== [ROUTER.md wording fix: the generator filter is /^[a-z0-9]/i, so the note now says 'a letter or digit'] 2026-11-24 05:38:36
+$ grep -n 'letter or digit' .skilled/skills/system-skilled-bots/ROUTER.md
+80:- A keyword that starts with `~` lists whole words that must appear in order, each at most three words after the one before, so `~pause bot` matches "pause the triage bot" but not "pause the robot". It counts only when no contiguous keyword reached that mode, and it never reaches the advisor, because the intent-signal generator carries only phrases that start with a letter or digit.
+(exit 0)
+
+##### FINAL-STATE GATE RERUN (ordered-keyword build) #####
+=== [FINAL gate: canary build (authored)] 2026-11-24 05:38:58
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs && python3 <scratchpad>/gold-compare.py <scratchpad>/bak2/route-gold.before.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/route-gold.typed.json | head -1
+{"artifacts":5,"cases":48,"effectivePolicyHash":"fb26bc150ed861d396d1eda3e4b014dc4d5d435b22d1c9db21c53a2e18e69b95","graphHash":"456164eda20ce611326c32ddc841de0ca642d16c0dfc22a315e67fb091c16642","status":"built"}
+existing scenarios=33 identical-decisions=33 differ=0 new=15
+(exit 0)
+
+=== [FINAL gate: compiled-route-sync --check] 2026-11-24 05:38:58
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [FINAL gate: compiled-route-guard] 2026-11-24 05:38:58
+$ node .skilled/bin/compiled-route-guard.cjs | tail -2
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [FINAL gate: compiled-routing foundation vitest] 2026-11-24 05:38:59
+$ cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts 2>&1 | grep -E 'Test Files|Tests '
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+(exit 0)
+
+=== [FINAL gate: compiled-route-*.test.cjs] 2026-11-24 05:39:11
+$ node --test .skilled/bin/tests/compiled-route-*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail)'
+ℹ tests 117
+ℹ pass 117
+ℹ fail 0
+(exit 0)
+
+=== [FINAL gate: admission (all hubs)] 2026-11-24 05:39:11
+$ node .skilled/bin/compiled-route-admission.cjs --all | tail -3
+  system-skilled-bots         pass                    8 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+(exit 0)
+
+=== [FINAL gate: evaluateHub (bots hub)] 2026-11-24 05:39:11
+$ node specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch/evaluate-hub-candidate.cjs $PWD | head -2
+verdict: pass
+counts: {"pass":8,"drift":0,"stale-gold":0,"invalid":0,"broken":0,"n/a":0}
+(exit 0)
+
+=== [FINAL gate: parent-skill-check (bots hub)] 2026-11-24 05:39:11
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots 2>&1 | grep -E '^OK|^FAIL|^WARN|ERROR|FAIL:'
+OK: parent-skill-check -- all hard invariants passed, 0 warnings
+(exit 0)
+
+=== [FINAL gate: hub vocabulary source] 2026-11-24 05:39:11
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub system-skilled-bots | tail -2
+checked=1 hub(s), drift=0
+RESULT: PASSED
+(exit 0)
+
+=== [FINAL gate: router vocabulary reach] 2026-11-24 05:39:15
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots | tail -3
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, stale=0, operator-local=0
+advisor generation: 153
+RESULT: PASSED
+(exit 0)
+
+=== [FINAL gate: router intent signals check (all hubs) + graph-metadata byte-compare] 2026-11-24 05:39:16
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check 2>&1 | tail -2 && cmp <scratchpad>/bak2/graph-metadata.json .skilled/skills/system-skilled-bots/graph-metadata.json && echo graph-metadata-unchanged && cmp <scratchpad>/bak2/skill-graph.json .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json && echo skill-graph-unchanged
+checked=16 hub(s), missing=0, orphans=0
+RESULT: PASSED
+graph-metadata-unchanged
+skill-graph-unchanged
+(exit 0)
+
+=== [FINAL gate: leaf manifest, derived freshness, skill root metadata, graph compiler validate] 2026-11-24 05:39:20
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/system-skilled-bots | tail -1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs | tail -1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs | tail -1 && python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only | tail -1
+leaf-manifest.json OK (be5c5e562c295ebb7945e2f127f27d4799dd5eb368c95d0467a896b3edcb6dd2)
+checked=16 fresh=16 stale=0 errored=0
+checked=16 passed=16 failed=0 fixed=0
+VALIDATION PASSED: all metadata files are valid
+(exit 0)
+
+=== [FINAL gate: bridge drift guard] 2026-11-24 05:39:20
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check | head -2
+{
+  "status": "fresh",
+(exit 0)
+
+=== [FINAL gate: frozen scorer check (no re-freeze: no pinned file changed in this step)] 2026-11-24 05:39:20
+$ node -e "require('./specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs').assertScorerFrozen(process.cwd(),'check'); console.log('scorer frozen: ok')"
+scorer frozen: ok
+(exit 0)
+
+
+=== NOTE: tool output that prints an em dash (parent-skill-check's OK line) is transliterated to -- in this log.
+
+=== [wrapper self-test: em dash transliteration] 2026-11-24 05:39:48
+$ printf 'a \xe2\x80\x94 b\n'
+a -- b
+(exit 0)
+
+=== [FINAL gate: advisor suite (npx vitest run in system-skill-advisor/runtime)] 2026-11-24 05:48:56
+$ cd .skilled/skills/system-skill-advisor/runtime && npx --no-install vitest run 2>&1 | grep -E 'Test Files|Tests |FAIL|×' | head -40
+ Test Files  178 passed (178)
+      Tests  2478 passed | 4 skipped (2482)
+(exit 0)
+
+=== [FINAL gate: doctor script tests] 2026-11-24 05:52:08
+$ node --test .skilled/commands/doctor/scripts/tests/*.test.cjs 2>&1 | grep -E '^\s*✖|ℹ (tests|pass|fail|cancelled)' | head -40
+ℹ tests 1674
+ℹ pass 1674
+ℹ fail 0
+ℹ cancelled 0
+(exit 0)
+
+=== [cross-mode probe: an ordered keyword in one mode can tie a plain keyword in another (open design item, not a gate)] 2026-11-24 05:52:41
+$ node <scratchpad>/s2dry.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots - 'pause the bot run request' 'start the bot status check'; echo '--- same prompts on the old engine + old vocabulary'; node <scratchpad>/s2dry.cjs .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots <scratchpad>/bak2/hub-router.json 'pause the bot run request' 'start the bot status check' 2>&1 | head -2
+route:schedule+run(orderedBundle) | [{"mode":"schedule","score":4},{"mode":"run","score":4}] | pause the bot run request
+route:status+run(orderedBundle) | [{"mode":"status","score":4},{"mode":"run","score":4}] | start the bot status check
+--- same prompts on the old engine + old vocabulary
+route:schedule+run(orderedBundle) | [{"mode":"schedule","score":4},{"mode":"run","score":4}] | pause the bot run request
+route:status(single) | [{"mode":"status","score":4}] | start the bot status check
+(exit 0)
+
+=== CORRECTION to the cross-mode probe label above
+"old engine + old vocabulary" is mislabelled: the runtime folder already held the new engine when the
+probe ran, so that line is the new engine with the pre-edit hub-router.json. That pairing compiles to the
+pre-edit policy 8e2c5590b59d (step 1) and keeps every plain score (invariance run, 0 violations), so it is
+a valid baseline. Finding: "start the bot status check" moves from route:status to status+run
+(orderedBundle). An ordered keyword in one mode can create a near-tie with a plain keyword in another mode.
+No prompt among the 706 in the corpora, canaries and probe set does this; the case is constructed. Left open.
+
+=== END OF ORDERED-KEYWORD STEP. Nothing committed.
+##### HYPHENATED TOKEN CHANGE (operator choice: for ordered keywords only, a hyphenated token counts as one word; gap 3 and hold-back unchanged) #####
+=== [edit: authored router.cjs promptWords keeps hyphens inside a token (ordered keywords only); hub-router.json orderedKeywordContract and ROUTER.md note gain one sentence. Diff vs the fb26bc150ed8 state] 2026-11-24 06:02:54
+$ node -c specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/lib/router.cjs && echo syntax-ok; diff <scratchpad>/bak3/router.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/lib/router.cjs; diff <scratchpad>/bak3/hub-router.json .skilled/skills/system-skilled-bots/hub-router.json; diff <scratchpad>/bak3/ROUTER.md .skilled/skills/system-skilled-bots/ROUTER.md; echo diff-done
+syntax-ok
+44a45,48
+> // Bot names are kebab-case, so a hyphenated token such as "release-notes"
+> // counts as one word here. Otherwise a two-part name would use up two of the
+> // words allowed between "run" and "bot". Only ordered keywords split this way;
+> // the contiguous test still folds hyphens to spaces.
+46c50,53
+<   return spaced(normalize(value)).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+---
+>   return normalize(value)
+>     .split(/[^\p{L}\p{N}-]+/u)
+>     .map((word) => word.replace(/-+/g, '-').replace(/^-|-$/g, ''))
+>     .filter(Boolean);
+23c23
+<     "orderedKeywordContract": "A keyword that starts with ~ lists whole words that must appear in the prompt in that order, each at most three words after the one before, so ~pause bot matches pause the triage bot but not pause the robot. Every other keyword is a contiguous phrase. Ordered keywords count only for a mode that no contiguous keyword matched, so they never change a score a contiguous keyword produces."
+---
+>     "orderedKeywordContract": "A keyword that starts with ~ lists whole words that must appear in the prompt in that order, each at most three words after the one before, so ~pause bot matches pause the triage bot but not pause the robot. A hyphenated name such as release-notes counts as one word. Every other keyword is a contiguous phrase. Ordered keywords count only for a mode that no contiguous keyword matched, so they never change a score a contiguous keyword produces."
+80c80
+< - A keyword that starts with `~` lists whole words that must appear in order, each at most three words after the one before, so `~pause bot` matches "pause the triage bot" but not "pause the robot". It counts only when no contiguous keyword reached that mode, and it never reaches the advisor, because the intent-signal generator carries only phrases that start with a letter or digit.
+---
+> - A keyword that starts with `~` lists whole words that must appear in order, each at most three words after the one before, so `~pause bot` matches "pause the triage bot" but not "pause the robot". A hyphenated name such as `release-notes` counts as one word. It counts only when no contiguous keyword reached that mode, and it never reaches the advisor, because the intent-signal generator carries only phrases that start with a letter or digit.
+diff-done
+(exit 0)
+
+=== [dry run (authored engine): new canary prompts and hyphen edge cases] 2026-11-24 06:02:54
+$ node <scratchpad>/s2dry.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots - 'Run the new release-notes bot' 'pause the old weekly-cleanup bot until Monday' 'run the end-to-end test suite now' 'run the triage-bot' 'Run the release-notes bot now against this repository' 'pause the weekly-cleanup bot' 'start writing the onboarding docs for our support bot'
+route:run(single) | [{"mode":"run","score":4}] | Run the new release-notes bot
+route:schedule(single) | [{"mode":"schedule","score":4}] | pause the old weekly-cleanup bot until Monday
+defer | [] | run the end-to-end test suite now
+defer | [] | run the triage-bot
+route:run(single) | [{"mode":"run","score":4}] | Run the release-notes bot now against this repository
+route:schedule(single) | [{"mode":"schedule","score":4}] | pause the weekly-cleanup bot
+defer | [] | start writing the onboarding docs for our support bot
+(exit 0)
+
+=== [SCORING PASS 1: pre-edit engine + pre-edit vocabulary (8e2c5590b59d) vs final engine + vocabulary, 706 corpus prompts plus the probe additions] 2026-11-24 06:02:54
+$ node <scratchpad>/invariance2.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs <scratchpad>/eng-old:<scratchpad>/bak2/hub-router.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots:- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl <scratchpad>/canary-prompts.txt <scratchpad>/s2prompts.txt
+engine <scratchpad>/eng-old policy=8e2c5590b59d
+engine specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots policy=47334bece185
+prompts=711 first-side-score-violations=0 decisions-changed=13
+  CHANGED defer -> route:run | Run the release-notes bot now against this repository
+  CHANGED defer -> route:schedule | Pause the triage bot until Monday
+  CHANGED defer -> route:run | start the bot
+  CHANGED defer -> route:run | launch the triage bot
+  CHANGED defer -> route:run | launch the bot
+  CHANGED defer -> route:run | start the release-notes bot
+  CHANGED defer -> route:run | run the triage bot against acme
+  CHANGED defer -> route:schedule | resume the triage bot
+  CHANGED defer -> route:schedule | enable the release-notes bot
+  CHANGED defer -> route:schedule | disable the nightly digest bot for a week
+  CHANGED defer -> route:schedule | pause the weekly-cleanup bot
+  CHANGED defer -> route:run | Run the new release-notes bot
+  CHANGED defer -> route:schedule | pause the old weekly-cleanup bot until Monday
+(exit 0)
+
+=== [SCORING PASS 2: previous ordered-keyword state (fb26bc150ed8) vs final, same prompts (isolates the hyphen change)] 2026-11-24 06:02:54
+$ node <scratchpad>/invariance2.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs <scratchpad>/eng-fb26:<scratchpad>/bak3/hub-router.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots:- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl <scratchpad>/canary-prompts.txt <scratchpad>/s2prompts.txt
+engine <scratchpad>/eng-fb26 policy=fb26bc150ed8
+engine specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots policy=47334bece185
+VIOLATION run 4 -> undefined | run the triage-bot
+prompts=711 first-side-score-violations=1 decisions-changed=3
+  CHANGED defer -> route:run | Run the new release-notes bot
+  CHANGED defer -> route:schedule | pause the old weekly-cleanup bot until Monday
+  CHANGED route:run -> defer | run the triage-bot
+(exit 0)
+
+=== [CANARY CHANGE: run-ordered-hyphenated-name-with-adjective (run), schedule-ordered-hyphenated-name-with-adjective (schedule), out-of-domain-ordered-hyphenated-test-suite (defer). Insertions only] 2026-11-24 06:03:19
+$ python3 <scratchpad>/add-canaries3.py specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json && python3 -c 'import json; a=json.load(open("<scratchpad>/bak3/canary-cases.v1.json"))["cases"]; b={c["id"]:c for c in json.load(open("specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/fixtures/canary-cases.v1.json"))["cases"]}; print("existing cases unchanged:", all(b[c["id"]]==c for c in a), len(a), "->", len(b))'
+cases 51
+existing cases unchanged: True 48 -> 51
+(exit 0)
+
+=== [canary build (authored), then existing-decision comparison vs the fb26bc150ed8 gold (48 cases) and vs the pre-edit gold (33 cases)] 2026-11-24 06:03:20
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs && python3 <scratchpad>/gold-compare.py <scratchpad>/bak3/route-gold.typed.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/route-gold.typed.json && python3 <scratchpad>/gold-compare.py <scratchpad>/bak2/route-gold.before.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/route-gold.typed.json | head -1
+{"artifacts":5,"cases":51,"effectivePolicyHash":"47334bece1853916045cd1a0e36038a7ea96d4647b232fc96eeccf4dc23745de","graphHash":"456164eda20ce611326c32ddc841de0ca642d16c0dfc22a315e67fb091c16642","status":"built"}
+existing scenarios=48 identical-decisions=48 differ=0 new=3
+NEW out-of-domain-ordered-hyphenated-test-suite defer []
+NEW run-ordered-hyphenated-name-with-adjective route ['system-skilled-bots/run']
+NEW schedule-ordered-hyphenated-name-with-adjective route ['system-skilled-bots/schedule']
+existing scenarios=33 identical-decisions=33 differ=0 new=18
+(exit 0)
+
+=== [copy authored engine and fixture to runtime, refresh manifest, mirror into authored activation copy] 2026-11-24 06:03:20
+$ for f in lib/policy-card.cjs lib/registry-compiler.cjs lib/router.cjs harness/build-artifacts.cjs fixtures/canary-cases.v1.json; do cmp -s specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/$f .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/$f || { cp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/$f .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/$f && echo copied $f; }; cmp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/$f .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots/$f || echo MISMATCH $f; done; node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-skilled-bots --skill-root .skilled/skills/system-skilled-bots && cp .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json && cmp .skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-skilled-bots/manifest.json && echo manifest-mirrored
+copied lib/router.cjs
+copied fixtures/canary-cases.v1.json
+{"hubId":"system-skilled-bots","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-skilled-bots/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"47334bece1853916045cd1a0e36038a7ea96d4647b232fc96eeccf4dc23745de","generation":1},"currentPolicyHash":"47334bece1853916045cd1a0e36038a7ea96d4647b232fc96eeccf4dc23745de","manifestFingerprint":"a0e75853bef4cc5aaded82f9ece6774e5e2d3cdba4ea68be17e1aaf562f587c4","refreshed":true}
+manifest-mirrored
+(exit 0)
+
+##### FINAL-STATE GATE RERUN (hyphen change, policy 47334bece185) #####
+=== [FINAL gate: canary build (authored)] 2026-11-24 06:03:41
+$ node specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/harness/build-artifacts.cjs && python3 <scratchpad>/gold-compare.py <scratchpad>/bak3/route-gold.typed.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots/compiled/route-gold.typed.json | head -1
+{"artifacts":5,"cases":51,"effectivePolicyHash":"47334bece1853916045cd1a0e36038a7ea96d4647b232fc96eeccf4dc23745de","graphHash":"456164eda20ce611326c32ddc841de0ca642d16c0dfc22a315e67fb091c16642","status":"built"}
+existing scenarios=48 identical-decisions=48 differ=0 new=3
+(exit 0)
+
+=== [FINAL gate: compiled-route-sync --check] 2026-11-24 06:03:42
+$ node .skilled/bin/compiled-route-sync.cjs --check | tail -2
+all 9 hubs resolve
+all 67 served copies match their authored files
+(exit 0)
+
+=== [FINAL gate: compiled-route-guard] 2026-11-24 06:03:42
+$ node .skilled/bin/compiled-route-guard.cjs | tail -2
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+(exit 0)
+
+=== [FINAL gate: compiled-routing foundation vitest] 2026-11-24 06:03:43
+$ cd .skilled && npx --no-install vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts 2>&1 | grep -E 'Test Files|Tests '
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+(exit 0)
+

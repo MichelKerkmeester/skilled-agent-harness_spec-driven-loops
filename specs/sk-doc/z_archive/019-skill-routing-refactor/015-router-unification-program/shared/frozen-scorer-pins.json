@@ -1,6 +1,6 @@
 {
   "note": "Conscious scorer-surface freeze. Re-pin only after the routing gate battery is green on the new scorer.",
-  "frozenAt": "2026-11-23T14:19:44.399Z",
+  "frozenAt": "2026-11-23T22:21:38.444Z",
   "files": {
     "ablation.ts": "5063f11c5ff44422688bbd5eed3da744a44e64bb5167141563055b46d13b610a",
     "age-policy.ts": "01d91c77d5c091e25a09143a4b0362417cd37913c0f2dd569aaffc101ba6b816",
@@ -19,7 +19,7 @@
     "lanes/explicit.ts": "e23526c0e64d1d86eced827c3586120e263bafe745fe0e84a64979cfdde13751",
     "lanes/graph-causal.ts": "eacae28f7702d16ffe72414caeb37eee3550c33a7539ad08d720fd59c32b4e18",
     "lanes/lexical.ts": "6895eb0a0e1a1b1cad26a7c6d4be61097ea9c8129052eb8b8a664e45ee5edf7e",
-    "projection.ts": "1b0e67a4c266a6c81394636695daa4562dfd5fb2d71eb7c924bf607b274deeb4",
+    "projection.ts": "be9dba1fb623c88d07e6b84a1916f28bc502ff7ef39a1da4296eb35892750935",
     "scoring-constants.ts": "111f8d76f3809438e9534c2f07dc9ebf87ab84e9c1719600682545d4a847dd20",
     "text.ts": "c92f34714c44c5e36f6bd52cdede720d3916d361896f561dab7174f92d06212b",
     "types.ts": "5178e2fc6c37112ff063e78bbb5eda610613b0814413ab1b8d4e16e4ba18ccf7",

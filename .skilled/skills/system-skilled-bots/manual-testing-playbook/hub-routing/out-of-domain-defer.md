@@ -7,7 +7,7 @@ expected_intent: defer
 expected_resources: []
 expected_workflow_mode: defer
 expected_leaf_resources: []
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-008 -- Out-of-domain inbox request defers
@@ -18,7 +18,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-The prompt is about email, not bots. It shares the word "inbox" with the status vocabulary, but every status phrase names a bot, so no mode scores and the hub defers.
+The prompt is about email, not bots. It shares the word "inbox" with the status vocabulary, but every status phrase names a bot or the bot-only term needs-you, so no mode scores and the hub defers.
 
 ### Why This Matters
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 9: skilled-alignment-and-docs"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Document the bots skill to the sk-doc package shape, verify an independent review and a cross-surface alignment run, and fix every confirmed finding with its check."
 trigger_phrases:
   - "skilled alignment and docs plan"
 importance_tier: "normal"
@@ -21,13 +21,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (bots runtime), Markdown, JSON, GitHub Actions YAML |
+| **Framework** | Skilled parent hub with compiled routing |
+| **Storage** | None new. Bot state stays under the user state root |
+| **Testing** | vitest, the post-commit shell harness, the sk-doc validators, the compiled-route gates |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Six code-folder READMEs, a feature catalog and runtime playbook scenarios bring the skill to the sk-doc package shape. A fresh Opus xhigh review and a `/local-skilled-alignment` run produce findings that are verified one by one before any fix. Each confirmed finding is fixed with the check that proves it, and each refuted or deferred one is recorded with its reason.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -37,13 +37,14 @@ contextType: "general"
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
+- [ ] `npx vitest run --no-coverage` in the bots runtime prints `Test Files  35 passed (35)` and typecheck exits 0
+- [ ] `validate.sh --strict` on this phase and the parent prints `RESULT: PASSED`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -54,14 +55,14 @@ contextType: "general"
 <!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Other: verify, then fix at source.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **Review and alignment findings**: hypotheses until a command confirms them. Triage lives in `scratch/review-triage.md` and `scratch/alignment-triage.md`.
+- **The bots skill package**: READMEs, catalog, playbook, changelogs and the routing vocabulary the findings point at.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+A finding names a file and a claim. The claim is checked against the code, then fixed in the producer or recorded, and the check that confirmed it is rerun after the fix.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -74,8 +75,11 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| `runtime/lib/*.ts` | Owns run, queue, approval and install behavior | update for confirmed review findings | vitest 35 files |
+| `assets/bot-template.txt` | The BOT.md template the parser and tests read | rename from `.md` | `definition.vitest.ts`, frontmatter coverage `violations=0` |
+| `hub-router.json`, `ROUTER.md`, `graph-metadata.json` | Stage-two and stage-one routing vocabulary | update | compiled-route replay, advisor replay, admission |
+| system-deep-loop and cli-external-orchestration docs | Describe the read-only executor behavior | update | grep for the old refusal wording returns nothing |
+| `.github/workflows/bots-runtime.yml` | Runs the bots suites in CI | create | CI report no drift flags, `check-gate-inputs.sh` PASSED |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -102,9 +106,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Runtime libraries | vitest |
+| Integration | Post-commit leg, compiled routing, advisor | shell harness, compiled-route gates, advisor replay |
+| Manual | New playbook scenario BOT-025 | Its own command block, dry-run in a temp world |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -115,7 +119,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| cli-devin DeepSeek quota | External | Red | Alignment lanes failed; the operator switched the run to cli-vibe |
+| cli-vibe DeepSeek Flash | External | Green | The alignment lanes and critic ran |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -124,8 +129,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 <!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: a gate that passed before this phase fails after it, or a routing change sends an out-of-domain prompt to the hub.
+- **Procedure**: revert this phase's local commit. Nothing is pushed until the operator says yes.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -143,9 +148,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | Phases 001 to 008 committed | Implementation |
+| Implementation | Review and alignment reports | Verification |
+| Verification | Every fix in place | Close |
 <!-- /ANCHOR:phase-deps -->
 
 ---

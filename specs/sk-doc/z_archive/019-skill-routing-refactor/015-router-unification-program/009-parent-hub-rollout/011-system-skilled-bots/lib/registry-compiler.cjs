@@ -8,6 +8,7 @@ const {
   computeEffectivePolicyHash,
   computeProjectionHash,
 } = require('../../../003-contract-schemas/lib/canonical.cjs');
+const { ORDERED_KEYWORD_PREFIX, promptWords } = require('./router.cjs');
 
 const HUB_ID = 'system-skilled-bots';
 const REGISTRY_SOURCE = `${HUB_ID}/mode-registry.json`;
@@ -104,10 +105,27 @@ function modeVocabulary(hubRouter, workflowMode) {
     const vocabulary = hubRouter.vocabularyClasses[className];
     if (!vocabulary) fail('VOCABULARY_CLASS_MISSING', `${workflowMode} names unknown class ${className}`);
     for (const keyword of vocabulary.keywords || []) {
-      words.add(String(keyword).toLowerCase());
+      words.add(vocabularyKeyword(keyword, className));
     }
   }
   return [...words].sort();
+}
+
+// A plain keyword is only lower-cased, exactly as before ordered keywords
+// existed. An ordered keyword is stored as its prefix and its words joined by
+// single spaces, so two spellings of one word list compile to the same
+// detectors and graph hash. The policy hash still differs, because it also
+// covers the source bytes. It needs two words, because one word has no order.
+// Words are counted with the router's own tokenizer, so punctuation the router
+// drops cannot pass here as a second word and serve as a one-word keyword.
+function vocabularyKeyword(keyword, className) {
+  const value = String(keyword).toLowerCase();
+  if (!value.trim().startsWith(ORDERED_KEYWORD_PREFIX)) return value;
+  const words = promptWords(value.trim().slice(ORDERED_KEYWORD_PREFIX.length));
+  if (words.length < 2) {
+    fail('ORDERED_KEYWORD_INVALID', `${className}: ordered keyword ${JSON.stringify(String(keyword))} needs at least two words`);
+  }
+  return `${ORDERED_KEYWORD_PREFIX}${words.join(' ')}`;
 }
 
 function detectorRows(prefix, workflowMode, values) {
@@ -175,6 +193,23 @@ function assertTieBreakCoversModes(hubRegistry, tieBreak) {
 // The hub-specific routing model the live router scores against directly. The
 // generic policy below still carries the authority graph, composition rules and
 // hashing that the policy card and the projector read.
+// Each blocker is one word as the router tokenizes the prompt, because the
+// router compares it against single prompt words. A phrase or a punctuated
+// entry would never match and would silently block nothing.
+function orderedKeywordBlockers(routerPolicy) {
+  const values = routerPolicy.orderedKeywordBlockers || [];
+  if (!Array.isArray(values)) {
+    fail('ORDERED_KEYWORD_BLOCKER_INVALID', 'routerPolicy.orderedKeywordBlockers must be an array of words');
+  }
+  return uniqueSorted(values.map((value) => {
+    const words = promptWords(String(value));
+    if (words.length !== 1 || words[0] !== String(value).trim().toLowerCase()) {
+      fail('ORDERED_KEYWORD_BLOCKER_INVALID', `ordered keyword blocker ${JSON.stringify(String(value))} must be one word`);
+    }
+    return words[0];
+  }));
+}
+
 function buildRoutingModel(hubRegistry, hubRouter, destinations) {
   const byMode = new Map(destinations.map((destination) => [destination.id.workflowMode, destination]));
   const modes = hubRegistry.modes.map((mode) => ({
@@ -188,6 +223,7 @@ function buildRoutingModel(hubRegistry, hubRouter, destinations) {
     bundleRules: buildBundleRules(destinations, hubRouter.routerPolicy.tieBreak),
     defaultMode: hubRouter.routerPolicy.defaultMode,
     modes,
+    orderedKeywordBlockers: orderedKeywordBlockers(hubRouter.routerPolicy),
     outcomes: hubRouter.routerPolicy.outcomes,
     tieBreak: [...hubRouter.routerPolicy.tieBreak],
   };

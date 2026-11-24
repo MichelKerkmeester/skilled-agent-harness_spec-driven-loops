@@ -7,7 +7,7 @@ trigger_phrases:
   - "bot schedule lifecycle"
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Bot Schedules: Install, Enable, Pause and Uninstall
@@ -22,7 +22,7 @@ A cron bot runs from a launchd agent that only the installer writes. This refere
 
 Give the schedule mode the lifecycle of a scheduled bot, from a held install to its removal, so no schedule fires before the operator lifts the hold.
 
-### Usage
+### When to Use
 
 - Installing a cron bot's schedule, or the repository's queue-drain job.
 - Enabling, disabling, pausing or resuming a bot.

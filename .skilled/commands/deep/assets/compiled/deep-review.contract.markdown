@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "e25dbebd8d1521108b2e3253a5dfcf9fefc58b9fe58d5eccb843870225fe8667",
+      "sha256": "9911fe49b5a96d0c972f5f4c0e600b164291789b513c3630b862b93a24ea3b8a",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "76c849f719cb59c4b3492b08697c890aa030045cfb309937c923cb6afd2205d3",
+      "sha256": "ee0e0541ecb6ad14e5a55b2915e635b2d95f2df80ba5156bce3114ff5b6f1148",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "6f450eda90bcbd7ef0010e66c5895a9498095c4b2a5a0f749ebc42f8323352f7",
+      "sha256": "952274531350c7619d61acd33c6ab24b3fbb6d8b287e9c1d5beab72ee723f288",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "5aeb769408f0f81b9cde0e5ac927ef296e87acbf5487fa94f6de3bc484d20079",
+      "sha256": "bf2bb85c1cbaccaec1d190611547dfeab000294a09d0895a2858bf7dc0d3da45",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "769379f0ec11ec445b139361af8135cd89ddaf08d9dba1861b175b7e2f22d7c0"
+  "compiledBodyDigest": "04449347ff3feb69658eb89bec44b7dc2c3df7fb5f747ea4b437896f5bf6c818"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -284,7 +284,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`. Every kind runs in `:auto` and `:confirm`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
-   |-- --sandbox-mode=<mode> -> config.executor.sandboxMode (`read-only` / `workspace-write` / `danger-full-access`; default `workspace-write`; cli-opencode also defaults to `workspace-write`, which denies its file tools outside the working directory but not Bash; `read-only` is refused)
+   |-- --sandbox-mode=<mode> -> config.executor.sandboxMode (`read-only` / `workspace-write` / `danger-full-access`; default `workspace-write`; cli-opencode also defaults to `workspace-write`, which denies its file tools outside the working directory but not Bash; `read-only` runs the `build` agent with only the read tools allowed, recorded as `compensating`)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
@@ -376,7 +376,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      Name cli-cursor, cli-devin, cli-pi or cli-deepseek-harness (experimental, explicit choice only), with its model, through the free-text option.
 
    What each executor needs:
-     - cli-opencode: `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, Bash is not confined, and `read-only` is refused. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+     - cli-opencode: `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, and Bash is not confined. `read-only` passes `--agent build` with an inline `OPENCODE_CONFIG_CONTENT` that denies every action with `*`, allows only `read`, `grep`, `glob` and `list`, and denies `external_directory`. Before dispatch, `opencode debug agents --standalone` must show no non-read action left open, or the lineage is refused. That tool gate is recorded as `compensating`, not as an OS sandbox. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. Under the other sandbox modes no `--agent` is passed, so the default agent runs. No service-tier.
      - cli-claude-code: `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`. The default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier. It logs `--output-format stream-json --verbose`, and a single-executor iteration writes its session cost to `iterations/iteration-NNN.cost.json`.
      - cli-codex: requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      - cli-cursor: requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.

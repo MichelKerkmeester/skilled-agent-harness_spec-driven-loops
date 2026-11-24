@@ -1,0 +1,85 @@
+# Two-stage routing replay for system-skilled-bots
+# Stage one: advisor_recommend top row and the hub's rank. Stage two: compiled-route.cjs --hub system-skilled-bots, with the served policy hash.
+# IN rows must route their mode at stage two. OOD and ADJ rows must not route at stage two. F1 rows are authoring prompts. TYPED rows check the four /bots:* commands.
+# ok and fail counts in SUMMARY require both stages, so an IN row fails when stage one misses the hub, and an OOD or ADJ row fails when stage one ranks the hub first.
+IN  exp=run | s1 top=sk-doc@0.82[/create:changelog] bots_rank=3 ok=no | s2 route:run(single) hash=93ebae9de124 ok=yes | Run the release-notes bot now against this repository
+IN  exp=run | s1 top=system-skilled-bots@0.8482[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=93ebae9de124 ok=yes | Queue a bot run for the triage bot from the new-issue event
+IN  exp=run | s1 top=system-skilled-bots@0.9275[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=93ebae9de124 ok=yes | Drain the bot request queue
+IN  exp=schedule | s1 top=system-skilled-bots@0.9439[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=93ebae9de124 ok=yes | Put the nightly bot on a launchd schedule
+IN  exp=schedule | s1 top=none bots_rank=- ok=no | s2 route:schedule(single) hash=93ebae9de124 ok=yes | Pause the triage bot until Monday
+IN  exp=schedule | s1 top=system-skilled-bots@0.8708[/bots:schedule] bots_rank=1 ok=yes | s2 route:schedule(single) hash=93ebae9de124 ok=yes | Remove the bot's schedule and unload its launchd agent
+IN  exp=status | s1 top=command-bots-status@0.82[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=93ebae9de124 ok=yes | Show me which bots are installed and when each last ran
+IN  exp=status | s1 top=system-skilled-bots@0.9437[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=93ebae9de124 ok=yes | Read the needs-you inbox for the bots
+IN  exp=status | s1 top=system-skilled-bots@0.852[/bots:status] bots_rank=1 ok=yes | s2 route:status(single) hash=93ebae9de124 ok=yes | Check whether the bot's schedule needs a reinstall
+IN  exp=run | s1 top=command-bots-run@0.8632[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=93ebae9de124 ok=yes | start the bot
+IN  exp=run | s1 top=none bots_rank=- ok=no | s2 route:run(single) hash=93ebae9de124 ok=yes | launch the triage bot
+IN  exp=author | s1 top=system-skilled-bots@0.82[/bots:author] bots_rank=1 ok=yes | s2 route:author(single) hash=93ebae9de124 ok=yes | start a new bot for triage
+IN  exp=run | s1 top=sk-doc@0.82 bots_rank=2 ok=no | s2 route:run(single) hash=93ebae9de124 ok=yes | run the triage bot to write a summary
+IN  exp=run | s1 top=system-skilled-bots@0.82[/bots:run] bots_rank=1 ok=yes | s2 route:run(single) hash=93ebae9de124 ok=yes | launch the build bot
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer this question
+OOD s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | run the tests
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | schedule a meeting for tomorrow
+OOD s1 top=sk-code@0.82 bots_rank=3 bots-first=no | s2 defer hash=93ebae9de124 routed=no | status of the build
+OOD s1 top=sk-doc@0.8452[/create:sk-skill] bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | author a skill
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | check my email inbox
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the open question
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the open ticket
+OOD s1 top=sk-git@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the open issues
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the open
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the question
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer my open questions
+OOD s1 top=sk-git@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the open pr comments
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the pending question
+OOD s1 top=system-spec-kit@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | open questions in the spec
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | what do you need from me
+OOD s1 top=sk-code@0.9003 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | answer the open review threads
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | my manager needs you to sign this
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | it needs you to confirm the deploy
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | the team needs you
+OOD s1 top=system-skilled-bots@0.826 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | set up a launchd schedule
+OOD s1 top=system-skilled-bots@0.8227 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | install a launchd schedule for my backup script
+OOD s1 top=system-skilled-bots@0.8548 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | write a launchd plist
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | schedule a cron job for the backup
+OOD s1 top=sk-code@0.8359 bots_rank=3 bots-first=no | s2 defer hash=93ebae9de124 routed=no | add a cron schedule to my script
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | pause the launchd agent
+OOD s1 top=mcp-tooling@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | start the server
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | launch the app
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | pause the video
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | drain the queue
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | remove the cron job
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | show me which packages are installed
+OOD s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | read my inbox
+OOD s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | my launchd agent is broken
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | drain the connection pool
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | queue a build run
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | enqueue a job run for the importer
+ADJ s1 top=mcp-tooling@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | start the dev server
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | start the robot vacuum
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | launch the browser
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | put my backup script on a launchd schedule
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | remove the cron job's schedule
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | the app needs a reinstall
+ADJ s1 top=system-skilled-bots@0.82 bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | my schedule needs a reinstall
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | reinstall node modules
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | check whether the plugin needs a reinstall
+ADJ s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | show me which apps are installed and when each last ran
+F1 s1 top=sk-git@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | start writing a bot that summarizes PRs
+F1 s1 top=sk-code@0.82 bots_rank=2 bots-first=no | s2 defer hash=93ebae9de124 routed=no | how do I start building a bot
+F1 s1 top=sk-doc@0.82 bots_rank=3 bots-first=no | s2 defer hash=93ebae9de124 routed=no | start writing a bot
+F1 s1 top=sk-doc@0.82 bots_rank=3 bots-first=no | s2 defer hash=93ebae9de124 routed=no | start writing the bot
+F1 s1 top=sk-code@0.82 bots_rank=2 bots-first=no | s2 defer hash=93ebae9de124 routed=no | start building the bot
+F1 s1 top=command-bots-run@0.8632[/bots:run] bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | launch the bot I'm writing
+F1 s1 top=sk-code@0.82 bots_rank=2 bots-first=no | s2 defer hash=93ebae9de124 routed=no | how do I start building the bot
+F1 s1 top=command-bots-run@0.8368[/bots:run] bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | start the bot-detection service
+F1 s1 top=system-skilled-bots@0.8371[/bots:author] bots_rank=1 bots-first=yes | s2 route:author(single) hash=93ebae9de124 routed=yes | launch writing the new bot
+F1 s1 top=none bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | pause the triage bot I'm building
+F1 s1 top=command-bots-run@0.8368[/bots:run] bots_rank=1 bots-first=yes | s2 defer hash=93ebae9de124 routed=no | launch the bot that is writing the report
+F1 s1 top=sk-doc@0.82 bots_rank=2 bots-first=no | s2 route:run(single) hash=93ebae9de124 routed=yes | start to write the bot
+ADJ s1 top=sk-prompt@0.9268 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | write a system prompt for a support triage bot
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | pause the build until Monday
+ADJ s1 top=sk-code@0.82 bots_rank=- bots-first=no | s2 defer hash=93ebae9de124 routed=no | run the tests until they pass
+TYPED py=[('command-bots-author', 0.82)] | s1 top=command-bots-author@0.82[/bots:author] bots_rank=1 | /bots:author weekly-digest --repo ~/code/acme
+TYPED py=[('command-bots-run', 0.8368), ('system-skilled-bots', 0.82), ('cli-classifier', 0.82)] | s1 top=command-bots-run@0.8368[/bots:run] bots_rank=1 | /bots:run answer item-42 yes
+TYPED py=[('command-bots-schedule', 0.8527), ('system-skilled-bots', 0.82)] | s1 top=command-bots-schedule@0.8527[/bots:schedule] bots_rank=1 | /bots:schedule pause nightly-cleanup
+TYPED py=[('command-bots-status', 0.8764), ('sk-code', 0.8641), ('system-skilled-bots', 0.82)] | s1 top=command-bots-status@0.8764[/bots:status] bots_rank=1 | /bots:status inbox --json
+SUMMARY in-pass=10 in-fail=4 ood-fail=6 adj-fail=4

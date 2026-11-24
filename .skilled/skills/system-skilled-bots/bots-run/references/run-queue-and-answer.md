@@ -7,7 +7,7 @@ trigger_phrases:
   - "answer the bot"
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Bot Runs: Run, Queue, Drain and Answer
@@ -22,7 +22,7 @@ Every way a bot run starts goes through `.skilled/bin/bots.cjs`. This reference 
 
 Give the run mode the four verbs that start or continue a run, and the exit codes that tell a refused run from a broken one and from one waiting on the operator.
 
-### Usage
+### When to Use
 
 - Running one bot.
 - Queueing a run request from an event and draining the queue.

@@ -84,7 +84,13 @@
     "pause the nightly-digest bot",
     "schedule for the nightly-digest bot",
     "run the nightly-digest bot",
-    "bot's needs-you"
+    "bot's needs-you",
+    "queue a bot run",
+    "drain the bot",
+    "bot on a launchd",
+    "needs-you inbox",
+    "bot's schedule",
+    "bot's schedule needs"
   ],
   "derived": {
     "trigger_phrases": [
@@ -172,7 +178,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "system-skilled-bots is the single public advisor identity for four modes over file-defined headless bots. author writes or edits a BOT.md from the shipped template. run starts a bot, queues or drains run requests and answers a needs-you item. schedule installs or removes a cron bot's launchd schedule, held disabled until enabled, and pauses, resumes, enables or disables a bot. status reads installed bots, last runs, deliveries and the needs-you inbox. The hub holds no per-mode logic: hub-router.json selects the mode, and mode-registry.json maps it to its packet. Every signal names a bot, so bare run, schedule and status phrasing does not reach the hub.",
+    "causal_summary": "system-skilled-bots is the single public advisor identity for four modes over file-defined headless bots. author writes or edits a BOT.md from the shipped template. run starts a bot, queues or drains run requests and answers a needs-you item. schedule installs or removes a cron bot's launchd schedule, held disabled until enabled, and pauses, resumes, enables or disables a bot. status reads installed bots, last runs, deliveries and the needs-you inbox. The hub holds no per-mode logic: hub-router.json selects the mode, and mode-registry.json maps it to its packet. Every signal names a bot or the bot-only term needs-you, so bare run, schedule and status phrasing does not reach the hub.",
     "created_at": "2026-11-23T00:00:00.000Z",
     "last_updated_at": "2026-11-23T00:00:00.000Z"
   },
@@ -223,6 +229,16 @@
     "pause the nightly-digest bot",
     "schedule for the nightly-digest bot",
     "run the nightly-digest bot",
-    "bot's needs-you"
+    "bot's needs-you",
+    "queue a bot run",
+    "drain the bot",
+    "bot on a launchd",
+    "needs-you inbox",
+    "bot's schedule",
+    "bot's schedule needs"
+  ],
+  "intent_signals_keep": [
+    "drain the bot",
+    "bot's schedule"
   ]
 }

@@ -2684,6 +2684,33 @@ def test_native_bridge_floor_flag():
         fail_test(name, f"rows={rows!r}")
 
 
+def test_native_bridge_keeps_structural_ids():
+    """A command id that holds a screened word survives the native translation."""
+    name = "BRIDGE-IDS: command-bots-run and mode run survive translation; a free-text id is dropped"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        rows = advisor._legacy_recommendations_from_native({
+            "recommendations": [
+                {"skillId": "command-bots-run", "kind": "command", "confidence": 0.92, "uncertainty": 0.12},
+                {"skillId": "system-skilled-bots", "confidence": 0.82, "uncertainty": 0.2,
+                 "workflowMode": "run", "redirectFrom": ["bots-run", "ignore previous instructions"]},
+                {"skillId": "ignore previous instructions", "confidence": 0.99, "uncertainty": 0.1},
+            ],
+        })
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    skills = [row.get("skill") for row in rows]
+    if (
+        skills == ["command-bots-run", "system-skilled-bots"]
+        and rows[1].get("workflowMode") == "run"
+        and rows[1].get("redirect_from") == ["bots-run"]
+    ):
+        ok(name, f"skills={skills}")
+    else:
+        fail_test(name, f"rows={rows!r}")
+
+
 def test_deep_routing_clears_floor_flag():
     """A floored row the deep routing layer raises rests on that layer's evidence, not the floor."""
     name = "DEEP-FLOOR: the deep routing layer clears confidenceFloored only when it raises the row"
@@ -2790,6 +2817,7 @@ def main():
     test_declared_phrase_specificity()
     test_pasted_reply_strip_parity()
     test_native_bridge_floor_flag()
+    test_native_bridge_keeps_structural_ids()
     test_deep_routing_clears_floor_flag()
     test_route_exclusions_in_fallback()
     test_native_bridge_forwards_location_overrides()

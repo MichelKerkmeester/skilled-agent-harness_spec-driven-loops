@@ -1,7 +1,7 @@
 ---
 title: "bots-author"
-description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template. The definition check runs under /doctor:bots."
-version: 1.0.0.0
+description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template. /doctor:bots runs the definition check."
+version: 1.0.1.0
 ---
 
 # bots-author
@@ -35,14 +35,14 @@ A consumer repository holds only its `bots/` folder. The author mode writes insi
   <id>/BOT.md        one bot: YAML frontmatter and the standing instructions in the body
 ```
 
-The id is lowercase letters, digits and hyphens. The template at `assets/bot-template.md` names every field and its default: `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. Run folders and control state never live in the consumer checkout, so an author request never touches them.
+The id is lowercase letters, digits and hyphens. The template at `../assets/bot-template.txt` names every field and its default: `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. Run folders and control state never live in the consumer checkout, so an author request never touches them.
 
 ---
 
 ## 3. HOW TO USE
 
 1. Confirm the bot id and the target repository.
-2. Copy `../assets/bot-template.md` to `bots/<id>/BOT.md`, or open the file that already exists.
+2. Copy `../assets/bot-template.txt` to `bots/<id>/BOT.md`, or open the file that already exists.
 3. Fill the fields the request names. Replace the `<your-bot-id>` placeholder, and write a body, because an empty body fails the check.
 4. Report the file path and the fields you set.
 5. Run `/doctor:bots` on the repository. It reports each failure by its invariant id, such as `definition.missing-trigger` or `isolation-undeclared`, and the field that id names is the one to fix.
@@ -51,17 +51,7 @@ The check is a separate step on purpose. This mode grants no Bash, so the checke
 
 ---
 
-## 4. RELATED
-
-- [`SKILL.md`](./SKILL.md): the author workflow, its rules and its success criteria.
-- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
-- [`references/bot-definition.md`](./references/bot-definition.md): the file layout, the template and the check.
-- [`../README.md`](../README.md): the hub overview with all four modes.
-- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
-
----
-
-## 5. FILES
+## 4. FILES
 
 - `SKILL.md`: the author workflow, its rules and its success criteria.
 - `ROUTER.md`: the packet machine router.
@@ -70,7 +60,7 @@ The check is a separate step on purpose. This mode grants no Bash, so the checke
 
 ---
 
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 The hub's structural gate verifies the packet's shape:
 
@@ -79,3 +69,13 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sys
 ```
 
 The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real author request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+
+---
+
+## 6. RELATED
+
+- [`SKILL.md`](./SKILL.md): the author workflow, its rules and its success criteria.
+- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
+- [`references/bot-definition.md`](./references/bot-definition.md): the file layout, the template and the check.
+- [`../README.md`](../README.md): the hub overview with all four modes.
+- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.

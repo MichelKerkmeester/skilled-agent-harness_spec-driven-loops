@@ -1,6 +1,6 @@
 ---
 name: bots-author
-description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template. The definition check runs under /doctor:bots."
+description: "Author mode of system-skilled-bots: write or edit a BOT.md from the shipped template. /doctor:bots runs the definition check."
 allowed-tools: [Read, Write, Edit, Grep, Glob]
 version: 1.0.0.0
 ---
@@ -46,7 +46,7 @@ The machine router, its intent signals and its resource map live in
 ## 3. HOW IT WORKS
 
 1. Confirm the bot id and the target repository. The id is lowercase letters, digits and hyphens.
-2. Copy `../assets/bot-template.md` to `bots/<id>/BOT.md`, or open the existing file, and fill the fields the request names.
+2. Copy `../assets/bot-template.txt` to `bots/<id>/BOT.md`, or open the existing file, and fill the fields the request names.
 3. Write the standing instructions in the body. An empty body fails the check.
 4. Report the file path and the fields you set. Name `/doctor:bots` as the next step, which runs the definition checker read-only over the repository.
 

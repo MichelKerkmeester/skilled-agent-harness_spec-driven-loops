@@ -6,7 +6,7 @@ trigger_phrases:
   - "bots-schedule routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -37,7 +37,7 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`SCHEDULE`** fires on schedule a bot, bot schedule, bots schedule, cron bot, launchd bot and bot on a schedule at weight 4. It loads `references/schedule-lifecycle.md`.
+- **`SCHEDULE`** fires on schedule a bot, bot schedule, bots schedule, cron bot, launchd bot, bot on a schedule, bot on a launchd and bot's schedule at weight 4. It loads `references/schedule-lifecycle.md`.
 - **`POSTURE`** fires on pause the bot, resume the bot, enable the bot and disable the bot at weight 4. It loads `references/schedule-lifecycle.md`.
 
 A request that fires no intent returns `UNKNOWN_FALLBACK` with the checklist below.
@@ -65,7 +65,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 ]
 
 INTENT_SIGNALS = {
-    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "bot schedule", "bots schedule", "cron bot", "launchd bot", "bot on a schedule"]},
+    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "bot schedule", "bots schedule", "cron bot", "launchd bot", "bot on a schedule", "bot on a launchd", "bot's schedule"]},
     "POSTURE": {"weight": 4, "keywords": ["pause the bot", "resume the bot", "enable the bot", "disable the bot"]},
 }
 

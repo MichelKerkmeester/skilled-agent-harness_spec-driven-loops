@@ -168,6 +168,321 @@
       }
     },
     {
+      "id": "run-queue-named-bot-run",
+      "prompt": "Queue a bot run for the triage bot from the new-issue event",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-drain-bot-request-queue",
+      "prompt": "Drain the bot request queue",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-named-bot-on-launchd",
+      "prompt": "Put the nightly bot on a launchd schedule",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-remove-bots-schedule",
+      "prompt": "Remove the bot's schedule and unload its launchd agent",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "status-read-needs-you-inbox",
+      "prompt": "Read the needs-you inbox for the bots",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "status"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "status"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-run-named-bot-now",
+      "prompt": "Run the release-notes bot now against this repository",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-start-the-bot",
+      "prompt": "start the bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-start-named-bot",
+      "prompt": "start the release-notes bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-launch-the-bot",
+      "prompt": "launch the bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-launch-named-bot",
+      "prompt": "launch the triage bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-ordered-pause-named-bot",
+      "prompt": "Pause the triage bot until Monday",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-ordered-resume-named-bot",
+      "prompt": "resume the triage bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-ordered-enable-named-bot",
+      "prompt": "enable the release-notes bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-ordered-disable-named-bot",
+      "prompt": "disable the nightly digest bot for a week",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-hyphenated-name-with-adjective",
+      "prompt": "Run the new release-notes bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-ordered-hyphenated-name-with-adjective",
+      "prompt": "pause the old weekly-cleanup bot until Monday",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "author-plain-beats-ordered-start-new-bot",
+      "prompt": "start a new bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "author"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "author"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "author-plain-beats-ordered-start-new-bot-for-triage",
+      "prompt": "start a new bot for triage",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "author"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "author"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "status-plain-beats-ordered-run-bot-status",
+      "prompt": "run bot status",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "status"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "status"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-ordered-possessive-in-gap",
+      "prompt": "pause michel's old triage bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "schedule-ordered-curly-possessive-in-gap",
+      "prompt": "pause michel’s old triage bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "schedule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "schedule"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "schedule-and-status-names-no-bot-phrase",
       "prompt": "schedule this bot and show its status",
       "expectedAction": "defer",
@@ -236,6 +551,322 @@
     {
       "id": "out-of-domain-install-health",
       "prompt": "is my skilled install healthy",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-drain-queue",
+      "prompt": "drain the queue",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-remove-cron-job",
+      "prompt": "remove the cron job",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-read-inbox",
+      "prompt": "read my inbox",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-start-server",
+      "prompt": "start the server",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-launch-app",
+      "prompt": "launch the app",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-pause-video",
+      "prompt": "pause the video",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-installed-packages",
+      "prompt": "show me which packages are installed",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-launchd-agent-broken",
+      "prompt": "my launchd agent is broken",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-release-script",
+      "prompt": "run the release script now",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-pause-build",
+      "prompt": "pause the build until Monday",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-ordered-robot-arm",
+      "prompt": "pause the robot arm until Monday",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-ordered-chatbot-widget",
+      "prompt": "enable the chatbot widget",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-ordered-robot-branch",
+      "prompt": "run the tests on the robot branch",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-ordered-gap-too-wide",
+      "prompt": "start writing the onboarding docs for our support bot",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-ordered-hyphenated-test-suite",
+      "prompt": "run the end-to-end test suite now",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-run-start-writing-bot-for-prs",
+      "prompt": "start writing a bot that summarizes PRs",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-run-start-building-a-bot",
+      "prompt": "how do I start building a bot",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-run-start-writing-a-bot",
+      "prompt": "start writing a bot",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-run-start-writing-the-bot",
+      "prompt": "start writing the bot",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-run-start-building-the-bot",
+      "prompt": "start building the bot",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-run-how-to-start-building-the-bot",
+      "prompt": "how do I start building the bot",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-run-launch-the-bot-being-written",
+      "prompt": "launch the bot I'm writing",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "authoring-never-schedule-pause-the-bot-being-built",
+      "prompt": "pause the triage bot I'm building",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-blocker-skips-infinitive-write",
+      "prompt": "run the triage bot to write a summary",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "run-ordered-blocker-skips-build-bot-name",
+      "prompt": "launch the build bot",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "run"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "run"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-ordered-start-hyphenated-bot-detection",
+      "prompt": "start the bot-detection service",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-in-word-drain-bottleneck",
+      "prompt": "drain the bottleneck in the pipeline",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "out-of-domain-in-word-robot-schedule",
+      "prompt": "fix the robot's schedule",
       "expectedAction": "defer",
       "gold": {
         "expectedIntents": [

@@ -1,7 +1,7 @@
 ---
 title: "bots-schedule"
 description: "Schedule mode of system-skilled-bots: install or remove a cron bot's launchd schedule, and enable, disable, pause or resume a bot."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # bots-schedule
@@ -59,17 +59,7 @@ After any verb, read `bots status` and report the bot's row. An install whose re
 
 ---
 
-## 5. RELATED
-
-- [`SKILL.md`](./SKILL.md): the schedule workflow, its rules and its success criteria.
-- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
-- [`references/schedule-lifecycle.md`](./references/schedule-lifecycle.md): the schedule verbs and their contract.
-- [`../README.md`](../README.md): the hub overview with all four modes.
-- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
-
----
-
-## 6. FILES
+## 5. FILES
 
 - `SKILL.md`: the schedule workflow, its rules and its success criteria.
 - `ROUTER.md`: the packet machine router.
@@ -78,7 +68,7 @@ After any verb, read `bots status` and report the bot's row. An install whose re
 
 ---
 
-## 7. VERIFICATION
+## 6. VERIFICATION
 
 The hub's structural gate verifies the packet's shape:
 
@@ -87,3 +77,13 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sys
 ```
 
 The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real schedule request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+
+---
+
+## 7. RELATED
+
+- [`SKILL.md`](./SKILL.md): the schedule workflow, its rules and its success criteria.
+- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
+- [`references/schedule-lifecycle.md`](./references/schedule-lifecycle.md): the schedule verbs and their contract.
+- [`../README.md`](../README.md): the hub overview with all four modes.
+- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.

@@ -30,6 +30,55 @@ function containsSignal(text, value) {
   return spaced(text).includes(spaced(normalize(value)));
 }
 
+// A keyword that opens with ORDERED_KEYWORD_PREFIX names whole words that must
+// appear in the prompt in the order given, each at most MAX_ORDERED_GAP words
+// after the one before. A contiguous phrase cannot reach a request that names
+// its bot in the middle ("pause the triage bot"), and a whole-word test keeps
+// "bot" from matching inside "robot". A plain keyword keeps the contiguous test.
+const ORDERED_KEYWORD_PREFIX = '~';
+const MAX_ORDERED_GAP = 3;
+
+function isOrderedKeyword(value) {
+  return normalize(value).startsWith(ORDERED_KEYWORD_PREFIX);
+}
+
+// Bot names are kebab-case, so a hyphenated token such as "release-notes"
+// counts as one word here. Otherwise a two-part name would use up two of the
+// words allowed between "run" and "bot". An apostrophe inside a word stays in
+// it for the same reason, so "michel's" is one word rather than two, and a
+// possessive "'s" or trailing "'" is then dropped so "bot's" still reads as
+// "bot" and "robot's" as "robot". A curly apostrophe counts as a straight one.
+// Only ordered keywords split this way; the contiguous test still folds
+// hyphens to spaces. The compiler counts an ordered keyword's words with this
+// same function, so a keyword it accepts is the keyword the router serves.
+function promptWords(value) {
+  return normalize(value)
+    .replace(/[‘’]/g, "'")
+    .split(/[^\p{L}\p{N}'-]+/u)
+    .map((word) => word
+      .replace(/-+/g, '-')
+      .replace(/^['-]+|['-]+$/g, '')
+      .replace(/'s$/, ''))
+    .filter(Boolean);
+}
+
+function orderedWordsFrom(words, wanted, index, start, end) {
+  if (index === wanted.length) return true;
+  const stop = Math.min(end, words.length);
+  for (let position = start; position < stop; position += 1) {
+    if (words[position] === wanted[index]
+      && orderedWordsFrom(words, wanted, index + 1, position + 1, position + 2 + MAX_ORDERED_GAP)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function containsOrderedWords(text, value) {
+  const wanted = promptWords(normalize(value).slice(ORDERED_KEYWORD_PREFIX.length));
+  return wanted.length > 0 && orderedWordsFrom(promptWords(text), wanted, 0, 0, Infinity);
+}
+
 function requestFor(snapshot, input) {
   const request = {
     evidence: [],
@@ -73,12 +122,38 @@ function route(snapshot, selectionKind, modes) {
 
 // A vocabulary that lists both spellings of one phrase names it once, so the
 // fold-deduped count keeps a single mention worth one hit rather than two.
+// Ordered keywords are a fallback for a prompt no plain keyword reached in any
+// mode. Every prompt a plain keyword already matches for "run the bot" also
+// matches "~run bot", so counting both would double that mode's score. Counting
+// an ordered match beside another mode's plain match would tie that plain match
+// and turn a single route ("start a new bot") into a bundle. Scoring every mode's
+// plain keywords first and reaching for ordered keywords only when all of them
+// scored zero keeps every decision a plain keyword produces exactly as it was.
+// A prompt about writing a bot ("start writing the bot") carries the same verb
+// and noun as a request to run one, so ordered keywords also stay out when the
+// prompt holds one of the hub's orderedKeywordBlockers. That prompt then defers
+// instead of reaching run, the mode that starts an executor.
+function matchedKeywords(keywords, matches) {
+  return new Set(keywords.filter(matches).map((keyword) => spaced(normalize(keyword))));
+}
+
 function scoreModes(routingModel, text) {
-  return routingModel.modes.map((mode) => {
-    const matched = new Set(mode.keywords
-      .filter((keyword) => containsSignal(text, keyword))
-      .map((keyword) => spaced(normalize(keyword))));
-    return { mode: mode.workflowMode, score: matched.size * mode.weight };
+  const plainScores = routingModel.modes.map((mode) => ({
+    mode,
+    matched: matchedKeywords(
+      mode.keywords.filter((keyword) => !isOrderedKeyword(keyword)),
+      (keyword) => containsSignal(text, keyword),
+    ),
+  }));
+  const anyPlain = plainScores.some((entry) => entry.matched.size > 0);
+  const blockers = new Set(routingModel.orderedKeywordBlockers);
+  const blocked = promptWords(text).some((word) => blockers.has(word));
+  return plainScores.map(({ mode, matched }) => {
+    const counted = anyPlain || blocked ? matched : matchedKeywords(
+      mode.keywords.filter(isOrderedKeyword),
+      (keyword) => containsOrderedWords(text, keyword),
+    );
+    return { mode: mode.workflowMode, score: counted.size * mode.weight };
   }).filter((entry) => entry.score > 0);
 }
 
@@ -152,6 +227,8 @@ function advisorContribution(snapshot, advisor) {
 }
 
 module.exports = {
+  ORDERED_KEYWORD_PREFIX,
   advisorContribution,
   evaluateRoute,
+  promptWords,
 };

@@ -7,18 +7,19 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-skilled-alignment-and-docs"
-    last_updated_at: "2026-11-23T18:48:01Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "system-skilled-bots/001-headless-bots-first-build/009-skilled-alignment-and-docs"
+    last_updated_at: "2026-11-24T06:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Marked AC-010 Met after both strict validations passed"
+    next_safe_action: "Commit the staged tree in the worktree"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skilled-bots/001-headless-bots-first-build/009-skilled-alignment-and-docs/scratch/routing-replay.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-skilled-alignment-and-docs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +38,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** `009-skilled-alignment-and-docs`
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-23
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +54,16 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the six code folders, When the README checks run, Then every README is valid | `audit_readmes.py --document-type code_folder`: runtime, runtime/lib, runtime/tests and scripts `template_status: valid`. `validate_document.py --no-exclude --type code_folder`: both fixture READMEs `VALID` | Met | - |
+| AC-002 | REQ-002 | Given the Opus xhigh review, When each finding is checked, Then each is confirmed or refuted and each confirmed P0 or P1 has a test that failed first | `scratch/review-triage.md`: every row has a disposition. P0 and five P1 fixed test-first in `bd474396742` | Met | - |
+| AC-003 | REQ-003 | Given every code change, When the suite and typecheck run, Then both pass and the delta is reported | Baseline 33 files / 355 tests. Final `npx vitest run --no-coverage`: `Test Files  35 passed (35)`, `Tests  372 passed (372)`. `npm run typecheck` exit 0 | Met | - |
+| AC-004 | REQ-004 | Given `feature-catalog/`, When the catalog validator runs strictly, Then it passes | `validate_catalog_package.py --package system-skilled-bots --strict`: `PASS: 0 violations` | Met | - |
+| AC-005 | REQ-005 | Given the runtime playbook categories, When the playbook validator and admission run, Then both pass with no drift | `validate-playbook-package.cjs`: `PASS ... scenarios=25 ... violations=0 warnings=0`. `compiled-route-admission.cjs --hub system-skilled-bots`: 8 pass, 0 drift, 0 stale | Met | - |
+| AC-006 | REQ-006 | Given the alignment run, When each finding is triaged, Then each is fixed or recorded with a reason | `scratch/alignment-triage.md`: every in-scope finding has a disposition. Release-notes rows stay open by operator decision (not releasing yet) | Met | - |
+| AC-007 | REQ-006 | Given the two P0 battery rows, When their checks rerun, Then both pass | `check-skill-doc-frontmatter.sh . --coverage`: `violations=0`. `skill-graph-freshness.cjs --strict` exit 0 | Met | - |
+| AC-008 | REQ-006 | Given the bots routing probes, When they replay through stage two, Then each named-bot request routes its mode and no out-of-domain prompt routes | `scratch/routing-replay.txt` at policy `93ebae9de124`: all 14 in-domain probes route their mode at stage two, and none of the 34 out-of-domain and 16 adjacent prompts routes there. The authoring-verb guard defers "start writing the bot", "start building the bot", "how do I start building the bot" and "launch the bot I'm writing". "start to write the bot" still routes run, recorded as a known limitation. Admission `--all`, sync `--check`, guard and parent-skill-check pass | Met | - |
+| AC-009 | REQ-006 | Given the new CI workflow, When the CI report and gate-input check run, Then neither flags it | `ci-report.cjs --json --no-gh`: no flags for `bots-runtime.yml`. `check-gate-inputs.sh`: `RESULT: PASSED` | Met | - |
+| AC-010 | REQ-003 | Given the final tree, When this phase and its parent validate strictly, Then both print `RESULT: PASSED` | `validate.sh --strict` on 2026-11-24: 009 `Errors: 0  Warnings: 0` `RESULT: PASSED`. The parent `specs/system-skilled-bots/001-headless-bots-first-build` with every child `RESULT: PASSED` | Met | - |
 
 ### Status values
 
@@ -79,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met on the final tree.
 <!-- /ANCHOR:closure -->

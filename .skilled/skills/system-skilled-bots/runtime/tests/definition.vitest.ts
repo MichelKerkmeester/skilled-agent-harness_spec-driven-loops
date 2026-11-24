@@ -8,7 +8,7 @@ import { DEFAULT_BUDGET, DEFAULT_RUNTIME, checkExecutorBounds, parseDefinition, 
 import { defaultRepoConfig } from '../lib/repo-config.js';
 
 const FIXTURES = join(import.meta.dirname, 'fixtures');
-const TEMPLATE = join(import.meta.dirname, '..', '..', 'assets', 'bot-template.md');
+const TEMPLATE = join(import.meta.dirname, '..', '..', 'assets', 'bot-template.txt');
 
 function fixture(name: string) {
   return readDefinition(join(FIXTURES, name));

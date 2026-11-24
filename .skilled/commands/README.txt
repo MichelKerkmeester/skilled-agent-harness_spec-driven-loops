@@ -134,7 +134,7 @@ Drive the `system-skilled-bots` hub, one command per mode. Each supports `:auto`
 | Author | `/bots:author <bot-id> [--repo <path>] [:auto\|:confirm]` | Write or edit a bot's `BOT.md` from the template, then prove it with the definition checker |
 | Run | `/bots:run <bot-id\|drain\|enqueue <bot-id> --source <name> --key <key>\|answer <item-id> <text>> [--repo <path>] [:auto\|:confirm]` | Run a bot now, queue or drain bot run requests, or answer a needs-you item |
 | Schedule | `/bots:schedule <install\|uninstall\|enable\|disable\|pause\|resume> <bot-id> [--repo <path>] [:auto\|:confirm]` | Install or remove a cron bot's launchd schedule, or enable, disable, pause or resume a bot |
-| Status | `/bots:status [status\|inbox] [--json] [--all] [--rebuild] [--repo <path>] [:auto\|:confirm]` | Read installed bots, last runs, deliveries and the needs-you inbox, read-only |
+| Status | `/bots:status [status\|inbox] [--json] [--all] [--repo <path>] [:auto\|:confirm]` | Read installed bots, last runs, deliveries and the needs-you inbox, read-only |
 
 ### Doctor Commands
 

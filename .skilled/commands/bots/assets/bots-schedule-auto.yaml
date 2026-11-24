@@ -29,7 +29,7 @@ upstream_assets:
 inputs:
   execution_mode: "AUTONOMOUS"
   action: "Required. install, uninstall, enable, disable, pause or resume."
-  bot_id: "Required. The id drain installs this repository's queue-drain job."
+  bot_id: "Required. The bot the action applies to. The reserved id drain installs this repository's queue-drain job instead of a bot."
   repo: "Optional consumer checkout, passed as --repo <path>. Defaults to the current working directory."
 
 execution:

@@ -6,7 +6,7 @@ trigger_phrases:
   - "bot definition fields"
   - "bot template"
   - "/bots:author"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT.md definition contract (/bots:author)
@@ -35,7 +35,7 @@ A trigger has one of four kinds: `cron` with an expression, `queue` with a name,
 
 ### Template
 
-`assets/bot-template.md` carries every field with its default in comments. Its `<your-bot-id>` placeholder is rejected as written, so a copied template cannot pass the check until the author names the bot.
+`assets/bot-template.txt` carries every field with its default in comments. Its `<your-bot-id>` placeholder is rejected as written, so a copied template cannot pass the check until the author names the bot.
 
 ---
 
@@ -46,7 +46,7 @@ A trigger has one of four kinds: `cron` with an expression, `queue` with a name,
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-skilled-bots/runtime/lib/definition.ts` | Shared | Frontmatter parser, field predicates, isolation resolution and executor bound check |
-| `.skilled/skills/system-skilled-bots/assets/bot-template.md` | Shared | The authoring template with every field and its default |
+| `.skilled/skills/system-skilled-bots/assets/bot-template.txt` | Shared | The authoring template with every field and its default |
 | `.skilled/skills/system-skilled-bots/bots-author/SKILL.md` | Handler | Author mode contract: write from the template, hand the check to `/doctor:bots` |
 | `.skilled/commands/bots/author.md` | Handler | The `/bots:author` command router |
 

@@ -1,7 +1,7 @@
 ---
 title: "system-skilled-bots: Manual Testing Playbook"
 description: "Operator index for system-skilled-bots: hub routing across its four bot modes, and runtime scenarios that author, run, queue, isolate, deliver, schedule and report on throwaway bots."
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # system-skilled-bots: Manual Testing Playbook
@@ -17,7 +17,7 @@ This is the operator index for the bots hub and its runtime. The routing scenari
 
 ## 1. OVERVIEW
 
-The playbook holds 24 scenarios in seven categories. The 8 hub-routing scenarios carry routing gold in their frontmatter, so the admission check replays every prompt through the compiled router. The 16 runtime scenarios carry no routing fields: they are operator scenarios, and the admission check never reads them.
+The playbook holds 25 scenarios in seven categories. The 8 hub-routing scenarios carry routing gold in their frontmatter, so the admission check replays every prompt through the compiled router. The 17 runtime scenarios carry no routing fields: they are operator scenarios, and the admission check never reads them.
 
 ### Realistic Test Model
 
@@ -73,7 +73,7 @@ The playbook holds 24 scenarios in seven categories. The 8 hub-routing scenarios
 ## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
 
 - Wave 1: the 8 routing scenarios. They are read-only and parallel-safe.
-- Wave 2: BOT-009 to BOT-020 and BOT-022 to BOT-024. Each builds its own temp world, so they can run side by side, but each one runs its block in a single shell from start to finish.
+- Wave 2: BOT-009 to BOT-020 and BOT-022 to BOT-025. Each builds its own temp world, so they can run side by side, but each one runs its block in a single shell from start to finish.
 - Wave 3: BOT-021 alone, last, because it writes into the account's launchd domain. Confirm its removal step ran before the wave ends.
 - No wave may run from inside an AI runtime session, because the recursion guard would refuse the runs.
 
@@ -334,9 +334,9 @@ Expected signals: one notification, a delivery entry with `"state":"attempted"` 
 
 ---
 
-## 11. REQUEST QUEUE (`BOT-018..BOT-019`, `BOT-024`)
+## 11. REQUEST QUEUE (`BOT-018..BOT-019`, `BOT-024..BOT-025`)
 
-Three scenarios on queued runs: a repeated event stays one run, a refused request goes to quarantine instead of looping, and a bot whose definition changed after approval is not run. A queued run uses only an approved definition, so each scenario approves its bot with `bots enable` first.
+Four scenarios on queued runs: a repeated event stays one run, a refused request goes to quarantine instead of looping, a bot whose definition changed after approval is not run, and a commit queues a request without running anything. A queued run uses only an approved definition, so each drain scenario approves its bot with `bots enable` first. BOT-025 queues and never drains, so it needs no approval.
 
 ### BOT-018 | An event queued twice runs once when the queue drains
 
@@ -376,6 +376,19 @@ Expected signals: `<request id> quarantined: definition-drifted` naming the chan
 
 #### Test Execution
 > **Feature File:** [BOT-024](request-queue/drift-refused-before-run.md)
+
+### BOT-025 | A commit in an opted-in repository queues one request and never runs a bot
+
+#### Description
+Verify a commit through the real post-commit hook queues one `git-commit` request for a git-hook bot, and that a commit inside a bot run or with the leg switched off queues nothing.
+
+#### Scenario Contract
+Prompt: `Queue a review run for my bot every time I commit, but never let a commit wait on the bot.`
+
+Expected signals: every commit `exit=0`, one inbox request keyed `git-commit:<sha>` after the first commit, still one after the run-marker and off-switch commits, and no run record.
+
+#### Test Execution
+> **Feature File:** [BOT-025](request-queue/commit-enqueues-request.md)
 
 ---
 
@@ -462,9 +475,38 @@ The runtime's vitest suite covers the same behavior with stubbed hosts. These sc
 | `.skilled/skills/system-skilled-bots/runtime/tests/switches.vitest.ts` | Pause and disable switches | BOT-020 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts` | Install, hold and uninstall | BOT-021 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts` | Status rows and staleness | BOT-022, BOT-023 |
+| `.skilled/skills/system-skilled-bots/runtime/tests/post-commit-leg.test.sh` | The post-commit enqueue leg through the real hook | BOT-025 |
 
 ---
 
 ## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-The hub's feature inventory lives in [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md). Each runtime scenario above exercises the catalog entry for the module its source anchor names.
+The hub's feature inventory lives in [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md). Each scenario maps to the catalog entry it exercises most directly. Five catalog entries have no dedicated scenario: repository config and identity, state layout, cron translation, missed-slot accounting, and the run record and result ledger. The runtime vitest suite covers them in `identity.vitest.ts`, `repo-config.vitest.ts`, `state-root.vitest.ts`, `cron-translator.vitest.ts`, `slot-accounting.vitest.ts`, `run-record.vitest.ts` and `result-ledger.vitest.ts`.
+
+| Feature ID | Feature Name | Category | Feature File | Catalog Entry |
+|---|---|---|---|---|
+| BOT-001 | New bot request routes to author | Hub Routing | [BOT-001](hub-routing/author-new-bot.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-002 | Run request for a named bot routes to run | Hub Routing | [BOT-002](hub-routing/run-named-bot.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-003 | Weekday schedule request routes to schedule | Hub Routing | [BOT-003](hub-routing/schedule-weekday-bot.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-004 | Status and last run request routes to status | Hub Routing | [BOT-004](hub-routing/status-last-run.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-005 | Bot inbox request routes to status | Hub Routing | [BOT-005](hub-routing/status-bot-inbox.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-006 | Answer to an open bot question routes to run | Hub Routing | [BOT-006](hub-routing/run-answer-question.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-007 | Bot request with no mode defers | Hub Routing | [BOT-007](hub-routing/hub-only-defer.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-008 | Out-of-domain inbox request defers | Hub Routing | [BOT-008](hub-routing/out-of-domain-defer.md) | [four-mode-hub-routing](../feature-catalog/hub-routing/four-mode-hub-routing.md) |
+| BOT-009 | New bot from the template passes the definition checker | Bot Authoring | [BOT-009](bot-authoring/author-and-check-bot.md) | [bot-definition-contract](../feature-catalog/definition/bot-definition-contract.md) |
+| BOT-010 | Definition checker fails each defect by name | Bot Authoring | [BOT-010](bot-authoring/checker-reports-defects.md) | [definition-checker](../feature-catalog/definition/definition-checker.md) |
+| BOT-011 | A bot left on the native runtime is refused before dispatch | Bot Authoring | [BOT-011](bot-authoring/native-runtime-refused.md) | [executor-posture-and-secret-guard](../feature-catalog/runs/executor-posture-and-secret-guard.md) |
+| BOT-012 | A manual run completes and leaves one record | Manual Run | [BOT-012](manual-run/manual-run-completes.md) | [bot-runner](../feature-catalog/runs/bot-runner.md) |
+| BOT-013 | A run past its timeout fails with an environment class | Manual Run | [BOT-013](manual-run/manual-run-timeout.md) | [bot-runner](../feature-catalog/runs/bot-runner.md) |
+| BOT-014 | A run that asks a question parks and holds the next run | Manual Run | [BOT-014](manual-run/needs-you-park-and-hold.md) | [needs-you-items](../feature-catalog/operator-loop/needs-you-items.md) |
+| BOT-015 | Answering a needs-you item resumes the parked run | Manual Run | [BOT-015](manual-run/answer-resumes-parked-run.md) | [needs-you-answer](../feature-catalog/operator-loop/needs-you-answer.md) |
+| BOT-016 | A worktree bot runs in its own tree and the clean tree is removed | Worktree And Delivery | [BOT-016](worktree-and-delivery/worktree-run-cleans-up.md) | [worktree-isolation](../feature-catalog/runs/worktree-isolation.md) |
+| BOT-017 | A desktop delivery target sends one notice and records it | Worktree And Delivery | [BOT-017](worktree-and-delivery/desktop-delivery-recorded.md) | [run-delivery](../feature-catalog/operator-loop/run-delivery.md) |
+| BOT-018 | An event queued twice runs once when the queue drains | Request Queue | [BOT-018](request-queue/enqueue-dedupe-and-drain.md) | [request-queue](../feature-catalog/requests/request-queue.md) |
+| BOT-019 | A request for a paused bot is quarantined, not run | Request Queue | [BOT-019](request-queue/drain-quarantines-paused-bot.md) | [queue-drain](../feature-catalog/requests/queue-drain.md) |
+| BOT-020 | Pause and disable stop a bot's runs until lifted | Schedule Lifecycle | [BOT-020](schedule-lifecycle/pause-and-disable-switches.md) | [stop-switches](../feature-catalog/operator-loop/stop-switches.md) |
+| BOT-021 | A schedule installs held disabled and uninstalls cleanly | Schedule Lifecycle | [BOT-021](schedule-lifecycle/schedule-install-held-and-removed.md) | [launchd-installer](../feature-catalog/scheduling/launchd-installer.md) |
+| BOT-022 | Status says when its index is stale and a rebuild catches up | Status And Inbox | [BOT-022](status-and-inbox/status-stale-and-rebuild.md) | [status-index](../feature-catalog/status/status-index.md) |
+| BOT-023 | Status and the inbox agree on an open needs-you item | Status And Inbox | [BOT-023](status-and-inbox/status-json-open-item.md) | [status-and-inbox-report](../feature-catalog/status/status-and-inbox-report.md) |
+| BOT-024 | A request for a bot whose BOT.md changed after approval is quarantined | Request Queue | [BOT-024](request-queue/drift-refused-before-run.md) | [definition-approval](../feature-catalog/runs/definition-approval.md) |
+| BOT-025 | A commit in an opted-in repository queues one request | Request Queue | [BOT-025](request-queue/commit-enqueues-request.md) | [commit-triggered-requests](../feature-catalog/requests/commit-triggered-requests.md) |

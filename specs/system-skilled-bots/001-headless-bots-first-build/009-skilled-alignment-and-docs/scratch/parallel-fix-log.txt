@@ -1,0 +1,72 @@
+
+[crossdocs] CD-2 fixed: cli-mistral-vibe SKILL.md:190 and README.md:195 now say a lineage with no sandboxMode has no confinement, a read-only lineage gets only read_file and grep (compensating allowlist, not an OS boundary), and parseExecutorConfig rejects any other sandboxMode. Source: fanout-run.cjs:4612,4782; executor-config.ts:863.
+  check: grep -rn "has no confinement\|with no confinement" cli-mistral-vibe -> only the amended SKILL.md/README lines plus historical changelog/v1.0.0.0.md:64 (left as history).
+[crossdocs] CD-3 fixed: playbook stress/sandbox-permission.md:31 and system-deep-loop changelog/v2.2.0.0.md:151 now read `--enabled-tools read_file --enabled-tools grep`.
+  check: grep -rn "enabled-tools read_file grep" cli-mistral-vibe system-deep-loop/changelog -> no hits.
+[crossdocs] CD-1 not fixed: all eight locations are under .skilled/commands/deep/ (assets and compiled contracts), outside this fixer's edit set.
+
+[botsdocs] F2 fixed: changelog/v1.0.0.0.md upgrade step now says a reinstall keeps a first-install or definition hold, and a bot disabled with bots disable refuses with label-kill-switch (bots enable, reinstall, bots disable again). Matches installer.ts kill-switch guard. Check: grep "keeps the job's current hold" -> no match; quick_validate.py system-skilled-bots -> "Skill is valid!" exit 0.
+[botsdocs] F3 partly fixed (doc-claim option): "names a bot" claims now say "names a bot or the bot-only term needs-you" in README.md:32, SKILL.md:45, changelog/v1.0.0.0.md:26, feature-catalog/hub-routing/four-mode-hub-routing.md:28, plus same claim in feature-catalog/feature-catalog.md:386 and manual-testing-playbook/hub-routing/out-of-domain-defer.md:21. Not fixed (outside my edit set): ROUTER.md:30 and graph-metadata.json causal_summary. Check: grep for remaining unqualified claims shows only ROUTER.md:30; quick_validate.py exit 0.
+[botsdocs] F1 not fixed: needs hub-router.json and the authored routing copy under specs/sk-doc/..., both outside this lens's edit set.
+
+[repo lens] F1 .github/workflows/README.md: readme-check marker changed to 'allow-count Eight workflows | the sentence names all eight workflow files'.
+  check: python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py .github/workflows/README.md
+  output: 'PASS .github/workflows/README.md: claims=1 failures=0', 'SUMMARY files=1 pass=1 fail=0', exit=0
+[repo lens] F2 .github/workflows/bots-runtime.yml: added to both pull_request and push path lists, each with its .opencode twin: system-deep-loop/runtime/scripts/lib/**, system-deep-loop/package*.json, system-deep-loop/runtime/package*.json, system-spec-kit/package*.json, system-spec-kit/shared/**, sk-code/shared/scripts/lib/repository-identity.cjs, hooks/shared/hook-flags.sh, scripts/git-hooks/lib/autostash-orphan-guard.sh.
+  check: python3 yaml.safe_load of the workflow, count both path lists and compare
+  output: '25 25 True', exit=0 (both lists 25 entries, identical)
+
+=== [advisor fixer] ADV-1: Python CLI dropped command-bots-run from native results ===
+Fix: skill_advisor.py now screens structural native ids (skillId, shadow skillId, redirectTo, redirectFrom, workflowMode) with an id grammar `[a-z0-9][a-z0-9:_-]{0,159}` (fullmatch) in a new _sanitize_native_id / _sanitize_native_id_list, instead of the free-text injection screen whose word list matched "run" in command-bots-run. _sanitize_native_label stays for the free-text status field; the unused _sanitize_native_label_list was removed. All 83 known skill, command and family ids pass the grammar; "sk-git\n", "ignore previous instructions" and "<script>" are rejected.
+Regression: tests/python/test_skill_advisor.py test_native_bridge_keeps_structural_ids.
+$ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py '/bots:run drain' --threshold 0   -> EXIT=0, first row "skill": "command-bots-run" (source native); '/bots:run answer item-43 yes' also first command-bots-run
+$ (cd .skilled/skills/system-skill-advisor/runtime/tests/python && python3 test_skill_advisor.py)   -> EXIT=0, "PASS: BRIDGE-IDS: ...", "Summary: pass=126, fail=0" (baseline before the fix: pass=125, fail=0)
+$ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py --dataset .../fixtures/skill-advisor-regression-cases.jsonl   -> EXIT=0, 84/84 passed, "overall_pass": true
+$ (cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/compat)   -> EXIT=0, "Tests 15 passed (15)"
+$ frozen-scorer-contract assertScorerFrozen check   -> EXIT=0, "scorer frozen: ok" (skill_advisor.py is not a pinned file; no re-freeze)
+
+=== [lens engine] 2026-11-24 06:20 fixer: compiled router engine and bots hub vocabulary
+Files: authored lib/router.cjs, lib/registry-compiler.cjs, fixtures/canary-cases.v1.json (+6 cases, 51 existing unchanged) and rebuilt compiled/*, activation/manifest.candidate.json under specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/011-system-skilled-bots; runtime copies under .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/011-system-skilled-bots (cmp equal); both live system-skilled-bots manifests (refreshed + mirrored, cmp equal); .skilled/skills/system-skilled-bots/hub-router.json, ROUTER.md, graph-metadata.json (intent_signals_keep only).
+Dry-run helper: scratchpad s2dry.cjs (engine dir, hub-router candidate, prompts). "before" = runtime engine before the copy + backed-up hub-router.json.
+
+ENG-1 fixed: scoreModes scores plain keywords for every mode first and counts ordered keywords only when every plain score is zero.
+  before: start a new bot => author+run(orderedBundle); start writing a new bot => author+run(orderedBundle); run bot status => status+run(orderedBundle)
+  after (served, policy 2bdd5c7d1693): start a new bot => route:author(single); run bot status => route:status(single)
+  gold: author-plain-beats-ordered-start-new-bot, status-plain-beats-ordered-run-bot-status. Contract text in hub-router.json orderedKeywordContract and ROUTER.md note now says "no contiguous keyword matched any mode ... never change a decision".
+ENG-2 fixed: promptWords folds curly apostrophes, keeps an apostrophe inside a token, strips edge apostrophes and a possessive 's.
+  before: pause michel's old triage bot => defer; curly variant => defer
+  after (served): both => route:schedule(single); "pause the triage bot's schedule" and "launch the triage bot's run" still route schedule / run
+  gold: schedule-ordered-possessive-in-gap, schedule-ordered-curly-possessive-in-gap
+ENG-3 fixed: router.cjs exports promptWords; vocabularyKeyword counts words with it.
+  probe (kw pushed into run-workflow): "~run .", "~run --", "~.. ,,", "~run-bot" => compile error ORDERED_KEYWORD_INVALID (all four)
+  unchanged vocabulary compiles to graph 456164eda20c on both old and new engine (no hash move from this change alone)
+ENG-4 fixed at stage two: "drain the bot" -> "~drain bot", "bot's schedule" -> "~bot schedule" in hub-router.json and hub ROUTER.md.
+  before: drain the bottleneck in the pipeline => run(single); fix the robot's schedule => schedule(single)
+  after (served): both => defer; Drain the bot request queue => run(single); Remove the bot's schedule ... => schedule(single); Check whether the bot's schedule needs a reinstall => status(single) (was status+schedule bundle)
+  gold: out-of-domain-in-word-drain-bottleneck, out-of-domain-in-word-robot-schedule (defer)
+  stage one: the intent-signal check reported 2 orphans; pinned both with intent_signals_keep in graph-metadata.json so skill-graph.json (outside this fixer's set) need not regenerate. A compile of skill-graph to the scratchpad is identical to the committed one apart from generated_at. Stage one therefore still carries the two in-word phrases (open item).
+
+Corpus scoring pass (invariance2.cjs, 720 prompts, pre-fix engine + pre-fix hub-router vs final): decisions-changed=10, all intended: the 3 ENG-1 bundles -> single, 2 ENG-2 defer -> schedule, 4 in-word routes -> defer, 1 status+schedule -> status. The one score change with no decision change: "pause the triage bot's schedule" schedule 4 -> 8 (two ordered keywords now that no plain keyword matches).
+
+Gates (final state):
+  build-artifacts: {"cases":57,"effectivePolicyHash":"2bdd5c7d1693...","status":"built"}; gold-compare: existing scenarios=51 identical-decisions=51 differ=0 new=6
+  compiled-route-sync --check: "all 9 hubs resolve" / "all 67 served copies match their authored files"
+  compiled-route-admission --all: "Every hub passes the admission check." system-skilled-bots 8 pass (exit 0)
+  ci-hub-vocabulary-source: RESULT: PASSED; generate-router-intent-signals --check: missing=0, orphans=0, RESULT: PASSED; ci-router-vocabulary-reach: RESULT: PASSED
+  derived freshness fresh=16 stale=0; root metadata passed=16; skill_graph_compiler --validate-only VALIDATION PASSED; leaf-manifest OK; frozen scorer: ok (no pinned file touched, no re-freeze); parent-skill-check OK; evaluateHub verdict: pass 8
+  compiled-route-guard: system-skilled-bots fresh, but "1 hub(s) need attention. Re-mint: cli-external-orchestration" (stale-manifest)
+  compiled-route-*.test.cjs: tests 117 pass 103 fail 14, every failure "promoted closure failed to resolve hubs: cli-external-orchestration"
+  foundation vitest: 36 passed 1 failed (move-simulation, same cli-external-orchestration cause)
+  Attribution: cli-external-orchestration/cli-mistral-vibe/SKILL.md and README.md changed at 06:13:09 by concurrent work; this fixer did not touch that hub. Its manifest needs a refresh + mirror by whoever owns those edits; then rerun guard and the two test suites.
+
+=== [lens engine] 2026-11-24 06:25 addendum
+Known behavior change (not covered by the corpus pass): with "drain the bot" and "bot's schedule" now ordered, a compound prompt that pairs them with another mode's plain keyword collapses to that other mode.
+  invariance2.cjs, pre-fix engine + pre-fix hub-router vs final:
+  route:status+run -> route:status | drain the bot and show bot status
+  route:status+schedule -> route:status | remove the bot's schedule and show which bots are installed
+  route:author+run -> route:author | drain the bot and write a new bot
+  route:schedule+run -> route:run | remove the bot's schedule and run the bot
+  Not fixed here: a plain rewrite adds new advisor phrases and forces a skill-graph.json regeneration, which is outside this fixer's set.
+ROUTER.md grammar fix ("they never reach the advisor"). Rebuilt: cases 57, policy 2bdd5c7d1693 unchanged, existing 51/51 identical; manifest refreshed + mirrored (cmp equal); freshness fresh.
+Final rerun: sync --check "all 67 served copies match"; admission "Every hub passes"; hub-vocabulary-source RESULT: PASSED; intent signals orphans=0 RESULT: PASSED.
+Still failing, cause outside this fixer: guard "Re-mint: cli-external-orchestration"; compiled-route-*.test.cjs pass 103 fail 14 (all 14 "promoted closure failed to resolve hubs: cli-external-orchestration"); foundation vitest 1 failed | 36 passed (same message).

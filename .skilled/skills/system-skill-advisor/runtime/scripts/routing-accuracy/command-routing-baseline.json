@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "928be8397fb",
+  "capturedAtSha": "bd474396742",
   "corpusSha256": "sha256:6ef1793bba23231acd9650e57b169eff1a1944364df38db9ca1ed084ea1e07bc",
   "bridgeCounts": {
     "commandMetadata": 31,
     "doctorRoutes": 36,
     "generated": 67,
-    "typescriptActive": 47,
-    "pythonActive": 53
+    "typescriptActive": 51,
+    "pythonActive": 57
   },
   "metrics": {
     "typed_recall_at_1": {
-      "correct": 25,
+      "correct": 29,
       "total": 49
     },
     "typed_reach_top3": {
-      "correct": 29,
+      "correct": 33,
       "total": 49
     },
     "plain_recall_at_1": {
       "tune": {
-        "correct": 15,
+        "correct": 16,
         "total": 50
       },
       "holdout": {
@@ -31,7 +31,7 @@
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 17,
+        "correct": 18,
         "total": 50
       },
       "holdout": {
@@ -55,10 +55,6 @@
     }
   },
   "unreachable": [
-    "/bots:author",
-    "/bots:run",
-    "/bots:schedule",
-    "/bots:status",
     "/create:benchmark",
     "/create:changelog",
     "/create:command",
@@ -80,8 +76,8 @@
     "/bots:author": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -99,8 +95,8 @@
     "/bots:run": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -118,8 +114,8 @@
     "/bots:schedule": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -137,14 +133,14 @@
     "/bots:status": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -1012,10 +1008,10 @@
   "rows": {
     "cmd-bots-author-typed-01": {
       "expected_command": "/bots:author",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-bots-author",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-bots-author-plain-tune-01": {
       "expected_command": "/bots:author",
@@ -1026,10 +1022,10 @@
     },
     "cmd-bots-run-typed-01": {
       "expected_command": "/bots:run",
-      "top": "system-skilled-bots",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-bots-run",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-bots-run-plain-tune-01": {
       "expected_command": "/bots:run",
@@ -1040,10 +1036,10 @@
     },
     "cmd-bots-schedule-typed-01": {
       "expected_command": "/bots:schedule",
-      "top": "system-skilled-bots",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-bots-schedule",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-bots-schedule-plain-tune-01": {
       "expected_command": "/bots:schedule",
@@ -1054,17 +1050,17 @@
     },
     "cmd-bots-status-typed-01": {
       "expected_command": "/bots:status",
-      "top": "system-skilled-bots",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-bots-status",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-bots-status-plain-tune-01": {
       "expected_command": "/bots:status",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-bots-status",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-create-agent-typed-01": {
       "expected_command": "/create:agent",
@@ -2050,9 +2046,9 @@
   "attachedMetrics": {
     "plain": {
       "tune": {
-        "own": 15,
+        "own": 16,
         "attached": 14,
-        "combined": 29,
+        "combined": 30,
         "total": 50
       },
       "holdout": {
@@ -2065,12 +2061,12 @@
     "plain_stages": {
       "tune": {
         "total": 50,
-        "own": 15,
+        "own": 16,
         "ownerLed": 24,
         "routed": 22,
         "withCommand": 14,
         "attached": 14,
-        "neither": 11
+        "neither": 10
       },
       "holdout": {
         "total": 49,
@@ -2085,9 +2081,9 @@
     "plain_by_family": {
       "bots": {
         "tune": {
-          "own": 0,
+          "own": 1,
           "attached": 1,
-          "combined": 1,
+          "combined": 2,
           "total": 4
         },
         "holdout": {
@@ -2215,37 +2211,37 @@
       "total": 41
     },
     "typed": {
-      "own": 25,
-      "attached": 22,
-      "combined": 47,
+      "own": 29,
+      "attached": 19,
+      "combined": 48,
       "total": 49
     },
     "typedRows": {
       "cmd-bots-author-typed-01": {
         "expected_command": "/bots:author",
-        "top": null,
-        "carried": null,
-        "command": null,
-        "policy": null
+        "top": "command-bots-author",
+        "carried": "own",
+        "command": "/bots:author",
+        "policy": "start"
       },
       "cmd-bots-run-typed-01": {
         "expected_command": "/bots:run",
-        "top": "system-skilled-bots",
-        "carried": "attached",
+        "top": "command-bots-run",
+        "carried": "own",
         "command": "/bots:run",
         "policy": "ask"
       },
       "cmd-bots-schedule-typed-01": {
         "expected_command": "/bots:schedule",
-        "top": "system-skilled-bots",
-        "carried": "attached",
+        "top": "command-bots-schedule",
+        "carried": "own",
         "command": "/bots:schedule",
         "policy": "ask"
       },
       "cmd-bots-status-typed-01": {
         "expected_command": "/bots:status",
-        "top": "system-skilled-bots",
-        "carried": "attached",
+        "top": "command-bots-status",
+        "carried": "own",
         "command": "/bots:status",
         "policy": "run"
       },
@@ -2568,9 +2564,6 @@
     "typed_same_owner_ambiguous": [],
     "attachedRows": {
       "cmd-bots-author-plain-tune-01": "/bots:author",
-      "cmd-bots-run-typed-01": "/bots:run",
-      "cmd-bots-schedule-typed-01": "/bots:schedule",
-      "cmd-bots-status-typed-01": "/bots:status",
       "cmd-create-agent-plain-tune-01": "/create:agent",
       "cmd-create-agent-plain-tune-02": "/create:agent",
       "cmd-create-benchmark-typed-01": "/create:benchmark",

@@ -267,6 +267,103 @@
       "order": 40,
       "id": "command-doctor-bots",
       "description": ""
+    },
+    {
+      "inventoryId": "command-bots-author",
+      "order": 41,
+      "id": "command-bots-author",
+      "name": "/bots:author",
+      "description": "",
+      "keywords": [
+        "/bots:author",
+        "author a bot",
+        "write a bot",
+        "new bot.md"
+      ],
+      "domains": [
+        "bots",
+        "command"
+      ],
+      "intentSignals": [
+        "/bots:author",
+        "author a bot",
+        "write a bot",
+        "new bot.md"
+      ]
+    },
+    {
+      "inventoryId": "command-bots-run",
+      "order": 42,
+      "id": "command-bots-run",
+      "name": "/bots:run",
+      "description": "",
+      "keywords": [
+        "/bots:run",
+        "run the bot",
+        "drain the bot queue",
+        "answer the bot",
+        "start the bot",
+        "launch the bot"
+      ],
+      "domains": [
+        "bots",
+        "command"
+      ],
+      "intentSignals": [
+        "/bots:run",
+        "run the bot",
+        "drain the bot queue",
+        "answer the bot",
+        "start the bot",
+        "launch the bot"
+      ]
+    },
+    {
+      "inventoryId": "command-bots-schedule",
+      "order": 43,
+      "id": "command-bots-schedule",
+      "name": "/bots:schedule",
+      "description": "",
+      "keywords": [
+        "/bots:schedule",
+        "schedule a bot",
+        "bot schedule",
+        "pause the bot"
+      ],
+      "domains": [
+        "bots",
+        "command"
+      ],
+      "intentSignals": [
+        "/bots:schedule",
+        "schedule a bot",
+        "bot schedule",
+        "pause the bot"
+      ]
+    },
+    {
+      "inventoryId": "command-bots-status",
+      "order": 44,
+      "id": "command-bots-status",
+      "name": "/bots:status",
+      "description": "",
+      "keywords": [
+        "/bots:status",
+        "bot status",
+        "bot inbox",
+        "which bots are installed"
+      ],
+      "domains": [
+        "bots",
+        "command"
+      ],
+      "intentSignals": [
+        "/bots:status",
+        "bot status",
+        "bot inbox",
+        "which bots are installed"
+      ],
+      "readOnly": true
     }
   ],
   "python": [
@@ -612,6 +709,50 @@
       "order": 51,
       "id": "command-doctor-bots",
       "description": ""
+    },
+    {
+      "inventoryId": "command-bots-author",
+      "order": 52,
+      "id": "command-bots-author",
+      "description": "",
+      "slashMarkers": [
+        "/bots:author",
+        "bots:author"
+      ],
+      "owningSkill": "system-skilled-bots"
+    },
+    {
+      "inventoryId": "command-bots-run",
+      "order": 53,
+      "id": "command-bots-run",
+      "description": "",
+      "slashMarkers": [
+        "/bots:run",
+        "bots:run"
+      ],
+      "owningSkill": "system-skilled-bots"
+    },
+    {
+      "inventoryId": "command-bots-schedule",
+      "order": 54,
+      "id": "command-bots-schedule",
+      "description": "",
+      "slashMarkers": [
+        "/bots:schedule",
+        "bots:schedule"
+      ],
+      "owningSkill": "system-skilled-bots"
+    },
+    {
+      "inventoryId": "command-bots-status",
+      "order": 55,
+      "id": "command-bots-status",
+      "description": "",
+      "slashMarkers": [
+        "/bots:status",
+        "bots:status"
+      ],
+      "owningSkill": "system-skilled-bots"
     }
   ],
   "pythonOwnerNormalization": {

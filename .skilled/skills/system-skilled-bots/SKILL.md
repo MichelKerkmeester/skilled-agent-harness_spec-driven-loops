@@ -42,7 +42,7 @@ Use this hub for a request about a file-defined bot: writing one, running one, p
 
 `hub-router.json` scores the request against its vocabulary classes. It then selects one `workflowMode`, an ordered bundle or a defer outcome. `mode-registry.json` maps that mode to its packet folder. The root [`ROUTER.md`](./ROUTER.md) holds the hub's routing directive and its fallback checklist, so read it before selecting a packet.
 
-Every signal is anchored on the word bot, because bare verbs like run, schedule and status also name unrelated work. A bot request that names no mode defers: ask which mode the reader means, using the table above.
+Every signal is anchored on the word bot or the bot-only term needs-you, because bare verbs like run, schedule and status also name unrelated work. A bot request that names no mode defers: ask which mode the reader means, using the table above.
 
 ---
 

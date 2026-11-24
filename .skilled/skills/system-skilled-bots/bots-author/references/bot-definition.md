@@ -7,7 +7,7 @@ trigger_phrases:
   - "bot template fields"
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Bot Definition: Writing a BOT.md
@@ -22,7 +22,7 @@ A bot is one `BOT.md` file under a repository's `bots/` folder. This reference s
 
 Give the author mode one place that names the file layout and the template, so a new bot is written from the shipped template and checked by the same predicates the runner and installer use.
 
-### Usage
+### When to Use
 
 - Writing a new bot.
 - Editing an existing bot's trigger, runtime, budget, isolation or delivery.
@@ -45,7 +45,7 @@ Run folders and control state never live in the consumer checkout. The runtime k
 
 ## 3. THE TEMPLATE
 
-Copy `assets/bot-template.md` at the hub root. Its comments name every field and its default: `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. Replace the `<your-bot-id>` placeholder, because the parser rejects it as written, and write a body: an empty body fails the check.
+Copy `assets/bot-template.txt` at the hub root. Its comments name every field and its default: `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. Replace the `<your-bot-id>` placeholder, because the parser rejects it as written, and write a body: an empty body fails the check.
 
 The template is the field reference. This file does not restate a field rule, because the runtime owns every one of them.
 

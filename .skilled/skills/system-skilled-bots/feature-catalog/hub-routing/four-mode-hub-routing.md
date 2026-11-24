@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-bots routing"
   - "bots hub modes"
   - "bot request defer"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Four-mode hub routing
@@ -25,7 +25,7 @@ The hub is one skill with one advisor identity and four workflow modes. It holds
 
 Author writes or edits a definition from the template through `/bots:author` and grants no Bash. Run, schedule and status each run verbs of `.skilled/bin/bots.cjs` through `/bots:run`, `/bots:schedule` and `/bots:status`, limited to that CLI by their Bash allowlist. `bots inbox` belongs to status and `bots answer` belongs to run, and neither has a mode of its own.
 
-Every signal is anchored on the word bot, because bare verbs like run, schedule and status also name unrelated work. A bot request that names no mode defers and asks which mode the reader means. A request that never names a bot, such as running tests or scheduling a meeting, routes elsewhere. Checking definitions as a doctor task goes to `/doctor:bots`.
+Every signal is anchored on the word bot or the bot-only term needs-you, because bare verbs like run, schedule and status also name unrelated work. A bot request that names no mode defers and asks which mode the reader means. A request that never names a bot, such as running tests or scheduling a meeting, routes elsewhere. Checking definitions as a doctor task goes to `/doctor:bots`.
 
 ---
 

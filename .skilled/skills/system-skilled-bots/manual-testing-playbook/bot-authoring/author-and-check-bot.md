@@ -1,7 +1,7 @@
 ---
 title: "BOT-009 -- New bot from the template passes the definition checker"
 description: "This scenario validates bot authoring for `BOT-009`. It focuses on the shipped template failing the checker as written and passing once its id and isolation are filled in."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-009 -- New bot from the template passes the definition checker
@@ -58,7 +58,7 @@ git -C "$W/checkout" init -q && git -C "$W/skilled" init -q
 printf '.skilled/skills/.state/*/*\n' > "$W/skilled/.gitignore"
 printf '{"identity": "local/bots-playbook", "stateRoot": "%s"}\n' "$W/state" > "$W/checkout/bots/config.json"
 # 2. Copy the template as written and check it.
-cp "$REPO_ROOT/.skilled/skills/system-skilled-bots/assets/bot-template.md" "$W/checkout/bots/pb-digest/BOT.md"
+cp "$REPO_ROOT/.skilled/skills/system-skilled-bots/assets/bot-template.txt" "$W/checkout/bots/pb-digest/BOT.md"
 "$NODE" "$REPO_ROOT/.skilled/skills/system-skilled-bots/scripts/bot-check.cjs" "$W/checkout"; echo "exit=$?"
 # 3. Fill in the id and pick shared isolation, then check again.
 sed -i.bak -e 's/<your-bot-id>/pb-digest/' -e 's/^isolation: worktree$/isolation: shared/' "$W/checkout/bots/pb-digest/BOT.md" && rm "$W/checkout/bots/pb-digest/BOT.md.bak"
@@ -85,7 +85,7 @@ The full output of both checker runs with their `exit=` lines, and the two lines
 ### Failure Triage
 
 1. A pass on the unedited template means the parser accepts the placeholder id. Read the id rule in `runtime/lib/definition.ts`.
-2. A failure on the edited file names its invariant. Read the message and the field it points at in `assets/bot-template.md`.
+2. A failure on the edited file names its invariant. Read the message and the field it points at in `assets/bot-template.txt`.
 3. An `identity-missing` failure means `$W/checkout/bots/config.json` did not land. Check the `printf` step's output.
 
 ---
@@ -103,7 +103,7 @@ The full output of both checker runs with their `exit=` lines, and the two lines
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-skilled-bots/assets/bot-template.md` | The shipped template under test |
+| `.skilled/skills/system-skilled-bots/assets/bot-template.txt` | The shipped template under test |
 | `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` | The definition checker |
 | `.skilled/skills/system-skilled-bots/runtime/lib/definition.ts` | The parser the checker imports |
 | `.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` | The author mode's field and checker reference |

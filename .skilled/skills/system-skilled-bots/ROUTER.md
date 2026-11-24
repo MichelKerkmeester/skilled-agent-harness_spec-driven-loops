@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-bots routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -27,12 +27,12 @@ Every path below is packet-qualified (`<packet>/references/...`, where `<packet>
 
 ## 2. INTENT MODEL
 
-Every keyword names a bot, so a bare verb like run, schedule or status fires nothing here and the hub defers.
+Every keyword names a bot or the bot-only term needs-you, so a bare verb like run, schedule or status fires nothing here and the hub defers.
 
 - **Author leaves.** Writing or editing a `BOT.md` loads the bot definition reference: the layout, the template and the check command that `/doctor:bots` runs.
 - **Run leaves.** Starting a bot run, queueing or draining runs, or answering a bot's needs-you item loads the run reference. `bots answer` routes here.
 - **Schedule leaves.** Installing or removing a bot's schedule, or enabling, disabling, pausing or resuming a bot, loads the schedule lifecycle reference.
-- **Status leaves.** Reading bot status, the last bot run or the needs-you inbox loads the status and inbox reference. `bots inbox` routes here.
+- **Status leaves.** Reading bot status, the last bot run, the needs-you inbox or whether a bot's schedule needs a reinstall loads the status and inbox reference. `bots inbox` routes here.
 
 ---
 
@@ -49,9 +49,9 @@ SHARED_CONTROL_RESOURCES = []
 
 INTENT_SIGNALS = {
     "AUTHOR":   {"weight": 4, "keywords": ["author a bot", "write a bot", "create a bot", "new bot.md", "bot definition", "edit a bot", "bot.md", "new bot", "bot template", "bots:author"]},
-    "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "bots:run"]},
-    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bots:schedule"]},
-    "STATUS":   {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "bots:status"]},
+    "RUN":      {"weight": 4, "keywords": ["run the bot", "run a bot", "drain the bot queue", "enqueue a bot run", "answer the bot", "bots answer", "bots run", "bots drain", "bots enqueue", "bot run request", "answer a needs-you", "bot's needs-you", "run the nightly-digest bot", "run my nightly bot", "run the nightly bot", "kick off the nightly-digest bot", "queue a bot run", "~drain bot", "~run bot", "~start the bot", "~launch the bot", "bots:run"]},
+    "SCHEDULE": {"weight": 4, "keywords": ["schedule a bot", "pause the bot", "resume the bot", "enable the bot", "disable the bot", "bots schedule", "bot schedule", "launchd bot", "bot on a schedule", "cron bot", "pause the nightly-digest bot", "schedule for the nightly-digest bot", "bot on a launchd", "~bot schedule", "~pause bot", "~resume bot", "~enable bot", "~disable bot", "bots:schedule"]},
+    "STATUS":   {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot inbox", "bots inbox", "what do the bots need from me", "bot runs", "bot needs-you", "bot needs me", "status of my bots", "needs-you inbox", "bot's schedule needs", "bots:status"]},
 }
 
 RESOURCE_MAP = {
@@ -77,6 +77,8 @@ RESOURCE_MAP = {
 - One dominant intent routes to one leaf set.
 - Two near-tied intents, such as a request to schedule a bot and show its status, route to both leaf sets in `hub-router.json` tie-break order: status, author, schedule, run.
 - No keyword match is the hub's defer fallback: confirm the bot mode before loading anything.
+- A keyword that starts with `~` lists whole words that must appear in order, each at most three words after the one before, so `~pause bot` matches "pause the triage bot" but not "pause the robot". A hyphenated name such as `release-notes` counts as one word, and so does a word with an apostrophe inside it, such as "michel's". A possessive "'s" is dropped, so `~bot schedule` matches "the bot's schedule" but not "the robot's schedule". Ordered keywords count only when no contiguous keyword matched any mode, and they never reach the advisor, because the intent-signal generator carries only phrases that start with a letter or digit.
+- Ordered keywords also stay out of a prompt that holds one of the `orderedKeywordBlockers` in `hub-router.json`: "authoring", "building", "creating" and "writing". A request to write a bot uses the same verb and noun as a request to run one, so "start writing the bot" defers instead of reaching the run mode, which starts an executor. "build", "write" and "create" are not listed, because "the build bot" names a bot and "run the triage bot to write a summary" asks for a run.
 
 ---
 

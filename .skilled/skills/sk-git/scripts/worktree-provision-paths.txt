@@ -52,6 +52,11 @@
 # The deep-loop runtime, which the fan-out runner needs.
 .skilled/skills/system-deep-loop/runtime
 
+# The bots runtime. The bots CLI loads its TypeScript through tsx and keeps its
+# state in better-sqlite3, and it imports the deep-loop runtime libraries, so it
+# installs after them.
+.skilled/skills/system-skilled-bots/runtime
+
 # sk-doc. A conformance check copies a real skill hub into a temporary
 # directory; in a provisioned checkout the copy carries these dependencies with
 # it, and without them the check fails on a hub that is correct.

@@ -1,0 +1,122 @@
+name: Bots Runtime Tests
+
+# The bots runtime suites and the post-commit enqueue harness ran only on a
+# developer's machine, so a broken runner, queue or installer could reach main
+# with no check failing. The runtime imports the deep-loop ledger and executor
+# libraries, so a change there runs these suites too.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/skills/system-skilled-bots/**'
+      - '.opencode/skills/system-skilled-bots/**'
+      - '.skilled/skills/system-deep-loop/runtime/lib/**'
+      - '.opencode/skills/system-deep-loop/runtime/lib/**'
+      - '.skilled/skills/system-deep-loop/runtime/scripts/lib/**'
+      - '.opencode/skills/system-deep-loop/runtime/scripts/lib/**'
+      - '.skilled/skills/system-deep-loop/package*.json'
+      - '.opencode/skills/system-deep-loop/package*.json'
+      - '.skilled/skills/system-deep-loop/runtime/package*.json'
+      - '.opencode/skills/system-deep-loop/runtime/package*.json'
+      - '.skilled/skills/system-spec-kit/package*.json'
+      - '.opencode/skills/system-spec-kit/package*.json'
+      - '.skilled/skills/system-spec-kit/shared/**'
+      - '.opencode/skills/system-spec-kit/shared/**'
+      - '.skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs'
+      - '.opencode/skills/sk-code/shared/scripts/lib/repository-identity.cjs'
+      - '.skilled/hooks/shared/hook-flags.sh'
+      - '.opencode/hooks/shared/hook-flags.sh'
+      - '.skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh'
+      - '.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh'
+      - '.skilled/scripts/git-hooks/post-commit'
+      - '.opencode/scripts/git-hooks/post-commit'
+      - '.skilled/bin/bots.cjs'
+      - '.opencode/bin/bots.cjs'
+      - '.github/workflows/bots-runtime.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/skills/system-skilled-bots/**'
+      - '.opencode/skills/system-skilled-bots/**'
+      - '.skilled/skills/system-deep-loop/runtime/lib/**'
+      - '.opencode/skills/system-deep-loop/runtime/lib/**'
+      - '.skilled/skills/system-deep-loop/runtime/scripts/lib/**'
+      - '.opencode/skills/system-deep-loop/runtime/scripts/lib/**'
+      - '.skilled/skills/system-deep-loop/package*.json'
+      - '.opencode/skills/system-deep-loop/package*.json'
+      - '.skilled/skills/system-deep-loop/runtime/package*.json'
+      - '.opencode/skills/system-deep-loop/runtime/package*.json'
+      - '.skilled/skills/system-spec-kit/package*.json'
+      - '.opencode/skills/system-spec-kit/package*.json'
+      - '.skilled/skills/system-spec-kit/shared/**'
+      - '.opencode/skills/system-spec-kit/shared/**'
+      - '.skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs'
+      - '.opencode/skills/sk-code/shared/scripts/lib/repository-identity.cjs'
+      - '.skilled/hooks/shared/hook-flags.sh'
+      - '.opencode/hooks/shared/hook-flags.sh'
+      - '.skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh'
+      - '.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh'
+      - '.skilled/scripts/git-hooks/post-commit'
+      - '.opencode/scripts/git-hooks/post-commit'
+      - '.skilled/bin/bots.cjs'
+      - '.opencode/bin/bots.cjs'
+      - '.github/workflows/bots-runtime.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  bots-runtime:
+    name: Bots runtime vitest suites and post-commit harness
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    # Bots run only on macOS: the scheduler is launchd and desktop delivery is
+    # osascript. The suites stub both, but the runner's process and path handling
+    # is only proven on the platform it ships for.
+    runs-on: macos-latest
+    # One local run of the suite takes about 65 seconds. The four installs take
+    # most of the job, so the limit leaves room for a cold npm cache.
+    timeout-minutes: 20
+    steps:
+      # No suite in this job reads loop state, so the checkout skips the research, review,
+      # scratch and archive folders under specs/.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/specs/**/research/
+            !/specs/**/review/
+            !/specs/**/scratch/
+            !/specs/**/z_archive/
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # The bots runtime imports deep-loop runtime modules, which resolve their own
+      # packages and link @spec-kit/shared by path. The typecheck uses the spec-kit
+      # workspace's tsc, so that workspace is installed first.
+      - name: Install the bots runtime and the runtimes it imports
+        run: |
+          set -euo pipefail
+          npm --prefix .skilled/skills/system-spec-kit ci
+          ( cd .skilled/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .skilled/skills/system-deep-loop ci
+          npm --prefix .skilled/skills/system-deep-loop/runtime ci
+          npm --prefix .skilled/skills/system-skilled-bots/runtime ci
+
+      - name: Typecheck the bots runtime
+        run: npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck
+
+      - name: Run the bots runtime suites
+        run: npm --prefix .skilled/skills/system-skilled-bots/runtime test
+
+      - name: Run the post-commit enqueue harness
+        run: bash .skilled/skills/system-skilled-bots/runtime/tests/post-commit-leg.test.sh

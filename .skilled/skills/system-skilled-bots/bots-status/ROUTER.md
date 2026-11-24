@@ -6,7 +6,7 @@ trigger_phrases:
   - "bots-status routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -37,8 +37,8 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`STATUS`** fires on bot status, bots status, last bot run, which bots are installed and bot runs at weight 4. It loads `references/status-and-inbox.md`.
-- **`INBOX`** fires on bot inbox, bots inbox, what do the bots need from me, bot needs-you, open needs-you items and bot needs me at weight 4. It loads `references/status-and-inbox.md`.
+- **`STATUS`** fires on bot status, bots status, last bot run, which bots are installed, bot runs and bot's schedule needs at weight 4. It loads `references/status-and-inbox.md`.
+- **`INBOX`** fires on bot inbox, bots inbox, needs-you inbox, what do the bots need from me, bot needs-you, open needs-you items and bot needs me at weight 4. It loads `references/status-and-inbox.md`.
 
 A request that fires no intent returns `UNKNOWN_FALLBACK` with the checklist below.
 
@@ -65,8 +65,8 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 ]
 
 INTENT_SIGNALS = {
-    "STATUS": {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot runs"]},
-    "INBOX": {"weight": 4, "keywords": ["bot inbox", "bots inbox", "what do the bots need from me", "bot needs-you", "open needs-you items", "bot needs me"]},
+    "STATUS": {"weight": 4, "keywords": ["bot status", "bots status", "last bot run", "which bots are installed", "bot runs", "bot's schedule needs"]},
+    "INBOX": {"weight": 4, "keywords": ["bot inbox", "bots inbox", "needs-you inbox", "what do the bots need from me", "bot needs-you", "open needs-you items", "bot needs me"]},
 }
 
 RESOURCE_MAP = {

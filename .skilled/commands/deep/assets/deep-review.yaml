@@ -1775,7 +1775,7 @@ workflow:
             - "buildLineageCommand returns empty input, so stdin is closed (EOF), equivalent to </dev/null"
             - "buildLineageCommand receives the route-proof preamble + iteration body as its message"
             - "buildLineageCommand passes reasoningEffort as the #effort suffix on the -m model"
-            - "buildLineageCommand resolves an OpenCode 2 binary and refuses any other major; it always adds --auto, adds an inline OPENCODE_CONFIG_CONTENT external_directory deny under sandboxMode workspace-write (the default when unset; file tools only, Bash is not confined), and refuses read-only"
+            - "buildLineageCommand resolves an OpenCode 2 binary and refuses any other major; it always adds --auto, adds an inline OPENCODE_CONFIG_CONTENT external_directory deny under sandboxMode workspace-write (the default when unset; file tools only, Bash is not confined), and under read-only adds --agent build with an inline config that allows only read, grep, glob and list, refusing the lineage only when opencode debug agents --standalone shows a non-read action left open"
             - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |

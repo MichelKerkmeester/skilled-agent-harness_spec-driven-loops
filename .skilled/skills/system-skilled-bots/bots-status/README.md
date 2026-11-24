@@ -1,7 +1,7 @@
 ---
 title: "bots-status"
 description: "Status mode of system-skilled-bots: read installed bots, last runs and deliveries, and the needs-you inbox. Read-only."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # bots-status
@@ -56,17 +56,7 @@ A row can report a missing checkout, a changed runner path that needs a reinstal
 
 ---
 
-## 5. RELATED
-
-- [`SKILL.md`](./SKILL.md): the status workflow, its rules and its success criteria.
-- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
-- [`references/status-and-inbox.md`](./references/status-and-inbox.md): the status verbs and their contract.
-- [`../README.md`](../README.md): the hub overview with all four modes.
-- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
-
----
-
-## 6. FILES
+## 5. FILES
 
 - `SKILL.md`: the status workflow, its rules and its success criteria.
 - `ROUTER.md`: the packet machine router.
@@ -75,7 +65,7 @@ A row can report a missing checkout, a changed runner path that needs a reinstal
 
 ---
 
-## 7. VERIFICATION
+## 6. VERIFICATION
 
 The hub's structural gate verifies the packet's shape:
 
@@ -84,3 +74,13 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sys
 ```
 
 The run passes when it ends with `OK: parent-skill-check`. A routing replay with a real status request confirms the hub selects this mode, because the structural gate asserts presence and never reachability.
+
+---
+
+## 7. RELATED
+
+- [`SKILL.md`](./SKILL.md): the status workflow, its rules and its success criteria.
+- [`ROUTER.md`](./ROUTER.md): this packet's machine router.
+- [`references/status-and-inbox.md`](./references/status-and-inbox.md): the status verbs and their contract.
+- [`../README.md`](../README.md): the hub overview with all four modes.
+- [`../mode-registry.json`](../mode-registry.json): the packet registration this mode resolves through.
