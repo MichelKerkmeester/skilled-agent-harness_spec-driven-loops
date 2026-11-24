@@ -9,20 +9,28 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof"
-    last_updated_at: "2026-11-24T10:00:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Completed phase 4: regeneration-and-zero-reference-proof"
-    next_safe_action: "Operator review, then commit and merge the worktree branch"
+    last_updated_at: "2026-11-24T14:46:10Z"
+    last_updated_by: "generate-context"
+    recent_action: "Recorded why the cite-drift rows stay"
+    next_safe_action: "None; phase complete"
+    packet_purpose: "Purpose: Regenerate every derived layer from its source and prove nothing live still names cli-orca."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:7c3806d75b4ff0faa21bffc3601dc406995b62a80c4cfa373de9f6ae01b72904"
       session_id: "cli-orca-deprecation-004-regeneration-and-zero-reference-proof"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
+      workspace: "/Users/michelkerkmeester/worktrees/public/538-orca-labels-graph-provision"
+      savedAt: "2026-11-24T14:46:10Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
-    answered_questions:
-      - "Remove cli-orca completely, including its changelog folder"
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
@@ -105,6 +113,7 @@ I ran this phase directly with each artifact's own tool: the graph compiler, the
 
 1. One compiled-route test fails because two served files differ from their authored copies at HEAD. Neither file is touched here.
 2. The README manifest check still reports three sk-code benchmark directories that predate this packet.
+3. The cite-drift label rows live-02, live-09 and live-16 still name the deleted cli-orca benchmark report. They stay by the phase 1 keep decision: each is read at its pinned commit `ebcc68e8`, where the report exists, and removing them would drop the set below the scan's 40-row label gate. No remote branch or tag contains `ebcc68e8`, so a fresh clone cannot read any of the 40 rows. That risk covers the whole label set, not only these three.
 <!-- /ANCHOR:limitations -->
 
 ---

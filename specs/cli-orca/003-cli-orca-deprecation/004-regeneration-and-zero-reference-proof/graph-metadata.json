@@ -12,7 +12,8 @@
   "derived": {
     "trigger_phrases": [
       "cli orca removal regeneration",
-      "cli orca zero reference proof"
+      "cli orca zero reference proof",
+      "004-regeneration-and-zero-reference-proof operator decisions"
     ],
     "key_topics": [
       "cli",
@@ -22,11 +23,11 @@
       "zero",
       "reference",
       "proof",
+      "004-regeneration-and-zero-reference-proof",
+      "operator",
+      "decisions",
       "source",
-      "edits",
-      "advisor",
-      "graph",
-      "still"
+      "edits"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -35,6 +36,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -65,6 +67,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -180,33 +188,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After the source edits, the advisor graph still counted 15 skills, the trigger index and README fixtures still listed the skill's paths, the advisor dist was stale, and the mcp-tooling hub fell back to legacy routing because its policy hash changed",
     "created_at": "2026-11-24T09:02:13Z",
-    "last_save_at": "2026-11-24T09:40:26.081Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-24T14:46:10.957Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4dbd22fb4a204e263a9d1458cbf089e92cb999fd595ecece0afc1aa83e3a9c65",
+    "source_fingerprint": "sha256:3f364a3d953b09384428813c078c9d05fcccf3f7fd6336f10d3a4a3acaf1c063",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4b1f0c99feae068aa9a2c4aa6153cd6d5acf8a9b718548ec4713aab9bb5ef92f",
       "plan.md": "b88a17b83e0cc62e8f337b8372a4ea5f842f54a19e4f3f0fa07d594366741fb9",
       "tasks.md": "e7d4c519b8626dd62341656dc07f1df8c96af6b511c43ed997996340f0b8d3e7",
-      "implementation-summary.md": "d36e5e7960f24e70a510a8e1066a40947b2d32180afb908de9f46cab85d25fe4"
+      "decision-record.md": "2ea4b9681544ba285aaa050c4bd848a841bd2d6dce384720be285d4214ceb0c9",
+      "implementation-summary.md": "bc93fe0da89226ba89af98b068a2495803c6d2c55914e7a44e7ffe236ddf89a5"
     },
     "last_active_at": null
   }
