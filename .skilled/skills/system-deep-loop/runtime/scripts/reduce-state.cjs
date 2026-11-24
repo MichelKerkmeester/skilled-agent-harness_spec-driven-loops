@@ -220,6 +220,16 @@ function extractSection(markdown, heading) {
   return match ? match[1].trim() : '';
 }
 
+// A review iteration ends with its mandatory `Review verdict: <X>` self-report line,
+// which has no heading of its own and therefore falls inside whatever section the
+// file closed with. That verdict describes the iteration that just finished, not the
+// work the next one should do, so a section carrying it ends where the verdict begins.
+function stripReviewVerdict(sectionText) {
+  const lines = String(sectionText || '').split('\n');
+  const verdictAt = lines.findIndex((line) => /^review verdict\s*:/i.test(line.trim()));
+  return (verdictAt === -1 ? lines : lines.slice(0, verdictAt)).join('\n').trim();
+}
+
 function extractSubsection(sectionText, subheading) {
   const pattern = new RegExp(`(?:^|\\n)###\\s+${escapeRegExp(subheading)}[^\\n]*\\n([\\s\\S]*?)(?=\\n###\\s|\\n##\\s|$)`, 'i');
   const match = sectionText.match(pattern);
@@ -366,7 +376,13 @@ function parseIterationFile(iterationPath) {
   // traceabilityChecks rollup already owns. Only an explicit Dead Ends section
   // names a direction the review ruled out.
   const deadEndsSection = extractSection(markdown, 'Dead Ends');
-  const nextFocusSection = extractSection(markdown, 'Recommended Next Focus') || extractSection(markdown, 'Next Focus (recommendation)') || extractSection(markdown, 'Next Focus');
+  // The focus block is the one section a later run reads back as its own work, so it
+  // keeps the lines it was authored in rather than being flattened into a sentence.
+  const nextFocusSection = stripReviewVerdict(
+    extractSection(markdown, 'Recommended Next Focus')
+      || extractSection(markdown, 'Next Focus (recommendation)')
+      || extractSection(markdown, 'Next Focus'),
+  );
   const assessmentSection = extractSection(markdown, 'Assessment');
   const filesReviewedSection = extractSection(markdown, 'Files Reviewed');
 
@@ -390,7 +406,7 @@ function parseIterationFile(iterationPath) {
     findings,
     ruledOut: extractListItems(ruledOutSection),
     deadEnds: extractListItems(deadEndsSection),
-    nextFocus: normalizeText(nextFocusSection),
+    nextFocus: nextFocusSection,
     dimensionsAddressed: dimensionsAddressed
       ? dimensionsAddressed.split(/[,;]/).map((value) => normalizeText(value).toLowerCase()).filter(Boolean)
       : [],
@@ -2514,10 +2530,12 @@ function upsertHeadingSectionBefore(content, heading, body, beforeHeading, optio
 }
 
 // A free-text leaf focus must not hide a required dimension the run has not covered yet.
+// The leaf is a whole focus block, so the dimension check reads it as one line while
+// the block itself is returned as authored.
 function pickReviewBaseFocus(iterationFiles, registry) {
   const leafFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1) || '';
   const uncovered = Object.keys(registry.dimensionCoverage).filter((dimension) => !registry.dimensionCoverage[dimension]);
-  const leafKey = String(leafFocus).toLowerCase().trim();
+  const leafKey = normalizeText(leafFocus).toLowerCase();
   if (leafFocus && (uncovered.length === 0 || uncovered.some((dimension) => leafKey.includes(dimension)))) {
     return leafFocus;
   }

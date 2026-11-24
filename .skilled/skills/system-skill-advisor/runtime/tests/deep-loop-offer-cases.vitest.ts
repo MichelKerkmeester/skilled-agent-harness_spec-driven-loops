@@ -14,32 +14,73 @@ import { describe, expect, it } from 'vitest';
 
 import { attachTypedCommand } from '../handlers/advisor-recommend.js';
 import {
+  COMMAND_AS_DOCUMENT,
   COMMAND_ASK_LEAD_WORDS,
+  COMMAND_ASK_TARGET,
+  COMMAND_BARE_ASK_LEAD,
+  COMMAND_CLAUSE_END,
   COMMAND_DECLINE_LEAD_WORDS,
+  COMMAND_GAP_WORDS,
+  COMMAND_NOT_WORD,
+  COMMAND_OR_LIST,
+  COMMAND_USE_VERB,
+  COUNT_AS_SUBJECT,
+  COUNT_NOUN,
   COUNT_WORDS,
   DEFECT_CHECK_NOUNS,
   DEFECT_CHECK_VERBS,
+  HYPHEN_COUNT,
+  HYPHEN_COUNT_MEASURES_LOOP,
+  ITERATIONS_OF_SUBJECT,
+  ITERATION_COUNT,
+  ITERATIVE_ACTIVITY,
+  ITERATIVE_ASK,
   ITERATIVE_VERBS,
   LEAD_WINDOW,
   LOOP_ARTIFACT_NOUNS,
+  LOOP_ASK_REFUSED_AFTER,
+  LOOP_CONTINUE_VERB,
+  LOOP_COUNT,
+  LOOP_COUNT_LEAD,
   LOOP_EFFORT_CHANGE_VERBS,
+  LOOP_EFFORT_COPULA,
+  LOOP_EFFORT_INTENSIFIER,
   LOOP_EFFORT_LEADS,
   LOOP_EFFORT_WORDS,
   LOOP_NAMES,
+  LOOP_OBJECT_GAP,
   LOOP_QUESTION_AUXILIARIES,
+  LOOP_RUN_BY_PRONOUN,
+  LOOP_RUN_REQUESTED,
+  LOOP_RUN_SUBJECT,
   LOOP_RUN_SYMPTOMS,
+  LOOP_SUBJECT,
   LOOP_WANT_LEADS,
   LOOP_WORDING,
   MODE_COMMANDS,
   MODE_CUES,
   MODE_CUE_WORDS,
   MODE_SUFFIXES,
+  MULTI_PASS,
   NAMED_LOOP_MODE,
+  NO_EDIT_REQUEST,
+  PASS_GAP,
+  PASS_NOUN,
+  PAST_RUN_OUTPUT,
   PAST_RUN_READ_VERBS,
   READ_ONLY_LOOP_MODES,
+  RERUN_MARKER,
   RERUN_PRONOUNS,
+  RUN_ASK_REFUSAL_CANCEL_LEADS,
+  RUN_ASK_REFUSAL_GAP,
   RUN_ASK_REFUSAL_LEADS,
+  RUN_ASK_REFUSAL_VERBS,
+  RUN_COMMAND_WITHDRAWN,
+  RUN_CONTINUED,
+  RUN_REFUSED,
+  RUN_REPORTED_AFTER,
   TRACKED_COMMANDS,
+  WRITING_ABOUT_TOPIC,
   asksForLoopRun,
   attachCommand,
   isNoEditRequest,
@@ -100,6 +141,8 @@ const VOCABULARY_PAIRS: readonly (readonly [string, string, readonly string[]])[
   ['COMMAND_DECLINE_LEAD_WORDS', '_COMMAND_DECLINE_LEAD_LIST', COMMAND_DECLINE_LEAD_WORDS],
   ['COMMAND_ASK_LEAD_WORDS', '_COMMAND_ASK_LEAD_LIST', COMMAND_ASK_LEAD_WORDS],
   ['RUN_ASK_REFUSAL_LEADS', '_RUN_ASK_REFUSAL_LEAD_LIST', RUN_ASK_REFUSAL_LEADS],
+  ['RUN_ASK_REFUSAL_CANCEL_LEADS', '_RUN_ASK_REFUSAL_CANCEL_LEAD_LIST', RUN_ASK_REFUSAL_CANCEL_LEADS],
+  ['RUN_ASK_REFUSAL_VERBS', '_RUN_ASK_REFUSAL_VERB_LIST', RUN_ASK_REFUSAL_VERBS],
 ];
 
 // Two numbers are spelled on both sides too: the window a lead is read inside
@@ -423,25 +466,182 @@ describe('deep-loop offer cases shared with the Python fallback', () => {
   it.each(Object.entries(EXCEPTION_GRAMMAR_CASES))('carries a case for a %s', (_shape, ids) => {
     for (const id of ids) expect(cases.some((entry) => entry.id === id), id).toBe(true);
   });
+
+  // A negation the prompt puts directly before a refusal word cancels it, so the
+  // loop phrase after it asks for the run. The shape is spelled here rather than
+  // imported, so a word that stops being cancellable fails this guard as well as
+  // the case that carries it.
+  it.each(RUN_ASK_REFUSAL_VERBS)('has a case where a negation cancels the refusal "%s"', (verb) => {
+    const negations = RUN_ASK_REFUSAL_CANCEL_LEADS.map(escapeWord).join('|');
+    const shape = new RegExp(`\\b(?:${negations})\\s+(?:to\\s+)?${escapeWord(verb)}\\b`, 'i');
+    const used = cases.some((entry) => entry.asksForLoopRun && shape.test(entry.prompt));
+    expect(used, `no negated-refusal case cancels "${verb}"`).toBe(true);
+  });
+
+  // The two lists are views of the refusal leads, because a cancellation is only
+  // meaningful on a word the gate already reads as a refusal.
+  it('holds the cancellation vocabulary inside the refusal leads', () => {
+    const unknown = [...RUN_ASK_REFUSAL_CANCEL_LEADS, ...RUN_ASK_REFUSAL_VERBS]
+      .filter((word) => !RUN_ASK_REFUSAL_LEADS.includes(word));
+    expect(unknown, 'every cancellation word is a refusal lead').toEqual([]);
+  });
 });
 
-// A pattern carries grammar that no word list holds, and the named-mode pattern
-// is the one the gate reads before the cue words: a unit lost in one copy moves
-// the mode a counted ask serves, as in "run 5 research iterations on review
-// tooling". The two copies spell this pattern in one syntax, so the source is
-// compared as written rather than re-derived from a behaviour the case list
-// would have to keep inventing.
+// A pattern is the grammar no word list holds: the bound between a verb and its
+// object, the count a lookbehind reads, the anchor a lead is matched against. The
+// native gate and the fallback spell each of those in their own source, so a bound
+// changed on one side alone leaves both suites green on every case that never
+// exercises it. Each pair below is therefore read back out of the fallback's source
+// and compared with the native pattern.
+//
+// The fallback spells a long pattern over several source lines, because Python caps
+// how long a line may be, and that break is typing rather than grammar: the reader
+// joins the raw literals of one assignment before the comparison. A pattern the
+// fallback builds by concatenating a variable is not spelled anywhere, so the reader
+// answers undefined rather than a shortened pattern, and that pair is carried by one
+// of the tables below instead of slipping past this one as a prefix.
 const PATTERN_PAIRS: readonly (readonly [string, RegExp])[] = [
   ['_NAMED_LOOP_MODE_RE', NAMED_LOOP_MODE],
+  ['_RUN_CONTINUED_RE', RUN_CONTINUED],
+  ['_LOOP_DIGIT_COUNT_RE', ITERATION_COUNT],
+  ['_LOOP_RUN_BY_PRONOUN_RE', LOOP_RUN_BY_PRONOUN],
+  ['_LOOP_RUN_SUBJECT_RE', LOOP_RUN_SUBJECT],
+  ['_LOOP_RUN_REQUESTED_RE', LOOP_RUN_REQUESTED],
+  ['_PAST_RUN_OUTPUT_RE', PAST_RUN_OUTPUT],
+  ['_WRITING_ABOUT_TOPIC_RE', WRITING_ABOUT_TOPIC],
+  ['_RUN_REFUSED_RE', RUN_REFUSED],
+  ['_NO_EDIT_RE', NO_EDIT_REQUEST],
+  ['_CMD_CLAUSE_SPLIT_RE', COMMAND_CLAUSE_END],
+  ['_CMD_RUN_WITHDRAWN_RE', RUN_COMMAND_WITHDRAWN],
 ];
 
-// The pattern is the first raw literal a compiled name is given, which is how
-// every pattern in the fallback is spelled. A name that moves or stops being a
-// raw literal answers undefined and fails the parity test instead of comparing
-// as an empty pattern.
+// The two engines reach a position rather than spell it: Python matches from an
+// index and writes `\Z` for the end of the text, where the native copy writes `^`
+// and `$`. That token is the only part of these pairs the engines force apart, so it
+// is folded to one spelling and the rest of each pair is compared as written. The
+// fold is narrow on purpose: it can hide a change to the anchor and nothing else.
+const ANCHORED_PATTERN_PAIRS: readonly (readonly [string, RegExp])[] = [
+  ['_RUN_REPORTED_AFTER_RE', RUN_REPORTED_AFTER],
+  ['_HYPHEN_COUNT_RE', HYPHEN_COUNT],
+  ['_HYPHEN_COUNT_MEASURES_LOOP_RE', HYPHEN_COUNT_MEASURES_LOOP],
+  ['_COUNT_NOUN_RE', COUNT_NOUN],
+  ['_ITERATIONS_OF_SUBJECT_RE', ITERATIONS_OF_SUBJECT],
+  ['_COUNT_AS_SUBJECT_RE', COUNT_AS_SUBJECT],
+  ['_LOOP_ASK_REFUSED_AFTER_RE', LOOP_ASK_REFUSED_AFTER],
+  ['_CMD_AS_DOCUMENT_RE', COMMAND_AS_DOCUMENT],
+];
+
+// A fragment is pattern source rather than a compiled pattern: both gates paste it
+// into the patterns above, so its bound sits inside a string that no compiled object
+// exposes.
+const FRAGMENT_PAIRS: readonly (readonly [string, string])[] = [
+  ['_LOOP_PASS_GAP', PASS_GAP],
+  ['_LOOP_PASS_NOUN', PASS_NOUN],
+  ['_ITERATIVE_ACTIVITY', ITERATIVE_ACTIVITY],
+  ['_LOOP_CONTINUE_VERB', LOOP_CONTINUE_VERB],
+  ['_LOOP_OBJECT_GAP', LOOP_OBJECT_GAP],
+  ['_LOOP_EFFORT_COPULA', LOOP_EFFORT_COPULA],
+  ['_LOOP_EFFORT_INTENSIFIER', LOOP_EFFORT_INTENSIFIER],
+  ['_RERUN_MARKER', RERUN_MARKER],
+  ['_LOOP_SUBJECT', LOOP_SUBJECT],
+  ['_LOOP_USE_VERB', COMMAND_USE_VERB],
+  ['_CMD_USE_VERB', COMMAND_USE_VERB],
+  ['_CMD_GAP_WORDS', COMMAND_GAP_WORDS],
+  ['_CMD_NOT_WORD', COMMAND_NOT_WORD],
+  ['_CMD_OR_LIST', COMMAND_OR_LIST],
+  ['_CMD_ASK_TARGET', COMMAND_ASK_TARGET],
+  ['_CMD_BARE_ASK_LEAD', COMMAND_BARE_ASK_LEAD],
+];
+
+// Four of the fragments are built in code on both sides, so neither source holds the
+// whole pattern. The count each one pastes in is still a number both copies have to
+// agree on, so it is looked for in the native source and in the fallback's own
+// assignment: a bound widened on one side fails here even where no case reaches it.
+const QUANTIFIER_PAIRS: readonly (readonly [string, string, string])[] = [
+  ['_ITERATIVE_ASK', ITERATIVE_ASK.source, '{0,6}?'],
+  ['_LOOP_COUNT', LOOP_COUNT.source, '{0,2}?'],
+  ['_LOOP_COUNT_LEAD', LOOP_COUNT_LEAD, '{2,}'],
+  ['_RUN_ASK_REFUSAL_GAP', RUN_ASK_REFUSAL_GAP, '{0,2}'],
+];
+
+// Everything else is built in code on both sides, or is grammar one engine spells
+// and the other expresses some other way. Each entry says why it cannot be compared,
+// and the last test in this block reads the fallback's gate for compiled names, so a
+// pattern that appears in none of these tables fails rather than going uncovered.
+const PATTERNS_NOT_COMPARED: readonly (readonly [string, string])[] = [
+  ['_LOOP_PASSES_ASK_RE', 'one alternation of the iterative ask, the multi-pass grammar and the count, each read in its own row'],
+  ['_LOOP_REQUEST_RE', 'one alternation of the object gap, the use, continue and want forms and the three ask patterns, each read in its own row'],
+  ['_LOOP_EDIT_LEAD_RE', 'the edit verbs pasted in front of the object gap, which is compared whole in its own row'],
+  ['_LOOP_EFFORT_LEAD_RE', 'the effort verbs, compared as a vocabulary pair, pasted in front of the object gap, compared in its own row'],
+  ['_LOOP_EFFORT_CHANGE_LEAD_RE', 'the change verbs, compared as a vocabulary pair, pasted in front of the object gap, compared in its own row'],
+  ['_LOOP_ARTIFACT_AFTER_RE', 'the artifact nouns, compared as a vocabulary pair, pasted in behind their possessive'],
+  ['_LOOP_EFFORT_AFTER_RE', 'the copula, the intensifier and the effort word pasted together, the first two compared in their own rows'],
+  ['_LOOP_EFFORT_COMPLEMENT_AFTER_RE', 'the intensifier and the effort word pasted together, the intensifier compared in its own row'],
+  ['_LOOP_RUN_SYMPTOM_RE', 'the negation is one alternation of lookbehinds natively and one fixed-width lookbehind per word in Python'],
+  ['_PRONOUN_RERUN_ASK_RE', 'the rerun pronouns pasted between the verbs, compared as a vocabulary pair'],
+  ['_PAST_RUN_READ_VERB_RE', 'the read verbs pasted into one alternation, compared as a vocabulary pair'],
+  ['_LOOP_QUESTION_RE', 'the question auxiliaries and the loop subject pasted together, both compared in their own rows'],
+  ['_LOOP_HOW_TO_QUESTION_RE', 'the question auxiliaries and the loop subject pasted together, both compared in their own rows'],
+  ['_COUNTED_RUN_ASK_RE', 'a use verb pasted in front of the count grammar, which is read in its own row'],
+  ['_EXPLICIT_RUN_ASK_RE', 'one alternation of the three run-ask patterns it joins, each read in its own row'],
+  ['_TYPED_DEEP_COMMAND_RE', 'the mode suffixes pasted into a command shape; the native gate reads its command tables rather than one pattern'],
+  ['_RUN_ASK_NEGATED_RE', 'the refusal vocabulary pasted into a lead alternation on both sides, compared as a vocabulary pair'],
+  ['_RUN_ASK_REFUSAL_CANCELLED_RE', 'the refusal vocabulary pasted into a lead alternation on both sides, compared as a vocabulary pair'],
+  ['_CMD_ASKED_BY_PRONOUN_RE', 'the shared command use verb pasted into a clause shape, compared in its own row'],
+  ['_CMD_DECLINED_BY_PRONOUN_RE', 'the shared command use verb pasted into a clause shape, compared in its own row'],
+  ['_SENTENCE_END_RE', 'the native gate writes this class inline rather than naming it, so there is no pattern to read back'],
+  ['_QUESTION_MARK_RE', 'the native gate reads the question mark inline rather than naming it, so there is no pattern to read back'],
+  ['_TYPED_DOCTOR_RE', 'the native gate reads the doctor from its command table rather than from one pattern'],
+  ['_DEFECT_CHECK_PATTERN', 'the check verbs and nouns pasted together, both compared as vocabulary pairs'],
+  ['_MODE_CUE_PATTERNS', 'one cue pattern per mode, built from the cue word lists, compared as vocabulary pairs'],
+  ['_LOOP_MULTI_PASS', 'the pass gap and the pass noun pasted together, the gap compared in its own row'],
+  ['_LOOP_COUNT_WORDS', 'the count words pasted into one alternation, compared as a vocabulary pair'],
+  ['_LOOP_COUNT_BACK_POINTER', 'one lookbehind per back-pointer word, spelled as a comprehension rather than a pattern'],
+  ['_ITERATIVE_VERB', 'the iterative verbs pasted into one alternation, compared as a vocabulary pair'],
+  ['_LOOP_NAME', 'the loop names pasted into one alternation, compared as a vocabulary pair'],
+  ['_LOOP_WANT_LEAD', 'the want leads pasted into one alternation, compared as a vocabulary pair'],
+  ['_LOOP_EFFORT_WORD', 'the effort words pasted into one alternation, compared as a vocabulary pair'],
+  ['_RERUN_PRONOUN', 'the rerun pronouns pasted into one alternation, compared as a vocabulary pair'],
+  ['_LOOP_QUESTION_AUX', 'the question auxiliaries pasted into one alternation, compared as a vocabulary pair'],
+  ['_CMD_DECLINE_LEADS', 'the decline leads, built from the two lead shapes whose words are compared as a vocabulary pair'],
+  ['_CMD_DECLINE_VERB_TAIL', 'the command use verb and the command gap pasted behind the lead, both compared in their own rows'],
+  ['_CMD_DECLINE_WORK_TAIL', 'the command use verb pasted into the work gap, compared in its own row'],
+  ['_CMD_ASK_LEADS', 'the ask leads, built from the two lead shapes whose words are compared as a vocabulary pair'],
+];
+
+// The statement a fallback name is assigned, from its own line to the line that
+// closes the assignment. A short assignment ends with its own line; a long one opens
+// a bracket there and closes it on a line of its own.
+function pythonAssignment(source: string, name: string): string | undefined {
+  const start = new RegExp(`^${name} = `, 'm').exec(source);
+  if (start === null) return undefined;
+  const rest = source.slice(start.index);
+  const lineEnd = rest.indexOf('\n');
+  const line = lineEnd === -1 ? rest : rest.slice(0, lineEnd);
+  if (!line.trimEnd().endsWith('(')) return line;
+  const close = /^\)$/m.exec(rest);
+  return close === null ? line : rest.slice(0, close.index + 1);
+}
+
+// The pattern a fallback name is given, with its raw literals joined: a raw literal's
+// value is its own source text, so the join is the pattern an engine is handed. A
+// name that moves, or that concatenates a variable, answers undefined, which fails
+// the pair it belongs to instead of comparing as a shorter pattern.
 function pythonPatternSource(source: string, name: string): string | undefined {
-  const literal = new RegExp(`^${name} = re\\.compile\\(\\s*\\n?\\s*r"([^"\\n]*)"`, 'm').exec(source);
-  return literal?.[1];
+  const assignment = pythonAssignment(source, name);
+  if (assignment === undefined) return undefined;
+  const text = assignment.replace(/#[^\n]*/g, '');
+  const literals = [...text.matchAll(/r?"((?:\\[\s\S]|[^"\\])*)"|r?'((?:\\[\s\S]|[^'\\])*)'/g)];
+  if (literals.length === 0) return undefined;
+  const residue = literals.reduce((left, match) => left.replace(match[0], ''), text)
+    .replace(new RegExp(`^${name} = `), '')
+    .replace(/re\.compile/g, '')
+    .replace(/[+()\s]/g, '');
+  return residue === '' ? literals.map((match) => match[1] ?? match[2]).join('') : undefined;
+}
+
+function unanchored(source: string): string {
+  return source.replace(/^\^/, '').replace(/\\Z/g, '$');
 }
 
 describe('deep-loop patterns shared with the Python fallback', () => {
@@ -451,6 +651,52 @@ describe('deep-loop patterns shared with the Python fallback', () => {
     const copied = pythonPatternSource(python, pythonName);
     expect(copied, `${pythonName} must spell the native pattern`).toBeDefined();
     expect(copied).toBe(pattern.source);
+  });
+
+  it.each(ANCHORED_PATTERN_PAIRS.map((pair) => pair as const))('%s spells the native pattern up to its anchor', (pythonName, pattern) => {
+    const copied = pythonPatternSource(python, pythonName);
+    expect(copied, `${pythonName} must spell the native pattern`).toBeDefined();
+    expect(unanchored(copied ?? '')).toBe(unanchored(pattern.source));
+  });
+
+  it.each(FRAGMENT_PAIRS.map((pair) => pair as const))('%s spells the native fragment', (pythonName, fragment) => {
+    const copied = pythonPatternSource(python, pythonName);
+    expect(copied, `${pythonName} must spell the native fragment`).toBeDefined();
+    expect(copied).toBe(fragment);
+  });
+
+  it.each(QUANTIFIER_PAIRS.map((pair) => pair as const))('%s pastes in the native count %s', (pythonName, nativeSource, count) => {
+    const statement = pythonAssignment(python, pythonName);
+    expect(statement, `${pythonName} must be assigned`).toBeDefined();
+    expect(nativeSource, `the native pattern must hold ${count}`).toContain(count);
+    expect(statement ?? '', `${pythonName} must hold ${count}`).toContain(count);
+  });
+
+  it.each(PATTERNS_NOT_COMPARED.map((pair) => pair as const))('%s carries the reason it cannot be compared', (_pythonName, reason) => {
+    expect(reason.length).toBeGreaterThan(0);
+  });
+
+  // The gate section is the stretch of the fallback that decides the loop's offer: it
+  // opens with the first fragment the cue pattern is built from and closes where the
+  // offer gate reads it. A marker that moves leaves the slice empty, which fails here
+  // rather than quietly checking nothing.
+  const gateOpen = python.indexOf('_DEFECT_CHECK_PATTERN = (');
+  const gateClose = python.indexOf('\ndef _apply_deep_loop_offer_gate(', gateOpen + 1);
+  const gate = gateOpen === -1 || gateClose === -1 ? '' : python.slice(gateOpen, gateClose);
+
+  it('compares or accounts for every pattern the fallback compiles in its gate', () => {
+    expect(gate, 'the gate section must be found').not.toBe('');
+    const compiled = [...gate.matchAll(/^(_[A-Z0-9_]+_RE) = re\.compile\(/gm)].map((match) => match[1]).sort();
+    expect(compiled.length).toBeGreaterThan(0);
+    const accounted = [
+      ...PATTERN_PAIRS.map(([name]) => name),
+      ...ANCHORED_PATTERN_PAIRS.map(([name]) => name),
+      ...PATTERNS_NOT_COMPARED.map(([name]) => name),
+    ];
+    // A name carried by two tables would be compared twice, or excused after being
+    // compared, so each one is accounted for exactly once.
+    expect(new Set(accounted).size).toBe(accounted.length);
+    expect(accounted.filter((name) => /_RE$/.test(name)).sort(), 'every compiled gate pattern is accounted for').toEqual(compiled);
   });
 });
 

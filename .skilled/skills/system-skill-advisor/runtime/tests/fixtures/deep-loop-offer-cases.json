@@ -135,6 +135,13 @@
     { "id": "refusal-verb-skip-to-control", "prompt": "skip straight to the deep review of the parser", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
     { "id": "refusal-verb-hesitate-control", "prompt": "don't hesitate to run a deep review", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
     { "id": "refusal-verb-forget-control", "prompt": "don't forget to run a deep review on the parser", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-refusal-do-not-skip", "prompt": "do not skip the deep review, run it properly", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-refusal-no-need-to-skip", "prompt": "there is no need to skip the deep review", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-refusal-dont-avoid", "prompt": "don't avoid deep research, do it thoroughly", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-refusal-never-skip", "prompt": "never skip the deep review on a risky change", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-refusal-do-not-refuse", "prompt": "do not refuse a deep review when I ask for one", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-refusal-control-skip", "prompt": "skip the deep review", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "negated-refusal-control-no-need-for", "prompt": "no need for a deep review", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
     { "id": "run-refused-stuck-dont-run", "prompt": "the deep research run is stuck. please don't run anything", "asksForLoopRun": false, "stuckRun": true, "writingAbout": false, "doctorWithheld": true },
     { "id": "run-refused-stuck-no-fix", "prompt": "my deep research run is stuck and I don't want a fix", "asksForLoopRun": false, "stuckRun": true, "writingAbout": false, "doctorWithheld": true },
     { "id": "run-refused-stuck-control", "prompt": "my deep research run is stuck", "asksForLoopRun": false, "stuckRun": true, "writingAbout": false, "doctorWithheld": false },
@@ -348,6 +355,11 @@
     { "id": "named-mode-research-iterations-topic", "prompt": "run 5 research iterations on review tooling", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "research" },
     { "id": "named-mode-review-iterations-topic", "prompt": "run 5 review iterations on research tooling", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
     { "id": "named-mode-research-passes-topic", "prompt": "run 5 research passes on review tooling", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "research" },
-    { "id": "named-mode-review-passes-topic", "prompt": "run 5 review passes on research tooling", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" }
+    { "id": "named-mode-review-passes-topic", "prompt": "run 5 review passes on research tooling", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "loop-wording-double-space", "prompt": "run a deep  review of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "loop-wording-tab", "prompt": "run a deep\treview of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "loop-wording-line-break", "prompt": "run a deep\nreview of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "loop-wording-nbsp", "prompt": "run a deep\u00a0review of the auth module", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false, "servedRun": "review" },
+    { "id": "loop-wording-artifact-double-space", "prompt": "open the deep  review config", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false }
   ]
 }

@@ -4657,6 +4657,32 @@ _RUN_ASK_REFUSAL_LEAD_LIST = (
     "refuse",
 )
 
+# A negation that governs a refusal word cancels it, because the two together want
+# the run the refusal word would have withheld: "do not skip the deep review" and
+# "there is no need to skip the deep review" both ask for the run. The negation
+# leads are data, one per line like the leads above, and they hold only the
+# negations: "instead of" and "without" name an alternative, so "instead of
+# skipping the deep review" still refuses the run.
+_RUN_ASK_REFUSAL_CANCEL_LEAD_LIST = (
+    "do not",
+    "don't",
+    "dont",
+    "never",
+    "no need to",
+    "need not",
+    "needn't",
+)
+
+# The words that name the refusal itself are data too, one per line, and a
+# negation standing directly before one of them cancels it. Only the plain form is
+# listed, because only it follows a negation: a reader who negates the refusal
+# says "do not skip", never "do not skipping".
+_RUN_ASK_REFUSAL_VERB_LIST = (
+    "skip",
+    "avoid",
+    "refuse",
+)
+
 # A mode suffix chains, as in `:auto:with-research`, so the alternation over
 # these words is the unit a typed command repeats.
 _MODE_SUFFIX_LIST = (
@@ -5070,7 +5096,17 @@ _DEEP_LOOP_RUN_ROW_IDS = frozenset(
 
 
 def _fold_quotes(text: str) -> str:
-    return text.lower().replace("‘", "'").replace("’", "'")
+    """The text every gate pattern reads: lowered, straight-quoted, one plain space per run.
+
+    A gate pattern is built from phrases joined by one plain space, and a prompt
+    arrives with whatever whitespace the keyboard or a paste put into it: a
+    second space, a tab, a line break or the non-breaking space a copy out of a
+    web page carries matches no phrase at all, which loses the command the reader
+    asked for. Collapsing every run of whitespace to that one plain space is what
+    keeps such a phrase a phrase. The prompt itself is never rewritten, so
+    anything that quotes it back keeps what the reader typed.
+    """
+    return re.sub(r"\s+", " ", text.lower().replace("‘", "'").replace("’", "'"))
 
 
 def _has_unrefused_pronoun_rerun(lower: str) -> bool:
@@ -5082,7 +5118,7 @@ def _has_unrefused_pronoun_rerun(lower: str) -> bool:
     return bool(
         _LOOP_RUN_SUBJECT_RE.search(lower)
         and any(
-            not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
+            not _run_ask_negated_at(lower, match.start())
             for match in _PRONOUN_RERUN_ASK_RE.finditer(lower)
         )
     )
@@ -5097,7 +5133,7 @@ def _has_unrefused_run_ask(lower: str) -> bool:
     as well.
     """
     return any(
-        not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
+        not _run_ask_negated_at(lower, match.start())
         for match in _LOOP_RUN_REQUESTED_RE.finditer(lower)
     ) or _has_unrefused_pronoun_rerun(lower)
 
@@ -5116,7 +5152,7 @@ def is_stuck_run_complaint(text: str) -> bool:
         and _LOOP_RUN_SYMPTOM_RE.search(lower)
         and not _has_unrefused_run_ask(lower)
         and not any(
-            not _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
+            not _run_ask_negated_at(lower, match.start())
             for match in _COUNTED_RUN_ASK_RE.finditer(lower)
         )
     )
@@ -5162,11 +5198,24 @@ def _refusal_lead_source(lead: str) -> str:
 # about" is a lead of its own. A conjunction in the gap starts a new clause, as
 # in "skip it and deep review the parser", so the run the second clause names is
 # asked for.
+_RUN_ASK_REFUSAL_GAP = r"\s+(?:(?!(?:and|then|but|or)\s)[\w'-]+\s+){0,2}"
 _RUN_ASK_NEGATED_RE = re.compile(
     r"(?:\b(?:"
     + "|".join(_refusal_lead_source(lead) for lead in _RUN_ASK_REFUSAL_LEAD_LIST)
     + r"|(?:do not|don't|dont|never) even (?:think about|consider))"
-    r"\s+(?:(?!(?:and|then|but|or)\s)[\w'-]+\s+){0,2}|\bno\s+)\Z"
+    + _RUN_ASK_REFUSAL_GAP
+    + r"|\bno\s+)\Z"
+)
+
+# The same words that negate a run ask also negate a refusal word, and that
+# negation turns the refusal back into an ask, so the cancellation is read before
+# the negation above. A refusal word carries the grammar it carries as a lead, so
+# a skip that means "jump ahead" keeps asking for the run it names.
+_RUN_ASK_REFUSAL_CANCELLED_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(lead) for lead in _RUN_ASK_REFUSAL_CANCEL_LEAD_LIST) + r")"
+    + r"\s+(?:" + "|".join(_refusal_lead_source(verb) for verb in _RUN_ASK_REFUSAL_VERB_LIST) + r")"
+    + _RUN_ASK_REFUSAL_GAP
+    + r"\Z"
 )
 
 
@@ -5184,6 +5233,17 @@ _LEAD_WINDOW = 400
 def _ends_before(pattern: "re.Pattern[str]", text: str, end: int) -> bool:
     """True when the pattern matches inside the bounded window that ends at ``end``."""
     return pattern.search(text, max(0, end - _LEAD_WINDOW), end) is not None
+
+
+def _run_ask_negated_at(lower: str, start: int) -> bool:
+    """True when a refusal no negation cancels leads the phrase at ``start``.
+
+    A refusal word a negation governs is not a refusal, so it asks for the run its
+    phrase names, as in "do not skip the deep review".
+    """
+    return _ends_before(_RUN_ASK_NEGATED_RE, lower, start) and not _ends_before(
+        _RUN_ASK_REFUSAL_CANCELLED_RE, lower, start
+    )
 
 
 def _forward_search(text: str, pattern: "re.Pattern[str]"):
@@ -5211,7 +5271,7 @@ def _explicit_run_outranks(lower: str, reading_at: int) -> bool:
     # ask after it opens a clause of its own and every one before it does not.
     clause_mark: Optional[int] = None
     for match in _EXPLICIT_RUN_ASK_RE.finditer(lower):
-        if _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start()):
+        if _run_ask_negated_at(lower, match.start()):
             continue
         if match.start() < reading_at:
             return True
@@ -5291,7 +5351,7 @@ def _has_loop_ask(lower: str) -> bool:
     again".
     """
     for match in _LOOP_REQUEST_RE.finditer(lower):
-        if _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start()) or _LOOP_ASK_REFUSED_AFTER_RE.match(lower, match.end()):
+        if _run_ask_negated_at(lower, match.start()) or _LOOP_ASK_REFUSED_AFTER_RE.match(lower, match.end()):
             continue
         if _names_loop_subject(match.group(0), lower, match.start(), match.end()):
             continue
@@ -5329,7 +5389,7 @@ def _loop_ask_cues(lower: str) -> Tuple[str, Set[str]]:
     text = lower
     for match in _LOOP_REQUEST_RE.finditer(lower):
         if not (
-            _ends_before(_RUN_ASK_NEGATED_RE, lower, match.start())
+            _run_ask_negated_at(lower, match.start())
             or _LOOP_ASK_REFUSED_AFTER_RE.match(lower, match.end())
         ):
             continue
@@ -5701,7 +5761,10 @@ def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str)
     stuck = is_stuck_run_complaint(prompt_lower)
     writing_about = not typed and is_writing_about_topic(prompt_lower)
     no_edit = is_no_edit_request(prompt_lower)
-    asked_mode = _asked_loop_mode(prompt_lower)
+    # The mode cues are read off the same folded text the native gate reads its
+    # own from, so a phrase laid out with a run of whitespace settles a mode in
+    # both copies.
+    asked_mode = _asked_loop_mode(_fold_quotes(prompt_lower))
     # A doctor command the reader asked for is the request itself, so refusal and
     # no-edit words limit what it repairs rather than drop it. A naming that only
     # refuses or asks about the doctor is not a request, and neither is a bare

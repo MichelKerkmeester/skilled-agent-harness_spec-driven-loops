@@ -346,7 +346,7 @@ export const LOOP_WORDING: readonly string[] = [
 // manner of a review or research verb ("audit it iteratively"), or as the work's
 // unit ("in several iterations", "more iterations"). Counted iterations are
 // LOOP_COUNT's.
-const ITERATIVE_ACTIVITY = '(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|pass(?:es)?|rounds?|loop)';
+export const ITERATIVE_ACTIVITY = '(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|pass(?:es)?|rounds?|loop)';
 // The verbs are data, one per line, so the vocabulary a reviewer has to judge
 // stays visible and cheap to correct. `analyse` and `analyze` are one verb in
 // two spellings, and a list of words cannot carry a character class, so both
@@ -386,8 +386,8 @@ export const ITERATIVE_ASK = new RegExp(
 // named review needs its determiner and has to end there, because "rounds of
 // peer review" and "rounds of the peer review process" name the subject. A pass
 // may still take its target, as in "passes of the code".
-const PASS_GAP = '(?:(?:more|extra|additional|full|deep|review|research|audit|iterative) ){0,2}';
-const PASS_NOUN = '(?:passes\\b(?! of (?!(?:review|research|audit|investigation|the|it|this|that|these|those|my|our)\\b)[a-z])'
+export const PASS_GAP = '(?:(?:more|extra|additional|full|deep|review|research|audit|iterative) ){0,2}';
+export const PASS_NOUN = '(?:passes\\b(?! of (?!(?:review|research|audit|investigation|the|it|this|that|these|those|my|our)\\b)[a-z])'
   + '|rounds\\b(?! of (?!(?:(?:the|this|that|my|our) )?(?:review|research|audit|investigation|analysis|deep)\\b'
   + '|(?:the|this|that|my|our) [a-z-]+ (?:review|research|audit|investigation|analysis)\\b(?! (?!(?:on|of|for|in|with|to|and|then|until|so|at|across|against|over|before|after)\\b)[a-z])'
   + '|(?:it|this|that)\\b(?! [a-z]))[a-z]))';
@@ -436,7 +436,7 @@ export const COUNT_WORDS: readonly string[] = [
   'dozen',
 ];
 const COUNT_WORDS_PATTERN = `(?:${COUNT_WORDS.map((word) => (word === 'dozen' ? '(?:a )?' : '') + escapePhrase(word)).join('|')})`;
-const LOOP_COUNT_LEAD = `${COUNT_BACK_POINTER}(?:[2-9]|\\d{2,}|${COUNT_WORDS_PATTERN}|(?:1|one)(?= (?:more|extra|additional|further)\\b))`;
+export const LOOP_COUNT_LEAD = `${COUNT_BACK_POINTER}(?:[2-9]|\\d{2,}|${COUNT_WORDS_PATTERN}|(?:1|one)(?= (?:more|extra|additional|further)\\b))`;
 export const LOOP_COUNT = new RegExp(
   `\\b${LOOP_COUNT_LEAD}[- ](?:[a-z-]+ ){0,2}?iterations?\\b`
   + `|\\b${LOOP_COUNT_LEAD}(?:-(?:rounds?|pass(?:es)?)\\b| ${PASS_GAP}${PASS_NOUN})`,
@@ -569,7 +569,7 @@ export const READ_ONLY_LOOP_MODES: readonly string[] = [
 // Convergence and a coverage graph belong to training runs and test reports as
 // much as to the loop, so they name a deep run only beside a review or research
 // noun, as in "the research convergence" or "the coverage graph for my review".
-const LOOP_RUN_SUBJECT = /\b(?:(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))(?:s|es)?|(?:research|review|audit)(?: (?:loop|run))? (?:i|we) (?:just )?(?:started|launched|kicked off|ran|began|set off|set up)|(?:the|my|our|this|that) (?:research|review|audit)(?:'s)? (?:coverage graph|convergence)|(?:coverage graph|convergence) (?:of|for|in|on) (?:(?:the|my|our|this|that) )?(?:research|review|audit))\b/;
+export const LOOP_RUN_SUBJECT = /\b(?:(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))(?:s|es)?|(?:research|review|audit)(?: (?:loop|run))? (?:i|we) (?:just )?(?:started|launched|kicked off|ran|began|set off|set up)|(?:the|my|our|this|that) (?:research|review|audit)(?:'s)? (?:coverage graph|convergence)|(?:coverage graph|convergence) (?:of|for|in|on) (?:(?:the|my|our|this|that) )?(?:research|review|audit))\b/;
 // "keep going" asks for more of a run, so it is not among the symptoms, and
 // "spinning up" starts a run rather than describing one that is stuck. A state
 // word that a negation leads, as in "the run is not stuck", denies the symptom,
@@ -600,7 +600,7 @@ const LOOP_RUN_SYMPTOM = new RegExp(
   + '|stopped (?:converg\\w*|progress\\w*|moving)|keeps? (?:running|repeating|looping)'
   + `|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\\b`,
 );
-const LOOP_RUN_REQUESTED = /\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))(?:s|es)?\b/;
+export const LOOP_RUN_REQUESTED = /\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))(?:s|es)?\b/;
 // A global pattern, because every occurrence has to be read before one of them
 // can be trusted as an ask the reader still wants.
 const LOOP_RUN_REQUESTED_ALL = new RegExp(LOOP_RUN_REQUESTED.source, 'g');
@@ -621,7 +621,7 @@ const RERUN_PRONOUN = `(?:${RERUN_PRONOUNS.map(escapePhrase).join('|')})`;
 // "again" and "once more" say the run happens a second time, so a use verb takes
 // the pronoun only with one of them after it: "run it by hand" names a manner and
 // "don't run it" refuses the run. A rerun verb says the same on its own.
-const RERUN_MARKER = '(?:again|once again|once more)';
+export const RERUN_MARKER = '(?:again|once again|once more)';
 const PRONOUN_RERUN_ASK_SOURCE = `\\b(?:rerun|re-run) ${RERUN_PRONOUN}\\b`
   + `|\\b(?:run|do|start|launch|kick off) ${RERUN_PRONOUN} ${RERUN_MARKER}\\b`;
 const PRONOUN_RERUN_ASK = new RegExp(PRONOUN_RERUN_ASK_SOURCE);
@@ -645,7 +645,7 @@ function hasUnrefusedPronounRerun(lower: string): boolean {
 // fault reported in the same prompt does name a state to read, so it keeps the
 // doctor the way it keeps the run ask.
 export function namesDeepRun(text: string): boolean {
-  const lower = text.toLowerCase().replace(/[‘’]/g, "'");
+  const lower = lowerFolded(text);
   return LOOP_RUN_SUBJECT.test(lower) && !hasUnrefusedPronounRerun(lower)
     && (isStuckRunComplaint(lower) || !isPastRunRead(lower));
 }
@@ -665,7 +665,7 @@ function hasUnrefusedRunAsk(lower: string): boolean {
 // whatever state the reader reports it in, so it cancels the stuck reading
 // unless a refusal leads it.
 export function isStuckRunComplaint(text: string): boolean {
-  const lower = text.toLowerCase().replace(/[‘’]/g, "'");
+  const lower = lowerFolded(text);
   return LOOP_RUN_SUBJECT.test(lower) && LOOP_RUN_SYMPTOM.test(lower) && !hasUnrefusedRunAsk(lower)
     && ![...lower.matchAll(COUNTED_RUN_ASK)].some((match) => !runAskNegatedAt(lower, match.index));
 }
@@ -706,6 +706,32 @@ export const RUN_ASK_REFUSAL_LEADS: readonly string[] = [
   'refuse',
 ];
 
+// A negation that governs a refusal word cancels it, because the two together
+// want the run the refusal word would have withheld: "do not skip the deep
+// review" and "there is no need to skip the deep review" both ask for the run.
+// The negation leads are data, one per line like the leads above, and they hold
+// only the negations: "instead of" and "without" name an alternative, so
+// "instead of skipping the deep review" still refuses the run.
+export const RUN_ASK_REFUSAL_CANCEL_LEADS: readonly string[] = [
+  'do not',
+  "don't",
+  'dont',
+  'never',
+  'no need to',
+  'need not',
+  "needn't",
+];
+
+// The words that name the refusal itself are data too, one per line, and a
+// negation standing directly before one of them cancels it. Only the plain form
+// is listed, because only it follows a negation: a reader who negates the
+// refusal says "do not skip", never "do not skipping".
+export const RUN_ASK_REFUSAL_VERBS: readonly string[] = [
+  'skip',
+  'avoid',
+  'refuse',
+];
+
 // Two leads carry grammar of their own: `skip` followed by `to`, as in "skip
 // straight to the deep review", jumps ahead to the run and asks for it, and a
 // refusal verb may take `to` after it, as in "refused to run a deep review".
@@ -732,8 +758,17 @@ function refusalLeadSource(lead: string): string {
 // so the run the second clause names is asked for.
 const RUN_ASK_REFUSAL_LEAD = `(?:${RUN_ASK_REFUSAL_LEADS.map(refusalLeadSource).join('|')}`
   + `|(?:do not|don't|dont|never) even (?:think about|consider))`;
-const RUN_ASK_REFUSAL_GAP = "(?:(?!(?:and|then|but|or)\\s)[\\w'-]+\\s+){0,2}";
+export const RUN_ASK_REFUSAL_GAP = "(?:(?!(?:and|then|but|or)\\s)[\\w'-]+\\s+){0,2}";
 const RUN_ASK_NEGATED_SOURCE = String.raw`(?:\b${RUN_ASK_REFUSAL_LEAD}\s+${RUN_ASK_REFUSAL_GAP}|\bno\s+)$`;
+
+// The same words that negate a run ask also negate a refusal word, and that
+// negation turns the refusal back into an ask, so the cancellation is read
+// before the negation above. A refusal word carries the grammar it carries as a
+// lead, so a skip that means "jump ahead" keeps asking for the run it names.
+const RUN_ASK_REFUSAL_CANCEL_LEAD = `(?:${RUN_ASK_REFUSAL_CANCEL_LEADS.map(escapePhrase).join('|')})`;
+const RUN_ASK_REFUSAL_VERB = `(?:${RUN_ASK_REFUSAL_VERBS.map(refusalLeadSource).join('|')})`;
+const RUN_ASK_REFUSAL_CANCELLED_SOURCE = `\\b${RUN_ASK_REFUSAL_CANCEL_LEAD}\\s+`
+  + `${RUN_ASK_REFUSAL_VERB}\\s+${RUN_ASK_REFUSAL_GAP}$`;
 
 // The leads the gate reads before a phrase are a few words long, so each one is
 // read on a bounded window that ends where the phrase starts rather than on the
@@ -762,15 +797,19 @@ function endsBefore(pattern: RegExp, text: string, end: number): boolean {
 }
 
 const RUN_ASK_NEGATED = windowedPattern(RUN_ASK_NEGATED_SOURCE);
+const RUN_ASK_REFUSAL_CANCELLED = windowedPattern(RUN_ASK_REFUSAL_CANCELLED_SOURCE);
 
+// A refusal word a negation governs is not a refusal, so only a refusal no
+// negation cancels withholds the run its phrase names.
 function runAskNegatedAt(lower: string, index: number): boolean {
-  return endsBefore(RUN_ASK_NEGATED, lower, index);
+  return endsBefore(RUN_ASK_NEGATED, lower, index)
+    && !endsBefore(RUN_ASK_REFUSAL_CANCELLED, lower, index);
 }
 
 // A refusal can also follow the loop name, as in "a deep review is not needed".
 // It keys on a need word, so "the deep research run is not stuck" stays a
 // statement about the run.
-const LOOP_ASK_REFUSED_AFTER = /^(?: (?:run|loop|pass|iterations?))? (?:(?:is|are|was|were) (?:not|no longer)|isn't|aren't|wasn't|weren't|not) (?:needed|necessary|required|wanted|warranted|called for)\b/;
+export const LOOP_ASK_REFUSED_AFTER = /^(?: (?:run|loop|pass|iterations?))? (?:(?:is|are|was|were) (?:not|no longer)|isn't|aren't|wasn't|weren't|not) (?:needed|necessary|required|wanted|warranted|called for)\b/;
 
 // The past-run and writing-about readings below describe a prompt's purpose, so
 // an explicit run ask outranks them when it comes first, as in "run deep
@@ -818,11 +857,11 @@ const PAST_RUN_READ_VERB_PATTERN = new RegExp(`\\b(?:${PAST_RUN_READ_VERBS.map(e
 // A past-time phrase after the loop's name, as in "the deep reviews from last
 // week", dates the run the read verb asks about just as the marker before the
 // name does, so the output is what the reader wants and not another run.
-const PAST_RUN_OUTPUT = /\b(?:last|previous|prior|earlier|yesterday's|finished|completed) (?:[\w'-]+ ){0,2}?(?:deep[- ])?(?:research|review|loop|run)\b|\b(?:research|review(?:-report)?)\.md\b|\b(?:research|review) report\b|\bdeep[- ](?:research|review) (?:output|report|results|findings|produced|concluded|found|wrote)\b|\b(?:deep[- ])?(?:research|review|loop|run)s?\b (?:from|of|in|during|over) (?:the )?(?:last|previous|prior|earlier|past|yesterday)\b/;
-const RUN_CONTINUED = /\b(?:continue|resume|extend|rerun|re-run|more iterations?|\d+ more)\b/;
+export const PAST_RUN_OUTPUT = /\b(?:last|previous|prior|earlier|yesterday's|finished|completed) (?:[\w'-]+ ){0,2}?(?:deep[- ])?(?:research|review|loop|run)\b|\b(?:research|review(?:-report)?)\.md\b|\b(?:research|review) report\b|\bdeep[- ](?:research|review) (?:output|report|results|findings|produced|concluded|found|wrote)\b|\b(?:deep[- ])?(?:research|review|loop|run)s?\b (?:from|of|in|during|over) (?:the )?(?:last|previous|prior|earlier|past|yesterday)\b/;
+export const RUN_CONTINUED = /\b(?:continue|resume|extend|rerun|re-run|more iterations?|\d+ more)\b/;
 
 export function isPastRunRead(text: string): boolean {
-  const lower = text.toLowerCase().replace(/[‘’]/g, "'");
+  const lower = lowerFolded(text);
   const readVerb = PAST_RUN_READ_VERB_PATTERN.exec(lower);
   return readVerb !== null && PAST_RUN_OUTPUT.test(lower) && !RUN_CONTINUED.test(lower)
     && !explicitRunOutranks(lower, readVerb.index);
@@ -830,13 +869,19 @@ export function isPastRunRead(text: string): boolean {
 
 // Writing a piece about a loop method names the loop as a topic. The genre noun
 // is what marks it, so "write up the findings" after a run still asks for one.
-const WRITING_ABOUT_TOPIC = /\b(?:write|draft|compose|author|prepare|publish|outline)\b (?:[\w'-]+ ){0,3}?(?:blog(?: post)?|article|essay|newsletter(?: section| issue)?|tweet(?: thread)?|thread|post|talk|presentation|slides?|deck|tutorial|op-ed|piece|whitepaper|white paper|primer|explainer)s?\b (?:[\w'-]+ ){0,3}?(?:about|on|explaining|covering|describing|introducing|why|how)\b/;
+export const WRITING_ABOUT_TOPIC = /\b(?:write|draft|compose|author|prepare|publish|outline)\b (?:[\w'-]+ ){0,3}?(?:blog(?: post)?|article|essay|newsletter(?: section| issue)?|tweet(?: thread)?|thread|post|talk|presentation|slides?|deck|tutorial|op-ed|piece|whitepaper|white paper|primer|explainer)s?\b (?:[\w'-]+ ){0,3}?(?:about|on|explaining|covering|describing|introducing|why|how)\b/;
 
-// Many keyboards type a contraction with a curly apostrophe, and the gate's
-// patterns spell it straight, so each exported test reads the text lowercased
-// and folded to the straight form.
+// Every gate pattern is built from phrases joined by one plain space, and the
+// keyboard or paste a prompt arrives through puts other whitespace inside a
+// phrase often enough to matter: a second space, a tab, a line break or the
+// non-breaking space a copy out of a web page carries matches no phrase at all,
+// which loses the command the reader asked for. Each gate reading therefore
+// takes its text through here, which lowercases, folds the curly apostrophe many
+// keyboards type to the straight form the patterns spell, and collapses every
+// run of whitespace to that one plain space. The prompt itself is never
+// rewritten, so anything that quotes it back keeps what the reader typed.
 function lowerFolded(text: string): string {
-  return text.toLowerCase().replace(/[\u2018\u2019]/g, "'");
+  return text.toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ');
 }
 
 export function isWritingAboutTopic(text: string): boolean {
@@ -876,7 +921,7 @@ export const NO_EDIT_REQUEST = /\b(no edits?|make no changes|no changes yet|with
 // Many keyboards type the contraction with a curly apostrophe, so the text is
 // folded to the straight form before the pattern reads it.
 export function isNoEditRequest(text: string): boolean {
-  return NO_EDIT_REQUEST.test(text.toLowerCase().replace(/[\u2018\u2019]/g, "'"));
+  return NO_EDIT_REQUEST.test(lowerFolded(text));
 }
 
 // Wording that refuses any run or any fix, as in "please don't run anything" or
@@ -897,7 +942,7 @@ export function isNoEditRequest(text: string): boolean {
 export const RUN_REFUSED = /\b(?:(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix|do) (?:anything|any commands?)(?! yet\b)\b|(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix) (?:it|this|that)(?! (?:one )?again\b| yet\b)\b|(?:do not|don't|dont|never) (?:run|start|launch|kick off|change|fix|do) the doctor\b|(?:do not|don't|dont) (?:want|need) (?:a|any) fix(?:es)?\b|(?:do not|don't|dont) (?:want|need) (?:you )?to (?:run|fix|change) (?:anything|it|this|that)\b|no fix(?:es)?(?:,? please\b| (?:needed|wanted|required)\b|[.!]*$))/;
 
 export function isRunRefused(text: string): boolean {
-  return RUN_REFUSED.test(text.toLowerCase().replace(/[\u2018\u2019]/g, "'"));
+  return RUN_REFUSED.test(lowerFolded(text));
 }
 
 // A refusal or a question reaches its command through a use verb, so the two
@@ -930,12 +975,12 @@ export const LOOP_WANT_LEADS: readonly string[] = [
 const LOOP_WANT_LEAD = `(?:${LOOP_WANT_LEADS.map(escapePhrase).join('|')})`;
 
 // A continue, resume or extend verb asks for a run the reader already has.
-const LOOP_CONTINUE_VERB = '(?:continue|resume|extend|restart)';
+export const LOOP_CONTINUE_VERB = '(?:continue|resume|extend|restart)';
 
 // The loop name has to be the verb's own object, so the words between them
 // hold no preposition or clause word: "run tests until the review loop passes"
 // runs the tests.
-const LOOP_OBJECT_GAP = "(?:(?!(?:until|while|when|whenever|unless|if|once|before|after|because|so|then|and|but|or|for|on|in|of|with|against|to|into|over|through|from|by|at)\\b)[a-z0-9'-]+ ){0,3}";
+export const LOOP_OBJECT_GAP = "(?:(?!(?:until|while|when|whenever|unless|if|once|before|after|because|so|then|and|but|or|for|on|in|of|with|against|to|into|over|through|from|by|at)\\b)[a-z0-9'-]+ ){0,3}";
 
 // One alternation over the loop wording keeps the gate a single test per
 // prompt, and the boundary markers keep a phrase from firing inside a longer
@@ -1044,8 +1089,8 @@ const LOOP_EFFORT_WORD = `(?:${LOOP_EFFORT_WORDS.map(escapePhrase).join('|')})`;
 // they stay in the pattern. The verb is what makes the effort word a complaint:
 // with it the loop name is a clause's subject, and without it the word can only
 // describe a run the reader asked for.
-const LOOP_EFFORT_COPULA = '(?:is|are|was|were|gets?|got|feels?|seems?|runs?|takes?|costs?)';
-const LOOP_EFFORT_INTENSIFIER = '(?:too|very|so|really|quite|way)';
+export const LOOP_EFFORT_COPULA = '(?:is|are|was|were|gets?|got|feels?|seems?|runs?|takes?|costs?)';
+export const LOOP_EFFORT_INTENSIFIER = '(?:too|very|so|really|quite|way)';
 const LOOP_EFFORT_AFTER = new RegExp(
   `^(?: (?:loop|run|pass|iterations?|runs?))? ${LOOP_EFFORT_COPULA}`
   + `(?: ${LOOP_EFFORT_INTENSIFIER})? ${LOOP_EFFORT_WORD}\\b`
@@ -1076,7 +1121,7 @@ const LOOP_EFFORT_COMPLEMENT_AFTER = new RegExp(
 // verb's subject and asks for no new run. A target the name takes leaves it the
 // request, as in "run deep reviews on the parser", so only a verb that reports a
 // run is read here, and it has to follow the name at once.
-const RUN_REPORTED_AFTER = /^ (?:ran|took|failed|started|finished|completed|happened)\b/;
+export const RUN_REPORTED_AFTER = /^ (?:ran|took|failed|started|finished|completed|happened)\b/;
 
 // A hyphen count or `multi-pass` is an adjective, so it measures the loop only
 // when it qualifies the loop's own work or ends the phrase, as in "a three-pass
@@ -1084,16 +1129,16 @@ const RUN_REPORTED_AFTER = /^ (?:ran|took|failed|started|finished|completed|happ
 // "three-pass vs two-pass compilers" or "our multi-pass compiler". Up to three
 // words may stand before the loop's noun, as in "a multi-pass security and
 // correctness audit".
-const HYPHEN_COUNT = /-(?:pass(?:es)?|rounds?|iterations?)$/;
-const HYPHEN_COUNT_MEASURES_LOOP = /^(?:$|\s*[,.;:!?)\n]| (?:[a-z-]+ ){0,3}?(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|scan|sweep|loop|run|approach)(?:s|es)?\b| (?:on|of|over|across|through|for|at|against|with|in|into|until|and|then|to|please|now)\b)/;
+export const HYPHEN_COUNT = /-(?:pass(?:es)?|rounds?|iterations?)$/;
+export const HYPHEN_COUNT_MEASURES_LOOP = /^(?:$|\s*[,.;:!?)\n]| (?:[a-z-]+ ){0,3}?(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|scan|sweep|loop|run|approach)(?:s|es)?\b| (?:on|of|over|across|through|for|at|against|with|in|into|until|and|then|to|please|now)\b)/;
 
 // A count of iterations of something that is not the loop, as in "compare 10
 // iterations of the model", counts the subject's versions, and a count that
 // does something, as in "several passes of the linter failed", reports runs
 // that already happened.
-const COUNT_NOUN = /(?:pass(?:es)?|rounds?|iterations?)$/;
-const ITERATIONS_OF_SUBJECT = /^ of (?!(?:(?:the|this|that|my|our|a|an) )?(?:deep[- ])?(?:review|research|audit|investigation|analysis|loop)\b|(?:it|this|that)\b|(?:the|this|that|my|our) [a-z-]+ (?:review|research|audit|investigation|analysis)\b)/;
-const COUNT_AS_SUBJECT = /^(?: of (?:[\w'-]+ ){0,2}?[\w'-]+)? (?:failed|ran|took|were|was|had|showed|found|produced|returned|crashed|broke|timed out|succeeded|completed|finished|didn't|did not)\b/;
+export const COUNT_NOUN = /(?:pass(?:es)?|rounds?|iterations?)$/;
+export const ITERATIONS_OF_SUBJECT = /^ of (?!(?:(?:the|this|that|my|our|a|an) )?(?:deep[- ])?(?:review|research|audit|investigation|analysis|loop)\b|(?:it|this|that)\b|(?:the|this|that|my|our) [a-z-]+ (?:review|research|audit|investigation|analysis)\b)/;
+export const COUNT_AS_SUBJECT = /^(?: of (?:[\w'-]+ ){0,2}?[\w'-]+)? (?:failed|ran|took|were|was|had|showed|found|produced|returned|crashed|broke|timed out|succeeded|completed|finished|didn't|did not)\b/;
 
 // The edit, effort and change leads are read on the bounded window before the
 // phrase. The patterns after it are anchored at its end, so they read the rest
@@ -1145,7 +1190,7 @@ export function asksForLoopRun(prompt: string): boolean {
 // the loop the same way. The loop has to be what the question is about, so
 // "deep research: how do vector databases handle hybrid search" still asks for
 // a run on that topic.
-const LOOP_SUBJECT = '(?:[\\w\'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)(?:s|es)?\\b';
+export const LOOP_SUBJECT = '(?:[\\w\'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)(?:s|es)?\\b';
 // "How many" asks about the loop's length, as in "how many passes does the deep
 // review do".
 // The finite verb a question puts after its interrogative word is data, one per
@@ -1189,10 +1234,10 @@ const LOOP_HOW_TO_QUESTION = new RegExp(`\\bhow ${LOOP_QUESTION_AUX} (?:i|we) ${
 // was before spelled counts were read as a loop ask. A question that names no
 // loop is not a loop question at all, so "why does it stop after ten
 // iterations" still reads its count as a request for a run.
-const ITERATION_COUNT = /\b\d+ (?:[a-z-]+ ){0,2}iterations?\b/;
+export const ITERATION_COUNT = /\b\d+ (?:[a-z-]+ ){0,2}iterations?\b/;
 // A later clause that opens with a use verb on "one" or "it" asks for the loop
 // the question named, as in "what is a deep review? run one on the parser".
-const LOOP_RUN_BY_PRONOUN = /(?:^|[,.;!?\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*(?:run|start|launch|do|kick off) (?:one|it|another)\b/;
+export const LOOP_RUN_BY_PRONOUN = /(?:^|[,.;!?\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*(?:run|start|launch|do|kick off) (?:one|it|another)\b/;
 
 // A how-to question holds the use verb the reader asks about, so that verb does
 // not turn the question back into a request; a run the prompt asks for in a
@@ -1207,7 +1252,7 @@ function isLoopQuestion(lowered: string): boolean {
 // `why not` proposes the command rather than refusing it, so the word refuses
 // only where no `why` stands before it. The guard is grammar that reaches one
 // word, so it stays in the pattern while the word itself is listed as data.
-const COMMAND_NOT_WORD = '(?<!\\bwhy )not';
+export const COMMAND_NOT_WORD = '(?<!\\bwhy )not';
 
 // A lead word is used as a pattern, so a phrase that carries punctuation a regex
 // would read as a metacharacter is escaped before it is trusted, and the one word
@@ -1284,7 +1329,7 @@ export const COMMAND_DECLINE_LEADS: readonly string[] = [
 // `command` after it, and the command after the last `or` may carry `the`. A
 // listed command may also carry one plain word after it, such as the subcommand a
 // doctor command takes, so `do not run /x now or /y` refuses both.
-const COMMAND_OR_LIST = '(?:(?:the )?\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: [a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*';
+export const COMMAND_OR_LIST = '(?:(?:the )?\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: [a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*';
 
 // A command the reader asks about is named without being asked for, so these
 // lists hold the words that mark that naming. A question word names the command
@@ -1328,7 +1373,7 @@ const COMMAND_ASK_SHOULD_WORDS: readonly string[] = [
 // A named command may carry `the` before it and `command` after it, as in "what
 // does the /x command do", and a question that reaches the command through a use
 // verb carries that verb first.
-const COMMAND_ASK_TARGET = '(?:the )?(?:command )?';
+export const COMMAND_ASK_TARGET = '(?:the )?(?:command )?';
 
 // The question vocabulary also reads as one flat list, because the Python
 // fallback keeps its own copy of it and a test compares the two, so a word added
@@ -1368,7 +1413,7 @@ const COMMAND_DECLINED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]|\\b(?:but|and|so
 // "/create:diff file a.md b.md". A naming followed by "then" goes on to ask for
 // work, as in "read the /deep:review docs, then do a thorough review", so it is
 // not only a read.
-const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|documentation|file|page|source|definition|markdown)\b/;
+export const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|documentation|file|page|source|definition|markdown)\b/;
 
 // A command whose policy is run acts without asking, so an unled naming of it is
 // read as a request only on positive evidence: a use verb shortly before it, or
@@ -1377,10 +1422,10 @@ const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|document
 // The words after the name can still take the request back or turn it into a
 // question, as in "/doctor:speckit, cancel that" or "/doctor:install - is it
 // safe?", so any of those after the name leaves the naming a mention.
-const RUN_COMMAND_WITHDRAWN = /\?|\b(?:not|don't|dont|never|cancel|scratch that|hold off|wait|undo|is it|should i|nevermind|never mind)\b/g;
+export const RUN_COMMAND_WITHDRAWN = /\?|\b(?:not|don't|dont|never|cancel|scratch that|hold off|wait|undo|is it|should i|nevermind|never mind)\b/g;
 
 // A naming's clause ends where the next command name starts.
-const COMMAND_CLAUSE_END = /(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/g;
+export const COMMAND_CLAUSE_END = /(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/g;
 
 // The first match at or after a position, for callers whose positions only grow,
 // as a name's occurrences do. An answer stays good until the caller passes it, so
