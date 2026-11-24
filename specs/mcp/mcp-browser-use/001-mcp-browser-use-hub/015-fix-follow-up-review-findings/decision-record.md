@@ -30,29 +30,27 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
-<!-- FILL: Write one ADR per decision with context, choice, consequences and the rejected option. GOOD: ADR-001: a `--keep` option, because the script already parses options. WEAK: We decided on an option. -->
+## ADR-001: The id noun names a skill only beside another shared word
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
+| **Status** | Accepted |
 | **Date** | 2026-11-24 |
-| **Deciders** | [Names] |
+| **Deciders** | Operator (Q006, Q009), Claude |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
+Advisor 2.0.2.0 let the last word of a skill id anchor the 0.82 task-intent floor, so "doctor" could name system-skilled-doctor. A trace of every lift showed the noun alone lifting skills on ordinary words: "loop", "tooling", "mode", "orca" and "classifier".
 
 ### Constraints
 
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
+- The eight ratchet metrics and the browser replay must hold.
+- Any pinned slice that moves needs the operator's approval.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -60,9 +58,9 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
+**We chose**: the noun counts as naming its skill only when the lexical lane also matched another prompt word for that skill.
 
-**How it works**: [Implementation approach in 2-3 direct sentences]
+**How it works**: `promptNamesIdNoun` takes the lexical evidence and returns true only when it holds a `token:` entry other than the noun itself.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -72,10 +70,11 @@ Write in direct, active voice.]
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
+| **Another shared token** | Clears every probed single-word lift and keeps "run the doctor update check" | Re-pins one doctor control row | 8/10 |
+| A stop list of common nouns | Moves no pin | Changes nothing for `code`, `design` and `prompt`, which the explicit lane anchors anyway, and needs upkeep | 4/10 |
+| Drop the noun clause | Simplest | Loses the doctor lift that variant E added it for | 3/10 |
 
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
+**Why this one**: it is the only option that removes the single-word lifts without a word list.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -84,17 +83,16 @@ Write in direct, active voice.]
 ### Consequences
 
 **What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
+- Five probe prompts stop lifting a skill they never named.
 
 **What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
+- A prompt that names a skill by its noun alone, with no other shared word, now abstains. Mitigation: name the skill or its domain phrase.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
+| A real one-word request loses its route | L | The doctor, command and ratchet slices all ran and only one control row moved |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -104,13 +102,13 @@ Write in direct, active voice.]
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
+| 1 | **Necessary?** | PASS | Two lineages reported it, and the trace reproduced it |
+| 2 | **Beyond Local Maxima?** | PASS | Three options compared above |
+| 3 | **Sufficient?** | PASS | One condition in one function |
+| 4 | **Fits Goal?** | PASS | The operator folded it into this phase |
+| 5 | **Open Horizons?** | PASS | No word list to maintain |
 
-**Checks Summary**: [X/5 PASS]
+**Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---
@@ -119,10 +117,10 @@ Write in direct, active voice.]
 ### Implementation
 
 **What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
+- `fusion.ts`: `promptNamesIdNoun` gains the lexical evidence argument.
+- `doctor-prompts.jsonl`: `doctor-none-04` expects no recommendation.
 
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
+**How to roll back**: revert the advisor commit, then run `npm run build` in the advisor runtime.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -134,6 +132,10 @@ Write in direct, active voice.]
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
+| Q006 | Fold the id-noun residual into phase 015 instead of a separate advisor packet or a known limitation. | Not stated. The question's example, sk-design on "the design of this database schema", was misattributed: that lift comes from the explicit lane, not the noun. | None | spec.md scope, ADR-001 |
+| Q007 | Plan and build phase 015 now, and commit when green without pushing. | Not stated. | None | tasks.md, implementation-summary.md |
+| Q008 | Pin the Aside installer by sha256: download, verify, then run. | Not stated. | None | REQ-004, `install.sh` |
+| Q009 | Land variant F2 and re-pin `doctor-none-04` to no recommendation. | Its only link to the doctor skill was the shared word "doctor". | None | ADR-001, `doctor-prompts.jsonl` |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -142,6 +144,86 @@ Write in direct, active voice.]
 ## Appendix: Verbatim Operator Answers
 
 Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
+
+### Q006
+<!-- source: claude:f7099de4-e8ec-43e6-a849-849dabb1c94c:scorer-scope-015:0 -->
+
+Question (condensed from the text asked):
+```text
+Two reviewers found that a skill whose id ends in a common word can still be lifted to 0.82 by that one word. What should happen to it?
+```
+
+Options:
+```text
+Record known limitation (Recommended)
+Own advisor packet
+Fold into phase 015
+```
+
+Answer:
+```text
+Fold into phase 015
+```
+
+### Q007
+<!-- source: claude:f7099de4-e8ec-43e6-a849-849dabb1c94c:scorer-scope-015:1 -->
+
+Question (condensed from the text asked):
+```text
+Phase 015 has a filled spec but no plan or tasks yet. How should I continue with it?
+```
+
+Options:
+```text
+Plan and build now (Recommended)
+Plan only
+Stop here
+```
+
+Answer:
+```text
+Plan and build now (Recommended)
+```
+
+### Q008
+<!-- source: claude:f7099de4-e8ec-43e6-a849-849dabb1c94c:scorer-scope-015:2 -->
+
+Question (condensed from the text asked):
+```text
+The Aside installer pipes the vendor's official install script straight into bash. What should phase 015 do with it?
+```
+
+Options:
+```text
+Download, pin, verify (Recommended)
+Download and show first
+Leave as is, document
+```
+
+Answer:
+```text
+Download, pin, verify (Recommended)
+```
+
+### Q009
+<!-- source: claude:f7099de4-e8ec-43e6-a849-849dabb1c94c:doctor-row-015:0 -->
+
+Question (condensed from the text asked):
+```text
+Variant F2 clears the single-word id-noun lifts and holds every ratchet metric and replay row, but moves one pinned doctor control row: "my doctor update came in" no longer reaches system-skilled-doctor. How should this land?
+```
+
+Options:
+```text
+Re-pin row to none (Recommended)
+Exempt 'doctor' by list
+Drop the noun change
+```
+
+Answer:
+```text
+Re-pin row to none (Recommended)
+```
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

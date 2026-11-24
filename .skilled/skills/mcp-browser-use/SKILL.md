@@ -2,12 +2,12 @@
 name: mcp-browser-use
 description: "Parent hub for three browser modes: Chrome DevTools, Aside and Bladebro. Routes by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.2.0
+version: 1.1.3.0
 metadata:
   family: mcp
 ---
 
-<!-- Keywords: mcp-browser-use, mode-registry, hub-router, workflowMode, packetKind, mcp-chrome-devtools, mcp-aside-devtools, mcp-bladebro, chrome-devtools, cdp, aside-repl, bladebro, stealth-browser, mcp-code-mode -->
+<!-- Keywords: mcp-browser-use, mode-registry, hub-router, workflowMode, packetKind, mcp-chrome-devtools, mcp-aside-devtools, mcp-bladebro, chrome-devtools, cdp, aside-repl, bladebro, stealth-browser -->
 
 # MCP Browser Use Hub (mcp-browser-use)
 
@@ -37,7 +37,7 @@ Each mode owns a distinct band. A row marked **MCP lane only** runs through Code
 |------------|---------------------|--------------------|--------------|
 | Page model and DOM reads | `bdg dom query` / `dom eval`; MCP element tools | Playwright `page` API in `aside repl` | `see` model, content, outline and find |
 | Actions | `bdg` session, `bdg cdp <Method>`, MCP clicks and forms | `aside "<task>"`, deterministic `aside repl` | `act` verbs and `run` plans with branches |
-| Console and network | `bdg console --list`, CDP network methods | `page.on(...)` events | `see logs` rings |
+| Console and network | `bdg console --list`, CDP network methods | Not offered: Aside 1.26.626.1517 rejects console and network event listeners | `see logs` rings |
 | HAR export | `bdg network har <path>` | Not offered | Not offered |
 | Raw CDP | 300+ methods across 53 domains | Not offered | Not offered |
 | Lighthouse audit | `lighthouse_audit`, **MCP lane only**; excludes performance | Not offered | Not offered |

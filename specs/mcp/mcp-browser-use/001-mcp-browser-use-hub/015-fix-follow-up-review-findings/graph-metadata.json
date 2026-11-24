@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,11 +44,15 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/mcp-browser-use/hub-router.json",
-      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json",
       ".skilled/skills/mcp-browser-use/SKILL.md",
       ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh",
-      ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh"
+      ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json"
     ],
     "entities": [
       {
@@ -94,21 +98,33 @@
         "source": "derived"
       },
       {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".skilled/skills/mcp-browser-use/hub-router.json",
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
         "source": "derived"
       },
       {
-        "name": "canary-cases.v1.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json",
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/mcp-browser-use/SKILL.md",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/hub-router.json",
         "source": "derived"
       },
       {
@@ -121,6 +137,12 @@
         "name": "install.sh",
         "kind": "script",
         "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json",
         "source": "derived"
       },
       {
@@ -172,25 +194,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -198,7 +202,7 @@
     ],
     "causal_summary": "The follow-up deep review after phase 014 returned CONDITIONAL, with 10 P1 findings across four lineages",
     "created_at": "2026-11-24T07:44:38Z",
-    "last_save_at": "2026-11-24T07:45:29.180Z",
+    "last_save_at": "2026-11-24T08:45:04.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0364bd0abea22387fac1c1d3c7e178592d0c1eb5e5e0842c092b6d9f7ec0d4cd",
+    "source_fingerprint": "sha256:fd96c6b7ac38e92420b3080a0735e928ba9eb40532499451cd0eae74bb1ac22b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6d462158a8df949a1f7c657565d0a88d0d98654feda6674edfd9ed7e29342f9",
-      "plan.md": "b5a8732408e3a6b9e4bc62c4f8821f1c41410c9a10d4f6666edab73fe816cba1",
-      "tasks.md": "1a7b00d666c29f3ac7d0a5472914f4c05f59b8e1d69e70ed81cf5a9cef3c89c5",
-      "decision-record.md": "13abeb5b4f8ae96ad6c619e4fef69de9f6fcb6c2b35b2fb36cb5b6f76d99452b",
-      "implementation-summary.md": "f551f875c7e1f318ec57d5575e62486280e2bddfaa4d1e4ae5735cb9e1c067f7"
+      "spec.md": "92f07d3b5c0ff848e8e1e8004202685a1822e3194610ca3e08f5175fc464e096",
+      "plan.md": "0d8c6bc4c96761f1263447ea40288ed076401d128642299f0e3f80130998cd76",
+      "tasks.md": "82b8690eb30d1082bec6debd5756c4ce3bb41c559150ab6a47d87da399c53d26",
+      "decision-record.md": "8380a1f64f8d7b586085fb49c6029c18ed5d69417b3df3dbbd752eb3a78ae528",
+      "implementation-summary.md": "840d11e9e524f1696027142f29902ea17f27d4d7d4502cc88e30cd16103ad94b"
     },
     "last_active_at": null
   }

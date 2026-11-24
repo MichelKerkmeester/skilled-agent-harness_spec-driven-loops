@@ -155,6 +155,25 @@
       }
     },
     {
+      "id": "three-mode-ids-ordered-bundle",
+      "prompt": "use mcp-chrome-devtools, mcp-aside-devtools and mcp-bladebro",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": [
+        "mcp-chrome-devtools",
+        "mcp-aside-devtools",
+        "mcp-bladebro"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools",
+          "mcp-aside-devtools",
+          "mcp-bladebro"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "generic-browser-automation-defer",
       "prompt": "browser automation for this site",
       "expectedAction": "defer",

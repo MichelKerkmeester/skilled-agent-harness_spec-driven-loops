@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-browser-use routing"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -50,10 +50,10 @@ DEFAULT_RESOURCE = []
 SHARED_CONTROL_RESOURCES = []
 
 INTENT_SIGNALS = {
-    "CHROME_DEVTOOLS":  {"weight": 4, "keywords": ["chrome devtools", "open devtools", "via devtools", "use devtools", "in devtools", "devtools console", "browser debug", "bdg", "cdp", "chrome-devtools", "mcp-chrome-devtools", "inspect the dom", "screenshot capture", "console errors", "network requests", "har export", "export a har of", "capture a har", "save a har", "as a har file", "export the network log", "cdp domain", "capture browser screenshots", "chrome_devtools_live", "chrome devtools live", "remote debugging", "chrome autoconnect", "my own chrome", "signed-in chrome", "logged in chrome"]},
-    "LIGHTHOUSE_TRACE": {"weight": 4, "keywords": ["lighthouse audit", "run lighthouse", "run a lighthouse", "record a performance trace", "capture a performance trace", "chrome performance trace"]},
+    "CHROME_DEVTOOLS":  {"weight": 4, "keywords": ["chrome devtools", "open devtools", "via devtools", "use devtools", "in devtools", "devtools console", "browser debug", "bdg", "cdp", "chrome-devtools", "mcp-chrome-devtools", "inspect the dom", "screenshot capture", "console errors", "network requests", "har export", "export a har of", "capture a har", "save a har", "as a har file", "export the network log", "cdp domain", "capture browser screenshots", "chrome_devtools_live", "chrome devtools live", "chrome live manual", "remote debugging", "chrome autoconnect", "my own chrome", "signed-in chrome", "logged in chrome"]},
+    "LIGHTHOUSE_TRACE": {"weight": 4, "keywords": ["lighthouse audit", "run lighthouse", "run a lighthouse", "record a performance trace", "capture a performance trace", "chrome performance trace", "core web vitals"]},
     "ASIDE_DEVTOOLS":   {"weight": 4, "keywords": ["use aside", "run aside", "open aside", "with aside", "aside browser", "aside cli", "aside mcp", "aside repl", "aside daemon", "aside account", "aside devtools", "mcp-aside-devtools", "capture repl evidence", "repl evidence capture", "deterministic signed-in proof", "sandboxed playwright repl", "replay this signed-in", "replay the signed-in", "signed-in replay", "fill out the form in my signed-in", "fill in the form in my signed-in"]},
-    "BLADEBRO":         {"weight": 4, "keywords": ["bladebro", "bladebro cli", "bladebro mcp", "stealth browser", "bladebro rb", "agentic signed-in", "stealth signed-in", "agentic branching", "anti-detection browser", "attach to my open browser", "caller-owned browser", "browser i already have open", "already-open browser", "already open browser", "without getting flagged as a bot", "attach to the browser i have open", "without bot detection", "avoid bot detection"]},
+    "BLADEBRO":         {"weight": 4, "keywords": ["bladebro", "bladebro cli", "bladebro mcp", "stealth browser", "bladebro rb", "mcp-bladebro", "agentic signed-in", "stealth signed-in", "agentic branching", "anti-detection browser", "attach to my open browser", "caller-owned browser", "browser i already have open", "already-open browser", "already open browser", "without getting flagged as a bot", "attach to the browser i have open", "without bot detection", "avoid bot detection"]},
 }
 
 RESOURCE_MAP = {

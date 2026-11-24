@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-11-24T08:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Closed 014: every deep review finding fixed at its source"
-    next_safe_action: "Plan and build phase 015 from review/review-report.md"
+    next_safe_action: "Run a gate-proven re-review of the hub epic"
     blockers: []
     key_files:
       - "014-fix-deep-review-findings/spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2a13155f-ba79-49ab-9967-8fdff087389a"
       parent_session_id: "587eb5dd-b522-4898-9ee2-a03a0563e3ad"
-    completion_pct: 93
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress: phases 001 to 014 are Complete. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. The follow-up deep review (014 decision Q002) returned CONDITIONAL without recorded stop gates, and phase 015 fixes the findings it confirmed |
+| **Status** | Complete: phases 001 to 015 are Complete. 014 fixed the 2026-11-24 deep review findings and closed 005 REQ-009. 005 still records REQ-003 and REQ-008 as not met as written. The follow-up deep review (014 decision Q002) returned CONDITIONAL without recorded stop gates, and 015 fixed the findings that held against source |
 | **Created** | 2026-11-21 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -129,7 +129,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 12 | 012-browser-hub-doc-topic/ | Give `/local-doc-alignment` an `mcp-browser-use` topic and run it with Devin lanes (Level 1) | Complete |
 | 13 | 013-fix-alignment-findings-for-browser-hub-docs/ | Fix every finding from 012's two alignment runs: hub docs and scripts against bdg 0.6.10 and Code Mode, plus the own-Chrome routing lift (Level 1) | Complete |
 | 14 | 014-fix-deep-review-findings/ | Fix every finding of the 2026-11-24 deep review: installer helper parity, the Bladebro npx gate and install order, the bdg pin, Aside docs, routing vocabulary and packet state (Level 2) | Complete |
-| 15 | 015-fix-follow-up-review-findings/ | Fix the findings the follow-up deep review confirmed | Draft |
+| 15 | 015-fix-follow-up-review-findings/ | Fix the findings the follow-up deep review confirmed | Complete |
 
 ### Phase Transition Rules
 

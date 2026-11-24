@@ -80,7 +80,7 @@ and findings belong here.
 | Fix lanes A to E | Done | Each lane's check reruns from the final tree, see `tasks.md` T004 to T021 |
 | Advisor scorer (Q001, Q003, Q004) | Done | Advisor 2.0.2.0. Ratchet held except unknown 13 to 14, full suite back to its one known failure |
 | Two-stage replay | Done | 48 of 49 pass. MBU-PB-04 fails at stage one only |
-| Leftovers, re-mint, gates; scorer widen chosen | In Progress | parity 5/5, hub check OK 0 warnings, route guard failures 0, browser playbooks warnings=0 |
+| Leftovers, re-mint, gates; scorer widen chosen | Done | parity 5/5, hub check OK 0 warnings, route guard failures 0, browser playbooks warnings=0 |
 
 ### Deviations and findings
 

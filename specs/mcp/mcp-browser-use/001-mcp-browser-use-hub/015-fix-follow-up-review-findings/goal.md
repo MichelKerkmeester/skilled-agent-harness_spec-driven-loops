@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings"
     last_updated_at: "2026-11-24T07:44:39Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Met every completion criterion"
+    next_safe_action: "Run a gate-proven re-review of the hub epic"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "f7099de4-e8ec-43e6-a849-849dabb1c94c"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,7 +34,7 @@ _memory:
 ## 1. DURABLE DIRECTIVE
 <!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** [One sentence. What this packet is for. Not how, not progress.]
+**Objective:** Fix every follow-up review finding that held against source, at its source, in the browser hub and the advisor scorer.
 
 ### Decisions
 
@@ -42,7 +42,9 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | [The decision, stated so a reader can tell whether work honors it] |
+| D1 | The id-noun residual is fixed in this phase, not a separate packet (Q006) |
+| D2 | The Aside installer runs only a script that matches a pinned sha256 (Q008) |
+| D3 | A moved advisor pin lands only with the operator's approval |
 
 <!-- /ANCHOR:directive -->
 
@@ -53,9 +55,9 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] [A check whose answer is an exit code, a count, or a named artifact]
-- [ ] [Another]
-- [ ] [Another]
+- [x] The three-mode bundle prompt routes `orderedBundle` to all three modes, and the canary harness exits 0
+- [x] The five probe prompts no longer lift a skill they do not name, and the advisor suite fails only the known `system-skilled-bots` test
+- [x] The two-stage replay fails only MBU-PB-04, and `validate.sh --strict --recursive` on the hub epic prints RESULT: PASSED
 <!-- /ANCHOR:completion -->
 
 ---
@@ -72,11 +74,14 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Advisor id-noun and staging fix | Done | Suite 2,737 passed, 1 known failure; ratchet metrics unchanged; doctor row re-pinned (Q009) |
+| Hub fixes | Done | Bundle routes three modes; `rg page.on` exit 1; `..` guard; installer digest check |
+| Docs and replay | Done | Replay 51 of 52 PASS; vocabulary diff 0; versions 1.1.3.0 and 2.0.3.0 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Staging finding first marked refuted | The reviewer's exact case returned nothing, but a reworded prompt reproduced it. The review report now says so |
+| Shared 0.45 lexical anchor left as is | It is not this review's finding and changes every skill's pins |
 <!-- /ANCHOR:log -->

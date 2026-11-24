@@ -21,14 +21,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-24 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 15 of 15 |
 | **Predecessor** | 014-fix-deep-review-findings |
 | **Successor** | None |
-| **Handoff Criteria** | Every REQ below is Met in `acceptance-criteria.md`, and a follow-up review records a `terminal_gates` row |
+| **Handoff Criteria** | Every REQ below is Met in `acceptance-criteria.md`. A gate-proven re-review is a later step, not part of this phase |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,13 +38,13 @@ contextType: "general"
 
 This is **Phase 15** of the Fix the confirmed findings of the generation-3 follow-up deep review of the mcp-browser-use hub specification.
 
-**Scope Boundary**: Files under `.skilled/skills/mcp-browser-use/`, the hub's compiled-routing fixture and the hub packet docs. The shared advisor scorer is out of scope: the id-noun residual needs its own operator decision.
+**Scope Boundary**: Files under `.skilled/skills/mcp-browser-use/`, the hub's compiled-routing fixture, the hub packet docs and, after the operator folded it in (Q006), the advisor scorer's id-noun anchor and its browser-hub entries.
 
 **Dependencies**:
 - The generation-3 review, `../review/review-report.md`, which lists each finding with the check that confirmed it.
 
 **Deliverables**:
-- The four hub fixes, a bundle canary case and the P2 doc and packet-state corrections listed under Scope.
+- The four hub fixes, a bundle canary case, the advisor id-noun and staging fixes, and the P2 doc corrections listed under Scope.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -54,10 +54,10 @@ This is **Phase 15** of the Fix the confirmed findings of the generation-3 follo
 <!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-The follow-up deep review after phase 014 returned CONDITIONAL, with 10 P1 findings across four lineages. Checked against source, three hub P1 findings hold. A prompt that names all three mode ids routes to two of them. The hub capability matrix still advertises Aside `page.on(...)` events, which 014 removed from the Aside docs. The `./tmp` guard that 014 added to the Aside capture example accepts `./tmp/../..`. The Aside installer is also the only `install.sh` under `.skilled/skills` that pipes a downloaded script into bash.
+The follow-up deep review after phase 014 returned CONDITIONAL, with 10 P1 findings across four lineages. Checked against source, three hub P1 findings hold. A prompt that names all three mode ids routes to two of them. The hub capability matrix still advertises Aside `page.on(...)` events, which 014 removed from the Aside docs. The `./tmp` guard that 014 added to the Aside capture example accepts `./tmp/../..`. The Aside installer is also the only `install.sh` under `.skilled/skills` that pipes a downloaded script into bash. At the advisor stage, the last word of a skill id lifts that skill to the 0.82 floor on its own, and a bare `staging` lifts the browser hub on deploy work.
 
 ### Purpose
-Every confirmed hub finding is fixed at its source, and the canary corpus carries a case that would have caught the dropped bundle mode.
+Every confirmed finding is fixed at its source, one shared word no longer names a skill, and the canary corpus carries a case that would have caught the dropped bundle mode.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -76,6 +76,13 @@ case "$SESSION_DIR" in
 
 $ grep -rln --include=install.sh -E 'curl[^|]*\| *(ba)?sh' .skilled/skills
 .skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh
+
+In-process advisor probe, skill:confidence at 0.8 or above
+fix the infinite loop in this function => system-deep-loop:0.820
+update the build tooling for the monorepo => mcp-tooling:0.820
+update the plan for the mode rollout => system-spec-kit:0.820, cli-external-orchestration:0.820, mcp-code-mode:0.820
+fix the code in the parser => sk-code:0.826, local-webflow:0.820, mcp-browser-use:0.820
+fix the config loader that reads the wrong settings file in staging => mcp-browser-use:0.820, sk-code:0.820
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -90,12 +97,16 @@ $ grep -rln --include=install.sh -E 'curl[^|]*\| *(ba)?sh' .skilled/skills
 - Replace the Aside `page.on(...)` cell in the hub capability matrix with the capture the Aside packet documents.
 - Reject a `--session-dir` that leaves `./tmp` after `..` segments in the Aside capture example.
 - Download the Aside installer to a file, verify it before running, and keep the operator-yes flow.
-- Correct the P2 drift the review lists: goal logs, the derived status, the README version, the benchmark and playbook indexes, the `ROUTER.md` keyword list and the 014 release-note counts.
+- Count an id noun as naming its skill only when the lexical lane also matched another prompt word, and drop the bare `staging` explicit entry and hint for the browser hub.
+- Remove `mcp-code-mode` from the hub's keyword list, so a prompt about code does not reach the hub.
+- Correct the P2 drift the review lists: goal logs, the benchmark and playbook indexes, the `ROUTER.md` keyword list, the `leaf-scopes.json` description and the 014 release-note counts.
 
 ### Out of Scope
-- The id-noun anchor in `fusion.ts`. The operator approved it in Q004, it does not affect this hub, and changing it is a separate advisor decision.
+- The shared lexical anchor at 0.45. Two generic words, one of them a task-verb synonym, still pass it for every skill. It is not a finding of this review, and changing it moves pinned slices across the whole advisor.
 - The `@latest` registrations in the Chrome install guide. Three install guides share that convention, so changing one hub alone would leave the repository inconsistent.
-- The `staging` hint finding. The reviewer's own case returns no recommendation.
+- The 006 status drift. Its spec says Complete while its continuity waits on five deferred routing findings, and settling those is the operator's call.
+- The README version finding. Each Markdown doc carries its own version line, which the commit hook bumps, so a README at a different version from `SKILL.md` is not drift.
+- The install-gate, engine and packet-wording P2 findings. They change security defaults or other packets, and the review left them unchecked.
 
 ### Files to Change
 
@@ -106,7 +117,13 @@ $ grep -rln --include=install.sh -E 'curl[^|]*\| *(ba)?sh' .skilled/skills
 | `.skilled/skills/mcp-browser-use/SKILL.md` | Modify | Aside capture cell in the capability matrix |
 | `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Modify | Reject `..` segments in the session dir |
 | `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh` | Modify | Download, verify, then run the installer |
-| Hub README, `ROUTER.md`, benchmark and playbook indexes, `changelog/v1.1.2.0.md`, parent and 014 `goal.md` | Modify | P2 drift corrections |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Modify | The id noun needs another shared lexical token |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, `lanes/lexical.ts` | Modify | Drop bare `staging`, add the `staging portal` phrase |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl` | Modify | Re-pin `doctor-none-04` (Q009) |
+| `.skilled/skills/system-skill-advisor/SKILL.md`, `changelog/v2.0.3.0.md` | Modify, Create | Advisor release 2.0.3.0 |
+| Hub `SKILL.md` keyword comment, `ROUTER.md`, `README.md`, metadata versions, `changelog/v1.1.3.0.md` | Modify, Create | Keyword and vocabulary sync, release 1.1.3.0 |
+| Benchmark reports index, playbook result pointer, follow-up replay folder | Modify, Create | P2 drift and the follow-up replay |
+| Activation manifest and its archive copy | Modify | Re-minted for the new policy hash |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -129,7 +146,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-002 | `rg -n 'page.on' .skilled/skills/mcp-browser-use/SKILL.md` prints nothing. |
 | REQ-003 | `repl-evidence-capture.sh <url> ./tmp/../../x` exits 1 with the session-dir message, and `./tmp/run1` still passes the guard. |
 | REQ-004 | The Aside installer writes the downloaded script to a temporary file and runs it only after a check passes. No `curl ... \| bash` remains in `install.sh`. |
-| REQ-005 | Each P2 drift item in Scope is corrected, and the 2026-11-24 replay still passes 48 of 49 rows. |
+| REQ-005 | Each P2 drift item in Scope is corrected, and the replay passes every row except the known MBU-PB-04. |
+| REQ-006 | The five probe prompts in Measured Behavior no longer lift system-deep-loop, mcp-tooling, mcp-code-mode or mcp-browser-use, and "run the doctor update check" still reaches system-skilled-doctor. |
+| REQ-007 | All eight advisor ratchet metrics hold, and the full advisor suite fails only the known `system-skilled-bots` test. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -141,7 +160,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 <!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: The hub canary corpus and the two-stage replay pass, with the bundle case added.
+- **SC-001**: The hub canary corpus and the two-stage replay pass, with the bundle case and two new out-of-domain rows added.
 - **SC-002**: `validate.sh` on the hub epic with `--strict --recursive` prints RESULT: PASSED.
 <!-- /ANCHOR:success-criteria -->
 
@@ -154,7 +173,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | The Aside vendor publishes no checksum for its installer | Med | Pin the installer by content digest in the script, the pattern the Bladebro installer uses |
-| Risk | A vocabulary change that lifts Bladebro can turn single-mode prompts into bundles | Med | Re-run the canary corpus and the 49-row replay after the change |
+| Risk | A vocabulary change that lifts Bladebro can turn single-mode prompts into bundles | Med | Re-run the canary corpus and the replay after the change |
+| Risk | Narrowing the id-noun anchor moves pinned advisor slices | Med | Run the ratchet, parity, command, doctor and ledger gates, and ask before any re-pin |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -188,10 +208,10 @@ N/A: this packet changes docs, routing data and install scripts, and runs no ser
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 10/25 | About 12 files in one hub, small edits each |
+| Scope | 12/25 | About 20 files in the hub and the advisor scorer, small edits each |
 | Risk | 10/25 | Routing data and one install path |
 | Research | 5/20 | Every finding already has a reproduction |
-| **Total** | **25/70** | **Level 2** |
+| **Total** | **27/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -200,7 +220,7 @@ N/A: this packet changes docs, routing data and install scripts, and runs no ser
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- What happens to the id-noun residual in the shared scorer: a separate advisor packet, or a recorded known limitation? It is out of scope here either way.
+- None. The operator settled the id-noun scope (Q006), the build path (Q007), the installer pin (Q008) and the doctor row (Q009).
 <!-- /ANCHOR:questions -->
 
 ---

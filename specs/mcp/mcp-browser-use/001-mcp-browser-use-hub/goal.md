@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-11-24T08:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Closed 014: every deep review finding fixed at its source"
-    next_safe_action: "Run the follow-up deep review after the 014 commit"
+    next_safe_action: "Run a gate-proven re-review of the hub epic"
     blockers: []
     key_files:
       - "014-fix-deep-review-findings/goal.md"
@@ -127,7 +127,8 @@ and findings belong here.
 | Session 84103bdd: engine, live runs, benchmark | Done, alignment open | compiled engine serving (6/6 route), Bladebro live incl. Aside attach 3/3, playbooks recorded, two-stage replay 6/6; alignment lanes done, critic next |
 | Alignment fixes and closeout | Done | 28 findings fixed or decided (Q005-Q008 in 006 decision-record); validate --strict --recursive PASSED parent + 6 children; advisor suite 2570 pass |
 | Deep review 2026-11-24 | Done, FAIL | Four opus-medium lineages, 28 iterations: 0 P0, 2 distinct P1, 18 distinct P2. Report at `review/review-report.md` |
-| 014 deep review fixes | In Progress | Phase-added with its binding row. Five fix lanes running |
+| 014 deep review fixes | Done | Committed `ec3ed74ad01` with the advisor change `dbea9ff4a25`; replay 48 of 49 |
+| 015 follow-up review fixes | Done | Bundle, Aside, installer and advisor id-noun fixes; replay 51 of 52 |
 
 ### Deviations and findings
 

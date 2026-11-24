@@ -31,7 +31,12 @@ case "$URL$SESSION_DIR" in
     exit 1
     ;;
 esac
+# A ".." segment would climb back out of ./tmp after the prefix check passed.
 case "$SESSION_DIR" in
+  *..*)
+    echo "FAIL: session-dir must not contain a .. segment (got '$SESSION_DIR')" >&2
+    exit 1
+    ;;
   ./tmp | ./tmp/*) ;;
   *)
     echo "FAIL: session-dir must stay under ./tmp in the REPL session folder (got '$SESSION_DIR')" >&2

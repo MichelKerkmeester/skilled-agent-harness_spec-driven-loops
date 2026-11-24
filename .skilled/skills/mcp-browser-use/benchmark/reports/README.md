@@ -23,6 +23,8 @@ Each row below is one run folder. A run whose result changes gets a new folder. 
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-11-24 | [`compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/`](./compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/README.md) | advisor 2.0.3.0 plus compiled router, 52 requests | 51 PASS, 1 FAIL | **PASS** except the known MBU-PB-04 stage-one gap, supersedes the run below | `source.md` in the run folder |
+| 2026-11-24 | [`compiled-routing/2026-11-24--two-stage-replay--compiled/`](./compiled-routing/2026-11-24--two-stage-replay--compiled/README.md) | advisor 2.0.2.0 plus compiled router, 49 requests | 48 PASS, 1 FAIL | **PASS** except the known MBU-PB-04 stage-one gap | `source.md` in the run folder |
 | 2026-11-21 | [`2026-11-21--manual-testing-playbook--hub-routing--post-review/`](./2026-11-21--manual-testing-playbook--hub-routing--post-review/README.md) | compiled router, seven prompts plus a canary probe, admission check | 7 PASS | **PASS**, supersedes the FAIL run below | `source.md` in the run folder |
 | 2026-11-21 | [`compiled-routing/2026-11-21--two-stage-replay--compiled/`](./compiled-routing/2026-11-21--two-stage-replay--compiled/README.md) | advisor plus compiled router, six requests | 6 PASS | **PASS** | `source.md` in the run folder |
 | 2026-11-21 | [`2026-11-21--manual-testing-playbook--hub-routing/`](./2026-11-21--manual-testing-playbook--hub-routing/) | compiled router, seven prompts, admission check | 6 PASS, 1 FAIL | **FAIL** | `manual-testing-playbook` |

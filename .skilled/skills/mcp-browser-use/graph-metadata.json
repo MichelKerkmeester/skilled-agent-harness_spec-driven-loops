@@ -120,7 +120,9 @@
     "fill out the form in my signed-in",
     "fill in the form in my signed-in",
     "without getting flagged as a bot",
-    "attach to the browser i have open"
+    "attach to the browser i have open",
+    "chrome live manual",
+    "core web vitals"
   ],
   "derived": {
     "trigger_phrases": [
@@ -280,6 +282,8 @@
     "fill out the form in my signed-in",
     "fill in the form in my signed-in",
     "without getting flagged as a bot",
-    "attach to the browser i have open"
+    "attach to the browser i have open",
+    "chrome live manual",
+    "core web vitals"
   ]
 }
