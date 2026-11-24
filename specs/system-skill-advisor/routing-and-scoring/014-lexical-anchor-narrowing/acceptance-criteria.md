@@ -10,10 +10,10 @@ _memory:
     packet_pointer: "system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing"
     last_updated_at: "2026-11-24T13:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Measured three candidate rules and stopped on moved pins"
-    next_safe_action: "Find a rule that keeps the typed /create:* rows on sk-doc before landing any anchor change"
+    recent_action: "Landed candidate E as advisor 2.0.4.0"
+    next_safe_action: "Find a stricter rule for the three remaining lifts that moves no pin"
     blockers:
-      - "Every measured candidate moved pinned command and doctor slice rows"
+      - "Three probe lifts remain; the stricter rules tried moved pinned rows"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 014-lexical-anchor-narrowing
 **Level:** 2
-**Status:** Blocked
+**Status:** Partial
 **Date:** 2026-11-24
 <!-- /ANCHOR:metadata -->
 
@@ -52,9 +52,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the five probe prompts, When the advisor scores them, Then no unnamed skill reaches 0.8 and sk-prompt and system-skilled-doctor keep their lift | Candidates A and C pass in-process; not landed | Unmet | - |
-| AC-002 | REQ-002 | Given a landed rule, When the ratchet and the full suite run, Then no pinned row moves without operator approval | Every candidate moved command and doctor rows | Unmet | - |
-| AC-003 | REQ-003 | Given a landed rule, When the browser hub replay runs, Then only MBU-PB-04 fails | Not run; nothing landed | Unmet | - |
+| AC-001 | REQ-001 | Given the five probe prompts, When the advisor scores them, Then no unnamed skill reaches 0.8 and sk-prompt and system-skilled-doctor keep their lift | Landed E: parser and doctor lifts gone; container, rewrite and plan lifts remain; sk-prompt and system-skilled-doctor keep theirs | Unmet | - |
+| AC-002 | REQ-002 | Given a landed rule, When the ratchet and the full suite run, Then no pinned row moves without operator approval | Final E code: suite 3,206 passed, only the known failure; ratchet unchanged | Met | - |
+| AC-003 | REQ-003 | Given a landed rule, When the browser hub replay runs, Then only MBU-PB-04 fails | 55 PASS, 1 FAIL (MBU-PB-04), every row as before | Met | - |
 
 ### Status values
 
@@ -81,5 +81,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-No rule landed. The packet stays open, blocked on a rule that keeps the typed command rows (Q012).
+AC-001 is partly met: two of five probe lifts are gone. The packet stays open for a stricter rule that moves no pin.
 <!-- /ANCHOR:closure -->

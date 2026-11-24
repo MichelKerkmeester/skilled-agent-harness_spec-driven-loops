@@ -65,7 +65,7 @@ Every P2 finding of the generation-4 review now has a verdict. The Aside wrapper
 | 12 | README table links three of five releases | Held, fixed | Every release listed |
 | 13 | README table stops at 1.1.1.0 | Held, fixed | Same fix as 12 |
 | 14 | README breaks its one-file-per-release rule | Held, fixed | Same fix as 12 |
-| 15 | Id-noun anchor starved by the evidence cap | Held, open | Handed to the advisor lexical-anchor packet, which stopped on moved pins |
+| 15 | Id-noun anchor starved by the evidence cap | Held, fixed later | Fixed in advisor 2.0.4.0: the id noun's second word is read from the skill's text, not the capped evidence list |
 | 16 | Archive source is env-overridable | Held, fixed | The wrapper refuses `ASIDE_CLI_BASE_URL`; ADR-001 |
 | 17 | nvm installer piped into bash | Held, fixed | Download, read, then run |
 | 18 | Goal cites a report path that moved | Held, fixed | The first review row points at `review-archive/20261124T070727Z-restart/` |
@@ -133,7 +133,7 @@ Each finding was read against the current file, because 016 and 017 had already 
 ## Known Limitations
 
 1. **The Aside archive is still unverified.** The vendor publishes no checksum for it.
-2. **P2 #15 is open.** It belongs to the advisor scorer, and the advisor packet stopped for an operator decision.
+2. **P2 #15 was fixed after this phase**, in advisor 2.0.4.0 (packet `system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing`).
 <!-- /ANCHOR:limitations -->
 
 ---

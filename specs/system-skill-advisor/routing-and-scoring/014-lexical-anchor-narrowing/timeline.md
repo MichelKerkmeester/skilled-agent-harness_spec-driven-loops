@@ -37,6 +37,8 @@ List events in order. For each, give the date, what happened, then what it led t
 **2026-11-24:** The packet opened with five probe prompts that lift unnamed skills to 0.82. Outcome: the operator asked to build it (Q011).
 
 **2026-11-24:** Three candidate rules fixed the probes and held the ratchet, but each moved pinned command and doctor rows. Outcome: the operator chose record and stop (Q012).
+
+**2026-11-24:** The operator asked for a fresh attempt (Q013). Candidate E kept the 0.45 score, added a distinctive-word test, and counted a typed command as naming its owner. Outcome: no pin moved, two of five lifts gone, released as advisor 2.0.4.0.
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -45,5 +47,7 @@ List events in order. For each, give the date, what happened, then what it led t
 ## 3. MILESTONES
 <!-- FILL: Name each milestone and whether it passed. GOOD: M1 passed. 3 archives left. WEAK: Milestones met. -->
 
-**A rule that holds every pin:** target a later attempt. Status: Planned. Evidence: candidate C in `scratch/`.
+**A rule that holds every pin:** target 2.0.4.0. Status: Done. Evidence: the full suite on the final code.
+
+**All five probe lifts cleared:** target a later attempt. Status: Planned. Evidence: candidate C in `scratch/` clears them but moves pins.
 <!-- /ANCHOR:milestones -->

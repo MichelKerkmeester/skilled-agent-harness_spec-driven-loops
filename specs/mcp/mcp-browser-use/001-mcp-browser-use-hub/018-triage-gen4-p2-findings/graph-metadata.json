@@ -194,7 +194,7 @@
     ],
     "causal_summary": "24 P2 findings sat in the merged registry with no check against source",
     "created_at": "2026-11-24T11:30:32Z",
-    "last_save_at": "2026-11-24T12:02:24.868Z",
+    "last_save_at": "2026-11-24T13:21:21.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6839abcc75b2d2f98acf530647edfaa4ba1ec20b24bdf8abf824496d09a89299",
+    "source_fingerprint": "sha256:8e130ec30549e950c14cb2b0cc7ad2d7a3f2aa36adac70578f77dcf1e03ba158",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "81baa0422f0faa49706a7ff7f64562dffc794ebcc3ca79291df9cd6c4ed93682",
       "plan.md": "5a82a86c2f54d1b1092a7033f6d718d564b50f20c09ce11b1d258e3c9ad4e232",
       "tasks.md": "d185bc16ee46c27ab3c18822ae7849efef4b0f74635ea8710ed811d82dbfc41c",
       "decision-record.md": "049b214a29e1a9a0e078cf57550749fa773f7e5ca6829e7558dfc3c98ac1712a",
-      "implementation-summary.md": "a2285209984127ff375eda7c71d5f9f54d435439692cddacb5e89fa0a40400dd"
+      "implementation-summary.md": "f82b65d1e6053e0c8a1fc9ed86a1f8c0efc1e663b89874f9c90b16d7e6979cff"
     },
     "last_active_at": null
   }

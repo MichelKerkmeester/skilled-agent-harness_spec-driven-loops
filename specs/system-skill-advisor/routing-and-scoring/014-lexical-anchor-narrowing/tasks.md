@@ -45,7 +45,9 @@ contextType: "general"
 - [x] T003 Candidate A: sharing-capped anchor, anchored direct lift, literal id-noun companion (`$R/lib/scorer/fusion.ts`, `lanes/lexical.ts`, `scoring-constants.ts`). Verify: probes, ratchet, suite. Evidence: probes pass, ratchet unchanged, 7 pinned tests move.
 - [x] T004 Candidate B: A without the direct-lift rule. Verify: same. Evidence: 4 pinned tests move.
 - [x] T005 Candidate C: sharing counted over skills only. Verify: same. Evidence: probes pass, 5 pinned tests move.
-- [B] T006 Land a rule that holds every pin. Blocked: no candidate does (Q012).
+- [x] T006 Candidate E: distinctive-word anchor at 25%, anchored direct lift, literal id-noun companion, typed-command owner (`$R/lib/scorer/fusion.ts`, `lanes/lexical.ts`, `scoring-constants.ts`). Verify: probes, ratchet, full suite. Evidence: 2 of 5 lifts gone, ratchet unchanged, suite only the known failure.
+- [x] T006a Add `$R/tests/scorer/lexical-anchor-naming.vitest.ts`. Verify: passes; 2 cases fail on HEAD; the typed-command case fails without its clause. Evidence: `3 passed`; `2 failed`; `1 failed`.
+- [x] T006b Release 2.0.4.0 (`SKILL.md`, `changelog/v2.0.4.0.md`). Verify: version line. Evidence: `version: 2.0.4.0`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,8 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T007 Restore the advisor source and rebuild `dist`. Verify: `git status` under `$R`. Evidence: no change.
-- [ ] T008 Replay the browser hub after a landed rule. Verify: only MBU-PB-04 fails. Waits on T006.
+- [x] T007 Rebuild `dist`. Verify: `npm run build` exit 0. Evidence: build=0.
+- [x] T008 Replay the browser hub. Verify: only MBU-PB-04 fails. Evidence: 55 PASS, 1 FAIL, every row as in the 018 run.
+- [ ] T009 A stricter rule for the three remaining probe lifts that moves no pin.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,7 +66,7 @@ contextType: "general"
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
@@ -107,8 +110,8 @@ contextType: "general"
 ## Code Quality
 
 - [x] CHK-010 [P0] Each candidate typechecked. Evidence: `npm run typecheck` printed no error.
-- [x] CHK-011 [P0] No trace code left. Evidence: the advisor source is at HEAD.
-- [ ] CHK-012 [P1] A landed rule carries its why in comments. Waits on T006.
+- [x] CHK-011 [P0] No trace code left. Evidence: `grep SCRATCH lib/` prints nothing.
+- [x] CHK-012 [P1] The landed rule carries its why in comments. Evidence: `promptHoldsDistinctiveWord`, the direct-lift branch and the id-noun comment.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -116,7 +119,7 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Blocked: no rule landed.
+- [ ] CHK-020 [P0] All acceptance criteria met. AC-001 partly met: three probe lifts remain.
 - [x] CHK-021 [P0] Manual testing complete for each candidate. Evidence: probe files per variant.
 - [x] CHK-022 [P1] Edge cases tested. Evidence: the doctor prompt that must keep its lift.
 - [x] CHK-023 [P1] Failure scenarios found. Evidence: the moved pinned rows per candidate.
@@ -127,7 +130,7 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets. Evidence: no code landed.
+- [x] CHK-030 [P0] No hardcoded secrets. Evidence: one constant, a share.
 - [x] CHK-031 [P0] Input handling: N/A. Scoring rule only.
 - [x] CHK-032 [P1] Auth and authz: N/A.
 <!-- /ANCHOR:security -->
@@ -139,7 +142,7 @@ contextType: "general"
 
 - [x] CHK-040 [P1] Spec, plan and tasks agree. Evidence: all three name the block.
 - [x] CHK-041 [P1] Findings recorded. Evidence: `implementation-summary.md`.
-- [ ] CHK-042 [P2] Advisor changelog. Waits on a landed rule.
+- [x] CHK-042 [P2] Advisor changelog. Evidence: `changelog/v2.0.4.0.md`.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -148,7 +151,7 @@ contextType: "general"
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch only. Evidence: probe harness in the session scratchpad; candidate C source in `scratch/` on purpose.
-- [x] CHK-051 [P1] Session scratch cleaned of trace edits. Evidence: advisor source at HEAD.
+- [x] CHK-051 [P1] Session scratch cleaned of trace edits. Evidence: no trace code in `lib/`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -159,8 +162,8 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | 7/8 |
-| P1 Items | 9 | 8/9 |
-| P2 Items | 1 | 0/1 |
+| P1 Items | 9 | 9/9 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-24
 <!-- /ANCHOR:summary -->

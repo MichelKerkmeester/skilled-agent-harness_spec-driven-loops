@@ -47,6 +47,9 @@ export interface ConfidenceCalibration {
   /** Lexical score at which a skill with no explicit hit and no declared hint
    * still counts as named by the prompt for the task-intent floor. */
   readonly taskIntentLexicalAnchorFloor: number;
+  /** Largest share of skills whose metadata may list a prompt word for that word
+   * to make a lexical score count as naming a skill. A word many skills list names none. */
+  readonly lexicalAnchorMaxSkillShare: number;
   /** Confidence floor applied when task-intent is met. */
   readonly taskIntentFloor: number;
   /** Direct score above which confidence is lifted to at least the
@@ -191,6 +194,7 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     taskIntentDirectScoreFloor: 0.18,
     taskIntentLiveNormalizedFloor: 0.2,
     taskIntentLexicalAnchorFloor: 0.45,
+    lexicalAnchorMaxSkillShare: 0.25,
     taskIntentFloor: 0.82,
     directScoreLiftThreshold: 0.65,
     directScoreFloor: 0.82,

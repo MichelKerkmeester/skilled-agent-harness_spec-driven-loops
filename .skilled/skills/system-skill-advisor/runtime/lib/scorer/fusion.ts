@@ -40,7 +40,7 @@ import {
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
-import { scoreLexicalLane } from './lanes/lexical.js';
+import { lexicalHaystack, promptHoldsDistinctiveWord, scoreLexicalLane } from './lanes/lexical.js';
 import { applyExecutorDelegationOverride } from './executor-delegation.js';
 import {
   DOCTOR_HELPER_BRIDGE_ID,
@@ -52,7 +52,7 @@ import {
 } from './doctor-helper-handoff.js';
 import { loadAdvisorProjection } from './projection.js';
 import { SCORING_CALIBRATION } from './scoring-constants.js';
-import { isReadOnlyExplainer, matchesPhraseBoundary } from './text.js';
+import { isReadOnlyExplainer, matchesPhraseBoundary, tokenizePrompt } from './text.js';
 import {
   DEFAULT_SCORER_WEIGHTS,
   SCORER_LANES,
@@ -362,11 +362,15 @@ function promptMentionsSkill(promptLower: string, skill: SkillProjection): boole
 // system-skilled-doctor). Short segments such as "use" or "doc" are left out,
 // because they occur in ordinary prompts that name nothing. The noun alone is
 // not enough: "loop", "mode" and "tooling" are ordinary words too, so it
-// names the skill only when the lexical lane also matched another prompt word.
-function promptNamesIdNoun(promptLower: string, skillId: string, lexicalEvidence: readonly string[]): boolean {
-  const noun = skillId.split('-').at(-1) ?? '';
+// names the skill only when the prompt also holds another word found in the
+// skill's text. That word must be one the prompt holds, not a synonym the lexical
+// lane added, and it is read from the skill's text rather than the capped
+// evidence list, which declared hints can fill.
+function promptNamesIdNoun(promptLower: string, skill: SkillProjection): boolean {
+  const noun = skill.id.split('-').at(-1) ?? '';
   if (noun.length < 4 || !matchesPhraseBoundary(promptLower, noun)) return false;
-  return lexicalEvidence.some((entry) => entry.startsWith('token:') && entry !== `token:${noun}`);
+  const haystack = lexicalHaystack(skill);
+  return tokenizePrompt(promptLower).some((token) => token !== noun && haystack.includes(token));
 }
 
 function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean {
@@ -414,7 +418,8 @@ function confidenceFor(args: {
   }
   // The task-intent floor lifts a skill on a weak direct score, so it needs the
   // prompt to name the skill: an explicit-lane hit, a declared lexical hint, a
-  // lexical match of moderate strength or the noun its id ends in. One or two
+  // lexical match of moderate strength on at least one word few skills list, the
+  // noun its id ends in, or a typed command the skill owns. One or two
   // shared words ("aside", "trace", "form") are what an out-of-domain prompt
   // carries, and such a skill keeps the confidence it earned. A strong direct
   // score still lifts through the branch below.
@@ -440,7 +445,9 @@ function confidenceFor(args: {
       };
     }
   }
-  if (args.directScore >= C.directScoreLiftThreshold) {
+  // A strong direct score lifts only a skill the prompt names. Without the anchor,
+  // a short prompt whose synonyms hit two of a skill's words reaches the floor.
+  if (args.directScore >= C.directScoreLiftThreshold && args.hasNamedAnchor) {
     return {
       value: Number(Math.max(base, C.directScoreFloor).toFixed(4)),
       floored: C.directScoreFloor > base,
@@ -1308,8 +1315,12 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     const directScore = Math.max(explicitContribution?.rawScore ?? 0, lexicalContribution?.rawScore ?? 0);
     const hasNamedAnchor = (explicitContribution?.rawScore ?? 0) > 0
       || (lexicalContribution?.evidence.some((entry) => entry.startsWith('hint:')) ?? false)
-      || (lexicalContribution?.rawScore ?? 0) >= SCORING_CALIBRATION.confidence.taskIntentLexicalAnchorFloor
-      || promptNamesIdNoun(promptLower, skill.id, lexicalContribution?.evidence ?? []);
+      || ((lexicalContribution?.rawScore ?? 0) >= SCORING_CALIBRATION.confidence.taskIntentLexicalAnchorFloor
+        && promptHoldsDistinctiveWord(prompt, skill, projection))
+      || promptNamesIdNoun(promptLower, skill)
+      || typedCommandsIn(promptLower).some((typed) => (
+        TRACKED_COMMANDS[typed]?.ownerSkillId === skill.id && !commandOnlyMentioned(promptLower, typed)
+      ));
     const derivedDominant = isDerivedDominant(contributions);
     const liveNormalized = score / liveTotal;
     const confidenceResult = confidenceFor({

@@ -10,10 +10,10 @@ _memory:
     packet_pointer: "system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing"
     last_updated_at: "2026-11-24T13:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Recorded ADR-001 and Q012"
-    next_safe_action: "Find a rule that keeps the typed /create:* rows on sk-doc before landing any anchor change"
+    recent_action: "Recorded ADR-002 and Q013"
+    next_safe_action: "Find a stricter rule for the three remaining lifts that moves no pin"
     blockers:
-      - "Every measured candidate moved pinned command and doctor slice rows"
+      - "Three probe lifts remain; the stricter rules tried moved pinned rows"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -126,12 +126,108 @@ Three candidate rules fixed every probe prompt and held all eight ratchet metric
 
 ---
 
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Land the distinctive-word anchor with a typed-command owner clause
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Operator (Q013), Claude |
+
+---
+
+<!-- ANCHOR:adr-002-context -->
+### Context
+
+The stricter rules (ADR-001) took sk-doc off typed command prompts. A trace of those 13 prompts showed sk-doc reaching the floor on a lexical score built from its hub vocabulary, which repeats every mode's words.
+
+### Constraints
+
+- No pinned row may move.
+<!-- /ANCHOR:adr-002-context -->
+
+---
+
+<!-- ANCHOR:adr-002-decision -->
+### Decision
+
+**We chose**: keep the 0.45 lexical score and add a test that one prompt word in the skill's vocabulary is listed by at most 25% of skills (commands left out). The strong-score lift needs a named anchor. The id noun's second word must be a prompt word. A typed command names the skill that owns it.
+
+**How it works**: `promptHoldsDistinctiveWord` in `lanes/lexical.ts`; the clauses in `hasNamedAnchor` and `confidenceFor` in `fusion.ts`; `lexicalAnchorMaxSkillShare` in `scoring-constants.ts`.
+<!-- /ANCHOR:adr-002-decision -->
+
+---
+
+<!-- ANCHOR:adr-002-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **E: distinctive-word test, 25%** | No pin moves | Three lifts remain | 7/10 |
+| E at 15% | Clears the container lift | Drops system-spec-kit beside sk-doc on the handoff prompt; full suite not run | 5/10 |
+| A to C | Clear all five lifts | Move pinned rows | 3/10 |
+
+**Why this one**: the largest gain that keeps every pin.
+<!-- /ANCHOR:adr-002-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-002-consequences -->
+### Consequences
+
+**What improves**:
+- Generic-word and synonym-only lifts on short prompts stop for the parser and doctor cases.
+
+**What it costs**:
+- One more constant. Mitigation: documented beside the anchor floor.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The share drifts as skills are added | L | It is a share, not a count |
+<!-- /ANCHOR:adr-002-consequences -->
+
+---
+
+<!-- ANCHOR:adr-002-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The trace attributed each lift |
+| 2 | **Beyond Local Maxima?** | PASS | Five candidates measured |
+| 3 | **Sufficient?** | PASS | Four small clauses |
+| 4 | **Fits Goal?** | PASS | The operator asked for a fresh attempt |
+| 5 | **Open Horizons?** | PASS | A stricter share can be tried later |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-002-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-002-impl -->
+### Implementation
+
+**What changes**:
+- `fusion.ts`, `lanes/lexical.ts`, `scoring-constants.ts`, a new scorer test, release 2.0.4.0.
+
+**How to roll back**: revert the advisor commit and run `npm run build` in the advisor runtime.
+<!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->
+
+---
+
 <!-- ANCHOR:operator-decisions -->
 ## Operator Decisions
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q012 | Record the measurements and stop; land no scorer change. | Not stated. | None | ADR-001 |
+| Q013 | Make a fresh attempt at the anchor rule that keeps sk-doc on typed `/create:*` prompts. | Not stated. | Q012 for the landing question | ADR-002 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -159,5 +255,23 @@ Land and re-pin
 Answer:
 ```text
 Record and stop (Recommended)
+```
+
+### Q013
+<!-- source: claude:f7099de4-e8ec-43e6-a849-849dabb1c94c:advisor-014-fresh:0 -->
+
+Question (condensed from the text asked):
+```text
+Your call, when you want it: a fresh attempt at the advisor rule has to keep sk-doc first on typed /create:* commands.
+```
+
+Options:
+```text
+None offered; a free-text reply to the closing line.
+```
+
+Answer:
+```text
+yes
 ```
 <!-- /ANCHOR:operator-answers-verbatim -->

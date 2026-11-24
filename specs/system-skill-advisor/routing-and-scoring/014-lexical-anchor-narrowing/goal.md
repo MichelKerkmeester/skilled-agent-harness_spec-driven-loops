@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing"
     last_updated_at: "2026-11-24T09:04:12Z"
     last_updated_by: "scaffold"
-    recent_action: "Measured three candidate rules and stopped on moved pins"
-    next_safe_action: "Find a rule that keeps the typed /create:* rows on sk-doc"
+    recent_action: "Landed candidate E as advisor 2.0.4.0"
+    next_safe_action: "Find a stricter rule for the three remaining lifts that moves no pin"
     blockers: []
     key_files: []
     session_dedup:
@@ -55,8 +55,8 @@ Frozen choices. Changing one is an amendment.
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [ ] None of the five probe prompts lifts a skill it does not name to 0.8 or above
-- [ ] `npx vitest run` in the advisor runtime fails only the known `system-skilled-bots` test
-- [ ] The mcp-browser-use replay fails only MBU-PB-04
+- [x] `npx vitest run` in the advisor runtime fails only the known `system-skilled-bots` test
+- [x] The mcp-browser-use replay fails only MBU-PB-04
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,7 +74,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Attribution and three candidates | Done | `implementation-summary.md` |
-| Landing | Blocked | Every candidate moved pinned rows; Q012 record and stop |
+| Candidates A to C | Dropped | Each moved pinned rows; Q012 record and stop |
+| Candidate E | Landed, advisor 2.0.4.0 | 2 of 5 lifts gone; suite only the known failure; replay unchanged (Q013) |
 
 ### Deviations and findings
 

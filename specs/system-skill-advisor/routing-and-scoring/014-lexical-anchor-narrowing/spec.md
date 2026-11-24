@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Blocked |
+| **Status** | Partial |
 | **Created** | 2026-11-24 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -169,7 +169,7 @@ N/A: the change is a scoring rule, and no latency or service limit applies.
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Which rule can narrow the anchor without moving the command and doctor slices? Three candidate families moved them (see `implementation-summary.md`). Open until a rule keeps sk-doc's typed `/create:*` rows.
+- Which stricter rule clears the three remaining probe lifts without moving the command and doctor slices? Candidate E (landed in advisor 2.0.4.0) clears two of five; the stricter candidates A to C moved pinned rows.
 <!-- /ANCHOR:questions -->
 
 ---
