@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/worktree-lifecycle/007-provision-dev-dependencies",
+  "spec_folder": "sk-git/worktree-lifecycle/007-provision-dev-dependencies",
+  "parent_id": "sk-git/worktree-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "provision dev dependencies",
+      "worktree provisioning skips nested lockfile package",
+      "system-spec-kit missing dev dependencies in worktree",
+      "provision dev dependencies plan",
+      "provision dev dependencies tasks",
+      "provision dev dependencies implementation summary"
+    ],
+    "key_topics": [
+      "provision",
+      "dev",
+      "dependencies",
+      "worktree",
+      "provisioning",
+      "skips",
+      "nested",
+      "lockfile",
+      "package",
+      "system-spec-kit",
+      "missing",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shell",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`worktree-naming.sh create` skipped the npm install for `.skilled/skills/system-spec-kit`",
+    "created_at": "2026-11-24T11:29:35Z",
+    "last_save_at": "2026-11-24T11:31:12.128Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c1725c67882198bbc2852e6c275b016fba86a58fe29fd20682899101569bf0d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3754422b8e27296ea7e3a8eb1828172852e352d497115f4bd85115d24ceb9315",
+      "plan.md": "75c44f7e875e45774ad21f2eff7310a964a3c7349380ad12aad0503098dd70a1",
+      "tasks.md": "cc28e4085b75378c0078d2f95b88394d66fb789945bdbd26e51386ec038b0780",
+      "implementation-summary.md": "389402b2992dd9848d7b7a0b0f1fdfb412cffc999fb3ba4b8e153aa1e99ba99b"
+    },
+    "last_active_at": null
+  }
+}

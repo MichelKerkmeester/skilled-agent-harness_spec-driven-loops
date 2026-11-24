@@ -560,6 +560,37 @@ expect_rc "bun package provisions from a relative worktree path" 0 run_relative_
 expect_eq "relative worktree path still installs the bun package" "1" \
   "$(awk '$1 == "bun-pkg" && $2 == "install" { c++ } END { print c + 0 }' "$BUN_LOG")"
 
+# A package with its own npm lockfile installs into its own node_modules, so an
+# ancestor that already installed a same-named dependency must not stand in for
+# it. A workspace member with no lockfile still counts the workspace root's install.
+LOCK_PROV="$PROV/lock-prov"
+LOCK_TREE="$LOCK_PROV/tree"
+rm -rf "$LOCK_PROV"
+mkdir -p "$LOCK_PROV/scripts" "$LOCK_TREE/outer/node_modules/left-pad" \
+  "$LOCK_TREE/outer/inner/member"
+LOCK_TREE="$(cd "$LOCK_TREE" && pwd -P)"
+cp "$NAMING" "$LOCK_PROV/scripts/worktree-naming.sh"
+printf 'outer\nouter/inner\nouter/inner/member\n' > "$LOCK_PROV/scripts/worktree-provision-paths.txt"
+printf '{"devDependencies":{"left-pad":"1.0.0"}}\n' > "$LOCK_TREE/outer/package.json"
+printf '{"devDependencies":{"left-pad":"1.0.0"}}\n' > "$LOCK_TREE/outer/inner/package.json"
+printf '{"dependencies":{"left-pad":"1.0.0"}}\n' > "$LOCK_TREE/outer/inner/member/package.json"
+: > "$LOCK_TREE/outer/package-lock.json"
+: > "$LOCK_TREE/outer/inner/package-lock.json"
+run_lock_provision() {
+  (
+    source "$LOCK_PROV/scripts/worktree-naming.sh"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/bin:$PATH" provision_worktree "$LOCK_TREE"
+  )
+}
+: > "$NPM_LOG"
+expect_rc "a nested lockfile package provisions" 0 run_lock_provision
+expect_eq "a nested lockfile package installs despite an ancestor's same-named dependency" "1" \
+  "$(awk '$1 == "inner" && $2 == "ci" { c++ } END { print c + 0 }' "$NPM_LOG")"
+expect_eq "the ancestor that already holds its dependency is not reinstalled" "0" \
+  "$(awk '$1 == "outer" { c++ } END { print c + 0 }' "$NPM_LOG")"
+expect_eq "a workspace member counts its workspace root's install" "0" \
+  "$(awk '$1 == "member" { c++ } END { print c + 0 }' "$NPM_LOG")"
+
 # Without bun on PATH a bun package fails loudly instead of falling back to npm.
 NOBUN_TREE="$PROV/nobun-tree"
 mkdir -p "$NOBUN_TREE/bun-pkg" "$PROV/nobun-bin"
