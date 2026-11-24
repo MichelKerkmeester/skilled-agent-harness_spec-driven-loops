@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.15.0
+version: 1.0.16.0
 ---
 
 # Doctor Command Routing
@@ -66,7 +66,7 @@ The renderer reads a generated lookup of runnable strings, so a doctor bridge sh
 | `.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts` | Vitest | Phrase anchor and skill-first ordering |
 | `.skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts` | Vitest | Runnable line, second line and sanitizer |
 | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/doctor-setup-hint.vitest.ts` | Vitest | Setup hint on and off |
-| `Playbook scenarios [DOC-385](../../../../manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md) to [DOC-391](../../../../manual-testing-playbook/doctor-commands/doctor-setup-run.md).` | Manual playbook | Agent-runnable end-to-end checks |
+| `Playbook scenarios [DOC-385](../../../system-skilled-doctor/manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md) to [DOC-391](../../../system-skilled-doctor/manual-testing-playbook/doctor-commands/doctor-setup-run.md).` | Manual playbook | Agent-runnable end-to-end checks |
 
 ---
 

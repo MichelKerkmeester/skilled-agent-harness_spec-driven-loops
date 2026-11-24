@@ -3,7 +3,7 @@ description: "Check a skill against the Skilled format, or convert one to it, pl
 argument-hint: "[check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]"
 allowed-tools: Read, Bash
 ---
-<!-- skill_agent: sk-doc -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:sk-skill Router
 

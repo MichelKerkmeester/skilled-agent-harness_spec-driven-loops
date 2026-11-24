@@ -1,16 +1,16 @@
 ---
 name: "system-skilled-doctor"
-description: "Doctor commands that put Skilled into a project repo and keep it current there, including a vendored copy's own overlays."
+description: "Doctor commands that put Skilled into a project repo and keep it current there, plus the setup checks of each skill."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.3.0.0
 ---
 
 <!-- Keywords: put skilled into my project, skilled in my project repo, keep skilled current in my project, vendored skilled copy, vendored skilled overlays, keep my changes to vendored skilled, re-pin vendored skilled, link a local skilled checkout into a project, overlay layout path, relayout, overlay audit, strict overlay writes, unowned vendored files, unowned vendored change, overlay sources, no overlay owns, overlay root files drifted upstream, overlay rebase, drifted from the pinned upstream commit, changed the root files an overlay owns, overlay no longer adds a json item, stage an overlay re-pin, staged overlay re-pin, take over an overlay lock, overlay lock whose owner has ended, overlay folder beside the tree, sibling overlay folder, move my overlay folder out of the tree, adopt an unowned vendored file into an overlay, overlay folders missing a readme, base from a pinned framework commit -->
-<!-- Owns: /doctor:install, /doctor:symlink, /doctor:update, /doctor:agents-md, /doctor:runtime-mirrors, /doctor:env, /doctor:setup, /doctor:helper, /doctor:speckit, /doctor:mcp, /doctor:overlay. Does NOT own: /doctor:sk-code and /doctor:ci (sk-code), /doctor:git (sk-git), /doctor:sk-skill (sk-doc), /doctor:skill-advisor (system-skill-advisor), /doctor:deep-loop (system-deep-loop). -->
+<!-- Owns: every /doctor command. /doctor:install, /doctor:symlink, /doctor:update, /doctor:agents-md, /doctor:runtime-mirrors, /doctor:env, /doctor:setup, /doctor:helper, /doctor:speckit, /doctor:mcp, /doctor:overlay, /doctor:sk-code, /doctor:ci, /doctor:git, /doctor:sk-skill, /doctor:skill-advisor, /doctor:deep-loop. -->
 
 # System Skilled Doctor
 
-Owns the doctor commands that put Skilled into a project and keep it current there.
+Owns every doctor command: the ones that put Skilled into a project and keep it current there, and the ones that check one skill's own setup.
 
 ---
 
@@ -24,18 +24,20 @@ Use this skill when:
 - A project's runtime folders, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration need checking against what Skilled ships.
 - A project that vendors Skilled needs its own changes, its overlays, applied or checked after the copy changed.
 - A problem is described and the right doctor command is not known yet.
+- One skill's own setup needs checking or repair: the sk-code battery or quality config, the CI workflows, the sk-git hook gates and rules, a skill's format, the skill advisor's graph or a deep loop's convergence.
 
 **Keyword Triggers**:
 - "put Skilled into my project", "install Skilled", "link the Skilled checkout"
 - "update Skilled", "runtime mirrors", "environment switches", "doctor setup"
 - "which doctor command", "AGENTS.md sections", "trigger index fresh", "Code Mode install"
 - "vendored Skilled", "Skilled overlays", "overlay status", "apply the overlays"
+- "sk-code setup", "CI switches", "git hook gates", "skill format check", "rebuild the skill advisor", "deep-loop convergence"
 
 ### When NOT to Use
 
 Do not use this skill for:
 
-- A skill's own battery or quality config. `/doctor:sk-code` and `/doctor:ci` belong to `sk-code`, `/doctor:git` to `sk-git`, `/doctor:sk-skill` to `sk-doc`, `/doctor:skill-advisor` to `system-skill-advisor` and `/doctor:deep-loop` to `system-deep-loop`.
+- A skill's own work. Writing code is `sk-code`'s, committing and opening a PR are `sk-git`'s, authoring a skill is `sk-doc`'s and running a deep loop is `system-deep-loop`'s. A doctor command only checks or repairs the setup that work runs on.
 - Writing or validating spec folders, which is `system-spec-kit`'s work. That skill still owns the scripts these commands call, such as the trigger-index lookup and `ENV-REFERENCE.md`.
 
 ---
@@ -46,7 +48,7 @@ A request that names one of the owned commands, or describes installing, linking
 
 The owned-command table in [`README.md`](./README.md) loads first. It names what each command does, so the request can be matched to one command and that command run. A request about a vendored copy's overlays also loads [`references/overlays.md`](./references/overlays.md), which says what each sync state means and what resolves it.
 
-A request about one skill's own checks looks related but belongs to that skill's doctor command, listed under When NOT to Use. The router refuses it rather than loading this table.
+A request to do a skill's own work looks related but belongs to that skill, as When NOT to Use says. The router refuses it rather than loading this table.
 
 The machine router and its resource map live in [`ROUTER.md`](./ROUTER.md), which calls `discover_markdown_resources()` and `_guard_in_skill()` and returns `UNKNOWN_FALLBACK` on no match. Read it before loading a skill-local resource.
 

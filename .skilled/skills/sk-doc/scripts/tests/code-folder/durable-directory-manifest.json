@@ -151,7 +151,7 @@
     ".skilled/hooks/subagent-dispatch-guard/pi",
     ".skilled/hooks/subagent-dispatch-guard/tests",
     ".skilled/logs",
-    ".skilled/manual-testing-playbook/doctor-commands",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands",
     ".skilled/repo-rules",
     ".skilled/scripts",
     ".skilled/scripts/git-hooks",

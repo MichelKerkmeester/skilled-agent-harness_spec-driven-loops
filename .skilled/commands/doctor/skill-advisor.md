@@ -3,7 +3,7 @@ description: "Tune and rebuild the skill advisor, and audit graph freshness, rou
 argument-hint: "<tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
-<!-- skill_agent: system-skill-advisor -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:skill-advisor Router
 

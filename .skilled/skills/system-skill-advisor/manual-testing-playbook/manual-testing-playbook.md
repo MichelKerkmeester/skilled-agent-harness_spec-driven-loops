@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.19.0
+version: 0.8.20.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -297,7 +297,7 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. DOCTOR COMMAND SCENARIOS
 
-Doctor command scenarios for the Skill Advisor now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
+Doctor command scenarios for the Skill Advisor now live in the [system-skilled-doctor playbook](../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md).
 
 ---
 

@@ -3,7 +3,7 @@ description: "Switch sk-git hook gates, edit the commit, PR and branch rules in 
 argument-hint: "<hooks|standards|setup> [--dry-run] [--tool=<name>] | list | ?"
 allowed-tools: Read, Bash, Edit
 ---
-<!-- skill_agent: sk-git -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:git Router
 

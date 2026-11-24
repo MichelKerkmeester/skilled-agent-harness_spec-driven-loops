@@ -15,7 +15,7 @@ const SKILL_ROOT = path.resolve(CLI_ROOT, '../..');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '../../..');
 const PLAYBOOK_ROOTS = [
   path.join(SKILL_ROOT, 'manual-testing-playbook'),
-  path.join(REPO_ROOT, '.skilled/manual-testing-playbook'),
+  path.join(REPO_ROOT, '.skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands'),
 ];
 const FORM = /^Provenance: (?:manual only - .+|(\S+\.(?:vitest\.ts|test\.mjs|test\.ts|test\.cjs)))$/u;
 

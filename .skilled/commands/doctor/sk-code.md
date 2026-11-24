@@ -3,7 +3,7 @@ description: "Run the sk-code setup battery, or check and create the repository 
 argument-hint: "[setup|quality] [--prompt=<text>] [--dry-run] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob
 ---
-<!-- skill_agent: sk-code -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:sk-code Router
 

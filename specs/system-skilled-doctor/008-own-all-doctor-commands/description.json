@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-skilled-doctor/008-own-all-doctor-commands",
+  "description": "system-skilled-doctor owns every doctor command and holds the only doctor playbook",
+  "keywords": [
+    "system-skilled-doctor",
+    "owns",
+    "every",
+    "doctor",
+    "command",
+    "holds",
+    "only",
+    "playbook"
+  ],
+  "lastUpdated": "2026-11-24T18:45:46.712Z",
+  "specId": "008",
+  "folderSlug": "own-all-doctor-commands",
+  "parentChain": [
+    "system-skilled-doctor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

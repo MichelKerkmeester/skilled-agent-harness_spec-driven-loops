@@ -79,11 +79,11 @@ const HEAD_CASES: readonly HeadCase[] = [
       kind: 'command',
       command: '/doctor:git hooks',
       policy: 'ask',
-      ownerSkillId: 'sk-git',
+      ownerSkillId: 'system-skilled-doctor',
       confidence: 0.82,
       uncertainty: 0.12,
     },
-    expectedHead: 'Advisor: live; use sk-git → /doctor:git hooks (ask) 0.82/0.12 pass.',
+    expectedHead: 'Advisor: live; use system-skilled-doctor → /doctor:git hooks (ask) 0.82/0.12 pass.',
   },
   {
     name: 'a memory save names the spec workflow',
@@ -323,7 +323,7 @@ describe('command brief golden heads', () => {
   it('renders both command labels under an ambiguous head', () => {
     const head = headOf(renderAdvisorBrief(AMBIGUOUS_COMMAND_RESULT));
 
-    expect(head.startsWith('Advisor: live; ambiguous: sk-git → /doctor:git hooks (ask)')).toBe(true);
+    expect(head.startsWith('Advisor: live; ambiguous: system-skilled-doctor → /doctor:git hooks (ask)')).toBe(true);
     expect(head).toContain(' vs system-spec-kit → /speckit:save (start)');
     expect(head.length).toBeLessThanOrEqual(HEAD_CHARACTER_CAP);
     expect(head).not.toContain('command-');

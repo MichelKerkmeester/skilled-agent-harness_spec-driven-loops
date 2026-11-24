@@ -643,7 +643,7 @@ Each runtime also has a bridge in the CLI orchestration hub, which [CLI Orchestr
 
 ## 11. 🩺 DOCTOR COMMANDS
 
-Seventeen doctor commands check and repair the setup, one area each. Eleven belong to the `system-skilled-doctor` skill, which owns everything about Skilled inside a project. The rest sit with the skill they check, such as `/doctor:git` with sk-git. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe, and you can also just describe the problem in chat. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
+Seventeen doctor commands check and repair the setup, one area each. All of them belong to the `system-skilled-doctor` skill, including the six that check one skill's own setup, such as `/doctor:git` for sk-git. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe, and you can also just describe the problem in chat. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
 
 | Command | What it does |
 | --- | --- |

@@ -7,7 +7,7 @@ trigger_phrases:
   - "lane residue check"
   - "retired embedding route residue"
   - "lane cleanup"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Lane Residue Gate and Cleanup (sweep-lane-residue.mjs)
@@ -51,7 +51,7 @@ Two callers depend on it. The blocking `lane-residue` job in `.github/workflows/
 |---|---|---|
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts` | Vitest | Vocabulary, allowlist, repo, machine and apply behavior. |
 | `.skilled/commands/doctor/scripts/tests/lane-residue-gate.test.cjs` | Node test | Repo mode passes on this checkout and fails on a planted term. |
-| `.skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md` | Manual playbook | The cleanup report inside an update apply run. |
+| `.skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands/doctor-update-apply.md` | Manual playbook | The cleanup report inside an update apply run. |
 
 ---
 

@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-11-15"
-version: 2.1.34.0
+version: 2.1.35.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -260,7 +260,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 
 ### 7.2 Doctor Command Scenarios
 
-Doctor command scenarios for system-spec-kit now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
+Doctor command scenarios for system-spec-kit now live in the [system-skilled-doctor playbook](../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md).
 
 ### 7.3 Spec-Doc Quality and Metadata
 

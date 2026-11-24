@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "52f0bcb9a98",
+  "capturedAtSha": "342e7fa7586",
   "corpusSha256": "sha256:8092a113b3804a58bcfd403daa30d9a9cce8180670e12920bfe8bd019ee78eab",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -50,7 +50,7 @@
       "partial_total": 4
     },
     "agreement": {
-      "correct": 6,
+      "correct": 4,
       "total": 10
     }
   },
@@ -2016,20 +2016,20 @@
       "tune": {
         "total": 46,
         "own": 14,
-        "ownerLed": 23,
-        "routed": 21,
+        "ownerLed": 19,
+        "routed": 19,
         "withCommand": 15,
         "attached": 15,
-        "neither": 9
+        "neither": 13
       },
       "holdout": {
         "total": 44,
         "own": 3,
-        "ownerLed": 7,
-        "routed": 4,
+        "ownerLed": 6,
+        "routed": 3,
         "withCommand": 2,
         "attached": 2,
-        "neither": 34
+        "neither": 35
       }
     },
     "plain_by_family": {

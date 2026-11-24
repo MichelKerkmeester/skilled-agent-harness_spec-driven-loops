@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.23.0
+version: 1.5.24.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -84,7 +84,7 @@ Record which path ran in the evidence. A run on the fallback path is still grade
 4. The orchestrator runtime has a Skill Advisor Hook OR can invoke `skill_advisor.py` via Bash.
 5. **Concurrency cap**: When running multi-scenario waves, cap at 5 parallel scenarios. Scenarios that invoke `skill_advisor.py` are CPU-light and can run concurrently; scenarios that dispatch `@code` (write work) MUST run serially to avoid scope-collision on the working tree.
 6. **Mutating scenarios**: most scenarios in this playbook are read-only against the skill surface, but four change something and MUST run serially with their undo applied before the next scenario starts. DOC-382 creates and then deletes a nested `graph-metadata.json` inside the `sk-code-skilled/` packet. TH-001 appends a newline to `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` and back-dates its compiled `orchestrator.js`, restoring both from a backup copy. DR-004 creates and then removes `sk-code-skilled/references/zzz_fake_language/` in the live references tree. DOC-383 commits a baseline inside a throwaway clone under a `mktemp -d` directory that it deletes. Every other scenario writes only under `/tmp` or reads only. Each per-feature file's SOURCE METADATA names its own undo, and a scenario that cannot complete its undo is a FAIL, not a PASS with a note.
-7. For a scenario that needs a shared current-code checkout, the environment is `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`. The [central doctor-command category README](../../../manual-testing-playbook/doctor-commands/README.md) describes it and its reset steps.
+7. For a scenario that needs a shared current-code checkout, the environment is `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`. The [doctor-command category README in system-skilled-doctor](../../system-skilled-doctor/manual-testing-playbook/doctor-commands/README.md) describes it and its reset steps.
 8. The skill advisor serves on its native path for any criterion that compares `score`. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --health` reports `"status": "degraded"` when the local fallback is serving and another status when the native path is. A degraded run still records its verdict, with the fallback banner quoted in the evidence.
 
 ---
@@ -279,7 +279,7 @@ Per-feature files: see `plugins-and-hooks/`.
 
 ## 14. DOCTOR COMMAND SCENARIOS
 
-The `/doctor:sk-code` and `/doctor:ci` scenarios now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
+The `/doctor:sk-code` and `/doctor:ci` scenarios now live in the [system-skilled-doctor playbook](../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md).
 
 ---
 
