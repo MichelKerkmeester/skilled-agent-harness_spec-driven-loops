@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing",
+  "description": "Narrow the advisor's shared lexical anchor so two generic words no longer lift a skill to the task-intent floor",
+  "keywords": [
+    "narrow",
+    "advisor",
+    "shared",
+    "lexical",
+    "anchor",
+    "two",
+    "generic",
+    "words",
+    "longer",
+    "lift",
+    "skill",
+    "task-intent",
+    "floor"
+  ],
+  "lastUpdated": "2026-11-24T09:04:13.208Z",
+  "specId": "014",
+  "folderSlug": "lexical-anchor-narrowing",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -41,7 +41,7 @@ The hub selects a mode, and `ROUTER.md` selects that mode's leaves.
 
 The advisor routes classifier requests to the single identity `cli-classifier`.
 Today, `cli-jev` is the only registered mode.
-Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "<task>"`.
+Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`).
 Follow the decision: `route` loads `targets`, `clarify` and `defer` ask for disambiguation, and `reject` refuses.
 `routerPolicy.defaultMode` is `null`, so an unclear request or one naming only this hub defers for clarification rather than selecting `cli-jev`.
 Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.

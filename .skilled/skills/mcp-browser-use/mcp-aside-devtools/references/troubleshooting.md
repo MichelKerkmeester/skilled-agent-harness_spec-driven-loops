@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside mcp handshake failed"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Aside Troubleshooting Guide
@@ -59,7 +59,7 @@ aside account status 2>&1
 
 | State | Signal | Recovery |
 |---|---|---|
-| `CLI_MISSING` | `command -v aside` empty | Report the official installer (`curl -fsSL https://releases.aside.com/install.sh \| bash`); operator-invoked only. Also check `~/.local/bin` is on PATH — the installer places the shim at `~/.local/bin/aside` |
+| `CLI_MISSING` | `command -v aside` empty | Report the install wrapper (`bash scripts/install.sh`, which verifies the official installer against a pinned sha256); operator-invoked only. Also check `~/.local/bin` is on PATH — the installer places the shim at `~/.local/bin/aside` |
 | `UNSUPPORTED_PLATFORM` | Installer rejects non-macOS | macOS (Darwin) arm64/x64 only; Linux and Windows are rejected. Escalate — no workaround |
 | `SIGNED_OUT` | Sign-out warning; built-in models fail closed | BYO provider keys keep working; built-in models need re-sign-in. Recover with `aside account use <id>` or per-run `--account <id>` (tasks/`exec` only) |
 | `ACCOUNT_AMBIGUOUS` | Multiple accounts, unclear default | `aside account list` → `aside account status [id]` → `aside account use <id>`; confirm with the operator |

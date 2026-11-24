@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7274,
-    "ok": 20624,
+    "missing-frontmatter": 7280,
+    "ok": 20659,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29526,
+  "documentsScanned": 29567,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "aa8c02024bddf12b6a04436d49966736faf6139c57a364ca38824209d6a7bcbb",
+  "manifestHash": "1b621b1c516b3db7266d1cfb6f4d468467b40ae362d1f2586bebba95cf3850b8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46327,
+      "ok": 46373,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -8484,6 +8484,30 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--p2-triage/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--p2-triage/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--second-follow-up/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--second-follow-up/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -37477,6 +37501,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T090321Z-restart/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T090321Z-restart/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -59720,6 +59756,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T221729Z-stopped-run2/lineages",
       "reason": "excluded directory"
     },
@@ -59729,6 +59777,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T090321Z-restart/lineages",
       "reason": "excluded directory"
     },
     {
@@ -64293,6 +64345,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/scratch",
       "reason": "excluded directory"
     },
     {

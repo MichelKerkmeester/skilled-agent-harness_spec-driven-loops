@@ -50,7 +50,7 @@ Stage two lives in the root [`ROUTER.md`](./ROUTER.md), which maps each mode's C
 The hub selects a mode, and `ROUTER.md` selects that mode's leaves.
 
 The advisor routes external CLI dispatch to the single identity `cli-external-orchestration`.
-Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"`.
+Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`).
 Follow the decision: `route` loads `targets`, `clarify` and `defer` ask for disambiguation, and `reject` refuses.
 `routerPolicy.defaultMode` is `null`, so a request with no dominant executor defers for clarification rather than selecting a default.
 Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.

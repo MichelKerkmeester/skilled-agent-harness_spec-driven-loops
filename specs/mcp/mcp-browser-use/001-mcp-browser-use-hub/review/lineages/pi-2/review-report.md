@@ -1,111 +1,124 @@
-# Review Report: mcp-browser-use hub epic (lineage pi-2)
+# Review Report - mcp-browser-use hub (lineage pi-2)
 
 ## 1. Executive Summary
 
-**Verdict: CONDITIONAL.** Active findings: P0 = 0, P1 = 1, P2 = 5 — the counts the verdict used, recomputed by `review-verdict.cjs` from the findings registry and the state log at this stop.
+- **Overall verdict: PASS**
+- **hasAdvisories: true** (PASS with 4 active P2 advisories)
+- **Findings by severity, the counts the verdict used: P0 0, P1 0, P2 4**
+- **Self-check outcomes:** every finding was put through claim adjudication with an alternative explanation and a downgrade trigger. No finding was downgraded or called false positive at synthesis; two candidate findings were reclassified during review (the documented `reject` outcome in iteration 1 was ruled round-trippable, and the adapter-stream edge case in iteration 2 was judged prevented by the MCP stdio EOF contract), and one earlier README observation was narrowed to the changelog rows because phase 015 recorded a ruling on the version line.
+- **Review scope:** the pre-bound 522-file scope, reviewed across five iterations covering the hub's routing tables and compiled front door (D1 correctness), its install/doctor and hook mutation surfaces (D2 security), phase 015 plus the epic goal criteria and the advisor 2.0.3.0 change (D3 traceability), and the hub's own doc, version, index and cross-reference consistency (D4 maintainability).
+- **Operator review focus:** every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change.
 
-**hasAdvisories: false.** The verdict is not PASS, so no advisory flag applies.
-
-**Scope.** `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` as a phase parent (001 to 014), with the shipped surfaces its criteria name: the `mcp-browser-use` hub and its three mode packets, the `mcp-tooling` relocation, the compiled routing slice for the hub, the three manual-testing playbooks and their run reports, the shared advisor scorer that phase 014 changed, the doctor scripts and git hook that guard hub scripts, and the packet documents themselves. Scope discovery bound 507 files in `review-scope-files.txt`. Six iterations ran, one dimension per pass plus one cross-reference sweep, 4 of 4 dimensions covered.
-
-**Operator review focus:** every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made.
-
-**Self-check outcomes.** The adversarial self-check re-read the one active P1 against source and confirmed it unchanged: the `staging` hint is still declared and the hint still satisfies the naming anchor, so the Referee made no downgrade and no false-positive call. No P0 was ever raised, so no Hunter/Skeptic/Referee replay was needed. The self-check list is empty, which means the Referee changed nothing.
-
-**Stop reason: `stuckRecovery`** after iteration 6. The composite decision reached two consecutive passes with no new finding (ratios 1, 1, 1, 1, 0, 0) while an active P1 remains, which the loop treats as the stuck threshold rather than as convergence. The review is not stuck for lack of direction: iterations 5 and 6 exhausted the two remaining evidence groups (the un-rechecked acceptance rows and the compiled routing slice). The next pass with new information would need the operator's call on the scorer finding, not another reading of the same tree.
+All four review dimensions are covered, all nine legal-stop gates pass, the graph decision is STOP_ALLOWED, and the three terminal gates (evidence, scope, coverage) pass at stop reason `converged`.
 
 ## 2. Planning Trigger
 
-`/speckit:plan` **is required.** The verdict is CONDITIONAL: one shared-surface P1 needs a decision and a fix, and four of the five P2 items are small, independent documentation or gate alignments that can ride the same plan.
+`/speckit:plan` is required only for the four P2 advisories below. They are documentation repairs in two files; no behavioural defect was found.
 
 ```json
 {
   "triggered": true,
-  "verdict": "CONDITIONAL",
-  "hasAdvisories": false,
-  "reviewDidNotRun": false,
+  "verdict": "PASS",
+  "hasAdvisories": true,
   "activeFindings": [
-    {"id": "PI2-I2-P1-001", "severity": "P1", "dimension": "correctness", "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:30"},
-    {"id": "PI2-I1-P2-001", "severity": "P2", "dimension": "traceability", "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:135"},
-    {"id": "PI2-I1-P2-002", "severity": "P2", "dimension": "traceability", "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:57"},
-    {"id": "PI2-I2-P2-001", "severity": "P2", "dimension": "correctness", "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:332"},
-    {"id": "PI2-I3-P2-001", "severity": "P2", "dimension": "security", "file": ".utcp_config.json:1"},
-    {"id": "PI2-I4-P2-001", "severity": "P2", "dimension": "maintainability", "file": ".skilled/skills/mcp-browser-use/ROUTER.md:53"}
+    { "id": "PI2-D1-P2-001", "severity": "P2", "title": "Reject outcome documented as reachable from the compiled front door, but the CLI cannot pass the constraint that produces it", "file": ".skilled/skills/mcp-browser-use/SKILL.md:62", "dimension": "correctness", "findingClass": "doc_behavior_mismatch" },
+    { "id": "PI2-D2-P2-001", "severity": "P2", "title": "Chrome DevTools installer verifies its pinned CLI by version only, with no content digest, unlike the Bladebro installer", "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:30", "dimension": "security", "findingClass": "supply_chain_verification_gap" },
+    { "id": "PI2-D3-P2-001", "severity": "P2", "title": "The hub README changelog table links three of the five release files", "file": ".skilled/skills/mcp-browser-use/README.md:70", "dimension": "traceability", "findingClass": "doc_index_drift" },
+    { "id": "PI2-D4-P2-001", "severity": "P2", "title": "The README changelog section states a per-entry files-changed list that none of the five entries contains", "file": ".skilled/skills/mcp-browser-use/README.md:66", "dimension": "maintainability", "findingClass": "doc_format_misstatement" }
   ],
   "remediationWorkstreams": [
-    {"lane": 1, "name": "Scorer naming anchor", "findingIds": ["PI2-I2-P1-001", "PI2-I2-P2-001"]},
-    {"lane": 2, "name": "Packet state alignment", "findingIds": ["PI2-I1-P2-001", "PI2-I1-P2-002"]},
-    {"lane": 3, "name": "Hub routing documentation", "findingIds": ["PI2-I4-P2-001"]},
-    {"lane": 4, "name": "Live-attach gate", "findingIds": ["PI2-I3-P2-001"]}
+    { "order": 1, "id": "WS-1", "title": "Correct the hub README changelog section", "covers": ["PI2-D3-P2-001", "PI2-D4-P2-001"], "files": [".skilled/skills/mcp-browser-use/README.md"] },
+    { "order": 2, "id": "WS-2", "title": "Make the documented routing outcomes match the compiled front door", "covers": ["PI2-D1-P2-001"], "files": [".skilled/skills/mcp-browser-use/SKILL.md", ".skilled/skills/mcp-browser-use/ROUTER.md"] },
+    { "order": 3, "id": "WS-3", "title": "Give the Chrome DevTools installer the digest check its sibling has", "covers": ["PI2-D2-P2-001"], "files": [".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh", ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md"] }
   ],
   "specSeed": [
-    "Decide whether a category hint may satisfy the scorer naming anchor, or narrow the `mcp-browser-use` hint list to phrases only.",
-    "Record the close-out discipline that a phase's own progress row is updated in the same change that flips its status.",
-    "Require the hub's doc keyword block to be compared against `hub-router.json` whenever routing vocabulary changes."
+    "One packet-level change: bring the hub's shipped docs in line with what the compiled front door and the installers actually do.",
+    "Scope the README changelog section (rows and format sentence), the documented `reject` outcome in SKILL.md and ROUTER.md, and the Chrome installer's verification step.",
+    "No behavioural change outside the installer's verification step; no version bump is required by any of the three workstreams beyond the doc-version gate."
   ],
   "planSeed": [
-    "Replace the bare `staging` hint with a phrase, or exclude hint-only evidence from the naming anchor; re-run the routing replay before and after.",
-    "Add a decline-corpus row that pairs a task-intent verb with `staging` and expects no browser recommendation.",
-    "Update the parent goal progress row for 014 to Done with its evidence.",
-    "Re-state the research lane row with the pin and the operator yes, keeping the amendment note.",
-    "Align the `ROUTER.md` Chrome DevTools keyword list with `hub-router.json`.",
-    "State the operator gate for `chrome_devtools_live` in the hub docs and the manual note."
+    "WS-1: add the 1.1.2.0 and 1.1.3.0 rows to README section 4, and either reword the format sentence or add the files-changed list it promises.",
+    "WS-2: either document `reject` as an in-process outcome that the CLI cannot reach, or give `compiled-route.cjs` a constraints input; pick one and make SKILL.md and ROUTER.md say it.",
+    "WS-3: record the `browser-debugger-cli@0.6.10` tarball digest, verify it after install the way the Bladebro installer does, and note the check in INSTALL-GUIDE."
   ],
-  "findingClasses": {
-    "PI2-I2-P1-001": "class-of-bug",
-    "PI2-I2-P2-001": "instance-only",
-    "PI2-I1-P2-001": "instance-only",
-    "PI2-I1-P2-002": "instance-only",
-    "PI2-I3-P2-001": "instance-only",
-    "PI2-I4-P2-001": "instance-only"
-  },
+  "findingClasses": ["doc_behavior_mismatch", "supply_chain_verification_gap", "doc_index_drift", "doc_format_misstatement"],
   "affectedSurfacesSeed": [
-    "advisor lexical lane",
-    "advisor task-intent confidence floor",
-    "mcp-browser-use routing",
-    "labeled-prompts corpus",
-    "parent goal log",
-    "001-research research synthesis",
-    "hub ROUTER.md",
-    ".utcp_config.json"
+    ".skilled/skills/mcp-browser-use/README.md",
+    ".skilled/skills/mcp-browser-use/SKILL.md",
+    ".skilled/skills/mcp-browser-use/ROUTER.md",
+    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh",
+    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md"
   ],
-  "fixCompletenessRequired": ["PI2-I2-P1-001"]
+  "fixCompletenessRequired": false
 }
 ```
 
 ## 3. Active Finding Registry
 
-| ID | Sev | Dimension | Title | Evidence | Impact | Fix | Class | Scope proof |
-|---|---|---|---|---|---|---|---|---|
-| PI2-I2-P1-001 | P1 | correctness | A bare `staging` category hint still lifts `mcp-browser-use` to the 0.82 task-intent floor on non-browser prompts | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:30`, `fusion.ts:1226-1233`, `fusion.ts:380-405`, `scoring-constants.ts:191-194` | A non-browser prompt carrying a task verb and the word "staging" is answered with a browser hub at 0.82, which is the class of misroute 014 set out to remove | Drop the bare hint or stop counting a hint as the naming anchor, then replay | class-of-bug | The other two `mcp-browser-use` hints are phrases; the word is used as a deploy-environment word across the corpus; existing decline rows avoid task verbs, so the corpus cannot catch it |
-| PI2-I1-P2-001 | P2 | traceability | Parent goal log still reports phase 014 as In Progress | `001-mcp-browser-use-hub/goal.md:135` | A reader of the progress table concludes a fix lane is still running while spec.md, the criteria block and the continuity all say Complete | Update the row to Done with its evidence | instance-only | `rg "In Progress"` matches only this row |
-| PI2-I1-P2-002 | P2 | traceability | Research lane table still offers an ungated `npx -y bladebro` launch | `001-research/research/research.md:57` | A reader who stops at the table can launch an unpinned package without an operator yes; AC-002 is marked Met while its stated grep over this file does not hold | State the pin and the operator yes in the row itself | instance-only | Every other Bladebro doc already carries both; only this row is ungated |
-| PI2-I2-P2-001 | P2 | correctness | `promptNamesIdNoun` accepts any generic noun as the skill's name | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:332-335` | Prompts that say "mode", "loop", "code" or "plan" satisfy the naming test for whichever skill id ends in that word | Restrict the noun anchor to distinctive nouns or require a second signal | instance-only | One definition, one call site; the three-character floor already blocks `doc`, `git` and `use` |
-| PI2-I3-P2-001 | P2 | security | The live-attach MCP manual is callable with no stated operator gate | `.utcp_config.json:1` (`chrome_devtools_live`, `--autoConnect`) | A Code Mode caller can read the user's signed-in Chrome without any rule requiring consent, while the sibling Bladebro lane requires one | Add the gate to the hub docs and a note on the manual | instance-only | Only the manual and two doc mentions exist; `chrome_devtools_1` already carries `--isolated=true` |
-| PI2-I4-P2-001 | P2 | maintainability | `ROUTER.md`'s Chrome DevTools keyword list has drifted from the router | `.skilled/skills/mcp-browser-use/ROUTER.md:53` | Eight applied keywords are undocumented, including `lighthouse audit` (a declared alias) and `chrome performance trace` (the scorer's read-only anchor) | Align the row with `hub-router.json` | instance-only | Aside and Bladebro rows match their classes exactly; Chrome is the one drift |
+### PI2-D1-P2-001 - documented `reject` outcome is unreachable from the compiled CLI
 
-No finding was resolved, downgraded or disproved during the run.
+- Severity: P2. Dimension: correctness. Finding class: doc_behavior_mismatch.
+- File: `.skilled/skills/mcp-browser-use/SKILL.md:62`, restated at `ROUTER.md:107`.
+- Evidence: `compiled-route.cjs` accepts only `--hub`, `--prompt`, `--prompt-stdin` and `--surface-hint` (takesValue list at line 30, usage at 37 and 52), and neither it nor `resolve.cjs` passes routing constraints; `router.cjs` emits `reject` only from `input.constraints`. A prompt containing "forbidden" stays routable.
+- Impact: a reader who follows the hub docs prepares for an outcome the front door cannot produce; the documented contract and the shipped tool disagree.
+- Fix recommendation: either document `reject` as an in-process outcome reachable only through the policy-card replay path, or add a constraints input to the front door.
+- Disposition: active. Scope proof: both files are inside the pre-bound scope. Affected surfaces: hub SKILL.md, ROUTER.md, `.skilled/bin/compiled-route.cjs`.
+- Confidence 0.82. Downgrade trigger: a documented hub caller that passes constraints.
+
+### PI2-D2-P2-001 - Chrome installer verifies by version only
+
+- Severity: P2. Dimension: security. Finding class: supply_chain_verification_gap.
+- File: `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:30`, install at line 233.
+- Evidence: the installer pins `browser-debugger-cli@0.6.10` and runs `npm install -g "${MCP_PACKAGE}"` with npm's registry hash as the only integrity signal. The Bladebro installer in the same hub pins `4.8.2`, installs with `--ignore-scripts`, verifies four recorded SHA-256 values and removes the install on mismatch. The mutation-class manifest claims digest checking for Bladebro alone, so no doc overstates the Chrome check.
+- Impact: a registry-side substitution of the pinned tarball installs unverified code, while the same substitution against Bladebro is caught.
+- Fix recommendation: record the tarball digest, verify after install, remove on mismatch, and document it in INSTALL-GUIDE.
+- Disposition: active. Scope proof: installer and manifest row are in scope. Affected surfaces: Chrome installer, INSTALL-GUIDE, Bladebro installer as the reference pattern.
+- Confidence 0.7. Downgrade trigger: stays P2 while the only attack is registry compromise.
+
+### PI2-D3-P2-001 - README changelog table links three of five release files
+
+- Severity: P2. Dimension: traceability. Finding class: doc_index_drift.
+- File: `.skilled/skills/mcp-browser-use/README.md:70`.
+- Evidence: README section 4 lists 1.1.1.0, 1.1.0.0 and 1.0.0.0 while `changelog/` holds five files including `v1.1.2.0.md` and `v1.1.3.0.md`. Phase 015's out-of-scope ruling covers the README's own version line, not the table.
+- Impact: a reader on 1.1.3.0 cannot reach what changed since 1.1.1.0 from the index that says it lists one file per release.
+- Fix recommendation: add the two rows.
+- Disposition: active. Scope proof: README is in scope, changelog sits under the same skill root. Affected surfaces: README, changelog directory.
+- Confidence 0.85. Downgrade trigger: a statement that the table is a partial index.
+
+### PI2-D4-P2-001 - README format sentence describes a list no entry has
+
+- Severity: P2. Dimension: maintainability. Finding class: doc_format_misstatement.
+- File: `.skilled/skills/mcp-browser-use/README.md:66` (the registry's `line` field points at the section's table header, line 68).
+- Evidence: the section says each entry "lists what changed and the files changed"; no entry among the five contains a files-changed list (0 matches for files-changed markers and headings across all five).
+- Impact: the next author follows a format no sibling release uses, and readers look for a list that was never written.
+- Fix recommendation: reword the sentence to the format the entries use, or add the list and backfill it.
+- Disposition: active. Scope proof: README and changelog are in scope. Affected surfaces: README, changelog directory.
+- Confidence 0.8. Downgrade trigger: the sentence reworded or the lists added.
 
 ## 4. Remediation Workstreams
 
-1. **Scorer naming anchor** (`PI2-I2-P1-001`, `PI2-I2-P2-001`). One change in two places: decide what may satisfy the naming anchor, then narrow the vocabulary that reaches it. Order matters: land the anchor rule first, because it changes which vocabulary entries can lift a skill. Re-run the two-stage replay before and after, and add the corpus row that pairs a task verb with `staging`.
-2. **Packet state alignment** (`PI2-I1-P2-001`, `PI2-I1-P2-002`). Independent edits, no code risk. Both are cases where a close-out updated the summary and left the row a reader looks at.
-3. **Hub routing documentation** (`PI2-I4-P2-001`). The documented vocabulary is a hand-kept copy, so either align it once or copy the generated list.
-4. **Live-attach gate** (`PI2-I3-P2-001`). The only security item and the only one that changes a rule rather than a row. Decide whether the gate is documented consent or an actual stop-for-yes.
+**P0:** none.
+
+**P1:** none.
+
+**P2 advisories, in fix order:**
+
+1. **WS-1 - README changelog section (PI2-D3-P2-001, PI2-D4-P2-001).** One edit closes both: rows for 1.1.2.0 and 1.1.3.0, and a format sentence that describes the entries as they are. Lowest risk, highest reader value.
+2. **WS-2 - routing outcome contract (PI2-D1-P2-001).** Decide whether `reject` is a CLI outcome or an in-process one, then make SKILL.md and ROUTER.md agree with the answer. Row-level change plus one doc sentence; no behaviour change if the in-process answer is chosen.
+3. **WS-3 - Chrome installer digest (PI2-D2-P2-001).** Mirror the Bladebro pattern: record the tarball digest, verify after install, remove on mismatch, and say so in INSTALL-GUIDE. This is the only workstream that touches an executed script, so it carries the only behavioural risk.
 
 ## 5. Spec Seed
 
-- State what a routing hint is allowed to prove. Right now a hint is both a lexical bonus and proof that the prompt named the skill, and one bare word shows why those should not be the same thing.
-- Record the close-out rule that a phase closes its own log row, so a later phase cannot reintroduce a stale progress line by only updating the summary and the status field.
-- Record that a routing vocabulary change owns every surface that restates it: `hub-router.json`, `ROUTER.md`, the mode aliases and the corpus.
+- The packet-level change is doc-versus-shipped-work alignment for the hub, with one installer hardening.
+- In scope: README section 4, the `reject` documentation in SKILL.md and ROUTER.md, and the Chrome installer verification step plus its guide sentence.
+- Out of scope: the shared 0.45 lexical anchor, the `@latest` install-guide convention across three packets, the 006 status drift, and the README version line, all of which earlier phases recorded rulings on.
 
 ## 6. Plan Seed
 
-- `T1` Narrow the `mcp-browser-use` hint list or the anchor rule, whichever the operator prefers; re-run the two-stage replay and the corpus evaluation, and add the staging-plus-task-verb row.
-- `T2` Update the parent goal progress row for 014 and re-check that `spec.md`, `goal.md` and `graph-metadata.json` still agree after the edit.
-- `T3` Re-state the research lane row with `bladebro@4.8.2` and the operator yes, keeping the amendment note as history.
-- `T4` Align `ROUTER.md`'s Chrome DevTools keywords with `hub-router.json`, and add a check that the three rows match their classes.
-- `T5` State the operator gate for `chrome_devtools_live`, in the hub `SKILL.md`, `ROUTER.md` and the manual note.
+- T1: README section 4 - add 1.1.2.0 and 1.1.3.0 rows; reword or fulfil the files-changed promise. Verify: `grep -c 'changelog/v' README.md` is at least 5 and the sentence matches the entries.
+- T2: decide the `reject` contract; edit SKILL.md:62 and ROUTER.md:107 accordingly. Verify: the doc names only outcomes the named caller can produce.
+- T3: Chrome installer - record and verify the pinned tarball digest. Verify: `node --test .skilled/bin/tests/mcp-installers.test.cjs` still passes 5 of 5, and a mismatched digest removes the install.
+- T4: run the hub's own gates after the edits: `parent-skill-check.cjs`, the sk-doc validator, and the canary gold assertions.
 
 ## 7. Traceability Status
 
@@ -113,56 +126,56 @@ No finding was resolved, downgraded or disproved during the run.
 
 | Protocol | Status | Evidence | Drift |
 |---|---|---|---|
-| `spec_code` | partial | `registry-compiler.cjs:98-109` builds stage two from `hub-router.json` and fails closed on an unknown class; the hub registry holds the three modes with the required kinds | The 014 scorer contract is not fully met: a bare hint still satisfies the naming anchor (`PI2-I2-P1-001`) |
-| `checklist_evidence` | partial | `acceptance-criteria.md:84` (AC-002) | One row's stated verification does not hold as written; every other re-checked row holds (`PI2-I1-P2-002` refines this) |
+| `spec_code` | pass | phase 015 criteria 5 of 7 reproduced by command (front door, canary gold, six advisor probes, 52-row replay); epic criteria 5 of 7 reproduced; advisor 2.0.3.0 traced from changelog claim to live effect and its disclosed limitation reproduced | none |
+| `checklist_evidence` | pass | phase 015 tasks T004, T008 and T019 re-executed rather than trusted; T008's `exit=1` direction needs an edited tree and is recorded unverified | one unverifiable direction, named |
 
 **Overlay protocols**
 
 | Protocol | Status | Evidence |
 |---|---|---|
-| `skill_agent` | pass | Hub `SKILL.md:60` and `ROUTER.md:36` state the own-Chrome rule the router applies |
-| `agent_cross_runtime` | notApplicable | No agent file is in this target's scope |
-| `feature_catalog_code` | pass | Catalog present per mode; nothing contradicted it |
-| `playbook_capability` | pass | Three playbook roots with recorded runs; BB-015 carries the Chrome 136+ precondition |
+| `skill_agent` | notApplicable | the reviewed artifacts assert no skill or agent definition |
+| `agent_cross_runtime` | not run | no cross-runtime agent surface was in the reviewed scope |
+| `feature_catalog_code` | partial | the Chrome lighthouse and performance-trace catalog claims were checked against the packet's docs and the matrix cells in iteration 1; the packet's remaining catalog entries were not opened |
+| `playbook_capability` | partial | playbook presence and the recorded macOS Bladebro run were verified; the playbooks' individual claims were not re-run |
 
-**AC_COVERAGE:** advisory-shortfall. Level 2 target with `acceptance-criteria.md` and a completed `implementation-summary.md`. AC-002 is the one row whose stated verification does not hold. Every row re-checked in iterations 1 to 6 holds; the rows whose only proof is packet tooling keep packet evidence and are named in the Deferred Items. The signal is advisory and did not change the verdict.
+**AC_COVERAGE:** advisory-shortfall for this run. The two phase-015 acceptance rows that name a command (AC-001 bundle and canary, AC-006 five probes) were evidenced by command; the remaining AC rows of phases 013 to 015 were not scanned, so covered is 2 and total is UNKNOWN rather than a number this run can claim. The floor is not defined for this target.
+
+Two criteria are unverified for reasons outside the packet: the advisor's full Vitest suite (2,737 tests, needs a `dist` build) and `validate.sh --strict --recursive`, which this dispatched worker may not run. Both are recorded as UNKNOWN, not as passes.
 
 ## 8. Deferred Items
 
-- **MBU-PB-04** (`benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv:38`) fails at stage one only: the advisor returns `mcp-browser-use` at 0 for "The staging site throws runtime errors on load; I need to inspect its network requests and the live DOM to find the cause.", while the front door routes it correctly to `mcp-chrome-devtools`. 014's criteria are scoped to original, paraphrase and out-of-domain rows, so this does not block them; it is a follow-up vocabulary question, and it is the same word ("staging") that `PI2-I2-P1-001` is about.
-- **Criteria whose only proof is packet tooling** — `parent-skill-check.cjs`, `validate-playbook-package.cjs`, `check-mcp-mutation-class.sh`, `check-goal.cjs` and `validate.sh --strict --recursive` — were not re-run: this lineage is write-bound to its own directory. They keep their prior packet evidence and should be re-run by the closing commit.
-- **Live browser behaviour** was not exercised; no browser was launched by this review.
-- **Continuity save** was not performed: the lineage writes only inside its own directory, so the packet's canonical continuity was left untouched.
+- **The advisor suite's health claim** (phase 015 criterion 2, second half) is unverified here. The behaviour the suite covers was verified directly by six probes; the suite-wide claim needs an operator run.
+- **`validate.sh --strict --recursive` on the hub packet** (phase 015 criterion 3 and epic criterion 7) is blocked in this run; the packet's own validator has not been re-run by this lineage.
+- **The 006 status drift** (spec says Complete while its continuity waits on deferred routing findings) is an operator decision per phase 015's out-of-scope list.
+- **The shared 0.45 lexical anchor** still lets two generic words lift several skills, disclosed in advisor 2.0.3.0's Known Limitation and out of scope for this hub.
+- No frontier object exists in this registry, so there are no exhausted or blocked frontier nodes to list.
 
 ## Dimension Expansion Map
 
-No pivots, no saturation overrides, no Council artifacts. Directions selected: traceability of the phase criteria (iteration 1), correctness of the 014 fixes and the scorer (2), security of the shipped surfaces (3), maintainability of the routing documentation (4), a cross-reference sweep of the acceptance table (5), and the compiled routing slice (6). Remaining frontier: none recorded; the two unread groups were consumed in iterations 5 and 6.
+- Divergent expansion was not configured (`convergence_mode: default`), so there are no completed pivots, failed pivots, audited overrides or Council artifacts for this lineage.
+- `divergence.saturatedDirections` is empty: the reducer recorded no saturated direction.
+- Selected review directions: the four configured dimensions, each covered once, with a fifth pass spent on graph reconciliation and citation integrity rather than on a fifth direction.
+- Remaining frontier: none open. The coverage graph holds 526 seed nodes, 4 `FINDING` nodes and their `EVIDENCE_FOR` edges, and the hotspot saturation signal passes.
 
 ## 9. Search Ledger
 
-*No search-depth state captured (legacy v1 record).* This lineage emitted v1 iteration records, so `searchCoverage`, `candidateCoverage` and `searchDebt` are empty. `hasSearchDebt: false`. The six iteration narratives carry the equivalent ledger in prose: each names its target group, the bug classes it looked for, and what it ruled out.
+- `searchCoverage` required bug classes: `doc_format_misstatement` (iteration 4) and `citation_integrity` (iteration 5); all covered.
+- `candidateCoverage.covered`: `citation_integrity`, `doc_behavior_mismatch`, `doc_format_misstatement`, `doc_index_drift`, `supply_chain_verification_gap`.
+- `candidateCoverage.ruledOut` (19 classes) includes `broken_link`, `layout_entry_stale`, `version_mismatch`, `secret_exposure`, `privileged_execution`, `readonly_label_misclassification`, `hook_gate_bypass`, `stale_compiled_policy`, `routing_table_divergence`, `vocabulary_orphan`, `generated_manifest_drift`, `goal_evidence_stale` and `changelog_missing`.
+- `searchDebt`: empty. `hasSearchDebt: false`.
+- `cleanSearchProof`: present for the five finding rows, each carrying evidence refs and a linked finding id.
+- `ruledOutCandidates`: the 19 classes above plus the per-iteration ruled-out directions recorded in each narrative.
 
 ## 10. Audit Appendix
 
-**Iteration table**
+**Convergence summary.** Five iterations, stop reason `converged`, stop decision STOP with reason detail `all_dimensions_clean`, weighted stop score 0.7 against a 0.60 bar; graph decision STOP_ALLOWED; all nine legal-stop gates pass; terminal gates evidence, scope and coverage all pass. Findings by iteration: 1 (P2), 1 (P2), 1 (P2), 1 (P2), 0. New-findings ratios: 1.0, 0.5, 0.3333, 0.25, 0.0.
 
-| N | Dimension | Focus | New findings | Ratio | Files |
-|---|---|---|---|---|---|
-| 1 | traceability | Phase goal criteria vs shipped work | 2 P2 | 1.0 | 24 |
-| 2 | correctness | 014 installer fixes and the scorer change | 1 P1, 1 P2 | 1.0 | 13 |
-| 3 | security | Trust boundaries: manual, guards, examples | 1 P2 | 1.0 | 10 |
-| 4 | maintainability | Routing documentation vs router | 1 P2 | 1.0 | 12 |
-| 5 | traceability | Acceptance cross-reference sweep | none | 0.0 | 16 |
-| 6 | correctness + traceability | Compiled routing slice | none | 0.0 | 8 |
+**Coverage summary.** Four dimensions, all covered; five of the 522 pre-bound files read in depth per iteration with roughly forty unique files cited across the run; the coverage graph seeded from all 522 scope paths so the hotspot signal has a real frontier to judge.
 
-**Coverage.** 4 of 4 dimensions covered (correctness, security, traceability, maintainability). Groups covered: packet documents, hub skill root, three mode packets, playbooks and run reports, advisor scorer and corpora, doctor scripts and pre-commit hook, compiled routing slice and activation manifest, `.utcp_config.json`.
+**Ruled-out claims.** (1) The hub routing tables are aligned, no orphan vocabulary and no stale compiled policy. (2) The doctor handshake probes are documented read-only and watchdog-bounded, not a mislabelled mutation. (3) The pre-commit comment-hygiene gate checks staged blobs and fails closed. (4) No credential literal exists in the hub tree or the UTCP config. (5) Phase 015's replay evidence is current, not stale. (6) The advisor version line matches its newest changelog and its behaviour matches its changelog. (7) The README version line is a recorded ruling, not drift.
 
-**Convergence replay.** Ratios 1, 1, 1, 1, 0, 0. Rolling two-pass average at the stop: 0.0, below the 0.08 cutoff. The loop stopped with `stuckRecovery` because two consecutive passes added no finding while a P1 remains; the composite decision treated that as the stuck threshold rather than as convergence.
+**Sources reviewed.** The hub's own sixteen-file root, three mode packets' SKILL/ROUTER/INSTALL-GUIDE files, five hub changelog files and the mode changelogs' headings, the compiled-routing library and front door, the canary fixture and harness, the two-stage replay corpus and report, the mutation-class manifest and guard, the repo pre-commit hook, the three installers and three doctors, the UTCP registration, the advisor changelog and probe behaviour, and phases 001 to 015 goal, spec, acceptance, tasks and implementation-summary documents as far as their criteria required.
 
-**Ruled-out claims.** Installer parity is byte-identical; the `@alpha` pin residue is gone; the mutation guard covers all three hub modes; the Aside examples refuse injection; the compiled vocabulary fails closed; the activation manifest's policy hash matches the recorded serving policy; packet versions match their newest changelog entries.
+**Cross-reference appendix - Core Protocols.** `spec_code`: pass, five phase-015 and five epic criteria reproduced by command, two criteria blocked by run limits. `checklist_evidence`: pass, three phase-015 task rows re-executed, one direction unverifiable without an edited tree.
 
-**Sources reviewed.** Each iteration narrative lists the files it read or grepped in its `## Sources` and `## Files Reviewed` sections; those lists, not a rolled-up count, are the record.
-
-**Cross-reference appendix.** Core: `spec_code` partial, `checklist_evidence` partial. Overlay: `skill_agent` pass, `agent_cross_runtime` notApplicable, `feature_catalog_code` pass, `playbook_capability` pass.
-
-**Provenance.** Session `fanout-pi-2-1795504079797-ay97sx`, generation 1, lineage mode `new`. State records went through the append gateway; the registry, dashboard and strategy are reducer output. Verdict recomputed by `review-verdict.cjs`: CONDITIONAL (0 P0, 1 P1, 5 P2).
+**Cross-reference appendix - Overlay Protocols.** `skill_agent`: notApplicable. `agent_cross_runtime`: not run. `feature_catalog_code`: partial (Chrome lighthouse and performance-trace claims verified, the rest not opened). `playbook_capability`: partial (presence and the recorded macOS Bladebro run verified, individual claims not re-run).

@@ -1,9 +1,9 @@
 {
   "topic": "Review: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub",
-  "sessionId": "2026-11-24T07:07:48.877Z",
-  "parentSessionId": "2026-11-24T04:43:48.599Z",
+  "sessionId": "2026-11-24T09:03:35.256Z",
+  "parentSessionId": "2026-11-24T07:07:48.877Z",
   "lineageMode": "restart",
-  "generation": 3,
+  "generation": 4,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 7,
@@ -31,9 +31,9 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub",
-  "createdAt": "2026-11-24T07:07:48.877Z",
+  "createdAt": "2026-11-24T09:03:35.256Z",
   "status": "complete",
-  "releaseReadinessState": "conditional-not-gate-proven",
+  "releaseReadinessState": "fail-coverage-gate",
   "executionMode": "auto",
   "executor": {
     "kind": "native",
@@ -52,7 +52,7 @@
     "traceability",
     "maintainability"
   ],
-  "reviewFocus": "every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made",
+  "reviewFocus": "every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change",
   "severityThreshold": "P2",
   "crossReference": {
     "core": [
@@ -629,7 +629,22 @@
     ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
     ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
     ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts",
-    ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/source.md"
+    ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/source.md",
+    ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/README.md",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/results.csv",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/skill-benchmark-report.json",
+    ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/source.md",
+    ".skilled/skills/mcp-browser-use/changelog/v1.1.3.0.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/acceptance-criteria.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/decision-record.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/graph-metadata.json",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/timeline.md"
   ],
   "stopPolicy": "convergence",
   "fanout": {

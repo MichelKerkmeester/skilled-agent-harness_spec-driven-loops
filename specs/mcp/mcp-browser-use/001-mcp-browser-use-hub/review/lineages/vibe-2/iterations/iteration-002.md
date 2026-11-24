@@ -5,30 +5,21 @@
 - Mode: review
 - Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
 - Dimension: security
-- Operator review focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- Artifact dir: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-2`
-- Session: `fanout-vibe-2-1795504079797-ay97sx`, generation 1, lineageMode new
-- Sources read this iteration: `steer.md` (absent), `deep-review-strategy.md`, `deep-review-findings-registry.json`, `.skilled/skills/sk-code/sk-code-review/references/review-core.md` §2 reach calibration
-
-## How this iteration addressed the operator focus
-
-The focus binds every iteration. This one took the security dimension and pointed it at the two
-phase 014 fixes that touch a trust boundary: the Bladebro install gate, which decides whether a
-package is fetched and whether its bytes are trusted, and the Aside capture example, which splices
-caller-supplied values into a JavaScript evaluation and writes a file. It also read the
-compiled-routing policy card and the browser hub's fence state, because the focus names shipped
-phase work and those two files are what the compiled front door serves.
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change
+- Lineage: sessionId `fanout-vibe-2-1795511024070-2cuwlj`, generation 1, lineageMode new
+- Iteration: 2 of 7
 
 ## Files Reviewed
 
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:1-200`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh:20-145`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:1-95`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:30,232-237`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/doctor.sh:69-76`
-- `.skilled/skills/mcp-code-mode/scripts/_utils.sh` vs `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/_utils.sh`
-- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/policy-card.cjs:1-60`
-- `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/fence-state.json:1`
+- `.skilled/skills/mcp-browser-use/SKILL.md:62` -- the hub's compiled front-door instruction
+- `.skilled/skills/mcp-browser-use/ROUTER.md:103` -- the machine-router callout
+- `.skilled/bin/compiled-route.cjs:27` -- argument parsing and the `--prompt-stdin` path
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:14` -- pinned installer digest
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/install/install-and-doctor.md:24` -- install guidance
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md:72` -- installer env overrides
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:26` -- input guards
+- `.skilled/skills/mcp-browser-use/mode-registry.json:1` -- tool-surface declarations
+- `.skilled/skills/mcp-browser-use/shared/README.md:1` -- shared surface
 
 ## Findings - New
 
@@ -38,78 +29,79 @@ None.
 
 ### P1 Findings
 
-1. **The Aside capture example's session-dir containment guard does not normalize the path, so a traversal that leaves `./tmp` passes a guard whose own message says it must stay under `./tmp`** -- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:33-38` -- the guard is `case "$SESSION_DIR" in ./tmp | ./tmp/*) ;; *) echo "FAIL: session-dir must stay under ./tmp ..." ; exit 1 ;; esac`. A glob prefix test matches any string that starts with `./tmp/`, so `./tmp/../../etc` passes and is then spliced into `fs.mkdir('${SESSION_DIR%/}', { recursive: true })` and `page.screenshot({ path: '$shot_path' })` at `:50`. The guard's printed message names the exact class it fails to reject.
+1. **The hub's front-door instruction splices the user task into a double-quoted shell argument** -- `.skilled/skills/mcp-browser-use/SKILL.md:62` -- the hub tells the agent to run `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt "<task>"`, and `ROUTER.md:105` repeats the same form. A browser task routinely quotes on-screen text, so a task such as `click the "Sign in" button in chrome devtools` closes the argument early: the shell passes `click the ` as the prompt and `Sign`, `in`, `button` as stray tokens. Verified: that invocation returns `defer` with no targets, while the same text sent through `--prompt-stdin` returns `route` to `mcp-chrome-devtools`. A task containing `$(...)` or a backtick is command-substituted instead. `compiled-route.cjs:43` documents `--prompt-stdin` as the form for a caller routing a user's prompt, precisely because argv is both shell-unsafe and readable by any local user, and neither hub doc mentions it.
    Finding class: security
-   Scope proof: the file is inside the pre-bound scope list and is one of the phase 014 fixes the operator focus names; the guard, the splice sites and the message are all cited at line level.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh`, the Aside manual-testing playbook that invokes it, and any agent that copies the example as a template.
-   Case: an agent building a session folder from a task name passes `./tmp/../<task>`; the guard accepts it, `fs.mkdir` creates the parent, and the screenshot lands outside the REPL session folder that the script's header says confines writes.
+   Scope proof: both docs are hub-owned and inside the declared review target; the CLI they name is the front door the hub's own completion criterion exercises.
+   Affected surface hints: `.skilled/skills/mcp-browser-use/SKILL.md`, `.skilled/skills/mcp-browser-use/ROUTER.md`, `.skilled/bin/compiled-route.cjs`
+   Case: a user task that quotes UI text, such as `click the "Sign in" button in chrome devtools`, is truncated at the first inner double quote and routes to `defer` instead of `mcp-chrome-devtools`; a task containing `$(...)` executes that substitution in the caller's shell.
 
-```json
-{
-  "type": "security",
-  "claim": "The session-dir guard is a prefix glob, not a containment check, so a path that starts with ./tmp/ but resolves outside it passes a guard whose message promises the opposite.",
-  "evidenceRefs": [
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:33-38",
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:50"
-  ],
-  "counterevidenceSought": "Checked whether the second layer catches it: the script greps the REPL output for [WARN] and fails, and the header says the REPL confines writes to its session folder and redirects a /tmp path with a [WARN] line. That statement covers a /tmp path, not a .. traversal, so the second layer is not proven to catch this class. Also checked whether the argument is attacker-controlled: it is caller-supplied, and the script is an example other agents copy, so the caller class is real but not adversarial.",
-  "alternativeExplanation": "The guard may be intended only as a typo catcher, with the REPL's own confinement as the real boundary. That reading is consistent with the header comment but not with the guard's own failure message, which states a containment promise.",
-  "finalSeverity": "P1",
-  "confidence": "medium",
-  "downgradeTrigger": "Downgrade to P2 if the Aside REPL provably rejects a .. traversal inside its session folder, because the [WARN] grep would then fail the run before the file is written."
-}
-```
+   ```json
+   {"type":"claim","claim":"The documented front-door invocation interpolates the user task into a double-quoted shell argument, so a task containing a double quote truncates the prompt and a task containing a command substitution executes it.","evidenceRefs":["SKILL.md:62","ROUTER.md:105","compiled-route.cjs:43","compiled-route.cjs:59","observed: --prompt with inner quotes -> action defer, targets []; --prompt-stdin with the same text -> action route, mcp-chrome-devtools"],"counterevidenceSought":"Checked whether the CLI rejects or repairs a truncated prompt (it does not: the stray tokens are ignored and the short prompt scores no mode), whether the docs mention the stdin form anywhere (they do not: grep for prompt-stdin across SKILL.md, ROUTER.md and README.md returns nothing), and whether the mode packets carry their own safer callout (they carry none).","alternativeExplanation":"The placeholder may be intended as illustrative rather than literal, leaving quoting to the agent. Rejected as a full defence: the CLI ships a dedicated stdin path and documents why argv is wrong for user prompts, so the hub's own front door contradicts the tool it names, and the failure is silent rather than an error.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 if the hub docs are amended to name --prompt-stdin for user tasks and the argv form is marked as literal-text-only."}
+   ```
+
+2. **The Aside feature catalog still offers the unpinned `curl | bash` install** -- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/install/install-and-doctor.md:24` -- the entry reads "Install with `curl -fsSL https://releases.aside.com/install.sh | bash` or the packaged wrapper `bash scripts/install.sh`". Phase 015 decision D2 states that the Aside installer runs only a script matching a pinned sha256, and `install.sh:14` implements exactly that. The feature catalog presents the unpinned pipe as an equal first option, so an agent that reads the capability reference rather than the wrapper bypasses the pin entirely.
+   Finding class: security
+   Scope proof: the feature catalog entry and the wrapper are both inside the Aside packet, which is inside the declared review target.
+   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/install/install-and-doctor.md`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md`
+   Case: an agent asked to install the Aside CLI reads the feature catalog, runs the `curl | bash` form, and executes whatever `releases.aside.com` serves at that moment with no digest check, which is the exact path decision D2 was written to close.
+
+   ```json
+   {"type":"claim","claim":"The Aside feature catalog documents an unpinned curl-to-bash install as an equal alternative to the digest-pinned wrapper, contradicting phase 015 decision D2.","evidenceRefs":["feature-catalog/install/install-and-doctor.md:24","scripts/install.sh:14","015-fix-follow-up-review-findings/goal.md decision D2"],"counterevidenceSought":"Checked whether the feature catalog marks the curl form as deprecated or vendor-only (it does not), whether INSTALL-GUIDE.md repeats it (it documents only the env overrides), and whether the wrapper is the only packaged path (it is, so the catalog line is the sole bypass).","alternativeExplanation":"The line may be describing the vendor's own documented method for completeness. Rejected as sufficient: it is written as an install instruction with no warning, and the packet's own decision record forbids the unpinned path.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 if the catalog line is rewritten to name the pinned wrapper as the only install path and to mark the vendor curl form as reference-only."}
+   ```
 
 ### P2 Findings
 
-2. **The Aside capture example accepts any URL scheme, so a `file://` target is opened and screenshotted as evidence** -- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:24,50` -- `URL="${1:-https://example.com}"` is validated only for a single quote and a backslash at `:28-32`, then spliced into `openTab('$URL')`. Nothing restricts the scheme, so `file:///Users/<name>/.ssh/id_rsa` or a `javascript:` URL is opened in the signed-in browser and captured to a PNG that the script then reports as PASS.
+3. **The installer pin covers the script but not the archive, and the archive source is env-overridable** -- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:14` -- the wrapper verifies `INSTALLER_SHA256` before running the downloaded script, and its comment states that "the archive it fetches is not verified". The same wrapper passes `ASIDE_CLI_BASE_URL` through to that script, so the unverified archive's source is environment-controlled. The two facts are each documented but never connected, so a reader infers more assurance from the pin than it provides.
    Finding class: security
-   Scope proof: same file and same phase 014 fix as finding 1; the parameter default, the validation case and the splice site are cited at line level.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh`, the Aside playbook's evidence-capture step, and the `repl-evidence-capture` feature catalog entry.
-   Case: an agent asked to capture evidence for a local file passes a `file://` URL; the browser reads the file, the screenshot passes the PNG magic-byte gate, and the run reports PASS on evidence the operator never meant to expose.
+   Scope proof: the wrapper and its documented env overrides are both inside the Aside packet.
+   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md`
+   Case: an operator with `ASIDE_CLI_BASE_URL` set to a mirror installs an archive that no digest covers, while the wrapper reports "Installer digest verified" and exits 0.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|---|---|---|---|
-| `spec_code` | pass | `014-fix-deep-review-findings/goal.md:60-70` vs the tree | The `npx -y bladebro` criterion holds: every match names an operator yes and `bladebro@4.8.2`; the `browser-debugger-cli@alpha` criterion holds with no match |
-| `checklist_evidence` | partial | `install.sh:1-200`, `doctor.sh:20-145` | The Bladebro gate's checklist rows hold; the Aside capture checklist row does not cover path containment or URL scheme |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | Decision D2 is implemented in `install.sh:14` but contradicted by `install-catalog` guidance at `install-and-doctor.md:24` (finding 2). |
+| `checklist_evidence` | partial | Phase 015's verification table records `node --test .skilled/bin/tests/mcp-installers.test.cjs` at pass 5, fail 0. That suite covers the wrapper, not the catalog line that bypasses it. |
+| `skill_agent` | pass | `parent-skill-check.cjs` reports PASS on 3d-canon, which requires every mode to carry `toolSurface`; all three declare `mutatesWorkspace: true` with `forbidden: []`. |
+| `agent_cross_runtime` | notApplicable | No agent definition carries hub logic. |
+| `feature_catalog_code` | fail | The Aside install feature-catalog entry documents a path the packet's own decision record forbids (finding 2). |
+| `playbook_capability` | pending | Deferred to the traceability iteration. |
 
 ## Integration Evidence
 
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh` and `doctor.sh` carry the same four digests (`DIGEST_DARWIN_ARM64`, `DIGEST_DARWIN_X64`, `DIGEST_LAUNCHER_BIN_JS`, `DIGEST_LAUNCHER_BINARY_CJS`), so the fresh-install path and the existing-install path verify the same three files.
-- `diff .skilled/skills/mcp-code-mode/scripts/_utils.sh .skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/_utils.sh` printed no difference, which is the phase 014 parity fix.
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:30` pins `browser-debugger-cli@0.6.10`, and `doctor.sh:70` resolves it with `npx --no-install`, so the doctor never fetches.
-- `bash -n` on both shell scripts under review printed no syntax error.
+- `.skilled/bin/compiled-route.cjs` was exercised in both argument forms. `--prompt "click the "Sign in" button in chrome devtools"` returned `{"action":"defer","targets":[]}`. The same text through `--prompt-stdin` returned `{"action":"route","selectionKind":"single","targets":[{"workflowMode":"mcp-chrome-devtools"}]}`.
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh` was read end to end: platform gate, existing-binary no-op, `curl -fsSL` to a `mktemp` file, `shasum -a 256` comparison, `exit 1` on mismatch, then `bash "$installer"`.
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` rejects `'` and `\` across the URL and session dir, then rejects any `..` substring, then requires the `./tmp` prefix.
 
 ## Edge Cases
 
-- **Rollback failure is reported, not verified.** `install.sh:88-92` runs `npm uninstall -g bladebro || err "Uninstall failed; run it by hand"` and then `exit 1`. A failed uninstall therefore leaves an unverified package installed with only a stderr line as the signal. Recorded as an edge case rather than a finding because the wrapper's header promises removal and the exit code does report the failure, so the caller is not misled about the outcome.
-- **The existing-install no-op path skips the digest check by design.** `install.sh:132-141` exits 0 when `bladebro` is already on PATH and points the caller at `doctor.sh`. `doctor.sh:121-141` does check the same three files, so the delegation is real and not a gap.
-- **The policy card is document-only.** `policy-card.cjs:22-30` stamps `terminal: DOCUMENT_ONLY_UNATTESTED` and `replayPolicyCard` returns `draftStatus: PREPARED_DRAFT`, so a replayed card cannot claim live activation. No finding.
-- **Fence state is a single epoch.** `fence-state.json` carries `{"fencingEpoch":1,"schemaVersion":"V1"}` with no per-hub divergence, so there is nothing to compare against a second hub in this lineage.
+- The `..` rejection is a substring test, so a legitimate directory such as `./tmp/a..b` is refused. That is over-restrictive rather than unsafe, so it is recorded as a usability note and not a finding.
+- The capture example splices the URL into a single-quoted JavaScript string. A newline in the URL would be a JavaScript syntax error rather than an escape, so the failure is closed.
+- `bashAllowlist: []` appears on all three modes beside `Bash` in `allowed`. `mcp-tooling`'s workflow modes carry the same shape, so this is the established hub pattern rather than a hub-specific grant.
+- The `curl` call has no `--max-time`, so a hung connection blocks the installer indefinitely. That is an availability nit outside the security dimension's blocking set.
 
 ## Confirmed-Clean Surfaces
 
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh`: `--ignore-scripts` on the install, every digest check before the first `--version` call, a platform gate that refuses any platform without a recorded digest, and no `npm update` or `bladebro -u` path.
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh`: verifies the launcher pair only when the resolved launcher is the npm `bin.js`, and skips the launcher check with an explicit info line otherwise.
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/doctor.sh`: `npx --no-install --prefer-offline`, so the doctor cannot fetch a package.
-- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/policy-card.cjs`: no live-activation claim, and `parsePolicyCard` throws on a missing payload rather than defaulting.
+- `install.sh` fails closed on a digest mismatch, on a missing `curl` or `shasum`, and on a non-Darwin platform, and it never runs `aside --update`.
+- `repl-evidence-capture.sh` rejects the quote and backslash classes before splicing, and rejects `..` before the prefix test, so neither traversal nor string escape reaches the REPL.
+- `mode-registry.json` declares `mutatesWorkspace: true` for all three modes, and `registry-compiler.cjs` derives `effectClass: workspace-mutation-capable` from it, so the compiled policy does not understate the grant.
+- `shared/README.md` is the only file under `shared/` and carries no executable surface.
 
 ## Ruled Out
 
-- **The Bladebro install gate runs package code before the digest check.** Ruled out: `--ignore-scripts` is on the install, and the first `--version` call is after all three `verify_digest` calls.
-- **The Chrome DevTools install is unpinned.** Ruled out: `MCP_PACKAGE="browser-debugger-cli@0.6.10"` at `install.sh:30`, and `browser-debugger-cli@alpha` has no match in the packet outside changelog and benchmark reports.
-- **The installer parity fix is one-sided.** Ruled out: the two `_utils.sh` copies are byte-identical.
-- **The compiled policy card can attest live activation.** Ruled out: the card is stamped `DOCUMENT_ONLY_UNATTESTED` and replay returns `PREPARED_DRAFT`.
+- **Shell injection through the capture example's URL.** The guard rejects `'` and `\` across `"$URL$SESSION_DIR"` before either value is spliced, and the splice target is a single-quoted JavaScript string, so no shell metacharacter reaches the shell.
+- **Path traversal through the capture example's session dir.** The `*..*` case runs before the `./tmp` prefix case, so a traversal cannot pass the prefix test.
+- **Understated mutation posture in the compiled policy.** `mutatesWorkspace` is true on every mode and the compiler maps it to `workspace-mutation-capable`.
+- **A second unpinned install path inside the wrapper.** The wrapper downloads to a `mktemp` file and never pipes to a shell.
 
 ## Next Focus
 
 - Dimension: traceability
-- Focus area: each phase's goal criteria against the tree, the phase 014 finding registry closure, and the playbook capability claims
-- Reason: security is covered; traceability is next in risk order and the operator focus is fundamentally a goal-criteria question
-- Rotation status: correctness and security complete, traceability not started
-- Blocked/productive carry-forward: nothing blocked; the Aside capture example is productive and may be revisited under maintainability
-- Required evidence: file:line citations from the pre-bound scope list
+- Focus area: the three mode playbooks and their recorded runs, the phase 006 and 008 goal criteria, and the completion-criteria checklist against shipped evidence
+- Reason: security closed the newest trust-boundary code; traceability is the dimension that decides whether each phase's goal criteria are actually met
+- Rotation status: correctness and security reviewed, traceability next
+- Blocked/productive carry-forward: the feature-catalog scan was productive and should be repeated for the playbook capability protocol
+- Required evidence: file:line citations from `.skilled/skills/mcp-browser-use/manual-testing-playbook/` and the phase 006 and 008 goal documents
 
 Review verdict: CONDITIONAL

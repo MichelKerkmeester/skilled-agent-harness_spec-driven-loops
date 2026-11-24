@@ -25,8 +25,10 @@ const IMPL_ROOT = path.resolve(__dirname, '..', '..');
 // Promoted activation manifests (never the spec tree). Fingerprinting a hub's
 // manifest lets the engine cache invalidate when the manifest flips, so a
 // serving-authority or selected-policy change never serves an engine cached
-// against the prior manifest.
-const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '013-live-activation', 'activation');
+// against the prior manifest. The resolver honors the same test override, so
+// the engine must fingerprint the manifest the resolver gates on.
+const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
+  || path.resolve(__dirname, '..', '..', '013-live-activation', 'activation');
 const HUB_CHILD = Object.freeze({
   'sk-code': '009-parent-hub-rollout/001-sk-code',
   'system-deep-loop': '009-parent-hub-rollout/002-system-deep-loop',

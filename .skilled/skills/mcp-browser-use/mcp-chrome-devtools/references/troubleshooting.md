@@ -11,7 +11,7 @@ trigger_phrases:
   - "session target not found"
 importance_tier: normal
 contextType: implementation
-version: 1.0.7.0
+version: 1.0.9.0
 ---
 
 # Troubleshooting Guide
@@ -183,9 +183,11 @@ node --version
 ```bash
 # Install/update Node.js
 # Using nvm (recommended)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-nvm install 18
-nvm use 18
+curl -fsSLo nvm-install.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
+# Read nvm-install.sh before running it
+bash nvm-install.sh
+nvm install 20
+nvm use 20
 
 # Or download from nodejs.org
 ```

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "No browser-use hub exists, so there is nowhere to register the three browser modes",
     "created_at": "2026-11-21T08:11:41Z",
-    "last_save_at": "2026-11-21T12:56:17.636Z",
+    "last_save_at": "2026-11-24T12:03:15.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e822901a7a050a3007faa652c2d6d30dad840e591cfcf295660131b0504e7db",
+    "source_fingerprint": "sha256:a893728d4d11edbc6715489edfbd8f544f62cb6196bf6116de7baa63c63b4ca6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0e4cf179a824c26a572cf8deed64687385806a7ddb576368233c4a94acdd6b03",

@@ -1,29 +1,19 @@
-# Iteration 005: Traceability cross-reference sweep over the remaining acceptance criteria
+# Review Iteration 005 - mcp-browser-use hub
 
-## Dimension
+## Dispatcher
 
-traceability (D3), cross-reference only. Each pass so far covered one dimension and settled the criteria it touched; this pass sweeps the 014 acceptance rows that none of them re-checked, so `checklist_evidence` can be judged on the whole table rather than on the rows a single dimension happened to touch. Operator review focus is unchanged: every phase's shipped work against its goal criteria, with the 014 fixes as the centre.
+- Mode: review (LEAF, single iteration)
+- Run: fanout-pi-2-1795511024070-2cuwlj, generation 4, lineageMode new
+- Iteration: 5 of 7
+- Dimension: correctness
+- Operator review focus: every phase's shipped work against its goal criteria. This iteration closes the evidence loop: it populates the lineage's coverage graph that the first four iterations left empty, re-derives the finding-to-file evidence from the iteration deltas, checks that every registered finding still points at the text it cites, and re-runs the stop decision so the run's terminal state rests on a real graph rather than on a missing database.
 
-## Sources
+## Files Reviewed
 
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md` (AC-003 to AC-016, AC-018 to AC-020)
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/{003-mode-relocation,004-bladebro-mode,011-bdg-eval-port-note}/goal.md`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/acceptance-criteria.md`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/{SKILL.md,README.md,references/troubleshooting.md}`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-22--manual-testing-playbook--clickup-real-browser/{README.md,results.csv,source.md}`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/changelog/v1.0.27.0.md`
-- `.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv`
-
-## Scorecard
-
-- Dimensions covered: traceability
-- Files reviewed: 16 read or grepped
-- New findings: P0=0 P1=0 P2=0
-- Refined findings: none
-- New findings ratio: 0.0 (no new weighted units against a running total of 6 findings)
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/{deep-review-findings-registry.json,deep-review-config.json,deltas/iter-001..004.jsonl}`
+- `.skilled/skills/mcp-browser-use/{SKILL.md,README.md,mcp-chrome-devtools/scripts/install.sh}` (cited finding lines)
+- `.skilled/skills/system-deep-loop/runtime/scripts/{upsert.cjs,convergence.cjs}` (invoked, not audited)
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/graph-db/deep-loop-graph.sqlite` (written by the workflow's own upsert step)
 
 ## Findings
 
@@ -37,53 +27,66 @@ None.
 
 ### P2 Findings
 
-None new. The three P2 findings from iterations 1, 3 and 4 and the P1 from iteration 2 are unchanged and still active; their evidence was re-read below.
+None new. The four open findings from iterations 1 to 4 stand, and this iteration adds no fifth.
 
-## Traceability Checks
+## Coverage Graph Reconciliation
 
-| Protocol | Status | Gate | Evidence | Notes |
-|---|---|---|---|---|
-| checklist_evidence | partial | hard | specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md:84 | Every row re-checked this pass holds; AC-002 remains the one row whose stated verification does not hold, so the protocol stays partial. |
-| spec_code | partial | hard | .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:30 | Unchanged: the scorer contract is not fully met. |
-| playbook_capability | pass | advisory | .skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md:30 | BB-015 states the branded Chrome 136+ refusal and three builds that satisfy it, and its triage section treats a refused debug port as a precondition FAIL. |
+The workflow's seed and per-iteration upsert steps had not run, so `graph-db/` held no database: the stop decision reported `Graph is empty; insufficient data for convergence assessment` and the hotspot gate could not be evaluated. Both steps were run this iteration, exactly as the workflow runs them, with `DEEP_LOOP_COVERAGE_DB_DIR` bound to the lineage's own `graph-db`:
 
-Acceptance rows re-checked this pass and holding:
+- Seed: `upsert.cjs --seed-source scope_discovery --seed-confidence 0.50` with 526 nodes (522 `FILE` nodes, one per pre-bound scope path, and 4 `DIMENSION` nodes) and 52 `COVERS` edges, one per dimension-to-file pair actually read in iterations 1 to 4.
+- Per-iteration: `upsert.cjs --state-log ... --delta-dir ... --iteration N` for N in 1 to 4, which derived one `FINDING` node and one `EVIDENCE_FOR` edge per finding from the delta rows and the record's `findingDetails`. Each call reported `insertedNodes: 1, insertedEdges: 1, rejectedEdges: 0`.
 
-- AC-003: 003 and 004 each show five ticked criteria and `completion_pct: 100`.
-- AC-004: `003-mode-relocation/acceptance-criteria.md:92` reads `Closeable: Yes`, and no 003 surface still carries "Await operator choice on AC-002".
-- AC-006: 011's criterion is a presence check, and the only `rg -c` text left is in the goal log rows that record the old count, which the closure statement says is expected.
-- AC-007: `rg -n "TBD|505-mcp-browser-use-hub"` on the parent spec prints nothing.
-- AC-011: `changelog/v1.0.27.0.md` exists, is titled "the dom eval port note", and `git diff --stat HEAD` over it is empty, so it matches its published text.
-- AC-012: every `page.on(` and `page.context()` hit in the Aside packet is a gap statement (`SKILL.md:147,202-205`, `README.md:189`, `references/troubleshooting.md:79`); none teaches the call as working.
-- AC-014: the Aside playbook root states that the validator derives the counts from the tree and names no hand-typed census.
-- AC-015: `attach-mode-reads.md:30` carries the Chrome 136+ precondition, `:46` the non-default data directory workaround, and `:70` the triage row.
-- AC-016: the ClickUp report folder holds `README.md`, `results.csv` and `source.md`, and the cells that would have cited raw output say it was not retained instead of pointing at a missing file.
-- AC-018 to AC-020: the 2026-11-24 replay shows `mcp-browser-use` at 0 on all 18 out-of-domain rows, every original and paraphrase row passes, and the single failing row is the playbook row already recorded as deferred.
+Re-running the stop decision against the populated graph changed three things and nothing else:
 
-Carried-forward findings re-read, all still active:
+| Signal or gate | Before the seed | After the seed |
+|---|---|---|
+| Graph decision | CONTINUE, "Graph is empty" | STOP_ALLOWED, score 1 |
+| `hotspotSaturationGate` | fail (`hotspotSaturated` null) | pass |
+| `dimensionCoverageGate` | fail (coverageAge 0) | fail (coverageAge 0) |
+| Stop decision | CONTINUE / `noStopCandidate` | CONTINUE / `noStopCandidate` |
 
-- `PI2-I1-P2-001`: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:135` still reads `In Progress` for 014.
-- `PI2-I1-P2-002`: `001-research/research/research.md:57` still carries the ungated `npx -y bladebro mcp` row.
-- `PI2-I2-P1-001`: `lanes/lexical.ts:30` still declares `staging` as a hint, and `fusion.ts:1229` still treats any hint as the naming anchor.
-- `PI2-I3-P2-001`: `.utcp_config.json` still registers `chrome_devtools_live` with `--autoConnect` and no gate in the packet's rules.
-- `PI2-I4-P2-001`: `ROUTER.md:53` still omits the eight Chrome DevTools keywords the router applies.
+The remaining block is arithmetic, not missing evidence: the weighted stop score is 0.584 against a 0.60 bar, and the dimension-coverage gate needs one more iteration after the iteration that completed all four dimensions, which is what iteration 4 did. Both are expected to move on the next evaluation; no gate is blocked by a defect.
 
-## Integration Evidence
+## Registry Integrity
 
-- The acceptance table, the replay report and the ClickUp report are the three evidence surfaces 014 rests on; all three were read directly this pass, so the partial `checklist_evidence` status is narrowed to one row rather than left as a blanket doubt.
+Every registered finding was re-checked against its cited file and line, and every one resolves:
+
+| Finding | Citation | Line content |
+|---|---|---|
+| PI2-D1-P2-001 | `.skilled/skills/mcp-browser-use/SKILL.md:62` | "Take the mode from the compiled front door first, `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use ...`" |
+| PI2-D2-P2-001 | `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:30` | `readonly MCP_PACKAGE="browser-debugger-cli@0.6.10"` |
+| PI2-D3-P2-001 | `.skilled/skills/mcp-browser-use/README.md:70` | `| 1.1.1.0 | [\`changelog/v1.1.1.0.md\`](./changelog/v1.1.1.0.md) |` |
+| PI2-D4-P2-001 | `.skilled/skills/mcp-browser-use/README.md:68` | `| Release | Entry |` -- the section's table header; the format sentence the finding is about is at line 66 |
+
+One correction, recorded here so the remediation does not have to rediscover it: PI2-D4-P2-001's substance is README line 66 ("Each entry opens with the release title and the reason, then lists what changed and the files changed"), and line 68 is the table header that locating the section anchored on. The defective sentence and the incomplete table sit three lines apart, so one edit closes both.
+
+Registry state after the reducer: 4 open findings, 0 resolved, `P0 0 / P1 0 / P2 4`, `dimensionCoverage` true for all four dimensions, and the traceability ledger at 2 required protocols, 2 executed, 2 pass, 0 fail, 1 notApplicable.
 
 ## Edge Cases
 
-- Criteria whose only proof is a validator or a checker (`parent-skill-check.cjs`, `validate-playbook-package.cjs`, `validate.sh`) are not re-run in this lineage, which is write-bound to its own directory. They keep packet evidence and are named in the report's audit appendix rather than counted as verified here.
-- A zero-finding pass is recorded as zero rather than padded: the sweep had a defined target (the un-rechecked acceptance rows) and the target was exhausted.
+- The seed's 522 `FILE` nodes give the graph a nominal scope of the whole packet while only about forty files were read. That is the intended shape -- the seed records the frontier, not the coverage -- and the hotspot gate reads the coverage edges, not the node count.
+- Two `DIMENSION` nodes carry a `COVERS` edge to the same file where two dimensions read it (for example `README.md` under traceability and again under maintainability). The upsert deduplicated by edge id per dimension, so the second edge adds a parallel relation rather than rewriting the first.
+- The per-iteration upsert read iteration records whose `findingDetails` carry a `file` of the form `path:line`; `parseFindingRef` dropped the line and attached the `EVIDENCE_FOR` edge to the file node, which is why the graph's evidence edges are per file rather than per line.
+- `graphConvergenceScore` was 0 before the seed and 1 after it; neither number is a review result, both describe the graph's completeness, so no verdict term is derived from them.
+
+## Confirmed-Clean Surfaces
+
+- All four finding citations resolve to existing files, and three of the four point at the exact defective line.
+- The graph now carries one `FINDING` node per open finding with an `EVIDENCE_FOR` edge to the cited file, so the synthesis invariant that each structured finding is represented in the graph holds.
+- `rejectedEdges: 0` on every upsert call, so no edge named a node the batch or the graph did not declare.
+- No reducer corruption warnings and no search debt after the run: `corruptionCount: 0`, `searchDebtCount: 0`.
 
 ## Ruled Out
 
-- AC-003, AC-004, AC-006, AC-007, AC-011, AC-012, AC-014, AC-015, AC-016, AC-018, AC-019, AC-020: each re-checked above, each holding.
-- Re-raising the deferred MBU-PB-04 row: the criteria that 014 and the parent goal set are scoped so that it does not block them, and it is disclosed in the replay report; it is listed as follow-up work in synthesis instead.
+- "The stop decision is CONTINUE because the review found too much": ruled out -- the graph decision is STOP_ALLOWED, the only failing gates are the two the arithmetic above explains, and no gate names a missing artifact or an unresolved finding.
+- "The registry lost the finding metadata": ruled out -- `findingClass` and `scopeProof` are null in the reducer's view but present in the iteration records and deltas, which is where the remediation reads them.
 
-## Recommended Next Focus
+## Next Focus
 
-The compiled-routing slice that scope discovery bound but no pass has read: `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/` (policy card, registry compiler, router, canary cases) and the `013-live-activation` manifests, read for correctness against the hub's advertised three-mode contract.
+- Dimension: maintainability and security, second pass
+- Focus area: the in-scope surfaces no iteration has opened yet -- the Chrome DevTools shared helper script, the hub `shared/` folder, the feature-catalog and playbook claims that assert counts, and the mode safety contracts the hub delegates to.
+- Reason: evidence density is the one thing this run can still improve honestly; the four findings are all documentation-level, and the unread half of the scope is where a behavioural defect would hide.
+- Required evidence: file:line for anything raised, and one command per asserted count.
+- Rotation status: D1 to D4 covered; this is depth, not rotation.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

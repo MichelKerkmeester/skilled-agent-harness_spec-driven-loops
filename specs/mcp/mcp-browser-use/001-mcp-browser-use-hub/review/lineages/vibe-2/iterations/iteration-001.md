@@ -5,32 +5,26 @@
 - Mode: review
 - Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
 - Dimension: correctness
-- Operator review focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- Artifact dir: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-2`
-- Session: `fanout-vibe-2-1795504079797-ay97sx`, generation 1, lineageMode new
-- Sources read this iteration: `steer.md` (absent), `review-scope-files.txt`, `deep-review-config.json`, `deep-review-strategy.md`, `deep-review-findings-registry.json`, `.skilled/skills/sk-code/sk-code-review/SKILL.md`, `.skilled/skills/sk-code/sk-code-review/references/review-core.md`
-
-## How this iteration addressed the operator focus
-
-The focus binds every iteration. This one took the correctness dimension and applied it to the two
-surfaces the focus names explicitly: the phase 014 fixes and the advisor scorer change that phase
-made. It verified the phase 014 completion criteria that are mechanically checkable (stale
-`mcp-tooling/mcp-*` ids absent, parent-skill checker green on the hub) and then read the scorer
-change itself at the line level, because that change is the one piece of shipped work whose
-correctness claim is a behavioural promise rather than a file state.
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change
+- Lineage: sessionId `fanout-vibe-2-1795511024070-2cuwlj`, generation 1, lineageMode new
+- Iteration: 1 of 7
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:332-335,386-404,1222-1240`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:41-51,190-194`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts:86-92,121-145`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:27-45,60-100`
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:43-46`
-- `.skilled/skills/mcp-browser-use/mode-registry.json:1-140`
-- `.skilled/skills/mcp-browser-use/hub-router.json:1-90`
-- `.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv:1-50`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/goal.md:1-80`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/implementation-summary.md:1-120`
+- `.skilled/skills/mcp-browser-use/mode-registry.json:1` -- three-mode registry, version 1.1.3.0
+- `.skilled/skills/mcp-browser-use/hub-router.json:1` -- router signals, vocabulary classes, outcomes
+- `.skilled/skills/mcp-browser-use/leaf-manifest.json:1` -- per-mode leaf lists
+- `.skilled/skills/mcp-browser-use/SKILL.md:1` -- hub contract and capability matrix
+- `.skilled/skills/mcp-browser-use/ROUTER.md:53` -- machine-readable intent projection
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:88` -- live scorer and near-tie selection
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:1` -- vocabulary compilation and bundle rules
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:1` -- 17 canary cases
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:334` -- id-noun rule (advisor 2.0.3.0)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:93` -- lexical evidence tokens
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:14` -- pinned installer digest
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:36` -- `..` rejection
+- `.skilled/skills/mcp-tooling/mode-registry.json:1` -- six-mode sibling registry
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/implementation-summary.md:1` -- phase 015 claims
 
 ## Findings - New
 
@@ -40,80 +34,77 @@ None.
 
 ### P1 Findings
 
-1. **The id-noun anchor's length filter does not exclude ordinary prompt words, so the task-intent floor still lifts skills whose id noun is a common four-letter word** -- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:332-335` -- `promptNamesIdNoun` keeps the last id segment when `noun.length >= 4` and matches it at a phrase boundary. Its own comment says short segments are dropped "because they occur in ordinary prompts that name nothing", but the filter is length, not ordinariness: `sk-code` ends in `code`, `mcp-code-mode` in `mode`, `system-deep-loop` in `loop`, `sk-prompt` in `prompt`, `sk-design` in `design`. Each of those is exactly the class of word the comment claims to exclude, and each still satisfies `hasNamedAnchor` at `fusion.ts:1230`, which re-opens the `taskIntentFloor` branch at `fusion.ts:386-404`.
+1. **Mixed id and alias forms drop a named mode from the bundle** -- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:88` -- `scoreModes` counts distinct fold-deduped keywords, and the full id `mcp-chrome-devtools` folds to `mcp chrome devtools`, a different string from `chrome devtools`. A mode named by its full id therefore scores two hits (8) while a mode named by its short alias scores one (4). `selectNearTiedModes` keeps only modes within `ambiguityDelta: 1` of the top, so the 4-point gap drops the second mode and the decision becomes `single`. Verified against the live CLI: `use chrome devtools and bladebro` returns `orderedBundle` with both modes, while `use mcp-chrome-devtools and bladebro` returns `single` with `mcp-chrome-devtools` only. The same asymmetry holds for `mcp-bladebro` and `mcp-aside-devtools` against any short-named sibling.
    Finding class: correctness
-   Scope proof: the finding is inside the declared target's advisor scorer surface, one of the two surfaces the operator focus names; the anchor, the floor branch and the constants it reads are all cited at line level.
-   Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`, the advisor CLI `advisor_recommend` output, and every hub whose skill id ends in a common English word.
-   Case: the prompt `change the mode to plan` tokenizes to five tokens; `mode` is a candidate token for `mcp-code-mode` because the lexical lane scores against `skill.id.replace(/-/g, ' ')` (`lanes/lexical.ts:68`), so `scoreTokenOverlap` returns `1 / max(3, 5) = 0.20` (`text.ts:144`), which clears `taskIntentDirectScoreFloor` 0.18 (`scoring-constants.ts:191`); `TASK_INTENT` matches `change` (`fusion.ts:85`); `promptNamesIdNoun` matches `mode` at a phrase boundary (`text.ts:86-92`); the floor therefore returns `max(base, 0.82)` (`fusion.ts:403`), which clears the 0.8 advisor threshold and recommends `mcp-code-mode` for a plan-mode request that names no MCP tool.
+   Scope proof: both prompts are inside the declared review target's routing contract; the scorer, the vocabulary and the outcome promise are all in `.skilled/skills/mcp-browser-use/hub-router.json` and the compiled router under `.skilled/bin/lib/compiled-routing/`.
+   Affected surface hints: `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs`, `.skilled/skills/mcp-browser-use/hub-router.json`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json`
+   Case: a prompt that names one browser mode by its full `mcp-*` id and another by its short alias, such as `use mcp-chrome-devtools and bladebro`, routes to one mode instead of the ordered bundle the hub promises.
 
-```json
-{
-  "type": "correctness",
-  "claim": "The task-intent floor's id-noun anchor uses a length filter as a proxy for 'ordinary word', so four-letter ordinary words still anchor the floor and out-of-domain prompts are still lifted to 0.82 for skills whose id ends in one.",
-  "evidenceRefs": [
-    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:332-335",
-    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1230",
-    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:386-404",
-    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:191",
-    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:193",
-    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts:144",
-    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:68"
-  ],
-  "counterevidenceSought": "Checked whether the anchor is unreachable because the lexical lane never scores a bare id-noun token (it does: the candidate set includes skill.id with hyphens replaced by spaces), whether the floor needs a stronger direct score than 0.18 (it does not: 0.18 is the floor), whether the dispersion guard blocks it (it needs liveNormalized >= 0.95, which a five-token prompt does not reach), and whether the change introduced the defect (it did not: the floor was unconditional before, so this is an incomplete fix rather than a regression).",
-  "alternativeExplanation": "The length filter may be a deliberate cheap heuristic that accepts four-letter false anchors because the lexical-score floor of 0.18 already requires real overlap. That reading is consistent with the code but not with the comment, which claims the exclusion is about ordinary prompts rather than about length.",
-  "finalSeverity": "P1",
-  "confidence": "medium-high",
-  "downgradeTrigger": "Downgrade to P2 if a surfacing gate drops a 0.82 recommendation that carries only a token-overlap evidence row, or if the advisor's own ratchet shows no out-of-domain lift for any four-letter id noun."
-}
-```
+   ```json
+   {"type":"claim","claim":"A prompt naming two browser modes, one by full id and one by short alias, returns a single-mode route instead of an orderedBundle.","evidenceRefs":["router.cjs:88","router.cjs:119","hub-router.json:routerPolicy.outcomes.orderedBundle","compiled-route.cjs --hub mcp-browser-use --prompt 'use mcp-chrome-devtools and bladebro' -> selectionKind single"],"counterevidenceSought":"Checked whether ambiguityDelta could absorb the gap (it is 1 and scores are multiples of 4, so it cannot), whether the fold-dedup in scoreModes collapses the two id forms (it does not: spaced() folds hyphens but not the mcp prefix), and whether the canary fixture covers the mixed form (it does not: the two bundle cases are all-full-id and all-short-form).","alternativeExplanation":"The router may intend the full id to be a stronger signal than a short alias, making a single route deliberate. Rejected: hub-router.json routerPolicy.outcomes.orderedBundle states that multiple explicitly named browser tools route in tie-break order, and the phase 015 fix added mcp-bladebro to bladebro's aliases precisely so full-id naming scores alike.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 if hub-router.json's orderedBundle outcome is amended to say a full-id mention outweighs a short alias, making the single route the documented behaviour."}
+   ```
 
 ### P2 Findings
 
-2. **A real browser request written in the hub's own playbook vocabulary reaches the compiled front door but never reaches the advisor** -- `.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv:38` -- row `MBU-PB-04` records `advisor_top` empty, `advisor_top_confidence` 0, `stage1` false, `stage2` true, verdict FAIL for the request "The staging site throws runtime errors on load; I need to inspect its network requests and the live DOM to find the cause." The row is disclosed in the phase 014 goal log and implementation summary, so it is a known limitation rather than a hidden defect; it is recorded here because the parent goal's completion criterion "One real browser request per mode returns mcp-browser-use from the advisor" is existential and is satisfied by other rows, which leaves this miss with no tracked owner.
-   Finding class: correctness
-   Scope proof: the row is inside the pre-bound scope list and inside the hub's own benchmark report; the finding is scoped to the observable replay outcome, not to a mechanism this iteration did not establish.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv`, the advisor lexical hints for `mcp-browser-use` at `lanes/lexical.ts:34`, and the hub's manual-testing playbook.
-   Case: a user pastes a staging-site runtime-error request that names no browser tool and no task-intent verb; the advisor returns nothing, so the hub is unreachable from stage one and only the compiled front door can route it.
+2. **`selectionKinds` cannot express the bundle kind the compiler can emit** -- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:1` -- `bundleKindForModes` returns `surfaceBundle` when exactly one actor sits beside evidence targets, and its comment says the rule "stays correct if a mode's role ever changes". But `destinationGraph.selectionKinds` is hardcoded to `['single', 'orderedBundle']`, so a `surfaceBundle` decision would name a selection kind the graph does not declare. Unreachable today because `ROLE_BY_PACKET_KIND` maps only `workflow` to `actor` and any other `packetKind` fails with `PACKET_KIND_UNSUPPORTED`, so the comment overstates the rule's durability.
+   Finding class: maintainability
+   Scope proof: the compiler and its selection-kind list are both inside the declared review target's compiled-routing surface.
+   Affected surface hints: `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs`
+   Case: a future mode declared with a packet kind that maps to the `evidence` role would compile a `surfaceBundle` composition rule while `selectionKinds` still omits it, so the decision contract would reject the bundle the compiler just built.
+
+3. **`ROUTER.md` calls itself the single machine-readable projection while a second one is live** -- `.skilled/skills/mcp-browser-use/ROUTER.md:53` -- the section says "The single machine-readable projection of the intent model above. Keep the two in sync". It declares four intent signals (`CHROME_DEVTOOLS`, `LIGHTHOUSE_TRACE`, `ASIDE_DEVTOOLS`, `BLADEBRO`) while `hub-router.json` declares three `routerSignals` and folds the seven Lighthouse and performance-trace phrases into `chrome-devtools-aliases` and `browser-debug`. The keyword union matches, so no routing behaviour diverges, but the two structures are not the same projection and the doc's "single" claim is false.
+   Finding class: traceability
+   Scope proof: both files are hub-owned and inside the declared review target.
+   Affected surface hints: `.skilled/skills/mcp-browser-use/ROUTER.md`, `.skilled/skills/mcp-browser-use/hub-router.json`
+   Case: a maintainer edits the `LIGHTHOUSE_TRACE` bucket in `ROUTER.md` believing it is the live vocabulary, and the change has no effect because the compiled router reads only `hub-router.json`.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|---|---|---|---|
-| `spec_code` | pass | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md` completion criteria vs the tree | The stale-id criterion and the parent-skill-checker criterion both hold on the current tree |
-| `checklist_evidence` | partial | `014-fix-deep-review-findings/goal.md:60-70`, `results.csv:1-50` | Phase 014's mechanically checkable criteria pass; the replay criterion is met only under a kind-scoped reading of "original, paraphrase and out-of-domain" |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | Phase 015's four claimed fixes are present at source: `mcp-bladebro` in `hub-router.json` bladebro-aliases, the id-noun rule at `fusion.ts:334`, the `..` rejection at `repl-evidence-capture.sh:36`, and the pinned digest at `install.sh:14`. The bundle claim holds only for the all-full-id and all-short-form cases; the mixed form fails (finding 1). |
+| `checklist_evidence` | partial | `015-fix-follow-up-review-findings/implementation-summary.md` records the canary harness at exit 0 and the 52-row replay at 51 PASS. The canary fixture holds 17 cases and none exercises the mixed id/alias form, so the recorded evidence does not cover the failing path. |
+| `skill_agent` | pass | `parent-skill-check.cjs .skilled/skills/mcp-browser-use` exits 0 and prints `INFO: Parent skill: .skilled/skills/mcp-browser-use`, then PASS on 3b (three modes), 3d-name (folder equals packetSkillName) and 3d-alias (20 unique aliases). |
+| `agent_cross_runtime` | notApplicable | The hub is a skill package with no agent definition of its own; no runtime mirror carries hub logic. |
+| `feature_catalog_code` | notApplicable | No feature catalog entry names this hub's modes. |
+| `playbook_capability` | deferred | The three mode playbooks and their recorded runs are the phase 006 and 008 goal criteria; they are scheduled for the traceability iteration rather than claimed here. |
 
 ## Integration Evidence
 
-- `.skilled/commands/doctor/scripts/parent-skill-check.cjs` run against `.skilled/skills/mcp-browser-use` printed `OK: parent-skill-check — all hard invariants passed, 0 warnings` and named the hub as its subject, including `13a-version` and `13b-version` at 1.1.2.0.
-- `rg "mcp-tooling/mcp-chrome-devtools|mcp-tooling/mcp-aside-devtools" .skilled --glob '!**/changelog/**' --glob '!**/benchmark/reports/**'` printed no match, and the same two ids are absent from `.skilled/skills/mcp-tooling/{mode-registry.json,hub-router.json,leaf-manifest.json,SKILL.md,README.md}`.
-- `.skilled/skills/mcp-browser-use/mode-registry.json` lists exactly three modes and `.skilled/skills/mcp-tooling/mode-registry.json` lists six.
+- `.skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt "<task>"` is the live front door the hub SKILL.md names. Four prompts were run through it: `use chrome devtools and bladebro` returned `orderedBundle` with two targets; `use mcp-chrome-devtools and bladebro` returned `single` with one target; `use mcp-chrome-devtools, mcp-aside-devtools and mcp-bladebro` returned `route`; `compare chrome devtools and bladebro on this page` returned `route`.
+- `.skilled/commands/doctor/scripts/parent-skill-check.cjs` is the parent-skill checker the completion criteria name. It exits 0 on the hub path and names the hub as its subject.
+- `.skilled/skills/mcp-tooling/mode-registry.json` still lists exactly six modes, so decision D3 holds.
 
 ## Edge Cases
 
-- **Ambiguity resolved, not a finding.** Phase 014's completion criterion reads "the 2026-11-24 two-stage replay ... passes every original, paraphrase and out-of-domain row" and is checked `[x]`, while the replay records 48 PASS and 1 FAIL. The failing row `MBU-PB-04` has `kind=playbook`, which is outside the three kinds the criterion names, so the checked box is accurate under the criterion's literal scope. Recorded so a later iteration does not re-litigate it as a contradiction.
-- **Path drift in the goal text.** The phase 014 goal names `parent-skill-check.cjs` without a path; the real entry point is `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, not `.skilled/bin/parent-skill-check.cjs`. Not raised as a finding because the goal does not assert a path.
-- **Scope breadth.** The pre-bound scope is 507 files. This iteration read 10 of them at line level and used the packet's own completion criteria to choose them; later iterations carry the remaining coverage.
+- The review scope list holds 522 files, far more than one iteration can read. This iteration read the hub's authored routing surface and the phase 015 fix sites, and records the rest as deferred rather than clean.
+- `containsSignal` matches substrings rather than whole words. Every keyword in the three vocabularies was checked for a common-word substring collision and none was found, so the substring match is recorded as a design choice rather than a finding.
+- The `.opencode/skills/mcp-browser-use` mirror is byte-identical to `.skilled/skills/mcp-browser-use` for all seven authored files, so the harness that compiles from the mirror reads the same registry as the canonical tree.
+- The advisor id-noun rule reads `lexicalEvidence` from the skill's own lexical lane, so "another word with that skill" is accurate rather than "any other prompt word". The `tokenHits` slice to five entries cannot hide the noun, because the noun is excluded from the check rather than required in the list.
 
 ## Confirmed-Clean Surfaces
 
-- `.skilled/skills/mcp-browser-use/mode-registry.json`: three modes, every `command` null as the contract states, every `grandfatheredFolderMismatch` false, every `advisorRouting.routingClass` `metadata`.
-- `.skilled/skills/mcp-browser-use/hub-router.json`: `defaultMode` null, `defaultResourceSemantics` `fallback-only`, and the two discovery classes are unreferenced by `routerSignals`, so a hub-identity-only prompt scores zero modes and defers.
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`: the `har` token boost is gone, so a bare `har` no longer anchors the browser hub.
-- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts`: `har` is gone from the `mcp-browser-use` category hints, and the `performance trace` lift is now gated on a preceding `chrome` or `browser` word at `fusion.ts:638`.
+- `mode-registry.json` declares exactly three modes, each with `packetKind: workflow`, `backendKind: cli-plus-mcp`, `grandfatheredFolderMismatch: false` and `routingClass: metadata`.
+- `hub-router.json` `routerPolicy.tieBreak` lists all three modes, and `assertTieBreakCoversModes` fails compilation when it does not.
+- `bundleRules` enumerates every subset of two or more tie-break modes, so a near-tied score set always finds a composition rule.
+- The phase 015 Aside installer downloads to a temporary file, compares `shasum -a 256` against `INSTALLER_SHA256`, and exits 1 on a mismatch before running anything.
+- The phase 015 capture example rejects any `..` substring in the session dir before the `./tmp` prefix check, so a traversal cannot pass the prefix test.
+- `rg` for `mcp-tooling/mcp-chrome-devtools` and `mcp-tooling/mcp-aside-devtools` under `.skilled`, excluding changelog and benchmark/reports, prints no match.
 
 ## Ruled Out
 
-- **The browser hub is still lifted on out-of-domain prompts.** Ruled out for the hub itself: `mcp-browser-use` ends in `use`, which is three characters, so `promptNamesIdNoun` returns false and the anchor cannot fire for it. The residual defect is the same class for other skills, recorded as P1 finding 1.
-- **The `har` removal is incomplete.** Ruled out: both the explicit token boost and the lexical category hint were removed in the same change.
-- **The mode registry and hub router disagree on mode count.** Ruled out: both carry three modes and the parent-skill checker's `10d-reachability` and `12b-routing-shape` checks pass.
+- **Substring false positives in the routing vocabulary.** Every keyword in `chrome-devtools-aliases`, `browser-debug`, `aside-devtools-aliases`, `aside-repl-evidence`, `bladebro-aliases` and `bladebro-workflow` was checked for a common-word substring collision. None exists, so `containsSignal`'s substring match is not a defect on this vocabulary.
+- **Stale runtime mirror feeding the harness.** `build-artifacts.cjs` compiles from `.opencode/skills/mcp-browser-use`. All seven authored files are byte-identical between the mirror and the canonical tree, so the harness is not compiling a stale registry.
+- **Advisor id-noun rule still lifting on a bare noun.** `promptNamesIdNoun` requires a lexical token other than the noun, and `lexicalEvidence` is harvested from the skill's own candidate haystack, so `loop`, `mode` and `tooling` alone no longer name their skills.
+- **`ambiguityDelta` absorbing the mixed-form gap.** Scores are multiples of the weight 4 and the delta is 1, so no non-zero score gap can ever be a near-tie. The delta cannot mask or create the finding.
 
 ## Next Focus
 
 - Dimension: security
-- Focus area: the Bladebro install gate and the Aside capture path, plus the compiled-routing policy card and fence state, against the operator focus on shipped phase work
-- Reason: correctness is covered; security is next in risk order and the phase 014 fixes touched an install gate and a shell capture script
-- Rotation status: correctness complete, security not started
-- Blocked/productive carry-forward: nothing blocked; the advisor scorer surface is productive and may be revisited under security for the trust boundary at the prompt
-- Required evidence: file:line citations from the pre-bound scope list
+- Focus area: the Aside installer's download-and-verify path, the capture example's path confinement, and the hub's tool-surface declarations
+- Reason: correctness surfaced a routing defect; security is the next canonical dimension and the phase 015 installer and capture changes are the newest trust-boundary code in the target
+- Rotation status: correctness reviewed, security next
+- Blocked/productive carry-forward: the routing vocabulary scan was productive and is reusable for the security pass on input handling
+- Required evidence: file:line citations from `.skilled/skills/mcp-browser-use/mcp-aside-devtools/` and the hub `mode-registry.json` tool surfaces
 
 Review verdict: CONDITIONAL

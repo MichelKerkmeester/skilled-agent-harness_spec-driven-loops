@@ -1,17 +1,27 @@
-# Deep Review Strategy -- mcp-browser-use hub epic
-Initialized from the deep-review strategy template; tracks dimension coverage, findings and focus across iterations.
+---
+title: Deep Review Strategy - mcp-browser-use hub
+description: Runtime tracking file for the deep-review lineage pi-2 over the mcp-browser-use hub packet.
+---
 
-## 1. REVIEW CHARTER
-- Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder, phase parent + phases 001 to 014)
-- Dimensions: correctness, security, traceability, maintainability
-- Operator review focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- Stop conditions: severity-weighted new-findings ratio below 0.10 after the iteration floor, or 7 iterations
-- Success criteria: no active P0; every phase goal criterion either evidenced or reported as not met
+# Deep Review Strategy - mcp-browser-use hub (lineage pi-2)
+
+## 1. OVERVIEW
+
+### Purpose
+
+Persistent brain for this review lineage. Records dimension order, running findings,
+what worked or failed, exhausted approaches, and the next focus. Read at the start of
+every iteration and updated at the end of it.
 
 ---
 
 ## 2. TOPIC
-Review of `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub`: a phase parent (001 to 014) whose shipped work is the `mcp-browser-use` hub (three browser modes), the `mcp-tooling` relocation, advisor graph and compiled routing, per-mode playbooks, and the phase 014 remediation of the 2026-11-24 deep review, which also changed the shared advisor scorer.
+
+Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder target).
+Pre-bound scope: `review-scope-files.txt` in this lineage, 522 repo-relative files
+(hub skill tree, compiled-routing library, advisor runtime, spec phases 001-015).
+Operator review focus: every phase's shipped work against its goal criteria, including the
+phase 015 fixes and the advisor 2.0.3.0 id-noun change.
 
 ---
 
@@ -21,17 +31,18 @@ Review of `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub`: a phase parent (0
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
-- Browser behaviour against live sites: no browser is launched by this review.
-- The other six `mcp-tooling` modes beyond the relocation check.
-- `mcp-code-mode` and `mcp-mobbin` playbook census warnings, which 014 left out of scope.
-- Re-deciding operator decisions already recorded (D1 to D8 in the parent goal, Q001 to Q004 in 014).
+
+- No fixes, no code or doc edits under review (observation-only loop).
+- No repository tooling runs that write outside this lineage (`validate.sh`, `generate-context.js`, git writes).
+- No breadth beyond the 522 pre-bound scope files except cited context evidence from the target document set.
 
 ---
 
 ## 5. STOP CONDITIONS
-- Severity-weighted new-findings ratio below 0.10 after the iteration floor.
-- 7 iterations reached.
-- A hard blocker in the packet boundary (missing state, unresolvable target).
+
+- Legal convergence via `convergence.cjs` stop decision (composite vote, all-dimension coverage, P0 resolution, evidence density, claim adjudication).
+- `maxIterations` 7 reached.
+- Three consecutive failed iterations.
 
 ---
 
@@ -46,125 +57,104 @@ Review of `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub`: a phase parent (0
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 1
-- P2 (Suggestions): 5
+- P1 (Required): 0
+- P2 (Suggestions): 4
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
 
-- Reading a criterion block, then re-checking only its command-checkable half: it settled most phase criteria in two commands and kept the tooling-only ones honestly unverified (iteration 1)
-- Reading the confidence chain end to end instead of only the changed branch: that is where the P1 surfaced (iteration 2)
-- Reading installer syntax with bash -n and then only the verification path (iteration 2)
-- Comparing a documented keyword list against the router programmatically instead of eyeballing it: it found eight drifted words and proved the other two rows clean (iteration 4)
-- Reading the compiled fixture and its canary cases before its code: ten minutes settled coverage, reject semantics and the activation hash (iteration 6)
+- [pending -- populated after iteration 1]
 
 ---
 
 ## 9. WHAT FAILED
 
-- Treating the routing replay corpus as coverage for the scorer change: its decline rows avoid every task-intent verb, so no recorded row walks the staging path (iteration 2)
-- Reading the `rg` exit status through a pipe in iteration 1, so clean results rested on empty output rather than on the status (iteration 1; later passes read the status)
-- Any attempt to execute the scorer or the compiled harness inside this lineage: both write outside the write surface, so the P1 rests on a source read plus a named downgrade trigger (iterations 2 and 6)
+- [pending -- populated after iteration 1]
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### `browser-debugger-cli@alpha` residue: no match outside changelog and benchmark reports, which 014's criterion excludes. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `browser-debugger-cli@alpha` residue: no match outside changelog and benchmark reports, which 014's criterion excludes.
+### "`.utcp_config.json` carries a token": ruled out -- all five browser manuals are stdio with empty `env`, and the Figma key is an indirection. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: "`.utcp_config.json` carries a token": ruled out -- all five browser manuals are stdio with empty `env`, and the Figma key is an indirection.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `browser-debugger-cli@alpha` residue: no match outside changelog and benchmark reports, which 014's criterion excludes.
+- Do NOT retry: "`.utcp_config.json` carries a token": ruled out -- all five browser manuals are stdio with empty `env`, and the Figma key is an indirection.
 
-### `mcp-tooling` relocation residue: two distinct greps, no match. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `mcp-tooling` relocation residue: two distinct greps, no match.
+### "`shared/` or `manual-testing-playbook/` is a stale layout entry": ruled out -- both exist. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: "`shared/` or `manual-testing-playbook/` is a stale layout entry": ruled out -- both exist.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `mcp-tooling` relocation residue: two distinct greps, no match.
+- Do NOT retry: "`shared/` or `manual-testing-playbook/` is a stale layout entry": ruled out -- both exist.
 
-### AC-003, AC-004, AC-006, AC-007, AC-011, AC-012, AC-014, AC-015, AC-016, AC-018, AC-019, AC-020: each re-checked above, each holding. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: AC-003, AC-004, AC-006, AC-007, AC-011, AC-012, AC-014, AC-015, AC-016, AC-018, AC-019, AC-020: each re-checked above, each holding.
+### "Capability matrix overstates the Chrome DevTools MCP surface": ruled out against the Lighthouse/trace leaf and the `bdg` console/HAR lines. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: "Capability matrix overstates the Chrome DevTools MCP surface": ruled out against the Lighthouse/trace leaf and the `bdg` console/HAR lines.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: AC-003, AC-004, AC-006, AC-007, AC-011, AC-012, AC-014, AC-015, AC-016, AC-018, AC-019, AC-020: each re-checked above, each holding.
+- Do NOT retry: "Capability matrix overstates the Chrome DevTools MCP surface": ruled out against the Lighthouse/trace leaf and the `bdg` console/HAR lines.
 
-### Aside and Bladebro router documentation: both rows match their vocabulary classes exactly. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Aside and Bladebro router documentation: both rows match their vocabulary classes exactly.
+### "Compiled policy is stale against hub-router 1.1.3.0": ruled out; 1.1.3.0-era vocabulary ("core web vitals", "fill in the form in my signed-in") routes as authored, and the live decision carries `effectivePolicyHash fc55eafa...` with `generation 1`. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: "Compiled policy is stale against hub-router 1.1.3.0": ruled out; 1.1.3.0-era vocabulary ("core web vitals", "fill in the form in my signed-in") routes as authored, and the live decision carries `effectivePolicyHash fc55eafa...` with `generation 1`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Aside and Bladebro router documentation: both rows match their vocabulary classes exactly.
+- Do NOT retry: "Compiled policy is stale against hub-router 1.1.3.0": ruled out; 1.1.3.0-era vocabulary ("core web vitals", "fill in the form in my signed-in") routes as authored, and the live decision carries `effectivePolicyHash fc55eafa...` with `generation 1`.
 
-### Credential leakage in `.utcp_config.json`: every manual that matters here carries an empty `env` and a pinned package. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Credential leakage in `.utcp_config.json`: every manual that matters here carries an empty `env` and a pinned package.
+### "OrderedBundle never fires because the router sorts by score first": ruled out by probe; equal weight 4 and one distinct keyword per mode yields an equal score, and `router.cjs:88-92` keeps every mode within `ambiguityDelta` 1. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: "OrderedBundle never fires because the router sorts by score first": ruled out by probe; equal weight 4 and one distinct keyword per mode yields an equal score, and `router.cjs:88-92` keeps every mode within `ambiguityDelta` 1.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Credential leakage in `.utcp_config.json`: every manual that matters here carries an empty `env` and a pinned package.
+- Do NOT retry: "OrderedBundle never fires because the router sorts by score first": ruled out by probe; equal weight 4 and one distinct keyword per mode yields an equal score, and `router.cjs:88-92` keeps every mode within `ambiguityDelta` 1.
 
-### Duplicated installer helper: guarded by a parity test, so not an unchecked maintenance liability. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Duplicated installer helper: guarded by a parity test, so not an unchecked maintenance liability.
+### "Phase 015 claims 51 of 52 with stale artifacts": ruled out -- every row reproduces. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: "Phase 015 claims 51 of 52 with stale artifacts": ruled out -- every row reproduces.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Duplicated installer helper: guarded by a parity test, so not an unchecked maintenance liability.
+- Do NOT retry: "Phase 015 claims 51 of 52 with stale artifacts": ruled out -- every row reproduces.
 
-### Hub mode-registry shape (three modes, kinds, no transport axis): checked directly, holds. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Hub mode-registry shape (three modes, kinds, no transport axis): checked directly, holds.
+### "The advisor 2.0.3.0 change is documented but not shipped": ruled out -- version parity holds and the six probes show the new behaviour. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: "The advisor 2.0.3.0 change is documented but not shipped": ruled out -- version parity holds and the six probes show the new behaviour.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Hub mode-registry shape (three modes, kinds, no transport axis): checked directly, holds.
+- Do NOT retry: "The advisor 2.0.3.0 change is documented but not shipped": ruled out -- version parity holds and the six probes show the new behaviour.
 
-### Installer parity (`_utils.sh`): byte-identical, so REQ-001's premise is met in the tree. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Installer parity (`_utils.sh`): byte-identical, so REQ-001's premise is met in the tree.
+### "The benchmark report index drifted like the changelog table": ruled out -- all three report directories are listed. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: "The benchmark report index drifted like the changelog table": ruled out -- all three report directories are listed.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Installer parity (`_utils.sh`): byte-identical, so REQ-001's premise is met in the tree.
+- Do NOT retry: "The benchmark report index drifted like the changelog table": ruled out -- all three report directories are listed.
 
-### Installer parity, pin and lifecycle-script gating: read at source, syntax-checked, and consistent with their acceptance criteria. No finding. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Installer parity, pin and lifecycle-script gating: read at source, syntax-checked, and consistent with their acceptance criteria. No finding.
+### "The Chrome `@latest` guide rows and the pinned UTCP registration are drift": ruled out -- phase 015 records the shared-convention decision, and the registration pins a version the guide treats as the MCP entry point. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: "The Chrome `@latest` guide rows and the pinned UTCP registration are drift": ruled out -- phase 015 records the shared-convention decision, and the registration pins a version the guide treats as the MCP entry point.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Installer parity, pin and lifecycle-script gating: read at source, syntax-checked, and consistent with their acceptance criteria. No finding.
+- Do NOT retry: "The Chrome `@latest` guide rows and the pinned UTCP registration are drift": ruled out -- phase 015 records the shared-convention decision, and the registration pins a version the guide treats as the MCP entry point.
 
-### Missing canary coverage for a mode or a decision kind: all three modes, a bundle, two defers and a reject are present. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Missing canary coverage for a mode or a decision kind: all three modes, a bundle, two defers and a reject are present.
+### "The guard cannot see the MCP handshake, so the read-only label is false": ruled out -- the packet classifies the probe as read-only in two catalogs, and the guard's contract forbids unbounded network and mutation, not a bounded local stdio handshake. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: "The guard cannot see the MCP handshake, so the read-only label is false": ruled out -- the packet classifies the probe as read-only in two catalogs, and the guard's contract forbids unbounded network and mutation, not a bounded local stdio handshake.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Missing canary coverage for a mode or a decision kind: all three modes, a bundle, two defers and a reject are present.
+- Do NOT retry: "The guard cannot see the MCP handshake, so the read-only label is false": ruled out -- the packet classifies the probe as read-only in two catalogs, and the guard's contract forbids unbounded network and mutation, not a bounded local stdio handshake.
 
-### Packet version versus newest changelog entry: all four agree. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Packet version versus newest changelog entry: all four agree.
+### "The hook's comment-hygiene gate trusts the working tree": ruled out -- it copies the staged blobs into a temp mirror and checks those (`.skilled/scripts/git-hooks/pre-commit:224-248`). -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: "The hook's comment-hygiene gate trusts the working tree": ruled out -- it copies the staged blobs into a temp mirror and checks those (`.skilled/scripts/git-hooks/pre-commit:224-248`).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Packet version versus newest changelog entry: all four agree.
+- Do NOT retry: "The hook's comment-hygiene gate trusts the working tree": ruled out -- it copies the staged blobs into a temp mirror and checks those (`.skilled/scripts/git-hooks/pre-commit:224-248`).
 
-### Prompt-text reject on a word match: deliberately scoped to caller constraints and covered by a paired case. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Prompt-text reject on a word match: deliberately scoped to caller constraints and covered by a paired case.
+### "The mode packets need their own changelog index": ruled out -- the checker's version invariant is the contract, and no requirement asks for a per-packet table. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: "The mode packets need their own changelog index": ruled out -- the checker's version invariant is the contract, and no requirement asks for a per-packet table.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Prompt-text reject on a word match: deliberately scoped to caller constraints and covered by a paired case.
+- Do NOT retry: "The mode packets need their own changelog index": ruled out -- the checker's version invariant is the contract, and no requirement asks for a per-packet table.
 
-### Re-raising the deferred MBU-PB-04 row: the criteria that 014 and the parent goal set are scoped so that it does not block them, and it is disclosed in the replay report; it is listed as follow-up work in synthesis instead. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Re-raising the deferred MBU-PB-04 row: the criteria that 014 and the parent goal set are scoped so that it does not block them, and it is disclosed in the replay report; it is listed as follow-up work in synthesis instead.
+### "The README version line 1.1.4.0 is drift": ruled out by the phase 015 ruling; only the changelog table is left open, and that is the iteration's P2. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: "The README version line 1.1.4.0 is drift": ruled out by the phase 015 ruling; only the changelog table is left open, and that is the iteration's P2.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Re-raising the deferred MBU-PB-04 row: the criteria that 014 and the parent goal set are scoped so that it does not block them, and it is disclosed in the replay report; it is listed as follow-up work in synthesis instead.
+- Do NOT retry: "The README version line 1.1.4.0 is drift": ruled out by the phase 015 ruling; only the changelog table is left open, and that is the iteration's P2.
 
-### Removing the bare `har` token: no `har` entry remains in the scorer modules, and the two replay rows that mention a HAR still pass through other evidence, so the removal did not strand them. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Removing the bare `har` token: no `har` entry remains in the scorer modules, and the two replay rows that mention a HAR still pass through other evidence, so the removal did not strand them.
+### "The registry lost the finding metadata": ruled out -- `findingClass` and `scopeProof` are null in the reducer's view but present in the iteration records and deltas, which is where the remediation reads them. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: "The registry lost the finding metadata": ruled out -- `findingClass` and `scopeProof` are null in the reducer's view but present in the iteration records and deltas, which is where the remediation reads them.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Removing the bare `har` token: no `har` entry remains in the scorer modules, and the two replay rows that mention a HAR still pass through other evidence, so the removal did not strand them.
+- Do NOT retry: "The registry lost the finding metadata": ruled out -- `findingClass` and `scopeProof` are null in the reducer's view but present in the iteration records and deltas, which is where the remediation reads them.
 
-### REPL command injection through the Aside example: guarded at the splice, both characters that could break out are refused. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: REPL command injection through the Aside example: guarded at the splice, both characters that could break out are refused.
+### "The stop decision is CONTINUE because the review found too much": ruled out -- the graph decision is STOP_ALLOWED, the only failing gates are the two the arithmetic above explains, and no gate names a missing artifact or an unresolved finding. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: "The stop decision is CONTINUE because the review found too much": ruled out -- the graph decision is STOP_ALLOWED, the only failing gates are the two the arithmetic above explains, and no gate names a missing artifact or an unresolved finding.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: REPL command injection through the Aside example: guarded at the splice, both characters that could break out are refused.
+- Do NOT retry: "The stop decision is CONTINUE because the review found too much": ruled out -- the graph decision is STOP_ALLOWED, the only failing gates are the two the arithmetic above explains, and no gate names a missing artifact or an unresolved finding.
 
-### Shell injection through the Aside task example: bash array, no re-splitting. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Shell injection through the Aside task example: bash array, no re-splitting.
+### "The v1.1.3.0 correction hides a rewrite": ruled out -- it quotes the older claim and names the release that retired it. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: "The v1.1.3.0 correction hides a rewrite": ruled out -- it quotes the older claim and names the release that retired it.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Shell injection through the Aside task example: bash array, no re-splitting.
-
-### Silent vocabulary drift inside the compiled path: the class lookup fails closed. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Silent vocabulary drift inside the compiled path: the class lookup fails closed.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Silent vocabulary drift inside the compiled path: the class lookup fails closed.
-
-### Stale activation manifest: its policy hash matches the serving policy the replay records. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Stale activation manifest: its policy hash matches the serving policy the replay records.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Stale activation manifest: its policy hash matches the serving policy the replay records.
-
-### Uncovered hub scripts in the mutation guard: manifest, hook route and discovery globs all name the hub. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Uncovered hub scripts in the mutation guard: manifest, hook route and discovery globs all name the hub.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Uncovered hub scripts in the mutation guard: manifest, hook route and discovery globs all name the hub.
+- Do NOT retry: "The v1.1.3.0 correction hides a rewrite": ruled out -- it quotes the older claim and names the release that retired it.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -177,65 +167,47 @@ Review of `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub`: a phase parent (0
 
 ## 11. RULED OUT DIRECTIONS
 
-- Bare har token removal: no har entry remains in the scorer modules and the two replay rows that mention a HAR pass through other evidence (iteration 2)
-
-- Hub mode-registry shape: three modes with the required kinds, no transport-axis key (iteration 1)
-- mcp-tooling relocation residue: two greps, no match (iteration 1)
-- Installer parity premise: both _utils.sh copies byte-identical (iteration 1)
-- browser-debugger-cli@alpha residue: no match outside changelog and benchmark reports (iteration 1)
+None yet.
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-The loop stopped at invocation 6 with `stuckRecovery`: two consecutive passes added no finding (ratios 1, 1, 1, 1, 0, 0) while the P1 remains. No further reading of this tree will change the picture; the next move belongs to the operator. Recommended: decide the scorer naming-anchor rule first (`PI2-I2-P1-001`), then land the four row-level P2s in one pass. See `review-report.md` §4 for the order.
+- Dimension: maintainability and security, second pass - Focus area: the in-scope surfaces no iteration has opened yet -- the Chrome DevTools shared helper script, the hub `shared/` folder, the feature-catalog and playbook claims that assert counts, and the mode safety contracts the hub delegates to. - Reason: evidence density is the one thing this run can still improve honestly; the four findings are all documentation-level, and the unread half of the scope is where a behavioural defect would hide. - Required evidence: file:line for anything raised, and one command per asserted count. - Rotation status: D1 to D4 covered; this is depth, not rotation. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
-Prior packet continuity (goal.md, spec.md, `review/review-report.md` of the 2026-11-24 run) names the claimed state: all 14 phases Complete, seven parent goal criteria hold, 014 fixed every deep review finding at its source, and a follow-up review runs after the 014 commit.
 
 ### Bounded Context Snapshot
 
-Populate during initialization before the first review dimension runs. Keep this pointer-based and scoped to the declared review target:
-
-- Target pointers: files, specs, symbols, or resource-map entries under review.
-- Behavior claims: acceptance criteria, public contracts, or docs to verify.
-- Reuse and conventions: existing patterns that define expected implementation shape.
-- Review risks and gaps: stale graph or memory caveats, missing files, and out-of-scope areas.
-
-Do not inline full source bodies. Do not dispatch the retired standalone context loop. Use this snapshot only to seed review dimensions and final traceability.
+- Target pointers: hub skill tree `.skilled/skills/mcp-browser-use/`, compiled-routing library `.skilled/bin/lib/compiled-routing/`, advisor runtime `.skilled/skills/system-skill-advisor/`, spec phases `001-research` .. `015-fix-follow-up-review-findings`.
+- Behavior claims: each phase's `goal.md` / `acceptance-criteria.md`; the hub routes a request to one of three browser modes (Chrome DevTools, Aside, Bladebro) and defers when ambiguous; the advisor 2.0.3.0 id-noun change keeps skill ids noun-form across scorer lanes, Python parity and docs.
+- Reuse and conventions: `hub-router.json` + `mode-registry.json` are the routing source; `leaf-manifest.json` / `leaf-scopes.json` describe leaves; changelogs are per-skill versioned `.md` files; phase `implementation-summary.md` is the shipped-work record.
+- Review risks and gaps: no `resource-map.md`, so the Resource Map Coverage Gate is skipped. Scope is large (522 files); a single iteration must stay inside 24 tool calls and cite only what it read.
 
 ---
 
 ## 14. CROSS-REFERENCE STATUS
 <!-- MACHINE-OWNED: START -->
-[Alignment checks completed across core and overlay protocols]
-
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | partial | 2 | 014 scorer contract not fully met: a bare hint satisfies the naming test | Hub registry matches the 002 criteria: three modes, required kinds |
-| `checklist_evidence` | core | partial | 1 | Two ticked criteria unevidenced in the tree: parent 014 progress row, research lane row |
-| `skill_agent` | overlay | pass | 2 | Hub SKILL.md and ROUTER.md state the own-Chrome rule the router applies |
-| `agent_cross_runtime` | overlay | [pending/pass/partial/fail/blocked/notApplicable] | [N] | [details] |
-| `feature_catalog_code` | overlay | pass | 1 | Catalog tree present for every mode |
-| `playbook_capability` | overlay | pass | 1 | Three playbook roots with recorded runs dated after 005 |
+| `spec_code` | core | [pending] | [-] | [not run yet] |
+| `checklist_evidence` | core | [pending] | [-] | [not run yet] |
+| `skill_agent` | overlay | [pending] | [-] | [not run yet] |
+| `agent_cross_runtime` | overlay | [pending] | [-] | [not run yet] |
+| `feature_catalog_code` | overlay | [pending] | [-] | [not run yet] |
+| `playbook_capability` | overlay | [pending] | [-] | [not run yet] |
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
-Scope discovery bound 507 files in `review-scope-files.txt`. Coverage is tracked by group: packet docs (parent + 14 phases), hub skill root, the three mode packets, advisor runtime (scorer, baselines, tests), doctor scripts, git hooks, changelogs and benchmark reports.
+522 files, grouped: hub skill tree (`.skilled/skills/mcp-browser-use/**`), compiled-routing library and tests (`.skilled/bin/**`), advisor runtime and fixtures (`.skilled/skills/system-skill-advisor/**`), doctor hook scripts (`.skilled/commands/doctor/**`), spec packet docs (`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/**`).
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md (parent) | D3 | 1 | 0 P0, 0 P1, 1 P2 | partial |
-| specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md | D3 | 1 | 0 P0, 0 P1, 1 P2 | partial |
-| .skilled/skills/mcp-browser-use/mode-registry.json | D3 | 1 | clean | complete |
-| .skilled/skills/mcp-tooling/mode-registry.json | D3 | 1 | clean | complete |
-| .skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh | D3, D1 | 2 | clean | complete |
-| .skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh, doctor.sh | D1 | 2 | clean | complete |
-| .skilled/skills/system-skill-advisor/runtime/lib/scorer/{fusion.ts,scoring-constants.ts,lanes/lexical.ts} | D1 | 2 | 1 P1, 1 P2 | partial |
+| [hub routing tables] | [-] | [-] | [-] | [-] |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -243,43 +215,15 @@ Scope discovery bound 507 files in `review-scope-files.txt`. Coverage is tracked
 ## 16. REVIEW BOUNDARIES
 <!-- MACHINE-OWNED: START -->
 - Max iterations: 7
-- Convergence threshold: 0.10 (severity-weighted new-findings ratio)
+- Convergence threshold: 0.1
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-pi-2-1795504079797-ay97sx, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-pi-2-1795511024070-2cuwlj, parentSessionId=2026-11-24T09:03:35.256Z, generation=4, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-24T08:08:00Z
 <!-- MACHINE-OWNED: END -->
-
----
-
-## 17. EXAMPLE (POPULATED)
-
-Reference snippet showing a partially populated strategy file mid-review. Use this as a visual anchor when opening a live strategy doc.
-
-```markdown
-## 1. REVIEW CHARTER
-- Target: .skilled/skills/system-deep-loop/deep-research (skill, v1.4.0)
-- Dimensions: correctness, test-coverage, cross-runtime-parity, observability
-- Stop conditions: rolling newInfoRatio < 0.08 for 2 iterations OR all dimensions converged OR max=7 reached
-- Success criteria: zero P0 in correctness; test-coverage P0 resolved or deferred with rationale
-
-## 4. NEXT FOCUS
-- Dimension: test-coverage
-- Files: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts
-- Why: Iteration 2 surfaced a P0 (convergence-path coverage gap); needs a focused follow-up before correctness can terminate PASS.
-
-## 9. COVERAGE MATRIX
-| Dimension            | Status     | Iterations touched |
-|----------------------|------------|--------------------|
-| correctness          | converged  | 1                  |
-| test-coverage        | converging | 2, 4               |
-| cross-runtime-parity | converging | 3                  |
-| observability        | converging | 4                  |
-```

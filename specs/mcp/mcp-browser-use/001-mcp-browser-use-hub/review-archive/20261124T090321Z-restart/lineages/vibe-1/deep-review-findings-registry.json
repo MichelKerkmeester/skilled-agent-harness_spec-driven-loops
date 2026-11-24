@@ -1,0 +1,537 @@
+{
+  "sessionId": "fanout-vibe-1-1795504079797-ay97sx",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 7,
+    "timestamp": "2026-11-24T07:19:20.507Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "The three canonical mode ids do not route to all three modes",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 96,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The admission canary corpus never exercises the declared three-mode bundle or the canonical ids",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json",
+      "line": 4,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "The Aside installer executes unverified remote code and is the only installer in the repository that does",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "The advisor-facing keyword set is far narrower than the hub router vocabulary, so the hub is unreachable for prompts it routes correctly",
+      "file": ".skilled/skills/mcp-browser-use/description.json",
+      "line": 6,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "leaf-scopes.json is described as per-mode but holds one mode",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "line": 58,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The engine ignores the activation-root override the resolver honours",
+      "file": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Neither installer enforces the operator-yes gate in code",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh",
+      "line": 8,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Two goal logs still report the 014 work as in progress while every criterion is checked",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/goal.md",
+      "line": 83,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The parent spec overstates phase 005 unmet requirements",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "line": 53,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "The playbook index names a superseded run as the latest",
+      "file": ".skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 62,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "Benchmark run index omits the newest run folder, including the run the release note cites as its evidence",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/README.md",
+      "line": 18,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P2-002",
+      "severity": "P2",
+      "title": "The phase-014 release note misstates all three of its out-of-domain counts",
+      "file": ".skilled/skills/mcp-browser-use/changelog/v1.1.2.0.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "The hub ships no feature catalog while its predecessor hub and nine other skills do",
+      "file": ".skilled/skills/mcp-browser-use",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 9
+  },
+  "openFindingsCount": 13,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9655,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 1,
+      "partial": 3,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/SKILL.md:18"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "Criterion 2 holds, phase 005's compiled-serving claim holds, and version authority holds across four files."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/hub-router.json:96"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "Criterion 5 holds per mode but not for a combined three-mode request (R1-P1-001, R2-P1-001)."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/SKILL.md:1"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "The hub's SKILL.md names no agent contract, so there is no SKILL.md-to-agent pair to compare."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/agents:1",
+          ".claude/agents:1",
+          ".opencode/agents:1"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent definition in the three runtime trees names the hub or any of its three modes, so no cross-runtime agent pair exists."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md:28"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "The hub ships no feature-catalog/ (R7-P2-001). The sibling mcp-tooling catalog carries no stale browser-mode claim."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/holdout-browser-inspect.md:46"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "summary": "Seven case files and seven index entries, so coverage is complete. MT-H01 passes on stage two alone while the replay marks the same prompt FAIL at stage one; already recorded as R4-P1-001 and not re-raised."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -28,7 +28,7 @@ _memory:
       savedAt: "2026-11-21T23:07:38Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

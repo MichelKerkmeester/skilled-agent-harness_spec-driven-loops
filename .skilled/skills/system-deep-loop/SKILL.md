@@ -45,7 +45,7 @@ Stage 1 (hub → mode) selects a mode: `hub-router.json` `vocabularyClasses` is 
 The `mode-registry.json` aliases, each packet's `Keyword triggers:` line where one exists and the root `ROUTER.md` intents are checked against it.
 Stage 2 (mode → leaves) lives in the root [`ROUTER.md`](./ROUTER.md), which maps the request's deep-loop intent to the packet-local leaf resources that mode loads.
 The advisor routes every deep-loop query to the single identity `system-deep-loop`.
-Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"`.
+Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`).
 Compiled routing is the default. `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
 An unclear deep-loop intent asks for disambiguation, because `routerPolicy.defaultMode` is `null`.
 The `routerPolicy.defaultResource` list is only a defer-time suggestion, never a silent default.

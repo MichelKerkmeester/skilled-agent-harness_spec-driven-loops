@@ -69,7 +69,7 @@ Stage 1 (hub → mode) uses `hub-router.json` as the authored mode vocabulary. `
 Stage 2 (mode → leaves) uses the root [`ROUTER.md`](./ROUTER.md) as the authored leaf-set router.
 Both files point back here instead of restating the split.
 
-The advisor routes every code query to the single identity `sk-code`. Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` and follow the decision: `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
+The advisor routes every code query to the single identity `sk-code`. Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`) and follow the decision: `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
 Compiled routing is the default. The legacy fallback, the kill-switch and the `UNKNOWN_FALLBACK_CHECKLIST` live in the compiled-routing section of [`ROUTER.md`](./ROUTER.md).
 
 A bare implement, debug or verify request with no workflow mode becomes a pure surface bundle, and an unclear code intent asks for disambiguation. Neither path forces a stale default.

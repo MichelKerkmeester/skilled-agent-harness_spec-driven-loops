@@ -260,7 +260,7 @@ function compileRegistry(input) {
     detectors: detectors.sort((a, b) => a.id.localeCompare(b.id)),
     rolloutRules: [],
     schemaVersion: 'V1',
-    selectionKinds: ['single', 'orderedBundle'],
+    selectionKinds: ['single', ...new Set(compositionRules.map((rule) => rule.kind))],
     selectors: selectors.sort((a, b) => a.id.localeCompare(b.id)),
   };
   const graphHash = sha256(artifactBytes(destinationGraphBody));

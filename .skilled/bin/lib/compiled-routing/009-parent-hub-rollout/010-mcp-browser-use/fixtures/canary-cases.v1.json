@@ -174,6 +174,38 @@
       }
     },
     {
+      "id": "mixed-id-and-alias-bundle",
+      "prompt": "use mcp-chrome-devtools and bladebro",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": [
+        "mcp-chrome-devtools",
+        "mcp-bladebro"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools",
+          "mcp-bladebro"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "aside-in-prose",
+      "prompt": "open it in aside",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-aside-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "generic-browser-automation-defer",
       "prompt": "browser automation for this site",
       "expectedAction": "defer",

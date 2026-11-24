@@ -1,21 +1,51 @@
 {
-  "sessionId": "fanout-pi-2-1795504079797-ay97sx",
-  "parentSessionId": null,
-  "generation": 1,
+  "sessionId": "fanout-pi-2-1795511024070-2cuwlj",
+  "parentSessionId": "2026-11-24T09:03:35.256Z",
+  "generation": 4,
   "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": {
-    "stopReason": "stuckRecovery",
-    "totalIterations": 6,
-    "timestamp": "2026-11-24T07:16:08.095Z"
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "timestamp": "2026-11-24T09:19:00.455Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "PI2-I2-P1-001",
-      "severity": "P1",
-      "title": "A bare staging category hint still lifts mcp-browser-use to the 0.82 task-intent floor on non-browser prompts",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts",
+      "findingId": "PI2-D1-P2-001",
+      "severity": "P2",
+      "title": "Reject outcome documented as reachable from the compiled front door, but the CLI cannot pass the constraint that produces it",
+      "file": ".skilled/skills/mcp-browser-use/SKILL.md",
+      "line": 62,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "PI2-D2-P2-001",
+      "severity": "P2",
+      "title": "Chrome DevTools installer verifies its pinned CLI by version only, with no content digest, unlike the Bladebro installer",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh",
       "line": 30,
       "description": "",
       "findingClass": null,
@@ -24,127 +54,37 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "PI2-I1-P2-001",
-      "severity": "P2",
-      "title": "Parent goal log still reports phase 014 as In Progress",
-      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
-      "line": 135,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "PI2-I1-P2-002",
-      "severity": "P2",
-      "title": "Research lane table still offers an ungated npx -y bladebro launch",
-      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
-      "line": 57,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "PI2-I2-P2-001",
-      "severity": "P2",
-      "title": "promptNamesIdNoun accepts any generic noun as the skill name",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
-      "line": 332,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "PI2-I3-P2-001",
-      "severity": "P2",
-      "title": "The live-attach MCP manual is callable with no stated operator gate",
-      "file": ".utcp_config.json",
-      "line": 1,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
       "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "PI2-D3-P2-001",
+      "severity": "P2",
+      "title": "The hub README changelog table links three of the five release files, so the 1.1.2.0 and 1.1.3.0 entries are unreachable from the index that claims to list them",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "line": 70,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -157,16 +97,16 @@
         }
       ],
       "dimensions": [
-        "security"
+        "traceability"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "PI2-I4-P2-001",
+      "findingId": "PI2-D4-P2-001",
       "severity": "P2",
-      "title": "ROUTER.md Chrome DevTools keyword list has drifted from the router it documents",
-      "file": ".skilled/skills/mcp-browser-use/ROUTER.md",
-      "line": 53,
+      "title": "The README changelog section states a per-entry files-changed list that none of the five entries contains",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "line": 68,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -194,7 +134,11 @@
   ],
   "resolvedFindings": [],
   "blockedStopHistory": [],
-  "terminalGates": null,
+  "terminalGates": {
+    "run": 5,
+    "stopReason": "converged",
+    "failedRequiredGateIds": []
+  },
   "persistentSameSeverity": [],
   "severityChanged": [],
   "repeatedFindings": [],
@@ -206,10 +150,10 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 1,
-    "P2": 5
+    "P1": 0,
+    "P2": 4
   },
-  "openFindingsCount": 6,
+  "openFindingsCount": 4,
   "resolvedFindingsCount": 0,
   "convergenceScore": 1,
   "graphConvergenceScore": 0,
@@ -217,89 +161,847 @@
   "graphBlockers": [],
   "graphSignals": {},
   "candidateCoverage": {
-    "covered": [],
-    "ruledOut": [],
+    "covered": [
+      "citation_integrity",
+      "doc_behavior_mismatch",
+      "doc_format_misstatement",
+      "doc_index_drift",
+      "supply_chain_verification_gap"
+    ],
+    "ruledOut": [
+      "broken_link",
+      "capability_matrix_overstatement",
+      "changelog_missing",
+      "citation_integrity",
+      "gate_blocked_by_missing_artifact",
+      "generated_manifest_drift",
+      "goal_evidence_stale",
+      "hook_gate_bypass",
+      "index_incomplete_elsewhere",
+      "layout_entry_stale",
+      "privileged_execution",
+      "protocol_not_run",
+      "readonly_label_misclassification",
+      "registry_metadata_loss",
+      "routing_table_divergence",
+      "secret_exposure",
+      "stale_compiled_policy",
+      "version_mismatch",
+      "vocabulary_orphan"
+    ],
     "deferred": [],
     "blocked": [],
-    "byBugClass": {}
+    "byBugClass": {
+      "doc_behavior_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "routing_table_divergence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_compiled_policy": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "vocabulary_orphan": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "generated_manifest_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "capability_matrix_overstatement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "supply_chain_verification_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "privileged_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "readonly_label_misclassification": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "hook_gate_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_index_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "goal_evidence_stale": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "changelog_missing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "version_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "protocol_not_run": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "advisor_suite_health": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "doc_format_misstatement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "layout_entry_stale": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "broken_link": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "index_incomplete_elsewhere": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "citation_integrity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "registry_metadata_loss": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "gate_blocked_by_missing_artifact": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
   },
   "searchDebt": [],
-  "ruledOutCandidates": [],
-  "cleanSearchProof": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-1-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json",
+        ".skilled/skills/mcp-browser-use/mode-registry.json"
+      ],
+      "bugClass": "vocabulary_orphan",
+      "disposition": "ruled_out",
+      "rationale": "Alias and class sets are bidirectionally aligned.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json:52-78",
+        ".skilled/skills/mcp-browser-use/mode-registry.json:36-112"
+      ],
+      "reason": "Every alias resolves to a class and no class is orphaned."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-02",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs"
+      ],
+      "bugClass": "stale_compiled_policy",
+      "disposition": "ruled_out",
+      "rationale": "Replay of the authored vocabulary produced the authored decisions.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route.cjs:29-52",
+        ".skilled/skills/mcp-browser-use/hub-router.json:117"
+      ],
+      "reason": "No drift between authored vocabulary and served policy."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-04",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/leaf-manifest.json",
+        ".skilled/skills/mcp-browser-use/ROUTER.md"
+      ],
+      "bugClass": "generated_manifest_drift",
+      "disposition": "ruled_out",
+      "rationale": "No routed leaf is missing from the generated manifest.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/leaf-manifest.json:1-40",
+        ".skilled/skills/mcp-browser-use/ROUTER.md:59-76"
+      ],
+      "reason": "Manifest and stage-two map agree."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-05",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md"
+      ],
+      "bugClass": "capability_matrix_overstatement",
+      "disposition": "ruled_out",
+      "rationale": "Capability matrix names match the packet catalog.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md:43-44",
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md:17-28"
+      ],
+      "reason": "Verified by direct read of the owning leaf."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-02",
+      "dimension": "security",
+      "targetRefs": [
+        ".utcp_config.json",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "All browser manuals are stdio with empty env.",
+      "evidenceRefs": [
+        ".utcp_config.json:2-6",
+        ".utcp_config.json:70-72"
+      ],
+      "reason": "No credential literal present."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh"
+      ],
+      "bugClass": "privileged_execution",
+      "disposition": "ruled_out",
+      "rationale": "Privilege escalation stays with the operator.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:237"
+      ],
+      "reason": "Only a printed suggestion matches."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-04",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh",
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh"
+      ],
+      "bugClass": "readonly_label_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "The label matches the packet's documented classification.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:24-36",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/feature-catalog.md:81",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh:53-77"
+      ],
+      "reason": "Bounded stdio handshake is inside the class's allowed set."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-05",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "hook_gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "Both gates check committed content, not the working tree.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:224-248",
+        ".skilled/scripts/git-hooks/pre-commit:724-740"
+      ],
+      "reason": "No bypass path present."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/results.csv"
+      ],
+      "bugClass": "goal_evidence_stale",
+      "disposition": "ruled_out",
+      "rationale": "The recorded evidence is current.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/results.csv:1"
+      ],
+      "reason": "Zero drift across 52 rows."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-03",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md",
+        ".skilled/skills/system-skill-advisor/SKILL.md"
+      ],
+      "bugClass": "version_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Version parity and behaviour both hold.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/SKILL.md:5"
+      ],
+      "reason": "Shipped and documented."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-04",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md"
+      ],
+      "bugClass": "changelog_missing",
+      "disposition": "ruled_out",
+      "rationale": "The checklist evidence is reproducible.",
+      "evidenceRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md:46-68"
+      ],
+      "reason": "No missing evidence found."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-02",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md"
+      ],
+      "bugClass": "layout_entry_stale",
+      "disposition": "ruled_out",
+      "rationale": "The inventory matches the tree.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md:80-99"
+      ],
+      "reason": "No stale entry."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-03",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/README.md",
+        ".skilled/skills/mcp-browser-use/ROUTER.md",
+        ".skilled/skills/mcp-browser-use/SKILL.md"
+      ],
+      "bugClass": "broken_link",
+      "disposition": "ruled_out",
+      "rationale": "Link targets exist.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:70-72"
+      ],
+      "reason": "Zero broken links."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-04",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/README.md",
+        ".skilled/changelog/mcp-browser-use/parent"
+      ],
+      "bugClass": "index_incomplete_elsewhere",
+      "disposition": "ruled_out",
+      "rationale": "Both other indexes are complete.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/README.md:1"
+      ],
+      "reason": "The gap is confined to README section 4."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/deep-review-findings-registry.json"
+      ],
+      "bugClass": "citation_integrity",
+      "disposition": "ruled_out",
+      "rationale": "No citation points at a missing file or an unrelated line; the one offset is recorded as a correction in the narrative.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:66",
+        ".skilled/skills/mcp-browser-use/README.md:68"
+      ],
+      "reason": "All citations resolve."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-02",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/graph-db"
+      ],
+      "bugClass": "gate_blocked_by_missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "No gate names a missing artifact after the seed.",
+      "evidenceRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/graph-db/deep-loop-graph.sqlite"
+      ],
+      "reason": "Remaining gates are arithmetic."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-1-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json",
+        ".skilled/skills/mcp-browser-use/mode-registry.json"
+      ],
+      "bugClass": "vocabulary_orphan",
+      "disposition": "ruled_out",
+      "rationale": "Alias and class sets are bidirectionally aligned.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json:52-78",
+        ".skilled/skills/mcp-browser-use/mode-registry.json:36-112"
+      ],
+      "proof": "Every alias resolves to a class and no class is orphaned."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-02",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/compiled-route.cjs",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs"
+      ],
+      "bugClass": "stale_compiled_policy",
+      "disposition": "ruled_out",
+      "rationale": "Replay of the authored vocabulary produced the authored decisions.",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route.cjs:29-52",
+        ".skilled/skills/mcp-browser-use/hub-router.json:117"
+      ],
+      "proof": "No drift between authored vocabulary and served policy."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-04",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/leaf-manifest.json",
+        ".skilled/skills/mcp-browser-use/ROUTER.md"
+      ],
+      "bugClass": "generated_manifest_drift",
+      "disposition": "ruled_out",
+      "rationale": "No routed leaf is missing from the generated manifest.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/leaf-manifest.json:1-40",
+        ".skilled/skills/mcp-browser-use/ROUTER.md:59-76"
+      ],
+      "proof": "Manifest and stage-two map agree."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-1-05",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md"
+      ],
+      "bugClass": "capability_matrix_overstatement",
+      "disposition": "ruled_out",
+      "rationale": "Capability matrix names match the packet catalog.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md:43-44",
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md:17-28"
+      ],
+      "proof": "Verified by direct read of the owning leaf."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-02",
+      "dimension": "security",
+      "targetRefs": [
+        ".utcp_config.json",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "All browser manuals are stdio with empty env.",
+      "evidenceRefs": [
+        ".utcp_config.json:2-6",
+        ".utcp_config.json:70-72"
+      ],
+      "proof": "No credential literal present."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh"
+      ],
+      "bugClass": "privileged_execution",
+      "disposition": "ruled_out",
+      "rationale": "Privilege escalation stays with the operator.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:237"
+      ],
+      "proof": "Only a printed suggestion matches."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-04",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh",
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/doctor.sh"
+      ],
+      "bugClass": "readonly_label_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "The label matches the packet's documented classification.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:24-36",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/feature-catalog.md:81",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh:53-77"
+      ],
+      "proof": "Bounded stdio handshake is inside the class's allowed set."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-05",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "hook_gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "Both gates check committed content, not the working tree.",
+      "evidenceRefs": [
+        ".skilled/scripts/git-hooks/pre-commit:224-248",
+        ".skilled/scripts/git-hooks/pre-commit:724-740"
+      ],
+      "proof": "No bypass path present."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/results.csv"
+      ],
+      "bugClass": "goal_evidence_stale",
+      "disposition": "ruled_out",
+      "rationale": "The recorded evidence is current.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/results.csv:1"
+      ],
+      "proof": "Zero drift across 52 rows."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-03",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md",
+        ".skilled/skills/system-skill-advisor/SKILL.md"
+      ],
+      "bugClass": "version_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Version parity and behaviour both hold.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/SKILL.md:5"
+      ],
+      "proof": "Shipped and documented."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-04",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md"
+      ],
+      "bugClass": "changelog_missing",
+      "disposition": "ruled_out",
+      "rationale": "The checklist evidence is reproducible.",
+      "evidenceRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md:46-68"
+      ],
+      "proof": "No missing evidence found."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-02",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md"
+      ],
+      "bugClass": "layout_entry_stale",
+      "disposition": "ruled_out",
+      "rationale": "The inventory matches the tree.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/SKILL.md:80-99"
+      ],
+      "proof": "No stale entry."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-03",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/README.md",
+        ".skilled/skills/mcp-browser-use/ROUTER.md",
+        ".skilled/skills/mcp-browser-use/SKILL.md"
+      ],
+      "bugClass": "broken_link",
+      "disposition": "ruled_out",
+      "rationale": "Link targets exist.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:70-72"
+      ],
+      "proof": "Zero broken links."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-04",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/README.md",
+        ".skilled/changelog/mcp-browser-use/parent"
+      ],
+      "bugClass": "index_incomplete_elsewhere",
+      "disposition": "ruled_out",
+      "rationale": "Both other indexes are complete.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/benchmark/reports/README.md:1"
+      ],
+      "proof": "The gap is confined to README section 4."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/deep-review-findings-registry.json"
+      ],
+      "bugClass": "citation_integrity",
+      "disposition": "ruled_out",
+      "rationale": "No citation points at a missing file or an unrelated line; the one offset is recorded as a correction in the narrative.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/README.md:66",
+        ".skilled/skills/mcp-browser-use/README.md:68"
+      ],
+      "proof": "All citations resolve."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-02",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/graph-db"
+      ],
+      "bugClass": "gate_blocked_by_missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "No gate names a missing artifact after the seed.",
+      "evidenceRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2/graph-db/deep-loop-graph.sqlite"
+      ],
+      "proof": "Remaining gates are arithmetic."
+    }
+  ],
   "searchCoverage": {
-    "requiredBugClasses": [],
-    "covered": [],
-    "ruledOut": [],
+    "requiredBugClasses": [
+      "citation_integrity"
+    ],
+    "covered": [
+      "citation_integrity"
+    ],
+    "ruledOut": [
+      "registry_metadata_loss",
+      "gate_blocked_by_missing_artifact"
+    ],
     "deferred": [],
     "blocked": [],
-    "graphCoverageMode": null
+    "graphCoverageMode": "graph"
   },
   "traceability": {
     "summary": {
-      "required": 5,
-      "executed": 5,
-      "pass": 4,
-      "partial": 1,
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 1
+      "notApplicable": 1,
+      "gatingFailures": 0
     },
     "results": [
       {
-        "applicable": true,
-        "evidence": [
-          ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:98"
+        "evidenceRefs": [
+          ".skilled/bin/compiled-route.cjs",
+          ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs:100-145",
+          ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled--follow-up/results.csv",
+          ".skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md"
         ],
-        "gateClass": "hard",
+        "note": "Five of seven phase 015 criteria reproduced by command; the advisor suite and validate.sh were out of bounds for this worker and are recorded unverified.",
+        "protocol": "spec_code",
+        "scope": "phase 015 completion criteria, epic completion criteria, advisor 2.0.3.0 claim",
+        "status": "pass",
         "protocolId": "spec_code",
-        "status": "pass",
-        "summary": "Compiled vocabulary builds from hub-router.json and fails closed on an unknown class"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/acceptance-criteria.md:84"
-        ],
         "gateClass": "hard",
+        "applicable": true
+      },
+      {
+        "evidenceRefs": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md:46",
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md:50",
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/tasks.md:68"
+        ],
+        "note": "All three claimed evidence lines reproduced; T008's negative direction needs an edited tree and stays unverified.",
+        "protocol": "checklist_evidence",
+        "scope": "phase 015 tasks.md rows T004, T008, T019",
+        "status": "pass",
         "protocolId": "checklist_evidence",
-        "status": "partial",
-        "summary": "AC-002 remains the one unevidenced row"
+        "gateClass": "hard",
+        "applicable": true
       },
       {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/README.md:1"
-        ],
-        "gateClass": "advisory",
-        "protocolId": "feature_catalog_code",
-        "status": "pass",
-        "summary": "Catalog present per mode; nothing contradicts the catalog tree"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/README.md:1"
-        ],
-        "gateClass": "advisory",
-        "protocolId": "playbook_capability",
-        "status": "pass",
-        "summary": "Stage two passes every replay row"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/mcp-browser-use/SKILL.md:60"
-        ],
-        "gateClass": "advisory",
+        "applicable": false,
+        "protocol": "skill_agent",
+        "reason": "This iteration reads docs and generated metadata; no skill or agent definition is asserted by the reviewed artifacts.",
+        "status": "notApplicable",
         "protocolId": "skill_agent",
-        "status": "pass",
-        "summary": "Hub SKILL.md and ROUTER.md both state the own-Chrome attach rule"
+        "gateClass": "advisory"
       }
     ],
-    "unfinishedCoreProtocols": [
-      "checklist_evidence"
-    ]
+    "unfinishedCoreProtocols": []
   },
   "divergence": {
     "started": [],

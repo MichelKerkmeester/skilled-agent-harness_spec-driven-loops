@@ -5,31 +5,24 @@
 - Mode: review
 - Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
 - Dimension: maintainability
-- Operator review focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- Artifact dir: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-2`
-- Session: `fanout-vibe-2-1795504079797-ay97sx`, generation 1, lineageMode new
-- Sources read this iteration: `steer.md` (absent), `deep-review-strategy.md`, `deep-review-findings-registry.json`, `.skilled/skills/mcp-browser-use/{SKILL.md,ROUTER.md,README.md,description.json,leaf-scopes.json,leaf-manifest.json}`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/{SKILL.md,README.md,feature-catalog/feature-catalog.md}`
-
-## How this iteration addressed the operator focus
-
-The focus binds every iteration. This one took the maintainability dimension and pointed it at the
-hub's own prose, because the hub is the artifact every phase shipped into. It checked the hub
-`SKILL.md` capability matrix against the mode packets it delegates to, the `ROUTER.md` claim that
-every routed leaf is listed in the generated manifest, and the version-authority rule `SKILL.md`
-states against every hub metadata file. The matrix and the version rule both failed; the manifest
-claim held once the manifest's packet-relative path form was accounted for.
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change
+- Lineage: sessionId `fanout-vibe-2-1795511024070-2cuwlj`, generation 1, lineageMode new
+- Iteration: 4 of 7
 
 ## Files Reviewed
 
-- `.skilled/skills/mcp-browser-use/SKILL.md:1-160`
-- `.skilled/skills/mcp-browser-use/ROUTER.md:1-140`
-- `.skilled/skills/mcp-browser-use/README.md:1-50`
-- `.skilled/skills/mcp-browser-use/description.json:1-30`
-- `.skilled/skills/mcp-browser-use/leaf-scopes.json:1-12`
-- `.skilled/skills/mcp-browser-use/leaf-manifest.json:1-40`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:147,202-205`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md:189`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/feature-catalog.md:122-142`
+- `.skilled/skills/mcp-browser-use/SKILL.md:78` -- the hub layout block and companion-metadata list
+- `.skilled/skills/mcp-browser-use/README.md:66` -- the hub release-file rule
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md:1` -- mode README frontmatter
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md:1` -- mode SKILL frontmatter
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md:1` -- mode README frontmatter
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:1` -- mode SKILL frontmatter
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/README.md:1` -- mode README frontmatter
+- `.skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md:1` -- mode SKILL frontmatter
+- `.skilled/skills/mcp-browser-use/leaf-scopes.json:1` -- generator input for leaf scoping
+- `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:18` -- the leaf-scopes consumer
+- `.skilled/skills/mcp-browser-use/benchmark/reports/README.md:26` -- hub report index
+- `.skilled/skills/mcp-browser-use/mcp-*/benchmark/reports/README.md:1` -- three mode report indexes
 
 ## Findings - New
 
@@ -39,82 +32,63 @@ None.
 
 ### P1 Findings
 
-1. **The hub capability matrix advertises `page.on(...)` events as a working Aside capability, while the Aside packet documents that `page.on` throws on the pinned version** -- `.skilled/skills/mcp-browser-use/SKILL.md:40` -- the matrix row reads `| Console and network | bdg console --list, CDP network methods | page.on(...) events | see logs rings |`, so it presents `page.on(...)` as the Aside answer for console and network capture. The Aside packet says the opposite in three places: `mcp-aside-devtools/SKILL.md:147` ("The `page.on('console' | 'request' | 'response')` calls throw there"), `:202-203` ("gap on 1.26.626.1517 — `page.on` rejects the event"), and `feature-catalog/feature-catalog.md:122` ("`page.on('console'|'request'|'response', ...)` throws on 1.26.626.1517. Probe it only inside `try`/`catch`"). The hub's own rule at `SKILL.md:96` says "Each mode keeps its own safety contract in its packet. This hub does not restate those contracts", so the matrix restates a contract it should not, and restates it wrongly.
-   Finding class: maintainability
-   Scope proof: the hub `SKILL.md` and the three Aside files are all inside the pre-bound scope list; the matrix row and each contradicting Aside line are cited at line level.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/SKILL.md`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/feature-catalog.md`, and the phase 014 AC-012 fix that corrected the packet but not the hub.
-   Case: a reader opens the hub `SKILL.md`, sees `page.on(...)` listed as the Aside console-and-network capability, writes `page.on('console', ...)` in an `aside repl` evaluation, and gets a throw on Aside 1.26.626.1517.
-
-```json
-{
-  "type": "maintainability",
-  "claim": "The hub capability matrix states a capability the mode packet documents as a gap, and the hub's own rule forbids restating mode contracts.",
-  "evidenceRefs": [
-    ".skilled/skills/mcp-browser-use/SKILL.md:40",
-    ".skilled/skills/mcp-browser-use/SKILL.md:96",
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:147",
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:202-203",
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/feature-catalog.md:122"
-  ],
-  "counterevidenceSought": "Checked whether the matrix row could be read as a Playwright-generic capability rather than a claim about the pinned Aside build: the row sits under the mcp-aside-devtools column of a capability matrix whose header says each mode owns a distinct band, so it reads as a claim about that mode. Checked whether phase 014 already fixed it: AC-012's search is scoped to mcp-aside-devtools, so the hub SKILL.md was outside the fix.",
-  "alternativeExplanation": "The matrix may be deliberately coarse, listing the Playwright API surface rather than what works on the pinned build. That reading is consistent with the row's brevity but not with the packet's explicit gap markers, and it leaves the hub as the only surface that presents the call as usable.",
-  "finalSeverity": "P1",
-  "confidence": "high",
-  "downgradeTrigger": "Downgrade to P2 if the matrix is documented elsewhere as an API-surface list rather than a working-capability list."
-}
-```
+None new. Four P1 findings from iterations 1 to 3 remain active and keep this iteration's verdict at CONDITIONAL.
 
 ### P2 Findings
 
-2. **The hub README frontmatter carries version 1.1.3.0 while every other hub metadata file and the newest changelog entry carry 1.1.2.0** -- `.skilled/skills/mcp-browser-use/README.md:8` -- `SKILL.md:20` states the rule: "This file's `version` matches the newest entry under `changelog/`. The hub metadata files carry the same value." The hub changelog holds `v1.0.0.0.md`, `v1.1.0.0.md`, `v1.1.1.0.md` and `v1.1.2.0.md`, and `SKILL.md`, `ROUTER.md`, `description.json`, `mode-registry.json` and `hub-router.json` all carry `1.1.2.0`. Only `README.md` carries `1.1.3.0`, a version with no changelog entry.
+1. **Two of three mode READMEs carry a version behind their own SKILL.md and newest changelog** -- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md:1` -- `mcp-chrome-devtools/README.md` declares `1.0.26.0` while its `SKILL.md` and newest changelog are `1.0.28.0`; `mcp-aside-devtools/README.md` declares `1.1.10.0` while its `SKILL.md` and newest changelog are `1.1.13.0`. `mcp-bladebro` is consistent at `1.2.1.0` across all three. The hub states the convention at `SKILL.md:18` and repeats it at `README.md:66` ("one file per release, named `v[version].md`"), but no checker enforces cross-file version equality anywhere under `.skilled/bin` or `.skilled/commands/doctor/scripts`, so the drift is invisible to every gate that currently runs. This is the same defect class as iteration 3's hub README finding, on three more files.
    Finding class: maintainability
-   Scope proof: every file named is inside the pre-bound scope list; the rule, the README value and the changelog listing are cited at line level.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/README.md`, `.skilled/skills/mcp-browser-use/changelog/`, and the parent-skill checker's `13a-version` and `13b-version` invariants, which cover JSON routing files and `SKILL.md` but not the README.
-   Case: a reader checks the hub version from the README, sees 1.1.3.0, and looks for a `changelog/v1.1.3.0.md` that does not exist.
+   Scope proof: all six files are inside the declared review target; the convention is stated by the hub's own SKILL.md and README.md.
+   Affected surface hints: `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md`, `.skilled/skills/mcp-browser-use/mcp-bladebro/README.md`, `.skilled/skills/mcp-browser-use/SKILL.md`
+   Case: a reader opens the Chrome DevTools README to learn the current release, sees `1.0.26.0`, and reads two superseded changelog entries as the current state; the same reader on the Aside README is three releases behind.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|---|---|---|---|
-| `spec_code` | pass | `SKILL.md:20` vs the changelog and the metadata files | The version-authority rule holds for every file it names except the README, recorded as finding 2 |
-| `checklist_evidence` | partial | `SKILL.md:40` vs `mcp-aside-devtools/SKILL.md:202-203` | Phase 014 AC-012 holds inside the Aside packet but not at the hub, so the checklist row is scoped too narrowly |
-| `skill_agent` | pass | `SKILL.md:1-160`, `ROUTER.md:1-140` | The hub declares no agent definition of its own and the parent-skill checker's `12a-router-contract` and `12b-routing-shape` invariants pass |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | Carried: the hub version-authority invariant is broken at `README.md:8` (iteration 3) and the same convention is unenforced across the mode READMEs (finding 1). |
+| `checklist_evidence` | partial | Carried from iteration 3: phase 006 cites a superseded Chrome DevTools run. |
+| `skill_agent` | pass | `parent-skill-check.cjs` exits 0; the three mode packets carry identical top-level layouts (13 entries each). |
+| `agent_cross_runtime` | notApplicable | No agent definition carries hub logic. |
+| `feature_catalog_code` | fail | Carried from iteration 2: the Aside install catalog documents an unpinned path that decision D2 forbids. |
+| `playbook_capability` | pass | Carried from iteration 3: all three modes carry a playbook with a recorded run. |
 
 ## Integration Evidence
 
-- `rg -n 'page\.on' .skilled/skills/mcp-browser-use/SKILL.md` printed exactly one hit, the matrix row at line 40.
-- `rg -n 'page\.on\(|page\.context\(\)' .skilled/skills/mcp-browser-use/mcp-aside-devtools --glob '!**/changelog/**'` printed nine hits, every one of them a gap marker or a warning.
-- All eight `RESOURCE_MAP` paths in `ROUTER.md` resolve on disk, and each is listed in `leaf-manifest.json` under its own packet's `leaves` array in packet-relative form, so the `ROUTER.md` manifest claim holds.
-- `ls .skilled/skills/mcp-browser-use/changelog/` printed four entries, the newest `v1.1.2.0.md`.
-- `.skilled/skills/mcp-browser-use/leaf-scopes.json` adds exactly the Chrome DevTools Lighthouse and performance-trace catalog leaf, as `SKILL.md:88` states.
+- `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:18` documents `leaf-scopes.json` as an optional narrowing input: "Without scopes, each mode walks its full configured leaf roots." The one-mode entry is therefore a deliberate narrowing, not an omission.
+- `.skilled/skills/mcp-browser-use/benchmark/reports/README.md` lists five rows and all five run folders exist, two directly and three under `compiled-routing/`.
+- The three mode report indexes each match their folder count exactly: Aside 7 rows and 7 folders, Bladebro 3 and 3, Chrome DevTools 3 and 3.
+- The hub `SKILL.md:78` layout block lists 16 entries and every one resolves on disk.
 
 ## Edge Cases
 
-- **The `ROUTER.md` manifest claim looked false at first.** `rg -c 'mcp-aside-devtools/references/aside-cli-reference.md' leaf-manifest.json` returned 0, but the manifest stores leaves packet-relative under each mode's `leaves` array, so the leaf is listed. Recorded as a resolved ambiguity rather than a finding, because the first check used the wrong path form.
-- **`graph-metadata.json` carries no `version` key.** The version-authority rule names "the hub metadata files", and `graph-metadata.json` is one, but it has no version field to drift. Not a finding.
-- **The parent-skill checker does not cover the README.** Its `13a-version` and `13b-version` invariants check JSON routing files and `SKILL.md`, which is why the README drift passed a green checker run. Recorded inside finding 2 rather than as a separate finding.
+- The mode `SKILL.md` files state no version-authority rule of their own, so the mode README drift is a convention gap rather than a violation of a contract those packets declared. That is why it is P2 and not P1.
+- `leaf-scopes.json` declaring only `mcp-chrome-devtools` is intentional: the generator walks a mode's full configured roots when that mode has no scope entry, and `SKILL.md:106` documents the entry as adding the Lighthouse and performance-trace catalog leaf.
+- `mcp-bladebro` carries a `benchmark/` directory that `mcp-tooling`'s `mcp-click-up` leaf does not. That is a consequence of Bladebro having recorded runs, not a layout divergence.
+- The hub README's own release rule at `README.md:66` is contradicted by its own frontmatter at `README.md:8`. That is recorded as corroboration for iteration 3's finding rather than re-raised here.
 
 ## Confirmed-Clean Surfaces
 
-- `.skilled/skills/mcp-browser-use/ROUTER.md`: the two-stage model, the own-Chrome versus caller-owned-browser rule, the narrow-alias rule and the `UNKNOWN_FALLBACK` checklist all match `hub-router.json` and `mode-registry.json`.
-- `.skilled/skills/mcp-browser-use/leaf-scopes.json`: one entry, the Chrome DevTools mode, with the Lighthouse and performance-trace catalog leaf, exactly as `SKILL.md` describes.
-- `.skilled/skills/mcp-browser-use/description.json`: one hub identity, three mode names, no second advisor identity for any mode.
-- `.skilled/skills/mcp-browser-use/SKILL.md` Layout block: every listed entry exists on disk, including `shared/` and `leaf-scopes.json`.
+- The three mode packets carry identical top-level layouts: `assets`, `benchmark`, `changelog`, `examples`, `feature-catalog`, `INSTALL-GUIDE.md`, `manual-testing-playbook`, `mcp-servers`, `README.md`, `references`, `ROUTER.md`, `scripts`, `SKILL.md`.
+- The hub `SKILL.md` layout block matches the tree exactly.
+- Every benchmark report index matches its folder count.
+- `mcp-bladebro` is version-consistent across README, SKILL.md and changelog.
+- `leaf-scopes.json` has a live consumer and documented semantics.
 
 ## Ruled Out
 
-- **`ROUTER.md` routes to leaves that are not in the generated manifest.** Ruled out: all eight `RESOURCE_MAP` paths resolve and each is listed in `leaf-manifest.json` in packet-relative form.
-- **The hub declares a second advisor identity.** Ruled out: `description.json` carries one identity and `mode-registry.json` sets `routingClass: metadata` on every mode.
-- **The hub `SKILL.md` Layout block lists a folder that does not exist.** Ruled out: `shared/` and every other listed entry exist.
-- **The changelog convention is broken.** Ruled out: `SKILL.md`, `ROUTER.md`, `description.json`, `mode-registry.json` and `hub-router.json` all match the newest changelog entry at 1.1.2.0.
+- **A dead or orphaned `leaf-scopes.json`.** It is read by `generate-leaf-manifest.cjs`, and `SKILL.md:106` documents its purpose.
+- **A layout divergence between the hub's mode packets and the `mcp-tooling` sibling.** The three mode packets are identical to each other and differ from `mcp-click-up` only by the `benchmark/` directory that recorded runs require.
+- **A stale benchmark report index.** All four indexes match their folder counts.
+- **A missing hub layout entry.** All 16 entries in the `SKILL.md` layout block resolve on disk.
 
 ## Next Focus
 
 - Dimension: cross-reference
-- Focus area: the compiled-routing artifacts under `.skilled/bin/lib/compiled-routing/` against the hub registries, and the `mcp-tooling` parent hub's six modes
-- Reason: all four configured dimensions are now covered; the remaining budget goes to cross-reference analysis, which the loop contract names as the fallback when no dimension remains
-- Rotation status: all four configured dimensions complete; cross-reference pass not started
-- Blocked/productive carry-forward: the `validate.sh --strict --recursive` criterion stays blocked for this lineage; the hub prose surface is productive and produced one P1 and one P2
-- Required evidence: file:line citations from the pre-bound scope list
+- Focus area: the advisor 2.0.3.0 id-noun change end to end, the two-stage replay evidence, and the completion-criteria checklist as a whole
+- Reason: all four canonical dimensions are covered; the remaining work is the cross-reference pass that decides whether the run can stop
+- Rotation status: correctness, security, traceability and maintainability complete; cross-reference next
+- Blocked/productive carry-forward: the version-consistency scan is exhausted as a source of new findings
+- Required evidence: file:line citations from the advisor scorer, the replay results and the parent goal checklist
 
 Review verdict: CONDITIONAL

@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "mcp-tooling compiled routing"
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -32,7 +32,9 @@ node .skilled/bin/compiled-route-status.cjs --hub mcp-tooling
 Then use the front door:
 
 ```bash
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-stdin <<'TASK'
+<task>
+TASK
 ```
 
 A `route` result may be followed directly. A `clarify` or `defer` result requires disambiguation. A legacy sentinel, stale-manifest cause, or resolver error means that the caller must use the registry-driven route and record compiled serving as unavailable for that run.

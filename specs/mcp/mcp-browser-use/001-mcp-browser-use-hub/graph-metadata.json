@@ -18,7 +18,10 @@
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/012-browser-hub-doc-topic",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/013-fix-alignment-findings-for-browser-hub-docs",
     "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",
-    "mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings"
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/016-fix-second-follow-up-findings",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin",
+    "mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -217,7 +220,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-24T08:42:10.336Z",
+    "last_save_at": "2026-11-24T12:05:04.040Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,10 +228,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:dbaa7df46c0e1e46e905f00e96602ef4092870aecdace17f04162ab784f35780",
+    "source_fingerprint": "sha256:c74a66dbba7d6ca7fcb459942327d627eb807c25f0aba843f9d2cdda4805b394",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ece38edae18b1ad70ad381fa8d278345c19d72d49dffe6e64dc52850ac316767",
+      "spec.md": "07c2daf4abf8289bc981183163dbf57e4605733dc528847f56d8d01fac5f3de1",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
     "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings",

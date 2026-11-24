@@ -2,23 +2,27 @@
 
 ## Dispatcher
 
-- **Mode**: review
-- **Target**: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
-- **Dimension**: traceability
-- **Operator review focus**: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made
-- **How this iteration addressed the focus**: it verified the parent criteria that rest on artifacts and on a checker run -- criterion 1 (research iterations), criterion 4 (parent-skill checker), criterion 6 (a recorded run per mode) -- and checked every child phase's goal criteria for unchecked items. It also compared the parent spec's summary of phase 005 against 005's own status row.
-- **Sources read**: `goal.md`, `spec.md`, `001-research/research/deep-research-state.jsonl`, `005-routing-and-surfaces/spec.md`, all twelve child `goal.md` files, `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md`, the hub and per-mode `benchmark/reports/` trees, and the 2026-11-24 replay CSV
+- Mode: review, single iteration, LEAF-only (no sub-agent dispatch)
+- Lineage: `vibe-1`, sessionId `fanout-vibe-1-1795511024070-2cuwlj`, generation 1, lineageMode `new`
+- Executor: cli-mistral-vibe, model deepseek-flash (in-process; the fan-out lineage is its own executor)
+- Dimension: correctness, second pass
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This iteration addressed the focus by running the phase 015 fixes as behaviour instead of re-reading them: it compiled the hub router from source and replayed all sixteen canary cases in memory, it ran the five id-noun probe prompts and the five staging probes against the live advisor, and it read the hub capability matrix against the Aside packet's own matrix.
+- Sources read this iteration: `steer.md` (absent, so no lead ruling applies), `review-scope-files.txt`, `goal.md`, `015-fix-follow-up-review-findings/{goal.md,spec.md,implementation-summary.md}`, `.skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md`, `.skilled/skills/mcp-browser-use/{SKILL.md,ROUTER.md,hub-router.json}`, `.skilled/skills/mcp-browser-use/mcp-aside-devtools/{SKILL.md,README.md}`, `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/{SKILL.md,README.md,INSTALL-GUIDE.md,feature-catalog/feature-catalog.md}`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/{lib/router.cjs,harness/build-artifacts.cjs,fixtures/canary-cases.v1.json}`, `.skilled/bin/skill-advisor.cjs`
 
 ## Files Reviewed
 
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:100-140`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:53`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md:23,140,149,150`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/deep-research-state.jsonl:1-31`
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/{002,003,004,005,006,007,008,009,010,011,012,013}-*/goal.md` (criteria blocks)
-- `.skilled/commands/doctor/scripts/parent-skill-check.cjs:1` (executed read-only)
-- `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:60-62`
-- `.skilled/skills/mcp-browser-use/benchmark/reports/` and each mode's `benchmark/reports/`
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:80-175`
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs:47-66`
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:1-260`
+- `.skilled/skills/mcp-browser-use/ROUTER.md:45-56`
+- `.skilled/skills/mcp-browser-use/SKILL.md:32-50`
+- `.skilled/skills/mcp-browser-use/SKILL.md:55-80`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:147`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:202-205`
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md:47`
+- `.skilled/skills/system-skill-advisor/changelog/v2.0.3.0.md:1-45`
+- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:1032-1035`
 
 ## Findings - New
 
@@ -28,63 +32,64 @@ None.
 
 ### P1 Findings
 
-None.
+1. **The intent vocabulary has no prose form for Aside, so a request that names Aside either defers or silently drops it from a bundle** -- `.skilled/skills/mcp-browser-use/ROUTER.md:53` -- `ASIDE_DEVTOOLS` lists twenty-one keywords and every one of them carries a qualifier: `use aside`, `run aside`, `open aside`, `with aside`, `aside browser`, `aside cli`, `aside mcp`, `aside repl`, `aside daemon`, `aside account`, `aside devtools`, `mcp-aside-devtools` and nine phrase forms. Bare `aside` is absent. `BLADEBRO` in the same block does carry its bare product name, `bladebro`, so the asymmetry is not a general rule against bare names. Two live reaches follow. `debug this page in aside` reaches the hub from the advisor at 0.82 and the compiled router returns `defer` with no scores, which contradicts `SKILL.md:77`, where `defer` is defined as "the outcome that asks for disambiguation when generic browser phrasing names no mode" -- this request names a mode. `use chrome devtools, aside and bladebro` reaches the hub at 0.95 and the router returns `orderedBundle` over `[mcp-chrome-devtools, mcp-bladebro]`, dropping Aside with no signal that it was dropped. The phase 015 fix is real but covers only the id form: the canary case `three-mode-ids-ordered-bundle` passes because its prompt spells `mcp-aside-devtools`, and no canary case writes the three modes in prose.
+   - Case: a reader writes "use chrome devtools, aside and bladebro" or "debug this page in aside". The advisor routes the hub at 0.95 and 0.82, the router scores Aside at zero, and the reader either gets a two-mode bundle that silently omits the mode they named or is asked which mode they meant after already naming it.
+   - Finding class: instance-only
+   - Scope proof: the gap is one vocabulary class in one file. `rg -n "aside" ROUTER.md:53` shows every Aside keyword carries a qualifier while `BLADEBRO` carries bare `bladebro`; replaying the two prompts through `evaluateRoute` returns `defer` and a two-mode `orderedBundle`; the sixteen canary cases all pass, so the defect is outside the fixture's coverage rather than a regression in the fix.
+   - Affected surface hints: `ROUTER.md` `INTENT_SIGNALS` `ASIDE_DEVTOOLS`, `hub-router.json` `vocabularyClasses`, `graph-metadata.json` `intent_signals`, the compiled `routingModel` in `registry-compiler.cjs`, `fixtures/canary-cases.v1.json`, `SKILL.md` defer definition
+
+```json
+{"type":"claim","claim":"The hub's Aside vocabulary has no prose form, so a request that names Aside by its product name scores zero: it defers when Aside is the only mode named, and it silently drops Aside from a bundle when other modes are named too.","evidenceRefs":["ROUTER.md:53","SKILL.md:77","hub-router.json:1"],"counterevidenceSought":"Replayed all sixteen canary cases in memory against the compiled router: 16 of 16 pass, including `aside-devtools-single` on the prompt `aside browser` and `three-mode-ids-ordered-bundle` on the full-id prompt. So the fix works for every form the fixture covers, and the gap is the prose form the fixture does not cover. Also ran the live advisor on both failing prompts to confirm the hub is actually reached: 0.82 and 0.95.","alternativeExplanation":"Bare `aside` is an ordinary English word, so adding it as a keyword would false-fire on prose that has nothing to do with the tool. That explanation is confirmed rather than refuted: `set this aside for now`, `put that aside and open the page` and `aside from that, ship it` all defer today, and a bare keyword would route all three to the hub. The defect is therefore the missing phrase forms, not the missing bare word.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 if the hub documents that a mode must be named by id or by a qualified phrase, which would put the prose form outside the routing contract.","upgradeTrigger":"Raise to P0 if a gate or a playbook scenario is found that asserts a prose three-mode prompt routes all three modes."}
+```
 
 ### P2 Findings
 
-1. **The parent spec overstates phase 005's unmet requirements** -- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:53` -- The parent status row says "005 still records REQ-003 and REQ-008 as not met as written". Phase 005's own status row says something narrower: "REQ-003 met at the default threshold but not at `--threshold 0.5`; REQ-008 held only after the browser fixtures were relabeled" (`005-routing-and-surfaces/spec.md:23`). REQ-003 is therefore met at the default threshold, and REQ-008 held. The 2026-11-24 replay corroborates the narrower reading: its `mcp_tooling_above_threshold` column is `false` on all 49 rows, so `mcp-tooling` does not score above threshold on any recorded browser request.
-   Finding class: traceability
-   Scope proof: both rows are canonical packet docs inside the declared target.
-   Affected surface hints: parent `spec.md` status row; `005-routing-and-surfaces/spec.md` status row and REQ-003/REQ-008 rows.
-   Case: a reader opens the parent spec to decide whether `mcp-tooling` still competes for browser requests, reads that REQ-003 is "not met as written", and schedules remediation for a requirement that is met at the default threshold.
-
-2. **The playbook index names a superseded run as the latest** -- `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:62` -- The index says "The latest recorded run is `2026-11-21--manual-testing-playbook--hub-routing--post-review`", and names the destination as `.skilled/skills/mcp-browser-use/benchmark/reports/<dated-run-label>/`. That directory now also holds `compiled-routing/2026-11-24--two-stage-replay--compiled`, and each mode's own `benchmark/reports/` holds runs dated 2026-11-22. A reader who follows the index to the newest routing evidence lands three days early and misses the 49-row replay that the 014 work produced.
-   Finding class: traceability
-   Scope proof: the index and the report trees it points at are shipped files of the declared target's hub.
-   Affected surface hints: `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md` result-persistence section; `.skilled/skills/mcp-browser-use/benchmark/reports/README.md`.
-   Case: an operator asks for the most recent hub-routing evidence, is pointed at the 2026-11-21 post-review run, and never sees the 2026-11-24 two-stage replay that supersedes it for routing questions.
+None.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | pass | `.skilled/commands/doctor/scripts/parent-skill-check.cjs:1` | Parent criterion 4 holds by execution: the checker run against `.skilled/skills/mcp-browser-use` printed `INFO: Parent skill: .skilled/skills/mcp-browser-use` and `OK: parent-skill-check — all hard invariants passed, 0 warnings`, exit 0. |
-| `checklist_evidence` | pass | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/deep-research-state.jsonl:1` | Parent criteria 1 and 6 hold: the research state log carries 12 `type: "iteration"` records (criterion 1 asks for at least 10) and `research.md` exists at 33,096 bytes; all three modes have recorded runs under their own `benchmark/reports/`, including `mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live` for the live macOS Bladebro run. |
+- `spec_code` -- pass. Goal criterion 5 ("One real browser request per mode returns `mcp-browser-use` from the advisor and that mode from the hub router") still holds: the advisor returns the hub for each mode's own prompt and the compiled router returns that mode. The new P1 does not touch criterion 5, because each single-mode request in the criterion is written in a form the vocabulary covers.
+- `checklist_evidence` -- pass, with one coverage note. Phase 015 criterion 1 ("The three-mode bundle prompt routes `orderedBundle` to all three modes, and the canary harness exits 0") holds literally: the canary case `three-mode-ids-ordered-bundle` returns `orderedBundle` over all three modes in tie-break order, and the other fifteen cases pass too. Phase 015 criterion 2 ("The five probe prompts no longer lift a skill they do not name") holds as behaviour, not only as the changelog's claim: `fix the infinite loop in this function`, `update the build tooling` and `the mode rollout` each return no recommendations at all; `run the doctor update check` still returns `system-skilled-doctor` at 0.82; `fix the code in the parser` returns `sk-code` and `local-webflow` with the hub absent. The changelog's staging claim holds too: bare `staging` returns nothing while `staging site`, `staging url`, `staging website` and `staging portal` each return the hub at 0.82. The changelog's disclosed known limitation reproduces exactly: `fix the container orchestration config` lifts `sk-code`, `mcp-code-mode` and `mcp-browser-use` to 0.82. The coverage note is that criterion 1's canary prompt spells the three ids, so the criterion is satisfied by the id form only, which is what the new P1 records.
 
 ## Integration Evidence
 
-- `.skilled/commands/doctor/scripts/parent-skill-check.cjs` -- the parent-skill checker named by parent criterion 4 and by `.skilled/scripts/git-hooks/pre-commit:593`; executed read-only (it contains no write call) and returned exit 0 with 0 warnings.
-- `.skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/results.csv` -- the 49-row replay whose `mcp_tooling_above_threshold` column is `false` throughout, corroborating REQ-003 at the default threshold.
-- `.skilled/skills/mcp-browser-use/{mcp-chrome-devtools,mcp-aside-devtools,mcp-bladebro}/benchmark/reports/` -- the per-mode recorded runs that satisfy criterion 6.
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:96-131` -- `exactBundle` matches a bundle rule by joining `targetWorkflowModes` with a space, and `evaluateRoute` falls back to the literal `orderedBundle` kind when no rule matches. The compiled `routingModel` carries four bundle rules: the three pairs and the triple. The triple rule is what makes the phase 015 fix work, and it is reached only when all three modes score above zero.
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs:56-66` -- `loadSnapshot` compiles the router from `mode-registry.json`, `hub-router.json` and `SKILL.md` in memory. This iteration called `loadSnapshot` and `evaluateRoute` directly, so the replay ran against the same compiled model the harness builds.
+- `.skilled/bin/skill-advisor.cjs` -- the daemon-backed advisor CLI. `advisor_recommend --prompt <p> --format json` returned `data.recommendations[].skillId` with `confidence` and `confidenceFloored`, which is the surface the five probe prompts and the staging probes were read from.
+- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/SKILL.md:147` and `:202-205` -- the Aside packet's own matrix marks console capture, network capture and HAR export as gaps on `1.26.626.1517` because `page.on` rejects those events. The hub matrix at `SKILL.md:40` now says the same thing, so the phase 015 capability-matrix correction is faithful to the packet it summarises.
 
 ## Edge Cases
 
-- **Ambiguity: is the playbook index's "latest recorded run" claim scoped to the hub-routing corpus?** The sentence sits in the hub-level index and names the hub's `benchmark/reports/` root as the destination, which now holds the compiled-routing replay. Read as scoped to the hub-routing corpus alone, the claim is true. Kept at P2 with the ambiguity recorded rather than raised, because the impact is a reader landing on older evidence, not a wrong result.
-- **Missing dependency: parent criterion 7 and 014 criterion 6 rest on `validate.sh --strict --recursive`, which this lineage may not run.** Recorded as unverified, not as passed or failed.
-- **Missing dependency: 014 criterion 1 rests on `node --test .skilled/bin/tests/mcp-installers.test.cjs`, which this lineage did not run.** Recorded as unverified.
-- **Partial success**: parent criteria 1, 2, 3, 4 and 6 are now verified from shipped artifacts or a read-only checker run. Criterion 5 is partly verified (per-mode requests hold; a plain-language request does not, finding R4-P1-001). Criterion 7 is unverified.
+- The canary harness has two halves and only one was exercised. `loadSnapshot` compiles and `evaluateRoute` scores, both read-only, and both ran. `buildArtifacts` writes compiled artifacts into `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/`, which is outside this lineage's write surface, so it was not run. The replay therefore proves the compile-and-route path and not the artifact-writing path. Recorded as a scope limit rather than a pass.
+- The advisor CLI is daemon-backed and writes its own socket and cache under `/tmp/system-skill-advisor`. That is scratch state outside the repository, and no repository file was written by the eleven advisor calls.
+- The Aside version pin reads `1.26.626.1517` in every one of the packet's files. An earlier iteration's sweep pattern `Aside [0-9.]+` matched only the `1.26.626` prefix and made the pin look like it had two forms. It does not: the four-part form is single-valued across the hub, so there is no drift to report.
+- The `defer` outcome on `debug this page in aside` is ambiguous between two readings: a deliberate ask, or a vocabulary miss. `SKILL.md:77` resolves it, because it defines `defer` as the outcome for a request that "names no mode", and this request names one. The finding keeps the higher reading on that evidence and carries a downgrade trigger in case the hub later documents a stricter naming rule.
 
 ## Confirmed-Clean Surfaces
 
-- Every one of the twelve child phases has all of its goal criteria checked: 002 (4), 003 (5), 004 (5), 005 (5), 006 (6), 007 (4), 008 (5), 009 (5), 010 (3), 011 (3), 012 (3), 013 (5), with zero unchecked items in any file.
-- The parent-skill checker's 40-plus invariants all pass, including `5k-alias` (every registry alias is a keyword of its routerSignal classes), `5k-canary` (every routerSignals mode is the expected route of a canary case), `10b-byte-drift` (the committed `leaf-manifest.json` matches a fresh regeneration byte for byte) and `13a-version`/`13b-version`/`13d-packet-version` (all JSON routing files and all three mode packets carry version 1.1.2.0, matching the newest changelog entry).
-- Parent criterion 1 holds: 12 iteration records, above the "at least 10" the criterion asks for.
-- Parent criterion 6 holds on the artifact side for all three modes, including the live macOS Bladebro run.
+- All sixteen canary cases pass against the compiled router: 16 of 16, covering four Chrome DevTools prompts, three Aside prompts, two Bladebro prompts, two bundles, two defers, one reject and two adversarial Chrome prompts (`Open DevTools and inspect the console logs.` and `debug the 403 Forbidden network requests in chrome devtools`, the second of which proves prompt text alone never rejects).
+- The three-mode bundle rule works for the id form: `use mcp-chrome-devtools, mcp-aside-devtools and mcp-bladebro` scores all three modes at 8 and returns `orderedBundle` over `[mcp-chrome-devtools, mcp-aside-devtools, mcp-bladebro]` in tie-break order.
+- The hub capability matrix agrees with all three mode packets on every row checked: `bdg network har <path>` for HAR export, `300+ methods across 53 domains` for raw CDP, `lighthouse_audit` and the three `performance_*` tools as MCP-lane-only, and `chrome_devtools_live --autoConnect` for the signed-in profile. Each of those names exists in the Chrome packet.
+- The Aside capability-matrix correction is complete: `page.on` appears nowhere in the hub `SKILL.md`, and the console-and-network row now states the gap with the pinned version.
+- The advisor 2.0.3.0 id-noun change holds on all five probe prompts and on the doctor control row `my doctor update came in`, which returns no recommendations as the changelog says it should.
 
 ## Ruled Out
 
-- **A child phase shipping with unchecked goal criteria**: ruled out -- all twelve child goal files have zero unchecked criteria.
-- **The parent-skill checker failing or not naming the hub**: ruled out by execution -- exit 0, 0 warnings, and the hub path printed as the subject.
-- **The research loop falling short of D1's ten iterations**: ruled out -- 12 records.
-- **A mode missing a recorded playbook run**: ruled out -- each of the three modes has its own `benchmark/reports/` tree with at least three dated runs.
+- "The phase 015 three-mode bundle fix does not work": ruled out, the id-form prompt returns all three modes and the canary case passes.
+- "The advisor 2.0.3.0 changelog overstates the id-noun change": ruled out, all five probe prompts and the doctor control row behave as the changelog states.
+- "The advisor 2.0.3.0 changelog overstates the staging change": ruled out, bare `staging` returns nothing and the four qualified forms each return the hub at 0.82.
+- "The disclosed 0.45 lexical-anchor limitation is worse than disclosed": ruled out, `fix the container orchestration config` lifts exactly the three skills the changelog names, at exactly the 0.82 floor it names.
+- "The hub capability matrix still advertises Aside `page.on` events": ruled out, the row now states the gap and no `page.on` remains in the hub `SKILL.md`.
+- "The Aside version pin has two forms": ruled out, `1.26.626.1517` is single-valued across the hub; the earlier two-form reading was a truncated sweep pattern.
+- "The near-tie rule over-bundles ordinary prompts": ruled out on the probes run, `take a screenshot with chrome devtools` and `use bladebro to screenshot this page` each return a single mode, and `run a lighthouse audit and then replay it in aside` returns single Chrome DevTools because the Lighthouse class scores 8 against Aside's 0.
 
 ## Next Focus
 
-- **Dimension**: maintainability
-- **Focus area**: the hub's documentation and metadata discipline -- the changelog entries against the changes they claim, the `README.md` and `ROUTER.md` structure, the `graph-metadata.json` files, and the `benchmark/reports/README.md` indexes.
-- **Reason**: traceability has now covered the criteria, the child phases, the checker and the recorded runs. Maintainability is the last unreviewed dimension and the packet ships a large documentation surface.
-- **Rotation status**: correctness, security and traceability complete; maintainability remains.
-- **Blocked/productive carry-forward**: productive -- running the read-only checker settled criterion 4 in one call instead of inferring it from prose.
-- **Required evidence**: file:line for each changelog claim checked against the tree, and for each documentation index that names a path.
+- Dimension: traceability, second pass
+- Focus area: the four overlay protocols the strategy declares -- `skill_agent`, `agent_cross_runtime`, `feature_catalog_code` and `playbook_capability` -- read against the hub and its three modes
+- Reason: the first traceability pass covered the two core protocols and the seven goal criteria; the overlay set is declared in the strategy's review boundaries and has not been run
+- Rotation status: all four dimensions covered once, correctness covered twice; traceability's second pass is next
+- Blocked/productive carry-forward: productive -- running the reach instead of arguing it worked twice now, so the overlay pass should execute each protocol's check rather than read its prose
+- Required evidence: for each overlay protocol, the exact command, workflow, skill, caller agent or mirror path it names, plus the file:line that proves the link
 
 Review verdict: CONDITIONAL

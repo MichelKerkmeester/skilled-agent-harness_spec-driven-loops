@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.10.0
+version: 1.1.11.0
 ---
 
 # mcp-aside-devtools
@@ -50,10 +50,10 @@ Browser work arrives in two shapes. A goal such as sign in and download wants an
 
 ## 2. QUICK START
 
-**Step 1: Install the CLI.** The installer is macOS only and operator-invoked.
+**Step 1: Install the CLI.** The installer is macOS only and operator-invoked. The wrapper checks the official installer against a pinned sha256 before it runs it.
 
 ```bash
-curl -fsSL https://releases.aside.com/install.sh | bash
+bash scripts/install.sh
 ```
 
 Expect the binary at `~/.local/bin/aside`. Add `~/.local/bin` to PATH if `command -v aside` finds nothing.

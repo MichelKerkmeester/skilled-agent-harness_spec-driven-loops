@@ -1,304 +1,433 @@
----
-title: "Deep Review Report - mcp-browser-use hub (lineage vibe-1)"
-description: "Seven-iteration deep review of the mcp-browser-use hub packet: 0 P0, 4 P1, 9 P2 active findings, verdict CONDITIONAL, release readiness converged."
-importance_tier: high
-contextType: review
-verdict: CONDITIONAL
-sessionId: fanout-vibe-1-1795504079797-ay97sx
-generation: 1
-lineageMode: new
----
+# Deep Review Report: mcp-browser-use hub
 
-# Deep Review Report - mcp-browser-use hub
+- Lineage: `vibe-1`
+- Session: `fanout-vibe-1-1795511024070-2cuwlj`, generation 1, lineageMode `new`
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Executor: cli-mistral-vibe, model deepseek-flash
+- Iterations: 7 of 7
+- Stop reason: `converged` (final new-findings ratio 0.0667 against a 0.10 threshold)
+- Release-readiness state: `converged`
+
+---
 
 ## 1. Executive Summary
 
-- **Overall verdict**: `CONDITIONAL`
-- **hasAdvisories**: `false` (the verdict is CONDITIONAL, so the advisory flag does not apply)
-- **Active findings**: P0 = 0, P1 = 4, P2 = 9. These are the counts `review-verdict.cjs` read from `deep-review-findings-registry.json` and the counts this report and the closeout use.
-- **Search debt**: 0. No deferred or blocked bug classes.
-- **Failed required gate ids**: none reported by the verdict step. The `checklist_evidence` core protocol is `partial`, which is recorded as a traceability shortfall rather than a gating failure.
-- **Iterations**: 7 of a permitted 7. Stop reason `converged` at a 0.0345 new-findings ratio against the 0.10 threshold.
-- **Dimension coverage**: 4 of 4 (correctness, security, traceability, maintainability), plus a cross-reference convergence pass closing all six protocols.
-- **Review scope summary**: the `mcp-browser-use` hub packet -- 14 phase children, 507 pre-bound scope files. The run sampled by surface rather than reading all 507 line by line: the hub's four-file contract, the compiled routing engine and its admission corpus, the three mode packets' installers and playbooks, the advisor scorer change, the changelog and benchmark documentation layer, and the parent and child goal criteria.
-- **Operator review focus**: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made.
+**Overall verdict: CONDITIONAL**
 
-**Self-check outcomes.** The adversarial self-check ran Hunter, Skeptic and Referee over all four active P1 findings. The Referee changed nothing: all four were confirmed at P1, none was downgraded and none was called a false positive. The Hunter pass re-read each cited `file:line` in iteration 7 and found every one still present, so no finding has been silently fixed since it was raised. The Skeptic pass considered a downgrade for each:
+- `hasAdvisories`: false (the verdict is not PASS, so the advisory flag does not apply)
+- Active findings, the counts this verdict used: **P0 = 0, P1 = 2, P2 = 5**
+- Search debt: 0. Failed required gates: none.
+- Dimension coverage: 4 of 4 (correctness, security, traceability, maintainability), with correctness and traceability each covered twice and a final cross-reference pass.
 
-| Finding | Skeptic challenge | Referee |
-|---|---|---|
-| R1-P1-001 | A combined three-mode request is an edge case; each mode routes correctly alone. | Confirmed P1. The compiler ships a bundle rule and the router never reaches it for the canonical ids, so a shipped capability is unreachable. |
-| R2-P1-001 | A missing test case is not a product defect. | Confirmed P1. It is the admission gate for compiled routing, and it is the gate that would have caught R1-P1-001. |
-| R3-P1-001 | D5 makes installation operator-gated, so the path is not unattended. | Confirmed P1, not P0. Operator-gated and not reachable from agent routing, but it is the only installer in the repository that pipes an unverified remote script to a shell. |
-| R4-P1-001 | The 014 scorer change fixed the out-of-domain over-reach it targeted. | Confirmed P1. The over-reach is fixed; the hub is still unreachable for prompts its own router handles, which is the objective's second half. |
+The hub is structurally sound and its phase 015 fixes hold as behaviour, not only as prose. The compiled router replays all sixteen canary cases cleanly, the three-mode bundle rule works for the id form, the advisor 2.0.3.0 id-noun and staging changes reproduce on eleven live probes, both runtime mirrors are byte-identical to canonical, and six of the seven goal criteria are verified against shipped evidence. Two P1 findings keep the verdict at CONDITIONAL: a troubleshooting block that prescribes a Node downgrade the tool it is troubleshooting rejects, and a routing vocabulary that has no prose form for Aside so a request naming Aside either defers or silently loses it from a bundle.
 
-**What holds.** Six of the seven parent completion criteria are verified by execution or direct read rather than by prose: criterion 1 (12 research records, `research.md` present), criterion 2 (three modes in the hub registry, six in `mcp-tooling`), criterion 3 (no old id survives in the five named files), criterion 4 (the parent-skill checker exits 0 and names the hub), criterion 6 (a recorded run per mode including the macOS live Bladebro run), and criterion 7 (every child goal criterion checked). Criterion 5 holds per mode but not for a combined three-mode request, which is R1-P1-001.
+**Adversarial self-check outcomes.** Both active P1 findings were re-run through Hunter, Skeptic and Referee at synthesis. The Referee confirmed both at P1 and changed nothing:
+
+- `R2-P1-001` confirmed P1. The Skeptic's best case for P2 was that a reader would see the error again and recover. The Referee rejected it because the block is the *prescribed fix* for a Node-version error and following it reproduces that error, and because `nvm use 18` actively downgrades a working Node 20 environment, which breaks `bdg` entirely rather than leaving it unchanged.
+- `R5-P1-001` confirmed P1. The Skeptic's best case was that bare `aside` is an ordinary English word, so the exclusion is deliberate. The Referee accepted the premise and rejected the conclusion: the exclusion is right, but the missing phrase forms are not, and `SKILL.md:77` defines `defer` as the outcome for a request that "names no mode" while these requests name one.
+
+**Review scope.** The hub skill tree (`.skilled/skills/mcp-browser-use/`, 312 files across the hub and three mode packets), the compiled routing phase for the hub (`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/`), the two runtime mirrors under `.claude/skills/`, the advisor 2.0.3.0 changelog and its live CLI, and the packet's own goal and phase documents. Benchmark report transcripts were excluded from every sweep.
+
+**Operator review focus.** every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change
+
+---
 
 ## 2. Planning Trigger
 
-`/speckit:plan` **is required**. The verdict is CONDITIONAL with four active P1 findings, and the promotion gate blocks on active P1.
+`/speckit:plan` **is required**. The verdict is CONDITIONAL with two active P1 findings, and the verdict contract routes CONDITIONAL to planning for fixes. The two P1s are independent: one is a documentation defect in the Chrome DevTools packet, the other is a routing-vocabulary defect in the hub. Neither blocks release on its own, but both produce a wrong result on a plausible input, so they belong in a remediation plan rather than a changelog.
 
 ```json
 {
   "triggered": true,
   "verdict": "CONDITIONAL",
   "hasAdvisories": false,
-  "activeFindings": {
-    "P0": 0,
-    "P1": 4,
-    "P2": 9,
-    "total": 13
-  },
+  "activeFindings": [
+    {
+      "id": "R2-P1-001",
+      "severity": "P1",
+      "title": "The Node-version troubleshooting fix runs nvm install 18 while the same block and seven other documents require Node 20 or higher",
+      "dimension": "security",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:187",
+      "findingClass": "instance-only",
+      "scopeProof": "The nvm pattern appears at exactly two lines, both inside one troubleshooting block; the Node 20 requirement is stated in eleven places across the Chrome packet including the install script, the install guide and the changelog.",
+      "affectedSurfaceHints": [
+        "mcp-chrome-devtools/references/troubleshooting.md Node version block",
+        "mcp-chrome-devtools/scripts/install.sh prerequisite check",
+        "mcp-chrome-devtools/INSTALL-GUIDE.md dependency line"
+      ]
+    },
+    {
+      "id": "R5-P1-001",
+      "severity": "P1",
+      "title": "The intent vocabulary has no prose form for Aside, so a request that names Aside either defers or silently drops it from a bundle",
+      "dimension": "correctness",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md:53",
+      "findingClass": "instance-only",
+      "scopeProof": "The gap is one vocabulary class in one file: every Aside keyword carries a qualifier while BLADEBRO carries bare bladebro. Replaying the two prompts through evaluateRoute returns defer and a two-mode orderedBundle, and all sixteen canary cases pass, so the defect sits outside the fixture coverage rather than in the fix.",
+      "affectedSurfaceHints": [
+        "ROUTER.md INTENT_SIGNALS ASIDE_DEVTOOLS",
+        "hub-router.json vocabularyClasses",
+        "graph-metadata.json intent_signals",
+        "registry-compiler.cjs compiled routingModel",
+        "fixtures/canary-cases.v1.json",
+        "SKILL.md defer definition"
+      ]
+    },
+    {
+      "id": "R1-P1-001",
+      "severity": "P2",
+      "title": "ROUTER.md says Core Web Vitals is not advertised to the advisor, but graph-metadata.json intent_signals carries it",
+      "dimension": "correctness",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md:33",
+      "findingClass": "instance-only",
+      "scopeProof": "The phrase appears at two metadata sites plus the one prose claim; the live advisor returns sk-code at 0.9295 for the prompt the original P1 named, so the contradiction is documentation drift rather than a routing defect.",
+      "affectedSurfaceHints": ["ROUTER.md capability note", "graph-metadata.json intent_signals"]
+    },
+    {
+      "id": "R1-P2-001",
+      "severity": "P2",
+      "title": "README.md carries version 1.1.4.0 while every other hub metadata file carries 1.1.3.0, and no changelog entry exists for 1.1.4.0",
+      "dimension": "correctness",
+      "file": ".skilled/skills/mcp-browser-use/README.md:8",
+      "findingClass": "instance-only",
+      "scopeProof": "SKILL.md, hub-router.json, mode-registry.json and description.json all read 1.1.3.0 and changelog/ holds five entries ending at v1.1.3.0.md, so the README frontmatter is the only 1.1.4.0 site.",
+      "affectedSurfaceHints": ["README.md frontmatter version", "changelog/", "SKILL.md version authority line"]
+    },
+    {
+      "id": "R2-P2-001",
+      "severity": "P2",
+      "title": "The Node-version fix pipes a downloaded script straight into bash with no digest gate, the pattern phase 015 removed from the Aside installer",
+      "dimension": "security",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:186",
+      "findingClass": "instance-only",
+      "scopeProof": "The line is one of two in the same block; the Aside packet shows the correct pattern at install.sh:88-99 with a pinned sha256 and an operator gate, and the Bladebro wrapper orders its digest check before execution at install.sh:166-176.",
+      "affectedSurfaceHints": ["mcp-chrome-devtools/references/troubleshooting.md Node version block"]
+    },
+    {
+      "id": "R4-P2-001",
+      "severity": "P2",
+      "title": "The hub README release index stops at 1.1.1.0 and omits the two newest releases, including the one that carries the phase 015 fixes",
+      "dimension": "maintainability",
+      "file": ".skilled/skills/mcp-browser-use/README.md:70",
+      "findingClass": "instance-only",
+      "scopeProof": "changelog/ lists five files and the README index returns three rows at :70-72, so the gap is exactly two rows in one table; the three mode packets each carry a complete changelog set.",
+      "affectedSurfaceHints": ["README.md release index", "changelog/", "SKILL.md version authority line"]
+    },
+    {
+      "id": "R7-P2-001",
+      "severity": "P2",
+      "title": "The Aside installer digest gate is enforced only by scripts/install.sh and documented nowhere, while seventeen documentation sites present the ungated vendor curl pipe bash as the install path",
+      "dimension": "correctness",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:88",
+      "findingClass": "instance-only",
+      "scopeProof": "The gate is one block in one script and the omission is one sentence in one README row. A digest search over the Aside packet returns only scripts/install.sh, so no doc states the control; the vendor installer URL appears at seventeen sites across ten files, so the ungated path is the one the docs lead with.",
+      "affectedSurfaceHints": [
+        "mcp-aside-devtools/scripts/README.md install.sh row",
+        "mcp-aside-devtools/feature-catalog/install/install-and-doctor.md install line",
+        "mcp-aside-devtools/INSTALL-GUIDE.md step 3",
+        "mcp-aside-devtools/README.md install block",
+        "mcp-aside-devtools/SKILL.md install guidance"
+      ]
+    }
+  ],
   "remediationWorkstreams": [
     {
       "id": "WS-1",
-      "priority": 1,
-      "title": "Make the three canonical mode ids reach the three-mode bundle",
-      "findings": ["R1-P1-001"],
-      "surfaces": [".skilled/skills/mcp-browser-use/hub-router.json", ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs"]
+      "priority": "P1",
+      "title": "Correct the Chrome DevTools Node-version troubleshooting block",
+      "findingIds": ["R2-P1-001", "R2-P2-001"],
+      "surface": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:178-196",
+      "action": "Change the fix to install and select Node 20 or later, matching the block's own diagnosis at :179 and the eleven other Node 20 statements in the packet. Replace the piped curl with the packet's own gated pattern: download to a temporary file, verify a pinned sha256, then run it, and state that the step is operator-invoked.",
+      "why": "Both defects are in one code block, so one edit closes both. The block currently prescribes a downgrade that breaks the tool it is troubleshooting, and it does so through an unverified pipe."
     },
     {
       "id": "WS-2",
-      "priority": 2,
-      "title": "Extend the admission canary corpus to the three-mode bundle and the canonical ids",
-      "findings": ["R2-P1-001"],
-      "surfaces": [".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json"]
+      "priority": "P1",
+      "title": "Give the Aside vocabulary a prose form",
+      "findingIds": ["R5-P1-001"],
+      "surface": ".skilled/skills/mcp-browser-use/ROUTER.md:53 and .skilled/skills/mcp-browser-use/hub-router.json vocabularyClasses",
+      "action": "Add phrase forms that name Aside in prose without adding the bare word: `in aside`, `and aside`, `, aside`, `aside and`. Do not add bare `aside`, because `set this aside for now`, `put that aside and open the page` and `aside from that, ship it` all defer today and a bare keyword would route all three to the hub. Add a canary case for the prose three-mode prompt so the fixture covers the form that failed.",
+      "why": "A request that names Aside currently either defers against the documented defer rule or silently loses Aside from a bundle. The fix must be phrase forms, not the bare word."
     },
     {
       "id": "WS-3",
-      "priority": 3,
-      "title": "Verify the Aside installer before executing it",
-      "findings": ["R3-P1-001", "R3-P2-002"],
-      "surfaces": [".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh", ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh"]
+      "priority": "P2",
+      "title": "Repair the hub README release surface",
+      "findingIds": ["R1-P2-001", "R4-P2-001"],
+      "surface": ".skilled/skills/mcp-browser-use/README.md:8 and :70-72",
+      "action": "Set the frontmatter version to 1.1.3.0 so it matches SKILL.md, hub-router.json, mode-registry.json and description.json, and add the 1.1.2.0 and 1.1.3.0 rows to the release index.",
+      "why": "The release surface is wrong in both directions: it claims a version with no changelog entry and omits the two entries that exist. One edit closes both findings."
     },
     {
       "id": "WS-4",
-      "priority": 4,
-      "title": "Widen the advisor-facing keyword set to the router vocabulary",
-      "findings": ["R4-P1-001"],
-      "surfaces": [".skilled/skills/mcp-browser-use/description.json", ".skilled/skills/mcp-browser-use/graph-metadata.json"]
+      "priority": "P2",
+      "title": "Disclose the Aside installer digest gate",
+      "findingIds": ["R7-P2-001"],
+      "surface": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/README.md:55 and feature-catalog/install/install-and-doctor.md:24",
+      "action": "Name the digest gate in the wrapper's own description, and present the wrapper before the raw vendor command in the feature catalog, saying that the wrapper pins the installer's sha256 and the raw command does not.",
+      "why": "The packet's strongest supply-chain control is invisible at the point of install, and the documented first option bypasses it."
     },
     {
       "id": "WS-5",
-      "priority": 5,
-      "title": "Correct the documentation and metadata drift",
-      "findings": ["R1-P2-002", "R4-P2-002", "R5-P2-001", "R5-P2-002", "R6-P2-001", "R6-P2-002", "R7-P2-001"],
-      "surfaces": [".skilled/skills/mcp-browser-use/README.md", ".skilled/skills/mcp-browser-use/benchmark/reports/README.md", ".skilled/skills/mcp-browser-use/changelog/v1.1.2.0.md", ".skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md", "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md", "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/goal.md"]
-    },
-    {
-      "id": "WS-6",
-      "priority": 6,
-      "title": "Align the activation-root override between engine and resolver",
-      "findings": ["R2-P2-002"],
-      "surfaces": [".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs"]
+      "priority": "P2",
+      "title": "Correct the Core Web Vitals capability note",
+      "findingIds": ["R1-P1-001"],
+      "surface": ".skilled/skills/mcp-browser-use/ROUTER.md:33",
+      "action": "Reword the note so it matches graph-metadata.json, which does carry `core web vitals` among its intent signals. The routing outcome is already correct, so this is a one-line accuracy fix.",
+      "why": "A reader who trusts the note concludes the advisor cannot see Core Web Vitals for this hub, which is false."
     }
   ],
-  "specSeed": "Amend the hub packet so criterion 5 states the three-mode bundle explicitly, and add a phase that owns the advisor keyword surface as a first-class artifact rather than a 17-keyword summary.",
-  "planSeed": "Start with WS-1 and WS-2 together: the bundle fix and the canary case that pins it are one change. Then WS-3, which is the only security finding. Then WS-4, which needs a replay run to prove the widened vocabulary does not reintroduce the out-of-domain over-reach 014 fixed.",
-  "findingClasses": [
-    "routing-correctness",
-    "admission-coverage",
-    "installer-integrity",
-    "advisor-reachability",
-    "documentation-index drift",
-    "documentation-accuracy drift",
-    "capability-inventory gap",
-    "environment-override divergence",
-    "operator-gate enforcement"
+  "specSeed": [
+    "A remediation phase should carry one criterion per workstream, each command-checkable: the troubleshooting block selects Node 20 or later and verifies a pinned digest before running a downloaded script; a prose three-mode prompt returns orderedBundle over all three modes; the README frontmatter version equals the newest changelog entry and the release index lists every changelog file; the Aside wrapper's description names its digest gate; ROUTER.md's Core Web Vitals note matches graph-metadata.json.",
+    "The phase should add a canary case for the prose three-mode prompt, because the existing fixture covers only the id form and a green fixture hid the defect for a full phase.",
+    "The phase should record that goal criterion 7 (`validate.sh --strict --recursive`) was never executed by this review lineage, so the remediation phase is the first place it can be proven."
   ],
+  "planSeed": [
+    "T1: edit `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:178-196` so the fix selects Node 20 or later and verifies a pinned sha256 before running the downloaded installer; re-run `rg -n \"nvm install 1[0-9]\"` and expect no match below 20.",
+    "T2: add Aside phrase forms to `ROUTER.md` `INTENT_SIGNALS` and `hub-router.json` `vocabularyClasses`, then replay `use chrome devtools, aside and bladebro` and `debug this page in aside` through `evaluateRoute` and expect a three-mode bundle and a single Aside route.",
+    "T3: add a canary case for the prose three-mode prompt to `fixtures/canary-cases.v1.json` and confirm the fixture count rises to seventeen with all passing.",
+    "T4: set `README.md` frontmatter to `1.1.3.0` and add the 1.1.2.0 and 1.1.3.0 rows to the release index; confirm `ls changelog/` and the index row count agree.",
+    "T5: name the digest gate in `mcp-aside-devtools/scripts/README.md:55` and reorder the install options in `feature-catalog/install/install-and-doctor.md:24` so the wrapper comes first.",
+    "T6: reword `ROUTER.md:33` to match `graph-metadata.json` on Core Web Vitals.",
+    "T7: run `validate.sh --strict --recursive` on the packet, which this review could not execute, and record RESULT: PASSED for the parent and every child."
+  ],
+  "findingClasses": ["instance-only"],
   "affectedSurfacesSeed": [
+    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md",
+    ".skilled/skills/mcp-browser-use/ROUTER.md",
     ".skilled/skills/mcp-browser-use/hub-router.json",
-    ".skilled/skills/mcp-browser-use/description.json",
-    ".skilled/skills/mcp-browser-use/graph-metadata.json",
     ".skilled/skills/mcp-browser-use/README.md",
-    ".skilled/skills/mcp-browser-use/benchmark/reports/README.md",
-    ".skilled/skills/mcp-browser-use/changelog/v1.1.2.0.md",
-    ".skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md",
-    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
-    ".skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh",
-    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs",
-    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json",
-    ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
-    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
-    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/goal.md"
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/README.md",
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/install/install-and-doctor.md",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json"
   ],
   "fixCompletenessRequired": true
 }
 ```
 
+---
+
 ## 3. Active Finding Registry
 
-### P1 Findings
+Seven active findings. Every one was re-read at its shipped file:line in iteration 7 and is still active.
 
-| ID | Severity | Dimension | Location | Title |
-|---|---|---|---|---|
-| R1-P1-001 | P1 | correctness | `.skilled/skills/mcp-browser-use/hub-router.json:96` | The three canonical mode ids do not route to all three modes |
-| R2-P1-001 | P1 | correctness | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:4` | The admission canary corpus never exercises the declared three-mode bundle or the canonical ids |
-| R3-P1-001 | P1 | security | `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:78` | The Aside installer executes unverified remote code and is the only installer in the repository that does |
-| R4-P1-001 | P1 | traceability | `.skilled/skills/mcp-browser-use/description.json:6` | The advisor-facing keyword set is far narrower than the hub router vocabulary, so the hub is unreachable for prompts it routes correctly |
+### P0
 
-**R1-P1-001.** A prompt naming all three canonical mode ids does not produce the three-mode bundle the compiler declares. Evidence: `hub-router.json:96-97,142-143,162` (the per-mode alias blocks) and `router.cjs:88,100` (`selectNearTiedModes` filters by `ambiguityDelta`, so a near-tie never reaches `exactBundle`). Impact: a shipped bundle capability is unreachable through the canonical ids. Fix: score the canonical ids so the three-way tie falls inside `ambiguityDelta`, or add an explicit bundle rule keyed on the ids. Finding class: routing-correctness. Scope proof: both the router and the compiler are shipped files of the declared target's hub. Affected surface hints: `hub-router.json`, `router.cjs`.
+None.
 
-**R2-P1-001.** The admission canary corpus has no case for the three-mode bundle and no case using the canonical ids. Evidence: `canary-cases.v1.json:4` (`"cases": [`) and `:141` (`"id": "named-tools-bundle"`), read against `resolve.cjs:34,39` which admits `mcp-browser-use` to compiled routing on the strength of that corpus. Impact: the bundle can regress without the admission gate noticing, which is exactly how R1-P1-001 survived. Fix: add a three-mode bundle case and a canonical-id case to the corpus. Finding class: admission-coverage. Scope proof: the corpus and the resolver are both shipped files of the declared target. Affected surface hints: `canary-cases.v1.json`.
+### P1
 
-**R3-P1-001.** `install.sh:78` runs `if curl -fsSL "$INSTALLER_URL" | bash; then` against `https://releases.aside.com/install.sh` (`:9`) with no digest or signature check, and it is the only installer in the repository that does. Impact: an operator following the hub's install path executes whatever that URL serves. Fix: pin a version and verify a published digest before executing, as the Bladebro installer already does with `--ignore-scripts` and digest checks. Finding class: installer-integrity. Scope proof: the installer is a shipped file of the declared target's Aside mode packet. Affected surface hints: `mcp-aside-devtools/scripts/install.sh`.
+**R2-P1-001 — The Node-version troubleshooting fix runs `nvm install 18` while the same block and seven other documents require Node 20 or higher**
 
-**R4-P1-001.** `description.json` carries 17 keywords against `hub-router.json`'s 76 across six classes, so the advisor never surfaces the hub for prompts the router handles. Evidence: `description.json:6`; `results.csv:50` (`MBU-PB-04`, `hub_confidence` 0, empty `advisor_top`, `stage1=false`); `holdout-browser-inspect.md:46` (the same prompt is playbook `MT-H01`, whose pass rule is router-only, so the packet holds two verdicts for one scenario). Impact: the objective's "route through both advisor stages" fails for a plain browser-inspection prompt. Fix: widen the advisor keyword surface to the router vocabulary and re-run the replay to prove the out-of-domain rows still defer. Finding class: advisor-reachability. Scope proof: `description.json`, `hub-router.json`, the replay CSV and the playbook are all shipped files of the declared target. Affected surface hints: `description.json`, `graph-metadata.json`, the replay report, `holdout-browser-inspect.md`.
+- Dimension: security
+- File: `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:187`
+- Evidence: the block's own comment at `:179` reads `# bdg requires Node.js 20.x or higher`, and the fix two lines later runs `nvm install 18` then `nvm use 18`. `INSTALL-GUIDE.md:180` states `engines.node >=20.0.0`, and eleven sites across the packet require Node 20.
+- Impact: a reader who hits a Node-version error and follows the prescribed fix installs Node 18, which `bdg` 0.6.10 rejects, so the fix reproduces the error it diagnoses. On a machine already on Node 20, `nvm use 18` downgrades it and breaks a working install.
+- Fix: select Node 20 or later in the block.
+- Disposition: active, confirmed P1 at synthesis.
+- Finding class: instance-only
+- Scope proof: the `nvm` pattern appears at exactly two lines, both inside this block; the Node 14 sites elsewhere belong to the Bladebro launcher and are correct there.
+- Affected surface hints: the troubleshooting block, the install script's prerequisite check, the install guide's dependency line.
 
-### P2 Findings
+**R5-P1-001 — The intent vocabulary has no prose form for Aside, so a request that names Aside either defers or silently drops it from a bundle**
 
-| ID | Severity | Dimension | Location | Title |
-|---|---|---|---|---|
-| R1-P2-002 | P2 | correctness | `.skilled/skills/mcp-browser-use/README.md:58` | `leaf-scopes.json` is described as per-mode but holds one mode |
-| R2-P2-002 | P2 | correctness | `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:29` | The engine ignores the activation-root override the resolver honours |
-| R3-P2-002 | P2 | security | `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:8` | Neither installer enforces the operator-yes gate in code |
-| R4-P2-002 | P2 | traceability | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/goal.md:83` | Two goal logs still report the 014 work as in progress while every criterion is checked |
-| R5-P2-001 | P2 | traceability | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:53` | The parent spec overstates phase 005 unmet requirements |
-| R5-P2-002 | P2 | traceability | `.skilled/skills/mcp-browser-use/manual-testing-playbook/manual-testing-playbook.md:62` | The playbook index names a superseded run as the latest |
-| R6-P2-001 | P2 | maintainability | `.skilled/skills/mcp-browser-use/benchmark/reports/README.md:18` | Benchmark run index omits the newest run folder, including the run the release note cites as its evidence |
-| R6-P2-002 | P2 | maintainability | `.skilled/skills/mcp-browser-use/changelog/v1.1.2.0.md:33` | The phase-014 release note misstates all three of its out-of-domain counts |
-| R7-P2-001 | P2 | maintainability | `.skilled/skills/mcp-browser-use` | The hub ships no feature catalog while its predecessor hub and nine other skills do |
+- Dimension: correctness
+- File: `.skilled/skills/mcp-browser-use/ROUTER.md:53`
+- Evidence: `ASIDE_DEVTOOLS` lists twenty-one keywords and every one carries a qualifier; `BLADEBRO` in the same block carries bare `bladebro`. `debug this page in aside` reaches the hub from the advisor at 0.82 and the router returns `defer` with no scores. `use chrome devtools, aside and bladebro` reaches the hub at 0.95 and the router returns `orderedBundle` over `[mcp-chrome-devtools, mcp-bladebro]`, dropping Aside silently.
+- Impact: a reader who names Aside gets either a question they already answered or a bundle that omits the mode they named. `SKILL.md:77` defines `defer` as the outcome for a request that "names no mode", so the defer contradicts the documented contract.
+- Fix: add phrase forms (`in aside`, `and aside`, `, aside`, `aside and`) and a canary case for the prose three-mode prompt. Do not add bare `aside`.
+- Disposition: active, confirmed P1 at synthesis.
+- Finding class: instance-only
+- Scope proof: one vocabulary class in one file; all sixteen canary cases pass, so the defect is outside the fixture's coverage rather than a regression in the phase 015 fix.
+- Affected surface hints: `ROUTER.md` `ASIDE_DEVTOOLS`, `hub-router.json` `vocabularyClasses`, `graph-metadata.json` `intent_signals`, the compiled `routingModel`, the canary fixture, the `SKILL.md` defer definition.
 
-Each P2 carries a `findingClass`, a `scopeProof` and `affectedSurfaceHints` in its iteration delta. The two documentation-accuracy findings (R6-P2-001, R6-P2-002) are the only ones whose evidence is a count rather than a code path, and both counts were derived with a quote-aware CSV reader rather than by eye.
+### P2
 
-## 4. Remediation Workstreams
+**R1-P1-001 — `ROUTER.md` says Core Web Vitals is not advertised to the advisor, but `graph-metadata.json` `intent_signals` carries it**
 
-**P1 workstreams, in order.**
+- Dimension: correctness. File: `.skilled/skills/mcp-browser-use/ROUTER.md:33`. Raised P1 in iteration 1, downgraded to P2 in iteration 3 when the live advisor returned `sk-code` at 0.9295 for the prompt the P1 named. The contradiction stands; the predicted routing consequence does not reproduce. Fix: reword the note. Finding class: instance-only. Scope proof: the phrase appears at two metadata sites plus the one prose claim.
 
-1. **WS-1 -- three-mode bundle reachability** (R1-P1-001). Change `hub-router.json` scoring or `router.cjs`'s tie handling so the canonical ids reach `exactBundle`. Verify by running `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt "bladebro chrome devtools aside devtools"` and confirming an `orderedBundle` with all three modes.
-2. **WS-2 -- admission corpus coverage** (R2-P1-001). Add the three-mode bundle case and a canonical-id case to `canary-cases.v1.json`. This is the regression pin for WS-1 and should land with it.
-3. **WS-3 -- installer integrity** (R3-P1-001, R3-P2-002). Pin the Aside installer version and verify a digest before executing; add an explicit operator-yes check to both installers so D5 is enforced in code rather than in prose.
-4. **WS-4 -- advisor reachability** (R4-P1-001). Widen `description.json` and the `graph-metadata.json` intent signals to the router vocabulary, then re-run the two-stage replay and confirm the out-of-domain rows still defer. This is the only workstream that needs a new recorded run to close.
+**R1-P2-001 — `README.md` carries version 1.1.4.0 while every other hub metadata file carries 1.1.3.0, and no changelog entry exists for 1.1.4.0**
 
-**P2 advisories, separated.**
+- Dimension: correctness. File: `.skilled/skills/mcp-browser-use/README.md:8`. `SKILL.md`, `hub-router.json`, `mode-registry.json` and `description.json` all read 1.1.3.0; `changelog/` holds five entries ending at `v1.1.3.0.md`. Fix: set the frontmatter to 1.1.3.0. Finding class: instance-only. Scope proof: the README frontmatter is the only 1.1.4.0 site.
 
-5. **WS-5 -- documentation and metadata drift** (R1-P2-002, R4-P2-002, R5-P2-001, R5-P2-002, R6-P2-001, R6-P2-002, R7-P2-001). Seven corrections, all one-line or one-row edits except R7-P2-001, which adds a `feature-catalog/feature-catalog.md` following the `mcp-tooling` shape.
-6. **WS-6 -- environment override divergence** (R2-P2-002). Make `compiled-route.cjs:29` honour `SPECKIT_ACTIVATION_ROOT_OVERRIDE` the way `resolve.cjs:24` does, or document why the engine deliberately ignores it.
+**R2-P2-001 — The Node-version fix pipes a downloaded script straight into bash with no digest gate**
 
-## 5. Spec Seed
+- Dimension: security. File: `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/references/troubleshooting.md:186`. The Aside wrapper shows the correct pattern at `install.sh:88-99` and the Bladebro wrapper orders its digest check before execution at `install.sh:166-176`. Fix: download, verify a pinned sha256, then run. Finding class: instance-only. Scope proof: one of two lines in the same block.
 
-- Amend the parent `goal.md` criterion 5 to state the three-mode bundle explicitly, so a per-mode pass cannot satisfy it. R1-P1-001 exists because the criterion is satisfiable mode by mode.
-- Add a phase that owns the advisor-facing keyword surface as a first-class artifact. `description.json` is currently a 17-keyword summary maintained beside a 76-keyword router vocabulary, and nothing keeps them in step.
-- Record the D7 both-stages bar in the playbook contract. `MT-H01` passes on stage two alone, which is why the packet can hold a PASS and a FAIL for one prompt.
-- State whether a feature catalog is required for a hub skill. Ten skills ship one and this hub does not, and no checker decides the question either way.
-- Correct the parent `spec.md:53` phase-005 status row and the two `goal.md` logs that still read "In Progress" while every criterion is checked.
+**R4-P2-001 — The hub README release index stops at 1.1.1.0 and omits the two newest releases**
 
-## 6. Plan Seed
+- Dimension: maintainability. File: `.skilled/skills/mcp-browser-use/README.md:70`. `changelog/` holds five entries; the index lists three. The two missing rows are the newest two, and `v1.1.3.0.md` is the entry that records the phase 015 fixes. Fix: add both rows. Finding class: instance-only. Scope proof: exactly two rows in one table.
 
-- **Task 1**: reproduce R1-P1-001 with the three canonical ids, then fix the scoring or the tie handling and re-run the same command to confirm an `orderedBundle`.
-- **Task 2**: add the two missing canary cases and run the admission check to confirm the corpus now fails without the Task 1 fix.
-- **Task 3**: replace the Aside installer's `curl | bash` with a pinned version plus a digest check, and add an operator-yes guard to both installers.
-- **Task 4**: widen the advisor keyword surface, then re-run the two-stage replay and diff the out-of-domain rows against the 2026-11-24 baseline to prove no regression.
-- **Task 5**: apply the seven documentation corrections and add the feature catalog.
-- **Task 6**: align the activation-root override between engine and resolver, or document the divergence.
+**R7-P2-001 — The Aside installer digest gate is enforced only by `scripts/install.sh` and documented nowhere**
 
-## 7. Traceability Status
-
-### Core Protocols
-
-| Protocol | Status | Evidence | Unresolved drift |
-|---|---|---|---|
-| `spec_code` | pass | `.skilled/skills/mcp-browser-use/SKILL.md:18` | None. Criterion 2 holds, phase 005's compiled-serving claim holds (manifest and executed route agree on hash `be9b1fe7...` and generation 1), and version authority reads `1.1.2.0` in all four files. |
-| `checklist_evidence` | partial | `.skilled/skills/mcp-browser-use/hub-router.json:96` | Criterion 5 holds per mode but not for a combined three-mode request (R1-P1-001), and the admission corpus never tests it (R2-P1-001). |
-
-### Overlay Protocols
-
-| Protocol | Status | Evidence | Unresolved drift |
-|---|---|---|---|
-| `skill_agent` | notApplicable | `.skilled/skills/mcp-browser-use/SKILL.md:1` | None. The hub's `SKILL.md` names no agent contract, so there is no SKILL.md-to-agent pair to compare. |
-| `agent_cross_runtime` | notApplicable | `.skilled/agents:1`, `.claude/agents:1`, `.opencode/agents:1` | None. No agent definition in the three runtime trees names the hub or any of its three modes. |
-| `feature_catalog_code` | partial | `.skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md:28` | The hub ships no `feature-catalog/` (R7-P2-001). The sibling catalog carries no stale browser-mode claim. |
-| `playbook_capability` | partial | `.skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/holdout-browser-inspect.md:46` | Seven case files and seven index entries, so coverage is complete. `MT-H01` passes on stage two alone while the replay marks the same prompt FAIL at stage one (R4-P1-001). |
-
-**AC_COVERAGE**: exempt. The target is a spec-folder at level 2, but `acceptance-criteria.md` is absent, so the advisory does not apply.
-
-**Resource Map Coverage Gate**: skipped. `resource_map_present` is `false` for this packet -- no `resource-map.md` existed at init. The reducer emitted a lineage-local `resource-map.md` from the converged deltas at synthesis, but the gate's cross-check against `applied/T-*.md` has no packet map to compare against.
-
-## 8. Deferred Items
-
-- **R7-P2-001 (feature catalog)** is the only finding whose fix is a new artifact rather than an edit. It is advisory and does not block the verdict.
-- **The maintainability dimension was sampled, not swept.** `changelog/v1.1.0.0.md`, `changelog/v1.0.0.0.md` and the three mode packets' own changelogs were not read. Those surfaces are unverified rather than clean, and a follow-up review should read them.
-- **`MBU-N-12` routes after the change with `hub_confidence` 0.** It is the only one of 16 negative rows that does not defer. It passes under the report's stated rule, so it is not a defect against any shipped claim, but a front door that routes a prompt the advisor scored zero deserves a correctness read of `router.cjs`'s scoring in a future run.
-- **The two agent protocols closed on a negative search.** The run never verified agent parity for this target because there was nothing to verify. If an agent definition for the hub is added later, both protocols become applicable.
-- **No frontier object exists in the registry**, so there are no exhausted or blocked frontier nodes to list as follow-up review work.
-
-### Dimension Expansion Map
-
-- **Saturated directions**: none recorded. The reducer's `divergence.saturatedDirections` is empty.
-- **Completed pivots**: none. The run never entered recovery mode; every iteration produced at least one finding or a verified-clean result.
-- **Failed pivots**: none.
-- **Audited overrides**: none.
-- **Council artifact references**: none.
-- **Selected review directions**: correctness (iterations 1, 2), security (iteration 3), traceability (iterations 4, 5), maintainability (iteration 6), cross-reference (iteration 7).
-- **Remaining frontier**: none. All four dimensions and all six protocols are closed.
-
-## 9. Search Ledger
-
-- **searchCoverage**: `requiredBugClasses` empty, `covered` empty, `ruledOut` empty, `deferred` empty, `blocked` empty. No search-depth state was required for this run.
-- **candidateCoverage**: empty.
-- **searchDebt**: empty. `hasSearchDebt: false`.
-- **ruledOutCandidates**: empty at the registry level. The iteration deltas carry 26 `ruled_out` rows, which the reducer folded into the strategy's Exhausted Approaches section.
-- **cleanSearchProof**: the run's clean results are recorded per iteration as Confirmed-Clean Surfaces rather than as a search ledger, because the review was a file audit rather than a candidate search.
-
-*No search-depth state captured (legacy v1 record).*
-
-## 10. Audit Appendix
-
-### Convergence Summary
-
-| Iteration | Dimension | New findings | Weighted new | Cumulative weighted | Ratio |
-|---|---|---|---|---|---|
-| 1 | correctness | 2 (1 P1, 1 P2) | 6 | 6 | 1.0000 |
-| 2 | correctness | 2 (1 P1, 1 P2) | 6 | 12 | 0.5000 |
-| 3 | security | 2 (1 P1, 1 P2) | 6 | 18 | 0.3333 |
-| 4 | traceability | 2 (1 P1, 1 P2) | 6 | 24 | 0.2500 |
-| 5 | traceability | 2 (0 P1, 2 P2) | 2 | 26 | 0.0769 |
-| 6 | maintainability | 2 (0 P1, 2 P2) | 2 | 28 | 0.0714 |
-| 7 | cross-reference | 1 (0 P1, 1 P2) | 1 | 29 | 0.0345 |
-
-Stop reason `converged`: the final ratio 0.0345 is below the 0.10 threshold, and iteration 7 was the last permitted by `maxIterations: 7`.
-
-### Coverage Summary
-
-- **Dimensions**: 4 of 4 covered (`correctness`, `security`, `traceability`, `maintainability`), plus the cross-reference pass.
-- **Protocols**: 4 required executed (1 pass, 3 partial, 0 fail, 0 blocked), 2 overlay not applicable.
-- **Files read**: 16 distinct shipped surfaces plus the packet's goal, spec and child goal files. The 507-file scope was sampled by surface, and each iteration names what it read and what it did not.
-
-### Ruled-Out Claims
-
-Twenty-six directions were investigated and eliminated across the run. The load-bearing ones:
-
-- `ambiguityDelta: 1` is not too tight to ever bundle -- a three-mode prompt does return an `orderedBundle`, which is why R1-P1-001 is a scoring defect rather than a bundle-construction defect.
-- `defaultMode: null` does not cause a silent default route -- `router.cjs:126-128` defers with reason `no-match`.
-- `.opencode/skills` is a symlink to `../.skilled/skills` (same inode), so there is no mirror drift.
-- The hub serves compiled, not legacy -- the executed route returned policy hash `be9b1fe7...` and generation 1, matching the manifest.
-- The mutation-class guard covers `mcp-browser-use` -- `HOOK_PATTERN` and `DISCOVERY_GLOBS` both name it and the manifest carries a row per mode.
-- The parent-skill checker passes -- exit 0, 0 warnings, hub named as subject.
-- The 014 advisor scorer change works for its stated purpose -- all ten negative and negative-rb replay rows defer with hub confidence 0.
-- The Bladebro installer does not run package lifecycle scripts -- `--ignore-scripts` plus digest checks.
-- The Aside password boundary is not agent-reachable -- `session-management.md:50` keeps saved passwords hidden and MFA, passkeys, CAPTCHA and vault unlock human-only.
-- No credentials are embedded in the hub -- the only match is a usage comment at `mcp-chrome-devtools/scripts/_utils.sh:738`.
-- The global changelog tree is correct -- four symlinks into `../../skills/mcp-browser-use/`, and `mcp-tooling/` holds no browser mode.
-- The 2026-11-24 replay report is complete -- `README.md`, `results.csv`, `skill-benchmark-report.json` and `source.md` all present; only its index row is missing.
-
-### Sources Reviewed
-
-Packet: `goal.md`, `spec.md`, `decision-record.md`, and the 14 child phase folders' `goal.md` and `spec.md` files.
-
-Hub: `SKILL.md`, `README.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`, `leaf-scopes.json`, `description.json`, `graph-metadata.json`, `shared/README.md`, `changelog/v1.1.1.0.md`, `changelog/v1.1.2.0.md`, `benchmark/reports/README.md`, `benchmark/reports/compiled-routing/2026-11-24--two-stage-replay--compiled/{README.md,results.csv}`, `manual-testing-playbook/manual-testing-playbook.md`, `manual-testing-playbook/hub-routing/holdout-browser-inspect.md`.
-
-Modes: `mcp-aside-devtools/scripts/install.sh`, `mcp-bladebro/scripts/install.sh`, `mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/`, `mcp-chrome-devtools/scripts/_utils.sh`.
-
-Engine: `.skilled/bin/compiled-route.cjs`, `.skilled/bin/lib/compiled-route-layout.cjs`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/{router.cjs,registry-compiler.cjs}`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/{fixtures/canary-cases.v1.json,harness/build-artifacts.cjs}`, `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/manifest.json`, `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/{resolve.cjs,compiled-route.cjs}`, `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json`.
-
-Cross-skill: `.skilled/skills/mcp-tooling/{mode-registry.json,hub-router.json,leaf-manifest.json,SKILL.md,README.md,feature-catalog/feature-catalog.md}`, `.skilled/skills/system-skill-advisor/`, `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/changelog/mcp-browser-use/`, `.skilled/changelog/mcp-tooling/`, `.skilled/agents/`, `.claude/agents/`, `.opencode/agents/`.
-
-### Cross-Reference Appendix
-
-**Core Protocols**: `spec_code` pass; `checklist_evidence` partial.
-
-**Overlay Protocols**: `skill_agent` notApplicable; `agent_cross_runtime` notApplicable; `feature_catalog_code` partial; `playbook_capability` partial.
+- Dimension: correctness (raised by the cross-reference pass). File: `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:88`. The wrapper compares `shasum -a 256` against a pinned `INSTALLER_SHA256` and exits 1 on mismatch. No document in the packet mentions it: a digest search returns only the script, and `scripts/README.md:55` describes the wrapper without naming the digest. Meanwhile the vendor installer URL appears at seventeen sites across ten files, and `feature-catalog/install/install-and-doctor.md:24` lists the raw command first. Fix: name the gate in the wrapper's description and present the wrapper first. Finding class: instance-only. Scope proof: one block in one script, one sentence in one README row.
 
 ---
 
-**Release readiness**: `converged`. No active P0, the stop reason is `converged`, and the verdict is CONDITIONAL. Promotion is blocked by the four active P1 findings, so the next step is `/speckit:plan` over the six workstreams above, not `/create:changelog`.
+## 4. Remediation Workstreams
+
+Ordered: P1 first, then P2 advisories.
+
+| Order | Workstream | Priority | Findings | Surface |
+|---|---|---|---|---|
+| 1 | Correct the Chrome DevTools Node-version troubleshooting block | P1 | R2-P1-001, R2-P2-001 | `mcp-chrome-devtools/references/troubleshooting.md:178-196` |
+| 2 | Give the Aside vocabulary a prose form | P1 | R5-P1-001 | `ROUTER.md:53`, `hub-router.json` `vocabularyClasses`, canary fixture |
+| 3 | Repair the hub README release surface | P2 | R1-P2-001, R4-P2-001 | `README.md:8`, `README.md:70-72` |
+| 4 | Disclose the Aside installer digest gate | P2 | R7-P2-001 | `mcp-aside-devtools/scripts/README.md:55`, `feature-catalog/install/install-and-doctor.md:24` |
+| 5 | Correct the Core Web Vitals capability note | P2 | R1-P1-001 | `ROUTER.md:33` |
+
+Two pairs merge because one edit closes both. `R2-P1-001` and `R2-P2-001` are adjacent lines in one code block. `R1-P2-001` and `R4-P2-001` are the same README release surface wrong in both directions: it claims a version with no changelog entry and omits the two entries that exist.
+
+---
+
+## 5. Spec Seed
+
+- One criterion per workstream, each command-checkable: the troubleshooting block selects Node 20 or later and verifies a pinned digest before running a downloaded script; a prose three-mode prompt returns `orderedBundle` over all three modes; the README frontmatter version equals the newest changelog entry and the release index lists every changelog file; the Aside wrapper's description names its digest gate; `ROUTER.md`'s Core Web Vitals note matches `graph-metadata.json`.
+- Add a canary case for the prose three-mode prompt. The existing fixture covers only the id form, and a green fixture hid the defect for a full phase.
+- Record that goal criterion 7 (`validate.sh --strict --recursive`) was never executed by this review lineage, so the remediation phase is the first place it can be proven.
+- Record that the Aside vocabulary fix must not add bare `aside`, because three ordinary-English probes defer today and a bare keyword would route all three to the hub.
+
+---
+
+## 6. Plan Seed
+
+- **T1** Edit `mcp-chrome-devtools/references/troubleshooting.md:178-196` so the fix selects Node 20 or later and verifies a pinned sha256 before running the downloaded installer. Verify with `rg -n "nvm install 1[0-9]"` returning no match below 20.
+- **T2** Add Aside phrase forms to `ROUTER.md` `INTENT_SIGNALS` and `hub-router.json` `vocabularyClasses`. Verify by replaying `use chrome devtools, aside and bladebro` and `debug this page in aside` through `evaluateRoute`, expecting a three-mode bundle and a single Aside route.
+- **T3** Add a canary case for the prose three-mode prompt to `fixtures/canary-cases.v1.json`. Verify the fixture count rises to seventeen with all passing.
+- **T4** Set `README.md` frontmatter to `1.1.3.0` and add the 1.1.2.0 and 1.1.3.0 rows to the release index. Verify `ls changelog/` and the index row count agree.
+- **T5** Name the digest gate in `mcp-aside-devtools/scripts/README.md:55` and reorder the install options in `feature-catalog/install/install-and-doctor.md:24` so the wrapper comes first.
+- **T6** Reword `ROUTER.md:33` to match `graph-metadata.json` on Core Web Vitals.
+- **T7** Run `validate.sh --strict --recursive` on the packet and record RESULT: PASSED for the parent and every child. This review could not execute it.
+
+---
+
+## 7. Traceability Status
+
+**Core protocols.** Both pass.
+
+| Protocol | Status | Evidence | Unresolved drift |
+|---|---|---|---|
+| `spec_code` | pass | `goal.md:1`; `mode-registry.json:1` | Goal criterion 7 is unverified, not failed: `validate.sh` is banned by this lineage's write surface and writes outside the lineage directory. |
+| `checklist_evidence` | pass | `015-fix-follow-up-review-findings/goal.md:1`; `system-skill-advisor/changelog/v2.0.3.0.md:1` | Phase 015 criterion 3's replay half is the same unexecutable `validate.sh` item. |
+
+**Overlay protocols.** Five applicable, all pass.
+
+| Protocol | Status | Evidence | Unresolved drift |
+|---|---|---|---|
+| `skill_agent` | pass | `mode-registry.json:15`, `:39` | None. The hub declares no agent or command binding and ships none: `command: null` on all three mode entries, stated as the contract in the schema description. |
+| `agent_cross_runtime` | pass | `.claude/skills/mcp-browser-use/SKILL.md:5`; `.claude/skills/mcp-browser-use/mode-registry.json:3` | None. Both mirrors are byte-identical to canonical at 312 files each; `diff -rq` returns no output for either skill. |
+| `feature_catalog_code` | pass | `mcp-bladebro/references/cli-reference.md:34`; `references/install-and-verify.md:83` | None. All seven Bladebro commands the feature catalog names resolve to a documented site. |
+| `playbook_capability` | pass | `manual-testing-playbook.md:152`; `mcp-aside-devtools/.../console-network-capture.md:33` | None. The index and the `hub-routing/` folder agree on all seven scenario ids, and the Aside parity scenario is capability-honest about the `page.on` gap. |
+| `cross_reference_reverification` | pass | `troubleshooting.md:187`; `ROUTER.md:53`; `README.md:8` | None. All six findings active before this pass were re-read at their shipped file:line and all six remain active. |
+
+**`AC_COVERAGE`.** Exempt. The target is a spec folder, but this lineage reviewed the shipped skill tree and the packet's goal documents rather than an `acceptance-criteria.md` lifecycle, so no acceptance-criteria coverage signal applies.
+
+**Resource Map Coverage Gate.** Omitted. `resource-map.md` is absent from the packet, so the gate is skipped rather than failed.
+
+---
+
+## 8. Deferred Items
+
+- **Goal criterion 7 is unverified.** `validate.sh --strict --recursive` on this packet is the one completion criterion this lineage could not execute, because the write surface bans `validate.sh` and the command writes outside the lineage directory. It is recorded as unverified in iterations 3, 6 and 7 and must be run by the remediation phase. This is a coverage limit of the review, not a defect in the packet.
+- **The canary harness's artifact-writing half was not run.** `loadSnapshot` and `evaluateRoute` were exercised in memory and all sixteen cases passed, but `buildArtifacts` writes into `.skilled/bin/lib/compiled-routing/...`, outside this lineage's write surface, so the artifact-writing path is unproven here.
+- **The advisor regression suite was not re-run.** The eleven live probes reproduce every 2.0.3.0 claim, but the suite's own ratchet metrics were taken from the changelog rather than re-measured.
+- **The three mode packets' feature catalogs were swept only for the Bladebro command set.** The Chrome and Aside catalogs were checked on the specific claims the hub capability matrix repeats, not exhaustively.
+- **The 31-scenario Chrome and Aside playbooks were read only at the parity scenario.** The hub playbook set was checked exhaustively; the two large mode playbooks were not.
+- **No `frontier` object exists in the registry**, so there is no follow-up review node to list.
+
+---
+
+## Dimension Expansion Map
+
+- Saturated directions: none recorded. `divergence.saturatedDirections` is empty.
+- Completed pivots: none. `divergence.completed` is empty.
+- Failed pivots: none. `divergence.failed` is empty.
+- Audited overrides: none. `divergence.overrides` is empty.
+- Council artifact references: none.
+- Selected review directions: correctness (iterations 1 and 5), security (iteration 2), traceability (iterations 3 and 6), maintainability (iteration 4), cross-reference (iteration 7).
+- Remaining frontier: none. The run reached its iteration cap with the final new-findings ratio below the convergence threshold.
+
+This section records breadth only. It does not alter the verdict, the advisory flag, the finding registry or the self-check results.
+
+---
+
+## Search Ledger
+
+- `searchCoverage`: required bug classes `undocumented_control`, `scope_widening`, `stale_finding`, `merged_workstream`; all four covered; `scope_widening` and `stale_finding` ruled out; none deferred or blocked; `graphCoverageMode` `graphless_fallback`.
+- `candidateCoverage`: 21 bug classes covered across the run, 21 ruled out, none deferred, none blocked. The classes that produced findings are `contract_mismatch`, `stale_index`, `vocabulary_gap`, `silent_partial_route` and `undocumented_control`.
+- `searchDebt`: empty. `hasSearchDebt` is false, so search debt is not part of the CONDITIONAL verdict.
+- `ruledOutCandidates`: 20 entries, each with a rationale and evidence reference.
+- `cleanSearchProof`: 20 entries, each with a proof statement naming the read or search that settled it.
+
+Selected ruled-out directions, with evidence:
+
+- The phase 015 three-mode bundle fix not working: ruled out, the id-form prompt returns all three modes and all sixteen canary cases pass (`router.cjs:96`).
+- The advisor 2.0.3.0 changelog overstating the id-noun or staging change: ruled out, eleven live probes reproduce every claim including the disclosed 0.45 anchor limitation (`changelog/v2.0.3.0.md:1`).
+- The six advisor-only intent signals being stage-one/stage-two drift: ruled out, `routerPolicy.discoveryClassesContract` documents discovery classes as defer evidence only (`hub-router.json:1`).
+- The runtime mirrors having drifted from canonical: ruled out, `diff -rq` returns no output for either skill at 312 files each (`.claude/skills/mcp-browser-use/SKILL.md:5`).
+- The hub promising an agent or slash command it does not ship: ruled out, `command: null` on all three mode entries (`mode-registry.json:15`).
+- The Aside parity scenario overclaiming console or network capture: ruled out, the scenario records the `page.on` throw and fails an overclaiming verdict (`console-network-capture.md:33`).
+- The Node 14 and Node 20 requirements contradicting each other across the hub: ruled out, they belong to different packets with different launchers.
+- The Aside packet recommending an ungated install without operator consent: ruled out, every install site frames it as an explicit operator decision (`INSTALL-GUIDE.md:21`).
+
+---
+
+## Audit Appendix
+
+### Convergence
+
+| Iteration | Dimension | New findings | newFindingsRatio | Verdict |
+|---|---|---|---|---|
+| 1 | correctness | 2 (1 P1, 1 P2) | 1.0 | CONDITIONAL |
+| 2 | security | 2 (1 P1, 1 P2) | 0.5 | CONDITIONAL |
+| 3 | traceability | 0 (1 downgrade) | 0.4167 | CONDITIONAL |
+| 4 | maintainability | 1 (1 P2) | 0.1429 | CONDITIONAL |
+| 5 | correctness (2nd) | 1 (1 P1) | 0.3571 | CONDITIONAL |
+| 6 | traceability (2nd) | 0 | 0.0 | CONDITIONAL |
+| 7 | cross-reference | 1 (1 P2) | 0.0667 | CONDITIONAL |
+
+- Final convergence score: 0.9333 against a 0.10 threshold. The final iteration's new-findings ratio of 0.0667 is below the threshold, so the run converged rather than merely exhausting its iteration cap.
+- Stop reason: `converged`.
+- Release-readiness state: `converged` (no active P0, converged stop, CONDITIONAL verdict).
+- Registry integrity: `corruptionCount` 0, `fieldWarnings` empty, `corruptionWarnings` empty, `strategyWarning` null at every reducer pass.
+
+### Coverage
+
+- Dimensions: 4 of 4 covered. Correctness twice, traceability twice, security once, maintainability once, cross-reference once.
+- Iterations dispatched: 7 of 7.
+- Files reviewed across the run: the hub skill tree, the compiled routing phase, both runtime mirrors, the advisor changelog and CLI, and the packet's goal and phase documents.
+
+### Ruled-out claims
+
+Twenty ruled-out directions are recorded in the registry with evidence. The eight most load-bearing are listed in the Search Ledger above.
+
+### Sources reviewed
+
+`steer.md` (absent at every iteration, so no lead ruling applied), `review-scope-files.txt` (522 paths), `goal.md`, `015-fix-follow-up-review-findings/{goal.md,spec.md,implementation-summary.md,tasks.md}`, `002-hub-scaffold/spec.md`, `005-routing-and-surfaces/spec.md`, `006-verification/implementation-summary.md`, `001-research/research/{deep-research-state.jsonl,research.md}`, `.skilled/skills/mcp-browser-use/` (hub metadata, three mode packets, playbooks, changelogs, scripts, feature catalogs), `.skilled/skills/mcp-tooling/` (five named files), `.skilled/skills/system-skill-advisor/{changelog/v2.0.3.0.md,runtime/lib/scorer/lanes/explicit.ts}`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/`, `.skilled/bin/skill-advisor.cjs`, `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.claude/skills/{mcp-browser-use,mcp-tooling}/`.
+
+### Cross-reference appendix
+
+**Core Protocols**
+
+- `spec_code` — pass. Goal criteria 1 through 6 verified against shipped evidence; criterion 7 unverified and named as a coverage limit.
+- `checklist_evidence` — pass. Phase 015 criteria 1 and 2 verified as behaviour; criterion 3's replay half unverified for the same reason.
+
+**Overlay Protocols**
+
+- `skill_agent` — pass. No agent or command binding is claimed or missing.
+- `agent_cross_runtime` — pass. Both mirrors byte-identical to canonical.
+- `feature_catalog_code` — pass. Seven Bladebro commands all resolve.
+- `playbook_capability` — pass. Seven scenario ids agree; the parity scenario is capability-honest.
+- `cross_reference_reverification` — pass. All six pre-existing active findings re-read and still active.
+
+### Replay validation
+
+The compiled router was replayed in memory against its own fixture: `loadSnapshot` compiled the model from `mode-registry.json`, `hub-router.json` and `SKILL.md`, and `evaluateRoute` scored all sixteen canary cases. Sixteen passed. The three-mode id prompt returned `orderedBundle` over all three modes at score 8 each, and the four bundle rules in the compiled model include the triple. The replay agrees with the fixture's expectations, so the persisted routing result is reproducible from current source.
+
+### Lineage integrity
+
+- State log rows: one config row, seven iteration rows, two claim-adjudication rows. Every row was written through the append gateway; the projection was never written directly.
+- Deltas: `deltas/iter-001.jsonl` through `deltas/iter-007.jsonl`, each with its canonical iteration record as the first line.
+- Iteration artifacts: `iterations/iteration-001.md` through `iteration-007.md`, each ending with exactly one `Review verdict:` line.
+- No file outside `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe-1` was created, modified or deleted by this lineage.

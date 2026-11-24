@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.53.0
+version: 2.2.54.0
 ---
 
 # sk-code
@@ -29,7 +29,7 @@ version: 2.2.53.0
 
 `sk-code` is the single entry point for code work. It reads the request and picks the workflow mode that owns the job. It then attaches the surface evidence for the files you touched. The hub only routes. The packet it selects does the work and reports back.
 
-The canonical entry point is `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"`, which returns the targets to load. The skill advisor reaches the same hub from a plain code request, so you can also ask.
+The canonical entry point is `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`), which returns the targets to load. The skill advisor reaches the same hub from a plain code request, so you can also ask.
 
 ### The Two Axes
 

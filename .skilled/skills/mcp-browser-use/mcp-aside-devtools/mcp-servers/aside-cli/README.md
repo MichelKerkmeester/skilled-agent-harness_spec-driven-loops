@@ -6,7 +6,7 @@ trigger_phrases:
   - "install aside"
   - "aside binary"
   - "aside curl installer"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # aside-cli
@@ -22,7 +22,7 @@ version: 1.0.1.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Installing and verifying the `aside` CLI: agent tasks, deterministic REPL, account management, and the built-in MCP launcher. |
-| **Invoke with** | `curl -fsSL https://releases.aside.com/install.sh \| bash`, then `aside --version`. |
+| **Invoke with** | `bash ../../scripts/install.sh`, which verifies the official installer against a pinned sha256, then `aside --version`. |
 | **Works on** | macOS (Darwin) arm64/aarch64 and x64 ONLY: the installer rejects Linux and Windows. |
 | **Produces** | An `aside` shim at `~/.local/bin/aside` (default), signed in against an Aside account. |
 
@@ -39,8 +39,8 @@ The official installer places the executable/shim at `~/.local/bin/aside` by def
 ## 2. INSTALL AND VERIFY
 
 ```bash
-# Official installer (macOS only, operator-invoked)
-curl -fsSL https://releases.aside.com/install.sh | bash
+# Official installer through the digest-checking wrapper (macOS only, operator-invoked)
+bash ../../scripts/install.sh
 
 # Verify
 command -v aside          # expect ~/.local/bin/aside

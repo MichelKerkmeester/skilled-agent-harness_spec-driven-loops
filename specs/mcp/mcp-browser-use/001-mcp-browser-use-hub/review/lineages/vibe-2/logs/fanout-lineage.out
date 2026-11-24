@@ -1,21 +1,17 @@
-The lineage is complete. Five iterations ran to legal convergence, every state record went through the append gateway (ledger sequences 2–7), and the reducer ran after each append.
+Lineage `vibe-2` is complete. Seven iterations ran inline, all through the append gateway and reducer.
 
-**Result: CONDITIONAL** — 0 P0, 3 P1, 6 P2 active.
+**Verdict: CONDITIONAL** — 11 active findings, 0 P0, 4 P1, 7 P2. Stop reason `maxIterationsReached`; convergence did not fire because the dimension-coverage gate stays closed on `traceabilityCovered: false` while P1 findings are open.
 
-| Iter | Dimension | Findings | Ratio |
-|---|---|---|---|
-| 1 | correctness | 1 P1, 1 P2 | 1.0 |
-| 2 | security | 1 P1, 1 P2 | 1.0 |
-| 3 | traceability | 3 P2 | 1.0 |
-| 4 | maintainability | 1 P1, 1 P2 | 1.0 |
-| 5 | cross-reference | none | 0.0 |
+The four P1s, all re-confirmed against current source in iteration 6:
+- Mixed id/alias forms drop a named mode from the bundle (`router.cjs:88`) — live: `"use mcp-chrome-devtools and bladebro"` → `single`, all-id form → `orderedBundle`.
+- The documented front door splices the task into a double-quoted shell argument (`SKILL.md:62`, `ROUTER.md:105`) — run literally, a task with inner quotes returns `defer`, and `$(...)` executes.
+- Hub `README.md:8` declares `1.1.4.0` with no such changelog.
+- The Aside feature catalog still offers the unpinned `curl | bash` install (`install-and-doctor.md:24`), contradicting phase 015 D2.
 
-The three P1s are all surfaces the phase 014 fix pass touched but did not finish: the advisor's `promptNamesIdNoun` length filter lets ordinary four-letter words satisfy the anchor (`fusion.ts:332`), the Aside capture example's `./tmp/*` guard passes `./tmp/../../etc` (`repl-evidence-capture.sh:33`), and the hub capability matrix still advertises `page.on(...)` as working while the Aside packet documents that it throws (`SKILL.md:40`).
+The operator focus held up: all fifteen phase goals carry zero unchecked criteria, the phase 015 canary case asserts `orderedBundle` with all three modes, the 52-row replay fails only the documented MBU-PB-04, and the advisor 2.0.3.0 change verified live at both ends ("staging site" → hub at 0.82; the re-pinned doctor row → nothing).
 
-Iteration 5 was the clean pass that drove convergence: the compiled destination graph carries exactly the hub's three modes, the recomputed `effectivePolicyHash` matches the recorded `be9b1fe7…`, all 15 canary cases agree with the compiled router, `.opencode/skills` is a symlink so the harness reads canonical sources, and `mcp-tooling` carries no browser pointer.
+Two new P2s came from the cross-reference pass, both bookkeeping in `goal.md`: the BINDING table stops at phase 014 while the packet ships 015, and the review evidence row cites `review/review-report.md`, which does not exist (the report is under `review-archive/20261124T070727Z-restart/`).
 
-Two things worth flagging. `validate.sh --strict --recursive` is blocked for this lineage because it writes repo-wide — the completion criterion that names it is left to the cross-lineage merge. And one probe was briefly written to `/tmp` before I caught it; it was deleted immediately and recorded in the report's audit appendix, with no repository file touched.
-
-Files written, all inside `review/lineages/vibe-2`: `iterations/iteration-001..005.md`, `deltas/iter-001..005.jsonl`, `review-report.md`, plus the strategy, dashboard, registry and state projection the reducer and gateway own.
+Containment verified by diffing the lineage's own baseline snapshot: zero files changed outside `review/lineages/vibe-2`. `validate.sh` and the canary harness were not run — both write outside the lineage — so those two criteria stand on recorded evidence and are flagged as such in the report.
 
 FANOUT_LINEAGE_COMPLETE:vibe-2

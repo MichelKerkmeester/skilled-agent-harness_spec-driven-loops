@@ -72,7 +72,7 @@ aside --version 2>&1      # capture the installed version as a fixture
 aside --help 2>&1         # capture the installed command surface as a fixture
 ```
 
-The command surface is version-pinned evidence. Re-capture `--help` before relying on any flag; never freeze flag spellings from memory. If the binary is absent, report the official install command (`curl -fsSL https://releases.aside.com/install.sh | bash`, macOS-only) and let the operator decide — never install implicitly.
+The command surface is version-pinned evidence. Re-capture `--help` before relying on any flag; never freeze flag spellings from memory. If the binary is absent, report the install command (`bash scripts/install.sh`, macOS-only, which runs the official installer only after its pinned sha256 matches) and let the operator decide — never install implicitly.
 
 #### Verified Command Surface
 

@@ -2,26 +2,21 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `pi-1`), target agent `@deep-review`, resolved route `Resolved route: mode=review target_agent=deep-review`.
-- Target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder).
-- Dimension: security.
-- Operator focus: every phase's shipped work against its goal criteria, including the phase 014 fixes and the advisor scorer change it made.
-- Focus addressed in this iteration: the 014 goal's decision D2 ("no package is installed, fetched or launched to fix a finding") and the phase summary's claim "no browser doc or script fetches a package without an exact version and an operator yes" were tested against every browser packet doc and script that fetches or launches a package.
+- Mode: review (fan-out lineage `pi-1`, generation 1)
+- Dimension: correctness (second pass, compiled-routing engine strand)
+- Review target: `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` (spec-folder)
+- Operator review focus: every phase's shipped work against its goal criteria, including the phase 015 fixes and the advisor 2.0.3.0 id-noun change. This iteration took the one phase 015 criterion the previous pass could not settle (the five probe prompts) and settled it through the compiled engine, and it checked whether the phase's re-minted activation manifest still matches the compiled policy the engine loads.
 
 ## Files Reviewed
 
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:60-81,352-392,950-960`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md:25-120`
-- `.utcp_config.json:14-100`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh:225-250`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:15-30,128-190`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:1-60`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh:25-45`
-- `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh:1-95`
-- `.skilled/skills/mcp-browser-use/mcp-bladebro/examples/attach-read.sh:1-150`
-- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/recovery-and-troubleshooting/sandbox-errors.md:17-23`
-- `.skilled/skills/mcp-browser-use/{SKILL.md,mcp-aside-devtools/SKILL.md,mcp-bladebro/SKILL.md}` (trust-boundary rules)
-- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/{goal.md,implementation-summary.md}`
+- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:1-150`
+- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:1-200`
+- `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/manifest.json:1`
+- `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/fence-state.json:1`
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs:26-70`, `:161-228`
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:86-150`
+- `.skilled/bin/tests/compiled-route-hyphen-parity.test.cjs:28`, `.skilled/bin/tests/compiled-route-surface-hint.test.cjs:45`, `.skilled/bin/tests/compiled-route-admission.test.cjs:28-98`
+- `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/spec.md:96-104`
 
 ## Findings - New
 
@@ -31,78 +26,65 @@ None.
 
 ### P1 Findings
 
-1. **The Chrome DevTools install guide registers an unpinned `chrome-devtools-mcp@latest` fetch** -- `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:361` -- The guide's copy-paste `.utcp_config.json` blocks for `chrome_devtools_1` and `chrome_devtools_2` pass `chrome-devtools-mcp@latest` (`:361`, `:375`), the optional live instance is described with the same tag (`:387`), and the standalone check at `:956` runs `npx chrome-devtools-mcp@latest --version`. The shipped `.utcp_config.json` pins `0.26.0`, so the live state is safe, but the guide is the registration path an operator or an agent follows, and 014's own summary states the opposite invariant: "no browser doc or script fetches a package without an exact version and an operator yes" (`014-fix-deep-review-findings/implementation-summary.md:60`). The packet's snapshot asset even records the drift and defers to the live config (`mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md:53`), which leaves the guide teaching the unsafe form.
-   Finding class: `input_boundary`
-   Scope proof: the file is inside the review target and inside the phase 014 commit's file set; the three registration blocks and the verify command are the only `@latest` occurrences in the packet outside the changelog and benchmark reports.
-   Affected surface hints: `.utcp_config.json` `manual_call_templates`; Code Mode MCP lane for `chrome_devtools_1`, `chrome_devtools_2`, `chrome_devtools_live`; the Hub's own "nothing vendored" claim at `mcp-chrome-devtools/SKILL.md:228`.
-   Case: an operator adds the live instance exactly as `INSTALL-GUIDE.md:387` instructs, and every later Code Mode call fetches whatever `@latest` resolves to, with no version and no operator decision at launch.
-
-```json
-{
-  "type": "security",
-  "claim": "The Chrome DevTools install guide instructs the reader to register an unpinned npx launch, so a followed instruction turns every MCP call into an unversioned package fetch, contradicting the phase's stated no-unpinned-fetch invariant.",
-  "evidenceRefs": [
-    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:361",
-    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:387",
-    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md:956",
-    ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md:53",
-    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/014-fix-deep-review-findings/implementation-summary.md:60"
-  ],
-  "counterevidenceSought": "The live .utcp_config.json pins chrome-devtools-mcp@0.26.0, so nothing unpinned is registered today, and AC-009 only promised to clear browser-debugger-cli@alpha. Cached npx runs do not re-fetch until the tag moves.",
-  "alternativeExplanation": "The guide may be treated as a historical generic snippet whose live config wins, which the snapshot asset states; the exposure then needs an operator to copy the block rather than any shipped path to execute it.",
-  "finalSeverity": "P1",
-  "confidence": 0.8,
-  "downgradeTrigger": "Drop to P2 if the guide is reclassified as non-authoritative history and the live .utcp_config.json is named the only registration surface."
-}
-```
+None.
 
 ### P2 Findings
 
-1. **The registered Chrome manuals fetch a package on every call without the operator gate the Bladebro rule requires** -- `.utcp_config.json:56` -- The three `chrome_devtools_*` manuals launch `npx chrome-devtools-mcp@0.26.0`, and the hub's Bladebro docs state the governing rule: an npx launch "pulls the package at launch, which counts as an install and needs an operator yes" (`mcp-bladebro/feature-catalog/transport/mcp-code-mode-lane.md:26`). The Chrome lane has no first-launch gate or operator notice, so the same act is gated for one mode and ungated for another. The version pin bounds the blast radius; the inconsistency is the defect.
-   Finding class: `input_boundary`
-   Scope proof: `.utcp_config.json` is in the review scope and the packet's own Files to Change table; the three manuals are the only browser entries that launch through `npx`.
-   Affected surface hints: Code Mode MCP lane; hub safety rules; `.utcp_config.json` manual registration.
-   Case: an agent's first Chrome Code Mode call installs the server from the registry with no operator decision, while the same act for Bladebro would be refused by the mode's own rule.
+1. **The engine fingerprints the live manifest while the resolver gates on the overridable one** -- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:27` -- `ACTIVATION_ROOT` here is a fixed path, and `manifestFingerprint` reads it for the engine cache key. `resolve.cjs:26` builds its `ACTIVATION_ROOT` from `SPECKIT_ACTIVATION_ROOT_OVERRIDE` first, and the two routing tests (`compiled-route-hyphen-parity.test.cjs:28`, `compiled-route-surface-hint.test.cjs:45`) set that variable. Under the override the serving gate reads the temp manifest while the cache key and any later manifest-derived read come from the committed tree, so the two halves of one decision can describe different activation states.
+Case: point `SPECKIT_ACTIVATION_ROOT_OVERRIDE` at a temp copy, flip its `mcp-browser-use` manifest to `servingAuthority: "legacy"`, and call `resolveRoute` twice across a process that previously loaded the live engine: the gate resolves legacy correctly, but the cache key never moved with it, so nothing in the engine invalidates on the manifest the gate actually read.
+Finding class: `narrow-correctness`
+Scope proof: both constants are read at the cited lines; the two test files that set the variable are read; `manifestFingerprint` is the only consumer of the engine's `ACTIVATION_ROOT`.
+Affected surface hints: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`, `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs`, `.skilled/bin/tests/compiled-route-hyphen-parity.test.cjs`, `.skilled/bin/tests/compiled-route-surface-hint.test.cjs`.
+
+2. **The resolver's CLI front door misses `--hub` and then routes with the wrong argument** -- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:173` -- `const hub = args[args.indexOf('--hub') + 1]` yields `args[0]` when `--hub` is absent, because `indexOf` returns `-1`. The usage guard then does not fire (the value is truthy), and the process prints a legacy sentinel naming the first CLI argument as the hub and exits 0.
+Case: `node resolve.cjs --prompt "open devtools"` prints `{"servingAuthority":"legacy","hubId":"--prompt"}` with exit 0 instead of the `--hub` usage line and exit 2, so a caller cannot tell a malformed invocation from a legitimate legacy fallback.
+Finding class: `narrow-correctness`
+Scope proof: the parse and the guard are read at `resolve.cjs:170-179`; the fallback print at `:180` is unconditional in the non-null branch.
+Affected surface hints: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs`, and any hub `SKILL.md` routing directive that invokes the front door.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | 014's "no unpinned fetch" claim contradicts `INSTALL-GUIDE.md:361` (P1-001); the Bladebro npx rule and the `--ignore-scripts` installer both hold. |
-| `checklist_evidence` | notApplicable this iteration | Checklist rows belong to the traceability iteration. |
+| Protocol | Class | Status | Evidence |
+|---|---|---|---|
+| `spec_code` | core | pass | `015/spec.md:96-104` names the activation manifest "re-minted for policy `fc55eafa`"; the manifest at `activation/mcp-browser-use/manifest.json:1` holds `effectivePolicyHash` `fc55eafafd5f…aeb8`, and a read-only `loadSnapshot()` returned the identical hash at `generation` 1, so the pin is current and not merely restated. |
+| `checklist_evidence` | core | pass | `015/goal.md:41` criterion 1 ("routes `orderedBundle` to all three modes") was reproduced through `resolveRoute("mcp-browser-use", "use mcp-chrome-devtools, mcp-aside-devtools and mcp-bladebro")`, which returned `action: route`, `selectionKind: orderedBundle`, targets `mcp-chrome-devtools`, `mcp-aside-devtools`, `mcp-bladebro` in that order. Criterion 2's two hub probes now `defer` (see Confirmed-Clean Surfaces), so the previous pass's `partial` is raised to `pass` on the evidence cited there. |
+| `skill_agent` | overlay | notApplicable | The hub's `SKILL.md` contract is reviewed under `feature_catalog_code`/traceability in this run; no agent definition is in the seeded scope. |
+| `agent_cross_runtime` | overlay | notApplicable | No agent mirror is in the seeded scope for this target. |
 
 ## Integration Evidence
 
-- Code Mode MCP lane: `.utcp_config.json:14-100` registers `aside`, `bladebro`, `chrome_devtools_1`, `chrome_devtools_2` and `chrome_devtools_live`; only the Chrome entries use `npx`, and only they lack an operator gate.
-- Bladebro gate surface: `.skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md:61` states the operator-yes rule for an npx launch, and the installer honours it by requiring an explicit run (`scripts/install.sh:1-16`).
-- Aside install surface: `.skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh:1-60` is an operator-invoked wrapper around the vendor's `curl | bash` installer and documents that it is never called implicitly; the doctor only prints the command and exits read-only (`scripts/doctor.sh:36-44`).
+- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:26` and `:112-131` form the serving gate; the browser hub passes it (`servingAuthority: "compiled"` at `activation/mcp-browser-use/manifest.json:1`, and `mcp-browser-use` is in `DEFAULT_ON_HUBS` at `resolve.cjs:47-56`).
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/harness/build-artifacts.cjs:39` compiles from `.opencode/skills/<hub>`, which is a symlink to `.skilled/skills` (verified: `.opencode/skills -> ../.skilled/skills`, and `hub-router.json` is byte-identical on both paths), so phase 015's edit reaches the compiled snapshot rather than a stale copy.
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json` pins `activationGeneration: 1`, which is the generation the manifest selects.
 
 ## Edge Cases
 
-- A cached `npx` package does not re-fetch, so the exposure depends on cache state and tag movement; the guide instruction is still unpinned by contract.
-- The Aside `curl | bash` wrapper is unpinned upstream but is a documented operator-invoked vendor path with no repo-side digest available; it was not raised as a finding because no packet claim promises otherwise.
-- `--no-sandbox` appears in the Chrome troubleshooting catalog only with a preference order and a risk table (`.skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/recovery-and-troubleshooting/sandbox-errors.md:17-23`); it was not raised.
+- **`loadSnapshot()` was called in-process, not through the CLI.** `build-artifacts.cjs` writes only inside `buildArtifacts()` (guarded by `require.main === module` at `:228`), and `loadSnapshot()` is pure, so the check wrote nothing. This is stated because a "build-artifacts" harness is exactly the kind of script a review must not run blind.
+- **Two probes were exercised, not all five.** The phase 015 criterion names five probe prompts; the two that the hub could own (`fix the code in the parser`, the `staging` loader prompt) were reproduced. The remaining three target `system-deep-loop`, `mcp-tooling` and `mcp-code-mode`, which are outside this target's review scope, so the criterion is marked `pass` for the hub strand only and the advisor strand rests on source reads from iteration 1.
+- **Legacy-path shadowing is out of scope here.** The engine selects compiled destinations only; whether the legacy prose router still answers first is a different integration and was not exercised.
 
 ## Confirmed-Clean Surfaces
 
-- Bladebro installer: `--ignore-scripts`, SHA-256 checks on the JS launcher and the native binary before any installed code runs, and removal on mismatch (`mcp-bladebro/scripts/install.sh:15-30,148-175`).
-- Bladebro examples: the URL is validated to `http(s)://` before use (`mcp-bladebro/examples/agent-browser-read.sh:59`), the attach example reads only the eval line and never page text (`examples/attach-read.sh:12`), and the loopback CDP query is bounded by `--max-time 3` (`examples/attach-read.sh:117`).
-- Aside evidence example: single quote and backslash are rejected before the values are spliced into one REPL evaluation, and the artifact is verified by PNG magic bytes (`mcp-aside-devtools/examples/repl-evidence-capture.sh:27-41,70-85`).
-- Trust-boundary guidance exists for all three modes: page content is named untrusted data (`mcp-aside-devtools/SKILL.md:133`, `mcp-bladebro/SKILL.md:122`) and captures are kept out of the repository with values redacted (`mcp-chrome-devtools/SKILL.md:137`).
+- The three-mode bundle routes all three, in order, through the live compiled path (observed, not inferred).
+- `fix the code in the parser` returns `action: defer` with no targets, and `fix the config loader that reads the wrong settings file in staging` also defers: the two hub-side leaks phase 015 claims to have closed are closed at the engine.
+- A single-mode prompt still routes (`open devtools on this page and capture a screenshot` selects `mcp-chrome-devtools` as `single`), so the vocabulary change did not over-narrow the hub.
+- The activation manifest, the fixture generation and the compiled snapshot agree; `fence-state.json` holds `fencingEpoch: 1` and `schemaVersion: V1`.
+- `flagPermitsCompiled` fails closed on an invalid flag value and logs a breadcrumb instead of forcing a route (`resolve.cjs:69-80`).
 
 ## Ruled Out
 
-- **Aside manual cloned into a dual-manual layout without isolation.** Ruled out: the packet documents one manual plus a single-writer rule and a pending isolation test (`mcp-aside-devtools/references/mcp-wiring.md:127`).
-- **A browser script executes unvalidated shell input from a page.** Ruled out: the aside example evaluates one REPL string with quote/backslash guards, and the Bladebro attach example parses only its own eval envelope.
-- **Bladebro digest verification runs after installed code executes.** Ruled out: `install.sh` defers the first `--version` call until after both launcher and native digests match (`mcp-bladebro/scripts/install.sh:160-180`).
+- **The engine compiles from a stale `.opencode/skills` copy** -- ruled out: `.opencode/skills` is a symlink to `.skilled/skills` and the two `hub-router.json` paths are byte-identical.
+- **A manifest hash drift makes the hub's compiled serving inert** -- ruled out by the observed hash match.
+- **`compiledRoute` drops the surface hint from the returned targets** -- ruled out: `route` is a `let` reassigned from `applySurfaceHint` before `normalizeTargets(route)` reads it (`compiled-route.cjs:120-127`).
+- **`surfaces` ordering is unexercised** -- ruled out as a scope claim: `compiled-route-surface-hint.test.cjs:45` exists and sets the override, so the ordering contract has a test, which is why Finding 1 is about cache coherency and not about ordering.
 
 ## Next Focus
 
-- Dimension: traceability
-- Focus area: `spec_code` and `checklist_evidence` core protocols across the parent goal's seven criteria and phase 014's twenty acceptance rows, plus the `skill_agent` overlay for the three mode packets.
-- Reason: security is swept; the run still owes both core traceability protocols before STOP is legal.
-- Rotation status: correctness and security complete; traceability next.
-- Blocked/productive carry-forward: productive — cross-checking a phase's own claim against the doc it shipped found a real invariant violation.
-- Required evidence: a `file:line` for each criterion's evidence, and an explicit `notApplicable` where a protocol does not fit a spec-folder target.
+- Dimension: security
+- Focus area: the three mode installers and doctor scripts (`mcp-*/scripts/install.sh`, `doctor.sh`, `commands/doctor/scripts/check-mcp-mutation-class.sh`, `.skilled/scripts/git-hooks/pre-commit`) plus the trust boundaries they touch
+- Reason: the phase 015 installer change introduced a digest gate; the sibling installers and the doctor/commit-hook scripts are the same class of surface and were never reviewed in this run
+- Rotation status: correctness closed for this run's reachable strands; security begins
+- Blocked/productive carry-forward: productive, direct reads plus the pinned-digest comparison pattern
+- Required evidence: direct reads at each fetch-to-execute seam, and the mutation-class manifest they claim to enforce
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

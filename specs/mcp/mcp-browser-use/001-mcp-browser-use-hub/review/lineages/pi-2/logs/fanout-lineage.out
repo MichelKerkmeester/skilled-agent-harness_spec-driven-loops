@@ -1,1 +1,27 @@
 FANOUT_LINEAGE_COMPLETE:pi-2
+
+**Lineage pi-2 finished — 5 iterations, legal convergence, verdict PASS (4 P2 advisories).**
+
+**Main loop**
+
+| Iter | Dimension | New findings | Verdict |
+|---|---|---|---|
+| 1 | correctness (routing tables, compiled front door) | PI2-D1-P2-001 (P2) | PASS |
+| 2 | security (installers, doctors, guard, pre-commit) | PI2-D2-P2-001 (P2) | PASS |
+| 3 | traceability (phase 015 + epic criteria, advisor 2.0.3.0) | PI2-D3-P2-001 (P2) | PASS |
+| 4 | maintainability (docs, versions, indexes, links) | PI2-D4-P2-001 (P2) | PASS |
+| 5 | correctness (graph reconciliation, citation integrity) | none | PASS |
+
+**Stop decision** — `convergence.cjs`: STOP, reason detail `all_dimensions_clean`, weighted score 0.70 ≥ 0.60, all nine legal-stop gates pass, graph decision STOP_ALLOWED. Terminal gates evidence/scope/coverage all pass; stop reason `converged`; release readiness `converged`.
+
+**Findings (all P2, all doc/supply-chain level)**
+1. `reject` documented as a front-door outcome, but `compiled-route.cjs` cannot pass the constraints that produce it (`SKILL.md:62`, `ROUTER.md:107`).
+2. Chrome installer pins `browser-debugger-cli@0.6.10` by version only — no digest check, unlike the Bladebro installer in the same hub (`install.sh:30`).
+3. Hub README changelog table links 3 of 5 release files (`README.md:70`).
+4. README's changelog format sentence promises a files-changed list no entry has (`README.md:66`).
+
+**Verified clean by command**: all 16 canary gold cases (bundle → three modes), 52/52 replay rows reproduced, six advisor probes matching the 2.0.3.0 claim plus its disclosed limitation, mutation-class guard exit 0, parent-skill-check 0 warnings, link integrity 0 broken, layout/benchmark-index/version parity, no credential literals. Recorded UNKNOWN: the advisor Vitest suite and `validate.sh --recursive` (both out of bounds for this worker).
+
+**State**: ledger sequences 1–8 through the gateway (run-initialized → 5× iteration-recorded → terminal-gates-recorded → synthesis-complete), registry COMPLETE with 4 open P2s and full dimension coverage, coverage graph populated (526 nodes, 4 FINDING nodes), `review-report.md` compiled with all 10 sections, config status `complete`. All writes stayed inside `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/pi-2`.
+
+Operator's next step: the four advisories are yours to scope — WS-1 (README section 4) closes two in one edit; the suite and `validate.sh` claims still need an operator run to move from UNKNOWN to proven.
