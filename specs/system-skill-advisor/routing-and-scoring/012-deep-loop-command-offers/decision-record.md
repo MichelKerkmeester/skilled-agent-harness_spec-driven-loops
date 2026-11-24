@@ -886,6 +886,117 @@ AC-020 checks REQ-013 in two parts: the three deep-family holdout rows were repl
 
 ---
 
+<!-- ANCHOR:adr-010 -->
+## ADR-010: Accept the offer gate's phrasing gaps and close AC-040 on a criterion a rerun can meet
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Proposed |
+| **Date** | 2026-11-24 |
+| **Deciders** | Proposed by an independent review of generation 10 (`scratch/opus-review.md`). The operator accepts or rejects it. |
+
+---
+
+<!-- ANCHOR:adr-010-context -->
+### Context
+
+AC-040 closes only when a `/deep:review` rerun passes evidence, scope and coverage in every lineage. Ten generations and thirteen fix rounds have not got there. Two causes keep it from settling.
+
+The first is the offer gate. It decides whether to offer `/deep:research`, `/deep:review` or `/doctor:deep-loop`, and the offer is advisory. The policy is `ask`, so the reader sees one question and can say no. A missed offer still leaves the hub route and the typed command. The gate reads English with word patterns in two languages, which is a space no finite rule set closes. Each fix round added patterns, and each rerun found new phrasings and graded them P1: 2, 1, 4, 4, 3, 0, 1 and 4 across the eight traceability reruns. Generation 10 found two of its four P1s in round thirteen's own patterns. `command-attach.ts` grew from 586 to 1,834 lines over this packet, and the Python fallback grew by about 1,550 lines.
+
+The second is the closure docs. The review contract makes `spec_code` and `checklist_evidence` hard protocols, and either one reads `partial` on any claim that does not resolve. The docs quoted suite and fixture counts as true of the final tree, and every fix round made those counts wrong. Each stale quote left a hard protocol `partial`, and so coverage failed.
+
+### Constraints
+
+- A row may not read `Met` on a rerun that did not pass what the row asks.
+- The review contract's coverage rule governs every deep review in the repository, not only this packet.
+<!-- /ANCHOR:adr-010-context -->
+
+---
+
+<!-- ANCHOR:adr-010-decision -->
+### Decision
+
+**We propose**: three changes, which take effect only once the operator accepts this record.
+
+1. **Phrasing gaps are the gate's known limit.** A prompt the offer gate reads the wrong way costs one declined question or one missed offer, so this packet does not treat it as a defect and adds no new phrasing rule. Generation 10's L1-P1-001 (a refused run ask in a question's later clause) and R1-P1-001 (question auxiliaries outside the grammar) are recorded as accepted gaps of this class.
+2. **AC-040 and REQ-033 close on evidence, scope and severity.** The criterion becomes a `/deep:review` rerun in which every lineage passes the evidence and scope gates and the merged registry holds no open P0. Every open P1 must be either of the accepted phrasing class or dispositioned in this record. The coverage gate is still reported. If it fails only on closure-doc drift, that drift is fixed as P2 work and no further rerun is owed.
+3. **A closure doc quotes a count only when the count is pinned.** A suite or fixture count is pinned to the commit it was read on. Otherwise the doc names the command and says it reports 0 failed. REQ-022's "quotes the final suite count" reads as a pinned quote.
+
+**Dispositions of generation 10's other P1s**:
+- R3-P1-001 (the hook brief keeps the child's policy and owner) is fixed. The brief now prints the tracked table's policy and owner, and the ownership test feeds child fields that differ from the table's.
+- R2-P1-001 (the reducer publishes null `findingClass`, `scopeProof` and `affectedSurfaceHints` when a delta row omits them) is not a defect in the reducer. No gate in `runtime/scripts/` reads those fields. The strict v2 dispatch validator (`runtime/lib/deep-loop/post-dispatch-validate.ts`) already requires `scopeProof` and `affectedSurfaceHints` on an active finding at dispatch. Null is the honest value for a field the producer did not write.
+<!-- /ANCHOR:adr-010-decision -->
+
+---
+
+<!-- ANCHOR:adr-010-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Change the criterion (proposed)** | A rerun can meet it, and P0s and real P1s still block | A reviewer's phrasing P1 no longer blocks | 8/10 |
+| Keep AC-040 and keep fixing | No record needed | Each round adds rules that the next rerun grades, so the criterion has no fixed point | 2/10 |
+| Waive AC-040 outright | Closes the packet now | Drops the review evidence the row exists for | 5/10 |
+| Let coverage pass on a `partial` hard protocol | Coverage stops failing on doc drift | Changes the stop decision for every deep review, and the contract defines `partial` as unresolved | 3/10 |
+| Make the Python fallback offer only typed deep-loop commands | Removes the duplicate gate and its drift guard | The duplicate also feeds the fallback's workflow-owner scoring guard, the fixture's Python columns, the Python suite and about fifteen REQs, so it needs its own packet | 6/10, follow-up |
+<!-- /ANCHOR:adr-010-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-010-consequences -->
+### Consequences
+
+**What improves**:
+- AC-040 has a criterion that a rerun can meet.
+- A closure count no longer goes stale when a later round changes the suite.
+
+**What it costs**:
+- Phrasings the gate reads the wrong way stay open, and the reader declines or asks for the command.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A real defect is filed as a phrasing gap | M | Only a misread prompt counts as a phrasing gap. A crash, a wrong command for a typed ask, or a disagreement between the two copies on a fixture case still blocks |
+| The duplicate gate keeps drifting | L | The drift guard stays until the follow-up removes the duplicate |
+<!-- /ANCHOR:adr-010-consequences -->
+
+---
+
+<!-- ANCHOR:adr-010-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Eight reruns did not converge, and the P1 counts show no trend |
+| 2 | **Beyond Local Maxima?** | PASS | Waiving the criterion, redefining coverage and removing the duplicate were weighed |
+| 3 | **Sufficient?** | PASS | One criterion, one doc rule and two dispositions |
+| 4 | **Fits Goal?** | PASS | The offer stays one question that the reader can decline |
+| 5 | **Open Horizons?** | PASS | The follow-up can remove the duplicate gate without reopening this record |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-010-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-010-impl -->
+### Implementation
+
+**What changes on acceptance**:
+- REQ-033 and AC-040 take the criterion in decision 2. AC-040 is then read against the latest generation's report and terminal-gate rows. If it meets the criterion it reads `Met`, and otherwise the next rerun decides it.
+- REQ-022 reads its count clause as a pinned quote.
+
+**What already changed**: the closure-doc counts that claimed the final tree are now pinned to a commit, and R3-P1-001 is fixed. Neither change needs this record.
+
+**How to roll back**: reject this record. AC-040 and REQ-033 keep their current text.
+<!-- /ANCHOR:adr-010-impl -->
+<!-- /ANCHOR:adr-010 -->
+
+---
+
 <!-- ANCHOR:operator-decisions -->
 ## Operator Decisions
 <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep the archive for 30 days`, gives the stated reason and names REQ-002. WEAK: Q004 says `Discussed retention` and leaves the other cells empty. -->

@@ -319,6 +319,10 @@ A fourth traceability rerun on 2026-11-24 (`review/review-report.md`, generation
 
 A fifth traceability rerun on 2026-11-24 (`review/review-report.md`, generation 7) returned FAIL on its coverage gate in one lineage of three, with 0 P0, 3 P1 and 14 P2. Lineages 1 and 2 reached `coverage-complete`. The P1s are a whitespace gap in both gate copies (REQ-049), a review scope seeded without twelve declared change-set files, which the generation 8 scope now carries, and REQ-033's rerun itself. REQ-050 to REQ-052 cover the code P2s, and ADR-009 waives AC-020's unkept blind-writer clause.
 
+### After the eighth traceability rerun
+
+The eighth traceability rerun (`review/review-report.md`, generation 10) returned FAIL on its coverage gate in all three lineages, with 0 P0, 4 P1 and 13 P2. Evidence and scope passed in every lineage. Two of the P1s are new phrasings the offer gate reads the wrong way. ADR-010, which is Proposed, accepts that class as the gate's known limit, adds no further phrasing rules, and proposes a REQ-033 criterion a rerun can meet. REQ-033 keeps its text until the operator answers ADR-010.
+
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
