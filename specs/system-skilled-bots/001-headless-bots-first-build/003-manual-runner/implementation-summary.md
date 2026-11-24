@@ -8,31 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/003-manual-runner"
-    last_updated_at: "2026-11-23T05:47:33Z"
+    last_updated_at: "2026-11-24T16:09:55Z"
     last_updated_by: "generate-context"
-    recent_action: "Committed phase 003 after third review and live runs passed"
-    next_safe_action: "Verify and commit phases 004 and 005"
+    recent_action: "Rollback rehearsed in a copy, phase closed"
+    next_safe_action: "None for this phase"
     packet_purpose: "Purpose: `bots run <id>` runs a manual bot end to end in a shared checkout, refuses what it cannot honor and leaves one terminal run record that says what ran, how it was confined and where its evidence lives."
-    blockers:
-      - "CHK-120 rollback not run in a copy"
+    blockers: []
     key_files:
-      - ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/result-ledger.ts"
-      - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch/rollback-in-copy-result.txt"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/tasks.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:4f195ad09ea5a33c5a1280aedc194bdcb9ae67a23bf7c794a012268f3d110acb"
       session_id: "implement-003-manual-runner"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5"
+      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-23T05:47:33Z"
+      savedAt: "2026-11-24T16:09:55Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-manual-runner |
-| **Completed** | Not closed: every acceptance row is Met or Superseded and the live run and probes passed; CHK-120 (rollback in a copy) and the docs items CHK-123, CHK-124 and CHK-042 stay open |
+| **Completed** | 2026-11-24: every acceptance row is Met or Superseded and the live run and probes passed. CHK-120 passed in a copy (`scratch/rollback-in-copy-result.txt`), CHK-123 and CHK-042 closed on phase 008's docs. CHK-124, the operator's read of those docs, stays open |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 

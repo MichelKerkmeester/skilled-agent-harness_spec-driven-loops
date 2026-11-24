@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-bots"
   - "skilled bots hub"
   - "headless bots"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # system-skilled-bots
@@ -28,6 +28,8 @@ version: 1.0.2.0
 ### What It Does
 
 A bot is one `BOT.md` under a repository's `bots/` folder. The runtime under `runtime/` runs it by hand, from a launchd schedule or from a queued request, and keeps every piece of control state outside the consumer checkout. This hub is the route into that runtime: `hub-router.json` scores the request and picks one mode, and `mode-registry.json` maps that mode to its packet folder. The hub itself holds no per-mode logic.
+
+A bot whose isolation is `worktree` runs in a numbered sk-git worktree. A tree the run keeps, for a needs-you answer or after a failed setup, stays until someone reclaims it: run `.skilled/bin/worktree-reaper.sh --numbered` by hand, which removes the numbered trees its own rules allow. No schedule runs the reaper.
 
 Every routing signal names a bot or the bot-only term needs-you, so a request to run tests, schedule a meeting or read a build status never reaches the hub.
 

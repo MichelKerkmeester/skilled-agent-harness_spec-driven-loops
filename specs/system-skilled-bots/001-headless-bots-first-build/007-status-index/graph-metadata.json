@@ -39,7 +39,7 @@
       "durable"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -190,12 +190,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,12 +200,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 3 and 6, bots run by hand and on launchd, but nothing answers \"what is installed, what ran and did it deliver\"",
     "created_at": "2026-11-22T10:48:32Z",
-    "last_save_at": "2026-11-23T11:56:21.607Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-24T16:08:34.436Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a043fe60039225a1497cb2c7242dbb3026c13a3606bb1cb2fb98629e3340c91",
+    "source_fingerprint": "sha256:227e4f4f38083a5736af1ccd955f93d3a3f4529eb09b12c3912ad648d854c267",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bbba6af3ff1eea87b9e3e5a9d9389e96786b5db2a24d042ef2478604069c80b7",
+      "spec.md": "3b0677b4661300d43aecefd0e97da7faa972326e0b70c123374bdf555dd31d97",
       "plan.md": "708599bd3ba9d858d10414bbc944c60e5931e9e614c4c6a4a6c696b081b5db2c",
       "tasks.md": "0451eec8f49122c12e18516ade552e6f2db197f4c44c076f2e2c71b5826aef8f",
       "decision-record.md": "b797b00f235cafb0a00b2fdd726638f858adaa8a694f40de3a8eb7799ce42920",
-      "implementation-summary.md": "3c63eade13d2bf32c864a4f1d7da2e0e12c75834ef8ed7027e33eb40e1b13d36"
+      "implementation-summary.md": "5c8f7b30a3a2bbe2e7b61f2c437abb5e0720eb1d10ac246168f4e9a218122073"
     },
     "last_active_at": null
   }

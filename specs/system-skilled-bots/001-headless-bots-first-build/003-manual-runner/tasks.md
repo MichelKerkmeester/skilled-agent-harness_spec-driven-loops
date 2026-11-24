@@ -107,8 +107,8 @@ contextType: "general"
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] Every row in `acceptance-criteria.md` is `Met`
+- [x] Manual verification passed
+- [x] Every row in `acceptance-criteria.md` is `Met`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -188,7 +188,7 @@ A task stays `[B]` only with the blocking fact written beside it. A `[B]` task b
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] Code comments carry the durable why and no packet or requirement id Evidence: `rg -n "REQ-|ADR-|T0[0-9]|CHK-|specs/" lib/ ../../../bin/bots.cjs` over the new files printed nothing.
-- [ ] CHK-042 [P2] README updated (if applicable) Deferred: no skill README or SKILL.md exists yet; the hub wiring phase (`008-hub-wiring`) writes them.
+- [x] CHK-042 [P2] README updated (if applicable) Evidence: phase 008 wrote the skill README (`.skilled/skills/system-skilled-bots/README.md`) and the run mode README (`.skilled/skills/system-skilled-bots/bots-run/README.md`), which describe the manual runner.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -241,10 +241,10 @@ A task stays `[B]` only with the blocking fact written beside it. A `[B]` task b
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback tested in a copy: removing the phase's paths and the allowlist entry leaves the deep-loop suite at the T033 count Open: the rollback was not run in a copy. The rollback is reverting this phase's commit, which the orchestrator has not made yet. The deep-loop changes are now wider than the one allowlist entry (the caller-mode, read-only builder, executor-config and executor-audit files CHK-013 lists), so removing that entry alone is no longer the rollback. Partial evidence only: the T033 baseline ran with the entry absent (4039 passed) and the T025 mutation removed and restored it.
+- [x] CHK-120 [P0] Rollback tested in a copy: removing the phase's paths and the allowlist entry leaves the deep-loop suite at the T033 count Evidence: run on 2026-11-24 in a copy of HEAD `94afff4244d` with its own throwaway repository (`scratch/rollback-in-copy.sh`): the deep-loop suite passed 222 files, 4041 tests, exit 0, before and after removing the whole bots skill, `.skilled/bin/bots.cjs` and the `SKILLED_BOT_RUN_ID` allowlist entry (`scratch/rollback-in-copy-result.txt:5` to `:7`, `:13` to `:15`). Deviation: the count is 4041, not the T033 4039, because later deep-loop changes added 2 tests; the worktree itself also passes 4041. The removal covers every later phase's bots paths too, so it is wider than this phase alone.
 - [x] CHK-121 [P1] No scheduler is installed by this phase (T022) Evidence: T022.
-- [ ] CHK-123 [P1] The skill's docs say how to disable, pause, list and answer a bot Open: no SKILL.md yet; the skill's docs wait on the hub wiring phase (`008-hub-wiring`). The CLI usage text says how to disable, pause and list; answering is the request pipeline phase's verb.
-- [ ] CHK-124 [P2] The operator has read those docs Open: the docs do not exist yet; they wait on the hub wiring phase (`008-hub-wiring`), see CHK-123.
+- [x] CHK-123 [P1] The skill's docs say how to disable, pause, list and answer a bot Evidence: `.skilled/skills/system-skilled-bots/bots-schedule/README.md:35` (`bots disable`) and `:36` (`bots pause`), `.skilled/skills/system-skilled-bots/bots-status/README.md:9` (`bots status`, `bots inbox`), `.skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:40` (`bots answer`).
+- [ ] CHK-124 [P2] The operator has read those docs Open: the docs exist now (CHK-123); the read is the operator's and is not recorded.
 <!-- /ANCHOR:deploy-ready -->
 
 ---

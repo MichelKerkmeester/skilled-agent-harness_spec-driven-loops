@@ -765,6 +765,7 @@ All thirteen were answered on 2026-11-22 through the question tool. D1 to D8 cam
 | D11 | Accept all three request-queue defaults: retry bound 3, sibling folder layout, paused requests to quarantine and not replayed | The operator picked the recommended option | None | Child 005 ADR-002, ADR-003 and ADR-004, now Accepted |
 | D12 | Move `bots answer` to phase 005 as a queue producer. It records the answer on the user-level needs-you item, enqueues one `resume` request keyed by the item id and bumps the generation stamp. Phase 003 keeps writing items, `bots inbox`, expiry and building the resumed prompt | The operator picked the recommended option. It removes the wait between phases 003 and 005 | Phase 003 owning `bots answer`, and its blocked task for the enqueue | ADR-001; child 005 (owner), child 003; phase map unchanged |
 | D13 | Hold a hand-typed `bots run <id>` too while the bot has an open needs-you item. It is refused with `awaiting-decision-hold` and a pointer to `bots inbox` | The operator picked the recommended option. One check covers every trigger | Allowing manual runs, or allowing them with `--force` | ADR-001; child 003 (owner) |
+| Q001 | Close the open checklist rows of phases 003, 004, 005 and 007 and set each to Complete where its rows allow it. | Not stated. | None | 003, 004, 005 and 007 tasks.md, parent spec.md phase map |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1005,6 +1006,27 @@ Answer:
 ```text
 Hold it too (Recommended)
 ```
+
+### Q001
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_01N7aAE6Ry3Kgc7Edehhg42y:1 -->
+
+Question:
+```text
+Scheduled and queued runs both work under launchd. What should I do next on system-skilled-bots?
+```
+
+Options:
+```text
+Close 003/004/005/007 (Recommended)
+Prepare the merge to main
+Stop here
+```
+
+Answer:
+```text
+Close 003/004/005/007 (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

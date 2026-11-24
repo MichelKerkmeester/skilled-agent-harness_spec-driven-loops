@@ -201,7 +201,7 @@ N/A: this phase builds new behavior and fixes no reported finding.
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
 - [x] CHK-050 [P1] Test state roots live under a temp folder and are removed after each test Every vitest uses `tests/support.ts` temp folders. The hook test removes its temp folder on exit.
-- [ ] CHK-051 [P1] scratch/ cleaned before completion. Open: scratch/ holds the evidence files the acceptance rows cite, so the orchestrator decides what to keep
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: scratch/ was reviewed on 2026-11-24 and kept on purpose. Every file is cited by a row, by name or as part of a range such as `-1.txt` to `-3.txt`, except `bots-suite-baseline.txt` and `typecheck-after.txt`: they hold the suite baseline and the first typecheck run behind figures the rows quote, so they stay as evidence. Nothing temporary is left.
 <!-- /ANCHOR:file-org -->
 
 ---

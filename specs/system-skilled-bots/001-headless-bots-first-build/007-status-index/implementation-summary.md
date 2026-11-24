@@ -8,29 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/007-status-index"
-    last_updated_at: "2026-11-23T11:20:00Z"
-    last_updated_by: "implement-007-status-index"
-    recent_action: "Fixed the first review findings"
-    next_safe_action: "Second review, then the live status check"
-    blockers:
-      - "AC-005 and T017 wait on the live check the orchestrator runs"
+    last_updated_at: "2026-11-24T16:08:34Z"
+    last_updated_by: "generate-context"
+    recent_action: "Status set to Complete"
+    next_safe_action: "None for this phase"
+    packet_purpose: "Purpose: `bots status` answers from one derived index that can be deleted and rebuilt to the same rows, says when it is stale, and shows every installed bot, including those whose checkout moved or vanished."
+    blockers: []
     key_files:
-      - ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/status.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/launchctl-print.ts"
-      - ".skilled/bin/bots.cjs"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/spec.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1d8450021d2fddfcb5f79c9d8998ced0f228948a8cde782527f307eca1274287"
       session_id: "implement-007-status-index"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Should the runner add each run to the index, so plain status is not stale after every run?"
-    answered_questions:
-      - "Q003: install better-sqlite3@^12.11.1 (Yes, install it)"
-      - "Q004: keep retirements in a file (registered-roots)"
-      - "Q005: plain status refreshes a stale identity's item rows"
-      - "Q006: the live status check may run after the second review"
+    session_ref:
+      runtime: "claude"
+      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
+      workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
+      savedAt: "2026-11-24T16:08:34Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary

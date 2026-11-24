@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 005-request-pipeline
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-22
 <!-- /ANCHOR:metadata -->
 

@@ -36,7 +36,7 @@ A bot is a `BOT.md` file, and nothing can run one today: `.skilled/bin/bots.cjs`
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/003-manual-runner` |
 | **Parent Spec** | ../spec.md |

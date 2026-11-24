@@ -177,7 +177,7 @@ A task blocked by an unclosed predecessor phase is marked `[B]` with the phase n
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` name the same delivery states: `rg -n 'attempted' spec.md plan.md tasks.md` prints a match in each
 - [x] CHK-041 [P1] Code comments explain why links are removed before the tree
-- [ ] CHK-042 [P2] The skill README names `worktree-reaper.sh --numbered` as the reclaim path for kept trees. Deferred: the skill has no README yet, and the hub-wiring phase writes it
+- [x] CHK-042 [P2] The skill README names `worktree-reaper.sh --numbered` as the reclaim path for kept trees. Evidence: `.skilled/skills/system-skilled-bots/README.md:32` names `.skilled/bin/worktree-reaper.sh --numbered` as the hand-run reclaim path for kept trees; bot trees use the numbered naming (`.skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:47`, `:528`).
 <!-- /ANCHOR:docs -->
 
 ---
@@ -187,7 +187,7 @@ A task blocked by an unclosed predecessor phase is marked `[B]` with the phase n
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
 - [x] CHK-050 [P1] Temp repositories live under the system temp folder and are deleted by the test teardown
-- [ ] CHK-051 [P1] scratch/ cleaned before completion. Open: scratch/ holds the evidence files the acceptance rows cite (the live-notice result, the resume negative control and the review-fix suite runs), so the orchestrator decides what to keep
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: scratch/ was reviewed on 2026-11-24 and kept on purpose: every file is cited by a row, by name or as part of the `review-fix-suite-1.txt` to `-3.txt` range, and nothing temporary is left.
 <!-- /ANCHOR:file-org -->
 
 ---

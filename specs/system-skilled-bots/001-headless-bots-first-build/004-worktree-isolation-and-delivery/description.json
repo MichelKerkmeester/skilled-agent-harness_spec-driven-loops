@@ -6,15 +6,16 @@
     "phase",
     "worktree-isolation-and-delivery"
   ],
-  "lastUpdated": "2026-11-23T07:42:57.012Z",
+  "lastUpdated": "2026-11-24T16:08:29.396Z",
   "specId": "004",
   "folderSlug": "worktree-isolation-and-delivery",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "23-11-26_08-42__phase-004-built-live-desktop-notice-run-first.md"
+    "23-11-26_08-42__phase-004-built-live-desktop-notice-run-first.md",
+    "24-11-26_17-08__closed-phase-4-the-skill-readme-names-the-reaper.md"
   ]
 }

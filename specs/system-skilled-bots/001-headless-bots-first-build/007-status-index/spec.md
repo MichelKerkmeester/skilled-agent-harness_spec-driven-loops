@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/007-status-index` |
 | **Parent Spec** | ../spec.md |

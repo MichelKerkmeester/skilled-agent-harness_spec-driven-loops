@@ -8,28 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery"
-    last_updated_at: "2026-11-23T07:42:57Z"
+    last_updated_at: "2026-11-24T16:08:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the 004 review findings and the unconfined-refusal tree leak"
-    next_safe_action: "Review the second phase 004 report, then commit"
+    recent_action: "README reclaim path, scratch reviewed"
+    next_safe_action: "None for this phase"
     packet_purpose: "Purpose: A bot that declares `isolation: worktree` runs in its own numbered worktree outside the checkout, and every run tells each declared target what happened, at most once, with a record of each send."
     blockers: []
     key_files:
-      - ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/tasks.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b47bc5620ed7a8f1189bb63f6803fe7806efca7a8b7f619b1c074c09f03e9df4"
       session_id: "implement-004-worktree-isolation-and-delivery"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5"
+      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-23T07:42:57Z"
+      savedAt: "2026-11-24T16:08:29Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

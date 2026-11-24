@@ -8,29 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/001-headless-bots-first-build/005-request-pipeline"
-    last_updated_at: "2026-11-23T07:42:43Z"
+    last_updated_at: "2026-11-24T16:09:15Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the phase 005 review suggestions; review APPROVED"
-    next_safe_action: "Commit phases 004 and 005 after the 004 re-review"
+    recent_action: "Scratch reviewed, phase closed"
+    next_safe_action: "None for this phase"
     packet_purpose: "Purpose: Any producer can write one run request, and each request ends in exactly one run or in quarantine with a reason."
     blockers: []
     key_files:
-      - ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts"
-      - ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts"
-      - ".skilled/scripts/git-hooks/post-commit"
+      - "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/tasks.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5422bc57cbe903fdb34074227ac216736ba9bcf8664a3fba1c81947a8a44d45f"
       session_id: "implement-005-request-pipeline"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "e69eaf8b-97d2-4d96-ad3f-66a87da7bbe5"
+      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-23T07:42:43Z"
+      savedAt: "2026-11-24T16:09:15Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,8 +45,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-request-pipeline |
-| **Status** | In Progress |
-| **Completed** | Every acceptance row is Met and the closure statement reads Closeable: Yes. CHK-051 (scratch cleanup) is left to the orchestrator, because scratch holds the cited evidence |
+| **Status** | Complete |
+| **Completed** | 2026-11-24: every acceptance row is Met and Closeable reads Yes. CHK-051 closed: scratch was reviewed and kept as cited evidence |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

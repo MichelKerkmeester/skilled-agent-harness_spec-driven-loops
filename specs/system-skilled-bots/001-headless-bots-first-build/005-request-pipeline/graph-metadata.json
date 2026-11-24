@@ -39,7 +39,7 @@
       "durable"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,13 +196,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 3 a bot runs only when someone types `bots run <id>`",
     "created_at": "2026-11-22T10:48:30Z",
-    "last_save_at": "2026-11-23T20:54:27.654Z",
+    "last_save_at": "2026-11-24T16:09:15.429Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b841fcea85587e8c616e5b184203079b473d9bcfbbfd88de5c6f601dff5e888e",
+    "source_fingerprint": "sha256:b189dea46f154f03844a47fac11c47ecab720ee153848053d5445ccbe5101220",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2eb7f52fc439bc155026b855f59b02a0b553d5ffbcc7ad8c10c7b23372c040c",
+      "spec.md": "61e79fa25e550b827ebfb14df080ec9798ccb5eb6f2c2e13f3b23ec35b06f6fd",
       "plan.md": "14893b0076598bb44ecca3d8851c4dd5de6d8af6ba3c3a3cf5d39e64bbeba314",
-      "tasks.md": "d044ca21cbc6c6c759f870b65a9270862feebe1e90c9c9cbf9f494c25b7d55cf",
+      "tasks.md": "19462d5efdcd86f4610da1550ed081d1ff4eb9e18441d483fce837799beea526",
       "decision-record.md": "f92b1ad352dfbbafaac1f11c35377a1913ddb638739e5b3bda5e9968b336c054",
-      "implementation-summary.md": "6a666516e9b7decc01f0b0a19ff182ef943fe057aec98c6bf6c80481395e6121"
+      "implementation-summary.md": "57b1156efb6e3ce4e80ff97335df96e0a4e9fc10890dc3da1e4da1156829fc8d"
     },
     "last_active_at": null
   }

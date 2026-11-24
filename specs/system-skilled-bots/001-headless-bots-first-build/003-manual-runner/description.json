@@ -6,15 +6,17 @@
     "phase",
     "manual-runner"
   ],
-  "lastUpdated": "2026-11-23T05:47:33.053Z",
+  "lastUpdated": "2026-11-24T16:09:52.811Z",
   "specId": "003",
   "folderSlug": "manual-runner",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "23-11-26_06-47__phase-003-manual-runner-verified-reviewed-three.md"
+    "23-11-26_06-47__phase-003-manual-runner-verified-reviewed-three.md",
+    "24-11-26_17-08__closed-phase-3-the-rollback-ran-in-a-git-backed.md",
+    "24-11-26_17-09__closed-phase-3-the-rollback-ran-in-a-git-backed.md"
   ]
 }

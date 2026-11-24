@@ -48,6 +48,7 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/rollback-in-copy-result.txt",
       "scratch/opencode-permission-probe.txt",
       "scratch/vibe-tool-names.txt",
       "scratch/opencode-agent-probe-before.txt",
@@ -59,8 +60,7 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/result-ledger.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
-      ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts",
-      ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts"
+      ".skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts"
     ],
     "entities": [
       {
@@ -103,6 +103,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-in-copy-result.txt",
+        "kind": "file",
+        "path": "scratch/rollback-in-copy-result.txt",
         "source": "derived"
       },
       {
@@ -178,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "append-mode-event.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,7 +202,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A bot is a `BOT.md` file, but nothing can run one",
     "created_at": "2026-11-22T10:48:28Z",
-    "last_save_at": "2026-11-23T05:47:33.053Z",
+    "last_save_at": "2026-11-24T16:09:55.403Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc82ad326731f4774a6444abda6a0cd1f1ba489d0fd0cf5c0c8f788368eb0a42",
+    "source_fingerprint": "sha256:4f2f1ce2ba282f2e29e191f1678cdd4bf91b49000d55f2146759e8f8b80ca41f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2148a5675cdc47afd071f0db2f24eb7aac2ccd2c6bb16fe2c48baebb4be57b9f",
+      "spec.md": "e06e29fc8a7d0e174db88fdb4f7a0d2d7cece058b17fd88e072681adac7978ab",
       "plan.md": "d81bbc297ecbd0a046aa38be0be1b23249b6e1cef8548fa634c9ba677d2681a6",
-      "tasks.md": "4a7c8f92c0d7c98d19923dc210fc5e62d4d297a2a4c927bbedcf9d125790eaa4",
+      "tasks.md": "73f4b6495f4bf7047cca056785819102fe7d4fb878502177727a728468d300ee",
       "decision-record.md": "2bd3ec01d7ec51b0b04802c60254e8c02475c1ee1579946ba5095df3b42259f4",
-      "implementation-summary.md": "32fb9f88d55cd4e2e38585aab0c29e0d84e123fd7ffc5e1135a7b87a869a937e"
+      "implementation-summary.md": "2d774823b813f1b8791c8ade707110e70ef0751bd3898b0bdbf23b78342291fa"
     },
     "last_active_at": null
   }

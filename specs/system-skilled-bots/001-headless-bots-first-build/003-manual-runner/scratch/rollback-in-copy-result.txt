@@ -1,0 +1,18 @@
+date: 2026-11-24T15:54:43Z  head: 94afff4244d  copy: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-rollback-copy-1DAlzh
+node_modules linked: 12
+copy repository: b38de24
+--- 1. deep-loop suite in the copy at HEAD
+ Test Files  222 passed (222)
+      Tests  4041 passed | 11 skipped (4052)
+exit=0
+--- 2. remove the bots skill, its CLI and the allowlist entry
+172:  'SKILLED_BOT_RUN_ID',
+allowlist entries left: 0
+bots skill present: none
+--- 3. deep-loop suite in the copy after removal
+ Test Files  222 passed (222)
+      Tests  4041 passed | 11 skipped (4052)
+exit=0
+--- failing tests after removal, if any
+copy: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-rollback-copy-1DAlzh
+DONE

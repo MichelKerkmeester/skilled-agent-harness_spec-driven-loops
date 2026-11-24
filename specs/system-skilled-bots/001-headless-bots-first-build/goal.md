@@ -120,6 +120,7 @@ and findings belong here.
 | Drain executor pin for queued runs | done | installer.vitest.ts:726; suite 378/378; mutation fails |
 | Live model fire under launchd | done | 006 scratch/live-model-fire-result.txt:42,56 converged, PONG |
 | Live drain fire under launchd | done | 006 scratch/live-drain-fire-result.txt:45,59 converged, PONG |
+| Phases 003, 004, 005, 007 closed | done | 003 rollback in copy 4041/4041 before and after; all nine phases Complete |
 
 ### Deviations and findings
 

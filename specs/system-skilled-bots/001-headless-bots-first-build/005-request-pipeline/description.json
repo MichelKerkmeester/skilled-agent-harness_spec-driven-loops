@@ -6,15 +6,17 @@
     "phase",
     "request-pipeline"
   ],
-  "lastUpdated": "2026-11-23T07:42:43.598Z",
+  "lastUpdated": "2026-11-24T16:09:15.429Z",
   "specId": "005",
   "folderSlug": "request-pipeline",
   "parentChain": [
     "system-skilled-bots",
     "001-headless-bots-first-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "23-11-26_08-42__phase-005-request-pipeline-built-reviewed.md"
+    "23-11-26_08-42__phase-005-request-pipeline-built-reviewed.md",
+    "24-11-26_17-08__closed-phase-5-scratch-was-reviewed-and-kept-as.md",
+    "24-11-26_17-09__closed-phase-5-scratch-was-reviewed-and-kept-as.md"
   ]
 }
