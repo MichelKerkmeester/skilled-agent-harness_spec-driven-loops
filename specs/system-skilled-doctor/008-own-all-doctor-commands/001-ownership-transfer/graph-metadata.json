@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`system-skilled-doctor/SKILL.md` said it owned eleven doctor commands and that six belonged to other skills",
     "created_at": "2026-11-24T18:45:46Z",
-    "last_save_at": "2026-11-24T19:31:45.118Z",
+    "last_save_at": "2026-11-24T21:38:06.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65a7a780ae40209cda1c1099cc71f24c40b42a3b35e63a36d5e7d79f7f52bb88",
+    "source_fingerprint": "sha256:44690f5f1ecf61495662c15077df2ebc9a63ceee2067ed1d28117d93544dd8be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bffb3c275f0e782c66b6587fb37a6781e96d6435d791dae16585d8de1f0581d5",
+      "spec.md": "71810386c0884c660ab5ae9376177b3c35dff08ca4cf7f0791706609f5f916f8",
       "plan.md": "759f1a2a598dab941dbb6bb96962725ab8084785e5ea1f63accfe1fa5e659f4a",
       "tasks.md": "e9c77129bc2d260f84d768bb7a5df72cc4c47a67d376f36327519ad117dff329",
       "implementation-summary.md": "6113943d7f840e8ab6686eee44ceaf87c9b3aecf7eacbd584f545ffd7563e003"

@@ -2,7 +2,7 @@
 title: "SKD-002 -- A moved doctor command keeps its name and behavior"
 description: "This scenario validates that the doctor commands this skill took over still pass their contract tests and credit system-skilled-doctor."
 catalog_applicable: false
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # SKD-002 -- A moved doctor command keeps its name and behavior
@@ -27,7 +27,7 @@ Only the `skill_agent` tag of each command moved. A command that changed behavio
 - Real user request: `check that the doctor commands still work after the ownership move`
 - Prompt: `check that the doctor commands still work after the ownership move`
 - Expected execution process: Run the doctor contract tests, then list the owner of each doctor bridge.
-- Expected signals: Step 1 reports zero failures. Step 2 shows `system-skilled-doctor` for install, symlink, update, agents-md, runtime-mirrors, env, setup, helper, speckit, mcp and overlay.
+- Expected signals: Step 1 reports zero failures. Step 2 shows `system-skilled-doctor` for all seventeen commands: install, symlink, update, agents-md, runtime-mirrors, env, setup, helper, speckit, mcp, overlay, sk-code, ci, git, sk-skill, skill-advisor and deep-loop.
 - Desired user-visible outcome: The operator sees every owned command pass and credit this skill.
 - Pass/fail: PASS if step 1 reports zero failures and step 2 lists all seventeen commands under this skill. FAIL on any test failure or any owned command credited elsewhere. SKIP when Node is unavailable in the environment, with the error named.
 

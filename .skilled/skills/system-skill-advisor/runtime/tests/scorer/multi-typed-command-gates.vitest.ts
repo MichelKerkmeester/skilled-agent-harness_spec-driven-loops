@@ -57,6 +57,16 @@ describe('the loop hub on a piece about the loop', () => {
     const kept = withholdLoopHubOnWritingAbout([HUB, recommendation('sk-code')], prompt);
     expect(keptSkills(kept)).not.toContain('system-deep-loop');
   });
+
+  // The deep-loop doctor belongs to system-skilled-doctor, not to the hub, so
+  // typing it asks for a diagnosis rather than a loop run: its own command row
+  // carries the request, and the hub stays held back on the piece.
+  it('holds the hub back when the only loop-related command typed is the deep-loop doctor', () => {
+    const prompt = 'write a blog post about deep research loops, then run /doctor:deep-loop on my stuck run';
+    const kept = withholdLoopHubOnWritingAbout([HUB, commandRow('command-doctor-deep-loop')], prompt);
+    expect(keptSkills(kept)).not.toContain('system-deep-loop');
+    expect(keptSkills(kept)).toContain('command-doctor-deep-loop');
+  });
 });
 
 describe('the deep-loop doctor on a refused run', () => {

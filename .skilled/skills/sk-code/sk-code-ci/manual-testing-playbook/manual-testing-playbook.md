@@ -1,7 +1,7 @@
 ---
 title: "sk-code-ci: Manual Testing Playbook"
 description: "Corpus for the sk-code-ci surface: the routing-recall scenario for its CI_WORKFLOW intent signal and resource map, the negative floor that keeps CI words out of unrelated turns, one scenario per shipped rule reference, and the two /doctor:ci scenarios for a repository with its own switch names."
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # sk-code-ci: Manual Testing Playbook
@@ -196,4 +196,4 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 | ci-foreign-repository-profile | A foreign repository reads clean | Foreign Repository | [foreign-repository-profile](foreign-repository/foreign-repository-profile.md) |
 | ci-doctor-route-options | Doctor route options and exit codes | Foreign Repository | [route-options](foreign-repository/route-options.md) |
 
-Doctor command scenarios now live in the [system-skilled-doctor playbook](../../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md). Their feature catalog entry remains `feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md`, and the entry for the routing and rule-reference scenarios is `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`. The rule references themselves have no separate catalog entry, which each scenario's Playbook Sources section states.
+The `DOC` scenarios of `/doctor:ci` now live in the [system-skilled-doctor playbook](../../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md). The two foreign-repository scenarios above stay here, because they test this mode through its doctor command. Their feature catalog entry remains `feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md`, and the entry for the routing and rule-reference scenarios is `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`. The rule references themselves have no separate catalog entry, which each scenario's Playbook Sources section states.

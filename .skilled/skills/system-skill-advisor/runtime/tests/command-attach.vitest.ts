@@ -182,6 +182,18 @@ describe('typed command on the leading recommendation', () => {
     expect(typedCommandForTop('command-speckit-resume', '/speckit:resume cache work')).toEqual(expected);
     expect(typedCommandForTop('sk-doc', '/speckit:resume cache work')).toBeUndefined();
   });
+
+  // A doctor command that checks one skill's setup belongs to system-skilled-doctor,
+  // so its subject skill no longer carries it: the command's own bridge row leads a
+  // typed prompt on both scorer paths and delivers it.
+  it('delivers a typed skill-setup doctor command through its bridge row, not its subject skill', () => {
+    const prompt = 'please run /doctor:git hooks to turn the commit gate off';
+    const expected = { command: '/doctor:git hooks', policy: 'ask', ownerSkillId: 'system-skilled-doctor' };
+
+    expect(typedCommandForTop('command-doctor-git-hooks', prompt)).toEqual(expected);
+    expect(typedCommandForTop('system-skilled-doctor', prompt)).toEqual(expected);
+    expect(typedCommandForTop('sk-git', prompt)).toBeUndefined();
+  });
 });
 
 // A route that holds back its command for want of a single mode is worth saying

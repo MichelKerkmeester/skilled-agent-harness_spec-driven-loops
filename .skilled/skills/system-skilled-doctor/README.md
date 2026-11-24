@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.13.0
+version: 1.0.14.0
 ---
 
 # system-skilled-doctor
@@ -79,7 +79,7 @@ It prints one line per setup leg and names the command that repairs each failing
 
 ## 3. HOW IT WORKS
 
-A request about Skilled inside a project selects this skill. The skill matches it to one command from the table. When nothing matches clearly, `/doctor:helper` ranks the commands that fit. That command runs its own workflow and shows its result. A command that changes a project prints its plan first and changes nothing until you approve it. Read the command's output and its exit status before you report what it found.
+A request about Skilled inside a project, or about one skill's own setup checks, selects this skill. The skill matches it to one command from the table. When nothing matches clearly, `/doctor:helper` ranks the commands that fit. That command runs its own workflow and shows its result. A command that changes a project prints its plan first and changes nothing until you approve it. Read the command's output and its exit status before you report what it found.
 
 ```text
 ┌──────────────────────────────┐
@@ -121,7 +121,7 @@ Each overlay copy has a layout path in the overlay folder. A copy of a `.skilled
 
 ### When To Use This Skill
 
-Reach for it when you add Skilled to a project, link a local checkout into another repository, move a project to a newer release, embed the shipped `AGENTS.md` sections or carry a vendored copy's own changes across a new copy. It also fits when something about Skilled in a project looks wrong and you want the check that names the repair.
+Reach for it when you add Skilled to a project, link a local checkout into another repository, move a project to a newer release, embed the shipped `AGENTS.md` sections or carry a vendored copy's own changes across a new copy. It also fits when something about Skilled in a project looks wrong and you want the check that names the repair, and when you want one skill's own setup checked: the sk-code battery, the CI switches, the sk-git hook gates, a skill's format, the skill advisor or a deep-loop run.
 
 ### Related Skills
 
@@ -160,7 +160,7 @@ Run the checks below from the repository root. The manual playbook covers what a
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skilled-doctor/README.md --type readme` prints `✅ VALID` and `Total issues: 0` |
 | Doctor command contracts | `node --test .skilled/commands/doctor/scripts/tests/*.test.cjs` reports `fail 0` in its summary |
 | Advisor command bridges | `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"changed": []` |
-| Operator scenarios | [The manual playbook](./manual-testing-playbook/manual-testing-playbook.md) holds 13 scenarios, `SKD-001` to `SKD-013` |
+| Operator scenarios | [The manual playbook](./manual-testing-playbook/manual-testing-playbook.md) holds the routing and overlay scenarios `SKD-001` to `SKD-013` and the `DOC` scenarios of every doctor command in its `doctor-commands/` category |
 
 ---
 
@@ -171,7 +171,7 @@ Run the checks below from the repository root. The manual playbook covers what a
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, rules and the boundary with other skills |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent map and the resource map |
 | [`references/overlays.md`](./references/overlays.md) | The overlay sync states, what the engine refuses and the re-pin steps |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 13 operator scenarios and where each verdict is recorded |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The routing, overlay and doctor command scenarios and where each verdict is recorded |
 | [`INSTALL-SKILLED.md`](../../../INSTALL-SKILLED.md) | The step-by-step guide to linking Skilled into a project or copying it in with overlays |
 | [`.skilled/commands/doctor/`](../../commands/doctor/) | The command routers and the workflows they load |
 

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-doctor/008-own-all-doctor-commands",
   "description": "system-skilled-doctor owns every doctor command and holds the only doctor playbook",
   "keywords": [
@@ -11,13 +12,14 @@
     "only",
     "playbook"
   ],
-  "lastUpdated": "2026-11-24T18:45:46.712Z",
+  "lastUpdated": "2026-11-24T21:52:01.201Z",
   "specId": "008",
   "folderSlug": "own-all-doctor-commands",
   "parentChain": [
     "system-skilled-doctor"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-11-26_22-52__reran-the-phase-2-final-gates-into-003-scratch.md"
+  ]
 }

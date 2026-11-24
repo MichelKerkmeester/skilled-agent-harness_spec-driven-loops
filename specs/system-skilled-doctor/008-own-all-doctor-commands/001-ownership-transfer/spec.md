@@ -35,7 +35,7 @@ Six of the seventeen doctor commands named sk-code, sk-git, sk-doc, system-skill
 | **Created** | 2026-11-24 |
 | **Branch** | `worktrees/541-own-all-doctor-commands` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 2 |
+| **Phase** | 1 of 3 |
 | **Predecessor** | None |
 | **Successor** | 002-playbook-consolidation |
 | **Handoff Criteria** | Every doctor bridge row names system-skilled-doctor and the advisor and doctor suites pass |

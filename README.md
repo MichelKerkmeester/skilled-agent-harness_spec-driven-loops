@@ -302,7 +302,7 @@ Fourteen skills ship with Skilled. Gate 2 loads one when the advisor matches it 
 
 **[system-skill-advisor](.skilled/skills/system-skill-advisor/README.md)** routes each prompt to the skill that fits, through a daemon-backed CLI.
 
-**[system-skilled-doctor](.skilled/skills/system-skilled-doctor/README.md)** gets Skilled into your own project and keeps it working there. It owns eleven doctor commands for installing, linking, updating and checking a project, including the overlays that carry a copied project's own changes through each update.
+**[system-skilled-doctor](.skilled/skills/system-skilled-doctor/README.md)** gets Skilled into your own project and keeps it working there. It owns all seventeen doctor commands: eleven for installing, linking, updating and checking a project, including the overlays that carry a copied project's own changes through each update, and six that check one skill's own setup.
 
 **[sk-git](.skilled/skills/sk-git/README.md)** handles worktrees, conventional commits, pull requests and finishing a branch.
 

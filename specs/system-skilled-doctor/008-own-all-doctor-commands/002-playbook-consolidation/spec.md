@@ -35,9 +35,9 @@ The 66 doctor command scenarios sat in `.skilled/manual-testing-playbook/`, a pa
 | **Created** | 2026-11-24 |
 | **Branch** | `worktrees/541-own-all-doctor-commands` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 2 |
+| **Phase** | 2 of 3 |
 | **Predecessor** | 001-ownership-transfer |
-| **Successor** | None |
+| **Successor** | 003-alignment-fixes |
 | **Handoff Criteria** | `.skilled/manual-testing-playbook/` is gone and every gate matches the baseline |
 <!-- /ANCHOR:metadata -->
 

@@ -3,7 +3,7 @@ title: "DOC-393 -- Doctor CI scaffold"
 description: "Manual scenario validating that /doctor:ci scaffold prints its plan and the whole proposed workflow under --dry-run without writing a file, and that answering no to the approval prompt also writes nothing."
 version: 1.0.1.0
 id: doctor-commands-doctor-ci-scaffold
-expected_workflow_mode: sk-code-ci
+expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
 ---
 

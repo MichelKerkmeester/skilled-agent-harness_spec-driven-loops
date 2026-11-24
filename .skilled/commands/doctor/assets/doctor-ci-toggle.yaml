@@ -4,7 +4,7 @@
 role: Careful operator turning one documented CI switch off or back on in the repository's Actions variables
 purpose: Show the current state of one switch variable from the repository CI profile and the workflows it covers, print the exact gh variable command, and run it only after an explicit yes, and a second named confirmation when it switches off a protected workflow
 action: Run the toggle planner -> refuse an undocumented name, a switch behind a required status check, a neverOff switch, a README-forbidden switch or a no-op -> print the plan -> explicit yes -> second named confirmation for a protected workflow -> run the command -> read the state back -> report
-skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

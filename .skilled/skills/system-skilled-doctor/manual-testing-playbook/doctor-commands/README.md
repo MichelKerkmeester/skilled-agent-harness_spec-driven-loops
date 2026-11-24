@@ -2,14 +2,14 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.4.0.0
+version: 2.4.1.0
 ---
 
 # Doctor Commands
 
 ## 1. OVERVIEW
 
-Manual testing scenarios for the `/doctor` command surface, in the playbook of `system-skilled-doctor`, the skill that owns every doctor command. This folder holds every doctor scenario file, and each file is the canonical row for its `DOC` ID.
+Manual testing scenarios for the `/doctor` command surface, in the playbook of `system-skilled-doctor`, the skill that owns every doctor command. This folder holds every `DOC` scenario file, and each file is the canonical row for its `DOC` ID. Scenarios that test a skill mode through its doctor command stay in that skill's own playbook: the two `/doctor:ci` foreign-repository scenarios in sk-code-ci and `CQ-023` in sk-code-quality.
 
 The folder holds the scenarios that were spread across six skill playbooks, and this document replaces the five category READMEs that used to sit beside them: the system-spec-kit, sk-git, sk-code, mcp-code-mode and system-deep-loop copies. The shared rules, the two test environments and the placement rules are recorded here once instead of five times over.
 
@@ -34,22 +34,22 @@ A scenario is run as written. Its verdict is `PASS`, `FAIL` or `SKIP`, and a `SK
 | Doctor command | Scenarios | IDs | What the set proves |
 |---|---|---|---|
 | `/doctor:agents-md` | 4 | DOC-396, DOC-397, DOC-404, DOC-405 | The two claims only a live session can settle, plus the check and the embed-then-restore round trip |
-| `/doctor:ci` | 3 | DOC-392, DOC-393, DOC-394 | The read-only report, the scaffold refusals, and the toggle round trip |
+| `/doctor:ci` | 4 | DOC-392, DOC-393, DOC-394, DOC-410 | The read-only report, the scaffold refusals, the toggle round trip, and a declined toggle conversation |
 | `/doctor:deep-loop` | 4 | DOC-331, DOC-332, DOC-333, DOC-368 | Lazy-init and empty-graph availability, the convergence signal, and scope selection |
 | `/doctor:env` | 3 | DOC-354, DOC-355, DOC-356 | Inspecting switches, saving a preference behind a yes, and switches that are never saved |
-| `/doctor:git` | 7 | DOC-369 to DOC-374, DOC-384 | Listing gate state, switching one gate, copying the rules once, changing one, refusing an invalid one, the menu and the setup check |
+| `/doctor:git` | 9 | DOC-369 to DOC-374, DOC-384, DOC-407, DOC-408 | Listing gate state, switching one gate, copying the rules once, changing one, refusing an invalid one, the menu, the setup check, and the two conversation companions |
 | `/doctor:helper` | 2 | DOC-400, DOC-401 | A read-only pick run in place, and a writing pick handed back with the fallback |
 | `/doctor:install` | 1 | DOC-399 | The five ordered steps from `list`, and a guided run that prints the checklist without writing |
 | `/doctor:mcp` | 5 | DOC-375 to DOC-378, DOC-380 | Install with an approval per write, a read-only debug, a debug with `--fix`, the menu, and flag refusals |
 | `/doctor:overlay` | 0 | none in this folder | Its scenarios, `SKD-003` to `SKD-013`, sit in the sibling `overlays/` category of this playbook |
 | `/doctor:runtime-mirrors` | 2 | DOC-352, DOC-353 | Every mirror in sync, and one drifted mirror |
-| `/doctor:setup` | 1 | DOC-391 | The target table, the five read-only legs, and the repair command per failing leg |
+| `/doctor:setup` | 1 | DOC-391 | The target table, the six read-only legs, and the repair command per failing leg |
 | `/doctor:sk-code` | 3 | DOC-382, DOC-383, DOC-395 | The setup battery, the battery on a pre-v4 checkout, and the quality config |
 | `/doctor:sk-skill` | 2 | DOC-402, DOC-403 | The fleet and single-skill check rows, and the convert plan before any write |
 | `/doctor:skill-advisor` | 14 | DOC-348, DOC-362 to DOC-367, DOC-385 to DOC-390, DOC-406 | Rebuild, tune, graph freshness, router reach, budgets, parent hubs, the menu, and the seven routing probes |
 | `/doctor:speckit` | 3 | DOC-349, DOC-350, DOC-351 | A healthy trigger index, a stale one, and a target another command owns now |
 | `/doctor:symlink` | 1 | DOC-398 | Check, link and unlink against a scratch repo, with the plan, its digest and the printed undo |
-| `/doctor:update` | 7 | DOC-357 to DOC-361, DOC-379, DOC-381 | `check`, `align`, `apply`, `rollback`, `record-base`, `compat`, and the fixture build |
+| `/doctor:update` | 8 | DOC-357 to DOC-361, DOC-379, DOC-381, DOC-409 | `check`, `align`, `apply`, `rollback`, `record-base`, `compat`, the fixture build, and an apply conversation |
 
 The seven routing probes, DOC-385 to DOC-390 and DOC-406, are listed under `/doctor:skill-advisor`: each one runs the advisor hook and reads the doctor line it prints, whichever command that line names.
 
@@ -76,7 +76,8 @@ Rules that hold for both:
 Runs that do not fit either environment go in a disposable copy, and each file names its own:
 
 - **Any working copy with the runtime built.** Rows that write nothing run where you are: the menus (DOC-367, DOC-369, DOC-374, DOC-378), the flag refusals (DOC-380), the routing probes (DOC-385 to DOC-390 and DOC-406), and the read-only checks.
-- **A disposable clone.** DOC-370, because a linked worktree shares the main checkout's `.git/config` and `git config --local` would change the real repository.
+- **A disposable clone.** DOC-370, because a linked worktree shares the main checkout's `.git/config` and `git config --local` would change the real repository, and the conversation companions DOC-407, DOC-408 and DOC-410, which clone the checkout into their runner scratch folder.
+- **A scratch clone of the update fixture.** DOC-409 clones `.worktrees/.doctor-update-test-environment` into its runner scratch folder and records `SKIP` when the fixture is absent.
 - **A throwaway folder, copy or clone.** DOC-331 to DOC-333 for their own graph state, DOC-381 for its v3 fixture, DOC-383 for a `v3.6.0.0` shallow clone, DOC-395 for the scratch repository it creates and deletes, and DOC-396 to DOC-397 for the `adopted` fixture they compose outside the checkout.
 - **A live session beside the folder.** DOC-396 needs a Devin session, DOC-397 a Cursor window. Without one, the row records `UNKNOWN` with its reason rather than a default pass.
 

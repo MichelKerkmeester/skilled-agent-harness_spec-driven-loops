@@ -7,7 +7,7 @@ trigger_phrases:
   - "doctor commands manual testing playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -288,7 +288,7 @@ The local tag `v4.0.0.3-fixture` is `v4.0.0.2` with `sk-code/sk-code-obsidian` d
 
 - **Always** pass `--offline` and a `--scope` naming fixture units. The copied updater forms one `command:commands/doctor` unit that no scenario asserts.
 - **Every file needs an explicit answer.** The engine ignores the prefilled decisions in `decisions.json`, so record each one with `decide`.
-- **Reset after apply:** run `rollback --run=<runDir>`, require every written path under `restored` and `skipped` empty, confirm `git status --porcelain` prints nothing, then delete the run directory under `.skilled/release/runs/`. Never apply the same run twice.
+- **Reset after apply:** run `rollback --run=<runDir>`, require every written path under `restored` and `skipped` empty, confirm `git status --porcelain` prints nothing, then delete the run directory under `.skilled/skills/.state/doctor-update/runs/`. Never apply the same run twice.
 - **Commits in the fixture:** the v4.0.0.0 hooks need dependencies the fixture does not have, so fixture commits set `SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_ROUTE_REMINT=1`, the two bypasses those hooks name. Never use `--no-verify`.
 - **Recreate:** DOC-379 lists every build step.
 
@@ -478,7 +478,7 @@ Checks, links or unlinks the Skilled checkout in a project repo, plan first. The
 
 ### 10.17 `/doctor:update`
 
-Routes `check`, `align`, `apply`, `rollback`, `record-base` and `compat` for a spec-kit release. Seven rows run against the update fixture in section 9.2; one builds and resets that fixture. DOC-409 replays the declined and approved apply path and restores its scratch clone.
+Routes `check`, `align`, `apply`, `rollback`, `record-base` and `compat` for a spec-kit release. Five rows run against the update fixture in section 9.2, one builds and resets that fixture, and DOC-381 builds its own throwaway v3 fixture. DOC-409 replays the declined and approved apply path and restores its scratch clone.
 
 | ID | Scenario | Scenario File |
 |---|---|---|
@@ -533,7 +533,7 @@ The script tests cover the engine contracts. A scenario covers what the operator
 
 ### Feature catalog
 
-Feature catalogs stay in the skill that owns the feature. The catalog entry the doctor rows cite is `.skilled/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md`, and each scenario file carries its own catalog link where one applies.
+Feature catalogs stay with the skill that owns the engine or capability a command drives, not with the command's owner, so this skill keeps no catalog of its own. The catalog entry the doctor rows cite is `.skilled/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md`, and each scenario file carries its own catalog link where one applies.
 
 ### Numbering
 

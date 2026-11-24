@@ -1,7 +1,7 @@
 ---
 title: "DOC-385 -- Doctor routing setup onboarding prompt"
 description: "Manual scenario validating that a plain onboarding prompt with no skill match surfaces the runnable /doctor:setup line as the advisor's top recommendation."
-version: 1.0.0.1
+version: 1.1.0.0
 id: doctor-commands-doctor-routing-setup-onboarding
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -25,7 +25,7 @@ The scenario runs the advisor brief and the advisor recommend command against th
 - Prompt: `Help me set up skilled`
 - Preconditions: The advisor runtime is built and the bridge projection is fresh. From the repository root, `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0 and `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`.
 - Expected execution process: Record the repository state. Run the hook command for the onboarding prompt and read the advisor brief. Run the recommend command for the same prompt and read the first recommendation. Record the repository state again.
-- Expected signals: The first line of the brief matches `^Advisor: (live|stale); use /doctor:setup [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The brief output never contains `command-doctor-`. The recommend JSON has `data.recommendations[0].skillId` equal to `command-doctor-setup`. Both `git status --porcelain` runs print the same output.
+- Expected signals: The first line of the brief matches `^Advisor: (live|stale); use system-skilled-doctor → /doctor:setup \(run\) [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The brief output never contains `command-doctor-`. The recommend JSON has `data.recommendations[0].skillId` equal to `command-doctor-setup`. Both `git status --porcelain` runs print the same output.
 - Desired user-visible outcome: A plain onboarding prompt routes to the runnable `/doctor:setup` line, so the operator can act on the advisor's top pick without seeing a raw command id.
 - Pass/fail: PASS if the first line of the brief matches the route pattern, the recommend list ranks `command-doctor-setup` first, the brief shows no raw `command-doctor-` id, and `git status --porcelain` is unchanged.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
@@ -52,7 +52,7 @@ Run every command from the repository root.
 printf '{"prompt":"Help me set up skilled","session_id":"pb-doc-385","hook_event_name":"UserPromptSubmit","cwd":"%s"}' "$PWD" | node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin)['hookSpecificOutput']['additionalContext'])"
 ```
 
-3. Confirm the first line of the brief matches `^Advisor: (live|stale); use /doctor:setup [0-9.]+/[0-9.]+ pass\.$` and that the brief never contains `command-doctor-`.
+3. Confirm the first line of the brief matches `^Advisor: (live|stale); use system-skilled-doctor → /doctor:setup \(run\) [0-9.]+/[0-9.]+ pass\.$` and that the brief never contains `command-doctor-`.
 
 4. Run the recommend command exactly as written.
 
@@ -66,7 +66,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"Help me
 
 ### Expected
 
-The hook command prints the advisor brief. Its first line matches `^Advisor: (live|stale); use /doctor:setup [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The rest of the brief holds the `Directives:` line and the comment hygiene directive. The brief never contains `command-doctor-`.
+The hook command prints the advisor brief. Its first line matches `^Advisor: (live|stale); use system-skilled-doctor → /doctor:setup \(run\) [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The rest of the brief holds the `Directives:` line and the comment hygiene directive. The brief never contains `command-doctor-`.
 
 The recommend command prints JSON. `data.recommendations` is an ordered list and `data.recommendations[0].skillId` is `command-doctor-setup`.
 

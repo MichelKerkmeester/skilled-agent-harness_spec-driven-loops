@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting which GitHub Actions workflows run in this tree, which a repository variable has switched off, and where each one drifts from the workflow standards
 purpose: List every workflow under .github/workflows/ with its switch state, trigger events, path filters, README purpose and drift flags, and name the newest commit on the default branch that is not a trigger-index rebuild, reading every repository convention from the CI profile
 action: Run .skilled/commands/doctor/scripts/ci-report.cjs once -> render its table and status line through the presentation contract
-skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

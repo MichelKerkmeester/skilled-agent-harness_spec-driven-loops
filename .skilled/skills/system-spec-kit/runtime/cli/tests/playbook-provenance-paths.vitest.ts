@@ -17,6 +17,12 @@ const PLAYBOOK_ROOTS = [
   path.join(SKILL_ROOT, 'manual-testing-playbook'),
   path.join(REPO_ROOT, '.skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands'),
 ];
+// The doctor playbook's root index carries the provenance line for every doctor
+// scenario, but it sits beside the scanned category, whose sibling overlay
+// scenarios carry none, so it is named here on its own.
+const EXTRA_FILES = [
+  path.join(REPO_ROOT, '.skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md'),
+];
 const FORM = /^Provenance: (?:manual only - .+|(\S+\.(?:vitest\.ts|test\.mjs|test\.ts|test\.cjs)))$/u;
 
 function walk(dir: string, out: string[] = []): string[] {
@@ -38,11 +44,12 @@ function relativeToPlaybook(file: string): string {
 }
 
 describe('playbook provenance lines', () => {
-  const files = PLAYBOOK_ROOTS.flatMap((root) => walk(root));
+  const files = [...PLAYBOOK_ROOTS.flatMap((root) => walk(root)), ...EXTRA_FILES];
 
   it('finds the package', () => {
     expect(files.length).toBeGreaterThan(50);
     expect(files.filter((file) => file.startsWith(`${PLAYBOOK_ROOTS[1]}${path.sep}`)).length).toBeGreaterThan(50);
+    for (const file of EXTRA_FILES) expect(existsSync(file)).toBe(true);
   });
 
   it('every file carries exactly one provenance line in one of the two forms', () => {

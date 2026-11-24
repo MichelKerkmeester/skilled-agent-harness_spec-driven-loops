@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "system-skilled-doctor/008-own-all-doctor-commands/001-ownership-transfer",
-    "system-skilled-doctor/008-own-all-doctor-commands/002-playbook-consolidation"
+    "system-skilled-doctor/008-own-all-doctor-commands/002-playbook-consolidation",
+    "system-skilled-doctor/008-own-all-doctor-commands/003-alignment-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -33,7 +34,7 @@
       "skill"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -83,17 +84,18 @@
     ],
     "causal_summary": "Seventeen `/doctor` commands exist, but `system-skilled-doctor` owns only eleven",
     "created_at": "2026-11-24T18:45:46Z",
-    "last_save_at": "2026-11-24T19:31:43.640Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-24T21:52:01.224Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e7a10166264c8522ffc361abb9a077f8a2d518fa14ad034983bc1e1e95d996bd",
+    "source_fingerprint": "sha256:e14f55b743ddb1c3a921d4949b02634f8dbdda2e32e9b4a1f6569a45ff23d770",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a90a058809dd22ea9b46366ff2b80348cbe0e07446bb49c8349b0ec9079c6490"
+      "spec.md": "55396efd80aeb371f5901e4be51136a8d9da1cf783f3a73cfa2baca32475bff7"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-24T21:52:01.224Z",
+    "last_active_child_id": "system-skilled-doctor/008-own-all-doctor-commands/003-alignment-fixes"
   }
 }

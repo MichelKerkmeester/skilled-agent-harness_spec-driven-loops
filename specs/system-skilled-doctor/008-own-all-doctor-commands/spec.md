@@ -44,7 +44,7 @@ _memory:
 | **Parent Packet** | system-skilled-doctor/008-own-all-doctor-commands |
 | **Predecessor** | 007-overlay-framework-root-layout |
 | **Successor** | None |
-| **Handoff Criteria** | Both children pass strict validation and the doctor, advisor and playbook gates match the baseline |
+| **Handoff Criteria** | All three children pass strict validation and the doctor, advisor and playbook gates match the baseline |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -71,7 +71,7 @@ Seventeen `/doctor` commands exist, but `system-skilled-doctor` owns only eleven
 ### Out of Scope
 - Moving engine scripts or workflow YAML out of `.skilled/commands/doctor/`. Ownership is a routing and documentation fact, not a code location.
 - Scenarios in other skills' playbooks that test a skill mode through its doctor command, such as the sk-code CI and quality playbooks.
-- History under `specs/` and `changelog/`.
+- Rewriting released history under `specs/` and `changelog/`. Phase 3 extends the three changelog entries that are still unreleased.
 
 ### Files to Change
 
@@ -94,6 +94,7 @@ Seventeen `/doctor` commands exist, but `system-skilled-doctor` owns only eleven
 |-------|--------|-------|--------|
 | 1 | 001-ownership-transfer/ | Six doctor commands change owner to system-skilled-doctor | Complete |
 | 2 | 002-playbook-consolidation/ | The central doctor playbook moves into the skill's package | Complete |
+| 3 | 003-alignment-fixes/ | The findings of the two alignment runs over phases 1 and 2 | Complete |
 
 ### Phase Transition Rules
 
@@ -107,6 +108,7 @@ Seventeen `/doctor` commands exist, but `system-skilled-doctor` owns only eleven
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-ownership-transfer | 002-playbook-consolidation | Every doctor bridge row names system-skilled-doctor | `rg -c "ownerSkillId: 'system-skilled-doctor'" command-attach.ts` covers every doctor row |
+| 002-playbook-consolidation | 003-alignment-fixes | `.skilled/manual-testing-playbook/` is gone and phase 2's gates match its baseline | `validate-playbook-package.cjs` prints `package=system-skilled-doctor ... scenarios=79 ... violations=0` |
 <!-- /ANCHOR:phase-map -->
 
 ---

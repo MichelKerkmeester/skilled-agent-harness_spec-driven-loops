@@ -1,0 +1,16 @@
+OK    cli-classifier  a24927396214ab841312a00a75e03ae22c74b0002f3b1edbd2925288a5002197
+OK    cli-external-orchestration  082d761306fc18d83a526fcd5f7a0992f65cad3eb13d1bb6ae7fd7235fd9ac20
+OK    mcp-browser-use  092611dda02c62bae8f035056a650306e9da0db60df53a857a839957986526fc
+OK    mcp-code-mode  cb54d539bb572416bfdce288b0a8214e7cb872f8559458d09985e048b27c28b1
+OK    mcp-tooling  79cbdf6249e58221696752edcfc7d751a0e354fd7395938bce96b44dcca4a9fe
+OK    sk-code  feb4cf25ac40dbdc359e908fc3aa85f5ce7deb833ffb1f8d1bba8a00b852f786
+OK    sk-design  fae433bd1cf99963d8608cac13a3d2732f142cac13163bf983e8a39d6b292129
+OK    sk-doc  a92c2bd71a6a1cbd0cfe6f3dbf91458c90c22652064d569b37c38e5e0a643583
+OK    sk-git  91e132631e97035c3634819c646c46e548ba5902a6085f75177775ee1030896f
+OK    sk-prompt  70d1097221f5ff4bf52bbe829aae461a2a4025fd051b9f97d3e95303f15c5dd8
+OK    system-deep-loop  eae1c4aea9fd71652ccb85c163cc5115bbee0acf67e97b4bfdb5e4135245fdc0
+OK    system-skill-advisor  9df5011f146b017ce48bf22e380b8ed9e7c73a3875ea89cc63013f5e5483a2de
+OK    system-skilled-doctor  d870daaff5ddd4c91b107399ff087114acb5a5c1cc4351184dd25fafe3ac6fdb
+OK    system-spec-kit  57c1a3d3f5857f97f1fe8cec18baa00b5c59a932439dc8f57f7fca445d5b1a8d
+
+checked=14 fresh=14 failed=0

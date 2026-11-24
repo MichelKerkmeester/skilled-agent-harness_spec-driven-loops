@@ -1,7 +1,7 @@
 ---
 title: "DOC-386 -- Doctor routing environment variables prompt"
 description: "Manual scenario validating that a plain environment-variables prompt surfaces the runnable /doctor:env list line as the advisor's top recommendation."
-version: 1.0.0.1
+version: 1.1.0.0
 id: doctor-commands-doctor-routing-env-prompt
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -25,7 +25,7 @@ The runnable form names `list` because `/doctor:env` with no selector stops at a
 - Prompt: `check my environment variables`
 - Preconditions: The advisor runtime is built (`npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0) and the bridge projection is fresh (`node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`).
 - Expected execution process: Record the repository state. Run the hook command for the environment-variables prompt and read the advisor brief. Run the recommend command for the same prompt and read the first recommendation. Record the repository state again.
-- Expected signals: The first line of the brief matches `^Advisor: (live|stale); use /doctor:env list [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The brief shows `/doctor:env list`, not `/doctor:env` alone. The recommend JSON has `data.recommendations[0].skillId` equal to `command-doctor-env`. Both `git status --porcelain` runs print the same output.
+- Expected signals: The first line of the brief matches `^Advisor: (live|stale); use system-skilled-doctor → /doctor:env list \(run\) [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The brief shows `/doctor:env list`, not `/doctor:env` alone. The recommend JSON has `data.recommendations[0].skillId` equal to `command-doctor-env`. Both `git status --porcelain` runs print the same output.
 - Desired user-visible outcome: A plain environment-variables prompt routes to the runnable `/doctor:env list` line, so the operator can act on the advisor's top pick without landing on the selection menu.
 - Pass/fail: PASS if the first line of the brief matches the route pattern, the recommend list ranks `command-doctor-env` first, and `git status --porcelain` is unchanged.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
@@ -52,7 +52,7 @@ Run every command from the repository root.
 printf '{"prompt":"check my environment variables","session_id":"pb-doc-386","hook_event_name":"UserPromptSubmit","cwd":"%s"}' "$PWD" | node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin)['hookSpecificOutput']['additionalContext'])"
 ```
 
-3. Confirm the first line of the brief matches `^Advisor: (live|stale); use /doctor:env list [0-9.]+/[0-9.]+ pass\.$` and that the brief shows `/doctor:env list`, not `/doctor:env` alone.
+3. Confirm the first line of the brief matches `^Advisor: (live|stale); use system-skilled-doctor → /doctor:env list \(run\) [0-9.]+/[0-9.]+ pass\.$` and that the brief shows `/doctor:env list`, not `/doctor:env` alone.
 
 4. Run the recommend command exactly as written.
 
@@ -66,7 +66,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"check m
 
 ### Expected
 
-The hook command prints the advisor brief. Its first line matches `^Advisor: (live|stale); use /doctor:env list [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The rest of the brief holds the `Directives:` line and the comment hygiene directive. The brief shows `/doctor:env list`, not `/doctor:env` alone.
+The hook command prints the advisor brief. Its first line matches `^Advisor: (live|stale); use system-skilled-doctor → /doctor:env list \(run\) [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The rest of the brief holds the `Directives:` line and the comment hygiene directive. The brief shows `/doctor:env list`, not `/doctor:env` alone.
 
 The recommend command prints JSON. `data.recommendations` is an ordered list and `data.recommendations[0].skillId` is `command-doctor-env`.
 
