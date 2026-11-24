@@ -1,5 +1,5 @@
 {
-  "manifestHash": "808a57cd18a11cf85894ca765c4fd09e507a7f7a0a5ff6f8ffd93045c4069b81",
+  "manifestHash": "28734fa259e95547756dae70d632baaacd10b298e6ed68af8b5dc3b1f5bfe1a4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6874,6 +6874,9 @@
     "028 track b tasks": [
       "028 track b tasks"
     ],
+    "029 advisor logic review fixes operator decisions": [
+      "029-advisor-logic-review-fixes operator decisions"
+    ],
     "029 autoclean orphan file removal": [
       "029-autoclean-orphan-file-removal"
     ],
@@ -8648,9 +8651,6 @@
     "additive adherence artifacts tasks": [
       "additive adherence artifacts tasks"
     ],
-    "additive backfill": [
-      "additive backfill"
-    ],
     "additive dark cycle evidence": [
       "additive-dark cycle evidence"
     ],
@@ -9385,6 +9385,9 @@
     "advisor feedback calibration": [
       "advisor feedback calibration"
     ],
+    "advisor fix work units waves": [
+      "advisor fix work units waves"
+    ],
     "advisor folder merges": [
       "advisor folder merges"
     ],
@@ -9637,6 +9640,24 @@
     "advisor local sqlite declaration": [
       "advisor local sqlite declaration"
     ],
+    "advisor logic final verification pass": [
+      "advisor logic final verification pass"
+    ],
+    "advisor logic review fixes": [
+      "advisor logic review fixes"
+    ],
+    "advisor logic review fixes acceptance criteria": [
+      "advisor logic review fixes acceptance criteria"
+    ],
+    "advisor logic review fixes implementation summary": [
+      "advisor logic review fixes implementation summary"
+    ],
+    "advisor logic review fixes plan": [
+      "advisor logic review fixes plan"
+    ],
+    "advisor logic review fixes tasks": [
+      "advisor logic review fixes tasks"
+    ],
     "advisor logic review report": [
       "advisor logic review report"
     ],
@@ -9660,6 +9681,9 @@
     ],
     "advisor metadata extraction": [
       "advisor metadata extraction"
+    ],
+    "advisor metrics temp dir symlink": [
+      "advisor metrics temp dir symlink"
     ],
     "advisor move recalibration": [
       "advisor move recalibration"
@@ -10261,6 +10285,9 @@
     ],
     "advisor surface hint tasks": [
       "advisor surface hint tasks"
+    ],
+    "advisor temp folder owner check": [
+      "advisor temp folder owner check"
     ],
     "advisor test 37 failures": [
       "advisor test 37 failures"
@@ -13822,12 +13849,6 @@
     "asymmetric damping anti pattern memory": [
       "asymmetric damping anti-pattern memory"
     ],
-    "asymmetric routing": [
-      "asymmetric routing"
-    ],
-    "asymmetric supersession": [
-      "asymmetric supersession"
-    ],
     "async deferred enrichment": [
       "async deferred enrichment"
     ],
@@ -13911,12 +13932,6 @@
     ],
     "atomic reindex": [
       "atomic reindex"
-    ],
-    "atomic rollback": [
-      "atomic rollback"
-    ],
-    "atomic rollback lifecycle": [
-      "atomic rollback lifecycle"
     ],
     "atomic save orphan recovery": [
       "atomic save orphan recovery"
@@ -39999,6 +40014,9 @@
     "deep review interruption recovery": [
       "deep-review interruption recovery"
     ],
+    "deep review iteration 010": [
+      "deep review iteration 010"
+    ],
     "deep review iteration commit": [
       "deep-review iteration commit"
     ],
@@ -53706,6 +53724,9 @@
     "fix eight skill and command surfacing gaps": [
       "fix eight skill and command surfacing gaps"
     ],
+    "fix every finding of the twelve pass deep": [
+      "fix every finding of the twelve pass deep"
+    ],
     "fix investigation deferred p2s for behavior and api changes changelog": [
       "fix investigation deferred p2s for behavior and api changes changelog"
     ],
@@ -66724,17 +66745,11 @@
     "lc 001": [
       "lc-001"
     ],
-    "lc 002": [
-      "lc-002"
-    ],
     "lc 003": [
       "lc-003"
     ],
     "lc 004": [
       "lc-004"
-    ],
-    "lc 005": [
-      "lc-005"
     ],
     "lcp image priority": [
       "lcp image priority"
@@ -67753,12 +67768,6 @@
     ],
     "lifecycle redirect metadata": [
       "lifecycle redirect metadata"
-    ],
-    "lifecycle revert": [
-      "lifecycle revert"
-    ],
-    "lifecycle rollback": [
-      "lifecycle rollback"
     ],
     "lifecycle save writes continuity": [
       "lifecycle save writes continuity"
@@ -96472,20 +96481,11 @@
     "reddit post framing decision": [
       "reddit post framing decision"
     ],
-    "redirect from": [
-      "redirect_from"
-    ],
-    "redirect from redirect to": [
-      "redirect_from redirect_to"
-    ],
     "redirect metadata": [
       "redirect metadata"
     ],
     "redirect table rebuild": [
       "redirect table rebuild"
-    ],
-    "redirect to": [
-      "redirect_to"
     ],
     "redispatch once": [
       "redispatch once"
@@ -101567,6 +101567,9 @@
     ],
     "resolvedconfidencethreshold helper": [
       "resolvedConfidenceThreshold helper"
+    ],
+    "resolvedfindings closure probe": [
+      "resolvedFindings closure probe"
     ],
     "resolveipcsocketpath ancestor realpath": [
       "resolveIpcSocketPath ancestor realpath"
@@ -107583,9 +107586,6 @@
     "schema refinement cross field": [
       "schema refinement cross-field"
     ],
-    "schema rollback": [
-      "schema rollback"
-    ],
     "schema v13 document metadata": [
       "schema v13 document metadata"
     ],
@@ -107744,6 +107744,9 @@
     ],
     "scoped search under returning fix": [
       "scoped search under-returning fix"
+    ],
+    "scoped skill graph scan delete": [
+      "scoped skill graph scan delete"
     ],
     "scoped staging discipline": [
       "scoped staging discipline"
@@ -120534,9 +120537,6 @@
     "skill smart router": [
       "skill smart router"
     ],
-    "skill supersession": [
-      "skill supersession"
-    ],
     "skill surface evergreen audit": [
       "skill surface evergreen audit"
     ],
@@ -126920,20 +126920,11 @@
     "superseding decision record deepseek": [
       "superseding decision record deepseek"
     ],
-    "supersession": [
-      "supersession"
-    ],
     "supersession contradicts caused invalidation": [
       "supersession contradicts caused invalidation"
     ],
     "supersession contradicts over semantic": [
       "supersession contradicts over semantic"
-    ],
-    "supersession rollback": [
-      "supersession rollback"
-    ],
-    "supersession routing": [
-      "supersession routing"
     ],
     "superset notify hook routing fix": [
       "superset-notify hook routing fix"
@@ -135084,9 +135075,6 @@
     ],
     "v1 search pipeline": [
       "v1 search pipeline"
-    ],
-    "v1 v2 additive": [
-      "v1 v2 additive"
     ],
     "v2 1 1 0 release notes": [
       "v2.1.1.0 release notes"

@@ -1,0 +1,29 @@
+## Review Iteration 11 Complete
+
+**Focus:** traceability — the final iteration of the `max-iterations=11` run. It closed the evidence gap the prior pass named.
+
+**Acceptance criteria re-run at HEAD `5c5b9fe3e5b`** (cwd `.skilled/skills/system-skill-advisor/runtime`, exit statuses read under `set -o pipefail`):
+
+| AC | Observed | Exit |
+|----|----------|------|
+| AC-006 | 2 files / 32 vitest passed; Python `pass=132 fail=0` (incl. `SCORER-PREDICATES cases=24`) | 0 / 0 |
+| AC-007 | 3 passed | 0 |
+| AC-008 | 4 passed | 0 |
+| AC-013 | `npm test` 186 files, 2819 passed, 4 skipped; four ratchets 34 passed | 0 / 0 |
+
+`spec_code` → **pass**; `checklist_evidence` → **pass** (AC-014 stays honestly `Unmet` — a two-pass process criterion, not a code claim).
+
+**Findings:** 0 total (P0 0 / P1 0 / P2 0). Registry: 0 open, 22 resolved. `newFindingsRatio` 0.0 — the runs are re-verification, not discovery.
+
+**Edge cases (recorded, not filed as code findings):**
+- **AC-006's sweep-vocabulary path is stale and vitest hides it.** The test lives at `tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts`; the AC row and dispatch name a bare basename. `vitest run` treats the unmatched argument as a filter — one file ran (26 tests), exit 0. Re-run at the real path: 32 tests pass. No reviewed file carries the short path, so this is a packet-evidence defect with an **amendment proposal**, not code drift.
+- Dispatch summary said "11 of 9"; config `maxIterations=11` and eleven delta records agree on 11 — stale summary field, no correction needed.
+- Four `npm test` skips: three named `it.skip` spec-folder lineage cases plus one conditional guard; none sit on an AC-006..AC-013 path.
+
+**Dimensions:** 4/4 complete. **Integration evidence:** `runtime/package.json` test script (186-file run) and the Python runner over `skill_advisor_runtime.py`.
+
+**Files written:** `review/iterations/iteration-011.md`, `review/deltas/iter-011.jsonl`, strategy in place; state recorded through the append gateway (receipt `sequence 52`, projection refreshed, exit 0). Config/registry/target untouched.
+
+**Status:** `complete` — `Review verdict: PASS`. Synthesis should recompute the registry and confirm PASS with `hasAdvisories=false`.
+
+Operator's one item: have the 029 packet owner correct the AC-006 cell at `…029-advisor-logic-review-fixes/acceptance-criteria.md:59` to `tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts` (and make any per-file gate assert the file exists), since AC-014 still needs one more PASS pass to close.

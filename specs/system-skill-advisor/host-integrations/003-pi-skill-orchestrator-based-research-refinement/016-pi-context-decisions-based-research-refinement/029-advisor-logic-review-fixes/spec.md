@@ -33,7 +33,7 @@ A scan of one skill's folder deletes every other skill from the live advisor gra
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-24 |
 | **Branch** | `worktrees/532-advisor-review-extension` |
 <!-- /ANCHOR:metadata -->

@@ -1,0 +1,28 @@
+## Review Iteration 10 Complete
+
+**Focus:** correctness — final verification pass at HEAD `5c5b9fe3e5b`, plus the fix-diff read.
+
+**Findings:** 0 total (P0=0, P1=0, P2=0 new). Four prior P2s **closed with evidence that was run**:
+
+| Finding | Probe run | Result |
+|---|---|---|
+| G5-I8-P2-001 | `SPECKIT_ADVISOR_PROMPT_POLICY_PATH=/nonexistent/p.json python3 skill_advisor.py "implement a retry helper" --force-local` | exit 0, one stderr warning, normal `sk-code` payload (0.95) |
+| G5-I2-P2-002 | `git check-ignore -v` on the default path and `.jsonl.1` | `.gitignore:212` and `:214`, both exit 0; guard read at `shadow-sink.ts:137-186` (`O_NOFOLLOW`, `nlink===1`, uid, `fchmod 0600`, folder chmod recovery) |
+| G5-I9-P2-001 | `owned-private-dir.ts:16-17` + `tests/owned-private-dir.vitest.ts:80-93` | win32 returns after the symlink/directory/uid checks; stubbed-platform case pins it |
+| G5-I9-P2-002 | `git ls-files --error-unmatch …/owned-private-dir.ts` | path printed, exit 0 |
+
+**newFindingsRatio:** 0.0 (novelty justification recorded — no real defect confirmed in the diff: the scoped graph delete is correct in both directions, `knownSkillIds` recompute is safe post-delete, `checkIpcSocketOwnership`'s folder set and refusal order are right, `metrics.ts` has one root so its `dirReady` cache is sound).
+
+**Dimensions completed / remaining:** 4/4 complete.
+
+**Edge cases:** the win32 skip now also relaxes `FileRouteReceiptStore.ownedFolder()` (a fix — the old inline test could never pass with `0o40777`); no Windows run and no foreign-uid reproduction were available, so four of the six closures rest on code plus in-repo tests.
+
+**Integration evidence:** `launcher-ipc-bridge.cjs:471` refuses before the deep probe; `launcher-session-proxy.cjs:15` shares the same predicate; record committed through `append-mode-event.cjs --mode review` (exit 0, receipt `sequence 44`, `projectionRefreshed: true`).
+
+**Recommended next focus:** none — final iteration of a `max-iterations` run. Synthesis should run `reduce-state.cjs`: the registry still shows `openFindingsCount: 4` because I must not write that reducer-owned file, and this is the first record that carries the required `resolvedFindings` array (four ids) plus four `resolved` delta rows.
+
+**Files written:** `review/iterations/iteration-010.md`; `review/deltas/iter-010.jsonl` (15 rows, iteration record first); `review/deep-review-strategy.md` (counts now P0 0 / P1 0 / P2 0 / Resolved 22). State log refreshed by the gateway only. `git status` shows no change outside the review packet.
+
+**Status:** `complete` — `Review verdict: PASS` (verified as the file's final line).
+
+One thing that is yours to decide: whether to run the reducer now so the four closures land in `deep-review-findings-registry.json`. Until it runs, the registry-level view still lists four active P2s — which is still a PASS verdict, but it is stale against this iteration's evidence.

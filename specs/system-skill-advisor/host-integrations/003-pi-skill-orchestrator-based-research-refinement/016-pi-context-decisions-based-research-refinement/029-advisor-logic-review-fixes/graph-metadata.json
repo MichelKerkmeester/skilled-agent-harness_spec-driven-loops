@@ -19,6 +19,7 @@
       "advisor fix work units waves",
       "advisor logic review fixes tasks",
       "advisor logic review fixes acceptance criteria",
+      "029-advisor-logic-review-fixes operator decisions",
       "advisor logic review fixes implementation summary"
     ],
     "key_topics": [
@@ -36,12 +37,13 @@
       "check"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/bin/lib/launcher-ipc-bridge.cjs",
       ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
@@ -56,8 +58,7 @@
       ".skilled/skills/system-skill-advisor/runtime/tools/advisor-contract-keys.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/shared/shared-payload.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      ".skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json"
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
     ],
     "entities": [
       {
@@ -82,6 +83,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -175,12 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "compat-contract.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,23 +208,25 @@
     ],
     "causal_summary": "Twelve deep-review passes over the advisor's runtime and hooks code (five DeepSeek passes in generation 4, seven Opus passes in generation 5) ended with verdict FAIL, 3 active P1 and 16 active P2 findings",
     "created_at": "2026-11-24T06:07:08Z",
-    "last_save_at": "2026-11-24T09:28:28.942Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-24T09:41:16.473Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0160286079890bd49deeae170450971c8a7faf778a8c81c127cc46d9157deae",
+    "source_fingerprint": "sha256:b92d3dd6e9e5bb4b6c928387559190792b820a529ad27316b0128061e55d2c65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a1cbd38040639f53aa0f079aead80d861c6b49c3cfd2933483a27b616b69959e",
+      "spec.md": "9dddd7127ecf088862db7f30d4fa7a818c2bcd170c98e19da61508f2727b12a5",
       "plan.md": "4750bae71718d168b5bb50044bbd266b05d8222d24a5228048b22451211bf520",
-      "tasks.md": "78ad98615dd49591c95e2ecc59031c3d33763513de0b07be3a3d847d39683777",
-      "implementation-summary.md": "cb93d6805b36effee60a0d78c4a2af394a3f6a8043584909409382bad7fa94c3"
+      "tasks.md": "50db9d9782d06a67dfce4340a859a4ba8b7e1894a9cb7b06a2d73f97e602ef37",
+      "decision-record.md": "f52cdc6d1f5787d03f8c7c3ecf13a9eaf7b80e040167d0a50cfa1e304347033e",
+      "implementation-summary.md": "79b08777933cc4dde40c1771be4088d752fac896d3861bb57025cffcbe749f7b"
     },
     "last_active_at": null
   }

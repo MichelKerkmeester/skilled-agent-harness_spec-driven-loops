@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes",
   "description": "Fix every finding of the twelve-pass deep review of the system-skill-advisor logic",
   "keywords": [
@@ -10,7 +11,7 @@
     "system-skill-advisor",
     "logic"
   ],
-  "lastUpdated": "2026-11-24T06:07:08.828Z",
+  "lastUpdated": "2026-11-24T09:40:56.612Z",
   "specId": "029",
   "folderSlug": "advisor-logic-review-fixes",
   "parentChain": [
@@ -19,7 +20,8 @@
     "003-pi-skill-orchestrator-based-research-refinement",
     "016-pi-context-decisions-based-research-refinement"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-11-26_10-40__fixed-all-19-findings-of-the-advisor-logic-deep.md"
+  ]
 }

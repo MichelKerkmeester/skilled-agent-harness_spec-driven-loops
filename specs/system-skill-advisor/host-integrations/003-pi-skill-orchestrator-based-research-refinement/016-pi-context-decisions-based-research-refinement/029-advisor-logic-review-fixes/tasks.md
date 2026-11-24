@@ -69,8 +69,8 @@ Wave 3:
 
 - [x] T040 Run `run-gates-532.sh after` and compare with the baseline. Verify: every gate exits 0, and every count change is explained by an added or removed test.
 - [x] T041 Run the database-copy probe again. Verify: 15 nodes and 59 edges after the one-skill scan.
-- [ ] T042 Extend the review by two cli-pi DeepSeek Flash passes (operator choice, native Opus ruled out) and run `review-verdict.cjs`. Verify: the verdict is not `FAIL`.
-- [ ] T043 Run `validate.sh --strict` on this packet. Verify: `RESULT: PASSED`.
+- [x] T042 Extend the review by cli-pi DeepSeek Flash passes (operator choice, native Opus ruled out) and run `review-verdict.cjs`. Verify: the verdict is not `FAIL`.
+- [x] T043 Run `validate.sh --strict` on this packet. Verify: `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,7 +78,7 @@ Wave 3:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every row of `acceptance-criteria.md` is `Met`.
+- [x] Every row of `acceptance-criteria.md` is `Met`.
 - [x] The scoped diff touches only the files the units own, plus the regenerated indexes.
 <!-- /ANCHOR:completion -->
 
@@ -163,7 +163,7 @@ Wave 3:
 
 - [x] CHK-040 [P1] The trust default reads the same in the server comment, the catalog, SKILL.md and the references
 - [x] CHK-041 [P1] No catalog or playbook entry names a deleted lifecycle function
-- [ ] CHK-042 [P2] Changed docs carry a bumped frontmatter version
+- [x] CHK-042 [P2] Changed docs carry a bumped frontmatter version
 <!-- /ANCHOR:docs -->
 
 ---
@@ -184,7 +184,7 @@ Wave 3:
 |----------|-------|----------|
 | P0 Items | 11 | 11/11 |
 | P1 Items | 10 | 10/10 |
-| P2 Items | 1 | 0/1 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-24
 <!-- /ANCHOR:summary -->
