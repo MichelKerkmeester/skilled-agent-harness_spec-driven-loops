@@ -18,6 +18,7 @@ import {
   COMMAND_DECLINE_LEAD_WORDS,
   COUNT_WORDS,
   ITERATIVE_VERBS,
+  LEAD_WINDOW,
   LOOP_ARTIFACT_NOUNS,
   LOOP_NAMES,
   LOOP_RUN_SYMPTOMS,
@@ -25,12 +26,15 @@ import {
   LOOP_WORDING,
   MODE_SUFFIXES,
   PAST_RUN_READ_VERBS,
+  RUN_ASK_REFUSAL_LEADS,
   TRACKED_COMMANDS,
   asksForLoopRun,
   attachCommand,
+  isPastRunRead,
   isStuckRunComplaint,
   isWritingAboutTopic,
 } from '../lib/command-attach.js';
+import { ADVISOR_PROMPT_MAX_CHARS } from '../schemas/advisor-tool-schemas.js';
 import { withholdDeepLoopDoctorWithoutRun, withholdWritingCommandsOnNoEdit } from '../lib/scorer/fusion.js';
 import type { AdvisorScoredRecommendation } from '../lib/scorer/types.js';
 import type { AdvisorRecommendOutput } from '../schemas/advisor-tool-schemas.js';
@@ -70,14 +74,45 @@ const VOCABULARY_PAIRS: readonly (readonly [string, string, readonly string[]])[
   ['MODE_SUFFIXES', '_MODE_SUFFIX_LIST', MODE_SUFFIXES],
   ['COMMAND_DECLINE_LEAD_WORDS', '_COMMAND_DECLINE_LEAD_LIST', COMMAND_DECLINE_LEAD_WORDS],
   ['COMMAND_ASK_LEAD_WORDS', '_COMMAND_ASK_LEAD_LIST', COMMAND_ASK_LEAD_WORDS],
+  ['RUN_ASK_REFUSAL_LEADS', '_RUN_ASK_REFUSAL_LEAD_LIST', RUN_ASK_REFUSAL_LEADS],
 ];
+
+// Two numbers are spelled on both sides too: the window a lead is read inside
+// and the prompt head the schema and the fallback both cut at. Neither has a
+// pattern to compare, so each is read back from the Python source and compared
+// with the native value.
+const NUMERIC_PAIRS: readonly (readonly [string, number])[] = [
+  ['_LEAD_WINDOW', LEAD_WINDOW],
+  ['ADVISOR_PROMPT_MAX_CHARS', ADVISOR_PROMPT_MAX_CHARS],
+];
+
+function escapeWord(word: string): string {
+  return word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 // A word counts only where it stands alone, so `stall` is not satisfied by `stalls`
 // and `check` is not satisfied by `checking`. The prompt is read case-insensitively
 // because a reader may open a sentence with the word.
 function usesWord(prompt: string, word: string): boolean {
-  const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return new RegExp(`\\b${escaped}\\b`, 'i').test(prompt);
+  return new RegExp(`\\b${escapeWord(word)}\\b`, 'i').test(prompt);
+}
+
+// Every loop name and wording, as the gate spells it, so a case can be read for
+// the noun its loop name takes. The possessive before the noun is the one the
+// gate allows, as in "the deep review's findings".
+const LOOP_NAME_SOURCE = [...LOOP_NAMES, ...LOOP_WORDING].map(escapeWord).join('|');
+
+function followsLoopName(prompt: string, word: string): boolean {
+  const lower = prompt.toLowerCase().replace(/[\u2018\u2019]/g, "'");
+  return new RegExp(`(?:${LOOP_NAME_SOURCE})(?:'s)? ${escapeWord(word)}\\b`).test(lower);
+}
+
+// The Python mirror spells these numbers as plain literals, so the source text is
+// read rather than parsed. A name that moves or disappears answers undefined and
+// fails the parity test instead of comparing as zero.
+function pythonInteger(source: string, name: string): number | undefined {
+  const assignment = new RegExp(`^${name} = (\\d[\\d_]*)`, 'm').exec(source);
+  return assignment === null ? undefined : Number(assignment[1].replace(/_/g, ''));
 }
 
 // Each tuple holds one quoted entry per line, so a literal regex reads the block
@@ -222,6 +257,24 @@ describe('deep-loop offer cases shared with the Python fallback', () => {
     const used = cases.some((entry) => entry.stuckRun && usesWord(entry.prompt, word));
     expect(used).toBe(true);
   });
+
+  // An artifact noun behind a loop name names what the loop produced, as in "open
+  // the review loop config", so its coverage case reads that way and asks for no
+  // run. A noun added to one copy alone otherwise passes every case that never
+  // puts it behind a loop name.
+  it.each(LOOP_ARTIFACT_NOUNS)('has a no-run case where a loop name is followed by "%s"', (noun) => {
+    const used = cases.some((entry) => !entry.asksForLoopRun && followsLoopName(entry.prompt, noun));
+    expect(used).toBe(true);
+  });
+
+  // A past-run read verb wants a finished run's output, as in "recap the last deep
+  // research run", so its coverage case is a past-run read that asks for no new
+  // run, and the Python suite reads the same cases.
+  it.each(PAST_RUN_READ_VERBS)('has a past-run case that uses the verb "%s"', (verb) => {
+    const used = cases.some((entry) => !entry.asksForLoopRun
+      && isPastRunRead(entry.prompt) && usesWord(entry.prompt, verb));
+    expect(used).toBe(true);
+  });
 });
 
 describe('deep-loop vocabulary shared with the Python fallback', () => {
@@ -231,5 +284,15 @@ describe('deep-loop vocabulary shared with the Python fallback', () => {
     const copied = pythonTupleEntries(python, pythonName);
     expect(copied, `${pythonName} must hold the ${nativeName} vocabulary`).toBeDefined();
     expect(asSet(copied ?? [])).toEqual(asSet(words));
+  });
+});
+
+describe('deep-loop constants shared with the Python fallback', () => {
+  const python = readFileSync(PY_ADVISOR, 'utf8');
+
+  it.each(NUMERIC_PAIRS)('%s holds the native %d', (pythonName, value) => {
+    const copied = pythonInteger(python, pythonName);
+    expect(copied, `${pythonName} must hold the native value`).toBeDefined();
+    expect(copied).toBe(value);
   });
 });

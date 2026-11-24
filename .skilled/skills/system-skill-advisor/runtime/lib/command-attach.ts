@@ -562,6 +562,41 @@ const COUNTED_RUN_ASK = new RegExp(
 );
 const EXPLICIT_RUN_ASK = new RegExp(`${LOOP_RUN_REQUESTED.source}|${COUNTED_RUN_ASK.source}`, 'g');
 
+// The refusal leads are data, one lead per line, so the vocabulary a reviewer
+// has to judge stays visible and a test can compare it with the Python
+// fallback's copy. `refuse` is listed in its plain form, because the pattern
+// takes `d` and `to` after it.
+export const RUN_ASK_REFUSAL_LEADS: readonly string[] = [
+  'do not',
+  "don't",
+  'dont',
+  'never',
+  'no need to',
+  'need not',
+  "needn't",
+  'no need for',
+  'without',
+  'not asking for',
+  'not looking for',
+  'skip',
+  'skipping',
+  'avoid',
+  'avoiding',
+  'instead of',
+  'rather than',
+  'refuse',
+];
+
+// Two leads carry grammar of their own: `skip` followed by `to`, as in "skip
+// straight to the deep review", jumps ahead to the run and asks for it, and a
+// refusal verb may take `to` after it, as in "refused to run a deep review".
+function refusalLeadSource(lead: string): string {
+  const escaped = escapePhrase(lead);
+  if (lead === 'skip') return `${escaped}(?!\\s+(?:(?:straight|right|ahead|directly)\\s+)?to\\b)`;
+  if (lead === 'refuse') return `${escaped}(?:d)?(?:\\s+to)?`;
+  return escaped;
+}
+
 // A run ask with a negation close before it, as in "but do not run another deep
 // review", forbids the run rather than asking for it. The negation has to sit
 // within two words of the ask, because "do not summarize it but run a deep
@@ -570,14 +605,16 @@ const EXPLICIT_RUN_ASK = new RegExp(`${LOOP_RUN_REQUESTED.source}|${COUNTED_RUN_
 // asking for" refuses what it names, while a bare "not" is left out because
 // "why not run a deep review" proposes the run.
 // Refusal verbs lead the same way, as in "skip the deep review" or "avoid deep
-// research", but "skip" followed by "to", as in "skip straight to the deep
-// review", jumps ahead to the run and asks for it. The two-word gap stays as it
-// is, because "don't hesitate to run a deep review" and "don't forget to run a
-// deep review" ask for the run four words after the negation; the one longer
-// refusal, "do not even think about", is a lead of its own. A refusal verb takes
-// its own object, so a conjunction in its gap starts a new clause, as in "skip it
-// and deep review the parser", and the loop name after it is asked for.
-const RUN_ASK_NEGATED_SOURCE = String.raw`(?:\b(?:do not|don't|dont|never|no need to|need not|needn't|no need for|without|not asking for|not looking for|(?:do not|don't|dont|never) even (?:think about|consider))\s+(?:[\w'-]+\s+){0,2}|\b(?:skip(?!\s+(?:(?:straight|right|ahead|directly)\s+)?to\b)|skipping|avoid|avoiding|instead of|rather than|refused?(?:\s+to)?)\s+(?:(?!(?:and|then|but|or)\s)[\w'-]+\s+){0,2}|\bno\s+)$`;
+// research". The two-word gap stays as it is, because "don't hesitate to run a
+// deep review" and "don't forget to run a deep review" ask for the run four
+// words after the negation; the one longer refusal, "do not even think about",
+// is a lead of its own. A conjunction inside the gap starts a new clause, as in
+// "skip it and deep review the parser" or "don't fix it and run a deep review",
+// so the run the second clause names is asked for.
+const RUN_ASK_REFUSAL_LEAD = `(?:${RUN_ASK_REFUSAL_LEADS.map(refusalLeadSource).join('|')}`
+  + `|(?:do not|don't|dont|never) even (?:think about|consider))`;
+const RUN_ASK_REFUSAL_GAP = "(?:(?!(?:and|then|but|or)\\s)[\\w'-]+\\s+){0,2}";
+const RUN_ASK_NEGATED_SOURCE = String.raw`(?:\b${RUN_ASK_REFUSAL_LEAD}\s+${RUN_ASK_REFUSAL_GAP}|\bno\s+)$`;
 
 // The leads the gate reads before a phrase are a few words long, so each one is
 // read on a bounded window that ends where the phrase starts rather than on the
@@ -589,7 +626,7 @@ const RUN_ASK_NEGATED_SOURCE = String.raw`(?:\b(?:do not|don't|dont|never|no nee
 // boundary or lookbehind there reads the real characters before it. A lead longer
 // than the window is lost and none is invented. The Python fallback reads the
 // same window through its search bounds.
-const LEAD_WINDOW = 400;
+export const LEAD_WINDOW = 400;
 const LEAD_CONTEXT = 16;
 
 // A global pattern, because only a global pattern starts its search at a set

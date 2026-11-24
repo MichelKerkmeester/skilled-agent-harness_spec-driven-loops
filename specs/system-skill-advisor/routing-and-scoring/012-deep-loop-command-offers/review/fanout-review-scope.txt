@@ -30,3 +30,17 @@ specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/imple
 specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/plan.md
 specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/spec.md
 specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/tasks.md
+.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs
+.skilled/skills/system-deep-loop/runtime/tests/unit/reduce-state-refinement-other-file.vitest.ts
+.skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-refinements.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
+.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts
+.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-typed-command.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/deep-loop-ask-routing.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/multi-typed-command-gates.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/stage-one-loop-subject.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/subprocess-typed-fields.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts

@@ -599,6 +599,105 @@ D2 lists naming a deep loop, deep research, deep review, a research loop or a re
 
 ---
 
+<!-- ANCHOR:adr-007 -->
+## ADR-007: Amend REQ-011 to the two research aliases the hub carries
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Operator decision D8 in `scratch/decisions.md`, as amended after the build; recorded in the seventh fix round on the traceability review's P1 |
+
+---
+
+<!-- ANCHOR:adr-007-context -->
+### Context
+
+D8 named three loop-shaped research aliases for the hub: `iterative research`, `multi-round research` and `autonomous research`. The build added the first two and dropped the third, because its out-of-domain replay under `.skilled/repo-rules/skill-hub-routing.md` section 4 pulled a slide-deck prompt to the hub. `hub-router.json:34` and `ROUTER.md:63` carry the two that shipped, and T022 records the drop.
+
+REQ-011 was never amended: it still lists all three aliases as reaching both files, so a reader checking the requirement against the tree finds a clause that cannot hold. No acceptance row tested the alias set as built. The traceability review of 2026-11-24 raised this as its P1 finding.
+
+### Constraints
+
+- A requirement is amended by a recorded decision, never by a silent edit of its text. This record is that decision.
+- The alias set stays as shipped. Restoring `autonomous research` would re-add the out-of-domain route the replay rejected.
+- AC-016, AC-017 and AC-018 state the other clauses of REQ-011 and are left as they were recorded.
+<!-- /ANCHOR:adr-007-context -->
+
+---
+
+<!-- ANCHOR:adr-007-decision -->
+### Decision
+
+**We chose**: amend REQ-011 to the two research aliases the tree carries, record the drop here, and give the requirement an owning acceptance row that reads the alias set as built.
+
+**How it works**: REQ-011 names `iterative research` and `multi-round research` as the delivered set and points at this record for the third alias. AC-043 greps both hub files for the two aliases and for `autonomous research`, so an unrecorded alias change fails a row instead of leaving the requirement and the tree to drift apart.
+<!-- /ANCHOR:adr-007-decision -->
+
+---
+
+<!-- ANCHOR:adr-007-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Amend the requirement to the two aliases** | The requirement, the tree and the decision agree | The third alias exists only as a rejected candidate | 9/10 |
+| Restore `autonomous research` in both hub files | Keeps D8's first wording | Re-adds the slide-deck route the replay rejected, and needs a fresh replay first | 3/10 |
+| Leave REQ-011 and record the drop only in the scratch log | No documentation change | The packet's own requirement stays false, and the coverage gate cannot pass | 1/10 |
+
+**Why this one**: the alias was dropped on measured evidence, so the record has to follow the measurement rather than the plan.
+<!-- /ANCHOR:adr-007-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-007-consequences -->
+### Consequences
+
+**What improves**:
+- REQ-011 can be checked against the tree, and AC-043 fails if an alias is added or dropped without a record.
+
+**What it costs**:
+- A reader of D8's first wording needs this record to know why only two aliases shipped.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later alias is dropped the same way and again goes unrecorded | M | AC-043 reads both hub files, and the requirement names the exact set |
+<!-- /ANCHOR:adr-007-consequences -->
+
+---
+
+<!-- ANCHOR:adr-007-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found the requirement contradicted by the tree, with no amendment |
+| 2 | **Beyond Local Maxima?** | PASS | Restoring the alias was weighed and rejected on the replay |
+| 3 | **Sufficient?** | PASS | One requirement sentence, this record and one acceptance row |
+| 4 | **Fits Goal?** | PASS | The hub offers the loop on the wording it actually routes |
+| 5 | **Open Horizons?** | PASS | Reversing it is one alias in each hub file plus an ADR and a row |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-007-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-007-impl -->
+### Implementation
+
+**What changes**:
+- REQ-011 names the two aliases and points here. AC-043 tests the set in both hub files. T022 keeps the observed drop.
+
+**How to roll back**: replay the alias against an out-of-domain prompt, add it to `hub-router.json` and `ROUTER.md` if the replay stays off the hub, and amend REQ-011 and AC-043 in the same pass.
+<!-- /ANCHOR:adr-007-impl -->
+<!-- /ANCHOR:adr-007 -->
+
+---
+
 <!-- ANCHOR:operator-decisions -->
 ## Operator Decisions
 <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep the archive for 30 days`, gives the stated reason and names REQ-002. WEAK: Q004 says `Discussed retention` and leaves the other cells empty. -->
