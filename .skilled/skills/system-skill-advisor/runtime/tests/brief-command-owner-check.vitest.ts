@@ -106,12 +106,14 @@ describe('buildSkillAdvisorBrief command ownership', () => {
     expect(result.recommendations[0]).not.toHaveProperty('ownerSkillId');
   });
 
-  it('keeps the command, the policy and the owner of a row whose skill owns it', async () => {
+  it('keeps an owned command and prints the tracked policy and owner, not the child’s', async () => {
+    // The child's policy and owner differ from the tracked ones on purpose, so
+    // the case fails if the brief passes the child's fields through.
     serve(row({
       skill: 'sk-doc',
       command: '/create:readme',
-      policy: 'start',
-      ownerSkillId: 'sk-doc',
+      policy: 'run',
+      ownerSkillId: 'sk-code',
     }));
 
     const result = await buildSkillAdvisorBrief(PROMPT, options);

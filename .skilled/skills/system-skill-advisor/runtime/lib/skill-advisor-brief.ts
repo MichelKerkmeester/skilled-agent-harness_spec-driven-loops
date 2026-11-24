@@ -182,15 +182,18 @@ export function passingRecommendations(
 }
 
 // A subprocess row's command is text from the child, so the brief prints it only
-// where the tracked table names that command for the row's own skill. A row that
+// where the tracked table names that command for the row's own skill, and then
+// with the table's policy and owner, as the CLI path prints them, so the two
+// paths cannot tell the reader different things about one command. A row that
 // fails that check keeps its skill and its confidence and loses the command, the
 // policy and the owner, because a workflow the row's skill does not own is one
 // the reader cannot run from there.
 function ownedCommandRecommendation(recommendation: AdvisorRecommendation): AdvisorRecommendation {
   if (recommendation.command === undefined) return recommendation;
-  if (trackedCommandForOwner(recommendation.skill, recommendation.command) !== undefined) return recommendation;
+  const tracked = trackedCommandForOwner(recommendation.skill, recommendation.command);
   const { command: _command, policy: _policy, ownerSkillId: _ownerSkillId, ...rest } = recommendation;
-  return rest;
+  if (tracked === undefined) return rest;
+  return { ...rest, command: tracked.command, policy: tracked.policy, ownerSkillId: tracked.ownerSkillId };
 }
 
 function renderSharedBrief(
