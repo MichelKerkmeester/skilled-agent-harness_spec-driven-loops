@@ -39,6 +39,10 @@ contextType: "general"
 **2026-11-24:** A three-lineage deep review returned FAIL on its coverage gate (`bd771c9cbae`), and the sixth fix round answered it (`f2217f9ad60`). Outcome: the traceability rerun (T084, AC-040) was left open.
 
 **2026-11-24:** Four traceability reruns alternated with fix rounds seven to ten (`5792298078d` to `e7da77b240e`). Outcome: the reruns found 2, 1, 4 and 4 P1s. The fourth found no new word-rule gap in the gate, and its findings were a fallback parity gap and evidence cells cited by line number. The tenth round moved closure evidence to name-based citations.
+
+**2026-11-24:** The fifth traceability rerun, review generation 7, ran after the tenth round (`3287685dd7a`). Outcome: 3 P1s and 14 P2s, and the first rerun in which two of three lineages read `coverage-complete`.
+
+**2026-11-24:** The eleventh fix round answered generation 7 (`4edba5ad264`, `6e48734eeca`), and the sixth rerun, review generation 8, ran on its tree (`bfd30f8195f`). Outcome: no P0 or P1 and 9 P2s on closure records, the doctor command string and one research alias. Each lineage still failed one terminal gate, so AC-040 stayed open and the twelfth fix round answers the nine P2s.
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -50,5 +54,5 @@ contextType: "general"
 
 **Packet Complete after the closure pass:** target 2026-11-23. Status: Done, later reopened. Evidence: `77cb1e64a53`.
 
-**Traceability rerun passes its coverage gate (AC-040):** target a rerun after the tenth fix round. Status: In Progress. Evidence: `review/review-report.md`.
+**Traceability rerun passes its coverage gate (AC-040):** target a rerun after the twelfth fix round. Status: In Progress. Evidence: `review/review-report.md`.
 <!-- /ANCHOR:milestones -->

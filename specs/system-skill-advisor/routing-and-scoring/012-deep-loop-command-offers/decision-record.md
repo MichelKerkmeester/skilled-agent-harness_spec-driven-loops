@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T19:58:05Z"
+    last_updated_at: "2026-11-24T20:38:54Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded ADR-009 for the eleventh fix round"
     next_safe_action: "Record any decision the traceability rerun raises"
@@ -624,6 +624,7 @@ REQ-011 was never amended: it still lists all three aliases as reaching both fil
 - A requirement is amended by a recorded decision, never by a silent edit of its text. This record is that decision.
 - The alias set stays as shipped. Restoring `autonomous research` would re-add the out-of-domain route the replay rejected.
 - AC-016, AC-017 and AC-018 state the other clauses of REQ-011 and are left as they were recorded.
+- This record covers the hub's alias lists only, `hub-router.json` and the hub `ROUTER.md`, which pick the hub for a prompt. The deep-research mode packet also carries `autonomous research` in its `SKILL.md` keyword triggers, its `ROUTER.md` `LOOP_SETUP` keywords and its `README.md` trigger phrases, and the Python fallback boosts it in `skill_advisor.py`. Those entries predate this packet, and the replay ran with all of them in place, so the slide-deck route it rejected came from the hub alias the build was about to add. The mode packet's `ROUTER.md` keywords pick which references load after the hub has been chosen. This decision leaves those surfaces as they were, and removing them would be a separate change with its own replay.
 <!-- /ANCHOR:adr-007-context -->
 
 ---

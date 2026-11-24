@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T20:27:44Z"
+    last_updated_at: "2026-11-24T20:38:54Z"
     last_updated_by: "generate-context"
     recent_action: "Generation 8 recorded: 0 P0, 0 P1, 9 P2"
     next_safe_action: "Fix the nine generation 8 P2s, then run generation 9"
@@ -49,7 +49,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-deep-loop-command-offers |
-| **Completed** | 2026-11-23, closed again after the fresh-review round; reopened 2026-11-24 for the sixth fix round (`tasks.md` T066 to T085), again for the seventh fix round (`tasks.md` T086 and T087), again for the eighth (`tasks.md` T088 to T093), which fixes the four code findings of the second traceability rerun at `2520456bd3f`, again for the ninth (`tasks.md` T094 to T101), which fixes the third rerun's code findings at `3db3085bcf0` and `5ace62e10e6`, and again for the tenth (`tasks.md` T102 to T105), which fixes the fourth rerun's parity gap and reducer numbering at `9f1190407eb` and moves closure evidence to name-based citations, and again for the eleventh (`tasks.md` T106 to T111), which fixes the fifth rerun's whitespace gap and code P2s at `4edba5ad264` and seeds the review scope with the whole change set, with the traceability review rerun (T084) still open |
+| **Completed** | 2026-11-23, closed again after the fresh-review round; reopened 2026-11-24 for the sixth fix round (`tasks.md` T066 to T085), again for the seventh fix round (`tasks.md` T086 and T087), again for the eighth (`tasks.md` T088 to T093), which fixes the four code findings of the second traceability rerun at `2520456bd3f`, again for the ninth (`tasks.md` T094 to T101), which fixes the third rerun's code findings at `3db3085bcf0` and `5ace62e10e6`, and again for the tenth (`tasks.md` T102 to T105), which fixes the fourth rerun's parity gap and reducer numbering at `9f1190407eb` and moves closure evidence to name-based citations, and again for the eleventh (`tasks.md` T106 to T111), which fixes the fifth rerun's whitespace gap and code P2s at `4edba5ad264` and seeds the review scope with the whole change set, and again for the twelfth (`tasks.md` T112 to T114), which shares the doctor command name, closes the sixth rerun's closure-record P2s and rewrites the review focus, with the traceability review rerun (T084) still open |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -195,6 +195,9 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Eleventh round: advisor suite | `npm run build` exit 0, then `npx vitest run` in `$ADV` reports 186 files, 3,518 passed, 4 skipped, 0 failed |
 | Eleventh round: Python suite and probes | `PY` prints `cases=359` and `pass=136, fail=0`, and the probe compare prints `changes=0 guarded_failures=0` |
 | Eleventh round: deep-loop runtime | `npx vitest run tests/unit` reports 192 files, 3,635 passed, 2 skipped, 0 failed |
+| Twelfth round: code finding | The scorer reads the doctor command name from the one `DEEP_LOOP_DOCTOR_COMMAND` export in `command-attach.ts` and builds its naming pattern from it, in that round's tree |
+| Twelfth round: advisor suite | `npm run build` exit 0, then `npx vitest run` in `$ADV` reported 186 files, 3,518 passed, 4 skipped, 0 failed in that round |
+| Twelfth round: Python suite and probes | `PY` printed `cases=359` and `pass=136, fail=0`, and the probe compare printed `changes=0 guarded_failures=0`, in that round |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -267,6 +270,8 @@ A ninth round fixed the third traceability rerun's findings (`review/review-repo
 A tenth round fixed the fourth traceability rerun's findings (`review/review-report.md`, generation 6, FAIL on its coverage gate, with no new word-rule gap in the gate). The Python fallback now keeps no run row on "run two deep loops on the cache layer", as the native gate and ADR-008 do, and the fixture spells that absence `"none"`, so a copy that keeps both rows fails the test. The review reducer keeps a strategy's own section numbers. Every acceptance and task citation now names its evidence by symbol, test title, fixture row id, summary row label or task id, and each acceptance row ends with one `Evidence:` tail that `scratch/citations/evidence-tails.py` checks against the tree, so a later edit above a cited line no longer breaks a cell silently.
 
 An eleventh round fixed the fifth rerun's findings (`review/review-report.md`, generation 7, FAIL on coverage in one lineage, with two lineages at `coverage-complete`). "run a deep  review of the auth module" with two spaces, a tab, a line break or a non-breaking space between the words now keeps `/deep:review`, because both copies collapse whitespace when they fold the prompt. "do not skip the deep review, run it properly" keeps its command, while "skip the deep review" still withholds it. The drift guard now compares 40 gate pattern pairs and lists 38 it cannot compare, each with a reason, and the review reducer's Next Focus no longer swallows the iteration verdict. AC-020 is waived under ADR-009, because the builder reports its blind-writer clause rests on were never kept, and AC-034's served head is now a recorded probe.
+
+A twelfth round fixed the sixth rerun's findings (generation 8, archived at `review-archive/20261124T203829Z/review-report.md`, no P0 or P1 and nine P2s, with each lineage failing one terminal gate). The scorer now reads the doctor command name from the attach layer's one export instead of a second copy. The closure docs no longer state a drift-guard pair count for the tree as it stands, T111 is scoped to tracked files, REQ-025 drops a caller that no longer exists, ADR-007 says it covers the hub alias lists only, and the timeline reaches generation 8. Generation 8's gate failures came from how the lineages ran: one recorded traceability alone, one left `checklist_evidence` partial on the drifted tasks and one recorded bare file names. So the generation 9 focus asks for all four dimensions before the last iteration and for full repo-relative finding paths, and it leaves the gates unchanged.
 
 What stays open:
 1. **The blind -04 holdouts score 2 of 3.**
