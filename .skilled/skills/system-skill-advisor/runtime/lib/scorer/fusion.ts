@@ -328,10 +328,13 @@ function promptMentionsSkill(promptLower: string, skill: SkillProjection): boole
 
 // The last segment of a skill id is the noun that names it ("doctor" in
 // system-skilled-doctor). Short segments such as "use" or "doc" are left out,
-// because they occur in ordinary prompts that name nothing.
-function promptNamesIdNoun(promptLower: string, skillId: string): boolean {
+// because they occur in ordinary prompts that name nothing. The noun alone is
+// not enough: "loop", "mode" and "tooling" are ordinary words too, so it
+// names the skill only when the lexical lane also matched another prompt word.
+function promptNamesIdNoun(promptLower: string, skillId: string, lexicalEvidence: readonly string[]): boolean {
   const noun = skillId.split('-').at(-1) ?? '';
-  return noun.length >= 4 && matchesPhraseBoundary(promptLower, noun);
+  if (noun.length < 4 || !matchesPhraseBoundary(promptLower, noun)) return false;
+  return lexicalEvidence.some((entry) => entry.startsWith('token:') && entry !== `token:${noun}`);
 }
 
 function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean {
@@ -1228,7 +1231,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     const hasNamedAnchor = (explicitContribution?.rawScore ?? 0) > 0
       || (lexicalContribution?.evidence.some((entry) => entry.startsWith('hint:')) ?? false)
       || (lexicalContribution?.rawScore ?? 0) >= SCORING_CALIBRATION.confidence.taskIntentLexicalAnchorFloor
-      || promptNamesIdNoun(promptLower, skill.id);
+      || promptNamesIdNoun(promptLower, skill.id, lexicalContribution?.evidence ?? []);
     const derivedDominant = isDerivedDominant(contributions);
     const liveNormalized = score / liveTotal;
     const confidenceResult = confidenceFor({
