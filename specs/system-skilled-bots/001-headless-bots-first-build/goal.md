@@ -117,6 +117,7 @@ and findings belong here.
 | 008 hub wiring review loop | Done | reviews 2-5 fixed, review 5 APPROVED, gates green, f4c318d856a pushed to origin/system-skilled-bots |
 | Phase 006 closed | done | hand rollback scratch/rollback-run-result.txt; security review fixed record-label check; suite 373/373, strict 10 PASSED |
 | Executor pin for scheduled runs | done | installer.vitest.ts:693-726; suite 377/377; mutations fail |
+| Drain executor pin for queued runs | done | installer.vitest.ts:726; suite 378/378; mutation fails |
 
 ### Deviations and findings
 

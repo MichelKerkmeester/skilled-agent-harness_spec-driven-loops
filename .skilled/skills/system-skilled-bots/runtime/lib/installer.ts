@@ -204,6 +204,12 @@ export interface InstallRecord {
    * Absent in records written before the field existed.
    */
   executor?: ExecutorPin | null;
+  /**
+   * The drain job's executors: every kind whose binary the installing shell
+   * resolved, since the queue may hold a request for any enabled bot. Absent
+   * on a bot's record.
+   */
+  executors?: ExecutorPin[];
   schedule: { expression: string; scheduleIndex: number } | null;
   hold: Hold | null;
   installedAt: string;
@@ -1017,6 +1023,7 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
     skilledKind: pre.tree.kind,
     pinCommit: pre.tree.kind === 'vendored' ? pre.tree.pinCommit : null,
     executor: pre.definition !== null ? pinExecutor(pre.definition.runtime.kind, input.env ?? process.env) : null,
+    ...(pre.agent === 'drain' ? { executors: pinAllExecutors(input.env ?? process.env) } : {}),
     schedule: pre.definition !== null && pre.definition.trigger.kind === 'cron' ? { expression: pre.definition.trigger.expression, scheduleIndex: 0 } : null,
     hold,
     installedAt: now.toISOString(),
@@ -1336,9 +1343,24 @@ export function scheduledRunEnv(input: { checkoutRoot: string; botId: string; en
     kind = null;
   }
   if (kind !== pin.kind) return input.env;
-  const folders = [dirname(pin.path), dirname(record.interpreter)];
-  const rest = String(input.env.PATH ?? '').split(delimiter).filter((entry) => entry !== '' && !folders.includes(entry));
-  return { ...input.env, PATH: [...new Set(folders), ...rest].join(delimiter) };
+  return withPathFirst(input.env, [dirname(pin.path), dirname(record.interpreter)]);
+}
+
+/** Every executor kind whose binary resolves, for the drain job's record. */
+function pinAllExecutors(env: NodeJS.ProcessEnv): ExecutorPin[] {
+  const pins: ExecutorPin[] = [];
+  for (const kind of Object.keys(EXECUTOR_ADAPTER_CAPABILITIES)) {
+    const pin = pinExecutor(kind, env);
+    if (pin !== null && pin.path !== null) pins.push(pin);
+  }
+  return pins;
+}
+
+/** The environment with the given folders first on PATH, each once. */
+function withPathFirst(env: NodeJS.ProcessEnv, folders: string[]): NodeJS.ProcessEnv {
+  const first = [...new Set(folders)];
+  const rest = String(env.PATH ?? '').split(delimiter).filter((entry) => entry !== '' && !first.includes(entry));
+  return { ...env, PATH: [...first, ...rest].join(delimiter) };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1348,7 +1370,8 @@ export function scheduledRunEnv(input: { checkoutRoot: string; botId: string; en
 function recordReasons(record: InstallRecord): ReinstallReason[] {
   const reasons: ReinstallReason[] = [];
   if (!existsSync(record.plistRunnerPath)) reasons.push('runner-missing');
-  if (typeof record.executor?.path === 'string' && !existsSync(record.executor.path)) reasons.push('executor-missing');
+  const pinned = [record.executor, ...(record.executors ?? [])];
+  if (pinned.some((pin) => typeof pin?.path === 'string' && !existsSync(pin.path))) reasons.push('executor-missing');
   const now = detectSkilledTree(record.checkoutRoot);
   if (!now.ok || now.value.repoRunnerRealPath !== record.repoRunnerRealPath || now.value.treeRoot !== record.treeRoot) {
     reasons.push('runner-retargeted');
@@ -1473,7 +1496,11 @@ export async function scheduledDrain(input: DrainInput & { now?: Date; drain?: (
     }
   }
 
-  const result = await (input.drain ?? drainQueue)({ ...input, resolveEnv });
+  // launchd starts the drain job with a bare PATH, so the runs it dispatches get the executors pinned at install.
+  const record = context.ok ? readInstallRecord(context.value.stateRoot, context.value.identity, DRAIN_ID) : null;
+  const pinnedFolders = (record?.executors ?? []).flatMap((pin) => (pin.path !== null ? [dirname(pin.path)] : []));
+  const env = record !== null && pinnedFolders.length > 0 ? withPathFirst(input.env ?? process.env, [...pinnedFolders, dirname(record.interpreter)]) : input.env;
+  const result = await (input.drain ?? drainQueue)({ ...input, ...(env !== undefined ? { env } : {}), resolveEnv });
   if (!context.ok) {
     // No identity, no state folder to remember a fault in; the throttle alone bounds the starts.
     return result.ok ? { kind: 'drained', report: result.value } : { kind: 'refused', reason: result.reason, detail: result.detail ?? null, backoffUntil: null };

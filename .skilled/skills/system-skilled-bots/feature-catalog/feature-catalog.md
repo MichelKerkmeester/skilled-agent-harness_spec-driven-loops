@@ -8,7 +8,7 @@ trigger_phrases:
   - "bots cli inventory"
   - "feature catalog"
 last_updated: "2026-11-23"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # system-skilled-bots: Feature Catalog
@@ -117,7 +117,7 @@ Installs a cron bot or the queue-drain job as a launchd agent through one prefli
 
 #### Current Reality
 
-Every install reruns its preflight, then renders, lints, boots out, moves, bootstraps and reads back the job in one transaction. Every job pins the state root and identity, and a bot job carries the scheduled-fire marker. The install record pins the bot's executor path, which a scheduled fire puts first on its otherwise bare PATH. Install and enable approve the bot's definition. A first install stays disabled until `bots enable`. Labels carry the identity, bot id and schedule index. The id `drain` is the per-identity queue-drain job. Install records let status name a stale install that needs a reinstall.
+Every install reruns its preflight, then renders, lints, boots out, moves, bootstraps and reads back the job in one transaction. Every job pins the state root and identity, and a bot job carries the scheduled-fire marker. The install record pins the bot's executor path, which a scheduled fire puts first on its otherwise bare PATH; the drain job pins every executor the shell resolves for the queued runs it starts. Install and enable approve the bot's definition. A first install stays disabled until `bots enable`. Labels carry the identity, bot id and schedule index. The id `drain` is the per-identity queue-drain job. Install records let status name a stale install that needs a reinstall.
 
 #### Source Files
 

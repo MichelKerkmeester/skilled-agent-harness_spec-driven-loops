@@ -12,16 +12,17 @@
     "schedule",
     "event"
   ],
-  "lastUpdated": "2026-11-24T14:29:24.884Z",
+  "lastUpdated": "2026-11-24T14:33:27.531Z",
   "specId": "001",
   "folderSlug": "headless-bots-first-build",
   "parentChain": [
     "system-skilled-bots"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "24-11-26_13-45__closed-phase-6-ran-the-plan-md-rollback-by-hand.md",
     "24-11-26_15-28__built-the-executor-pin-install-records-the.md",
-    "24-11-26_15-29__built-the-executor-pin-install-records-the.md"
+    "24-11-26_15-29__built-the-executor-pin-install-records-the.md",
+    "24-11-26_15-33__extended-the-executor-pin-to-the-drain-job-its.md"
   ]
 }

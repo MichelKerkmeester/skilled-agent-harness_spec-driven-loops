@@ -6,7 +6,7 @@ trigger_phrases:
   - "bots schedule install"
   - "install a bot schedule"
   - "/bots:schedule"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # launchd installer (bots schedule install)
@@ -39,7 +39,7 @@ An install approves the exact `BOT.md` bytes its preflight vetted and the curren
 
 ### Install Records And Uninstall
 
-Each install writes a record under the user-level state root naming what the job runs, the real path it resolved to, the kind of `.skilled` tree and a vendored tree's pin. It also pins the bot's executor: the absolute path a plain `/bin/sh` resolves for the executor binary in the installing shell, or null when none resolves. launchd starts a job with a bare PATH, so a scheduled fire runs with the pinned executor's folder and the interpreter's folder put first on its PATH, as long as the definition still names that kind. The job file itself carries no PATH. A read-only check compares each record with the tree as it is now and names a reinstall reason such as a missing or retargeted runner, a pinned executor that is gone, a changed kind or pin and a changed identity or state root. `bots schedule uninstall` removes a schedule and sweeps this identity's orphaned jobs.
+Each install writes a record under the user-level state root naming what the job runs, the real path it resolved to, the kind of `.skilled` tree and a vendored tree's pin. It also pins the bot's executor: the absolute path a plain `/bin/sh` resolves for the executor binary in the installing shell, or null when none resolves. launchd starts a job with a bare PATH, so a scheduled fire runs with the pinned executor's folder and the interpreter's folder put first on its PATH, as long as the definition still names that kind. The drain job's record pins every executor the shell resolves, and a scheduled drain pass puts all their folders first on the PATH its runs get, so a bot that is only enabled still finds its executor. The job file itself carries no PATH. A read-only check compares each record with the tree as it is now and names a reinstall reason such as a missing or retargeted runner, a pinned executor that is gone, a changed kind or pin and a changed identity or state root. `bots schedule uninstall` removes a schedule and sweeps this identity's orphaned jobs.
 
 ---
 

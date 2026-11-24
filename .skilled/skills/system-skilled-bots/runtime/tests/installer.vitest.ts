@@ -723,6 +723,32 @@ describe('executor pin', () => {
     expect(checkOf(world)).toMatchObject({ status: 'ok', reasons: [] });
   });
 
+  it('pins every resolvable executor for the drain job, and a drain pass hands its runs that PATH', async () => {
+    const bin = stubExecutor();
+    const world = installWorld();
+    mustInstall(world, DRAIN_ID, { env: { ...world.env, PATH: `${bin}:${LAUNCHD_PATH}` } });
+    const record = readInstallRecord(world.stateRoot, IDENTITY, DRAIN_ID);
+    expect(record?.executors).toContainEqual({ kind: 'cli-codex', path: join(bin, 'codex') });
+    expect(record?.executors?.every((pin) => pin.path !== null)).toBe(true);
+
+    let seen: NodeJS.ProcessEnv | undefined;
+    const capture = (input: DrainInput) => {
+      seen = input.env;
+      return drainQueue(input);
+    };
+    const bare = { ...world.env, PATH: LAUNCHD_PATH };
+    await scheduledDrain({ checkoutRoot: world.checkoutRoot, skilledTree: world.skilledTree, env: bare, drain: capture });
+    expect(String(seen?.PATH).split(':').slice(0, 2)).toEqual([bin, dirname(process.execPath)]);
+    const drainLabel = buildDrainLabel(IDENTITY);
+    if (!drainLabel.ok) throw new Error(drainLabel.reason);
+    const job = plistJson(join(world.agentsDir, `${drainLabel.value}.plist`));
+    expect(Object.keys((job.EnvironmentVariables as Record<string, string> | undefined) ?? {})).not.toContain('PATH');
+
+    rmSync(join(bin, 'codex'));
+    const row = checkInstalls({ stateRoot: world.stateRoot, identity: IDENTITY, agentsDir: world.agentsDir }).find((candidate) => candidate.botId === DRAIN_ID);
+    expect(row).toMatchObject({ status: 'needs-reinstall', reasons: ['executor-missing'] });
+  });
+
   it('flags a pinned executor that is gone as executor-missing', () => {
     const bin = stubExecutor();
     const world = installWorld();

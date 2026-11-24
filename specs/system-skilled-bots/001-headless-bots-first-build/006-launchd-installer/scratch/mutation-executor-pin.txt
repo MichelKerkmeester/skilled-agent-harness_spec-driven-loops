@@ -1,3 +1,5 @@
 M1 remove the PATH prepend in scheduledRunEnv: "pins the executor ... bare PATH" fails, 1 failed | 3 passed
 M2 remove the executor-missing reason: "flags a pinned executor that is gone" fails, 1 failed | 3 passed
 Both restored; the executor pin tests pass 4 of 4.
+M3 apply no pinned PATH in scheduledDrain: "pins every resolvable executor for the drain job ..." fails, 1 failed
+Restored; the executor pin tests pass 5 of 5.
