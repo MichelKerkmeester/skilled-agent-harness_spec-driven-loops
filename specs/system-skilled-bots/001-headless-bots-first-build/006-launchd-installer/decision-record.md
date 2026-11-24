@@ -652,6 +652,9 @@ The queue lives under the state root keyed by repository identity (research.md Â
 | Q007 | After the fourth review returned REQUESTED_CHANGES (an identity read from the shell's `GITHUB_REPOSITORY` diverges from the job's), close the class by construction: one builder makes the env launchd gives the job, install refuses with `job-env-diverges` when `(identity, state root)` differs between the shell env and the job env, every verb uses the job env, then one fifth review. No further per-variable round is offered | Operator answer, 2026-11-23. The operator picked the recommended option | Q006's per-verb fix and patching one variable per round | REQ-003, REQ-004, NFR-S02, R-002 |
 | Q008 | After the fifth review returned REQUESTED_CHANGES (installed jobs were looked up by the live identity, so an identity change orphaned a firing job), fix it by looking jobs up by the `--repo` path in each job file, add an `identity-changed` refusal and reinstall reason, make disable stop the old label, fold in the three P2s, and verify by orchestrator rerun with no further review | Operator answer, 2026-11-23. The operator picked the recommended option | A sixth review round | REQ-003, R-002 |
 | Q009 | A scheduled run finds its executor through an absolute path resolved on the shell's PATH at install and kept in the install record. | Not stated. | None | spec.md open questions, implementation-summary.md Known Limitations 2 |
+| Q010 | Build the executor path pin for scheduled runs next. | Not stated. | None | REQ-019, AC-019, T031 to T034 |
+| Q011 | Extend the executor pin to queued runs the drain job starts. | Not stated. | None | REQ-020, AC-020, T035 to T037 |
+| Q012 | Run one live model fire under launchd to prove the pinned executor. | Not stated. | None | implementation-summary.md Verification, scratch/live-model-fire.sh |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -695,6 +698,69 @@ Leave it open
 Answer:
 ```text
 Pin absolute path (Recommended)
+```
+
+### Q010
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_01Ax2XGTaQtPtVnyUXWWJ7zL:0 -->
+
+Question:
+```text
+Phase 006 is closed and pushed. Scheduled bots still can't reach their executor, because launchd's bare PATH hides `codex` and the other CLIs. You chose to pin each executor's absolute path at install, and that build is the next piece of work. What should I do next?
+```
+
+Options:
+```text
+Build path pinning (Recommended)
+Close 003/004/005/007 rows
+Both, pinning first
+Stop here
+```
+
+Answer:
+```text
+Build path pinning (Recommended)
+```
+
+### Q011
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_01HzPv5cm8r9eWhHt1rQzA2V:0 -->
+
+Question:
+```text
+Scheduled bots can now find their executor (pushed as ccccc90822a). Queued runs still can't: the drain job also starts under launchd's bare PATH, and a bot that is only enabled has no install record to take a path from. What should I do next?
+```
+
+Options:
+```text
+Pin for drain too (Recommended)
+Close 003/004/005/007
+Both, drain first
+Stop here
+```
+
+Answer:
+```text
+Pin for drain too (Recommended)
+```
+
+### Q012
+<!-- source: claude:335d5a41-9d36-45cb-8bae-6e6010fef894:toolu_01C3Xc8C9nRtxU4b7T37sDrP:1 -->
+
+Question:
+```text
+Executor pinning is done for both scheduled and queued runs. What should I do next on system-skilled-bots?
+```
+
+Options:
+```text
+Close 003/004/005/007 (Recommended)
+Live model fire test
+Prepare the merge to main
+Stop here
+```
+
+Answer:
+```text
+Live model fire test
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

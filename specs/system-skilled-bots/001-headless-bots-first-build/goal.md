@@ -118,6 +118,7 @@ and findings belong here.
 | Phase 006 closed | done | hand rollback scratch/rollback-run-result.txt; security review fixed record-label check; suite 373/373, strict 10 PASSED |
 | Executor pin for scheduled runs | done | installer.vitest.ts:693-726; suite 377/377; mutations fail |
 | Drain executor pin for queued runs | done | installer.vitest.ts:726; suite 378/378; mutation fails |
+| Live model fire under launchd | done | 006 scratch/live-model-fire-result.txt:42,56 converged, PONG |
 
 ### Deviations and findings
 

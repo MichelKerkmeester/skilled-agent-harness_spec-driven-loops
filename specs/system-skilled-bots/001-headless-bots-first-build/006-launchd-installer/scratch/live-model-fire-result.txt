@@ -1,0 +1,70 @@
+date: 2026-11-24T14:39:04Z  macOS: 27.0.1  domain: gui/501
+shell resolves vibe at: /Users/michelkerkmeester/.local/bin/vibe
+launchd PATH resolves vibe: none
+--- install
+$ bots schedule install pong
+  render	0
+  lint	0
+  disable	0	first-install
+  bootout	-	not loaded; nothing to boot out
+  move	0	/Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-model-probe.pong.0.plist
+  bootstrap	5	held (first-install): Bootstrap failed: 5: Input/output error
+Try re-running the command as root for richer errors.
+  print	1	not loaded: held disabled
+  read-back	0
+bots: installed com.skilled.bots.local_2fbots-model-probe.pong.0 at /Users/michelkerkmeester/Library/LaunchAgents/com.skilled.bots.local_2fbots-model-probe.pong.0.plist
+bots: held disabled (first-install); nothing fires until: bots enable pong
+bots: next fire: UNKNOWN
+bots: check: ok
+exit=0
+label: com.skilled.bots.local_2fbots-model-probe.pong.0
+install record executor: {"kind":"cli-mistral-vibe","path":"/Users/michelkerkmeester/.local/bin/vibe"}
+job EnvironmentVariables keys: {"SKILLED_BOTS_STATE_ROOT":"\/var\/folders\/3c\/zfqcqsts0kn19cgblj82gqhm0000gn\/T\/bots-model-T5lytc\/state","SKILLED_BOTS_SCHEDULED_FIRE":"1","SKILLED_BOTS_IDENTITY":"local\/bots-model-probe"}
+--- enable
+$ bots enable pong
+  enable	0	com.skilled.bots.local_2fbots-model-probe.pong.0
+  bootstrap	0	com.skilled.bots.local_2fbots-model-probe.pong.0
+  print	0	com.skilled.bots.local_2fbots-model-probe.pong.0
+bots: pong no longer disabled
+exit=0
+--- wait for one fire and its record (up to 15 minutes)
+$ bots disable pong
+bots: pong disabled
+  disable	0	com.skilled.bots.local_2fbots-model-probe.pong.0
+  bootout	0	com.skilled.bots.local_2fbots-model-probe.pong.0
+exit=0
+record: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-model-T5lytc/state/local%2Fbots-model-probe/records/20261124T144005Z-31faf449.json
+{
+  "source": "schedule",
+  "firedSlot": "2026-11-24T14:40:00.000Z",
+  "latenessClass": "on-time",
+  "exit": {
+    "reason": "converged",
+    "class": null,
+    "needsYouItemId": null,
+    "refusal": null
+  },
+  "executor": {
+    "isolation": "shared",
+    "sandbox": "read-only",
+    "executorKind": "cli-mistral-vibe",
+    "model": "deepseek-flash"
+  }
+}
+run folder: /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/local%2Fbots-model-probe/runs/20261124T144005Z-31faf449
+stdout.log (first 20 lines):
+PONG
+agent log:
+[executor-audit] child stdout 5 bytes, not echoed
+bots: pong run 20261124T144005Z-31faf449 completed
+--- uninstall
+$ bots schedule uninstall pong
+  delete	0	com.skilled.bots.local_2fbots-model-probe.pong.0
+bots: removed com.skilled.bots.local_2fbots-model-probe.pong.0
+bots: com.skilled.bots.local_2fbots-model-probe.pong.0 stays in the scheduler's disabled list (harmless with no job file)
+bots: run folders and run records were left in place
+exit=0
+hub job files left for this identity: 0
+print after uninstall: exit=113
+scratch: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//bots-model-T5lytc
+DONE
