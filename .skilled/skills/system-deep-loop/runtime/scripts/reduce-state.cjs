@@ -2401,13 +2401,30 @@ function buildExhaustedApproaches(iterationFiles) {
     .join('\n\n');
 }
 
-/** Replaces a machine-owned strategy section, matched by anchor id and then by heading; when neither exists it appends the section under `createMissing`, and otherwise throws a MISSING_ANCHOR error. A heading authored directly above the anchor marker is absorbed into the replacement so normalizing a heading-first file never leaves two headings for one section. */
+/** Replaces a machine-owned strategy section, matched by anchor id and then by heading; when neither exists it appends the section under `createMissing`, and otherwise throws a MISSING_ANCHOR error. A heading authored directly above the anchor marker is absorbed into the replacement so normalizing a heading-first file never leaves two headings for one section. An existing section keeps the ordinal the file gave it, so a document that numbers its own sections never ends up with two headings sharing a number. */
 function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
   const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
-  const replacement = [
+
+  // The template and the reducer's defaults can number the same section
+  // differently. Writing the default over a number the file already carries
+  // would leave two headings sharing it, so a reader citing "section 5" cannot
+  // tell which one is meant; the file's own numbering wins wherever it exists,
+  // and only a section created from scratch adopts the caller's number.
+  const ordinalPattern = new RegExp(`##\\s+(\\d+[A-Za-z]?)\\.\\s+${headingCore(heading)}`, 'i');
+  const firstOrdinal = (texts) => {
+    for (const text of texts) {
+      const found = text ? ordinalPattern.exec(text) : null;
+      if (found) return found[1];
+    }
+    return '';
+  };
+  const headingFor = (ordinal) => (ordinal
+    ? `${ordinal}. ${heading.replace(/^\d+[A-Za-z]?\.\s+/, '')}`
+    : heading);
+  const buildReplacement = (resolvedHeading) => [
     `<!-- ANCHOR:${anchorId} -->`,
-    `## ${heading}`,
+    `## ${resolvedHeading}`,
     body.trim() ? body.trim() : '[None yet]',
     '',
     `<!-- /ANCHOR:${anchorId} -->`,
@@ -2423,7 +2440,13 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   );
 
   // Function replacements keep `$`-sequences in section text literal.
-  if (pattern.test(content)) {
+  const anchorMatch = pattern.exec(content);
+  if (anchorMatch) {
+    const authoredMatch = authoredHeading.exec(content);
+    const replacement = buildReplacement(headingFor(firstOrdinal([
+      anchorMatch[0],
+      authoredMatch ? authoredMatch[0] : '',
+    ])));
     // The separator group keeps the blank line the authored heading sat under.
     const normalized = authoredHeading.test(content)
       ? content.replace(authoredHeading, (_match, separator) => separator)
@@ -2437,10 +2460,13 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   // templated file is normalized in place instead of leaving the original
   // section untouched and appending a duplicate one alongside it.
   const headingPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
-  if (headingPattern.test(content)) {
+  const headingMatch = headingPattern.exec(content);
+  if (headingMatch) {
+    const replacement = buildReplacement(headingFor(firstOrdinal([headingMatch[0]])));
     return content.replace(headingPattern, () => `\n${replacement}`);
   }
 
+  const replacement = buildReplacement(heading);
   if (options.createMissing) {
     const suffix = content.endsWith('\n') ? '' : '\n';
     return `${content}${suffix}\n${replacement}\n`;
@@ -2576,13 +2602,16 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
   }
 
   let updated = strategyContent;
+  // These defaults carry the shipped template's numbers, so a strategy file
+  // bootstrapped with the create-missing path matches the template. A file that
+  // already numbers a section differently keeps its own number.
   updated = replaceAnchorSection(updated, 'review-dimensions', '3. REVIEW DIMENSIONS (remaining)', remainingDimensions, anchorOptions);
-  updated = replaceAnchorSection(updated, 'completed-dimensions', '4. COMPLETED DIMENSIONS', completedDimensions, anchorOptions);
-  updated = replaceAnchorSection(updated, 'running-findings', '5. RUNNING FINDINGS', runningFindings, anchorOptions);
+  updated = replaceAnchorSection(updated, 'completed-dimensions', '6. COMPLETED DIMENSIONS', completedDimensions, anchorOptions);
+  updated = replaceAnchorSection(updated, 'running-findings', '7. RUNNING FINDINGS', runningFindings, anchorOptions);
   updated = replaceAnchorSection(
     updated,
     'exhausted-approaches',
-    '9. EXHAUSTED APPROACHES (do not retry)',
+    '10. EXHAUSTED APPROACHES (do not retry)',
     buildExhaustedApproaches(iterationFiles),
     anchorOptions,
   );
@@ -2611,7 +2640,7 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     '11. RULED OUT DIRECTIONS',
     anchorOptions,
   );
-  updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus, anchorOptions);
+  updated = replaceAnchorSection(updated, 'next-focus', '12. NEXT FOCUS', nextFocus, anchorOptions);
   return updated;
 }
 

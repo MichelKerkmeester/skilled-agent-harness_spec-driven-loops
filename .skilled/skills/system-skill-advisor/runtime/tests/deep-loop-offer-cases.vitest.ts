@@ -62,7 +62,7 @@ interface OfferCase {
   readonly servedReviewKept?: boolean;
   readonly typedRunsKept?: readonly string[];
   readonly readOnlyRunKept?: 'review' | 'research';
-  readonly servedRun?: 'review' | 'research' | null;
+  readonly servedRun?: 'review' | 'research' | 'none';
   readonly doctorWithheld?: boolean;
 }
 
@@ -275,10 +275,22 @@ describe('deep-loop offer cases shared with the Python fallback', () => {
   // mode's command, which is the deferred route's whole job when the hub's router
   // finds no phrase to score. A prompt that names no single mode leaves the
   // choice with the reader, so the route offers no command rather than guessing
-  // one the reader never asked for. The Python gate keeps the same rows.
+  // one the reader never asked for. The column spells that absence "none", and
+  // the Python gate answers it with no run row at all.
   it.each(servedCases.map((entry) => [entry.id, entry] as const))('served run: %s', (_id, entry) => {
-    expect(attachCommand('system-deep-loop', { action: 'defer' }, entry.prompt), entry.prompt)
-      .toBe(entry.servedRun === null ? undefined : LOOP_COMMANDS[entry.servedRun]);
+    const served = entry.servedRun === undefined || entry.servedRun === 'none'
+      ? undefined
+      : LOOP_COMMANDS[entry.servedRun];
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, entry.prompt), entry.prompt).toBe(served);
+  });
+
+  // Two readings share one value when the column is null: an ask that serves no
+  // run and an ask that serves both. The column is therefore read for an explicit
+  // answer, so no case can hide its run count behind a missing value.
+  it('answers the served column explicitly', () => {
+    const answered = cases.filter((entry) => 'servedRun' in entry);
+    expect(answered.length).toBeGreaterThan(0);
+    for (const entry of answered) expect(['review', 'research', 'none'], entry.id).toContain(entry.servedRun);
   });
 
   // A plural loop name is an ask for the run as well as for the loop, so the

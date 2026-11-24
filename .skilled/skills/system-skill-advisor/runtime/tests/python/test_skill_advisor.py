@@ -2900,8 +2900,8 @@ def test_deep_loop_offer_gate_parity():
                 if kept_runs != sorted(case["typedRunsKept"]):
                     wrong.append((case["id"], "typed run rows kept", kept_runs))
             # A run ask that names a mode is served by that mode's row alone, and
-            # an ask that names no single mode keeps both, which is the same answer
-            # the native deferred route gives when it offers no command.
+            # an ask that names no single mode keeps no run row, which is the same
+            # answer the native deferred route gives when it offers no command.
             if "servedRun" in case:
                 served_rows = advisor._apply_deep_loop_offer_gate(
                     [{"skill": skill} for skill in advisor._DEEP_LOOP_RUN_ROWS], case["prompt"].lower()
@@ -2909,8 +2909,10 @@ def test_deep_loop_offer_gate_parity():
                 served_modes = sorted(
                     advisor._DEEP_LOOP_RUN_ROWS[row["skill"]].rsplit(":", 1)[-1] for row in served_rows
                 )
-                if case["servedRun"] is None:
-                    served_ok = len(served_modes) != 1
+                if case["servedRun"] not in ("review", "research", "none"):
+                    wrong.append((case["id"], "served run column needs an explicit answer", case["servedRun"]))
+                elif case["servedRun"] == "none":
+                    served_ok = served_modes == []
                 else:
                     served_ok = served_modes == [case["servedRun"]]
                 if not served_ok:

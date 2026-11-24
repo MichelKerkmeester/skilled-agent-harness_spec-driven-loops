@@ -5693,7 +5693,8 @@ def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str)
     read-only loop mode never makes, so the run row stays as the native gate keeps
     it and only the doctor row drops. A run ask that names a mode is served by that
     mode alone, so the other mode's row drops as the native gate withholds it,
-    while an ask that names both modes or neither leaves the choice to the reader.
+    while an ask that names both modes or neither keeps no run row at all: the
+    reader has not asked for either workflow yet, so the mode stays their choice.
     """
     typed = _typed_deep_commands(prompt_lower)
     run_asked = asks_for_loop_run(prompt_lower)
@@ -5738,8 +5739,10 @@ def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str)
             if no_edit and command.rsplit(":", 1)[-1] not in _READ_ONLY_LOOP_MODE_LIST:
                 continue
             # A typed command is the reader's own choice of mode, so it stands; an
-            # offered row answers the mode the ask names and no other.
-            if not typed_here and asked_mode is not None and command.rsplit(":", 1)[-1] != asked_mode:
+            # offered row answers the mode the ask names and no other. An ask that
+            # names no single mode has asked for no particular workflow, so the
+            # mode stays the reader's choice and no run row is offered for it.
+            if not typed_here and command.rsplit(":", 1)[-1] != asked_mode:
                 continue
             if typed_here:
                 rec["typed"] = True
