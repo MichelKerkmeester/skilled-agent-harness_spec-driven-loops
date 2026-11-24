@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5a360811115153b22eba260fa7309972029a2aa1c54f9a6037d4492c4774e2e1",
+  "manifestHash": "aa8c02024bddf12b6a04436d49966736faf6139c57a364ca38824209d6a7bcbb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1213,6 +1213,9 @@
     "004 plan vec store": [
       "004 plan vec store"
     ],
+    "004 regeneration and zero reference proof operator decisions": [
+      "004-regeneration-and-zero-reference-proof operator decisions"
+    ],
     "004 release and program cleanup": [
       "004 release-and-program-cleanup"
     ],
@@ -2341,6 +2344,9 @@
     ],
     "008 plan race window debug": [
       "008 plan race window debug"
+    ],
+    "008 provision skill graph database operator decisions": [
+      "008-provision-skill-graph-database operator decisions"
     ],
     "008 race window debug log hygiene": [
       "008 race window debug log hygiene"
@@ -17043,6 +17049,9 @@
     ],
     "build release notes": [
       "build release notes"
+    ],
+    "build the advisor skill graph database when provisioning": [
+      "build the advisor skill graph database when provisioning"
     ],
     "build the colour system": [
       "build the colour system"
@@ -93452,6 +93461,21 @@
     ],
     "provision private commands by form": [
       "provision private commands by form"
+    ],
+    "provision skill graph database": [
+      "provision skill graph database"
+    ],
+    "provision skill graph database acceptance criteria": [
+      "provision skill graph database acceptance criteria"
+    ],
+    "provision skill graph database implementation summary": [
+      "provision skill graph database implementation summary"
+    ],
+    "provision skill graph database plan": [
+      "provision skill graph database plan"
+    ],
+    "provision skill graph database tasks": [
+      "provision skill graph database tasks"
     ],
     "provision stamp fingerprint before build": [
       "provision stamp fingerprint before build"

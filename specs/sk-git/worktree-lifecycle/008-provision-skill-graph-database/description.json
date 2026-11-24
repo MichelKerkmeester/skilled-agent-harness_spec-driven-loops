@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/worktree-lifecycle/008-provision-skill-graph-database",
+  "description": "Build the advisor skill-graph database when provisioning a worktree",
+  "keywords": [
+    "advisor",
+    "skill-graph",
+    "database",
+    "provisioning",
+    "worktree"
+  ],
+  "lastUpdated": "2026-11-24T14:46:08.317Z",
+  "specId": "008",
+  "folderSlug": "provision-skill-graph-database",
+  "parentChain": [
+    "sk-git",
+    "worktree-lifecycle"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-11-26_15-46__provision-skill-graph-database-worktree-provision.md"
+  ]
+}

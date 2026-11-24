@@ -679,7 +679,8 @@ _wn_link_local_commands() {
 # Idempotent: existing dependencies are skipped, a listed output is built when it is
 # missing, and rebuilt when the tracked sources its list line names changed since
 # provisioning last built it. Exits non-zero if any install or build failed, so a
-# half-provisioned tree is never reported ready.
+# half-provisioned tree is never reported ready. It also builds the advisor skill-graph
+# database when the worktree has none.
 provision_worktree() {
   local dir="${1:-}" list pkg artifact sources installed=0 built=0 skipped=0 failed=0
   local tool deps_root install_log build_reason stale_reason top built_fingerprint
@@ -792,6 +793,26 @@ provision_worktree() {
     fi
   done < "$list"
 
+  # The advisor's skill-graph database is gitignored, so a new worktree has none
+  # and the advisor reports degraded health until a scan builds it. The scan runs
+  # the built advisor, so it waits until every install and build succeeded, and an
+  # existing database is never rescanned.
+  local graph_db="$dir/.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+  if [ "$failed" -eq 0 ] && [ -f "$dir/.skilled/bin/skill-advisor.cjs" ] && [ ! -e "$graph_db" ]; then
+    echo "  building the skill-graph database" >&2
+    if ! command -v node >/dev/null 2>&1; then
+      echo "  FAILED: skill-graph scan (node not found)" >&2
+      failed=$((failed + 1))
+    elif ! ( cd "$dir" && node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text >/dev/null 2>&1 ); then
+      echo "  FAILED: skill-graph scan" >&2
+      failed=$((failed + 1))
+    elif [ ! -e "$graph_db" ]; then
+      echo "  FAILED: skill-graph scan left the database missing" >&2
+      failed=$((failed + 1))
+    else
+      built=$((built + 1))
+    fi
+  fi
   _wn_link_local_commands "$dir"
   echo "provisioned: $installed installed, $built built, $skipped already present, $failed failed" >&2
   [ "$failed" -eq 0 ]

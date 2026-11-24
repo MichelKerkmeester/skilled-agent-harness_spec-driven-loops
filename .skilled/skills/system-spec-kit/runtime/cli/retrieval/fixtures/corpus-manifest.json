@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4c4f04966725ef5ff82c0df1df16b038f7aaa832fa54e9c39a84dd9b075ecaeb",
+  "corpusHash": "c91b47fe29476aa02a2f60bbb276677af6397492d97aa3563f29cf767f551d58",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29519,
+  "includedPathCount": 29526,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11209,6 +11209,7 @@
     "specs/cli-orca/003-cli-orca-deprecation/003-docs-registries-and-skill-removal/spec.md",
     "specs/cli-orca/003-cli-orca-deprecation/003-docs-registries-and-skill-removal/tasks.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/acceptance-criteria.md",
+    "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/decision-record.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/implementation-summary.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/plan.md",
     "specs/cli-orca/003-cli-orca-deprecation/004-regeneration-and-zero-reference-proof/spec.md",
@@ -17383,6 +17384,12 @@
     "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/plan.md",
     "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/spec.md",
     "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/tasks.md",
+    "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/acceptance-criteria.md",
+    "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/decision-record.md",
+    "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/implementation-summary.md",
+    "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/plan.md",
+    "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/spec.md",
+    "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -29551,7 +29558,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5a360811115153b22eba260fa7309972029a2aa1c54f9a6037d4492c4774e2e1",
+  "manifestHash": "aa8c02024bddf12b6a04436d49966736faf6139c57a364ca38824209d6a7bcbb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37247,6 +37254,10 @@
     },
     {
       "path": "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/scratch",
       "reason": "excluded directory"
     },
     {

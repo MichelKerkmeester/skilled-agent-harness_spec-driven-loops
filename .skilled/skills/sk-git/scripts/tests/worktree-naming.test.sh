@@ -675,6 +675,79 @@ expect_rc "a silent install failure under set -e still fails the run" 1 run_stri
 expect_rc "a silent install failure under set -e reaches the summary" 0 \
   grep -q "provisioned: 0 installed, 0 built, 0 already present, 1 failed" "$PROV/quiet-fail.out"
 
+# ── provision builds the advisor's skill-graph database ──────────
+# The database is gitignored, so a new worktree has none and the advisor reports
+# degraded health until a scan builds it. A scan that fails, or that exits
+# cleanly without writing the database, must fail provisioning: a tree that looks
+# provisioned but cannot advise is worse than a loud failure here. A tree with no
+# advisor CLI yet has nothing to scan with, so it provisions and stays unscanned.
+GRAPH_DB_REL=".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+
+write_advisor_stub() { # write_advisor_stub <tree> <call-log> -- stub advisor CLI in the tree
+  local tree="$1" log="$2"
+  mkdir -p "$tree/.skilled/bin"
+  cat > "$tree/.skilled/bin/skill-advisor.cjs" <<STUB
+const fs = require("fs");
+const path = require("path");
+const db = "$tree/$GRAPH_DB_REL";
+fs.appendFileSync("$log", process.argv.slice(2).join(" ") + "\n");
+if (process.env.ADVISOR_STUB_MODE === "fail") process.exit(1);
+if (process.env.ADVISOR_STUB_MODE === "silent") process.exit(0);
+fs.mkdirSync(path.dirname(db), { recursive: true });
+fs.writeFileSync(db, "");
+STUB
+}
+
+advisor_calls() { # advisor_calls <call-log> -- how many times the stub advisor ran
+  if [ -f "$1" ]; then awk 'END { print NR + 0 }' "$1"; else echo 0; fi
+}
+
+GRAPH_SCAN_TREE="$PROV/advisor-scan-tree"
+GRAPH_SCAN_LOG="$PROV/advisor-scan.log"
+rm -rf "$GRAPH_SCAN_TREE" "$GRAPH_SCAN_LOG"
+write_advisor_stub "$GRAPH_SCAN_TREE" "$GRAPH_SCAN_LOG"
+expect_rc "a missing skill-graph database provisions" 0 run_fixture_provision "$GRAPH_SCAN_TREE"
+expect_rc "the skill-graph scan leaves its database in the tree" 0 test -e "$GRAPH_SCAN_TREE/$GRAPH_DB_REL"
+expect_eq "the skill-graph scan runs once" "1" "$(advisor_calls "$GRAPH_SCAN_LOG")"
+expect_eq "the skill-graph scan asks for the trusted scan" "skill_graph_scan --trusted --format text" \
+  "$(cat "$GRAPH_SCAN_LOG")"
+
+GRAPH_KEEP_TREE="$PROV/advisor-keep-tree"
+GRAPH_KEEP_LOG="$PROV/advisor-keep.log"
+rm -rf "$GRAPH_KEEP_TREE" "$GRAPH_KEEP_LOG"
+write_advisor_stub "$GRAPH_KEEP_TREE" "$GRAPH_KEEP_LOG"
+mkdir -p "$GRAPH_KEEP_TREE/$(dirname "$GRAPH_DB_REL")"
+: > "$GRAPH_KEEP_TREE/$GRAPH_DB_REL"
+expect_rc "an existing skill-graph database provisions" 0 run_fixture_provision "$GRAPH_KEEP_TREE"
+expect_eq "an existing skill-graph database is never rescanned" "0" \
+  "$(advisor_calls "$GRAPH_KEEP_LOG")"
+
+GRAPH_FAIL_TREE="$PROV/advisor-fail-tree"
+GRAPH_FAIL_LOG="$PROV/advisor-fail.log"
+rm -rf "$GRAPH_FAIL_TREE" "$GRAPH_FAIL_LOG"
+write_advisor_stub "$GRAPH_FAIL_TREE" "$GRAPH_FAIL_LOG"
+ADVISOR_STUB_MODE=fail expect_rc "a failed skill-graph scan fails provisioning" 1 \
+  run_fixture_provision "$GRAPH_FAIL_TREE"
+expect_eq "a failed skill-graph scan is attempted once" "1" "$(advisor_calls "$GRAPH_FAIL_LOG")"
+
+# A scan that exits cleanly without its database is the same outcome as a failed
+# one: the advisor still has nothing to read.
+GRAPH_SILENT_TREE="$PROV/advisor-silent-tree"
+GRAPH_SILENT_LOG="$PROV/advisor-silent.log"
+rm -rf "$GRAPH_SILENT_TREE" "$GRAPH_SILENT_LOG"
+write_advisor_stub "$GRAPH_SILENT_TREE" "$GRAPH_SILENT_LOG"
+ADVISOR_STUB_MODE=silent expect_rc "a scan that writes no database fails provisioning" 1 \
+  run_fixture_provision "$GRAPH_SILENT_TREE"
+expect_rc "a scan that writes no database leaves it missing" 1 \
+  test -e "$GRAPH_SILENT_TREE/$GRAPH_DB_REL"
+
+GRAPH_NOCLI_TREE="$PROV/advisor-nocli-tree"
+rm -rf "$GRAPH_NOCLI_TREE"
+mkdir -p "$GRAPH_NOCLI_TREE"
+expect_rc "a tree without the advisor CLI provisions" 0 run_fixture_provision "$GRAPH_NOCLI_TREE"
+expect_rc "a tree without the advisor CLI creates no database" 1 \
+  test -e "$GRAPH_NOCLI_TREE/$GRAPH_DB_REL"
+
 # ── no-argument provision uses the linked worktree ───────────────
 LINKED="$PROV/linked"
 if git -C "$TMP" worktree add --detach "$LINKED" HEAD >/dev/null 2>&1; then

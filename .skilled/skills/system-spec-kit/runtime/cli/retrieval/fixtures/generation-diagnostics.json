@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7274,
-    "ok": 20617,
+    "ok": 20624,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29519,
+  "documentsScanned": 29526,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5a360811115153b22eba260fa7309972029a2aa1c54f9a6037d4492c4774e2e1",
+  "manifestHash": "aa8c02024bddf12b6a04436d49966736faf6139c57a364ca38824209d6a7bcbb",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46319,
+      "ok": 46327,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -62781,6 +62781,10 @@
     },
     {
       "path": "specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/scratch",
       "reason": "excluded directory"
     },
     {
