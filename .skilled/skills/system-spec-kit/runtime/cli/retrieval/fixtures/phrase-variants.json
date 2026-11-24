@@ -1,5 +1,5 @@
 {
-  "manifestHash": "af133ab7c486a081581bf7d1108a7748c9f5658dad3b37888f7e413e97f3f0cf",
+  "manifestHash": "620095d6c3e7481b14447f59e94f44ece008062d605fdb4c74a52e3f4d826346",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25142,6 +25142,15 @@
     "cli orca plan": [
       "cli orca plan"
     ],
+    "cli orca post alignment doc fixes": [
+      "cli orca post alignment doc fixes"
+    ],
+    "cli orca post alignment doc fixes plan": [
+      "cli orca post alignment doc fixes plan"
+    ],
+    "cli orca post alignment doc fixes tasks": [
+      "cli orca post alignment doc fixes tasks"
+    ],
     "cli orca removal baseline": [
       "cli orca removal baseline"
     ],
@@ -25162,6 +25171,9 @@
     ],
     "cli orca removal tests": [
       "cli orca removal tests"
+    ],
+    "cli orca skill removed": [
+      "cli-orca skill removed"
     ],
     "cli orca tasks": [
       "cli orca tasks",
@@ -91368,6 +91380,9 @@
     "post adr 012 embedder survey": [
       "post-adr-012 embedder survey"
     ],
+    "post alignment doc fixes implementation summary": [
+      "post alignment doc fixes implementation summary"
+    ],
     "post arc docs sweep summary": [
       "post-arc docs sweep summary"
     ],
@@ -117571,6 +117586,9 @@
     "sk git 1 11 12 0": [
       "sk-git 1.11.12.0"
     ],
+    "sk git 1 11 13 0": [
+      "sk-git 1.11.13.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -117897,6 +117915,9 @@
     ],
     "sk git v1 11 12 0": [
       "sk-git v1.11.12.0"
+    ],
+    "sk git v1 11 13 0": [
+      "sk-git v1.11.13.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -121136,6 +121157,9 @@
     ],
     "skills folder cleanup": [
       "skills folder cleanup"
+    ],
+    "skills index family counts": [
+      "skills index family counts"
     ],
     "skills root lists skills only": [
       "skills root lists skills only"
@@ -139184,6 +139208,9 @@
     ],
     "worktree provisioning drift": [
       "worktree provisioning drift"
+    ],
+    "worktree provisioning nested lockfile": [
+      "worktree provisioning nested lockfile"
     ],
     "worktree provisioning plan": [
       "worktree provisioning plan"
