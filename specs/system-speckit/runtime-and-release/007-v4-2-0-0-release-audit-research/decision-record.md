@@ -38,6 +38,9 @@ _memory:
 | Q002 | Recorded automatically: Ship on (Recommended) | Not stated. | None | Not linked to a requirement yet. |
 | Q003 | Recorded automatically: Hand-edit it (Recommended) | Not stated. | None | Not linked to a requirement yet. |
 | Q004 | Recorded automatically: Two commits (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q005 | Recorded automatically: em dash. a;s rema,e thpse woth colon to use em dash | Not stated. | None | Not linked to a requirement yet. |
+| Q006 | Recorded automatically: Commit it first (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q007 | Recorded automatically: A) Run it (Recommended) | Not stated. | None | Not linked to a requirement yet. |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -124,6 +127,66 @@ Don't commit
 Answer:
 ```text
 Two commits (Recommended)
+```
+
+### Q005
+<!-- source: claude:d46cd0dc-b63f-443e-8e44-4ae03af818a5:toolu_018kd6aE1gJ4qXhnrFksDmWa:1 -->
+
+Question:
+```text
+Which release title format? The changelog workflow says to use an em dash, but v4.1.0.0 was published with a colon.
+```
+
+Options:
+```text
+Colon, like v4.1 (Recommended)
+Em dash, per workflow
+```
+
+Answer:
+```text
+em dash. a;s rema,e thpse woth colon to use em dash
+```
+
+### Q006
+<!-- source: claude:d46cd0dc-b63f-443e-8e44-4ae03af818a5:toolu_018kd6aE1gJ4qXhnrFksDmWa:2 -->
+
+Question:
+```text
+The Stop hook just wrote your last three answers into the audit packet's decision-record.md, which is now uncommitted. What should happen to it before the tag?
+```
+
+Options:
+```text
+Commit it first (Recommended)
+Leave it uncommitted
+```
+
+Answer:
+```text
+Commit it first (Recommended)
+```
+
+### Q007
+<!-- source: claude:d46cd0dc-b63f-443e-8e44-4ae03af818a5:toolu_019YRjohRTupydWpt1YNk2zT:1 -->
+
+Question:
+```text
+Run a deep research loop on "v4.2.0.0 logic and features: remaining bugs, drift and bad UX"?
+/deep:research:auto "v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0" --max-iterations=10
+That's up to 10 iterations on the native Claude deep-research agent, written to the chosen packet's research/ folder. --max-iterations=10 is your count, and the run can stop early once it converges.
+```
+
+Options:
+```text
+A) Run it (Recommended)
+B) Step through setup
+C) No loop
+```
+
+Answer:
+```text
+A) Run it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

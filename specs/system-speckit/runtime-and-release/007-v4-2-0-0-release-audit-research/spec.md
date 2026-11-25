@@ -61,6 +61,7 @@ HEAD was `c75200c504a` when this was measured.
 - Classify each finding as missing, drift or bug, with a commit hash, a `file:line` and the changelog line it concerns.
 - Verify every finding the synthesis repeats against the repository, and settle disagreements between the two lineages by reading the code.
 - Amended 2026-11-25 on the operator's instruction: fix the confirmed bugs first, then update the release notes.
+- Amended 2026-11-25 on the operator's instruction: a second, native deep-research run of ten iterations audits the v4.2.0.0 logic and features for bugs, drift and bad UX. The first run's state is archived under `research_archive/20261125T162358Z/`, and `research/research.md` is the second run's synthesis.
 
 ### Out of Scope
 - Release-note edits beyond the confirmed findings, the reorder and the section openings the operator asked for.
@@ -124,13 +125,15 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-<!-- BEGIN GENERATED: deep-research/spec-findings -->
-The canonical source is `research/research.md`. Of 26 lineage candidates, 16 were confirmed in the repository (9 missing, 5 drift, 2 bug) and 10 were rejected.
+Research context: deep-research is active for "v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0". `research/research.md` stays canonical.
 
-- P1 missing: the Claude Stop hook writes queued answers into the bound packet's `decision-record.md` with no note entry, on by default unless `SYSTEM_DECISION_CAPTURE_DISABLED=1`.
-- P1 drift: notes line 906 installs Bladebro without the `--ignore-scripts` and digest steps that its install guide requires.
-- P1 bug: `worktree-naming.sh` lost its executable bit, so the direct form at notes line 915 fails.
-- Resolved 2026-11-25 by the operator: the component list names every component with a new entry, and the Stop-hook auto-record ships on by default.
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+The canonical source is `research/research.md`, generation 2: a ten-iteration native audit of the v4.2.0.0 logic and features. It found no P0 or P1. It confirmed 3 P2 and 14 P3 defects, one by-design behavior and one note without severity. Generation 1, the changelog audit, is archived at `research_archive/20261125T162358Z/`.
+
+- P2: a signal-stopped fan-out runner leaves win32 lineages running, because they have no recorded `process_start` (`fanout-run.cjs:1279`).
+- P2: the Claude Stop auto-record keeps a JSON `\n` escape in a packet path, so a phase child resolves to its parent (`session-stop.ts:49`).
+- P2, inferred: the decision-record write has no lock, so it can race a concurrent save and still mark the lost answers consumed (`decision-record-writer.ts:787`).
+- Open: whether a fan-out lineage dealt no frontier nodes can seed colliding ids, and whether confirm-mode B works on a fan-out run.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 

@@ -8,18 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-25T10:48:21Z"
+    last_updated_at: "2026-11-25T17:27:39Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed both audit bugs and updated the v4.2.0.0 release notes"
-    next_safe_action: "Review the diff, then commit the fixes and the release notes"
+    recent_action: "Finished logic audit run, 10 iterations"
+    next_safe_action: "Review the ranked P2 findings in research.md"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
-      - ".skilled/changelog/skilled/v4.2.0.0.md"
-      - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      - "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md"
+      - "research/research.md"
+      - "research/iterations/iteration-010.md"
     session_dedup:
-      fingerprint: "sha256:6b509cba340261ad324ed7c6b4886ec97e4e7327f2c44c7e245de19779a14b36"
+      fingerprint: "sha256:c2a54d058060df86887583620306714029e8b333f09a0c857660fc280d7805c6"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
       parent_session_id: null
     completion_pct: 100

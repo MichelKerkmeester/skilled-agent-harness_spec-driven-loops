@@ -18,16 +18,17 @@
     "bugs",
     "drift"
   ],
-  "lastUpdated": "2026-11-25T10:48:21.941Z",
+  "lastUpdated": "2026-11-25T17:27:39.108Z",
   "specId": "007",
   "folderSlug": "v4-2-0-0-release-audit-research",
   "parentChain": [
     "system-speckit",
     "runtime-and-release"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "25-11-26_10-30__ran-a-two-lineage-deep-research-fan-out-codex-gpt.md",
-    "25-11-26_11-48__fixed-the-two-confirmed-bugs-case-insensitive.md"
+    "25-11-26_11-48__fixed-the-two-confirmed-bugs-case-insensitive.md",
+    "25-11-26_18-27__a-second-native-ten-iteration-deep-research-run.md"
   ]
 }
