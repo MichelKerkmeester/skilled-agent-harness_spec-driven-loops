@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow"
-    last_updated_at: "2026-11-25T22:10:00Z"
-    last_updated_by: "goal-authoring"
-    recent_action: "Authored the durable directive and its six local decisions"
+    last_updated_at: "2026-11-25T21:21:04Z"
+    last_updated_by: "review-fix-pass"
+    recent_action: "Applied the first review: deny first, the t row, the grant row and the re-baselined T001"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -50,6 +50,8 @@ Frozen choices. Changing one is an amendment.
 | D4 | The typing mode is a property of the `keys.rs` row, so one flag pauses every single-key binding at once and no binding can be forgotten. |
 | D5 | The fixture's refusal is one environment variable, `BOTS_FIXTURE_ANSWER_EXIT`, rather than a second script, so the refusal path and the success path share one argv log. |
 | D6 | The hand check is a task the operator runs, not a completion criterion, because a criterion that needs a tty cannot decide closure in this environment. |
+| D7 | The overlay opens in shortcut mode and a drawn `t` row enters text mode, so `y` and `n` are shortcuts only outside text mode and a typed line may begin with either. |
+| D8 | The overlay draws a grant's kind and rung only when the item carries them and draws no grant row otherwise, so the frame builds before packet phase 006 and lights up after it. |
 
 <!-- /ANCHOR:directive -->
 
@@ -60,8 +62,8 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `argv_is_exactly_answer_id_text_scope`, and the argv it recorded for a deny is exactly `answer <item-id> deny --scope deny`.
 - [ ] The same suite names `esc_closes_overlay_and_writes_nothing`, `closed_input_writes_nothing`, `ctrl_c_closes_overlay_and_writes_nothing`, `unbound_key_writes_nothing` and `second_press_writes_nothing`, each of which asserts the fixture recorded no `answer` argv.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` names `free_text_answer_writes_typed_line` and `typing_pauses_single_key_shortcuts`, and the argv it recorded for the typed line `hold` is exactly `answer <item-id> hold --scope once`.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none`, and `--lib overlay` names `grant_row_draws_only_when_present`.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` names `free_text_answer_writes_typed_line`, `typing_pauses_single_key_shortcuts` and `text_mode_accepts_a_leading_y`, and the argv it recorded for the typed line `hold` is exactly `answer <item-id> hold --scope once`.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` names `refusal_shows_stderr_and_keeps_item`, and the status row carries `bots: answer-not-approver` while the overlay and the item both stay open.
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow --strict` prints `RESULT: PASSED`.
@@ -80,11 +82,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Child spec authored | Done | `spec.md` carries eleven requirements, four of them inherited from the parent with their ids and wording |
+| Child spec authored | Done | `spec.md` carries twelve requirements, four of them inherited from the parent with their ids and wording |
 | Child plan authored | Done | `plan.md` carries six waves and the fallback ladder in its External orchestration section |
 | Child tasks authored | Done | `tasks.md` carries twenty tasks, each with a `Verify:` clause, grouped into six waves |
-| Acceptance criteria authored | Done | `acceptance-criteria.md` carries eleven rows, each verified by a command that needs no tty |
+| Acceptance criteria authored | Done | `acceptance-criteria.md` carries twelve rows, each verified by a command that needs no tty |
 | Goal authored | Done | This file, from the phase-child template |
+| First review applied | Done | `spec.md` REQ-010 and REQ-013 draw `n deny` before `y approve once` and bind `1-9` to options; REQ-014 adds the `t` row; REQ-019 draws the grant row only when present; T001 is re-baselined on packet phase 001 |
 | Overlay drawn | Pending | No `crates/bots-tui/src/view/overlay.rs` exists yet |
 | Banner drawn | Pending | No `crates/bots-tui/src/view/banner.rs` exists yet |
 | Answer suite passing | Pending | No `crates/bots-tui/tests/answer_flow.rs` exists yet |
@@ -97,6 +100,9 @@ and findings belong here.
 | The parent's defect table gives the banner's key fix to 003 | 003 owns the label in `keys.rs` and this child owns the row that draws it, so the fix and the row do not collide. |
 | The parent's REQ-008 and REQ-009 are not inherited | The parent's inherited table carries REQ-002, REQ-003, REQ-004, REQ-006, REQ-010 and REQ-011 only, so this child's new requirements start at REQ-012 and the banner and the overlay take REQ-012 and REQ-013. |
 | The hand check is not a criterion | It needs a tty by design, so it is T019 and the operator's step. Every acceptance criterion runs without one. |
-| The parent's decisions bind and are not restated | The parent goal's D1 to D7 hold here. This file's D1 to D6 are local to the answer surface. |
+| The parent's decisions bind and are not restated | The parent goal's D1 to D7 hold here. This file's D1 to D8 are local to the answer surface. |
 | The refusal codes belong to other phases | `item-answered-differently` is 006's and `answer-not-approver` is 011's. This child displays whichever line the verb writes and names neither in a requirement. |
+| The `t` row is this child's, its key-map row is 001's | 003's REQ-012 gives the `Overlay` context to this child, so the `keys.rs` row is written here; 001's key map gains the matching row, and the label is drawn from `keys.rs` so the two cannot disagree. |
+| The sanitizer is 003's, not this child's | The typed line passes through the one sanitizer 003 owns in `theme.rs`, so this child keeps no second strip and CHK-032 greps for the call rather than for a local copy. |
+| The view root is `src/view/mod.rs` | 003 creates it and this child adds one `mod` line per view module, so the crate keeps one view root. Both view tasks therefore share one lane in wave 4. |
 <!-- /ANCHOR:log -->

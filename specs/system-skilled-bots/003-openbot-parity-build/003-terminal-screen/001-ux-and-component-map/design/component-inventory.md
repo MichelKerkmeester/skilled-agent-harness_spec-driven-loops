@@ -22,36 +22,41 @@ The frame numbers in the last column are the state index in `mockups.md` section
 
 | # | Component | Reads | Keys | States | Frames |
 |---|-----------|-------|------|--------|--------|
-| 1 | Header | `bots status --json`: the bot count, `stale`, `builtAt` | None | `ok`, `stale`, `error` | 1, 7 |
+| 1 | Header | `bots status --json`: the bot count, `stale`, `builtAt` | None | `ok`, `stale`, `error` | 1, 7, 17 |
 | 2 | Tab bar | None | `Alt+1..4`, `[` `]` | `activity`, `inbox`, `routines`, `chat`; exactly one is active | 1, 2, 3, 4 |
-| 3 | Activity | `bots activity --json`, its `groups[]` in payload order | `Up`, `Down`, `PgUp`, `PgDn` | `loading`, `empty`, `rows`, `error` with the rows kept | 1, 5, 6, 7 |
-| 4 | Inbox | `bots inbox --json`, its `items[]` | `Up`, `Down`, `Enter` | `open`, `expired`, `empty` | 2, 8 |
-| 5 | Routines | `bots routines --json` | `Up`, `Down` | `rows`, `empty` | 3, 9 |
+| 3 | Activity | `bots activity --json`, its `groups[]` in payload order | `Up`, `Down`, `PgUp`, `PgDn` | `loading`, `empty`, `rows`, `stale`, `error` | 1, 5, 6, 7, 8 |
+| 4 | Inbox | `bots inbox --json`, its `items[]` | `Up`, `Down`, `PgUp`, `PgDn`, `Enter` | `loading`, `empty`, `rows`, `stale`, `error` | 2, 9, 10, 11, 12 |
+| 5 | Routines | `bots routines --json` | `Up`, `Down`, `PgUp`, `PgDn` | `loading`, `empty`, `rows`, `stale`, `error` | 3, 13, 14, 15, 16 |
 | 6 | Chat | None | None | `placeholder` | 4 |
-| 7 | Banner | The open item count from the inbox | The inbox tab key, drawn | `hidden`, `count` | 1, 2, 8 |
-| 8 | Decision overlay | The selected item, its `question` and its `grants` | `y`, `n`, typing, `Enter`, `Backspace`, `Esc`, `Ctrl+C`, `Ctrl+D` | `idle`, `sending`, `refused`, `gone` | 10, 11, 12, 13 |
-| 9 | Choice overlay | The selected item's `options` | `1` to `9`, `n`, `Esc`, `Ctrl+C`, `Ctrl+D` | `idle`, `sending`, `refused`, `gone` | 14, 15 |
-| 10 | Palette and help | The key table | `Ctrl+P`, `?`, typing, `Enter`, `Esc` | `filtered` | 16 |
-| 11 | Status row | The first stderr line of the last failed call | None | `blank`, `message` | 7, 12, 17 |
+| 7 | Banner | The open item count from the inbox | The inbox tab key, drawn | `hidden`, `count` | 1, 2, 10 |
+| 8 | Decision overlay | The selected item, its `question`, and its `grants` when it carries them | `t`, `y`, `n`, typing, `Enter`, `Backspace`, `Esc`, `Ctrl+C`, `Ctrl+D` | `idle`, `typing`, `sending`, `refused`, `gone`, `grant present`. An expired item opens in `gone` and draws frame 22 | 18, 19, 20, 21, 22, 23 |
+| 9 | Choice overlay | The selected item's `options` | `1` to `9`, `n`, `Esc`, `Ctrl+C`, `Ctrl+D` | `idle`, `sending`, `refused`, `gone` | 24, 20, 21, 22 |
+| 10 | Palette and help | The key table | `Ctrl+P`, `?`, `Up`, `Down`, typing, `Enter`, `Esc` | `filtered` | 25 |
+| 11 | Status row | The first stderr line of the last failed call | None | `blank`, `message` | 7, 8, 11, 12, 15, 16, 17, 21 |
 | 12 | Detail column | The selected row | None | `shown`, `hidden`, `no selection` | 1, 6 |
-| 13 | Too-small screen | None | `Ctrl+D` | `below 24 columns or 8 rows` | 18 |
+| 13 | Too-small screen | None | `Ctrl+D` | `below 24 columns or 8 rows` | 26 |
 
 Every component's state list is closed: a state not in this table is a state the screen does not have, and a frame that shows one is a defect in the frame.
 
+The choice overlay's `sending`, `refused` and `gone` states name frames 20, 21 and 22, which draw the decision shape. The state changes the panel's status line and the footer, not the body, so the choice shape in those three states draws the same panel with its option rows in place of `options  none`. Frame 24 is the choice shape's `idle` state, and it is the one frame where the two shapes differ in the body.
+
 ---
 
-## 2. THE FOUR STATES EVERY SURFACE SHARES
+## 2. THE FIVE STATES EVERY DATA PANE SHARES
 
-Each surface is one value: the rows, when they were last read successfully, the last error, and whether a read is in flight. Four states fall out of that shape, and every pane draws all four.
+Each surface is one value: the rows, when they were last read successfully, the last error, and whether a read is in flight. Five states fall out of that shape, and every data pane draws all five.
 
 | State | What is true | What the pane draws |
 |-------|--------------|---------------------|
 | `loading` | No rows yet, a read in flight | The pane title and one line naming the verb being read |
 | `empty` | No rows, no error, no read in flight | The pane title and one line saying what would appear here |
 | `rows` | At least one row | The rows, the selection, and the detail column at 120 columns or wider |
-| `error` | An error, and the rows from the last successful read | The rows, unchanged, plus the stale flag in the header and the stderr line in the status row |
+| `stale` | An error, and the rows from the last successful read | The rows, unchanged, `stale <n>m` in the pane's own title, and the stderr line in the status row |
+| `error` | An error, and no rows from the last successful read | The pane title and the first stderr line in the body |
 
-A failed read never blanks a pane. The rows from the last successful read stay until a later read succeeds, because a screen that empties itself on a transient failure tells the operator their bots vanished. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:40]
+In the `stale` state the pane's own title carries `stale <n>m` from the failed read. The `error` state has no successful read to age, so its title carries no flag. The header carries `stale <n>m` only from `status --json`, so a pane failure never puts a flag in the header.
+
+A failed read never blanks a pane that has rows. The rows from the last successful read stay until a later read succeeds, because a screen that empties itself on a transient failure tells the operator their bots vanished. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:40]
 
 The first stderr line goes to the status row and the rest is dropped, so a stack trace cannot push the footer off the screen. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208]
 
@@ -67,8 +72,9 @@ The first stderr line goes to the status row and the rest is dropped, so a stack
 | A key with no binding does nothing | Never a default deny, and never a default approve |
 | Every bound key is drawn in the frame that binds it | A key the operator cannot see is a key they cannot use |
 | The overlay captures the item id when it opens | A refresh that closes the item under the overlay is detected, and the overlay says so instead of writing |
+| A grant is drawn only when the item carries it | Packet phase 006 lands `grants` and the ladder, so a screen that required them would not build before it. The overlay and the detail column draw a grant's kind and rung when the item carries them and draw nothing where they are absent, so one frame builds now and lights up after 006. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
 
-The sanitize rule is the one with a reference implementation to follow: strip control characters and keep ordinary Unicode and line breaks. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:4-6]
+The sanitize rule is the one with a reference implementation to follow: replace each control character, line breaks included, with `?`, and keep ordinary Unicode. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:4-6]
 
 ---
 
@@ -113,10 +119,10 @@ The overlay panel is capped at 100 columns and centred, so a wide terminal does 
 | The keys that lock after the first press | [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:136-140] |
 | The overlay panel's cap and centring | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs:2-12] |
 | The minimum-size screen | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:26-35] |
-| Control characters stripped before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
+| Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
 | The activity row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152] |
 | The inbox item shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] |
 | The routine row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] |
-| The grant the overlay shows | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
+| The grant the overlay shows when the item carries one | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
 | The chat verb the placeholder names | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152] |
 | The refusal line in the status row | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208] |

@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts"
-    last_updated_at: "2026-11-25T22:20:00Z"
-    last_updated_by: "phase-child-authoring"
-    recent_action: "Authored the durable directive"
+    last_updated_at: "2026-11-25T21:58:29Z"
+    last_updated_by: "review-fix-pass-2"
+    recent_action: "Applied the second review findings that edit this child"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -49,6 +49,8 @@ Frozen choices. Changing one is an amendment.
 | D3 | The fixture is the only payload source in tests, and it carries the four payloads plus the `lastRun.branch` and `lastRun.worktreePath` keys 004 adds. |
 | D4 | The `ui` verb reads `BOTS_UI_BIN` as a test seam only; the shipped path resolves the binary from `--skilled-tree`. |
 | D5 | This child draws one empty frame and no pane, so the loop, the guard and the process boundary are proven before any surface draws into them. |
+| D6 | The `ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so the binary reads no environment variable and every no-env::var check holds. |
+| D7 | 001's four design documents are copied unchanged into `crates/bots-tui/design/` when the crate is created, so the mockups ship beside the code and 006's pointer check has a folder to read. |
 
 <!-- /ANCHOR:directive -->
 
@@ -61,9 +63,10 @@ Frozen choices. Changing one is an amendment.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for the `lib`, `cli_client` and doc targets and no `FAILED`.
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
 - [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`; after `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`.
+- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`, including the `--mono` case under `NO_COLOR` and the `--ascii` case.
 - [ ] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
-- [ ] `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3.
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, and `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step.
+- [ ] `ls crates/bots-tui/design` prints 001's four documents, and `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,11 +82,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Child spec, plan, tasks and acceptance criteria authored | Done | `spec.md` carries 15 requirements, `tasks.md` carries 27 tasks in 8 waves, and `acceptance-criteria.md` carries one row per requirement |
+| Child spec, plan, tasks and acceptance criteria authored | Done | `spec.md` carries 16 requirements, `tasks.md` carries 29 tasks in 8 waves, and `acceptance-criteria.md` carries one row per requirement |
 | Crate scaffolded | Pending | `ls crates` prints `ls: crates: No such file or directory` |
 | `ui` verb added | Pending | `node .skilled/bin/bots.cjs ui` prints `bots: unknown verb: ui` and exits 2 |
 | Fixture committed | Pending | No `crates/bots-tui/tests/fixtures/bots` exists yet |
-| CI job added | Pending | `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` exits 1 with no match |
+| Design copied | Pending | No `crates/bots-tui/design` exists yet |
+| CI job added | Pending | `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` exits 1 with no match |
+| Second review applied | Done | `research/ui-review-2.md` N-P1-10 and the 002 items of N-P2-22 are applied: the workflow check names the job and the two path entries rather than counting a string, the parent decisions read `Q002 to Q009`, and the `--mono` proof is the vitest case rather than a binary that prints nothing |
 
 ### Deviations and findings
 
@@ -93,4 +98,9 @@ and findings belong here.
 | The module map is read from 001 | The seven modules follow 001's component inventory rather than a second list, so a component 001 names has one home here. |
 | The fixture carries 004's two keys | `lastRun.branch` and `lastRun.worktreePath` are 004's, and the fixture carries them now so the payload does not change under a later child. |
 | The hand proof is not a criterion | No criterion here needs a tty. The overlay's keystrokes are 005's hand check, and this child's closed-input and Esc paths are lib tests. |
+| The verb owns the display flags | `NO_COLOR` and `--ascii` are read by `bots ui`, which passes `--mono` and `--ascii` to the binary, so the binary reads no environment variable and the no-env::var checks in 002, 005 and 006 hold unchanged. |
+| The design folder is copied, not authored | 001 authors the four documents and this child copies them unchanged, so a later edit is made once and copied again rather than diverging in two folders. |
+| The signal path is a task, not a comment | `NFR-R01` named a signal and no task proved it, so T029 installs the `SIGTERM` and `SIGHUP` handler and `restore_runs_on_signal` raises the signal through it. |
+| The sanitizer is 003's | The status row draws runtime text before any pane exists, so one filter with one behaviour lives in 003's `theme.rs` and 004 draws through it rather than keeping a second copy. The crate holds no `sanitize.rs`. |
+| The workflow check carries `-e` | `research/ui-review-2.md` N-P1-10's second command is `rg -c "- 'crates/bots-tui/**'"`, and ripgrep reads the leading `-` as a flag, so it exits 2 with `rg: unrecognized flag -` and prints nothing. The check is applied as `rg -c -e "- 'crates/bots-tui/**'"`, which prints 2 against a workflow carrying the entry under both the `pull_request` and the `push` trigger. |
 <!-- /ANCHOR:log -->

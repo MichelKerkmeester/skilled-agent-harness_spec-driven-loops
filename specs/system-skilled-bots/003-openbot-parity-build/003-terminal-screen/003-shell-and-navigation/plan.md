@@ -45,7 +45,7 @@ The shell is three pieces that read each other. `keys.rs` holds one table of con
 - [ ] All acceptance criteria met
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`
 - [ ] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0
-- [ ] `rg -n 'env::var' crates/bots-tui/src` prints only `theme.rs`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines
+- [ ] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -58,16 +58,16 @@ The shell is three pieces that read each other. `keys.rs` holds one table of con
 One table, one frame.
 
 ### Key Components
-- **`keys.rs`**: the one table. A row is a context, a key, an action and the label the renderer draws, and the footer and the palette both read the rows rather than a second list. The contexts are `Global`, `Tabs`, `List`, `Palette` and `Overlay`; this phase fills the first three, 004 fills `List` and 005 fills `Overlay`, so REQ-010 holds by construction rather than by review. The module split follows openhuman-tui, which keeps the key map apart from the renderer and the loop. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs:351-364] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:36]
-- **`theme.rs`**: the two palettes and the glyph table. System is the default and Mono is selected when `NO_COLOR` is set, which is the reference's own rule. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:62] The glyph table carries a Unicode and an ASCII column, so the approved markers and their fallback are defined once and 004's panes read them. `safe_text` lives here because the status row draws stderr before 004's `sanitize.rs` exists, and one function with two callers beats two copies. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93]
+- **`keys.rs`**: the one table. A row is a context, a key, an action and the label the renderer draws, and the footer and the palette both read the rows rather than a second list. The contexts are the key map's six, verbatim: `main`, `inbox`, `list`, `overlay`, `palette` and `too-small`. This phase fills `main`, `inbox`, `palette` and `too-small`, 004 fills `list` and 005 fills `overlay`, so REQ-010 holds by construction rather than by review. The module split follows openhuman-tui, which keeps the key map apart from the renderer and the loop. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs:351-364] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:36]
+- **`theme.rs`**: the two palettes and the glyph table. System is the default and Mono is selected by `--mono`, which the `ui` verb passes when it reads `NO_COLOR`, so the binary reads no environment variable of its own. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:62] The glyph table carries a Unicode and an ASCII column, so the approved markers and their fallback are defined once and 004's panes read them rather than keeping a second copy. `printable` lives here because the status row draws stderr before 004's panes exist, and one function with two callers beats two copies. It replaces each control character with `?`, which is the one behaviour 004 applies to the pane strings. 004's panes call it directly, and the crate holds no `sanitize.rs`. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93]
 - **`view/mod.rs`**: the frame. It draws the header, the tabs, the rule, the body slot, the banner slot, the status row and the footer, and it owns the too-small screen and the palette panel. The body slot is where 004's panes draw and the banner slot is where 005's banner draws, so neither phase edits the band arithmetic. It is also the module root the view's children need, and the file 004 and 005 add their `mod` lines to.
-- **`view/header.rs`**: the bot count, the stale flag with its age, and the error state. It reads `bots status --json` through 002's `cli.rs` and draws nothing else.
-- **`view/tabs.rs`**: the four tabs, the active mark and the chat tab's one line naming phase 010. The `[` and `]` pair is the fallback for a keyboard that never delivers Alt. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:15]
-- **`view/footer.rs`**: the status row and the key line. The key line is generated from `keys.rs`, so the footer cannot name a key the table does not bind.
+- **`view/header.rs`**: the bot count, the index age, `stale_label`, the stale flag with its age, and the error state. It reads `bots status --json` through 002's `cli.rs` and draws nothing else. `stale_label` is the one age formatter, so 004's panes call it rather than keeping a second copy.
+- **`view/tabs.rs`**: the four tabs and the active mark. The `[` and `]` pair is the fallback for a keyboard that never delivers Alt. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:15] The chat tab's one line naming phase 010 is 004's, drawn into the body slot.
+- **`view/footer.rs`**: the status row and the key line. The key line is generated from `keys.rs`, so the footer cannot name a key the table does not bind. It draws two lines. Activity and Routines draw `Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page` over `Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit`, the inbox adds `Enter open` to line 1, and Chat draws `Alt+1..4 tabs · [ ] cycle` over the same line 2. The list labels reach the footer from 004's `list` rows, and the answer keys appear only in the overlay footers.
 - **`tests/render_keys.rs`**: the key-label assertion and the two shell snapshots. It iterates the table rather than a hand-written list, and it compares the `TestBackend` buffer to a block held in the test file, so no snapshot file hides the cells the operator sees.
 
 ### Data Flow
-The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, and below 24 columns or 8 rows it draws the resize line and returns. Otherwise it draws the header from the status surface, the tabs from the active tab, the rule, the body slot, the banner slot, the status row from the last error, and the footer from `keys.rs`. When the palette is open it draws the panel over the body, filtered by the text the operator typed. A key reaches `keys.rs` first, which answers with an action and a label; the loop runs the action, and the next frame draws the label the same row carries.
+The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, and below 24 columns or 8 rows it draws `Too small · Ctrl+D exit` and returns. Otherwise it draws the header from the status surface, the tabs from the active tab, the rule, the body slot, the banner slot, the status row from the last error, and the footer from `keys.rs`. When the palette is open it draws the panel over the body, filtered by the text the operator typed. A key reaches `keys.rs` first, which answers with an action and a label; the loop runs the action, and the next frame draws the label the same row carries.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -77,7 +77,7 @@ The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, a
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `crates/bots-tui/src/lib.rs` | Owns the module declarations and the argument parsing | update - three `pub mod` lines and the `--ascii` flag | `rg -n 'pub mod (keys\|theme\|view)' crates/bots-tui/src/lib.rs` prints three lines, and `cargo test --lib args` names `ascii_flag_selects_the_ascii_glyphs` |
+| `crates/bots-tui/src/lib.rs` | Owns the module declarations and the argument parsing | update - three `pub mod` lines and the `--mono` and `--ascii` flags | `rg -n 'pub mod (keys\|theme\|view)' crates/bots-tui/src/lib.rs` prints three lines, and `cargo test --lib args` names `mono_flag_selects_mono` and `ascii_flag_selects_the_ascii_glyphs` |
 | `crates/bots-tui/src/state.rs` | Owns the pure state and the reducer | unchanged - the shell reads `active_tab`, `status`, `last_error` and `now` and adds no field | `rg -n 'pub struct State' crates/bots-tui/src/state.rs` prints one line, and `cargo test --lib state` still passes |
 | `crates/bots-tui/src/app.rs` | Owns the loop and the event source | unchanged - the loop calls `view::draw` and the table answers the key | `cargo test --lib app` still passes |
 | `bots status --json` | Producer of the header's bot count and stale flag | not a consumer - the header reads it and changes nothing | `node .skilled/bin/bots.cjs status --json` still exits 0 and prints a `rows` key |
@@ -86,9 +86,9 @@ The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, a
 
 Required inventories:
 - Same-class producers: `rg -n 'Label::new\|label:' crates/bots-tui/src/keys.rs` lists every row that carries a drawn label, so a new binding cannot be added without one.
-- Consumers of changed symbols: `rg -n 'keys::' crates/bots-tui/src` names every module that reads the table, and it must be `view/footer.rs` and `view/mod.rs` only.
+- Consumers of changed symbols: `rg -n 'keys::' crates/bots-tui/src` names every module that reads the table, and it must be `view/footer.rs` and `view/mod.rs` only; `rg -n 'stale_label' crates/bots-tui/src` names the definition in `view/header.rs` and 004's one call in `view/panes.rs`.
 - Matrix axes: three header states (`ok`, `stale`, `error`) by two sizes (80x24, 120x40), plus the too-small case at 23x8 and 24x7, plus two palettes (System, Mono) and two glyph columns (Unicode, ASCII).
-- Algorithm invariant: every drawn string passes `theme::safe_text`, and every band's height is computed with saturating subtraction, so no area from 1x1 upward can underflow.
+- Algorithm invariant: every drawn string passes `theme::printable`, and every band's height is computed with saturating subtraction, so no area from 1x1 upward can underflow.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -160,10 +160,10 @@ Two rungs can refuse before they spend anything, and the ladder treats a refusal
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | The key table's actions and labels, the tab cycle, the palette filter, the theme's `NO_COLOR` selection, the glyph table's two columns, and `safe_text` | `cargo test --lib keys`, `--lib theme` |
+| Unit | The key table's actions and labels, the tab cycle, the palette filter, the theme's `--mono` selection, the glyph table's two columns, `printable`, and `stale_label` | `cargo test --lib keys`, `--lib theme`, `--lib header` |
 | Render | Every label in the table appears in the frame that binds it; the header's three states; the status row with and without an error; the too-small screen at 23x8 and 24x7; the palette's filter, Enter and Esc | `cargo test --test render_keys` |
 | Snapshot | The whole shell buffer at 80x24 and at 120x40, compared to an expected block held in the test file | `cargo test --test render_keys` |
-| Environment | `NO_COLOR` selects Mono and the Mono frame draws the same symbols as System | `cargo test --lib theme` |
+| Environment | `--mono` selects Mono and the Mono frame draws the same symbols as System | `cargo test --lib theme` |
 | Gate | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, the two greps and `validate.sh` | The commands in `tasks.md` |
 
 No test needs a tty. The frame is drawn into a `TestBackend` buffer, the state is built by hand, and the clock is a field the test sets, so every assertion reads cells rather than keystrokes.

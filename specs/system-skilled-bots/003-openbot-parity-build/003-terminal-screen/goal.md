@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
-    last_updated_at: "2026-11-25T21:40:00Z"
-    last_updated_by: "phase-parent-expansion"
-    recent_action: "Authored the phase-parent directive and its six binding rows"
+    last_updated_at: "2026-11-25T21:12:34Z"
+    last_updated_by: "review-fix-pass"
+    recent_action: "Added 001's key-map approval and --recursive to the criteria"
     next_safe_action: "Work child 001-ux-and-component-map"
     blockers: []
     key_files: []
@@ -71,9 +71,6 @@ phase and binds as if written here.
 | 005-answer-flow | `005-answer-flow/goal.md` |
 | 006-hardening-and-proof | `006-hardening-and-proof/goal.md` |
 
-Each row binds that child's `goal.md`, authored from its spec and acceptance
-criteria.
-
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
 
@@ -86,13 +83,13 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`; `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` both exit 0.
 - [ ] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
 - [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`; after `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
-- [ ] `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen --strict` prints `RESULT: PASSED`.
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2.
+- [ ] `001-ux-and-component-map/acceptance-criteria.md` AC-007 reads `Met`, and `001-ux-and-component-map/decision-record.md` carries the approval row naming the date and the key set it covers.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen --strict --recursive` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -108,11 +105,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase parent authored | Done | `spec.md` carries the Phase Documentation Map for six children, and `decision-record.md` records Q002 to Q007 |
+| Phase parent authored | Done | `spec.md` carries the Phase Documentation Map for six children, and `decision-record.md` records Q002 to Q009 |
 | Six binding rows | Done | `find specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 6 |
-| Child goals authored | Pending | No `NNN-slug/goal.md` exists yet; each is a `/create:goal <child> child` run |
+| Child goals authored | Done | `find specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen -mindepth 2 -maxdepth 2 -name 'goal.md' | wc -l` prints 6, and `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` passes on each |
 | Crate scaffolded | Pending | No `crates/bots-tui/` exists yet |
 | `ui` verb added | Pending | `node .skilled/bin/bots.cjs ui` prints `bots: unknown verb: ui` and exits 2 |
+| First review applied | Done | `spec.md` REQ-010 names `Enter open` in the inbox footer and the two overlay key sets with deny drawn first, Q008 and Q009 are recorded in `decision-record.md`, and the criteria carry 001's key-map approval and run `--strict --recursive` |
 
 ### Deviations and findings
 
@@ -122,4 +120,5 @@ and findings belong here.
 | The inbox pane reads the fixture first | `bots inbox --json` does not exist until phase 001 lands it, so the inbox pane and its banner are proven against `tests/fixtures/bots` until then. |
 | The parent goal owns the binding | `../goal.md` names this phase in its row 003 and binds it. This goal binds the six children below it. |
 | The pre-expansion documents are kept | `context/legacy-003/` holds the phase 003 spec, plan, tasks, acceptance criteria and goal as they stood before the expansion. The folder is gitignored, so it is reference only. |
+| The two cargo criteria are one | The checker caps a goal at seven criteria, so `cargo test`, `cargo clippy` and `cargo fmt` share one line. Every command and its expected output is still named, so no gate was dropped to make room for 001's key-map approval. |
 <!-- /ANCHOR:log -->

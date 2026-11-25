@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Testing** | `cargo test` for unit and fixture-driven integration; vitest for the `ui` verb |
 
 ### Overview
-The crate lives at `crates/bots-tui/` rather than under `.skilled/`, because `.opencode/` mirrors `.skilled/` wholesale and a crate inside the skill would be duplicated into that mirror along with its build output. The binary is `bots-ui`, and `.skilled/bin/bots.cjs` gains one `ui` verb that resolves it from the repository root, execs it with `--repo` and `--skilled-tree`, and passes the exit code through. Inside the crate, `lib.rs` is the library root that holds the terminal guard and the loop entry, `main.rs` is the binary that calls it, `cli.rs` is the only module that spawns a process, `state.rs` holds a pure reducer with no I/O, `data.rs` owns the worker thread and the generation-tagged channel, and `terminal.rs` owns the guard. The proof is `cargo test`: a fixture `bots` script carries the four payloads, so the client is tested without a live state root, and a lib test drives the loop with a closed input so the no-write rule is proven without a tty.
+The crate lives at `crates/bots-tui/` rather than under `.skilled/`, because `.opencode/` mirrors `.skilled/` wholesale and a crate inside the skill would be duplicated into that mirror along with its build output. The binary is `bots-ui`, and `.skilled/bin/bots.cjs` gains one `ui` verb that resolves it from the repository root, execs it with `--repo` and `--skilled-tree`, and passes the exit code through. The verb also reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when the caller asks, so the binary reads no environment variable of its own and the palette is chosen by a flag. Inside the crate, `lib.rs` is the library root that holds the terminal guard and the loop entry, `main.rs` is the binary that calls it, `cli.rs` is the only module that spawns a process, `state.rs` holds a pure reducer with no I/O, `data.rs` owns the worker thread and the generation-tagged channel, and `terminal.rs` owns the guard. The proof is `cargo test`: a fixture `bots` script carries the four payloads, so the client is tested without a live state root, and a lib test drives the loop with a closed input so the no-write rule is proven without a tty. 001's four design documents are copied unchanged into `crates/bots-tui/design/` when the crate is created, so the mockups ship beside the code they describe and 006's pointer check has a folder to read.
 
 This child draws one empty frame and no pane. That is deliberate: the loop, the guard and the process boundary are the three places a mistake costs a terminal or a wrong answer, so they land and are proven before any surface draws into them.
 <!-- /ANCHOR:summary -->
@@ -51,7 +51,8 @@ This child draws one empty frame and no pane. That is deliberate: the loop, the 
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exit 0
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` passes, including `cli-ui.vitest.ts`
-- [ ] `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, and the job pins `dtolnay/rust-toolchain@1.92.0`
+- [ ] `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing
 - [ ] Docs updated (spec/plan/tasks/acceptance criteria)
 <!-- /ANCHOR:quality-gates -->
 
@@ -64,8 +65,8 @@ This child draws one empty frame and no pane. That is deliberate: the loop, the 
 Pure state, one renderer, one process boundary, one worker thread.
 
 ### Key Components
-- **`lib.rs` and `main.rs`**: the library root and the binary. `lib.rs` parses arguments, holds the terminal guard, owns the loop entry and declares one `pub mod` line per module, so `cargo test --lib` reaches every module and `tests/*.rs` imports them. `main.rs` calls it and maps the result to the exit code.
-- **`terminal.rs`**: the RAII guard. It enters raw mode and the alternate screen, restores on `Drop`, and chains a restore in front of the process panic hook, so a panic inside the loop leaves a usable terminal and a readable backtrace. The shape is openhuman's, read as design and copied as no code. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/terminal.rs:75-118]
+- **`lib.rs` and `main.rs`**: the library root and the binary. `lib.rs` parses arguments, including `--mono` and `--ascii`, holds the terminal guard, owns the loop entry and declares one `pub mod` line per module, so `cargo test --lib` reaches every module and `tests/*.rs` imports them. `main.rs` calls it and maps the result to the exit code.
+- **`terminal.rs`**: the RAII guard. It enters raw mode and the alternate screen, restores on `Drop`, chains a restore in front of the process panic hook, and installs a `SIGTERM` and `SIGHUP` handler that runs the same restore, so a panic or a killed process leaves a usable terminal and a readable backtrace. The shape is openhuman's, read as design and copied as no code. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/terminal.rs:75-118]
 - **`event.rs`**: the event source the caller supplies. It yields a key, a resize or a closed input, so a test drives the loop with no terminal. The reader polls every 100 ms, which is the openhuman interval. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs:113-120]
 - **`state.rs`**: the pure reducer, `update(state, msg) -> Vec<Effect>`, with the effects `Fetch` and `Answer { id, text, scope }`. Each surface is a `Remote<T> { rows, last_ok_at, error, in_flight }`, and the selection is `Option<ItemId>` rather than a row index, because the 5-second poll reorders rows. A test drives it with a message and asserts the next state and the effects, with no process involved.
 - **`data.rs`**: the worker thread and the generation-tagged channel. One thread runs every CLI call and sends its result over one `std::sync::mpsc` channel tagged with a generation number, and the loop drops a result whose generation is not current. This is the fix for the measured freeze: `bots status --json` took 0.18 to 0.34 s, so several sequential spawns on the loop thread froze input about a second every 5 s.
@@ -86,12 +87,13 @@ A key event reaches `app.rs` from the source the caller supplies. `app.rs` asks 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.skilled/bin/bots.cjs` | Owns the verb set, the usage text and the exit codes | update - add the `ui` verb and its two refusals | `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 with `ui-unavailable`, and with `mkdir -p "$T/crates/bots-tui"` exits 4 with `ui-not-built` |
+| `.skilled/bin/bots.cjs` | Owns the verb set, the usage text and the exit codes | update - add the `ui` verb, its two refusals and its two display flags | `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 with `ui-unavailable`, and with `mkdir -p "$T/crates/bots-tui"` exits 4 with `ui-not-built`. The `--mono` and `--ascii` pass-through is proven by `cli-ui.vitest.ts`, which reads the stub's recorded argv |
 | `crates/bots-tui/` | New consumer of the JSON verbs | create | `cargo test --manifest-path crates/bots-tui/Cargo.toml` passes |
+| `crates/bots-tui/design/` | 001's four documents, authored in the packet | create - copy the four unchanged | `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing |
 | `bots status --json` | Producer of the header's bot count and staleness flag | unchanged here; 004 adds `lastRun.branch` and `lastRun.worktreePath`, which the header ignores and the fixture carries | `node .skilled/bin/bots.cjs status --json` still exits 0, and the count is the rows whose `kind` is `bot` |
 | `bots activity --json`, `bots inbox --json`, `bots routines --json` | Producers owned by phases 001 and 002 of the parent build | not a consumer - this child reads them through the fixture and changes none | `rg -n 'activity\|routines' .skilled/bin/bots.cjs` shows no new verb beyond `ui` |
 | `bots answer` | The one write path, which gains `--scope once\|deny` in phase 001 | unchanged | `node .skilled/bin/bots.cjs answer <id> deny --scope deny` still exits 0 |
-| `.github/workflows/bots-runtime.yml` | Runs the runtime suites on the skill's paths | update - two path entries and one `bots-tui` job, the repository's first Rust build | `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3 |
+| `.github/workflows/bots-runtime.yml` | Runs the runtime suites on the skill's paths | update - two path entries and one `bots-tui` job, the repository's first Rust build | `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2 |
 | `.gitignore` | Ignores build output and packet source material | update - one line for `/crates/bots-tui/target/` | `git check-ignore -v crates/bots-tui/target/release/bots-ui` prints the `/crates/bots-tui/target/` line |
 
 Required inventories:
@@ -108,7 +110,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes, the task state and the wave table.
 
-Setup confirms the measured gap and the toolchain, reads the four `--json` shapes, writes the manifest and the `.gitignore` line, then builds an empty crate skeleton whose library root declares every module and whose binary calls it. Implementation fills the six modules, the fixture, the client test and the loop, then adds the `ui` verb, its vitest suite and the CI job. Verification runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, the runtime's `cli-ui.vitest.ts`, the GPL grep and the two refusals, then validates the packet.
+Setup confirms the measured gap and the toolchain, reads the four `--json` shapes, writes the manifest and the `.gitignore` line, then builds an empty crate skeleton whose library root declares every module and whose binary calls it, and copies 001's `design/` into the crate. Implementation fills the six modules, the fixture, the client test and the loop, adds the signal handler to the guard, then adds the `ui` verb with its two display flags, its vitest suite and the CI job. Verification runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, the runtime's `cli-ui.vitest.ts`, the GPL grep, the design copy diff and the two refusals, then validates the packet.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -172,10 +174,10 @@ Two rungs can refuse before they spend anything, and the ladder treats a refusal
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | `model.rs` defaults and `Unknown(raw)`, `cli.rs`'s default program, `state.rs`'s effects, `event.rs`'s closed input, `data.rs`'s generation drop, `terminal.rs`'s restore on exit and on panic, and `app.rs`'s closed-input exit | `cargo test --lib` |
+| Unit | `model.rs` defaults and `Unknown(raw)`, `cli.rs`'s default program, `state.rs`'s effects, `event.rs`'s closed input, `data.rs`'s generation drop, `terminal.rs`'s restore on exit, on panic and on a signal, and `app.rs`'s closed-input exit | `cargo test --lib` |
 | Integration | `cli.rs` against `tests/fixtures/bots`, a script that prints canned JSON and records its argv | `cargo test --test cli_client` |
-| CLI verb | `bots ui` argv, exit passthrough, the `ui-unavailable` refusal for an absent crate and the `ui-not-built` refusal for an absent binary | `npm --prefix .skilled/skills/system-skilled-bots/runtime test` |
-| Gate | fmt, clippy with warnings denied, the whole crate suite, the runtime suite, the GPL grep and the two refusals | the commands in `tasks.md` Phase 3 |
+| CLI verb | `bots ui` argv, exit passthrough, the `--mono` and `--ascii` pass-through, the `ui-unavailable` refusal for an absent crate and the `ui-not-built` refusal for an absent binary | `npm --prefix .skilled/skills/system-skilled-bots/runtime test` |
+| Gate | fmt, clippy with warnings denied, the whole crate suite, the runtime suite, the GPL grep, the design copy diff and the two refusals | the commands in `tasks.md` Phase 3 |
 
 The fixture script is the seam that keeps the crate's tests off a live state root: it answers `activity`, `inbox`, `routines` and `status` with the payloads phases 001 and 002 of the parent build ship, its `status --json` carries the `lastRun.branch` and `lastRun.worktreePath` keys 004 adds, and it appends each invocation's argv to a log file the test reads. Every payload sits inline in the script, one branch per verb, so a phase that adds a key greps the script for it rather than a sibling file. The client takes the program and its arguments, so the tests point it at `bash` plus `concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/bots")` and the binary's default stays `node <skilled-tree>/.skilled/bin/bots.cjs`. It is also the copy of every `--json` contract the screen reads, so a phase that changes one of those payloads updates the fixture in the same change. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md:55] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md:62]
 
@@ -190,8 +192,9 @@ No test needs a tty. The loop takes its events from a source the caller supplies
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Rust stable toolchain | External | Green | The crate cannot build. `cargo 1.92.0` is installed on this machine |
-| Rust on the CI runner | External | Yellow | The `bots-tui` job cannot build. The job installs `dtolnay/rust-toolchain@stable` with the `clippy` and `rustfmt` components, and it is the repository's first Rust build |
+| Rust on the CI runner | External | Yellow | The `bots-tui` job cannot build. The job pins `dtolnay/rust-toolchain@1.92.0` with the `clippy` and `rustfmt` components, so the compiler matches the one installed here, and it is the repository's first Rust build |
 | ratatui 0.30, crossterm 0.29, serde, serde_json, unicode-width | External | Green | The frame cannot draw or the payload cannot be parsed |
+| libc 0.2 | External | Green | The guard cannot install the `SIGTERM` and `SIGHUP` handler, so a killed process leaves the terminal in raw mode |
 | 001's approved key map and component inventory | Internal | Yellow | The module map has no approved component list to follow |
 | The four `--json` contracts from 001, 002 and 004 | Internal | Yellow | The client is written against the fixture only |
 | `bots status --json` | Internal | Green | The header loses its bot count and staleness flag |

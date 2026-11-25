@@ -37,14 +37,14 @@ The answer surface is a state machine and one renderer. `state.rs` gains the ove
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `node .skilled/bin/bots.cjs answer item-1 yes --scope once` exits 2 and prints `bots: unknown option: --scope`, the measured gap this child closes from its own side
+- [ ] `node .skilled/bin/bots.cjs inbox --json` exits 0 and prints a JSON object carrying an `items` array, and `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` option, so packet phase 001's read and write both exist before this child extends them
 - [ ] `ls crates/bots-tui/src/model.rs crates/bots-tui/src/state.rs crates/bots-tui/src/keys.rs crates/bots-tui/src/cli.rs crates/bots-tui/src/app.rs crates/bots-tui/tests/fixtures/bots` prints six paths, so 002 is closed
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok`, so 004 is closed and the inbox selection exists
 - [ ] `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`, so the fixture is executable before this child extends it
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names the twelve tests `tasks.md` lists
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names the thirteen tests `tasks.md` lists
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` and names `closed_input_writes_nothing`
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0
 - [ ] `rg -n 'Command::new' crates/bots-tui/src` prints only `cli.rs`, so the one write path is one module
@@ -61,15 +61,16 @@ Pure reducer, one renderer, one process boundary.
 
 ### Key Components
 - **`state.rs` (modify)**: the overlay state. `Overlay { item_id, options, phase, buffer }` where `phase` is `Idle`, `Sending`, `Refused(String)` or `Gone`, plus the lock that makes a key a no-op while `phase` is `Sending`. The reducer returns `Vec<Effect>`, so a test asserts that a second press returns no `Answer` effect rather than asserting a side effect did not happen. This is the shape the parent's architecture names: `update(state, msg) -> Vec<Effect>` with `Fetch` and `Answer{id,text,scope}`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:37]
-- **`keys.rs` (modify)**: the overlay rows. Each row carries the action and the label the renderer draws, so `y`, `n`, `1` to `9`, `Esc` and `Ctrl+C` cannot be bound without appearing on screen. The typing mode is a property of the row, not a branch in the loop, so one flag pauses every single-key binding at once.
+- **`keys.rs` (modify)**: the overlay rows. Each row carries the action and the label the renderer draws, so `y`, `n`, `1` to `9`, `t`, `Esc` and `Ctrl+C` cannot be bound without appearing on screen. The typing mode is a property of the row, not a branch in the loop, so one flag pauses every single-key binding at once. The `t` row is the one key that turns that flag on, which is what lets a line begin with `y` or `n`.
 - **`cli.rs` (modify)**: the `answer` call. It builds `answer <item-id> <text> --scope <scope>` and returns the exit code with the first stderr line, so the status row reads one string and the loop never parses a message.
-- **`view/overlay.rs` (create)**: the four states. `Idle` draws the numbered choices with deny first, `Sending` draws the same panel with every key dimmed, `Refused` adds the stderr line, and `Gone` replaces the choices with one line saying the item is no longer open. A free-text item draws the typed line with a cursor instead of the digits.
+- **`view/overlay.rs` (create)**: the four states. `Idle` draws the numbered choices with deny first, `Sending` draws the same panel with every key dimmed, `Refused` adds the stderr line, and `Gone` replaces the choices with one line saying the item is no longer open. A free-text item draws the typed line with a cursor instead of the digits. A `grant` row is drawn only when the item carries a grant, so the same frame builds before packet phase 006.
 - **`view/banner.rs` (create)**: the count row. It reads the open item count and the inbox tab key label from `keys.rs`, and draws nothing when the count is zero.
+- **`view/mod.rs` (modify)**: the view root 003 creates. This child adds one `mod overlay;` and one `mod banner;` line, so the crate keeps one view root rather than a second `src/view.rs`.
 - **`app.rs` (modify)**: the `Answer` effect. It sets `Sending`, calls `cli.rs` once, and on a non-zero exit sets `Refused` with the stderr line while leaving the item in place. A closed input returns 0 before any effect is produced.
 - **`model.rs` (modify)**: `options` on the inbox item, so the overlay can tell a choice item from a free-text one without a second read.
 
 ### Data Flow
-A key reaches `app.rs`, which asks `keys.rs` for an action. With no overlay open, `Enter` over the selected inbox item builds an `Overlay` from the item's id and options and produces no effect. With an overlay open, `y`, `n` or a digit produces `Answer{id, text, scope}`, and the reducer moves the phase to `Sending` in the same step, so the next key finds the lock. `app.rs` runs the effect through `cli.rs`, which spawns `<program> answer <id> <text> --scope <scope>` where the program and its arguments default to `node <skilled-tree>/.skilled/bin/bots.cjs` and the tests pass `bash` plus `concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/bots")`. Exit 0 closes the overlay and triggers one refresh; a non-zero exit sets `Refused` with the first stderr line and leaves the overlay open. `view/overlay.rs` and `view/banner.rs` then draw one frame from state, and neither reads a process.
+A key reaches `app.rs`, which asks `keys.rs` for an action. With no overlay open, `Enter` over the selected inbox item builds an `Overlay` from the item's id and options and produces no effect. With an overlay open, `y`, `n` or a digit produces `Answer{id, text, scope}`, and the reducer moves the phase to `Sending` in the same step, so the next key finds the lock. `t` turns on the typing mode instead, and from then on every printable character is text until Enter sends it. `app.rs` runs the effect through `cli.rs`, which spawns `<program> answer <id> <text> --scope <scope>` where the program and its arguments default to `node <skilled-tree>/.skilled/bin/bots.cjs` and the tests pass `bash` plus `concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/bots")`. Exit 0 closes the overlay and triggers one refresh; a non-zero exit sets `Refused` with the first stderr line and leaves the overlay open. `view/overlay.rs` and `view/banner.rs` then draw one frame from state, and neither reads a process.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -83,7 +84,8 @@ A key reaches `app.rs`, which asks `keys.rs` for an action. With no overlay open
 | `bots inbox --json` | The read that carries `id`, `options`, `state` and `expiresAt` | not a consumer - this child reads it and changes nothing | `rg -n 'inbox' .skilled/bin/bots.cjs` shows no new option |
 | `crates/bots-tui/src/cli.rs` | The only module that spawns a process | update - the `answer` call and the stderr capture | `rg -n 'Command::new' crates/bots-tui/src` prints only `cli.rs` |
 | `crates/bots-tui/src/state.rs` | The pure reducer 002 creates | update - the overlay state, the buffer and the lock | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` |
-| `crates/bots-tui/src/keys.rs` | The key table 003 creates | update - the overlay rows and their labels | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` |
+| `crates/bots-tui/src/keys.rs` | The key table 003 creates | update - the overlay rows and their labels, including the `t` row that enters text mode | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` |
+| `crates/bots-tui/src/view/mod.rs` | The view root 003 creates | update - one `mod overlay;` and one `mod banner;` line | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0, so both modules are declared |
 | `crates/bots-tui/src/app.rs` | The loop 002 creates | update - the `Answer` effect, the lock, the refusal and the closed-input exit | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` |
 | `crates/bots-tui/tests/fixtures/bots` | The only payload source in tests | update - the `answer` branch, the argv log line and the refusal switch | `bash crates/bots-tui/tests/fixtures/bots answer item-1 deny --scope deny` exits 0 and appends one argv line |
 | `crates/bots-tui/src/view/panes.rs` | The inbox pane 004 creates | not a consumer - the overlay reads the selected id, never the pane | `rg -n 'overlay' crates/bots-tui/src/view/panes.rs` prints nothing |
@@ -91,7 +93,7 @@ A key reaches `app.rs`, which asks `keys.rs` for an action. With no overlay open
 Required inventories:
 - Same-class producers: `rg -n 'answer' crates/bots-tui/src --glob '!cli.rs'` lists every module that names the verb, so a second write path cannot appear unnoticed.
 - Consumers of changed symbols: `rg -n 'Overlay|Answer' crates/bots-tui/src crates/bots-tui/tests` lists every reader of the new state and effect.
-- Matrix axes: four overlay states (idle, sending, refused, gone) by two item shapes (options, no options) by five no-write keys (Esc, closed input, Ctrl+C, unbound key, second press), plus the one write by two scopes (`once`, `deny`).
+- Matrix axes: four overlay states (idle, sending, refused, gone) by two item shapes (options, no options) by five no-write keys (Esc, closed input, Ctrl+C, unbound key, second press), plus the one write by two scopes (`once`, `deny`), plus the grant row's two cases (present, absent).
 - Algorithm invariant: an `Answer` effect is produced only by a key that names an answer, only while the phase is `Idle`, and only for the item id the overlay captured. Every other path produces no effect, and the argv log is the evidence.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -129,7 +131,7 @@ The other two need one fact each. `cli-pi`'s ladder is `low`, `high` and `max`, 
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-This child's files are almost all disjoint, which is why three of its six waves run more than one worker. Two dependencies shape the count. `crates/bots-tui/src/app.rs` and `crates/bots-tui/tests/answer_flow.rs` form one serial lane, because the test drives the loop's `Answer` effect and cannot compile before the effect exists. `crates/bots-tui/src/state.rs` and `crates/bots-tui/src/keys.rs` are separate files but both feed `view/overlay.rs`, so the overlay waits for the wave that lands them rather than sharing it.
+This child's files are almost all disjoint, which is why two of its six waves run more than one worker. Three dependencies shape the count. `crates/bots-tui/src/app.rs` and `crates/bots-tui/tests/answer_flow.rs` form one serial lane, because the test drives the loop's `Answer` effect and cannot compile before the effect exists. `crates/bots-tui/src/state.rs` and `crates/bots-tui/src/keys.rs` are separate files but both feed `view/overlay.rs`, so the overlay waits for the wave that lands them rather than sharing it. `view/overlay.rs` and `view/banner.rs` are separate files but both add a `mod` line to the one view root `crates/bots-tui/src/view/mod.rs`, so the two views share one lane rather than two.
 
 ### The waves
 
@@ -139,7 +141,7 @@ This child's files are almost all disjoint, which is why three of its six waves 
 |------|-------|-------------------------|------------|
 | Orchestrator | T001, T002, T003, T004 | none; the orchestrator runs them itself | none; four read-only probes |
 
-**Workers:** 0. Each task is one command whose output the orchestrator reads, so a dispatch would add a process and no judgment. **Verify:** `node .skilled/bin/bots.cjs answer item-1 yes --scope once` exits 2 and prints `bots: unknown option: --scope`; `ls crates/bots-tui/src/model.rs crates/bots-tui/src/state.rs crates/bots-tui/src/keys.rs crates/bots-tui/src/cli.rs crates/bots-tui/src/app.rs crates/bots-tui/tests/fixtures/bots` prints six paths; `rg -n 'Deny' specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs` prints the deny button line; `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`.
+**Workers:** 0. Each task is one command whose output the orchestrator reads, so a dispatch would add a process and no judgment. **Verify:** `node .skilled/bin/bots.cjs inbox --json` exits 0 and prints a JSON object carrying an `items` array; `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` option; `ls crates/bots-tui/src/model.rs crates/bots-tui/src/state.rs crates/bots-tui/src/keys.rs crates/bots-tui/src/cli.rs crates/bots-tui/src/app.rs crates/bots-tui/tests/fixtures/bots` prints six paths; `rg -n 'Deny' specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs` prints the deny button line; `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`.
 
 #### Wave 2 - The item, the state and the key table
 
@@ -164,10 +166,9 @@ This child's files are almost all disjoint, which is why three of its six waves 
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T010 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/src/view/overlay.rs` |
-| B | T011 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/src/view/banner.rs` |
+| A | T010, T011 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/src/view/overlay.rs`, `crates/bots-tui/src/view/banner.rs`, `crates/bots-tui/src/view/mod.rs` |
 
-**Workers:** 2, because the two files are disjoint and both read state that wave 2 landed. Lane A takes the Vibe lane because the overlay is the design-heavy piece: four states, a numbered list with deny first, a typed line with a cursor, and a dimmed sending panel. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib overlay` prints `test result: ok` and names `overlay_draws_deny_first`, `overlay_labels_are_drawn`, `sending_dims_every_key`, `refused_adds_the_stderr_line` and `gone_replaces_the_choices`; `--lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none`.
+**Workers:** 1, serial inside the lane, because both tasks add a `mod` line to the one view root `crates/bots-tui/src/view/mod.rs`, so the two file sets are not disjoint. Lane A takes the Vibe lane because the overlay is the design-heavy piece: four states, a numbered list with deny first, a typed line with a cursor, a dimmed sending panel and a grant row drawn only when the item carries one. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib overlay` prints `test result: ok` and names `overlay_draws_deny_first`, `overlay_labels_are_drawn`, `sending_dims_every_key`, `refused_adds_the_stderr_line`, `gone_replaces_the_choices` and `grant_row_draws_only_when_present`; `--lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none`.
 
 #### Wave 5 - The loop and the integration test
 
@@ -175,7 +176,7 @@ This child's files are almost all disjoint, which is why three of its six waves 
 |------|-------|-------------------------|------------|
 | A | T012, T013 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `crates/bots-tui/src/app.rs`, `crates/bots-tui/tests/answer_flow.rs` |
 
-**Workers:** 1, serial inside the lane, because the test drives the effect the loop adds. This is the packet's hardest wave: the lock, the refusal path, the gone item and the closed-input exit are the four places a wrong branch writes an answer nobody asked for, so it takes the highest tier the roster offers. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` and names `closed_input_writes_nothing`; `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names all twelve tests `tasks.md` lists.
+**Workers:** 1, serial inside the lane, because the test drives the effect the loop adds. This is the packet's hardest wave: the lock, the refusal path, the gone item and the closed-input exit are the four places a wrong branch writes an answer nobody asked for, so it takes the highest tier the roster offers. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` and names `closed_input_writes_nothing`; `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names all thirteen tests `tasks.md` lists.
 
 #### Wave 6 - Verification gates
 
@@ -217,8 +218,8 @@ Wave 5 names rung 5 as its executor, so it has no rung below it. If `cli-codex` 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | `state.rs` overlay phases and the lock, `keys.rs` overlay rows and labels, `cli.rs` argv construction, `model.rs` options | `cargo test --lib` |
-| Render | the four overlay states and the banner's two states, asserted against a `TestBackend` buffer | `cargo test --lib overlay`, `cargo test --lib banner` |
-| Integration | the argv log, the Esc close, the closed input, the free text, the lock, the refusal, the gone item, Ctrl+C and the unbound key, against `tests/fixtures/bots` | `cargo test --test answer_flow` |
+| Render | the four overlay states, the grant row's two cases and the banner's two states, asserted against a `TestBackend` buffer | `cargo test --lib overlay`, `cargo test --lib banner` |
+| Integration | the argv log, the Esc close, the closed input, the free text, the typing pause, the leading `y`, the lock, the refusal, the gone item, Ctrl+C and the unbound key, against `tests/fixtures/bots` | `cargo test --test answer_flow` |
 | Manual | one item answered from the overlay, read back through the item file under `$STATE`. This row needs a tty by design, because the overlay is driven by keystrokes; every other row needs none | `bots ui`, then `jq -e '.answer.text' $STATE/*/needs-you/<item-id>.json` |
 
 The fixture is the seam that keeps every test off a live state root and off a tty. It answers `answer` with exit 0 and appends the argv it was given to `tests/fixtures/bots.argv`, and `BOTS_FIXTURE_ANSWER_EXIT` makes it exit with that code and print `bots: answer-not-approver`, so the refusal path is one environment variable rather than a second script. The argv log is the proof of every no-write claim: a test that must write nothing asserts the log holds no `answer` line, which is a stronger claim than asserting a state field, because it covers the process boundary too.

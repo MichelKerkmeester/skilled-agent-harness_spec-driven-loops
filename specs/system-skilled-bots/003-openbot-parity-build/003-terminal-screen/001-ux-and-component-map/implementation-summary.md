@@ -8,14 +8,15 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map"
-    last_updated_at: "2026-11-25T20:42:59Z"
+    last_updated_at: "2026-11-25T21:34:59Z"
     last_updated_by: "generate-context"
-    recent_action: "Expanded phase 003 into six children with goals and design"
-    next_safe_action: "Commit and push the terminal screen expansion after operator yes"
+    recent_action: "Stopped the Codex top-up for session handover"
+    next_safe_action: "Resume the handoff: finish re-review, top-up, synthesis, 002 move"
     packet_purpose: "Purpose: One approved map of every frame, key, glyph and component state, so the build draws cells rather than deciding layout."
     blockers: []
     key_files:
-      - "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md"
+      - "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-review-1.md"
+      - "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-references.md"
     session_dedup:
       fingerprint: "sha256:451601c523711ca29aadbc458085f86b5e81094af672a8e921cf7cda701300e7"
       session_id: "scaffold-001-ux-and-component-map"
@@ -24,10 +25,10 @@ _memory:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-25T20:42:59Z"
+      savedAt: "2026-11-25T21:34:59Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 70
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-ux-and-component-map |
-| **Completed** | 2026-11-25 |
+| **Completed** | - |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

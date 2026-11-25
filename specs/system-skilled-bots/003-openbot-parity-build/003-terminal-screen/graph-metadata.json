@@ -58,7 +58,9 @@
       "003-shell-and-navigation/goal.md",
       "004-panes/goal.md",
       "005-answer-flow/goal.md",
-      "006-hardening-and-proof/goal.md"
+      "006-hardening-and-proof/goal.md",
+      "001-ux-and-component-map/acceptance-criteria.md",
+      "001-ux-and-component-map/decision-record.md"
     ],
     "entities": [
       {
@@ -158,13 +160,13 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "deny",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Decisions",
+        "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
@@ -208,7 +210,7 @@
     ],
     "causal_summary": "The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T20:42:59.084Z",
+    "last_save_at": "2026-11-25T22:04:39.886Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +218,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b67708b351f3bbad9c3a8a4fccca3e731b417ba8cbd24680e8e1753b149fcae1",
+    "source_fingerprint": "sha256:57dac6c801cac5ca4e7640deae383a839df9813382bb7cb7e6ed82e0342621fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a01d2b96d5f6b01c3c18f8200b6e6e956311648972bb3e289ae7ff71046993e",
-      "decision-record.md": "40f6a9fa6345785b371dd705f086341b44695bacbc502fc21841952dee8648a0"
+      "spec.md": "c3e0a6709a2f6657da18d2e3dfa3956a327e69bda3d312560400974eb3593d5c",
+      "decision-record.md": "3343843c15d9a488a86174782dcd5e578bd3cbc479906a0ac034a7a94ee4ca98"
     },
-    "last_active_at": "2026-11-25T20:42:59.084Z",
-    "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map"
+    "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map",
+    "last_active_at": "2026-11-25T21:34:59.288Z"
   }
 }

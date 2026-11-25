@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-hardening-and-proof |
-| **Completed** | 2026-11-25 |
+| **Completed** | - |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

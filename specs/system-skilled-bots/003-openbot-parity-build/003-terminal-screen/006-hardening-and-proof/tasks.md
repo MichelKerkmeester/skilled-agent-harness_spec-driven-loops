@@ -44,7 +44,7 @@ The tasks run in four waves. A wave's lanes hold disjoint files, so the worker c
 |------|-------|-------------------------|---------|-----------------------|
 | 1 Setup probes | T001 to T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | 1 | The four probe commands print their expected output |
 | 2 Gate repair | T005 to T008 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` on lane A; `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0, and the runtime suite prints no `failed` |
-| 3 Documents | T009 to T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` on lane A; `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | The five README greps each print one line, the hub grep prints one line, and `test -L .opencode/skills` exits 0 |
+| 3 Documents | T009 to T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` on lane A; `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | The five README greps each print one line, the hub grep prints one line, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
 | 4 Verification | T012 to T020 | the orchestrator, no dispatch | 0 | Every gate from the final state, the licence proof, the pointer check, the eight defect checks and `RESULT: PASSED` |
 
 A wave whose executor runs out of usage moves down the ladder in `plan.md`'s `External orchestration` section and never lowers its effort tier. A wave already on the last rung stops and reports rather than dropping its tier.
@@ -57,6 +57,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 |-------------|--------|-----|
 | T021 | Name `bots ui` as a status surface | T010 |
 | T022 | Prove the hub mirror is a symlink | T011 |
+| T019 | Prove the CLI mirror is a symlink | T011, which proves both mirrors |
 | T023 | Write the crate README | T009 |
 | T024 | Add the `bots-tui` CI job | `002-architecture-and-contracts`, which the parent's Files to Change table assigns `.github/workflows/bots-runtime.yml` to |
 | T025 | Run the formatter check | T005, then T012 from the final state |
@@ -78,7 +79,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 
 - [ ] T001 Confirm the measured gap before any edit (`$CRATE/Cargo.toml`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` while the crate is absent.
 - [ ] T002 Record the toolchain the gates run under (`goal.md`). Verify: `cargo fmt --version` and `cargo clippy --version` each print a version and exit 0.
-- [ ] T003 Record the crate's module list as the gate's file set (`$CRATE/src`). Verify: `ls $CRATE/src` prints `app.rs`, `cli.rs`, `data.rs`, `event.rs`, `keys.rs`, `lib.rs`, `main.rs`, `model.rs`, `sanitize.rs`, `state.rs`, `terminal.rs`, `theme.rs` and `view`.
+- [ ] T003 Record the crate's module list as the gate's file set (`$CRATE/src`). Verify: `ls $CRATE/src` prints `app.rs`, `cli.rs`, `data.rs`, `event.rs`, `keys.rs`, `lib.rs`, `main.rs`, `model.rs`, `state.rs`, `terminal.rs`, `theme.rs` and `view`.
 - [ ] T004 Confirm the eight defect rows the audit covers (`../spec.md`). Verify: `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
 <!-- /ANCHOR:phase-1 -->
 
@@ -96,9 +97,9 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 
 ### Wave 3 - The two documents
 
-- [ ] T009 Write the crate README: the release build, the run command, every bound key, the eight glyphs with their ASCII fallback, the design reference and the no-code statement (`$CRATE/README.md`). Verify: `rg -n 'cargo build --release' $CRATE/README.md`, `rg -n 'Ctrl\+C' $CRATE/README.md`, `rg -n 'ASCII' $CRATE/README.md`, `rg -n 'openhuman' $CRATE/README.md` and `rg -n 'no code' $CRATE/README.md` each print at least one line.
+- [ ] T009 Write the crate README: the release build, the run command, every bound key, the eight glyphs with their ASCII fallback and the two flags that select it, the design reference and the no-code statement (`$CRATE/README.md`). Verify: `rg -n 'cargo build --release' $CRATE/README.md`, `rg -n 'Ctrl\+C' $CRATE/README.md`, `rg -n 'ASCII|--ascii|--mono' $CRATE/README.md`, `rg -n 'openhuman' $CRATE/README.md` and `rg -n 'no code' $CRATE/README.md` each print at least one line.
 - [ ] T010 Name `bots ui` as a status surface in one line (`.skilled/skills/system-skilled-bots/SKILL.md`). Verify: `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line.
-- [ ] T011 Prove the hub mirror is a symlink, so the edited line lands once (`.opencode/skills`). Verify: `test -L .opencode/skills` exits 0 and `rg -n 'bots ui' .opencode/skills/system-skilled-bots/SKILL.md` prints the same one line as the `.skilled/` path.
+- [ ] T011 Prove both hub mirrors are symlinks, so the edited line and the edited verb each land once (`.opencode/skills`, `.opencode/bin`). Verify: `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0, `rg -n 'bots ui' .opencode/skills/system-skilled-bots/SKILL.md` prints the same one line as the `.skilled/` path, and `rg -c 'ui' .opencode/bin/bots.cjs` prints the same count as `.skilled/bin/bots.cjs`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -112,9 +113,9 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 - [ ] T013 Prove the linter gate from the final state (`$CRATE`). Verify: `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] T014 Prove the crate suite from the final state (`$CRATE`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] T015 Prove the runtime suite from the final state (`.skilled/skills/system-skilled-bots/runtime`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
-- [ ] T016 Prove the licence boundary (`$CRATE`). Verify: `cargo metadata --manifest-path $CRATE/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, `rg -n 'GNU GENERAL PUBLIC LICENSE|GPL-3' $CRATE` prints nothing, and `rg -n 'openhuman' $CRATE/src` prints only comment lines.
+- [ ] T016 Prove the licence boundary (`$CRATE`). Verify: `cargo metadata --manifest-path $CRATE/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, `rg -n 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, and `rg -n 'openhuman' $CRATE/src` prints only comment lines. The grep covers the code and the manifest and searches for the header text rather than the licence name, because `README.md` and `design/` name the reference's GPL-3.0 licence by design.
 - [ ] T017 Prove the README's build and run commands (`$CRATE`). Verify: `cargo build --release --manifest-path $CRATE/Cargo.toml` exits 0 and `ls $CRATE/target/release/bots-ui` prints the path.
-- [ ] T018 Prove every design pointer resolves (`$CRATE/design`). Verify: `rg -o --no-filename 'specs/system-skilled-bots/context/[^ :]+:[0-9]+' $CRATE/design | sort -u | while IFS=: read -r p l; do sed -n "${l}p" "$p" >/dev/null || printf 'DANGLING %s:%s\n' "$p" "$l"; done` prints nothing.
+- [ ] T018 Prove every design pointer resolves (`$CRATE/design`). Verify: `ls $CRATE/design` prints `component-inventory.md`, `glyph-table.md`, `key-map.md` and `mockups.md`, and `rg -o --no-filename 'specs/system-skilled-bots/context/[^ :]+:[0-9]+' $CRATE/design | sort -u | while IFS=: read -r p l; do test -f "$p" && test "$l" -le "$(awk 'END{print NR}' "$p")" || printf 'DANGLING %s:%s\n' "$p" "$l"; done` prints nothing. The `ls` is the guard: `rg` on a missing folder writes its error to stderr and the loop then reads no input, so the loop alone would pass on an absent folder, and `sed -n` past the end of a file exits 0, so the loop compares the line against the file's length.
 - [ ] T019 Run the eight defect checks and record each result in `goal.md` section 4 (`$CRATE`). Verify: `rg -c '^\| D[1-8] ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/tasks.md` prints 8, and each row of the Defect Audit table below prints its expected output.
 - [ ] T020 Validate this child (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
@@ -128,13 +129,13 @@ One row per defect the parent's §6 lists, each with the command that proves the
 
 | ID | Defect | Check | Expected |
 |----|--------|-------|----------|
-| D1 | `1` answers two questions | `rg -n 'Overlay' $CRATE/src/keys.rs` and `rg -c "Char\('1'\)" $CRATE/src/keys.rs` | the context enum, and one digit binding |
+| D1 | `1` answers two questions | `rg -n 'Overlay' $CRATE/src/keys.rs` and `rg -c "Char\('1'\)" $CRATE/src/keys.rs` | the context enum, and a digit binding in the `Overlay` context |
 | D2 | Alt+1..4 is unreachable on macOS | `rg -c "Char\('\[" $CRATE/src/keys.rs` and `rg -c "Char\('\]" $CRATE/src/keys.rs` | 1 and 1, the fallback pair |
 | D3 | Selection by row index is unsafe | `rg -n 'ItemId' $CRATE/src/state.rs` | the selection field's type |
 | D4 | Blocking spawns freeze input | `rg -n 'thread::spawn' $CRATE/src/data.rs` and `rg -n 'Command::new' $CRATE/src` | the worker line, and only `cli.rs` |
-| D5 | Bot text is drawn unsanitized | `rg -n 'sanitize' $CRATE/src/view` | at least one call per pane module |
+| D5 | Bot text is drawn unsanitized | `rg -n 'printable' $CRATE/src/view` and `test ! -e $CRATE/src/sanitize.rs` | at least one call per pane module, and one filter rather than two |
 | D6 | An item with no options can only get y/n | `rg -n 'free_text' $CRATE/src/view/overlay.rs` | at least one line |
-| D7 | `?` marks three different states | `rg -n 'scheduled' $CRATE/src` and `rg -n 'recurring' $CRATE/src` | one glyph row each |
+| D7 | `?` marks three different states | `rg -n 'scheduled|recurring' $CRATE/src/theme.rs` | two glyph rows |
 | D8 | The banner names the wrong key | `rg -n 'pending approval' $CRATE/src/view` and `rg -n 'pending approval.*Ctrl\+P' $CRATE/src/view` | one banner line, and nothing naming `Ctrl+P` |
 <!-- /ANCHOR:defect-audit -->
 
@@ -146,7 +147,7 @@ One row per defect the parent's §6 lists, each with the command that proves the
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `$CRATE`, and `test -L .opencode/skills` exits 0
+- [ ] `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `$CRATE`, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -181,7 +182,7 @@ One row per defect the parent's §6 lists, each with the command that proves the
 
 - [ ] CHK-001 [P0] `ls $CRATE/Cargo.toml` prints the path, so the crate `002` lands exists.
 - [ ] CHK-002 [P0] `ls $CRATE/tests/fixtures/bots` prints the path, so every suite has its payload source.
-- [ ] CHK-003 [P1] `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3, so `002`'s job is in place to read.
+- [ ] CHK-003 [P1] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, so `002`'s job is in place to read.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -211,7 +212,7 @@ One row per defect the parent's §6 lists, each with the command that proves the
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] `rg -n 'GNU GENERAL PUBLIC LICENSE|GPL-3' $CRATE` prints nothing, so no file the crate ships carries the design reference's licence.
+- [ ] CHK-030 [P0] `rg -n 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, so no file the crate ships that carries code carries the design reference's licence header.
 - [ ] CHK-031 [P0] `cargo metadata --manifest-path $CRATE/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`.
 - [ ] CHK-032 [P1] `rg -n 'env::var' $CRATE/src` matches nothing outside `#[cfg(test)]` blocks, so the shipped binary reads no environment variable of its own.
 - [ ] CHK-033 [P1] `rg -n 'read_to_string|File::open|fs::read' $CRATE/src` matches nothing outside `#[cfg(test)]` blocks, so the shipped binary opens no state file.

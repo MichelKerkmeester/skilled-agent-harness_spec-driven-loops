@@ -134,7 +134,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Three",
+        "name": "Overview Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The shell 003 lands draws a header, a tab bar, a footer and an empty body",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-25T20:37:05.693Z",
+    "last_save_at": "2026-11-25T22:01:19.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:688ed730fb9692932a70214400ed3b06097ad132e3f9b834d73a292fbb6e3b3e",
+    "source_fingerprint": "sha256:13fa2ee599fde9c74ffb8bb09aca08fd7d375b5ebc51f569b1fae299b4bb4bb4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9c13a28d4d9fb836795022717dde234f2160066a2bcbea3e36da1b6925c46e62",
-      "plan.md": "8c0567c02863785c0f8fff2d98fbabcd172299b8021f5abbb76a0294cd513068",
-      "tasks.md": "baeb9fc2c164d276f97a517f39eb173d9725ed6bbc21a5361cf555f1af79bd7c",
-      "implementation-summary.md": "e0e858649b0bff18f46d040f01d1baec93968b0d867625d77ef49f1bb797a23f"
+      "spec.md": "8e16c7f76167a1ffe0cd4ec0e1f168b745c0dbd4a463e17978e415f0072e4df9",
+      "plan.md": "4ba03ebc54dd4430a7b3c25eae540dccf8220af55b979bbcd7a5b7ddcf3f76a3",
+      "tasks.md": "2459410dc1a3c27b19380821b35452bf38d7dc801ddd4d3158de1d4f5f00d26d",
+      "implementation-summary.md": "cd25aac9e2a41214f4876f4ff904828d9ffdb2f20258c1e58fb46addf21af29f"
     },
     "last_active_at": null
   }

@@ -22,7 +22,7 @@ The frames are ours. openhuman's client is the design reference and is GPL-3.0-o
 
 | Row | 80x24 | 120x40 | Content |
 |-----|-------|--------|---------|
-| 1 | 1 | 1 | Header: bot count, index age, and the stale flag when the last read failed |
+| 1 | 1 | 1 | Header: bot count, index age, and the stale flag or `status failed` from the last `status --json` read |
 | 2 | 2 | 2 | Tab bar, the active tab in `[ ]` |
 | 3 | 3 | 3 | Rule |
 | 4 | 4-20 | 4-36 | Body: the pane, or the overlay panel |
@@ -34,6 +34,8 @@ The body is 17 rows at 80x24 and 33 rows at 120x40. At 120 columns or wider the 
 
 Two footer lines rather than one, because the packet requires every bound key to be drawn in the frame that binds it, and one 80-column line cannot hold the tab keys, the list keys and the quit keys together. The footer is generated from the key table, so a key with no label cannot be bound. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:95-105]
 
+Line 1 carries the tab, list and open keys, and line 2 the command and exit keys. The inbox is the one context that adds `Enter open` to line 1, because opening an item is the one action its list binds beyond moving the selection. The answer keys appear only in the overlay footers, where they are bound.
+
 Trailing blanks are trimmed in this document. Each frame is exactly 24 or 40 lines, and its longest line is at most its width, so a reader can check the height and the ceiling without counting spaces.
 
 ---
@@ -43,23 +45,31 @@ Trailing blanks are trimmed in this document. Each frame is exactly 24 or 40 lin
 | # | State | Components in the frame | What the frame settles |
 |---|-------|-------------------------|------------------------|
 | 1 | Shell, Activity tab, rows | Header, tab bar, activity, banner, footer | The seven groups in order, one glyph per group, the detail column at 120 |
-| 2 | Shell, Inbox tab, open and expired items | Header, tab bar, inbox, banner, footer | An open item and an expired item side by side, the answer keys in the footer |
+| 2 | Shell, Inbox tab, open and expired items | Header, tab bar, inbox, banner, footer | An open item and an expired item side by side, the expired row with no glyph, `Enter open` in the footer |
 | 3 | Shell, Routines tab, rows | Header, tab bar, routines, banner, footer | The four-part sentence on two lines, the state line under it |
 | 4 | Shell, Chat tab, placeholder | Header, tab bar, chat | One line naming phase 010, no state |
 | 5 | Activity, loading | Activity | The first read, before any row exists |
 | 6 | Activity, empty | Activity, detail column | The empty message, and the detail column with no selection |
-| 7 | Activity, error with the rows kept | Header, activity, status row | The stale flag, the kept rows, the stderr line |
-| 8 | Inbox, empty, banner hidden | Inbox, banner | A blank banner row, so the body does not move when an item arrives |
-| 9 | Routines, empty | Routines | The empty message that says what a routine is |
-| 10 | Decision overlay, idle | Decision overlay, footer | The no-options shape: `y`, `n`, free text, `Esc` |
-| 11 | Decision overlay, sending | Decision overlay | The in-flight lock: every answer key dimmed, `sending…` in the panel |
-| 12 | Decision overlay, refused | Decision overlay, status row | The refusal line, the keys unlocked |
-| 13 | Decision overlay, gone | Decision overlay | The item closed under the overlay, every key but `Esc` and `Ctrl+C` disabled |
-| 14 | Choice overlay, numbered options | Choice overlay, footer | `1` to `n` pick, `n` denies, no `y` |
-| 15 | Choice overlay, free text | Choice overlay | The typed answer, the shortcuts paused |
-| 16 | Palette and help, filtered | Palette | The filter line, the matched commands, the palette keys |
-| 17 | Status row, message | Status row | A failed read's stderr, with the rows still drawn |
-| 18 | Too-small screen | Too-small screen | The one message drawn below 24 columns or 8 rows |
+| 7 | Activity, stale with the rows kept | Header, activity, status row | The pane title's `stale 2m`, the kept rows, the stderr line |
+| 8 | Activity, error with no rows | Header, activity, status row | The stderr line in the body, no rows |
+| 9 | Inbox, loading | Inbox | The first read of the inbox, before any item exists |
+| 10 | Inbox, empty, banner hidden | Inbox, banner | A blank banner row, so the body does not move when an item arrives |
+| 11 | Inbox, stale with the rows kept | Header, inbox, status row | The kept items, the pane title's `stale 2m`, the stderr line |
+| 12 | Inbox, error with no rows | Header, inbox, status row | The stderr line in the body, no items |
+| 13 | Routines, loading | Routines | The first read of the routines, before any routine exists |
+| 14 | Routines, empty | Routines | The empty message that says what a routine is |
+| 15 | Routines, stale with the rows kept | Header, routines, status row | The kept routines, the pane title's `stale 2m`, the stderr line |
+| 16 | Routines, error with no rows | Header, routines, status row | The stderr line in the body, no routines |
+| 17 | Header, status failed, rows kept | Header, activity, status row | `status failed` in the header, the rows kept, the stderr line |
+| 18 | Decision overlay, idle | Decision overlay, footer | The no-options shape: `t`, `n`, `y`, `Esc`, and no grant line |
+| 19 | Decision overlay, typing | Decision overlay, footer | The typed answer, the shortcuts paused, `Enter` and `Bksp` |
+| 20 | Decision overlay, sending | Decision overlay, footer | The in-flight lock: every answer key dimmed, `sending…` in the panel |
+| 21 | Decision overlay, refused | Decision overlay, status row | The refusal line, the keys unlocked |
+| 22 | Decision overlay, gone | Decision overlay, footer | The item closed under the overlay, every key but `Esc` and `Ctrl+C` disabled |
+| 23 | Decision overlay, grant present | Decision overlay, footer | The grant kind and rung drawn because the item carries them |
+| 24 | Choice overlay, numbered options | Choice overlay, footer | `1` to `9` pick, `n` denies, no `y` |
+| 25 | Palette and help, filtered | Palette | The filter line, the matched commands, the palette keys |
+| 26 | Too-small screen, below 24 columns or 8 rows | Too-small screen | The one message drawn below 24 columns or 8 rows |
 
 ---
 
@@ -67,7 +77,7 @@ Trailing blanks are trimmed in this document. Each frame is exactly 24 or 40 lin
 
 Each section names the state, then draws it at 80x24 and at 120x40. The too-small screen is drawn at 30x7, the smallest frame that holds its message whole.
 
-<!-- Generated frame set for the 001 design packet. Every frame is exactly 80x24 or 120x40 cells. -->
+<!-- Generated frame set for the 001 design packet. Every frame is exactly 80x24, 120x40 or 30x7 cells. -->
 
 ### Shell, Activity tab, rows
 
@@ -77,7 +87,7 @@ Each section names the state, then draws it at 80x24 and at 120x40. The too-smal
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 12 rows
+Activity · 7 groups · 7 rows
 
 Needs you
   ! hello            needs_you   2m ago
@@ -96,7 +106,7 @@ Recurring
 
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -106,7 +116,7 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 12 rows                                           │Detail
+Activity · 7 groups · 7 rows                                            │Detail
                                                                         │
 Needs you                                                               │bot       hello
   ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
@@ -115,8 +125,8 @@ Working                                                                 │state
 Scheduled                                                               │actor     ada
   ○ digest           scheduled   in 3h                                  │runId     01JC7Q4M2X9V
 Done                                                                    │
-  ✓ hello            done        12m ago                                │Enter opens the item
-Stopped                                                                 │in the inbox tab.
+                                                                        │
+                                                                        │
   – archive          stopped     1h ago                                 │
 Failed                                                                  │
   ✗ nightly-report   failed      4m ago                                 │
@@ -141,7 +151,7 @@ Recurring                                                               │
                                                                         │
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -157,7 +167,7 @@ Inbox · 2 open · 1 expired
 
   › ! hello            open     2m ago   Ship the release?
     ! digest           open     9m ago   Which channel?
-    · archive          expired  1h ago   Delete the old runs?
+      archive          expired  1h ago   Delete the old runs?
 
 Expired items stay listed and cannot be answered.
 
@@ -172,8 +182,8 @@ Expired items stay listed and cannot be answered.
 
 ! 2 pending approvals · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · Enter open
-1-9 pick · y approve once · n deny · Esc close · Ctrl+C exit · Ctrl+D exit
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
 **120x40**
@@ -186,13 +196,11 @@ Inbox · 2 open · 1 expired                                              │Det
                                                                         │
   › ! hello            open     2m ago   Ship the release?              │id        hello
     ! digest           open     9m ago   Which channel?                 │botId     hello
-    · archive          expired  1h ago   Delete the old runs?           │kind      send
+      archive          expired  1h ago   Delete the old runs?           │kind      send
                                                                         │state     open
 Expired items stay listed and cannot be answered.                       │at        2026-11-25T21:12:04Z
                                                                         │expiresAt 2026-11-26T21:12:04Z
-                                                                        │options   ship it, hold
-                                                                        │grant     kind send · rung kind
-                                                                        │          scope -
+                                                                        │options   none
                                                                         │
                                                                         │Enter opens the overlay.
                                                                         │
@@ -215,10 +223,12 @@ Expired items stay listed and cannot be answered.                       │at   
                                                                         │
                                                                         │
                                                                         │
+                                                                        │
+                                                                        │
 ! 2 pending approvals · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · Enter open
-1-9 pick · y approve once · n deny · Esc close · Ctrl+C exit · Ctrl+D exit
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
 ### Shell, Routines tab, rows
@@ -233,11 +243,11 @@ Routines · 2 routines
 
   › digest
     starts  every 6h · does tell · until "the digest is sent"
-    state   enabled · last run 12m ago
+    state   enabled · streak 0
 
     nightly-report
     starts  daily 02:00 · does act · until "the report is filed"
-    state   enabled · last run 4m ago
+    state   enabled · streak 0
 
 
 
@@ -248,7 +258,7 @@ Routines · 2 routines
 
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -262,11 +272,11 @@ Routines · 2 routines                                                   │Deta
                                                                         │
   › digest                                                              │botId     digest
     starts  every 6h · does tell · until "the digest is sent"           │what      the morning digest
-    state   enabled · last run 12m ago                                  │starts    every 6h
+    state   enabled · streak 0                                          │starts    every 6h
                                                                         │does      tell
     nightly-report                                                      │until     the digest is sent
     starts  daily 02:00 · does act · until "the report is filed"        │untilMetAt -
-    state   enabled · last run 4m ago                                   │streak    0
+    state   enabled · streak 0                                          │streak    0
                                                                         │switch    enabled
                                                                         │
                                                                         │
@@ -293,7 +303,7 @@ Routines · 2 routines                                                   │Deta
                                                                         │
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -324,7 +334,7 @@ Chat
 
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -334,42 +344,42 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
   1 Activity   2 Inbox   3 Routines  [4 Chat]
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Chat
-
-  The chat pane lands with phase 010 (`bots chat <id>`).
-  This tab holds no state until then.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Chat                                                                    │
+                                                                        │
+  The chat pane lands with phase 010 (`bots chat <id>`).                │
+  This tab holds no state until then.                                   │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -400,7 +410,7 @@ Activity
 
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -410,42 +420,42 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity
-
-  Loading…  bots activity --json
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Activity                                                                │
+                                                                        │
+  Loading…  bots activity --json                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -476,7 +486,7 @@ Activity
 
 
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -486,60 +496,136 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity
+Activity                                                                │Detail
+                                                                        │
+  No activity yet.                                                      │No row selected.
+  A run appears here once a bot has run.                                │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
 
-  No activity yet.
-  A run appears here once a bot has run.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
-### Activity, error with the rows kept
+### Activity, stale with the rows kept
 
 **80x24**
 
 ```text
-bots · 4 bots · index 2m ago                                           stale 2m
+bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
 Activity · stale 2m
 
+Needs you
   ! hello            needs_you   2m ago
+Working
   · nightly-report   working     now
+Done
   ✓ hello            done        12m ago
 
   Rows from the last successful read stay on screen.
+
+
+
+
+
+
+
+! 1 pending approval · Alt+2 → inbox
+bots: activity --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+ [1 Activity]  2 Inbox   3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Activity · stale 2m                                                     │
+                                                                        │
+Needs you                                                               │
+  ! hello            needs_you   2m ago                                 │
+Working                                                                 │
+  · nightly-report   working     now                                    │
+Done                                                                    │
+  ✓ hello            done        12m ago                                │
+                                                                        │
+  Rows from the last successful read stay on screen.                    │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 1 pending approval · Alt+2 → inbox
+bots: activity --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Activity, error with no rows
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+ [1 Activity]  2 Inbox   3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────
+Activity
+
+  bots: activity --json exited 1: index locked
+
+  No rows yet. The last read failed.
+
+
 
 
 
@@ -552,6 +638,82 @@ Activity · stale 2m
 
 ! 1 pending approval · Alt+2 → inbox
 bots: activity --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+ [1 Activity]  2 Inbox   3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Activity                                                                │
+                                                                        │
+  bots: activity --json exited 1: index locked                          │
+                                                                        │
+  No rows yet. The last read failed.                                    │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 1 pending approval · Alt+2 → inbox
+bots: activity --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Inbox, loading
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────
+Inbox
+
+  Loading…  bots inbox --json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
@@ -559,44 +721,44 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 **120x40**
 
 ```text
-bots · 4 bots · index 2m ago                                                                                   stale 2m
- [1 Activity]  2 Inbox   3 Routines   4 Chat
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · stale 2m
+Inbox                                                                   │
+                                                                        │
+  Loading…  bots inbox --json                                           │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
 
-  ! hello            needs_you   2m ago
-  · nightly-report   working     now
-  ✓ hello            done        12m ago
 
-  Rows from the last successful read stay on screen.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-! 1 pending approval · Alt+2 → inbox
-bots: activity --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
@@ -628,8 +790,8 @@ Inbox
 
 
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · Enter open
-1-9 pick · y approve once · n deny · Esc close · Ctrl+C exit · Ctrl+D exit
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
 **120x40**
@@ -638,10 +800,208 @@ Alt+1..4 tabs · [ ] cycle · ↑↓ select · Enter open
 bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Inbox                                                                   │
+                                                                        │
+  No open or expired items.                                             │
+  A bot that needs an answer appears here.                              │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+
+
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Inbox, stale with the rows kept
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────
+Inbox · stale 2m
+
+  › ! hello            open     2m ago   Ship the release?
+    ! digest           open     9m ago   Which channel?
+      archive          expired  1h ago   Delete the old runs?
+
+  Rows from the last successful read stay on screen.
+
+
+
+
+
+
+
+
+
+
+! 2 pending approvals · Alt+2 → inbox
+bots: inbox --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Inbox · stale 2m                                                        │
+                                                                        │
+  › ! hello            open     2m ago   Ship the release?              │
+    ! digest           open     9m ago   Which channel?                 │
+      archive          expired  1h ago   Delete the old runs?           │
+                                                                        │
+  Rows from the last successful read stay on screen.                    │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 2 pending approvals · Alt+2 → inbox
+bots: inbox --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Inbox, error with no rows
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────
 Inbox
 
-  No open or expired items.
-  A bot that needs an answer appears here.
+  bots: inbox --json exited 1: index locked
+
+  No rows yet. The last read failed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+bots: inbox --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Inbox                                                                   │
+                                                                        │
+  bots: inbox --json exited 1: index locked                             │
+                                                                        │
+  No rows yet. The last read failed.                                    │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+
+bots: inbox --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Routines, loading
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity   2 Inbox  [3 Routines]  4 Chat
+────────────────────────────────────────────────────────────────────────────────
+Routines
+
+  Loading…  bots routines --json
 
 
 
@@ -656,25 +1016,55 @@ Inbox
 
 
 
+! 1 pending approval · Alt+2 → inbox
 
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
 
+**120x40**
 
+```text
+bots · 4 bots · index 12s ago
+  1 Activity   2 Inbox  [3 Routines]  4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Routines                                                                │
+                                                                        │
+  Loading…  bots routines --json                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 1 pending approval · Alt+2 → inbox
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · Enter open
-1-9 pick · y approve once · n deny · Esc close · Ctrl+C exit · Ctrl+D exit
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
 ### Routines, empty
@@ -704,7 +1094,7 @@ Routines
 
 ! 1 pending approval · Alt+2 → inbox
 
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -714,27 +1104,134 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
   1 Activity   2 Inbox  [3 Routines]  4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Routines                                                                │
+                                                                        │
+  No routine yet.                                                       │
+  A routine is the four-part block in a BOT.md: what it does,           │
+  when it starts, whether it acts or tells, and when it is done.        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 1 pending approval · Alt+2 → inbox
+
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Routines, stale with the rows kept
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity   2 Inbox  [3 Routines]  4 Chat
+────────────────────────────────────────────────────────────────────────────────
+Routines · stale 2m
+
+  › digest
+    starts  every 6h · does tell · until "the digest is sent"
+    state   enabled · streak 0
+
+    nightly-report
+    starts  daily 02:00 · does act · until "the report is filed"
+    state   enabled · streak 0
+
+  Rows from the last successful read stay on screen.
+
+
+
+
+
+
+! 1 pending approval · Alt+2 → inbox
+bots: routines --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity   2 Inbox  [3 Routines]  4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Routines · stale 2m                                                     │
+                                                                        │
+  › digest                                                              │
+    starts  every 6h · does tell · until "the digest is sent"           │
+    state   enabled · streak 0                                          │
+                                                                        │
+    nightly-report                                                      │
+    starts  daily 02:00 · does act · until "the report is filed"        │
+    state   enabled · streak 0                                          │
+                                                                        │
+  Rows from the last successful read stay on screen.                    │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 1 pending approval · Alt+2 → inbox
+bots: routines --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Routines, error with no rows
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity   2 Inbox  [3 Routines]  4 Chat
+────────────────────────────────────────────────────────────────────────────────
 Routines
 
-  No routine yet.
-  A routine is the four-part block in a BOT.md: what it does,
-  when it starts, whether it acts or tells, and when it is done.
+  bots: routines --json exited 1: index locked
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  No rows yet. The last read failed.
 
 
 
@@ -748,20 +1245,65 @@ Routines
 
 
 ! 1 pending approval · Alt+2 → inbox
-
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+bots: routines --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
-### Status row, message
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity   2 Inbox  [3 Routines]  4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Routines                                                                │
+                                                                        │
+  bots: routines --json exited 1: index locked                          │
+                                                                        │
+  No rows yet. The last read failed.                                    │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 1 pending approval · Alt+2 → inbox
+bots: routines --json exited 1: index locked
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+### Header, status failed, rows kept
 
 **80x24**
 
 ```text
-bots · 4 bots · index 12s ago
+bots · 4 bots · index 12s ago                                      status failed
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 12 rows
+Activity · 7 groups · 7 rows
 
 Needs you
   ! hello            needs_you   2m ago
@@ -780,17 +1322,17 @@ Recurring
 
 ! 1 pending approval · Alt+2 → inbox
 bots: status --json exited 1: index locked
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
 **120x40**
 
 ```text
-bots · 4 bots · index 12s ago
+bots · 4 bots · index 12s ago                                                                              status failed
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 12 rows                                           │Detail
+Activity · 7 groups · 7 rows                                            │Detail
                                                                         │
 Needs you                                                               │bot       hello
   ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
@@ -799,8 +1341,8 @@ Working                                                                 │state
 Scheduled                                                               │actor     ada
   ○ digest           scheduled   in 3h                                  │runId     01JC7Q4M2X9V
 Done                                                                    │
-  ✓ hello            done        12m ago                                │Enter opens the item
-Stopped                                                                 │in the inbox tab.
+                                                                        │
+                                                                        │
   – archive          stopped     1h ago                                 │
 Failed                                                                  │
   ✗ nightly-report   failed      4m ago                                 │
@@ -825,7 +1367,7 @@ Recurring                                                               │
                                                                         │
 ! 1 pending approval · Alt+2 → inbox
 bots: status --json exited 1: index locked
-Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 ```
 
@@ -838,12 +1380,11 @@ bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
  ┌ Approval ──────────────────────────────────────────────────────────────────┐
- │ hello · needs_you · 2m ago                                                 │
+ │ hello · open · 2m ago                                                      │
  │                                                                            │
  │ Ship the release?                                                          │
  │                                                                            │
  │ options  none                                                              │
- │ grant    kind send · rung kind · scope -                                   │
  │                                                                            │
  │                                                                            │
  │                                                                            │
@@ -853,10 +1394,11 @@ bots · 4 bots · index 12s ago
  │                                                                            │
  │                                                                            │
  │                                                                            │
+ │ status   ready                                                             │
  └────────────────────────────────────────────────────────────────────────────┘
 
 
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+t type · n deny · y approve once · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -873,13 +1415,13 @@ bots · 4 bots · index 12s ago
 
 
 
+
           ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
-          │ hello · needs_you · 2m ago                                                                       │
+          │ hello · open · 2m ago                                                                            │
           │                                                                                                  │
           │ Ship the release?                                                                                │
           │                                                                                                  │
           │ options  none                                                                                    │
-          │ grant    kind send · rung kind · scope -                                                         │
           │                                                                                                  │
           │                                                                                                  │
           │                                                                                                  │
@@ -901,11 +1443,11 @@ bots · 4 bots · index 12s ago
 
 
 
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+t type · n deny · y approve once · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
-### Decision overlay, sending
+### Decision overlay, typing
 
 **80x24**
 
@@ -914,12 +1456,13 @@ bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
  ┌ Approval ──────────────────────────────────────────────────────────────────┐
- │ hello · needs_you · 2m ago                                                 │
+ │ hello · open · 2m ago                                                      │
  │                                                                            │
  │ Ship the release?                                                          │
  │                                                                            │
  │ options  none                                                              │
- │ grant    kind send · rung kind · scope -                                   │
+ │                                                                            │
+ │ answer   > ship it after the freeze                                        │
  │                                                                            │
  │                                                                            │
  │                                                                            │
@@ -927,12 +1470,11 @@ bots · 4 bots · index 12s ago
  │                                                                            │
  │                                                                            │
  │                                                                            │
- │                                                                            │
- │                                                                            │
+ │ status   typing · single-key shortcuts paused                              │
  └────────────────────────────────────────────────────────────────────────────┘
 
 
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+type answer · Enter send · Bksp delete · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -949,13 +1491,89 @@ bots · 4 bots · index 12s ago
 
 
 
+
           ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
-          │ hello · needs_you · 2m ago                                                                       │
+          │ hello · open · 2m ago                                                                            │
           │                                                                                                  │
           │ Ship the release?                                                                                │
           │                                                                                                  │
           │ options  none                                                                                    │
-          │ grant    kind send · rung kind · scope -                                                         │
+          │                                                                                                  │
+          │ answer   > ship it after the freeze                                                              │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │ status   typing · single-key shortcuts paused                                                    │
+          └──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+
+
+
+
+
+type answer · Enter send · Bksp delete · Esc close
+Ctrl+C close · Ctrl+D exit
+```
+
+### Decision overlay, sending
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────
+ ┌ Approval ──────────────────────────────────────────────────────────────────┐
+ │ hello · open · 2m ago                                                      │
+ │                                                                            │
+ │ Ship the release?                                                          │
+ │                                                                            │
+ │ options  none                                                              │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │ status   sending…  keys locked                                             │
+ └────────────────────────────────────────────────────────────────────────────┘
+
+
+Esc close
+Ctrl+C close · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+
+
+
+
+          ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
+          │ hello · open · 2m ago                                                                            │
+          │                                                                                                  │
+          │ Ship the release?                                                                                │
+          │                                                                                                  │
+          │ options  none                                                                                    │
           │                                                                                                  │
           │                                                                                                  │
           │                                                                                                  │
@@ -977,7 +1595,7 @@ bots · 4 bots · index 12s ago
 
 
 
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -990,12 +1608,11 @@ bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
  ┌ Approval ──────────────────────────────────────────────────────────────────┐
- │ hello · needs_you · 2m ago                                                 │
+ │ hello · open · 2m ago                                                      │
  │                                                                            │
  │ Ship the release?                                                          │
  │                                                                            │
  │ options  none                                                              │
- │ grant    kind send · rung kind · scope -                                   │
  │                                                                            │
  │                                                                            │
  │                                                                            │
@@ -1005,10 +1622,11 @@ bots · 4 bots · index 12s ago
  │                                                                            │
  │                                                                            │
  │                                                                            │
+ │ status   bots: answer refused: item-answered-differently                   │
  └────────────────────────────────────────────────────────────────────────────┘
 
-
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+bots: answer refused: item-answered-differently
+t type · n deny · y approve once · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1025,13 +1643,13 @@ bots · 4 bots · index 12s ago
 
 
 
+
           ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
-          │ hello · needs_you · 2m ago                                                                       │
+          │ hello · open · 2m ago                                                                            │
           │                                                                                                  │
           │ Ship the release?                                                                                │
           │                                                                                                  │
           │ options  none                                                                                    │
-          │ grant    kind send · rung kind · scope -                                                         │
           │                                                                                                  │
           │                                                                                                  │
           │                                                                                                  │
@@ -1052,8 +1670,8 @@ bots · 4 bots · index 12s ago
 
 
 
-
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+bots: answer refused: item-answered-differently
+t type · n deny · y approve once · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1066,12 +1684,11 @@ bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
  ┌ Approval ──────────────────────────────────────────────────────────────────┐
- │ hello · needs_you · 2m ago                                                 │
+ │ hello · open · 2m ago                                                      │
  │                                                                            │
  │ Ship the release?                                                          │
  │                                                                            │
  │ options  none                                                              │
- │ grant    kind send · rung kind · scope -                                   │
  │                                                                            │
  │                                                                            │
  │                                                                            │
@@ -1081,10 +1698,11 @@ bots · 4 bots · index 12s ago
  │                                                                            │
  │                                                                            │
  │                                                                            │
+ │ status   This item is no longer open. Esc closes.                          │
  └────────────────────────────────────────────────────────────────────────────┘
 
 
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1101,13 +1719,13 @@ bots · 4 bots · index 12s ago
 
 
 
+
           ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
-          │ hello · needs_you · 2m ago                                                                       │
+          │ hello · open · 2m ago                                                                            │
           │                                                                                                  │
           │ Ship the release?                                                                                │
           │                                                                                                  │
           │ options  none                                                                                    │
-          │ grant    kind send · rung kind · scope -                                                         │
           │                                                                                                  │
           │                                                                                                  │
           │                                                                                                  │
@@ -1129,7 +1747,83 @@ bots · 4 bots · index 12s ago
 
 
 
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
+Esc close
+Ctrl+C close · Ctrl+D exit
+```
+
+### Decision overlay, grant present
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────
+ ┌ Approval ──────────────────────────────────────────────────────────────────┐
+ │ hello · open · 2m ago                                                      │
+ │                                                                            │
+ │ Ship the release?                                                          │
+ │                                                                            │
+ │ options  none                                                              │
+ │ grant    kind send · rung kind                                              │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │                                                                            │
+ │ status   ready                                                             │
+ └────────────────────────────────────────────────────────────────────────────┘
+
+
+t type · n deny · y approve once · Esc close
+Ctrl+C close · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+
+
+
+
+          ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
+          │ hello · open · 2m ago                                                                            │
+          │                                                                                                  │
+          │ Ship the release?                                                                                │
+          │                                                                                                  │
+          │ options  none                                                                                    │
+          │ grant    kind send · rung kind                                                                   │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │                                                                                                  │
+          │ status   ready                                                                                   │
+          └──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+
+
+
+
+
+t type · n deny · y approve once · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1142,14 +1836,12 @@ bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
  ┌ Approval ──────────────────────────────────────────────────────────────────┐
- │ hello · needs_you · 2m ago                                                 │
- │                                                                            │
- │ Ship the release?                                                          │
- │                                                                            │
- │   1  ship it                                                               │
- │   2  hold                                                                  │
- │                                                                            │
- │ grant    kind send · rung kind · scope -                                   │
+ │ digest · open · 9m ago                                                      │
+ │                                                                             │
+ │ Which channel?                                                              │
+ │                                                                             │
+ │   1  email                                                                  │
+ │   2  chat                                                                   │
  │                                                                            │
  │                                                                            │
  │                                                                            │
@@ -1157,6 +1849,8 @@ bots · 4 bots · index 12s ago
  │                                                                            │
  │                                                                            │
  │                                                                            │
+ │                                                                            │
+ │ status   ready                                                             │
  └────────────────────────────────────────────────────────────────────────────┘
 
 
@@ -1177,15 +1871,15 @@ bots · 4 bots · index 12s ago
 
 
 
+
           ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
-          │ hello · needs_you · 2m ago                                                                       │
+          │ digest · open · 9m ago                                                                           │
           │                                                                                                  │
-          │ Ship the release?                                                                                │
+          │ Which channel?                                                                                   │
           │                                                                                                  │
-          │   1  ship it                                                                                     │
-          │   2  hold                                                                                        │
+          │   1  email                                                                                       │
+          │   2  chat                                                                                        │
           │                                                                                                  │
-          │ grant    kind send · rung kind · scope -                                                         │
           │                                                                                                  │
           │                                                                                                  │
           │                                                                                                  │
@@ -1209,82 +1903,6 @@ bots · 4 bots · index 12s ago
 Ctrl+C close · Ctrl+D exit
 ```
 
-### Choice overlay, free text
-
-**80x24**
-
-```text
-bots · 4 bots · index 12s ago
-  1 Activity  [2 Inbox]  3 Routines   4 Chat
-────────────────────────────────────────────────────────────────────────────────
- ┌ Approval ──────────────────────────────────────────────────────────────────┐
- │ hello · needs_you · 2m ago                                                 │
- │                                                                            │
- │ Ship the release?                                                          │
- │                                                                            │
- │ options  none                                                              │
- │                                                                            │
- │ answer   > ship it after the freeze                                        │
- │                                                                            │
- │                                                                            │
- │                                                                            │
- │                                                                            │
- │                                                                            │
- │                                                                            │
- │                                                                            │
- │                                                                            │
- └────────────────────────────────────────────────────────────────────────────┘
-
-
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
-Ctrl+C close · Ctrl+D exit
-```
-
-**120x40**
-
-```text
-bots · 4 bots · index 12s ago
-  1 Activity  [2 Inbox]  3 Routines   4 Chat
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-
-
-
-
-
-
-          ┌ Approval ────────────────────────────────────────────────────────────────────────────────────────┐
-          │ hello · needs_you · 2m ago                                                                       │
-          │                                                                                                  │
-          │ Ship the release?                                                                                │
-          │                                                                                                  │
-          │ options  none                                                                                    │
-          │                                                                                                  │
-          │ answer   > ship it after the freeze                                                              │
-          │                                                                                                  │
-          │                                                                                                  │
-          │                                                                                                  │
-          │                                                                                                  │
-          │                                                                                                  │
-          │                                                                                                  │
-          │                                                                                                  │
-          │                                                                                                  │
-          │                                                                                                  │
-          │ status   typing · single-key shortcuts paused                                                    │
-          └──────────────────────────────────────────────────────────────────────────────────────────────────┘
-
-
-
-
-
-
-
-
-
-y approve once · n deny · type answer · Enter send · Bksp delete · Esc close
-Ctrl+C close · Ctrl+D exit
-```
-
 ### Palette and help, filtered
 
 **80x24**
@@ -1298,10 +1916,10 @@ bots · 4 bots · index 12s ago
 
 
  ┌ Commands ──────────────────────────────────────────────────────────────────┐
- │ > ans                                                                      │
- │                                                                            │
- │   answer      answer the selected item                                     │
- │   approvals   open the inbox                                               │
+ │ > ex                                                                        │
+ │                                                                             │
+ │   Ctrl+C exit                                                               │
+ │   Ctrl+D exit                                                               │
  │                                                                            │
  │                                                                            │
  └────────────────────────────────────────────────────────────────────────────┘
@@ -1312,7 +1930,7 @@ bots · 4 bots · index 12s ago
 
 
 
-type to filter · Enter select · Esc close
+↑↓ select · type to filter · Enter select · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1335,10 +1953,10 @@ bots · 4 bots · index 12s ago
 
 
           ┌ Commands ────────────────────────────────────────────────────────────────────────────────────────┐
-          │ > ans                                                                                            │
+          │ > ex                                                                                             │
           │                                                                                                  │
-          │   answer      answer the selected item                                                           │
-          │   approvals   open the inbox                                                                     │
+          │   Ctrl+C exit                                                                                    │
+          │   Ctrl+D exit                                                                                    │
           │                                                                                                  │
           │                                                                                                  │
           └──────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -1357,7 +1975,7 @@ bots · 4 bots · index 12s ago
 
 
 
-type to filter · Enter select · Esc close
+↑↓ select · type to filter · Enter select · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1366,7 +1984,7 @@ Ctrl+C close · Ctrl+D exit
 **30x7**
 
 ```text
-Resize terminal · Ctrl+D exits
+Too small · Ctrl+D exit
 
 
 
@@ -1374,19 +1992,22 @@ Resize terminal · Ctrl+D exits
 
 
 ```
+
 ---
 
 ## 4. WHAT THE FRAMES DO NOT SHOW
 
 | Not shown | Why, and where it is settled |
 |-----------|------------------------------|
-| Colour | System is the default palette and Mono is the one `NO_COLOR` selects. Meaning is always in the glyph and the label, so a Mono frame is the same frame with every colour reset. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62] |
+| Colour | System is the default palette and Mono is the one the `ui` verb selects when `NO_COLOR` is set, by passing `--mono`. Meaning is always in the glyph and the label, so a Mono frame is the same frame with every colour reset. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62] |
 | Reverse video on the focused row | Drawn here as `›` in the gutter and `[ ]` on the active tab, so the frame reads the same in a plain-text diff. The reverse video is added on top of the mark, never instead of it. |
 | The cursor in free text | Drawn as `> ` before the typed text. The real cursor sits after the last character. |
 | The 5-second refresh | No frame changes when a read returns the same rows. The header's index age is the only cell that moves. |
 | A 2,000-row list | The frame shows 17 rows at 80x24 and 33 at 120x40. The list scrolls, and the selection stays visible; the frame is the window, not the list. |
-| The too-small screen at 20 columns | The message is drawn truncated to the frame width, so at 20 columns it reads `Resize terminal · Ctrl+`. The 30x7 frame is the smallest one that holds it whole. |
+| The too-small screen at 20 columns | The message is drawn truncated to the frame width, so at 20 columns it reads `Too small · Ctrl+D e`. The 30x7 frame is the smallest one that holds it whole. |
 | The overlay over a scrolled list | The panel clears its own area, so the rows behind it are not drawn. The header, the tabs and the footer stay visible, which is how the operator keeps their place. |
+| A grant the item does not carry | The overlay and the detail column draw a grant's kind and rung only when the item carries them. Frame 18's item carries none, so no grant line is drawn; frame 23's item carries one, so the line is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
+| The detail column's grant lines | Frame 2's item carries no grant, so the detail column draws none. When an item carries one, the detail column draws the same grant line frame 23 draws in the overlay. |
 
 ---
 
@@ -1396,10 +2017,10 @@ The frames above are drawn from the payload shapes and the reference sources, no
 
 | Reference | What it shows | What the frames take from it |
 |-----------|---------------|------------------------------|
-| `context/screenshots/openmaus-approval-card.png` | An approval card with its question, its grants and its buttons | The decision overlay's order: the question, then the grants, then the keys |
-| `context/screenshots/openmaus-moca-282-expired-card-ios.jpg` | The same card after the item expired: still visible, no longer answerable | The expired inbox row: the word `expired`, dimmed, its keys disabled |
-| `context/screenshots/openmaus-tasks-routines.png` | A routines list with each routine's trigger and its last run | The routine row's four cells |
-| `context/screenshots/rakazo-routines.png` | A routines list whose trigger summary leads with the schedule | The trigger summary's order, schedules first |
+| `context/screenshots/openmaus-approval-card.png` | A question card with lettered choices and a free-text field | The choice overlay's order: the question, then the numbered options |
+| `context/screenshots/openmaus-moca-282-expired-card-ios.jpg` | A schedule proposal card after it expired: still visible, no longer answerable | The expired inbox row: the word `expired`, dimmed, its keys disabled |
+| `context/screenshots/openmaus-tasks-routines.png` | The empty Tasks and routines page: a one-line definition of a routine, a calendar toolbar and one empty message with one action | The Routines empty frame (frame 14): say what a routine is in one line |
+| `context/screenshots/rakazo-routines.png` | One routine's detail panel whose trigger reads as a schedule sentence | The trigger summary's order, schedules first |
 | `context/screenshots/openhuman-demo/` | 28 captures of openhuman's own TUI, 8 at 80x24 and 20 at 120x40, each as a `.txt` and an `.ansi` | The frame grammar: the header, the tab bar, the rule, the body, the footer, and the minimum-size screen |
 
 The openhuman captures are the only place a real terminal's output is compared with a frame here. They are read for shape, never copied: the `.ansi` files carry openhuman's own text and colour codes, and this document reproduces neither.
@@ -1421,7 +2042,7 @@ Every pointer below resolves in this checkout. The openhuman rows are design ref
 | The System and Mono palettes | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] |
 | `NO_COLOR` starting in Mono | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62] |
 | The seven activity groups, in order | [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts:17-41] |
-| The routine row: what it does, when it starts, that it acts, the last run | [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/components/routines/routines-list.tsx:57-61] |
+| The routine row: what it does, when it starts, that it acts | [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/components/routines/routines-list.tsx:57-61] |
 | The routine trigger summary, schedules first | [SOURCE: specs/system-skilled-bots/context/rakazo-main/apps/web/src/pages/routines/RoutineList.tsx:15-30] |
 | The activity panel's rows and error state | [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ActivityPanel.tsx:34-50] |
 | The expired card, visible and unanswerable | [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:93-95] [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:466-467] |
@@ -1429,6 +2050,7 @@ Every pointer below resolves in this checkout. The openhuman rows are design ref
 | The number key that takes the choice it stands at | [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/ask-card.js:264-268] |
 | Deny placed first | [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:129-130] |
 | The keys that lock after the first press | [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:136-140] [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:182-190] |
+| The `typing` guard that pauses the single-key shortcuts | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app/overlays.rs:354-370] |
 | The `y`/`n` prompt and the closed input that answers nothing | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:431-447] |
 | The default deny this screen does not copy | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:476-487] |
 | Control characters stripped before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:4-6] |
@@ -1436,4 +2058,5 @@ Every pointer below resolves in this checkout. The openhuman rows are design ref
 | The routine row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] |
 | The inbox item shape, and the grant the overlay shows | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
 | The chat verb the placeholder names | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152] |
-| The banner's key, corrected from `Ctrl+P` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:219] |
+| The banner's key, corrected from `Ctrl+P` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:221] |
+| The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220] |

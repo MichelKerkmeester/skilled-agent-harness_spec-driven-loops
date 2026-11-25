@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
-    last_updated_at: "2026-11-25T21:40:00Z"
-    last_updated_by: "phase-parent-expansion"
-    recent_action: "Recorded the six operator decisions that span the six children"
-    next_safe_action: "Work child 001-ux-and-component-map against Q002 to Q007"
+    last_updated_at: "2026-11-25T21:12:34Z"
+    last_updated_by: "review-fix-pass"
+    recent_action: "Recorded Q008 on grants drawn when present and Q009 on the NO_COLOR route"
+    next_safe_action: "Work child 001-ux-and-component-map against Q002 to Q009"
     blockers: []
     key_files: []
     session_dedup:
@@ -44,6 +44,8 @@ A phase parent carries this file for the decisions no single child owns. Each ro
 | Q005 | The six status markers gain a scheduled, a recurring and an unknown glyph, and the set carries an ASCII fallback. | `?` marked scheduled, recurring and unknown alike, so a run that has not begun read the same as a value the mapping does not name. The ASCII set keeps the screen readable where the glyphs do not render. | None | 004-panes |
 | Q006 | `insta` is not approved. Snapshot tests assert the ratatui `TestBackend` buffer directly. | One dependency fewer, and the assertion names the cells the operator sees rather than a stored file that hides them. | None | 004-panes, 006-hardening-and-proof |
 | Q007 | The four existing screenshots are linked, and openhuman's `--demo` is built locally to capture its TUI into the gitignored `context/screenshots/`. | No repository in the context set holds a TUI screenshot, so the design reference needs a capture of its own. The folder is gitignored, so the images stay local. | None | 001-ux-and-component-map |
+| Q008 | The overlay draws a grant's kind and rung only when the item carries them, and draws nothing where they are absent. | Packet phase 006 lands `grants` and the ladder, so a screen that required them would not build before it. Drawing them when present lets the same frame build now and light up after 006, with no second code path. | None | 004-panes, 005-answer-flow |
+| Q009 | The `bots ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, to the binary. The binary reads no environment variable. | The binary stays environment-free, so every no-env::var check holds and a test can drive the palette from an argument. The verb is the one place a shell convention is translated into a flag. | None | 002-architecture-and-contracts, 003-shell-and-navigation |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -83,6 +85,18 @@ The expansion of phase 003 into a phase parent, and the key, glyph, test and scr
 Answer:
 ```text
 Recorded in research/ui-advisory.md section "Operator decisions (2026-11-25)", items 1 to 4, which is the advisory's own record of the operator's answers. No transcript was captured for these six, so this appendix quotes the advisory rather than a conversation.
+```
+
+### Q008 to Q009
+
+Question:
+```text
+Two conflicts the first review of the children raised: whether the overlay may draw a grant before packet phase 006 lands one, and which side of the process boundary reads NO_COLOR.
+```
+
+Answer:
+```text
+Recorded in research/ui-review-1.md section "Operator decisions (2026-11-25)", items 1 and 2, which is the review's own record of the operator's answers. No transcript was captured for these two, so this appendix quotes the review rather than a conversation.
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

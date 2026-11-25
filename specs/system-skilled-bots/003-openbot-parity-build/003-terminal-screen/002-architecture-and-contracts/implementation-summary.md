@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-architecture-and-contracts |
-| **Completed** | 2026-11-25 |
+| **Completed** | - |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

@@ -51,15 +51,15 @@ Every verify command runs without a tty. The frame is drawn into a ratatui `Test
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Write the key table - `Context`, `Key`, `Action` and `Label`, the rows for Global, Tabs and Palette, and the three `pub mod` lines (`$CRATE/src/keys.rs`, `$CRATE/src/lib.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `every_row_has_a_label`, `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
-- [ ] T005 Write the theme - the System and Mono palettes, `NO_COLOR` selecting Mono, the glyph table with its ASCII column, and `safe_text` (`$CRATE/src/theme.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib theme` prints `test result: ok` and names `no_color_selects_mono`, `ascii_glyphs_are_ascii` and `every_marker_has_an_ascii_counterpart`.
-- [ ] T006 Write the header - the bot count, the stale flag with its age, and the error state (`$CRATE/src/view/header.rs`). Verify: `rg -n 'pub fn draw' $CRATE/src/view/header.rs` prints one line and `rg -n 'stale' $CRATE/src/view/header.rs` prints the stale branch.
-- [ ] T007 Write the tab bar - four tabs, the active mark, and the chat tab's one line naming phase 010 (`$CRATE/src/view/tabs.rs`). Verify: `rg -n 'phase 010' $CRATE/src/view/tabs.rs` prints one line and `rg -n '›' $CRATE/src/view/tabs.rs` prints the active mark.
-- [ ] T008 Write the footer - the status row and the key line generated from `keys.rs` (`$CRATE/src/view/footer.rs`). Verify: `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read and `rg -n 'safe_text' $CRATE/src/view/footer.rs` prints the status row's filter.
-- [ ] T009 Write the shell frame - the seven bands, the too-small screen and the palette panel (`$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `rg -n 'Resize terminal · Ctrl+D exits' $CRATE/src/view/mod.rs` prints one line.
-- [ ] T010 Write the palette's filter, Enter and Esc, and pause the single-key shortcuts while the filter holds text (`$CRATE/src/view/mod.rs`, `$CRATE/src/keys.rs`). Verify: `rg -n 'fn filter' $CRATE/src/view/mod.rs` prints one line and `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts`.
+- [ ] T004 Write the key table - `Context`, `Key`, `Action` and `Label`, the rows for `main`, `inbox`, `palette` and `too-small`, and the three `pub mod` lines (`$CRATE/src/keys.rs`, `$CRATE/src/lib.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `every_row_has_a_label`, `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
+- [ ] T005 Write the theme - the System and Mono palettes, `--mono` selecting Mono, the glyph table with its ASCII column, and `printable` (`$CRATE/src/theme.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `ascii_glyphs_are_ascii` and `every_marker_has_an_ascii_counterpart`.
+- [ ] T006 Write the header - the bot count, the index age, `stale_label`, the stale flag with its age, and the error state (`$CRATE/src/view/header.rs`). Verify: `rg -n 'fn stale_label' $CRATE/src/view/header.rs` prints one line and `cargo test --manifest-path $CRATE/Cargo.toml --lib header` prints `test result: ok` and names `stale_label_formats_the_age`.
+- [ ] T007 Write the tab bar - four tabs and the active mark (`$CRATE/src/view/tabs.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `chat_tab_carries_the_active_mark`, and `rg -n 'phase 010' $CRATE/src/view/tabs.rs` matches nothing, because 004 draws the chat line.
+- [ ] T008 Write the footer - the status row and the key line generated from `keys.rs`, with the inbox's `Enter open` on line 1 and the chat's line 1 holding only the tab keys (`$CRATE/src/view/footer.rs`). Verify: `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read and `rg -n 'printable' $CRATE/src/view/footer.rs` prints the status row's filter.
+- [ ] T009 Write the shell frame - the seven bands, the too-small screen and the palette panel (`$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `rg -nF 'Too small · Ctrl+D exit' $CRATE/src/view/mod.rs` prints one line.
+- [ ] T010 Write the palette's filter, its Up and Down selection, Enter and Esc, and pause the single-key shortcuts while the filter holds text (`$CRATE/src/view/mod.rs`, `$CRATE/src/keys.rs`). Verify: `rg -n 'fn filter' $CRATE/src/view/mod.rs` prints one line and `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts` and `palette_up_and_down_move_the_selection`.
 - [ ] T011 Write the key-label test and the two shell snapshots (`$CRATE/tests/render_keys.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
-- [ ] T012 Add the `--ascii` flag to the argument parsing (`$CRATE/src/lib.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib args` prints `test result: ok` and names `ascii_flag_selects_the_ascii_glyphs`.
+- [ ] T012 Add the `--mono` and `--ascii` flags to the argument parsing (`$CRATE/src/lib.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib args` prints `test result: ok` and names `mono_flag_selects_mono` and `ascii_flag_selects_the_ascii_glyphs`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,7 +72,7 @@ Every verify command runs without a tty. The frame is drawn into a ratatui `Test
 - [ ] T015 Run the crate suite (`$CRATE`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] T016 Prove the Mono palette loses no meaning (`$CRATE/src/theme.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib theme` names `mono_draws_the_same_symbols`.
 - [ ] T017 Prove the status row strips control characters (`$CRATE/tests/render_keys.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` names `status_row_strips_control_characters`.
-- [ ] T018 Prove the binary reads one environment variable and copies no GPL code (`$CRATE/src`). Verify: `rg -n 'env::var' $CRATE/src` prints only `theme.rs` and `rg -n 'openhuman' $CRATE/src` prints only comment lines.
+- [ ] T018 Prove the binary reads no environment variable and copies no GPL code (`$CRATE/src`). Verify: `rg -n 'env::var' $CRATE/src` matches nothing outside `#[cfg(test)]` blocks and `rg -n 'openhuman' $CRATE/src` prints only comment lines.
 - [ ] T019 Validate the packet (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
@@ -109,7 +109,7 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 | C | T007 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/view/tabs.rs` |
 | D | T008 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/view/footer.rs` |
 
-**Workers:** 4. This is the packet's hardest wave: lane A owns the band arithmetic, the too-small screen and the palette panel, which are the three places a mistake draws a corrupt frame or panics on a small area, so it takes the highest tier the roster offers. A module file is not compiled until `view/mod.rs` declares it, so each of lanes B, C and D verifies with a grep on its own file and the wave's verify is the first compile. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0; `cargo test --manifest-path $CRATE/Cargo.toml --lib` exits 0; `rg -n 'Resize terminal · Ctrl+D exits' $CRATE/src/view/mod.rs` prints one line; `rg -n 'phase 010' $CRATE/src/view/tabs.rs` prints one line; `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read. **Fallback:** lane A is already on the last rung, so it stops and reports rather than dropping its tier; lanes B, C and D fall to rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
+**Workers:** 4. This is the packet's hardest wave: lane A owns the band arithmetic, the too-small screen and the palette panel, which are the three places a mistake draws a corrupt frame or panics on a small area, so it takes the highest tier the roster offers. A module file is not compiled until `view/mod.rs` declares it, so lanes B and D verify with a grep on their own file, lane C's check is the render test that lands in Wave 5, and the wave's verify is the first compile. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0; `cargo test --manifest-path $CRATE/Cargo.toml --lib` exits 0; `rg -nF 'Too small · Ctrl+D exit' $CRATE/src/view/mod.rs` prints one line; `rg -n 'fn stale_label' $CRATE/src/view/header.rs` prints one line; `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read. **Fallback:** lane A is already on the last rung, so it stops and reports rather than dropping its tier; lanes B, C and D fall to rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
 
 ### Wave 4 - The palette
 
@@ -126,7 +126,7 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 | A | T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `$CRATE/tests/render_keys.rs` |
 | B | T012 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/lib.rs` |
 
-**Workers:** 2. The lanes are disjoint: lane A writes the test file and lane B writes the argument parsing. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`; `cargo test --manifest-path $CRATE/Cargo.toml --lib args` names `ascii_flag_selects_the_ascii_glyphs`. **Fallback:** lane A falls to rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`; lane B falls to rung 2 `cli-opencode` `#max`, then rung 4, then rung 5.
+**Workers:** 2. The lanes are disjoint: lane A writes the test file and lane B writes the argument parsing. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`; `cargo test --manifest-path $CRATE/Cargo.toml --lib args` names `mono_flag_selects_mono` and `ascii_flag_selects_the_ascii_glyphs`. **Fallback:** lane A falls to rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`; lane B falls to rung 2 `cli-opencode` `#max`, then rung 4, then rung 5.
 
 ### Wave 6 - Verification gates
 
@@ -134,7 +134,7 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 |------|-------|-------------------------|------------|
 | Orchestrator | T013, T014, T015, T016, T017, T018, T019 | none; the orchestrator runs them itself | none |
 
-**Workers:** 0. Every gate is a command the orchestrator runs and reads, so no worker is dispatched and no `done` claim stands between the gate and its evidence. **Verify:** `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0; `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0; `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target; `rg -n 'env::var' $CRATE/src` prints only `theme.rs`; `rg -n 'openhuman' $CRATE/src` prints only comment lines; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation --strict` prints `RESULT: PASSED`. **Fallback:** none. A failing gate is repaired in the wave that owns the file, and the gate is rerun from the final state.
+**Workers:** 0. Every gate is a command the orchestrator runs and reads, so no worker is dispatched and no `done` claim stands between the gate and its evidence. **Verify:** `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0; `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0; `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target; `rg -n 'env::var' $CRATE/src` matches nothing outside `#[cfg(test)]` blocks; `rg -n 'openhuman' $CRATE/src` prints only comment lines; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation --strict` prints `RESULT: PASSED`. **Fallback:** none. A failing gate is repaired in the wave that owns the file, and the gate is rerun from the final state.
 <!-- /ANCHOR:waves -->
 
 ---
@@ -200,7 +200,7 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 
 - [ ] CHK-020 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
 - [ ] CHK-021 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
-- [ ] CHK-022 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --lib theme` prints `test result: ok` and names `no_color_selects_mono`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii` and `every_marker_has_an_ascii_counterpart`.
+- [ ] CHK-022 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii` and `every_marker_has_an_ascii_counterpart`.
 - [ ] CHK-023 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` names `too_small_draws_resize_line_only` and `status_row_strips_control_characters`.
 <!-- /ANCHOR:testing -->
 
@@ -209,9 +209,9 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] `rg -n 'env::var' $CRATE/src` prints only `theme.rs`, so the binary reads one environment variable and no credential.
+- [ ] CHK-030 [P0] `rg -n 'env::var' $CRATE/src` matches nothing outside `#[cfg(test)]` blocks, so the binary reads no environment variable and no credential; the `ui` verb is where `NO_COLOR` becomes `--mono`.
 - [ ] CHK-031 [P0] `rg -n 'read_to_string|File::open|fs::read' $CRATE/src` matches nothing outside `#[cfg(test)]` blocks, so the shell opens no state file.
-- [ ] CHK-032 [P1] `rg -n 'safe_text' $CRATE/src/view` prints the status row's filter, so no drawn runtime string reaches the buffer unfiltered.
+- [ ] CHK-032 [P1] `rg -n 'printable' $CRATE/src/view` prints the status row's filter, so no drawn runtime string reaches the buffer unfiltered.
 <!-- /ANCHOR:security -->
 
 ---
@@ -220,8 +220,8 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 ## Documentation
 
 - [ ] CHK-040 [P1] `rg -n 'keys.rs' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/*.md` names the table in `spec.md`, `plan.md` and `tasks.md`.
-- [ ] CHK-041 [P1] `rg -n 'openhuman' $CRATE/src` prints only comment lines, and `rg -n 'openhuman' $CRATE/README.md` names the design reference and states that no code was copied.
-- [ ] CHK-042 [P2] `rg -n 'Resize terminal' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/*.md` prints the line in `spec.md` and `tasks.md`.
+- [ ] CHK-041 [P1] `rg -n 'openhuman' $CRATE/src` prints only comment lines.
+- [ ] CHK-042 [P2] `rg -n 'Too small' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/*.md` prints the line in `spec.md`, `plan.md` and `tasks.md`.
 <!-- /ANCHOR:docs -->
 
 ---

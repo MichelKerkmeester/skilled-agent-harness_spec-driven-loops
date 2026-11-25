@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof"
-    last_updated_at: "2026-11-25T22:15:00Z"
-    last_updated_by: "phase-child-authoring"
-    recent_action: "Authored the durable directive"
+    last_updated_at: "2026-11-25T21:20:29Z"
+    last_updated_by: "review-fix-pass"
+    recent_action: "Applied the ui-review-1 findings that edit this child"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -58,8 +58,8 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
-- [ ] `cargo metadata --manifest-path crates/bots-tui/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, and `rg -n 'GNU GENERAL PUBLIC LICENSE|GPL-3' crates/bots-tui` prints nothing.
-- [ ] `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines, and `rg -n 'no code' crates/bots-tui/README.md` prints one line.
+- [ ] `cargo metadata --manifest-path crates/bots-tui/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, and `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing, because `README.md` and `design/` name the reference's GPL-3.0 licence by design.
+- [ ] `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines, `rg -n 'no code' crates/bots-tui/README.md` prints one line, and every `file:line` pointer in `crates/bots-tui/design/` resolves, proven by the loop in `tasks.md` T018 printing nothing.
 - [ ] `rg -c '^\| D[1-8] ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/tasks.md` prints 8, and every row of the Defect Audit table prints its expected output.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -90,7 +90,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | The parent's recursive run is not a criterion | `validate.sh --recursive --strict` on the parent fails on the five sibling scaffolds today, so it is the parent's closure step rather than this child's. This child's own `--strict` run is the criterion. |
-| The licence grep is one half of the proof | A text match cannot see a paraphrased copy, so the design-pointer check and a human read of the diff sit beside it, and the log records that the three together are the evidence. |
+| The licence grep is one half of the proof | A text match cannot see a paraphrased copy, so the design-pointer check and a human read of the diff sit beside it, and the log records that the three together are the evidence. The grep covers the code and the manifest and searches for the header text, because the README and `design/` name the reference's GPL-3.0 licence by design and a match there is not a failure. |
 | The CI job is read, never edited | `002` owns `.github/workflows/bots-runtime.yml`. A job that runs a different gate set is reported to that child and recorded here. |
 | The hand proof is not a criterion | `005` answers one item from the overlay by hand, so it needs a tty and stays the operator's step. Every criterion above runs without one. |
 <!-- /ANCHOR:log -->

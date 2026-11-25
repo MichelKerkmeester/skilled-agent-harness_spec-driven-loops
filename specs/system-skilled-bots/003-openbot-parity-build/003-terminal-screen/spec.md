@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
-    last_updated_at: "2026-11-25T21:40:00Z"
-    last_updated_by: "phase-parent-expansion"
-    recent_action: "Expanded phase 003 into a Level 3 phase parent with six children"
+    last_updated_at: "2026-11-25T21:12:34Z"
+    last_updated_by: "review-fix-pass"
+    recent_action: "Aligned REQ-010 to the key map and moved NO_COLOR to the ui verb"
     next_safe_action: "Work child 001-ux-and-component-map"
     blockers: []
     key_files: []
@@ -54,7 +54,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape. Reading three commands to learn what the bots did, what needs an answer and what each routine is set to is work the operator repeats every time they look. openhuman proves a terminal can draw all four surfaces from data a runtime already holds, but its client is GPL-3.0-only and cannot be lifted into this MIT tree. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:29] [SOURCE: specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2]
+The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape. Reading three commands to learn what the bots did, what needs an answer and what each routine is set to is work the operator repeats every time they look. openhuman proves a terminal can draw all four surfaces from data a runtime already holds, but its client is GPL-3.0-only and cannot be lifted into this MIT tree. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:29] [SOURCE: specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2]
 
 ### Purpose
 One screen that draws activity, inbox and routines from the runtime's own JSON and answers a needs-you item without leaving the terminal.
@@ -101,11 +101,11 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 ## 3. SCOPE
 
 ### In Scope
-- One MIT Rust crate at `crates/bots-tui/` whose binary `bots-ui` draws four tabs, a pending-approval banner, an approval overlay and the six status markers, and whose library target lets `cargo test --lib` and `tests/*.rs` reach every module.
-- One `ui` verb in `.skilled/bin/bots.cjs` that resolves the built binary, execs it with `--repo` and `--skilled-tree`, inherits stdio, passes the exit code through, and refuses `ui-unavailable` when the crate is absent and `ui-not-built` when only the binary is.
+- One MIT Rust crate at `crates/bots-tui/` whose binary `bots-ui` draws four tabs, a pending-approval banner, an approval overlay and the eight status glyphs, and whose library target lets `cargo test --lib` and `tests/*.rs` reach every module.
+- One `ui` verb in `.skilled/bin/bots.cjs` that resolves the built binary, execs it with `--repo` and `--skilled-tree`, inherits stdio, passes the exit code through, and refuses `ui-unavailable` when the crate is absent and `ui-not-built` when only the binary is. The verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so the binary reads no environment variable of its own.
 - The activity, inbox and routines panes, drawn from `bots activity --json`, `bots inbox --json` and `bots routines --json`, and one answer written through `bots answer` with `--scope`.
 - A tracked `design/` folder holding the ASCII mockups per state at 80x24 and 120x40, the key map, the glyph table and the component inventory, written in our own words with `file:line` pointers into the reference sources.
-- A `bots-tui` CI job that installs a pinned toolchain with `dtolnay/rust-toolchain@stable` plus the `clippy` and `rustfmt` components, then runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test`.
+- A `bots-tui` CI job that installs a pinned toolchain with `dtolnay/rust-toolchain@1.92.0` plus the `clippy` and `rustfmt` components, then runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test`.
 - `crates/bots-tui/tests/fixtures/bots`, the fake CLI that carries the payloads phases 001 and 002 ship and records its argv.
 
 ### Out of Scope
@@ -113,7 +113,7 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 - `bots activity --json`, `bots inbox --json` and `bots routines --json` - phases 001 and 002 own those verbs, and this phase consumes them unchanged.
 - A `--json` mode on `bots answer` - the screen reads the exit code and stderr the verb already writes.
 - Mouse support, a theme picker, a demo binary, a bench flag, and accessibility, themes or the test harness as separate phases - each child carries its own part of those.
-- A desktop shell - the research rules it out, and openhuman's pointer hit testing is design detail this phase does not need. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:151]
+- A desktop shell - the research rules it out, and openhuman's pointer hit testing is design detail this phase does not need. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:151]
 - Editing a BOT.md, installing a schedule or starting a run from the screen - each is a write verb with its own confirmation rules, and none is needed to read the three surfaces.
 - `insta` as a dependency - snapshot tests assert the ratatui `TestBackend` buffer directly.
 - A `THIRD_PARTY_NOTICES.md` entry - no third-party code is copied, so there is nothing to notice; the design reference is recorded in the crate README instead.
@@ -122,7 +122,7 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 ### Dependencies
 - Phase 001's `bots activity --json` and `bots inbox --json`, which the activity and inbox panes read.
 - Phase 002's `bots routines --json`, which the routines pane reads.
-- Phase 001's `bots answer --scope once|deny` flag, which records the scope on the item's answer. Phase 006 extends that scope with `grants` and the ladder, and the screen reads neither, so it never waits for 006. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:82]
+- Phase 001's `bots answer --scope once|deny` flag, which records the scope on the item's answer. Phase 006 extends that scope with `grants` and the ladder. The screen draws a grant's kind and rung only when the item carries them and draws nothing where they are absent, so it builds before 006 and lights up after it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:82]
 - `bots status --json`, which exists today and which the header reads for the bot count and the index staleness flag. The count is the rows whose `kind` is `bot`, so a needs-you row never counts as a bot. Phase 004 adds `lastRun.branch` and `lastRun.worktreePath` to that payload, which the header ignores and the fixture carries. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:147]
 
 ### Files to Change
@@ -130,7 +130,7 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `crates/bots-tui/design/` | Create | 001 | Mockups per state at both sizes, the key map, the glyph table, the component inventory |
-| `crates/bots-tui/Cargo.toml` | Create | 002 | MIT manifest: binary `bots-ui` beside the library target, ratatui 0.30, crossterm 0.29, serde, serde_json, unicode-width |
+| `crates/bots-tui/Cargo.toml` | Create | 002 | MIT manifest: binary `bots-ui` beside the library target, ratatui 0.30, crossterm 0.29, serde, serde_json, unicode-width, libc |
 | `crates/bots-tui/Cargo.lock` | Create | 002 | Pinned dependency graph, committed because the crate ships a binary |
 | `crates/bots-tui/src/lib.rs` | Create | 002 | Library root: argument parsing, the terminal guard, the loop entry, one `pub mod` line per module |
 | `crates/bots-tui/src/main.rs` | Create | 002 | The binary: calls the library entry point and maps its result to the exit code |
@@ -142,12 +142,13 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 | `crates/bots-tui/src/model.rs` | Create | 002 | serde types with defaults, an unknown state kept as `Unknown(raw)` |
 | `crates/bots-tui/src/terminal.rs` | Create | 002 | RAII guard with a chained panic hook |
 | `crates/bots-tui/src/keys.rs` | Create | 003 | Key-to-action table and the drawn label for each binding |
-| `crates/bots-tui/src/theme.rs` | Create | 003 | System and Mono palettes, Mono under `NO_COLOR` |
+| `crates/bots-tui/src/theme.rs` | Create | 003 | System and Mono palettes, Mono selected by `--mono` and the ASCII glyph set by `--ascii`; the binary reads no environment variable |
 | `crates/bots-tui/src/view/header.rs` | Create | 003 | Header: bot count and the stale flag |
 | `crates/bots-tui/src/view/tabs.rs` | Create | 003 | Tab bar |
 | `crates/bots-tui/src/view/footer.rs` | Create | 003 | Footer generated from `keys.rs` |
-| `crates/bots-tui/src/sanitize.rs` | Create | 004 | Control-character stripping for every drawn runtime string |
+| `crates/bots-tui/src/view/mod.rs` | Create | 003 | The shell frame: the seven bands, the too-small screen and the palette panel, and the module root 004 and 005 add their `mod` lines to |
 | `crates/bots-tui/src/view/panes.rs` | Create | 004 | Activity, inbox, routines and chat-placeholder bodies |
+| `crates/bots-tui/src/view/banner.rs` | Create | 005 | The pending-approval row: the open item count, the inbox tab key label read from `keys.rs`, and the hidden state |
 | `crates/bots-tui/src/view/overlay.rs` | Create | 005 | Decision and choice overlays, free-text entry, the in-flight lock |
 | `crates/bots-tui/tests/fixtures/bots` | Create | 002 | The fake CLI: canned JSON per verb, records its argv, committed mode 0755 |
 | `crates/bots-tui/tests/cli_client.rs` | Create | 002 | Integration tests against the fixture |
@@ -175,7 +176,7 @@ These requirements hold across every child. A child that restates one keeps its 
 | REQ-003 | The binary reads only through `bots ... --json` and writes only through `bots answer <item-id> <text> --scope once\|deny`. `cli.rs` takes the program and its arguments from its caller, defaulting to `node` plus `<skilled-tree>/.skilled/bin/bots.cjs`, so every read is one `<program> <verb> --json --repo <repo>` call and the tests point it at `bash` plus `concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/bots")`, which resolves from the crate directory cargo runs tests in. The binary opens no file under the state root. | 002, 004, 005 |
 | REQ-004 | The tab bar holds four tabs: Alt+1 activity, Alt+2 inbox, Alt+3 routines, Alt+4 chat, with `[` and `]` as the fallback pair. Ctrl+P opens the command palette and Ctrl+D exits. The chat tab draws one line naming phase 010 and holds no state. | 003 |
 | REQ-006 | The inbox pane lists every open and expired item from `bots inbox --json`. Digits 1 to 9 pick the option at that position, and only inside an overlay. `y` answers `approve` with `--scope once` and `n` answers `deny` with `--scope deny`, so every write is `bots answer <item-id> <text> --scope once\|deny`. Deny is `n`; no other key denies. The overlay offers no `always` and no `conversation` scope, because a standing grant needs a rule store no phase lands. | 005 |
-| REQ-010 | Every bound key is drawn on screen in the frame that binds it: the footer names `Alt+1..4`, `[` `]`, `Ctrl+P` and `Ctrl+D`; the inbox footer names `1-9`, `y`, `n` and `Esc`; the overlay names `1`, `n` and `Esc`. | 003, 005 |
+| REQ-010 | Every bound key is drawn on screen in the frame that binds it: the footer names `Alt+1..4`, `[` `]`, `Ctrl+P` and `Ctrl+D`, the inbox footer names `Enter open`, and the decision overlay names `t`, `n`, `y` and `Esc` and the choice overlay names `1-9`, `n` and `Esc`, each drawing `n deny` before any approve key. | 003, 005 |
 | REQ-011 | When the input closes while an item is selected, the binary writes no answer and exits 0, and `bots inbox --json` still lists the item as open. The loop takes its events from a source the caller supplies, so a closed input is one event a lib test feeds without a terminal, and that test asserts the fixture recorded no `answer` argv. | 002, 005 |
 
 ### The fixture
@@ -198,6 +199,8 @@ The operator answered these on 2026-11-25. `decision-record.md` holds each one w
 | Q005 | The six status markers gain a scheduled, a recurring and an unknown glyph, and the set carries an ASCII fallback. |
 | Q006 | `insta` is not approved. Snapshot tests assert the ratatui `TestBackend` buffer directly. |
 | Q007 | The four existing screenshots are linked, and openhuman's `--demo` is built locally to capture its TUI into the gitignored `context/screenshots/`. |
+| Q008 | The overlay draws a grant's kind and rung only when the item carries them, and draws nothing where they are absent, so the screen builds before packet phase 006 and lights up after it. |
+| Q009 | The `bots ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, to the binary. The binary reads no environment variable, so every no-env::var check holds. |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -213,9 +216,9 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 | Alt+1..4 is unreliable on macOS | Terminal.app and iTerm send `¡™£¢` unless Option is Meta, and Ctrl+Tab is rarely delivered, so the tab bar can be unreachable | 003: `[` and `]` as the fallback pair |
 | Selection by row index is unsafe | The 5-second poll reorders rows, so the selected row changes under the operator | 004: selection is `Option<ItemId>` |
 | Blocking spawns freeze input | `bots status --json` took 0.18 to 0.34 s, so several sequential spawns on the loop thread freeze input about a second every 5 s | 002: a worker thread feeds one channel |
-| Bot text is drawn unsanitized | A control character in a bot id or a question moves the cursor and corrupts the frame | 004: `sanitize.rs` strips control characters |
+| Bot text is drawn unsanitized | A control character in a bot id or a question moves the cursor and corrupts the frame | 003: `theme::printable` replaces control characters |
 | An item with no options can only get y/n | `bots answer` takes free text, so an open question with no options is unanswerable from the screen | 005: free-text entry |
-| `?` marks three different states | Scheduled, recurring and unknown draw the same glyph, so the operator cannot tell a run that has not begun from a value the mapping does not name | 004: separate glyphs plus the raw value |
+| `?` marks three different states | Scheduled, recurring and unknown draw the same glyph, so the operator cannot tell a run that has not begun from a value the mapping does not name | 003: separate glyphs in `theme.rs`, drawn by 004 |
 | The banner names the wrong key | It reads `Ctrl+P -> inbox`, which opens the palette, not the inbox tab | 003: the banner names the inbox tab key |
 <!-- /ANCHOR:defects -->
 

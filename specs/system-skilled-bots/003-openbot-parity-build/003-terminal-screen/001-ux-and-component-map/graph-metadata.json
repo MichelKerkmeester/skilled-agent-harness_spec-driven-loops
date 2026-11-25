@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The screen has no agreed shape",
     "created_at": "2026-11-25T20:22:31Z",
-    "last_save_at": "2026-11-25T20:42:59.014Z",
+    "last_save_at": "2026-11-25T22:04:43.253Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d6a3d546aaa53cccf2fa74882f3f397d9abcb17038f792421b1f630e35a0407",
+    "source_fingerprint": "sha256:32d30a86ac5909036415572a051be393dc5be8b18789e6dc381200c966566ab5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1df23ce5c6f0a442fc231a37a9f6198e03f73236173bf0aecf150bb18b7cee85",
-      "plan.md": "74636e22caecd26b077ca83973bb1d3b7de5e1bc0d7a1a8b343018a8e541e037",
-      "tasks.md": "f2227e92dccbf120e5464892ddb952ce12187c50c1e79250528daf92721070e7",
-      "decision-record.md": "5259eea922d5cca94f75bb65eb255c73df6e41980fbc2b009c0acc05471cf65a",
-      "implementation-summary.md": "a61c5e244d6f73785f00db3ccbb9ee1b7fedb0e1f2b81a287bbcaa286bdc8f21"
+      "spec.md": "aaee63435b48028f75de3ac3374110c9efe772cd7b89910350110ae118ba8561",
+      "plan.md": "e0c9a2a984b468c6c53635c389587bec02b3039a357b864a433f19bff83739e2",
+      "tasks.md": "935ae617e672be1e678277837033fea0700c367201c76b12f9af263a8536ef33",
+      "decision-record.md": "1ff24d27d37de2027a952f55b509c8b125bdecc385509a8e18d80c296fa42925",
+      "implementation-summary.md": "a82d9cc5e48c6bc7dfc28c545fa8385856c3092455ffb6e3b2f642d44bfee3f9"
     },
     "last_active_at": null
   }

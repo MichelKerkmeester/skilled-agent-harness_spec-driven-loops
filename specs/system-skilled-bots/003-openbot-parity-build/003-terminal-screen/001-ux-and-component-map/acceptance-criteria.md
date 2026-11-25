@@ -45,8 +45,8 @@ The Verification column names the block below that proves the row. The blocks ca
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the four documents in `design/`, When every `SOURCE` pointer is resolved, Then none is missing and none points past the last line of its file | AC-001 block prints `4` then `0` | Unmet | - |
-| AC-002 | REQ-002 | Given the eighteen states in the index, When each is drawn at 80x24 and at 120x40, Then every fenced block is exactly 24 or 40 lines and no line is wider than its size | AC-002 block prints `frames=35 bad=0` | Unmet | - |
-| AC-003 | REQ-003 | Given the key table, When each binding is read, Then it names a context, an action, the label the frame draws and the frame that draws it, and no key carries two meanings inside one context | AC-003 block prints `23` then `0` | Unmet | - |
+| AC-002 | REQ-002 | Given the twenty-six states in the index, When each is drawn at 80x24 and at 120x40, Then every fenced block is exactly 24 or 40 lines and no line is wider than its size, and the too-small block is exactly 7 lines and no line wider than 30 | AC-002 block prints `frames=51 bad=0` | Unmet | - |
+| AC-003 | REQ-003 | Given the key table, When each binding is read, Then it names a context, an action, the label the frame draws and the frame that draws it, no key carries two meanings inside one context, and a key that answers is bound only outside text mode | AC-003 block prints `28` then `0` | Unmet | - |
 | AC-004 | REQ-004 | Given the seven group ids in payload order, When the glyph table is read, Then each id has a glyph and an ASCII character, an unnamed state draws `?` plus its raw value, and the ASCII set is selected by one flag | AC-004 block prints `7` then `2` | Unmet | - |
 | AC-005 | REQ-005 | Given the component inventory, When each component is read, Then it names what it reads, the keys it binds, every state it can be in, and the frame that draws each state | AC-005 block prints `13` then `13` | Unmet | - |
 | AC-006 | REQ-006 | Given the openhuman sources under `specs/system-skilled-bots/context/`, When the design documents are searched for their text, Then no line of openhuman source appears in them | AC-006 block prints nothing and exits 1 | Unmet | - |
@@ -71,13 +71,13 @@ rg -o --no-filename '\[SOURC[E]: [^]]+\]' $D/*.md $P/spec.md $P/plan.md $P/tasks
     done | wc -l
 ```
 
-**AC-002**: every frame is exactly 24 or 40 lines and no line is wider than its size.
+**AC-002**: every frame is exactly 24 or 40 lines and no line is wider than its size, and the too-small frame is 7 lines and no wider than 30.
 
 ```bash
-perl -CSD -e 'local $/; $_=<>; @b = /```[^\n]*\n(.*?)```/gs; $bad=0; for $x (@b) { $h = ($x =~ tr/\n//); $w=0; for (split /\n/, $x) { $w = length($_) if length($_) > $w } $bad++ unless ($h==24&&$w==80)||($h==40&&$w==120)||($h==7&&$w==30) } print "frames=", scalar(@b), " bad=$bad\n"' $D/mockups.md
+perl -CSD -e 'local $/; $_=<>; @b = /```[^\n]*\n(.*?)```/gs; $bad=0; for $x (@b) { $h = ($x =~ tr/\n//); $w=0; for (split /\n/, $x) { $w = length($_) if length($_) > $w } $bad++ unless ($h==24&&$w==80)||($h==40&&$w==120)||($h==7&&$w<=30) } print "frames=", scalar(@b), " bad=$bad\n"' $D/mockups.md
 ```
 
-**AC-003**: the key table has twenty-three bindings, and every drawn label appears in a frame.
+**AC-003**: the key table has twenty-eight bindings, and every drawn label appears in a frame.
 
 ```bash
 awk '/^## 2\. THE KEY TABLE/{f=1;next} /^## 3\./{f=0} f && /^\| `/{n++} END{print n}' $D/key-map.md
@@ -85,7 +85,7 @@ awk -F'|' '/^## 2\. THE KEY TABLE/{f=1;next} /^## 3\./{f=0} f && /^\| `/{gsub(/^
   | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l
 ```
 
-**AC-004**: eight glyph rows, and two ASCII selectors.
+**AC-004**: seven glyph rows, and two ASCII selectors.
 
 ```bash
 awk '/^## 1\. THE GLYPH TABLE/{f=1;next} /^## 2\./{f=0} f && /^\| `/{n++} END{print n}' $D/glyph-table.md
@@ -146,7 +146,7 @@ Write `-` when the row is `Met` or `Unmet`. Write `ADR-NNN` when the row is
 the point of a waiver is that someone recorded the reasoning, so an unbacked
 waiver is treated as an unmet criterion rather than as a pass.
 
-This packet carries no `decision-record.md`, so no row may be `Waived` or `Superseded` here. The operator's approval is recorded in `design/key-map.md` section 6 and restated as AC-007, and `spec.md` section 6 names the missing decision record as a deviation from the parent's handoff wording.
+This packet carries a `decision-record.md`, so a row may be `Waived` or `Superseded` when its Waiver cell names an ADR that exists there. The operator's approval is recorded in `design/key-map.md` section 6, restated as AC-007, and added as a row in `decision-record.md` when it is given.
 <!-- /ANCHOR:criteria -->
 
 ---

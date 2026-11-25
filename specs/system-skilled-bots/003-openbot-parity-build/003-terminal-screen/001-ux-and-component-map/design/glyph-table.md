@@ -39,7 +39,7 @@ The first six glyphs are openhuman's, and the labels are ours: openhuman labels 
 
 ## 2. THE THREE GLYPHS THIS PHASE ADDS
 
-The pre-expansion table had six markers and used `?` for three different things: a run that had not begun, a routine that runs again, and a value the mapping did not name. The operator approved three new glyphs so each reads as itself. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:218]
+The pre-expansion table had six markers and used `?` for three different things: a run that had not begun, a routine that runs again, and a value the mapping did not name. The operator approved three new glyphs so each reads as itself. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220]
 
 | Glyph | Replaces | Why it is its own glyph |
 |-------|----------|-------------------------|
@@ -51,7 +51,7 @@ The pre-expansion table had six markers and used `?` for three different things:
 
 ## 3. THE UNKNOWN VALUE
 
-A `state` the table does not name draws `?` and the raw value beside it, never a blank cell and never a guess. The row reads `? some-new-state`, so a runtime that adds a group id is visible on the screen the day it ships rather than silently dropped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:218]
+A `state` the table does not name draws `?` and the raw value beside it, never a blank cell and never a guess. The row reads `? some-new-state`, so a runtime that adds a group id is visible on the screen the day it ships rather than silently dropped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220]
 
 The same rule covers a missing field: a row with no `state` draws `?` and the word `missing`, so an incomplete payload is a visible row rather than a skipped one.
 
@@ -59,15 +59,15 @@ The same rule covers a missing field: a row with no `state` draws `?` and the wo
 
 ## 4. THE INBOX DOES NOT USE THESE GLYPHS
 
-An inbox item's `state` is `open`, `answered` or `expired`, and the pane lists the open and the expired ones. None of those is one of the seven group ids, so the inbox draws its state as a word and no glyph. Reusing `–` for `expired` would read as `stopped`, which is a different fact about a different record. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153]
+An inbox item's `state` is `open`, `answered` or `expired`, and the pane lists the open and the expired ones. None of those is one of the seven group ids, so the inbox draws its state as a word, and only an open item carries the `!` gutter mark. Reusing `–` for `expired` would read as `stopped`, which is a different fact about a different record. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153]
 
 | Item state | Drawn | Answerable |
 |------------|-------|------------|
 | `open` | `!` in the gutter, the word `open`, the question | Yes |
-| `expired` | No glyph, the word `expired`, dimmed | No: the keys are disabled and the overlay says the item is no longer open |
+| `expired` | No glyph and a blank gutter, the word `expired`, dimmed | No: the keys are disabled and the overlay says the item is no longer open |
 | `answered` | Not listed by `bots inbox --json`; `--all` lists it with the word `answered` | No |
 
-An expired item stays visible because the operator needs to know it existed and went unanswered. It cannot be answered because the runtime would refuse it, and a screen that offers a key the runtime refuses is a screen that lies. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:93-95] [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:466-467]
+An expired item stays visible because the operator needs to know it existed and went unanswered. It cannot be answered because the runtime would refuse it, and a screen that offers a key the runtime refuses is a screen that lies. The gutter is blank rather than carrying a glyph, so the row cannot be read as `stopped`, which is a fact about a run and not about an item. `design/mockups.md` frame 2 draws the blank gutter. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:93-95] [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:466-467]
 
 ---
 
@@ -86,7 +86,7 @@ The fallback is a whole set rather than a per-glyph substitution, because a fram
 
 ## 6. COLOUR IS NEVER THE MEANING
 
-System is the default palette and Mono is the one `NO_COLOR` selects. In Mono every colour resets, so a frame drawn in Mono is the same frame with the same glyphs and the same labels. That is the test of whether colour was carrying meaning: if the Mono frame still reads, colour was decoration. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62]
+System is the default palette and Mono is the one the `ui` verb selects when `NO_COLOR` is set, by passing `--mono`. The binary reads no environment variable, so the palette is chosen by a flag and a test can drive it. In Mono every colour resets, so a frame drawn in Mono is the same frame with the same glyphs and the same labels. That is the test of whether colour was carrying meaning: if the Mono frame still reads, colour was decoration. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62]
 
 | Element | System | Mono | What carries the meaning |
 |---------|--------|------|--------------------------|
@@ -110,7 +110,7 @@ Focus is a `›` mark plus reverse video, never reverse video alone, because a t
 | The inbox item shape, whose `state` is `open`, `answered` or `expired` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] |
 | The System and Mono palettes | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] |
 | `NO_COLOR` starting in Mono | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62] |
-| Control characters stripped before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
+| Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
 | The expired card, visible and unanswerable | [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:93-95] |
-| The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:218] |
-| The unknown value drawn with its raw text | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:218] |
+| The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220] |
+| The unknown value drawn with its raw text | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220] |

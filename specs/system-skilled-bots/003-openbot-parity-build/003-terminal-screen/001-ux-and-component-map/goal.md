@@ -50,6 +50,8 @@ Frozen choices. Changing one is an amendment.
 | D4 | `--ascii` and `--mono` are flags on the binary, passed through by `bots ui`, because the binary reads no environment variable of its own. `NO_COLOR` is read by the Node `ui` verb, not by the binary. |
 | D5 | The banner key is `Alt+2`, not `Ctrl+P`, because `Ctrl+P` opens the palette in the same context. |
 | D6 | The footer is two lines, so every bound key is drawn at 80 columns rather than dropped at the narrow size. |
+| D7 | The overlay and the detail column draw a grant's kind and rung only when the item carries them, and draw nothing where they are absent, so the screen builds before packet phase 006 and lights up after it. |
+| D8 | `t` enters text mode in the decision overlay, and `y` and `n` are shortcuts only outside it, so a free-text answer may begin with either letter. |
 
 <!-- /ANCHOR:directive -->
 
@@ -59,8 +61,8 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `ls specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design | wc -l` prints 4, and the AC-001 block in `acceptance-criteria.md` prints `0` for unresolved pointers.
-- [ ] The AC-002 block in `acceptance-criteria.md` prints `frames=35 bad=0`.
-- [ ] The AC-003 block prints `23` then `0`, and the AC-004 block prints `7` then `2`.
+- [ ] The AC-002 block in `acceptance-criteria.md` prints `frames=51 bad=0`.
+- [ ] The AC-003 block prints `28` then `0`, and the AC-004 block prints `7` then `2`.
 - [ ] The AC-005 block prints `13` then `13`, and the AC-008 block prints `4`.
 - [ ] The AC-006 block prints nothing and exits 1, and the AC-009 block prints `5`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`.
@@ -80,10 +82,10 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| `design/mockups.md` | Done | 18 states, 35 fenced frames: 17 at 80x24, 17 at 120x40, one at 30x7. The frame check prints `frames=35 bad=0` |
-| `design/key-map.md` | Done | Six contexts, 23 bindings, three defect rules, the approval record |
+| `design/mockups.md` | Done | 26 states, 51 fenced frames: 25 at 80x24, 25 at 120x40, one at 30x7. The frame check prints `frames=51 bad=0` |
+| `design/key-map.md` | Done | Six contexts, 28 bindings, four defect rules, the approval record |
 | `design/glyph-table.md` | Done | Seven group ids, three added glyphs, the ASCII set, the colour rule |
-| `design/component-inventory.md` | Done | 13 components, each with its reads, keys, states and frames |
+| `design/component-inventory.md` | Done | 13 components, each with its reads, keys, states and frames; five states per data pane |
 | `spec.md` | Done | REQ-001 to REQ-010, SC-001 to SC-005, five open questions |
 | `plan.md` | Done | Three phases, the testing strategy, and the external orchestration section |
 | `tasks.md` | Done | 30 tasks in three phases, six waves, 15 checklist rows |
@@ -94,10 +96,12 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| No `decision-record.md` | The parent's handoff row names one in this folder, and the write scope for this child does not include it. The operator's approval is recorded in `design/key-map.md` section 6 and restated as AC-007, and `spec.md` section 6 names the deviation. |
+| The approval lands in three places | `design/key-map.md` section 6 holds it, AC-007 restates it, and `decision-record.md` takes it as a row when the operator answers. The packet carries that file, so the parent's handoff wording holds without a deviation. |
 | The design folder ships from the packet | The parent's open question asks whether the documents live in the packet or in the crate. D1 answers it: the packet now, the crate when 002 creates it. |
 | `--ascii` and `--mono` are flags, not variables | The legacy NFR-S01 and CHK-030 asked for an environment variable. The binary reads none, so the flag is the only route that works, and `NO_COLOR` is translated by the Node verb. |
 | The banner key is corrected | The parent's defect row records `Ctrl+P` as the banner key. D5 makes it `Alt+2`, because `Ctrl+P` opens the palette in the same context. |
 | The parent goal binds this phase | `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/goal.md` names this phase in its row 001 and binds it. This goal carries no binding table of its own, because the parent holds the only one. |
 | The frames are not traced from a picture | No repository has a TUI screenshot. The frames are drawn from the payload shapes, and `design/mockups.md` section 5 names the four screenshots and the 28 `--demo` captures they were checked against. |
+| The first review's findings | `research/ui-review-1.md` U1-P0-1, U1-P0-2, U1-P1-1, U1-P1-6, U1-P1-7, U1-P1-8, U1-P1-9, U1-P1-11, U1-P2-2 and U1-P2-3 are applied here. U1-P0-3, U1-P1-2, U1-P1-3, U1-P1-4, U1-P1-5, U1-P1-10, U1-P2-1, U1-P2-4, U1-P2-5, U1-P2-6 and U1-P2-7 name the parent or a sibling as their owner and are not edited here. |
+| The too-small message is ours | The reference's string is `Resize terminal · Ctrl+D exits` at `render.rs:32`. This packet draws `Too small · Ctrl+D exit`, so 003's REQ-016, T009, CHK-042 and AC-007 must grep the new wording when that child is fixed. |
 <!-- /ANCHOR:log -->

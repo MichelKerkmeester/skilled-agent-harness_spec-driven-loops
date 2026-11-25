@@ -39,16 +39,17 @@ The phase is deliberately the smallest in the parent. Its value is not code it w
 
 ### Definition of Ready
 - [ ] `ls crates/bots-tui/Cargo.toml` prints the path, so the crate `002` lands exists.
-- [ ] `ls crates/bots-tui/src/keys.rs crates/bots-tui/src/theme.rs crates/bots-tui/src/sanitize.rs` prints all three, so the files the key, glyph and sanitize checks read exist.
+- [ ] `ls crates/bots-tui/src/keys.rs crates/bots-tui/src/theme.rs` prints both, so the files the key, glyph and sanitize checks read exist, and `test ! -e crates/bots-tui/src/sanitize.rs` exits 0, so the crate holds one filter rather than two.
 - [ ] `ls crates/bots-tui/tests/fixtures/bots` prints the path, so every suite has its payload source.
-- [ ] `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3, so `002`'s job is in place to read.
+- [ ] `ls crates/bots-tui/design` prints `component-inventory.md`, `glyph-table.md`, `key-map.md` and `mockups.md`, so the pointer check has a folder to read rather than an absent path that reads as a pass.
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, so `002`'s job is in place to read.
 
 ### Definition of Done
 - [ ] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
-- [ ] `rg -n 'GNU GENERAL PUBLIC LICENSE\|GPL-3' crates/bots-tui` prints nothing.
+- [ ] `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing, and `README.md` and `design/` name the reference's GPL-3.0 licence by design.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
 - [ ] The parent's `--recursive --strict` run prints `RESULT: PASSED` once the five sibling children leave Draft; that run is the parent's closure step and fails on their scaffolds today.
 - [ ] Docs updated: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` agree on the gate set.
@@ -83,8 +84,8 @@ This packet is a hardening pass over a crate five children wrote, so the fix sur
 | `crates/bots-tui/src/**` | Owns the behaviour `002` to `005` wrote | Update only the file and line a gate names | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` |
 | `crates/bots-tui/tests/**` | Observes that behaviour through `TestBackend` and the fixture | Update only the test a suite names, and never lower an assertion | `cargo test` prints `test result: ok` for every target |
 | `crates/bots-tui/design/**` | Carries the mockups and the `file:line` pointers `001` wrote | Not a consumer; read-only | The pointer loop prints nothing |
-| `.github/workflows/bots-runtime.yml` | Runs the gate set on CI | Not a consumer of this change; read-only, and a mismatch is reported to `002` | `rg -c 'bots-tui'` prints 3 |
-| `.skilled/skills/system-skilled-bots/SKILL.md` | Names the verbs the skill offers | Update, one line | `rg -n 'bots ui'` prints one line |
+| `.github/workflows/bots-runtime.yml` | Runs the gate set on CI | Not a consumer of this change; read-only, and a mismatch is reported to `002` | `rg -n '^  bots-tui:'` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'"` prints 2 |
+| `.skilled/skills/system-skilled-bots/SKILL.md` | Names the verbs the skill offers | Update, one line | `rg -n 'bots ui'` prints one line, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
 | `crates/bots-tui/README.md` | Does not exist | Create | The five README greps each print one line |
 
 Required inventories:
@@ -130,7 +131,7 @@ Every suite reads `crates/bots-tui/tests/fixtures/bots`, and the fixture carries
 |------------|------|--------|-------------------|
 | `crates/bots-tui/` from `002-architecture-and-contracts` | Internal | Yellow | No manifest means no gate; the phase reports the absent path rather than passing a gate it could not run |
 | `keys.rs` and `theme.rs` from `003-shell-and-navigation` | Internal | Yellow | The key and glyph checks have nothing to read, and the README's key list has no source |
-| `sanitize.rs` and `view/panes.rs` from `004-panes` | Internal | Yellow | Two of the eight defect checks cannot run |
+| `theme.rs` from `003-shell-and-navigation` and `view/panes.rs` from `004-panes` | Internal | Yellow | Two of the eight defect checks cannot run |
 | `view/overlay.rs` from `005-answer-flow` | Internal | Yellow | The free-text defect check cannot run |
 | A stable Rust toolchain with `clippy` and `rustfmt` | External | Green | The three crate gates cannot run; the CI job installs the same components |
 | `jq` for the manifest licence read | External | Green | The licence check falls back to `rg -n '^license' crates/bots-tui/Cargo.toml` |
@@ -198,7 +199,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 |------|-------|-------------------------|------------|
 | A | T001, T002, T003, T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none; four read-only probes |
 
-**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands; `cargo fmt --version` and `cargo clippy --version` each print a version; `ls crates/bots-tui/src` prints the thirteen module entries; `rg -c '^\| .*\| (002\|003\|004\|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
+**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands; `cargo fmt --version` and `cargo clippy --version` each print a version; `ls crates/bots-tui/src` prints the twelve module entries; `rg -c '^\| .*\| (002\|003\|004\|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
 
 #### Wave 2 - Gate repair
 
@@ -216,7 +217,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 | A | T009 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `crates/bots-tui/README.md` |
 | B | T010, T011 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/SKILL.md` |
 
-**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback, and the design reference without copying a line of it, so it takes the max tier. Lane B is one line and one symlink proof. **Verify:** `rg -n 'cargo build --release' crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' crates/bots-tui/README.md`, `rg -n 'ASCII' crates/bots-tui/README.md`, `rg -n 'openhuman' crates/bots-tui/README.md` and `rg -n 'no code' crates/bots-tui/README.md` each print at least one line; `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line; `test -L .opencode/skills` exits 0.
+**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback, and the design reference without copying a line of it, so it takes the max tier. Lane B is one line and two symlink proofs. **Verify:** `rg -n 'cargo build --release' crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' crates/bots-tui/README.md`, `rg -n 'ASCII|--ascii|--mono' crates/bots-tui/README.md`, `rg -n 'openhuman' crates/bots-tui/README.md` and `rg -n 'no code' crates/bots-tui/README.md` each print at least one line; `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line; `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0.
 
 #### Wave 4 - Verification from the final state
 
@@ -224,7 +225,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 |------|-------|-------------------------|------------|
 | Orchestrator | T012, T013, T014, T015, T016, T017, T018, T019, T020 | none; the orchestrator runs them itself | none |
 
-**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0; `cargo clippy --all-targets -- -D warnings` exits 0; `cargo test` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`; `rg -n 'GNU GENERAL PUBLIC LICENSE\|GPL-3' crates/bots-tui` prints nothing; `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path; the design-pointer loop prints nothing; the eight Defect Audit rows each print their expected output; `validate.sh --strict` on this child prints `RESULT: PASSED`.
+**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0; `cargo clippy --all-targets -- -D warnings` exits 0; `cargo test` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`; `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing; `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path; `ls crates/bots-tui/design` prints the four documents and the design-pointer loop prints nothing; the eight Defect Audit rows each print their expected output; `validate.sh --strict` on this child prints `RESULT: PASSED`.
 
 ### What every dispatch carries
 

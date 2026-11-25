@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 4: panes"
-description: "Fill the shell's body with four pane bodies drawn from one `Remote<T>` per surface, behind a control-character sanitizer, a selection held by item id and an eight-glyph table in two sets, proven by buffer snapshots at both sizes and a 2,000-row frame budget."
+description: "Fill the shell's body with four pane bodies drawn from one `Remote<T>` per surface, behind the sanitizer and glyph table 003's `theme.rs` owns, a selection held by item id, proven by buffer snapshots at both sizes and a 2,000-row frame budget."
 trigger_phrases:
   - "pane states plan"
   - "activity pane plan"
@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Testing** | `cargo test`, asserting the ratatui `TestBackend` buffer directly, with no `insta` |
 
 ### Overview
-Three new files and one line fill the body 003 leaves empty. `sanitize.rs` strips control characters and clips by display width, so no runtime string reaches a cell unfiltered. `view/panes.rs` draws the four pane bodies from the `Remote<T>` each surface holds, carries the eight-glyph table in a Unicode and an ASCII set, and draws the selected row's detail as a right column at 120 columns or wider. `tests/panes.rs` proves it with one buffer snapshot per pane per state at 80x24 and 120x40, a reorder test, a sanitizer test and a 2,000-row draw under 16 ms.
+Two new files, two edited files and one line fill the body 003 leaves empty. `view/panes.rs` draws the four pane bodies from the `Remote<T>` each surface holds, clips by display width, routes every drawn string through the sanitizer `theme.rs` owns, and draws the selected row's detail as a right column at 120 columns or wider. `keys.rs` gains the `list` rows and `state.rs` the arms that move the selection, so the footer 003 draws names the keys each pane binds. `tests/panes.rs` proves it with one buffer snapshot per pane per state at 80x24 and 120x40, a reorder test, a sanitizer test and a 2,000-row draw under 16 ms.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -58,12 +58,11 @@ Three new files and one line fill the body 003 leaves empty. `sanitize.rs` strip
 Pure renderer over a remote-state wrapper. Every pane is a function from `&Remote<T>` and a selection to cells, so a test draws it without a terminal, a thread or a process.
 
 ### Key Components
-- **`sanitize.rs`**: `safe_text` strips C0 controls except line feed, DEL, the C1 range and lone surrogates, and keeps ordinary Unicode; `clip` truncates by display width. It exists because a bot id or a question carrying `\u{1b}[2J` would otherwise move the cursor and corrupt the frame. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:52-59]
-- **`view/panes.rs`**: the four pane bodies, the glyph table, the five state lines, `stale_label` and the wide-layout detail column. It exists because the shell 003 lands draws an empty body.
+- **`view/panes.rs`**: the four pane bodies, the five state lines, the display-width clip and the wide-layout detail column. It exists because the shell 003 lands draws an empty body. Every drawn string passes through the sanitizer `theme.rs` owns and every row's state through the marker function `theme.rs` owns, so the crate keeps one sanitizer and one glyph table.
 - **`tests/panes.rs`**: the snapshot table, the reorder test, the sanitizer test and the budget test. It exists because the operator refused `insta`, so the assertion names the cells rather than a stored file.
 
 ### Data Flow
-`data.rs` (002) fetches one `bots <verb> --json` per surface on the worker thread and sends a generation-tagged message. `state.rs` (002) folds it into `Remote<T>{rows, last_ok_at, error, in_flight}` and keeps the selection as `Option<ItemId>`. `view/panes.rs` reads the `Remote<T>` for the active tab, maps each row's `state` through the glyph table, passes every string through `sanitize.rs`, and writes cells into the body rect 003 hands it. Nothing in the path spawns a process, opens a file or reads an environment variable.
+`data.rs` (002) fetches one `bots <verb> --json` per surface on the worker thread and sends a generation-tagged message. `state.rs` (002) folds it into `Remote<T>{rows, last_ok_at, error, in_flight}` and keeps the selection as `Option<ItemId>`. `view/panes.rs` reads the `Remote<T>` for the active tab, maps each row's `state` through the marker function `theme.rs` owns, passes every string through the sanitizer `theme.rs` owns, and writes cells into the body rect 003 hands it. Nothing in the path spawns a process, opens a file or reads an environment variable.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -71,21 +70,22 @@ Pure renderer over a remote-state wrapper. Every pane is a function from `&Remot
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-This child fixes two defects the parent records, so the surface inventory is part of the plan rather than an afterthought.
+This child fixes the selection defect the parent records and consumes the sanitizer and glyph table 003 owns, so the surface inventory is part of the plan rather than an afterthought.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `crates/bots-tui/src/state.rs` | 002 owns it and holds `Remote<T>` and the selection | unchanged, unless it selects by index; the reorder test is the gate | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` |
-| `crates/bots-tui/src/view.rs` | 003 owns the view root and declares the modules | update: one `mod panes;` line | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0 |
-| `crates/bots-tui/src/theme.rs` | 003 owns the palette and the `NO_COLOR` mechanism | not a consumer of this child; the ASCII switch shares its mechanism and stays 003's | `rg -n 'NO_COLOR' crates/bots-tui/src/theme.rs` prints the mechanism |
-| `crates/bots-tui/src/view/header.rs` | 003 owns the header cell | not a consumer: it calls `stale_label`, which this child supplies | `rg -n 'stale_label' crates/bots-tui/src/view/header.rs` prints one call |
+| `crates/bots-tui/src/state.rs` | 002 owns it and holds `Remote<T>` and the selection | update: the reducer arms that move `Option<ItemId>` and fall to the nearest surviving row, with the reorder test as the gate | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` |
+| `crates/bots-tui/src/keys.rs` | 003 owns the table and fills `Global`, `Tabs` and `Palette` | update: the `list` rows, Up, Down, PgUp and PgDn on every data pane and Enter on the inbox only | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection` |
+| `crates/bots-tui/src/view/mod.rs` | 003 owns the view root and declares the modules | update: one `mod panes;` line | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0 |
+| `crates/bots-tui/src/theme.rs` | 003 owns the palette, the glyph table and the sanitizer | consumer: this child calls the marker function and the sanitizer, and keeps no second copy | `rg -n 'theme::marker' crates/bots-tui/src/view/panes.rs` prints the marker call, and `test ! -e crates/bots-tui/src/sanitize.rs` exits 0 |
+| `crates/bots-tui/src/view/header.rs` | 003 owns the header and `stale_label` | consumer: this child's stale state calls `stale_label` | `rg -n 'stale_label' crates/bots-tui/src/view/panes.rs` prints one call |
 | `crates/bots-tui/tests/fixtures/bots` | 002 owns the only payload source in tests | not a consumer: the panes read the payloads it already carries | `bash crates/bots-tui/tests/fixtures/bots routines --json \| jq -e 'type == "array"'` exits 0 |
 | `crates/bots-tui/src/view/overlay.rs` | 005 owns the detail panel below 120 columns | not a consumer | `rg -n 'panes' crates/bots-tui/src/view/overlay.rs` prints nothing |
 
 Required inventories:
-- Same-class producers: `rg -n 'safe_text|clip\(' crates/bots-tui/src` names every call site, so a drawn string that skips the sanitizer is visible in one search.
-- Consumers of changed symbols: `rg -n 'stale_label|marker\(|Glyphs' crates/bots-tui/src crates/bots-tui/tests` names every reader of the three symbols this child exports.
-- Matrix axes: four panes by their states by two sizes. Activity, inbox and routines each draw loading, empty, rows, error and stale, and the chat placeholder draws one state. That is sixteen snapshots per size and thirty-two in all.
+- Same-class producers: `rg -n 'clip\(' crates/bots-tui/src` names the one clip helper, and `test ! -e crates/bots-tui/src/sanitize.rs` proves the crate holds one sanitizer rather than a second copy in this child.
+- Consumers of changed symbols: `rg -n 'stale_label|marker\(|keys::TABLE' crates/bots-tui/src crates/bots-tui/tests` names every reader of the two symbols this child consumes and every reader of the table it adds rows to.
+- Matrix axes: four panes by their five states by two sizes. Activity, inbox and routines each draw loading, empty, rows, stale and error, and the chat placeholder draws one state. That is sixteen snapshots per size and thirty-two in all, one per state the inventory lists.
 - Algorithm invariant: for the sanitizer, no byte below `0x20` except `\n`, no `0x7f`, no code point in `U+0080..U+009F` and no lone surrogate reaches a cell, and the visible width of a clipped string never exceeds the rect it is drawn into.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -96,7 +96,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes, the task state and the wave table.
 
-Setup reads the fixture's four payloads and the four design sources, and confirms 002's crate and 003's shell build. Implementation writes `sanitize.rs`, then the glyph table and the four pane bodies in `view/panes.rs`, then the wiring line in `view.rs`, then the snapshot table and the three focused tests in `tests/panes.rs`. Verification runs the formatter, the linter, the crate suite, the GPL grep and the packet validator.
+Setup reads the fixture's four payloads and the design sources, and confirms 002's crate and 003's shell build. Implementation writes the display-width clip and the marker seam in `view/panes.rs`, then the four pane bodies, then the `list` rows in `keys.rs` and the movement arms in `state.rs`, then the wiring line in `view/mod.rs`, then the snapshot table and the three focused tests in `tests/panes.rs`. Verification runs the formatter, the linter, the crate suite, the GPL grep and the packet validator.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -106,7 +106,7 @@ Setup reads the fixture's four payloads and the four design sources, and confirm
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | `sanitize.rs` strip and clip, the glyph table in both sets, `stale_label` at each age | `cargo test --lib` |
+| Unit | The display-width clip, the marker seam in the ASCII set, and the `list` key rows with the movement arms | `cargo test --lib` |
 | Integration | One buffer snapshot per pane per state at 80x24 and 120x40, the reorder test, the sanitizer test at the pane boundary, the 2,000-row budget | `cargo test --test panes`, asserting the `TestBackend` buffer directly |
 | Manual | None. Every check runs without a tty, which is why the operator refused `insta` and why the snapshots assert the buffer | - |
 
@@ -122,7 +122,7 @@ The snapshot table is data, not sixteen hand-written tests: one row per pane and
 |------------|------|--------|-------------------|
 | 002's `state.rs` with `Remote<T>` and `Option<ItemId>` | Internal | Yellow | The panes have no state to draw; the reorder test fails and names the selection |
 | 002's fixture carrying the four payloads | Internal | Yellow | No pane is testable, because every snapshot reads it |
-| 003's `src/view.rs` view root | Internal | Yellow | The `mod panes;` line has nowhere to land and `cargo build` fails |
+| 003's `src/view/mod.rs` view root | Internal | Yellow | The `mod panes;` line has nowhere to land and `cargo build` fails |
 | `ratatui` 0.30 `TestBackend` and `unicode-width` | External | Green | Both are already in 002's manifest, so this child adds no dependency |
 <!-- /ANCHOR:dependencies -->
 
@@ -177,7 +177,7 @@ The other two need one fact each. `cli-pi`'s ladder on this route is `low`, `hig
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-`crates/bots-tui/src/view/panes.rs` is the binding file. Seven tasks edit it, so they form one serial lane by construction, and the parallelism in this packet comes from the lanes beside it: `sanitize.rs`, `view.rs` and `tests/panes.rs`. `tests/panes.rs` binds four tasks the same way. The packet is therefore two lanes wide at its widest and one lane wide for most of its length, and the wave table says so rather than inventing workers that would collide.
+`crates/bots-tui/src/view/panes.rs` is the binding file. Eight tasks edit it, so they form one serial lane by construction, and the parallelism in this packet comes from the lanes beside it: `view/mod.rs`, `keys.rs`, `state.rs` and `tests/panes.rs`. `tests/panes.rs` binds four tasks the same way. The packet is therefore two lanes wide at its widest and one lane wide for most of its length, and the wave table says so rather than inventing workers that would collide.
 
 ### The fallback order when a CLI runs out of usage
 

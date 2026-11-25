@@ -43,14 +43,14 @@ This is **Phase 1** of the Terminal screen children: UX, architecture, shell, pa
 **Scope Boundary**: The four design documents and nothing else. No Rust, no crate, no CLI verb, no test. The frames, the keys, the glyphs and the component states are fixed here, and phases 002 to 006 build against them.
 
 **Dependencies**:
-- The parent's operator decisions Q002 to Q007, which fix the six children, the free-text answer, the fallback tab keys, the three new glyphs, the refusal of `insta` and the screenshot set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:193-199]
+- The parent's operator decisions Q002 to Q009, which fix the six children, the free-text answer, the fallback tab keys, the three new glyphs, the refusal of `insta`, the screenshot set, the grant drawn only when the item carries it, and the `NO_COLOR` route. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:195-202]
 - Phase 001's `bots activity --json` and `bots inbox --json` shapes, which the activity and inbox frames draw. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152]
 - Phase 002's `bots routines --json` shape, which the routines frame draws. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173]
 - `bots status --json`, which exists today and which the header frame draws. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114]
 
 **Deliverables**:
-- `design/mockups.md`, one frame per state at both sizes.
-- `design/key-map.md`, every binding with its context, action, drawn label and drawing frame.
+- `design/mockups.md`, twenty-six states, each drawn at both sizes except the too-small screen.
+- `design/key-map.md`, twenty-eight bindings with their context, action, drawn label and drawing frame.
 - `design/glyph-table.md`, the eight glyphs, the ASCII set and the colour rule.
 - `design/component-inventory.md`, thirteen components with a state list each.
 <!-- /ANCHOR:phase-context -->
@@ -61,7 +61,7 @@ This is **Phase 1** of the Terminal screen children: UX, architecture, shell, pa
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The screen has no agreed shape. The pre-expansion phase 003 named four tabs, an approval overlay and six status markers in prose, and left the layout, the key contexts and the component states to whoever wrote the Rust. Three of its own requirements then collided: `1` both picked option 1 and approved once, `?` marked scheduled, recurring and unknown alike, and the banner named `Ctrl+P` for the inbox when `Ctrl+P` opens the palette. A build started from that prose would invent the answers, and each invention would be a decision nobody recorded. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:212]
+The screen has no agreed shape. The pre-expansion phase 003 named four tabs, an approval overlay and six status markers in prose, and left the layout, the key contexts and the component states to whoever wrote the Rust. Three of its own requirements then collided: `1` both picked option 1 and approved once, `?` marked scheduled, recurring and unknown alike, and the banner named `Ctrl+P` for the inbox when `Ctrl+P` opens the palette. A build started from that prose would invent the answers, and each invention would be a decision nobody recorded. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:214-221]
 
 ### Purpose
 One approved map of every frame, key, glyph and component state, so the build draws cells rather than deciding layout.
@@ -125,8 +125,8 @@ The two `No such file or directory` lines are the measured gap: the parent names
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `design/mockups.md` | Create | Eighteen states, each at 80x24 and 120x40, plus the too-small screen at 30x7 |
-| `design/key-map.md` | Create | Twenty-four bindings across six contexts, the three defect rules, the approval record |
+| `design/mockups.md` | Create | Twenty-five states at 80x24 and 120x40, plus the too-small screen at 30x7 |
+| `design/key-map.md` | Create | Twenty-eight bindings across six contexts, the four defect rules, the approval record |
 | `design/glyph-table.md` | Create | Eight glyphs, the ASCII set, the inbox's own words, the colour rule |
 | `design/component-inventory.md` | Create | Thirteen components, each with its reads, its keys and its states |
 | `spec.md` | Modify | This specification |
@@ -148,11 +148,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | `design/` holds the four documents at the paths this spec names, and every `SOURCE` pointer in them resolves to a file that exists and a line inside it. |
-| REQ-002 | `design/mockups.md` draws every state in its index at 80x24 and at 120x40, one fenced block per state per size, each block exactly 24 or 40 lines and no line wider than its size. |
-| REQ-003 | `design/key-map.md` binds every key with its context, its action, the label the frame draws and the frame that draws it, and no key carries two meanings inside one context. |
+| REQ-002 | `design/mockups.md` draws every state in its index at 80x24 and at 120x40, except the too-small screen, which is drawn at 30x7: one fenced block per state per size, each block exactly 24 or 40 lines and no line wider than its size, and the too-small block exactly 7 lines and no line wider than 30. |
+| REQ-003 | `design/key-map.md` binds every key with its context, its action, the label the frame draws and the frame that draws it, and no key carries two meanings inside one context. A key that answers is bound only outside text mode, so a free-text answer may begin with `y` or `n`. |
 | REQ-004 | `design/glyph-table.md` maps the seven group ids to seven glyphs in the payload's order, gives `?` plus the raw value for a state the table does not name, and gives the ASCII fallback set. |
 | REQ-005 | `design/component-inventory.md` lists every component with what it reads, the keys it binds and every state it can be in, and each state names the frame that draws it. |
-| REQ-006 | No openhuman code or text is copied: every openhuman pointer is a path and a line range, and no fenced block in `design/` reproduces a line of openhuman source. |
+| REQ-006 | No openhuman code or text is copied: every openhuman pointer is a path and a line range, no fenced block in `design/` reproduces a line of openhuman source, and the too-small message is our own wording rather than the reference's. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -173,7 +173,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `ls design` prints the four documents, and `rg -c '\[SOURCE: ' design/*.md` prints a non-zero count for each of them.
-- **SC-002**: `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print the same number, and it equals the number of rows in the state index.
+- **SC-002**: `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print `25` each, and 25 is the number of index rows drawn at both sizes, because the twenty-sixth is the too-small screen at 30x7.
 - **SC-003**: `rg -n '^\| \*\*Approved\*\* \|' design/key-map.md` prints one row, and it reads `Met` once the operator answers.
 - **SC-004**: `rg -c '^\| [0-9]+ \| ' design/component-inventory.md` prints 13.
 - **SC-005**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`.
@@ -186,14 +186,14 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | The parent's operator decisions Q002 to Q007 | The frames would have no fixed key set or glyph set | The decisions are recorded in the parent's `decision-record.md` and restated in `design/key-map.md` section 3 and `design/glyph-table.md` section 2 |
+| Dependency | The parent's operator decisions Q002 to Q009 | The frames would have no fixed key set or glyph set | The decisions are recorded in the parent's `decision-record.md` and restated in `design/key-map.md` section 3 and `design/glyph-table.md` section 2 |
 | Dependency | Phase 001's `bots activity --json` and `bots inbox --json` shapes | The activity and inbox frames would draw a payload that does not exist | The frames draw the shapes 001's REQ-002 and REQ-003 name, and 002's fixture carries them |
 | Risk | A GPL-3.0 design reference invites copying | High | Every openhuman pointer is a path and a line range, no fenced block reproduces its text, and 006 greps for openhuman identifiers and GPL headers |
 | Risk | The frames drift from the build | Medium | 003, 004 and 005 assert their buffers against these frames, so a frame that changes is a design change with a diff |
 | Risk | The key map is approved and then amended silently | Medium | The approval names the key set it covers, so an added key is visibly a new approval rather than a quiet edit |
 | Risk | The design folder is authored here and shipped in the crate | Low | The parent's open question puts the shipped copy at `crates/bots-tui/design/`; 002 copies these four documents there when it creates the crate, and the handoff criteria name that step |
 
-**Deviation from the parent's handoff wording.** The parent's phase handoff says the operator's approval is recorded in `001's decision-record.md`. This child carries no decision record, so the approval is recorded in `design/key-map.md` section 6 and in `acceptance-criteria.md` AC-007, and the same answer is added as a row in the parent's `decision-record.md` when it is given. The parent's wording is the thing to amend; this packet does not create a fifth document to satisfy it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249]
+**Where the approval is recorded.** The parent's phase handoff says the operator's approval is recorded in this child's `decision-record.md`, and this packet carries one. The answer is recorded in `design/key-map.md` section 6, restated as `acceptance-criteria.md` AC-007, and added as a row in `decision-record.md` when it is given, so the handoff's wording holds without a deviation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:251]
 <!-- /ANCHOR:risks -->
 
 ---
@@ -222,7 +222,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Empty input: a pane with no rows draws its own one-line empty message, and the banner row is blank rather than absent, so the body does not move when an item arrives.
 - Maximum input: a 2,000-row list draws 17 rows at 80x24 and 33 at 120x40; the list scrolls and the selection stays visible.
 - Failure path: a read that exits non-zero keeps the rows, sets the stale flag and puts the first stderr line in the status row; the screen does not exit.
-- Narrow terminal: below 24 columns or 8 rows the frame draws `Resize terminal · Ctrl+D exits` and nothing else.
+- Narrow terminal: below 24 columns or 8 rows the frame draws `Too small · Ctrl+D exit` and nothing else.
 - Closed input: the input closes with an item selected; nothing is written and the binary exits 0.
 - An item that closes under an open overlay: the overlay says the item is no longer open and disables every key but `Esc` and `Ctrl+C`.
 <!-- /ANCHOR:edge-cases -->
@@ -249,7 +249,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Does the ASCII fallback need a selector? Decision: yes, `--ascii` on the binary, passed through by `bots ui --ascii`, because the binary reads no environment variable of its own and a fallback with no selector is a table nobody can reach.
 - Does `NO_COLOR` reach the binary? Decision: no. The `ui` verb reads it and passes `--mono`, so the binary stays environment-free and the pre-expansion NFR-S01 holds.
 - Is the banner's key `Alt+2` or `Ctrl+P`? Decision: `Alt+2`, because the parent's defect table says `Ctrl+P` opens the palette and the banner must name the inbox tab key.
-- Where is the operator's approval recorded? Decision: `design/key-map.md` section 6 and AC-007, plus a row in the parent's `decision-record.md`, because this child carries no decision record of its own and the parent's handoff names one.
+- How does a free-text answer begin with `y` or `n`? Decision: `t` enters text mode, and `y` and `n` are shortcuts only outside it, because a shortcut that fires on the first letter of an answer is a decision the operator did not make.
+- Does the overlay draw a grant before packet phase 006 lands one? Decision: only when the item carries it. The overlay and the detail column draw a grant's kind and rung when the item carries them and draw nothing where they are absent, so the screen builds before 006 and lights up after it.
+- Where is the operator's approval recorded? Decision: `design/key-map.md` section 6, AC-007, and a row in this packet's `decision-record.md`, which exists and which the parent's handoff names.
 <!-- /ANCHOR:questions -->
 
 ---

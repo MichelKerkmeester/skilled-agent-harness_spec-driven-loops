@@ -48,7 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".github/workflows/bots-runtime.yml"
+      ".github/workflows/bots-runtime.yml",
+      ".skilled/bin/bots.cjs"
     ],
     "entities": [
       {
@@ -97,6 +98,12 @@
         "name": "bots-runtime.yml",
         "kind": "config",
         "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Defect Audit One",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The five children before this one each add a surface, and each one's own tests prove only its own surface",
     "created_at": "2026-11-25T20:22:35Z",
-    "last_save_at": "2026-11-25T20:35:59.595Z",
+    "last_save_at": "2026-11-25T22:04:54.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87aeee3694a1267865005dcd346ba92de28f1144b72cd4f266174455fce064c1",
+    "source_fingerprint": "sha256:726f5a307d0acbae8ccc70e85a10f713a6de3c59b04d5639a538d836c61a782f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d333a2e570b049322a60272747710c0c1c7551736aec36f92d0930e631daed1f",
-      "plan.md": "bcbcab84664973f0c4ec553d3a97ba546647a20f5be399ab9b901659275e912c",
-      "tasks.md": "b819e8da54cb0797f84c8aa1dcb2d8bfa1b5da5b16bd87f4ba664236c33c801f",
-      "implementation-summary.md": "8348658f0597732b65a48762827d5cc275f73f3e205b97d86ea63a44b81a02e4"
+      "spec.md": "4d4757d9637002a5ba742b6c7d3f86fdacc99989050a1b110cc98281c1fb5c83",
+      "plan.md": "5f91f22b677633a5347278696132a5c9c8c615f8b270ae551fe57c64a467bfcd",
+      "tasks.md": "8d0078cb7cf1fb072c59bb130b3ce4759ab481d6bf2ab4c1b5cb4a5f0c8c81f9",
+      "implementation-summary.md": "12a7882208e87336c1643a3bbecc60cefa381a5db4e69629b3feffb08762ab96"
     },
     "last_active_at": null
   }

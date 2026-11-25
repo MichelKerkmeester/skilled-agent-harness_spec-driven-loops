@@ -44,7 +44,7 @@ Four markdown documents in `design/` fix the screen: one ASCII frame per state a
 - [ ] Every acceptance criterion is `Met`, or `Waived` with an ADR
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`
 - [ ] `rg -c '\[SOURCE: ' design/*.md` prints a non-zero count for each of the four documents
-- [ ] `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print the same number
+- [ ] `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print `25` each
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -56,8 +56,8 @@ Four markdown documents in `design/` fix the screen: one ASCII frame per state a
 Documents first, one frame per state.
 
 ### Key Components
-- **`design/mockups.md`**: the frame grammar, the state index and eighteen states at both sizes. It is the layout contract.
-- **`design/key-map.md`**: six contexts, twenty-three bindings, the three rules that fix the pre-expansion key defects, and the approval record. It is the input contract.
+- **`design/mockups.md`**: the frame grammar, the state index and twenty-six states, twenty-five of them at both sizes and the too-small screen at 30x7. It is the layout contract.
+- **`design/key-map.md`**: six contexts, twenty-five bindings, the four rules that fix the pre-expansion key defects, and the approval record. It is the input contract.
 - **`design/glyph-table.md`**: eight glyphs, the ASCII set, the inbox's own words and the colour rule. It is the meaning contract.
 - **`design/component-inventory.md`**: thirteen components with reads, keys and states. It is the completeness contract.
 
@@ -82,7 +82,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Each fenced frame is exactly 24 or 40 lines and no line is wider than its size | `awk` over the fenced blocks |
+| Unit | Each fenced frame is exactly 24 or 40 lines and no line is wider than its size, and the too-small frame is exactly 7 lines and no line wider than 30 | `perl` over the fenced blocks, because it counts characters rather than bytes |
 | Integration | Every `SOURCE` pointer resolves to a file and a line inside it | A `bash` loop over the pointers |
 | Integration | Every drawn label in the key map appears in at least one frame | A `bash` loop over the label column |
 | Manual | The operator reads the key map and approves it | The operator's answer in `design/key-map.md` section 6 |

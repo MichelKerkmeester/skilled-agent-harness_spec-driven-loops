@@ -44,7 +44,7 @@ Every `Verify:` clause runs without a tty. The loop takes its events from a sour
 - [ ] T001 Confirm the measured gap before any edit (`.skilled/bin/bots.cjs`). Verify: `$BOTS ui` prints `bots: unknown verb: ui` and exits 2.
 - [ ] T002 Confirm the toolchain (none). Verify: `cargo --version` prints `cargo 1.92.0`, and `cargo clippy --version` and `cargo fmt --version` each exit 0.
 - [ ] T003 Read the four `--json` shapes and record the fixture baseline (none). Verify: `$BOTS status --json` exits 0 and prints a `rows` key, and `rg -n 'REQ-002|REQ-003' specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md` prints the activity and inbox row shapes.
-- [ ] T004 Create the crate manifest with `license = "MIT"`, the `bots-ui` binary and the library target (`$CRATE/Cargo.toml`). Verify: `cargo metadata --manifest-path $CRATE/Cargo.toml --no-deps --format-version 1` exits 0 and prints `"name":"bots-tui"`.
+- [ ] T004 Create the crate manifest with `license = "MIT"`, the `bots-ui` binary, the library target and the six dependencies including `libc` (`$CRATE/Cargo.toml`). Verify: `cargo metadata --manifest-path $CRATE/Cargo.toml --no-deps --format-version 1` exits 0 and prints `"name":"bots-tui"`.
 - [ ] T005 Ignore the crate's build output (`.gitignore`). Verify: `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line.
 - [ ] T006 Create the crate skeleton: the library root with one `pub mod` line per module, the binary that calls it, and one stub file per module (`$CRATE/src/lib.rs`, `$CRATE/src/main.rs`, `$CRATE/src/model.rs`, `$CRATE/src/cli.rs`, `$CRATE/src/state.rs`, `$CRATE/src/event.rs`, `$CRATE/src/data.rs`, `$CRATE/src/terminal.rs`, `$CRATE/src/app.rs`). Verify: `cargo build --release --manifest-path $CRATE/Cargo.toml` exits 0, `ls $CRATE/target/release/bots-ui` prints the path, and `cargo test --manifest-path $CRATE/Cargo.toml --lib` exits 0.
 - [ ] T007 Commit the resolved dependency graph (`$CRATE/Cargo.lock`). Verify: `git ls-files $CRATE/Cargo.lock` prints the path and `rg -c 'name = "ratatui"' $CRATE/Cargo.lock` prints 1.
@@ -65,9 +65,11 @@ Every `Verify:` clause runs without a tty. The loop takes its events from a sour
 - [ ] T015 Write the terminal guard: raw mode and the alternate screen on, one restore on `Drop`, and a restore chained in front of the process panic hook (`$CRATE/src/terminal.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib terminal` prints `test result: ok` and names `restore_runs_on_exit` and `restore_runs_on_panic`.
 - [ ] T016 Write the loop: take an event from the source, reduce it, hand the effects to the worker, and draw one empty frame (`$CRATE/src/app.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib app` prints `test result: ok` and names `closed_input_writes_nothing` and `empty_frame_draws`.
 - [ ] T017 Complete the library root: argument parsing, the guard, the loop entry, then reduce the binary to a call into it (`$CRATE/src/lib.rs`, `$CRATE/src/main.rs`). Verify: `cargo build --release --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --lib` prints `test result: ok`.
-- [ ] T018 Add the `ui` verb: usage line, verb spec, binary resolution, exec, exit passthrough and the two refusals (`.skilled/bin/bots.cjs`). Verify: `T=$(mktemp -d); $BOTS ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`; `mkdir -p "$T/crates/bots-tui"; $BOTS ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-not-built` with `build it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml`.
-- [ ] T019 Write the verb's tests: argv, exit passthrough, the `ui-unavailable` refusal for an absent crate and the `ui-not-built` refusal for an absent binary, each against a temp `--skilled-tree` and a stub binary named by `BOTS_UI_BIN` (`.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints `cli-ui.vitest.ts` and no `failed`.
-- [ ] T020 Add the `bots-tui` job, its pinned toolchain and the two path entries (`.github/workflows/bots-runtime.yml`). Verify: `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3, `rg -n 'dtolnay/rust-toolchain@stable' .github/workflows/bots-runtime.yml` prints the toolchain step with `clippy` and `rustfmt`, and `rg -n 'cargo test' .github/workflows/bots-runtime.yml` prints the test step.
+- [ ] T018 Add the `ui` verb: usage line, verb spec, binary resolution, exec, exit passthrough, the `--mono` and `--ascii` pass-through and the two refusals (`.skilled/bin/bots.cjs`). Verify: `T=$(mktemp -d); $BOTS ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`; `mkdir -p "$T/crates/bots-tui"; $BOTS ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-not-built` with `build it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml`. The `--mono` and `--ascii` pass-through is proven by T019's vitest case, which reads the stub's recorded argv rather than a binary that prints nothing.
+- [ ] T019 Write the verb's tests: argv, exit passthrough, the `--mono` pass-through under `NO_COLOR`, the `--ascii` pass-through, the `ui-unavailable` refusal for an absent crate and the `ui-not-built` refusal for an absent binary, each against a temp `--skilled-tree` and a stub binary named by `BOTS_UI_BIN` (`.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints `cli-ui.vitest.ts` and no `failed`.
+- [ ] T020 Add the `bots-tui` job, its pinned toolchain and the two path entries (`.github/workflows/bots-runtime.yml`). Verify: `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step with `clippy` and `rustfmt`, `rg -n 'dtolnay/rust-toolchain@stable' .github/workflows/bots-runtime.yml` prints nothing, and `rg -n 'cargo test' .github/workflows/bots-runtime.yml` prints the test step.
+- [ ] T028 Copy 001's four design documents into the crate unchanged (`$CRATE/design/mockups.md`, `$CRATE/design/key-map.md`, `$CRATE/design/glyph-table.md`, `$CRATE/design/component-inventory.md`). Verify: `ls $CRATE/design` prints the four names and `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design $CRATE/design` prints nothing.
+- [ ] T029 Install the signal handler: `SIGTERM` and `SIGHUP` run the same restore the guard's `Drop` runs, so a killed process leaves a usable terminal (`$CRATE/src/terminal.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib terminal` prints `test result: ok` and names `restore_runs_on_signal`, which raises the signal through the handler and asserts the restore ran.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -79,7 +81,7 @@ Every `Verify:` clause runs without a tty. The loop takes its events from a sour
 - [ ] T022 Run the linter with warnings denied (`$CRATE`). Verify: `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] T023 Run the crate suite (`$CRATE`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] T024 Run the runtime suite, including the new verb tests (`.skilled/skills/system-skilled-bots/runtime`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
-- [ ] T025 Prove no openhuman code was copied (`$CRATE`). Verify: `rg -n 'openhuman' $CRATE/src` prints only comment lines, and `rg -c 'GNU GENERAL PUBLIC LICENSE' $CRATE` prints nothing.
+- [ ] T025 Prove no openhuman code was copied (`$CRATE`). Verify: `rg -n 'openhuman' $CRATE/src` prints only comment lines, and `rg -n 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, so the licence-header grep covers the code and the manifest rather than the design folder, which names the reference and its licence on purpose.
 - [ ] T026 Prove the two refusals and the exit passthrough from the CLI, which is the handoff evidence 003 needs (`.skilled/bin/bots.cjs`). Verify: `T=$(mktemp -d); $BOTS ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`; `mkdir -p "$T/crates/bots-tui"; $BOTS ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-not-built`; `BOTS_UI_BIN=/bin/true $BOTS ui --repo .` exits 0, and `BOTS_UI_BIN=/bin/false $BOTS ui --repo .` exits 1.
 - [ ] T027 Validate the packet (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
@@ -110,7 +112,7 @@ The fallback ladder is the same for every wave: `cli-pi`, then `cli-opencode`, t
 
 **Workers:** 1, because the lane writes the library root every later module task is declared from. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0; `ls crates/bots-tui/target/release/bots-ui` prints the path; `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib` exits 0; `git ls-files crates/bots-tui/Cargo.lock` prints the path. **Fallback:** `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max`.
 
-### Wave 3 - The three dependency-free modules and the fixture
+### Wave 3 - The dependency-free modules, the fixture and the design copy
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
@@ -118,17 +120,19 @@ The fallback ladder is the same for every wave: `cli-pi`, then `cli-opencode`, t
 | B | T013 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/src/event.rs` |
 | C | T015 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/terminal.rs` |
 | D | T010 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/tests/fixtures/bots` |
+| E | T028 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/design/` |
 
-**Workers:** 4. Lane A is `high` because the model mirrors a payload the fixture already fixes; lane C is `max` because the guard and the panic hook are the two places a mistake costs a terminal. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib model` names `unknown_state_keeps_raw`; `--lib event` names `closed_input_is_one_event`; `--lib terminal` names `restore_runs_on_exit` and `restore_runs_on_panic`; the five `jq` checks on the fixture exit 0 and `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`. **Fallback:** lane A and lane D to `cli-opencode` · `#max`, lane B to `cli-pi` · `--thinking max`, lane C to `cli-opencode` · `#max`.
+**Workers:** 5. Lane A is `high` because the model mirrors a payload the fixture already fixes; lane C is `max` because the guard and the panic hook are the two places a mistake costs a terminal; lane E is a copy, so it takes the cheapest rung. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib model` names `unknown_state_keeps_raw`; `--lib event` names `closed_input_is_one_event`; `--lib terminal` names `restore_runs_on_exit` and `restore_runs_on_panic`; the five `jq` checks on the fixture exit 0 and `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`; `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing. **Fallback:** lane A and lane D to `cli-opencode` · `#max`, lane B to `cli-pi` · `--thinking max`, lane C to `cli-opencode` · `#max`, lane E to `cli-pi` · `--thinking max`.
 
-### Wave 4 - The process boundary and the reducer
+### Wave 4 - The process boundary, the reducer and the signal path
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
 | A | T009 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/cli.rs` |
 | B | T012 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/state.rs` |
+| C | T029 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/terminal.rs` |
 
-**Workers:** 2, both `max` because each is a seam every later child reads through: `cli.rs` is the only process boundary and `state.rs` is the only place an answer is decided. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib cli` names `program_defaults_to_node_and_bots_cjs`; `--lib state` names `esc_produces_no_answer_effect`. **Fallback:** `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max`.
+**Workers:** 3, all `max` because each is a seam every later child reads through: `cli.rs` is the only process boundary, `state.rs` is the only place an answer is decided, and the signal handler is the second place a mistake costs a terminal. Lane C follows wave 3's lane C on the same file, so the two never run at once. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib cli` names `program_defaults_to_node_and_bots_cjs`; `--lib state` names `esc_produces_no_answer_effect`; `--lib terminal` names `restore_runs_on_signal`. **Fallback:** `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max`.
 
 ### Wave 5 - The worker data layer and the client test
 
@@ -156,7 +160,7 @@ The fallback ladder is the same for every wave: `cli-pi`, then `cli-opencode`, t
 | C | T019 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` |
 | D | T020 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `.github/workflows/bots-runtime.yml` |
 
-**Workers:** 4. Lane C is written against REQ-001's wording rather than against lane B's code, so the two run at once and the wave's verify is what proves they agree. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0; `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`, and the same command after `mkdir -p "$T/crates/bots-tui"` exits 4 and prints `ui-not-built`; `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`; `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3. **Fallback:** lanes A and B to `cli-opencode` · `#max`, lane C to `cli-opencode` · `#max`, lane D to `cli-pi` · `--thinking max`.
+**Workers:** 4. Lane C is written against REQ-001's wording rather than against lane B's code, so the two run at once and the wave's verify is what proves they agree. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0; `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`, and the same command after `mkdir -p "$T/crates/bots-tui"` exits 4 and prints `ui-not-built`; the `--mono` and `--ascii` pass-through is proven by `cli-ui.vitest.ts`, which reads the stub's recorded argv; `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`; `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, and `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step. **Fallback:** lanes A and B to `cli-opencode` · `#max`, lane C to `cli-opencode` · `#max`, lane D to `cli-pi` · `--thinking max`.
 
 ### Wave 8 - Verification gates
 
@@ -164,7 +168,7 @@ The fallback ladder is the same for every wave: `cli-pi`, then `cli-opencode`, t
 |------|-------|---------------------------|------------|
 | Orchestrator | T021, T022, T023, T024, T025, T026, T027 | none; the orchestrator runs them itself | none |
 
-**Workers:** 0. Every task in this wave is a command whose output the orchestrator reads, so no worker is dispatched and no file is written. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0; `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0; `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines; the two refusals exit 4 and the `BOTS_UI_BIN` passthrough exits 0 and 1; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts --strict` prints `RESULT: PASSED`. **Fallback:** none. A gate that fails is repaired in the wave that owns the file, not re-dispatched to another executor.
+**Workers:** 0. Every task in this wave is a command whose output the orchestrator reads, so no worker is dispatched and no file is written. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0; `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0; `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines; `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing; the two refusals exit 4 and the `BOTS_UI_BIN` passthrough exits 0 and 1; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts --strict` prints `RESULT: PASSED`. **Fallback:** none. A gate that fails is repaired in the wave that owns the file, not re-dispatched to another executor.
 <!-- /ANCHOR:waves -->
 
 ---
@@ -175,7 +179,7 @@ The fallback ladder is the same for every wave: `cli-pi`, then `cli-opencode`, t
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Every wave's verify step was run and its output read
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target, and `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target, `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, and `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing
 <!-- /ANCHOR:completion -->
 
 ---
@@ -245,6 +249,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the wave it
 - [ ] CHK-030 [P0] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, so the shipped binary reads no environment variable of its own; `std::env::args` is the one `std::env` call, for argument parsing.
 - [ ] CHK-031 [P0] `rg -n 'read_to_string|File::open|fs::read' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, so the shipped binary opens no state file; the one test that reads the fixture's argv log is a `#[cfg(test)]` module in `src/app.rs`.
 - [ ] CHK-032 [P1] The answer text reaches the runtime only through `bots answer`, which refuses a secret literal before it stores the answer.
+- [ ] CHK-033 [P1] `rg -n 'NO_COLOR' .skilled/bin/bots.cjs` prints the read that selects `--mono`, and `rg -n 'NO_COLOR' crates/bots-tui/src` prints nothing, so the palette is chosen by a flag and the binary stays environment-free.
 <!-- /ANCHOR:security -->
 
 ---
@@ -274,7 +279,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the wave it
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | 0/8 |
-| P1 Items | 10 | 0/10 |
+| P1 Items | 11 | 0/11 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: 2026-11-25

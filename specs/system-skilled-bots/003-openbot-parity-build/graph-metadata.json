@@ -218,7 +218,7 @@
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-25T20:42:59.084Z",
+    "last_save_at": "2026-11-25T21:34:59.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -233,6 +233,6 @@
       "research/research.md": "192b8cc222c96c8e0991bf7a3149e87cc186f390d9a9c7e3a46a2fe9fcc26549"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
-    "last_active_at": "2026-11-25T20:42:59.084Z"
+    "last_active_at": "2026-11-25T21:34:59.288Z"
   }
 }
