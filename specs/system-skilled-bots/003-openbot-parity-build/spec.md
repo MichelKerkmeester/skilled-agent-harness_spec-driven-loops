@@ -128,6 +128,7 @@ Per-phase detail lives in each child's `plan.md`. This table is the audit trail 
 | 8 | `008-vault/` | `bots secret set` over the keychain or a 0600 store, child-environment injection and `secretsUsed` | 007, which lands the per-run config the secret is injected into; this is the one slice that can leak, so it lands after the first | Pending |
 | 9 | `009-skills/` | A `skills:` list under a byte cap, and `bots skill propose` reviewed through a needs-you item | 001, whose needs-you item reviews the proposal | Pending |
 | 10 | `010-conversations/` | `bots chat` with `@bot` routing over an append-only conversation JSONL | 001, whose run records each message writes; 003 gains its chat pane here | Pending |
+| 11 | `011-messaging-channels/` | A shared channel adapter and a file-backed identity link, then Telegram long polling, Slack Socket Mode, Signal through a local `signal-cli` daemon and the WhatsApp Cloud API, with approvals as buttons where the platform has them and numbered or YES/NO replies elsewhere | 001, whose actor a link names; 006, whose grant an approval carries; 008, whose vault holds the tokens; 010, whose chat the terminal transport reuses | Pending |
 
 ### Phase Transition Rules
 

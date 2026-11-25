@@ -13,7 +13,8 @@
     "system-skilled-bots/003-openbot-parity-build/007-per-bot-apps",
     "system-skilled-bots/003-openbot-parity-build/008-vault",
     "system-skilled-bots/003-openbot-parity-build/009-skills",
-    "system-skilled-bots/003-openbot-parity-build/010-conversations"
+    "system-skilled-bots/003-openbot-parity-build/010-conversations",
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels"
   ],
   "manual": {
     "depends_on": [],
@@ -110,18 +111,18 @@
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-25T07:34:11.513Z",
+    "last_save_at": "2026-11-25T08:06:52.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b7de3fca7c2f283a23bde8a6a7bece3e1a115f16750e787bb1958f8b5cfb3030",
+    "source_fingerprint": "sha256:1fdeccdfbb0c053a37e11e9fc416ca8f008020783838b5c32c6f5c1d94456ee8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f7773738ada8cf2ce8a872c66ac85978cabbb53fa0e4354a3b3628973e4e600"
+      "spec.md": "83455127207b09c20414480563cc191df73dcfd7e5255d11e627a781e7e01bd8"
     },
-    "last_active_at": "2026-11-25T07:34:11.513Z",
-    "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
+    "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+    "last_active_at": "2026-11-25T08:06:52.910Z"
   }
 }

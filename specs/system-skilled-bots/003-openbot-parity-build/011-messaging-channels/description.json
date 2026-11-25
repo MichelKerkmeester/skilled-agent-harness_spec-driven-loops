@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+  "description": "Phase 11: messaging-channels",
+  "keywords": [
+    "phase",
+    "messaging-channels"
+  ],
+  "lastUpdated": "2026-11-25T08:06:52.851Z",
+  "specId": "011",
+  "folderSlug": "messaging-channels",
+  "parentChain": [
+    "system-skilled-bots",
+    "003-openbot-parity-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-11-26_09-06__added-phase-011-messaging-channels-terminal-slack.md"
+  ]
+}
