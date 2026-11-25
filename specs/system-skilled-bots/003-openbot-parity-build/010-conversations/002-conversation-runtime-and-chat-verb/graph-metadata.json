@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/010-conversations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bots chat",
+      "bot conversation",
+      "conversation runtime and chat verb",
+      "phase 2 conversation runtime and chat verb",
+      "conversations plan",
+      "bots chat plan",
+      "conversation jsonl plan",
+      "conversations tasks",
+      "conversation runtime tasks",
+      "conversation runtime acceptance criteria",
+      "conversation runtime goal",
+      "conversation runtime implementation summary"
+    ],
+    "key_topics": [
+      "bots",
+      "chat",
+      "bot",
+      "conversation",
+      "runtime",
+      "verb",
+      "phase",
+      "conversations",
+      "plan",
+      "jsonl",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+      ".skilled/skills/system-skilled-bots/SKILL.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-drain.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "queued-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-queue-and-answer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skilled bots is headless by contract",
+    "created_at": "2026-11-25T23:17:48Z",
+    "last_save_at": "2026-11-25T23:51:57.095Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1c13e353d55feff6573976ac3282910e47d5aaa5c0cf56dc008bceb56ad8ff6e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a043f6da12ae7a517df9cb73e2d3ac4c8170983cbd7885f8c027a01af6afffba",
+      "plan.md": "d35189217046a43baad629aae7dc5ca2e7f1e04057a6421ecf7e906340ee9bc9",
+      "tasks.md": "7134e66267eeccd965418a2ad11483e50caa2cc9f88e14c8ea41a76d62ed3ae3",
+      "implementation-summary.md": "8175bb576cda3fc929ea86ab61bb931de419d550e8b1a2340bc0fbb28b21564e"
+    },
+    "last_active_at": null
+  }
+}

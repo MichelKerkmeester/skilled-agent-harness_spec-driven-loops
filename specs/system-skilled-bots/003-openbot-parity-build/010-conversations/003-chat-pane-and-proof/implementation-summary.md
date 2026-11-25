@@ -2,13 +2,13 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "conversations implementation summary"
+  - "chat pane and proof implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skilled-bots/003-openbot-parity-build/010-conversations"
-    last_updated_at: "2026-11-25T07:13:44Z"
+    packet_pointer: "system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof"
+    last_updated_at: "2026-11-25T23:17:49Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
@@ -16,7 +16,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-010-conversations"
+      session_id: "scaffold-003-chat-pane-and-proof"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -36,8 +36,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-conversations |
-| **Completed** | 2026-11-25 |
+| **Spec Folder** | 003-chat-pane-and-proof |
+| **Completed** | - |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +49,7 @@ _memory:
 
 [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 10: conversations
+### Phase 3: chat-pane-and-proof
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]

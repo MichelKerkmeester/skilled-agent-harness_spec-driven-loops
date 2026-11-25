@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/010-conversations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chat ux and pane map",
+      "phase 1 chat ux and pane map",
+      "chat pane mockups",
+      "bots chat routing grammar",
+      "chat ux plan",
+      "chat pane design plan",
+      "chat ux and pane map tasks",
+      "chat ux and pane map acceptance criteria",
+      "chat ux and pane map goal",
+      "chat ux and pane map implementation summary"
+    ],
+    "key_topics": [
+      "chat",
+      "pane",
+      "map",
+      "phase",
+      "mockups",
+      "bots",
+      "routing",
+      "grammar",
+      "plan",
+      "design",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "design/key-map-delta.md",
+      "design/mockups.md",
+      "design/component-rows.md",
+      "design/pane-contract.md",
+      "design/chat-transcript.sample.json",
+      "design/loop-transcript.md",
+      "design/routing-grammar.md",
+      "design/prompt-boundary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "key-map-delta.md",
+        "kind": "doc",
+        "path": "design/key-map-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
+        "source": "derived"
+      },
+      {
+        "name": "component-rows.md",
+        "kind": "doc",
+        "path": "design/component-rows.md",
+        "source": "derived"
+      },
+      {
+        "name": "pane-contract.md",
+        "kind": "doc",
+        "path": "design/pane-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "chat-transcript.sample.json",
+        "kind": "config",
+        "path": "design/chat-transcript.sample.json",
+        "source": "derived"
+      },
+      {
+        "name": "loop-transcript.md",
+        "kind": "doc",
+        "path": "design/loop-transcript.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-grammar.md",
+        "kind": "doc",
+        "path": "design/routing-grammar.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-boundary.md",
+        "kind": "doc",
+        "path": "design/prompt-boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 010 had a chat pane and a chat loop and no design artifact for either",
+    "created_at": "2026-11-25T23:17:47Z",
+    "last_save_at": "2026-11-25T23:51:55.870Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa3dd36db7d94311d9e7a717a406490ef5ac11fc6364097b33ef22c06b6982a7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a8fcb5129b8ccdf08cf3deeb413a19df1999f1cf8800debe542053741dd7420f",
+      "plan.md": "2885fd627ed3246a7471b05ce3c58d5dd7ba3569f60f461f1a808aa662c6bf8a",
+      "tasks.md": "be03481a5712e1b43d0e16d1289e19884ec96678a82328efc665ac3b4b980b03",
+      "implementation-summary.md": "acb91d7faa9e4f685b0da461acb19ff1e26c8d0c58e5954c6037c62c4c8c9d3b"
+    },
+    "last_active_at": null
+  }
+}
