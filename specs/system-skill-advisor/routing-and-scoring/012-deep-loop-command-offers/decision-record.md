@@ -993,9 +993,89 @@ The second is the closure docs. The review contract makes `spec_code` and `check
 
 **How to roll back**: mark this record Superseded, restore the previous AC-040 and REQ-033 text from git history and set AC-040 back to `Unmet`.
 
-**Operator answers this session**: on generation 8 the operator chose to fix the nine P2s and rerun as generation 9. On generation 9 the operator chose to fix all sixteen findings and rerun as generation 10. On generation 10 the operator asked what the rounds were fixing, then asked for an independent Opus review that could fix the work and the deep-review logic. On 2026-11-25 the operator accepted this record and asked for the packet to close and ship. Eleven answers from the earlier session of 2026-11-24 are not in this record, because that session's history was no longer readable when this record closed.
+**Operator answers this session**: on generation 8 the operator chose to fix the nine P2s and rerun as generation 9. On generation 9 the operator chose to fix all sixteen findings and rerun as generation 10. On generation 10 the operator asked what the rounds were fixing, then asked for an independent Opus review that could fix the work and the deep-review logic. On 2026-11-25 the operator accepted this record and asked for the packet to close and ship. The answer hook recorded the earlier session's answers of 2026-11-24 in the primary checkout, and they were carried into this record as Q040 to Q051.
 <!-- /ANCHOR:adr-010-impl -->
 <!-- /ANCHOR:adr-010 -->
+
+---
+
+<!-- ANCHOR:adr-011 -->
+## ADR-011: The Python fallback keeps a deep-loop command row only when it is typed
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-25 |
+| **Deciders** | The operator, who asked on 2026-11-25 for the open follow-up to be done, chose to reopen this packet and to build it in a worktree in this session (Q053 to Q055) |
+
+---
+
+<!-- ANCHOR:adr-011-context -->
+### Context
+
+ADR-010 scored the removal of the Python copy of the offer gate as the follow-up. `skill_advisor.py` `main()` probes the native advisor first and scores locally only when the probe fails or `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` is set, so the copy served a degraded path. It held about 1,300 lines of word patterns, and the drift guard in `tests/deep-loop-offer-cases.vitest.ts` read the Python source to keep each pattern in step with the native one.
+
+### Constraints
+
+- The native gate in `command-attach.ts` stays as it is.
+- The fallback's workflow-owner check still has to read a loop request beside an executor handoff.
+<!-- /ANCHOR:adr-011-context -->
+
+---
+
+<!-- ANCHOR:adr-011-decision -->
+### Decision
+
+**We chose**: in the Python fallback, a `/deep:research`, `/deep:review` or `/doctor:deep-loop` row stays only when the prompt types that command, and a kept run row is marked `typed`. The fallback reads no loop ask, refusal, question, stuck run, no-edit clause or piece written about the loop. A doc path such as `/deep:review.md` is not a typed command, so it keeps no row, and the hub is served in its place. The workflow-owner check reads its own loop regexes, which now include the adverb `iteratively`.
+
+**What this amends**: the Python halves of REQ-006, REQ-011, REQ-020, REQ-021, REQ-023, REQ-024, REQ-025, REQ-027, REQ-028, REQ-029, REQ-030, REQ-031, REQ-035, REQ-036, REQ-037, REQ-043, REQ-044, REQ-045, REQ-047, REQ-050, REQ-051, REQ-054, REQ-055, REQ-056 and REQ-057. Each of them still binds the native gate. Where one says "both copies", or names the Python gate, the shared fixture's Python reading or the drift guard, it now reads for the native gate alone.
+<!-- /ANCHOR:adr-011-decision -->
+
+---
+
+<!-- ANCHOR:adr-011-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Typed commands only (chosen)** | Deletes the copy and its drift guard, and no reading is left to drift | The fallback offers nothing for an untyped loop ask or stuck run | 8/10 |
+| Typed run commands only, doctor kept on a stuck-run reading | The fallback still offers the diagnosis | Keeps the stuck-run grammar, which is the part with the most patterns | 4/10 |
+| Keep the refusal and question readings for typed commands | "never run /deep:review" offers nothing | Keeps the command-naming grammar, about 250 lines | 4/10 |
+| Keep the copy | No change | Every gate change still lands twice | 2/10 |
+<!-- /ANCHOR:adr-011-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-011-consequences -->
+### Consequences
+
+**What improves**:
+- A gate change lands once, in `command-attach.ts`.
+- `skill_advisor.py` lost 1,319 lines, and the drift guard no longer reads Python source.
+
+**What it costs**:
+- When the native advisor is down, an untyped loop ask gets the hub and no command, and an untyped stuck run gets no `/doctor:deep-loop`.
+- A typed command the prompt refuses, as in "never run /deep:review on this", keeps its `ask` row on the fallback. The CLI degraded path still reads the refusal through the native typed-command reader.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The fallback serves often enough for the lost offers to matter | L | It serves only when the native probe fails, and the reader can still type the command |
+<!-- /ANCHOR:adr-011-consequences -->
+
+---
+
+<!-- ANCHOR:adr-011-impl -->
+### Implementation
+
+Built in worktree 543 at `73d98332fff`. REQ-060 and AC-068 carry it.
+
+**How to roll back**: revert `73d98332fff`, mark this record Superseded and drop REQ-060 and AC-068.
+<!-- /ANCHOR:adr-011-impl -->
+<!-- /ANCHOR:adr-011 -->
 
 ---
 
@@ -1057,6 +1137,9 @@ The second is the closure docs. The review contract makes `spec_code` and `check
 | Q050 | Fix all generation 6 findings, cite evidence by symbol and rerun. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
 | Q051 | Fix all generation 7 findings and run generation 8. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
 | Q052 | Merge the hook-recorded answers from the primary checkout into the committed decision record and push. | Not stated. Asked by a second session working in the primary checkout. | None | Q040 to Q051 |
+| Q053 | Reopen this packet for the Python fallback cut. | Not stated. | None | ADR-011, REQ-060 |
+| Q054 | Build the cut in a new git worktree. | Not stated. | None | ADR-011 |
+| Q055 | Build and verify the cut in this session, with no subagents. | Not stated. | None | ADR-011 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -2010,6 +2093,64 @@ Discard local copy, sync main
 Answer:
 ```text
 Merge it in and push
+```
+
+### Q053
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01XQssttP7LdnBxiQs1vZRQj:0 -->
+
+Question:
+```text
+Removing the Python copy of the deep-loop gate is new work outside closed packet 012: about 1,550 lines, the 806-line drift guard, about 15 'both copies' REQs, and a workflow-owner scoring guard in the Python fallback that reads the same gate. Which spec folder should hold it?
+```
+
+Options:
+```text
+B) New 015 packet (Recommended)
+A) Reopen 012
+D) Skip docs
+```
+
+Answer:
+```text
+A) Reopen 012
+```
+
+### Q054
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01XQssttP7LdnBxiQs1vZRQj:1 -->
+
+Question:
+```text
+Where should the Python gate removal be built?
+```
+
+Options:
+```text
+A) New git worktree (Recommended)
+B) Current branch
+```
+
+Answer:
+```text
+A) New git worktree (Recommended)
+```
+
+### Q055
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01XQssttP7LdnBxiQs1vZRQj:2 -->
+
+Question:
+```text
+Who should do the Python gate removal? Earlier you refused Claude agents over billing, then asked for Opus.
+```
+
+Options:
+```text
+This session (Recommended)
+DeepSeek Flash max via pi
+```
+
+Answer:
+```text
+This session (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -49,6 +49,8 @@ contextType: "general"
 **2026-11-24:** The thirteenth fix round answered generation 9 (`c5c97b12dfc` to `335720592ca`), and the eighth rerun, review generation 10, ran on its tree (`766dcef90f4`). Outcome: every lineage passed evidence and scope and covered all four dimensions, and each failed coverage on findings of its own, with 4 P1s, two of them in the thirteenth round's code.
 
 **2026-11-25:** An independent review found the closure criterion could not be met: the gate reads open-ended wording, and the closure docs quoted counts each round made stale. It fixed the reducer's gate-class trust and the hook-brief P1 and pinned every closure count (`87f1cb952c7` to `1dae1408f08`). Outcome: the operator accepted ADR-010, AC-040 closed on generation 10 and the packet was marked Complete.
+
+**2026-11-25:** The operator reopened the packet to remove the Python copy of the offer gate (`73d98332fff`, worktree 543). Outcome: the fallback keeps a deep-loop row only when its command is typed, ADR-011 records the rule, and the packet closed again.
 <!-- /ANCHOR:timeline -->
 
 ---

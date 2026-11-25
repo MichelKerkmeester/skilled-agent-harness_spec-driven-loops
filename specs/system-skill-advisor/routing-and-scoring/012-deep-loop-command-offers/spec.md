@@ -205,6 +205,14 @@ Added by the seventh to eleventh rounds (REQ-035 to REQ-052):
 | `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts`, `runtime/tests/brief-command-owner-check.vitest.ts` | Modify, Create | The hook brief vets a subprocess command with `trackedCommandForOwner` |
 | `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md`, `manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md`, `runtime/lib/README.md` | Modify | The no-edit rule reads as REQ-040 built it, and the module README names the one import |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` and its unit tests | Modify, Create | A single ruling reads as reopenable, a heading-first section keeps one heading, the machine sections keep the template's numbers, and Next Focus stops before the verdict |
+
+Added by the Python fallback cut (REQ-060):
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Modify | The offer gate keeps a typed deep-loop command row only, and the workflow-owner check reads its loop regexes alone |
+| `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`, `tests/deep-loop-offer-cases.vitest.ts`, `tests/subprocess-typed-fields.vitest.ts` | Modify | Python gate cases cut to the typed rule, the drift guard's Python legs removed, the refused-command case split by path |
+| `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json`, `tests/fixtures/README.md`, `feature-catalog/python-compat/cli-shim.md` | Modify | The fixture reads as native-only, and the shim entry states the fallback's typed rule |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -283,6 +291,7 @@ Every probe requirement is checked by rerunning `scratch/probes/probes-spec-base
 | REQ-057 | The drift guard's pattern accounting reads every name the fallback gate compiles, with no suffix convention, and fails when a compared or excused name is no longer compiled there. |
 | REQ-058 | The hook brief applies the owner check the CLI degraded path applies: a subprocess row whose command the tracked table does not name for the row's skill renders the skill with no command. Both paths call one `trackedCommandForOwner` in `command-attach.ts`. |
 | REQ-059 | The review reducer reads only a `Ruled Out` section as ruled-out directions, never a Confirmed-Clean section, and a ruled-out item written as "direction -- reason" projects its own reason into the strategy. |
+| REQ-060 | The Python fallback keeps a `/deep:research`, `/deep:review` or `/doctor:deep-loop` row only when the prompt types that command, and carries no copy of the native offer gate's loop-ask, refusal, question, stuck-run, no-edit or writing-about readings. A doc path such as `/deep:review.md` keeps no row. The drift guard's Python legs go with the copy. ADR-011 amends the Python halves of REQ-006, REQ-011, REQ-020, REQ-021, REQ-023, REQ-024, REQ-025, REQ-027, REQ-028, REQ-029, REQ-030, REQ-031, REQ-035, REQ-036, REQ-037, REQ-043, REQ-044, REQ-045, REQ-047, REQ-050, REQ-051, REQ-054, REQ-055, REQ-056 and REQ-057. |
 
 ### Reopened after a fresh review
 
@@ -321,7 +330,11 @@ A fifth traceability rerun on 2026-11-24 (`review/review-report.md`, generation 
 
 ### After the eighth traceability rerun
 
-The eighth traceability rerun (`review/review-report.md`, generation 10) returned FAIL on its coverage gate in all three lineages, with 0 P0, 4 P1 and 13 P2. Evidence and scope passed in every lineage. Two of the P1s are new phrasings the offer gate reads the wrong way. ADR-010, which is Proposed, accepts that class as the gate's known limit, adds no further phrasing rules, and proposes a REQ-033 criterion a rerun can meet. REQ-033 keeps its text until the operator answers ADR-010.
+The eighth traceability rerun (`review/review-report.md`, generation 10) returned FAIL on its coverage gate in all three lineages, with 0 P0, 4 P1 and 13 P2. Evidence and scope passed in every lineage. Two of the P1s are new phrasings the offer gate reads the wrong way. ADR-010 accepts that class as the gate's known limit, adds no further phrasing rules, and gives REQ-033 a criterion a rerun can meet. The operator accepted it on 2026-11-25, and AC-040 closed on generation 10 under it.
+
+### Reopened for the Python fallback cut
+
+On 2026-11-25 the operator reopened the packet to remove the Python copy of the offer gate, the follow-up ADR-010 scored. The fallback serves only when the native advisor is unavailable or `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` is set, so the copy existed for a degraded path. ADR-011 records the rule that replaces it, and REQ-060 covers it.
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

@@ -8,27 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-24T23:12:36Z"
+    last_updated_at: "2026-11-25T07:36:54Z"
     last_updated_by: "generate-context"
-    recent_action: "ADR-010 accepted, AC-040 and T084 Met, packet Complete"
-    next_safe_action: "Run the push to main, then remove worktree 535"
+    recent_action: "Removed the Python offer gate copy under ADR-011, packet Complete again"
+    next_safe_action: "Run the merge of worktree 543 to main and push, then remove the worktree"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md"
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"
+      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"
       - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/review-report.md"
-      - "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch/opus-review.md"
+      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
     session_dedup:
-      fingerprint: "sha256:76930608518ed0e51fecfa96d3349d1a7559211e1c8d335c730f32acc981df1e"
+      fingerprint: "sha256:638a731095ed58c9b46373418d5486e2c7aeabee12f789a790a86b7cc43b5825"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "57590ed7-2583-4c04-88b9-822e46bf7bc7"
-      workspace: "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review"
-      savedAt: "2026-11-24T23:12:36Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/543-python-fallback-typed-deep-commands"
+      savedAt: "2026-11-25T07:36:54Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -128,6 +128,7 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | The advisor carries only the command, never the flags | Flag knowledge stays in the command's contract, where it is maintained |
 | "autonomous research" alias dropped | Its out-of-domain replay pulled a slide-deck prompt to the hub |
 | Three holdout rows replaced by a worker that never saw the tuned probes | The analysis had read the old ones |
+| The Python fallback keeps a deep-loop row only when its command is typed (ADR-011) | Its copy of the gate served only when the native advisor was down, and every gate change landed twice |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -203,6 +204,7 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | Thirteenth round: advisor suite | `npm run build` exit 0, then `npx vitest run` in `$ADV` reported 187 files, 3,557 passed, 4 skipped, 0 failed in that round |
 | Thirteenth round: Python suite and probes | `PY` printed `cases=368` and `pass=138, fail=0`, and the probe compare printed `changes=0 guarded_failures=0`, in that round |
 | Thirteenth round: deep-loop runtime | `npx vitest run tests/unit` reported 192 files, 3,637 passed, 2 skipped, 0 failed in that round |
+| Python fallback cut: advisor runtime | At `73d98332fff`, `npm run build` exit 0, `npx vitest run` 193 files, 3,530 passed, 4 skipped, 0 failed, and `PY` pass=134, fail=0. The baseline before the cut was 3,637 passed and pass=140; the drop is the drift guard's Python cases and the six retired Python gate cases |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -292,4 +294,6 @@ What stays open:
 6. **A typed command on a stuck run.** "my deep review run is stuck, /deep:review again" gets `/doctor:deep-loop` from `attachCommand`, and the served head carries the typed `/deep:review (ask)` by operator decision (ADR-005). The Python fallback keeps and marks the same run row, so the two served heads agree, but the diagnosis no longer reaches a reader who typed the command. The reader chose the run, and the `ask` policy still stops before any spend.
 7. **One known miss of the word rules.** "multi-pass compiler design review" offers the loop again, since three words may now stand before the loop's noun. The refusal leads leave "skip to the deep review of the parser" and "skip it and deep review the parser" asking, and withhold on "skip the deep review on this branch".
 8. **An untyped loop ask reaches the served fallback brief as the hub skill, with no command.** The Python gate does not drop it: `_apply_deep_loop_offer_gate` keeps the run row whenever `asks_for_loop_run` is true, typed or not. The command is lost one layer later, in the brief that serves the result: `analyze_request` returns the `system-deep-loop` hub as a skill record, and `degradedRecommendations` in `skill-advisor-cli.ts` attaches a command only to a row the prompt typed. So "run a deep review on the parser", "do 3 rounds of review on the scheduler" and "my deep research run is stuck, don't fix it yet, just diagnose it" serve `/deep:review`, `/deep:review` and `/doctor:deep-loop` through the native gate, and the hub with no command through the fallback. The gap predates this round: the same three prompts served the same fallback heads at `bd771c9cbae`, and `degradedRecommendations` only ever attached a command the prompt typed, so nothing here regressed. The fallback serves only when the daemon is unreachable.
+
+The operator reopened the packet on 2026-11-25 to remove the Python copy of the gate (ADR-011). When the native advisor is down, the fallback now keeps a `/deep:research`, `/deep:review` or `/doctor:deep-loop` row only when the prompt types that command. An untyped loop ask gets the hub with no command, an untyped stuck run gets no doctor row, and a typed command the prompt refuses keeps its `ask` row on the fallback.
 <!-- /ANCHOR:limitations -->

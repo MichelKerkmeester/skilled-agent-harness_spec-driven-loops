@@ -227,6 +227,14 @@ Reopened 2026-11-24 after the fifth traceability rerun (`$PKT/review/review-repo
 - [x] T120 Stop reading Confirmed-Clean sections as ruled-out directions and project a ruled-out item's own reason (`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`). Verify: `npx vitest run tests/unit` in the deep-loop runtime reports 0 failed. Observed 2026-11-24 in the thirteenth round (AC-067).
 - [x] T121 Close generation 9's closure-record findings: AC-011's reference-check output, AC-028's round row, CHK-001 without a count, REQ-011's removed list and alias scope, the N9 open question, and the four statements of the old no-edit rule in the feature catalog, the playbook and the lib README. The new fixture rows of T115 to T117 carry expected values written from the requirement text before either copy ran, which answers the finding that a shared fixture cannot tell two agreeing copies from two wrong ones. Verify: `scratch/citations/evidence-tails.py` reports `problems=0` and `validate.sh $PKT --strict` prints `RESULT: PASSED`. Observed 2026-11-24: both hold.
 - [x] T122 Tell generation 10's lineages to leave `gateClass` to the reducer and to file findings only on listed files, because generation 9's lineage 2 classed two advisory protocols as hard and filed one finding outside the scope (`review/fanout-review-focus.txt`), and add the round's new files to the review scope. Observed 2026-11-24 when generation 10 opened.
+### Python fallback cut
+
+Reopened 2026-11-25 by the operator to remove the Python copy of the offer gate (ADR-011).
+
+- [x] T123 Keep a fallback deep-loop row only when its command is typed, and delete the names that leaves unreferenced (`$ADV/scripts/skill_advisor.py` `_apply_deep_loop_offer_gate`, `_keep_deep_loop_hub_on_command_mention`, `_is_loop_workflow_request`). Verify: `PY` 0 failed. Observed 2026-11-25 at `73d98332fff`: 127 names removed, pass=134, fail=0 (AC-068).
+- [x] T124 Remove the drift guard's Python legs and cut the Python gate cases to the typed rule (`$ADV/tests/deep-loop-offer-cases.vitest.ts`, `$ADV/tests/python/test_skill_advisor.py`, `$ADV/tests/subprocess-typed-fields.vitest.ts`). Verify: `npx vitest run` in `ADV` 0 failed. Observed 2026-11-25 at `73d98332fff`: 193 files, 3,530 passed, 4 skipped.
+- [x] T125 Keep "review this change iteratively using cli-opencode" on the workflow owner by reading the adverb `iteratively` in the loop regexes, since the gate grammar that read it is gone (`$ADV/scripts/skill_advisor.py` `_REVIEW_LOOP_RE`). Verify: `tests/scorer/executor-delegation.vitest.ts` passes. Observed 2026-11-25: it passes, and "the iterative solver" still reads no loop.
+- [x] T126 Record ADR-011, REQ-060 and AC-068, and state the typed rule in the fixture comment, the fixtures README and the CLI shim catalog entry. Verify: `validate.sh $PKT --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -294,7 +302,7 @@ A blocked task is marked `[B]` with its reason on the same line, and a `[B]` tas
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met: every row in `acceptance-criteria.md` reads `Met`, `Waived` or `Superseded`. Observed 2026-11-24: AC-040 reads `Unmet`, for the traceability review rerun, so the row stays open.
+- [x] CHK-020 [P0] All acceptance criteria met: every row in `acceptance-criteria.md` reads `Met`, `Waived` or `Superseded`. Observed 2026-11-25: AC-040 reads `Met` under ADR-010, and AC-068 reads `Met`.
 - [x] CHK-021 [P0] Probe rerun complete: `$PKT/scratch/probes/results-after.json` holds 69 rows. Observed 2026-11-23: 69 rows.
 - [x] CHK-022 [P1] Edge cases tested: N6 and N10 carry no command on the probe rerun, and `command-attach.vitest.ts` holds the loop-ask-plus-depth-word case and the two-cue case that spec.md Edge Cases names. Observed 2026-11-23: N6 and N10 show `cmd=-`. The loop-ask-plus-depth-word case ("do a thorough deep review of the typo handling") and the two-cue case are in `command-attach-guards.vitest.ts`.
 - [x] CHK-023 [P1] Corpus recapture read: `false_offer` and `false_offer_attached` over the earlier rows match T003. Observed 2026-11-23: 0 and 0 over the 35 earlier rows, equal to T003.
