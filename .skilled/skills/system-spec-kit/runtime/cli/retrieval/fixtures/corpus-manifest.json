@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c3eda550a81f51bc00f93e9717670549efb691e621aa1f5d75fe77a70e9b373a",
+  "corpusHash": "a9c494621b330f54fb917d3c987f69d07bc67f979aadb34c000dfeaf091c1c3f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29620,
+  "includedPathCount": 29621,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28717,6 +28717,7 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/tasks.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/acceptance-criteria.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/goal.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/implementation-summary.md",
@@ -29652,7 +29653,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "67e4e9d03a2f523945d3af4df601b0de2fd3e049ecefc4ec998811d7fb01d82f",
+  "manifestHash": "8578559f90adeb942e37db8653ec0386776d9bc4e999ebf512a068238c9c8ab0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

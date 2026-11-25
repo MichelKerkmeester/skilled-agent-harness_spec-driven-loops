@@ -1,5 +1,5 @@
 {
-  "manifestHash": "67e4e9d03a2f523945d3af4df601b0de2fd3e049ecefc4ec998811d7fb01d82f",
+  "manifestHash": "8578559f90adeb942e37db8653ec0386776d9bc4e999ebf512a068238c9c8ab0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -135482,11 +135482,20 @@
     "v4 1 0 0 release notes": [
       "v4.1.0.0 release notes"
     ],
+    "v4 2 0 0 audit fix closure gate": [
+      "v4.2.0.0 audit fix closure gate"
+    ],
+    "v4 2 0 0 audit fixes plan": [
+      "v4.2.0.0 audit fixes plan"
+    ],
     "v4 2 0 0 changelog audit": [
       "v4.2.0.0 changelog audit"
     ],
     "v4 2 0 0 missing entries drift bugs": [
       "v4.2.0.0 missing entries drift bugs"
+    ],
+    "v4 2 0 0 release audit acceptance criteria": [
+      "v4 2 0 0 release audit acceptance criteria"
     ],
     "v4 2 0 0 release audit research": [
       "v4 2 0 0 release audit research"
