@@ -168,15 +168,18 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-Research context: deep-research is active for "v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0". `research/research.md` stays canonical.
+Research context: deep-research ran to completion on "v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0". `research/research.md` stays canonical.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 The canonical source is `research/research.md`, generation 2: a ten-iteration native audit of the v4.2.0.0 logic and features. It found no P0 or P1. It confirmed 3 P2 and 14 P3 defects, one by-design behavior and one note without severity. Generation 1, the changelog audit, is archived at `research_archive/20261125T162358Z/`.
 
-- P2: a signal-stopped fan-out runner leaves win32 lineages running, because they have no recorded `process_start` (`fanout-run.cjs:1279`).
-- P2: the Claude Stop auto-record keeps a JSON `\n` escape in a packet path, so a phase child resolves to its parent (`session-stop.ts:49`).
-- P2, inferred: the decision-record write has no lock, so it can race a concurrent save and still mark the lost answers consumed (`decision-record-writer.ts:787`).
-- Open: whether a fan-out lineage dealt no frontier nodes can seed colliding ids, and whether confirm-mode B works on a fan-out run.
+Every confirmed defect is now fixed, and `acceptance-criteria.md` maps each one to its regression test. The two left out by name are f-iter005-003, pinned by design, and f-iter009-003, which has no shown consequence.
+
+- Fixed, P2: a signal-stopped fan-out runner now ends a win32 lineage that has no recorded `process_start` (`9f332867143`, AC-004).
+- Fixed, P2: the Claude Stop auto-record resolves a packet path that ends at a JSON escape to the phase child (`980166a59a1`, AC-005).
+- Fixed, P2: the decision-record write takes the canonical save lock and leaves answers pending while a save holds it (`980166a59a1`, AC-006).
+- Answered: confirm-mode B on a fan-out run did not work. Option B now ends the run PARTIAL and names the rerun, in both research and review (AC-025, AC-028).
+- Answered: frontier ids at depth 2 and below can collide across lineages, but nothing reads them as unique. Merged nodes keep their lineage label, and the partition guard checks only the dealt depth-1 ids.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 

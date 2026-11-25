@@ -41,6 +41,9 @@ _memory:
 | Q005 | Recorded automatically: em dash. a;s rema,e thpse woth colon to use em dash | Not stated. | None | Not linked to a requirement yet. |
 | Q006 | Recorded automatically: Commit it first (Recommended) | Not stated. | None | Not linked to a requirement yet. |
 | Q007 | Recorded automatically: A) Run it (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q008 | Recorded automatically: Everything | Not stated. | None | Not linked to a requirement yet. |
+| Q009 | Recorded automatically: Dangerous, 3 parallel (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q010 | Recorded automatically: cli-pi | Not stated. | None | Not linked to a requirement yet. |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -187,6 +190,66 @@ C) No loop
 Answer:
 ```text
 A) Run it (Recommended)
+```
+
+### Q008
+<!-- source: claude:d46cd0dc-b63f-443e-8e44-4ae03af818a5:toolu_01533yy5dh3tGi7ULzTfg6GC:2 -->
+
+Question:
+```text
+What does "all" cover?
+```
+
+Options:
+```text
+Confirmed + nearby (Recommended)
+Everything
+P2s first
+```
+
+Answer:
+```text
+Everything
+```
+
+### Q009
+<!-- source: claude:d72bb3f6-0909-44a7-99b3-69b669d33d8f:toolu_01UeJvnaCWJrJ7J9KPEomdnt:0 -->
+
+Question:
+```text
+The cli-devin skill (SKILL.md, NEVER rule 1) says `--permission-mode dangerous` needs your approval for this task, and rule 15 runs one dispatch at a time unless you authorize parallel ones. Without `dangerous`, a fix worker can edit files but cannot run tests or grep, so it writes unverified edits. How should the DeepSeek flash max fix workers run in worktree 545?
+```
+
+Options:
+```text
+Dangerous, 3 parallel (Recommended)
+Dangerous, one at a time
+accept-edits only
+```
+
+Answer:
+```text
+Dangerous, 3 parallel (Recommended)
+```
+
+### Q010
+<!-- source: claude:d72bb3f6-0909-44a7-99b3-69b669d33d8f:toolu_01LmYbSqEqXjT1D8meQCTV7K:0 -->
+
+Question:
+```text
+cli-devin can't run: the probe returned "Your weekly usage quota has been exhausted" from Cognition. The same model family, DeepSeek V4.1 Flash at max effort, is reachable on other routes in the CLI hub. Which route should the fix workers use (same plan: three in parallel, write mode, I review and rerun every suite)?
+```
+
+Options:
+```text
+cli-opencode (Recommended)
+cli-pi
+Wait for Devin quota
+```
+
+Answer:
+```text
+cli-pi
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -65,6 +65,9 @@ contextType: "general"
 - [x] T016 [P] Group E: fix the operator UX findings (`create.sh`, `skilled-loop`, `worktree-naming.sh`). Verify: their suites pass and the scripts keep mode 100755.
 - [x] T017 Review every group's diff and rerun its suites from the final state (`$P/implementation-summary.md`). Verify: each suite's before and after counts are recorded.
 - [x] T018 Fill `$P/acceptance-criteria.md` and validate the packet. Verify: `validate.sh $P --strict` prints `RESULT: PASSED`.
+- [x] T019 Count only trusted frontier nodes in the stop decision (`convergence.cjs`). Verify: `stop-decision.vitest.ts` passes 133 of 133 with the fix and fails 1 with the HEAD file.
+- [x] T020 Rebuild the gitignored dists in the primary checkout. Verify: both builds exit 0 and `hook-session-stop.vitest.ts` passes 32 of 32.
+- [x] T021 Add the fix pass to `C` and bring `$P/spec.md` section 9 to the fixed state. Verify: `check_changelog_shape.py` prints PASS and `validate_document.py` prints VALID.
 <!-- /ANCHOR:phase-3 -->
 
 ---
