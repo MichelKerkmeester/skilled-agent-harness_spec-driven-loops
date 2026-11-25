@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/018-json-entry-remove-items",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/018-json-entry-remove-items",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "json entry remove items",
+      "removeItems overlay operation",
+      "overlay remove array item",
+      "phase 18 json entry remove items",
+      "json entry remove items plan",
+      "json entry remove items tasks",
+      "json entry remove items implementation summary"
+    ],
+    "key_topics": [
+      "json",
+      "entry",
+      "remove",
+      "items",
+      "removeitems",
+      "overlay",
+      "operation",
+      "array",
+      "item",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-remove-items.test.cjs",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/removed-items-leave-the-file.md",
+      ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/skills/system-skilled-doctor/leaf-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-remove-items.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-remove-items.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "removed-items-leave-the-file.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/removed-items-leave-the-file.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skilled-doctor/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Text",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Barter carries its whole `.utcpconfig.json` as a file overlay only to delete four manuals, `notion`, `obsidian`, `gitkraken` and `webflow`, from `manualcalltemplates`",
+    "created_at": "2026-11-25T17:49:09Z",
+    "last_save_at": "2026-11-25T18:42:08.383Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d6b6b60a07a6570dfcb1f108a6ada8b961178b45c5942a2640291f02b9eb263c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ea7f3b3542d316d5425484d8a38eddc7c9a9d48fdbe0325443f773734de6ad9c",
+      "plan.md": "dbdf7e862c05f9348410d958b7315af5af2cf5c825cf22d29797980fa4b3a2c3",
+      "tasks.md": "d57a1fc595d5a094d91554ef9f5d8f3b8192ddc2bad6e6acf83ee414341ca2b1",
+      "implementation-summary.md": "9fee68ccfd83a6cd9d131365a0189a99591131dc35804c1687274f2f5cca2810"
+    },
+    "last_active_at": null
+  }
+}

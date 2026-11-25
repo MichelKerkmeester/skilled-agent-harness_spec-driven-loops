@@ -26,9 +26,9 @@ contextType: "general"
 | **Created** | 2026-11-21 |
 | **Branch** | `worktrees/500-overlay-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 17 of 17 |
+| **Phase** | 17 of 18 |
 | **Predecessor** | 016-upstream-code-alignment |
-| **Successor** | None |
+| **Successor** | 018-json-entry-remove-items |
 | **Handoff Criteria** | Both fixes are merged on local Skilled main with a test that failed before each, and a final `@review` pass over phases 014 to 017 approves with no P0 or P1 |
 <!-- /ANCHOR:metadata -->
 
