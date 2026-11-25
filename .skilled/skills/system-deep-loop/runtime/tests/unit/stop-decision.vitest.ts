@@ -1166,6 +1166,37 @@ describe('frontierOpen veto', () => {
     expect(Object.prototype.hasOwnProperty.call(withoutFrontier.research ?? {}, 'frontierOpen')).toBe(false);
   });
 
+  it('counts only trusted frontier nodes in the research and review facts', () => {
+    const graph = { nodes: [], edges: [] };
+    const registry = {
+      frontier: {
+        nodes: [
+          { status: 'open' },
+          { status: 'open', _untrusted: true },
+          { status: 'answered', _untrusted: true },
+        ],
+      },
+    };
+
+    const research = buildStopDecisionInput({ depthMode: 'expansive' }, 'research', {
+      config: { maxIterations: 10 },
+      registry,
+      stateLogRows: [],
+    }, graph);
+    expect(research.research?.frontierOpen).toBe(1);
+    expect(research.research?.frontierTotal).toBe(1);
+    expect(research.research?.frontierAnswered).toBe(0);
+
+    const review = buildStopDecisionInput({ depthMode: 'expansive' }, 'review', {
+      config: { maxIterations: 10 },
+      registry,
+      stateLogRows: [],
+    }, graph);
+    expect(review.review?.frontierOpen).toBe(1);
+    expect(review.review?.frontierTotal).toBe(1);
+    expect(review.review?.frontierAnswered).toBe(0);
+  });
+
   describe('focusAlignment under expansive depth', () => {
     const offFocusRecords = [
       {

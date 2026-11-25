@@ -1642,6 +1642,12 @@ function answeredQuestionSourceCounts(nodes, edges) {
   return counts;
 }
 
+// A node from a lineage that does not vouch for coverage stays listed in the merged
+// registry but claims nothing, matching the merge's own frontier stats.
+function trustedFrontierNodes(frontier) {
+  return frontier.nodes.filter((node) => node?._untrusted !== true);
+}
+
 function stopDecisionResearchFacts(registry, evidenceRecords, graph, config = {}) {
   const metrics = isPlainObject(registry.metrics) ? registry.metrics : {};
   const resolvedQuestions = Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [];
@@ -1664,9 +1670,9 @@ function stopDecisionResearchFacts(registry, evidenceRecords, graph, config = {}
       : answeredQuestionSourceCounts(graph?.nodes, graph?.edges),
     ...(isPlainObject(registry.frontier) && Array.isArray(registry.frontier.nodes)
       ? {
-        frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length,
-        frontierTotal: registry.frontier.nodes.length,
-        frontierAnswered: registry.frontier.nodes.filter((node) => node?.status === 'answered').length,
+        frontierOpen: trustedFrontierNodes(registry.frontier).filter((node) => node?.status === 'open' || node?.status === 'active').length,
+        frontierTotal: trustedFrontierNodes(registry.frontier).length,
+        frontierAnswered: trustedFrontierNodes(registry.frontier).filter((node) => node?.status === 'answered').length,
       }
       : {}),
     // The fan-out runner writes the lineage's artifact dir into its config; a
@@ -1862,9 +1868,9 @@ function stopDecisionReviewFacts(options = {}) {
     fallbackCoveredBugClasses: reviewFallbackCoveredBugClasses(iterationRecords),
     ...(isPlainObject(registry.frontier) && Array.isArray(registry.frontier.nodes)
       ? {
-        frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length,
-        frontierTotal: registry.frontier.nodes.length,
-        frontierAnswered: registry.frontier.nodes.filter((node) => node?.status === 'answered').length,
+        frontierOpen: trustedFrontierNodes(registry.frontier).filter((node) => node?.status === 'open' || node?.status === 'active').length,
+        frontierTotal: trustedFrontierNodes(registry.frontier).length,
+        frontierAnswered: trustedFrontierNodes(registry.frontier).filter((node) => node?.status === 'answered').length,
       }
       : {}),
   };
