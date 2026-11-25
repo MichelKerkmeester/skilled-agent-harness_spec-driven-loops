@@ -4156,10 +4156,12 @@ function protectedPathProblem(ctx, entry, filePath, shownPath) {
 
 // root/skilled would read as the framework folder under its old name, so no copy
 // lives there: the framework's copies live under framework/ alone, which keeps one
-// destination from ever having two sources.
+// destination from ever having two sources. The name is compared without case,
+// because an overlay folder moves between disks and a case-insensitive one reads
+// root/Skilled as that same reserved folder.
 function isUnderRootSkilled(value) {
   if (typeof value !== 'string') return false;
-  const normalized = path.posix.normalize(value).replace(/\/+$/, '');
+  const normalized = path.posix.normalize(value).replace(/\/+$/, '').toLowerCase();
   return normalized === 'root/skilled' || normalized.startsWith('root/skilled/');
 }
 
