@@ -84,7 +84,7 @@ The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, a
 | `crates/bots-tui/src/view/overlay.rs` | 005's decision and choice overlays | not a consumer - 005 draws over the frame and takes first refusal on Ctrl+C | `ls crates/bots-tui/src/view/overlay.rs` exits 1 until 005 lands |
 
 Required inventories:
-- Same-class producers: `rg -n 'Label::new\|label:' crates/bots-tui/src/keys.rs` lists every row that carries a drawn label, so a new binding cannot be added without one.
+- Same-class producers: `rg -n 'label:' crates/bots-tui/src/keys.rs` lists every row that carries a drawn label, so a new binding cannot be added without one.
 - Consumers of changed symbols: `rg -n 'keys::' crates/bots-tui/src` names every module that reads the table, and it must be `view/footer.rs`, `view/mod.rs` and `state.rs` only; `rg -n 'stale_label' crates/bots-tui/src` names the definition in `view/header.rs` and 004's one call in `view/panes.rs`.
 - Matrix axes: three header states (`ok`, `stale`, `error`) by two sizes (80x24, 120x40), plus the too-small case at 23x8 and 24x7, plus two palettes (System, Mono) and two glyph columns (Unicode, ASCII).
 - Algorithm invariant: every drawn string passes `theme::printable`, and every band's height is computed with saturating subtraction, so no area from 1x1 upward can underflow.
@@ -125,7 +125,7 @@ The other two need one fact each. `cli-pi`'s ladder folds `medium`, `high` and `
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-Two files bind this phase, because two tasks each hold them. `crates/bots-tui/src/keys.rs` takes `SHELL_ROWS` from T004 and the palette's rows from T010. `crates/bots-tui/src/view/mod.rs` takes the frame, the too-small screen and the palette panel from T009 and the palette's filter from T010. `crates/bots-tui/src/state.rs` takes `on_shell_action` from T010 alone, so it binds nothing. The parallelism comes from the lanes beside those two: the three view children hold one file each, the key-label test holds its own file, and the setup probes hold none.
+One file binds this phase, because two tasks each hold it. `crates/bots-tui/src/keys.rs` takes `SHELL_ROWS` from T004 and the palette's rows from T010. `crates/bots-tui/src/view/mod.rs` takes the frame, the too-small screen and the palette panel from T009. `crates/bots-tui/src/state.rs` takes `on_shell_action` from T010 alone, so it binds nothing. The parallelism comes from the lanes beside that file: the three view children hold one file each, the key-label test holds its own file, and the setup probes hold none.
 
 A module file is not compiled until `view/mod.rs` declares it, so a lane that writes one child module cannot compile alone. Its own verify is a grep on its own file, and the wave's verify is the first compile. That is why Wave 3's four lanes land together and the orchestrator compiles once.
 

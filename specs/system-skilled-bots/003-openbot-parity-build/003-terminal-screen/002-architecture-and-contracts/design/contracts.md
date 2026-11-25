@@ -16,7 +16,7 @@ The screen reads four verbs and nothing else: `bots status --json`, `bots activi
 
 Three of the four verbs do not exist yet. `bots.cjs` knows eleven verbs and `activity` and `routines` are not among them, and `inbox` takes no option of its own. [SOURCE: .skilled/bin/bots.cjs:64-76] So everything below for those three is a contract the producing phase adopts through section 13, not a description of shipped code. `status` is described from its code.
 
-Frame numbers are the state index in `001-ux-and-component-map/design/mockups.md` section 2. [SOURCE: 001-ux-and-component-map/design/mockups.md:45-72]
+Frame numbers are the state index in `001-ux-and-component-map/design/mockups.md` section 2. [SOURCE: 001-ux-and-component-map/design/mockups.md:45-73]
 
 ---
 
@@ -45,7 +45,7 @@ The four files are one data set at one instant, so frames 1, 2 and 3 all draw fr
 | The machine time zone the fixture assumes | UTC, so a cron start's local time reads the same as UTC |
 | The repository identity | `skilled-scratch/hello`, shared by all four bots because identity is per repository |
 | The operator | `ada` |
-| The repository's `needsYou.expiryDays` | `1`, the smallest value the config accepts, which the 24-hour gap between hello's `at` and `expiresAt` in frame 2 already implies [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:199] [SOURCE: 001-ux-and-component-map/design/mockups.md:201-202] |
+| The repository's `needsYou.expiryDays` | `1`, the smallest value the config accepts, which the 24-hour gap between hello's `at` and `expiresAt` in frame 2 already implies [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts:199] [SOURCE: 001-ux-and-component-map/design/mockups.md:202-203] |
 | The four bots | `archive`, `digest`, `hello`, `nightly-report` |
 | The three needs-you items | hello open, digest open with two options, archive expired |
 
@@ -70,7 +70,7 @@ Rendering these four files at the fixed clock with the rules in section 3 gives 
 
 Every instant in every payload is ISO 8601 in UTC with a `Z` suffix, as `Date.prototype.toISOString` writes it, for example `2026-11-25T21:12:04.000Z`. The runtime already writes item instants this way. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:145-147] The screen parses only this shape, by hand with `std` and no time crate (A6): four digits, then `-MM-DDTHH:MM:SS`, an optional fraction, and `Z`. Any other shape is a parse failure of that field, drawn as `?` in its cell. The row itself is still drawn.
 
-Where a frame draws an instant itself (the detail column's `at` and `expiresAt`), it drops the fraction: `2026-11-25T21:12:04.000Z` draws as `2026-11-25T21:12:04Z`. [SOURCE: 001-ux-and-component-map/design/mockups.md:124] [SOURCE: 001-ux-and-component-map/design/mockups.md:201-202]
+Where a frame draws an instant itself (the detail column's `at` and `expiresAt`), it drops the fraction: `2026-11-25T21:12:04.000Z` draws as `2026-11-25T21:12:04Z`. [SOURCE: 001-ux-and-component-map/design/mockups.md:125] [SOURCE: 001-ux-and-component-map/design/mockups.md:202-203]
 
 ### The age formatter
 
@@ -87,11 +87,11 @@ The count is always rounded down. A past instant (`d >= 0`) draws `<age> ago` an
 
 ### Strings
 
-Every runtime string is sanitized before it is drawn: each control character, line breaks included, becomes `?`, and other Unicode is kept. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:77] A null string draws as `-` unless the field table names another word.
+Every runtime string is sanitized before it is drawn: each control character, line breaks included, becomes `?`, and other Unicode is kept. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:79] A null string draws as `-` unless the field table names another word.
 
 ### Ordering and selection
 
-The screen draws groups, rows, items and routines in payload order, and never re-sorts. Each producer fixes the order in its section. The selection is held by a key, never by a row index, because the poll reorders rows. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:70] The key per pane is in sections 5 to 7.
+The screen draws groups, rows, items and routines in payload order, and never re-sorts. Each producer fixes the order in its section. The selection is held by a key, never by a row index, because the poll reorders rows. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:72] The key per pane is in sections 5 to 7.
 
 ---
 
@@ -323,7 +323,7 @@ Item row (`kind` is `needs-you`): `kind`, `identity`, `itemId`, `botId`, `runId`
 | `4 bots` | `rows` | count the rows whose `kind` is `bot`, never `rows.length`, which is 7 here [SOURCE: spec.md:126] |
 | `index 12s ago` | `updatedAt`, else `builtAt` | the age formatter. `never` when both are null |
 | `stale 2m` at the header's right | `stale` and `updatedAt` | drawn only when `stale` is true, as `stale` and then the age formatter's output for `updatedAt` |
-| `status failed` at the header's right | the last status read | drawn when the last read failed, with the last good count and age kept (frame 17) [SOURCE: 001-ux-and-component-map/design/mockups.md:1303] |
+| `status failed` at the header's right | the last status read | drawn when the last read failed, with the last good count and age kept (frame 17) [SOURCE: 001-ux-and-component-map/design/mockups.md:1304] |
 
 ---
 
@@ -573,9 +573,9 @@ The ten item keys are packet 001's. [SOURCE: specs/system-skilled-bots/003-openb
 | `Expired items stay listed and cannot be answered.` | drawn under the list when any item is `expired` |
 | `options   none` | `options` null or empty draws `none`, a list draws its entries joined by `, ` |
 | `1  email`, `2  chat` | `options` in order, numbered from 1, in the choice overlay |
-| `hello · open · 2m ago` | the overlay's first line: `botId`, `state` and the row's age, frames 18 to 24 [SOURCE: 001-ux-and-component-map/design/mockups.md:1383] |
+| `hello · open · 2m ago` | the overlay's first line: `botId`, `state` and the row's age, frames 18 to 24 [SOURCE: 001-ux-and-component-map/design/mockups.md:1384] |
 | `Ship the release?` | `question` verbatim, sanitized, in the overlay |
-| `grant    kind send · rung kind` | `grants.kind` and `grants.rung`, drawn only when `grants` is present, frame 23 [SOURCE: 001-ux-and-component-map/design/mockups.md:1768] |
+| `grant    kind send · rung kind` | `grants.kind` and `grants.rung`, drawn only when `grants` is present, frame 23 [SOURCE: 001-ux-and-component-map/design/mockups.md:1769] |
 
 Selection key: `id`.
 
@@ -655,9 +655,10 @@ Selection key: `botId`.
 
 ## 8. VERSIONING AND UNKNOWN FIELDS
 
+- The binary's contract number is this major. `bots-ui --version` prints `bots-ui <crate version> contract 1`, and the `ui` verb compares the last field with its own copy of the number.
 - Every payload object carries `version`, an integer contract major. Version 1 is this file. `status` ships without it today, and the screen reads an absent `version` as `1`.
 - Adding a key, or adding a value to an enum, is not a version change. The producer adds it here and to the sample in the same change.
-- Removing a key, renaming one, changing its type or making a non-null key nullable bumps `version`. The screen knows one major. A payload with a higher `version` is a failed read whose status row line is `bots: <verb> --json speaks version <n>, the screen reads version 1`. The rows from the last good read stay.
+- Removing a key, renaming one, changing its type or making a non-null key nullable bumps `version`. The screen knows one major. A payload with a higher `version` is a failed read whose status row line is `bots-ui: <verb> --json speaks version <n>, the screen reads version 1`. The rows from the last good read stay.
 - The screen ignores every key it does not know. Its serde types never use `deny_unknown_fields`, and a missing optional key takes its default. So packet 004's `lastRun.branch` and packet 006's `grants` arrive without a screen change.
 - An enum value the screen does not know is kept as `Unknown(raw)` and drawn as its raw text with the `?` glyph. It is never a failed read. [SOURCE: 001-ux-and-component-map/design/glyph-table.md:32]
 - A runtime older than the verb answers `bots: unknown verb: <verb>` with exit 2. [SOURCE: .skilled/bin/bots.cjs:142] The screen treats it as a failed read like any other, so a screen built ahead of packet phases 001 and 002 shows the error state on Activity, Inbox and Routines and still draws its header.
@@ -682,10 +683,12 @@ What each exit means, from the code for `status` and `inbox`, and from packet 00
 How the screen draws them:
 
 - **Exit 0 with stdout that parses.** The rows are replaced. When stderr is not empty, its first line goes to the status row, and the pane state stays `rows`.
-- **Exit 0 with stdout that does not parse.** A failed read with the line `bots: <verb> --json printed no payload: <parser message>`.
-- **Any non-zero exit.** A failed read. The status row line is `bots: <verb> --json exited <code>: <first stderr line with a leading "bots: " removed>`, which is the line frame 8 draws. [SOURCE: 001-ux-and-component-map/design/mockups.md:624] Only the first line is kept, so the usage text after a usage error never reaches the screen. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:61]
-- **A child killed by the read timeout.** A failed read with the line `bots: <verb> --json timed out after <n>s`. The timeout and the kill are the architecture file's (R5).
+- **Exit 0 with stdout that does not parse.** A failed read with the line `bots-ui: <verb> --json printed no payload: <parser message>`.
+- **Any non-zero exit.** A failed read. The status row line is `bots: <verb> --json exited <code>: <first stderr line with a leading "bots: " removed>`, which is the line frame 8 draws. [SOURCE: 001-ux-and-component-map/design/mockups.md:625] Only the first line is kept, so the usage text after a usage error never reaches the screen. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:61]
+- **A child killed by the read timeout.** A failed read with the line `bots-ui: <verb> timed out after 10s`. The timeout and the kill are the architecture file's (R5).
 - **A failed read on a pane with rows** keeps the rows and draws `stale <n>m` in the pane title. **A failed read with no rows** draws the line in the body. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:51-57]
+
+The frames' `index locked` line is the fixture's `fail-<verb>` text for every verb, not a runtime message for `inbox` or `routines`.
 
 ---
 
@@ -758,6 +761,8 @@ Two rules belong here because they decide what the screen reads next.
 ---
 
 ## 13. EDITS THE OTHER DOCS NEED
+
+The edits inside this phase were applied in commit cf6bb92a5ce. Line numbers are the pre-edit lines and are kept as a record. Sections 13.1 and 13.2 target packet phases 001-activity-and-actor and 002-routine-layer and are not applied yet.
 
 Line numbers are from the tree at commit `69ecfd0b1f9`. Paths are relative to `specs/system-skilled-bots/003-openbot-parity-build/`. Every search string and every replacement is in its own fenced block, verbatim, so an Edit tool can apply it as written.
 
@@ -962,7 +967,7 @@ the index age from `updatedAt`, or from `builtAt` when `updatedAt` is absent
 
 The frames disagree with each other in four places and with the runtime in three, so no single data set produces them as drawn. These edits make frames 1 to 3 the rendering of the samples.
 
-1. **Every banner line.** Replace each `! 1 pending approval · Alt+2 → inbox` with `! 2 pending approvals · Alt+2 → inbox` (22 lines, from line 107 to line 1368). Frame 2 already counts two open items, and the banner reads the inbox. [SOURCE: 001-ux-and-component-map/design/mockups.md:183]
+1. **Every banner line.** Replace each `! 1 pending approval · Alt+2 → inbox` with `! 2 pending approvals · Alt+2 → inbox` (22 lines, from line 107 to line 1368). Frame 2 already counts two open items, and the banner reads the inbox. [SOURCE: 001-ux-and-component-map/design/mockups.md:184]
 2. **Lines 90 to 106, frame 1 at 80x24.** Replace the 17 body lines with the block below. The added row is digest's open item, which frames 2 and 24 draw and frame 1 left out.
 
 ```text
@@ -1008,7 +1013,7 @@ Recurring                                                               │
 ```
 
 4. **Line 197, frame 2 at 120x40.** Replace `│id        hello` with `│id        20261125T211204Z-7c1e9a40`. An item id is its run id. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:103]
-5. **Line 199, frame 2 at 120x40.** Replace `│kind      send` with `│kind      decision`. `send` is a grant kind, and the frame's item carries no grant. [SOURCE: 001-ux-and-component-map/design/mockups.md:2010]
+5. **Line 199, frame 2 at 120x40.** Replace `│kind      send` with `│kind      decision`. `send` is a grant kind, and the frame's item carries no grant. [SOURCE: 001-ux-and-component-map/design/mockups.md:2087]
 6. **Line 250, frame 3 at 80x24, and line 279, frame 3 at 120x40.** On nightly-report's state line, replace `streak 0` with `streak 1`. Its last finished run failed 4 minutes ago (frame 1), so the streak is one. At line 279 only the left-hand `streak 0` changes, and the detail column's `streak    0` is digest's and stays.
 7. **Frame 17, lines 1306 to 1322 at 80x24 and lines 1335 to 1351 at 120x40.** Apply the same bodies as items 2 and 3. Frame 17 draws the same rows as frame 1 and carries the same missing row, blank lines and run id.
 

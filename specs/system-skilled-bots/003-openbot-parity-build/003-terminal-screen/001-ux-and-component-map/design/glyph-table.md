@@ -39,7 +39,7 @@ The first six glyphs are openhuman's, and the labels are ours: openhuman labels 
 
 ## 2. THE THREE GLYPHS THIS PHASE ADDS
 
-The pre-expansion table had six markers and used `?` for three different things: a run that had not begun, a routine that runs again, and a value the mapping did not name. The operator approved three new glyphs so each reads as itself. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220]
+The pre-expansion table had six markers and used `?` for three different things: a run that had not begun, a routine that runs again, and a value the mapping did not name. The operator approved three new glyphs so each reads as itself. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249]
 
 | Glyph | Replaces | Why it is its own glyph |
 |-------|----------|-------------------------|
@@ -51,7 +51,7 @@ The pre-expansion table had six markers and used `?` for three different things:
 
 ## 3. THE UNKNOWN VALUE
 
-A `state` the table does not name draws `?` and the raw value beside it, never a blank cell and never a guess. The row reads `? some-new-state`, so a runtime that adds a group id is visible on the screen the day it ships rather than silently dropped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220]
+A `state` the table does not name draws `?` and the raw value beside it, never a blank cell and never a guess. The row reads `? some-new-state`, so a runtime that adds a group id is visible on the screen the day it ships rather than silently dropped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249]
 
 The same rule covers a missing field: a row with no `state` draws `?` and the word `missing`, so an incomplete payload is a visible row rather than a skipped one.
 
@@ -114,5 +114,5 @@ Focus is a `›` mark plus reverse video, never reverse video alone, because a t
 | `NO_COLOR` starting in Mono | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62] |
 | Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
 | The expired card, visible and unanswerable | [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:93-95] |
-| The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220] |
-| The unknown value drawn with its raw text | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220] |
+| The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249] |
+| The unknown value drawn with its raw text | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249] |

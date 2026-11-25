@@ -45,6 +45,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "design/data-model.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
@@ -56,9 +58,7 @@
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/posture.vitest.ts"
+      ".skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts"
     ],
     "entities": [
       {
@@ -95,6 +95,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "data-model.md",
+        "kind": "doc",
+        "path": "design/data-model.md",
+        "source": "derived"
+      },
+      {
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
         "source": "derived"
       },
       {
@@ -170,18 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "status-index.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "posture.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/posture.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The status index already holds a row for every run, delivery and needs-you item, but nothing shows them as a timeline: `bots status` prints one line per bot and one line per open item, so a reader cannot tell what is waiting, what is running and what ended without reading three surfaces [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:470]",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-25T22:43:29.880Z",
+    "last_save_at": "2026-11-25T23:42:25.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7c7096e77bd420b05f192b535d20fb1461f82cfe1d9b512486d5cf4d093d2c9",
+    "source_fingerprint": "sha256:ffd6c56ae8b29f06ef530bc798c978b619bd2f711f92e86d1f7007465acf975d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e074083e74c91441d2f015e1871965a95fd78fcaad13bbd8dd8270c7813a6f90",
-      "plan.md": "9901c194d0393f3c36b0d4099f30987b75eb8be42c6f5f5a41c20c256091a468",
-      "tasks.md": "12cc9a6ba04f23d0673617afe7ad505901f2c954fd129a0e3ddb286797640c62",
+      "spec.md": "c1bc31940c0f66f1b043b5454d4658c819ec54230ebdca5e8223e893929e4f2a",
+      "plan.md": "3eebd55a836abdbddb1a96bbf011b903a8f74340a60bda902d46240ad41852a0",
+      "tasks.md": "2ecca0b46dab3fde4ad971fdc75beb1a1f3b2f91a5ab3dc780941f981b26cc8b",
       "implementation-summary.md": "79160a8cf49576ec0e2548051853aef62e4640d28f25116f622affc46b262d51"
     },
     "last_active_at": null

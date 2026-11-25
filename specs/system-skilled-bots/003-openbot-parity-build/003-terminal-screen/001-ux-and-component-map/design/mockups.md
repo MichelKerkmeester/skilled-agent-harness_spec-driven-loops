@@ -36,7 +36,7 @@ Two footer lines rather than one, because the packet requires every bound key to
 
 Line 1 carries the tab, list and open keys, and line 2 the command and exit keys. The inbox is the one context that adds `Enter open` to line 1, because opening an item is the one action its list binds beyond moving the selection. The answer keys appear only in the overlay footers, where they are bound.
 
-Trailing blanks are trimmed in this document. Each frame is exactly 24 or 40 lines, and its longest line is at most its width, so a reader can check the height and the ceiling without counting spaces.
+Trailing blanks are trimmed in this document. Each frame is exactly 24, 40 or 7 lines, and its longest line is at most its width, so a reader can check the height and the ceiling without counting spaces.
 
 ---
 
@@ -547,20 +547,20 @@ bots · 4 bots · index 12s ago
 Activity · stale 2m
 
 Needs you
-  ! hello            needs_you   2m ago
+› ! hello            needs_you   2m ago
+  ! digest           needs_you   9m ago
 Working
   · nightly-report   working     now
+Scheduled
+  ○ digest           scheduled   in 3h
 Done
   ✓ hello            done        12m ago
-
-  Rows from the last successful read stay on screen.
-
-
-
-
-
-
-
+Stopped
+  – archive          stopped     1h ago
+Failed
+  ✗ nightly-report   failed      4m ago
+Recurring
+  ↻ digest           recurring   every 6h
 ! 2 pending approvals · Alt+2 → inbox
 bots: activity --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
@@ -573,23 +573,23 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · stale 2m                                                     │
+Activity · stale 2m                                                     │Detail
                                                                         │
-Needs you                                                               │
-  ! hello            needs_you   2m ago                                 │
-Working                                                                 │
-  · nightly-report   working     now                                    │
+Needs you                                                               │bot       hello
+› ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
+  ! digest           needs_you   9m ago                                 │state     needs_you
+Working                                                                 │at        2026-11-25T21:12:04Z
+  · nightly-report   working     now                                    │actor     ada
+Scheduled                                                               │runId     20261125T211204Z-7c1e9a40
+  ○ digest           scheduled   in 3h                                  │
 Done                                                                    │
   ✓ hello            done        12m ago                                │
-                                                                        │
-  Rows from the last successful read stay on screen.                    │
-                                                                        │
-                                                                        │
-                                                                        │
-                                                                        │
-                                                                        │
-                                                                        │
-                                                                        │
+Stopped                                                                 │
+  – archive          stopped     1h ago                                 │
+Failed                                                                  │
+  ✗ nightly-report   failed      4m ago                                 │
+Recurring                                                               │
+  ↻ digest           recurring   every 6h                               │
                                                                         │
                                                                         │
                                                                         │
@@ -854,7 +854,7 @@ Inbox · stale 2m
     ! digest           open     9m ago   Which channel?
       archive          expired  1h ago   Delete the old runs?
 
-  Rows from the last successful read stay on screen.
+Expired items stay listed and cannot be answered.
 
 
 
@@ -877,17 +877,17 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Inbox · stale 2m                                                        │
+Inbox · stale 2m                                                        │Detail
                                                                         │
-  › ! hello            open     2m ago   Ship the release?              │
-    ! digest           open     9m ago   Which channel?                 │
-      archive          expired  1h ago   Delete the old runs?           │
+  › ! hello            open     2m ago   Ship the release?              │id        20261125T211204Z-7c1e9a40
+    ! digest           open     9m ago   Which channel?                 │botId     hello
+      archive          expired  1h ago   Delete the old runs?           │kind      decision
+                                                                        │state     open
+Expired items stay listed and cannot be answered.                       │at        2026-11-25T21:12:04Z
+                                                                        │expiresAt 2026-11-26T21:12:04Z
+                                                                        │options   none
                                                                         │
-  Rows from the last successful read stay on screen.                    │
-                                                                        │
-                                                                        │
-                                                                        │
-                                                                        │
+                                                                        │Enter opens the overlay.
                                                                         │
                                                                         │
                                                                         │
@@ -1160,9 +1160,9 @@ Routines · stale 2m
 
     nightly-report
     starts  daily 02:00 · does act · until "the report is filed"
-    state   enabled · streak 0
+    state   enabled · streak 1
 
-  Rows from the last successful read stay on screen.
+
 
 
 
@@ -1181,17 +1181,17 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
   1 Activity   2 Inbox  [3 Routines]  4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Routines · stale 2m                                                     │
+Routines · stale 2m                                                     │Detail
                                                                         │
-  › digest                                                              │
-    starts  every 6h · does tell · until "the digest is sent"           │
-    state   enabled · streak 0                                          │
+  › digest                                                              │botId     digest
+    starts  every 6h · does tell · until "the digest is sent"           │what      the morning digest
+    state   enabled · streak 0                                          │starts    every 6h
+                                                                        │does      tell
+    nightly-report                                                      │until     the digest is sent
+    starts  daily 02:00 · does act · until "the report is filed"        │untilMetAt -
+    state   enabled · streak 1                                          │streak    0
+                                                                        │switch    enabled
                                                                         │
-    nightly-report                                                      │
-    starts  daily 02:00 · does act · until "the report is filed"        │
-    state   enabled · streak 0                                          │
-                                                                        │
-  Rows from the last successful read stay on screen.                    │
                                                                         │
                                                                         │
                                                                         │
@@ -1766,7 +1766,7 @@ bots · 4 bots · index 12s ago
  │ Ship the release?                                                          │
  │                                                                            │
  │ options  none                                                              │
- │ grant    kind send · rung kind                                              │
+ │ grant    kind send · rung kind                                             │
  │                                                                            │
  │                                                                            │
  │                                                                            │
@@ -1837,12 +1837,12 @@ bots · 4 bots · index 12s ago
   1 Activity  [2 Inbox]  3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
  ┌ Approval ──────────────────────────────────────────────────────────────────┐
- │ digest · open · 9m ago                                                      │
- │                                                                             │
- │ Which channel?                                                              │
- │                                                                             │
- │   1  email                                                                  │
- │   2  chat                                                                   │
+ │ digest · open · 9m ago                                                     │
+ │                                                                            │
+ │ Which channel?                                                             │
+ │                                                                            │
+ │   1  email                                                                 │
+ │   2  chat                                                                  │
  │                                                                            │
  │                                                                            │
  │                                                                            │
@@ -1855,7 +1855,7 @@ bots · 4 bots · index 12s ago
  └────────────────────────────────────────────────────────────────────────────┘
 
 
-1-9 pick · n deny · Esc close
+n deny · 1-9 pick · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1900,7 +1900,7 @@ bots · 4 bots · index 12s ago
 
 
 
-1-9 pick · n deny · Esc close
+n deny · 1-9 pick · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1917,10 +1917,10 @@ bots · 4 bots · index 12s ago
 
 
  ┌ Commands ──────────────────────────────────────────────────────────────────┐
- │ > ex                                                                        │
- │                                                                             │
- │   Ctrl+C exit                                                               │
- │   Ctrl+D exit                                                               │
+ │ > ex                                                                       │
+ │                                                                            │
+ │   Ctrl+C exit                                                              │
+ │   Ctrl+D exit                                                              │
  │                                                                            │
  │                                                                            │
  └────────────────────────────────────────────────────────────────────────────┘
@@ -2080,7 +2080,7 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 | Reverse video on the focused row | Drawn here as `›` in the gutter and `[ ]` on the active tab, so the frame reads the same in a plain-text diff. The reverse video is added on top of the mark, never instead of it. |
 | The cursor in free text | Drawn as `> ` before the typed text. The real cursor sits after the last character. |
 | The 5-second refresh | No frame changes when a read returns the same rows. The header's index age is the only cell that moves. |
-| A 2,000-row list | The frame shows 17 rows at 80x24 and 33 at 120x40. The list scrolls, and the selection stays visible; the frame is the window, not the list. |
+| A 2,000-row list | The frame shows 15 list lines at 80x24 and 31 at 120x40. The list scrolls, and the selection stays visible; the frame is the window, not the list. |
 | The too-small screen at 20 columns | The message is drawn truncated to the frame width, so at 20 columns it reads `Too small · Ctrl+D e`. It fits whole from 23 columns up. |
 | The overlay over a scrolled list | The panel clears its own area, so the rows behind it are not drawn. The header, the tabs and the footer stay visible, which is how the operator keeps their place. |
 | A grant the item does not carry | The overlay and the detail column draw a grant's kind and rung only when the item carries them. Frame 18's item carries none, so no grant line is drawn; frame 23's item carries one, so the line is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
@@ -2135,5 +2135,5 @@ Every pointer below resolves in a checkout that has the gitignored `specs/system
 | The routine row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] |
 | The inbox item shape, and the grant the overlay shows | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
 | The chat verb the placeholder names | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152] |
-| The banner's key, corrected from `Ctrl+P` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:221] |
-| The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:220] |
+| The banner's key, corrected from `Ctrl+P` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:250] |
+| The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249] |

@@ -115,7 +115,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 - [ ] T015 Prove the runtime suite from the final state (`.skilled/skills/system-skilled-bots/runtime`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 - [ ] T016 Prove the licence boundary (`$CRATE`). Verify: `cargo metadata --manifest-path $CRATE/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, `rg -n 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, and `rg -n 'openhuman' $CRATE/src` prints only comment lines. The grep covers the code and the manifest and searches for the header text rather than the licence name, because `README.md` and `design/` name the reference's GPL-3.0 licence by design.
 - [ ] T017 Prove the README's build and run commands (`$CRATE`). Verify: `cargo build --release --manifest-path $CRATE/Cargo.toml` exits 0 and `ls $CRATE/target/release/bots-ui` prints the path.
-- [ ] T018 Prove every design pointer resolves, or skips by name when the gitignored reference folder is absent (`$CRATE/design`). Verify: the block below prints the four names `component-inventory.md`, `glyph-table.md`, `key-map.md` and `mockups.md` and nothing else on stdout. When `specs/system-skilled-bots/context` is present the loop prints `DANGLING <path>:<line>` for each pointer whose file is missing or too short, so any such line is a failure. When it is absent the block writes one `SKIP context-absent:` line to stderr naming how many pointers it did not check, and checks nothing else. The `ls` is the first guard, because `rg` on a missing design folder reads no input and the loop alone would pass. The loop compares the line against the file's length because `sed -n` past the end of a file exits 0. How to rebuild the folder: `research/context-manifest.md` section 3.
+- [ ] T018 Prove every design pointer resolves, or skips by name when the gitignored reference folder is absent (`$CRATE/design`). Verify: the block below prints the six names `architecture.md`, `component-inventory.md`, `contracts.md`, `glyph-table.md`, `key-map.md` and `mockups.md` and nothing else on stdout. When `specs/system-skilled-bots/context` is present the loop prints `DANGLING <path>:<line>` for each pointer whose file is missing or too short, so any such line is a failure. When it is absent the block writes one `SKIP context-absent:` line to stderr naming how many pointers it did not check, and checks nothing else. The `ls` is the first guard, because `rg` on a missing design folder reads no input and the loop alone would pass. The loop compares the line against the file's length because `sed -n` past the end of a file exits 0. How to rebuild the folder: `research/context-manifest.md` section 3.
 
   ```bash
   ls $CRATE/design
@@ -145,12 +145,12 @@ One row per defect the parent's §6 lists, each with the command that proves the
 
 | ID | Defect | Check | Expected |
 |----|--------|-------|----------|
-| D1 | `1` answers two questions | `rg -n 'Overlay' $CRATE/src/keys.rs` and `rg -c "Char\('1'\)" $CRATE/src/keys.rs` | the context enum, and a digit binding in the `Overlay` context |
-| D2 | Alt+1..4 is unreachable on macOS | `rg -c "Char\('\[" $CRATE/src/keys.rs` and `rg -c "Char\('\]" $CRATE/src/keys.rs` | 1 and 1, the fallback pair |
+| D1 | `1` answers two questions | `rg -n 'enum Context' $CRATE/src/keys.rs` and `rg -n 'KeyMatch::Digit' $CRATE/src/keys.rs` | the context enum, and one `KeyMatch::Digit` row, inside `OVERLAY_ROWS` |
+| D2 | Alt+1..4 is unreachable on macOS | `rg -c "Char\('\[" $CRATE/src/keys.rs` and `rg -c "Char\('\]" $CRATE/src/keys.rs` | at least 1 each, the fallback pair |
 | D3 | Selection by row index is unsafe | `rg -n 'ItemId' $CRATE/src/state.rs` | the selection field's type |
 | D4 | Blocking spawns freeze input | `rg -n 'thread::spawn' $CRATE/src/data.rs` and `rg -n 'Command::new' $CRATE/src` | the worker line, and only `cli.rs` |
 | D5 | Bot text is drawn unsanitized | `rg -n 'printable' $CRATE/src/view` and `test ! -e $CRATE/src/sanitize.rs` | at least one call per pane module, and one filter rather than two |
-| D6 | An item with no options can only get y/n | `rg -n 'free_text' $CRATE/src/view/overlay.rs` | at least one line |
+| D6 | An item with no options can only get y/n | `rg -n 'Phase::Typing' $CRATE/src/view/overlay.rs` | at least one line |
 | D7 | `?` marks three different states | `rg -n 'scheduled|recurring' $CRATE/src/theme.rs` | two glyph rows |
 | D8 | The banner names the wrong key | `rg -n 'pending approval' $CRATE/src/view` and `rg -n 'pending approval.*Ctrl\+P' $CRATE/src/view` | one banner line, and nothing naming `Ctrl+P` |
 
@@ -160,8 +160,14 @@ The clean-room rule keeps the GPL sources out of the briefs of the workers that 
 
 | ID | Check | Expected |
 |----|-------|----------|
-| C1 | `rg -n 'openhuman\|tinychannels' $CRATE/src` | comment lines only, each naming the design reference |
+| C1 | the C1 block below | comment lines only, each naming the design reference |
 | C2 | `rg -c 'Clean-room read' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/goal.md` | 1, the row the orchestrator records the comparison in |
+
+**C1**: the crate's sources name the design reference in comments only.
+
+```bash
+rg -n 'openhuman|tinychannels' $CRATE/src
+```
 <!-- /ANCHOR:defect-audit -->
 
 ---

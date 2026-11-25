@@ -23,7 +23,7 @@ The map is the operator's to approve. Section 6 holds the approval record, and `
 | Context | Where it is | What is bound |
 |---------|-------------|---------------|
 | `main` | The Activity, Routines and Chat tabs, no overlay | Tabs, list movement, palette, quit |
-| `inbox` | The Inbox tab, no overlay | Tabs, list movement, open, quit |
+| `inbox` | The Inbox tab, no overlay | Tabs, list movement, open, palette, quit |
 | `list` | Any pane with rows, inside `main` or `inbox` | Up, Down, PgUp, PgDn, and Enter in the inbox only |
 | `overlay` | The decision or choice overlay, open | `t`, `y`, `n`, `1` to `9`, typing, Enter, Backspace, Esc, Ctrl+C, Ctrl+D |
 | `palette` | The command palette, open | Typing to filter, Backspace, Up, Down, Enter, Esc, Ctrl+C, Ctrl+D |
@@ -79,13 +79,13 @@ The footer is two lines, and the line a label lands on follows the context rathe
 
 ### 3.1 Digits pick options only inside an overlay
 
-`1` to `9` are unbound in `main` and `inbox`. In the pre-expansion phase, REQ-006 picked option 1 with `1` and REQ-009 bound `1` to approve once, so one key answered two different questions. Here the digit is bound in `overlay` alone, and the overlay's shape decides what it means: with options, `1` picks the first option; with no options, `1` is unbound and does nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:214]
+`1` to `9` are unbound in `main` and `inbox`. In the pre-expansion phase, REQ-006 picked option 1 with `1` and REQ-009 bound `1` to approve once, so one key answered two different questions. Here the digit is bound in `overlay` alone, and the overlay's shape decides what it means: with options, `1` picks the first option; with no options, `1` is unbound and does nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:243]
 
 The reference does the same: a number takes the choice it stands at, and only while a number is not being typed into the line. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/ask-card.js:264-268]
 
 ### 3.2 `[` and `]` are the fallback tab pair
 
-Alt+1..4 is the primary binding and stays. On macOS, Terminal.app and iTerm send `¡™£¢` for Option+1..4 unless Option is set to Meta, and Ctrl+Tab is rarely delivered, so a tab bar reachable only through Alt+1..4 can be unreachable. `[` and `]` cycle the tabs and are drawn beside the Alt keys in the same label. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:215] [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs:351-364]
+Alt+1..4 is the primary binding and stays. On macOS, Terminal.app and iTerm send `¡™£¢` for Option+1..4 unless Option is set to Meta, and Ctrl+Tab is rarely delivered, so a tab bar reachable only through Alt+1..4 can be unreachable. `[` and `]` cycle the tabs and are drawn beside the Alt keys in the same label. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:244] [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs:351-364]
 
 ### 3.3 Ctrl+C closes or quits, and never writes
 
@@ -103,7 +103,7 @@ The footer changes with the mode, so the operator can see which keys are live: `
 
 ## 4. THE SELECTION SURVIVES A REFRESH
 
-`Up`, `Down`, `PgUp` and `PgDn` move a selection held as an item id, never a row index. The 5-second poll reorders rows as runs finish, so a row-index selection would move under the operator's finger. When the selected id is no longer in the list, the selection falls to the nearest surviving row, and only an empty list draws `No row selected.` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:216]
+`Up`, `Down`, `PgUp` and `PgDn` move a selection held as the pane's row key, never a row index. The 5-second poll reorders rows as runs finish, so a row-index selection would move under the operator's finger. When the selected id is no longer in the list, the selection falls to the nearest surviving row, and only an empty list draws `No row selected.` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:245]
 
 ---
 
@@ -151,6 +151,6 @@ The parent's phase handoff names a `decision-record.md` in this folder, and this
 | The keys that lock after the first press | [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:136-140] |
 | `y`/`n` answer, and closed input answers nothing | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:431-447] |
 | The default deny this screen does not copy | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:476-487] |
-| The tab keys, the fallback pair and the Ctrl+C rule | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:176] |
-| The answer keys and the scope each writes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:177] |
-| Every bound key drawn in the frame that binds it, deny before approve | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:178] |
+| The tab keys, the fallback pair and the Ctrl+C rule | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:205] |
+| The answer keys and the scope each writes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:206] |
+| Every bound key drawn in the frame that binds it, deny before approve | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:207] |

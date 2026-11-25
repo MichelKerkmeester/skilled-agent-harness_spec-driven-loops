@@ -45,7 +45,7 @@ The Verification column names the block below that proves the row. The blocks ca
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the four documents in `design/`, When every `SOURCE` pointer is resolved, Then none is missing and none points past the last line of its file, and a pointer into the gitignored reference folder is skipped by name when that folder is absent | AC-001 block prints `4` then `0` | Unmet | - |
-| AC-002 | REQ-002 | Given the twenty-seven states in the index, When each is drawn at 80x24 and at 120x40, Then every fenced block is exactly 24 or 40 lines and no line is wider than its size, and the too-small block is exactly 7 lines and no line wider than 30 | AC-002 block prints `frames=53 bad=0` | Unmet | - |
+| AC-002 | REQ-002 | Given the twenty-seven states in the index, When each is drawn at 80x24 and at 120x40, Then every fenced block is exactly 24 or 40 lines and no line is wider than its size, and the too-small block is exactly 7 lines and no line wider than 30 | AC-002 block prints `frames=53 bad=0` then `panels-misaligned=0` | Unmet | - |
 | AC-003 | REQ-003 | Given the key table, When each binding is read, Then it names a context, an action, the label the frame draws and the frame that draws it, no key carries two meanings inside one context, and a key that answers is bound only outside text mode | AC-003 block prints `29` then `0` | Unmet | - |
 | AC-004 | REQ-004 | Given the seven group ids in payload order, When the glyph table is read, Then each id has a glyph and an ASCII character, an unnamed state draws `?` plus its raw value, and the ASCII set is selected by one flag | AC-004 block prints `7` then `2` | Unmet | - |
 | AC-005 | REQ-005 | Given the component inventory, When each component is read, Then it names what it reads, the keys it binds, every state it can be in, and the frame that draws each state | AC-005 block prints `13` then `13` | Unmet | - |
@@ -61,7 +61,7 @@ The Verification column names the block below that proves the row. The blocks ca
 **AC-001**: the four documents exist, and every pointer resolves.
 
 ```bash
-ls $D | wc -l
+ls $D | wc -l | tr -d ' '
 ctx=specs/system-skilled-bots/context
 rg -o --no-filename '\[SOURC[E]: [^]]+\]' $D/*.md $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md $P/goal.md \
   | sed -e 's/^\[SOURCE:[ ]*//' -e 's/\]$//' | sort -u \
@@ -82,13 +82,23 @@ rg -o --no-filename '\[SOURC[E]: [^]]+\]' $D/*.md $P/spec.md $P/plan.md $P/tasks
       fi
       n=$(wc -l < "$f" | tr -d ' ')
       [ "$hi" -le "$n" ] || echo "PAST-END $p"
-    done | wc -l
+    done | wc -l | tr -d ' '
 ```
 
 **AC-002**: every frame is exactly 24 or 40 lines and no line is wider than its size, and the too-small frame is 7 lines and no wider than 30.
 
 ```bash
 perl -CSD -e 'local $/; $_=<>; @b = /```[^\n]*\n(.*?)```/gs; $bad=0; for $x (@b) { $h = ($x =~ tr/\n//); $w=0; for (split /\n/, $x) { $w = length($_) if length($_) > $w } $bad++ unless ($h==24&&$w==80)||($h==40&&$w==120)||($h==7&&$w<=30) } print "frames=", scalar(@b), " bad=$bad\n"' $D/mockups.md
+python3 - "$D/mockups.md" <<'PY'
+import re, sys
+text = open(sys.argv[1], encoding="utf-8").read()
+bad = 0
+for block in re.findall(r"```text\n(.*?)```", text, re.S):
+    widths = {len(l) for l in block.split("\n") if re.match(r"^ *[┌│└]", l) and re.search(r"[┐│┘]$", l)}
+    if len(widths) > 1:
+        bad += 1
+print(f"panels-misaligned={bad}")
+PY
 ```
 
 **AC-003**: the key table has twenty-nine bindings, and every drawn label appears in a frame.
@@ -96,7 +106,7 @@ perl -CSD -e 'local $/; $_=<>; @b = /```[^\n]*\n(.*?)```/gs; $bad=0; for $x (@b)
 ```bash
 awk '/^## 2\. THE KEY TABLE/{f=1;next} /^## 3\./{f=0} f && /^\| `/{n++} END{print n}' $D/key-map.md
 awk -F'|' '/^## 2\. THE KEY TABLE/{f=1;next} /^## 3\./{f=0} f && /^\| `/{gsub(/^ +| +$/,"",$5); gsub(/`/,"",$5); print $5}' $D/key-map.md \
-  | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l
+  | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l | tr -d ' '
 ```
 
 **AC-004**: seven glyph rows, and two ASCII selectors.
@@ -146,7 +156,7 @@ rg -c '^\*\*AC-0' $P/acceptance-criteria.md
 **AC-011**: the answered row's outcome word is carried by the requirement, the criterion and both design documents, and the glyph table names all three words.
 
 ```bash
-rg -l 'outcome word' $D/component-inventory.md $D/glyph-table.md $P/spec.md $P/acceptance-criteria.md | wc -l
+rg -l 'outcome word' $D/component-inventory.md $D/glyph-table.md $P/spec.md $P/acceptance-criteria.md | wc -l | tr -d ' '
 rg -c '^\| `answered` \|.*approved.*denied.*answered' $D/glyph-table.md
 ```
 

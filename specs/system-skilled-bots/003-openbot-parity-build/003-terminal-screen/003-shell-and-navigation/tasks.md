@@ -57,7 +57,7 @@ Every verify command runs without a tty. The frame is drawn into a ratatui `Test
 - [ ] T007 Write the tab bar - four tabs and the active mark (`$CRATE/src/view/tabs.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `chat_tab_carries_the_active_mark`, and `rg -n 'phase 010' $CRATE/src/view/tabs.rs` matches nothing, because 004 draws the chat line.
 - [ ] T008 Write the footer - the status row and the key line generated from `keys.rs`, with the inbox's `Enter open` on line 1 and the chat's line 1 holding only the tab keys (`$CRATE/src/view/footer.rs`). Verify: `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read and `rg -n 'printable' $CRATE/src/view/footer.rs` prints the status row's filter.
 - [ ] T009 Write the shell frame - the seven bands, the too-small screen and the palette panel (`$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `rg -nF 'Too small · Ctrl+D exit' $CRATE/src/view/mod.rs` prints one line.
-- [ ] T010 Write the palette's filter, its Up and Down selection, Enter and Esc, and pause the single-key shortcuts while the filter holds text (`$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/keys.rs`, `$CRATE/src/view/mod.rs`). Verify: `rg -n 'fn filter' $CRATE/src/view/mod.rs` prints one line, `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts` and `palette_up_and_down_move_the_selection`, and `cargo test --manifest-path $CRATE/Cargo.toml --lib state` names `palette_opens_and_closes`.
+- [ ] T010 Write `on_shell_action`: the `SelectTab`, `PrevTab` and `NextTab` arms, each calling `refresh`, then the palette's filter, its Up and Down selection, Enter and Esc, and pause the single-key shortcuts while the filter holds text (`$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/keys.rs`, `$CRATE/src/view/mod.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts` and `palette_up_and_down_move_the_selection`, and `cargo test --manifest-path $CRATE/Cargo.toml --lib state` names `palette_opens_and_closes` and `select_tab_switches_and_refreshes`.
 - [ ] T011 Write the key-label test and the two shell snapshots (`$CRATE/tests/render_keys.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
 <!-- /ANCHOR:phase-2 -->
 
@@ -114,9 +114,9 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T010 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/view/mod.rs`, `$CRATE/src/keys.rs` |
+| A | T010 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/view/mod.rs`, `$CRATE/src/keys.rs` |
 
-**Workers:** 1, because the lane holds `view/mod.rs`, which Wave 3's lane A wrote, and `keys.rs`, which Wave 2's lane A wrote. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0; `rg -n 'fn filter' $CRATE/src/view/mod.rs` prints one line; `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts`. **Fallback:** rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
+**Workers:** 1, because the lane holds `view/mod.rs`, which Wave 3's lane A wrote, `keys.rs`, which Wave 2's lane A wrote, and `state.rs`, which 002 wrote. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0; `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts`; `cargo test --manifest-path $CRATE/Cargo.toml --lib state` names `select_tab_switches_and_refreshes`. **Fallback:** rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
 
 ### Wave 5 - The key-label test
 

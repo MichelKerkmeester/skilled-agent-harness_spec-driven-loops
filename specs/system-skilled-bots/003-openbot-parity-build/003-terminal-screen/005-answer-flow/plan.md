@@ -80,7 +80,7 @@ A key reaches the reducer as `Msg::Key`, and `keys.rs` gives it an action. With 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `bots answer` | The one write verb, which gains `--scope once\|deny` in phase 001 | not a consumer - this child calls it and changes nothing | `node .skilled/bin/bots.cjs answer --scope deny -- <id> deny` still exits 0, and the fixture records the same argv |
+| `bots answer` | The one write verb, which gains `--scope once\|deny` in phase 001 | not a consumer - this child calls it and changes nothing | `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` verb's `--scope` option |
 | `bots inbox --json` | The read that carries `id`, `options`, `state` and `expiresAt` | not a consumer - this child reads it and changes nothing | `rg -n 'inbox' .skilled/bin/bots.cjs` shows no new option |
 | `crates/bots-tui/src/cli.rs` | The only module that spawns a process | not a consumer - 002 owns the answer call and the stderr capture | `rg -n 'Command::new' crates/bots-tui/src` prints only `cli.rs` |
 | `crates/bots-tui/src/state.rs` | The pure reducer 002 creates | update - `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered` | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` |
@@ -227,7 +227,7 @@ The fixture is the seam that keeps every test off a live state root and off a tt
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 002's `cli.rs`, `state.rs`, `keys.rs`, `app.rs`, `model.rs` and `tests/fixtures/bots` | Internal | Yellow | Nothing compiles. The child creates none of them, so its first task confirms all six exist |
-| 004's `Option<ItemId>` selection and `Remote<T>` inbox surface | Internal | Yellow | The overlay has no item to open. The fixture carries an item, so the test drives the overlay with no pane drawn |
+| 004's `PaneView<ItemId>` selection and `Remote<T>` inbox surface | Internal | Yellow | The overlay has no item to open. The fixture carries an item, so the test drives the overlay with no pane drawn |
 | Phase 001's `bots inbox --json` and `bots answer --scope once\|deny --repo <repo> -- <item-id> <text>` | Internal | Yellow | The write records `once` for every answer, so a deny reads as an allow. The argv assertion fails loudly if `--scope` is dropped |
 | ratatui 0.30 and crossterm 0.29 | External | Green | The overlay cannot draw and the keys cannot be read |
 | Rust stable toolchain | External | Green | The crate cannot build. `cargo 1.92.0` is installed on this machine |

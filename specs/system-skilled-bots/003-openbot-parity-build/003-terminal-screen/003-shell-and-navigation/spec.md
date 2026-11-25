@@ -43,7 +43,7 @@ This is **Phase 3** of the six Terminal screen children: the UX map, the archite
 **Scope Boundary**: The shell only. This phase fills the key table's shell rows, writes the theme, the frame that composes the seven bands, the header, the tab bar, the footer with its status row, the palette, the too-small screen and the shell's reducer arms. It draws no pane body, no banner and no overlay, and it writes no answer.
 
 **Dependencies**:
-- Phase 002's crate, `state.rs`, `app.rs`, `cli.rs`, `model.rs` and `tests/fixtures/bots`, which this phase reads and extends but does not replace. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:234]
+- Phase 002's crate, `state.rs`, `app.rs`, `cli.rs`, `model.rs` and `tests/fixtures/bots`, which this phase reads and extends but does not replace. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:281]
 - Phase 002's `ui` verb, which reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so the binary this phase writes reads no environment variable. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/decision-record.md:48]
 - `bots status --json`, which the header reads for the bot count and the stale flag. It exists today and phase 004 adds `lastRun.branch` and `lastRun.worktreePath`, which the header ignores. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:126]
 - Phase 001's `design/` folder, which holds the mockups, the key map and the glyph table this phase implements. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:25]
@@ -125,7 +125,7 @@ The first two blocks are the measured gap: the crate does not exist yet, so no k
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files. REQ-004 and REQ-010 are inherited from the phase parent and keep their ids and their substance, so a citation from another phase still resolves: REQ-010 follows the parent's amended wording, and REQ-004 gains one clause naming 004 as the drawer of the chat line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:176]
+REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files. REQ-004 and REQ-010 are inherited from the phase parent and keep their ids and their substance, so a citation from another phase still resolves: REQ-010 follows the parent's amended wording, and REQ-004 gains one clause naming 004 as the drawer of the chat line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:205]
 
 ### P0 - Blockers (MUST complete)
 
@@ -135,10 +135,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-010 | Every bound key is drawn on screen in the frame that binds it. The footer names `Alt+1..4`, `[` `]`, `Ctrl+P` and `Ctrl+D`. The inbox footer names `Enter open`. The decision overlay names `t`, `n`, `y` and `Esc` and the choice overlay names `1-9`, `n` and `Esc`, each drawing `n deny` before any approve key. |
 | REQ-012 | `keys.rs` holds one table of context, key, action and label rows, and both the footer and the palette read that table rather than a second list, so a key cannot be bound without a label. The contexts are the key map's six, verbatim: `main`, `inbox`, `list`, `overlay`, `palette` and `too-small`. This phase fills `main`, `inbox`, `palette` and `too-small`, 004 fills `list` and 005 fills `overlay`. |
 | REQ-013 | The header draws the bot count from `bots status --json`, which is the rows whose `kind` is `bot`, the index age from `updatedAt`, or from `builtAt` when `updatedAt` is absent, and the stale flag with its age. It draws three states: `ok`, `stale` and `error`, and the error state keeps the last good count rather than blanking the row. `stale_label` in `view/header.rs` is the one age formatter, so 004's panes call it rather than keeping a second copy. |
-| REQ-014 | The status row draws the first stderr line of the last failed CLI call and is blank when no call has failed. A later success clears it. |
-| REQ-015 | Ctrl+P and `?` open the palette, which lists every binding in the table with its label, moves its selection with Up and Down, drawn as `↑↓ select`, filters as the operator types, drawn as `type to filter`, runs the selected action on Enter and closes on Esc. Single-key shortcuts pause while the filter holds text, so typing a word never fires a binding. Enter runs the selected row only when the row is bound in the context the palette was opened from, and a row bound elsewhere does nothing. Esc and Ctrl+C return to that context. |
+| REQ-014 | The status row draws the first stderr line of the last failed CLI call and is blank when no call has failed. A later clean call from the same source clears it, so a clean read never wipes an answer refusal. |
+| REQ-015 | Ctrl+P and `?` open the palette, which lists the rows `keys::palette_entries` returns, those of `main`, `inbox` and `list`, one per label, moves its selection with Up and Down, drawn as `↑↓ select`, filters as the operator types, drawn as `type to filter`, runs the selected action on Enter and closes on Esc. Single-key shortcuts pause while the filter holds text, so typing a word never fires a binding. Enter runs the selected row only when the row is bound in the context the palette was opened from, and a row bound elsewhere does nothing. Esc and Ctrl+C return to that context. |
 | REQ-016 | Below 24 columns or 8 rows the frame draws `Too small · Ctrl+D exit` and nothing else, at every size down to 1x1, and never panics. The line is our own wording, and it fits whole at 23 columns, the narrowest area that draws it. |
-| REQ-017 | Ctrl+C quits when no overlay is open and produces no `Answer` effect, so it never writes. 005 gives an open overlay first refusal on the key, which leaves this table row unchanged. |
+| REQ-017 | Ctrl+C quits when neither an overlay nor the palette is open and produces no `Answer` effect, so it never writes. 005 gives an open overlay first refusal on the key, which leaves this table row unchanged. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -205,7 +205,7 @@ Two keys deviate from the reference on purpose. openhuman cycles tabs with Ctrl+
 
 ### Performance
 - **NFR-P01**: A shell frame is drawn from the state alone, with no process spawn and no file read, so a redraw costs no I/O. `rg -n 'Command::new|read_to_string|File::open' crates/bots-tui/src/view` prints nothing.
-- **NFR-P02**: The palette lists every binding in one pass over the table, so its cost is the table's length and not a second scan per row.
+- **NFR-P02**: The palette lists the rows it draws in one pass over the table, so its cost is the table's length and not a second scan per row.
 
 ### Security
 - **NFR-S01**: The binary reads no environment variable and passes none to the child it spawns. `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks; the `ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked.

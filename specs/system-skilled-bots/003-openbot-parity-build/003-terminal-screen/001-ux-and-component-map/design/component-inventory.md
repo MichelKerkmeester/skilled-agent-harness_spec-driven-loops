@@ -22,7 +22,7 @@ The frame numbers in the last column are the state index in `mockups.md` section
 
 | # | Component | Reads | Keys | States | Frames |
 |---|-----------|-------|------|--------|--------|
-| 1 | Header | `bots status --json`: the bot count, `stale`, `builtAt` | None | `ok`, `stale`, `error` | 1, 7, 17 |
+| 1 | Header | `bots status --json`: the bot count, `stale`, `updatedAt` or `builtAt` when it is absent | None | `ok`, `stale`, `error` | 1, 17 |
 | 2 | Tab bar | None | `Alt+1..4`, `[` `]` | `activity`, `inbox`, `routines`, `chat`; exactly one is active | 1, 2, 3, 4 |
 | 3 | Activity | `bots activity --json`, its `groups[]` in payload order | `Up`, `Down`, `PgUp`, `PgDn` | `loading`, `empty`, `rows`, `stale`, `error` | 1, 5, 6, 7, 8 |
 | 4 | Inbox | `bots inbox --json`, its `items[]` | `Up`, `Down`, `PgUp`, `PgDn`, `Enter` | `loading`, `empty`, `rows`, `stale`, `error`, and a row in `answered` that draws its outcome word until the next successful inbox read | 2, 9, 10, 11, 12, 27 |
@@ -49,9 +49,9 @@ Each surface is one value: the rows, when they were last read successfully, the 
 | State | What is true | What the pane draws |
 |-------|--------------|---------------------|
 | `loading` | No rows yet, a read in flight | The pane title and one line naming the verb being read |
-| `empty` | No rows, no error, no read in flight | The pane title and one line saying what would appear here |
+| `empty` | A successful read with no rows, and no error | The pane title and one line saying what would appear here |
 | `rows` | At least one row | The rows, the selection, and the detail column at 120 columns or wider |
-| `stale` | An error, and the rows from the last successful read | The rows, unchanged, `stale <n>m` in the pane's own title, and the stderr line in the status row |
+| `stale` | An error, and the rows from the last successful read | The `rows` drawing unchanged, the selection and the detail column included, with the pane title reading `<Pane> · stale <n>m` in place of its counts, and the stderr line in the status row |
 | `error` | An error, and no rows from the last successful read | The pane title and the first stderr line in the body |
 
 In the `stale` state the pane's own title carries `stale <n>m` from the failed read. The `error` state has no successful read to age, so its title carries no flag. The header carries `stale <n>m` only from `status --json`, so a pane failure never puts a flag in the header.
@@ -69,7 +69,7 @@ The inbox's rows carry one more state, `answered`, and it is a row state rather 
 | Rule | Why |
 |------|-----|
 | At most one read in flight per surface | A second request for a surface already being read is dropped, so a slow runtime cannot queue four reads of the same verb |
-| Selection is an item id, never a row index | The 5-second poll reorders rows, so a row index would move under the operator |
+| Selection is the pane's row key, never a row index | The 5-second poll reorders rows, so a row index would move under the operator |
 | Every drawn runtime string is sanitized | A control character in a bot id or a question moves the cursor and corrupts the frame |
 | A key with no binding does nothing | Never a default deny, and never a default approve |
 | Every bound key is drawn in the frame that binds it | A key the operator cannot see is a key they cannot use |

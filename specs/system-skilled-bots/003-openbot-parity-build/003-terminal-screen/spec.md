@@ -129,7 +129,7 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `crates/bots-tui/design/` | Create | 001 | Mockups per state at both sizes, the key map, the glyph table, the component inventory |
+| `crates/bots-tui/design/` | Create | 002 | A copy of 001's four design files plus `architecture.md` and `contracts.md` |
 | `crates/bots-tui/Cargo.toml` | Create | 002 | MIT manifest: binary `bots-ui` beside the library target, ratatui 0.30, crossterm 0.29, serde, serde_json, unicode-width, libc |
 | `crates/bots-tui/Cargo.lock` | Create | 002 | Pinned dependency graph, committed because the crate ships a binary |
 | `crates/bots-tui/src/lib.rs` | Create | 002 | Library root: argument parsing, the terminal guard, the loop entry, one `pub mod` line per module |
@@ -173,8 +173,8 @@ Four notes carry the detail the children share. Each is authoritative for its ow
 | Note | Owns |
 |------|------|
 | `002-architecture-and-contracts/design/architecture.md` | The shared vocabulary: types, fields, messages, phases, contexts, the thread model, the owner map and the diagrams |
-| `002-architecture-and-contracts/design/contracts.md` | The payload keys, the field tables, the refusal classes and the refresh-on-read rule |
-| `005-answer-flow/design/state-machines.md` | The overlay machine, the answer sequence and the key contexts |
+| `002-architecture-and-contracts/design/contracts.md` | The payload keys, the field tables and the refresh-on-read rule |
+| `005-answer-flow/design/state-machines.md` | The overlay machine, the answer sequence, the answer argv, the refusal classes and the key contexts |
 | `research/context-manifest.md` | The gitignored `context/` folder: what it holds, where each source came from and how to rebuild it |
 <!-- /ANCHOR:scope -->
 
@@ -262,7 +262,7 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 | 1 | `001-ux-and-component-map/` | ASCII mockups per state at 80x24 and 120x40, the key map, the glyph table and the component inventory, in a tracked `design/` folder in our own words with `file:line` pointers | None | The operator approves the key map, and every component lists its states | Draft |
 | 2 | `002-architecture-and-contracts/` | The crate, the terminal guard, the worker data layer, `cli.rs`, the fixture, the `ui` verb and the CI job | 001 | CI green on an empty frame, the cli client test passes, and both refusals are proven | Draft |
 | 3 | `003-shell-and-navigation/` | Header, tabs, footer generated from `keys.rs`, status row, palette and help, the too-small screen, the Mono palette | 002 | The key-label test passes, plus the shell buffer snapshots | Draft |
-| 4 | `004-panes/` | Activity, inbox, routines and the chat placeholder, each with loading, empty, error and stale states | 002, 003 | One buffer snapshot per pane per state, and 2,000 rows costing at most the body height | Draft |
+| 4 | `004-panes/` | Activity, inbox, routines and the chat placeholder, each with loading, empty, rows, error and stale states | 002, 003 | One buffer snapshot per pane per state, and 2,000 rows costing at most the body height | Draft |
 | 5 | `005-answer-flow/` | Banner, decision and choice overlays, free-text entry, the in-flight lock, refusal display, closed input | 002, 004 | The argv log matches exactly, and Esc and closed input write nothing | Draft |
 | 6 | `006-hardening-and-proof/` | fmt, clippy, the GPL grep, the README and validate | 003, 004, 005 | Every gate passes, including the scripted pseudo-terminal run | Draft |
 
@@ -280,9 +280,9 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 | 001-ux-and-component-map | 002-architecture-and-contracts | The key map is approved as a pre-build step, after the `ui-review-2.md` fixes land, and every component lists its states | The operator's approval is recorded in 001's `decision-record.md` before 002 starts, and `design/` names a state for every component |
 | 002-architecture-and-contracts | 003-shell-and-navigation | The crate builds, the `ui` verb resolves it, and both refusals print | `cargo build` exits 0, `cargo test --test cli_client` passes, and the two `ui` refusals exit 4 with their message |
 | 003-shell-and-navigation | 004-panes | Every bound key is drawn and the shell snapshots pass | `cargo test --test render_keys` passes and the shell buffer snapshots match |
-| 004-panes | 005-answer-flow | Each pane draws its four states and draws only the rows that fit its body | `cargo test --test panes` passes, including the 2,000-row count assertion |
-| 005-answer-flow | 006-hardening-and-proof | The argv log matches, Esc and closed input write nothing, and the scripted pseudo-terminal run answers one item | `cargo test --test answer_flow` passes and `cargo test --test pty_smoke` passes |
-| 006-hardening-and-proof | Operator acceptance | Every gate passes and the operator answers one item from the overlay by hand | `validate.sh --strict` prints `RESULT: PASSED` and the operator records the hand answer in 006's `goal.md` |
+| 004-panes | 005-answer-flow | Each pane draws its five states and draws only the rows that fit its body | `cargo test --test panes` passes, including the 2,000-row count assertion |
+| 005-answer-flow | 006-hardening-and-proof | The argv log matches, and Esc and closed input write nothing | `cargo test --test answer_flow` and `cargo test --test end_to_end` pass |
+| 006-hardening-and-proof | Operator acceptance | Every gate passes and the operator answers one item from the overlay by hand | `cargo test --test pty_smoke` prints `1 passed`, `validate.sh --strict` prints `RESULT: PASSED` and the operator records the hand answer in 006's `goal.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---

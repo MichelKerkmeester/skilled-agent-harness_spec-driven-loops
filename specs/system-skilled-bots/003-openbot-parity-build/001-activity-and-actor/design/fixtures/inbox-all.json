@@ -1,0 +1,108 @@
+{
+  "clock": "2026-11-25T21:14:04.000Z",
+  "items": [
+    {
+      "id": "20261125T211204Z-7c1e9a40",
+      "runId": "20261125T211204Z-7c1e9a40",
+      "botId": "hello",
+      "identity": "skilled-scratch/hello",
+      "question": "Ship the release?",
+      "options": null,
+      "createdAt": "2026-11-25T21:12:04.000Z",
+      "expiresAt": "2026-11-26T21:12:04.000Z",
+      "evidence": [],
+      "prompt": "Ship the release when the checks pass.",
+      "specFolder": null,
+      "answer": null,
+      "resumeRequestId": null
+    },
+    {
+      "id": "20261125T210504Z-3f9d2b11",
+      "runId": "20261125T210504Z-3f9d2b11",
+      "botId": "digest",
+      "identity": "skilled-scratch/hello",
+      "question": "Which channel?",
+      "options": ["email", "chat"],
+      "createdAt": "2026-11-25T21:05:04.000Z",
+      "expiresAt": "2026-11-26T21:05:04.000Z",
+      "evidence": [],
+      "prompt": "Send the digest.",
+      "specFolder": null,
+      "answer": { "text": "email", "answeredAt": "2026-11-25T21:06:00.000Z", "by": "ada", "scope": "once" },
+      "resumeRequestId": "rq-1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b"
+    },
+    {
+      "id": "20261125T200000Z-1a2b3c4d",
+      "runId": "20261125T200000Z-1a2b3c4d",
+      "botId": "archive",
+      "identity": "skilled-scratch/hello",
+      "question": "Delete the old runs?",
+      "options": null,
+      "createdAt": "2026-11-25T20:00:00.000Z",
+      "expiresAt": "2026-11-26T20:00:00.000Z",
+      "evidence": [],
+      "prompt": "Archive the old runs.",
+      "specFolder": null,
+      "answer": { "text": "yes", "answeredAt": "2026-11-25T20:01:00.000Z" },
+      "resumeRequestId": "rq-2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c"
+    }
+  ],
+  "expectDefault": {
+    "version": 1,
+    "items": [
+      {
+        "id": "20261125T211204Z-7c1e9a40",
+        "botId": "hello",
+        "kind": null,
+        "question": "Ship the release?",
+        "state": "open",
+        "at": "2026-11-25T21:12:04.000Z",
+        "options": null,
+        "createdAt": "2026-11-25T21:12:04.000Z",
+        "expiresAt": "2026-11-26T21:12:04.000Z",
+        "answer": null
+      }
+    ]
+  },
+  "expectAll": {
+    "version": 1,
+    "items": [
+      {
+        "id": "20261125T211204Z-7c1e9a40",
+        "botId": "hello",
+        "kind": null,
+        "question": "Ship the release?",
+        "state": "open",
+        "at": "2026-11-25T21:12:04.000Z",
+        "options": null,
+        "createdAt": "2026-11-25T21:12:04.000Z",
+        "expiresAt": "2026-11-26T21:12:04.000Z",
+        "answer": null
+      },
+      {
+        "id": "20261125T210504Z-3f9d2b11",
+        "botId": "digest",
+        "kind": null,
+        "question": "Which channel?",
+        "state": "answered",
+        "at": "2026-11-25T21:05:04.000Z",
+        "options": ["email", "chat"],
+        "createdAt": "2026-11-25T21:05:04.000Z",
+        "expiresAt": "2026-11-26T21:05:04.000Z",
+        "answer": { "text": "email", "answeredAt": "2026-11-25T21:06:00.000Z", "by": "ada", "scope": "once" }
+      },
+      {
+        "id": "20261125T200000Z-1a2b3c4d",
+        "botId": "archive",
+        "kind": null,
+        "question": "Delete the old runs?",
+        "state": "answered",
+        "at": "2026-11-25T20:00:00.000Z",
+        "options": null,
+        "createdAt": "2026-11-25T20:00:00.000Z",
+        "expiresAt": "2026-11-26T20:00:00.000Z",
+        "answer": { "text": "yes", "answeredAt": "2026-11-25T20:01:00.000Z", "by": null, "scope": "once" }
+      }
+    ]
+  }
+}

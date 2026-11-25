@@ -25,13 +25,14 @@ A claim marked **inferred** rests on a spec for code not built yet. Every other 
 
 This is the review's Draft B, adopted, with the five OPEN cases decided and four missing edges added. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/fable-review-1.md:244-306]
 
-`Typing` is a phase, not a flag on `Idle`. The inventory lists `typing` as a state and frame 19 draws it, and a flag would allow a typing and sending overlay, which no frame draws. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:32] [SOURCE: 001-ux-and-component-map/design/mockups.md:66]
+`Typing` is a phase, not a flag on `Idle`. The inventory lists `typing` as a state and frame 19 draws it, and a flag would allow a typing and sending overlay, which no frame draws. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:32] [SOURCE: 001-ux-and-component-map/design/mockups.md:65]
 
 ```mermaid
 stateDiagram-v2
   [*] --> Closed
   Closed --> Idle: Enter on an open item, the item id is captured
   Closed --> Gone: Enter on an expired item
+  Closed --> Gone: Enter on an item that carries an outcome word
   Closed --> Sending: Enter on an item whose answer is still in flight
   Closed --> Closed: Answered for an id with no overlay, outcome word or status row only
 
@@ -93,7 +94,7 @@ stateDiagram-v2
   end note
 ```
 
-Ctrl+D quits from every phase, and a closed input does the same. Both are left off the inner edges to keep the picture readable, as Draft B did, and both emit no `Answer`. [SOURCE: 001-ux-and-component-map/design/key-map.md:69] [SOURCE: 005-answer-flow/spec.md:149] [SOURCE: 005-answer-flow/spec.md:152]
+Ctrl+D quits from every phase, and a closed input does the same. Both are left off the inner edges to keep the picture readable, as Draft B did, and both emit no `Answer`. [SOURCE: 001-ux-and-component-map/design/key-map.md:70] [SOURCE: 005-answer-flow/spec.md:149] [SOURCE: 005-answer-flow/spec.md:152]
 
 ### 1.1 The OPEN cases, decided
 
@@ -114,7 +115,7 @@ Ctrl+D quits from every phase, and a closed input does the same. Both are left o
 | The `t` edges carry the guard "no options only" | The key map binds `t` only on an item with no options, so `t` from `Refused` on a choice item does nothing. [SOURCE: 001-ux-and-component-map/design/key-map.md:59] |
 | The gone test is "id absent, or listed in a state other than `open`" | `bots inbox --json` lists expired items, so absence alone never catches an item that expires while the overlay is open. [SOURCE: .skilled/bin/bots.cjs:465] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] |
 
-Esc in text mode closes the whole overlay. It does not step back to shortcut mode. [SOURCE: 001-ux-and-component-map/design/key-map.md:97]
+Esc in text mode closes the whole overlay. It does not step back to shortcut mode. [SOURCE: 001-ux-and-component-map/design/key-map.md:98]
 
 ### 1.3 The test this machine gives
 
@@ -124,7 +125,7 @@ One table with a row per phase and key, giving the expected next phase and the e
 
 ## 2. THE KEY-CONTEXT STATE MACHINE
 
-The six contexts are the key map's, verbatim. `list` is not a peer of the others. It is the part of `main` or `inbox` where a pane has rows, so it is drawn as a sub-state inside each. That is how the key map's "a context is exclusive" applies: at any moment the screen is in exactly one of `main`, `inbox`, `overlay`, `palette` or `too-small`, and `list` keys are live only inside `main` or `inbox` when rows exist. [SOURCE: 001-ux-and-component-map/design/key-map.md:23-34]
+The six contexts are the key map's, verbatim. `list` is not a peer of the others. It is the part of `main` or `inbox` where a pane has rows, so it is drawn as a sub-state inside each. That is how the key map's "a context is exclusive" applies: at any moment the screen is in exactly one of `main`, `inbox`, `overlay`, `palette` or `too-small`, and `list` keys are live on the Activity, Routines and Inbox tabs, with rows or without, and move nothing on an empty list. [SOURCE: 001-ux-and-component-map/design/key-map.md:23-34]
 
 ```mermaid
 stateDiagram-v2
@@ -188,7 +189,7 @@ What the picture fixes, beyond the key table:
 
 - Alt+1, Alt+3, Alt+4 and the bracket pair also move between Activity, Routines and Chat inside `main`. That stays in `main` and is not drawn as an edge. [SOURCE: 001-ux-and-component-map/design/key-map.md:42-47]
 - `palette` and `too-small` remember the context they left, so Esc and a resize return there. An `overlay` left for `too-small` keeps its phase, its buffer and any answer in flight, and an `Answered` result that lands in `too-small` is reduced as usual and drawn on return. **Judgment**: the key map says nothing about a resize under an open overlay, and losing a typed line to a window drag would be a defect.
-- `palette` Enter runs the selected row's action as its key would in the context the palette was opened from. A row bound in another context, such as an overlay row, is listed and does nothing, like an unbound key. [SOURCE: 003-shell-and-navigation/spec.md:138] [SOURCE: 001-ux-and-component-map/design/component-inventory.md:72]
+- `palette` Enter runs the selected row's action as its key would in the context the palette was opened from. The palette lists the rows of `main`, `inbox` and `list`, one per label, so an overlay row is never listed. A listed row bound in another context, such as `Enter open` when the palette was opened from `main`, does nothing, like an unbound key. [SOURCE: 003-shell-and-navigation/spec.md:138] [SOURCE: 001-ux-and-component-map/design/component-inventory.md:74]
 - In `palette`, the question mark and every letter are filter text, so single-key shortcuts pause while the filter holds text. [SOURCE: 003-shell-and-navigation/spec.md:138]
 - `too-small` binds Ctrl+D only. [SOURCE: 001-ux-and-component-map/design/key-map.md:30]
 
@@ -196,14 +197,14 @@ What the picture fixes, beyond the key table:
 
 ## 3. THE ANSWER-FLOW SEQUENCE
 
-Six lanes: the operator, the input thread, the loop thread, the worker thread, the runtime process and the state root. The worker is one thread that runs one child at a time and sends every result over one channel. [SOURCE: 002-architecture-and-contracts/spec.md:190] The sequence opens with a refresh already in flight when the key lands, which is the OPEN 1 case.
+Six lanes: the operator, the input thread, the UI thread, the worker thread, the runtime process and the state root. The worker is one thread that runs one child at a time and sends every result over one channel. [SOURCE: 002-architecture-and-contracts/spec.md:190] The sequence opens with a refresh already in flight when the key lands, which is the OPEN 1 case.
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor Op as Operator
   participant In as input thread, event.rs
-  participant Lp as loop thread, app.rs keys.rs state.rs
+  participant Lp as UI thread, app.rs keys.rs state.rs
   participant Wk as worker thread, data.rs cli.rs
   participant Bt as node bots.cjs
   participant Rt as state root
@@ -280,7 +281,7 @@ Why each part is there:
 
 ### 4.2 What `bots answer` can return
 
-Every refusal of the answer verb prints `bots: <reason>` or `bots: <reason>: <detail>` and exits 4. There is no `answer refused:` prefix. [SOURCE: .skilled/bin/bots.cjs:208-214] [SOURCE: .skilled/bin/bots.cjs:292-297] A usage error prints `bots: <message>` and then the usage text, so the first-line rule gives the message alone. [SOURCE: .skilled/bin/bots.cjs:94-98] `cli.rs` reads the reason token on the worker and returns one of three classes, `done`, `gone` or `refused`, with the first stderr line, so the loop never parses a message. A reason it does not know is `refused`.
+Every refusal of the answer verb prints `bots: <reason>` or `bots: <reason>: <detail>` and exits 4. There is no `answer refused:` prefix. [SOURCE: .skilled/bin/bots.cjs:208-214] [SOURCE: .skilled/bin/bots.cjs:292-297] A usage error prints `bots: <message>` and then the usage text, so the first-line rule gives the message alone. [SOURCE: .skilled/bin/bots.cjs:94-98] `cli.rs` reads the reason token on the worker and returns it as `AnswerError.refusal` with the first stderr line, so the loop never parses a message. `overlay_on_answered` classes `item-unknown`, `item-expired` and `item-answered-differently` as gone and every other refusal, an unknown one included, as refused.
 
 | Exit | First line, or class | Source | Evidence | Retryable | Overlay phase and what it draws |
 |------|----------------------|--------|----------|-----------|--------------------------------|
@@ -300,7 +301,7 @@ Every refusal of the answer verb prints `bots: <reason>` or `bots: <reason>: <de
 | 2 | `bots: grant-scope-unsupported`, `bots: --scope takes once or deny` | a scope the screen never sends | Inferred [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:156] | No | `Refused`, frame 21. Reaching it is a screen defect |
 | 2 | `bots: answer needs the answer text`, `bots: unexpected argument: <token>` | a malformed argv | Confirmed [SOURCE: .skilled/bin/bots.cjs:160-162] | No | `Refused`, frame 21. Reaching it is a screen defect |
 | 1 | `bots: <error message>` | an uncaught throw: the atomic state write, the exclusive temp write, an unsafe path segment or the runtime loader | Confirmed [SOURCE: .skilled/bin/bots.cjs:542-545] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:133] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:171] [SOURCE: .skilled/bin/bots.cjs:184] | Yes. The answer is idempotent for the same text | `Refused`, frame 21 |
-| none | screen line `bots-ui: answer timed out and was stopped, it may have been recorded` | the worker killed the child at the child timeout | Screen-side rule | Yes. The same key returns exit 0 `duplicate` if the write landed. Another key gets `item-answered-differently` and goes to `Gone` | `Refused`, frame 21, unless the latest rows say gone |
+| none | screen line `bots-ui: answer timed out after 30s, it may have landed` | the worker killed the child at the child timeout | Screen-side rule | Yes. The same key returns exit 0 `duplicate` if the write landed. Another key gets `item-answered-differently` and goes to `Gone` | `Refused`, frame 21, unless the latest rows say gone |
 | none | screen line `bots-ui: could not start <program>: <os error>` | the spawn failed | Screen-side rule | Yes, once the program is found | `Refused`, frame 21 |
 | 3, 5 or any other | the first stderr line, or `bots-ui: answer exited <code>` when stderr is empty | not produced by the answer verb today | Confirmed absent [SOURCE: .skilled/bin/bots.cjs:292-302] | No | `Refused`, frame 21 |
 
@@ -322,17 +323,19 @@ Every refusal, gone-class or not, puts its first line in the status row through 
 | OPEN 5: a refused typed line is kept | `answer-secret` is fixed by editing, not retyping. |
 | The gone test is "absent, or not `open`" | The inbox lists expired items, so absence alone misses an expiry. |
 | `pending_answers` outside the overlay | Esc then Enter on the same item would otherwise write twice. |
-| `cli.rs` classifies the reason token on the worker | The loop stays free of message parsing, which the plan's Data Flow promises. |
+| `cli.rs` extracts the reason token on the worker, and the reducer classes it | The loop stays free of message parsing, which the plan's Data Flow promises. |
 | argv `answer --scope <s> --repo <repo> -- <item-id> <text>` | The parser stops reading options only at `--`, and the write must name the checkout the reads name. |
 | The typed line is sent as typed | The runtime stores what it is given, and the trim only decides whether to send. |
 | Exit 0 issues no extra read, and the outcome word clears on the next tick's successful inbox read | An immediate read would drop the item at once and the word would only flash (default A7). |
-| Screen-side lines start `bots-ui:` | The operator must tell a line the screen wrote from one the runtime wrote. |
+| A line that wraps the runtime's own stderr starts `bots: <verb> --json exited <code>:`, and every other line the screen writes starts `bots-ui:` | The operator must tell a line the screen wrote from one the runtime wrote, and frames 8, 12 and 16 draw the wrapped form |
 | `palette` and `too-small` return to the context they left, and `overlay` keeps its phase through `too-small` | A window resize must not lose a typed answer or an answer in flight. |
 | `palette` Enter runs a row only in the context it was opened from | A listed overlay row would otherwise answer with no overlay open. |
 
 ---
 
 ## 6. EDITS THE OTHER DOCS NEED
+
+The edits inside this phase were applied in commit cf6bb92a5ce. Line numbers are the pre-edit lines and are kept as a record.
 
 Parallel writers may shift line numbers, so each row gives the line as read on 2026-11-25 and the exact text to find. Text to find and replacement text sit in double-backtick spans, so a single backtick inside a span is part of the text. A row that says "replace" swaps only the quoted text, and the rest of the line stays.
 
@@ -415,7 +418,7 @@ Each new row's Verification cell follows AC-013's form: the `--test answer_flow`
 | `mockups.md` 1662 | Frame 21 at 120x40: replace the line with `` │ status   bots: answer-not-approver                                                               │ `` after ten leading spaces, 110 characters, the border column unmoved |
 | `mockups.md` 1673 | Frame 21 at 120x40: replace the line with `` bots: answer-not-approver `` |
 
-Frame 21 today draws `bots: answer refused: item-answered-differently` in the refused state. The runtime prints no such prefix, and that reason now goes to gone, so the frame would assert a string no build produces in a phase it cannot reach. `bots: answer-not-approver` is the refusal SC-005 already names. [SOURCE: 001-ux-and-component-map/design/mockups.md:1625] [SOURCE: 005-answer-flow/spec.md:178]
+Before this edit frame 21 drew `bots: answer refused: item-answered-differently` in the refused state. The runtime prints no such prefix, and that reason now goes to gone, so the frame would assert a string no build produces in a phase it cannot reach. `bots: answer-not-approver` is the refusal SC-005 already names. [SOURCE: 001-ux-and-component-map/design/mockups.md:1626] [SOURCE: 005-answer-flow/spec.md:178]
 
 ### 6.6 Parent, 002 and 003
 

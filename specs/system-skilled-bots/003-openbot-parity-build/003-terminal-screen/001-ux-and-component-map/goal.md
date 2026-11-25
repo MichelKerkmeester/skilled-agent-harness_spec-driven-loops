@@ -60,8 +60,8 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `ls specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design | wc -l` prints 4, and the AC-001 block in `acceptance-criteria.md` prints `0` for unresolved pointers.
-- [ ] The AC-002 block in `acceptance-criteria.md` prints `frames=53 bad=0`.
+- [ ] `ls specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design | wc -l | tr -d ' '` prints 4, and the AC-001 block in `acceptance-criteria.md` prints `0` for unresolved pointers.
+- [ ] The AC-002 block in `acceptance-criteria.md` prints `frames=53 bad=0` then `panels-misaligned=0`.
 - [ ] The AC-003 block prints `29` then `0`, and the AC-004 block prints `7` then `2`.
 - [ ] The AC-005 block prints `13` then `13`, the AC-008 block prints `4`, and the AC-011 block prints `4` then `1`, so the answered row's outcome word is carried by the requirement, the criterion and both design documents.
 - [ ] The AC-006 block prints nothing and exits 1, and the AC-009 block prints `5`.

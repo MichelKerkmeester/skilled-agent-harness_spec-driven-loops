@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts"
-    last_updated_at: "2026-11-25T21:58:29Z"
-    last_updated_by: "review-fix-pass-2"
-    recent_action: "Applied the second review findings that edit this child"
+    last_updated_at: "2026-11-25T23:44:25Z"
+    last_updated_by: "review-fix-pass-3"
+    recent_action: "Applied the third review findings that edit this child"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -90,6 +90,7 @@ and findings belong here.
 | CI job added | Pending | `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` exits 1 with no match |
 | Second review applied | Done | `research/ui-review-2.md` N-P1-10 and the 002 items of N-P2-22 are applied: the workflow check names the job and the two path entries rather than counting a string, the parent decisions read `Q002 to Q009`, and the `--mono` proof is the vitest case rather than a binary that prints nothing |
 | Integration wave applied | Done | The rulings of the terminal screen integration wave are applied: a successful answer issues no read and the outcome word waits for the next poll, `routines --json` is an object with a `routines` array, the fixture takes its log and its scenario as leading arguments, the design folder carries six files, and the verb refuses a binary whose contract number differs |
+| Third review applied | Done | `research/ui-review-3.md`'s P0-3, P0-4, P0-5, P0-8, P1-1 to P1-4, P1-7, P1-10, P1-11 and the P2 items that edit this child are applied. The footer gains `NotSending` and the contract number gains a value and a Rust owner. Quit never waits for an answer child, the fixture's scenario names are fixed, and the `ui` verb's exit passthrough is proven by the vitest cases rather than by `/bin/true` |
 
 ### Deviations and findings
 
@@ -106,4 +107,7 @@ and findings belong here.
 | The workflow check carries `-e` | `research/ui-review-2.md` N-P1-10's second command is `rg -c "- 'crates/bots-tui/**'"`, and ripgrep reads the leading `-` as a flag, so it exits 2 with `rg: unrecognized flag -` and prints nothing. The check is applied as `rg -c -e "- 'crates/bots-tui/**'"`, which prints 2 against a workflow carrying the entry under both the `pull_request` and the `push` trigger. |
 | The answer issues no read | A successful answer issues no read of its own, so the row keeps its outcome word and the answered item stays drawn until the next 5-second poll's successful inbox read. `State.answered` carries the inbox generation each mark was set at, so a read issued before the answer cannot clear it. |
 | The verb checks the contract number | `bots-ui --version` prints the crate version and the contract number `design/contracts.md` fixes, and `bots ui` refuses a binary whose number differs, so a build from before a payload change cannot draw a stale contract. |
+| The `--scope` check names its precondition | `research/ui-review-3.md` P2-9 replaces a verify that answered a live item with `rg -n "scope" .skilled/bin/bots.cjs`. That command prints nothing today, because `--scope` lands in packet phase 001, so the cell says it prints the option once phase 001 lands and prints nothing before it. |
+| AC-008 joins the command blocks | `research/ui-review-3.md` P2-22 names 002's AC-003 and AC-009. AC-008 carried the same `\|` pipes in its Verification cell, so it moved into a block beside them and every one of its six `jq` checks was run against the four payload files. |
+| Two review sentences were split | P0-3's footer sentence and P1-11's mitigation each carried a serial comma, which this packet's prose rules forbid. Each was split into two sentences with the same content. |
 <!-- /ANCHOR:log -->

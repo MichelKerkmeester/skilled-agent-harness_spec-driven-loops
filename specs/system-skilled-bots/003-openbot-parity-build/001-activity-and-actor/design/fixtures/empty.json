@@ -1,0 +1,9 @@
+{
+  "activityJson": { "version": 1, "groups": [] },
+  "activityText": "bots: no activity",
+  "inboxJson": { "version": 1, "items": [] },
+  "inboxJsonAll": { "version": 1, "items": [] },
+  "inboxText": "bots: no open or expired needs-you items",
+  "inboxTextAll": "bots: no needs-you items",
+  "exit": 0
+}

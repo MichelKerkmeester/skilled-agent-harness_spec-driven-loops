@@ -43,7 +43,7 @@ This is **Phase 1** of the Terminal screen children: UX, architecture, shell, pa
 **Scope Boundary**: The four design documents and nothing else. No Rust, no crate, no CLI verb, no test. The frames, the keys, the glyphs and the component states are fixed here, and phases 002 to 006 build against them.
 
 **Dependencies**:
-- The parent's operator decisions Q002 to Q009, which fix the six children, the free-text answer, the fallback tab keys, the three new glyphs, the refusal of `insta`, the screenshot set, the grant drawn only when the item carries it, and the `NO_COLOR` route. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:195-202]
+- The parent's operator decisions Q002 to Q009, which fix the six children, the free-text answer, the fallback tab keys, the three new glyphs, the refusal of `insta`, the screenshot set, the grant drawn only when the item carries it, and the `NO_COLOR` route. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:224-231]
 - Phase 001's `bots activity --json` and `bots inbox --json` shapes, which the activity and inbox frames draw. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152]
 - Phase 002's `bots routines --json` shape, which the routines frame draws. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173]
 - `bots status --json`, which exists today and which the header frame draws. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114]
@@ -61,7 +61,7 @@ This is **Phase 1** of the Terminal screen children: UX, architecture, shell, pa
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The screen has no agreed shape. The pre-expansion phase 003 named four tabs, an approval overlay and six status markers in prose, and left the layout, the key contexts and the component states to whoever wrote the Rust. Three of its own requirements then collided: `1` both picked option 1 and approved once, `?` marked scheduled, recurring and unknown alike, and the banner named `Ctrl+P` for the inbox when `Ctrl+P` opens the palette. A build started from that prose would invent the answers, and each invention would be a decision nobody recorded. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:214-221]
+The screen has no agreed shape. The pre-expansion phase 003 named four tabs, an approval overlay and six status markers in prose, and left the layout, the key contexts and the component states to whoever wrote the Rust. Three of its own requirements then collided: `1` both picked option 1 and approved once, `?` marked scheduled, recurring and unknown alike, and the banner named `Ctrl+P` for the inbox when `Ctrl+P` opens the palette. A build started from that prose would invent the answers, and each invention would be a decision nobody recorded. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:243-250]
 
 ### Purpose
 One approved map of every frame, key, glyph and component state, so the build draws cells rather than deciding layout.
@@ -178,7 +178,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-003**: `rg -n '^\| \*\*Approved\*\* \|' design/key-map.md` prints one row, and it reads `Met` once the operator answers.
 - **SC-004**: `rg -c '^\| [0-9]+ \| ' design/component-inventory.md` prints 13.
 - **SC-005**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`.
-- **SC-006**: `rg -l 'outcome word' design/component-inventory.md design/glyph-table.md spec.md acceptance-criteria.md | wc -l` prints 4, so the answered row is carried by the requirement, the criterion and both design documents.
+- **SC-006**: `rg -l 'outcome word' design/component-inventory.md design/glyph-table.md spec.md acceptance-criteria.md | wc -l | tr -d ' '` prints 4, so the answered row is carried by the requirement, the criterion and both design documents.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -195,7 +195,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | The key map is approved and then amended silently | Medium | The approval names the key set it covers, so an added key is visibly a new approval rather than a quiet edit |
 | Risk | The design folder is authored here and shipped in the crate | Low | The parent's open question puts the shipped copy at `crates/bots-tui/design/`; 002 copies these four documents there when it creates the crate, and the handoff criteria name that step |
 
-**Where the approval is recorded.** The parent's phase handoff says the operator's approval is recorded in this child's `decision-record.md`, and this packet carries one. The answer is recorded in `design/key-map.md` section 6, restated as `acceptance-criteria.md` AC-007, and added as a row in `decision-record.md` when it is given, so the handoff's wording holds without a deviation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:251]
+**Where the approval is recorded.** The parent's phase handoff says the operator's approval is recorded in this child's `decision-record.md`, and this packet carries one. The answer is recorded in `design/key-map.md` section 6, restated as `acceptance-criteria.md` AC-007, and added as a row in `decision-record.md` when it is given, so the handoff's wording holds without a deviation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:280]
 <!-- /ANCHOR:risks -->
 
 ---

@@ -34,11 +34,11 @@ contextType: "implementation"
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
-Every Verification cell is a command that runs without a tty. `$CRATE` is `crates/bots-tui`, set once per shell.
+Every Verification cell is a command that runs without a tty, except AC-001, whose two commands sit in the block below because a pipe cannot live in a table cell and still be copyable. `$CRATE` is `crates/bots-tui`, set once per shell.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-003 | Given the panes drawing, When they read, Then every read is one `bots ... --json` call through `cli.rs` and no pane opens a state file | `rg -n 'Command::new' $CRATE/src` prints only `cli.rs`, and `rg -n 'read_to_string\|File::open\|fs::read' $CRATE/src/view/panes.rs` prints nothing | Unmet | - |
+| AC-001 | REQ-003 | Given the panes drawing, When they read, Then every read is one `bots ... --json` call through `cli.rs` and no pane opens a state file | AC-001 block prints only `cli.rs` for the first command and nothing for the second | Unmet | - |
 | AC-002 | REQ-016 | Given `bots activity --json` returns the seven groups, When the activity pane draws, Then the groups appear in payload order with their titles, and each row carries its marker, its label and its bot id | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- activity` prints `test result: ok` and names `activity_groups_draw_in_payload_order` | Unmet | - |
 | AC-003 | REQ-016 | Given rows whose states are `scheduled`, `recurring` and `some-new-state`, When they draw, Then they carry `○`, `↻` and `?`, and the unknown one carries its raw value beside it | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- markers` prints `test result: ok` and names `scheduled_recurring_and_unknown_carry_their_own_glyph` | Unmet | - |
 | AC-004 | REQ-017 | Given `bots inbox --json` returns one open and one expired item, When the inbox pane draws, Then both appear, the open one with `!` in the gutter and the word `open`, the expired one dimmed, with no glyph and no answer key | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `expired_item_draws_dimmed_without_answer_key` | Unmet | - |
@@ -55,6 +55,16 @@ Every Verification cell is a command that runs without a tty. `$CRATE` is `crate
 | AC-015 | REQ-026 | Given the activity tab is active, When the frame draws, Then the pane footer names Up, Down, PgUp and PgDn and no Enter. On the inbox tab it also names Enter. On the routines tab it names Up, Down, PgUp and PgDn. On the chat tab it names no list key, and no pane footer names an answer key | `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`, and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, which iterates the table and asserts each `list` row's label appears in the frame drawn for its context | Unmet | - |
 | AC-016 | REQ-020 | Given each pane and each of its states, When the frame draws at 80x24 and at 120x40, Then one buffer snapshot per pane per state matches its frame cell for cell, sixteen per size | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, each loaded from `design/mockups.md` through 002's `tests/common/frames.rs` | Unmet | - |
 | AC-017 | REQ-003 | Given the packet, When the validator runs, Then it passes | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes --strict` prints `RESULT: PASSED` | Unmet | - |
+| AC-018 | REQ-017 | Given an inbox item whose id has a mark in `state.answered`, When the inbox pane draws, Then the row carries a blank gutter and its outcome word in the state column, dimmed, the title's open count leaves it out and the detail column draws the same word as its `state` | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `answered_row_draws_its_outcome_word` | Unmet | - |
+
+### The commands
+
+**AC-001**: the panes read through `cli.rs` and open no state file.
+
+```bash
+rg -n 'Command::new' $CRATE/src
+rg -n 'read_to_string|File::open|fs::read' $CRATE/src/view/panes.rs
+```
 
 ### Status values
 

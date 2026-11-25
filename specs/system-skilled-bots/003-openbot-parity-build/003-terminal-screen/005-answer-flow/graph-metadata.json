@@ -190,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Key Alt",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The screen can draw an inbox item but cannot answer one",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-25T22:44:55.215Z",
+    "last_save_at": "2026-11-25T23:42:43.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5229684059dc715c9142b3658826d6f67f9147859f0e069a22019fa51c7c45a6",
+    "source_fingerprint": "sha256:4ef445c3a044ec7a0be6480ab6ad45e5649d8c157da0cc1029d5f51e9acf4c07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c4aec7d1c0b1bedab24cd1a91495608081673b8da82fcf07af07a8cb7fa93220",
-      "plan.md": "eb2bf970d3bf47df937036f8c50e451485fbae3ffac99a32fb3b92a6428e8324",
-      "tasks.md": "3ea7ad9086e376ac021b96bad8dac521af83a3e8ab33bad780121f89e20c461d",
+      "spec.md": "86ec23740f60e87f29c6f3ad0cdb0f887f700214059e7e7091f1e4602fd81a23",
+      "plan.md": "8a4590eca6e65074ec77c6959edcf9f49f551f980defc4cd78be883001f3c82d",
+      "tasks.md": "7f3f216194d1c2709968a156d8276b252ef3ae234d8200b79e0a9939579ea920",
       "implementation-summary.md": "07b130c275a52df47f1e2197bffa7d47c2824f5acd12726984e448500f47311c"
     },
     "last_active_at": null

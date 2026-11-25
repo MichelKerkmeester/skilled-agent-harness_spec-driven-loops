@@ -41,7 +41,7 @@ The phase is deliberately the smallest in the parent. Its value is not code it w
 - [ ] `ls crates/bots-tui/Cargo.toml` prints the path, so the crate `002` lands exists.
 - [ ] `ls crates/bots-tui/src/keys.rs crates/bots-tui/src/theme.rs` prints both, so the files the key, glyph and sanitize checks read exist, and `test ! -e crates/bots-tui/src/sanitize.rs` exits 0, so the crate holds one filter rather than two.
 - [ ] `ls crates/bots-tui/tests/fixtures/bots` prints the path, so every suite has its payload source.
-- [ ] `ls crates/bots-tui/design` prints `component-inventory.md`, `glyph-table.md`, `key-map.md` and `mockups.md`, so the pointer check has a folder to read rather than an absent path that reads as a pass.
+- [ ] `ls crates/bots-tui/design` prints `architecture.md`, `component-inventory.md`, `contracts.md`, `glyph-table.md`, `key-map.md` and `mockups.md`, so the pointer check has a folder to read rather than an absent path that reads as a pass.
 - [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, so `002`'s job is in place to read.
 
 ### Definition of Done
@@ -202,7 +202,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 |------|-------|-------------------------|------------|
 | A | T001, T002, T003, T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none; four read-only probes |
 
-**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands; `cargo fmt --version` and `cargo clippy --version` each print a version; `ls crates/bots-tui/src` prints the twelve module entries; `rg -c '^\| .*\| (002\|003\|004\|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
+**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands; `cargo fmt --version` and `cargo clippy --version` each print a version; `ls crates/bots-tui/src` prints the twelve module entries; `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
 
 #### Wave 2 - Gate repair
 
@@ -228,7 +228,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 |------|-------|-------------------------|------------|
 | Orchestrator | T012, T013, T014, T015, T016, T017, T018, T019, T020, T021 | none; the orchestrator runs them itself | none |
 
-**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0; `cargo clippy --all-targets -- -D warnings` exits 0; `cargo test` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`; `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing; `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path; `ls crates/bots-tui/design` prints the four documents and the design-pointer loop prints nothing; the eight Defect Audit rows each print their expected output; `cargo test --test pty_smoke` prints `1 passed`; `validate.sh --strict` on this child prints `RESULT: PASSED`.
+**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0; `cargo clippy --all-targets -- -D warnings` exits 0; `cargo test` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`; `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing; `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path; `ls crates/bots-tui/design` prints the six documents and the design-pointer loop prints nothing; the eight Defect Audit rows each print their expected output; `cargo test --test pty_smoke` prints `1 passed`; `validate.sh --strict` on this child prints `RESULT: PASSED`.
 
 ### What every dispatch carries
 

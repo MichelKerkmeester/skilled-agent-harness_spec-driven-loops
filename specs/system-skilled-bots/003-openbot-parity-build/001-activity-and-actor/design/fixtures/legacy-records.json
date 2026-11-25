@@ -1,0 +1,17 @@
+{
+  "answerBefore001": { "text": "yes", "answeredAt": "2026-11-25T20:01:00.000Z" },
+  "answerBefore001ReadsAs": { "text": "yes", "answeredAt": "2026-11-25T20:01:00.000Z", "by": null, "scope": "once" },
+  "resendSameTextNoScope": "duplicate",
+  "resendSameTextScopeDeny": "item-answered-differently",
+  "recordBefore001": "specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/run-record.additions.json with actor and answeredBy removed",
+  "recordBefore001ReadsAs": { "actor": null, "answeredBy": null },
+  "summaryBefore001": { "runId": "20261125T210204Z-0b6e5f72", "botId": "hello", "exitReason": "converged", "exitClass": null, "refusalCause": null },
+  "summaryBefore001RowActor": null,
+  "leaseSideBefore001": { "ownerPid": "the test process pid", "acquireNonce": "5b7d9f1a", "seed": { "identity": "skilled-scratch/hello", "botId": "nightly-report", "runId": "20261125T211340Z-a4b8c2d0", "dispatchedAt": "2026-11-25T21:13:40.000Z" } },
+  "leaseSideBefore001RowActor": null,
+  "installBefore001": { "operator": "absent", "fullAccess": "absent" },
+  "installBefore001ReadsAs": { "operator": null, "fullAccess": false },
+  "indexBefore001": "an index built by today's rebuildIndex, so meta has schemaVersion 2 and builtAt and no updatedAt",
+  "indexBefore001StatusReads": { "version": 1, "updatedAt": null },
+  "indexBefore001AfterOneRefresh": "updatedAt is the refresh clock and builtAt is unchanged"
+}

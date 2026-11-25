@@ -36,7 +36,7 @@ pub enum ActivityKey {              // the activity selection key, built from on
 }
 ```
 
-`botId` alone cannot key an activity row, because frame 1 draws `hello`, `digest` and `nightly-report` each in two groups. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:92-105] The scheduled row in the sample payload carries `runId: null`, which is why the key has a second shape. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/payloads/activity.json:47-55]
+`botId` alone cannot key an activity row, because frame 1 draws `hello`, `digest` and `nightly-report` in two or three groups each. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:93-107] The scheduled row in the sample payload carries `runId: null`, which is why the key has a second shape. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/payloads/activity.json:47-55]
 
 ### 1.2 Tab and Surface (`state.rs`)
 
@@ -92,7 +92,7 @@ pub struct PaneView<K> {
 | Routines | `routines_view` | `BotId` | the routine's `botId` |
 | Chat | none | none | Chat draws one line and selects nothing |
 
-A display line is one drawn list line: a group heading and an activity row are one line each, and a routine is three lines plus a blank. The reducer moves `scroll` so the selected row's first display line sits inside `[scroll, scroll + page_rows())`. A non-empty list always has a selection, because the key map draws `No row selected.` only for an empty list. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:105]
+A display line is one drawn list line: a group heading and an activity row are one line each, and a routine is three lines plus a blank. The reducer moves `scroll` so the selected row's first display line sits inside `[scroll, scroll + page_rows())`. A non-empty list always has a selection, because the key map draws `No row selected.` only for an empty list. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:106]
 
 ### 1.5 The overlay and the palette (`state.rs`)
 
@@ -120,7 +120,7 @@ pub struct Palette {
 }
 ```
 
-`item` is needed because frame 22 draws the question of an item the inbox no longer lists. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1686-1701] `Typing` is a phase of its own because the inventory and the key map both give the overlay a typing state. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:32] The `grant present` state is not a phase: it is `Idle` drawn with `item.grants` set.
+`item` is needed because frame 22 draws the question of an item the inbox no longer lists. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1687-1703] `Typing` is a phase of its own because the inventory and the key map both give the overlay a typing state. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:32] The `grant present` state is not a phase: it is `Idle` drawn with `item.grants` set.
 
 The palette lives in `State.palette` and only there. Its entries are not stored: `keys::palette_entries()` lists them from the table each time, so the index in `selected` is stable while the filter is unchanged. The palette's arms are `on_shell_action`, owned by 003, and its drawing is in `view/mod.rs`, also 003's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md:250]
 
@@ -149,7 +149,7 @@ pub struct State {
 pub struct Size { pub cols: u16, pub rows: u16 }          // a terminal size in cells
 pub struct StatusLine { pub source: Source, pub text: String }   // one status row message and the call it came from
 pub enum Source { Read(Surface), Answer, Shell }          // which call wrote the line. Shell is the loop's own message
-pub enum Outcome { Approved, Denied, Answered }           // the word drawn on an answered row: `approved`, `denied`, `answered`
+pub enum Outcome { Approved, Denied, Answered }           // the word drawn on an answered row: `y` gives `approved`, `n` gives `denied`, a digit or a typed line gives `answered`
 pub struct AnsweredRow { pub id: ItemId, pub outcome: Outcome, pub inbox_generation: u64 }   // one mark, and the inbox generation it was set at
 ```
 
@@ -157,7 +157,7 @@ The shell reads `active_tab`, `status`, `last_error` and `now`, the four fields 
 
 `last_error` follows one rule: a failed call, or a call that exits 0 and writes stderr, sets the line with its own source. A later call from the same source that exits 0 with empty stderr clears the line, and only when the line still carries that source. A clean read of the activity surface therefore never wipes a refusal from `bots answer`.
 
-A successful answer issues no read of its own. The row keeps its outcome word and the answered item stays drawn until the next 5-second poll's successful inbox read, because an immediate read would drop the item at once and the word would only flash. `inbox_generation` is the inbox surface's generation when the mark was set, so a read issued before the answer cannot clear it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:253]
+A successful answer issues no read of its own. The row keeps its outcome word and the answered item stays drawn until the next 5-second poll's successful inbox read, because an immediate read would drop the item at once and the word would only flash. `inbox_generation` is the inbox surface's generation when the mark was set, so a read issued before the answer cannot clear it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:253] An inbox read that lands after `Answered` and carries the mark's own generation keeps the answered item in `inbox.rows` until the next poll's read.
 
 Four derived helpers sit beside the struct, owned by 002, so the reducer and the view do the same size arithmetic without the reducer importing the view.
 
@@ -215,7 +215,7 @@ pub enum Key { Char(char), Alt(char), Ctrl(char), Enter, Esc, Backspace, Up, Dow
 
 pub enum KeyMatch { Exact(Key), Digit, Printable }   // what a row matches: one key, the digits 1 to 9, or any printable character
 
-pub enum When { InboxTab, NoOptions, Options, NotTyping, Typing, NotGone }   // one condition a row needs beyond its context
+pub enum When { InboxTab, NoOptions, Options, NotTyping, Typing, NotGone, NotSending }   // one condition a row needs beyond its context
 
 pub enum FooterLine { One, Two }                     // the footer line the label lands on
 
@@ -241,7 +241,7 @@ pub enum Action {
     PaletteUp,         // Up in the palette
     PaletteDown,       // Down in the palette
     PaletteType(char), // a printable key in the palette
-    PaletteDelete,     // Backspace in the palette, a row the key map still has to add
+    PaletteDelete,     // Backspace in the palette
     PaletteRun,        // Enter in the palette
     Close,             // Esc and Ctrl+C in an overlay or the palette
     EnterText,         // t in an overlay with no options
@@ -255,13 +255,13 @@ pub enum Action {
 }
 ```
 
-Every row of the key map has its action here, so 003, 004 and 005 add rows and arms and never a variant. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:40-69] `PaletteDelete` is the one action with no key-map row yet, listed under the edits at the end.
+Every row of the key map has its action here, so 003, 004 and 005 add rows and arms and never a variant. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:40-70]
 
 The table is three `const` slices, one per owner: `SHELL_ROWS` (003: `main`, `inbox`, `palette`, `too-small`), `LIST_ROWS` (004) and `OVERLAY_ROWS` (005). `rows() -> impl Iterator<Item = &'static Row>` chains the three in that order, and every reader goes through it. 002 writes `rows`, `resolve`, `palette_entries` and the three slices empty. 003, 004 and 005 fill their slice.
 
 `resolve(stack: &[Context], key: &Key, cond: &Cond) -> Option<Action>` walks the context stack and returns the first row whose context, key and every `When` match. Three actions carry a payload the row cannot know: for a `Digit` row the row holds `Pick(0)` and `resolve` returns `Pick` with the pressed digit, and for a `Printable` row the row holds `PaletteType(' ')` or `TypeChar(' ')` and `resolve` returns it with the pressed character. `palette_entries() -> Vec<&'static Row>` returns the rows of `main`, `inbox` and `list`, one per distinct label.
 
-`Cond` is a plain struct of the facts a `When` reads: `inbox_tab: bool`, `has_options: bool`, `typing: bool`, `gone: bool`. `state.rs` builds it. The footer draws a context's rows whose conditions hold, so `y approve once` carries `[NoOptions, NotTyping, NotGone]` and frame 22, the `Gone` phase, draws only `Esc close` and the line 2 keys. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1705-1706]
+`Cond` is a plain struct of the facts a `When` reads: `inbox_tab: bool`, `has_options: bool`, `typing: bool`, `gone: bool`, `sending: bool`. `state.rs` builds it. The footer draws a context's rows whose conditions hold, so `t type` and `y approve once` carry `[NoOptions, NotTyping, NotGone, NotSending]`, `n deny` carries `[NotTyping, NotGone, NotSending]` and `1-9 pick` carries `[Options, NotGone, NotSending]`. Frames 20 and 22 draw only `Esc close` and the line 2 keys. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1706-1707]
 
 ### 1.10 The model types (`model.rs`)
 
@@ -289,8 +289,10 @@ Times arrive as ISO 8601 UTC text. `model::parse_utc(&str) -> Option<EpochMs>` p
 ```rust
 // lib.rs
 pub fn run(args: Args) -> i32        // the production entry: install the guard, build the real seams, call app::run, return its code
+// with --version, run prints `bots-ui <crate version> contract <CONTRACT>` to stdout and returns 0 before the guard is installed
 
-pub struct Args { pub repo: PathBuf, pub skilled_tree: PathBuf, pub mono: bool, pub ascii: bool }   // parsed from argv by lib.rs
+pub struct Args { pub repo: PathBuf, pub skilled_tree: PathBuf, pub mono: bool, pub ascii: bool, pub version: bool }   // parsed from argv by lib.rs
+pub const CONTRACT: u32 = 1           // the payload contract major this binary reads, contracts.md section 8
 pub struct Options { pub mono: bool, pub ascii: bool }   // what the view needs from Args
 
 // app.rs
@@ -350,7 +352,7 @@ The end-to-end test does not use the event source. It calls `App::handle(Msg::Re
 | `clamp_scroll` | 004 | Moves each `scroll` so its selected row stays visible within `page_rows()` |
 | `on_overlay_action` | 005 | `OpenItem`, `EnterText`, `Deny`, `ApproveOnce`, `Pick`, `TypeChar`, `DeleteChar`, `SendText`, and `Close` while an overlay is open |
 | `reconcile_overlay` | 005 | After an inbox read: moves an open overlay to `Gone` when its `item_id` is no longer listed, unless the phase is `Sending` |
-| `overlay_on_answered` | 005 | Moves a `Sending` overlay for that id to closed on success, to `Gone` on a refusal `contracts.md` classes as gone, else to `Refused` |
+| `overlay_on_answered` | 005 | Moves a `Sending` overlay for that id to closed on success, to `Gone` on a refusal `005-answer-flow/design/state-machines.md` section 4.2 classes as gone, or on any other refusal or a timeout when the latest inbox rows no longer list the item open, else to `Refused` |
 | `InputClosed`, `Terminate`, `ThreadLost` arms | 002 | Return `Effect::Quit` with 0, 128 plus the signal, and 1 |
 
 The rules 005 must hold in its arms, fixed here because they shape the state:
@@ -358,7 +360,7 @@ The rules 005 must hold in its arms, fixed here because they shape the state:
 - An answer key sets `Sending` and returns the `Answer` effect in the same call, and pushes the id onto `pending_answers`. Any answer key while `Sending` returns nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/plan.md:73]
 - `SendText` on a line that is empty after trimming returns nothing and stays in `Typing`.
 - `Close` while `Sending` closes the overlay and the answer still completes. Its result reaches the status row through `last_error`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md:154]
-- `OpenItem` on an expired item opens in `Gone`. On an item in `pending_answers` it opens in `Sending`.
+- `OpenItem` on an expired item, or on an item with a mark in `answered`, opens in `Gone`. On an item in `pending_answers` it opens in `Sending`.
 - From `Refused`, `t` returns to `Typing` with `buffer` kept, and `n`, `y` or a digit act as in `Idle`.
 - An `AnswerError` whose kind is `Timeout` moves to `Refused`, never to closed, because the write may have landed. The latest inbox rows decide whether the item is still open, and no read is issued to find out.
 
@@ -386,7 +388,7 @@ The event source owns the tick. `TerminalEvents` sends `Resize` with the startin
 
 The reducer owns the 5-second cadence. `on_tick` compares `now` with `next_poll_at` and calls `refresh` when it is due. The first Tick is due, because `next_poll_at` starts at 0, so the first refresh fires as soon as the screen opens. A tab switch calls `refresh` too, which moves `next_poll_at` 5 seconds on. An answer result does not: a successful answer issues no read, and the row keeps its outcome word until the next poll's successful inbox read. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:204]
 
-The Tick is once a second rather than once every 5 seconds so the header's index age moves in whole seconds, the one cell the frames say changes on a quiet screen. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:2005]
+The Tick is once a second rather than once every 5 seconds so the header's index age moves in whole seconds, the one cell the frames say changes on a quiet screen. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:2082]
 
 ### 2.3 The worker rules
 
@@ -407,11 +409,11 @@ The worker runs one job at a time and sends each reply before it starts the next
 `Effect::Quit` reaches `app.rs`, which:
 
 1. Sets the shared `shutting_down` flag the worker reads, and drops the job sender.
-2. When `pending_answers` is not empty, writes `bots-ui: waiting for the answer in flight` into `last_error` with `Source::Shell` and draws one frame.
-3. Joins the worker. The worker kills a running read at once, drops every queued read, and lets a running or queued answer finish within its own timeout, because a write killed halfway may leave the item in a state the operator did not choose.
+2. Draws nothing more. An answer child already running is not waited for.
+3. Joins the worker. The worker kills a running read and drops every queued read. It starts a queued answer if one waits and returns without waiting for any answer child, because `bots answer` writes the item before it prints and the write completes after the screen exits. `cli.rs` starts the answer child in its own process group, so a hangup sent to the screen does not reach it.
 4. Returns the code. The guard's `Drop` then restores the terminal, and the input thread ends with the process.
 
-So Ctrl+D, Ctrl+C, a closed input and a signal all wait for an answer already sent, for at most 30 seconds, and never write a new one. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:193]
+So Ctrl+D, Ctrl+C, a closed input and a signal never wait for an answer and never write a new one. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:193]
 
 ### 2.6 Signals and panics
 
@@ -448,7 +450,7 @@ The `ui` verb passes the code through unchanged. [SOURCE: specs/system-skilled-b
 | `src/model.rs` | 002: every payload type complete, `options` and `grants` included, `parse_utc` | none |
 | `src/app.rs` | 002: `run`, `App`, effect hand-off, the drain-then-draw loop, shutdown and the exit code | none |
 | `src/state.rs` | 002: every type in section 1, `update`, `on_tick`, `refresh`, `on_resize`, `on_fetched`, `on_answered`, `on_key`, `context_stack`, `apply`, the quit arms, the size helpers, and empty stubs for the five functions below | 003: `on_shell_action`. 004: `on_list_action`, `reconcile_selection`, `clamp_scroll`. 005: `on_overlay_action`, `reconcile_overlay`, `overlay_on_answered`. Each child's unit tests sit in its own `#[cfg(test)]` module named after its function |
-| `src/keys.rs` | 002: every type in section 1.9, `resolve`, `palette_entries`, `ROWS`, and the three slices empty | 003: `SHELL_ROWS`. 004: `LIST_ROWS`. 005: `OVERLAY_ROWS` |
+| `src/keys.rs` | 002: every type in section 1.9, `resolve`, `palette_entries`, `rows`, and the three slices empty | 003: `SHELL_ROWS`. 004: `LIST_ROWS`. 005: `OVERLAY_ROWS` |
 | `src/theme.rs` | 002: a stub holding `Theme::new(opts: &Options) -> Theme` and nothing drawn | 003: the whole body, the System and Mono palettes, the glyph table, `marker`, `printable` |
 | `src/view/mod.rs` | 002: a stub `draw(frame, state, opts)` that draws the empty frame | 003: the band layout, the too-small screen, the palette panel, the `header`, `tabs` and `footer` module lines. 004: the `panes` module line and the body-slot call. 005: the `banner` and `overlay` module lines, the banner-slot call and the overlay call |
 | `src/view/header.rs`, `tabs.rs`, `footer.rs` | 003 | none. 004 calls `stale_label` from `header.rs` |
@@ -633,7 +635,7 @@ overlay panel, 80x24: rows 4-20, cols 2-79         overlay panel, 120x40: rows 1
 palette panel, 80x24: rows 8-15, cols 2-79         palette panel, 120x40: rows 16-23, cols 11-110
 ```
 
-The overlay rows and columns are read from frames 18 and 22 at both sizes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1382-1398] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1723-1739] The palette rows are read from frame 25 at both sizes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1918-1925] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1955-1962] While an overlay or the palette is open, the banner row draws blank and the footer draws the overlay's or the palette's own two lines, as every overlay and palette frame shows. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1399-1402]
+The overlay rows and columns are read from frames 18 and 22 at both sizes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1383-1399] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1724-1740] The palette rows are read from frame 25 at both sizes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1919-1926] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1956-1963] While an overlay or the palette is open, the banner row draws blank and the footer draws the overlay's or the palette's own two lines, as every overlay and palette frame shows. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:1400-1403]
 
 **Every size from the floor up** follows one rule set, so no size between 24x8 and 80x24 is undefined.
 
@@ -644,11 +646,11 @@ The overlay rows and columns are read from frames 18 and 22 at both sizes. [SOUR
 | Page step | `body - 2`, and at least 1 |
 | Detail column | Only at 120 columns or wider: the list takes `cols - 48`, a `│` rule, then 47 columns of detail |
 | Overlay panel | `min(cols - 2, 100)` wide and `min(17, body)` tall, centred in the body. When the body is shorter than 17 rows the panel keeps its border, its first line and its status line, and clips the lines between |
-| Palette panel | The overlay's width, centred in the body, clipped the same way |
+| Palette panel | The overlay's width, 8 rows tall, centred in the body, clipped the same way |
 | Footer | Each line draws whole labels left to right and stops before the first label that does not fit, never drawing part of one. `Ctrl+P/? commands` leads line 2 and is 17 columns, so it fits at the 24-column floor and the palette, which lists every binding, stays reachable |
 | Below the floor | Below 24 columns or 8 rows only `Too small · Ctrl+D exit` on row 1, cut to the width |
 
-The widest pane footer line is the inbox's, 67 columns, so every bound key is in the footer itself at 67 columns or wider. Between 24 and 66 columns the right-hand labels drop and the palette carries them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:73]
+The widest pane footer line is the inbox's, 67 columns, so every bound key is in the footer itself at 67 columns or wider. Between 24 and 66 columns the right-hand labels drop and the palette carries them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:74]
 
 ---
 
@@ -672,7 +674,7 @@ Each of these is a choice the other documents did not fix.
 | One worker, answer first, 10 s read and 30 s answer timeouts | One serial worker makes the sending race impossible, and a timeout stops one hung child freezing every read |
 | `cli.rs` drains stdout and stderr on scoped reader threads | A payload larger than the pipe would block the child and trip the timeout |
 | A timed-out answer goes to `Refused`, then the latest inbox rows decide | The write may have landed, so it is not a refusal and not a success, and a read issued to find out would race the write |
-| Quit waits for an answer already sent, up to its timeout | A write killed halfway could leave the item in a state nobody chose |
+| Quit never waits for an answer child and never kills one | `bots answer` writes the item before it prints, so the write completes after the screen exits, and a kill could cut it |
 | `SIGINT` joins `SIGTERM` and `SIGHUP` | Raw mode makes Ctrl+C a key, so an outside `SIGINT` would otherwise leave the terminal raw |
 | Every panic is fatal, through drop guards that send `ThreadLost` | The panic hook restores the terminal, so drawing on afterwards would write into the shell |
 | Exit code 128 plus the signal number | The shell convention, passed through by the `ui` verb |
@@ -697,6 +699,8 @@ Each of these is a choice the other documents did not fix.
 ---
 
 ## 6. EDITS THE OTHER DOCS NEED
+
+The edits inside this phase were applied in commit cf6bb92a5ce. Line numbers are the pre-edit lines and are kept as a record.
 
 Each row names the file, the line as read on 2026-11-25, and the replacement. Paths are relative to `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/`.
 
@@ -794,7 +798,7 @@ Each row names the file, the line as read on 2026-11-25, and the replacement. Pa
 | `001-ux-and-component-map/design/component-inventory.md:87` | `` 78 wide and 17 tall, centred in the body \| 100 wide and 17 tall, centred in the body. Both clip to the body when it is shorter `` |
 | `001-ux-and-component-map/design/component-inventory.md:100` | `` The refresh timer \| The event source sends a Tick each second and the reducer's `next_poll_at` issues the reads. It draws nothing `` |
 | `001-ux-and-component-map/design/mockups.md:78` | Replace `the smallest frame that holds its message whole` with `a size below the 8-row floor. The message is 23 columns, so it fits whole at 23 columns` |
-| `001-ux-and-component-map/design/mockups.md:93` | Frame 1 at 80x24 draws no `›` on the selected row, while the 120x40 detail column shows `hello` selected. Draw `›` on that row as frame 2 does at `mockups.md:168` |
-| `001-ux-and-component-map/design/mockups.md:128-129` | Frame 1 at 120x40 lost the `✓ hello` done row and the `Stopped` heading. Restore them to match the 80x24 frame at `mockups.md:98-101` |
+| `001-ux-and-component-map/design/mockups.md:93` | Frame 1 at 80x24 draws no `›` on the selected row, while the 120x40 detail column shows `hello` selected. Draw `›` on that row as frame 2 does at `mockups.md:169` |
+| `001-ux-and-component-map/design/mockups.md:128-129` | Frame 1 at 120x40 lost the `✓ hello` done row and the `Stopped` heading. Restore them to match the 80x24 frame at `mockups.md:100-103` |
 | `001-ux-and-component-map/design/mockups.md:2007` | Replace `The 30x7 frame is the smallest one that holds it whole.` with `It fits whole from 23 columns up.` |
 | `001-ux-and-component-map/design/mockups.md:1933` | Frame 25's footer line 1, and its 120x40 twin, once the key-map row lands: `↑↓ select · type to filter · Bksp delete · Enter select · Esc close` |

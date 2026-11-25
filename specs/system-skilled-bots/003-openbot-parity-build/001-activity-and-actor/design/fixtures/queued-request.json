@@ -1,0 +1,34 @@
+{
+  "clock": "2026-11-25T21:14:04.000Z",
+  "timeZone": "UTC",
+  "request": {
+    "schemaVersion": 1,
+    "id": "rq-e225d56b5421006eb6e2cb4e07b9edab",
+    "kind": "run",
+    "workflowId": "hello",
+    "prompt": "Check the release notes.",
+    "source": "hook",
+    "origin": "post-commit",
+    "enqueuedAt": "2026-11-25T21:13:58.000Z",
+    "target": { "identity": "skilled-scratch/hello", "path": "/Users/ada/code/hello" },
+    "firedSlot": null,
+    "idempotencyKey": "post-commit-1",
+    "delivery": null,
+    "attempts": 0
+  },
+  "folder": "requests/inbox",
+  "expectRow": {
+    "group": "scheduled",
+    "row": {
+      "botId": "hello",
+      "identity": "skilled-scratch/hello",
+      "state": "scheduled",
+      "at": "2026-11-25T21:13:58.000Z",
+      "actor": null,
+      "runId": null,
+      "schedule": null
+    },
+    "position": "before every future fire in the group, because its at is the earliest"
+  },
+  "alsoClaimed": "the same file under requests/claimed gives no row"
+}

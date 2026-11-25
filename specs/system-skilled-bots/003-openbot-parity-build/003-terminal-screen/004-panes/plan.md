@@ -84,7 +84,7 @@ This child fixes the selection defect the parent records and consumes the saniti
 
 Required inventories:
 - Same-class producers: `rg -n 'clip\(' crates/bots-tui/src` names the one clip helper, and `test ! -e crates/bots-tui/src/sanitize.rs` proves the crate holds one sanitizer rather than a second copy in this child.
-- Consumers of changed symbols: `rg -n 'stale_label|marker\(|keys::TABLE' crates/bots-tui/src crates/bots-tui/tests` names every reader of the two symbols this child consumes and every reader of the table it adds rows to.
+- Consumers of changed symbols: `rg -n 'stale_label|marker\(|keys::rows\(\)' crates/bots-tui/src crates/bots-tui/tests` names every reader of the two symbols this child consumes and every reader of the table it adds rows to.
 - Matrix axes: four panes by their five states by two sizes. Activity, inbox and routines each draw loading, empty, rows, stale and error, and the chat placeholder draws one state. That is sixteen snapshots per size and thirty-two in all, one per state the inventory lists.
 - Algorithm invariant: for the sanitizer, no byte below `0x20` except `\n`, no `0x7f`, no code point in `U+0080..U+009F` and no lone surrogate reaches a cell, and the visible width of a clipped string never exceeds the rect it is drawn into.
 <!-- /ANCHOR:affected-surfaces -->

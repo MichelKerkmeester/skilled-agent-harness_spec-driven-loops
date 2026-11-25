@@ -83,14 +83,14 @@ It prints `frames=53 bad=0`. It counts characters rather than bytes, which is wh
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T024 Check every frame's height and width (`$D/mockups.md`). Verify: the frame check in Task Notation prints `frames=53 bad=0`.
+- [ ] T024 Check every frame's height and width (`$D/mockups.md`). Verify: the frame check in Task Notation prints `frames=53 bad=0`, and the AC-002 block's border check prints `panels-misaligned=0`.
 - [ ] T025 Check every `SOURCE` pointer resolves (`$D/`). Verify: the second command of the AC-001 block in `acceptance-criteria.md` prints 0. When `specs/system-skilled-bots/context` is absent it also writes one `SKIP context-absent` line per skipped pointer to stderr.
 - [ ] T026 Check no openhuman source line is reproduced (`$D/`). Verify: `rg -c 'GNU GENERAL PUBLIC LICENSE' $D/` prints nothing and exits 1.
 - [ ] T027 Check every component names at least one frame (`$D/component-inventory.md`). Verify: `awk '/^## 1\. THE INVENTORY/,/^## 2\./' $D/component-inventory.md | rg -c '^\| [0-9]+ \|.*\| [0-9]+(, [0-9]+)* \|$'` prints 13.
-- [ ] T028 Check every drawn label in the key map appears in a frame (`$D/key-map.md`). Verify: `awk -F'|' '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg '^\| `' | awk -F'|' '{gsub(/^ +| +$/,"",$5); gsub(/`/,"",$5); print $5}' | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l` prints 0.
+- [ ] T028 Check every drawn label in the key map appears in a frame (`$D/key-map.md`). Verify: `awk -F'|' '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg '^\| `' | awk -F'|' '{gsub(/^ +| +$/,"",$5); gsub(/`/,"",$5); print $5}' | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l | tr -d ' '` prints 0.
 - [ ] T029 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
 - [ ] T030 Record the approval row with its four fields (`$D/key-map.md`). Verify: `rg -c '^\| \*\*Approved\*\* \|' $D/key-map.md` prints 1.
-- [ ] T031 Check the answered row's outcome word is carried (`$P/spec.md`, `$P/acceptance-criteria.md`, `$D/component-inventory.md`, `$D/glyph-table.md`). Verify: `rg -l 'outcome word' $P/spec.md $P/acceptance-criteria.md $D/component-inventory.md $D/glyph-table.md | wc -l` prints 4.
+- [ ] T031 Check the answered row's outcome word is carried (`$P/spec.md`, `$P/acceptance-criteria.md`, `$D/component-inventory.md`, `$D/glyph-table.md`). Verify: `rg -l 'outcome word' $P/spec.md $P/acceptance-criteria.md $D/component-inventory.md $D/glyph-table.md | wc -l | tr -d ' '` prints 4.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -107,7 +107,7 @@ A wave is a set of tasks that can run at once. Parallelism follows file overlap 
 | 3 | T010 to T018 | `design/key-map.md`, `design/glyph-table.md`, `design/component-inventory.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | T010 prints 29, T013 prints 7 then 3, T016 prints 13 | vibe, opencode, devin, codex |
 | 4 | T019 | `spec.md` | `cli-opencode` | `opencode-go/deepseek-v4.1-flash#max` | `#max` | 1 | T019 prints 11 | vibe, pi, devin, codex |
 | 5 | T020 to T023 | `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high`, `max` for `goal.md` | 4 | T023 exits 0 and T021 prints 6 | vibe, opencode, devin, codex |
-| 6 | T024 to T031 | None: read-only | `cli-codex` | `gpt-6-luna` | `xhigh` on the `fast` tier | 1 | T024 prints `frames=53 bad=0`, T025 prints 0, T028 prints 0, T029 prints `RESULT: PASSED`, T031 prints 4 | vibe, pi, opencode, devin |
+| 6 | T024 to T031 | None: read-only | `cli-codex` | `gpt-6-luna` | `xhigh` on the `fast` tier | 1 | T024 prints `frames=53 bad=0` then `panels-misaligned=0`, T025 prints 0, T028 prints 0, T029 prints `RESULT: PASSED`, T031 prints 4 | vibe, pi, opencode, devin |
 
 ### Wave 1: Setup
 
@@ -246,7 +246,7 @@ This packet writes no code, so these checks read the documents instead.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` each name all four design documents. `rg -o 'design/(mockups|key-map|glyph-table|component-inventory)\.md' $P/spec.md | sort -u | wc -l` prints 4, and the same command over `plan.md` and `tasks.md` prints 4 each.
+- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` each name all four design documents. `rg -o 'design/(mockups|key-map|glyph-table|component-inventory)\.md' $P/spec.md | sort -u | wc -l | tr -d ' '` prints 4, and the same command over `plan.md` and `tasks.md` prints 4 each.
 - [ ] CHK-041 [P2] `goal.md` names the parent goal it is bound to. `rg -n '003-terminal-screen/goal.md' $P/goal.md` prints one line.
 <!-- /ANCHOR:docs -->
 
@@ -255,7 +255,7 @@ This packet writes no code, so these checks read the documents instead.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] The four design documents live in `design/` and nothing else does. `ls $D | wc -l` prints 4.
+- [ ] CHK-050 [P1] The four design documents live in `design/` and nothing else does. `ls $D | wc -l | tr -d ' '` prints 4.
 - [ ] CHK-051 [P1] No temporary file is left in the packet. `ls $P | rg -c 'tmp|\.bak|~$'` prints nothing and exits 1.
 <!-- /ANCHOR:file-org -->
 
