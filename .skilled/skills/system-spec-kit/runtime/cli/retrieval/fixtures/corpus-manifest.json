@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8dd29f37934f13befd76fa96b276d45227de0d124f25786f5b5129f795cc285b",
+  "corpusHash": "c3eda550a81f51bc00f93e9717670549efb691e621aa1f5d75fe77a70e9b373a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29617,
+  "includedPathCount": 29620,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28722,6 +28722,9 @@
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/implementation-summary.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/plan.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/fanout-attribution.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/research.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/resource-map.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/spec.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -29649,7 +29652,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5b53b0ea2fe4370bf1c7fb0319350e825a1b556226e77f90d290b636ce74a1a5",
+  "manifestHash": "67e4e9d03a2f523945d3af4df601b0de2fd3e049ecefc4ec998811d7fb01d82f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -42528,11 +42531,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages",
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations",
       "reason": "excluded directory"
     },
     {
       "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/lineages",
       "reason": "excluded directory"
     },
     {
