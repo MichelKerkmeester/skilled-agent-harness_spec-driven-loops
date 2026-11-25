@@ -223,8 +223,9 @@ function jsonEntryRemedy(entry, ctx, message) {
       `\n  Next: edit the match in ${source} so it names one item of ${entry.destination}, then ${status}`;
   }
   if (/^removeItems and \w+ at .* both name /.test(message)) {
-    return '\n  an item an entry set both writes and removes has no one state the file can hold' +
-      `\n  Next: drop that item from one of the two operations in ${source}, then ${status}`;
+    return '\n  an item an entry set both removes and writes, adds or anchors on has no one state the file can hold' +
+      `\n  Next: point the before anchor at an item the entry set keeps, or drop the item from one of the two ` +
+      `operations in ${source}, then ${status}`;
   }
   if (/^an item list without an identity key cannot hold objects/.test(message)) {
     return '\n  without an identityKey the engine cannot tell one object item from another' +
@@ -1671,6 +1672,9 @@ function removalMatches(arrayNode, wanted, identityKey) {
   const found = [];
   arrayNode.items.forEach((node, index) => {
     if (identityKey) {
+      // Only an object has keys to carry the identity. The live array is refused
+      // above when it holds anything else, but the pinned copy is read as found.
+      if (node.type !== 'object') return;
       const member = findMember(node, identityKey);
       if (member && isPrimitive(member.value.value) && member.value.value === wanted) found.push(index);
     } else if (node.type !== 'object' && node.type !== 'array' && node.value === wanted) {
@@ -1781,7 +1785,8 @@ function applyEdits(text, edits) {
  * Refuse an entry set in which one operation adds or writes into an item and a
  * `removeItems` removes it. Run in order, the pair would add the item and take
  * it out again on every apply, so no order of the two says what the file should
- * hold; a `setKeyOnItem` on a removed item would find no item on the next apply.
+ * hold; a `setKeyOnItem` on a removed item would find no item on the next apply,
+ * and an insert anchored `before` a removed item would have no place to go.
  * @param {object[]} operations Operations of one entry set, in order.
  * @returns {void}
  */
@@ -1803,6 +1808,14 @@ function assertNoAddedItemRemoved(operations) {
       if (!Array.isArray(adder.path) || !Array.isArray(removal.path) || !samePath(adder.path, removal.path)) continue;
       const identityOf = (item) => (identityKey === null ? item
         : item && typeof item === 'object' ? item[identityKey] : undefined);
+      // An anchor on a removed item names a place the same apply takes away, so
+      // the insert lands at the end on one pass and the position is never held.
+      const anchor = identityKey !== null && adder.before && typeof adder.before === 'object'
+        ? adder.before[identityKey] : undefined;
+      if (anchor !== undefined && removal.items.includes(anchor)) {
+        throw new Error(`removeItems and ${adder.op} at ${pathLabel(removal.path)} both name ${describe(anchor)}; ` +
+          'one entry set cannot anchor an item before one it removes, so anchor on another item');
+      }
       const shared = removal.items.find((name) => adder.items.some((item) => identityOf(item) === name));
       if (shared === undefined) continue;
       throw new Error(`removeItems and ${adder.op} at ${pathLabel(removal.path)} both name ${describe(shared)}; ` +

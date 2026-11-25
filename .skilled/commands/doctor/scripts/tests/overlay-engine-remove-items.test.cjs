@@ -292,3 +292,43 @@ test('removeItems refuses a path that is not an array, a bad item list, keyless 
   assert.throws(() => run({ op: 'removeItems', path: ['manual_call_templates'], identityKey: 'name', items: ['a'] }, twice),
     /removeItems of "a" at manual_call_templates matches 2 items/);
 });
+
+test('a keyed removeItems judges a missing name against a pinned copy that holds a keyless item', () => {
+  // The live list is keyed, but the pin's list also held a plain string, which
+  // carries no keys and so cannot carry the name; it is passed over, not read.
+  const live = canonical(utcpDocument(['a', 'c']), '  ', '\n');
+  const pinned = '{\n  "manual_call_templates": [\n    {\n      "name": "a"\n    },\n    "b",\n    [\n      "b"\n    ]\n  ]\n}\n';
+  const warnings = [];
+  const output = engine.applyJsonOperations(live, { operations: [removeManuals(['b'])] }, {
+    canReplaceExisting: true,
+    readUpstreamText: () => pinned,
+    onWarning: (message) => warnings.push(message),
+  });
+  assert.equal(output, live);
+  assert.deepEqual(warnings, [
+    'removeItems of "b" at manual_call_templates finds no such item in the pinned copy, ' +
+      "so it removes nothing; drop it from the operation's items",
+  ]);
+});
+
+test('an insert anchored before an item the same entry set removes is refused and writes nothing', (t) => {
+  const seed = canonical(utcpDocument(MANUALS), '  ', '\n');
+  const fixture = createUtcpFixture(t, seed, [
+    { op: 'insertItems', path: ['manual_call_templates'], identityKey: 'name', before: { name: 'notion' },
+      items: [{ name: 'linear' }] },
+    removeManuals(['notion']),
+  ]);
+
+  const applied = fixture.run(['apply']);
+  assert.notEqual(applied.code, 0, applied.output);
+  assert.match(applied.output,
+    /removeItems and insertItems at manual_call_templates both name "notion"; one entry set cannot anchor an item before one it removes/);
+  assert.match(applied.output, /Next: point the before anchor at an item the entry set keeps, or drop the item from one of the two operations in /);
+  assert.equal(fixture.readLive(), seed);
+
+  // An append names the same anchor and meets the same refusal.
+  assert.throws(() => engine.applyJsonOperations(seed, { operations: [
+    { op: 'appendItems', path: ['manual_call_templates'], identityKey: 'name', before: { name: 'figma' }, items: [{ name: 'x' }] },
+    removeManuals(['figma']),
+  ] }, { canReplaceExisting: true }), /removeItems and appendItems at manual_call_templates both name "figma"/);
+});

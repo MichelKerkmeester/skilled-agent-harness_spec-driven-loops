@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.58.0
+version: 1.0.59.0
 ---
 
 # Vendored Skilled Overlays
@@ -70,7 +70,7 @@ A `json-entry` overlay writes each value at the depth of the key or item it land
 { "op": "removeItems", "path": ["manual_call_templates"], "identityKey": "name", "items": ["notion", "obsidian"] }
 ```
 
-Each item leaves with the comma that separated it, so every other line keeps its bytes. An array left with no item becomes `[]`, as `JSON.stringify` writes it. A second `apply` finds the items gone and changes nothing. A name the live array no longer holds is checked against the pinned copy: when the pin holds it, the operation already did its work, and when the pin lacks it too, `status` and a re-pin print a `NOTE`, and the apply still runs. Without a readable pin the name is not checked. The operation is refused when its path holds no array, when an entry of `items` is an object or an array, when an `identityKey` meets an item that is not an object, when two live items share a name, and when an `insertItems`, `appendItems` or `setKeyOnItem` on the same array in the same entry set names the same item, because writing and removing one item leaves the file no one state to hold.
+Each item leaves with the comma that separated it, so every other line keeps its bytes. An array left with no item becomes `[]`, as `JSON.stringify` writes it. A second `apply` finds the items gone and changes nothing. A name the live array no longer holds is checked against the pinned copy: when the pin holds it, the operation already did its work, and when the pin lacks it too, `status` and a re-pin print a `NOTE`, and the apply still runs. Without a readable pin the name is not checked. The operation is refused when its path holds no array, when an entry of `items` is an object or an array, when an `identityKey` meets an item that is not an object, when two live items share a name, and when an `insertItems`, `appendItems` or `setKeyOnItem` on the same array in the same entry set names the same item, because writing and removing one item leaves the file no one state to hold. An `insertItems` or `appendItems` whose `before` anchor names a removed item is refused for the same reason.
 
 The engine reads a version 1 state file and the next `apply` rewrites it as version 2. An engine older than version 2 refuses to read a version 2 file. A record without a valid path is refused, and the error names the record and the fix. The engine writes `sync-state.json` and `overlay-manifest.json` through a temporary file and a rename, so an interrupted run leaves the old file whole. `apply` records the state right after it writes the destinations, before any `regenerate` step runs. When a step fails, the state says so, and the next `apply` runs the steps again even when every destination is already in sync. Until then `status` prints a `REGEN` line and fails. The first `apply` after an upgrade to an engine that records `setKeyOnItem` and `insertObjectKeys` rewrites `sync-state.json` even when it prints `0 changed`, because it records the operations the entry sets still list. Commit that change with the upgrade. An older engine ignores the `keys` record and drops it on its next write, so a `setKeyOnItem` dropped after that is not taken back. It also reads the inserted object keys in `sets` as dropped sets: it deletes each one and the `insertObjectKeys` puts it back, so the file ends the same.
 
