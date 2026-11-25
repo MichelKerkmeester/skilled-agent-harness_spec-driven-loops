@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8362575f3f805d9968467251747beff7533a14aea6a1b21c0cb640a04ac2a3ed",
+  "manifestHash": "9ade1f8dc22b7874f484b12a7c09530d8cd1066f2d5e1f5bb13a7beeffc7cb9b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2085,6 +2085,9 @@
     ],
     "007 topology and build dist boundary tasks": [
       "007 topology and build dist boundary tasks"
+    ],
+    "007 v4 2 0 0 release audit research operator decisions": [
+      "007-v4-2-0-0-release-audit-research operator decisions"
     ],
     "007 vitest broad suite honesty": [
       "007-vitest-broad-suite-honesty"
@@ -135457,6 +135460,27 @@
     ],
     "v4 1 0 0 release notes": [
       "v4.1.0.0 release notes"
+    ],
+    "v4 2 0 0 changelog audit": [
+      "v4.2.0.0 changelog audit"
+    ],
+    "v4 2 0 0 missing entries drift bugs": [
+      "v4.2.0.0 missing entries drift bugs"
+    ],
+    "v4 2 0 0 release audit research": [
+      "v4 2 0 0 release audit research"
+    ],
+    "v4 2 0 0 release audit research goal": [
+      "v4 2 0 0 release audit research goal"
+    ],
+    "v4 2 0 0 release audit research implementation summary": [
+      "v4 2 0 0 release audit research implementation summary"
+    ],
+    "v4 2 0 0 release audit research plan": [
+      "v4 2 0 0 release audit research plan"
+    ],
+    "v4 2 0 0 release audit research tasks": [
+      "v4 2 0 0 release audit research tasks"
     ],
     "v4 2 0 0 release notes": [
       "v4.2.0.0 release notes"

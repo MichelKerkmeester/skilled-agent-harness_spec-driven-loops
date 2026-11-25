@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7339,
-    "ok": 20638,
+    "missing-frontmatter": 7340,
+    "ok": 20644,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29605,
+  "documentsScanned": 29612,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8362575f3f805d9968467251747beff7533a14aea6a1b21c0cb640a04ac2a3ed",
+  "manifestHash": "9ade1f8dc22b7874f484b12a7c09530d8cd1066f2d5e1f5bb13a7beeffc7cb9b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46347,
+      "ok": 46355,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -54847,6 +54847,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -68339,6 +68345,26 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch",
       "reason": "excluded directory"
     },
     {

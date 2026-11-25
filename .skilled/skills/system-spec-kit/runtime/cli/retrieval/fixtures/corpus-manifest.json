@@ -1,5 +1,5 @@
 {
-  "corpusHash": "22b4e8e858d0c1a6f09c3bb223fdf1916a0caf80da52cc1d57e9beb984745972",
+  "corpusHash": "8a5244e994efa1fc9041438ba0096ceedb37686c2781215835c0b1e41a66cec7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29605,
+  "includedPathCount": 29612,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28712,6 +28712,13 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/tasks.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/goal.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/plan.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/spec.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/spec.md",
@@ -29637,7 +29644,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8362575f3f805d9968467251747beff7533a14aea6a1b21c0cb640a04ac2a3ed",
+  "manifestHash": "9ade1f8dc22b7874f484b12a7c09530d8cd1066f2d5e1f5bb13a7beeffc7cb9b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -42501,6 +42508,26 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch",
       "reason": "excluded directory"
     },
     {
