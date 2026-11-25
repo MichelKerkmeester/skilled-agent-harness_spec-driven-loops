@@ -15,7 +15,10 @@
       "v4.2.0.0 changelog audit",
       "v4.2.0.0 missing entries drift bugs",
       "v4 2 0 0 release audit research plan",
+      "v4.2.0.0 audit fixes plan",
       "v4 2 0 0 release audit research tasks",
+      "v4 2 0 0 release audit acceptance criteria",
+      "v4.2.0.0 audit fix closure gate",
       "v4 2 0 0 release audit research goal",
       "007-v4-2-0-0-release-audit-research operator decisions",
       "v4 2 0 0 release audit research implementation summary"
@@ -31,8 +34,8 @@
       "bugs",
       "plan",
       "tasks",
-      "goal",
-      "007-v4-2-0-0-release-audit-research"
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
@@ -51,7 +55,11 @@
       ".skilled/changelog/skilled/v4.2.0.0.md",
       ".skilled/skills/sk-git/scripts/worktree-naming.sh",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      "research/deep-research-config.json"
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts"
     ],
     "entities": [
       {
@@ -70,6 +78,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -139,9 +153,33 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-config.json",
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-steps.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
         "kind": "config",
-        "path": "research/deep-research-config.json",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
         "source": "derived"
       },
       {
@@ -167,61 +205,32 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Nothing",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The v4.2.0.0 release notes at `.skilled/changelog/skilled/v4.2.0.0.md` describe a release that is not tagged yet, while work kept landing after the notes were drafted",
     "created_at": "2026-11-25T07:59:08Z",
-    "last_save_at": "2026-11-25T17:27:39.108Z",
+    "last_save_at": "2026-11-25T21:15:57.912Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:435ce35498f3328e16767575fba0973d1e4076f5790b509866835933baf4e270",
+    "source_fingerprint": "sha256:75db254d65b3dfbd0fe84ebd204878298c49fc77b61f0b42f80e84ef056afea6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbdfa09a014b47519c5f4eb1b232e62415d3fde368006554baba89d69e1e9799",
-      "plan.md": "96b1d1b8ee23a8eb8845d3a0f73b7a5e98684bcb0c891b8ec8c25602000743f9",
-      "tasks.md": "a223b37b156b35e1c642b0a93b706e9f3ebad7c47ece3855f60bbb0e9608ec23",
+      "spec.md": "d3a4ea160bb329b37b66a975854b53e8e6502aa685cc9b1e7bc7e0b891afd47d",
+      "plan.md": "cfba9a34a756cf6b68edb5f05085ee5eb56f767aed27ee15897a2c6d585eeaf3",
+      "tasks.md": "91224f7c40f5c6687b2de4192d4c5a10cea1b5a47aeaa803ab7ce0a81e3e5d68",
       "decision-record.md": "a88b4bbf8449c4dc17b930213fb1bde8998f0b54d4a12a60e56cabbb85dccd44",
-      "implementation-summary.md": "62325d0d79d3cfdc4b2a807cb13efd5d872d8fd4b4fc9d6e4f52b9cbeb814c16",
-      "research/research.md": "4e822b692f88d32867a2dd472772c4ce3316fea597a142372d9e44667f2e06a5"
+      "implementation-summary.md": "7ab4ea246b61952028d8b74419262e4b5272c696b76b85c70dc43bbaaea9554c",
+      "research/research.md": "88a97f37d8688843fb6c5b3801ba2a9a56477f169b44de70b2c429d1d130b810"
     },
     "last_active_at": null
   }

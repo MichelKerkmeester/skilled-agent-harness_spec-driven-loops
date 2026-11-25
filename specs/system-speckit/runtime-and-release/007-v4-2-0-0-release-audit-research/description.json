@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research",
   "description": "Deep research audit of the v4.2.0.0 changelog against the commits since v4.1.0.0 and the recent spec folders: missing entries, bugs and drift",
   "keywords": [
@@ -18,17 +18,18 @@
     "bugs",
     "drift"
   ],
-  "lastUpdated": "2026-11-25T17:27:39.108Z",
+  "lastUpdated": "2026-11-25T19:02:06.525Z",
   "specId": "007",
   "folderSlug": "v4-2-0-0-release-audit-research",
   "parentChain": [
     "system-speckit",
     "runtime-and-release"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "25-11-26_10-30__ran-a-two-lineage-deep-research-fan-out-codex-gpt.md",
     "25-11-26_11-48__fixed-the-two-confirmed-bugs-case-insensitive.md",
-    "25-11-26_18-27__a-second-native-ten-iteration-deep-research-run.md"
+    "25-11-26_18-27__a-second-native-ten-iteration-deep-research-run.md",
+    "25-11-26_20-02__scope-amended-to-fix-every-audit-finding-in.md"
   ]
 }

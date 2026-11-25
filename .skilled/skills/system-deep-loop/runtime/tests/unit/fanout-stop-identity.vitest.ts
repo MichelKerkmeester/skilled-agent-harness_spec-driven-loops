@@ -174,6 +174,8 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
       survivors: [],
       refused: [],
     });
+    // Nothing was refused for a missing start time, so there is no remedy to name.
+    expect(lastJson(stop.stdout).remedy).toBeUndefined();
     expect(groupAlive(lineagePid)).toBe(false);
   }, 40_000);
 
@@ -235,6 +237,7 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
       { label: 'reused', pid: reusedPid, reason: 'identity_mismatch' },
       { label: 'old', pid: oldLedgerPid, reason: 'no_recorded_identity' },
     ]);
+    expect(outcome.remedy).toContain('Stop the runner that spawned them');
     expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped')).toEqual([]);
   }, 40_000);
 
@@ -345,6 +348,32 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
     expect(pidAlive(olderPid)).toBe(true);
     expect(pidAlive(newerPid)).toBe(false);
     expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual(['slow']);
+  }, 40_000);
+
+  it('a runner stopped by a signal terminates a held child whose spawned row records no start time', async () => {
+    const fixture = makeSleepingRun('fanout-stop-identity-runner-no-start');
+    const run = startRun(fixture);
+    const runExited = new Promise<number | null>((resolvePromise) => run.on('exit', (code) => resolvePromise(code)));
+    const spawned = await waitFor(() => readLedger(fixture.baseDir).find((row) => row.event === 'spawned'));
+    const lineagePid = spawned.pid as number;
+    ownedGroups.push(lineagePid);
+    expect(spawned.process_start).toBeTruthy();
+    expect(groupAlive(lineagePid)).toBe(true);
+
+    // A row written before the runner recorded any identity, as a platform without ps leaves
+    // it. The latest row for a pid is the one a stop reads, so this one hides the start time
+    // from the runner's own stop while the child it holds is still the lineage.
+    const rowWithoutStart = { ...spawned };
+    delete rowWithoutStart.process_start;
+    writeFileSync(join(fixture.baseDir, 'orchestration-status.log'), `${JSON.stringify(rowWithoutStart)}\n`, { flag: 'a' });
+
+    run.kill('SIGTERM');
+    expect(await runExited).toBe(143);
+
+    expect(groupAlive(lineagePid)).toBe(false);
+    const ledger = readLedger(fixture.baseDir);
+    expect(ledger.filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual(['slow']);
+    expect(ledger.find((row) => row.event === 'run_stopped')?.survivors).toEqual([]);
   }, 40_000);
 
   it('a runner stopped by a signal leaves a lineage that outlives the signal open, and names it a survivor', async () => {

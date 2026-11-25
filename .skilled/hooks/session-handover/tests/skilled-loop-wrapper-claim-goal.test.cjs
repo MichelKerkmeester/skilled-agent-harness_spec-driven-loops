@@ -937,7 +937,8 @@ test('a Pi hop leaves out a packet that lives only in a linked worktree', (t) =>
   assert.equal(records[1].env.hasGoalPacket, false);
   const lines = warningLines(result);
   assert.equal(lines.length, 1);
-  assert.ok(lines[0].includes(`only in the linked worktree ${worktree}`), lines[0]);
+  assert.ok(lines[0].includes(`its packet lives in the linked worktree ${worktree}`), lines[0]);
+  assert.ok(lines[0].includes(`Start the receiver inside ${worktree}`), lines[0]);
 });
 
 test('a seeded Pi first launch leaves out a packet that lives only in a linked worktree', (t) => {

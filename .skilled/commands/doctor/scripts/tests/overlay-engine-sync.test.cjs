@@ -630,6 +630,29 @@ test('a misused command line prints the usage and exits 2', (t) => {
   }
 });
 
+// A caller that passes --json parses stdout, so the two refusals that happen
+// before any tree is read have to arrive there as JSON too.
+test('status --json reports a refused command line and a missing root as JSON', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-json-refusal-');
+  const missing = path.join(fixture.workspace, 'no-such-tree');
+
+  const badRoot = runEngine(['status', '--json', '--root', missing], fixture.workspace);
+  assert.equal(badRoot.code, 2, badRoot.output);
+  assert.deepEqual(JSON.parse(badRoot.stdout), { result: 'ERROR', error: 'root is not a directory: ' + missing });
+
+  const badFlag = runEngine(['status', '--json', '--bogus'], fixture.workspace);
+  assert.equal(badFlag.code, 2, badFlag.output);
+  const refused = JSON.parse(badFlag.stdout);
+  assert.equal(refused.result, 'ERROR');
+  assert.equal(refused.error, 'invalid arguments');
+  assert.match(refused.usage, /^usage: node overlay-engine\.cjs status/);
+
+  // Without --json the same refusal stays the plain text a human reads.
+  const plain = runEngine(['status', '--root', missing], fixture.workspace);
+  assert.equal(plain.code, 2, plain.output);
+  assert.equal(plain.stdout, 'root is not a directory: ' + missing + '\n');
+});
+
 test('a json-entry set adds a key the document does not hold yet, and still refuses a missing parent', (t) => {
   const fixture = createFixture(t);
   const routerPath = path.join(fixture.tree, 'router.json');

@@ -46,7 +46,7 @@ const FINALIZE_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 hours
 /** Limit spec-folder detection to the transcript tail where recent messages live. */
 const DEFAULT_SPEC_FOLDER_TAIL_BYTES = 50 * 1024;
 const SPEC_FOLDER_TAIL_BYTES_ENV = 'SPECKIT_STOP_HOOK_SPEC_TAIL_BYTES';
-const SPEC_FOLDER_PATH_RE = /(?:\.opencode\/)?specs\/[^\s"'`]+/g;
+const SPEC_FOLDER_PATH_RE = /(?:\.opencode\/)?specs\/[^\s"'`\\]+/g;
 const SPEC_FOLDER_PREFIXES = ['.opencode/specs/', 'specs/'] as const;
 const SPEC_FOLDER_CANONICAL_PREFIX = 'specs/';
 const SPEC_FOLDER_SEGMENT_RE = /^\d{2,3}(?:--|-)[\w-]+$/;
@@ -141,7 +141,7 @@ export interface AutoRecordResult {
   status: 'recorded' | 'skipped' | 'failed';
   count: number;
   folder?: string;
-  reason?: 'child_session' | 'disabled' | 'nothing_pending' | 'no_transcript' | 'not_one_packet' | 'no_spec';
+  reason?: 'child_session' | 'disabled' | 'nothing_pending' | 'no_transcript' | 'not_one_packet' | 'no_spec' | 'save_in_progress' | 'consumed_not_recorded';
   detail?: string;
 }
 
@@ -174,6 +174,11 @@ export async function autoRecordDecisions(
     return { status: 'skipped', count: 0, reason: 'disabled' };
   }
 
+  // Writing the rows and marking their keys consumed are separate steps. Once the
+  // rows are on disk the answers are durable, so a failed append must not report
+  // them as skipped: the next Stop reuses the same keys and adds no duplicate row.
+  let recorded: { count: number; folder: string } | null = null;
+
   try {
     const corePath = join(projectDir, '.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
     const core = (await import(pathToFileURL(corePath).href)) as {
@@ -203,24 +208,80 @@ export async function autoRecordDecisions(
       return { status: 'skipped', count: 0, folder, reason: 'no_spec' };
     }
 
-    const writer = await import('../../lib/continuity/decision-record-writer.js');
-    const entries = pending.map((record) => ({
-      sourceKey: record.key as string,
-      decided: `Recorded automatically: ${record.answer as string}`,
-      carriedBy: 'Not linked to a requirement yet.',
-      question: record.question as string,
-      options: Array.isArray(record.options) ? record.options.map((option) => String(option)) : [],
-      answer: record.answer as string,
-    }));
-    const result = writer.writeDecisionRecord(absoluteFolder, entries);
-    writer.recordConsumedKeys(projectDir, folder, result.ids, new Date().toISOString());
-    hookLog('info', 'session-stop', `Recorded ${entries.length} queued answer(s) in ${folder}/decision-record.md`);
-    return { status: 'recorded', count: entries.length, folder };
+    // The record is rebuilt from disk and renamed into place, so a save running at
+    // the same time would drop one of the two writes. The save path takes this same
+    // lock; while a save holds it the answers stay queued for that save to offer.
+    const lockModulePath = join(
+      projectDir, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist', 'continuity', 'generate-context.js',
+    );
+    const lockModule = (await import(pathToFileURL(lockModulePath).href)) as {
+      acquireCanonicalSaveLock: (specFolderPath: string) => string | null;
+      releaseCanonicalSaveLock: (lockPath: string | null) => void;
+    };
+    let lock: string | null;
+    try {
+      lock = lockModule.acquireCanonicalSaveLock(absoluteFolder);
+    } catch {
+      return { status: 'skipped', count: 0, folder, reason: 'save_in_progress' };
+    }
+
+    try {
+      const writer = await import('../../lib/continuity/decision-record-writer.js');
+      const entries = pending.map((record) => ({
+        sourceKey: record.key as string,
+        decided: `Recorded automatically: ${record.answer as string}`,
+        carriedBy: 'Not linked to a requirement yet.',
+        question: record.question as string,
+        options: Array.isArray(record.options) ? record.options.map((option) => String(option)) : [],
+        answer: record.answer as string,
+      }));
+      const result = writer.writeDecisionRecord(absoluteFolder, entries, { keepExistingRows: true });
+      recorded = { count: entries.length, folder };
+      writer.recordConsumedKeys(projectDir, folder, result.ids, new Date().toISOString());
+      hookLog('info', 'session-stop', `Recorded ${entries.length} queued answer(s) in ${folder}/decision-record.md`);
+      return { status: 'recorded', count: entries.length, folder };
+    } finally {
+      lockModule.releaseCanonicalSaveLock(lock);
+    }
   } catch (error: unknown) {
     const detail = error instanceof Error ? error.message : String(error);
+    if (recorded) {
+      hookLog(
+        'warn',
+        'session-stop',
+        `Recorded ${recorded.count} queued answer(s) in ${recorded.folder}/decision-record.md but could not mark them consumed: ${detail}`,
+      );
+      return { status: 'failed', count: recorded.count, folder: recorded.folder, reason: 'consumed_not_recorded', detail };
+    }
     hookLog('warn', 'session-stop', `Auto-record of queued answers skipped: ${detail}`);
     return { status: 'failed', count: 0, detail };
   }
+}
+
+// The chat is the only place an operator learns what the Stop hook did, and a row
+// written automatically still needs a reason from a person. The outcome and the
+// nudge share one message so the hook never writes two JSON lines.
+export function composeStopMessage(
+  recorded: AutoRecordResult,
+  nudge: string | null,
+): string | null {
+  const parts: string[] = [];
+  if (recorded.status === 'recorded') {
+    parts.push(
+      `Recorded ${recorded.count} answer(s) automatically in ${recorded.folder}/decision-record.md. Add a reason to each "Recorded automatically" row.`,
+    );
+  } else if (recorded.status === 'failed') {
+    const detail = recorded.detail ?? 'unknown error';
+    parts.push(
+      recorded.count > 0
+        ? `Recorded ${recorded.count} answer(s) in ${recorded.folder}/decision-record.md, but could not mark them consumed: ${detail}`
+        : `Could not record the captured answers automatically: ${detail}. Run /speckit:save to record them.`,
+    );
+  }
+  if (nudge) {
+    parts.push(nudge);
+  }
+  return parts.length > 0 ? parts.join(' ') : null;
 }
 
 export type SessionStopAutosaveOutcome = 'ran' | 'skipped' | 'failed';
@@ -766,8 +827,9 @@ async function main(): Promise<void> {
       || (typeof input.cwd === 'string' ? input.cwd : '')
       || process.cwd();
     const transcriptPath = typeof input.transcript_path === 'string' ? input.transcript_path : null;
-    await autoRecordDecisions(projectDir, input.session_id, transcriptPath);
-    const message = await decisionCaptureNudge(projectDir, input.session_id);
+    const recorded = await autoRecordDecisions(projectDir, input.session_id, transcriptPath);
+    const nudge = await decisionCaptureNudge(projectDir, input.session_id);
+    const message = composeStopMessage(recorded, nudge);
     if (message) {
       process.stdout.write(`${JSON.stringify({ systemMessage: message })}\n`);
     }

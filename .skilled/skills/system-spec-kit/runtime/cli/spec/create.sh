@@ -1057,7 +1057,7 @@ const reject = (id = trackName, diagnostic = 'undeclared folder ignored') => {
 const inspectLevel = (folder, id) => {
   const stat = fs.lstatSync(folder, { throwIfNoEntry: false });
   if (stat?.isSymbolicLink()) return reject(id, 'symlinked folder skipped, not followed'), false;
-  if (!stat?.isDirectory()) return reject(id), false;
+  if (!stat?.isDirectory()) return reject(id, stat ? 'not a folder' : 'no such folder'), false;
   const descriptionPath = path.join(folder, 'description.json');
   const descriptionStat = fs.lstatSync(descriptionPath, { throwIfNoEntry: false });
   let description = null;
@@ -1456,6 +1456,9 @@ if [[ -n "$TRACK" ]]; then
             TRACK_DIAGNOSTIC="$(subtrack_diagnostic "$REPO_ROOT/specs" "$TRACK" 2>/dev/null || true)"
             if [[ -n "$TRACK_DIAGNOSTIC" ]]; then
                 echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK_DIAGNOSTIC" >&2
+                if [[ "$TRACK_DIAGNOSTIC" != *"symlinked folder"* && "$TRACK_DIAGNOSTIC" != *"has spec.md"* ]]; then
+                    echo "Declare its description.json with level 'sub-track' in a real directory, such as specs/demo/sub/." >&2
+                fi
             else
                 echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK: undeclared folder ignored." >&2
                 echo "Declare its description.json with level 'sub-track' in a real directory, such as specs/demo/sub/." >&2

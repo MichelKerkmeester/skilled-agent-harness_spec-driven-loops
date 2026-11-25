@@ -303,6 +303,7 @@ Root: [the vendored tree]
 Overlay folder: [the folder the engine reads, from .skilled-overlays.json or the default skilled-overlays/]
 Will move: [one row per offLayout item in status --json, restated as overlay: field from -> to]
 Backup: [overlay folder]/relayout-runs/[stamp]/, holding every copy the run moves and the manifest, written before the first move
+Undo: copy everything under [overlay folder]/relayout-runs/[stamp]/ back to the same paths below [the vendored tree, or the overlay folder when it sits outside the tree], then /doctor:overlay apply
 Will rewrite: the manifest's source, fragment and base fields that name a moved copy, and the layout-link targets that reach one
 Then: /doctor:overlay apply, run in this same run, so the destinations catch up with the moved sources
 
@@ -491,6 +492,7 @@ STATUS=OK
 OVERLAY SOURCES MOVED
 Root: [the vendored tree]
 Backup: [overlay folder]/relayout-runs/[stamp]/
+Undo: [the undo line the engine printed, naming the backup and the folder to run apply from]
 Engine: [the backup line, each skipped and relinked line, each moved line and the moved count the engine printed, then each line its apply printed]
 Re-read: [the status report's RESULT line, its LAYOUT lines, and any moved copy still listed in the offLayout list of status --json]
 Next: /doctor:overlay status, so the re-read confirms the tree is in sync

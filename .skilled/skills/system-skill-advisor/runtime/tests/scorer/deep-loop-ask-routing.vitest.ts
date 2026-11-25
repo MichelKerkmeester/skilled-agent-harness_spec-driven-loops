@@ -36,6 +36,11 @@ function passingSkills(prompt: string): string[] {
     .map((recommendation) => recommendation.skill);
 }
 
+function rankedSkills(prompt: string): string[] {
+  return scoreAdvisorPrompt(prompt, { workspaceRoot, projection }).recommendations
+    .map((recommendation) => recommendation.skill);
+}
+
 describe('deep-loop ask routing', () => {
   beforeAll(async () => {
     process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-deep-loop-ask-'));
@@ -153,6 +158,14 @@ describe('deep-loop ask routing', () => {
 
   it('keeps the hub off a stuck build', () => {
     expect(passingSkills('my build keeps spinning')).not.toContain('system-deep-loop');
+  });
+
+  // A refused command is named, not asked for, so the hub it belongs to must not
+  // take the rank from the single-pass review the prompt does ask for.
+  it('ranks the code skill above the hub when the loop command is refused', () => {
+    const ranked = rankedSkills('please do not run /deep:review, just review the parser once');
+    expect(ranked).toContain('system-deep-loop');
+    expect(ranked.indexOf('sk-code')).toBeLessThan(ranked.indexOf('system-deep-loop'));
   });
 
   it('hands no doctor command to a question about how convergence works', () => {

@@ -118,7 +118,7 @@
     { "id": "subject-control-counted-iterations", "prompt": "do 5 research iterations on caching", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
     { "id": "subject-control-several-passes", "prompt": "review the parser in several passes", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
     { "id": "typed-refused", "prompt": "don't run /deep:review, explain the review loop", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "typedReviewKept": false, "servedReviewKept": false },
-    { "id": "typed-question", "prompt": "what does /deep:review do?", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "typedReviewKept": false, "servedReviewKept": false },
+    { "id": "typed-question", "prompt": "what does /deep:review do?", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "typedReviewKept": false, "servedReviewKept": false, "servedHeadSkill": "sk-code" },
     { "id": "typed-doc-path", "prompt": "see (/deep:review.md) for the flags", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "typedReviewKept": false, "servedReviewKept": false },
     { "id": "typed-stuck", "prompt": "my deep review run is stuck, /deep:review again", "asksForLoopRun": false, "stuckRun": true, "writingAbout": false, "typedReviewKept": false, "servedReviewKept": true },
     { "id": "typed-control", "prompt": "/deep:review:confirm the auth module", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false, "typedReviewKept": true, "servedReviewKept": true },

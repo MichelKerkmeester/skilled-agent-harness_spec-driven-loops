@@ -5,8 +5,8 @@
 // A fan-out run never reaches phase_init, so the values a single-executor run
 // reads from its own config must be handed to the fan-out steps explicitly. These
 // tests pin that hand-off in both workflows, the staging step's placeholders, the
-// fan-out root stop reason, and the seed command honouring an explicit budget
-// before the root config exists.
+// fan-out root stop reason, the seed command honouring an explicit budget before
+// the root config exists, and the pre-synthesis gate's fan-out branch.
 
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -84,6 +84,24 @@ describe.each(WORKFLOWS)('%s fan-out wiring', (file) => {
     const names = [...String(stage.command).matchAll(/\{state_paths\.([a-z_]+)\}/g)].map((match) => match[1]);
     expect(names.length).toBeGreaterThan(0);
     for (const name of names) expect(Object.keys(doc.state_paths)).toContain(name);
+  });
+});
+
+describe('deep-research pre-synthesis gate on a fan-out run', () => {
+  it('ends the run instead of returning to a loop that never started', () => {
+    const [gate] = findSteps(loadWorkflow('deep-research.yaml'), 'gate_pre_synthesis');
+    expect(gate.on_B.branch_on).toBe('config.fanout');
+    expect(gate.on_B.if_absent.proceed_to).toBe('phase_loop');
+    expect(gate.on_B.if_present).not.toHaveProperty('proceed_to');
+  });
+});
+
+describe('deep-review pre-synthesis gate on a fan-out run', () => {
+  it('ends the run instead of returning to a loop that never started', () => {
+    const [gate] = findSteps(loadWorkflow('deep-review.yaml'), 'gate_pre_synthesis');
+    expect(gate.on_B.branch_on).toBe('config.fanout');
+    expect(gate.on_B.if_absent.proceed_to).toBe('phase_loop');
+    expect(gate.on_B.if_present).not.toHaveProperty('proceed_to');
   });
 });
 

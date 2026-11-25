@@ -78,6 +78,22 @@ describe('degradedRecommendations', () => {
     expect(result[0]).not.toHaveProperty('command');
   });
 
+  // The local scorer marks a deep command row typed whenever the prompt types the
+  // command and reads no refusal around it, so a refusal arrives as a typed row
+  // carrying no command. The CLI has to drop that mark, or the brief prints the
+  // refused command as the reader's own choice and hides the offer's no-loop
+  // option from the reader who turned the loop down.
+  it('drops the typed mark a refused deep command row arrives with', () => {
+    const result = degradedRecommendations(
+      [{ ...entry('deep-review'), typed: true as const }],
+      'please do not run /deep:review, just review the parser once',
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result[0]).not.toHaveProperty('typed');
+    expect(result[0]).not.toHaveProperty('command');
+  });
+
   it('marks a deep command row the prompt typed', () => {
     const result = degradedRecommendations([entry('command-spec-kit-deep-review')], '/deep:review the auth module');
 

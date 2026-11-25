@@ -148,6 +148,23 @@ describe('workflow-steps extend', () => {
     expect(JSON.parse(next)).toMatchObject({ status: 'initialized', maxIterations: 5, lineage: { lineageMode: 'completed-continue', continuedFromRun: 2 } });
   });
 
+  it('extend-research warns when the inbox holds only a question the registry already resolved', () => {
+    const dir = tempDir();
+    writeFileSync(join(dir, 'config.json'), JSON.stringify({
+      status: 'complete', maxIterations: 2, maxDurationMinutes: 20, createdAt,
+      lineage: { sessionId: 's-1', generation: 2 },
+    }));
+    writeFileSync(join(dir, 'state.jsonl'), iterations);
+    writeFileSync(join(dir, 'inbox.jsonl'), '{"id":"q-1","text":"What is the retry budget?"}\n');
+    writeFileSync(join(dir, 'findings-registry.json'), JSON.stringify({
+      openQuestions: [],
+      resolvedQuestions: [{ id: 'question-1', inboxId: 'q-1', text: 'What is the retry budget?' }],
+    }));
+    const result = run('extend-research', join(dir, 'config.json'), join(dir, 'state.jsonl'), join(dir, 'inbox.jsonl'), '3', '', dir);
+    expect(result.status).toBe(0);
+    expect(json(result.stdout).warning).not.toBeNull();
+  });
+
   it('extend-review stages the review event and top-level lineage fields', () => {
     const dir = tempDir();
     writeFileSync(join(dir, 'config.json'), JSON.stringify({

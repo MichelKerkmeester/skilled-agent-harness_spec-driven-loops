@@ -29,6 +29,7 @@ interface OfferCase {
   readonly prompt: string;
   readonly typedReviewKept?: boolean;
   readonly servedReviewKept?: boolean;
+  readonly servedHeadSkill?: string;
   readonly readOnlyRunKept?: 'review' | 'research';
 }
 
@@ -75,14 +76,16 @@ function deepLoopRouteCalls(): number {
   return mockedChild.execFileSync.mock.calls.filter(([, args]) => hubArgument(args) === DEEP_LOOP_HUB).length;
 }
 
-async function servedHead(prompt: string): Promise<Recommendation> {
+async function servedHead(prompt: string, expectedSkill: string = DEEP_LOOP_HUB): Promise<Recommendation> {
   const response = await handleAdvisorRecommend({ prompt });
   const payload = JSON.parse(response.content[0]?.text ?? '{}') as { data?: AdvisorRecommendOutput };
   const head = payload.data?.recommendations?.[0];
   expect(head).toBeDefined();
   // A shifted ranking would leave the typed pass nothing to do, so the head
-  // has to be the deep-loop hub for any of the assertions below to mean much.
-  expect(head?.skillId).toBe(DEEP_LOOP_HUB);
+  // has to be the skill the case expects for any of the assertions below to
+  // mean much. A prompt that only asks about a command leaves the hub off the
+  // head, so that case names the skill which leads instead.
+  expect(head?.skillId).toBe(expectedSkill);
   return head as Recommendation;
 }
 
@@ -140,11 +143,11 @@ describe('typed command against the stuck-run diagnosis on the served head', () 
   });
 
   it.each([
-    "don't run /deep:review, explain the review loop",
-    'what does /deep:review do?',
-    'see (/deep:review.md) for the flags',
-  ])('serves no typed command when the prompt only mentions it: %s', async (prompt) => {
-    const head = await servedHead(prompt);
+    ["don't run /deep:review, explain the review loop", DEEP_LOOP_HUB],
+    ['what does /deep:review do?', 'sk-code'],
+    ['see (/deep:review.md) for the flags', DEEP_LOOP_HUB],
+  ])('serves no typed command when the prompt only mentions it: %s', async (prompt, expectedSkill) => {
+    const head = await servedHead(prompt, expectedSkill);
 
     expect(head.typed).toBeUndefined();
     expect(head.command).not.toBe('/deep:review');
@@ -183,7 +186,7 @@ describe('typed command against the stuck-run diagnosis on the served head', () 
   it.each(typedCases.map((entry) => [entry.id, entry] as const))(
     'serves the fixture typed case %s as expected',
     async (_id, entry) => {
-      const head = await servedHead(entry.prompt);
+      const head = await servedHead(entry.prompt, entry.servedHeadSkill);
 
       expect(head.command === '/deep:review').toBe(entry.servedReviewKept);
     },

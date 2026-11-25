@@ -277,3 +277,23 @@ Q1 is answered: the overlay engine carries only low-severity logic bugs in the w
 - Convergence threshold: 0.05
 - Divergence summary: no divergent pivots recorded
 - Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from the live report.
+
+## 12. Independent Verification
+
+A fresh Opus 5.5 agent at xhigh effort checked 13 of the findings without reading this file or the iteration narratives. It refuted none. All 11 cited commits fail `git merge-base --is-ancestor <sha> v4.1.0.0` and pass it against v4.2.0.0, and every cited file is unchanged between the tag and HEAD. Its reproductions are in the session scratchpad under `verify/`.
+
+- **f-iter004-001 (P2), partly confirmed:** with the platform faked as `win32`, `processStartOf` returns `''`, the lineage is refused as `no_recorded_identity` and no signal is sent. Lines `fanout-run.cjs:5262`-`:5266` then list it as a survivor with no stopped row. Before `a20a1d96a05` the runner killed every child on win32. Whether children outlive the runner is unverified, because win32 spawns them with `detached: false` (`:3379`).
+- **f-iter006-001 (P2), confirmed by reproduction:** with the compiled hook, a transcript naming only `.../007-parent/001-child\n...` wrote the answer to the parent's `decision-record.md`, and `008-other` plus `007-parent\n` counted as one packet. The trigger is narrower than first stated: when the child path also appears in a quoted tool input the hook skips. The regex at `:49` predates the window, and writing to its result is new.
+- **f-iter006-002 (P2), confirmed in code with simulated timing:** the save path takes `acquireCanonicalSaveLock` for the same writer (`workflow.ts:793`), and the Stop caller does not (`session-stop.ts:215`). A forced overlap lost the save's row, and both writers handed out `Q002`.
+- **f-iter008-003 (P3), partly confirmed:** `mergeResearchFrontier` has no trust filter, and untrusted nodes count in the partition guard (`fanout-merge.cjs:803`). The merged frontier reaches the review report (`deep-review.yaml:2350`). `fanout-merge.md:50` never names the frontier, so "contradicts" overstates it.
+- **f-iter002-001, f-iter002-002, f-iter006-003, f-iter001-001 (P3):** each confirmed by reproduction.
+- **f-iter003-001, f-iter008-001, f-iter008-002 (P3):** confirmed in code. The current `--extend` lines come from `d239dd6d2ae`, which moved the logic of `2c80c64f391`.
+- **f-iter005-001 (P3):** the Python filter, run alone, marks "please do not run /deep:review ..." as `typed: True`. `skill-advisor-cli.ts:1519`-`:1523` states the opposite rule for the TypeScript fallback.
+- **f-iter007-001 (P3), partly confirmed:** when the pending count rises the nudge still reaches chat as a `systemMessage` (`session-stop.ts:770`-`:773`), so only a successful write is fully silent.
+- **f-iter007-002 (P3):** confirmed, but broader and older: every refused sub-track prints "undeclared folder ignored", and the dead remedy branch was already in v4.1.0.0 (`f46c48fa2ad`).
+
+Defects the verifier found nearby:
+- **V-1:** `session-stop.ts:215`-`:222` logs "Auto-record of queued answers skipped" and returns `failed` even when the decision record was already written.
+- **V-2:** in the f-iter006-002 race both writers allocate the same id, so the consumed log points the lost key at the other writer's row.
+- **V-3:** on win32 `--stop` refuses every lineage the same way, signals nothing and exits 2 (`fanout-run.cjs:4862`, `aca3e6858b3`). Read from code, not run.
+- **V-4:** the autosave retarget `detectSpecFolder` has had the same escaped-newline flaw since v4.1.0.0.

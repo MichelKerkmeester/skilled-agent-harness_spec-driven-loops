@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "A two-lineage deep-research run audited the v4.2.0.0 release notes against v4.1.0.0..HEAD and confirmed 16 findings, three of them P1."
+description: "Two audits of v4.2.0.0, then fixes: every defect in the second audit's sections 2, 4 and 12 is fixed at its source in worktree 545, each with a regression test."
 trigger_phrases:
   - "v4 2 0 0 release audit research implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-25T17:27:39Z"
-    last_updated_by: "generate-context"
-    recent_action: "Finished logic audit run, 10 iterations"
-    next_safe_action: "Review the ranked P2 findings in research.md"
+    last_updated_at: "2026-11-25T21:30:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Fixed every in-scope defect and reran every touched suite"
+    next_safe_action: "Operator merges worktrees/545-v4-2-audit-fixes into main and pushes"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
       - "research/research.md"
-      - "research/iterations/iteration-010.md"
+      - "acceptance-criteria.md"
     session_dedup:
-      fingerprint: "sha256:c2a54d058060df86887583620306714029e8b333f09a0c857660fc280d7805c6"
+      fingerprint: "sha256:bed3284d491fec012ab03acad59f0e00c63fe13e96960bb3b6bcd5a0e727cab3"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
       parent_session_id: null
     completion_pct: 100
@@ -51,11 +54,21 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-The audit is done and nothing in the product changed. `research/research.md` lists 16 confirmed findings against the v4.2.0.0 notes: 9 missing entries, 5 drifted claims and 2 bugs. Three are P1: the unannounced Stop-hook answer recording, the Bladebro install line without `--ignore-scripts`, and `worktree-naming.sh` losing its executable bit.
+Two audits ran, and the second one's defects are now fixed. The first audit changed only the release notes and one overlay guard. Its synthesis, archived under `research_archive/20261125T162358Z/`, lists 16 confirmed findings against the v4.2.0.0 notes: 9 missing entries, 5 drifted claims and 2 bugs. Three are P1: the unannounced Stop-hook answer recording, the Bladebro install line without `--ignore-scripts`, and `worktree-naming.sh` losing its executable bit.
 
 ### The audit
 
 Two lineages, cli-codex and cli-devin, read the same window and packet list and proposed 26 distinct candidates. The orchestrator re-checked each one in the repository and rejected 10, with the deciding check named in the synthesis.
+
+### The fixes
+
+The second audit, `research/research.md`, found 3 P2 and 14 P3 defects in the v4.2.0.0 logic, four more from its independent verifier and six older ones. On the operator's "fix all", every one of them except the two REQ-004 names was fixed in worktree `545-v4-2-audit-fixes`, along with three nearby defects the operator chose. `acceptance-criteria.md` maps each finding to its regression test. Workers ran on cli-mistral-vibe with `deepseek-flash`, three at a time. The orchestrator reviewed each diff and reran each suite.
+
+- **Deep-loop runtime:** a runner stopped by a signal now ends a child whose row has no start time, and `--stop` on win32 names its remedy. An untrusted lineage's frontier nodes claim no coverage. The `--extend` warning counts only open questions. Option B of the pre-synthesis gate ends a fan-out run in both `deep-research.yaml` and `deep-review.yaml`.
+- **Claude Stop hook:** a path that ends at a JSON escape resolves to the child packet. The write takes the canonical save lock and leaves answers pending while a save holds it. A written row is never reported as skipped, a hand-edited row survives a later Stop, and one `systemMessage` line tells the operator the outcome.
+- **Overlay engine:** a destination that changes shape and letter case at once is planned as the engine's own, now also in the skill-root replace loop in both directions. A layout link never replaces a distinct user entry whose bytes match. The rollback remedy pastes, a relayout prints its restore and relink lines with the tree root, stray words are refused, `--json` errors come back as JSON and `--rollback` refuses a path changed after the run.
+- **Skill advisor:** a slash command the prompt refuses or only asks about no longer anchors its hub, so "please do not run /deep:review, just review the parser once" ranks sk-code first. The routing baseline was regenerated, and only `sv-05` moved.
+- **Operator UX:** `create.sh` prints the remedy for a refused sub-track, the `skilled-loop` goal-hop warning is true and names both remedies, and provisioning rebuilds an empty skill-graph database and prints the scan's own error.
 
 ### Files Changed
 
@@ -116,6 +129,29 @@ Two lineages, cli-codex and cli-devin, read the same window and packet list and 
 | Quality gate | `quality-gate.cjs --files` on both changed files: 0 P0, 0 P1, 0 P2 |
 | Release notes | `check_changelog_shape.py` PASS (baseline FAIL on 3 sentences and a 10.2 mean), `hvr_scan.py` 0 hard blockers (baseline 2), `validate_document.py` VALID, every glance anchor and all 16 spec folders resolve |
 | Packet validation | `validate.sh --strict` prints `RESULT: PASSED` |
+
+### Fix verification
+
+Every touched suite reran in worktree 545 from the final state, one suite at a time, and each exited 0. The before count is the worktree at `5c8aeff2c1b` before any fix.
+
+| Suite | Before | After |
+|-------|--------|-------|
+| Overlay engine, 12 suites plus the overlay contract | 548 of 548 | 559 of 559 |
+| sk-git `worktree-naming.test.sh` | `PASS=190 FAIL=0` | `PASS=194 FAIL=0` |
+| Deep-loop runtime unit tests | 3638 passed, 2 skipped | 3643 passed, 2 skipped |
+| Claude Stop hook files | 48 of 48 | 52 of 52 |
+| Spec-kit CLI tests | 60 of 60 in 4 files | 101 of 101 in 6 files. The rerun added two existing test files the fixes touch |
+| Skill advisor vitest | 3530 passed, 4 skipped | 3532 passed, 4 skipped |
+| Skill advisor Python | `pass=134, fail=0` | `pass=134, fail=0` |
+| Session handover, run with `AI_SESSION_CHILD` unset | 1079 of 1079 | 1079 of 1079 |
+
+| Check | Result |
+|-------|--------|
+| Fail before the fix | With each fixed source put back to its HEAD bytes, every new regression test failed. The overlay suite against the HEAD engine failed 12 tests. The follow-up swap failed the scorer, deep-review, both skill-root directions and the skilled-loop test. The fixed bytes were restored and `cmp` matched |
+| Routing baseline | A fresh `capture-command-routing-baseline.mjs` run without `--write` matches the regenerated file. Only `capturedAtSha` and `sv-05.top` moved, from `system-deep-loop` to `cli-external-orchestration` |
+| Compiled contracts | `check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=2`, exit 0 |
+| Quality gate | `quality-gate.cjs --worktree --lines changed`: 0 P0, 0 P1, 0 P2, exit 0 |
+| Reverse skill-root case | A hand probe showed the first case-fold fix aborting a folder-to-file change with exit 2. The follow-up fix and its test close it |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -125,7 +161,10 @@ Two lineages, cli-codex and cli-devin, read the same window and packet list and 
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
 1. **The audit is not exhaustive.** Both lineages stopped at the iteration cap, not on convergence, and only 5 of 26 candidates were found by both. A further `--extend` round, or a pass over the components line 823 does not name, would likely find more.
-2. **Large suite totals were not rerun.** The advisor, deep-loop and doctor totals stay UNKNOWN, because each run writes outside the packet.
+2. **The compiled hooks are stale until rebuilt.** `runtime/cli/dist` is gitignored and was not rebuilt, so the Claude Stop hook runs the old code until the dist is rebuilt after the merge. The tests run the TypeScript sources.
+3. **The frontier trust fix relies on the YAML fix.** `convergence.cjs:1665` still counts `_untrusted` nodes if a merged registry ever reaches the loop. The option-B fix keeps a fan-out run from re-entering the loop, which closes that path today.
+4. **One timing test can flake.** `fanout-pool.vitest.ts:679` failed once for a worker under load and passed on rerun. No change was made to it.
+5. **Not fixed on purpose.** f-iter005-003 is pinned by design in `deep-loop-offer-cases.json:123`, and f-iter009-003 has no shown consequence.
 <!-- /ANCHOR:limitations -->
 
 ---

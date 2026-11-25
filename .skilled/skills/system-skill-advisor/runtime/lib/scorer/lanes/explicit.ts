@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { phraseSpecificity, skillNameVariants, tokenize, tokenizePrompt } from '../text.js';
-import { ITERATIVE_ASK, LOOP_COUNT, MODE_CUES, MULTI_PASS, asksForLoopRun, isStuckRunComplaint, isWritingAboutTopic } from '../../command-attach.js';
+import { ITERATIVE_ASK, LOOP_COUNT, MODE_CUES, MULTI_PASS, asksForLoopRun, commandOnlyMentioned, isStuckRunComplaint, isWritingAboutTopic } from '../../command-attach.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -379,6 +379,8 @@ export function scoreExplicitLane(
 
   for (const [phrase, boosts] of Object.entries(PHRASE_BOOSTS)) {
     if (!lower.includes(phrase)) continue;
+    // A slash command the prompt only mentions, refuses or asks about is not a request for it.
+    if (phrase.startsWith('/') && commandOnlyMentioned(lower, phrase)) continue;
     for (const [skillId, amount] of boosts) {
       push(scores, skillId, amount, `phrase:${phrase}`);
     }

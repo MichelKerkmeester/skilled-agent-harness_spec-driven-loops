@@ -1078,8 +1078,12 @@ test('relayout moves every off-layout source onto its layout path', (t) => {
     `moved custom/place.md -> ${PLACE_LAYOUT}`,
   ]);
   const lines = relayout.output.trimEnd().split('\n');
-  assert.equal(lines[lines.length - 2], '5 moved');
-  assert.equal(lines[lines.length - 1], `run ${ENGINE_COMMAND} apply`);
+  const backup = backupFolder(fixture, relayout.output);
+  assert.equal(lines[lines.length - 3], '5 moved');
+  assert.equal(lines[lines.length - 2],
+    `undo: copy everything under ${path.relative(fixture.tree, backup)} back to the same paths below ` +
+    `${engine.shellPath(fixture.tree)}`);
+  assert.equal(lines[lines.length - 1], `Next: from ${engine.shellPath(fixture.tree)}: ${ENGINE_COMMAND} apply`);
   for (const relativePath of [PLACE_LAYOUT, DIR_LAYOUT + '/readme.md', JSON_LAYOUT, MARKED_LAYOUT, MARKED_BASE_LAYOUT]) {
     assert.equal(fs.existsSync(path.join(fixture.overlayDir, relativePath)), true, relativePath);
   }
@@ -1093,7 +1097,6 @@ test('relayout moves every off-layout source onto its layout path', (t) => {
     ['hub-marked', MARKED_LAYOUT, MARKED_LAYOUT, MARKED_BASE_LAYOUT],
   ]);
 
-  const backup = backupFolder(fixture, relayout.output);
   const backedUp = (relativePath) => fs.readFileSync(path.join(backup, 'skilled-overlays', relativePath), 'utf8');
   assert.equal(backedUp('custom/place.md'), OVERLAY_PLACE);
   assert.equal(backedUp('custom/bundle/readme.md'), README_TEXT);
@@ -1137,6 +1140,10 @@ test('relayout backs up no file its read rule refuses to open', (t) => {
   assert.equal(relayout.code, 0, relayout.output);
   assert.equal(relayout.output.split('\n').includes('skipped custom/bundle/assets/api-token.js'), true, relayout.output);
   assert.deepEqual(movedLines(relayout.output), [`moved custom/bundle -> ${DIR_LAYOUT}`]);
+  const lines = relayout.output.trimEnd().split('\n');
+  assert.equal(lines[lines.length - 2],
+    'undo: the backup skipped these files, so restore them by hand: custom/bundle/assets/api-token.js');
+  assert.equal(lines[lines.length - 1], `Next: from ${engine.shellPath(fixture.tree)}: ${ENGINE_COMMAND} apply`);
   const backup = backupFolder(fixture, relayout.output);
   assert.equal(fs.existsSync(path.join(backup, 'skilled-overlays/custom/bundle/assets/api-token.js')), false);
   assert.equal(fs.readFileSync(path.join(backup, 'skilled-overlays/custom/bundle/readme.md'), 'utf8'), README_TEXT);
@@ -1430,8 +1437,9 @@ test('relayout that cannot prune an emptied folder still reports the move', (t) 
   assert.ok(lines.some((line) => line.startsWith('note: relayout left an emptied folder in place after moving custom/') &&
     line.endsWith(': injected prune failure')), lines.join('\n'));
   assert.equal(lines.filter((line) => line.startsWith('error: ')).length, 0, lines.join('\n'));
-  assert.equal(lines[lines.length - 2], '5 moved');
-  assert.equal(lines[lines.length - 1], `run ${ENGINE_COMMAND} apply`);
+  assert.equal(lines[lines.length - 3], '5 moved');
+  assert.match(lines[lines.length - 2], /^undo: copy everything under \S+ back to the same paths below /);
+  assert.equal(lines[lines.length - 1], `Next: from ${engine.shellPath(fixture.tree)}: ${ENGINE_COMMAND} apply`);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, PLACE_LAYOUT)), true);
 });
 
@@ -1645,6 +1653,11 @@ test('relayout moves a source in a sibling overlay folder and backs it up inside
   const backupLines = relayout.output.split('\n').filter((line) => line.startsWith('backup '));
   assert.equal(backupLines.length, 1, relayout.output);
   assert.match(backupLines[0], /^backup \.\.\/overlays\/relayout-runs\/[^/\s]+$/);
+  // The backup is keyed from the folder beside the tree, so the undo names that
+  // folder rather than the tree the run was pointed at.
+  const undoLine = relayout.output.split('\n').find((line) => line.startsWith('undo: '));
+  assert.equal(undoLine, `undo: copy everything under ${backupLines[0].slice('backup '.length)} back to the same ` +
+    `paths below ../overlays`);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, PLACE_LAYOUT), 'utf8'), OVERLAY_PLACE);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'custom')), false);
   assert.equal(readJson(manifestPath).overlays[0].source, PLACE_LAYOUT);
@@ -1714,6 +1727,30 @@ function relinkedLines(output) {
   return output.split('\n').filter((line) => line.startsWith('relinked '));
 }
 
+/**
+ * Put a relayout back the way its undo lines say: copy the backup over the tree,
+ * then run each `ln -sfn` line it printed.
+ * @param {object} fixture A relayout fixture.
+ * @param {string[]} lines The relayout's printed lines.
+ */
+function undoRelayout(fixture, lines) {
+  const copy = lines.find((line) => line.startsWith('undo: copy everything under '));
+  assert.ok(copy, lines.join('\n'));
+  const copyMatch = /^undo: copy everything under (\S+) back to the same paths below (\S+)$/.exec(copy);
+  assert.ok(copyMatch, copy);
+  assert.equal(copyMatch[2], engine.shellPath(fixture.tree));
+  const backup = path.join(fixture.tree, copyMatch[1]);
+  for (const name of fs.readdirSync(backup)) {
+    fs.cpSync(path.join(backup, name), path.join(fixture.tree, name), { recursive: true, force: true });
+  }
+  for (const line of lines.filter((candidate) => candidate.startsWith('undo: point the link '))) {
+    const linkMatch = /^undo: point the link (\S+) back to (\S+): ln -sfn (\S+) (\S+)$/.exec(line);
+    assert.ok(linkMatch, line);
+    const done = spawnSync('ln', ['-sfn', linkMatch[3], linkMatch[4]], { encoding: 'utf8' });
+    assert.equal(done.status, 0, line + ': ' + done.stderr);
+  }
+}
+
 test('relayout retargets a live layout link whose target it moved', (t) => {
   const fixture = createRelayoutLinkFixture(t);
   assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_LINK_TARGET);
@@ -1733,6 +1770,35 @@ test('relayout retargets a live layout link whose target it moved', (t) => {
   assert.equal(status.code, 0, status.output);
   assert.match(status.output, /RESULT: PASSED/);
   assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_RELINKED_TARGET);
+});
+
+// The backup holds sources and the manifest, never the link the run rewrote, so
+// a copy-back alone leaves the live link naming a path the restored manifest does
+// not know. Following the printed undo lines has to put the tree back.
+test('the undo lines put a relinked layout link back, so status passes again', (t) => {
+  const fixture = createRelayoutLinkFixture(t);
+
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 0, relayout.output);
+  const lines = relayout.output.trimEnd().split('\n');
+  const backup = backupFolder(fixture, relayout.output);
+  assert.deepEqual(lines.filter((line) => line.startsWith('undo: ')), [
+    `undo: copy everything under ${path.relative(fixture.tree, backup)} back to the same paths below ` +
+      `${engine.shellPath(fixture.tree)}`,
+    `undo: point the link ${BUNDLE_LINK} back to ${BUNDLE_LINK_TARGET}: ` +
+      `ln -sfn ${BUNDLE_LINK_TARGET} ${engine.shellPath(fixture.linkPath)}`,
+  ], relayout.output);
+  assert.equal(lines[lines.length - 1], `Next: from ${engine.shellPath(fixture.tree)}: ${ENGINE_COMMAND} apply`);
+
+  undoRelayout(fixture, lines);
+
+  assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_LINK_TARGET);
+  assert.equal(readJson(fixture.manifestPath).layoutLinks[0].target, BUNDLE_LINK_TARGET);
+  assert.equal(fs.readFileSync(path.join(fixture.linkPath, 'readme.md'), 'utf8'), README_TEXT);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
 });
 
 test('relayout that fails while relinking puts the copies and the live link back', (t) => {
