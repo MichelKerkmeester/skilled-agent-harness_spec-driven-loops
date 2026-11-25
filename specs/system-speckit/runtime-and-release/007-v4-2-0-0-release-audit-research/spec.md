@@ -8,10 +8,10 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.4 -->
 # Feature Specification: Deep research audit of the v4.2.0.0 changelog against the commits since v4.1.0.0 and the recent spec folders
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -19,11 +19,11 @@ contextType: "general"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-11-25 |
-| **Branch** | `main` |
+| **Branch** | `worktrees/545-v4-2-audit-fixes` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,10 +62,12 @@ HEAD was `c75200c504a` when this was measured.
 - Verify every finding the synthesis repeats against the repository, and settle disagreements between the two lineages by reading the code.
 - Amended 2026-11-25 on the operator's instruction: fix the confirmed bugs first, then update the release notes.
 - Amended 2026-11-25 on the operator's instruction: a second, native deep-research run of ten iterations audits the v4.2.0.0 logic and features for bugs, drift and bad UX. The first run's state is archived under `research_archive/20261125T162358Z/`, and `research/research.md` is the second run's synthesis.
+- Amended 2026-11-25 on the operator's instruction ("fix all", scope "Everything"): fix every defect in `research/research.md` sections 2, 4 and 12 in worktree `545-v4-2-audit-fixes`, with a regression test for each behavior change. Two items stay unchanged on purpose: f-iter005-003 is pinned by design in `deep-loop-offer-cases.json:123`, and f-iter009-003 has no shown consequence. The `run_extended` lineageId is checked and changed only if a reader breaks on it.
 
 ### Out of Scope
 - Release-note edits beyond the confirmed findings, the reorder and the section openings the operator asked for.
-- Bugs the research does not confirm, and any fix beyond the two confirmed bugs and the lost executable bits of the same cause.
+- Defects the research does not list. A new defect found while fixing is recorded in `implementation-summary.md`, not fixed.
+- Merging the worktree into main, pushing or tagging - the operator's to do.
 - Tagging or publishing v4.2.0.0 - a release action the operator owns.
 
 ### Files to Change
@@ -78,6 +80,19 @@ HEAD was `c75200c504a` when this was measured.
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh`, its `tests/worktree-naming.test.sh`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Mode | Restore the executable bit lost in the window |
 | `.skilled/changelog/skilled/v4.2.0.0.md` | Modify | Release-note fixes, after the bug fixes |
 | `specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/` | Create | Frozen inputs: the window commit list and the packet list |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | The runner's own stop ends every child it spawned on win32, and `--stop` on win32 says why it cannot verify a pid |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs`, `runtime/feature-catalog/fanout/fanout-merge.md` | Modify | An untrusted lineage's frontier nodes claim no coverage |
+| `.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs` | Modify | The `--extend` re-stop warning counts only questions still open |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Modify | The pre-synthesis gate's "run more iterations" no longer enters an uninitialized loop on a fan-out run |
+| `.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`, `runtime/lib/continuity/decision-record-writer.ts` | Modify | Escaped transcript paths resolve to the right packet, the Stop write takes the canonical save lock, a written row is never reported as skipped or overwritten, and the outcome reaches the operator |
+| `.skilled/commands/doctor/scripts/overlay-engine.cjs`, `doctor-overlay-presentation.txt` | Modify | Shape-and-case destination changes, the layout-link same-file check, pasteable remedies, a relayout restore line, whole-word flag parsing, JSON errors for `--json` and a rollback staleness check |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, `runtime/scripts/routing-accuracy/command-routing-baseline.json`, `runtime/tests/fixtures/deep-loop-offer-cases.json`, `feature-catalog/python-compat/cli-shim.md` | Modify | A refused or merely named slash command no longer anchors its hub, with the routing baseline regenerated. The degraded CLI already drops a refused command's typed mark, and a test pins it |
+| `.skilled/commands/deep/assets/deep-review.yaml` and its compiled contract | Modify | The deep-review pre-synthesis gate's option B ends a fan-out run instead of returning to a loop it never set up |
+| `.skilled/hooks/session-handover/goal-carry-over.md` | Modify | The goal-hop warning's description names both remedies the warning now prints |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | A refused sub-track prints its remedy |
+| `.skilled/bin/skilled-loop` | Modify | The non-Claude goal-hop warning is true and names the next step |
+| `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modify | Provisioning checks that the skill-graph database is usable and prints the scan's reason on failure |
+| Tests beside each changed file | Modify or Create | One regression test per behavior change |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -98,6 +113,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | Every finding reported to the operator was re-checked in the repository | Each reported finding names the command or file read that confirmed it, or it is marked unconfirmed |
+| REQ-004 | Every defect in scope is fixed at its source | Each finding id in `research/research.md` sections 2, 4 and 12, except the two left on purpose, has a `Met` row in `acceptance-criteria.md` that names its test or reproduction |
+| REQ-005 | No regression in the suites the fixes touch | Each touched suite passes in full, with the before and after counts recorded in `implementation-summary.md` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -122,8 +139,34 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 ---
 
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The Claude Stop hook still finishes inside its 10 s hook timeout when the canonical save lock is busy, by leaving the answers pending instead of waiting.
+
+### Security
+- **NFR-S01**: No overlay fix widens what the engine may write or delete. Every new path either adds a refusal or keeps an existing one.
+
+### Reliability
+- **NFR-R01**: A fan-out runner's own stop ends every child it spawned on every platform, and no stop path reports success while a child it could not signal is still running.
+- **NFR-R02**: A decision row written by one writer is never lost or rewritten by another, and a human edit to a row survives a later Stop.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- Empty input: an inbox with no lines and an inbox whose every question is answered both give the `--extend` re-stop warning.
+- Maximum input: a transcript tail that names a packet path ending at any JSON escape (`\n`, `\t`, `\r`, `\"`, `\\`) resolves to that packet, not its parent.
+- Failure path: a skill-graph scan that fails or leaves an empty database reports FAILED with the scan's own reason, and a rerun of the printed remedy does not report it ready.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 9. OPEN QUESTIONS
 
 Research context: deep-research is active for "v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0". `research/research.md` stays canonical.
 
