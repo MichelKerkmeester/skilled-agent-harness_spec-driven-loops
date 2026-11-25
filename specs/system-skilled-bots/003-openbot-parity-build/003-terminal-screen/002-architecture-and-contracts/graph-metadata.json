@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "architecture and contracts",
+      "phase 2 architecture and contracts",
+      "bots-tui crate",
+      "bots ui verb",
+      "terminal guard and worker data layer",
+      "architecture and contracts plan",
+      "bots-tui crate plan",
+      "bots ui verb plan",
+      "architecture and contracts tasks",
+      "bots-tui crate tasks",
+      "architecture and contracts acceptance criteria",
+      "bots-tui crate acceptance criteria"
+    ],
+    "key_topics": [
+      "architecture",
+      "contracts",
+      "phase",
+      "bots-tui",
+      "crate",
+      "bots",
+      "verb",
+      "terminal",
+      "guard",
+      "worker",
+      "data",
+      "layer"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/bots.cjs",
+      ".github/workflows/bots-runtime.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "An Esc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Waves The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every later child of this phase draws into a crate that does not exist, and the one verb that would start it does not exist either",
+    "created_at": "2026-11-25T20:22:32Z",
+    "last_save_at": "2026-11-25T20:33:43.663Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:57aa00106ce1ffe7a8c7b0545b3818b890712ab6428bc9317b8b61de21050797",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d439df4016a1b46231259e246515124979df109a3ded105d76ca86130be35e8f",
+      "plan.md": "5ad58a1a4e4269cec00381245655185426d0580375156a13dc8ce05b09fd137c",
+      "tasks.md": "52b190a252bef947704b42a9338747d6ccc89f3b4ef70c8468127b741763dace",
+      "implementation-summary.md": "08a2010ddf07ea2b07d952c625e24064769e368d594c1d131b79dd5eea1e2e69"
+    },
+    "last_active_at": null
+  }
+}

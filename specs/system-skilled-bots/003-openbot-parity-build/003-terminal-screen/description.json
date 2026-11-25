@@ -1,18 +1,21 @@
 {
+  "level": "3",
   "specFolder": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
   "description": "Phase 3: terminal-screen",
   "keywords": [
     "phase",
     "terminal-screen"
   ],
-  "lastUpdated": "2026-11-25T07:13:39.660Z",
+  "lastUpdated": "2026-11-25T20:42:59.014Z",
   "specId": "003",
   "folderSlug": "terminal-screen",
   "parentChain": [
     "system-skilled-bots",
     "003-openbot-parity-build"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "25-11-26_21-42__expanded-terminal-screen-phase-003-into-a-level-3.md",
+    "25-11-26_21-42__expanded-terminal-screen-phase-003-into-a-level-3.md"
+  ]
 }

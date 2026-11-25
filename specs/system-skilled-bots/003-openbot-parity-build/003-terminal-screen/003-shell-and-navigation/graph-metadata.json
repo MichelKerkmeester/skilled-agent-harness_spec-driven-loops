@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shell and navigation",
+      "phase 3 shell and navigation",
+      "bots ui shell",
+      "key label test",
+      "shell buffer snapshot",
+      "shell and navigation plan",
+      "bots ui shell plan",
+      "key table plan",
+      "shell and navigation tasks",
+      "bots ui shell tasks",
+      "shell and navigation acceptance criteria",
+      "bots ui shell acceptance criteria"
+    ],
+    "key_topics": [
+      "shell",
+      "navigation",
+      "phase",
+      "bots",
+      "key",
+      "label",
+      "test",
+      "buffer",
+      "snapshot",
+      "plan",
+      "table",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Waves Six",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 leaves an empty frame: the crate builds, the loop runs and the terminal is restored, but no key is bound and nothing on screen says which key does what",
+    "created_at": "2026-11-25T20:22:33Z",
+    "last_save_at": "2026-11-25T20:34:44.711Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3eb389bfbf66f36a30123ac1a152037442512b27ff2db9adcb1298246f828b9b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a8a99f40e0bbffaf7283560a54594774af386a9c419c6ab4b5f47d4fd47e563c",
+      "plan.md": "df565db3fee38d697f7d0cd5cca5d4b98a955ae16c5608cbb8afc544a7a6bc76",
+      "tasks.md": "ca3c572032f787c9819c7358a1805d5d10d581a141c034ee769e57d9ef400810",
+      "implementation-summary.md": "8f7665cbc283fadc555a8565d7a27182791579ad9be54753786f636f8ba29c52"
+    },
+    "last_active_at": null
+  }
+}

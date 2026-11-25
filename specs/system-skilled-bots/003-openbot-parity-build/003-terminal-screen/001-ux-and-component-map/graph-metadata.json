@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ux and component map",
+      "phase 1 ux and component map",
+      "terminal screen design",
+      "bots ui mockups",
+      "ux and component map plan",
+      "terminal screen design plan",
+      "ux and component map tasks",
+      "ux and component map acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "component",
+      "map",
+      "phase",
+      "terminal",
+      "screen",
+      "design",
+      "bots",
+      "mockups",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "design/key-map.md",
+      "design/component-inventory.md",
+      "design/mockups.md",
+      "design/glyph-table.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "key-map.md",
+        "kind": "doc",
+        "path": "design/key-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "component-inventory.md",
+        "kind": "doc",
+        "path": "design/component-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
+        "source": "derived"
+      },
+      {
+        "name": "glyph-table.md",
+        "kind": "doc",
+        "path": "design/glyph-table.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documents",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The screen has no agreed shape",
+    "created_at": "2026-11-25T20:22:31Z",
+    "last_save_at": "2026-11-25T20:42:59.014Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3d6a3d546aaa53cccf2fa74882f3f397d9abcb17038f792421b1f630e35a0407",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1df23ce5c6f0a442fc231a37a9f6198e03f73236173bf0aecf150bb18b7cee85",
+      "plan.md": "74636e22caecd26b077ca83973bb1d3b7de5e1bc0d7a1a8b343018a8e541e037",
+      "tasks.md": "f2227e92dccbf120e5464892ddb952ce12187c50c1e79250528daf92721070e7",
+      "decision-record.md": "5259eea922d5cca94f75bb65eb255c73df6e41980fbc2b009c0acc05471cf65a",
+      "implementation-summary.md": "a61c5e244d6f73785f00db3ccbb9ee1b7fedb0e1f2b81a287bbcaa286bdc8f21"
+    },
+    "last_active_at": null
+  }
+}

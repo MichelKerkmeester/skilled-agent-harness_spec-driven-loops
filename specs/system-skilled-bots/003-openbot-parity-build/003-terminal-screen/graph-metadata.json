@@ -3,7 +3,14 @@
   "packet_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
   "spec_folder": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
   "parent_id": "system-skilled-bots/003-openbot-parity-build",
-  "children_ids": [],
+  "children_ids": [
+    "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map",
+    "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts",
+    "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation",
+    "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes",
+    "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow",
+    "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -15,14 +22,13 @@
       "phase 3 terminal screen",
       "bots ui",
       "ratatui terminal screen",
-      "terminal screen plan",
-      "bots ui plan",
-      "ratatui crate plan",
-      "terminal screen tasks",
-      "bots ui tasks",
-      "terminal screen acceptance criteria",
-      "bots ui acceptance criteria",
-      "packet goal"
+      "terminal screen phase parent",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "003-terminal-screen operator decisions",
+      "terminal screen phase parent decisions"
     ],
     "key_topics": [
       "terminal",
@@ -30,52 +36,35 @@
       "phase",
       "bots",
       "ratatui",
-      "plan",
-      "crate",
-      "tasks",
-      "acceptance",
-      "criteria",
+      "parent",
       "packet",
-      "goal"
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
-      "implementation-summary.md",
       ".skilled/bin/bots.cjs",
-      ".github/workflows/bots-runtime.yml",
       ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts"
+      ".github/workflows/bots-runtime.yml",
+      "001-ux-and-component-map/goal.md",
+      "002-architecture-and-contracts/goal.md",
+      "003-shell-and-navigation/goal.md",
+      "004-panes/goal.md",
+      "005-answer-flow/goal.md",
+      "006-hardening-and-proof/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "acceptance-criteria.md",
-        "kind": "doc",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -91,21 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "bots-runtime.yml",
-        "kind": "config",
-        "path": ".github/workflows/bots-runtime.yml",
         "source": "derived"
       },
       {
@@ -115,9 +92,9 @@
         "source": "derived"
       },
       {
-        "name": "status.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
         "source": "derived"
       },
       {
@@ -133,19 +110,13 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -157,71 +128,101 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Purpose One",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Deliver Phase",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Overview The",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Pure",
+        "name": "Phase Documentation Map",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "An Esc",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "six",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T19:55:44.028Z",
+    "last_save_at": "2026-11-25T20:42:59.084Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:59bb2e80a15d247fafda24fff625b2bdfd8d56bbea91b076e510278aa4a445de",
+    "source_fingerprint": "sha256:b67708b351f3bbad9c3a8a4fccca3e731b417ba8cbd24680e8e1753b149fcae1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b529befde5225163a5c4c417ed1f5c2aa269739baea702347aeb73e34cf0bac",
-      "plan.md": "9e7e64bacc24b2c0e8a78a38068ea71ef0bf242ddb2462bc9373ba7267e19c97",
-      "tasks.md": "b12e076eddc6f5afdf3d9761dbcbb49efdb2eeb13744877f22cb69bef576e34e",
-      "decision-record.md": "bc44912e0f82bf69cda135e83e5abc45327121c1e83b0c8a49b60f083aafffd2",
-      "implementation-summary.md": "f27cd29c97b9569dbf41707d1342d0de5092e123e4bb22a29fca7964437c9f59"
+      "spec.md": "9a01d2b96d5f6b01c3c18f8200b6e6e956311648972bb3e289ae7ff71046993e",
+      "decision-record.md": "40f6a9fa6345785b371dd705f086341b44695bacbc502fc21841952dee8648a0"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-25T20:42:59.084Z",
+    "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map"
   }
 }

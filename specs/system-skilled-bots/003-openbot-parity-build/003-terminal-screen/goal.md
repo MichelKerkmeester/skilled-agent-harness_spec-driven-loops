@@ -11,15 +11,15 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
-    last_updated_at: "2026-11-25T19:52:51Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-25T21:40:00Z"
+    last_updated_by: "phase-parent-expansion"
+    recent_action: "Authored the phase-parent directive and its six binding rows"
+    next_safe_action: "Work child 001-ux-and-component-map"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "w3-003-terminal-screen"
+      session_id: "w4-003-terminal-parent"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -49,8 +49,37 @@ Frozen choices. Changing one is an amendment.
 | D3 | `crates/bots-tui/tests/fixtures/bots` is the only payload source in tests. No test reads a live state root and no test needs a tty. |
 | D4 | The approval overlay offers `once` and `deny` only. No `always` and no `conversation` scope, because no phase lands the rule store a standing grant needs. |
 | D5 | The fourth tab is a Chat placeholder naming phase 010, so Alt+1..4 does not renumber when that phase lands. |
+| D6 | `[` and `]` are the fallback tab keys beside Alt+1..4, and Ctrl+C closes an open overlay or quits and never writes, because Alt+1..4 is unreliable on macOS. |
+| D7 | Snapshot tests assert the ratatui `TestBackend` buffer directly. `insta` is not a dependency. |
 
 <!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase.** Each is authoritative for its
+phase and binds as if written here.
+
+| Phase | Goal document |
+|-------|---------------|
+| 001-ux-and-component-map | `001-ux-and-component-map/goal.md` |
+| 002-architecture-and-contracts | `002-architecture-and-contracts/goal.md` |
+| 003-shell-and-navigation | `003-shell-and-navigation/goal.md` |
+| 004-panes | `004-panes/goal.md` |
+| 005-answer-flow | `005-answer-flow/goal.md` |
+| 006-hardening-and-proof | `006-hardening-and-proof/goal.md` |
+
+Each row binds that child's `goal.md`, authored from its spec and acceptance
+criteria.
+
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
+summary of it. Name a conflict rather than resolving it silently.
+
+**Stop.** Only the criteria below decide done. An evaluator sees the objective
+string, not these files.
+<!-- /ANCHOR:binding -->
 
 ---
 
@@ -79,8 +108,9 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen` prints `RESULT: PASSED` |
-| External orchestration waves | Done | `plan.md` section `External orchestration` names seven waves over T001 through T032 |
+| Phase parent authored | Done | `spec.md` carries the Phase Documentation Map for six children, and `decision-record.md` records Q002 to Q007 |
+| Six binding rows | Done | `find specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 6 |
+| Child goals authored | Pending | No `NNN-slug/goal.md` exists yet; each is a `/create:goal <child> child` run |
 | Crate scaffolded | Pending | No `crates/bots-tui/` exists yet |
 | `ui` verb added | Pending | `node .skilled/bin/bots.cjs ui` prints `bots: unknown verb: ui` and exits 2 |
 
@@ -88,7 +118,8 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| The hand proof is not a criterion | T030 answers one item from the overlay by hand, so it needs a tty and stays the operator's step. Every criterion above runs without one. |
+| The hand proof is not a criterion | 005 answers one item from the overlay by hand, so it needs a tty and stays the operator's step. Every criterion above runs without one. |
 | The inbox pane reads the fixture first | `bots inbox --json` does not exist until phase 001 lands it, so the inbox pane and its banner are proven against `tests/fixtures/bots` until then. |
-| The parent goal owns the binding | This goal carries no binding table. `../goal.md` names this phase in its row 003 and binds it. |
+| The parent goal owns the binding | `../goal.md` names this phase in its row 003 and binds it. This goal binds the six children below it. |
+| The pre-expansion documents are kept | `context/legacy-003/` holds the phase 003 spec, plan, tasks, acceptance criteria and goal as they stood before the expansion. The folder is gitignored, so it is reference only. |
 <!-- /ANCHOR:log -->

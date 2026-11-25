@@ -2,33 +2,23 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "terminal screen implementation summary"
+  - "answer flow implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
-    last_updated_at: "2026-11-25T07:34:11Z"
-    last_updated_by: "generate-context"
-    recent_action: "Authored 003 parent and ten children via Vibe writers"
-    next_safe_action: "Commit and push 003 after operator yes, then plan the build of child 001"
-    packet_purpose: "Purpose: One screen that draws activity, inbox and routines from the runtime's own JSON and answers a needs-you item without leaving the terminal."
+    packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow"
+    last_updated_at: "2026-11-25T20:22:35Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialized Level 2 template"
+    next_safe_action: "Replace continuity placeholders"
     blockers: []
-    key_files:
-      - "specs/system-skilled-bots/003-openbot-parity-build/spec.md"
-      - "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md"
+    key_files: []
     session_dedup:
-      fingerprint: "sha256:6a7aa5e794ec785f3d00cacd57e7581ca8d72716b73f2f0a45083c9d1e705844"
-      session_id: "scaffold-003-terminal-screen"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-005-answer-flow"
       parent_session_id: null
-    session_ref:
-      runtime: "claude"
-      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
-      workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-25T07:34:11Z"
-      locatorKind: "transcript_path"
-      version: 1
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-terminal-screen |
+| **Spec Folder** | 005-answer-flow |
 | **Completed** | 2026-11-25 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -59,7 +49,7 @@ _memory:
 
 [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 3: terminal-screen
+### Phase 5: answer-flow
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]
