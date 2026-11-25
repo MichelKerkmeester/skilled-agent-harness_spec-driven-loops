@@ -785,7 +785,11 @@ function shouldMergeFrontier(lineageData, frontierPartition) {
 /** Merges every lineage's frontier nodes under lineage-qualified ids with per-status counts, and when a partition is given reports any assigned node no lineage returned. */
 function mergeResearchFrontier(lineageData, frontierPartition) {
   const nodes = [];
-  for (const { label, registry } of [...lineageData].sort((left, right) => compareText(left.label, right.label))) {
+  for (const lineage of [...lineageData].sort((left, right) => compareText(left.label, right.label))) {
+    const { label, registry } = lineage;
+    // A frontier node is a coverage claim, so a lineage that does not vouch keeps its nodes
+    // listed but they count for nothing: the stats and the partition guard read trusted nodes.
+    const vouches = lineageVouchesForCoverage(lineage);
     const lineageNodes = Array.isArray(registry?.frontier?.nodes) ? registry.frontier.nodes : [];
     for (const node of lineageNodes) {
       nodes.push({
@@ -794,13 +798,15 @@ function mergeResearchFrontier(lineageData, frontierPartition) {
         lineageNodeId: node.nodeId,
         ...(Object.prototype.hasOwnProperty.call(node, 'parentId') ? { parentId: qualifyFrontierId(label, node.parentId) } : {}),
         lineage: label,
+        ...(vouches ? {} : { _untrusted: true }),
       });
     }
   }
   nodes.sort((left, right) => compareText(left.lineage, right.lineage) || compareText(left.lineageNodeId, right.lineageNodeId));
-  const stats = { total: nodes.length };
-  for (const status of NODE_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
-  const reported = new Set(nodes.map((node) => node.lineageNodeId));
+  const trusted = nodes.filter((node) => node._untrusted !== true);
+  const stats = { total: trusted.length };
+  for (const status of NODE_STATUSES) stats[status] = trusted.filter((node) => node.status === status).length;
+  const reported = new Set(trusted.map((node) => node.lineageNodeId));
   const expected = frontierPartition && typeof frontierPartition === 'object'
     ? Object.values(frontierPartition).flatMap((ids) => (Array.isArray(ids) ? ids : []))
     : [];

@@ -7,7 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # Fan-out cross-lineage merge
@@ -66,7 +66,8 @@ number the nodes they admit from their own store, so two lineages can both name 
 `F-2-002`. `qualifyFrontierId` prefixes each node id and its `parentId` with the lineage label
 (`{label}:{nodeId}`), leaving `root` and empty ids as they are. Each merged node keeps its
 original id as `lineageNodeId` and its label as `lineage`. The merged `frontier.stats` counts
-the total and each node status.
+the total and each node status. Nodes from an untrusted lineage stay listed with
+`_untrusted: true`, and count neither in the frontier stats nor toward the partition guard.
 
 **Partition guard**: `main()` reads `frontier_partition` from `orchestration-summary.json` and
 passes it to the merge as `frontierPartition`. The guard runs inside the frontier merge, and a

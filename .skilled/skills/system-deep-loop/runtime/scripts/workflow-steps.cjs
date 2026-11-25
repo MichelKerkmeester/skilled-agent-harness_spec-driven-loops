@@ -194,7 +194,36 @@ function extendResearch() {
   fs.writeFileSync(path.join(workDir, "config.json"), JSON.stringify(next, null, 2) + "\n");
   let pendingInbox = 0;
   try {
-    pendingInbox = fs.readFileSync(inboxPath, "utf8").split("\n").filter((line) => line.trim() !== "").length;
+    const inboxLines = fs.readFileSync(inboxPath, "utf8").split("\n").filter((line) => line.trim() !== "");
+    pendingInbox = inboxLines.length;
+    // The reducer merges an inbox line into the registry and leaves the file alone,
+    // so a question this run already answered still sits in the inbox. What a re-stop
+    // depends on is the registry's open questions plus the lines it does not hold yet.
+    let registry = null;
+    try {
+      registry = JSON.parse(fs.readFileSync(path.join(path.dirname(inboxPath), "findings-registry.json"), "utf8"));
+    } catch {
+      registry = null;
+    }
+    if (registry && typeof registry === "object" && !Array.isArray(registry)) {
+      const held = new Set();
+      for (const key of ["keyQuestions", "openQuestions", "resolvedQuestions"]) {
+        if (!Array.isArray(registry[key])) continue;
+        for (const question of registry[key]) {
+          if (!question || typeof question !== "object") continue;
+          for (const field of ["id", "inboxId", "text"]) {
+            if (typeof question[field] === "string" && question[field] !== "") held.add(question[field]);
+          }
+        }
+      }
+      const unheld = inboxLines.filter((line) => {
+        let record = null;
+        try { record = JSON.parse(line); } catch { return true; }
+        if (!record || typeof record !== "object") return true;
+        return !["id", "text"].some((field) => typeof record[field] === "string" && held.has(record[field]));
+      }).length;
+      pendingInbox = (Array.isArray(registry.openQuestions) ? registry.openQuestions.length : 0) + unheld;
+    }
   } catch (error) {
     if (error.code !== "ENOENT") throw error;
   }

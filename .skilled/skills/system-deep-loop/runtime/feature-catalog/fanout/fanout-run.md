@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.31.0
+version: 1.4.32.0
 ---
 
 # Fan-out CLI lineage driver
@@ -147,13 +147,15 @@ still matches the `process_start` its `spawned` row recorded, because a reused p
 an unrelated process group. A lineage whose row records no start time, whose start time cannot be
 read, or whose start time differs is not signalled and is listed under `refused` with
 `{label, pid, reason}`, the reason `no_recorded_identity`, `identity_unreadable` or
-`identity_mismatch`. When the start time cannot be read because the recorded leader has exited
-while its process group still answers, each member of that group started at or after the recorded
-`process_start` is signalled on its own, and a member started earlier, which cannot be the
-lineage's, is left alone and listed under `spared` as `{label, pid, process_start}`. With no
-such member the lineage stays refused as `identity_unreadable`. It sends SIGTERM to the runner
-that spawned the lineages it kept first, found through the kernel's parent link and only when
-that parent is running `fanout-run.cjs`, then to each live lineage's process group, or to the
+`identity_mismatch`. A `no_recorded_identity` refusal also carries a `remedy` naming the way
+out: stop the runner that spawned the lineage, with Ctrl+C in its console or a signal to its
+pid, and it ends the lineages it holds. When the start time cannot be read because the recorded
+leader has exited while its process group still answers, each member of that group started at or
+after the recorded `process_start` is signalled on its own, and a member started earlier, which
+cannot be the lineage's, is left alone and listed under `spared` as `{label, pid, process_start}`.
+With no such member the lineage stays refused as `identity_unreadable`. It sends SIGTERM to the
+runner that spawned the lineages it kept first, found through the kernel's parent link and only
+when that parent is running `fanout-run.cjs`, then to each live lineage's process group, or to the
 members it chose. An exited leader leaves no parent link, so for those members the runner is the
 `runner_pid` the `spawned` row recorded, signalled only while its start time still matches the
 row's `runner_start`; that runner closes the lineage itself, so it is not closed twice. It waits
