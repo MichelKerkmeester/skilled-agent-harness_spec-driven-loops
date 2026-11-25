@@ -9,7 +9,7 @@ trigger_phrases:
   - "default-on hubs cohort"
 importance_tier: important
 contextType: implementation
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # Compiled-Routing Architecture For Parent Hubs
@@ -95,7 +95,7 @@ For a hub to go from "just scaffolded" to genuinely compiled-serving, in order:
 3. **Re-mint the activation manifest** to the shadow-child's fresh hash, flipping `servingAuthority` to `"compiled"` (still reversible: flipping it back, or the fleet kill-switch, restores legacy byte-for-byte). Activation and the flip both run the admission check for the hub and refuse anything short of `pass`, and both refuse while the advisor scorer has changed since its last freeze. The freeze is stale today, so no hub can be flipped until it is renewed.
 4. **Join `DEFAULT_ON_HUBS`** by setting the hub's registry entry to `defaultOn: true`, so the hub serves compiled by default once the flag is unset, not only when forced on.
 
-Adding a hub takes its rollout folder plus one registry entry and no code edit: the engine, the resolver, the sync tool, the guard and the advisor all read their hub lists from `hub-registry.json`. A repository that vendors `.skilled/` adds its hub the same way, appending the entry to `hub-registry.json` with a json-entry overlay.
+Adding a hub takes its rollout folder plus one registry entry and no code edit: the engine, the resolver, the sync tool, the guard and the advisor all read their hub lists from `hub-registry.json`. A repository that vendors `.skilled/` adds its hub the same way, appending the entry to `hub-registry.json` with a json-entry overlay. The leaf-route replay (`sk-create-skill/scripts/leaf-route-replay.cjs`) keeps its own hub list on purpose: it replays every parent hub's prose `ROUTER.md` keyword block against its gold, compiled-serving or not, so that list names parent hubs rather than the compiled-route set, and a new parent hub joins its report by an edit to that list.
 
 **This whole path is outside `create-skill`'s authority.** `HUB_CHILD` and `DEFAULT_ON_HUBS` are built from the hub registry, owned by the runtime engine, not derived from any manifest or scaffold output. A hub absent from the registry always falls back to legacy, by construction, no matter what its manifest says — `create-skill` cannot add another hub to this cohort, and does not attempt to.
 

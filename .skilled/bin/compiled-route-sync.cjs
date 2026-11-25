@@ -56,17 +56,33 @@ const PUBLICATION_STATE_SCHEMA = 'V1';
 // trace drives the hubs of the tree it reads: the authored root for a build or
 // check, the promoted root for a verify. The module-level list is the authored
 // registry, or the promoted one where only the promoted closure ships (a host
-// repository that vendors Skilled). The shared reader lives in the promoted
-// closure, loaded only when a registry is present, so a checkout pruned of both
-// trees still reaches the error that names the folder to restore.
+// repository that vendors Skilled). Each registry is read by the reader in its own
+// closure, so a missing or older promoted tree cannot break a build of the
+// authored one. The reader is loaded only when a registry is present, and a
+// registry without one fails naming the folder to restore, never a raw module
+// error.
 const HUB_REGISTRY_FILE = 'hub-registry.json';
-const HUB_REGISTRY_READER = path.join(RUNTIME_ROOT, '014-runtime-engine', 'lib', 'hub-registry.cjs');
+const HUB_REGISTRY_READER = path.join('014-runtime-engine', 'lib', 'hub-registry.cjs');
+
+// The folder a closure root is restored from: the authored program for the
+// authored root, the root itself otherwise.
+function closureLabel(root) {
+  if (path.resolve(root) === path.resolve(IMPL_ROOT)) return layout.AUTHORED_PROGRAM_DIR;
+  const relative = path.relative(REPO_ROOT, root);
+  return relative && !relative.startsWith('..') && !path.isAbsolute(relative) ? relative : root;
+}
 
 function registryHubsIn(root) {
   const file = path.join(root, HUB_REGISTRY_FILE);
   if (!fs.existsSync(file)) return null;
+  const reader = path.join(root, HUB_REGISTRY_READER);
+  if (!fs.existsSync(reader)) {
+    const label = closureLabel(root);
+    throw new Error(`compiled-route hub registry under ${label} has no reader beside it (${HUB_REGISTRY_READER}); ` +
+      `restore ${label}`);
+  }
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const { loadHubRegistry } = require(HUB_REGISTRY_READER);
+  const { loadHubRegistry } = require(reader);
   return loadHubRegistry(file).map((hub) => hub.id);
 }
 
@@ -1188,4 +1204,5 @@ module.exports = {
   PROMOTED_RESOLVER,
   IMPL_ROOT,
   HUBS,
+  registryHubsIn,
 };

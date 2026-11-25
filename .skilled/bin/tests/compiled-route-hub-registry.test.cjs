@@ -222,3 +222,34 @@ describe('a malformed registry is refused with an error naming the file', () => 
     );
   });
 });
+
+describe('the sync reads each registry with the reader that ships beside it', () => {
+  // A closure root that holds a registry, and optionally a reader of its own.
+  function closureRoot(t, prefix, readerSource) {
+    const root = tempDir(t, prefix);
+    fs.writeFileSync(path.join(root, 'hub-registry.json'), fs.readFileSync(REGISTRY_FILE));
+    if (readerSource !== undefined) {
+      fs.mkdirSync(path.join(root, '014-runtime-engine', 'lib'), { recursive: true });
+      fs.writeFileSync(path.join(root, '014-runtime-engine', 'lib', 'hub-registry.cjs'), readerSource);
+    }
+    return root;
+  }
+
+  test('a registry is parsed by the reader in its own closure, not by the promoted one', (t) => {
+    const sync = require(path.join(BIN, 'compiled-route-sync.cjs'));
+    const root = closureRoot(t, 'hub-registry-own-reader-',
+      "'use strict';\nmodule.exports = { loadHubRegistry: () => [{ id: 'own-reader-hub' }] };\n");
+    assert.deepEqual(sync.registryHubsIn(root), ['own-reader-hub']);
+  });
+
+  test('a registry whose reader is missing names the folder to restore', (t) => {
+    const sync = require(path.join(BIN, 'compiled-route-sync.cjs'));
+    const root = closureRoot(t, 'hub-registry-no-reader-');
+    assert.throws(() => sync.registryHubsIn(root), (error) => {
+      assert.doesNotMatch(error.message, /Cannot find module/);
+      assert.match(error.message, /has no reader beside it/);
+      assert.ok(error.message.includes(`restore ${root}`), error.message);
+      return true;
+    });
+  });
+});
