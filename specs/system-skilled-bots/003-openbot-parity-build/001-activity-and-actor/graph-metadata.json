@@ -44,6 +44,7 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
@@ -52,9 +53,8 @@
       ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-      ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md"
+      ".skilled/skills/system-skilled-bots/runtime/tests/posture.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts"
     ],
     "entities": [
       {
@@ -112,6 +112,12 @@
         "source": "derived"
       },
       {
+        "name": "posture.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        "source": "derived"
+      },
+      {
         "name": "runner.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
@@ -160,21 +166,15 @@
         "source": "derived"
       },
       {
+        "name": "posture.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/posture.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "cli-run.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "status-and-inbox.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The status index already holds a row for every run, delivery and needs-you item, but nothing shows them as a timeline: `bots status` prints one line per bot and one line per open item, so a reader cannot tell what is waiting, what is running and what ended without reading three surfaces [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:470]",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-25T07:20:21.407Z",
+    "last_save_at": "2026-11-25T17:49:41.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac84d6cf273e8e193e3af6351633a81a233f9d5d82ecf7d57e773cfc558d35e2",
+    "source_fingerprint": "sha256:4571bb4ad8485aa08450934fefcec8c4dea09843fb85769a33d3ba73c4c49132",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bce2d7a26ea4fed89eb4f637e93a71d8c019960865320aeb6eb7f8e998ca19bc",
-      "plan.md": "571121698bad5e492b50e0d3d02ddae1a9c9b26af4dc348d2d8a0e9ab17a8dd5",
-      "tasks.md": "51a97e05a8c5785c00d05dee327f68216d4b20a5a1c276f833b1bd65667c4817",
+      "spec.md": "70c7e8e65db465a6aefaf8b0d9356ed675545c21380574a9a2722c5dc2dd1d38",
+      "plan.md": "a56a046eed1c67ca84f92a0af4802819b30fc841d66dce7356760d7f03af3994",
+      "tasks.md": "12cc9a6ba04f23d0673617afe7ad505901f2c954fd129a0e3ddb286797640c62",
       "implementation-summary.md": "79160a8cf49576ec0e2548051853aef62e4640d28f25116f622affc46b262d51"
     },
     "last_active_at": null

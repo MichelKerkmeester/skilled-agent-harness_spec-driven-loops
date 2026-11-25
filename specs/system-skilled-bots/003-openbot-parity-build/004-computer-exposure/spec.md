@@ -47,6 +47,7 @@ This is **Phase 4** of the Build OpenBot parity for skilled bots from the 002 re
 - `isolation.ts`, which already creates the tree and knows its branch. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:3-30]
 - `state-root.ts`, which already names the run folder. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:366]
 - `posture.ts`, which already decides whether a run gets a tree at all. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/posture.ts:3-14]
+- The `buildBotPrompt` section order, a shared record owned by 005 and fixed in the parent's table and in 005's Prompt Section Order paragraph, so the line has one slot rather than one per phase. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:130] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71]
 
 **Deliverables**:
 - One working-place line in `buildBotPrompt`, naming the directory the child starts in, its branch and the run folder.
@@ -139,9 +140,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `buildBotPrompt` emits one working-place line naming the directory the child starts in, its branch and the run folder: `Your working place is <path> on branch <branch>. This run's folder is <runFolder>.` When the branch is null the line reads `Your working place is <path>. This run's folder is <runFolder>.` One exported `workingPlaceLine` builds it, so a resumed run can find it by exact text and never by a pattern. |
+| REQ-001 | `buildBotPrompt` emits one working-place line naming the directory the child starts in, its branch and the run folder: `Your working place is <path> on branch <branch>. This run's folder is <runFolder>.` When the branch is null the line reads `Your working place is <path>. This run's folder is <runFolder>.` One exported `workingPlaceLine` builds it, so a resumed run can find it by exact text and never by a pattern. The line takes the working-place slot in the shared section order, after the spec-folder line and before the checkout line, so the four phases that edit `buildBotPrompt` produce one prompt; the checkout line is emitted only for a child that starts outside the checkout, and 005's memory block and 009's skills block land after it and before the decision-marker line, so the assertion holds before and after them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:130] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:326] |
 | REQ-002 | The working place is the tree for a worktree run and the checkout for a shared run. `runner.ts` passes the directory it dispatches into and the branch it resolved, so the line and the child's `cwd` can never disagree. |
-| REQ-003 | `evidence.branch` is a string for every dispatched run whose working place is on a branch, and null only when git reports a detached HEAD or does not answer. A shared run reads the checkout's branch once through `checkoutBranch` in `isolation.ts`; a worktree run uses the branch the tree was made on. |
+| REQ-003 | `evidence.branch` is a string for every dispatched run whose working place is on a branch, and null only when git reports a detached HEAD or does not answer. A shared run reads the checkout's branch once through `checkoutBranch` in `isolation.ts`; a worktree run uses the branch the tree was made on. The record is the file `recordFile(stateRoot, identity, runId)` returns, `<stateRoot>/<identityKey>/records/<runId>.json`, so a proof reads that path and never a copy inside the run folder. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:176-178] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:362-369] |
 | REQ-004 | `bots status` prints `branch <name>` when the last run recorded a branch and `worktree <path>` when it recorded a tree, both appended after every part the row already prints, so no existing part moves. A row whose last run recorded neither prints neither. |
 | REQ-005 | `bots status --json` carries `lastRun.branch` and `lastRun.worktreePath`, each a string or null, and adds no other key to a row. |
 | REQ-006 | The status index carries both fields in `RunSummary`, filled by `summarizeRecord` from the record's evidence, and `SCHEMA_VERSION` stays `'2'`, so an index built before this phase still opens. |
@@ -164,6 +165,7 @@ Each requirement follows one existing shape in this tree rather than inventing o
 | Requirement | Reference | What it fixes |
 |-------------|-----------|---------------|
 | REQ-001 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:301-308] | One exported line builder, so a resumed run swaps it by exact text |
+| REQ-001 | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:130] | The section order is a shared record owned by 005, so the line has one slot rather than one per phase |
 | REQ-002 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1038] | The directory the child starts in is already one value, `workDir` |
 | REQ-003 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1033] | A worktree run already records the tree's branch |
 | REQ-004 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:479-486] | The row is a list of named parts, so a new part is appended |
@@ -176,7 +178,7 @@ Each requirement follows one existing shape in this tree rather than inventing o
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A worktree run's prompt holds `Your working place is <tree> on branch worktrees/NNN-bot-<id>.` and its record's `evidence.branch` is that branch.
+- **SC-001**: A worktree run's prompt holds `Your working place is <tree> on branch worktrees/NNN-bot-<id>.` in the shared order's working-place slot, after the spec-folder line and before the checkout line, and its record's `evidence.branch` is that branch.
 - **SC-002**: A shared run's record holds the checkout's branch, and `bots status` prints `branch <name>` on that run's row.
 - **SC-003**: `bots status --json` carries `lastRun.branch` and `lastRun.worktreePath` and no other new key.
 - **SC-004**: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`, and `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0.

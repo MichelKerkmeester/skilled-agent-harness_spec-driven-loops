@@ -58,7 +58,7 @@ Two shell variables, used by every verify clause below:
 
 - [ ] T008 Create the routine state module with the state file path and read/write (`$R/lib/routine-state.ts`). Verify: `cd $R && npx vitest run tests/routine-state.vitest.ts -t 'state file'` exits 0.
 - [ ] T009 Add `recordUntilOutcome` to the routine state module (`$R/lib/routine-state.ts`). Verify: `cd $R && npx vitest run tests/routine-state.vitest.ts -t 'until'` exits 0.
-- [ ] T010 Add `failureStreak` and `evaluateFatigue` to the routine state module (`$R/lib/routine-state.ts`). Verify: `cd $R && npx vitest run tests/routine-state.vitest.ts -t 'fatigue'` exits 0.
+- [ ] T010 Add `failureStreak` and `evaluateFatigue` to the routine state module, counting only dispatched runs that failed — a non-null `exit.class`, no `exit.refusal` and a reason other than `awaiting-decision` — recording `fatiguedAt` and the item id, and raising the item with the tenth failed run's id as its `runId` so `bots enable` can find and answer it (`$R/lib/routine-state.ts`). Verify: `cd $R && npx vitest run tests/routine-state.vitest.ts -t 'fatigue'` exits 0.
 - [ ] T011 Name and create the identity's `routines` folder (`$R/lib/state-root.ts`). Verify: `rg -c 'routines' .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts` prints 2.
 - [ ] T012 Add the `completed` switch kind (`$R/lib/switches.ts`). Verify: `rg -n 'SWITCH_KINDS' .skilled/skills/system-skilled-bots/runtime/lib/switches.ts` prints one line holding `completed`.
 
@@ -70,15 +70,15 @@ Two shell variables, used by every verify clause below:
 ### The runner hooks
 
 - [ ] T015 Read the `completed` switch beside the `disabled` one before the lease (`$R/lib/runner.ts`). Verify: `cd $R && npx vitest run tests/runner.vitest.ts -t 'completed switch'` exits 0.
-- [ ] T016 Run `until` through the precheck helper after a completed run and record the observation (`$R/lib/runner.ts`). Verify: `cd $R && npx vitest run tests/runner.vitest.ts -t 'until'` exits 0.
+- [ ] T016 Run `until_check` through the precheck helper after a completed run, in the bound checkout or the identity's state root, and record the observation (`$R/lib/runner.ts`). Verify: `cd $R && npx vitest run tests/runner.vitest.ts -t 'until'` exits 0.
 - [ ] T017 Evaluate the fatigue rule after a failed run (`$R/lib/runner.ts`). Verify: `cd $R && npx vitest run tests/runner.vitest.ts -t 'fatigue'` exits 0.
 
 ### The refusals and the verb
 
 - [ ] T018 Refuse a sub-floor cron start in the install preflight, before anything is written (`$R/lib/installer.ts`). Verify: `cd $R && npx vitest run tests/installer.vitest.ts -t 'floor'` exits 0.
-- [ ] T019 Report the `completed` switch as a row state (`$R/lib/status.ts`). Verify: `cd $R && npx vitest run tests/status.vitest.ts -t 'completed'` exits 0.
-- [ ] T020 Add the five routine invariants and the floor call to the checker (`.skilled/skills/system-skilled-bots/scripts/bot-check.cjs`). Verify: `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/routine-floor` exits 1 and prints `FAIL: routine-floor-15-minutes`.
-- [ ] T021 Add the `routines` verb and clear `completed` on `enable` (`.skilled/bin/bots.cjs`). Verify: `node .skilled/bin/bots.cjs routines --repo $F/routine-clean` exits 0.
+- [ ] T019 Import `readSwitch` and insert `completed` into `BOT_ROW_STATES` after `held`, so the row state is read from the switch rather than inferred from the other flags (`$R/lib/status.ts`). Verify: `cd $R && npx vitest run tests/status.vitest.ts -t 'completed'` exits 0 and `rg -n 'completed' .skilled/skills/system-skilled-bots/runtime/lib/status.ts` names the state and the switch read.
+- [ ] T020 Add the nine routine invariants and the floor call to the checker (`.skilled/skills/system-skilled-bots/scripts/bot-check.cjs`). Verify: `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/routine-floor` exits 1 and prints `FAIL: routine-floor-15-minutes`.
+- [ ] T021 Add the `routines` verb, and on `enable` clear `completed`, answer the fatigue item through `answerItem` with its no-resume option and clear the fatigue record (`.skilled/bin/bots.cjs`, `$R/lib/answer.ts`). Verify: `cd $R && npx vitest run tests/cli-run.vitest.ts -t 'fatigue'` exits 0, `cd $R && npx vitest run tests/answer.vitest.ts -t 'no resume'` exits 0 and `rg -c 'input.resume' $R/lib/answer.ts` prints at least 1.
 
 ### The docs the author and the reader use
 
@@ -95,7 +95,7 @@ Two shell variables, used by every verify clause below:
 
 ### Fixtures and contract tests
 
-- [ ] T026 Add one defect fixture per new hard invariant (`$F/`). Verify: `ls .skilled/skills/system-skilled-bots/scripts/fixtures | rg -c '^routine-'` prints 5.
+- [ ] T026 Add one defect fixture per new hard invariant and the clean fixture (`$F/`). Verify: `ls .skilled/skills/system-skilled-bots/scripts/fixtures | rg -c '^routine-'` prints 10.
 - [ ] T027 Extend the checker test with the new invariants and their fixtures (`$R/tests/bot-check.vitest.ts`). Verify: `cd $R && npx vitest run tests/bot-check.vitest.ts` exits 0.
 - [ ] T028 Extend the CLI test with the `routines` verb, its `--json` shape and its exit code (`$R/tests/cli-run.vitest.ts`). Verify: `cd $R && npx vitest run tests/cli-run.vitest.ts` exits 0.
 
@@ -103,7 +103,7 @@ Two shell variables, used by every verify clause below:
 
 - [ ] T029 Run the whole runtime suite (`$R/`). Verify: `cd $R && npm test` exits 0.
 - [ ] T030 Run the checker over a clean routine fixture (`$F/routine-clean`). Verify: `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/routine-clean` exits 0.
-- [ ] T031 Run `bots routines --json` over the clean fixture and check the shape (`scratch/`). Verify: `node .skilled/bin/bots.cjs routines --json --repo $F/routine-clean | jq -e '.[0].untilMetAt'` exits 0.
+- [ ] T031 Run `bots routines --json` over a temp copy of the clean fixture and check the shape, including that a bot with no recorded outcome prints `untilMetAt` as null (`scratch/`). The copy is what isolates the run: `jobEnv` prefers an installed job's own environment over the shell's, so a pinned root in the shell is ignored on a host with jobs, while a checkout no job names resolves under `XDG_STATE_HOME` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:774-785]. Verify: `T=$(mktemp -d) && cp -R $F/routine-clean "$T/checkout" && XDG_STATE_HOME="$T/state" node .skilled/bin/bots.cjs routines --json --repo "$T/checkout" | jq -e 'length == 2 and (.[0].botId != null) and (.[0].untilMetAt == null)'` exits 0.
 
 ### The packet
 
@@ -119,7 +119,7 @@ Two shell variables, used by every verify clause below:
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] `cd $R && npm test` exits 0 and `npm run typecheck` exits 0
-- [ ] `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/routine-clean` exits 0 and each of the five defect fixtures exits 1 naming its invariant
+- [ ] `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/routine-clean` exits 0 and each of the nine defect fixtures exits 1 naming its invariant
 - [ ] `node .skilled/bin/bots.cjs routines --repo $F/routine-clean` prints one row per routine and exits 0
 <!-- /ANCHOR:completion -->
 
@@ -154,8 +154,8 @@ A `[B]` task blocks close at any priority. A P1 item deferred needs the reason w
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Every requirement in `spec.md` has a row in `acceptance-criteria.md`. Verify: `rg -c 'REQ-0' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md` prints at least 10.
-- [ ] CHK-002 [P0] The plan names every file the change touches. Verify: `rg -c '^\| `\.skilled' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md` prints 22.
+- [ ] CHK-001 [P0] Every requirement in `spec.md` has a row in `acceptance-criteria.md`. Verify: `rg -c 'REQ-0' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md` prints 11.
+- [ ] CHK-002 [P0] Every requirement in `spec.md` is a table row, and the plan names every file the change touches. Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md` prints 11 and `rg -c '^\| `\.skilled' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md` prints 24.
 - [ ] CHK-003 [P1] The cron translator and the period helper are unchanged and importable. Verify: `rg -n 'export function schedulePeriodSeconds' .skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts` prints one line.
 <!-- /ANCHOR:pre-impl -->
 
@@ -166,7 +166,7 @@ A `[B]` task blocks close at any priority. A P1 item deferred needs the reason w
 
 - [ ] CHK-010 [P0] The runtime typechecks. Verify: `cd $R && npm run typecheck` exits 0.
 - [ ] CHK-011 [P0] Every new refusal is a named `Result` reason, never a throw. Verify: `rg -n "throw new Error" .skilled/skills/system-skilled-bots/runtime/lib/routine.ts .skilled/skills/system-skilled-bots/runtime/lib/routine-state.ts` prints nothing.
-- [ ] CHK-012 [P1] Every new refusal name has a test that asserts it. Verify: `rg -c 'routine-floor-15-minutes|routine-starts-empty|routine-starts-multiple-cron|routine-starts-cron-not-first|routine-trigger-conflict|routine-tell-with-targets' $R/tests/routine.vitest.ts` prints 6.
+- [ ] CHK-012 [P1] Every new refusal name has a test that asserts it. Verify: `rg -c 'routine-floor-15-minutes|routine-starts-empty|routine-starts-multiple-cron|routine-starts-cron-not-first|routine-starts-multiple|routine-trigger-conflict|routine-tell-with-targets|routine-until-check-without-outcome|routine-until-shell-metacharacters' $R/tests/routine.vitest.ts` prints 9 and `rg -c 'routine-fatigued' $R/tests/routine-state.vitest.ts` prints at least 1.
 - [ ] CHK-013 [P1] The two new modules follow the group-import rule in `runtime/lib/README.md`. Verify: `rg -n "from './" .skilled/skills/system-skilled-bots/runtime/lib/routine.ts` prints only contracts-group imports.
 <!-- /ANCHOR:code-quality -->
 
@@ -177,7 +177,7 @@ A `[B]` task blocks close at any priority. A P1 item deferred needs the reason w
 
 - [ ] CHK-020 [P0] Every acceptance criterion is `Met` with evidence that was observed. Verify: `rg -c '\| Unmet \|' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md` prints 0.
 - [ ] CHK-021 [P0] The whole runtime suite passes. Verify: `cd $R && npm test` exits 0.
-- [ ] CHK-022 [P1] Each new hard invariant has a defect fixture that fails it. Verify: `ls .skilled/skills/system-skilled-bots/scripts/fixtures | rg -c '^routine-'` prints 5.
+- [ ] CHK-022 [P1] Each new hard invariant has a defect fixture that fails it. Verify: `ls .skilled/skills/system-skilled-bots/scripts/fixtures | rg -c '^routine-'` prints 10.
 - [ ] CHK-023 [P1] The `until` timeout, spawn-failure and non-zero paths are each tested. Verify: `rg -c "timed out|cannot spawn|exit 1" $R/tests/routine-state.vitest.ts` prints at least 3.
 <!-- /ANCHOR:testing -->
 
@@ -196,7 +196,7 @@ A `[B]` task blocks close at any priority. A P1 item deferred needs the reason w
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` name the same six refusals. Verify: `rg -c 'routine-floor-15-minutes' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md` prints one line per file.
+- [ ] CHK-040 [P1] `spec.md` and `plan.md` both name the floor refusal, so the two documents agree on the one refusal both carry. Verify: `rg -c 'routine-floor-15-minutes' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md` prints one line per file.
 - [ ] CHK-041 [P1] Code comments keep the durable why and carry no packet, phase or task label. Verify: `rg -n 'phase 2|002-routine-layer|T0[0-9][0-9]' .skilled/skills/system-skilled-bots/runtime/lib/routine.ts .skilled/skills/system-skilled-bots/runtime/lib/routine-state.ts` prints nothing.
 - [ ] CHK-042 [P2] The runtime README names the two new modules. Verify: `rg -c 'routine.ts|routine-state.ts' .skilled/skills/system-skilled-bots/runtime/lib/README.md` prints 2.
 <!-- /ANCHOR:docs -->

@@ -1,0 +1,1600 @@
+{
+  "sessionId": "fanout-devin-1-1795615532231-nbblrp",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-plan-versus-runtime-do-the-files-functions-records-fields-and-cli-verbs-each-of-",
+      "inboxId": "F-1-001",
+      "text": "Plan versus runtime: do the files, functions, records, fields and CLI verbs each of the eleven phase plans names exist in the built runtime with the shapes the plan assumes, and are the test and verify commands in every tasks.md and acceptance-criteria.md runnable here (vitest paths, cargo for the Rust screen)? List every mismatch.",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "frontierStatus": "exhausted",
+      "resolved": true
+    },
+    {
+      "id": "question-2-security-in-the-vault-008-apps-007-approvals-006-memory-005-and-channels-011-pla",
+      "inboxId": "F-1-005",
+      "text": "Security: in the vault (008), apps (007), approvals (006), memory (005) and channels (011) plans, where can secrets leak into prompts, logs, run records or chat, how are tokens stored, and can a spoofed or unlinked chat user approve or read?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "frontierStatus": "exhausted",
+      "resolved": true
+    },
+    {
+      "id": "question-3-who-is-allowed-to-answer-a-needs-you-item-and-can-a-chat-sender-be-linked-to-the",
+      "inboxId": "F-2-006",
+      "text": "Who is allowed to answer a needs-you item, and can a chat sender be linked to the operator before any approval is honored across the 006, 011 and 001 plans?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 8,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-is-a-standing-grant-listed-revoked-or-expired-once-a-rule-store-exists-and-w",
+      "inboxId": "F-2-007",
+      "text": "How is a standing grant listed, revoked or expired once a rule store exists, and what stops an `always` grant from becoming permanent silent authority?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 9,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-5-do-the-secret-scans-cover-child-transcripts-and-logs-written-outside-the-run-fol",
+      "inboxId": "F-2-008",
+      "text": "Do the secret scans cover child transcripts and logs written outside the run folder, such as an executor's own session store, or only the run folder the plan scans?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 10,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-6-do-the-eleven-plans-agree-on-the-bots-status-json-key-set-that-phase-003-s-heade",
+      "inboxId": "F-2-009",
+      "text": "Do the eleven plans agree on the `bots status --json` key set that phase 003's header and phase 004's lastRun fields both extend, and does any phase add a key without updating the terminal screen's parser?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 3,
+      "promotedQuestionId": null,
+      "addedAtIteration": 3,
+      "resolvedAtIteration": 11,
+      "frontierStatus": "answered",
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-plan-versus-runtime-do-the-files-functions-records-fields-and-cli-verbs-each-of-",
+      "inboxId": "F-1-001",
+      "text": "Plan versus runtime: do the files, functions, records, fields and CLI verbs each of the eleven phase plans names exist in the built runtime with the shapes the plan assumes, and are the test and verify commands in every tasks.md and acceptance-criteria.md runnable here (vitest paths, cargo for the Rust screen)? List every mismatch.",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "frontierStatus": "exhausted"
+    },
+    {
+      "id": "question-2-security-in-the-vault-008-apps-007-approvals-006-memory-005-and-channels-011-pla",
+      "inboxId": "F-1-005",
+      "text": "Security: in the vault (008), apps (007), approvals (006), memory (005) and channels (011) plans, where can secrets leak into prompts, logs, run records or chat, how are tokens stored, and can a spoofed or unlinked chat user approve or read?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "frontierStatus": "exhausted"
+    },
+    {
+      "id": "question-3-who-is-allowed-to-answer-a-needs-you-item-and-can-a-chat-sender-be-linked-to-the",
+      "inboxId": "F-2-006",
+      "text": "Who is allowed to answer a needs-you item, and can a chat sender be linked to the operator before any approval is honored across the 006, 011 and 001 plans?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 8,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-4-how-is-a-standing-grant-listed-revoked-or-expired-once-a-rule-store-exists-and-w",
+      "inboxId": "F-2-007",
+      "text": "How is a standing grant listed, revoked or expired once a rule store exists, and what stops an `always` grant from becoming permanent silent authority?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 9,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-5-do-the-secret-scans-cover-child-transcripts-and-logs-written-outside-the-run-fol",
+      "inboxId": "F-2-008",
+      "text": "Do the secret scans cover child transcripts and logs written outside the run folder, such as an executor's own session store, or only the run folder the plan scans?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 10,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-6-do-the-eleven-plans-agree-on-the-bots-status-json-key-set-that-phase-003-s-heade",
+      "inboxId": "F-2-009",
+      "text": "Do the eleven plans agree on the `bots status --json` key set that phase 003's header and phase 004's lastRun fields both extend, and does any phase add a key without updating the terminal screen's parser?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 3,
+      "promotedQuestionId": null,
+      "addedAtIteration": 3,
+      "resolvedAtIteration": 11,
+      "frontierStatus": "answered"
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-p1-phase-001-tasks-md-138-chk-010-the-typecheck-verify-command-is-not-runnable-a",
+      "text": "**P1 — phase 001, `tasks.md:138` (CHK-010): the typecheck verify command is not runnable as written.** `cd .skilled/skills/system-skilled-bots/runtime && npx tsc --noEmit` cannot resolve a local `tsc`: `runtime/node_modules/.bin` holds `esbuild nanoid prebuild-install rc rolldown semver tsx vite vitest why-is-node-running` and no `tsc`. The repo's own typecheck script is `../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json`, and that binary exists. `npx tsc` would fetch the unrelated deprecated `tsc` package or fail offline, so CHK-010 either fails or checks the wrong compiler. **Exact edit:** replace the CHK-010 Verify with `cd $RT && npm run typecheck` and add that same command to the phase-001 Definition of Done. [SOURCE: .skilled/skills/system-skilled-bots/runtime/package.json:13] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:55]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/bin/bots.cjs",
+        "Live CLI output: `bots activity`, `bots inbox --json`, `bots answer item-1 yes --as ada`"
+      ]
+    },
+    {
+      "id": "finding-1-3-p1-phase-002-plan-md-88-the-affected-surface-row-misstates-status-ts-s-current-r",
+      "text": "**P1 — phase 002, `plan.md:88`: the affected-surface row misstates `status.ts`'s current role, so the task that adds the `completed` row state understates the change.** The row says `status.ts` \"Reads the switches to build a row state\" and needs only \"update: report `completed`\". The module imports no switch reader and builds `flags` from retired/path state, `checkInstalls` status, an open needs-you item, launchd presence and the last index row; `BOT_ROW_STATES` contains no `completed`. The work is therefore a new switch read plus a new state in the precedence list, not a reporting tweak. **Exact edit:** change the row's Current Role to \"Reads install checks, path state, launchd, the last index row and open needs-you items; does not read switches\", and add to T019: \"import `readSwitch` and insert `completed` into `BOT_ROW_STATES` after `held`\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:41-52] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:270-282]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/bin/bots.cjs",
+        "Live CLI output: `bots activity`, `bots inbox --json`, `bots answer item-1 yes --as ada`"
+      ]
+    },
+    {
+      "id": "finding-1-4-p2-phase-001-plan-md-140-the-rollback-claim-about-a-post-revert-record-is-wrong-",
+      "text": "**P2 — phase 001, `plan.md:140`: the rollback claim about a post-revert record is wrong.** It says a record carrying `actor` \"reads as an unknown key only if the revert lands after a run wrote one, and `bots status --rebuild` then skips that record and names it\". `validateRunRecord` checks only the eight required groups and a fixed set of nested fields; it rejects neither unknown top-level keys nor unknown keys inside a group, so a reverted reader ignores `actor` and the record is not skipped. **Exact edit:** reword the rollback to \"the reverted reader ignores the extra field, so the record still reads and rebuilds\". [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:234-248]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/bin/bots.cjs",
+        "Live CLI output: `bots activity`, `bots inbox --json`, `bots answer item-1 yes --as ada`"
+      ]
+    },
+    {
+      "id": "finding-1-2-p2-phase-001-spec-md-132-tasks-md-67-t025-acceptance-criteria-md-59-ac-006-the-m",
+      "text": "**P2 — phase 001, `spec.md:132`, `tasks.md:67` (T025), `acceptance-criteria.md:59` (AC-006): the MIT notice file has no stated location and does not exist anywhere in the repository.** `fd -HI THIRD_PARTY_NOTICES` returns nothing, so the file is created by this phase, yet the spec's Files to Change names it as the bare `THIRD_PARTY_NOTICES.md` and both verify clauses `rg` a bare filename from an unstated working directory. Two implementers can create it at the repo root and under `.skilled/skills/system-skilled-bots/` and both \"pass\" their own check. **Exact edit:** in the spec's Files to Change row, T025 and AC-006, write the exact target path (proposed: `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md`, beside the runtime the lifted files land in) and make each verify `rg -n 'activity-groups.ts|activity-rows.ts' <that path>`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/bin/bots.cjs",
+        "Live CLI output: `bots activity`, `bots inbox --json`, `bots answer item-1 yes --as ada`"
+      ]
+    },
+    {
+      "id": "finding-2-3-p1-cross-phase-phase-001-tasks-md-67-t025-and-phase-008-tasks-md-64-t015-two-pha",
+      "text": "**P1 — cross-phase, phase 001 `tasks.md:67` (T025) and phase 008 `tasks.md:64` (T015): two phases own the same notice file with different contents.** Phase 001 creates `THIRD_PARTY_NOTICES.md` with two MIT entries; phase 008 writes three Apache-2.0 entries into the same bare path and verifies `rg -c 'Apache-2.0' THIRD_PARTY_NOTICES.md` prints 3. Neither says append, neither names an absolute path, and a build in phase order overwrites or duplicates the other's entries. **Exact edit:** name 001 the file's owner (create with a `## Lifted sources` section), have 008 append its own section, and make each verify count only its own section. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md:67] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:64]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "Host command output: `security help add-generic-password`"
+      ]
+    },
+    {
+      "id": "finding-2-4-p1-phase-006-spec-md-104-and-req-005-scope-always-and-conversation-promise-persi",
+      "text": "**P1 — phase 006, `spec.md:104` and REQ-005: `--scope always` and `conversation` promise persistence the build does not provide.** The scope is recorded on the item and named in the resumed prompt, and the spec explicitly puts \"a saved rule that outlives its item\" out of scope, so the operator who answers `always` gets a one-item effect while `bots inbox` prints `always`. **Exact edit:** until a rule store exists, refuse `conversation` and `always` as `grant-scope-unsupported` (leaving `once` and `deny`), or rename them to `this-run`/`deny` and move standing scopes to the phase that adds the store. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:104] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:149]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "Host command output: `security help add-generic-password`"
+      ]
+    },
+    {
+      "id": "finding-2-5-p1-phase-006-req-001-and-the-bots-inbox-definition-of-done-no-migration-rule-for",
+      "text": "**P1 — phase 006, REQ-001 and the `bots inbox` Definition of Done: no migration rule for items written before `grants`.** The item validator rejects unknown keys and validates a fixed required-key list; adding `grants` to the shape and printing a grant column on every line needs an explicit \"a missing `grants` reads as null and prints `-`\" rule plus a pre-phase-item test, or existing open items become unreadable and hold their bots. **Exact edit:** add that clause to REQ-001, add a task \"read a pre-phase item without `grants` as null\", and assert it in `needs-you.vitest.ts`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:96-130]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "Host command output: `security help add-generic-password`"
+      ]
+    },
+    {
+      "id": "finding-2-1-p1-phase-008-spec-md-189-and-req-001-req-002-the-default-macos-backend-puts-the-",
+      "text": "**P1 — phase 008, `spec.md:189` and REQ-001/REQ-002: the default macOS backend puts the secret in a process argument.** The spec's own risk table accepts \"the value is visible in `ps` while `security add-generic-password -w <value>` runs\" as a Med residual risk mitigated only by help text. Apple's `security help add-generic-password` says \"Use of the -p or -w options is insecure. Specify -w as the last option to be prompted.\" On this host `security` is present, so the keychain is the default and the leak is the default path. **Exact edit:** make the 0600 file the default and `--store keychain` opt-in, or require the keychain write to pass `-w` last on a terminal (refusing the piped path with `secret-keychain-needs-tty`), and add an acceptance test asserting the value never appears in the child's argv. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:189] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:147]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "Host command output: `security help add-generic-password`"
+      ]
+    },
+    {
+      "id": "finding-2-2-p1-phase-008-tasks-md-98-t033-and-acceptance-criteria-md-65-ac-008-the-record-ve",
+      "text": "**P1 — phase 008, `tasks.md:98` (T033) and `acceptance-criteria.md:65` (AC-008): the record verify targets a file that does not exist.** The run record is written by `writeRunRecord` to `recordFile(stateRoot, identity, runId)` = `{stateRoot}/{identityKey}/records/{runId}.json`, never to `$RUN/record.json`. `jq '.posture.secretsUsed' \"$RUN/record.json\"` fails on a correct implementation. **Exact edit:** read the record path the runner returns (or `\"$STATE\"/*/records/*.json`) in T033 and AC-008. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:176-178] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:362-369]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "Host command output: `security help add-generic-password`"
+      ]
+    },
+    {
+      "id": "finding-3-1-p1-cross-phase-phase-001-spec-md-144-req-002-and-phase-003-plan-md-72-the-bots-a",
+      "text": "**P1 — cross-phase, phase 001 `spec.md:144` (REQ-002) and phase 003 `plan.md:72`: the `bots activity --json` row shape is never defined.** 001 says each group carries \"its id, its title and its rows\" and stops there; no phase names the keys of a row. 003's `cli.rs` must parse typed rows and its activity pane must draw a bot id and a state, so the Rust struct has no contract to match and any key name it invents will fail against 001's implementation. **Exact edit:** add the row schema to 001 REQ-002 (proposed: `{ botId, identity, state, summary, runId }`, with `state` one of the seven group ids) and make 003 cite that requirement in REQ-005 and its `cli.rs` task. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:144] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md:72]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".opencode/bin, .opencode/skills (readlink)",
+        ".github/workflows/bots-runtime.yml",
+        ".gitignore",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs",
+        "Host toolchain output: `cargo --version`, `cargo clippy --version`, `cargo fmt --version`"
+      ]
+    },
+    {
+      "id": "finding-3-2-p2-cross-phase-phase-003-spec-md-193-req-005-versus-phase-001-spec-md-143-req-00",
+      "text": "**P2 — cross-phase, phase 003 `spec.md:193` (REQ-005) versus phase 001 `spec.md:143` (REQ-001): six statuses against seven groups.** 001 emits seven group ids (`needs_you`, `working`, `scheduled`, `done`, `stopped`, `failed`, `recurring`); 003's `activity.rs` names six statuses and REQ-014 draws `?` for an unmapped value, so every `recurring` row renders as unknown. **Exact edit:** name the seventh mapping in REQ-005 or state that `recurring` rows belong to the routines pane and are filtered out of the activity pane. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:193] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".opencode/bin, .opencode/skills (readlink)",
+        ".github/workflows/bots-runtime.yml",
+        ".gitignore",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs",
+        "Host toolchain output: `cargo --version`, `cargo clippy --version`, `cargo fmt --version`"
+      ]
+    },
+    {
+      "id": "finding-3-3-p2-phase-003-plan-md-31-and-plan-md-83-tasks-md-67-t019-and-tasks-md-70-t022-the",
+      "text": "**P2 — phase 003, `plan.md:31` and `plan.md:83`, `tasks.md:67` (T019) and `tasks.md:70` (T022): the `.opencode` mirror is a symlink, not a copy.** `readlink .opencode/bin` prints `../.skilled/bin` and `readlink .opencode/skills` prints `../.skilled/skills`, so editing `.skilled/bin/bots.cjs` already changes `.opencode/bin/bots.cjs`; the two \"mirror the edited file\" tasks are no-ops, and the crate-location rationale (\"`.opencode/` mirrors `.skilled/` wholesale and a crate inside the skill would be duplicated\") is factually wrong. A copy onto the symlinked path is harmless, but replacing the link with a real file breaks the mirror. **Exact edit:** replace T019/T022 with a `readlink` guard (`readlink .opencode/bin` prints `../.skilled/bin`), and correct the crate-location sentence to say the symlink makes a skill-local crate reachable but not duplicated. [SOURCE: .opencode/bin] [SOURCE: .opencode/skills] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/tasks.md:67]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".opencode/bin, .opencode/skills (readlink)",
+        ".github/workflows/bots-runtime.yml",
+        ".gitignore",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs",
+        "Host toolchain output: `cargo --version`, `cargo clippy --version`, `cargo fmt --version`"
+      ]
+    },
+    {
+      "id": "finding-3-4-p2-phase-003-plan-md-42-versus-plan-md-31-the-definition-of-ready-contradicts-th",
+      "text": "**P2 — phase 003, `plan.md:42` versus `plan.md:31`: the Definition of Ready contradicts the fixture seam.** The DoR requires \"Phases 001 and 002 are closed, so `bots activity --json`, `bots inbox --json` and `bots routines --json` exist\", while the plan's own overview says the fixture seam makes the three panes provable \"before phases 001 and 002 ship their JSON\". An implementer cannot satisfy both. **Exact edit:** keep the fixture seam and change the DoR to \"phases 001 and 002 are closed or their JSON shapes are frozen; the fixture seam covers the gap\", or drop the fixture claim. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md:42] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md:31]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".opencode/bin, .opencode/skills (readlink)",
+        ".github/workflows/bots-runtime.yml",
+        ".gitignore",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs",
+        "Host toolchain output: `cargo --version`, `cargo clippy --version`, `cargo fmt --version`"
+      ]
+    },
+    {
+      "id": "finding-3-5-p2-phase-004-acceptance-criteria-md-41-ac-003-the-real-run-check-is-not-runnable",
+      "text": "**P2 — phase 004, `acceptance-criteria.md:41` (AC-003): the real-run check is not runnable.** `node -e 'console.log(require(\"<record>\").evidence.branch)'` keeps a literal `<record>` placeholder and never names how the record path is obtained; the record is written to `{stateRoot}/{identityKey}/records/{runId}.json`, not to a path the operator has in hand. **Exact edit:** replace it with the runner-returned `recordPath` (or `jq -r '.evidence.branch' \"$STATE\"/*/records/<runId>.json`) and name the run id. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:41] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:176-178]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".opencode/bin, .opencode/skills (readlink)",
+        ".github/workflows/bots-runtime.yml",
+        ".gitignore",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs",
+        "Host toolchain output: `cargo --version`, `cargo clippy --version`, `cargo fmt --version`"
+      ]
+    },
+    {
+      "id": "finding-4-3-p1-cross-phase-phase-005-tasks-md-57-58-t015-t016-and-phase-006-spec-md-req-001-",
+      "text": "**P1 — cross-phase, phase 005 `tasks.md:57-58` (T015-T016) and phase 006 `spec.md` REQ-001: two phases edit the same item shape with different fields and only one defines a migration.** 005 adds `kind`/`proposal` and T016 reads a missing `kind` as `decision`; 006 adds `grants` with no missing-field rule. Both plans list `ITEM_KEYS` and `validateNeedsYouItem` as their own edit, so a parallel build merges two independent shapes and pre-phase items fail one of them. **Exact edit:** define the item v2 shape once (005 owns it: `kind`, `proposal`, `grants`), have 006 cite that requirement, and add \"a missing `grants` reads as null\" beside 005's `kind` default. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md:57] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+        ".utcp_config.json",
+        ".claude/mcp.json",
+        ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
+      ]
+    },
+    {
+      "id": "finding-4-2-p1-phase-005-plan-md-64-and-tasks-md-63-t021-the-remember-proposal-fact-is-never",
+      "text": "**P1 — phase 005, `plan.md:64` and `tasks.md:63` (T021): the `[REMEMBER]` proposal fact is never checked for secret literals.** T020 checks the rendered memory block for secrets, but the proposal branch writes the child-authored fact into a needs-you item, where `bots inbox` prints it and a delivery notice can carry it. A child that prints `[REMEMBER] token ghp_...` puts the value in the item file and the inbox. **Exact edit:** run `findSecretLiteral` on the fact before `writeNeedsYouItem`, refuse with `memory-proposal-secret`, and add the case to `runner.vitest.ts`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md:63] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:13-17]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+        ".utcp_config.json",
+        ".claude/mcp.json",
+        ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
+      ]
+    },
+    {
+      "id": "finding-4-1-p1-phase-008-carried-from-iteration-2-spec-md-6-the-0600-file-backend-is-readabl",
+      "text": "**P1 — phase 008 (carried from iteration 2), `spec.md` §6: the 0600 file backend is readable by every bot child.** The store lives under the user-level state root (`STATE_DIR_MODE = 0o700`, files 0600) and every executor child runs as the same OS user with unrestricted reads; the `secrets:` grant is enforced only by not injecting a name, not by making the file unreadable. A bot that declares no secret can still open `{stateRoot}/{identity}/secrets/*.value` and read every stored value. The spec's residual-risk table covers argv exposure but not same-user read access. **Exact edit:** add the same-user trust boundary to 008 §6 and either accept it explicitly for the small-team model or isolate the store (per-run unreadable path, or keychain ACL per item), and add an adversarial test where an undeclared bot tries to read another name's value. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:43-46] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:96]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+        ".utcp_config.json",
+        ".claude/mcp.json",
+        ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
+      ]
+    },
+    {
+      "id": "finding-4-4-p2-phase-005-plan-md-68-bots-remember-does-not-check-the-fact-it-appends-so-a-se",
+      "text": "**P2 — phase 005, `plan.md:68`: `bots remember` does not check the fact it appends, so a secret written by an operator poisons the block and refuses every later run.** The block check at dispatch would turn one bad entry into a denial of service for every bot, while the append itself accepts the value. **Exact edit:** check the fact at append time and refuse `memory-entry-secret`; keep the dispatch-time check as the second line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:68] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:13-17]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+        ".utcp_config.json",
+        ".claude/mcp.json",
+        ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
+      ]
+    },
+    {
+      "id": "finding-4-5-p2-phase-007-plan-md-29-the-apps-filter-is-a-capability-filter-not-a-security-bo",
+      "text": "**P2 — phase 007, `plan.md:29`: the apps filter is a capability filter, not a security boundary.** The runner writes a filtered `utcp.json` and points `UTCP_CONFIG_FILE` at it, but a bot with shell access can read the repository `.utcp_config.json` and call any server the operator's credentials reach. The plan calls the invariant fail-closed without saying what it does not close. **Exact edit:** add one line to 007 §6/§7 stating that `apps` scopes the Code Mode server's tool list and is not a sandbox against a shell-capable executor. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:29] [SOURCE: .utcp_config.json]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+        ".utcp_config.json",
+        ".claude/mcp.json",
+        ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
+      ]
+    },
+    {
+      "id": "finding-5-2-p1-cross-phase-phases-001-006-and-008-and-mentioned-in-009-010-011-third-party-n",
+      "text": "**P1 — cross-phase, phases 001, 006 and 008 (and mentioned in 009, 010, 011): `THIRD_PARTY_NOTICES.md` has at least three writers with independent contents.** 001 writes two MIT entries, 006 writes one MIT entry for the lifted classifier, 008 writes three Apache-2.0 entries, and each verifies its own count against the same bare path; 009, 010 and 011 also name the file. No phase owns it, names its location, or says append. **Exact edit:** make 001 the owner that creates the file with a `## Lifted sources` section and the exact path, have 006 and 008 append their sections, and scope every count to its own section; do the same for 009-011 once their entries are confirmed. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md:67] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md:73] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:64]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/bin/bots.cjs",
+        ".skilled/skills/system-skilled-bots/bots-run/references/"
+      ]
+    },
+    {
+      "id": "finding-5-1-p1-systemic-phases-001-005-010-and-011-npx-tsc-noemit-is-not-runnable-in-the-run",
+      "text": "**P1 — systemic, phases 001, 005, 010 and 011: `npx tsc --noEmit` is not runnable in the runtime.** Eight occurrences (`001 tasks.md:138`, `005 tasks.md:144`, `010 plan.md:48`, `010 tasks.md:85` and `:145`, `011 plan.md:51`, `011 tasks.md:103` and `:163`) name a binary the runtime does not install; `runtime/node_modules/.bin` has no `tsc`, and the repo's own script is `../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json`. Phases 002, 004, 007 and 008 already use `npm run typecheck`, so the packet is internally inconsistent. **Exact edit:** replace all eight with `cd $RT && npm run typecheck`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/package.json:13] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md:144]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/bin/bots.cjs",
+        ".skilled/skills/system-skilled-bots/bots-run/references/"
+      ]
+    },
+    {
+      "id": "finding-5-3-p2-correction-to-iteration-2-finding-5-phase-006-the-missing-grants-migration-is",
+      "text": "**P2 — correction to iteration 2 finding 5, phase 006: the missing-`grants` migration is in the tasks.** `tasks.md:53` (T011) reads a missing grant as null and `tasks.md:85` (T036) proves a pre-phase item still lists, so the build is not broken; only `spec.md` REQ-001 and the plan's DoD omit the rule. **Exact edit:** state \"a missing `grants` reads as null and prints `-`\" in REQ-001 so the requirement and the task agree. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md:53] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/bin/bots.cjs",
+        ".skilled/skills/system-skilled-bots/bots-run/references/"
+      ]
+    },
+    {
+      "id": "finding-5-5-p2-phase-005-tasks-md-84-t035-the-two-remember-probes-use-different-temporary-st",
+      "text": "**P2 — phase 005, `tasks.md:84` (T035): the two `remember` probes use different temporary state roots.** `SKILLED_BOTS_STATE_ROOT=$(mktemp -d) $BOTS remember ...` and the second `SKILLED_BOTS_STATE_ROOT=$(mktemp -d) $BOTS remember --list` each mint a new root, so the list runs against an empty store and proves only that the verb exits 0. **Exact edit:** bind one root for both commands (`STATE=$(mktemp -d)` then both prefixed with `SKILLED_BOTS_STATE_ROOT=$STATE`). [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md:84]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/bin/bots.cjs",
+        ".skilled/skills/system-skilled-bots/bots-run/references/"
+      ]
+    },
+    {
+      "id": "finding-5-4-p2-phase-006-tasks-md-73-t031-versus-plan-md-130-the-notice-task-is-unconditiona",
+      "text": "**P2 — phase 006, `tasks.md:73` (T031) versus `plan.md:130`: the notice task is unconditional while the dependency table drops it.** The plan says the MIT notice entry \"is then dropped\" when the classifier is written from `docs/approvals.md` alone, but T031 always writes `tool-name.ts` into `THIRD_PARTY_NOTICES.md`. **Exact edit:** make T031 conditional (\"only when `tool-name.ts` was lifted\") and name the fallback in the plan. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md:73] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:130]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        ".skilled/skills/system-skilled-bots/runtime/package.json",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/bin/bots.cjs",
+        ".skilled/skills/system-skilled-bots/bots-run/references/"
+      ]
+    },
+    {
+      "id": "finding-6-1-p0-phase-011-spec-md-177-req-005-and-tasks-md-62-t019-the-approver-check-reads-o",
+      "text": "**P0 — phase 011, `spec.md:177` (REQ-005) and `tasks.md:62` (T019): the approver check reads `operators.json`, which no phase creates.** 011 requires that only an actor named `owner` or listed in `members` in `operators.json` may answer from a channel, and T019 adds the roster read; but no `operators.json` exists anywhere, phase 001 explicitly puts \"the two-role `operators.json`\" out of scope, and phase 006 says \"neither is needed to name an approval\". The build therefore cannot implement its authorization gate, and the risk row's mitigation (\"the roster check is a second gate\") names a file that never lands. **Exact edit:** add a create task for a minimal `operators.json` (`{ owner, members[] }`) to 006 (the approval phase) with its exact location and default owner, and make 011 REQ-005/T019 cite it; or replace the check with the 001 actor plus the OS-user rule and state that model instead. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:177] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:107] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:100]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".opencode/bin (readlink)",
+        "Live CLI output: `bots channel list`, `bots chat my-bot --transcript`"
+      ]
+    },
+    {
+      "id": "finding-6-2-p1-cross-phase-phase-011-with-phase-006-concurrent-approvals-from-a-terminal-and",
+      "text": "**P1 — cross-phase, phase 011 with phase 006: concurrent approvals from a terminal and a chat have no rule.** `answer.ts` is a read-modify-write: it reads the item, writes the answer, then enqueues the resume. Nothing in 011 or 006 defines what happens when a terminal `bots answer` and a chat press race on the same item; both can read `answer: null`, the later write wins silently, and the losing answer and its scope are lost with no event. **Exact edit:** add `item-already-answered` as a refusal and write the answer through a compare-and-set (re-read and atomic replace, or an exclusive claim file) in `answer.ts`; add a test that runs two answer paths against one item and asserts one wins and the other is refused. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:60-120] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:178]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".opencode/bin (readlink)",
+        "Live CLI output: `bots channel list`, `bots chat my-bot --transcript`"
+      ]
+    },
+    {
+      "id": "finding-6-3-p1-phase-011-spec-md-191-req-014-the-token-rule-covers-the-store-config-queue-lo",
+      "text": "**P1 — phase 011, `spec.md:191` (REQ-014): the token rule covers the store, config, queue, log and record, but not the question text sent to chat.** REQ-014 names the token; the approval prompt carries the child-authored question and options, and the channel sender can re-render them instead of sending the `deliveryMessage()` body that `delivery.ts:291` already checks with `findSecretLiteral`. A child-authored question holding a stored secret would then reach chat. **Exact edit:** require the channel sender to send only the `deliveryMessage()` output after the literal check, never a re-rendered question, and add the case to the conformance fixture. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:191] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:291]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".opencode/bin (readlink)",
+        "Live CLI output: `bots channel list`, `bots chat my-bot --transcript`"
+      ]
+    },
+    {
+      "id": "finding-6-5-p2-phase-011-plan-md-94-the-opencode-bin-bots-cjs-row-repeats-the-copy-mirror-mi",
+      "text": "**P2 — phase 011, `plan.md:94`: the `.opencode/bin/bots.cjs` row repeats the copy-mirror misconception.** `readlink .opencode/bin` prints `../.skilled/bin`, so the file is the same inode; \"update - copy the edited file\" is a no-op and a copy that replaces the link breaks the mirror. **Exact edit:** replace the row with a `readlink` guard, as phase 004 already does. [SOURCE: .opencode/bin] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:94]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".opencode/bin (readlink)",
+        "Live CLI output: `bots channel list`, `bots chat my-bot --transcript`"
+      ]
+    },
+    {
+      "id": "finding-6-4-p2-phase-011-spec-md-175-req-003-the-pairing-code-s-shape-is-unspecified-a-one-t",
+      "text": "**P2 — phase 011, `spec.md:175` (REQ-003): the pairing code's shape is unspecified.** A one-time code with a 5-failure/300 s lockout is only as strong as its entropy, and REQ-003 never states the length, alphabet, expiry or whether the code is bound to the channel and actor that generated it. **Exact edit:** state the code's length and alphabet (proposed: 8 characters from a 32-symbol unambiguous alphabet), its expiry (10 minutes), and that it is bound to the generating channel and actor. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:175]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        ".opencode/bin (readlink)",
+        "Live CLI output: `bots channel list`, `bots chat my-bot --transcript`"
+      ]
+    },
+    {
+      "id": "finding-7-1-p1-phase-008-plan-md-51-and-tasks-md-96-t031-the-run-the-checker-on-this-reposit",
+      "text": "**P1 — phase 008, `plan.md:51` and `tasks.md:96` (T031): the \"run the checker on this repository\" verify cannot pass.** `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .` exits 2 with `FAIL: definitions-missing: .../bots is not a folder`, because the repository root has no `bots/config.json`; the DoD says it exits 0. **Exact edit:** point T031 and the DoD at a fixture (`node $S/scripts/bot-check.cjs $S/scripts/fixtures/clean`, as phase 007 does) or at a scratch repository that holds `bots/config.json`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:51] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:96]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/system-skilled-bots/scripts/fixtures/clean/bots/nightly-digest/BOT.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".opencode/commands/doctor/bots.md",
+        "Host command output: `python3 --version`, `bot-check.cjs .`"
+      ]
+    },
+    {
+      "id": "finding-7-3-p2-phase-007-tasks-md-167-chk-050-and-168-chk-051-scratch-measured-clean-with-ap",
+      "text": "**P2 — phase 007, `tasks.md:167` (CHK-050) and `:168` (CHK-051): `scratch/measured/{clean,with-apps}` is never created.** No task copies the measured fixtures there, and the spec's measured-behavior block names no such path, so CHK-050 cannot pass and CHK-051's \"scratch prints nothing\" contradicts CHK-050's own requirement. **Exact edit:** add a setup task that copies the two fixture trees under `scratch/measured/`, or drop CHK-050 and keep CHK-051. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/tasks.md:167]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/system-skilled-bots/scripts/fixtures/clean/bots/nightly-digest/BOT.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".opencode/commands/doctor/bots.md",
+        "Host command output: `python3 --version`, `bot-check.cjs .`"
+      ]
+    },
+    {
+      "id": "finding-7-2-p2-phase-008-tasks-md-200-chk-040-the-expected-output-is-wrong-for-rg-c-the-row-",
+      "text": "**P2 — phase 008, `tasks.md:200` (CHK-040): the expected output is wrong for `rg -c`.** The row says `rg -c 'secret-unknown' <four docs>` \"prints one line per document, four in all\"; `rg -c` prints `path:count` and the current counts are 3, 2, 5 and 1, so the check passes but the stated expectation invites a false failure. **Exact edit:** say \"prints four lines, one per document, each with a non-zero count\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:200]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        ".skilled/skills/system-skilled-bots/scripts/fixtures/clean/bots/nightly-digest/BOT.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".opencode/commands/doctor/bots.md",
+        "Host command output: `python3 --version`, `bot-check.cjs .`"
+      ]
+    },
+    {
+      "id": "finding-8-1-p0-phases-001-006-and-011-every-approval-identity-is-self-declared-and-a-bot-can",
+      "text": "**P0 — phases 001, 006 and 011: every approval identity is self-declared, and a bot can answer its own item.** 001 resolves the actor from `--as`, the OS user or a pinned operator name and validates only the name pattern; 006 adds `by` and `grants` but no caller check (\"there is no sign-in to govern\"); 011's roster gate applies only to channel presses. A bot that declares `sandbox: danger-full-access` (accepted by `posture.ts` with no repo-config cap) — or an executor whose Bash is unconfined, as the deep-loop notes for OpenCode — can run `bots answer <its-own-item> yes --as owner`, and the item records the claimed name as fact. The only gate in the packet is the channel roster, and the CLI path bypasses it. **Exact edit:** state the trust boundary (the interactive terminal and its OS user) and enforce it: refuse `--as` outside a tty plus a per-install operator token, and cap a bot's posture at `workspace-write` unless the operator explicitly installs it with full access; record both in 001/006 and cite them from 011. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/posture.ts:39-103] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:108] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:118]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts"
+      ]
+    },
+    {
+      "id": "finding-8-2-p1-phase-011-spec-md-175-req-003-the-link-record-names-an-actor-and-the-actor-is",
+      "text": "**P1 — phase 011, `spec.md:175` (REQ-003): the link record names an actor, and the actor is not authenticated.** A chat is linked \"to the actor who ran the command\", but that actor is the same self-declared string from 001; the roster then compares a name to a name. Binding the roster to the provider-asserted chat id (Telegram user id, Slack user id, WhatsApp phone) would make the check about the sender rather than a claim. **Exact edit:** store both the actor and the provider-asserted sender id in the link record, and have `isApprover` match the sender id against the roster; add the mismatched-actor case to the conformance fixture. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:175] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:177]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts"
+      ]
+    },
+    {
+      "id": "finding-8-4-p2-phase-006-spec-md-108-versus-phase-011-req-005-the-two-phases-state-different",
+      "text": "**P2 — phase 006, `spec.md:108` versus phase 011, REQ-005: the two phases state different trust models.** 006 says \"there is no sign-in to govern\" and its risk table records \"no auth\"; 011 requires an owner/member roster and treats it as a gate. Both can be true only if the roster is an authorization list over an unauthenticated identity, which is what the code would do. **Exact edit:** add one shared \"trust model\" paragraph to 006 (or the track spec) that both phases cite: who is authenticated, what a name means, and which surfaces are trusted. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:108] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:177]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts"
+      ]
+    },
+    {
+      "id": "finding-8-3-p2-phase-011-req-003-and-req-005-a-linked-group-chat-exposes-every-approval-prom",
+      "text": "**P2 — phase 011, REQ-003 and REQ-005: a linked group chat exposes every approval prompt to its members.** The link is per chat, not per sender; the prompt reaches every member, and only the roster stops a non-approver from pressing. Reading is still allowed. **Exact edit:** state that a linked conversation's membership can read approval prompts, and require a direct chat for approval-bearing links (or mark group links read-only). [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:175]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/repo-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts"
+      ]
+    },
+    {
+      "id": "finding-9-2-p1-phase-006-spec-md-145-req-001-and-the-ladder-conversation-is-an-unrepresentab",
+      "text": "**P1 — phase 006, `spec.md:145` (REQ-001) and the ladder: `conversation` is an unrepresentable scope.** The scope is accepted, but a needs-you item carries no conversation id (`ITEM_KEYS` has no such field) and the terminal screen never offers it; \"this conversation\" therefore has no object to bind to. **Exact edit:** add a `conversationId` to the grant (filled from phase 010/011 when the item came from a conversation) or drop `conversation` from the accepted scopes until that identity exists. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-65]",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"
+      ]
+    },
+    {
+      "id": "finding-9-1-p1-phases-006-and-003-always-is-offered-and-accepted-but-no-standing-grant-lifec",
+      "text": "**P1 — phases 006 and 003: `always` is offered and accepted, but no standing-grant lifecycle exists.** The terminal overlay draws `2 approve always`, `bots answer` accepts `--scope always`, and 006 records the scope on the item and names it in the resumed prompt; 006's own out-of-scope list defers \"a saved rule that outlives its item\". Nothing in the packet defines how a standing grant is listed, revoked, expired or audited, so the label promises persistence the build does not provide, and the later rule store inherits `always` grants with no lifecycle contract. **Exact edit:** until the rule store lands, remove `always` from 003's overlay and refuse it in 006 (`grant-scope-unsupported`); when the store lands, require `bots grants list|revoke`, a default expiry (30 days), a scope bound to bot + kind, and an audit row on every grant and revoke. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:169] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:104]",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"
+      ]
+    },
+    {
+      "id": "finding-9-4-p2-phase-006-versus-the-parity-synthesis-the-answered-action-audit-trail-is-miss",
+      "text": "**P2 — phase 006 versus the parity synthesis: the answered-action audit trail is missing.** The research records that \"every answered action lands on the audit trail\"; 006 writes the grant onto the item, and the item is the only record, so deleting or expiring the item erases the grant history. **Exact edit:** append one `grant` row per answer to a `grants.jsonl` under the identity state root, with item id, bot, kind, scope, actor and timestamp, and cite it from the ladder doc. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:89] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:66]",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"
+      ]
+    },
+    {
+      "id": "finding-9-3-p2-phase-006-plan-md-59-rung-2-rule-can-never-fire-because-no-rule-store-exists-",
+      "text": "**P2 — phase 006, `plan.md:59`: rung 2 (`rule`) can never fire because no rule store exists.** The ladder doc presents four rungs and \"first answer wins\", but with no store the rule rung is dead and a reader cannot tell whether a rule beats a kind. **Exact edit:** mark rung 2 \"not implemented in this phase\" in the ladder doc and in the `decideApproval` doc comment. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:59]",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts"
+      ]
+    },
+    {
+      "id": "finding-10-2-p1-phase-008-plan-md-31-and-req-007-the-scan-covers-the-run-folder-only-while-th",
+      "text": "**P1 — phase 008, `plan.md:31` and REQ-007: the scan covers the run folder only, while the child's own transcript and workspace are outside it.** The value reaches the child environment by design; the child (Codex, Claude Code, OpenCode, Devin) writes its own session transcript under its own store, and it can write the value into the checkout or worktree. The scan of `$RUN`, the record and the delivery message cannot see either. The claim \"the value reaches exactly one child environment and no other surface\" is true of the runtime's writes and false of the child's. **Exact edit:** narrow the claim to \"the runtime writes the value to no surface; the child can copy it anywhere it can write\", add a scan of the executor's known session store where the executor names one, and document the boundary in §6. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:31] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:96]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      ]
+    },
+    {
+      "id": "finding-10-1-p1-phase-008-plan-md-31-versus-tasks-md-97-t032-and-acceptance-criteria-md-64-ac",
+      "text": "**P1 — phase 008, `plan.md:31` versus `tasks.md:97` (T032) and `acceptance-criteria.md:64` (AC-007): the fixture that proves injection would fail the scan.** The plan says the proof is \"a fixture bot that prints its own environment\"; printing the environment writes `SKILLED_BOT_SECRET_DEMO=<value>` into the child's stdout, which the runner captures to `stdout.log` inside the run folder, while T032 asserts `rg -c 'skilled-test-value-7f3a' \"$RUN\"` prints 0. The fixture must print only the key name (or mask the value), and AC-007's \"the child's stdout holds `SKILLED_BOT_SECRET_DEMO=`\" must say the value is absent. **Exact edit:** specify the fixture prints `env | sed 's/=.*//'` (names only) and add \"and the value is absent\" to AC-007. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:31] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:97] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:64]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      ]
+    },
+    {
+      "id": "finding-10-3-p2-phase-008-spec-md-96-req-007-the-delivery-and-answer-checks-run-after-the-tra",
+      "text": "**P2 — phase 008, `spec.md:96` (REQ-007): the delivery and answer checks run after the transcript is written, so they cannot prevent a transcript leak.** `findSecretLiteral` guards the delivery message and the answer before they are stored or sent, but the child's transcript is written during the run. **Exact edit:** state in §6 that transcript and workspace containment is the executor sandbox's responsibility, not the vault's, and name which executors are expected to confine it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:96] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:291]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      ]
+    },
+    {
+      "id": "finding-11-2-p2-phase-003-spec-md-49-and-the-header-the-bot-count-must-filter-kind-bot-and-no",
+      "text": "**P2 — phase 003, `spec.md:49` and the header: the bot count must filter `kind: 'bot'`, and no requirement says so.** `StatusRow` is a union of bot rows and item rows, so a header that counts `rows` counts needs-you items as bots. **Exact edit:** add to 003's header requirement \"count only rows whose `kind` is `bot`\", and assert it with a fixture holding one bot row and one item row. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:101-109] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:49]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/bin/bots.cjs",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md"
+      ]
+    },
+    {
+      "id": "finding-11-1-p2-phases-003-and-004-004-adds-lastrun-branch-and-lastrun-worktreepath-and-003-n",
+      "text": "**P2 — phases 003 and 004: 004 adds `lastRun.branch` and `lastRun.worktreePath`, and 003 never states that its Rust status struct ignores unknown fields.** `StatusReport` is a flat object whose `rows[].lastRun` is parsed by 003's header; if the crate derives `deny_unknown_fields`, 004's additive keys break the screen's status read. **Exact edit:** state in 003 that the status structs ignore unknown fields (`#[serde(default)]`, no `deny_unknown_fields`) and add a fixture case with an extra `lastRun` key; 004 AC-005 already asserts the rest of the key set is unchanged. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-109] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:43]",
+      "addedAtIteration": 11,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        ".skilled/bin/bots.cjs",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md"
+      ]
+    },
+    {
+      "id": "finding-12-1-p1-phase-009-spec-md-212-215-nfr-s01-to-s03-and-plan-md-62-the-skill-tree-the-lo",
+      "text": "**P1 — phase 009, `spec.md:212-215` (NFR-S01 to S03) and `plan.md:62`: the skill tree the loader reads is writable by the bot, so the proposal review can be bypassed.** `loadSkills` reads `<skilledTree>/.skilled/skills/<name>/SKILL.md`; a shared-isolation run writes the checkout, and a worktree run's `.skilled` is a link to the shared tree, so either way a bot can edit a skill body that a later run loads. NFR-S03 only keeps a body from being read as a decision marker; it does not stop a body from carrying instructions. **Exact edit:** state that skill bodies are trusted repo content and not a security boundary, record each loaded body's digest on the run record, refuse `skill-changed` when a body differs between the check and the load, or mount the skill tree read-only for runs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:212] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-30]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/bin/bots.cjs",
+        ".opencode/bin (readlink)"
+      ]
+    },
+    {
+      "id": "finding-12-4-p2-cross-phase-phases-003-010-and-011-the-opencode-bin-bots-cjs-row-keeps-instru",
+      "text": "**P2 — cross-phase, phases 003, 010 and 011: the `.opencode/bin/bots.cjs` row keeps instructing a copy of a symlinked path.** 010 `plan.md:87` and 011 `plan.md:94` repeat 003's \"Byte-identical mirror | update - copy\" claim; `readlink .opencode/bin` prints `../.skilled/bin`, so the edit already lands and a copy that replaces the link breaks the mirror. **Exact edit:** replace all three rows with a `readlink` guard, as 004 already does. [SOURCE: .opencode/bin] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:87]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/bin/bots.cjs",
+        ".opencode/bin (readlink)"
+      ]
+    },
+    {
+      "id": "finding-12-3-p2-phase-010-plan-md-72-a-shared-conversation-replays-one-bot-s-output-into-anot",
+      "text": "**P2 — phase 010, `plan.md:72`: a shared conversation replays one bot's output into another bot's prompt.** The transcript is the request prompt, so in a multi-bot conversation (`@bot` routing) bot A's message becomes untrusted input to bot B. The plan does not state the trust model or delimit each message by role. **Exact edit:** render each transcript line with its role and source bot id, and state in §6 that bot messages are untrusted input to the next run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:72]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/bin/bots.cjs",
+        ".opencode/bin (readlink)"
+      ]
+    },
+    {
+      "id": "finding-12-2-p2-phase-010-spec-md-209-nfr-s02-the-human-message-is-secret-checked-but-the-bot",
+      "text": "**P2 — phase 010, `spec.md:209` (NFR-S02): the human message is secret-checked but the bot message is not.** The chat appends the runner's `answer` text to the conversation JSONL without a literal check, so a child that prints a stored secret persists it in the transcript under the state root. **Exact edit:** run `findSecretLiteral` on the bot message before the append and record `chat-message-secret` instead of the text; add the case to `cli-chat.vitest.ts`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:209] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:419]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        ".skilled/bin/bots.cjs",
+        ".opencode/bin (readlink)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-73efb7a3d95b",
+      "text": "No dead ends this iteration; every citation checked resolved.",
+      "contentHash": "73efb7a3d95b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b2b83381764d",
+      "text": "Running the full vitest suite was not attempted: it writes caches and temp fixtures outside this lineage, which this run forbids. Runnability was established statically (`vitest` present in `node_modules/.bin`, `test` script declared, every named test file present).",
+      "contentHash": "b2b83381764d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-8aa13846bc02",
+      "text": "Suspected 001 contradiction between Definition of Ready (`SCHEMA_VERSION` prints `'2'`) and the affected-surface verification (`'3'`): ruled out. The first is the pre-change baseline, the second the post-change check, and `status-index.ts:55` currently holds `'2'`.",
+      "contentHash": "8aa13846bc02",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-dac5741e432f",
+      "text": "Suspected 002 citation drift: ruled out. `parseTrigger` is at `definition.ts:142`, `schedulePeriodSeconds` at `slot-accounting.ts:102`, `identityStatePaths` at `state-root.ts:117-132`, `runPrecheck` at `runner.ts:535`, the `disabled` read at `runner.ts:822`, `SWITCH_KINDS` at `switches.ts:25`, and the `disabled`/`paused` reads at `installer.ts:547-548`.",
+      "contentHash": "dac5741e432f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f7de34fea184",
+      "text": "Suspected 002 inventory miscounts in the \"Required inventories\" block: ruled out. `rg -c 'trigger'` returns exactly definition.ts:14, slot-accounting.ts:5, installer.ts:5, request-queue.ts:3, runner.ts:2, repo-config.ts:1, and the switch-consumer count returns switches.ts:4, installer.ts:3, runner.ts:3, bots.cjs:2, as written.",
+      "contentHash": "f7de34fea184",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b699b348bd6a",
+      "text": "No dead ends; every cited symbol and refusal resolved.",
+      "contentHash": "b699b348bd6a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-30e580b0f93d",
+      "text": "Suspected `bots secret set --value` already accepted: ruled out. The CLI has no `secret` verb at all, so the DoR refusal reproduces.",
+      "contentHash": "30e580b0f93d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fe822f753a87",
+      "text": "Suspected 006 rollback error (like the 001 one): ruled out. `validateNeedsYouItem` rejects unknown keys, so an item carrying `grants` really is unreadable after a revert.",
+      "contentHash": "fe822f753a87",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-53ef8b44b3e3",
+      "text": "Suspected 008 DoR drift: ruled out. `posture.secrets` and `SKILLED_BOT_SECRET_` both exit 1; `state-root.ts` and `run-record.ts` contain no `secrets`/`secretsUsed`; `assertDispatchEnvAllowed` is at `executor-audit.ts:1508` and refuses with \"is not allowed for\" at 1513; the runner literal check is at `runner.ts:942` and the delivery check at `delivery.ts:291`.",
+      "contentHash": "53ef8b44b3e3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-372fcd67ac3e",
+      "text": "No dead ends; every citation and probe resolved.",
+      "contentHash": "372fcd67ac3e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-48cb94dc2464",
+      "text": "Suspected citation drift in 003: ruled out. `bots ui` exits 2; `.opencode/bin/bots.cjs` and `.opencode/skills/system-skilled-bots/SKILL.md` exist; `.github/workflows/bots-runtime.yml` exists; `.gitignore` has no `crates` entry; the openhuman `app.rs` patterns match at lines 301 and 359.",
+      "contentHash": "48cb94dc2464",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9dad060832ab",
+      "text": "Suspected citation drift in 004: ruled out. `checkoutLine` at `dispatch.ts:306`, `buildBotPrompt` at 315, `runner.ts:1038` exact, `summarizeRecord` at `status-index.ts:266`, `status.ts:479` exact, `branch: string | null` at `run-record.ts:156`, and both `.opencode` entries are relative symlinks as 004 states.",
+      "contentHash": "9dad060832ab",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-75fa0e8662f0",
+      "text": "Suspected missing crate workspace: ruled out. No root `Cargo.toml` exists, so the standalone manifest path 003 uses is valid.",
+      "contentHash": "75fa0e8662f0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3e4381d3d59c",
+      "text": "Suspected toolchain gap: ruled out. `cargo 1.92.0`, `clippy 0.1.92` and `rustfmt 1.8.0-stable` are installed, matching 003's stated \"cargo 1.92.0\" and making its DoD runnable.",
+      "contentHash": "3e4381d3d59c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ce918995c484",
+      "text": "No dead ends.",
+      "contentHash": "ce918995c484",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c464e7dc5228",
+      "text": "Suspected 005 missing migration: ruled out for `kind` — T016 explicitly reads a missing `kind` as `decision`; the gap is only 006's `grants`.",
+      "contentHash": "c464e7dc5228",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-bf7a97e95dab",
+      "text": "Suspected 007 citation drift: ruled out. `.utcp_config.json` holds 14 names; the Code Mode lookup is at `dist/index.js:327`; `EXECUTOR_COMMON_ENV_ALLOWLIST` is at `executor-audit.ts:150` and has no `UTCP_CONFIG_FILE`; `HonoredPosture` has four fields and no `apps`; `HARD_INVARIANTS` has no `apps-unknown-server`; the `clean` fixture exists and `apps-unknown-server` is a create task; `.claude/mcp.json:9` and the two doctor lines carry the pin; `status-index.ts` has no `posture` string.",
+      "contentHash": "bf7a97e95dab",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9e6cb176d302",
+      "text": "Suspected 007 record-validator change: ruled out. `validateRunRecord` checks the posture group's shape, not its keys, so adding `apps` needs no validator edit.",
+      "contentHash": "9e6cb176d302",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c75cca5ecc32",
+      "text": "Suspected 005 DoR drift: ruled out. REQ count 12, affected-surface rows 10, `buildBotPrompt` at 315, `parseDecisionMarker` at 432, and the three absences all reproduce.",
+      "contentHash": "c75cca5ecc32",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-64d605e96338",
+      "text": "Suspected 006 \"grants\" consumer drift: ruled out. `status-index.ts`, `delivery.ts` and `status.ts` contain no `grants`, as the plan says.",
+      "contentHash": "64d605e96338",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a7f700648e77",
+      "text": "Suspected 006 DoR drift: ruled out. The answer spec at `bots.cjs:73` has an empty options list, the references folder holds one file, and the three item writers are the gate, the answer and the resume stamp.",
+      "contentHash": "a7f700648e77",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-1526401ab58f",
+      "text": "Suspected 011 DoR drift: ruled out. `DELIVERY_CHANNELS` is `['desktop']` at `delivery.ts:45`; the parked entry carries `itemId`; `DECISION_MARKER`/`OPTION_MARKER` are at `dispatch.ts:45-48`; the runner fills `options`; `bots channel list` and `bots chat` both exit 2 today.",
+      "contentHash": "1526401ab58f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-778903e7d721",
+      "text": "Suspected token leak in the queue or record: ruled out as written — REQ-014 explicitly forbids the token in the config, a queue entry, a log or a run record, and the value is read from the 008 store at send time.",
+      "contentHash": "778903e7d721",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-7093aa05f696",
+      "text": "Suspected webhook signature gap: ruled out — REQ-012 verifies `X-Hub-Signature-256` as an HMAC over the raw body in constant time before any parse.",
+      "contentHash": "7093aa05f696",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-0b24c189b6c1",
+      "text": "Suspected 007 REQ-count drift: ruled out — `grep -c '^| REQ-0'` prints 9.",
+      "contentHash": "0b24c189b6c1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-0ffcee23026d",
+      "text": "Suspected 007 setup drift: ruled out. python3 3.9.6 is present and prints 14 servers; the `clean` fixture holds `bots/nightly-digest/BOT.md` with `isolation: shared` at line 6; `grep -rc 'apps'` over the lib and checker prints nothing; the executor allowlist has no `UTCP_CONFIG_FILE`; `.opencode/commands/doctor/bots.md` exists.",
+      "contentHash": "0ffcee23026d",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-b92d1133a9c8",
+      "text": "Suspected 008 DoR drift: ruled out again — `posture.secrets` and `SKILLED_BOT_SECRET_` both exit 1, and `secret-unknown` appears in all four docs.",
+      "contentHash": "b92d1133a9c8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-056b80d38c41",
+      "text": "Looking for an existing operator identity store: none exists; `operators.json` is named but never built (iteration 6's P0).",
+      "contentHash": "056b80d38c41",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-46e89b95a6fc",
+      "text": "Suspected runtime auth helper the plans could reuse: ruled out. `actor.ts` does not exist and the plan's `CHK-032` explicitly checks that the runtime has no sign-in.",
+      "contentHash": "46e89b95a6fc",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-620c58f34901",
+      "text": "Suspected sandbox cap in repo config: ruled out. `repo-config.ts` has no sandbox key; the definition's `sandbox` is the only input, and `posture.ts` accepts all three modes.",
+      "contentHash": "620c58f34901",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-7c8a9092ea83",
+      "text": "Looking for a revocation surface in 003 or 011: none exists.",
+      "contentHash": "7c8a9092ea83",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1a2825780a27",
+      "text": "Suspected chat path offers `always`: ruled out. 011 sends the item's own options; it has no fixed always choice, so the persistence promise is terminal-only today.",
+      "contentHash": "1a2825780a27",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1625a8502f67",
+      "text": "Suspected existing grant store: ruled out. No module, verb or state file names a grant store; 006 explicitly defers it.",
+      "contentHash": "1625a8502f67",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c279b18850e9",
+      "text": "Suspected dispatch-receipt leak: ruled out. `buildReceiptFacts` records only command, args, cwd, executor and iteration; the environment is not persisted, and the vault passes the value through `dispatchEnv`, not argv, so the receipt carries no value.",
+      "contentHash": "c279b18850e9",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-20af0bfbbcb7",
+      "text": "Suspected run-master-secret leak: ruled out by the module's own containment guarantee (in-memory only, never env/argv/disk).",
+      "contentHash": "20af0bfbbcb7",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-768a07d29823",
+      "text": "Suspected other status-key additions: ruled out. 001 leaves `status.ts` unchanged; 002 adds a row-state value, not a key, and leaves the index unchanged; 006 prints a text column on the inbox line; 011 adds no status field.",
+      "contentHash": "768a07d29823",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-fb5bc2004197",
+      "text": "Suspected status-json shape drift in 004: ruled out — AC-005 explicitly keeps the row key set unchanged apart from the two new `lastRun` keys.",
+      "contentHash": "fb5bc2004197",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-b752c8615db2",
+      "text": "Suspected 009 citation drift: ruled out. Every symbol and count resolves exactly, including the three inventory sets.",
+      "contentHash": "b752c8615db2",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-19767a2947fc",
+      "text": "Suspected 010 citation drift: ruled out. `drainQueue`, `DrainInput`, `listInbox`, `finalAnswerText`, the `completed` outcome and the empty `conversation` baseline all reproduce.",
+      "contentHash": "19767a2947fc",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-5f1e61e25d1f",
+      "text": "Suspected 010 duplicate-message gap: ruled out — the message id is the queue event id, so a duplicate is refused as `duplicate` (the plan's own test).",
+      "contentHash": "5f1e61e25d1f",
+      "addedAtIteration": 12
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 12,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 49,
+    "sourceFindings": 49,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 5,
+      "other": 74
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-001",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/*/plan.md, specs/system-skilled-bots/003-openbot-parity-build/*/tasks.md, specs/system-skilled-bots/003-openbot-parity-build/*/acceptance-criteria.md, .skilled/skills/system-skilled-bots/runtime/lib, .skilled/bin/bots.cjs, .skilled/skills/system-skilled-bots/runtime/tests",
+        "question": "Plan versus runtime: do the files, functions, records, fields and CLI verbs each of the eleven phase plans names exist in the built runtime with the shapes the plan assumes, and are the test and verify commands in every tasks.md and acceptance-criteria.md runnable here (vitest paths, cargo for the Rust screen)? List every mismatch.",
+        "status": "exhausted",
+        "reason": "budget",
+        "iteration": 0
+      },
+      {
+        "nodeId": "F-1-005",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/005-memory, specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants, specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps, specs/system-skilled-bots/003-openbot-parity-build/008-vault, specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+        "question": "Security: in the vault (008), apps (007), approvals (006), memory (005) and channels (011) plans, where can secrets leak into prompts, logs, run records or chat, how are tokens stored, and can a spoofed or unlinked chat user approve or read?",
+        "status": "exhausted",
+        "reason": "budget",
+        "iteration": 0
+      },
+      {
+        "nodeId": "F-2-006",
+        "parentId": "F-1-005",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants, specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels, specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor",
+        "question": "Who is allowed to answer a needs-you item, and can a chat sender be linked to the operator before any approval is honored across the 006, 011 and 001 plans?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 8
+      },
+      {
+        "nodeId": "F-2-007",
+        "parentId": "F-1-005",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants",
+        "question": "How is a standing grant listed, revoked or expired once a rule store exists, and what stops an `always` grant from becoming permanent silent authority?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 9
+      },
+      {
+        "nodeId": "F-2-008",
+        "parentId": "F-1-005",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/008-vault, .skilled/skills/system-skilled-bots/runtime/lib",
+        "question": "Do the secret scans cover child transcripts and logs written outside the run folder, such as an executor's own session store, or only the run folder the plan scans?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 10
+      },
+      {
+        "nodeId": "F-2-009",
+        "parentId": "F-1-001",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen, specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure, .skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "question": "Do the eleven plans agree on the `bots status --json` key set that phase 003's header and phase 004's lastRun fields both extend, and does any phase add a key without updating the terminal screen's parser?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 11
+      }
+    ],
+    "stats": {
+      "total": 6,
+      "open": 0,
+      "active": 0,
+      "answered": 4,
+      "blocked": 0,
+      "exhausted": 2,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "activeNodeId": null,
+    "budget": {
+      "depth1": {
+        "allotted": 6.5,
+        "spent": 7
+      },
+      "depth2": {
+        "allotted": 4.55,
+        "spent": 4
+      },
+      "depth3": {
+        "allotted": 2.5,
+        "spent": 0
+      }
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/system-skilled-bots/003-openbot-parity-build/research/lineages/devin-1/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 12,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-11-25T14:18:20.492Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 12,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-11-25T14:18:20.492Z"
+    }
+  ],
+  "strategyWarnings": []
+}

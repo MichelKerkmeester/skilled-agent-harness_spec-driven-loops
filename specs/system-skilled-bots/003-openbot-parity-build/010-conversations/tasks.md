@@ -46,34 +46,35 @@ Two shell variables this list uses: `RT` is `.skilled/skills/system-skilled-bots
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Create the message record and the conversation path (`$RT/lib/conversation.ts`). Verify: `rg -n 'ConversationMessage|conversationFile' $RT/lib/conversation.ts` prints both
+- [ ] T007 Create the message record and the conversation path (`$RT/lib/conversation.ts`). Verify: `rg -n 'ConversationMessage|conversationFile' $RT/lib/conversation.ts` prints both, and `rg -n "by: 'bot'|control" $RT/lib/conversation.ts` prints the bot's `by` and the control-character strip
 - [ ] T008 Add the append-only write (`$RT/lib/conversation.ts`). Verify: `rg -n 'appendFileSync' $RT/lib/conversation.ts` prints one call and no `writeFileSync`
 - [ ] T009 Add the read that skips a torn last line (`$RT/lib/conversation.ts`). Verify: `rg -n 'torn' $RT/lib/conversation.ts` prints the skip and its report
-- [ ] T010 Add the `@bot` parse and the transcript bound (`$RT/lib/conversation.ts`). Verify: `rg -n 'TRANSCRIPT_MAX_MESSAGES|TRANSCRIPT_MAX_CHARS|parseAddress' $RT/lib/conversation.ts` prints all three
+- [ ] T010 Add the `@bot` parse and the transcript bound, so the conversation block is the first to give way (`$RT/lib/conversation.ts`). Verify: `rg -n 'TRANSCRIPT_MAX_MESSAGES|TRANSCRIPT_MAX_CHARS|PROMPT_MAX_CHARS|parseAddress' $RT/lib/conversation.ts` prints all four
 - [ ] T011 Add the `conversations` folder to the identity paths (`$RT/lib/state-root.ts`). Verify: `rg -n 'conversations' $RT/lib/state-root.ts` prints the field and the `mkdirSync`
 - [ ] T012 Add the `requestIds` filter to the drain (`$RT/lib/request-drain.ts`). Verify: `rg -n 'requestIds' $RT/lib/request-drain.ts` prints the input field and the filter
-- [ ] T013 Return the answer text on the `completed` outcome (`$RT/lib/runner.ts`). Verify: `rg -n 'answer' $RT/lib/runner.ts` prints the outcome field and its fill
-- [ ] T014 Add the `chat` verb's usage line, verb spec and options (`.skilled/bin/bots.cjs`). Verify: `rg -n 'chat' .skilled/bin/bots.cjs` prints the usage line, the verb spec and the option list
-- [ ] T015 Add the one-message path: append, enqueue, drain one, append the reply (`.skilled/bin/bots.cjs`). Verify: `$BOTS chat my-bot --message hello` on a temporary state root exits 0 and prints one reply line
+- [ ] T013 Return the answer text on the `completed` outcome, redacted when it holds a known secret literal (`$RT/lib/runner.ts`). Verify: `rg -n 'answer|redacted|secret-in-output' $RT/lib/runner.ts` prints the outcome field, its fill and the redaction
+- [ ] T014 Add the `chat` verb's usage line, verb spec and options, including the client message id (`.skilled/bin/bots.cjs`). Verify: `rg -n 'chat|message-id' .skilled/bin/bots.cjs` prints the usage line, the verb spec and the option list
+- [ ] T015 Add the one-message path: check the text, append, enqueue, drain one, append the reply (`.skilled/bin/bots.cjs`). Verify: `$BOTS chat my-bot --message hello` on a temporary state root exits 0 and prints one reply line, and `$BOTS chat my-bot --message "ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"` exits 2 with `body-secret` and appends nothing
 - [ ] T016 Add the transcript read and its `--json` form (`.skilled/bin/bots.cjs`). Verify: `$BOTS chat my-bot --transcript --json` prints a JSON array
 - [ ] T017 Add the terminal loop with readline history and completion (`.skilled/bin/bots.cjs`). Verify: `printf '/exit\n' | $BOTS chat my-bot` exits 0 and appends nothing
 - [ ] T018 Create the conversation tests (`$RT/tests/conversation.vitest.ts`). Verify: `cd $RT && npx vitest run tests/conversation.vitest.ts` prints no `failed`
 - [ ] T019 Create the CLI chat tests (`$RT/tests/cli-chat.vitest.ts`). Verify: `cd $RT && npx vitest run tests/cli-chat.vitest.ts` prints no `failed`
-- [ ] T020 Extend the queued-run tests with the `requestIds` filter (`$RT/tests/queued-run.vitest.ts`). Verify: `cd $RT && npx vitest run tests/queued-run.vitest.ts` prints no `failed`
-- [ ] T021 Extend the runner tests with the answer text (`$RT/tests/runner.vitest.ts`). Verify: `cd $RT && npx vitest run tests/runner.vitest.ts` prints no `failed`
+- [ ] T020 Extend the queued-run tests with the `requestIds` filter and the resumed append (`$RT/tests/queued-run.vitest.ts`). Verify: `cd $RT && npx vitest run tests/queued-run.vitest.ts` prints no `failed`
+- [ ] T021 Extend the runner tests with the answer text and its redaction (`$RT/tests/runner.vitest.ts`). Verify: `cd $RT && npx vitest run tests/runner.vitest.ts` prints no `failed`
 - [ ] T022 Add the chat read and send to the crate's client (`crates/bots-tui/src/cli.rs`). Verify: `rg -n 'chat_transcript|chat_send' crates/bots-tui/src/cli.rs` prints both
 - [ ] T023 Add the chat state (`crates/bots-tui/src/ui_state.rs`). Verify: `rg -n 'chat' crates/bots-tui/src/ui_state.rs` prints the draft and the scroll offset
 - [ ] T024 Replace the chat placeholder with the transcript body (`crates/bots-tui/src/render/panes.rs`). Verify: `rg -n 'phase 010' crates/bots-tui/src/render/panes.rs` exits 1
 - [ ] T025 Bind the chat keys and their labels (`crates/bots-tui/src/keys.rs`). Verify: `rg -n 'Enter|Esc' crates/bots-tui/src/keys.rs` prints the chat rows
 - [ ] T026 Add the canned chat payload to the fixture (`crates/bots-tui/tests/fixtures/bots`). Verify: `rg -n 'chat' crates/bots-tui/tests/fixtures/bots` prints the transcript branch
-- [ ] T027 Write the Apache-2.0 notice for turnstone's loop (`THIRD_PARTY_NOTICES.md`). Verify: `rg -n 'turnstone/cli.py' THIRD_PARTY_NOTICES.md` prints the source path
+- [ ] T027 Append the Apache-2.0 notice for turnstone's loop to the shared notices file (`.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md`). Verify: `rg -n '^## 010-conversations|turnstone/cli.py' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints the heading and the source path
 - [ ] T028 Add the module row and the topology edge to the runtime README (`$RT/lib/README.md`). Verify: `rg -n 'conversation.ts' $RT/lib/README.md` prints the row
 - [ ] T029 Name `bots chat` in the run reference's verb table (`.skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md`). Verify: `rg -n 'bots chat' .skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md` prints the row
 - [ ] T030 Name the chat verb in the run mode's scope (`.skilled/skills/system-skilled-bots/bots-run/SKILL.md`). Verify: `rg -n 'bots chat' .skilled/skills/system-skilled-bots/bots-run/SKILL.md` prints the line
 - [ ] T031 Name `bots chat` as a run-mode verb in the hub (`.skilled/skills/system-skilled-bots/SKILL.md`). Verify: `rg -n 'bots chat' .skilled/skills/system-skilled-bots/SKILL.md` prints the line
-- [ ] T032 Mirror the hub line (`.opencode/skills/system-skilled-bots/SKILL.md`). Verify: `diff -q .skilled/skills/system-skilled-bots/SKILL.md .opencode/skills/system-skilled-bots/SKILL.md` prints nothing
-- [ ] T033 Mirror the edited CLI (`.opencode/bin/bots.cjs`). Verify: `diff -q .skilled/bin/bots.cjs .opencode/bin/bots.cjs` prints nothing
-- [ ] T034 Document the chat tab's keys and verbs in the crate README (`crates/bots-tui/README.md`). Verify: `rg -n 'chat' crates/bots-tui/README.md` prints the section
+- [ ] T032 Document the chat tab's keys and verbs in the crate README (`crates/bots-tui/README.md`). Verify: `rg -n 'chat' crates/bots-tui/README.md` prints the section
+- [ ] T033 Render the transcript as one `<conversation>` block of `<human>` and `<bot>` lines, escaping a closing tag (`$RT/lib/conversation.ts`). Verify: `rg -n '<conversation>|<human>|<bot>' $RT/lib/conversation.ts` prints the block and both prefixes, and `cd $RT && npx vitest run tests/conversation.vitest.ts -t "escape"` prints one passing test
+- [ ] T034 Check both roles for secret literals before the append (`$RT/lib/conversation.ts`, `$RT/lib/runner.ts`). Verify: `rg -n 'body-secret|redacted' $RT/lib/conversation.ts $RT/lib/runner.ts` prints the refusal and the redaction
+- [ ] T035 Stamp the parked run's conversation id on the resume request and append the resumed answer, adding the key to the item's and the request's closed key lists (`$RT/lib/needs-you.ts`, `$RT/lib/request-record.ts`, `$RT/lib/answer.ts`, `$RT/lib/request-drain.ts`). Verify: `rg -n 'conversationId' $RT/lib/needs-you.ts $RT/lib/request-record.ts $RT/lib/answer.ts $RT/lib/request-drain.ts` prints the two keys, the stamp and the append
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -81,13 +82,15 @@ Two shell variables this list uses: `RT` is `.skilled/skills/system-skilled-bots
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T035 Run the whole runtime suite (`$RT/tests/`). Verify: `cd $RT && npx vitest run` prints a `Test Files` line with no `failed`
-- [ ] T036 Type-check the runtime (`$RT/tsconfig.json`). Verify: `cd $RT && npx tsc --noEmit` exits 0
-- [ ] T037 Run the crate's tests (`crates/bots-tui/`). Verify: `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok`
-- [ ] T038 Prove one live message on a temporary state root (`.skilled/bin/bots.cjs`). Verify: `$BOTS chat my-bot --message hello` exits 0 and `$BOTS chat my-bot --transcript --json` prints two messages
-- [ ] T039 Prove `@bot` routing on a temporary state root (`.skilled/bin/bots.cjs`). Verify: `$BOTS chat my-bot --message '@other-bot hello'` appends a human message whose `botId` is `other-bot`
-- [ ] T040 Prove the torn line is skipped (`$RT/tests/conversation.vitest.ts`). Verify: `cd $RT && npx vitest run tests/conversation.vitest.ts -t "torn"` prints one passing test
-- [ ] T041 Run the packet validator (`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations --strict` prints `RESULT: PASSED`
+- [ ] T036 Run the whole runtime suite (`$RT/tests/`). Verify: `cd $RT && npx vitest run` prints a `Test Files` line with no `failed`
+- [ ] T037 Type-check the runtime (`$RT/tsconfig.json`). Verify: `cd $RT && npm run typecheck` exits 0
+- [ ] T038 Run the crate's tests (`crates/bots-tui/`). Verify: `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok`
+- [ ] T039 Prove one live message on a temporary state root (`.skilled/bin/bots.cjs`). Verify: `$BOTS chat my-bot --message hello` exits 0 and `$BOTS chat my-bot --transcript --json` prints two messages
+- [ ] T040 Prove `@bot` routing on a temporary state root (`.skilled/bin/bots.cjs`). Verify: `$BOTS chat my-bot --message '@other-bot hello'` appends a human message whose `botId` is `other-bot`
+- [ ] T041 Prove the torn line is skipped (`$RT/tests/conversation.vitest.ts`). Verify: `cd $RT && npx vitest run tests/conversation.vitest.ts -t "torn"` prints one passing test
+- [ ] T042 Prove a parked message answered and resumed leaves three messages (`$RT/tests/cli-chat.vitest.ts`). Verify: `cd $RT && npx vitest run tests/cli-chat.vitest.ts -t "resumed"` prints one passing test
+- [ ] T043 Prove the injection fixture and the redaction (`$RT/tests/conversation.vitest.ts`, `$RT/tests/runner.vitest.ts`). Verify: `cd $RT && npx vitest run tests/conversation.vitest.ts -t "injection"` prints one passing test
+- [ ] T044 Run the packet validator (`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -132,7 +135,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the phase d
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md` prints 11
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md` prints 14
 - [ ] CHK-002 [P0] Technical approach defined in plan.md. Verify: `rg -n '^## 4\. IMPLEMENTATION PHASES' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md` prints one line
 - [ ] CHK-003 [P1] Dependencies identified and available. Verify: `cd $RT && npx vitest --version` exits 0
 <!-- /ANCHOR:pre-impl -->
@@ -142,7 +145,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the phase d
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The runtime type-checks. Verify: `cd $RT && npx tsc --noEmit` exits 0
+- [ ] CHK-010 [P0] The runtime type-checks. Verify: `cd $RT && npm run typecheck` exits 0
 - [ ] CHK-011 [P0] The new module prints nothing. Verify: `rg -n 'console\.(log|error)' $RT/lib/conversation.ts` prints nothing
 - [ ] CHK-012 [P1] Error handling implemented. Verify: `rg -n 'ok: false' $RT/lib/conversation.ts` prints the refusals
 - [ ] CHK-013 [P1] Code follows project patterns. Verify: `rg -n 'Result<' $RT/lib/conversation.ts` prints the return types
@@ -166,9 +169,9 @@ A blocked task is marked `[B]` with the reason on the same line, and the phase d
 
 The plan's affected-surfaces addendum is active because this phase adds a persisted file format and changes a shared outcome type. These rows verify the inventories it names.
 
-- [ ] CHK-FIX-001 [P0] Each changed surface names its class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Verify: `rg -c '^\| .*runtime/lib/' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md` prints 4
+- [ ] CHK-FIX-001 [P0] Each changed surface names its class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Verify: `rg -c '^\| .*runtime/lib/' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md` prints 7
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed. Verify: `rg -n 'appendFileSync|writeStateAtomic' $RT/lib/` prints every writer of a state file
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the changed symbols. Verify: `rg -n 'RunOutcome|DrainInput|IdentityStatePaths' $RT --glob '*.ts'` prints every reader
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the changed symbols. Verify: `rg -n 'RunOutcome|DrainInput|IdentityStatePaths|NeedsYouItem|QueuedRequest' $RT --glob '*.ts'` prints every reader
 - [ ] CHK-FIX-004 [P0] The append-only invariant's adversarial cases are tested. Verify: `rg -n 'adversarial' $RT/tests/conversation.vitest.ts` prints the case block
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Verify: `rg -n 'Matrix axes' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md` prints the line
 - [ ] CHK-FIX-006 [P1] The hostile-environment variant ran. Verify: `cd $RT && npx vitest run tests/conversation.vitest.ts -t "torn"` prints one passing test
@@ -180,7 +183,7 @@ The plan's affected-surfaces addendum is active because this phase adds a persis
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets. Verify: `rg -n 'secret|token|password' $RT/lib/conversation.ts` prints nothing
+- [ ] CHK-030 [P0] No hardcoded secrets. Verify: `rg -n "(secret|token|password)\s*[:=]\s*['\"]" $RT/lib/conversation.ts` prints nothing, so the module names the check and holds no value
 - [ ] CHK-031 [P0] Input validation implemented. Verify: `rg -n 'isSafeSegment' $RT/lib/conversation.ts` prints the conversation-id check
 - [ ] CHK-032 [P1] The file mode is owner-only. Verify: `rg -n 'STATE_DIR_MODE|0o600' $RT/lib/conversation.ts` prints the mode
 <!-- /ANCHOR:security -->

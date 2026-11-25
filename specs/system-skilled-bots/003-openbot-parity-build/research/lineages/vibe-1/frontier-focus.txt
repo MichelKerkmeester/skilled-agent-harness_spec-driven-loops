@@ -1,0 +1,1 @@
+003 terminal screen: do its acceptance criteria and the CI workflow agree on how the Rust crate is built and tested, and does the crate's fixture seam survive the JSON contracts the other phases change?

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Build OpenBot parity for skilled bots from the 002 research: activity, routines, terminal screen, workspace, memory, approvals, apps, vault, skills and chat"
-description: "Ten build phases that close the OpenBot parity gaps the 002 research ranked, from the activity view and actor field through routines, a Rust terminal screen, memory, approvals, apps, vault, skills and conversations."
+description: "Eleven build phases that close the OpenBot parity gaps the 002 research ranked, from the activity view and actor field through routines, a Rust terminal screen, memory, approvals, apps, vault, skills, conversations and messaging channels."
 trigger_phrases:
   - "openbot parity build phase parent spec"
 importance_tier: "important"
@@ -52,7 +52,7 @@ _memory:
 | **Parent Packet** | system-skilled-bots/003-openbot-parity-build |
 | **Predecessor** | `002-openbot-parity-research` |
 | **Successor** | None |
-| **Handoff Criteria** | Each child passes `validate.sh --strict` before the next starts, and 010-conversations closes the program |
+| **Handoff Criteria** | Each child passes `validate.sh --strict` before the next starts, and 011-messaging-channels closes the program |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -75,9 +75,10 @@ Close each gap the 002 research ranked, one child phase per gap, so a small team
 ## 3. SCOPE
 
 ### In Scope
-- The ten ranked slices of `../002-openbot-parity-research/research/research.md` §15, one child phase each: activity and actor, routines, terminal screen, computer exposure, memory, approval grants, per-bot apps, vault, skills, conversations.
+- The ten ranked slices of `../002-openbot-parity-research/research/research.md` §15, one child phase each: activity and actor, routines, terminal screen, computer exposure, memory, approval grants, per-bot apps, vault, skills, conversations, plus the messaging-channels extension.
 - The operator decision of 2026-11-24: the terminal screen moves up to third, after activity and routines, and draws its panes over the data those two write, so it needs no backend of its own.
 - The operator decision of 2026-11-25: the screen is a new MIT Rust ratatui app that follows openhuman-tui's layout, tabs, approval banner, overlay and command palette, reads and writes through `bots ... --json`, and copies none of its GPL-3.0 code.
+- The operator decision of 2026-11-25 on the answer scope: `bots answer` gains `--scope once|deny` in 001, so 003 depends on 001 and 002 only and never waits for 006; 006 keeps `grants` and the ladder and extends that scope with them.
 - The actor half of the small-team model (§12): a `by:` field on needs-you answers, secret records and run records, filled from the OS user or `--as`, so a shared host does not erase who answered.
 - The reuse rule (§14): MIT lifts keep the copyright and permission notice, Apache-2.0 lifts keep the license, any NOTICE file and a statement of changes, and one `THIRD_PARTY_NOTICES.md` entry per lifted file names its source path.
 
@@ -91,22 +92,46 @@ Close each gap the 002 research ranked, one child phase per gap, so a small team
   - Mobile: a separate React Native app, and the terminal is the client.
   - PostgreSQL, Compose, a container computer, a browser farm, gVisor: the runtime is a Node CLI with a SQLite index and worktrees.
   - OAuth server, per-person connections, connector catalogue: a key or a shared account covers the common case, and the UTCP config already names the servers.
-- **The rest of the small-team model** (§12): two roles in one `operators.json` and a shared host at mode 0770. No child builds them; 001 lands the actor field alone.
+- **The shared-host 0770 mode** (§12): no child builds it. The state root stays owner-only, so the `operators.json` roster 011 lands is single-operator until a later packet, and 011's channel config rests on the identity rather than on a shared host.
+- **The two-role `operators.json` roster** (§12): 001 lands the actor field alone, and 011 lands the minimal `owner`/`members` roster its channel approver check needs.
 - **A browser computer per bot** (§10): OpenBot's largest surface, and a small team uses its own logged-in browser for the steps that need one.
 - **Per-action policy inside the executor** (§11): executor sandboxes and posture enforce today, and the hook is a later packet.
 - **Recording a skill from a demonstration** (§8, open question 6): no counterpart and no design.
 
 ### Files to Change
-Per-phase detail lives in each child's `plan.md`. This table is the audit trail of the surfaces the ten phases touch.
+Per-phase detail lives in each child's `plan.md`. This table is the audit trail of the surfaces the eleven phases touch.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.skilled/bin/bots.cjs` | Modify | 001, 002, 004, 005, 006, 008, 009, 010 | New verbs: `activity`, `inbox`, `routines`, `remember`, `secret`, `skill propose`, `chat` |
-| `.skilled/skills/system-skilled-bots/runtime/lib/` | Create/Modify | 001-010 | Activity grouping, actor field, routine block, memory files, grants ladder, app filter, secret store, skill proposals, conversation JSONL |
+| `.skilled/bin/bots.cjs` | Modify | 001, 002, 003, 004, 005, 006, 008, 009, 010, 011 | New verbs: `activity`, `inbox`, `routines`, `ui`, `remember`, `secret`, `skill propose`, `chat`, and the `channel` group; `--scope once\|deny` on `answer` from 001 |
+| `.skilled/skills/system-skilled-bots/runtime/lib/` | Create/Modify | 001-011 | Activity grouping, actor field, routine block, memory files, grants ladder, app filter, secret store, skill proposals, conversation JSONL, the channel modules |
+| `.skilled/skills/system-skilled-bots/runtime/lib/state-root.ts` | Modify | 002, 005, 008, 009, 010, 011 | One folder per phase: `routines`, `memory`, `secrets`, `proposals`, `conversations`, `channels` |
+| `.skilled/skills/system-skilled-bots/runtime/lib/delivery.ts` | Modify | 008, 011 | The secret-literal check over a delivery message, and the channel names on `DELIVERY_CHANNELS` |
+| `operators.json` | Create | 011 | The `owner`/`members` roster `channel-link.ts` writes; 011 fixes its path under the identity's state root |
 | `.skilled/skills/system-skilled-bots/assets/bot-template.txt` | Modify | 002, 005, 007, 009 | `routine`, `memory`, `apps` and `skills` keys |
 | `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` | Modify | 007 | `apps-unknown-server` invariant, failing closed |
 | New MIT Rust ratatui crate | Create | 003 | Panes over `bots ... --json`; the crate path is fixed in 003's `plan.md` |
-| `THIRD_PARTY_NOTICES.md` | Create | 001, 002, 008, 009, 010 | One entry per lifted MIT or Apache-2.0 file, with its source path |
+| `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create (001), Modify (006, 008, 010, 011) | 001, 006, 008, 010, 011 | One entry per lifted MIT or Apache-2.0 file, with its source path; 001 creates the file and the rest append a `## <phase>` section |
+
+> **State root:** the state root is the unit of backup; `bots status --rebuild` is the only repair.
+
+### Shared Records
+
+One owner per record more than one phase writes. The owner fixes the shape; every other phase reads it.
+
+| Record | Owner | What the owner fixes |
+|--------|-------|----------------------|
+| Run record `actor` and the status index `schemaVersion` | 001 | `actor` is an additive field and `schemaVersion` stays `'2'`, so an index built before the change still opens |
+| `bots activity --json` row | 001 | `botId`, `identity`, `state`, `at`, `actor`, `runId` |
+| `bots inbox --json` item | 001 | `id`, `botId`, `kind`, `question`, `state`, `at`, `options`, `createdAt`, `expiresAt`, `answer` |
+| The item's `kind` field | 005 | The values (`decision`, `memory-proposal`, `skill-proposal`) and the absent-means-`decision` default; 001 lands the key in `ITEM_KEYS` and 009 adds its value |
+| The item's `grants` field and the answer's scope | 006 | Every item writer fills it; 001 lands `bots answer --scope once\|deny` and 006 extends the scope with `grants` and the ladder |
+| `crates/bots-tui/tests/fixtures/bots` | 003 | The copy of every `--json` contract the screen reads; a phase that changes one updates it in the same change |
+| `buildBotPrompt` section order | 005 | Exemption, spec folder, working place, checkout, memory, skills, decision marker, body, conversation |
+| `answerItem` review seam | 005 | One seam after the answer and the scope are written and before the resume request is built |
+| `answerItem` guarded write | 006 | An exclusive lock or a write-if-unchanged check, so a second answer with different text is refused `item-answered-differently` |
+| The secret-literal scan's run-record cause | 008 | One name, `secret-in-output`, for the post-run `stdout.log` scan and for 010's returned answer text, so one scan never records two causes |
+| `operators.json` roster | 011 | `owner` and `members`, single-operator |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,17 +143,17 @@ Per-phase detail lives in each child's `plan.md`. This table is the audit trail 
 
 | Phase | Folder | Focus | Depends on | Status |
 |-------|--------|-------|------------|--------|
-| 1 | `001-activity-and-actor/` | `bots activity` grouped by OpenBot's seven ids, `bots inbox --json`, and a `by:` actor on answers and run records | None; the check-after, and the prerequisite for a shared host | Pending |
-| 2 | `002-routine-layer/` | The four-part `routine` block over the existing triggers, the `until` check, the 15-minute floor, the fatigue switch and `bots routines` | 001, whose run rows the fatigue switch counts | Pending |
-| 3 | `003-terminal-screen/` | A new MIT Rust ratatui app with activity, inbox and routine panes over `bots ... --json`, written from openhuman-tui's shape | 001 and 002, whose data it draws; no backend of its own | Pending |
+| 1 | `001-activity-and-actor/` | `bots activity` grouped by OpenBot's seven ids, `bots inbox --json`, and a `by:` actor on answers and run records | None; the check-after, and the prerequisite for any later shared-host packet | Pending |
+| 2 | `002-routine-layer/` | The four-part `routine` block over the existing triggers, the `until` check, the 15-minute floor, the fatigue switch and `bots routines` | None; 001's `by:` summary field only enriches the routine list | Pending |
+| 3 | `003-terminal-screen/` | A new MIT Rust ratatui app with activity, inbox and routine panes over `bots ... --json`, written from openhuman-tui's shape | 001 and 002 only, whose data it draws and whose `--scope` it passes; no backend of its own | Pending |
 | 4 | `004-computer-exposure/` | The worktree or run folder named in the prompt, with its path and branch in run records and `bots status` | 001, whose run records carry the fields | Pending |
 | 5 | `005-memory/` | Shared and per-bot memory files prepended to the prompt, `bots remember`, and needs-you confirmation of bot-proposed facts | 001, whose needs-you item carries the confirmation | Pending |
-| 6 | `006-approval-grants/` | A `grants` field on needs-you items and the precedence ladder applied at that gate | 001, whose item and inbox it extends | Pending |
+| 6 | `006-approval-grants/` | A `grants` field on needs-you items and the precedence ladder applied at that gate | 001, whose item, inbox and `--scope` it extends with `grants` and the ladder; 005, whose review seam the scope is written before | Pending |
 | 7 | `007-per-bot-apps/` | The `apps:` key, a filtered UTCP config per run, `HonoredPosture.apps` and the `apps-unknown-server` checker invariant | 001, whose run records carry the posture | Pending |
 | 8 | `008-vault/` | `bots secret set` over the keychain or a 0600 store, child-environment injection and `secretsUsed` | 007, which lands the per-run config the secret is injected into; this is the one slice that can leak, so it lands after the first | Pending |
-| 9 | `009-skills/` | A `skills:` list under a byte cap, and `bots skill propose` reviewed through a needs-you item | 001, whose needs-you item reviews the proposal | Pending |
-| 10 | `010-conversations/` | `bots chat` with `@bot` routing over an append-only conversation JSONL | 001, whose run records each message writes; 003 gains its chat pane here | Pending |
-| 11 | `011-messaging-channels/` | A shared channel adapter and a file-backed identity link, then Telegram long polling, Slack Socket Mode, Signal through a local `signal-cli` daemon and the WhatsApp Cloud API, with approvals as buttons where the platform has them and numbered or YES/NO replies elsewhere | 001, whose actor a link names; 006, whose grant an approval carries; 008, whose vault holds the tokens; 010, whose chat the terminal transport reuses | Pending |
+| 9 | `009-skills/` | A `skills:` list under a byte cap, and `bots skill propose` reviewed through a needs-you item | 001, whose needs-you item reviews the proposal; 005, whose prompt order and review seam it inserts into; 006, whose `grants` field its item fills | Pending |
+| 10 | `010-conversations/` | `bots chat` with `@bot` routing over an append-only conversation JSONL | 001, whose run records each message writes; 003, whose chat pane this phase fills; 005, whose review seam stamps the conversation id; 008, whose `secret-in-output` cause its scan reuses | Pending |
+| 11 | `011-messaging-channels/` | A shared channel adapter, a file-backed identity link and the `operators.json` roster, then Telegram long polling, Slack Socket Mode, Signal through a local `signal-cli` daemon and the WhatsApp Cloud API, with approvals as buttons where the platform has them and numbered or YES/NO replies elsewhere | 001, whose actor a link names; 005, whose review seam the roster check runs before; 006, whose grant an approval carries; 008, whose vault holds the tokens; 010, whose chat the terminal transport reuses | Pending |
 
 ### Phase Transition Rules
 

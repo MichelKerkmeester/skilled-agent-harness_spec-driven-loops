@@ -43,9 +43,25 @@
     "status": "draft",
     "key_files": [
       "spec.md",
+      "research/research.md",
       ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
-      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs"
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".github/workflows/bots-runtime.yml",
+      ".opencode/bin/bots.cjs",
+      ".opencode/skills/system-skilled-bots/SKILL.md",
+      "005-memory/plan.md",
+      "005-memory/tasks.md",
+      "research/lineages/devin-2/research.md",
+      "research/lineages/vibe-1/research.md",
+      "research/lineages/vibe-2/research.md",
+      "research/lineages/devin-1/iterations/iteration-001.md",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md",
+      "research/resource-map.md",
+      "research/fanout-research-topic.txt"
     ],
     "entities": [
       {
@@ -55,9 +71,27 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "delivery.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
         "source": "derived"
       },
       {
@@ -70,6 +104,42 @@
         "name": "bot-check.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skilled-bots/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/devin-1/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-research-topic.txt",
+        "kind": "file",
+        "path": "research/fanout-research-topic.txt",
         "source": "derived"
       },
       {
@@ -107,22 +177,54 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Readiness Review",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eleven Planned Phases",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Synthesis Canonical",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Question",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-25T08:06:52.910Z",
+    "last_save_at": "2026-11-25T19:03:38.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:1fdeccdfbb0c053a37e11e9fc416ca8f008020783838b5c32c6f5c1d94456ee8",
+    "source_fingerprint": "sha256:0fb428d0f85ca18c1eee3d93c441809f9ce9e1a80e8e784e933a9e2e3e75e1c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83455127207b09c20414480563cc191df73dcfd7e5255d11e627a781e7e01bd8"
+      "spec.md": "0548e6d6447933cb9b6d86729146e2e735471982967ec22a6195bd92cbe4b410",
+      "research/research.md": "dc7249652920d927976484aa8bededcc770782c67031ebad0a7e7d37efa87f41"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
-    "last_active_at": "2026-11-25T08:06:52.910Z"
+    "last_active_at": "2026-11-25T19:03:38.569Z"
   }
 }

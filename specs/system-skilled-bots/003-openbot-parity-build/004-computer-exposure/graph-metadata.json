@@ -201,7 +201,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Prompt Section Order",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A bot run starts in a directory its prompt never names",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T07:26:05.122Z",
+    "last_save_at": "2026-11-25T17:50:02.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80e397cd1f8f6acdda8f175afb474460eaa6eabb57dda6833a874e8a7f6e0a65",
+    "source_fingerprint": "sha256:82a0a7e993d4676933818ab7e04b4848a0f59745f552f07eefdee1cb92efbb2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d58b6a39a0ef56847f53da1c5a71a4f9ab346cd5f7d4e3fb9a3caf9b5033a8ce",
-      "plan.md": "cf07724952089f8481614389de4318cf79ff40f2f1eb98d59674b82d7da133dd",
-      "tasks.md": "119ea0cd87a52154b1773122f4e282a38b94cf3bc82fb62a6f87a004b84be056",
+      "spec.md": "ef943b0cf813673a0933d40254b2a5c600957df53247e4b7edbb94ca77d89a2e",
+      "plan.md": "4393e00a64cabc32394589f002e4019d06335552a9c8823ff8ec494516121cf9",
+      "tasks.md": "37b2f85597c989394c14aeadb7179f0ffe7de150effc2ea6a717b9eb13218eeb",
       "implementation-summary.md": "c527b9a6057fbb3a88200339287e92ce9f9e5894837567d128e8b3a8b9b5989b"
     },
     "last_active_at": null

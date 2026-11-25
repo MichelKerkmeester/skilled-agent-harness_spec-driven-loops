@@ -35,7 +35,7 @@ Two shell variables keep the paths short. `R` is `.skilled/skills/system-skilled
 
 - [ ] T001 Read the five files this phase edits and record the server count (`$R/definition.ts`, `$R/run-record.ts`, `$R/runner.ts`, `$C`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `python3 -c "import json;d=json.load(open('.utcp_config.json'));print(len(d['manual_call_templates']),'servers')"` prints `14 servers`.
 - [ ] T002 Confirm the checker refuses the key today, so the change has a baseline (`$C`). Verify: `T=$(mktemp -d) && cp -R .skilled/skills/system-skilled-bots/scripts/fixtures/clean "$T/r" && awk '{print} /^isolation: shared$/{print "apps: [github]"}' "$T/r/bots/nightly-digest/BOT.md" > "$T/b" && mv "$T/b" "$T/r/bots/nightly-digest/BOT.md" && node $C "$T/r"` prints `FAIL: definition.unknown-key:` and exits 1.
-- [ ] T003 [P] Confirm the executor allowlist does not admit the child key (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `grep -c 'UTCP_CONFIG_FILE' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 0.
+- [ ] T003 [P] Confirm the executor admits no caller-named key beyond its per-kind list, so the child key needs a new seam (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `grep -c 'dispatchEnvKeys' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 0 and `grep -c 'UTCP_CONFIG_FILE' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 0.
 - [ ] T004 [P] Confirm no runtime module or checker line mentions the field yet (`$R`, `$C`). Verify: `grep -rc 'apps' $R/*.ts $C | grep -v ':0'` prints nothing and exits 1.
 <!-- /ANCHOR:phase-1 -->
 
@@ -45,15 +45,17 @@ Two shell variables keep the paths short. `R` is `.skilled/skills/system-skilled
 ## Phase 2: Implementation
 
 - [ ] T005 Add `apps` to `FRONTMATTER_KEYS`, add a list predicate, and parse it into `Posture.apps` with `apps-invalid` for a non-list or an empty entry (`$R/definition.ts`). Verify: `grep -n "'apps'" $R/definition.ts` prints the key-set line and `grep -c 'apps-invalid' $R/definition.ts` prints 1.
-- [ ] T006 Create the module with `readUtcpServerNames`, `resolveApps` and `writeRunUtcpConfig`, the last writing `<runFolder>/utcp.json` with every top-level key copied and `manual_call_templates` filtered, each returning a `Result` with a named reason (`$R/apps.ts`). Verify: `grep -c 'export function' $R/apps.ts` prints 3 and `grep -c 'utcp.json' $R/apps.ts` prints 1.
+- [ ] T006 Create the module with `readUtcpServerNames`, `resolveApps` and `writeRunUtcpConfig`, the last writing `<runFolder>/utcp.json` and, for a run with its own worktree, `<worktree>/.utcp_config.json`, with every top-level key copied, `manual_call_templates` filtered and each `env_file_path` made absolute against the source config's folder, each returning a `Result` with a named reason (`$R/apps.ts`). Verify: `grep -c 'export function' $R/apps.ts` prints 3, `grep -c 'utcp.json' $R/apps.ts` prints 1 and `grep -c 'env_file_path' $R/apps.ts` prints 1.
 - [ ] T007 Add `apps: string[]` to `HonoredPosture` and leave the record validator unchanged (`$R/run-record.ts`). Verify: `grep -n 'apps' $R/run-record.ts` prints one line inside the interface.
 - [ ] T008 Add the `apps-refused` cause with class `author` and seed `apps: []` in `declaredPosture` (`$R/runner.ts`). Verify: `grep -c 'apps-refused' $R/runner.ts` prints 1 and `grep -c 'apps: \[\]' $R/runner.ts` prints 1.
-- [ ] T009 Call `resolveApps` and `writeRunUtcpConfig` after the posture check and before the worktree, set `seed.posture.apps`, and pass `UTCP_CONFIG_FILE` in the environment handed to `dispatchHeadless` (`$R/runner.ts`). Verify: `grep -c 'UTCP_CONFIG_FILE' $R/runner.ts` prints 1.
-- [ ] T010 Admit `UTCP_CONFIG_FILE` through the common executor environment allowlist (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `grep -c 'UTCP_CONFIG_FILE' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 1.
+- [ ] T009 Call `resolveApps` and `writeRunUtcpConfig` after the posture check and before the worktree, set `seed.posture.apps`, pass `UTCP_CONFIG_FILE` in the environment handed to `dispatchHeadless`, and name it in `dispatchEnvKeys` (`$R/runner.ts`). Verify: `grep -c 'UTCP_CONFIG_FILE' $R/runner.ts` prints 2 and `grep -c 'dispatchEnvKeys' $R/runner.ts` prints 1.
+- [ ] T010 Add `dispatchEnvKeys?: string[]` to `RunAuditedExecutorCommandInput` and accept a key that is in the kind's list or in that array in `assertDispatchEnvAllowed`, with no prefix rule (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `grep -c 'dispatchEnvKeys' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 2.
 - [ ] T011 Add `apps-unknown-server` to `HARD_INVARIANTS` and call `resolveApps` once per definition, reporting its refusal under that id (`$C`). Verify: `grep -c 'apps-unknown-server' $C` prints 2.
 - [ ] T012 Create the defect fixture: a `bots/config.json` with an identity and one bot declaring a server the repository config does not hold (`.skilled/skills/system-skilled-bots/scripts/fixtures/apps-unknown-server/`). Verify: `node $C .skilled/skills/system-skilled-bots/scripts/fixtures/apps-unknown-server` prints `FAIL: apps-unknown-server:` and exits 1.
 - [ ] T013 Carry `apps: null` with its default named in a comment (`.skilled/skills/system-skilled-bots/assets/bot-template.txt`). Verify: `grep -n 'apps: null' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints one line.
-- [ ] T014 Name the field and the invariant in the author reference and the two feature-catalog files (`.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md`, `.skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md`, `.skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md`). Verify: `grep -l 'apps' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md .skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md .skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md` prints all three paths.
+- [ ] T014 Name the field and the invariant in the author reference and the two feature-catalog files, and name the shared-run limit in the author reference: `apps` narrows a worktree run, a shared run reads the repository config, and a shared bot declaring `apps` is refused `apps-unenforceable` (`.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md`, `.skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md`, `.skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md`). Verify: `grep -l 'apps' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md .skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md .skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md` prints all three paths and `grep -c 'apps-unenforceable' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints at least 1.
+- [ ] T021 Refuse `apps-unenforceable` with class `author` when the definition declares `apps` and `isolation` is not `worktree`, before any config is written (`$R/runner.ts`). Verify: `grep -c 'apps-unenforceable' $R/runner.ts` prints 1.
+- [ ] T022 Restore the worktree's own `.utcp_config.json` after the child exits, so the working tree the operator commits holds the repository config; a commit the child made during the run is left alone, which the risk table names (`$R/runner.ts`). Verify: `grep -c 'utcp_config.json' $R/runner.ts` prints 1.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -61,7 +63,7 @@ Two shell variables keep the paths short. `R` is `.skilled/skills/system-skilled
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T015 Write the unit and integration suite over the declaration and config matrix (`$R/../tests/apps.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/apps.vitest.ts` exits 0.
+- [ ] T015 Write the unit and integration suite over the declaration and config matrix, including the worktree write, the `apps-unenforceable` refusal, the unlisted-key refusal and the absent-declaration case under both isolations (`$R/../tests/apps.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/apps.vitest.ts` exits 0.
 - [ ] T016 Add the defect row to the checker suite (`.skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/bot-check.vitest.ts` exits 0.
 - [ ] T017 Run the whole runtime suite. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints no `FAIL` line.
 - [ ] T018 Run the runtime typecheck. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
@@ -137,6 +139,8 @@ A blocked task is marked `[B]` with the reason on the same line, and the packet 
 - [ ] CHK-022 [P1] The checker's defect fixture fails under the new invariant. Verify: `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/apps-unknown-server` exits 1.
 - [ ] CHK-023 [P1] The clean fixture still passes. Verify: `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs .skilled/skills/system-skilled-bots/scripts/fixtures/clean` exits 0.
 - [ ] CHK-024 [P1] A run that declares no apps records an empty list and writes an empty server list. Verify: the `apps.vitest.ts` absent-declaration case passes.
+- [ ] CHK-025 [P1] A worktree run writes the filtered config into the tree root and leaves the tree's own file behind. Verify: the `apps.vitest.ts` worktree-write case passes.
+- [ ] CHK-026 [P1] A run that declares `apps` with no worktree is refused `apps-unenforceable` and writes no config. Verify: the `apps.vitest.ts` no-worktree case passes.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -146,7 +150,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the packet 
 
 - [ ] CHK-030 [P0] The filtered config holds no credential value. Verify: `grep -c 'process.env' .skilled/skills/system-skilled-bots/runtime/lib/apps.ts` prints 0.
 - [ ] CHK-031 [P0] An unknown server name is refused, never dropped. Verify: `grep -c 'apps-unknown-server' .skilled/skills/system-skilled-bots/runtime/lib/apps.ts` prints 1.
-- [ ] CHK-032 [P1] The child key is a path and not a secret, so admitting it widens no credential surface. Verify: `grep -n 'UTCP_CONFIG_FILE' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints one line inside the common allowlist.
+- [ ] CHK-032 [P1] The child key is a path and not a secret, and it is admitted per dispatch rather than by a prefix or a widened kind list. Verify: `grep -c 'dispatchEnvKeys' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 2 and `grep -c 'startsWith' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` is unchanged from the baseline T003 records.
 <!-- /ANCHOR:security -->
 
 ---
@@ -157,6 +161,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the packet 
 - [ ] CHK-040 [P1] Spec, plan and tasks agree on the field name and the invariant id. Verify: `grep -l 'apps-unknown-server' specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/tasks.md` prints all three paths.
 - [ ] CHK-041 [P1] The template names the field with its default. Verify: `grep -n 'apps: null' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints one line.
 - [ ] CHK-042 [P2] The feature catalog names the field and the invariant. Verify: `grep -c 'apps' .skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md` prints at least 1.
+- [ ] CHK-043 [P1] The author reference names the shared-run limit, so an author who omits `apps` on a shared bot is told its child still reads the repository config. Verify: `grep -c 'apps-unenforceable' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints at least 1.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -176,7 +181,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the packet 
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | 0/8 |
-| P1 Items | 11 | 0/11 |
+| P1 Items | 14 | 0/14 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: 2026-11-25

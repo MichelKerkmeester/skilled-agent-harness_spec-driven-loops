@@ -49,15 +49,14 @@
       "implementation-summary.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/bin/bots.cjs",
-      ".opencode/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".opencode/skills/system-skilled-bots/SKILL.md",
       ".skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts"
     ],
@@ -111,9 +110,21 @@
         "source": "derived"
       },
       {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "answer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
         "source": "derived"
       },
       {
@@ -138,12 +149,6 @@
         "name": "needs-you.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-        "source": "derived"
-      },
-      {
-        "name": "answer.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
         "source": "derived"
       },
       {
@@ -199,17 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A bot's only way to reach a person is a macOS desktop notice, and its only way to ask a question is `bots inbox` on the host, so a small team that works in a chat client walks to the machine to answer",
     "created_at": "2026-11-25T07:51:30Z",
-    "last_save_at": "2026-11-25T08:06:52.851Z",
+    "last_save_at": "2026-11-25T19:03:38.499Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8eda095cac864ace8a6d8c35178788dc552c0612a6382f78d7fd79787b56a8d1",
+    "source_fingerprint": "sha256:5e4d4dfd1c7f2b6ffc8ca20ab368102239a8db5209398c4a92c07bb51cd75d14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8f8474124649bb0ed823f0e5953e14ea7dc2623da02a9cfa5846e35e4976b1a",
-      "plan.md": "0d7f3ceff6c897b2dbf34893d194c83a8ad52a9b30794ef007fc542967d0f365",
-      "tasks.md": "3f33b2c38756f1f361c6afe11a3d78f4496c9f5144052526d751e308a38c8471",
-      "decision-record.md": "7ad9c3509a225c7c40012af72282463ab84ff5cc3ba2dacadb4b825b32baacdc",
-      "implementation-summary.md": "b95dd07286799d514a7a48ec20c15364743cc7913cdbd1f5dbe5913834549361"
+      "spec.md": "4499fd43711cb0232675d323eb15acd7a767aad37c469e21c455be26dbbc747c",
+      "plan.md": "469991a03e87238ea1912cabe130e9b0f766bc6ada49dad574273117f44626f7",
+      "tasks.md": "56d9759d99efef8d8685cf253cab3204674e61e3670985fb407f5563188676e3",
+      "decision-record.md": "e9544f1dfcd0fa976675d49e3e400f3971f08c2911a1670d07b9c36d7b72dcbd",
+      "implementation-summary.md": "e94dbccf99d48c2425251e74b69c2831b5d7394196bb5b87a17efd0ff82215f1"
     },
     "last_active_at": null
   }

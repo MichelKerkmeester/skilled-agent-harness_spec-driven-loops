@@ -1,0 +1,1 @@
+Plan versus runtime: phases 009-skills and 010-conversations — verify every file, symbol, CLI verb and verify command those plans name, then rank the cross-phase conflicts for the final consolidation.

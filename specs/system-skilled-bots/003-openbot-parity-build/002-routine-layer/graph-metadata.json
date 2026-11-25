@@ -51,6 +51,7 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
@@ -58,8 +59,7 @@
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
       ".skilled/skills/system-skilled-bots/bots-status/SKILL.md",
-      ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts"
+      ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts"
     ],
     "entities": [
       {
@@ -129,6 +129,12 @@
         "source": "derived"
       },
       {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
         "name": "installer.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
@@ -177,12 +183,6 @@
         "source": "derived"
       },
       {
-        "name": "runner.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger and a body, so it says when a bot runs and nothing about what the run is for, whether it acts or only tells, or when it is done",
     "created_at": "2026-11-25T07:13:38Z",
-    "last_save_at": "2026-11-25T07:21:41.130Z",
+    "last_save_at": "2026-11-25T18:13:17.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1314f8374bf35d96d967d812c39a5de6972f32a81e08f741efdcdbf93ffef741",
+    "source_fingerprint": "sha256:e1d8d677b82b8434314982d143168db2736575394ee78266a04dbaae7d41d76e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f877ad61e949fe2c2efa9500345eb028d2c66c84dd0c361aee931bd7343befa8",
-      "plan.md": "3a6288ec41b56375d86b12e615426b05d823122e48bafe2a2ce1883f9a5a16a0",
-      "tasks.md": "49ae38b04e836bbf3c5db320816980c21803f5372c7a6541a11b673aa6cf067b",
+      "spec.md": "a972f33fdd37ae296eb5feac5e34efc2c4910de738e5efba8713ca48963063f5",
+      "plan.md": "12c2d67d413350a348261335a805ab9dfa48ecc706404303dd81e0cc74b069ab",
+      "tasks.md": "caa2329a5395293d63399ee6cb21752b88ef47a1de87937fa3b09e7f8c86e9ee",
       "implementation-summary.md": "0d7f921d1001c8f065113d46e668e1fcaf25dadaf4218e7c56971b76197947b8"
     },
     "last_active_at": null

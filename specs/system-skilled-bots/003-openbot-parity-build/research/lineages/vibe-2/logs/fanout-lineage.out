@@ -1,0 +1,15 @@
+The lineage is complete. Thirteen iterations ran inline, each with a narrative file, a gateway receipt (exit 0), a delta, and a reducer pass; `corruptionCount` stayed 0 throughout.
+
+**What the review found.** The packet is not build-ready as written, and is build-ready after three P0 fixes and nine one-line edits. 52 findings: 3 P0, 31 P1, 17 P2.
+
+- **P0** — phase 002's `until` is prose in the OpenBot reference and a shell command in the plan, so `runPrecheck` would execute arbitrary BOT.md text after every completed run.
+- **P0** — phase 004's DoD requires `SCHEMA_VERSION = '2'` after 001 bumps it to `'3'`, so it can never pass.
+- **P0** — the parent forbids any child from building `operators.json`; 011 builds it and REQ-005 depends on it.
+
+The build order itself is sound: every real dependency edge points backwards, so 001 through 011 in numeric order satisfies all of them. The defects are in the declared graph and in shared records with three or more writers.
+
+**Deliverables in `research/lineages/vibe-2/`:** `research.md` (verdict, ranked findings, 14-row cross-phase conflict list, parity and overbuild verdicts, 47-edit spec list, coverage limits), `iterations/iteration-001.md`–`iteration-013.md`, `deltas/iter-001.jsonl`–`iter-013.jsonl`, plus the reducer-owned registry, dashboard and strategy.
+
+**Verification:** `findings-registry.json` reports `terminalStop.stopReason: "maxIterationsReached"`, `totalIterations: 13`, `answeredCount: 6/6`, `status: COMPLETE`. The state projection holds one config row, thirteen iteration rows and the synthesis event. `git status` shows no modified tracked file and nothing written outside the lineage directory.
+
+FANOUT_LINEAGE_COMPLETE:vibe-2

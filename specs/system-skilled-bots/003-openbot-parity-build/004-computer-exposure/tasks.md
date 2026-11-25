@@ -26,7 +26,7 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-Two shell variables shorten the commands below. Set them once per shell:
+Three shell variables shorten the commands below. Set them once per shell:
 
 ```bash
 LIB=.skilled/skills/system-skilled-bots/runtime/lib
@@ -55,7 +55,7 @@ BOTS="node .skilled/bin/bots.cjs"
 ## Phase 2: Implementation
 
 - [ ] T008 Write `workingPlaceLine` in both shapes, with and without a branch (`$LIB/dispatch.ts`). Verify: `$RT test -- dispatch` prints no `failed` and names `workingPlaceLine`.
-- [ ] T009 Add the `workingPlace` input to `buildBotPrompt` and emit the line above the bot body (`$LIB/dispatch.ts`). Verify: `rg -c 'workingPlace' $LIB/dispatch.ts` prints a number of 3 or more.
+- [ ] T009 Add the `workingPlace` input to `buildBotPrompt` and emit the line after the spec-folder line and before the checkout line, in the shared order's working-place slot (`$LIB/dispatch.ts`). Verify: `rg -c 'workingPlace' $LIB/dispatch.ts` prints a number of 3 or more.
 - [ ] T010 Write `checkoutBranch`, returning the branch or null and never a refusal (`$LIB/isolation.ts`). Verify: `$RT test -- isolation` prints no `failed` and names `checkoutBranch`.
 - [ ] T011 Resolve the branch and pass the working place on the dispatch path (`$LIB/runner.ts`). Verify: `rg -n 'checkoutBranch' $LIB/runner.ts` prints one import line and one call line.
 - [ ] T012 Fill `evidence.branch` on the dispatch path only, so a refusal keeps its nulls (`$LIB/runner.ts`). Verify: `$RT test -- runner` prints no `failed`.
@@ -63,7 +63,7 @@ BOTS="node .skilled/bin/bots.cjs"
 - [ ] T014 Add `worktreePath` and `branch` to `RunSummary` and fill them in `summarizeRecord` (`$LIB/status-index.ts`). Verify: `rg -n 'worktreePath|branch:' $LIB/status-index.ts` prints the two interface lines and the two fill lines.
 - [ ] T015 Add `worktreePath` and `branch` to `LastRun` and fill them in `lastRunOf` (`$LIB/status.ts`). Verify: `rg -n 'worktreePath' $LIB/status.ts` prints the interface line and the fill line.
 - [ ] T016 Append `branch <name>` and `worktree <path>` after every part the row already prints (`$LIB/status.ts`). Verify: `$BOTS status --rebuild` prints a row whose last two parts are `branch <name>` and `worktree <path>` for a worktree run.
-- [ ] T017 Write the dispatch cases: both shapes and no working place given (`runtime/tests/dispatch.vitest.ts`). Verify: `$RT test -- dispatch` prints no `failed`.
+- [ ] T017 Write the dispatch cases: both shapes, no working place given, and the line's slot before the checkout line when the prompt carries one (`runtime/tests/dispatch.vitest.ts`). Verify: `$RT test -- dispatch` prints no `failed`.
 - [ ] T018 Write the isolation case: a worktree run's prompt names its tree and its branch (`runtime/tests/isolation.vitest.ts`). Verify: `$RT test -- isolation` prints no `failed`.
 - [ ] T019 Write the runner cases: a shared run's branch, a refusal's nulls and a parked prompt without the line (`runtime/tests/runner.vitest.ts`). Verify: `$RT test -- runner` prints no `failed`.
 - [ ] T020 Write the index cases: both fields, and a summary written without them reading back null (`runtime/tests/status-index.vitest.ts`). Verify: `$RT test -- status-index` prints no `failed`.
@@ -141,6 +141,7 @@ BOTS="node .skilled/bin/bots.cjs"
 - [ ] CHK-011 [P0] `rg -n 'SCHEMA_VERSION = ' $LIB/status-index.ts` prints `'2'`, so no index needs a rebuild.
 - [ ] CHK-012 [P1] `rg -n 'export function checkoutBranch' $LIB/isolation.ts` prints one line, so the branch read lives in the module that already reads git state.
 - [ ] CHK-013 [P1] `rg -n 'workingPlaceLine' $LIB/dispatch.ts $LIB/runner.ts` prints the definition and its two call sites, so no third place builds the line.
+- [ ] CHK-014 [P1] `$RT test -- dispatch` asserts the working-place line sits after the spec-folder line and before the checkout line, so the shared order in `../spec.md` and 005's Prompt Section Order hold and 005's memory block lands after it.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -191,7 +192,7 @@ BOTS="node .skilled/bin/bots.cjs"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | 0/8 |
-| P1 Items | 10 | 0/10 |
+| P1 Items | 11 | 0/11 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: 2026-11-25

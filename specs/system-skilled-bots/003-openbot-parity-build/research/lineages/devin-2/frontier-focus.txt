@@ -1,0 +1,1 @@
+Angle 1 — plan versus runtime: do the files, functions, records, fields and verbs each phase plan names exist with the shapes it assumes, and are its test and verify commands runnable here?

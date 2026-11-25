@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-25T07:28:47.457Z",
+    "last_save_at": "2026-11-25T17:22:03.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:575fa0ea297ec1778d72beb71be8a11f4f19ba8e560af64ea50116b1f4965405",
+    "source_fingerprint": "sha256:e94b8776fbe9c57e38f7e5cea752457707e21c521d627b1dbbb389f02c2c6d0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bace5ad06665a0db195a5f2e40a0d76e4062cb63e6d1a236d19bb0f549c20daf",
-      "plan.md": "88613eb2407b415785b814272db7ad7fe1c848537bdb9062c7715eddad4df48a",
-      "tasks.md": "9921fd7b0628c89cf44c012ab94efbb5dee9a8aa958be49323c55297c800d489",
+      "spec.md": "073f7c5bb921ca5af66f841ef93da705c59dc90816529ecb45efb56f1639c445",
+      "plan.md": "6ef5eaed17586fb9209046513a6441974ad13fb17d04255823e76f29f84dc205",
+      "tasks.md": "15c72c7efab65a6246e2487d42910ccec2a63a9a0af0827b5d18cc1d8363ef85",
       "implementation-summary.md": "a0fd7249b82ee831aad2f9882229e895e8d780423528094c00a46c93b1543d59"
     },
     "last_active_at": null

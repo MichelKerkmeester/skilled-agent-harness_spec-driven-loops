@@ -1,0 +1,15 @@
+The lineage is complete and verified on disk.
+
+**What ran:** 13 of 13 iterations, each with a written focus, an iteration file, a delta, a gateway-recorded state row, a frontier admission pass and a reducer refresh. The frontier seeded one depth-1 node, admitted four depth-2 children and one depth-3 child, then drained; the remaining iterations took the lowest-coverage angle in turn (parity gaps, vault, app filter, conversations, routines, ladder, Rust crate).
+
+**Result:** 77 findings — 0 P0, 45 P1, 32 P2 — every one with a phase, a doc and line, a `[SOURCE: path:line]`, a severity and an exact spec edit. The verdict is *not build-ready as written, repairable by editing*: nine findings make a phase's own acceptance criteria unpassable, and the four largest defects sit in the parent `spec.md` or in the seams between phases rather than in any phase's own logic.
+
+**The four clusters:**
+- The parent spec was never updated when the packet grew to eleven phases — ten-slice scope, missing 011 surfaces, a notices owner list wrong in both directions, and an Out of Scope that forbids the `operators.json` 011 builds.
+- Shared records have no single owner — four phases edit `answer.ts`, four edit `buildBotPrompt`, two widen the same deep-loop env gate two different ways, four change a `--json` shape one Rust fixture serves, three add item writers that bypass `grants`.
+- Two controls are inert as specified — 007's app filter never reaches the MCP client because all four project configs pin the key, and 011's roster gates a chat press but not `bots answer --as`.
+- The one slice the research says can leak leaks twice — the keychain write is `ps`-visible although `security` offers the prompting form, and the value reaches `runFolder/stdout.log` while REQ-007 claims it never reaches the run folder.
+
+**Files on disk:** `research.md` (33.6 KB, 17 sections plus Eliminated Alternatives and Divergence Map), `iterations/iteration-001.md` … `013.md`, `deltas/iter-001.jsonl` … `013.jsonl`, `findings-registry.json` (status COMPLETE, terminalStop `maxIterationsReached`), `deep-research-dashboard.md`, `deep-research-strategy.md`, and `deep-research-state.jsonl` with 15 gateway-owned records (1 config, 13 iterations, 1 synthesis). Config status is `complete`. `git status` shows one untracked path, the packet's `research/` directory, and nothing outside it.
+
+FANOUT_LINEAGE_COMPLETE:vibe-1

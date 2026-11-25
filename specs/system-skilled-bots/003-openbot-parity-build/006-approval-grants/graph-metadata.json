@@ -43,6 +43,7 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
@@ -101,6 +102,12 @@
         "name": "answer.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A needs-you item names a question, its options, its evidence and the parked prompt, and nothing else, so an approval cannot say what kind of action it approves [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-25T07:25:19.224Z",
+    "last_save_at": "2026-11-25T19:02:23.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +213,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d5fed050c9476ea55453b6e1776036f949b9ef78832718abd4727a8d5ed884b",
+    "source_fingerprint": "sha256:ae422119458ad69c4b608904be236f6e8450fa4d5210b66a381d6b42a843431b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e5acad4919fdeccb38fe8a14b2a5dfd50be74a008aca8c17beeafa6c0c9b41e",
-      "plan.md": "2649d038a6344a6baa4edfe6c469d9b422e93fc1fb917034659b4da306a15a09",
-      "tasks.md": "ad8edea823ca47e8818f31aea73bc586795fb85a42447813a7e51cefeadce035",
+      "spec.md": "f9a4bbc99642df7e4a3ba82dbed8d7e46166e41a7c0b760c0363019b7efff7a2",
+      "plan.md": "a22e41fcfdb71d1e475ab56362dd0cb5f059437a001147016c1fdaaaed16074a",
+      "tasks.md": "ce51b1f61d4fbe070797e56ca6cee364e3b2b60b88f9d561e423648fc88c17bb",
       "implementation-summary.md": "827c22e6f0fa67c6b208dfeec3f667ff9b351cc6c588395c8dd44e544aad0486"
     },
     "last_active_at": null

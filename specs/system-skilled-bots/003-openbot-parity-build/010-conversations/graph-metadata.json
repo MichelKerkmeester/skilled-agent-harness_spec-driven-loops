@@ -45,16 +45,17 @@
       "implementation-summary.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/bin/bots.cjs",
-      ".opencode/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".opencode/skills/system-skilled-bots/SKILL.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
       "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py"
     ],
@@ -99,6 +100,24 @@
         "name": "request-drain.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts",
         "source": "derived"
       },
       {
@@ -184,29 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "The Apache",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled bots is headless by contract: one run is one executor call and the CLI has no conversation verb, so a person who wants to give a bot work and read what it said composes a `bots run` invocation and then opens the run folder by hand [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:5-6] [SOURCE: .skilled/bin/bots.cjs:18-50]",
     "created_at": "2026-11-25T07:13:44Z",
-    "last_save_at": "2026-11-25T07:32:14.556Z",
+    "last_save_at": "2026-11-25T17:26:14.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,12 +217,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab67c69170e354754c485500ad7dac1fb5873234c14bf3c90a90687e82746824",
+    "source_fingerprint": "sha256:817e7cd21e20d1c3e489867153831e11bff0cfce3dc502f6d5731dd76e2c04c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1ea8100c827038ab05311dada20b91d8c3a6b092b888422579897126db493d2",
-      "plan.md": "c4e92020d7981fe83726b101f2fde03be6fd87632aec08ec85b01678544be2e2",
-      "tasks.md": "93a398c8d60b7d5fa19a876230af08060ce9517da56f307b3077e6904843ccc2",
+      "spec.md": "6c1d4f2d7dec261b67be29a5862e8e0a64a048901f5e57320637389f9a2c6615",
+      "plan.md": "6d4fffc0ff45f3ae837d94848c5794ae34a1a3afa929fbf367f2807aed8bd9df",
+      "tasks.md": "c9afc3ef9713473787d417d5bbeea36033f13abd6dab1d6173a8aa5b8ce3853b",
       "implementation-summary.md": "56bf7a324a0b20bcb68c44021dac2b965999147f3e88fe930d11b798f239fa1f"
     },
     "last_active_at": null

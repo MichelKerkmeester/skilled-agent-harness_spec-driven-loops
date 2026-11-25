@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript, ESM, Node 22 or later, run through the runtime's own `tsx` |
 | **Framework** | None. Five flat modules under `runtime/lib/`, one concern per file |
 | **Storage** | The run record JSON under the state root, and the SQLite status index whose run summary is a JSON column |
-| **Testing** | `vitest` through `npm --prefix .skilled/skills/system-skilled-bots/runtime test`, plus `tsc --noEmit` through `run typecheck` |
+| **Testing** | `vitest` through `npm --prefix .skilled/skills/system-skilled-bots/runtime test`, plus the runtime's `typecheck` script through `run typecheck` |
 
 ### Overview
 The change is one line in a prompt, one field filled on a path that already exists, and two parts appended to a status row. `dispatch.ts` gains `workingPlaceLine` beside the `checkoutLine` it already has, and `buildBotPrompt` gains a `workingPlace` input that carries the directory, the branch and the run folder. `runner.ts` passes the `workDir` it already computes and the branch it already knows for a worktree run, and reads the checkout's branch once through a new `checkoutBranch` in `isolation.ts` for a shared run. `status-index.ts` adds the two fields to `RunSummary`, which rides in a JSON column, so no schema version moves. `status.ts` adds them to `LastRun` and appends them to the row. The proof is the runtime suite: a worktree run's prompt names its tree, a shared run's record carries the checkout branch, and a status row prints both.
@@ -66,7 +66,7 @@ One line builder, one record field, one appended row part.
 - **`status.ts`**: owns the row. `LastRun` gains the two fields and `formatStatus` appends two parts after every part it already prints. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:479-486]
 
 ### Data Flow
-The runner resolves the posture, makes or reopens a tree, and sets `workDir` to the tree or the checkout. It resolves the branch: the tree's branch when there is a tree, else `checkoutBranch(checkoutRoot, env)`. It writes both into `seed.evidence` and passes them to `buildBotPrompt`, which emits the working-place line above the bot body. The record is written, the index reads it through `summarizeRecord`, and `bots status` reads the index and appends `branch <name>` and `worktree <path>` to the row. A resumed run reuses the parked prompt, so the runner checks for the line by exact text and adds it when the parked prompt predates this phase.
+The runner resolves the posture, makes or reopens a tree, and sets `workDir` to the tree or the checkout. It resolves the branch: the tree's branch when there is a tree, else `checkoutBranch(checkoutRoot, env)`. It writes both into `seed.evidence` and passes them to `buildBotPrompt`, which emits the working-place line in its slot in the shared section order, after the spec-folder line and before the checkout line, which is emitted only for a child that starts outside the checkout. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:130] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:326] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:327] The record is written, the index reads it through `summarizeRecord`, and `bots status` reads the index and appends `branch <name>` and `worktree <path>` to the row. A resumed run reuses the parked prompt, so the runner checks for the line by exact text and adds it when the parked prompt predates this phase.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -76,7 +76,7 @@ The runner resolves the posture, makes or reopens a tree, and sets `workDir` to 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `dispatch.ts` | Builds the prompt and the filtered environment | update - `workingPlaceLine` and the `workingPlace` input | `rg -n 'workingPlaceLine' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` prints the definition and its one call site |
+| `dispatch.ts` | Builds the prompt and the filtered environment | update - `workingPlaceLine` and the `workingPlace` input, in the shared order's working-place slot | `rg -n 'workingPlaceLine' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` prints the definition and its one call site |
 | `isolation.ts` | Creates, reopens, inspects and removes a bot tree | update - `checkoutBranch` | `rg -n 'export function checkoutBranch' .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts` prints one line |
 | `runner.ts` | Runs one bot in a fixed order | update - pass the working place, fill `evidence.branch`, add the line to a resumed prompt | `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner` prints no `failed` |
 | `status-index.ts` | Builds and reads the SQLite index | update - two `RunSummary` fields | `rg -n "SCHEMA_VERSION = '2'" .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts` prints one line |
@@ -112,7 +112,7 @@ Setup reads the five modules and records the baseline: the status row with no br
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | `workingPlaceLine` in both shapes, `checkoutBranch` on a branch and on a detached HEAD, `summarizeRecord` with and without the two fields | `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch isolation status-index` |
+| Unit | `workingPlaceLine` in both shapes and its slot after the spec-folder line and before the checkout line, `checkoutBranch` on a branch and on a detached HEAD, `summarizeRecord` with and without the two fields | `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch isolation status-index` |
 | Integration | A worktree run through the runner: the prompt names the tree and the record carries its branch; a shared run: the record carries the checkout branch; a refusal: neither | `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner isolation` |
 | Integration | A status row and its JSON over a fixture index, including a summary written without the two fields | `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status` |
 | Type | Every changed signature | `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` |
@@ -130,9 +130,10 @@ The suites already own these modules, so each case lands in the file that alread
 |------------|------|--------|-------------------|
 | `git` on the PATH, for one `rev-parse` per shared run | External | Green | A shared run records a null branch and its row omits the part |
 | `better-sqlite3`, already installed for the status index | External | Green | Status cannot read the index at all, which is today's behavior too |
-| `vitest` and `tsc`, already in the runtime's dev dependencies | External | Green | No test or type gate can run |
+| `vitest` in the runtime's dev dependencies, and the `tsc` its `typecheck` script borrows from `.skilled/skills/system-spec-kit/node_modules/.bin/tsc` | External | Green | No test or type gate can run; a fresh clone needs `npm install` in `system-spec-kit` before `run typecheck` resolves |
 | `isolation.ts`'s tree branch | Internal | Green | A worktree run records a null branch |
 | `posture.ts`'s isolation answer | Internal | Green | The line names the checkout for a run that has a tree |
+| `buildBotPrompt`'s section order, owned by 005 and fixed in the parent's shared-record table | Internal | Green | The line lands in the wrong slot and 005's memory block has to move it |
 
 No dependency is added. The change reads what the tree already installs.
 <!-- /ANCHOR:dependencies -->

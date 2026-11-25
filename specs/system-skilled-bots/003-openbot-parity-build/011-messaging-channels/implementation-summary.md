@@ -8,24 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels"
-    last_updated_at: "2026-11-25T08:06:52Z"
+    last_updated_at: "2026-11-25T19:03:38Z"
     last_updated_by: "generate-context"
-    recent_action: "Wrote phase 011 messaging channels; 003 validates 12/12"
-    next_safe_action: "Commit and push phase 011 after operator yes"
+    recent_action: "Applied the review-6 fixes and committed packet 003"
+    next_safe_action: "Plan the build of phase 001 activity and actor"
     packet_purpose: "Purpose: Put a bot in the chat the team already uses, so a message starts a run and a question is answered where it was asked, with the answer attributed to a person who is allowed to give it."
     blockers: []
     key_files:
-      - "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md"
-      - "specs/system-skilled-bots/003-openbot-parity-build/spec.md"
+      - "specs/system-skilled-bots/003-openbot-parity-build/research/research.md"
+      - "specs/system-skilled-bots/003-openbot-parity-build/research/review-6-findings.md"
     session_dedup:
-      fingerprint: "sha256:6d89148b0916bed6e0652adc5696829f8e940beee08fb6aab21ff1805c9fb348"
+      fingerprint: "sha256:a9e2e5a7b6184b6259c426ef6c977caefe4d86262d7d1a5505a9bedd5799449e"
       session_id: "scaffold-011-messaging-channels"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
       workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-25T08:06:52Z"
+      savedAt: "2026-11-25T19:03:38Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

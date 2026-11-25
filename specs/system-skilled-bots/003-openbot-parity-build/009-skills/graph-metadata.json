@@ -48,6 +48,8 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
@@ -56,9 +58,7 @@
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
-      ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts"
+      ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts"
     ],
     "entities": [
       {
@@ -116,6 +116,18 @@
         "source": "derived"
       },
       {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "installer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        "source": "derived"
+      },
+      {
         "name": "answer.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
@@ -170,18 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "dispatch.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runner.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger, a runtime, a budget, a posture and a body, and the parser's key set holds twelve keys with no `skills` among them [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107]",
     "created_at": "2026-11-25T07:13:43Z",
-    "last_save_at": "2026-11-25T07:31:37.794Z",
+    "last_save_at": "2026-11-25T17:54:37.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c4797bff12a1c2b793d83a92cd3e49adff2a1f7cd2b8eb186ea2d3632274431",
+    "source_fingerprint": "sha256:77e93c52120f593b29cdbd877b53c9d9116f2a83aab565ade2e68737c9cc459d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42268734fe0c2f4f38f8fe47c49e1057889e0c9fba766bc4e8af7e80cf35693d",
-      "plan.md": "98d2db8ba23431526e88af318a9d4a2d11092ffcc6fcef6abb4c4db890cd1043",
-      "tasks.md": "041cf153c19c9f84f92924f4812888cc13ed534a30e4b0e83c4975877d9dc550",
+      "spec.md": "9a9a6685689e9b2395dfbc954017c01339777c580f1af1170978c26629c028eb",
+      "plan.md": "702cdaac21114ad1e46159798903af39eed14dac3ce505ef41fbc041394ff5bb",
+      "tasks.md": "d3cd2a6db8b5e5be8cae10890a8566821976e253f896443c26c22de974b4a20c",
       "implementation-summary.md": "cec38933010bc45b8f9398a06f20471c06d6726b9b8da186416d4e9abea996d5"
     },
     "last_active_at": null

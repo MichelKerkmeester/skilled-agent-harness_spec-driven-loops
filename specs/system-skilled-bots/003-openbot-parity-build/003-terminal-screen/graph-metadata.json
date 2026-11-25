@@ -49,9 +49,7 @@
       "implementation-summary.md",
       ".skilled/bin/bots.cjs",
       ".github/workflows/bots-runtime.yml",
-      ".opencode/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".opencode/skills/system-skilled-bots/SKILL.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/status.ts"
     ],
     "entities": [
@@ -182,7 +180,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "An Esc",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T07:34:11.431Z",
+    "last_save_at": "2026-11-25T19:00:45.065Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +211,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7c71232a4fbbc097be64eb8960a2226ce4d254e45dadf00abfa4a4ca4b3e3b9",
+    "source_fingerprint": "sha256:e38e775b8918241272e30429cfa4613a6991511847161cf68d5bd3acd1dc7b01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa4af8dbdcb48b3054dfbd91984c67fcaafd9c47253cbe509dc6f30152e86466",
-      "plan.md": "16b3053c09ce9f77cd3235572965c60ce03a996cd6fae469509213d0b70665f0",
-      "tasks.md": "f77ce7000a1e106e0123293d98b11436125ca4394c79bbe53f09de28017a0e0b",
+      "spec.md": "7b529befde5225163a5c4c417ed1f5c2aa269739baea702347aeb73e34cf0bac",
+      "plan.md": "e6b25b6bc4ff743b9368b8a166484e39e9054bab32dc30ae23f51b9604d16570",
+      "tasks.md": "b12e076eddc6f5afdf3d9761dbcbb49efdb2eeb13744877f22cb69bef576e34e",
       "decision-record.md": "bc44912e0f82bf69cda135e83e5abc45327121c1e83b0c8a49b60f083aafffd2",
       "implementation-summary.md": "f27cd29c97b9569dbf41707d1342d0de5092e123e4bb22a29fca7964437c9f59"
     },
