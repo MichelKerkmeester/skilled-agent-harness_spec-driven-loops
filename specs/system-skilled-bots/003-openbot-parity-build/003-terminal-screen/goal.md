@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
-    last_updated_at: "2026-11-25T21:12:34Z"
-    last_updated_by: "review-fix-pass"
-    recent_action: "Added 001's key-map approval and --recursive to the criteria"
+    last_updated_at: "2026-11-25T22:43:40Z"
+    last_updated_by: "integration-wave"
+    recent_action: "Moved the hand proof to the operator acceptance step after 006"
     next_safe_action: "Work child 001-ux-and-component-map"
     blockers: []
     key_files: []
@@ -111,12 +111,13 @@ and findings belong here.
 | Crate scaffolded | Pending | No `crates/bots-tui/` exists yet |
 | `ui` verb added | Pending | `node .skilled/bin/bots.cjs ui` prints `bots: unknown verb: ui` and exits 2 |
 | First review applied | Done | `spec.md` REQ-010 names `Enter open` in the inbox footer and the two overlay key sets with deny drawn first, Q008 and Q009 are recorded in `decision-record.md`, and the criteria carry 001's key-map approval and run `--strict --recursive` |
+| Integration wave applied | Done | `spec.md` links the four design notes, carries the install, version match, CI and rollback section, and states the answer argv with its `--` terminator. `decision-record.md` section 2 records A1 to A7 as taken by the assistant and open for the operator to override |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| The hand proof is not a criterion | 005 answers one item from the overlay by hand, so it needs a tty and stays the operator's step. Every criterion above runs without one. |
+| The hand proof is the last step, not a gate | 006's scripted pseudo-terminal run answers one item without a person, so the answer path is proven by a command. The operator's own hand answer is the final acceptance step after 006, and it is the only step that needs a tty. |
 | The inbox pane reads the fixture first | `bots inbox --json` does not exist until phase 001 lands it, so the inbox pane and its banner are proven against `tests/fixtures/bots` until then. |
 | The parent goal owns the binding | `../goal.md` names this phase in its row 003 and binds it. This goal binds the six children below it. |
 | The pre-expansion documents are kept | `context/legacy-003/` holds the phase 003 spec, plan, tasks, acceptance criteria and goal as they stood before the expansion. The folder is gitignored, so it is reference only. |

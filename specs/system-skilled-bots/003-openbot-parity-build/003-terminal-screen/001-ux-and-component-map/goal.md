@@ -61,9 +61,9 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `ls specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design | wc -l` prints 4, and the AC-001 block in `acceptance-criteria.md` prints `0` for unresolved pointers.
-- [ ] The AC-002 block in `acceptance-criteria.md` prints `frames=51 bad=0`.
-- [ ] The AC-003 block prints `28` then `0`, and the AC-004 block prints `7` then `2`.
-- [ ] The AC-005 block prints `13` then `13`, and the AC-008 block prints `4`.
+- [ ] The AC-002 block in `acceptance-criteria.md` prints `frames=53 bad=0`.
+- [ ] The AC-003 block prints `29` then `0`, and the AC-004 block prints `7` then `2`.
+- [ ] The AC-005 block prints `13` then `13`, the AC-008 block prints `4`, and the AC-011 block prints `4` then `1`, so the answered row's outcome word is carried by the requirement, the criterion and both design documents.
 - [ ] The AC-006 block prints nothing and exits 1, and the AC-009 block prints `5`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`.
 - [ ] The AC-007 block prints one line, which happens only when the operator approves the key map.
@@ -82,14 +82,14 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| `design/mockups.md` | Done | 26 states, 51 fenced frames: 25 at 80x24, 25 at 120x40, one at 30x7. The frame check prints `frames=51 bad=0` |
-| `design/key-map.md` | Done | Six contexts, 28 bindings, four defect rules, the approval record |
-| `design/glyph-table.md` | Done | Seven group ids, three added glyphs, the ASCII set, the colour rule |
-| `design/component-inventory.md` | Done | 13 components, each with its reads, keys, states and frames; five states per data pane |
-| `spec.md` | Done | REQ-001 to REQ-010, SC-001 to SC-005, five open questions |
+| `design/mockups.md` | Done | 27 states, 53 fenced frames: 26 at 80x24, 26 at 120x40, one at 30x7. The frame check prints `frames=53 bad=0` |
+| `design/key-map.md` | Done | Six contexts, 29 bindings, four defect rules, the approval record |
+| `design/glyph-table.md` | Done | Seven group ids, three added glyphs, the ASCII set, the answered row's outcome word, the colour rule |
+| `design/component-inventory.md` | Done | 13 components, each with its reads, keys, states and frames, five pane states per data pane and one answered row state |
+| `spec.md` | Done | REQ-001 to REQ-011, SC-001 to SC-006, eight open questions |
 | `plan.md` | Done | Three phases, the testing strategy, and the external orchestration section |
-| `tasks.md` | Done | 30 tasks in three phases, six waves, 15 checklist rows |
-| `acceptance-criteria.md` | Done | AC-001 to AC-010, each with a command block |
+| `tasks.md` | Done | 31 tasks in three phases, six waves, 15 checklist rows |
+| `acceptance-criteria.md` | Done | AC-001 to AC-011, each with a command block |
 | Operator approval | Pending | `design/key-map.md` section 6 reads `Unmet`; AC-007 is the packet's exit |
 
 ### Deviations and findings
@@ -104,4 +104,6 @@ and findings belong here.
 | The frames are not traced from a picture | No repository has a TUI screenshot. The frames are drawn from the payload shapes, and `design/mockups.md` section 5 names the four screenshots and the 28 `--demo` captures they were checked against. |
 | The first review's findings | `research/ui-review-1.md` U1-P0-1, U1-P0-2, U1-P1-1, U1-P1-6, U1-P1-7, U1-P1-8, U1-P1-9, U1-P1-11, U1-P2-2 and U1-P2-3 are applied here. U1-P0-3, U1-P1-2, U1-P1-3, U1-P1-4, U1-P1-5, U1-P1-10, U1-P2-1, U1-P2-4, U1-P2-5, U1-P2-6 and U1-P2-7 name the parent or a sibling as their owner and are not edited here. |
 | The too-small message is ours | The reference's string is `Resize terminal · Ctrl+D exits` at `render.rs:32`. This packet draws `Too small · Ctrl+D exit`, so 003's REQ-016, T009, CHK-042 and AC-007 must grep the new wording when that child is fixed. |
+| The answered row is a row state, not a pane state | The inbox keeps five pane states and gains one row state, `answered`, which draws `approved`, `denied` or `answered` until the next successful inbox read. The screen issues no read of its own after an answer, because the inbox read filters answered items out and an immediate read would drop the row before the word could be read. REQ-011 and AC-011 carry it, and the frame that draws it is the state index's to add. |
+| The palette binds Backspace | The palette filters on typing, so it needs a key that deletes a filter character. The binding is `Backspace` in the `palette` context, drawn as `Bksp delete` in the palette footer, and it takes the key table from 28 bindings to 29. |
 <!-- /ANCHOR:log -->

@@ -52,6 +52,7 @@
       "design/component-inventory.md",
       "design/mockups.md",
       "design/glyph-table.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md",
       "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/goal.md"
     ],
     "entities": [
@@ -119,6 +120,12 @@
         "name": "glyph-table.md",
         "kind": "doc",
         "path": "design/glyph-table.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-manifest.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The screen has no agreed shape",
     "created_at": "2026-11-25T20:22:31Z",
-    "last_save_at": "2026-11-25T22:04:43.253Z",
+    "last_save_at": "2026-11-25T22:49:29.194Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +215,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32d30a86ac5909036415572a051be393dc5be8b18789e6dc381200c966566ab5",
+    "source_fingerprint": "sha256:ac3b5ed6ff7af8d064f4a8b53adbae73c85cdffbc43e2ba1c9e5feb4f416cff2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aaee63435b48028f75de3ac3374110c9efe772cd7b89910350110ae118ba8561",
-      "plan.md": "e0c9a2a984b468c6c53635c389587bec02b3039a357b864a433f19bff83739e2",
-      "tasks.md": "935ae617e672be1e678277837033fea0700c367201c76b12f9af263a8536ef33",
+      "spec.md": "5eb750af10749798a5e96ca36bf7ac6846162a4af5726fdbd12095a041a326ff",
+      "plan.md": "98c4744e96ed27a103df187bfd67132c22cda960f6c874f7fbf84b8b0dcab940",
+      "tasks.md": "6ba5fef35bc8753087cc6a2ef75ee32dcf27c68e94ec68027716da1fc5c8d99b",
       "decision-record.md": "1ff24d27d37de2027a952f55b509c8b125bdecc385509a8e18d80c296fa42925",
       "implementation-summary.md": "a82d9cc5e48c6bc7dfc28c545fa8385856c3092455ffb6e3b2f642d44bfee3f9"
     },

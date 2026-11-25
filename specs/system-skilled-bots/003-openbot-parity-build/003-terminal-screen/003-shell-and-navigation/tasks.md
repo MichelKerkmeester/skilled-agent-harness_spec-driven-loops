@@ -41,8 +41,8 @@ Every verify command runs without a tty. The frame is drawn into a ratatui `Test
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 002's crate builds and the shell's files are absent (`$CRATE`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `ls $CRATE/src/keys.rs` exits 1.
-- [ ] T002 Confirm the fixture answers `status --json` with a bot count and a stale flag (`$CRATE/tests/fixtures/bots`). Verify: `bash $CRATE/tests/fixtures/bots status --json | jq -e '[.rows[] | select(.kind == "bot")] | length'` prints a number and `bash $CRATE/tests/fixtures/bots status --json | jq -e 'has("stale") and has("builtAt")'` exits 0.
+- [ ] T001 Confirm phase 002's crate builds and the shell's rows are empty (`$CRATE`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `rg -n 'SHELL_ROWS' $CRATE/src/keys.rs` prints the empty slice 002 leaves.
+- [ ] T002 Confirm the fixture answers `status --json` with a bot count and a stale flag (`$CRATE/tests/fixtures/bots`). Verify: `bash $CRATE/tests/fixtures/bots status --json | jq -e '[.rows[] | select(.kind == "bot")] | length'` prints a number and `bash $CRATE/tests/fixtures/bots status --json | jq -e 'has("stale") and has("updatedAt")'` exits 0.
 - [ ] T003 Confirm the library target runs and the render target does not exist yet (`$CRATE`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` exits non-zero and prints `no test target named`.
 <!-- /ANCHOR:phase-1 -->
 
@@ -51,15 +51,14 @@ Every verify command runs without a tty. The frame is drawn into a ratatui `Test
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Write the key table - `Context`, `Key`, `Action` and `Label`, the rows for `main`, `inbox`, `palette` and `too-small`, and the three `pub mod` lines (`$CRATE/src/keys.rs`, `$CRATE/src/lib.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `every_row_has_a_label`, `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
+- [ ] T004 Fill `SHELL_ROWS` in the table 002 creates - the rows for `main`, `inbox`, `palette` and `too-small`, each carrying the label the renderer draws (`$CRATE/src/keys.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `every_row_has_a_label`, `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
 - [ ] T005 Write the theme - the System and Mono palettes, `--mono` selecting Mono, the glyph table with its ASCII column, and `printable` (`$CRATE/src/theme.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `ascii_glyphs_are_ascii` and `every_marker_has_an_ascii_counterpart`.
 - [ ] T006 Write the header - the bot count, the index age, `stale_label`, the stale flag with its age, and the error state (`$CRATE/src/view/header.rs`). Verify: `rg -n 'fn stale_label' $CRATE/src/view/header.rs` prints one line and `cargo test --manifest-path $CRATE/Cargo.toml --lib header` prints `test result: ok` and names `stale_label_formats_the_age`.
 - [ ] T007 Write the tab bar - four tabs and the active mark (`$CRATE/src/view/tabs.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `chat_tab_carries_the_active_mark`, and `rg -n 'phase 010' $CRATE/src/view/tabs.rs` matches nothing, because 004 draws the chat line.
 - [ ] T008 Write the footer - the status row and the key line generated from `keys.rs`, with the inbox's `Enter open` on line 1 and the chat's line 1 holding only the tab keys (`$CRATE/src/view/footer.rs`). Verify: `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read and `rg -n 'printable' $CRATE/src/view/footer.rs` prints the status row's filter.
 - [ ] T009 Write the shell frame - the seven bands, the too-small screen and the palette panel (`$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `rg -nF 'Too small · Ctrl+D exit' $CRATE/src/view/mod.rs` prints one line.
-- [ ] T010 Write the palette's filter, its Up and Down selection, Enter and Esc, and pause the single-key shortcuts while the filter holds text (`$CRATE/src/view/mod.rs`, `$CRATE/src/keys.rs`). Verify: `rg -n 'fn filter' $CRATE/src/view/mod.rs` prints one line and `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts` and `palette_up_and_down_move_the_selection`.
+- [ ] T010 Write the palette's filter, its Up and Down selection, Enter and Esc, and pause the single-key shortcuts while the filter holds text (`$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/keys.rs`, `$CRATE/src/view/mod.rs`). Verify: `rg -n 'fn filter' $CRATE/src/view/mod.rs` prints one line, `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts` and `palette_up_and_down_move_the_selection`, and `cargo test --manifest-path $CRATE/Cargo.toml --lib state` names `palette_opens_and_closes`.
 - [ ] T011 Write the key-label test and the two shell snapshots (`$CRATE/tests/render_keys.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
-- [ ] T012 Add the `--mono` and `--ascii` flags to the argument parsing (`$CRATE/src/lib.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib args` prints `test result: ok` and names `mono_flag_selects_mono` and `ascii_flag_selects_the_ascii_glyphs`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -89,16 +88,16 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 |------|-------|-------------------------|------------|
 | A | T001, T002, T003 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none; three read-only probes |
 
-**Workers:** 1, because the three probes are read-only and one worker runs them in order. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0; `bash $CRATE/tests/fixtures/bots status --json | jq -e 'has("stale") and has("builtAt")'` exits 0; `ls $CRATE/src/keys.rs` exits 1. **Fallback:** rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`; rung 3 is skipped in a Vibe-hosted session.
+**Workers:** 1, because the three probes are read-only and one worker runs them in order. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0; `bash $CRATE/tests/fixtures/bots status --json | jq -e 'has("stale") and has("updatedAt")'` exits 0; `rg -n 'SHELL_ROWS' $CRATE/src/keys.rs` prints the empty slice 002 leaves. **Fallback:** rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`; rung 3 is skipped in a Vibe-hosted session.
 
 ### Wave 2 - The two tables
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T004 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `$CRATE/src/keys.rs`, `$CRATE/src/lib.rs` |
+| A | T004 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `$CRATE/src/keys.rs` |
 | B | T005 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/theme.rs` |
 
-**Workers:** 2. The lanes are disjoint because T004 writes all three `pub mod` lines, so T005 never touches `lib.rs`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` and `--lib theme` each print `test result: ok`, and `rg -n 'pub mod (keys|theme|view)' $CRATE/src/lib.rs` prints three lines. **Fallback:** lane A falls to rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`; lane B falls to rung 2 `cli-opencode` `#max`, then rung 4, then rung 5.
+**Workers:** 2. The lanes are disjoint because T004 holds `keys.rs` and T005 holds `theme.rs`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` and `--lib theme` each print `test result: ok`, and `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. **Fallback:** lane A falls to rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`; lane B falls to rung 2 `cli-opencode` `#max`, then rung 4, then rung 5.
 
 ### Wave 3 - The shell
 
@@ -119,14 +118,13 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 
 **Workers:** 1, because the lane holds `view/mod.rs`, which Wave 3's lane A wrote, and `keys.rs`, which Wave 2's lane A wrote. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0; `rg -n 'fn filter' $CRATE/src/view/mod.rs` prints one line; `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts`. **Fallback:** rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
 
-### Wave 5 - The key-label test and the flag
+### Wave 5 - The key-label test
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
 | A | T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `$CRATE/tests/render_keys.rs` |
-| B | T012 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/lib.rs` |
 
-**Workers:** 2. The lanes are disjoint: lane A writes the test file and lane B writes the argument parsing. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`; `cargo test --manifest-path $CRATE/Cargo.toml --lib args` names `mono_flag_selects_mono` and `ascii_flag_selects_the_ascii_glyphs`. **Fallback:** lane A falls to rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`; lane B falls to rung 2 `cli-opencode` `#max`, then rung 4, then rung 5.
+**Workers:** 1, because the wave holds one file. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`. **Fallback:** rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
 
 ### Wave 6 - Verification gates
 
@@ -179,7 +177,7 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 
 - [ ] CHK-001 [P0] `cargo build --manifest-path $CRATE/Cargo.toml` exits 0, so phase 002's crate is in place.
 - [ ] CHK-002 [P0] `bash $CRATE/tests/fixtures/bots status --json | jq -e '.rows'` exits 0, so the header has a payload to read.
-- [ ] CHK-003 [P1] `ls $CRATE/src/keys.rs` exits 1, so this phase starts from an empty shell.
+- [ ] CHK-003 [P1] `rg -n 'SHELL_ROWS' $CRATE/src/keys.rs` prints the empty slice 002 leaves, so this phase starts from an empty shell.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -229,7 +227,7 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] `git status --porcelain $CRATE/src` lists only `keys.rs`, `theme.rs`, `lib.rs` and the four files under `view/`.
+- [ ] CHK-050 [P1] `git status --porcelain $CRATE/src` lists only `keys.rs`, `theme.rs`, `state.rs` and the four files under `view/`.
 - [ ] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line.
 <!-- /ANCHOR:file-org -->
 

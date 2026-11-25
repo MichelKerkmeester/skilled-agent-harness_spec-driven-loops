@@ -49,6 +49,7 @@ The phase is deliberately the smallest in the parent. Its value is not code it w
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test pty_smoke` prints `1 passed` and no `SKIP release-absent:` line, so the release binary answered one item in a pseudo-terminal.
 - [ ] `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing, and `README.md` and `design/` name the reference's GPL-3.0 licence by design.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
 - [ ] The parent's `--recursive --strict` run prints `RESULT: PASSED` once the five sibling children leave Draft; that run is the parent's closure step and fails on their scaffolds today.
@@ -83,6 +84,7 @@ This packet is a hardening pass over a crate five children wrote, so the fix sur
 |---------|--------------|--------|--------------|
 | `crates/bots-tui/src/**` | Owns the behaviour `002` to `005` wrote | Update only the file and line a gate names | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` |
 | `crates/bots-tui/tests/**` | Observes that behaviour through `TestBackend` and the fixture | Update only the test a suite names, and never lower an assertion | `cargo test` prints `test result: ok` for every target |
+| `crates/bots-tui/tests/pty_smoke.rs` | Does not exist | Create, one scripted run of the release binary in a pseudo-terminal | `cargo test --test pty_smoke` prints `1 passed` |
 | `crates/bots-tui/design/**` | Carries the mockups and the `file:line` pointers `001` wrote | Not a consumer; read-only | The pointer loop prints nothing |
 | `.github/workflows/bots-runtime.yml` | Runs the gate set on CI | Not a consumer of this change; read-only, and a mismatch is reported to `002` | `rg -n '^  bots-tui:'` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'"` prints 2 |
 | `.skilled/skills/system-skilled-bots/SKILL.md` | Names the verbs the skill offers | Update, one line | `rg -n 'bots ui'` prints one line, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
@@ -117,6 +119,7 @@ Setup reads the crate's module list, the toolchain versions and the parent's eig
 | Integration | The CLI client against `tests/fixtures/bots`, the buffer snapshots per pane and state, and the answer flow's argv log | `cargo test --test cli_client --test render_keys --test panes --test answer_flow` |
 | Doc | Every example in a doc comment, which `cargo test` runs by default | `cargo test --doc` |
 | Runtime | The `ui` verb's argv, exit passthrough and both refusals | `npm --prefix .skilled/skills/system-skilled-bots/runtime test` |
+| Pseudo-terminal | The release binary against the fixture, answering one item and reading the drawn screen | `cargo test --test pty_smoke` |
 | Static | Formatting, lints at the deny level, and the licence grep | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `rg` |
 
 Every suite reads `crates/bots-tui/tests/fixtures/bots`, and the fixture carries the four `--json` contracts the screen reads: `activity` and `inbox` from `001-activity-and-actor`, `routines` from `002-routine-layer`, and `status` from the runtime today. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] The chat pane's transcript is `010-conversations`' payload, which the fixture gains when that phase lands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:129] The two refusals the answer flow draws in the status row are `006-approval-grants`' `item-answered-differently` and `011-messaging-channels`' `answer-not-approver`, and neither is a gate this phase runs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:170] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:186]
@@ -223,15 +226,19 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| Orchestrator | T012, T013, T014, T015, T016, T017, T018, T019, T020 | none; the orchestrator runs them itself | none |
+| Orchestrator | T012, T013, T014, T015, T016, T017, T018, T019, T020, T021 | none; the orchestrator runs them itself | none |
 
-**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0; `cargo clippy --all-targets -- -D warnings` exits 0; `cargo test` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`; `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing; `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path; `ls crates/bots-tui/design` prints the four documents and the design-pointer loop prints nothing; the eight Defect Audit rows each print their expected output; `validate.sh --strict` on this child prints `RESULT: PASSED`.
+**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0; `cargo clippy --all-targets -- -D warnings` exits 0; `cargo test` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`; `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing; `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path; `ls crates/bots-tui/design` prints the four documents and the design-pointer loop prints nothing; the eight Defect Audit rows each print their expected output; `cargo test --test pty_smoke` prints `1 passed`; `validate.sh --strict` on this child prints `RESULT: PASSED`.
 
 ### What every dispatch carries
 
 The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, a `cli-devin` dispatch puts `--` before the prompt, and a `cli-codex` dispatch passes `-c service_tier="fast"` explicitly rather than inheriting the caller's config. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] A `cli-mistral-vibe` dispatch runs from a scratch directory with a disposable `VIBE_HOME` that carries the repository's two roster rows, because an empty home offers one model and refuses the alias. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:72]
 
 A worker's `done` is a claim until the orchestrator runs that wave's verify commands and reads their output and exit status. A wave that fails its verify does not hand its files to the next wave.
+
+### The clean-room rule
+
+A worker that writes `terminal.rs`, `theme.rs`, the overlay keys or the overlay view gets our design files and MIT or Apache references only. The openhuman and tinychannels paths appear in design documents as provenance, never in a worker brief. The orchestrator compares the finished guard and the overlay with the openhuman files by eye and records that it did in `goal.md`, because a copied function would carry neither the `openhuman` string nor the GPL header the greps look for. The audit rows are C1 and C2 in `tasks.md`.
 
 ### Fallback order when a CLI runs out of usage
 

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 002 leaves an empty frame: the crate builds, the loop runs and the terminal is restored, but no key is bound and nothing on screen says which key does what",
     "created_at": "2026-11-25T20:22:33Z",
-    "last_save_at": "2026-11-25T22:00:00.157Z",
+    "last_save_at": "2026-11-25T22:42:17.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:880f3f983091ddf61c689e09128d8c2096ba7af300790318fc7a2ea59295599b",
+    "source_fingerprint": "sha256:6229361c4c9cfc8a4569f1621aac3a8671e6f7f4cfbbb073e1feaba0f101f28e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ecc4d1b92eabbcf9c8ac7a8210b9c356e4d9f253aba85b9c4444ab0ad65f146",
-      "plan.md": "6068f20979714c45afc7ace0a89e1c3e96dae34a2e833379523b4de7ee006d2e",
-      "tasks.md": "36bb10801bc6671c19f925524c51664269f26ba959474e3732ef7ff3eaf9fe19",
+      "spec.md": "1c9e37abc89c67370db2d562612031fa30a56972c0a2b842cc7e074a03a7bac8",
+      "plan.md": "9a9f8e5598635774c99e80748e52720ff53197b89ac9acec937737b436158026",
+      "tasks.md": "21b7eb5d72ce2adc64b790cff9f1e8145459528ed48f8852e666df71aac76886",
       "implementation-summary.md": "109b5ec1a6d0c1c2d377fd99265b9d58fe13161ecb6b910b8b30ce1f99d90d1a"
     },
     "last_active_at": null

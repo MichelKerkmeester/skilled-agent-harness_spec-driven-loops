@@ -26,10 +26,10 @@ The map is the operator's to approve. Section 6 holds the approval record, and `
 | `inbox` | The Inbox tab, no overlay | Tabs, list movement, open, quit |
 | `list` | Any pane with rows, inside `main` or `inbox` | Up, Down, PgUp, PgDn, and Enter in the inbox only |
 | `overlay` | The decision or choice overlay, open | `t`, `y`, `n`, `1` to `9`, typing, Enter, Backspace, Esc, Ctrl+C, Ctrl+D |
-| `palette` | The command palette, open | Typing to filter, Up, Down, Enter, Esc, Ctrl+C, Ctrl+D |
+| `palette` | The command palette, open | Typing to filter, Backspace, Up, Down, Enter, Esc, Ctrl+C, Ctrl+D |
 | `too-small` | Below 24 columns or 8 rows | Ctrl+D only |
 
-A context is exclusive. While an overlay is open, no `main` key is bound, so `Alt+2` does nothing until the overlay closes. That is what keeps one key from meaning two things.
+A context is exclusive. While an overlay is open, no `main` key is bound, so `Alt+2` does nothing until the overlay closes. That is what keeps one key from meaning two things. `../../005-answer-flow/design/state-machines.md` section 2 draws the contexts and every key that moves between them.
 
 The `overlay` context has two modes inside it. Before text mode, `t`, `y`, `n`, the digits and `Esc` are shortcuts. In text mode, every printable character is text and only `Enter`, `Backspace`, `Esc`, `Ctrl+C` and `Ctrl+D` are bound. Section 3.4 says why.
 
@@ -54,7 +54,7 @@ The `overlay` context has two modes inside it. Before text mode, `t`, `y`, `n`, 
 | `Down` | `palette` | Move the selection down one command | `↑↓ select` | Palette footer line 1 |
 | `a` to `z`, `A` to `Z`, `0` to `9`, space and punctuation | `palette` | Filter the command list | `type to filter` | Palette footer line 1 |
 | `Enter` | `palette` | Run the selected command | `Enter select` | Palette footer line 1 |
-| `Enter` | `overlay`, typing | Send the typed answer | `Enter send` | Overlay footer line 1 |
+| `Enter` | `overlay`, typing | Send the typed answer. A line blank after trimming sends nothing | `Enter send` | Overlay footer line 1 |
 | `Esc` | `overlay`, `palette` | Close the overlay and write nothing | `Esc close` | Overlay footer line 1 |
 | `t` | `overlay`, no options, not typing | Enter text mode | `t type` | Overlay footer line 1 |
 | `n` | `overlay`, not typing | Answer `deny` with `--scope deny` | `n deny` | Overlay footer line 1 |
@@ -62,6 +62,7 @@ The `overlay` context has two modes inside it. Before text mode, `t`, `y`, `n`, 
 | `1` to `9` | `overlay`, options | Pick the option at that position | `1-9 pick` | Overlay footer line 1 |
 | `a` to `z`, `A` to `Z`, `0` to `9`, space and punctuation | `overlay`, typing | Append it to the answer | `type answer` | Overlay footer line 1 |
 | `Backspace` | `overlay`, typing | Delete the last character | `Bksp delete` | Overlay footer line 1 |
+| `Backspace` | `palette` | Delete the last filter character | `Bksp delete` | Palette footer line 1 |
 | `Ctrl+P` | `main`, `inbox` | Open the command palette | `Ctrl+P/? commands` | Footer line 2 |
 | `?` | `main`, `inbox` | Open the command palette | `Ctrl+P/? commands` | Footer line 2 |
 | `Ctrl+C` | `main`, `inbox` | Quit, writing nothing | `Ctrl+C exit` | Footer line 2 |

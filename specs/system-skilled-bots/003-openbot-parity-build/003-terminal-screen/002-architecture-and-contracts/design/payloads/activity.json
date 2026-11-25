@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "needs_you",
+      "title": "Needs you",
+      "rows": [
+        {
+          "botId": "hello",
+          "identity": "skilled-scratch/hello",
+          "state": "needs_you",
+          "at": "2026-11-25T21:12:04.000Z",
+          "actor": "ada",
+          "runId": "20261125T211204Z-7c1e9a40",
+          "schedule": null
+        },
+        {
+          "botId": "digest",
+          "identity": "skilled-scratch/hello",
+          "state": "needs_you",
+          "at": "2026-11-25T21:05:04.000Z",
+          "actor": "ada",
+          "runId": "20261125T210504Z-3f9d2b11",
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "working",
+      "title": "Working",
+      "rows": [
+        {
+          "botId": "nightly-report",
+          "identity": "skilled-scratch/hello",
+          "state": "working",
+          "at": "2026-11-25T21:13:40.000Z",
+          "actor": "ada",
+          "runId": "20261125T211340Z-a4b8c2d0",
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "scheduled",
+      "title": "Scheduled",
+      "rows": [
+        {
+          "botId": "digest",
+          "identity": "skilled-scratch/hello",
+          "state": "scheduled",
+          "at": "2026-11-26T00:15:00.000Z",
+          "actor": "ada",
+          "runId": null,
+          "schedule": "every 6h"
+        }
+      ]
+    },
+    {
+      "id": "done",
+      "title": "Done",
+      "rows": [
+        {
+          "botId": "hello",
+          "identity": "skilled-scratch/hello",
+          "state": "done",
+          "at": "2026-11-25T21:02:04.000Z",
+          "actor": "ada",
+          "runId": "20261125T210204Z-0b6e5f72",
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "stopped",
+      "title": "Stopped",
+      "rows": [
+        {
+          "botId": "archive",
+          "identity": "skilled-scratch/hello",
+          "state": "stopped",
+          "at": "2026-11-25T20:14:04.000Z",
+          "actor": null,
+          "runId": "20261125T201404Z-9d2c7e15",
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "failed",
+      "title": "Failed",
+      "rows": [
+        {
+          "botId": "nightly-report",
+          "identity": "skilled-scratch/hello",
+          "state": "failed",
+          "at": "2026-11-25T21:10:04.000Z",
+          "actor": "ada",
+          "runId": "20261125T211004Z-5e1a8b39",
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "recurring",
+      "title": "Recurring",
+      "rows": [
+        {
+          "botId": "digest",
+          "identity": "skilled-scratch/hello",
+          "state": "recurring",
+          "at": "2026-11-26T00:15:00.000Z",
+          "actor": "ada",
+          "runId": null,
+          "schedule": "every 6h"
+        }
+      ]
+    }
+  ]
+}

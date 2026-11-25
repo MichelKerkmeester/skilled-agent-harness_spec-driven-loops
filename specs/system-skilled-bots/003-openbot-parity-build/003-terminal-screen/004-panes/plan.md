@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Testing** | `cargo test`, asserting the ratatui `TestBackend` buffer directly, with no `insta` |
 
 ### Overview
-Two new files, two edited files and one line fill the body 003 leaves empty. `view/panes.rs` draws the four pane bodies from the `Remote<T>` each surface holds, clips by display width, routes every drawn string through the sanitizer `theme.rs` owns, and draws the selected row's detail as a right column at 120 columns or wider. `keys.rs` gains the `list` rows and `state.rs` the arms that move the selection, so the footer 003 draws names the keys each pane binds. `tests/panes.rs` proves it with one buffer snapshot per pane per state at 80x24 and 120x40, a reorder test, a sanitizer test and a 2,000-row draw under 16 ms.
+Two new files, two edited files and one line fill the body 003 leaves empty. `view/panes.rs` draws the four pane bodies from the `Remote<T>` each surface holds, clips by display width, routes every drawn string through the sanitizer `theme.rs` owns, and draws the selected row's detail as a right column at 120 columns or wider. `keys.rs` gains the `list` rows and `state.rs` the arms that move each pane's `PaneView`, so the footer 003 draws names the keys each pane binds. `tests/panes.rs` proves it with one buffer snapshot per pane per state at 80x24 and 120x40, a reorder test, a sanitizer test and a 2,000-row draw that visits only the rows its body holds.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -44,7 +44,7 @@ Two new files, two edited files and one line fill the body 003 leaves empty. `vi
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at both sizes
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_draw_under_16ms`
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -59,10 +59,10 @@ Pure renderer over a remote-state wrapper. Every pane is a function from `&Remot
 
 ### Key Components
 - **`view/panes.rs`**: the four pane bodies, the five state lines, the display-width clip and the wide-layout detail column. It exists because the shell 003 lands draws an empty body. Every drawn string passes through the sanitizer `theme.rs` owns and every row's state through the marker function `theme.rs` owns, so the crate keeps one sanitizer and one glyph table.
-- **`tests/panes.rs`**: the snapshot table, the reorder test, the sanitizer test and the budget test. It exists because the operator refused `insta`, so the assertion names the cells rather than a stored file.
+- **`tests/panes.rs`**: the snapshot table, the reorder test, the sanitizer test and the row-count test. It exists because the operator refused `insta`, so the assertion compares the buffer to the frame `design/mockups.md` draws, cell for cell, rather than a stored file.
 
 ### Data Flow
-`data.rs` (002) fetches one `bots <verb> --json` per surface on the worker thread and sends a generation-tagged message. `state.rs` (002) folds it into `Remote<T>{rows, last_ok_at, error, in_flight}` and keeps the selection as `Option<ItemId>`. `view/panes.rs` reads the `Remote<T>` for the active tab, maps each row's `state` through the marker function `theme.rs` owns, passes every string through the sanitizer `theme.rs` owns, and writes cells into the body rect 003 hands it. Nothing in the path spawns a process, opens a file or reads an environment variable.
+`data.rs` (002) fetches one `bots <verb> --json` per surface on the worker thread and sends a generation-tagged message. `state.rs` (002) folds it into `Remote<T>{rows, last_ok_at, error, in_flight, generation}` and keeps one `PaneView<K>` per pane. `view/panes.rs` reads the `Remote<T>` for the active tab, maps each row's `state` through the marker function `theme.rs` owns, passes every string through the sanitizer `theme.rs` owns, and writes cells into the body rect 003 hands it. Nothing in the path spawns a process, opens a file or reads an environment variable.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -74,12 +74,12 @@ This child fixes the selection defect the parent records and consumes the saniti
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `crates/bots-tui/src/state.rs` | 002 owns it and holds `Remote<T>` and the selection | update: the reducer arms that move `Option<ItemId>` and fall to the nearest surviving row, with the reorder test as the gate | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` |
-| `crates/bots-tui/src/keys.rs` | 003 owns the table and fills `Global`, `Tabs` and `Palette` | update: the `list` rows, Up, Down, PgUp and PgDn on every data pane and Enter on the inbox only | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection` |
+| `crates/bots-tui/src/state.rs` | 002 owns it and holds `Remote<T>` and one `PaneView<K>` per pane | update: `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row, with the reorder test as the gate | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` |
+| `crates/bots-tui/src/keys.rs` | 003 owns the table and fills `SHELL_ROWS` | update: the `list` rows, Up, Down, PgUp and PgDn on every data pane and Enter on the inbox only | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection` |
 | `crates/bots-tui/src/view/mod.rs` | 003 owns the view root and declares the modules | update: one `mod panes;` line | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0 |
 | `crates/bots-tui/src/theme.rs` | 003 owns the palette, the glyph table and the sanitizer | consumer: this child calls the marker function and the sanitizer, and keeps no second copy | `rg -n 'theme::marker' crates/bots-tui/src/view/panes.rs` prints the marker call, and `test ! -e crates/bots-tui/src/sanitize.rs` exits 0 |
 | `crates/bots-tui/src/view/header.rs` | 003 owns the header and `stale_label` | consumer: this child's stale state calls `stale_label` | `rg -n 'stale_label' crates/bots-tui/src/view/panes.rs` prints one call |
-| `crates/bots-tui/tests/fixtures/bots` | 002 owns the only payload source in tests | not a consumer: the panes read the payloads it already carries | `bash crates/bots-tui/tests/fixtures/bots routines --json \| jq -e 'type == "array"'` exits 0 |
+| `crates/bots-tui/tests/fixtures/bots` | 002 owns the only payload source in tests | not a consumer: the panes read the payloads it already carries | `bash crates/bots-tui/tests/fixtures/bots routines --json \| jq -e 'has("version") and has("routines")'` exits 0 |
 | `crates/bots-tui/src/view/overlay.rs` | 005 owns the detail panel below 120 columns | not a consumer | `rg -n 'panes' crates/bots-tui/src/view/overlay.rs` prints nothing |
 
 Required inventories:
@@ -107,10 +107,10 @@ Setup reads the fixture's four payloads and the design sources, and confirms 002
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | The display-width clip, the marker seam in the ASCII set, and the `list` key rows with the movement arms | `cargo test --lib` |
-| Integration | One buffer snapshot per pane per state at 80x24 and 120x40, the reorder test, the sanitizer test at the pane boundary, the 2,000-row budget | `cargo test --test panes`, asserting the `TestBackend` buffer directly |
+| Integration | One buffer snapshot per pane per state at 80x24 and 120x40, the reorder test, the sanitizer test at the pane boundary, the 2,000-row count | `cargo test --test panes`, asserting the `TestBackend` buffer directly |
 | Manual | None. Every check runs without a tty, which is why the operator refused `insta` and why the snapshots assert the buffer | - |
 
-The snapshot table is data, not sixteen hand-written tests: one row per pane and state names the fixture payload, the expected first body line and the expected marker, and one loop draws each row at both sizes. A new state is one row, and a state that stops drawing fails by name.
+The snapshot table is data, not sixteen hand-written tests: one row per pane and state names the frame heading and the fixture payload, and one loop loads each frame through 002's `tests/common/frames.rs` and compares every cell at both sizes. A new state is one row, and a state that stops drawing fails by name.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -120,7 +120,8 @@ The snapshot table is data, not sixteen hand-written tests: one row per pane and
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 002's `state.rs` with `Remote<T>` and `Option<ItemId>` | Internal | Yellow | The panes have no state to draw; the reorder test fails and names the selection |
+| 002's `state.rs` with `Remote<T>` and one `PaneView<K>` per pane | Internal | Yellow | The panes have no state to draw; the reorder test fails and names the selection |
+| 002's `tests/common/frames.rs` frame loader | Internal | Yellow | Every snapshot has no approved frame to compare against |
 | 002's fixture carrying the four payloads | Internal | Yellow | No pane is testable, because every snapshot reads it |
 | 003's `src/view/mod.rs` view root | Internal | Yellow | The `mod panes;` line has nowhere to land and `cargo build` fails |
 | `ratatui` 0.30 `TestBackend` and `unicode-width` | External | Green | Both are already in 002's manifest, so this child adds no dependency |
@@ -131,7 +132,7 @@ The snapshot table is data, not sixteen hand-written tests: one row per pane and
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: a pane draws a control character into a cell, or the 2,000-row draw misses 16 ms on an idle machine rather than a loaded one.
+- **Trigger**: a pane draws a control character into a cell, or the 2,000-row draw visits more rows than the body holds.
 - **Procedure**: revert the one commit that adds `view/panes.rs` and its `mod panes;` line. The shell 003 lands draws an empty body again, which is the state before this child, and no other child depends on a pane body until 005 draws the overlay over it.
 <!-- /ANCHOR:rollback -->
 
@@ -196,5 +197,7 @@ Rungs 2 and 3 cannot be lowered, so a `high` wave that falls to either runs at `
 ### What every dispatch carries
 
 The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:199] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, and a `cli-devin` dispatch puts `--` before the prompt. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] A `cli-devin` dispatch is probed first, because a quota banner alone does not prove the route is spent. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
+
+A clean-room rule binds every lane that writes `view/panes.rs`. Its brief carries our design files and the MIT or Apache references only, and an openhuman or tinychannels path appears in a design document as provenance, never in a worker brief. The orchestrator compares the finished panes with the openhuman activity and render files by eye and records that it did, because `rg -n 'openhuman' crates/bots-tui/src` passes on a copy that carries neither the path nor the licence header.
 
 A worker's `done` is a claim until the orchestrator runs that wave's verify commands and reads their output and exit status. A wave that fails its verify does not hand its files to the next wave.

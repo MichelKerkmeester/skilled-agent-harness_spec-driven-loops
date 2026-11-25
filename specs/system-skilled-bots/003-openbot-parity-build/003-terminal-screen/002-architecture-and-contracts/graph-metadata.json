@@ -48,7 +48,9 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/bin/bots.cjs",
-      ".github/workflows/bots-runtime.yml"
+      ".github/workflows/bots-runtime.yml",
+      "design/contracts.md",
+      "design/architecture.md"
     ],
     "entities": [
       {
@@ -97,6 +99,18 @@
         "name": "bots-runtime.yml",
         "kind": "config",
         "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "contracts.md",
+        "kind": "doc",
+        "path": "design/contracts.md",
+        "source": "derived"
+      },
+      {
+        "name": "architecture.md",
+        "kind": "doc",
+        "path": "design/architecture.md",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Waves The",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every later child of this phase draws into a crate that does not exist, and the one verb that would start it does not exist either",
     "created_at": "2026-11-25T20:22:32Z",
-    "last_save_at": "2026-11-25T22:01:21.297Z",
+    "last_save_at": "2026-11-25T22:46:08.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +211,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25fee9f063c3660ad52ad70c42f3ed51cfd2212deac0fe2d693eff2acd2db8e6",
+    "source_fingerprint": "sha256:8dcdd1fa32e7da393909df88dafd300bfcdb6021f0921c142e100c26ff8118df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1822f06f61ec8f4b6c891873bca555a4cc8116798573b826f29415f17f3fbc21",
-      "plan.md": "579bff828b10afe81cc503b951f73d58e8f959997690fc05b098d264774d4c4b",
-      "tasks.md": "311af1afb345d43d56125c59ed7064c9c30445720dcb96ec1effae65fe9fb7eb",
+      "spec.md": "5b59a41826a2131f0456cbb449e5c1b14798f2c10e4b257e188c0215f4d76959",
+      "plan.md": "2a244f9f3dc16f2b0877309b7cab9c33b71caa3ce29b6cbcba44d339ac8edf50",
+      "tasks.md": "fe2ab33cbd743e06f363096a0c05e2c22f930ea0fdd7f990dc5e0d74d5dcc2ea",
       "implementation-summary.md": "2058e2a0fb782d37979d917cde552ccd305df68192c80061e4e81607dce5b3f1"
     },
     "last_active_at": null

@@ -48,10 +48,10 @@ Frozen choices. Changing one is an amendment.
 | D2 | The glyph table lives in 003's `theme.rs`, which carries the Unicode and ASCII columns and the `--ascii` flag. This child calls `marker(state, glyphs)` and keeps no second table, so the eight glyphs have one owner and one test. |
 | D3 | `stale_label` lives in 003's `view/header.rs` and the header draws it. This child's stale state calls it, so the age format has one owner and one test rather than two. |
 | D4 | The ASCII glyph set is 003's, selected by the `--ascii` flag the `ui` verb passes. This child proves the pane draws the ASCII column and reads no environment variable. |
-| D5 | The 2,000-row budget is one test that warms up once and measures the draw call alone, so a failure names the draw rather than the fixture parse. |
+| D5 | The 2,000-row check is a count: the draw returns the rows it visited and the test asserts at most the body height. The 16 ms timing is an ignored test the operator runs locally, so a loaded runner cannot fail the gate. |
 | D6 | The view root is `crates/bots-tui/src/view/mod.rs`, which 003 creates. This child adds one `mod panes;` line to it and no second root. |
 | D7 | The sanitizer is 003's `theme.rs`, one behaviour that replaces each control character with `?`. This child routes every drawn string through it and keeps no second copy. |
-| D8 | The `list` rows live in 003's `keys.rs` and the movement arms in 002's `state.rs`. This child adds both, so a key cannot be bound without a label and the selection moves by item id rather than by row index. |
+| D8 | The `list` rows live in 003's `keys.rs` and the movement arms in 002's `state.rs`. This child adds both, so a key cannot be bound without a label and the selection moves by each pane's row key rather than by row index. |
 
 <!-- /ANCHOR:directive -->
 
@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one buffer snapshot per pane per state at 80x24 and at 120x40, sixteen per size.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_draw_under_16ms`.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
@@ -87,9 +87,10 @@ and findings belong here.
 | Waves planned | Done | `tasks.md` names seven waves, each with its executor, model, effort, worker count, verify step and fallback rung |
 | First review applied | Done | `research/ui-review-1.md` U1-P1-2, U1-P1-3, U1-P1-8, U1-P1-10, U1-P2-1 and U1-P2-6 are applied: the glyph table and the sanitizer are 003's, the view root is `src/view/mod.rs`, the selection falls to the nearest row, and the snapshot table matches the inventory's five states per pane |
 | Second review applied | Done | `research/ui-review-2.md` N-P0-1, N-P1-5, N-P1-10, N-P2-18 and the 002 items of N-P2-22 are applied: the `list` rows and the movement arms are this child's, REQ-026 and AC-015 name the keys each pane binds, and the licence grep is narrowed to the code and the manifest |
+| Integration wave applied | Done | `design/architecture.md` section 6.4, `design/state-machines.md` section 6.6, `design/contracts.md` section 12 and `research/context-manifest.md` section 5 applied: each pane selects by its row key, `on_list_action`, `reconcile_selection` and `clamp_scroll` are named, `SHELL_ROWS` replaces the old key rows, the routines payload is an object with a `routines` array, and the design sources name how they are rebuilt. R8 makes every snapshot compare the buffer to its frame cell for cell, R12's clean-room rule is in `plan.md`, and R15 replaces the wall-clock gate with a row count |
 | Pane bodies written | Pending | No `crates/bots-tui/src/view/panes.rs` exists |
 | Snapshot table written | Pending | No `crates/bots-tui/tests/panes.rs` exists |
-| Frame budget proven | Pending | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` cannot run until the crate exists |
+| Row count proven | Pending | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` cannot run until the crate exists |
 
 ### Deviations and findings
 

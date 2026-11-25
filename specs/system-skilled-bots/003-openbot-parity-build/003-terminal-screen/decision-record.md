@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
-    last_updated_at: "2026-11-25T21:12:34Z"
-    last_updated_by: "review-fix-pass"
-    recent_action: "Recorded Q008 on grants drawn when present and Q009 on the NO_COLOR route"
-    next_safe_action: "Work child 001-ux-and-component-map against Q002 to Q009"
+    last_updated_at: "2026-11-25T22:43:40Z"
+    last_updated_by: "integration-wave"
+    recent_action: "Recorded A1 to A7 as defaults taken under the do-not-ask directive"
+    next_safe_action: "Work child 001-ux-and-component-map against Q002 to Q009 and A1 to A7"
     blockers: []
     key_files: []
     session_dedup:
@@ -47,6 +47,28 @@ A phase parent carries this file for the decisions no single child owns. Each ro
 | Q008 | The overlay draws a grant's kind and rung only when the item carries them, and draws nothing where they are absent. | Packet phase 006 lands `grants` and the ladder, so a screen that required them would not build before it. Drawing them when present lets the same frame build now and light up after 006, with no second code path. | None | 004-panes, 005-answer-flow |
 | Q009 | The `bots ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, to the binary. The binary reads no environment variable. | The binary stays environment-free, so every no-env::var check holds and a test can drive the palette from an argument. The verb is the one place a shell convention is translated into a flag. | None | 002-architecture-and-contracts, 003-shell-and-navigation |
 <!-- /ANCHOR:operator-decisions -->
+
+---
+
+<!-- ANCHOR:defaults-taken -->
+## 2. Defaults Taken Under the Do-Not-Ask Directive
+
+The operator's directive of 2026-11-25 was to plan the whole epic to ready-for-implementation without asking. The eight questions in `research/fable-review-1.md` section 9 were therefore answered by the assistant, and each answer below is a default rather than an operator decision. Every row is open for the operator to override, and an override amends the row rather than adding a second one.
+
+| ID | Default | Why | Carried by | Status |
+|----|---------|-----|------------|--------|
+| A1 | Build order: packet phases 001-activity-and-actor and 002-routine-layer build before 003-terminal-screen, as the parent chain already says. The screen's tests run against the fixture, so they never need a live runtime. | The parent chain already orders them, and the fixture is the only payload source in tests, so the screen's suites never wait on a live runtime. | 002-architecture-and-contracts, 006-hardening-and-proof | Taken by the assistant under the operator's do-not-ask directive of 2026-11-25. Open for the operator to override. |
+| A2 | Index refresh: the runtime refreshes on read. Every read verb the screen polls, `status`, `activity`, `inbox` and `routines` with `--json`, brings the status index up to date before it answers. The screen never rebuilds and draws no refresh key. The runtime half is owned by packet phase 001-activity-and-actor. If the code shows a refresh on every 5 second poll is too costly, say so with evidence and propose the cheapest correct variant. | `002-architecture-and-contracts/design/contracts.md` section 10 owns the refresh-on-read rule, and a screen that rebuilt the index would write to the state root, which REQ-003 forbids. | 002-architecture-and-contracts, 004-panes | Taken by the assistant under the operator's do-not-ask directive of 2026-11-25. Open for the operator to override. |
+| A3 | The build runs in a fresh worktree. Nothing a build or a gate needs lives in a gitignored folder. Commit a manifest with the pinned URL, the licence, the sha256 and the frame it informed instead of third-party images, plus the fetch command. Checks that point into `context/` skip cleanly when it is absent. | `context/` is gitignored, so a fresh checkout has no reference sources, and a pointer check that failed on their absence would fail every fresh build. | 001-ux-and-component-map, 006-hardening-and-proof | Taken by the assistant under the operator's do-not-ask directive of 2026-11-25. Open for the operator to override. |
+| A4 | The operator approves the key map before the build starts, as a pre-build step rather than a gate inside 002. The hand proof is the last step, after 006. | The approval is 001's exit, so leaving it inside the chain blocks 002, and the hand proof needs a live open item that does not exist until packet phase 001 lands. | 001-ux-and-component-map, 006-hardening-and-proof | Taken by the assistant under the operator's do-not-ask directive of 2026-11-25. Open for the operator to override. |
+| A5 | Install is a source checkout plus `cargo build --release`, on macOS and Linux only. | The `ui` verb resolves one path under `crates/bots-tui/target/release/`, so the screen exists only where someone built it. | 002-architecture-and-contracts | Taken by the assistant under the operator's do-not-ask directive of 2026-11-25. Open for the operator to override. |
+| A6 | No new time or signal crate beyond `libc`: `std::time` and `libc` sigaction. | `insta` was refused and the crate's dependency list is frozen at ratatui, crossterm, serde, serde_json, unicode-width and libc. | 002-architecture-and-contracts | Taken by the assistant under the operator's do-not-ask directive of 2026-11-25. Open for the operator to override. |
+| A7 | After a successful answer the screen does not refresh at once. The outcome word stays on the row, and the answered item stays drawn, until the next 5 second poll. `005-answer-flow/design/state-machines.md` decides this. | `005-answer-flow/design/state-machines.md` section 3 owns the answer sequence, and a refresh straight after the answer would drop the row before the operator reads the outcome. | 005-answer-flow | Taken by the assistant under the operator's do-not-ask directive of 2026-11-25. Open for the operator to override. |
+
+A7's wording is the ruling's, not the assumption file's. The assumption file said an answered row shows its outcome word until the next successful refresh, and the ruling replaces that with the rule above, so the row is drawn until the next 5 second poll rather than until the next successful read.
+
+The source of each default is `research/fable-review-1.md` section 9, question by question: A1 is question 1, A2 is question 2, A3 is question 3, A4 is question 4, A5 is question 5, A6 is question 6, and A7 is question 8. Question 7, on third-party images, is answered by A3.
+<!-- /ANCHOR:defaults-taken -->
 
 ---
 

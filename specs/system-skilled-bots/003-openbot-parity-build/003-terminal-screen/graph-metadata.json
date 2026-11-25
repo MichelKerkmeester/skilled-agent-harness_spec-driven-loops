@@ -53,6 +53,10 @@
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/SKILL.md",
       ".github/workflows/bots-runtime.yml",
+      "002-architecture-and-contracts/design/architecture.md",
+      "002-architecture-and-contracts/design/contracts.md",
+      "005-answer-flow/design/state-machines.md",
+      "research/context-manifest.md",
       "001-ux-and-component-map/goal.md",
       "002-architecture-and-contracts/goal.md",
       "003-shell-and-navigation/goal.md",
@@ -60,7 +64,8 @@
       "005-answer-flow/goal.md",
       "006-hardening-and-proof/goal.md",
       "001-ux-and-component-map/acceptance-criteria.md",
-      "001-ux-and-component-map/decision-record.md"
+      "001-ux-and-component-map/decision-record.md",
+      "research/fable-review-1.md"
     ],
     "entities": [
       {
@@ -97,6 +102,36 @@
         "name": "bots-runtime.yml",
         "kind": "config",
         "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "architecture.md",
+        "kind": "doc",
+        "path": "002-architecture-and-contracts/design/architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "contracts.md",
+        "kind": "doc",
+        "path": "002-architecture-and-contracts/design/contracts.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-machines.md",
+        "kind": "doc",
+        "path": "005-answer-flow/design/state-machines.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-manifest.md",
+        "kind": "doc",
+        "path": "research/context-manifest.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-review-1.md",
+        "kind": "doc",
+        "path": "research/fable-review-1.md",
         "source": "derived"
       },
       {
@@ -166,8 +201,8 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "its",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
@@ -176,41 +211,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Operator Decisions",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verbatim Operator Answers Each",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "text",
-        "kind": "technology",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "six",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T22:04:39.886Z",
+    "last_save_at": "2026-11-25T22:44:20.757Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,11 +223,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:57dac6c801cac5ca4e7640deae383a839df9813382bb7cb7e6ed82e0342621fb",
+    "source_fingerprint": "sha256:02cfb110b7c548c58adf0fe0a98904e7f4051317691de1723a82524acf827f85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3e0a6709a2f6657da18d2e3dfa3956a327e69bda3d312560400974eb3593d5c",
-      "decision-record.md": "3343843c15d9a488a86174782dcd5e578bd3cbc479906a0ac034a7a94ee4ca98"
+      "spec.md": "6e6c5e2f8e9c44e9ead5b755e921b5e9dbfe1984275e1957183def39e7616cc1",
+      "decision-record.md": "e3bcb76f181c69f69531948fb4566c3e4c3699ec49006dc1e8bfb1a1d0629349"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map",
     "last_active_at": "2026-11-25T21:34:59.288Z"

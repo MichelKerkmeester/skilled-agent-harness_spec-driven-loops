@@ -45,7 +45,7 @@ The tasks run in four waves. A wave's lanes hold disjoint files, so the worker c
 | 1 Setup probes | T001 to T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | 1 | The four probe commands print their expected output |
 | 2 Gate repair | T005 to T008 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` on lane A; `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0, and the runtime suite prints no `failed` |
 | 3 Documents | T009 to T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` on lane A; `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | The five README greps each print one line, the hub grep prints one line, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
-| 4 Verification | T012 to T020 | the orchestrator, no dispatch | 0 | Every gate from the final state, the licence proof, the pointer check, the eight defect checks and `RESULT: PASSED` |
+| 4 Verification | T012 to T021 | the orchestrator, no dispatch | 0 | Every gate from the final state, the licence proof, the pointer check, the eight defect checks, the pseudo-terminal run and `RESULT: PASSED` |
 
 A wave whose executor runs out of usage moves down the ladder in `plan.md`'s `External orchestration` section and never lowers its effort tier. A wave already on the last rung stops and reports rather than dropping its tier.
 
@@ -65,7 +65,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 | T027 | Run the crate suite | T007, then T014 from the final state |
 | T028 | Run the runtime suite | T008, then T015 from the final state |
 | T029 | Prove no openhuman code was copied | T016 |
-| T030 | Prove the answer path by hand | `005-answer-flow`, because the overlay needs a tty |
+| T030 | Prove the answer path by hand | T021 for the scripted run, and the operator's final acceptance step after this phase for the hand answer |
 | T031 | Prove the closed-input rule | `005-answer-flow`, which owns the loop's closed-input test |
 | T032 | Validate the packet | T020 |
 <!-- /ANCHOR:notation -->
@@ -115,9 +115,25 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 - [ ] T015 Prove the runtime suite from the final state (`.skilled/skills/system-skilled-bots/runtime`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 - [ ] T016 Prove the licence boundary (`$CRATE`). Verify: `cargo metadata --manifest-path $CRATE/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, `rg -n 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, and `rg -n 'openhuman' $CRATE/src` prints only comment lines. The grep covers the code and the manifest and searches for the header text rather than the licence name, because `README.md` and `design/` name the reference's GPL-3.0 licence by design.
 - [ ] T017 Prove the README's build and run commands (`$CRATE`). Verify: `cargo build --release --manifest-path $CRATE/Cargo.toml` exits 0 and `ls $CRATE/target/release/bots-ui` prints the path.
-- [ ] T018 Prove every design pointer resolves (`$CRATE/design`). Verify: `ls $CRATE/design` prints `component-inventory.md`, `glyph-table.md`, `key-map.md` and `mockups.md`, and `rg -o --no-filename 'specs/system-skilled-bots/context/[^ :]+:[0-9]+' $CRATE/design | sort -u | while IFS=: read -r p l; do test -f "$p" && test "$l" -le "$(awk 'END{print NR}' "$p")" || printf 'DANGLING %s:%s\n' "$p" "$l"; done` prints nothing. The `ls` is the guard: `rg` on a missing folder writes its error to stderr and the loop then reads no input, so the loop alone would pass on an absent folder, and `sed -n` past the end of a file exits 0, so the loop compares the line against the file's length.
+- [ ] T018 Prove every design pointer resolves, or skips by name when the gitignored reference folder is absent (`$CRATE/design`). Verify: the block below prints the four names `component-inventory.md`, `glyph-table.md`, `key-map.md` and `mockups.md` and nothing else on stdout. When `specs/system-skilled-bots/context` is present the loop prints `DANGLING <path>:<line>` for each pointer whose file is missing or too short, so any such line is a failure. When it is absent the block writes one `SKIP context-absent:` line to stderr naming how many pointers it did not check, and checks nothing else. The `ls` is the first guard, because `rg` on a missing design folder reads no input and the loop alone would pass. The loop compares the line against the file's length because `sed -n` past the end of a file exits 0. How to rebuild the folder: `research/context-manifest.md` section 3.
+
+  ```bash
+  ls $CRATE/design
+  ctx=specs/system-skilled-bots/context
+  if test -d "$ctx"
+  then
+    rg -o --no-filename "$ctx/[^ :]+:[0-9]+" $CRATE/design | sort -u | while IFS=: read -r p l
+    do
+      test -f "$p" && test "$l" -le "$(awk 'END{print NR}' "$p")" || printf 'DANGLING %s:%s\n' "$p" "$l"
+    done
+  else
+    n=$(rg -o --no-filename "$ctx/[^ :]+:[0-9]+" $CRATE/design | sort -u | wc -l | tr -d ' ')
+    printf 'SKIP context-absent: %s design pointers not checked, see research/context-manifest.md\n' "$n" >&2
+  fi
+  ```
 - [ ] T019 Run the eight defect checks and record each result in `goal.md` section 4 (`$CRATE`). Verify: `rg -c '^\| D[1-8] ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/tasks.md` prints 8, and each row of the Defect Audit table below prints its expected output.
 - [ ] T020 Validate this child (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
+- [ ] T021 Run the scripted pseudo-terminal smoke test (`$CRATE/tests/pty_smoke.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test pty_smoke` prints `test result: ok. 1 passed` and no `SKIP release-absent:` line, so the release binary answered one item and the fixture recorded the `answer` argv. The test opens its own pseudo-terminal, so no person and no interactive terminal are needed.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -125,7 +141,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 <!-- ANCHOR:defect-audit -->
 ## Defect Audit
 
-One row per defect the parent's §6 lists, each with the command that proves the fix is present and the output it must print. The grep proves the mechanism exists; the suite proves it behaves, so the pair is the evidence and neither alone is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:210]
+One row per defect the parent's §6 lists, each with the command that proves the fix is present and the output it must print. The grep proves the mechanism exists; the suite proves it behaves, so the pair is the evidence and neither alone is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:241]
 
 | ID | Defect | Check | Expected |
 |----|--------|-------|----------|
@@ -137,6 +153,15 @@ One row per defect the parent's §6 lists, each with the command that proves the
 | D6 | An item with no options can only get y/n | `rg -n 'free_text' $CRATE/src/view/overlay.rs` | at least one line |
 | D7 | `?` marks three different states | `rg -n 'scheduled|recurring' $CRATE/src/theme.rs` | two glyph rows |
 | D8 | The banner names the wrong key | `rg -n 'pending approval' $CRATE/src/view` and `rg -n 'pending approval.*Ctrl\+P' $CRATE/src/view` | one banner line, and nothing naming `Ctrl+P` |
+
+### Clean-room audit
+
+The clean-room rule keeps the GPL sources out of the briefs of the workers that write the matching modules. A worker that writes `terminal.rs`, `theme.rs`, the overlay keys or the overlay view gets our design files and MIT or Apache references only. The openhuman and tinychannels paths appear in design documents as provenance, never in a worker brief. The orchestrator compares the finished guard and the overlay with the openhuman files by eye and records that it did, because a copied function would carry neither the `openhuman` string nor the GPL header the greps look for.
+
+| ID | Check | Expected |
+|----|-------|----------|
+| C1 | `rg -n 'openhuman\|tinychannels' $CRATE/src` | comment lines only, each naming the design reference |
+| C2 | `rg -c 'Clean-room read' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/goal.md` | 1, the row the orchestrator records the comparison in |
 <!-- /ANCHOR:defect-audit -->
 
 ---
@@ -147,7 +172,7 @@ One row per defect the parent's §6 lists, each with the command that proves the
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `$CRATE`, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0
+- [ ] `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `$CRATE`, `cargo test --test pty_smoke` prints `1 passed`, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -205,6 +230,7 @@ One row per defect the parent's §6 lists, each with the command that proves the
 - [ ] CHK-021 [P0] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 - [ ] CHK-022 [P0] Each of the eight Defect Audit rows prints its expected output.
 - [ ] CHK-023 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --doc` prints `test result: ok`, so a doc example that fails is a gate failure rather than a silent skip.
+- [ ] CHK-024 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test pty_smoke` prints `test result: ok. 1 passed` and no `SKIP release-absent:` line, so the release binary answered one item in a pseudo-terminal.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -245,7 +271,7 @@ One row per defect the parent's §6 lists, each with the command that proves the
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
+| P0 Items | 10 | 0/10 |
 | P1 Items | 11 | 0/11 |
 | P2 Items | 1 | 0/1 |
 

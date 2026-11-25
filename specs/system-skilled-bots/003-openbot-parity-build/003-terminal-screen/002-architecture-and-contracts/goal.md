@@ -63,10 +63,10 @@ Frozen choices. Changing one is an amendment.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for the `lib`, `cli_client` and doc targets and no `FAILED`.
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
 - [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`; after `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`, including the `--mono` case under `NO_COLOR` and the `--ascii` case.
+- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`, including the `--mono` case under `NO_COLOR`, the `--ascii` case and the `ui-contract-mismatch` case.
 - [ ] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
-- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, and `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step.
-- [ ] `ls crates/bots-tui/design` prints 001's four documents, and `diff -r specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing.
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps.
+- [ ] `ls crates/bots-tui/design` prints 001's four documents plus `architecture.md` and `contracts.md`, `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, and `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,25 +82,28 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Child spec, plan, tasks and acceptance criteria authored | Done | `spec.md` carries 16 requirements, `tasks.md` carries 29 tasks in 8 waves, and `acceptance-criteria.md` carries one row per requirement |
+| Child spec, plan, tasks and acceptance criteria authored | Done | `spec.md` carries 17 requirements, `tasks.md` carries 30 tasks in 8 waves, and `acceptance-criteria.md` carries a row for every requirement |
 | Crate scaffolded | Pending | `ls crates` prints `ls: crates: No such file or directory` |
 | `ui` verb added | Pending | `node .skilled/bin/bots.cjs ui` prints `bots: unknown verb: ui` and exits 2 |
 | Fixture committed | Pending | No `crates/bots-tui/tests/fixtures/bots` exists yet |
 | Design copied | Pending | No `crates/bots-tui/design` exists yet |
 | CI job added | Pending | `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` exits 1 with no match |
 | Second review applied | Done | `research/ui-review-2.md` N-P1-10 and the 002 items of N-P2-22 are applied: the workflow check names the job and the two path entries rather than counting a string, the parent decisions read `Q002 to Q009`, and the `--mono` proof is the vitest case rather than a binary that prints nothing |
+| Integration wave applied | Done | The rulings of the terminal screen integration wave are applied: a successful answer issues no read and the outcome word waits for the next poll, `routines --json` is an object with a `routines` array, the fixture takes its log and its scenario as leading arguments, the design folder carries six files, and the verb refuses a binary whose contract number differs |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | The empty frame is the exit, not a gap | The advisory's exit for this child is "CI green on an empty frame", so the frame draws blank here and 003 adds the header and tabs without moving the loop. |
-| The module map is read from 001 | The seven modules follow 001's component inventory rather than a second list, so a component 001 names has one home here. |
+| The module map is read from 001 | The module map follows 001's component inventory rather than a second list, so a component 001 names has one home here. |
 | The fixture carries 004's two keys | `lastRun.branch` and `lastRun.worktreePath` are 004's, and the fixture carries them now so the payload does not change under a later child. |
 | The hand proof is not a criterion | No criterion here needs a tty. The overlay's keystrokes are 005's hand check, and this child's closed-input and Esc paths are lib tests. |
 | The verb owns the display flags | `NO_COLOR` and `--ascii` are read by `bots ui`, which passes `--mono` and `--ascii` to the binary, so the binary reads no environment variable and the no-env::var checks in 002, 005 and 006 hold unchanged. |
 | The design folder is copied, not authored | 001 authors the four documents and this child copies them unchanged, so a later edit is made once and copied again rather than diverging in two folders. |
-| The signal path is a task, not a comment | `NFR-R01` named a signal and no task proved it, so T029 installs the `SIGTERM` and `SIGHUP` handler and `restore_runs_on_signal` raises the signal through it. |
+| The signal path is a task, not a comment | `NFR-R01` named a signal and no task proved it, so T029 installs the `SIGTERM` and `SIGHUP` handler and `signal_becomes_terminate_event` raises the signal through it. |
 | The sanitizer is 003's | The status row draws runtime text before any pane exists, so one filter with one behaviour lives in 003's `theme.rs` and 004 draws through it rather than keeping a second copy. The crate holds no `sanitize.rs`. |
 | The workflow check carries `-e` | `research/ui-review-2.md` N-P1-10's second command is `rg -c "- 'crates/bots-tui/**'"`, and ripgrep reads the leading `-` as a flag, so it exits 2 with `rg: unrecognized flag -` and prints nothing. The check is applied as `rg -c -e "- 'crates/bots-tui/**'"`, which prints 2 against a workflow carrying the entry under both the `pull_request` and the `push` trigger. |
+| The answer issues no read | A successful answer issues no read of its own, so the row keeps its outcome word and the answered item stays drawn until the next 5-second poll's successful inbox read. `State.answered` carries the inbox generation each mark was set at, so a read issued before the answer cannot clear it. |
+| The verb checks the contract number | `bots-ui --version` prints the crate version and the contract number `design/contracts.md` fixes, and `bots ui` refuses a binary whose number differs, so a build from before a payload change cannot draw a stale contract. |
 <!-- /ANCHOR:log -->

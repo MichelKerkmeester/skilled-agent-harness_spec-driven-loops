@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "indexPath": "/Users/ada/.local/state/system-skilled-bots/index/status.sqlite",
+  "builtAt": "2026-11-25T09:00:00.000Z",
+  "updatedAt": "2026-11-25T21:13:52.000Z",
+  "stale": false,
+  "staleIdentities": [],
+  "rows": [
+    {
+      "kind": "bot",
+      "identity": "skilled-scratch/hello",
+      "botId": "archive",
+      "state": "ok",
+      "flags": ["ok"],
+      "path": "/Users/ada/code/hello",
+      "pathState": "present",
+      "previousPath": null,
+      "installed": true,
+      "labels": ["com.skilled.bots.skilled-scratch_2fhello.archive.0"],
+      "launchd": [
+        {
+          "label": "com.skilled.bots.skilled-scratch_2fhello.archive.0",
+          "presence": "not-loaded",
+          "state": "not loaded",
+          "runs": 0,
+          "lastExitCode": null
+        }
+      ],
+      "reinstall": [],
+      "fix": null,
+      "heldBy": null,
+      "lastRun": {
+        "runId": "20261125T201404Z-9d2c7e15",
+        "dispatchedAt": "2026-11-25T20:14:04.000Z",
+        "exitReason": "disabled",
+        "exitClass": null,
+        "needsYouItemId": null,
+        "delivery": [],
+        "branch": null,
+        "worktreePath": null
+      }
+    },
+    {
+      "kind": "bot",
+      "identity": "skilled-scratch/hello",
+      "botId": "digest",
+      "state": "held",
+      "flags": ["held"],
+      "path": "/Users/ada/code/hello",
+      "pathState": "present",
+      "previousPath": null,
+      "installed": true,
+      "labels": ["com.skilled.bots.skilled-scratch_2fhello.digest.0"],
+      "launchd": [
+        {
+          "label": "com.skilled.bots.skilled-scratch_2fhello.digest.0",
+          "presence": "loaded",
+          "state": "not running",
+          "runs": 12,
+          "lastExitCode": 5
+        }
+      ],
+      "reinstall": [],
+      "fix": null,
+      "heldBy": "20261125T210504Z-3f9d2b11",
+      "lastRun": {
+        "runId": "20261125T210504Z-3f9d2b11",
+        "dispatchedAt": "2026-11-25T21:05:04.000Z",
+        "exitReason": "awaiting-decision",
+        "exitClass": "operator",
+        "needsYouItemId": "20261125T210504Z-3f9d2b11",
+        "delivery": [],
+        "branch": null,
+        "worktreePath": null
+      }
+    },
+    {
+      "kind": "bot",
+      "identity": "skilled-scratch/hello",
+      "botId": "hello",
+      "state": "held",
+      "flags": ["held"],
+      "path": "/Users/ada/code/hello",
+      "pathState": "present",
+      "previousPath": null,
+      "installed": false,
+      "labels": [],
+      "launchd": [],
+      "reinstall": [],
+      "fix": null,
+      "heldBy": "20261125T211204Z-7c1e9a40",
+      "lastRun": {
+        "runId": "20261125T211204Z-7c1e9a40",
+        "dispatchedAt": "2026-11-25T21:12:04.000Z",
+        "exitReason": "awaiting-decision",
+        "exitClass": "operator",
+        "needsYouItemId": "20261125T211204Z-7c1e9a40",
+        "delivery": [],
+        "branch": null,
+        "worktreePath": null
+      }
+    },
+    {
+      "kind": "bot",
+      "identity": "skilled-scratch/hello",
+      "botId": "nightly-report",
+      "state": "ok",
+      "flags": ["ok"],
+      "path": "/Users/ada/code/hello",
+      "pathState": "present",
+      "previousPath": null,
+      "installed": true,
+      "labels": ["com.skilled.bots.skilled-scratch_2fhello.nightly-report.0"],
+      "launchd": [
+        {
+          "label": "com.skilled.bots.skilled-scratch_2fhello.nightly-report.0",
+          "presence": "loaded",
+          "state": "running",
+          "runs": 30,
+          "lastExitCode": 1
+        }
+      ],
+      "reinstall": [],
+      "fix": null,
+      "heldBy": null,
+      "lastRun": {
+        "runId": "20261125T211004Z-5e1a8b39",
+        "dispatchedAt": "2026-11-25T21:10:04.000Z",
+        "exitReason": "error",
+        "exitClass": "environment",
+        "needsYouItemId": null,
+        "delivery": [
+          { "channel": "webhook", "state": "not-attempted" }
+        ],
+        "branch": null,
+        "worktreePath": null
+      }
+    },
+    {
+      "kind": "needs-you",
+      "identity": "skilled-scratch/hello",
+      "itemId": "20261124T201404Z-c8f3a6e2",
+      "botId": "archive",
+      "runId": "20261124T201404Z-c8f3a6e2",
+      "state": "expired",
+      "createdAt": "2026-11-24T20:14:04.000Z",
+      "expiresAt": "2026-11-25T20:14:04.000Z"
+    },
+    {
+      "kind": "needs-you",
+      "identity": "skilled-scratch/hello",
+      "itemId": "20261125T210504Z-3f9d2b11",
+      "botId": "digest",
+      "runId": "20261125T210504Z-3f9d2b11",
+      "state": "needs-you",
+      "createdAt": "2026-11-25T21:05:04.000Z",
+      "expiresAt": "2026-11-26T21:05:04.000Z"
+    },
+    {
+      "kind": "needs-you",
+      "identity": "skilled-scratch/hello",
+      "itemId": "20261125T211204Z-7c1e9a40",
+      "botId": "hello",
+      "runId": "20261125T211204Z-7c1e9a40",
+      "state": "needs-you",
+      "createdAt": "2026-11-25T21:12:04.000Z",
+      "expiresAt": "2026-11-26T21:12:04.000Z"
+    }
+  ],
+  "duplicateRoots": [],
+  "notes": []
+}

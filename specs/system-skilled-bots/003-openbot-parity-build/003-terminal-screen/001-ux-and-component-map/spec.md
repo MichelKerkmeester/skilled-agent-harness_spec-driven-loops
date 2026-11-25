@@ -30,7 +30,7 @@ contextType: "implementation"
 | **Phase** | 1 of 6 |
 | **Predecessor** | None |
 | **Successor** | `002-architecture-and-contracts` |
-| **Handoff Criteria** | The key map is approved and every component lists its states: `design/key-map.md` section 6 carries the approval with the key set it covers, and `design/component-inventory.md` names at least one state for each of its thirteen components |
+| **Handoff Criteria** | The key map is approved as a pre-build step, after the `ui-review-2.md` fixes land, and every component lists its states: `design/key-map.md` section 6 carries the approval with the key set it covers, and `design/component-inventory.md` names at least one state for each of its thirteen components |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,8 +49,8 @@ This is **Phase 1** of the Terminal screen children: UX, architecture, shell, pa
 - `bots status --json`, which exists today and which the header frame draws. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114]
 
 **Deliverables**:
-- `design/mockups.md`, twenty-six states, each drawn at both sizes except the too-small screen.
-- `design/key-map.md`, twenty-eight bindings with their context, action, drawn label and drawing frame.
+- `design/mockups.md`, twenty-seven states, each drawn at both sizes except the too-small screen.
+- `design/key-map.md`, twenty-nine bindings with their context, action, drawn label and drawing frame.
 - `design/glyph-table.md`, the eight glyphs, the ASCII set and the colour rule.
 - `design/component-inventory.md`, thirteen components with a state list each.
 <!-- /ANCHOR:phase-context -->
@@ -125,8 +125,8 @@ The two `No such file or directory` lines are the measured gap: the parent names
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `design/mockups.md` | Create | Twenty-five states at 80x24 and 120x40, plus the too-small screen at 30x7 |
-| `design/key-map.md` | Create | Twenty-eight bindings across six contexts, the four defect rules, the approval record |
+| `design/mockups.md` | Create | Twenty-six states at 80x24 and 120x40, plus the too-small screen at 30x7 |
+| `design/key-map.md` | Create | Twenty-nine bindings across six contexts, the four defect rules, the approval record |
 | `design/glyph-table.md` | Create | Eight glyphs, the ASCII set, the inbox's own words, the colour rule |
 | `design/component-inventory.md` | Create | Thirteen components, each with its reads, its keys and its states |
 | `spec.md` | Modify | This specification |
@@ -147,8 +147,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `design/` holds the four documents at the paths this spec names, and every `SOURCE` pointer in them resolves to a file that exists and a line inside it. |
-| REQ-002 | `design/mockups.md` draws every state in its index at 80x24 and at 120x40, except the too-small screen, which is drawn at 30x7: one fenced block per state per size, each block exactly 24 or 40 lines and no line wider than its size, and the too-small block exactly 7 lines and no line wider than 30. |
+| REQ-001 | `design/` holds the four documents at the paths this spec names, and every `SOURCE` pointer in them resolves to a file that exists and a line inside it. Pointers into the gitignored `specs/system-skilled-bots/context/` are checked when it is present and skipped by name when it is absent. |
+| REQ-002 | `design/mockups.md` draws every state in its index at 80x24 and at 120x40, except the too-small screen, which is drawn at 30x7: one fenced block per state per size, each block exactly 24 or 40 lines and no line wider than its size, and the too-small block exactly 7 lines and no line wider than 30. Each frame is addressed by its section heading and its size marker, so a test loads it by name rather than by line number. |
 | REQ-003 | `design/key-map.md` binds every key with its context, its action, the label the frame draws and the frame that draws it, and no key carries two meanings inside one context. A key that answers is bound only outside text mode, so a free-text answer may begin with `y` or `n`. |
 | REQ-004 | `design/glyph-table.md` maps the seven group ids to seven glyphs in the payload's order, gives `?` plus the raw value for a state the table does not name, and gives the ASCII fallback set. |
 | REQ-005 | `design/component-inventory.md` lists every component with what it reads, the keys it binds and every state it can be in, and each state names the frame that draws it. |
@@ -160,8 +160,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-007 | The operator approves the key map, and the approval names the date and the key set it covers. |
 | REQ-008 | The design documents name the JSON each surface reads and the phase that owns it, so a reader can tell which payload a pane depends on. |
-| REQ-009 | The design documents name the four screenshots in `context/screenshots/` and the openhuman `--demo` capture, so the visual reference is traceable. |
+| REQ-009 | The design documents name the four screenshots in `context/screenshots/` and the openhuman `--demo` capture, so the visual reference is traceable. The files are gitignored, and `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md` records their sources and sha256 values. |
 | REQ-010 | Every acceptance criterion is answered by a command that runs without a tty. |
+| REQ-011 | The design documents fix the answered row. An answer that exits 0 puts its outcome word, `approved`, `denied` or `answered`, on the row, and the row stays drawn until the next successful inbox read, which is the next 5 second poll. The row is not counted as open, so the banner count drops at once. No document says the screen refreshes at once after an answer. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -173,10 +174,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `ls design` prints the four documents, and `rg -c '\[SOURCE: ' design/*.md` prints a non-zero count for each of them.
-- **SC-002**: `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print `25` each, and 25 is the number of index rows drawn at both sizes, because the twenty-sixth is the too-small screen at 30x7.
+- **SC-002**: `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print `26` each, and 26 is the number of index rows drawn at both sizes, because the twenty-sixth is the too-small screen at 30x7.
 - **SC-003**: `rg -n '^\| \*\*Approved\*\* \|' design/key-map.md` prints one row, and it reads `Met` once the operator answers.
 - **SC-004**: `rg -c '^\| [0-9]+ \| ' design/component-inventory.md` prints 13.
 - **SC-005**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`.
+- **SC-006**: `rg -l 'outcome word' design/component-inventory.md design/glyph-table.md spec.md acceptance-criteria.md | wc -l` prints 4, so the answered row is carried by the requirement, the criterion and both design documents.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -210,7 +212,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-S02**: No openhuman source line is reproduced, so no GPL text enters the tree.
 
 ### Reliability
-- **NFR-R01**: Every `SOURCE` pointer resolves in this checkout, so a reader can follow each claim.
+- **NFR-R01**: Every `SOURCE` pointer resolves in a checkout that has the gitignored reference folder, and `research/context-manifest.md` records how to rebuild that folder, so a reader can follow each claim.
 - **NFR-R02**: Every state in the component inventory names a frame, so no state is described without being drawn.
 <!-- /ANCHOR:nfr -->
 
@@ -224,7 +226,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Failure path: a read that exits non-zero keeps the rows, sets the stale flag and puts the first stderr line in the status row; the screen does not exit.
 - Narrow terminal: below 24 columns or 8 rows the frame draws `Too small · Ctrl+D exit` and nothing else.
 - Closed input: the input closes with an item selected; nothing is written and the binary exits 0.
-- An item that closes under an open overlay: the overlay says the item is no longer open and disables every key but `Esc` and `Ctrl+C`.
+- An item that closes under an open overlay: the overlay says the item is no longer open and disables every key but `Esc` and `Ctrl+C`, except while the overlay is sending, where the answer's own result decides.
+- An answer that exits 0: the row keeps its outcome word and the banner count drops at once, and the row leaves on the next successful inbox read rather than at once.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -252,6 +255,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - How does a free-text answer begin with `y` or `n`? Decision: `t` enters text mode, and `y` and `n` are shortcuts only outside it, because a shortcut that fires on the first letter of an answer is a decision the operator did not make.
 - Does the overlay draw a grant before packet phase 006 lands one? Decision: only when the item carries it. The overlay and the detail column draw a grant's kind and rung when the item carries them and draw nothing where they are absent, so the screen builds before 006 and lights up after it.
 - Where is the operator's approval recorded? Decision: `design/key-map.md` section 6, AC-007, and a row in this packet's `decision-record.md`, which exists and which the parent's handoff names.
+- Does the screen refresh at once after an answer? Decision: no. The row keeps its outcome word and stays drawn until the next successful inbox read, because the inbox read filters answered items out and an immediate read would drop the row before the word could be read.
 <!-- /ANCHOR:questions -->
 
 ---

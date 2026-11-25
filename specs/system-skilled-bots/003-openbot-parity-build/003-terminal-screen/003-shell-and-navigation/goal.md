@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | `theme.rs` holds the one glyph table, with a Unicode and an ASCII column, and 004's panes read it rather than keeping a second copy, so the approved markers and their fallback are defined once. |
 | D3 | `theme::printable` is the one control-character filter, replacing each control character with `?`, because the status row draws stderr before 004's panes exist, and 004's panes call it directly rather than stripping them a second way. The crate holds no `sanitize.rs`. |
 | D4 | The shell snapshots compare the `TestBackend` buffer to an expected block held in the test file, so a change to the shell shows as a diff of drawn cells and no snapshot file hides them. |
-| D5 | `view/mod.rs` is the shell's module root and the file 004 and 005 add their `mod` lines to, so it is a binding file like `lib.rs` and no two lanes hold it at once. |
+| D5 | `view/mod.rs` is the shell's module root and the file 004 and 005 add their `mod` lines to, so it is a binding file and no two lanes hold it at once. |
 
 <!-- /ANCHOR:directive -->
 
@@ -85,6 +85,7 @@ and findings belong here.
 | Key-label test and snapshots | Pending | `ls crates/bots-tui/tests/render_keys.rs` exits 1 |
 | Review 1 fixes applied | Done | U1-P0-1, U1-P0-2, U1-P1-3, U1-P1-9, U1-P1-10 and U1-P1-11 applied here; the rest of `research/ui-review-1.md` belongs to 001, 002, 004, 005, 006 and the parent |
 | Review 2 fixes applied | Done | N-P1-1, N-P1-2, N-P1-3, N-P1-4, N-P1-11, N-P1-14, N-P1-16 and N-P2-19 applied here, with the footer ruling. The rest of `research/ui-review-2.md` belongs to 001, 002, 004, 005, 006 and the parent |
+| Integration wave applied | Done | `design/architecture.md` section 6.3, `design/state-machines.md` section 6.6 and `design/contracts.md` section 12.5 applied: `SHELL_ROWS` replaces the created table, `theme.rs` and `view/mod.rs` are 002's stubs, `state.rs` gains `on_shell_action`, the `lib.rs` row and T012 are gone because 002 owns the flags, the header reads `updatedAt`, and the palette's Enter, Esc and Ctrl+C rule is REQ-015's. R12's clean-room rule is in `plan.md` |
 
 ### Deviations and findings
 
@@ -97,5 +98,6 @@ and findings belong here.
 | The glyph table is defined here and drawn by 004 | The approved markers and their ASCII fallback are one table, and the shell draws three of them - the stale flag, the banner's `!` and the focus mark - so the table lands with the shell rather than with the panes. 004's panes read it rather than keeping a second copy. |
 | `stale_label` is 003's, not 004's | The header draws the age, so the formatter lives in `view/header.rs` and 004's panes call it. 004 cannot edit `header.rs`, so a formatter it owned would leave the header's own test waiting on another child. |
 | The chat line is 004's | The tab bar draws the tab and its active mark; the one line naming phase 010 is a body line, drawn into the body slot 004 owns. |
+| R8's frame loader does not reach the shell snapshots | No approved frame draws an empty body, because every frame in `design/mockups.md` fills the body with a pane. The two shell snapshots therefore keep the expected block in the test file, as D4 says, and 002's `tests/common/frames.rs` loader serves 004's pane snapshots and 005's end-to-end frame |
 | The hand proof is not a criterion | Every criterion above runs without a tty. The frame is drawn into a `TestBackend` buffer and the clock is a field the test sets, so no criterion waits on a keystroke. |
 <!-- /ANCHOR:log -->

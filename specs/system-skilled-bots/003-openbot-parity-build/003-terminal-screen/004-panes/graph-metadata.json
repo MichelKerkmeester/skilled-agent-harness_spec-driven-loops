@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The shell 003 lands draws a header, a tab bar, a footer and an empty body",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-25T22:01:19.904Z",
+    "last_save_at": "2026-11-25T22:42:30.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13fa2ee599fde9c74ffb8bb09aca08fd7d375b5ebc51f569b1fae299b4bb4bb4",
+    "source_fingerprint": "sha256:c9fad28b6b1667ab3faf62e9bcebe658bbab9e1aee6d4079ec12c1743154b35b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e16c7f76167a1ffe0cd4ec0e1f168b745c0dbd4a463e17978e415f0072e4df9",
-      "plan.md": "4ba03ebc54dd4430a7b3c25eae540dccf8220af55b979bbcd7a5b7ddcf3f76a3",
-      "tasks.md": "2459410dc1a3c27b19380821b35452bf38d7dc801ddd4d3158de1d4f5f00d26d",
+      "spec.md": "3c2e5bc0d9c533b769103e5fd7424d0727aee27f9a7c60be97a13c59ea525fa9",
+      "plan.md": "9d8e87397fbe6450589c8afb37c71aab0b0e032e2f6d10b1361c2acd0ae7d0f3",
+      "tasks.md": "657f937ae59c4d322f3c9cce764b0764485a0dadb9c5c95c771dd6bf02e029c5",
       "implementation-summary.md": "cd25aac9e2a41214f4876f4ff904828d9ffdb2f20258c1e58fb46addf21af29f"
     },
     "last_active_at": null

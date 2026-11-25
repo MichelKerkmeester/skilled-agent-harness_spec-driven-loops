@@ -51,7 +51,6 @@
     "key_files": [
       "spec.md",
       "goal.md",
-      "research/research.md",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
@@ -68,7 +67,8 @@
       "008-vault/goal.md",
       "009-skills/goal.md",
       "010-conversations/goal.md",
-      "011-messaging-channels/goal.md"
+      "011-messaging-channels/goal.md",
+      "012-manual-testing-scenarios/goal.md"
     ],
     "entities": [
       {
@@ -81,12 +81,6 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -196,41 +190,21 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Readiness Review",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Eleven Planned Phases",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Synthesis Canonical",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-25T21:34:59.288Z",
+    "last_save_at": "2026-11-25T22:43:15.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md",
-      "research/research.md"
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:03aae2a16c43dea7b8e514b5f1e5f3f8b08e12c9ed760ca184e5b81ea15d4e75",
+    "source_fingerprint": "sha256:e9cae9b33a2c43c1124334f1a57d56fc8e2b7493124e80fa6ba6375f5818e811",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c989fa8e31357b5339b92375649d40db6ce3e5db1c12c163083eac195596c4d6",
-      "research/research.md": "192b8cc222c96c8e0991bf7a3149e87cc186f390d9a9c7e3a46a2fe9fcc26549"
+      "spec.md": "f0c8c0ae6592849bf05ae6434716d13ebab78f4f7ecc3740f1dcb0951e1a3af9"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
     "last_active_at": "2026-11-25T21:34:59.288Z"

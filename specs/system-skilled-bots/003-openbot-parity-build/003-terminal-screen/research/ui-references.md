@@ -1,6 +1,6 @@
 # UI references for the terminal screen
 
-Source: a web and local sweep on 2026-11-25 of terminal apps and of the products this packet borrows from, looking for screenshots that teach something about our panes, overlays, keys, glyphs, states and tab bar. The images themselves stay local in the gitignored `context/screenshots/` (`web/` and `products/`, listed in its `INDEX.md`). This file holds only source URLs, licenses and the lessons. We copy ideas, never code or text, and from GPL, AGPL, source-available or unlicensed projects we take layout ideas only.
+Source: a web and local sweep on 2026-11-25 of terminal apps and of the products this packet borrows from, looking for screenshots that teach something about our panes, overlays, keys, glyphs, states and tab bar. The images themselves stay local in the gitignored `context/screenshots/` (`web/` and `products/`, listed in its local `INDEX.md`, and with source URLs and sha256 values in the tracked `research/context-manifest.md`). This file holds only source URLs, licenses and the lessons. We copy ideas, never code or text, and from GPL, AGPL, source-available or unlicensed projects we take layout ideas only.
 
 The design docs this file checks against are `001-ux-and-component-map/design/key-map.md`, `glyph-table.md`, `component-inventory.md` and `mockups.md`. A takeaway that agrees with a settled decision says so. A takeaway that would reopen a settled decision is in the avoid list, not the adopt list.
 
@@ -104,6 +104,23 @@ Each line names the reference and the design doc it supports or changes.
 8. A footer of `key word` pairs joined by `·`, overlay keys only while an overlay is open, and an 80-column fit test (Codex, gitui, dekit).
 9. Help as the grouped key table in columns (Codex, gh-dash, btop).
 10. System palette from named ANSI colours only (btop tty, gemini-cli ANSI).
+
+### 3.1 Where each adopt item lands
+
+R16 asked for a trace from each adopt item to the requirement that carries it, or to a recorded no. The carrier is a requirement id where one names the behaviour, and a design note or a default where none does. A row that says partly carried names the half with no id, so the gap is visible rather than assumed closed.
+
+| # | Adopt item | Carrier | Status |
+|---|------------|---------|--------|
+| 1 | Stable group order and next-row selection across refreshes, with a reducer test | `004-panes` REQ-016 for the group order and REQ-022 for the selection falling to the nearest surviving row | Carried |
+| 2 | The overlay order: kind, description, the command or question set apart, reason, numbered choices with their key, footer of keys | `005-answer-flow` REQ-013 | Carried |
+| 3 | One plain next-step line in the refused and gone states | `005-answer-flow` REQ-016 and REQ-017 | Carried |
+| 4 | The outcome word on the row after an answer, until the next refresh | A7 in `decision-record.md` section 2 and `005-answer-flow/design/state-machines.md` section 3 | Carried by a default, with no REQ id |
+| 5 | Glyph plus word on every row, and the failure reason or exit code in the detail | `004-panes` REQ-023 for the glyph plus word. The failure reason in the detail has no id, and REQ-024's detail column is where it would land | Partly carried |
+| 6 | Three-line empty states, with a routine definition on the Routines tab | `004-panes` REQ-020 and REQ-018 draw one line each, and REQ-018 carries the routine definition | Declined 2026-11-25, one line rather than three |
+| 7 | Routines columns of next run, status word and last outcome, `-` for none | `004-panes` REQ-018 carries the routine's state. Next run and last outcome have no id | Partly carried |
+| 8 | A footer of `key word` pairs joined by `·`, overlay keys only while an overlay is open, and a fit test | `003-shell-and-navigation` REQ-010 and REQ-012 plus `004-panes` REQ-026 plus the parent REQ-010 for the fit test | Carried, and the fit test is at 67 columns rather than 80 |
+| 9 | Help as the grouped key table in columns | `003-shell-and-navigation` REQ-015 lists every binding with its label. The column layout has no id | Partly carried |
+| 10 | System palette from named ANSI colours only | `003-shell-and-navigation` REQ-019 | Carried |
 
 ## 4. Avoid
 

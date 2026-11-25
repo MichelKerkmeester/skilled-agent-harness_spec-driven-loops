@@ -70,12 +70,13 @@ Trailing blanks are trimmed in this document. Each frame is exactly 24 or 40 lin
 | 24 | Choice overlay, numbered options | Choice overlay, footer | `1` to `9` pick, `n` denies, no `y` |
 | 25 | Palette and help, filtered | Palette | The filter line, the matched commands, the palette keys |
 | 26 | Too-small screen, below 24 columns or 8 rows | Too-small screen | The one message drawn below 24 columns or 8 rows |
+| 27 | Inbox, answered row | Header, tab bar, inbox, banner, footer | The answered row's outcome word in place of its state word and no `!` mark, kept until the next successful inbox read. The row is not counted as open, so the pane title and the banner count one open item |
 
 ---
 
 ## 3. THE FRAMES
 
-Each section names the state, then draws it at 80x24 and at 120x40. The too-small screen is drawn at 30x7, the smallest frame that holds its message whole.
+Each section names the state, then draws it at 80x24 and at 120x40. The too-small screen is drawn at 30x7, a size below the 8-row floor. The message is 23 columns, so it fits whole at 23 columns.
 
 <!-- Generated frame set for the 001 design packet. Every frame is exactly 80x24, 120x40 or 30x7 cells. -->
 
@@ -87,10 +88,11 @@ Each section names the state, then draws it at 80x24 and at 120x40. The too-smal
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 7 rows
+Activity · 7 groups · 8 rows
 
 Needs you
-  ! hello            needs_you   2m ago
+› ! hello            needs_you   2m ago
+  ! digest           needs_you   9m ago
 Working
   · nightly-report   working     now
 Scheduled
@@ -103,8 +105,7 @@ Failed
   ✗ nightly-report   failed      4m ago
 Recurring
   ↻ digest           recurring   every 6h
-
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -116,17 +117,18 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 7 rows                                            │Detail
+Activity · 7 groups · 8 rows                                            │Detail
                                                                         │
 Needs you                                                               │bot       hello
-  ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
-Working                                                                 │state     needs_you
-  · nightly-report   working     now                                    │at        2026-11-25T21:12:04Z
-Scheduled                                                               │actor     ada
-  ○ digest           scheduled   in 3h                                  │runId     01JC7Q4M2X9V
+› ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
+  ! digest           needs_you   9m ago                                 │state     needs_you
+Working                                                                 │at        2026-11-25T21:12:04Z
+  · nightly-report   working     now                                    │actor     ada
+Scheduled                                                               │runId     20261125T211204Z-7c1e9a40
+  ○ digest           scheduled   in 3h                                  │
 Done                                                                    │
-                                                                        │
-                                                                        │
+  ✓ hello            done        12m ago                                │
+Stopped                                                                 │
   – archive          stopped     1h ago                                 │
 Failed                                                                  │
   ✗ nightly-report   failed      4m ago                                 │
@@ -148,8 +150,7 @@ Recurring                                                               │
                                                                         │
                                                                         │
                                                                         │
-                                                                        │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -194,9 +195,9 @@ bots · 4 bots · index 12s ago
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 Inbox · 2 open · 1 expired                                              │Detail
                                                                         │
-  › ! hello            open     2m ago   Ship the release?              │id        hello
+  › ! hello            open     2m ago   Ship the release?              │id        20261125T211204Z-7c1e9a40
     ! digest           open     9m ago   Which channel?                 │botId     hello
-      archive          expired  1h ago   Delete the old runs?           │kind      send
+      archive          expired  1h ago   Delete the old runs?           │kind      decision
                                                                         │state     open
 Expired items stay listed and cannot be answered.                       │at        2026-11-25T21:12:04Z
                                                                         │expiresAt 2026-11-26T21:12:04Z
@@ -247,7 +248,7 @@ Routines · 2 routines
 
     nightly-report
     starts  daily 02:00 · does act · until "the report is filed"
-    state   enabled · streak 0
+    state   enabled · streak 1
 
 
 
@@ -256,7 +257,7 @@ Routines · 2 routines
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -276,7 +277,7 @@ Routines · 2 routines                                                   │Deta
                                                                         │does      tell
     nightly-report                                                      │until     the digest is sent
     starts  daily 02:00 · does act · until "the report is filed"        │untilMetAt -
-    state   enabled · streak 0                                          │streak    0
+    state   enabled · streak 1                                          │streak    0
                                                                         │switch    enabled
                                                                         │
                                                                         │
@@ -301,7 +302,7 @@ Routines · 2 routines                                                   │Deta
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -332,7 +333,7 @@ Chat
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -377,7 +378,7 @@ Chat                                                                    │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -408,7 +409,7 @@ Activity
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -453,7 +454,7 @@ Activity                                                                │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -560,7 +561,7 @@ Done
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: activity --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -605,7 +606,7 @@ Done                                                                    │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: activity --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -636,7 +637,7 @@ Activity
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: activity --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -681,7 +682,7 @@ Activity                                                                │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: activity --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1016,7 +1017,7 @@ Routines
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1061,7 +1062,7 @@ Routines                                                                │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1092,7 +1093,7 @@ Routines
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1137,7 +1138,7 @@ Routines                                                                │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1168,7 +1169,7 @@ Routines · stale 2m
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: routines --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1213,7 +1214,7 @@ Routines · stale 2m                                                     │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: routines --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1244,7 +1245,7 @@ Routines
 
 
 
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: routines --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1289,7 +1290,7 @@ Routines                                                                │
                                                                         │
                                                                         │
                                                                         │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: routines --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1303,10 +1304,11 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago                                      status failed
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 7 rows
+Activity · 7 groups · 8 rows
 
 Needs you
-  ! hello            needs_you   2m ago
+› ! hello            needs_you   2m ago
+  ! digest           needs_you   9m ago
 Working
   · nightly-report   working     now
 Scheduled
@@ -1319,8 +1321,7 @@ Failed
   ✗ nightly-report   failed      4m ago
 Recurring
   ↻ digest           recurring   every 6h
-
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: status --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1332,17 +1333,18 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago                                                                              status failed
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 7 rows                                            │Detail
+Activity · 7 groups · 8 rows                                            │Detail
                                                                         │
 Needs you                                                               │bot       hello
-  ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
-Working                                                                 │state     needs_you
-  · nightly-report   working     now                                    │at        2026-11-25T21:12:04Z
-Scheduled                                                               │actor     ada
-  ○ digest           scheduled   in 3h                                  │runId     01JC7Q4M2X9V
+› ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
+  ! digest           needs_you   9m ago                                 │state     needs_you
+Working                                                                 │at        2026-11-25T21:12:04Z
+  · nightly-report   working     now                                    │actor     ada
+Scheduled                                                               │runId     20261125T211204Z-7c1e9a40
+  ○ digest           scheduled   in 3h                                  │
 Done                                                                    │
-                                                                        │
-                                                                        │
+  ✓ hello            done        12m ago                                │
+Stopped                                                                 │
   – archive          stopped     1h ago                                 │
 Failed                                                                  │
   ✗ nightly-report   failed      4m ago                                 │
@@ -1364,8 +1366,7 @@ Recurring                                                               │
                                                                         │
                                                                         │
                                                                         │
-                                                                        │
-! 1 pending approval · Alt+2 → inbox
+! 2 pending approvals · Alt+2 → inbox
 bots: status --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
 Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
@@ -1622,10 +1623,10 @@ bots · 4 bots · index 12s ago
  │                                                                            │
  │                                                                            │
  │                                                                            │
- │ status   bots: answer refused: item-answered-differently                   │
+ │ status   bots: answer-not-approver                                         │
  └────────────────────────────────────────────────────────────────────────────┘
 
-bots: answer refused: item-answered-differently
+bots: answer-not-approver
 t type · n deny · y approve once · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
@@ -1659,7 +1660,7 @@ bots · 4 bots · index 12s ago
           │                                                                                                  │
           │                                                                                                  │
           │                                                                                                  │
-          │ status   bots: answer refused: item-answered-differently                                         │
+          │ status   bots: answer-not-approver                                                               │
           └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 
@@ -1670,7 +1671,7 @@ bots · 4 bots · index 12s ago
 
 
 
-bots: answer refused: item-answered-differently
+bots: answer-not-approver
 t type · n deny · y approve once · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
@@ -1930,7 +1931,7 @@ bots · 4 bots · index 12s ago
 
 
 
-↑↓ select · type to filter · Enter select · Esc close
+↑↓ select · type to filter · Bksp delete · Enter select · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1975,7 +1976,7 @@ bots · 4 bots · index 12s ago
 
 
 
-↑↓ select · type to filter · Enter select · Esc close
+↑↓ select · type to filter · Bksp delete · Enter select · Esc close
 Ctrl+C close · Ctrl+D exit
 ```
 
@@ -1993,6 +1994,82 @@ Too small · Ctrl+D exit
 
 ```
 
+### Inbox, answered row
+
+**80x24**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────
+Inbox · 1 open · 1 expired
+
+  ›   hello            approved 2m ago   Ship the release?
+    ! digest           open     9m ago   Which channel?
+      archive          expired  1h ago   Delete the old runs?
+
+Expired items stay listed and cannot be answered.
+
+
+
+
+
+
+
+
+
+
+! 1 pending approval · Alt+2 → inbox
+
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
+**120x40**
+
+```text
+bots · 4 bots · index 12s ago
+  1 Activity  [2 Inbox]  3 Routines   4 Chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Inbox · 1 open · 1 expired                                              │Detail
+                                                                        │
+  ›   hello            approved 2m ago   Ship the release?              │id        20261125T211204Z-7c1e9a40
+    ! digest           open     9m ago   Which channel?                 │botId     hello
+      archive          expired  1h ago   Delete the old runs?           │kind      decision
+                                                                        │state     approved
+Expired items stay listed and cannot be answered.                       │at        2026-11-25T21:12:04Z
+                                                                        │expiresAt 2026-11-26T21:12:04Z
+                                                                        │options   none
+                                                                        │
+                                                                        │Enter shows it is no longer open.
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+                                                                        │
+! 1 pending approval · Alt+2 → inbox
+
+Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page · Enter open
+Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
+```
+
 ---
 
 ## 4. WHAT THE FRAMES DO NOT SHOW
@@ -2004,7 +2081,7 @@ Too small · Ctrl+D exit
 | The cursor in free text | Drawn as `> ` before the typed text. The real cursor sits after the last character. |
 | The 5-second refresh | No frame changes when a read returns the same rows. The header's index age is the only cell that moves. |
 | A 2,000-row list | The frame shows 17 rows at 80x24 and 33 at 120x40. The list scrolls, and the selection stays visible; the frame is the window, not the list. |
-| The too-small screen at 20 columns | The message is drawn truncated to the frame width, so at 20 columns it reads `Too small · Ctrl+D e`. The 30x7 frame is the smallest one that holds it whole. |
+| The too-small screen at 20 columns | The message is drawn truncated to the frame width, so at 20 columns it reads `Too small · Ctrl+D e`. It fits whole from 23 columns up. |
 | The overlay over a scrolled list | The panel clears its own area, so the rows behind it are not drawn. The header, the tabs and the footer stay visible, which is how the operator keeps their place. |
 | A grant the item does not carry | The overlay and the detail column draw a grant's kind and rung only when the item carries them. Frame 18's item carries none, so no grant line is drawn; frame 23's item carries one, so the line is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
 | The detail column's grant lines | Frame 2's item carries no grant, so the detail column draws none. When an item carries one, the detail column draws the same grant line frame 23 draws in the overlay. |
@@ -2013,7 +2090,7 @@ Too small · Ctrl+D exit
 
 ## 5. THE VISUAL REFERENCES
 
-The frames above are drawn from the payload shapes and the reference sources, not traced from a picture. These are the pictures they were checked against, and each one is named so a reader can open it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:72]
+The frames above are drawn from the payload shapes and the reference sources, not traced from a picture. These are the pictures they were checked against, and each one is named so a reader can open it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:72] The pictures are gitignored and stay local. Rows I01 to I04 and section 4 of `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md` give each one's source and sha256.
 
 | Reference | What it shows | What the frames take from it |
 |-----------|---------------|------------------------------|
@@ -2029,7 +2106,7 @@ The openhuman captures are the only place a real terminal's output is compared w
 
 ## 6. SOURCES
 
-Every pointer below resolves in this checkout. The openhuman rows are design references only: the shape is followed, the code and the text are not copied.
+Every pointer below resolves in a checkout that has the gitignored `specs/system-skilled-bots/context/` folder. Section 2 of `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md` names each repo's upstream and the commit, where one is recorded. The openhuman rows are design references only: the shape is followed, the code and the text are not copied.
 
 | What the frame follows | Pointer |
 |------------------------|---------|

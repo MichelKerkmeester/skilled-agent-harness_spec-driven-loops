@@ -42,7 +42,7 @@ Every `cargo` command names its manifest, so it runs from the repository root an
 ## Phase 1: Setup
 
 - [ ] T001 Confirm 002's crate and 003's shell build, so the body this child fills exists (`$CRATE`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`.
-- [ ] T002 Confirm the fixture carries the four payloads and the row keys the panes read (`$CRATE/tests/fixtures/bots`). Verify: `bash $CRATE/tests/fixtures/bots activity --json | jq -e '.groups[0].rows[0] | has("botId") and has("identity") and has("state") and has("at") and has("actor") and has("runId")'` exits 0, `bash $CRATE/tests/fixtures/bots inbox --json | jq -e '.items[0] | has("id") and has("botId") and has("question") and has("state") and has("options") and has("expiresAt")'` exits 0, and `bash $CRATE/tests/fixtures/bots routines --json | jq -e 'type == "array"'` exits 0.
+- [ ] T002 Confirm the fixture carries the four payloads and the row keys the panes read (`$CRATE/tests/fixtures/bots`). Verify: `bash $CRATE/tests/fixtures/bots activity --json | jq -e '.groups[0].rows[0] | has("botId") and has("identity") and has("state") and has("at") and has("actor") and has("runId")'` exits 0, `bash $CRATE/tests/fixtures/bots inbox --json | jq -e '.items[0] | has("id") and has("botId") and has("question") and has("state") and has("options") and has("expiresAt")'` exits 0, and `bash $CRATE/tests/fixtures/bots routines --json | jq -e 'has("version") and has("routines")'` exits 0.
 - [ ] T003 Confirm the design references resolve and record the row shapes they fix (`specs/system-skilled-bots/context/`). Verify: `rg -n 'ACTIVITY_GROUPS' specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts` prints the seven ids, `rg -n 'nothing waiting on you' specs/system-skilled-bots/context/OpenBot-main/app/src/components/needs-you/board.tsx` prints the empty inbox line, and `rg -n 'EMPTY_BODY' specs/system-skilled-bots/context/OpenBot-main/app/src/components/routines/routines-list.tsx` prints the empty routines line.
 <!-- /ANCHOR:phase-1 -->
 
@@ -59,11 +59,11 @@ Every `cargo` command names its manifest, so it runs from the repository root an
 - [ ] T009 Write the chat placeholder: one line naming phase 010 and `bots chat`, holding no state (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- chat` prints `test result: ok` and names `chat_placeholder_names_phase_010`.
 - [ ] T010 Write the five state lines: loading, empty, rows, error and stale, with the error keeping the rows of the last successful read and the stale state drawing the label `stale_label` returns from 003's `view/header.rs` (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- states` prints `test result: ok` and names `loading_draws_a_named_line` and `error_keeps_rows_and_sets_stale`.
 - [ ] T011 Write the wide-layout detail column: the selected row's detail as a right column at 120 columns or wider, one column below that, drawing a grant's kind and rung only when the item carries them (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- wide` prints `test result: ok` and names `detail_draws_as_a_right_column_at_120`.
-- [ ] T012 Add the `list` rows to `keys.rs` - Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only - and the reducer arms that move `Option<ItemId>` and fall to the nearest surviving row (`$CRATE/src/keys.rs`, `$CRATE/src/state.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`.
+- [ ] T012 Add the `list` rows to `keys.rs` - Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only - and the reducer arms `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row (`$CRATE/src/keys.rs`, `$CRATE/src/state.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`.
 - [ ] T013 Declare `mod panes;` in the view root and route the body to the active pane (`$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`.
-- [ ] T014 Write the snapshot table: one row per pane and state naming the fixture payload, the expected first body line and the expected marker, drawn at 80x24 and 120x40, asserting the `TestBackend` buffer directly (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, sixteen per size.
-- [ ] T015 Write the reorder test: two polls with the rows reversed keep the selection on the same item id, and a selection whose item leaves the payload falls to the nearest surviving row (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
-- [ ] T016 Write the 2,000-row budget test: 2,000 activity rows at 120x40 draw in under 16 ms, measured around the draw call after one warm-up (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_draw_under_16ms`.
+- [ ] T014 Write the snapshot table: one row per pane and state naming the frame heading and the fixture payload, each frame loaded from `$CRATE/design/mockups.md` through 002's `tests/common/frames.rs` and compared cell for cell at 80x24 and 120x40 (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, sixteen per size.
+- [ ] T015 Write the reorder test: two polls with the rows reversed keep the selection on the same row key, and a selection whose item leaves the payload falls to the nearest surviving row (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
+- [ ] T016 Write the 2,000-row count test: 2,000 activity rows at 120x40 visit at most the body height's rows, read from the count the draw returns, and keep the 16 ms timing as an ignored test the operator runs locally (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`, and `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget --ignored` names `two_thousand_rows_draw_under_16ms`.
 - [ ] T017 Write the sanitizer test at the pane boundary: a bot id carrying `\u{1b}[2J` draws as `?[2J` with no control byte in the buffer (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
 <!-- /ANCHOR:phase-2 -->
 
@@ -75,7 +75,7 @@ Every `cargo` command names its manifest, so it runs from the repository root an
 - [ ] T018 Run the formatter check (`$CRATE`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0.
 - [ ] T019 Run the linter with warnings denied (`$CRATE`). Verify: `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] T020 Run the crate suite (`$CRATE`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
-- [ ] T021 Prove no openhuman code was copied and no snapshot crate was added (`$CRATE`). Verify: `rg -n 'openhuman' $CRATE/src` prints only comment lines, `rg -c 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, and `rg -n 'insta' $CRATE/Cargo.toml` prints nothing.
+- [ ] T021 Prove no openhuman code was copied and no snapshot crate was added (`$CRATE`), and record the by-eye comparison the clean-room rule in `plan.md` requires. Verify: `rg -n 'openhuman' $CRATE/src` prints only comment lines, `rg -c 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, and `rg -n 'insta' $CRATE/Cargo.toml` prints nothing.
 - [ ] T022 Validate the packet (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
@@ -129,7 +129,7 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 |------|-------|-------------------------|------------|----------|
 | A | T014 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/tests/panes.rs` | rung 2 at `max`, then 3 |
 
-**Workers:** 1. The table is mechanical once the bodies exist, so it takes `high`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, one per pane per state at each size.
+**Workers:** 1. The table is mechanical once the bodies exist, so it takes `high`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, one per pane per state at each size, each compared cell for cell to its frame.
 
 ### Wave 6 - The reorder, budget and sanitizer tests
 
@@ -137,7 +137,7 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 |------|-------|-------------------------|------------|----------|
 | A | T015, T016, T017 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `$CRATE/tests/panes.rs` | rung 1 at `max` as a deliberate re-tier, then stop and report |
 
-**Workers:** 1, serial inside the lane because all three tasks edit `$CRATE/tests/panes.rs`. This is the packet's hardest wave: a timing assertion that passes for the wrong reason and a reorder test that asserts the wrong thing both go green while proving nothing, so it takes the highest tier the roster offers. `cli-codex` is the last rung, so a spent codex re-tiers to `cli-pi` at `max` rather than dropping the tier, and a spent `cli-pi` stops the wave. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder`, `-- budget` and `-- sanitize` each print `test result: ok`, and the three named tests appear.
+**Workers:** 1, serial inside the lane because all three tasks edit `$CRATE/tests/panes.rs`. This is the packet's hardest wave: a timing assertion that passes for the wrong reason and a reorder test that asserts the wrong thing both go green while proving nothing, so it takes the highest tier the roster offers. `cli-codex` is the last rung, so a spent codex re-tiers to `cli-pi` at `max` rather than dropping the tier, and a spent `cli-pi` stops the wave. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder`, `-- budget` and `-- sanitize` each print `test result: ok`, and the three named tests appear, with `two_thousand_rows_visit_at_most_the_body_height` among them.
 
 ### Wave 7 - Verification gates
 
@@ -156,7 +156,7 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] `cargo test --manifest-path $CRATE/Cargo.toml --test panes` prints `test result: ok`, including the 32 snapshots and the 2,000-row budget
+- [ ] `cargo test --manifest-path $CRATE/Cargo.toml --test panes` prints `test result: ok`, including the 32 snapshots and the 2,000-row count
 <!-- /ANCHOR:completion -->
 
 ---
@@ -211,7 +211,7 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at both sizes.
-- [ ] CHK-021 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_draw_under_16ms`.
+- [ ] CHK-021 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`.
 - [ ] CHK-022 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
 - [ ] CHK-023 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
 - [ ] CHK-024 [P1] `rg -n 'insta' $CRATE/Cargo.toml $CRATE/tests` prints nothing, so every snapshot asserts the buffer directly.

@@ -38,13 +38,13 @@ Four markdown documents in `design/` fix the screen: one ASCII frame per state a
 ### Definition of Ready
 - [ ] The parent's six operator decisions are recorded in `../decision-record.md`
 - [ ] The four payload shapes are named by the phases that own them
-- [ ] Every reference source under `specs/system-skilled-bots/context/` resolves in this checkout
+- [ ] Every reference source under `specs/system-skilled-bots/context/` resolves in a checkout that has that gitignored folder, and every pointer check names its skip in one that does not
 
 ### Definition of Done
 - [ ] Every acceptance criterion is `Met`, or `Waived` with an ADR
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`
 - [ ] `rg -c '\[SOURCE: ' design/*.md` prints a non-zero count for each of the four documents
-- [ ] `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print `25` each
+- [ ] `rg -c '^\*\*80x24\*\*$' design/mockups.md` and `rg -c '^\*\*120x40\*\*$' design/mockups.md` print `26` each
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -56,8 +56,8 @@ Four markdown documents in `design/` fix the screen: one ASCII frame per state a
 Documents first, one frame per state.
 
 ### Key Components
-- **`design/mockups.md`**: the frame grammar, the state index and twenty-six states, twenty-five of them at both sizes and the too-small screen at 30x7. It is the layout contract.
-- **`design/key-map.md`**: six contexts, twenty-five bindings, the four rules that fix the pre-expansion key defects, and the approval record. It is the input contract.
+- **`design/mockups.md`**: the frame grammar, the state index and twenty-seven states, twenty-six of them at both sizes and the too-small screen at 30x7. It is the layout contract.
+- **`design/key-map.md`**: six contexts, twenty-nine bindings, the four rules that fix the pre-expansion key defects, and the approval record. It is the input contract.
 - **`design/glyph-table.md`**: eight glyphs, the ASCII set, the inbox's own words and the colour rule. It is the meaning contract.
 - **`design/component-inventory.md`**: thirteen components with reads, keys and states. It is the completeness contract.
 
@@ -85,6 +85,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Unit | Each fenced frame is exactly 24 or 40 lines and no line is wider than its size, and the too-small frame is exactly 7 lines and no line wider than 30 | `perl` over the fenced blocks, because it counts characters rather than bytes |
 | Integration | Every `SOURCE` pointer resolves to a file and a line inside it | A `bash` loop over the pointers |
 | Integration | Every drawn label in the key map appears in at least one frame | A `bash` loop over the label column |
+| Integration | The answered row's outcome word is named in the requirement, the criterion, the inventory and the glyph table | `rg -l` over the four files |
 | Manual | The operator reads the key map and approves it | The operator's answer in `design/key-map.md` section 6 |
 
 The manual row is the only one a command cannot answer, and it is the packet's exit. Every other row runs here without a tty.
@@ -98,7 +99,7 @@ The manual row is the only one a command cannot answer, and it is the packet's e
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | The parent's operator decisions Q002 to Q007 | Internal | Green | The frames would have no fixed key set, glyph set or screenshot set |
-| The reference repositories under `specs/system-skilled-bots/context/` | External | Green | A pointer would dangle and the design would lose its evidence |
+| The reference repositories under `specs/system-skilled-bots/context/` | External | Green | A pointer would dangle and the design would lose its evidence. The folder is gitignored, so a fresh checkout skips the pointer checks by name and rebuilds it from `research/context-manifest.md` |
 | `validate.sh` and the packet's templates | Internal | Green | The packet could not close |
 <!-- /ANCHOR:dependencies -->
 
@@ -164,6 +165,7 @@ Vibe is not the `high` route, because its roster row pins `thinking = "max"` and
 | Set `AI_SESSION_CHILD=1` and state the exemption in the prompt | The variable makes the waiver true; the prompt makes it observable |
 | Count a Vibe run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` | A clean stdout proves nothing, because a denied tool call still exits 0 [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116] |
 | Name the model and the effort explicitly on every dispatch | A caller's config default is not reproducible [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:235] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
+| Keep GPL sources out of the brief of a worker that writes the matching module | A worker that writes `terminal.rs`, `theme.rs`, the overlay keys or the overlay view gets our design files and MIT or Apache references only. openhuman and tinychannels paths appear in design documents as provenance, never in a brief, and the orchestrator compares the finished guard and overlay with the openhuman files by eye and records that it did [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/fable-review-1.md:116] |
 
 ### The wave discipline
 

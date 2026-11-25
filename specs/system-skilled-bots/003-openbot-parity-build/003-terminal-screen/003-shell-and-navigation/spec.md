@@ -30,7 +30,7 @@ contextType: "implementation"
 | **Phase** | 3 of 6 |
 | **Predecessor** | 002-architecture-and-contracts |
 | **Successor** | 004-panes |
-| **Handoff Criteria** | `cargo test --test render_keys` passes, including the key-label assertion and both shell snapshots; `cargo test --lib keys` and `cargo test --lib theme` pass; `cargo fmt --check` and `cargo clippy --all-targets -- -D warnings` exit 0 in `crates/bots-tui`. Every one of those runs without a tty |
+| **Handoff Criteria** | `cargo test --test render_keys` passes, including the key-label assertion and both shell snapshots; `cargo test --lib keys`, `cargo test --lib state` and `cargo test --lib theme` pass; `cargo fmt --check` and `cargo clippy --all-targets -- -D warnings` exit 0 in `crates/bots-tui`. Every one of those runs without a tty |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -40,7 +40,7 @@ contextType: "implementation"
 
 This is **Phase 3** of the six Terminal screen children: the UX map, the architecture and contracts, the shell, the panes, the answer flow and the hardening proof.
 
-**Scope Boundary**: The shell only. This phase writes the key table, the theme, the frame that composes the seven bands, the header, the tab bar, the footer with its status row, the palette and the too-small screen. It draws no pane body, no banner and no overlay, and it writes no answer.
+**Scope Boundary**: The shell only. This phase fills the key table's shell rows, writes the theme, the frame that composes the seven bands, the header, the tab bar, the footer with its status row, the palette, the too-small screen and the shell's reducer arms. It draws no pane body, no banner and no overlay, and it writes no answer.
 
 **Dependencies**:
 - Phase 002's crate, `state.rs`, `app.rs`, `cli.rs`, `model.rs` and `tests/fixtures/bots`, which this phase reads and extends but does not replace. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:234]
@@ -49,7 +49,7 @@ This is **Phase 3** of the six Terminal screen children: the UX map, the archite
 - Phase 001's `design/` folder, which holds the mockups, the key map and the glyph table this phase implements. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:25]
 
 **Deliverables**:
-- `crates/bots-tui/src/keys.rs`, `src/theme.rs`, `src/view/mod.rs`, `src/view/header.rs`, `src/view/tabs.rs` and `src/view/footer.rs`.
+- `crates/bots-tui/src/keys.rs`, `src/theme.rs`, `src/state.rs`, `src/view/mod.rs`, `src/view/header.rs`, `src/view/tabs.rs` and `src/view/footer.rs`.
 - `crates/bots-tui/tests/render_keys.rs`, holding the key-label assertion and the two shell snapshots.
 <!-- /ANCHOR:phase-context -->
 
@@ -92,9 +92,10 @@ The first two blocks are the measured gap: the crate does not exist yet, so no k
 ## 3. SCOPE
 
 ### In Scope
-- Add `crates/bots-tui/src/keys.rs`: one table of context, key, action and label rows, with the `main`, `inbox`, `palette` and `too-small` contexts filled, so the footer and the palette read the same rows that bind the keys.
-- Add `crates/bots-tui/src/theme.rs`: the System and Mono palettes with `--mono` selecting Mono, the glyph table with its Unicode and ASCII columns, and `printable`.
-- Add the shell frame at `crates/bots-tui/src/view/mod.rs`: header, tabs, rule, body slot, banner slot, status row and footer, the too-small screen, and the palette panel.
+- Fill `crates/bots-tui/src/keys.rs`'s `SHELL_ROWS`, the `main`, `inbox`, `palette` and `too-small` rows, in the table 002 creates, so the footer and the palette read the same rows that bind the keys.
+- Fill the `crates/bots-tui/src/theme.rs` stub 002 creates: the System and Mono palettes with `--mono` selecting Mono, the glyph table with its Unicode and ASCII columns, and `printable`.
+- Fill the `crates/bots-tui/src/view/mod.rs` stub 002 creates with the shell frame: header, tabs, rule, body slot, banner slot, status row and footer, the too-small screen, and the palette panel.
+- Add `on_shell_action` to `crates/bots-tui/src/state.rs`: the tab, palette and quit arms, and no other line of the file.
 - Add `view/header.rs`, `view/tabs.rs` and `view/footer.rs`: the bot count, `stale_label` and the stale flag, the four tabs with the active mark, and the status row plus the key line generated from `keys.rs`.
 - Add `crates/bots-tui/tests/render_keys.rs`: the key-label assertion over the table and the shell buffer snapshots at 80x24 and 120x40.
 
@@ -109,13 +110,13 @@ The first two blocks are the measured gap: the crate does not exist yet, so no k
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `crates/bots-tui/src/keys.rs` | Create | `Context`, `Key`, `Action` and `Label`, and the table rows for `main`, `inbox`, `palette` and `too-small`, each carrying the label the renderer draws |
-| `crates/bots-tui/src/theme.rs` | Create | System and Mono palettes, `--mono` selecting Mono, the glyph table with its ASCII column, and `printable` |
-| `crates/bots-tui/src/view/mod.rs` | Create | The shell frame: the seven bands, the too-small screen and the palette panel. It is the module root the view's children need and the file 004 and 005 add their `mod` lines to |
+| `crates/bots-tui/src/keys.rs` | Modify | `SHELL_ROWS`, each carrying the label the renderer draws. The types are 002's |
+| `crates/bots-tui/src/theme.rs` | Modify | The stub 002 creates: System and Mono palettes, `--mono` selecting Mono, the glyph table with its ASCII column, and `printable` |
+| `crates/bots-tui/src/view/mod.rs` | Modify | The stub 002 creates: the shell frame, the seven bands, the too-small screen and the palette panel. It is the module root the view's children need and the file 004 and 005 add their `mod` lines to |
 | `crates/bots-tui/src/view/header.rs` | Create | The bot count, the index age, `stale_label`, the stale flag with its age, and the error state |
 | `crates/bots-tui/src/view/tabs.rs` | Create | The four tabs and the active mark; 004 draws the chat tab's one line naming phase 010 |
 | `crates/bots-tui/src/view/footer.rs` | Create | The status row and the key line generated from `keys.rs` |
-| `crates/bots-tui/src/lib.rs` | Modify | `pub mod` lines for `keys`, `theme` and `view`, and the `--mono` and `--ascii` flags in the argument parsing |
+| `crates/bots-tui/src/state.rs` | Modify | `on_shell_action`: tabs, palette and quit |
 | `crates/bots-tui/tests/render_keys.rs` | Create | The key-label assertion over the table, and the shell buffer snapshots at 80x24 and 120x40 |
 <!-- /ANCHOR:scope -->
 
@@ -133,9 +134,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | The tab bar holds four tabs: Alt+1 activity, Alt+2 inbox, Alt+3 routines, Alt+4 chat, with `[` and `]` as the fallback pair. Ctrl+P opens the command palette and Ctrl+D exits. The chat tab draws one line naming phase 010 and holds no state; 004 draws that line in the body slot this phase reserves. |
 | REQ-010 | Every bound key is drawn on screen in the frame that binds it. The footer names `Alt+1..4`, `[` `]`, `Ctrl+P` and `Ctrl+D`. The inbox footer names `Enter open`. The decision overlay names `t`, `n`, `y` and `Esc` and the choice overlay names `1-9`, `n` and `Esc`, each drawing `n deny` before any approve key. |
 | REQ-012 | `keys.rs` holds one table of context, key, action and label rows, and both the footer and the palette read that table rather than a second list, so a key cannot be bound without a label. The contexts are the key map's six, verbatim: `main`, `inbox`, `list`, `overlay`, `palette` and `too-small`. This phase fills `main`, `inbox`, `palette` and `too-small`, 004 fills `list` and 005 fills `overlay`. |
-| REQ-013 | The header draws the bot count from `bots status --json`, which is the rows whose `kind` is `bot`, the index age from `builtAt`, and the stale flag with its age. It draws three states: `ok`, `stale` and `error`, and the error state keeps the last good count rather than blanking the row. `stale_label` in `view/header.rs` is the one age formatter, so 004's panes call it rather than keeping a second copy. |
+| REQ-013 | The header draws the bot count from `bots status --json`, which is the rows whose `kind` is `bot`, the index age from `updatedAt`, or from `builtAt` when `updatedAt` is absent, and the stale flag with its age. It draws three states: `ok`, `stale` and `error`, and the error state keeps the last good count rather than blanking the row. `stale_label` in `view/header.rs` is the one age formatter, so 004's panes call it rather than keeping a second copy. |
 | REQ-014 | The status row draws the first stderr line of the last failed CLI call and is blank when no call has failed. A later success clears it. |
-| REQ-015 | Ctrl+P and `?` open the palette, which lists every binding in the table with its label, moves its selection with Up and Down, drawn as `↑↓ select`, filters as the operator types, drawn as `type to filter`, runs the selected action on Enter and closes on Esc. Single-key shortcuts pause while the filter holds text, so typing a word never fires a binding. |
+| REQ-015 | Ctrl+P and `?` open the palette, which lists every binding in the table with its label, moves its selection with Up and Down, drawn as `↑↓ select`, filters as the operator types, drawn as `type to filter`, runs the selected action on Enter and closes on Esc. Single-key shortcuts pause while the filter holds text, so typing a word never fires a binding. Enter runs the selected row only when the row is bound in the context the palette was opened from, and a row bound elsewhere does nothing. Esc and Ctrl+C return to that context. |
 | REQ-016 | Below 24 columns or 8 rows the frame draws `Too small · Ctrl+D exit` and nothing else, at every size down to 1x1, and never panics. The line is our own wording, and it fits whole at 23 columns, the narrowest area that draws it. |
 | REQ-017 | Ctrl+C quits when no overlay is open and produces no `Answer` effect, so it never writes. 005 gives an open overlay first refusal on the key, which leaves this table row unchanged. |
 
@@ -246,8 +247,8 @@ Two keys deviate from the reference on purpose. openhuman cycles tabs with Ctrl+
 ## 10. OPEN QUESTIONS
 
 - Does the palette's Enter run the selected action or only show it? Decision: it runs it, because the palette is the only place a binding is discoverable and a help screen that cannot act is a second key map to keep in sync.
-- Does the header's age need a clock in the state? Decision: yes. `state.now` is stamped by the loop from the same clock that stamps `last_ok_at`, so the header computes the age from two fields and a test sets both.
-- Where does the palette live? Decision: `view/mod.rs`, because `view/overlay.rs` belongs to 005 and the palette is the shell's own panel.
+- Does the header's age need a clock in the state? Decision: yes. `state.now` is the time the last Tick carried, sent by the event source once a second.
+- Where does the palette live? Decision: its state in `State.palette` with its arms in `on_shell_action`, its drawing in `view/mod.rs`, because `view/overlay.rs` belongs to 005 and the palette is the shell's own panel.
 - Does the status row strip control characters before 004's panes exist? Decision: yes. `theme::printable` is the one function and the one behaviour, replacing each control character with `?`. 004's panes call it directly, and the crate holds no `sanitize.rs`.
 - Does the binary read `NO_COLOR`? Decision: no. The `ui` verb reads it and passes `--mono`, and passes `--ascii` when asked, so the binary stays environment-free and one test drives the palette from an argument.
 - Does the footer name `[` and `]` as one label or two? Decision: one label, `[ ] cycle`, because the pair is one binding and the advisory names it as a pair.

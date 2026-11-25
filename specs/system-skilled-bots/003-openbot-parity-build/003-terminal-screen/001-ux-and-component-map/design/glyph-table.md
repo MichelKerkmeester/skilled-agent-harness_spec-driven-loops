@@ -59,13 +59,15 @@ The same rule covers a missing field: a row with no `state` draws `?` and the wo
 
 ## 4. THE INBOX DOES NOT USE THESE GLYPHS
 
-An inbox item's `state` is `open`, `answered` or `expired`, and the pane lists the open and the expired ones. None of those is one of the seven group ids, so the inbox draws its state as a word, and only an open item carries the `!` gutter mark. Reusing `–` for `expired` would read as `stopped`, which is a different fact about a different record. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153]
+An inbox item's `state` is `open`, `answered` or `expired`, and the pane lists the open and the expired ones, plus the row it has just answered. None of those is one of the seven group ids, so the inbox draws its state as a word, and only an open item carries the `!` gutter mark. Reusing `–` for `expired` would read as `stopped`, which is a different fact about a different record. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153]
 
 | Item state | Drawn | Answerable |
 |------------|-------|------------|
 | `open` | `!` in the gutter, the word `open`, the question | Yes |
 | `expired` | No glyph and a blank gutter, the word `expired`, dimmed | No: the keys are disabled and the overlay says the item is no longer open |
-| `answered` | Not listed by `bots inbox --json`; `--all` lists it with the word `answered` | No |
+| `answered` | No glyph and a blank gutter, the outcome word `approved`, `denied` or `answered`, dimmed | No |
+
+The answered row is the one row the screen draws that no read returns. An answer that exits 0 puts its outcome word on the row, and the row stays drawn until the next successful inbox read, which is the next 5 second poll. The row is not counted as open, so the banner count drops at once. `bots inbox --json` does not list an answered item, so the row comes from the answer result rather than from a payload, and `--all` is the only read that would list it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:253]
 
 An expired item stays visible because the operator needs to know it existed and went unanswered. It cannot be answered because the runtime would refuse it, and a screen that offers a key the runtime refuses is a screen that lies. The gutter is blank rather than carrying a glyph, so the row cannot be read as `stopped`, which is a fact about a run and not about an item. `design/mockups.md` frame 2 draws the blank gutter. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:93-95] [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:466-467]
 
