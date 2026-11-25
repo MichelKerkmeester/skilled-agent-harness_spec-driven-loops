@@ -1044,6 +1044,19 @@ The second is the closure docs. The review contract makes `spec_code` and `check
 | Q037 | Fix all sixteen generation 9 findings as round thirteen and run generation 10 at seven iterations. | Not stated. | None | T115 to T122, AC-062 to AC-067 |
 | Q038 | Have a fresh Opus high agent review and fix the work and the deep-review logic, because the rerun loop looked like overengineering. | Not stated. | None | scratch/opus-review.md, 87f1cb952c7, 46465394d97, ADR-010 |
 | Q039 | Accept ADR-010, close AC-040 and T084 on generation 10, push to main and remove worktree 535. | Not stated. | The earlier AC-040 criterion that coverage must pass | ADR-010, AC-040, REQ-033, T084 |
+| Q040 | Keep a typed deep command outranking the stuck-run diagnosis on the hook head. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | ADR-005, Q034 |
+| Q041 | Run a deep review loop on the deep-loop offers work, focused on the typed-command hint. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, review/ |
+| Q042 | Run that review on native Opus rather than revert the dirty Pi settings file. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | review/ |
+| Q043 | Run the review as three fan-out lineages at once. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | review/ |
+| Q044 | Run the T084 traceability review before planning the fallback gap. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q045 | Use DeepSeek Flash max as the executor for the next work. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084 |
+| Q046 | Run npm ci in worktree 535 so the advisor builds. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084 |
+| Q047 | Fix every finding of the second traceability rerun and rerun at seven iterations. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q048 | Fix all twenty findings of the third traceability rerun and rerun. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q049 | Amend REQ-035 rather than serve a default mode for a mode-free loop ask. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | ADR-008, REQ-035 |
+| Q050 | Fix all generation 6 findings, cite evidence by symbol and rerun. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q051 | Fix all generation 7 findings and run generation 8. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q052 | Merge the hook-recorded answers from the primary checkout into the committed decision record and push. | Not stated. Asked by a second session working in the primary checkout. | None | Q040 to Q051 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1736,6 +1749,267 @@ Reject ADR-010, waive AC-040
 Answer:
 ```text
 Accept ADR-010, close, push (Recommended)
+```
+
+### Q040
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01URaLW6syh6uniNE1WcbHuR:0 -->
+
+Question:
+```text
+"my deep review run is stuck, /deep:review again" gets /doctor:deep-loop from the native gate and no run row from the Python gate, but the typed-command path still puts "/deep:review (ask)" on the hook head. Should the typed command keep outranking the stuck-run diagnosis? The merge and push to main go ahead either way; a change would be a follow-up commit.
+```
+
+Options:
+```text
+Keep typed (Recommended)
+Diagnosis outranks
+```
+
+Answer:
+```text
+Keep typed (Recommended)
+```
+
+### Q041
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_014LbwNRgCLxRvfjn2TzULy5:0 -->
+
+Question:
+```text
+Run a deep review loop on the deep-loop command offers work (packet 012, with 013's typed-command hint as the focus)? A one-turn test of opencode-go/hy4-flash-free at high answered at $0.
+```
+
+Options:
+```text
+A) Run it (Recommended)
+B) Step through setup
+C) No loop
+```
+
+Answer:
+```text
+A) Run it (Recommended)
+```
+
+### Q042
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01Ms8DnVsVuvcP8ofwHBd7K6:0 -->
+
+Question:
+```text
+The hy4-flash-free review can't start while the primary checkout is dirty: cli-opencode refuses to dispatch, and the only change is Pi's version bookkeeping in .pi/settings.json (two version bumps, untouched since Nov 21). How should I clear the way?
+```
+
+Options:
+```text
+Revert it for me (Recommended)
+I'll handle it
+Use native Opus instead
+Cancel
+```
+
+Answer:
+```text
+Use native Opus instead
+```
+
+### Q043
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_011rZkEM4owQmizDJCdaNWRJ:0 -->
+
+Question:
+```text
+How should "Opus medium, max parallel" run the deep review of the deep-loop offers work? Iterations inside one loop can't run in parallel, so parallel means fan-out lineages, each a separate claude process running all four dimensions with bypassPermissions so it can record state.
+```
+
+Options:
+```text
+3 lineages at once (Recommended)
+5 lineages at once
+One loop, no parallel
+```
+
+Answer:
+```text
+3 lineages at once (Recommended)
+```
+
+### Q044
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01F2kCQhRcthus3AaCrM5KvQ:0 -->
+
+Question:
+```text
+The fix round for the deep-loop offers is pushed to main as 2aaab457ccf. Two items are still open: T084 (a follow-up /deep:review focused on traceability, which AC-040 waits on) and the known gap where the Python fallback never offers an untyped command such as /deep:review for 'run a deep review on the parser'. Which should run next?
+```
+
+Options:
+```text
+T084 review first (Recommended)
+Both, review then plan
+Plan the fallback gap only
+Stop here
+```
+
+Answer:
+```text
+T084 review first (Recommended)
+```
+
+### Q045
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01F2kCQhRcthus3AaCrM5KvQ:1 -->
+
+Question:
+```text
+Which executor should the next work use? Claude agents were refused earlier over billing, and Luna resets at 12:55 PM.
+```
+
+Options:
+```text
+DeepSeek Flash max (Recommended)
+Luna xhigh after reset
+Mix both
+```
+
+Answer:
+```text
+DeepSeek Flash max (Recommended)
+```
+
+### Q046
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01KvwgucyCwVuPie3T3JYi3p:0 -->
+
+Question:
+```text
+Worktree 535 can't build the skill advisor: its spec-kit workspace (.skilled/skills/system-spec-kit) is missing @types/node, which its package.json declares, because provisioning left the install incomplete. May I run `npm ci --no-audit --no-fund` there from the repo's own lockfile? It writes only gitignored node_modules inside worktree 535. Undo: `rm -rf .skilled/skills/system-spec-kit/node_modules` in 535, or remove the worktree.
+```
+
+Options:
+```text
+Yes, run npm ci (Recommended)
+No, skip the build
+```
+
+Answer:
+```text
+Yes, run npm ci (Recommended)
+```
+
+### Q047
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01DG48QibkUdah5PCKiYsNgb:0 -->
+
+Question:
+```text
+The second traceability rerun of packet 012 also failed on the coverage gate: 0 P0, 1 P1, 18 P2. Two lineages finished traceability but needed one more iteration for coverage to mature (5 was too few). The P1 is a real gate gap: plural loop names ('run deep reviews on the parser') are never read as a loop ask. Three P2s are code (how-do questions, speed or cost complaints read as run asks, an unchecked fallback command), and fourteen are doc counts and evidence cells that drifted when round seven grew the fixture and suite. How should I continue?
+```
+
+Options:
+```text
+Fix all, rerun at 7 iters (Recommended)
+Fix all, close T084 now
+Fix code only, then stop
+Stop here
+```
+
+Answer:
+```text
+Fix all, rerun at 7 iters (Recommended)
+```
+
+### Q048
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_0118eh4VNGGXxAFvWYwjXrwR:0 -->
+
+Question:
+```text
+The third traceability rerun (7 iterations) of packet 012 failed again: 0 P0, 4 P1, 16 P2. One lineage passed every gate, the other two did not. The trend is 2, then 1, now 4 P1s: each fix round closes what the last review named, and each DeepSeek review then finds new edge cases in the gate's word rules (no-edit clauses, refused loop phrases still giving the mode cue, REQ-026's guard, REQ-035's plural promise). Round eight's code is green (3188 passed) and committed in worktree 535, not pushed. How should I end this?
+```
+
+Options:
+```text
+Fix the 4 P1s, then close (Recommended)
+Close now, backlog all 20
+Fix all 20 and rerun
+Switch reviewer to Luna
+```
+
+Answer:
+```text
+Fix all 20 and rerun
+```
+
+### Q049
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01QNPAoAwKPXxQqyVDirKxiB:0 -->
+
+Question:
+```text
+REQ-035 promises that "run two deep loops on the cache layer" serves a deep-loop command. But a deep-loop ask that names neither research nor review gets no command by design. The singular "run a deep loop on the cache layer" also gets none, and a review flagged it. Which should win?
+```
+
+Options:
+```text
+Amend REQ-035 (Recommended)
+Serve a default mode
+```
+
+Answer:
+```text
+Amend REQ-035 (Recommended)
+```
+
+### Q050
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01MnhBkKDqCLS2hR34giWcg8:0 -->
+
+Question:
+```text
+The generation 6 rerun has 4 P1 and 39 P2: one Python/TypeScript mismatch on "run two deep loops", the rest stale evidence cells and counts. It found no new word-rule bugs in the gate. How should I proceed?
+```
+
+Options:
+```text
+Fix all, cite by symbol, rerun (Recommended)
+Fix all, waive the rerun
+Stop and waive now
+```
+
+Answer:
+```text
+Fix all, cite by symbol, rerun (Recommended)
+```
+
+### Q051
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01FJF8KPsiX23VZPsFJp3BTn:0 -->
+
+Question:
+```text
+Generation 7 is the closest yet: two of three lineages pass every gate, coverage included. The run is FAIL with 0 P0, 3 P1 and 14 P2. The P1s are a whitespace gap in the gate (a tab, double space or line break inside "deep review" withholds the command), twelve change-set files missing from the scope I seed, and the open rerun requirement itself. How should I proceed?
+```
+
+Options:
+```text
+Fix all, rerun gen 8 (Recommended)
+Fix all, waive the rerun
+Stop and waive now
+```
+
+Answer:
+```text
+Fix all, rerun gen 8 (Recommended)
+```
+
+### Q052
+<!-- source: claude:ba78a7ba-1f3e-4c7b-a8ae-d3375662e0df:toolu_01DdLQN8gJyxfFMnHbbZPTa5:0 -->
+
+Question:
+```text
+My work is already committed, merged and pushed, so the only uncommitted change left is in packet 012's decision-record.md (the deep-loop offers packet). It holds 239 lines of answers the Stop hook recorded automatically, and 100 of them are not on origin/main. Meanwhile, 9 commits on origin/main changed that same file from the other live Claude session, so committing my local copy would mean merging over that session's work. What should happen to it?
+```
+
+Options:
+```text
+Leave it to that session (Recommended)
+Merge it in and push
+Discard local copy, sync main
+```
+
+Answer:
+```text
+Merge it in and push
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
