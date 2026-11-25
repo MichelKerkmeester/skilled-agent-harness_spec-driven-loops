@@ -2852,125 +2852,6 @@ def test_threshold_settings_reach_python_defaults():
         fail_test(name, f"results={results}")
 
 
-def test_deep_loop_offer_gate_parity():
-    """The fallback's offer gate agrees with the native gate on every shared case."""
-    name = "DEEP-LOOP-GATE: the fallback gate matches the shared deep-loop offer cases"
-    fixture = os.path.realpath(os.path.join(SCRIPT_DIR, "..", "tests", "fixtures", "deep-loop-offer-cases.json"))
-    try:
-        advisor = load_module("skill_advisor", "skill_advisor.py")
-        with open(fixture, "r", encoding="utf-8") as handle:
-            cases = json.load(handle)["cases"]
-        wrong = []
-        for case in cases:
-            got = (
-                advisor.asks_for_loop_run(case["prompt"]),
-                advisor.is_stuck_run_complaint(case["prompt"]),
-                advisor.is_writing_about_topic(case["prompt"]),
-            )
-            want = (case["asksForLoopRun"], case["stuckRun"], case["writingAbout"])
-            if got != want:
-                wrong.append((case["id"], got, want))
-            # The fallback has no separate typed layer, so its gate answers the
-            # served column, and the head analyze_request serves has to agree,
-            # under the owner name the command-bridge rename gives the run row.
-            if "servedReviewKept" in case:
-                kept = bool(advisor._apply_deep_loop_offer_gate(
-                    [{"skill": "command-spec-kit-deep-review"}], case["prompt"].lower()
-                ))
-                if kept != case["servedReviewKept"]:
-                    wrong.append((case["id"], "typed row kept", kept))
-                served = advisor.analyze_request(case["prompt"])
-                head = served[0] if served else {}
-                head_review = (
-                    head.get("skill") in {"command-spec-kit-deep-review", "deep-review"}
-                    and bool(head.get("passes_threshold"))
-                )
-                if head_review != case["servedReviewKept"]:
-                    wrong.append((case["id"], "served head", head.get("skill"), head.get("passes_threshold")))
-                if head_review and head.get("typed") is not True:
-                    wrong.append((case["id"], "served head not marked typed", head.get("typed")))
-            # One typed command never hides another, so every typed run row stays.
-            if "typedRunsKept" in case:
-                kept_rows = advisor._apply_deep_loop_offer_gate(
-                    [{"skill": skill} for skill in advisor._DEEP_LOOP_RUN_ROWS], case["prompt"].lower()
-                )
-                kept_runs = sorted(
-                    advisor._DEEP_LOOP_RUN_ROWS[row["skill"]] + ("" if row.get("typed") is True else " (unmarked)")
-                    for row in kept_rows
-                )
-                if kept_runs != sorted(case["typedRunsKept"]):
-                    wrong.append((case["id"], "typed run rows kept", kept_runs))
-            # A run ask that names a mode is served by that mode's row alone, and
-            # an ask that names no single mode keeps no run row, which is the same
-            # answer the native deferred route gives when it offers no command.
-            if "servedRun" in case:
-                served_rows = advisor._apply_deep_loop_offer_gate(
-                    [{"skill": skill} for skill in advisor._DEEP_LOOP_RUN_ROWS], case["prompt"].lower()
-                )
-                served_modes = sorted(
-                    advisor._DEEP_LOOP_RUN_ROWS[row["skill"]].rsplit(":", 1)[-1] for row in served_rows
-                )
-                if case["servedRun"] not in ("review", "research", "none"):
-                    wrong.append((case["id"], "served run column needs an explicit answer", case["servedRun"]))
-                elif case["servedRun"] == "none":
-                    served_ok = served_modes == []
-                else:
-                    served_ok = served_modes == [case["servedRun"]]
-                if not served_ok:
-                    wrong.append((case["id"], "served run", served_modes, case["servedRun"]))
-            # A prompt that rules out a change keeps the run row of a read-only
-            # loop mode, because the run only reads the code it reports on.
-            if "readOnlyRunKept" in case:
-                run_row = {
-                    "review": "command-spec-kit-deep-review",
-                    "research": "command-spec-kit-deep-research",
-                }[case["readOnlyRunKept"]]
-                kept = bool(advisor._apply_deep_loop_offer_gate(
-                    [{"skill": run_row}], case["prompt"].lower()
-                ))
-                if not advisor.is_no_edit_request(case["prompt"]):
-                    wrong.append((case["id"], "no-edit wording not read", case["prompt"]))
-                elif not kept:
-                    wrong.append((case["id"], "read-only run row kept", kept))
-            if "doctorWithheld" in case:
-                doctor_kept = bool(advisor._apply_deep_loop_offer_gate(
-                    [{"skill": "command-doctor-deep-loop"}], case["prompt"].lower()
-                ))
-                if doctor_kept == case["doctorWithheld"]:
-                    wrong.append((case["id"], "doctor row kept", doctor_kept))
-    except Exception as exc:
-        fail_test(name, str(exc))
-        return
-    if cases and not wrong:
-        ok(name, f"cases={len(cases)}")
-    else:
-        fail_test(name, f"wrong={wrong}")
-
-
-def test_deep_loop_clause_mark_then_opens_an_ask():
-    """A run ask behind the word then outranks a reading of a past run, and and does not."""
-    name = "DEEP-LOOP-CLAUSE: a run ask behind then outranks a past-run reading and the word and keeps the reading"
-    cases = (
-        ("read the deep review report then run a deep review on the parser", True),
-        ("summarize the last deep research run then run deep research on caching", True),
-        ("summarize the deep review report and run notes", False),
-    )
-    try:
-        advisor = load_module("skill_advisor", "skill_advisor.py")
-        wrong = [
-            (prompt, asks, advisor.asks_for_loop_run(prompt), advisor.is_past_run_read(prompt))
-            for prompt, asks in cases
-            if advisor.asks_for_loop_run(prompt) != asks or advisor.is_past_run_read(prompt) == asks
-        ]
-    except Exception as exc:
-        fail_test(name, str(exc))
-        return
-    if not wrong:
-        ok(name, f"cases={len(cases)}")
-    else:
-        fail_test(name, f"wrong={wrong}")
-
-
 def test_scorer_predicate_parity():
     """The fallback reads shared scorer predicate cases like TypeScript."""
     name = "SCORER-PREDICATES: the fallback matches the shared predicate cases"
@@ -3003,28 +2884,6 @@ def test_scorer_predicate_parity():
         fail_test(name, f"wrong={wrong}")
 
 
-def test_deep_loop_offer_gate_in_fallback():
-    """The fallback offers no deep-loop run the prompt never asks for."""
-    name = "DEEP-LOOP-FALLBACK: a stuck run gets no run row, a piece about the loop drops the hub, a counted ask keeps its row"
-    run_rows = {"command-spec-kit-deep-research", "command-spec-kit-deep-review"}
-    try:
-        advisor = load_module("skill_advisor", "skill_advisor.py")
-        stuck = [row.get("skill") for row in advisor.analyze_request("my deep research run is stuck and never converges")]
-        written = [row.get("skill") for row in advisor.analyze_request("write a blog post about how deep research loops work")]
-        asked = [row.get("skill") for row in advisor.analyze_request("run 5 iterations of deep research on vector indexes")]
-    except Exception as exc:
-        fail_test(name, str(exc))
-        return
-    if (
-        not run_rows.intersection(stuck)
-        and "system-deep-loop" not in written
-        and "command-spec-kit-deep-research" in asked
-    ):
-        ok(name, f"stuck={stuck[:2]} written={written[:2]} asked={asked[:2]}")
-    else:
-        fail_test(name, f"stuck={stuck[:3]} written={written[:3]} asked={asked[:3]}")
-
-
 def test_prompt_policy_missing_degrades():
     """The fallback still routes when the prompt-policy file is unusable."""
     name = "PROMPT-POLICY-MISSING: a missing prompt policy degrades stop-word filtering instead of the fallback"
@@ -3055,38 +2914,26 @@ def test_prompt_policy_missing_degrades():
 
 
 def test_deep_loop_doctor_naming_reading():
-    """A refused or questioned doctor naming drops the row, a bare one keeps it."""
-    name = "DEEP-LOOP-DOCTOR: a refused or questioned doctor naming drops the row and a bare naming keeps it"
-    row = {"skill": "command-doctor-deep-loop"}
-    cases = (
-        ("my deep research run is stuck, don't run /doctor:deep-loop", False),
-        ("my deep research run is stuck, never run /doctor:deep-loop, just explain", False),
-        ("my deep research run is stuck, no fix please, /doctor:deep-loop", False),
-        ("what does /doctor:deep-loop do? don't run anything", False),
-        ("my deep research run is stuck, /doctor:deep-loop", True),
-        ("my deep research run is stuck, don't fix anything, just run /doctor:deep-loop", True),
-        ("my deep research run is stuck", True),
-    )
+    """The fallback keeps the doctor row only when the prompt types the doctor command."""
+    name = "DEEP-LOOP-DOCTOR: a typed doctor command keeps its row and a stuck run without it keeps none"
+    row = {"skill": "command-doctor-deep-loop", "confidence": 0.9, "uncertainty": 0.1}
     try:
         advisor = load_module("skill_advisor", "skill_advisor.py")
-        wrong = [
-            (prompt, kept)
-            for prompt, expected in cases
-            for kept in [bool(advisor._apply_deep_loop_offer_gate([dict(row)], prompt.lower()))]
-            if kept != expected
-        ]
+        typed = advisor._apply_deep_loop_offer_gate([dict(row)], "my deep research run is stuck, /doctor:deep-loop")
+        untyped = advisor._apply_deep_loop_offer_gate([dict(row)], "my deep research run is stuck")
+        doc_path = advisor._apply_deep_loop_offer_gate([dict(row)], "see /doctor:deep-loop.md for the flags")
     except Exception as exc:
         fail_test(name, str(exc))
         return
-    if not wrong:
-        ok(name, f"cases={len(cases)}")
+    if len(typed) == 1 and untyped == [] and doc_path == []:
+        ok(name)
     else:
-        fail_test(name, f"wrong={wrong}")
+        fail_test(name, f"typed={typed} untyped={untyped} doc_path={doc_path}")
 
 
 def test_deep_loop_typed_run_row_marked():
-    """A typed run row the gate keeps says it was typed, and an untyped one does not."""
-    name = "DEEP-LOOP-TYPED: the fallback marks a kept typed run row typed and leaves an asked-for row unmarked"
+    """A typed run row the gate keeps says it was typed, and an untyped ask keeps no run row."""
+    name = "DEEP-LOOP-TYPED: the fallback marks a kept typed run row typed and keeps no row for an untyped ask"
     try:
         advisor = load_module("skill_advisor", "skill_advisor.py")
         row = {"skill": "command-spec-kit-deep-review", "confidence": 0.9, "uncertainty": 0.1}
@@ -3109,103 +2956,19 @@ def test_deep_loop_typed_run_row_marked():
         len(emitted) == 1 and emitted[0].get("typed") is True
         and len(stuck) == 1 and stuck[0].get("typed") is True
         and untyped_stuck == []
-        and len(asked) == 1 and "typed" not in asked[0]
+        and asked == []
     ):
-        ok(name, f"emitted={emitted[0].get('typed')} asked_keys={sorted(asked[0])[:4]}")
+        ok(name, f"emitted={emitted[0].get('typed')}")
     else:
         fail_test(name, f"emitted={emitted} stuck={stuck} untyped_stuck={untyped_stuck} asked={asked}")
 
 
-def test_loop_workflow_request_reads_the_run_ask():
-    """A pass count reads as a loop request only where it asks for a run."""
-    name = "DEEP-LOOP-WORKFLOW: a pass count that reports past runs is no loop request"
-    try:
-        advisor = load_module("skill_advisor", "skill_advisor.py")
-        reported = advisor._is_loop_workflow_request("several passes of the linter failed, review the config")
-        asked = advisor._is_loop_workflow_request("review the parser in several passes")
-    except Exception as exc:
-        fail_test(name, str(exc))
-        return
-    if reported is False and asked is True:
-        ok(name)
-    else:
-        fail_test(name, f"reported={reported} asked={asked}")
-
-
-def test_deep_loop_gate_folds_zero_width():
-    """A zero-width character inside a loop phrase keeps the run the reader asked for."""
-    # A zero-width character is invisible in the prompt, so a paste or a word
-    # processor can split a phrase with one and leave the words looking whole on
-    # screen. The gate folds every prompt before a pattern reads it, so the fold
-    # has to read each of these as whitespace or the phrase matches nothing and
-    # the run is lost on exactly the prompt the reader sees as an ask.
-    name = "DEEP-LOOP-FOLD: a zero-width character in a loop phrase keeps its run row, the control keeps none"
-    review_row = {"skill": "command-spec-kit-deep-review"}
-    hidden = ("\u200b", "\u200c", "\u200d", "\u2060", "\ufeff")
-    try:
-        advisor = load_module("skill_advisor", "skill_advisor.py")
-        kept = {
-            escape.encode("unicode_escape").decode("ascii"): bool(advisor._apply_deep_loop_offer_gate(
-                [dict(review_row)], "run a deep" + escape + "review of the auth module"
-            ))
-            for escape in hidden
-        }
-        control = "explain what a deep\u200breview is"
-        asked = advisor.asks_for_loop_run("run a deep\u200breview of the auth module")
-        control_asks = advisor.asks_for_loop_run(control)
-        control_rows = advisor._apply_deep_loop_offer_gate([dict(review_row)], control)
-    except Exception as exc:
-        fail_test(name, str(exc))
-        return
-    if asked is True and control_asks is False and control_rows == [] and all(kept.values()):
-        ok(name, f"kept={len(kept)}")
-    else:
-        fail_test(name, f"asked={asked} control_asks={control_asks} control_rows={control_rows} kept={kept}")
-
-
-def test_deep_loop_gate_long_prompts():
-
-    """A long prompt that repeats a refusal or a loop phrase keeps its answer and stays fast."""
-    # The gate reads the words before each phrase on a bounded window, so its cost
-    # is linear in the prompt. The ceiling is generous: the quadratic cost it
-    # guards against ran to several seconds on a prompt this long.
-    name = "DEEP-LOOP-LONG: repeated refusals stay withheld and a 96,000-character prompt gates in bounded time"
-    review_row = {"skill": "command-spec-kit-deep-review"}
-    try:
-        advisor = load_module("skill_advisor", "skill_advisor.py")
-        refusals = "do not run /deep:review. " * 400
-        refused = advisor._apply_deep_loop_offer_gate([dict(review_row)], refusals.lower())
-        asked_after = advisor._apply_deep_loop_offer_gate(
-            [dict(review_row)], (("no deep review " * 667) + "but run a deep review on the parser").lower()
-        )
-        timings = {}
-        outcomes = {}
-        for label, unit in (("counted", "5 a-b-c-d iterations of "), ("refused", "no deep review ")):
-            prompt = unit * (96_000 // len(unit))
-            started = time.perf_counter()
-            outcomes[label] = advisor._apply_deep_loop_offer_gate([dict(review_row)], prompt)
-            timings[label] = time.perf_counter() - started
-    except Exception as exc:
-        fail_test(name, str(exc))
-        return
-    if (
-        len(refusals) == 10_000
-        and refused == []
-        and len(asked_after) == 1
-        and all(rows == [] for rows in outcomes.values())
-        and all(seconds < 1.0 for seconds in timings.values())
-    ):
-        ok(name, ", ".join(f"{label}={seconds * 1000:.0f}ms" for label, seconds in timings.items()))
-    else:
-        fail_test(name, f"refused={refused} asked_after={asked_after} outcomes={outcomes} timings={timings}")
-
-
 def test_deep_loop_gate_reads_prompt_head():
     """The fallback gate reads the head the native advisor accepts, not the whole prompt."""
-    # A loop ask past the head is not read, as the native advisor never receives
-    # it; the same ask after short padding still keeps its row.
-    name = "DEEP-LOOP-HEAD: a loop ask past the 10,000-unit head is not read, one inside it is"
-    ask = "run 5 iterations of deep research on vector indexes"
+    # A typed command past the head is not read, as the native advisor never
+    # receives it; the same command after short padding still keeps its row.
+    name = "DEEP-LOOP-HEAD: a typed command past the 10,000-unit head is not read, one inside it is"
+    ask = "/deep:research vector indexes"
     padding = "the garden looked fine after a mild week of weather. "
     try:
         advisor = load_module("skill_advisor", "skill_advisor.py")
@@ -3217,8 +2980,8 @@ def test_deep_loop_gate_reads_prompt_head():
         return
     if (
         len(past_prompt) - len(ask) > advisor.ADVISOR_PROMPT_MAX_CHARS
-        and "command-spec-kit-deep-research" in inside
-        and "command-spec-kit-deep-research" not in past
+        and "deep-research" in inside
+        and "deep-research" not in past
     ):
         ok(name, f"inside={inside[:3]} past={past[:3]}")
     else:
@@ -3226,17 +2989,13 @@ def test_deep_loop_gate_reads_prompt_head():
 
 
 def test_deep_loop_served_head():
-    """A named command serves the hub, and two typed loops lead with the first typed."""
-    # Asking about a command, refusing it or citing its doc file names the loop's
-    # workflow rather than a run, so the served head is the hub carrying no
-    # command. A prompt that types both loops leads with the command it typed
-    # first, and every other row follows by confidence.
-    name = "DEEP-LOOP-SERVED: a named command serves the hub, two typed loops lead with the first typed"
-    mentioned = (
-        "what does /deep:review do?",
-        "see (/deep:review.md) for the flags",
-        "never run /deep:review on this",
-    )
+    """A command named by its doc path serves the hub, and two typed loops lead with the first typed."""
+    # A doc path names the loop's workflow without typing its command, so the
+    # served head is the hub carrying no command. A prompt that types both loops
+    # leads with the command it typed first, and every other row follows by
+    # confidence.
+    name = "DEEP-LOOP-SERVED: a command doc path serves the hub, two typed loops lead with the first typed"
+    mentioned = ("see (/deep:review.md) for the flags",)
     typed_runs = (
         ("/deep:research caching then /deep:review the parser", "deep-research", "command-spec-kit-deep-review"),
         ("/deep:review the parser then /deep:research caching", "command-spec-kit-deep-review", "deep-research"),
@@ -3318,16 +3077,10 @@ def main():
     test_native_bridge_covers_launcher_scorer_keys()
     test_native_bridge_honors_scorer_override()
     test_threshold_settings_reach_python_defaults()
-    test_deep_loop_offer_gate_parity()
-    test_deep_loop_clause_mark_then_opens_an_ask()
     test_scorer_predicate_parity()
-    test_deep_loop_offer_gate_in_fallback()
     test_prompt_policy_missing_degrades()
     test_deep_loop_doctor_naming_reading()
     test_deep_loop_typed_run_row_marked()
-    test_loop_workflow_request_reads_the_run_ask()
-    test_deep_loop_gate_folds_zero_width()
-    test_deep_loop_gate_long_prompts()
 
     test_deep_loop_gate_reads_prompt_head()
     test_deep_loop_served_head()

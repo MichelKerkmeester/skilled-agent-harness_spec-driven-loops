@@ -167,11 +167,15 @@ describe('runAdvisorSubprocess against the real Python advisor', () => {
     }
   }, 120000);
 
-  it('leaves a refused deep command unmarked', async () => {
+  // The Python fallback reads no refusal around a typed deep command, because
+  // its row is an ask the reader can decline. The degraded rows go through the
+  // native typed-command reader, which still reads the refusal and leaves the row
+  // unmarked, so the brief keeps the offer's no-loop option.
+  it('marks a refused deep command typed in Python and unmarked on the degraded rows', async () => {
     const prompt = 'never run /deep:review on this';
     const recommendations = await realRecommendations(prompt);
 
-    expect(recommendations[0]).not.toHaveProperty('typed');
+    expect(recommendations[0]).toHaveProperty('typed', true);
     expect(degradedRecommendations(recommendations, prompt)[0]).not.toHaveProperty('typed');
   }, 120000);
 });

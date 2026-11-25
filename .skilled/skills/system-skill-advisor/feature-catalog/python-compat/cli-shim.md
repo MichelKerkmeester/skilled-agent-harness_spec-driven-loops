@@ -6,7 +6,7 @@ trigger_phrases:
   - "skill_advisor.py"
   - "compat shim advisor"
   - "native first shim"
-version: 0.8.0.13
+version: 0.8.0.14
 ---
 
 # Python CLI Shim (skill_advisor.py)
@@ -29,6 +29,8 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 | `--threshold <value>` | Override dual-threshold confidence cutoff (default 0.8). |
 | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disable advisor invocation entirely. |
 | `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Env-level force-local toggle for plugin/script diagnostics. |
+
+The local scorer keeps a deep-loop command row, `/deep:research`, `/deep:review` or `/doctor:deep-loop`, only when the prompt types that command. It reads no loop ask, refusal, question or stuck-run complaint around it, because the row is an `ask` the reader can decline and the native advisor reads that wording when it is available. A doc path such as `/deep:review.md` is not a typed command, so it keeps no row.
 
 ---
 
