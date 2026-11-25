@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/010-conversations",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/010-conversations",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bots chat",
+      "bot conversation",
+      "phase 10 conversations",
+      "conversations plan",
+      "bots chat plan",
+      "conversation jsonl plan",
+      "conversations tasks",
+      "conversations acceptance criteria",
+      "conversations implementation summary"
+    ],
+    "key_topics": [
+      "bots",
+      "chat",
+      "bot",
+      "conversation",
+      "phase",
+      "conversations",
+      "plan",
+      "jsonl",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/bin/bots.cjs",
+      ".opencode/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+      ".skilled/skills/system-skilled-bots/SKILL.md",
+      ".opencode/skills/system-skilled-bots/SKILL.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-drain.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "queued-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-queue-and-answer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli.py",
+        "kind": "file",
+        "path": "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Apache",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skilled bots is headless by contract: one run is one executor call and the CLI has no conversation verb, so a person who wants to give a bot work and read what it said composes a `bots run` invocation and then opens the run folder by hand [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:5-6] [SOURCE: .skilled/bin/bots.cjs:18-50]",
+    "created_at": "2026-11-25T07:13:44Z",
+    "last_save_at": "2026-11-25T07:32:14.556Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ab67c69170e354754c485500ad7dac1fb5873234c14bf3c90a90687e82746824",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b1ea8100c827038ab05311dada20b91d8c3a6b092b888422579897126db493d2",
+      "plan.md": "c4e92020d7981fe83726b101f2fde03be6fd87632aec08ec85b01678544be2e2",
+      "tasks.md": "93a398c8d60b7d5fa19a876230af08060ce9517da56f307b3077e6904843ccc2",
+      "implementation-summary.md": "56bf7a324a0b20bcb68c44021dac2b965999147f3e88fe930d11b798f239fa1f"
+    },
+    "last_active_at": null
+  }
+}

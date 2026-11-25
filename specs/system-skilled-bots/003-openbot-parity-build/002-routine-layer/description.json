@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-bots/003-openbot-parity-build/002-routine-layer",
+  "description": "Phase 2: routine-layer",
+  "keywords": [
+    "phase",
+    "routine-layer"
+  ],
+  "lastUpdated": "2026-11-25T07:13:38.945Z",
+  "specId": "002",
+  "folderSlug": "routine-layer",
+  "parentChain": [
+    "system-skilled-bots",
+    "003-openbot-parity-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

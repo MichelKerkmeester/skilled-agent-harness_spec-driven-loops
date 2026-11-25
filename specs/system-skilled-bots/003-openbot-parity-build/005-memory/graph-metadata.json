@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/005-memory",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/005-memory",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bot memory files",
+      "phase 5 memory",
+      "bot memory files plan",
+      "bot memory files tasks",
+      "bot memory files acceptance criteria",
+      "memory implementation summary"
+    ],
+    "key_topics": [
+      "bot",
+      "memory",
+      "files",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "starts",
+      "every"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
+      ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "definition.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bot-template.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-queue-and-answer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "bot-definition.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A bot starts every run with its BOT.md body, the bound spec folder and the decision rule, and nothing else [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315]",
+    "created_at": "2026-11-25T07:13:40Z",
+    "last_save_at": "2026-11-25T07:24:55.953Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9189d4ede90cdbecd7d902076aed4d1414ad1341719dce302d758004414daeba",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e803c97d9b769962d2d38f313ae0316bc15648dbc33f758e196866c1f470c563",
+      "plan.md": "0c843ce2420693c75939f71414ad3a7781e3d4911a0b6a3dc5cae92f6c8d874c",
+      "tasks.md": "dd22edec517e44a33e14452c15b5392349f85ca1a5111773bf60888fb29e536a",
+      "implementation-summary.md": "45353e8fed56bec9062246d66aeb1a85147a946294fcbde40201df7271a21b56"
+    },
+    "last_active_at": null
+  }
+}

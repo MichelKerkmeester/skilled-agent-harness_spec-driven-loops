@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/001-activity-and-actor",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/001-activity-and-actor",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "activity and actor",
+      "phase 1 activity and actor",
+      "activity and actor plan",
+      "activity and actor tasks",
+      "activity and actor acceptance criteria",
+      "activity and actor implementation summary"
+    ],
+    "key_topics": [
+      "activity",
+      "actor",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "status",
+      "index",
+      "already"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status-index.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plist-render.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "installer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status-index.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "status-and-inbox.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The status index already holds a row for every run, delivery and needs-you item, but nothing shows them as a timeline: `bots status` prints one line per bot and one line per open item, so a reader cannot tell what is waiting, what is running and what ended without reading three surfaces [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:470]",
+    "created_at": "2026-11-25T07:13:37Z",
+    "last_save_at": "2026-11-25T07:20:21.407Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac84d6cf273e8e193e3af6351633a81a233f9d5d82ecf7d57e773cfc558d35e2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bce2d7a26ea4fed89eb4f637e93a71d8c019960865320aeb6eb7f8e998ca19bc",
+      "plan.md": "571121698bad5e492b50e0d3d02ddae1a9c9b26af4dc348d2d8a0e9ab17a8dd5",
+      "tasks.md": "51a97e05a8c5785c00d05dee327f68216d4b20a5a1c276f833b1bd65667c4817",
+      "implementation-summary.md": "79160a8cf49576ec0e2548051853aef62e4640d28f25116f622affc46b262d51"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build",
+  "parent_id": null,
+  "children_ids": [
+    "system-skilled-bots/003-openbot-parity-build/001-activity-and-actor",
+    "system-skilled-bots/003-openbot-parity-build/002-routine-layer",
+    "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
+    "system-skilled-bots/003-openbot-parity-build/004-computer-exposure",
+    "system-skilled-bots/003-openbot-parity-build/005-memory",
+    "system-skilled-bots/003-openbot-parity-build/006-approval-grants",
+    "system-skilled-bots/003-openbot-parity-build/007-per-bot-apps",
+    "system-skilled-bots/003-openbot-parity-build/008-vault",
+    "system-skilled-bots/003-openbot-parity-build/009-skills",
+    "system-skilled-bots/003-openbot-parity-build/010-conversations"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "openbot parity build phase parent spec"
+    ],
+    "key_topics": [
+      "openbot",
+      "parity",
+      "phase",
+      "parent",
+      "spec",
+      "skilled",
+      "bots",
+      "already",
+      "holds",
+      "hard",
+      "half",
+      "bot"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bot-template.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
+    "created_at": "2026-11-25T07:13:37Z",
+    "last_save_at": "2026-11-25T07:34:11.513Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b7de3fca7c2f283a23bde8a6a7bece3e1a115f16750e787bb1958f8b5cfb3030",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4f7773738ada8cf2ce8a872c66ac85978cabbb53fa0e4354a3b3628973e4e600"
+    },
+    "last_active_at": "2026-11-25T07:34:11.513Z",
+    "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen"
+  }
+}

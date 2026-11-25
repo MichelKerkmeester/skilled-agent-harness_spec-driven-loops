@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/004-computer-exposure",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/004-computer-exposure",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "computer exposure",
+      "phase 4 computer exposure",
+      "bot working place",
+      "worktree in bots status",
+      "computer exposure plan",
+      "bot working place plan",
+      "worktree in bots status plan",
+      "computer exposure tasks",
+      "bot working place tasks",
+      "computer exposure acceptance criteria",
+      "bot working place acceptance criteria",
+      "computer exposure implementation summary"
+    ],
+    "key_topics": [
+      "computer",
+      "exposure",
+      "phase",
+      "bot",
+      "working",
+      "place",
+      "worktree",
+      "bots",
+      "status",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/isolation.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
+      "runtime/lib/README.md",
+      ".skilled/bin/bots.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "isolation.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/isolation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status-index.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "isolation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/isolation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status-index.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/status-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "status-and-inbox.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A bot run starts in a directory its prompt never names",
+    "created_at": "2026-11-25T07:13:39Z",
+    "last_save_at": "2026-11-25T07:26:05.122Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:80e397cd1f8f6acdda8f175afb474460eaa6eabb57dda6833a874e8a7f6e0a65",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d58b6a39a0ef56847f53da1c5a71a4f9ab346cd5f7d4e3fb9a3caf9b5033a8ce",
+      "plan.md": "cf07724952089f8481614389de4318cf79ff40f2f1eb98d59674b82d7da133dd",
+      "tasks.md": "119ea0cd87a52154b1773122f4e282a38b94cf3bc82fb62a6f87a004b84be056",
+      "implementation-summary.md": "c527b9a6057fbb3a88200339287e92ce9f9e5894837567d128e8b3a8b9b5989b"
+    },
+    "last_active_at": null
+  }
+}

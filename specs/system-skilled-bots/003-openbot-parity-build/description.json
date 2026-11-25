@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-bots/003-openbot-parity-build",
+  "description": "Build OpenBot parity for skilled bots from the 002 research: activity, routines, terminal screen, workspace, memory, approvals, apps, vault, skills an",
+  "keywords": [
+    "openbot",
+    "parity",
+    "skilled",
+    "bots",
+    "research",
+    "activity",
+    "routines",
+    "terminal",
+    "screen",
+    "workspace",
+    "memory",
+    "approvals",
+    "apps",
+    "vault",
+    "skills",
+    "chat"
+  ],
+  "lastUpdated": "2026-11-25T07:34:11.431Z",
+  "specId": "003",
+  "folderSlug": "openbot-parity-build",
+  "parentChain": [
+    "system-skilled-bots"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-11-26_08-34__created-phased-packet-003-from-the-002-research-a.md"
+  ]
+}

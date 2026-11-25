@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/006-approval-grants",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/006-approval-grants",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "approval grants",
+      "phase 6 approval grants",
+      "approval grants plan",
+      "approval grants tasks",
+      "approval grants acceptance criteria",
+      "approval grants implementation summary"
+    ],
+    "key_topics": [
+      "approval",
+      "grants",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "needs-you",
+      "item",
+      "names"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+      ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
+      ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-items.md",
+      ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-answer.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-queue-and-answer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "status-and-inbox.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you-items.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-items.md",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you-answer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A needs-you item names a question, its options, its evidence and the parked prompt, and nothing else, so an approval cannot say what kind of action it approves [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]",
+    "created_at": "2026-11-25T07:13:41Z",
+    "last_save_at": "2026-11-25T07:25:19.224Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d5fed050c9476ea55453b6e1776036f949b9ef78832718abd4727a8d5ed884b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4e5acad4919fdeccb38fe8a14b2a5dfd50be74a008aca8c17beeafa6c0c9b41e",
+      "plan.md": "2649d038a6344a6baa4edfe6c469d9b422e93fc1fb917034659b4da306a15a09",
+      "tasks.md": "ad8edea823ca47e8818f31aea73bc586795fb85a42447813a7e51cefeadce035",
+      "implementation-summary.md": "827c22e6f0fa67c6b208dfeec3f667ff9b351cc6c588395c8dd44e544aad0486"
+    },
+    "last_active_at": null
+  }
+}

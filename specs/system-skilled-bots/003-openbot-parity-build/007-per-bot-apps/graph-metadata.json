@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/007-per-bot-apps",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/007-per-bot-apps",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per bot apps",
+      "phase 7 per bot apps",
+      "per bot apps plan",
+      "per bot apps tasks",
+      "per bot apps acceptance criteria",
+      "per bot apps implementation summary"
+    ],
+    "key_topics": [
+      "per",
+      "bot",
+      "apps",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "every",
+      "reaches"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
+      ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
+      ".skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md",
+      ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+      ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "definition.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bot-template.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "source": "derived"
+      },
+      {
+        "name": "bot-definition.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
+        "source": "derived"
+      },
+      {
+        "name": "bot-definition-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "definition-checker.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.js",
+        "kind": "code",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor-lib.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads",
+    "created_at": "2026-11-25T07:13:41Z",
+    "last_save_at": "2026-11-25T07:28:47.457Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:575fa0ea297ec1778d72beb71be8a11f4f19ba8e560af64ea50116b1f4965405",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bace5ad06665a0db195a5f2e40a0d76e4062cb63e6d1a236d19bb0f549c20daf",
+      "plan.md": "88613eb2407b415785b814272db7ad7fe1c848537bdb9062c7715eddad4df48a",
+      "tasks.md": "9921fd7b0628c89cf44c012ab94efbb5dee9a8aa958be49323c55297c800d489",
+      "implementation-summary.md": "a0fd7249b82ee831aad2f9882229e895e8d780423528094c00a46c93b1543d59"
+    },
+    "last_active_at": null
+  }
+}

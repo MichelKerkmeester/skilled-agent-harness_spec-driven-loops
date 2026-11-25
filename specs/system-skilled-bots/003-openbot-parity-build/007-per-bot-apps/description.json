@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-bots/003-openbot-parity-build/007-per-bot-apps",
+  "description": "Phase 7: per-bot-apps",
+  "keywords": [
+    "phase",
+    "per-bot-apps"
+  ],
+  "lastUpdated": "2026-11-25T07:13:42.485Z",
+  "specId": "007",
+  "folderSlug": "per-bot-apps",
+  "parentChain": [
+    "system-skilled-bots",
+    "003-openbot-parity-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

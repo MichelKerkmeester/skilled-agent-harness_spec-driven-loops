@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/008-vault",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/008-vault",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bots secret set",
+      "vault secret store",
+      "secret injection posture",
+      "keychain secret store",
+      "vault build plan",
+      "secret store files",
+      "child environment injection",
+      "vault task list",
+      "secret store tasks",
+      "vault verification steps",
+      "vault acceptance criteria",
+      "secret store criteria"
+    ],
+    "key_topics": [
+      "bots",
+      "secret",
+      "set",
+      "vault",
+      "store",
+      "injection",
+      "posture",
+      "keychain",
+      "plan",
+      "files",
+      "child",
+      "environment"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
+      ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
+      "runtime/lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "definition.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "delivery.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bot-template.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "bot-definition.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
+        "source": "derived"
+      },
+      {
+        "name": "bot-definition-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A bot that needs a key takes it from the operator's environment or a dotenv file, so every bot on the host can read every key and nothing records which bot used which",
+    "created_at": "2026-11-25T07:13:42Z",
+    "last_save_at": "2026-11-25T07:32:38.411Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:49a1fc54da5f6a99d8fd3f011c5706b6cda8cf47c0212f9599f56da5a3259557",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "311c47beeed528ce072385e9227f84706447af1725951c83cccd00fa88244006",
+      "plan.md": "45b855284c339b34c6dd22e0dd1ff4e3129d57b9b34a261d823d4130ffbf1d26",
+      "tasks.md": "22ca59436b94d4b7a1279918f5befb7a0d41ccf41dcb255940146d6dd78aa613",
+      "implementation-summary.md": "3e2f6c78f919e766404842e9f2eb1c03048397a1bac8a1b836b7a03f4b888414"
+    },
+    "last_active_at": null
+  }
+}
