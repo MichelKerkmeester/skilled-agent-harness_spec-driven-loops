@@ -42,7 +42,9 @@
       "spec.md",
       "goal.md",
       "001-openbot-parity-research/research/research.md",
-      "001-openbot-parity-research/goal.md"
+      "001-openbot-parity-research/goal.md",
+      "002-plan-review-research/goal.md",
+      "003-plan-depth-research/goal.md"
     ],
     "entities": [
       {
@@ -59,12 +61,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -89,6 +85,12 @@
       },
       {
         "name": "Problem Statement Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Answer",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -132,17 +134,17 @@
     ],
     "causal_summary": "Skilled bots can run a `BOT.md` by hand, from a queue or on a launchd schedule, park a question for an answer and report what ran",
     "created_at": "2026-11-25T21:22:04Z",
-    "last_save_at": "2026-11-25T22:35:20.142Z",
+    "last_save_at": "2026-11-25T22:54:16.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e2df17ee637e8de492f5725197fd90ec294307f38cd5239b77059db6d60354bd",
+    "source_fingerprint": "sha256:56991ff411c5e355f0e186fb7e9138183183327a6f2c2a06a7d1de7a4aa99a85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ad02341a440aab058647ccb6832a3b83913143fa8d023e4517359194396e992"
+      "spec.md": "ee64c2e8984f9fa45346eae3c6ab130cac5163e0d99a19f80cc5428b7fc20124"
     },
     "last_active_at": null
   }

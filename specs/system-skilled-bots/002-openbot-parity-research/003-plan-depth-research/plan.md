@@ -1,13 +1,14 @@
 ---
-title: "Implementation Plan: Phase 3: plan-depth-research"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Planning-depth review of the 003 build plan"
+description: "One /deep:research fan-out of four lineages over thirteen 003 phase packets, then a line-by-line re-check of every finding, ending in fifteen expansion work orders."
 trigger_phrases:
   - "plan depth research plan"
+  - "planning depth review plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "research"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 3: plan-depth-research
+# Implementation Plan: Planning-depth review of the 003 build plan
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -15,53 +16,52 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | Research only. The plans and runtime read are TypeScript, JavaScript, Rust and Markdown |
+| **Framework** | `/deep:research` workflow, `fanout-run.cjs` lineage pool |
+| **Storage** | `research/` folder of this packet |
+| **Testing** | Iteration-record counts, citation resolution and `validate.sh --strict` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The run reads the thirteen 003 phase packets other than the terminal screen, the built runtime, the 001 parity synthesis and the reference repos. It ran as four lineages across two configs: one Vibe `deepseek-flash` at 10 iterations and one opencode `opencode-go/deepseek-v4.1-flash` at 10 [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/fanout-config.json:1], then a Codex top-up of two `gpt-6-luna` lineages at 5 iterations each [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/fanout-config-codex-topup.json:1]. The proof is 20 iteration records [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/fanout-attribution.md:7-10], a synthesis that merges 102 findings from three lineages [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:3], and fifteen work orders [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:263].
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `find research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 20, and `validate.sh --strict` prints `RESULT: PASSED`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Fan-out depth review.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`/deep:research` workflow**: seeds the frontier, dispatches each iteration, merges the lineages and writes the synthesis.
+- **The thirteen 003 phase packets**: read-only inputs, each with `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md`.
+- **The built runtime**: the evidence each plan is checked against, read-only.
+- **The terminal screen's design contract**: the depth benchmark, read as the bar the other phases are measured against.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+The topic seeds six depth-1 questions. The pool deals them across the lineages, each lineage writes its own iteration records and synthesis, and the merge step folds them into `research/research.md` and `research/resource-map.md`. The synthesis then re-checks every finding against its cited line, regrades it, and groups the survivors into the fifteen work orders.
 <!-- /ANCHOR:architecture -->
 
 
@@ -69,7 +69,6 @@ contextType: "general"
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
@@ -78,27 +77,24 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+`find research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 20, and every citation in `research/research.md` resolves to an existing file and an in-range line.
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
-N/A — record dependencies beyond the components named in the architecture here.
+`vibe` and `codex` on PATH, with daily usage left. The opencode executor's monthly quota ran out before its first iteration, and the Codex top-up absorbed the loss.
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Trigger: a broken or abandoned run. Move `research/` aside, or rerun with `--restart`, which archives the prior `research/` folder. Nothing outside this packet changes.
 <!-- /ANCHOR:rollback -->
 
 ---

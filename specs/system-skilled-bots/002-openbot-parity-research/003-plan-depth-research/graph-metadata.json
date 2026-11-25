@@ -13,34 +13,53 @@
     "trigger_phrases": [
       "plan depth research",
       "phase 3 plan depth research",
+      "planning depth review",
       "plan depth research plan",
+      "planning depth review plan",
       "plan depth research tasks",
-      "plan depth research implementation summary"
+      "planning depth review tasks",
+      "plan depth research goal",
+      "planning depth review goal",
+      "plan depth research implementation summary",
+      "planning depth review implementation summary"
     ],
     "key_topics": [
       "plan",
       "depth",
       "research",
       "phase",
+      "planning",
+      "review",
       "tasks",
+      "goal",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences"
+      "phases",
+      "written"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md",
+      "research/findings-registry.json",
+      "research/resource-map.md",
+      "research/steering-log.md",
+      "research/fanout-attribution.md",
+      ".skilled/bin/bots.cjs",
+      "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md",
+      "research/fanout-config.json",
+      "research/orchestration-summary.json",
+      "research/fanout-config-codex-topup.json",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
-      ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/needs-you-park-and-hold.md"
+      ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/needs-you-park-and-hold.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs",
+      ".skilled/commands/local-skilled-alignment.md",
+      ".skilled/commands/local-doc-alignment.md"
     ],
     "entities": [
       {
@@ -62,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -71,6 +96,54 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "steering-log.md",
+        "kind": "doc",
+        "path": "research/steering-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "contracts.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-config.json",
+        "kind": "config",
+        "path": "research/fanout-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-config-codex-topup.json",
+        "kind": "config",
+        "path": "research/fanout-config-codex-topup.json",
         "source": "derived"
       },
       {
@@ -86,13 +159,25 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "record-playbook-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "local-skilled-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-skilled-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-doc-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-doc-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,94 +205,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The 003 build phases were written one at a time, and each one passed its own review",
     "created_at": "2026-11-25T21:22:05Z",
-    "last_save_at": "2026-11-25T22:35:22.952Z",
+    "last_save_at": "2026-11-25T22:52:06.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c9ebb59848a791c053f7020b2254251249ea1960bb52176aec40b718d979b0fc",
+    "source_fingerprint": "sha256:c6cd14a349d9d7499a03e5f0495b91c32d036ea831953bb67e516c5fd8c58f3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "69de316f0e4b9ff0fdf5be68b7f075c2d588ef7e4d2eda244ebebfc2e6f69719",
-      "plan.md": "a763e9f13ed2fc38c9040f4144c7c336a6a61fe93f5b877be714127c597d3176",
-      "tasks.md": "1b2664e671fd60609688327da1d6451e90a6c67d5a9198a54f5bf5537c812adb",
-      "implementation-summary.md": "aa5d1330358ed64a9bdebb02f446507ad944eb4a8754992318c017dabd940e54",
-      "research/research.md": "14c8ac382fa9e50e1d500d6767e94b98528672ecf65d150359bbcac819593b43"
+      "spec.md": "b8ed68ac62e7ec9dab2c26f33561c9157ae4b2756a415aee64d85657a437bdad",
+      "plan.md": "0c7a7a49c552c54640971a016b71a2066dd527154c2bd3046a48e7cd7491bdc0",
+      "tasks.md": "af4cc50c2399f1c11506e9fc9c59dd1bed329ff8b708d3c967ff769d1e821439",
+      "implementation-summary.md": "24537557b7b6275e53b8247b3e2554778a0eadfedcc6e079715a633bb601c1c6",
+      "research/research.md": "08040ebb7f70a3fc302ef18856509b9c34dc3b87e2b0e8b2efb525d21069d1a0"
     },
     "last_active_at": null
   }

@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-24 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | None |
@@ -114,7 +114,7 @@ The packet has three phases. Each is one research run over the OpenBot parity qu
 |-------|--------|-------|--------|
 | 1 | `001-openbot-parity-research/` | The eight OpenBot bot parts compared against skilled bots and seven reference repos, the terminal verdict, the small-team model, the skip list, reuse and licensing, and the ranked build order | Complete |
 | 2 | `002-plan-review-research/` | The build-readiness review of the 003 build plan, review rounds 2 to 6, with the merged findings registry and the repair order | Complete |
-| 3 | `003-plan-depth-research/` | Whether each 003 build phase is planned deeply enough to build in one shot, with the child phases and planning artifacts each one needs | In Progress |
+| 3 | `003-plan-depth-research/` | Whether each 003 build phase is planned deeply enough to build in one shot, with the child phases and planning artifacts each one needs | Complete |
 
 ### Phase Transition Rules
 

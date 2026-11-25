@@ -1,13 +1,14 @@
 ---
-title: "Tasks: Phase 3: plan-depth-research"
+title: "Tasks: Planning-depth review of the 003 build plan"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "plan depth research tasks"
+  - "planning depth review tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "research"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 3: plan-depth-research
+# Tasks: Planning-depth review of the 003 build plan
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -15,7 +16,6 @@ contextType: "general"
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `R` is `scripts/rotate-logs.sh`. `A` is `logs/archive/`. WEAK: Variables are defined below. -->
 
 | Prefix | Meaning |
 |--------|---------|
@@ -31,55 +31,52 @@ contextType: "general"
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [x] T001 Read the fourteen 003 phase packets and their parent (`specs/system-skilled-bots/003-openbot-parity-build/`). Verify: `ls -d specs/system-skilled-bots/003-openbot-parity-build/0{01,02,03,04,05,06,07,08,09,10,11,12,13,14}-* | wc -l` prints 14.
+- [x] T002 Read the terminal screen's design contract as the depth benchmark (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md`). Verify: `ls` on that path prints it.
+- [x] T003 Probe each executor once and dry-run the fan-out (`research/`). Verify: `research/fanout-config.json` records one Vibe and one opencode executor at 10 iterations each, and the dry run wrote nothing.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [x] T004 Run the fan-out loop (`research/`). Verify: `research/orchestration-summary.json` records `"total_cli_lineages": 2`.
+- [x] T005 Record the opencode quota stop and start the Codex top-up (`research/`). Verify: `research/steering-log.md` records `failure_class: quota` for opencode, and `research/fanout-config-codex-topup.json` records two `cli-codex` lineages at 5 iterations each.
+- [x] T006 Synthesize the verdict per phase, the cross-cutting gaps and the fifteen work orders (`research/research.md`). Verify: `grep -c '^### WO-' research/research.md` prints 15 and `grep -c '^| 0[0-9][0-9]-' research/research.md` prints 13.
+- [x] T007 Re-check every finding against its cited line and record the regrades (`research/research.md`). Verify: section 8 holds the per-lineage accuracy table and section 7 holds the four regrade tables.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [x] T008 Count the iteration records and the merged registry (`research/`). Verify: `find research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 20 and `research/findings-registry.json` records 102 key findings.
+- [x] T009 Check every citation in the synthesis against its source (`research/research.md`). Verify: every citation resolves to an existing file and an in-range line.
+- [x] T010 Validate the packet (`spec.md`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Research synthesis**: See `research/research.md`
+- **Parent**: See `../spec.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

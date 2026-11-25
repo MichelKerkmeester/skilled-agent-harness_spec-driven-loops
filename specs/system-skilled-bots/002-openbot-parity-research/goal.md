@@ -63,6 +63,8 @@ phase and binds as if written here.
 | Phase | Goal document |
 |-------|---------------|
 | 001-openbot-parity-research | `001-openbot-parity-research/goal.md` |
+| 002-plan-review-research | `002-plan-review-research/goal.md` |
+| 003-plan-depth-research | `003-plan-depth-research/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -76,11 +78,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research --recursive --strict` prints `RESULT: PASSED` for the parent and all three children.
-- [ ] `find specs/system-skilled-bots/002-openbot-parity-research -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 3, and `rg -c '^\| [0-9]+ \|' specs/system-skilled-bots/002-openbot-parity-research/spec.md` prints 3.
-- [ ] `rg -c '^## 15\. Ranked Build Order' specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md` prints 1.
-- [ ] `test -f specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/research.md` exits 0, and that file names review rounds 2 to 6.
-- [ ] `test -f specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md` exits 0, and that file names a verdict per 003 phase.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research --recursive --strict` prints `RESULT: PASSED` for the parent and all three children.
+- [x] `find specs/system-skilled-bots/002-openbot-parity-research -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 3, and `rg -c '^\| [0-9]+ \|' specs/system-skilled-bots/002-openbot-parity-research/spec.md` prints 3.
+- [x] `rg -c '^## 15\. Ranked Build Order' specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md` prints 1.
+- [x] `test -f specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/research.md` exits 0, and `ls specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-*-findings.md | wc -l` prints 5, one file per review round 2 to 6.
+- [x] `test -f specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md` exits 0, and that file names a verdict per 003 phase.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,7 +98,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Parent spec rewritten as a lean phase parent | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research --strict` reports 2 errors, both generated metadata: `description.json` is missing and the graph metadata fingerprint is stale after the spec rewrite. Every other parent rule passes |
+| Parent spec rewritten as a lean phase parent | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research --recursive --strict` prints `RESULT: PASSED` for the parent and all three children |
+| All three child goals authored | Done | `ls specs/system-skilled-bots/002-openbot-parity-research/00*/goal.md` lists three files |
 | Parent goal authored | Done | `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-skilled-bots/002-openbot-parity-research --workspace "$PWD"` reports `packet_budget=ok` |
 | Three child folders present | Done | `find specs/system-skilled-bots/002-openbot-parity-research -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 3 |
 
@@ -104,7 +107,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Two child goals absent | The binding table names only `001-openbot-parity-research/goal.md` because 002 and 003 hold no goal yet. Their rows arrive with `/create:goal specs/system-skilled-bots/002-openbot-parity-research <child> child`. |
-| Parent `description.json` missing | The parent carries `graph-metadata.json` and no `description.json`, so `validate.sh --strict` reports `FILE_EXISTS` and `GENERATED_METADATA_INTEGRITY`. `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-skilled-bots/002-openbot-parity-research --apply` re-derives the graph metadata and reports the missing description as not repairable. `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js specs/system-skilled-bots/002-openbot-parity-research specs` writes it. |
-| 001 identity drift | The moved child still carries the parent's identity in `description.json`, `graph-metadata.json` and `implementation-summary.md`, so its own validation reports `METADATA_DISK_PATH_CONSISTENCY` and `SPEC_DOC_INTEGRITY`. |
+| Generated metadata after the move | `repair-derived.cjs --apply` re-derived the moved 001 child's identity and every graph fingerprint, and `generate-description.js` wrote the parent's `description.json`. |
+| Review rounds criterion amended | The plan review synthesis does not list its rounds by number, so the criterion checks the five `review-*-findings.md` files instead. |
 <!-- /ANCHOR:log -->
