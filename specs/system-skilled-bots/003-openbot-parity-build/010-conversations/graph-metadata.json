@@ -19,7 +19,10 @@
       "conversation jsonl plan",
       "conversations tasks",
       "conversations acceptance criteria",
-      "conversations implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "bots",
@@ -33,7 +36,7 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -42,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
@@ -56,8 +60,7 @@
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
-      "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py"
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"
     ],
     "entities": [
       {
@@ -82,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -169,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "cli.py",
-        "kind": "file",
-        "path": "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,7 +210,7 @@
     ],
     "causal_summary": "Skilled bots is headless by contract: one run is one executor call and the CLI has no conversation verb, so a person who wants to give a bot work and read what it said composes a `bots run` invocation and then opens the run folder by hand [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:5-6] [SOURCE: .skilled/bin/bots.cjs:18-50]",
     "created_at": "2026-11-25T07:13:44Z",
-    "last_save_at": "2026-11-25T17:26:14.985Z",
+    "last_save_at": "2026-11-25T20:02:13.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +218,14 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:817e7cd21e20d1c3e489867153831e11bff0cfce3dc502f6d5731dd76e2c04c4",
+    "source_fingerprint": "sha256:db8c2fa81ee8986e7ad543365ed2ba50441c4fd6a6ceea01e5ddefd8a4af825e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c1d4f2d7dec261b67be29a5862e8e0a64a048901f5e57320637389f9a2c6615",
-      "plan.md": "6d4fffc0ff45f3ae837d94848c5794ae34a1a3afa929fbf367f2807aed8bd9df",
+      "plan.md": "3876bb2170fcd9386a564ebefd1de3fd4319062921e89c9f5c43990c608c5c74",
       "tasks.md": "c9afc3ef9713473787d417d5bbeea36033f13abd6dab1d6173a8aa5b8ce3853b",
       "implementation-summary.md": "56bf7a324a0b20bcb68c44021dac2b965999147f3e88fe930d11b798f239fa1f"
     },

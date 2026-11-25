@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
@@ -84,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A bot that needs a key takes it from the operator's environment or a dotenv file, so every bot on the host can read every key and nothing records which bot used which",
     "created_at": "2026-11-25T07:13:42Z",
-    "last_save_at": "2026-11-25T17:53:18.023Z",
+    "last_save_at": "2026-11-25T20:02:25.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +218,14 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04fb2a67a2a7f16eadbd61abc09c5f52383afd0b940b9d74fc93ab42659b19d1",
+    "source_fingerprint": "sha256:c929c81cd24af87b46d79310ce9f10edec70135580e1e713b620ede1152f79e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7584d9068ab3f35b76e33abb71801e01e0f3700c37f6520062b9b1f993900c8",
-      "plan.md": "d38aa653bea7de0d80a64ab42f050b680947b997b149605c17ad08e76b8ebe24",
+      "plan.md": "f5b1dae2b43e07db04a5b05fbbc94662375764ec68ccefc5302f58ea151864c2",
       "tasks.md": "cf2841c443290b51bb1b84c56263359b40d05d93caa2b764b5033d7706b2533b",
       "implementation-summary.md": "3e2f6c78f919e766404842e9f2eb1c03048397a1bac8a1b836b7a03f4b888414"
     },

@@ -14,7 +14,10 @@
     "system-skilled-bots/003-openbot-parity-build/008-vault",
     "system-skilled-bots/003-openbot-parity-build/009-skills",
     "system-skilled-bots/003-openbot-parity-build/010-conversations",
-    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels"
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+    "system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios",
+    "system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment",
+    "system-skilled-bots/003-openbot-parity-build/014-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -23,7 +26,11 @@
   },
   "derived": {
     "trigger_phrases": [
-      "openbot parity build phase parent spec"
+      "openbot parity build phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "openbot",
@@ -31,43 +38,49 @@
       "phase",
       "parent",
       "spec",
-      "skilled",
-      "bots",
-      "already",
-      "holds",
-      "hard",
-      "half",
-      "bot"
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
+      "goal.md",
       "research/research.md",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
-      ".github/workflows/bots-runtime.yml",
-      ".opencode/bin/bots.cjs",
-      ".opencode/skills/system-skilled-bots/SKILL.md",
-      "005-memory/plan.md",
-      "005-memory/tasks.md",
-      "research/lineages/devin-2/research.md",
-      "research/lineages/vibe-1/research.md",
-      "research/lineages/vibe-2/research.md",
-      "research/lineages/devin-1/iterations/iteration-001.md",
-      "research/findings-registry.json",
-      "research/fanout-attribution.md",
-      "research/resource-map.md",
-      "research/fanout-research-topic.txt"
+      ".skilled/skills/system-skilled-bots/SKILL.md",
+      "001-activity-and-actor/goal.md",
+      "002-routine-layer/goal.md",
+      "003-terminal-screen/goal.md",
+      "004-computer-exposure/goal.md",
+      "005-memory/goal.md",
+      "006-approval-grants/goal.md",
+      "007-per-bot-apps/goal.md",
+      "008-vault/goal.md",
+      "009-skills/goal.md",
+      "010-conversations/goal.md",
+      "011-messaging-channels/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -107,39 +120,9 @@
         "source": "derived"
       },
       {
-        "name": "bots-runtime.yml",
-        "kind": "config",
-        "path": ".github/workflows/bots-runtime.yml",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-skilled-bots/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/lineages/devin-1/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-attribution.md",
-        "kind": "doc",
-        "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-research-topic.txt",
-        "kind": "file",
-        "path": "research/fanout-research-topic.txt",
+        "path": ".skilled/skills/system-skilled-bots/SKILL.md",
         "source": "derived"
       },
       {
@@ -179,6 +162,42 @@
         "source": "derived"
       },
       {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Readiness Review",
         "kind": "proper_noun",
         "path": "research/research.md",
@@ -195,36 +214,25 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Executive Summary The",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Review Question",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-25T19:03:38.569Z",
+    "last_save_at": "2026-11-25T20:09:58.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0fb428d0f85ca18c1eee3d93c441809f9ce9e1a80e8e784e933a9e2e3e75e1c3",
+    "source_fingerprint": "sha256:7a9ae314b2fd6f73097ab7820b8230f5ebc14a592a109529587b4fed51bce166",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0548e6d6447933cb9b6d86729146e2e735471982967ec22a6195bd92cbe4b410",
+      "spec.md": "c989fa8e31357b5339b92375649d40db6ce3e5db1c12c163083eac195596c4d6",
       "research/research.md": "dc7249652920d927976484aa8bededcc770782c67031ebad0a7e7d37efa87f41"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
-    "last_active_at": "2026-11-25T19:03:38.569Z"
+    "last_active_at": "2026-11-25T20:09:58.322Z"
   }
 }

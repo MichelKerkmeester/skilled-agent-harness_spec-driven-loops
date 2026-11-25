@@ -20,7 +20,9 @@
       "skill proposal tasks",
       "skills list acceptance criteria",
       "skill proposal acceptance criteria",
-      "skills implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
       "skills",
@@ -43,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
@@ -57,8 +60,7 @@
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
-      ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts"
+      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md"
     ],
     "entities": [
       {
@@ -83,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -176,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "definition.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger, a runtime, a budget, a posture and a body, and the parser's key set holds twelve keys with no `skills` among them [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107]",
     "created_at": "2026-11-25T07:13:43Z",
-    "last_save_at": "2026-11-25T17:54:37.726Z",
+    "last_save_at": "2026-11-25T20:00:59.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +218,14 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77e93c52120f593b29cdbd877b53c9d9116f2a83aab565ade2e68737c9cc459d",
+    "source_fingerprint": "sha256:2af43e5e02a064fe9f70e96acb230acb684d667e6cfe65120b010b06c10437a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a9a6685689e9b2395dfbc954017c01339777c580f1af1170978c26629c028eb",
-      "plan.md": "702cdaac21114ad1e46159798903af39eed14dac3ce505ef41fbc041394ff5bb",
+      "plan.md": "6909ac7efd1c45305a70d95ad53872fe74352ab80d35cbe07bdbac47f6ab69b1",
       "tasks.md": "d3cd2a6db8b5e5be8cae10890a8566821976e253f896443c26c22de974b4a20c",
       "implementation-summary.md": "cec38933010bc45b8f9398a06f20471c06d6726b9b8da186416d4e9abea996d5"
     },

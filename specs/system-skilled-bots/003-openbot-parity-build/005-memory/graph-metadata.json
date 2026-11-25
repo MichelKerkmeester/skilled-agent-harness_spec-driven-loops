@@ -16,6 +16,10 @@
       "bot memory files plan",
       "bot memory files tasks",
       "bot memory files acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "memory implementation summary"
     ],
     "key_topics": [
@@ -27,10 +31,10 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "starts",
-      "every"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
@@ -53,8 +58,7 @@
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
       ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-      ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts"
+      ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts"
     ],
     "entities": [
       {
@@ -79,6 +83,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -172,12 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "needs-you.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,7 +208,7 @@
     ],
     "causal_summary": "A bot starts every run with its BOT.md body, the bound spec folder and the decision rule, and nothing else [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315]",
     "created_at": "2026-11-25T07:13:40Z",
-    "last_save_at": "2026-11-25T17:53:58.612Z",
+    "last_save_at": "2026-11-25T19:56:37.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +216,14 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb7a965ff9031089a2222d2131d0021373871fff99e0c3fec0203f758c7377e8",
+    "source_fingerprint": "sha256:30bd5cc206d3853c5841f2cb6e1584e2a2ba18ea316ab90f17c964b8596b963a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "86e51d6902278d5c00500f681526cc99956e21efe8dc47e515bc2323652739f8",
-      "plan.md": "9ae9e93183c75abbc41cd632fd71651426f536d34833e4b7e2e94f90200a76ae",
+      "plan.md": "eb605c52a8ce48416116d748e850e30bc50cef82515276984ed695cea4dc2842",
       "tasks.md": "dda6b7215bb44674ce552aba44bfae769fed880a1438ff76cb5c1439e22ddd66",
       "implementation-summary.md": "45353e8fed56bec9062246d66aeb1a85147a946294fcbde40201df7271a21b56"
     },

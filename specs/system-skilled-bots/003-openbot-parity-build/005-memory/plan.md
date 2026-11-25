@@ -161,6 +161,81 @@ No new package is added. The reference repository is read-only under `specs/syst
 
 ---
 
+<!-- ANCHOR:external-orchestration -->
+## 8. External orchestration
+
+This phase's build is dispatched, not hand-run. The hub owns the routing and each mode owns its dispatch contract, so this section names the executor, the model, the effort and the wave, and never restates a mode's flags [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:16]. Two hub rules bind every dispatch: the target mode's `SKILL.md` is read before its prompt is composed [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198], and the executor CLI is the HOW, so it never overrides this packet's workflow [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:206].
+
+### Executor roster
+
+| Executor | Model | Effort lever | Dispatch shape | Source |
+|----------|-------|--------------|----------------|--------|
+| `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` or `--thinking max`, a standalone flag | `pi -p "<prompt>" --model llmgateway/deepseek-v4.1-flash-1017 --thinking <level> --mode text --offline </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:157] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:146-148] |
+| `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max` on the model id | `opencode run --standalone -m opencode-go/deepseek-v4.1-flash#<level> --format json "<prompt>" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:142] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:161] |
+| `cli-mistral-vibe` | `deepseek-flash` | none; the row's `thinking` is `max` and no flag moves it | `vibe -p "<prompt>" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:72] |
+| `cli-devin` | `deepseek-v4-1-flash-max` | none; the max tier is baked into the uid | `devin -p --model deepseek-v4-1-flash-max --permission-mode dangerous -- "<prompt>" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md:59] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:85] |
+| `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` | `codex exec --model gpt-6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast" -c approval_policy=never --sandbox workspace-write "<prompt>"` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:138] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:107-112] |
+
+**Effort policy.** DeepSeek Flash at `high` carries a small mechanical task: a verb option, a doc line, a test that mirrors an existing one. DeepSeek Flash at `max` carries a design or tricky task: the new `memory.ts` and its bound, the prompt order, the review seam, the proposal item. `gpt-6-luna` at `xhigh` on the `fast` service tier carries the hardest task and is the last fallback for every wave. GPT models go through `cli-codex` alone, because it is the hub's OpenAI-backed mode and no other row in this roster reaches an OpenAI model [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:28]. The parent's row for this phase names `--thinking max` as the phase's primary effort [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:198]; the mechanical waves below drop to `high` under the parent's own tier rule, which gives `high` to a small mechanical task and `max` to a design or tricky one [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:188].
+
+**The worker rule.** Parallelism follows file overlap: no two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into. The parent fixes this phase at four workers, which is the bound every wave below stays under [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:190] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:198].
+
+### Waves
+
+`tasks.md` owns the task ids and their verify clauses; this table owns the assignment. Every wave walks the ladder in §Fallback order, and its executor column is that wave's entry point. The Files column names each file relative to the directory its task line gives: `lib/` and `tests/` sit under `$RT`, `bin/bots.cjs` under `.skilled/`, and the rest under `.skilled/skills/system-skilled-bots/`.
+
+| Wave | Task ids | Files | Executor | Model | Effort | Workers in parallel | Verify |
+|------|----------|-------|----------|-------|--------|---------------------|--------|
+| 0 | T001–T006 | none; six reads | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1, because the six reads feed one baseline record and no file is written | V0 |
+| 1 | T007–T012, T035 | `lib/memory.ts`, `lib/state-root.ts`, `lib/definition.ts`, `lib/label.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: `memory.ts`, `state-root.ts`, and `definition.ts` with `label.ts` | V1 |
+| 2 | T013–T021, T036, T045 | `lib/dispatch.ts`, `lib/needs-you.ts`, `lib/answer.ts`, `lib/runner.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: `dispatch.ts`, `needs-you.ts` with `answer.ts`, `runner.ts` | V2 |
+| 3 | T022, T023, T030–T034 | `bin/bots.cjs`, `assets/bot-template.txt`, `lib/README.md`, `bots-run/references/run-queue-and-answer.md`, `bots-run/SKILL.md`, `bots-author/references/bot-definition.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 2, the file-overlap bound: `bots.cjs`, and the five doc files | V3 |
+| 4 | T024–T029 | `tests/memory.vitest.ts`, `tests/dispatch.vitest.ts`, `tests/needs-you.vitest.ts`, `tests/answer.vitest.ts`, `tests/definition.vitest.ts`, `tests/runner.vitest.ts`, `tests/cli-run.vitest.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 4, the file-overlap bound: `memory`, `dispatch`, `needs-you` with `answer`, and `definition` with `runner` and `cli-run` | V4 |
+| 5 | T037 | `tests/memory.vitest.ts`, `tests/dispatch.vitest.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1, because the one task writes both files wave 4 split between two workers | V5 |
+| 6 | T038–T044 | none; the suite, four probes and the validator | the orchestrator, no external executor | none | none | 1 | V6 |
+
+- **V0**: `rg -n 'export function buildBotPrompt' $RT/lib/dispatch.ts` prints one line at 315; `rg -n "'kind'" $RT/lib/needs-you.ts` prints the key in `ITEM_KEYS`; `rg -n 'export function sharedStatePaths|export function identityStatePaths' $RT/lib/state-root.ts` prints two lines; `rg -n 'remember' .skilled/bin/bots.cjs` prints nothing and exits 1; `rg -n "'memory'" $RT/lib/definition.ts` prints nothing and exits 1; `cd $RT && npx vitest run` prints a `Test Files` line with no `failed`.
+- **V1**: `rg -n 'MEMORY_LIMITS|parseMemory|renderMemory' $RT/lib/memory.ts` prints all three; `rg -n 'sharedMemoryFile' $RT/lib/state-root.ts` prints the declaration; `rg -n "'memory'" $RT/lib/definition.ts` prints the key and the boolean check; `rg -n 'memory-proposals' $RT/lib/label.ts` prints the reserved id; `cd $RT && npm run typecheck` exits 0.
+- **V2**: `rg -n 'REMEMBER_MARKER' $RT/lib/dispatch.ts` prints the constant and the parse branch; `rg -n 'prompt-over-budget' $RT/lib/dispatch.ts` prints the refusal; `rg -n "kind === 'decision'" $RT/lib/needs-you.ts` prints both filters; `rg -n 'memory-proposal|confirm|reject|proposalBotId' $RT/lib/answer.ts` prints the seam, both answers and the proposing bot; `rg -n 'memory-proposal-secret' $RT/lib/runner.ts` prints the refusal; `rg -n 'grants' $RT/lib/runner.ts` prints nothing; `cd $RT && npm run typecheck` exits 0.
+- **V3**: `node .skilled/bin/bots.cjs remember --list` exits 0; `node .skilled/bin/bots.cjs remember x --as ada` prints the entry rather than `unknown option`; `rg -n 'memory' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints one commented line; `rg -n 'memory.ts' $RT/lib/README.md` prints one row; `rg -n 'bots remember' .skilled/skills/system-skilled-bots/bots-run/` prints the reference row and the SKILL line; `rg -n 'memory' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints the field.
+- **V4**: `cd $RT && npx vitest run tests/memory.vitest.ts tests/dispatch.vitest.ts tests/needs-you.vitest.ts tests/answer.vitest.ts tests/definition.vitest.ts tests/runner.vitest.ts tests/cli-run.vitest.ts` prints a `Test Files` line with no `failed`.
+- **V5**: `cd $RT && npx vitest run tests/dispatch.vitest.ts -t "injection"` prints one passing test, and `npx vitest run tests/memory.vitest.ts` prints no `failed`.
+- **V6**: `cd $RT && npx vitest run` prints no `failed`; `SKILLED_BOTS_STATE_ROOT=$(mktemp -d) node .skilled/bin/bots.cjs remember "the sales sheet is Q3"` exits 0; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/005-memory --strict` prints `RESULT: PASSED`.
+
+Wave 6 runs in the orchestrator because each of its tasks reads the finished tree, so a dispatch would add a hop without adding evidence. `$RT` is `.skilled/skills/system-skilled-bots/runtime`, the same variable `tasks.md` uses.
+
+### Fallback order
+
+When a CLI runs out of usage, the wave moves down this ladder and keeps its task ids, its files and its verify step. The order is the parent's, not this phase's, so a phase that falls back still finishes at the effort it was planned for [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:209].
+
+1. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max` [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101]
+2. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max` [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78]
+3. `cli-mistral-vibe` at `deepseek-flash`, always at the row's `max` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89]
+4. `cli-devin` at `deepseek-v4-1-flash-max`, probed first with a trivial read-only call, because a quota banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
+5. `cli-codex` at `gpt-6-luna`, `xhigh`, `fast`, the last fallback [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
+
+A wave that reaches the end of the ladder without a working executor stops and reports the wave, its task ids and the last refusal rather than authoring a file by hand outside the dispatch contract.
+
+### Dispatch rules every worker carries
+
+- Read the target mode's `SKILL.md` before composing the prompt, and attach the resolved agent persona to every dispatch [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:199].
+- Compose every prompt as the child preamble, then the inlined persona, then the task, and set `AI_SESSION_CHILD=1` on the run [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:58] [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:38].
+- One change per brief: the file, the edit and the check that proves it.
+- Read the outcome record, not stdout. `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116].
+
+### Self-invocation guards
+
+A running CLI skill never dispatches itself, so the orchestrator removes its own row from the roster before the first wave. The ladder above is written to survive one row being gone.
+
+| Executor | Refuses when | Source |
+|----------|--------------|--------|
+| `cli-pi` | never for being inside Pi; only from inside a fan-out lineage or when `cli-pi` already appears in the dispatch stack | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:10] |
+| `cli-opencode` | any `OPENCODE_*` env var other than `OPENCODE_API_KEY` is set, `opencode` is in the process ancestry, or `~/.opencode/state/<id>/lock` exists | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:187] |
+| `cli-mistral-vibe` | `VIBE_SESSION=1` is set, or `vibe-rs` or `vibe-app-server` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:16] |
+| `cli-devin` | `$DEVIN_PROJECT_DIR` is set, or `devin` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:35] |
+| `cli-codex` | `$CODEX_SESSION_ID` or any `CODEX_*` env var is set, or `codex` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:35] |
+
+<!-- /ANCHOR:external-orchestration -->
 
 ---
 

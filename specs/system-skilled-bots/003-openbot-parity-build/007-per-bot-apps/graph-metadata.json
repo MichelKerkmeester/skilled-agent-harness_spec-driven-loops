@@ -16,6 +16,10 @@
       "per bot apps plan",
       "per bot apps tasks",
       "per bot apps acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "per bot apps implementation summary"
     ],
     "key_topics": [
@@ -27,10 +31,10 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "every",
-      "reaches"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".claude/mcp.json",
       ".codex/config.toml",
@@ -53,8 +58,7 @@
       ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
       ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
       ".skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md",
-      ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
-      ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
+      ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js"
     ],
     "entities": [
       {
@@ -79,6 +83,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -166,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "mcp-doctor-lib.sh",
-        "kind": "script",
-        "path": ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,7 +208,7 @@
     ],
     "causal_summary": "Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-25T17:22:03.351Z",
+    "last_save_at": "2026-11-25T20:00:09.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +216,14 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e94b8776fbe9c57e38f7e5cea752457707e21c521d627b1dbbb389f02c2c6d0e",
+    "source_fingerprint": "sha256:b25cc42cdcd572f74634d3ea316f73a7f523172259239cc97e1bd90dd7ce73c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "073f7c5bb921ca5af66f841ef93da705c59dc90816529ecb45efb56f1639c445",
-      "plan.md": "6ef5eaed17586fb9209046513a6441974ad13fb17d04255823e76f29f84dc205",
+      "plan.md": "56f4e66f927d939ccc2d7b7491568709f66d29764490b07ec6866b210b3895eb",
       "tasks.md": "15c72c7efab65a6246e2487d42910ccec2a63a9a0af0827b5d18cc1d8363ef85",
       "implementation-summary.md": "a0fd7249b82ee831aad2f9882229e895e8d780423528094c00a46c93b1543d59"
     },

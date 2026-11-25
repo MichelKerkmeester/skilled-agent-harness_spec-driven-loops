@@ -107,6 +107,65 @@ Setup reads the five modules and records the baseline: the status row with no br
 
 ---
 
+<!-- ANCHOR:external-orchestration -->
+## External orchestration
+
+Every task in `tasks.md` is dispatched, not hand-run. The hub owns the routing and each mode owns its dispatch contract, so this section names the executor, the model, the effort and the worker count, and never restates a mode's flags [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:26]. Two hub rules bind every dispatch: the target mode's `SKILL.md` is read before its prompt is composed [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198], and the executor CLI is the HOW, so it never overrides this phase's own workflow [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:206].
+
+**The roster.** Five executors, no sixth. `cli-mistral-vibe` at `deepseek-flash` runs at `max` only, because the tier is the roster row's `thinking` field and no flag moves it [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89]. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017` takes `--thinking high` or `max`, the one effort lever that is a standalone flag [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:157]. `cli-opencode` at `opencode-go/deepseek-v4.1-flash` takes `#high` or `#max` on the model id [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:142]. `cli-devin` at `deepseek-v4-1-flash-max` bakes `max` into the model uid and has no headless effort flag [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:152] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156]. `cli-codex` at `gpt-6-luna` takes `xhigh` on the `fast` service tier, and it is the only route to a GPT model [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165].
+
+**The tier rule.** DeepSeek Flash at `high` carries a small mechanical task: an edit to a settled module, a test that mirrors an existing one, a doc line. DeepSeek Flash at `max` carries a design or tricky task: a new module, a new shared record, a seam between two phases. `gpt-6-luna` at `xhigh` on `fast` carries the hardest task and is the last fallback for every wave [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:188].
+
+**The worker rule.** Parallelism follows file overlap: no two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:190]. The phase's primary executor is `cli-opencode` at `opencode-go/deepseek-v4.1-flash`, and its parent row fixes three workers in parallel [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:197]. No wave below exceeds three.
+
+**The effort the route actually runs.** `opencode-go/deepseek-v4.1-flash` is pinned to the max tier by policy, and the fan-out builder upgrades a lower request [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:142]. The `#high` cells below name the tier the task earns under the tier rule; on this route they run at max, and the parent row's `#high` cell reads the same way. `cli-pi` is the route that delivers a real `high`, which is why it is the first fallback for a mechanical wave.
+
+The shell variables are the ones `tasks.md` sets, plus one for the suites: `LIB=.skilled/skills/system-skilled-bots/runtime/lib`, `TESTS=.skilled/skills/system-skilled-bots/runtime/tests`, `RT="npm --prefix .skilled/skills/system-skilled-bots/runtime"`, `BOTS="node .skilled/bin/bots.cjs"`.
+
+### W0 Setup — orchestrator, no dispatch
+
+Tasks T001 to T007. One worker, the orchestrator, because the wave writes no file: it records the measured gap, the baseline suite and the baseline typecheck, then reads the five modules. Every wave that edits a file is dispatched.
+
+Verify: `$BOTS status | rg -c 'branch '` exits 1; `$RT test` prints a `Tests` line with no `failed`; `$RT run typecheck` exits 0; `rg -n 'export function checkoutLine|export function buildBotPrompt' $LIB/dispatch.ts` prints two lines; `rg -n 'const workDir = tree' $LIB/runner.ts` prints one line; `rg -n 'const parts = \[row.state' $LIB/status.ts` prints one line; `rg -n "SCHEMA_VERSION = '2'" $LIB/status-index.ts` prints one line.
+
+### W1 Implementation — `cli-opencode` at `opencode-go/deepseek-v4.1-flash`, three workers
+
+The wave brief fixes the three interfaces before any worker starts: `workingPlace` as `{ path, branch, runFolder }`, `checkoutBranch(root, env)` returning `string | null`, and `RunSummary` and `LastRun` carrying `worktreePath` and `branch` as `string | null`. With those fixed, the three groups share no file.
+
+| Worker | Task ids | Files | Effort | Fallback if `cli-opencode` runs out |
+|--------|----------|-------|--------|--------------------------------------|
+| W1a | T008, T009, T017 | `$LIB/dispatch.ts`, `$TESTS/dispatch.vitest.ts` | `#max` | `cli-pi` `--thinking max`, then `cli-mistral-vibe` `deepseek-flash`, then `cli-devin` `deepseek-v4-1-flash-max` after a probe, then `cli-codex` `gpt-6-luna` `xhigh` `fast` |
+| W1b | T010, T011, T012, T013, T018, T019 | `$LIB/isolation.ts`, `$LIB/runner.ts`, `$TESTS/isolation.vitest.ts`, `$TESTS/runner.vitest.ts` | `#max` | `cli-pi` `--thinking max`, then `cli-mistral-vibe` `deepseek-flash`, then `cli-devin` `deepseek-v4-1-flash-max` after a probe, then `cli-codex` `gpt-6-luna` `xhigh` `fast` |
+| W1c | T014, T015, T016, T020, T021 | `$LIB/status-index.ts`, `$LIB/status.ts`, `$TESTS/status-index.vitest.ts`, `$TESTS/status.vitest.ts` | `#high` | `cli-pi` `--thinking high`, then `cli-mistral-vibe` `deepseek-flash`, then `cli-devin` `deepseek-v4-1-flash-max` after a probe, then `cli-codex` `gpt-6-luna` `xhigh` `fast` |
+
+W1a and W1b carry `#max` because each is the seam case the tier rule names: W1a fixes the slot in the shared prompt order that 005 owns, and W1b adds the line to a parked prompt and keeps a refusal's two nulls. W1c is mechanical: two fields in a JSON column and two appended row parts.
+
+Verify: `$RT test` prints no `failed`; `$RT run typecheck` exits 0; `rg -n 'workingPlaceLine' $LIB/dispatch.ts $LIB/runner.ts` prints the definition and its two call sites; `rg -n 'export function checkoutBranch' $LIB/isolation.ts` prints one line; `rg -n "SCHEMA_VERSION = '2'" $LIB/status-index.ts` prints one line.
+
+### W2 Docs — `cli-opencode` at `opencode-go/deepseek-v4.1-flash`, two workers
+
+| Worker | Task ids | Files | Effort | Fallback if `cli-opencode` runs out |
+|--------|----------|-------|--------|--------------------------------------|
+| W2a | T022 | `$LIB/README.md` | `#high` | `cli-pi` `--thinking high`, then `cli-mistral-vibe` `deepseek-flash`, then `cli-devin` `deepseek-v4-1-flash-max` after a probe, then `cli-codex` `gpt-6-luna` `xhigh` `fast` |
+| W2b | T023 | `.skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md` | `#high` | `cli-pi` `--thinking high`, then `cli-mistral-vibe` `deepseek-flash`, then `cli-devin` `deepseek-v4-1-flash-max` after a probe, then `cli-codex` `gpt-6-luna` `xhigh` `fast` |
+
+The two files are disjoint, so both workers run at once.
+
+Verify: `rg -n 'working place|checkout branch' $LIB/README.md` prints three lines; `rg -n 'branch <name>' .skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md` prints one line.
+
+### W3 Verification — orchestrator, no dispatch
+
+Tasks T024 to T031. One worker, the orchestrator, because the wave writes no file: it runs the whole suite and the typecheck, reads a worktree run's prompt and record, reads a shared run's record, prints a status row and its JSON, opens an index built before the change, and validates the packet.
+
+Verify: `$RT test` prints no `failed`; `$RT run typecheck` exits 0; `$BOTS status` prints `branch <name>` on a row whose last run recorded one and exits 0 without `--rebuild`; `$BOTS status --json` carries `lastRun.branch` and `lastRun.worktreePath`; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure --strict` prints `RESULT: PASSED`.
+
+**What the orchestrator does between waves.** It reads each worker's own suite slice before the wave's verify: `$RT test -- dispatch` for W1a, `$RT test -- isolation runner` for W1b, `$RT test -- status status-index` for W1c. A slice that prints `failed` sends that one group back with its own output, and the other two groups are not re-run. The wave's verify runs only after all three slices are green, so a red whole-suite run names the group that broke it rather than the wave.
+
+**Fallback order.** Every wave uses the same ladder, and a wave that moves down it keeps its task ids, its files and its verify step: `cli-opencode`, then `cli-pi`, then `cli-mistral-vibe`, then `cli-devin`, then `cli-codex` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:209]. The phase's primary sits first and the parent's relative order holds for the four behind it. `cli-devin` is probed with a trivial read-only call before a wave spends it, because a quota banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]. `cli-codex` is last because it is the hardest-task row and the one a build should not spend on a mechanical edit; it is also the escalation for W1b if that group fails twice, at `gpt-6-luna` `xhigh` on `fast` [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]. A wave that reaches the end of the ladder without a working executor stops and reports the wave, its task ids and the last refusal rather than authoring a file by hand outside the dispatch contract.
+<!-- /ANCHOR:external-orchestration -->
+
+---
+
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 

@@ -110,6 +110,120 @@ Setup reads the one `--json` contract that exists today and the three phases 001
 
 ---
 
+<!-- ANCHOR:external-orchestration -->
+## External orchestration
+
+The build runs as seven waves of external CLI workers. Each wave names its tasks, one executor per lane, the effort tier, how many workers run at once, and the check the orchestrator runs before the next wave starts. The hub routes every dispatch and each mode's own `SKILL.md` owns its argv, so this section names the route and the effort, never a command line. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:26] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:31]
+
+### Executors and how each one expresses effort
+
+| Executor | Model | Effort lever | `high` | `max` |
+|----------|-------|--------------|--------|-------|
+| `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking <tier>` | `--thinking high` | `--thinking max` |
+| `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#<tier>` on the model id | upgraded to `max` | `#max` |
+| `cli-mistral-vibe` | `deepseek-flash` | none; the row's `thinking` field | not available | the row's `max` |
+| `cli-devin` | `deepseek-v4-1-flash-high` / `deepseek-v4-1-flash-max` | the model id | `deepseek-v4-1-flash-high` | `deepseek-v4-1-flash-max` |
+| `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort` | `high` | `xhigh`, the tier this packet uses; `max` is the model's ceiling |
+
+Three of those levers are narrower than the table's two columns suggest, and each one is a fact from its own packet rather than a preference. `cli-mistral-vibe` has no reasoning flag at all: effort is the roster row's `thinking` field and `max` is a property of the row, so a Vibe dispatch cannot be lowered to `high`. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] `cli-opencode`'s `opencode-go/deepseek-v4.1-flash` route is pinned to the max thinking tier by policy, so a `#high` request is upgraded rather than honored. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] `cli-devin` carries the tier in the model id and has no headless effort flag. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156]
+
+The other two need one fact each. `cli-pi`'s ladder is `low`, `high` and `max`, with `medium` and `xhigh` folding into `high`, so `--thinking high` is the only way this packet asks for the middle tier. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] `cli-codex` keeps `gpt-6-luna` and the `fast` service tier unless a task names otherwise, and `xhigh` is the tier this packet asks for on its hardest wave. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
+
+### The parallelism rule
+
+A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
+
+`crates/bots-tui/src/lib.rs` is the binding file. Every module task adds its own `pub mod` line to it, so T008 through T017 form one serial lane by construction, and the parallelism in this packet comes from the lanes beside that one: the CLI verb, the CI job, the hub line, the verb tests and the crate README. `src/render.rs` binds T013, T014 and T015 the same way, and `crates/bots-tui/README.md` binds T004 to T023, so those pairs never run at once.
+
+### The waves
+
+#### Wave 1 - Setup probes and scaffolding
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T001, T002, T003 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none; three read-only probes |
+| B | T005, T007 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/Cargo.toml`, `.gitignore` |
+| C | T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/README.md` |
+
+**Workers:** 3. **Verify:** `cargo metadata --manifest-path crates/bots-tui/Cargo.toml --no-deps --format-version 1` exits 0 and prints `"name":"bots-tui"`; `git check-ignore -v crates/bots-tui/target/release/bots-ui` prints the `/crates/bots-tui/target/` line; `rg -n 'openhuman' crates/bots-tui/README.md` prints one line.
+
+#### Wave 2 - Crate skeleton
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T006 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/src/lib.rs`, `crates/bots-tui/src/main.rs` |
+
+**Workers:** 1, because the lane holds the library root every later module task edits. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0; `ls crates/bots-tui/target/release/bots-ui` prints the path; `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib` exits 0.
+
+#### Wave 3 - Pure state and the two tables
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T008, T009, T010 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `src/lib.rs`, `src/activity.rs`, `src/keys.rs`, `src/ui_state.rs` |
+
+**Workers:** 1, serial inside the lane because all three tasks add a `pub mod` line to `src/lib.rs`. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib activity`, `--lib keys` and `--lib ui_state` each print `test result: ok`.
+
+#### Wave 4 - Process boundary, verb, CI and the hub line
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T011, T012 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `src/cli.rs`, `src/lib.rs`, `tests/fixtures/bots`, `tests/cli_client.rs` |
+| B | T018 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `.skilled/bin/bots.cjs` |
+| C | T021, T024 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/SKILL.md`, `.github/workflows/bots-runtime.yml` |
+
+**Workers:** 3. Lane A runs T011 before T012, because the integration test imports the client. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --test cli_client` prints `test result: ok`; `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`; `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`, and the same command after `mkdir -p "$T/crates/bots-tui"` exits 4 and prints `ui-not-built`; `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line; `rg -c 'bots-tui' .github/workflows/bots-runtime.yml` prints 3.
+
+#### Wave 5 - Renderer, verb tests and the crate README
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T013, T014, T015 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `src/render.rs`, `src/lib.rs`, `src/render/panes.rs`, `src/render/overlay.rs`, `tests/render_keys.rs` |
+| B | T020 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` |
+| C | T023 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/README.md` |
+
+**Workers:** 3. Lane A runs T013 first, because T014 and T015 both declare a `mod` in `src/render.rs`. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --test render_keys` prints `test result: ok`; `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- cli-ui` prints `cli-ui.vitest.ts` and no `failed`; `rg -n 'no code' crates/bots-tui/README.md` prints one line.
+
+#### Wave 6 - Loop and library root
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T016, T017 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `src/app.rs`, `src/lib.rs`, `src/main.rs` |
+| B | T019, T022 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none; two symlink proofs |
+
+**Workers:** 2. This is the packet's hardest wave: the loop, the terminal guard, the panic hook and the exit path are the four places a mistake leaves a terminal in raw mode, so it takes the highest tier the roster offers. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib app` prints `test result: ok` and names `esc_closes_overlay_and_writes_nothing`; `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib restore` prints `test result: ok` and names `restore_runs_on_exit` and `restore_runs_on_panic`; `test -L .opencode/bin && test -L .opencode/skills` exits 0.
+
+#### Wave 7 - Verification gates
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T031 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `src/app.rs` |
+| Orchestrator | T025, T026, T027, T028, T029, T032 | none; the orchestrator runs them itself | none |
+
+**Workers:** 1. T030 is the operator's, by hand, because the overlay is driven by keystrokes no piped command delivers. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0; `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0; `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines; `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok`; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen --strict` prints `RESULT: PASSED`.
+
+### What every dispatch carries
+
+The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:31] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, and a `cli-devin` dispatch puts `--` before the prompt. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243]
+
+A worker's `done` is a claim until the orchestrator runs that wave's verify commands and reads their output and exit status. A wave that fails its verify does not hand its files to the next wave.
+
+### Fallback order when a CLI runs out of usage
+
+A wave whose named executor runs out of usage moves down this ladder from the next rung, and keeps its effort tier: a `high` wave falls back to a `high` dispatch and a `max` wave to a `max` dispatch. A wave already on the last rung stops and reports rather than dropping its tier.
+
+| Rung | Executor | Why it sits here |
+|------|----------|------------------|
+| 1 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` | DevPass bills per token, and this route sits under the gateway's Premium threshold, so it carries no weekly cap |
+| 2 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` | The Go gateway's subsidized usage rate, and it needs its own login before it answers |
+| 3 | `cli-mistral-vibe` · `deepseek-flash` | The Vibe budget, which a `402 API budget exhausted` ends |
+| 4 | `cli-devin` · `deepseek-v4-1-flash-max` | A weekly quota, so it is probed with a trivial read-only call before a real task is handed to it |
+| 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The most expensive reasoning on the roster, kept for the hardest wave and for last |
+
+Two rungs can refuse before they spend anything, and the ladder treats a refusal as a rung that is out of usage. `cli-mistral-vibe` refuses to load when `VIBE_SESSION=1` is set, which is the case in a Vibe-hosted orchestrator, so that orchestrator skips rung 3. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] `cli-devin`'s quota banner is not proof of exhaustion, because a free-tier model still dispatches at `Pro · 0% remaining`, so rung 4 is probed rather than assumed. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
+<!-- /ANCHOR:external-orchestration -->
+
+---
+
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 

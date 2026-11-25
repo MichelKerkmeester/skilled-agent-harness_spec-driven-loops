@@ -151,6 +151,109 @@ The one command that decides the phase is `cd .skilled/skills/system-skilled-bot
 
 ---
 
+<!-- ANCHOR:external-orchestration -->
+## 8. External orchestration
+
+This phase's build is dispatched, not hand-run. The roster below is the closed set of executors the build may use, and the wave table assigns every task in `tasks.md` to one of them. The hub owns the routing and each mode owns its dispatch contract, so this section names the executor, the model, the effort and the worker count and never restates a mode's flags [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:26].
+
+### Executor roster
+
+| Executor | Model | Effort | Source |
+|----------|-------|--------|--------|
+| `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` or `--thinking max` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:157] |
+| `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max` on the model id | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] |
+| `cli-mistral-vibe` | `deepseek-flash` | `thinking = "max"` on the roster row, and no flag exists to change it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] |
+| `cli-devin` | `deepseek-v4-1-flash-max` | baked into the model uid, so no flag carries it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md:59] |
+| `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
+
+Each row's own `SKILL.md` owns its flags, its stdin redirect and its outcome record, so this table names the executor, the model and the effort and stops there. A worker reads its mode's `SKILL.md` before it composes a command.
+
+`cli-pi` is the only row whose effort is a standalone flag, so it is the only row where `high` and `max` are a choice on the command line rather than a property of the model id [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:157]. `cli-codex` sets effort through `-c model_reasoning_effort=` because no `--reasoning-effort` flag exists [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:138]. `cli-devin` and `cli-mistral-vibe` bake the tier into the id or the row, so a dispatch cannot raise or lower it.
+
+### Effort policy
+
+- **`high`** for a small mechanical task: a read that records a current value, a test that mirrors an existing one, a doc line, a notice entry.
+- **`max`** for a design or tricky task: a new module, a new field on a stored record, a seam between install and dispatch, the CLI's refusal surface.
+- **`gpt-6-luna` at `xhigh` on the `fast` service tier** for the hardest task in the build, and as the last fallback when every other row is out of usage.
+- **GPT models only through `cli-codex`.** No other row in this roster reaches a GPT model, so a task that needs one is a `cli-codex` task by definition.
+
+The parent's phase row fixes this phase at `cli-pi` and `--thinking max` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:194]. That `max` is the phase's primary effort and its ceiling. The parent's tier rule is what sets a mechanical wave below it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:188], so W0, W6, W8, W9 and W10 run at `high` and the design waves run at `max`.
+
+### Dispatch rules every worker carries
+
+- Read the target mode's `SKILL.md` before composing the prompt, and attach the resolved agent persona to every dispatch [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198].
+- Compose every prompt as the child preamble, then the inlined persona, then the task, and set `AI_SESSION_CHILD=1` on the run [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:60].
+- One change per brief: the file, the edit and the check that proves it.
+- Read the outcome record, not stdout. A clean stdout proves nothing, and `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116].
+- The executor CLI is the HOW. It never overrides this phase's own workflow, so a worker that finishes its brief stops and reports rather than widening its scope [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:206].
+
+### Self-invocation guards
+
+A running CLI skill never dispatches itself, so the orchestrator removes its own row from the roster before the first wave. The ladder below is written to survive one row being gone.
+
+| Executor | Refuses when | Source |
+|----------|--------------|--------|
+| `cli-mistral-vibe` | `VIBE_SESSION=1` is set, or `vibe-rs` or `vibe-app-server` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:16] |
+| `cli-opencode` | the runtime is OpenCode | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:10] |
+| `cli-codex` | `$CODEX_SESSION_ID` or any `CODEX_*` env var is set, or `codex` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:10] |
+| `cli-devin` | `$DEVIN_PROJECT_DIR` is set, or `devin` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:10] |
+| `cli-pi` | never for being inside Pi; only from inside a fan-out lineage or when `cli-pi` already appears in the dispatch stack | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:10] |
+
+### Fallback ladder
+
+Every wave walks this ladder from its own entry point, and a wave names only that entry point. A row is skipped, not retried, when its guard refuses or its usage is exhausted. The order is the parent's [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:209].
+
+1. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`.
+2. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
+3. `cli-mistral-vibe` at `deepseek-flash`, skipped when `VIBE_SESSION=1` is set.
+4. `cli-devin` at `deepseek-v4-1-flash-max`, probed first with a trivial read-only call, because quota exhaustion gates the paid families and the banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237].
+5. `cli-codex` at `gpt-6-luna`, `xhigh`, `fast`, as the last fallback.
+
+A wave that reaches the end of the ladder without a working executor stops and reports the wave, its task ids and the last refusal. It does not author a file by hand outside the dispatch contract.
+
+### Waves
+
+The parent's worker rule sets the bound: no two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into, and this phase's row caps it at 3 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:190] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:194]. A wave runs at one effort, so a wave holds only tasks of one tier.
+
+| Wave | Task ids | Executor | Model | Effort | Workers | File groups |
+|------|----------|----------|-------|--------|---------|-------------|
+| W0 | T001, T002, T003, T004, T005, T006 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3 | reads only, so no file is written: (T001, T002) / (T003, T004) / (T005, T006) |
+| W1 | T007, T008, T009 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | `activity.ts` (T007, T008) / `actor.ts` (T009) |
+| W2 | T010, T012, T013, T014 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | `needs-you.ts` (T010) / `run-record.ts` (T012) / `status-index.ts` (T013, T014) |
+| W3 | T011, T015, T018 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | `answer.ts` (T011) / `runner.ts` (T015) / `posture.ts` (T018) |
+| W4 | T016, T017 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | `plist-render.ts` (T016) / `installer.ts` (T017) |
+| W5 | T019, T020, T021 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 1 | `bots.cjs` carries all three, so one worker |
+| W6 | T022, T024, T026 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3 | `activity.vitest.ts` (T022) / `needs-you.vitest.ts` with `answer.vitest.ts` (T024) / `posture.vitest.ts` (T026) |
+| W7 | T023, T025 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | `actor.vitest.ts` (T023) / `run-record.vitest.ts` with `status-index.vitest.ts` (T025) |
+| W8 | T027, T032, T033 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 2 | `cli-run.vitest.ts` (T027, T033) / `bots-run/references/run-queue-and-answer.md` (T032) |
+| W9 | T028, T029, T030, T031 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3 | `THIRD_PARTY_NOTICES.md` (T028) / `lib/README.md` (T029) / `bots-status/references/status-and-inbox.md` with `bots-status/SKILL.md` (T030, T031) |
+| W10 | T034, T035, T036, T037, T038, T039 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | commands only, so no file is written |
+
+W2 and W3 are split by dependency, not by tier: `answer.ts` writes the `by` and `scope` that `needs-you.ts` declares and stamps the `answeredBy` that `run-record.ts` declares, so T011 waits for W2. W5 is one worker because all three of its tasks edit `.skilled/bin/bots.cjs`, and the tty refusal and the scope refusal share one argument parser.
+
+### Verify after each wave
+
+The orchestrator runs these itself and reads the output. A wave that fails its own verify does not hand off to the next one.
+
+| Wave | Verify |
+|------|--------|
+| W0 | `rg -n "SCHEMA_VERSION = " .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts` prints `const SCHEMA_VERSION = '2';`, the T002, T003, T004 and T006 `rg` commands print their recorded values, and the T005 baseline `Test Files` line is written into `goal.md` §4. |
+| W1 | `rg -n "needs_you\|recurring" .skilled/skills/system-skilled-bots/runtime/lib/activity.ts` prints the seven ids in order, `rg -n "ACTOR_PATTERN\|resolveActor\|trim" .skilled/skills/system-skilled-bots/runtime/lib/actor.ts` prints all three, and `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0. |
+| W2 | The four `rg` commands T010, T012, T013 and T014 name print, `rg -n "ALTER TABLE\|ADD COLUMN" .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts` prints nothing, and `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0. |
+| W3 | The three `rg` commands T011, T015 and T018 name print, and `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0. |
+| W4 | The two `rg` commands T016 and T017 name print, and `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0. |
+| W5 | `node .skilled/bin/bots.cjs activity` exits 0, `node .skilled/bin/bots.cjs inbox --json --all` exits 0 and prints the ten item keys, `node .skilled/bin/bots.cjs answer item-1 yes --as ada < /dev/null` prints `bots: --as needs a tty`, and `node .skilled/bin/bots.cjs answer item-1 yes --scope always` prints `bots: grant-scope-unsupported`. |
+| W6 | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/activity.vitest.ts tests/needs-you.vitest.ts tests/answer.vitest.ts tests/posture.vitest.ts` prints no `failed` line. |
+| W7 | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/actor.vitest.ts tests/run-record.vitest.ts tests/status-index.vitest.ts` prints no `failed` line, and `npx vitest run tests/actor.vitest.ts -t "adversarial"` prints one passing test. |
+| W8 | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-run.vitest.ts` prints no `failed` line, `node .skilled/bin/bots.cjs activity --json \| jq -e '.groups \| type == "array"'` exits 0, `node .skilled/bin/bots.cjs inbox --json \| jq -e '.items \| type == "array"'` exits 0, and `rg -n -- "--as\|--scope" .skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md` prints both options. |
+| W9 | The four `rg` commands T028 to T031 name print, and `rg -n "activity-groups.ts\|activity-rows.ts" .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints two lines. |
+| W10 | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints no `failed` line, `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0, `node .skilled/bin/bots.cjs activity` exits 0, and `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/status-index.vitest.ts -t "old-ddl"` prints one passing test. |
+
+T040 is the phase gate, so the orchestrator runs it itself after W10 rather than dispatching it: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor --strict` must print `RESULT: PASSED`. Its output decides the handoff to 002-routine-layer, so no worker reports it second-hand.
+<!-- /ANCHOR:external-orchestration -->
+
+---
+
 
 ---
 

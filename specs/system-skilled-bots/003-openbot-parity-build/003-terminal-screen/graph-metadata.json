@@ -22,7 +22,7 @@
       "bots ui tasks",
       "terminal screen acceptance criteria",
       "bots ui acceptance criteria",
-      "003-terminal-screen operator decisions"
+      "packet goal"
     ],
     "key_topics": [
       "terminal",
@@ -35,8 +35,8 @@
       "tasks",
       "acceptance",
       "criteria",
-      "003-terminal-screen",
-      "operator"
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/bin/bots.cjs",
@@ -75,6 +76,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T19:00:45.065Z",
+    "last_save_at": "2026-11-25T19:55:44.028Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +209,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e38e775b8918241272e30429cfa4613a6991511847161cf68d5bd3acd1dc7b01",
+    "source_fingerprint": "sha256:59bb2e80a15d247fafda24fff625b2bdfd8d56bbea91b076e510278aa4a445de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b529befde5225163a5c4c417ed1f5c2aa269739baea702347aeb73e34cf0bac",
-      "plan.md": "e6b25b6bc4ff743b9368b8a166484e39e9054bab32dc30ae23f51b9604d16570",
+      "plan.md": "9e7e64bacc24b2c0e8a78a38068ea71ef0bf242ddb2462bc9373ba7267e19c97",
       "tasks.md": "b12e076eddc6f5afdf3d9761dbcbb49efdb2eeb13744877f22cb69bef576e34e",
       "decision-record.md": "bc44912e0f82bf69cda135e83e5abc45327121c1e83b0c8a49b60f083aafffd2",
       "implementation-summary.md": "f27cd29c97b9569dbf41707d1342d0de5092e123e4bb22a29fca7964437c9f59"
