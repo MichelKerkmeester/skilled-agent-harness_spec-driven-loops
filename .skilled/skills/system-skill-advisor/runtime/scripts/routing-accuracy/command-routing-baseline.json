@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "342e7fa7586",
+  "capturedAtSha": "5c8aeff2c1b",
   "corpusSha256": "sha256:8092a113b3804a58bcfd403daa30d9a9cce8180670e12920bfe8bd019ee78eab",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -1781,7 +1781,7 @@
     },
     "sv-05": {
       "expected_command": "/deep:research",
-      "top": "system-deep-loop",
+      "top": "cli-external-orchestration",
       "top1": false,
       "top3": false,
       "offered": false
