@@ -529,6 +529,63 @@ test('--rollback refuses a backed-up file whose bytes no longer match the record
   assert.equal(fixture.digest(), after);
 });
 
+test('--rollback refuses a path a later change replaced after the run wrote it, and leaves the change', (t) => {
+  const fixture = createRepinFixture(t);
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  const runId = fs.readdirSync(fixture.runsDir)[0];
+
+  writeFile(fixture.tree, '.skilled/skills/hub/ROUTER.md', 'edited after the run\n');
+  const after = fixture.digest();
+
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 2, rolledBack.output);
+  assert.match(rolledBack.output, /^refuse: \.skilled\/skills\/hub\/ROUTER\.md changed after run \S+ wrote it$/m);
+  assert.match(rolledBack.output, /^  rollback would overwrite that later change, so it restores nothing$/m);
+  assert.match(rolledBack.output,
+    /^  Next: keep the later change and skip this rollback, or put each path above back by hand, then from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs status$/m);
+  assert.match(rolledBack.output, /^RESULT: FAILED$/m);
+  assert.equal(fixture.digest(), after);
+  assert.equal(read(fixture.tree, '.skilled/skills/hub/ROUTER.md'), 'edited after the run\n');
+
+  // The run records what it left at each path, so a rollback can tell its own
+  // write from a later change. A path it removed records nothing.
+  const backup = readJson(path.join(fixture.runsDir, runId, 'backup.json'));
+  assert.equal(backup.entries.find((entry) => entry.path === '.skilled/skills/hub/ROUTER.md').afterSha256,
+    sha256(Buffer.from('router v2\n')));
+  assert.equal(backup.entries.find((entry) => entry.path === '.codex/gone.md').afterSha256, null);
+});
+
+test('--rollback restores a run whose paths still hold what it wrote', (t) => {
+  const fixture = createRepinFixture(t);
+  const before = fixture.digest();
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  const runId = fs.readdirSync(fixture.runsDir)[0];
+
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.match(rolledBack.output, /^RESULT: PASSED$/m);
+  assert.equal(fixture.digest(), before);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('--rollback restores a run whose backup predates the after-run hash', (t) => {
+  const fixture = createRepinFixture(t);
+  const before = fixture.digest();
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  const runId = fs.readdirSync(fixture.runsDir)[0];
+  const backupPath = path.join(fixture.runsDir, runId, 'backup.json');
+  const backup = readJson(backupPath);
+  for (const entry of backup.entries) delete entry.afterSha256;
+  fs.writeFileSync(backupPath, JSON.stringify(backup, null, 2) + '\n');
+
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.equal(fixture.digest(), before);
+});
+
 // A hand-edited or truncated backup.json reaches rollback before any shape
 // check, so a parse failure must refuse like any other unreadable backup.
 function writeBackupBytes(fixture, runId, bytes) {
@@ -868,6 +925,10 @@ test('a misused repin command line prints the usage and exits 2', (t) => {
     ['repin', '--to', fixture.newCommit],
     ['repin', '--rollback', 'x', '--to', fixture.newCommit],
     ['status', '--upstream', fixture.upstream],
+    // A bare word is not a flag, however its tail reads.
+    ['repin', '--upstream', fixture.upstream, 'onto', fixture.newCommit],
+    ['repin', '--upstream', fixture.upstream, 'auto', fixture.newCommit],
+    ['repin', '--upstream', fixture.upstream, '--to', fixture.newCommit, 'xxstage', fixture.workspace],
   ]) {
     const result = fixture.run(args);
     assert.equal(result.code, 2, args.join(' ') + ': ' + result.output);

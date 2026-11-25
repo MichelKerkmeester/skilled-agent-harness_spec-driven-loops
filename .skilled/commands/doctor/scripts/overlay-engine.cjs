@@ -289,6 +289,19 @@ function isSameFile(filePath, stats) {
   }
 }
 
+// Whether two paths name one entry on disk, without following a link at either
+// end. A fold can join two names the volume keeps apart, so a record read under
+// another spelling is the engine's own only when both spellings are this entry.
+function namesSameEntry(leftPath, rightPath) {
+  try {
+    const left = fs.lstatSync(leftPath);
+    const right = fs.lstatSync(rightPath);
+    return left.dev === right.dev && left.ino === right.ino;
+  } catch {
+    return false;
+  }
+}
+
 function isWithin(basePath, candidatePath) {
   const relative = path.relative(basePath, candidatePath);
   return relative === '' || (!path.isAbsolute(relative) && relative !== '..' && !relative.startsWith('..' + path.sep));
@@ -2296,6 +2309,49 @@ function destinationShape(filePath, key, recordedFiles, recordedLinks = {}) {
 }
 
 /**
+ * Say what stands at a destination and whether the state records it as the
+ * engine's own output, reading the record under the spelling the state keeps
+ * when the manifest now spells the path in other case. The state keeps each
+ * path as the manifest spelled it, so on a volume that folds case a record
+ * spelled with other case names this same entry; it is accepted only when that
+ * spelling is this very file or folder, since the fold can also join two names
+ * the volume keeps apart.
+ * @param {string} filePath Absolute destination path.
+ * @param {string} key The destination relative to the tree root.
+ * @param {Record<string, string>|Map<string, string>} recordedFiles Hashes the engine last applied.
+ * @param {Record<string, string>} [recordedLinks] Links the engine made that no manifest entry names now.
+ * @param {string} root Destination tree root.
+ * @returns {{kind: 'missing'|'file'|'folder'|'link', isOwned: boolean}}
+ */
+function ownedDestinationShape(filePath, key, recordedFiles, recordedLinks, root) {
+  const shape = destinationShape(filePath, key, recordedFiles, recordedLinks);
+  if (shape.isOwned || (shape.kind !== 'file' && shape.kind !== 'folder')) return shape;
+  const fold = pathFold(root);
+  const folded = fold(key);
+  const depth = key.split('/').length;
+  const recordedKeys = recordedFiles instanceof Map ? [...recordedFiles.keys()] : Object.keys(recordedFiles || {});
+  const recordedKey = recordedKeys
+    .map((candidate) => candidate.split('/').slice(0, depth).join('/'))
+    .find((prefix) => prefix !== key && fold(prefix) === folded);
+  if (recordedKey === undefined) return shape;
+  const recordedPath = path.join(root, recordedKey);
+  let stats;
+  let recordedStats;
+  try {
+    stats = fs.lstatSync(filePath);
+    recordedStats = fs.lstatSync(recordedPath);
+  } catch {
+    return shape;
+  }
+  const isSameEntry = shape.kind === 'file'
+    ? isSameFile(recordedPath, stats)
+    : recordedStats.isDirectory() && recordedStats.dev === stats.dev && recordedStats.ino === stats.ino;
+  if (!isSameEntry) return shape;
+  const recordedShape = destinationShape(filePath, recordedKey, recordedFiles, recordedLinks);
+  return recordedShape.isOwned ? recordedShape : shape;
+}
+
+/**
  * The refusal for a shape in the way that the engine did not write.
  * @param {object} entry Manifest overlay entry.
  * @param {string} key The destination relative to the tree root.
@@ -2398,12 +2454,15 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
 
 // The target the engine made a link with at this path, matched the way the
 // volume matches names, so a link the manifest spells in another case is still
-// known as the engine's own.
+// known as the engine's own. The fold can also join two names the volume keeps
+// apart, so the match counts only when both spellings are this very entry.
 function engineLinkText(root, engineLinks, key) {
   if (Object.prototype.hasOwnProperty.call(engineLinks, key)) return engineLinks[key];
   const fold = pathFold(root);
   const match = Object.keys(engineLinks).find((linkKey) => fold(linkKey) === fold(key));
-  return match === undefined ? undefined : engineLinks[match];
+  if (match === undefined) return undefined;
+  if (!namesSameEntry(path.join(root, match), path.join(root, key))) return undefined;
+  return engineLinks[match];
 }
 
 // The link someone else made that takes an engine-made link's chain outside the
@@ -2508,7 +2567,7 @@ function planFileOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks }
   // file is the earlier output of another shape: it goes before the write. Any
   // other link keeps the path it always had.
   const key = relativeKey(ctx.root, destinationPath);
-  const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
+  const shape = ownedDestinationShape(destinationPath, key, acceptedSha256, recordedLinks, ctx.root);
   if (shape.kind === 'folder' || (shape.kind === 'link' && shape.isOwned)) {
     if (!shape.isOwned) {
       problems.push(unownedShapeProblem(entry, key, shape.kind, 'file', ctx.root));
@@ -2572,7 +2631,7 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   // and the folder is never read through the old link. Any other link keeps
   // the path it always had.
   const key = relativeKey(ctx.root, destinationDir);
-  const shape = destinationShape(destinationDir, key, acceptedSha256, recordedLinks);
+  const shape = ownedDestinationShape(destinationDir, key, acceptedSha256, recordedLinks, ctx.root);
   let current;
   let isDestinationReplaced = false;
   if (shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned)) {
@@ -3025,7 +3084,7 @@ function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   for (const rel of entry.replace.map(manifestFolderPath)) {
     const destinationPath = path.join(destinationDir, rel);
     const key = relativeKey(ctx.root, destinationPath);
-    const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
+    const shape = ownedDestinationShape(destinationPath, key, acceptedSha256, recordedLinks, ctx.root);
     const wantsFolder = replacedSubtrees.has(rel);
     const inTheWay = wantsFolder ? shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned) : shape.kind === 'folder';
     if (!inTheWay) continue;
@@ -3057,7 +3116,15 @@ function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
 
   const current = walkTree(destinationDir);
   const removedPrefixes = [...manifestFolderPaths(entry.remove), ...replacedSubtrees, ...shapeChanged];
-  const matchesPrefix = (prefixes, rel) => prefixes.some((prefix) => rel === prefix || rel.startsWith(`${prefix}/`));
+  // The walk spells a path as the tree holds it, so a path the manifest spells
+  // in other case is under the prefix only when both spellings reach one entry:
+  // the fold can also join two names the volume keeps apart.
+  const fold = pathFold(ctx.root);
+  const matchesPrefix = (prefixes, rel) => prefixes.some((prefix) => {
+    if (rel === prefix || rel.startsWith(`${prefix}/`)) return true;
+    const head = rel.split('/').slice(0, prefix.split('/').length).join('/');
+    return fold(head) === fold(prefix) && namesSameEntry(path.join(destinationDir, head), path.join(destinationDir, prefix));
+  });
   const isRemoved = (rel) => matchesPrefix(removedPrefixes, rel);
   // A replaced subtree is the overlay's to capture into; only a path the entry
   // removes without also replacing is a removal the overlay performs.
@@ -3374,12 +3441,16 @@ function isOwnedShapeForLink(manifest, root, state, link, linkPath) {
   if (destinationShape(linkPath, key, recordedFiles).isOwned) return true;
   // The state keeps each path as the manifest spelled it. Where the volume
   // folds case, a record spelled with other case names this same entry, so
-  // it is read under its recorded spelling.
+  // it is read under its recorded spelling. The fold can also join two names
+  // the volume keeps apart, so the record counts only when that spelling is
+  // this very entry.
   const depth = key.split('/').length;
   const recordedSpelling = Object.keys(recordedFiles)
     .map((recordedKey) => recordedKey.split('/').slice(0, depth).join('/'))
     .find((prefix) => prefix !== key && fold(prefix) === folded);
-  return recordedSpelling !== undefined && destinationShape(linkPath, recordedSpelling, recordedFiles).isOwned;
+  if (recordedSpelling === undefined) return false;
+  if (!namesSameEntry(path.join(root, recordedSpelling), linkPath)) return false;
+  return destinationShape(linkPath, recordedSpelling, recordedFiles).isOwned;
 }
 
 /**
@@ -6644,6 +6715,40 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   return backup;
 }
 
+// The sha256 of what a path holds now: a file's bytes, a link's target, or null
+// when nothing is there. A path reached through a link, or one holding a folder,
+// has no hash a backup entry can be compared against.
+function livePathSha256(base, relativePath) {
+  if (hasLinkedAncestor(base, relativePath)) return undefined;
+  const filePath = path.join(base, relativePath);
+  let stats;
+  try {
+    stats = fs.lstatSync(filePath);
+  } catch (error) {
+    if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+    return null;
+  }
+  if (stats.isSymbolicLink()) return sha256(Buffer.from(fs.readlinkSync(filePath)));
+  if (stats.isFile()) return sha256(fs.readFileSync(filePath));
+  return undefined;
+}
+
+/**
+ * Record what the run left at each backed-up path, so a rollback can tell the
+ * run's own write from a later change and refuse instead of overwriting it.
+ * @param {object} ctx Engine context.
+ * @param {string} runDir The run folder.
+ * @param {object} backup The backup record the run wrote.
+ */
+function recordAfterHashes(ctx, runDir, backup) {
+  for (const entry of backup.entries) {
+    const base = entry.area === 'overlay' ? ctx.overlayRoot : ctx.root;
+    const live = livePathSha256(base, normalizedRelative(entry.path, 'backup entry'));
+    if (live !== undefined) entry.afterSha256 = live;
+  }
+  fs.writeFileSync(path.join(runDir, 'backup.json'), JSON.stringify(backup, null, 2) + '\n');
+}
+
 function pruneEmptyParents(root, filePath) {
   for (let dir = path.dirname(filePath); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
     if (!isDirectory(dir) || fs.readdirSync(dir).length > 0) return;
@@ -7129,8 +7234,9 @@ function repinUnderLock(ctx, job, report) {
     let isClean = false;
     let failure = null;
     let stage = 'backup';
+    let backup = null;
     try {
-      const backup = writeBackup(ctx, manifest, analysis, touched, runDir, {
+      backup = writeBackup(ctx, manifest, analysis, touched, runDir, {
         runId,
         upstream: job.upstream,
         from: job.oldCommit,
@@ -7148,6 +7254,9 @@ function repinUnderLock(ctx, job, report) {
         : '  the re-pin failed in its write step, after the backup of every path it changes');
       if (job.isStage) console.log('  Next: fix the error above, then rerun the re-pin into an empty stage folder');
     }
+    // The tree is final here, so what the run left at each path is recorded for a
+    // rollback to compare against before it restores anything.
+    if (backup) recordAfterHashes(ctx, runDir, backup);
     if (!job.isStage && !isClean) console.log(rollbackCommand(ctx, runId));
     // A stage that printed a blocked line or a miss is not a rehearsal that
     // passed, so it gets its own word instead of the clean stage's.
@@ -7331,6 +7440,20 @@ function rollbackUnderLock(ctx, runDir, backup) {
     if (entry.area === 'overlay') return { base: ctx.overlayRoot, backupDir: path.join(runDir, 'overlay-backup') };
     throw new Error('backup entry names an unknown area: ' + String(entry.area));
   };
+  // A path the run wrote and a later change replaced is not the run's to undo:
+  // restoring it would overwrite that change, so the rollback refuses instead.
+  const changed = [];
+  for (const entry of backup.entries) {
+    if (!('afterSha256' in entry)) continue;
+    const relativePath = normalizedRelative(entry.path, 'backup entry');
+    if (livePathSha256(areaOf(entry).base, relativePath) !== entry.afterSha256) changed.push(relativePath);
+  }
+  if (changed.length > 0) {
+    return refuseRepin([...changed.map((relativePath) => `refuse: ${relativePath} changed after run ${path.basename(runDir)} wrote it`),
+      '  rollback would overwrite that later change, so it restores nothing',
+      '  Next: keep the later change and skip this rollback, or put each path above back by hand, then ' +
+      nextEngine(ctx.root, 'status').slice('Next: '.length)]);
+  }
   for (const entry of backup.entries) {
     const relativePath = normalizedRelative(entry.path, 'backup entry');
     const { base, backupDir } = areaOf(entry);
@@ -7400,8 +7523,8 @@ function rollbackUnderLock(ctx, runDir, backup) {
 }
 
 function rollbackRun(ctx, runId) {
-  const listRuns = `  Next: ls ${shellPath(path.join(ctx.overlayRoot, RUNS_FOLDER))}, then rerun ` +
-    `${ENGINE_COMMAND} repin --rollback <run-id> from ${shellPath(ctx.root)}`;
+  const listRuns = `  Next: ls ${shellPath(path.join(ctx.overlayRoot, RUNS_FOLDER))}, then ` +
+    `from ${shellPath(ctx.root)}: ${ENGINE_COMMAND} repin --rollback <run-id>`;
   if (!RUN_ID_PATTERN.test(runId)) {
     return refuseRepin(['refuse: not a run id: ' + runId,
       '  a run id is the name of a folder a re-pin wrote under ' + ctx.overlayLabel + '/' + RUNS_FOLDER, listRuns]);
@@ -8936,7 +9059,21 @@ function relayoutUnderLock(ctx, manifest) {
   }
 
   console.log(`${plan.moves.length} moved`);
-  console.log(`run ${ENGINE_COMMAND} apply`);
+  // The backup keeps each moved copy and the manifest at its path below the base
+  // it was keyed from, so copying it back restores them.
+  const undoBase = overlayOutside ? ctx.overlayLabel : shellPath(ctx.root);
+  console.log(`undo: copy everything under ${backupLabel} back to the same paths below ${undoBase}`);
+  // The backup holds sources and the manifest, never a link this run rewrote, so
+  // each rewritten link needs its own line to put it back.
+  for (const change of done.links) {
+    console.log(`undo: point the link ${change.path} back to ${change.from}: ` +
+      `ln -sfn ${shellPath(change.from)} ${shellPath(path.join(ctx.root, change.path))}`);
+  }
+  // A skipped file was never copied, so the copy-back cannot bring it back.
+  if (backupSkipped.length > 0) {
+    console.log(`undo: the backup skipped these files, so restore them by hand: ${backupSkipped.join(', ')}`);
+  }
+  console.log(nextEngine(ctx.root, 'apply'));
   return EXIT_OK;
 }
 
@@ -8972,7 +9109,7 @@ function parseArguments(argv) {
       continue;
     }
     if (value === '--root' || value === '--capture' || value === '--adopt' || value === '--guard' ||
-        REPIN_VALUE_FLAGS.includes(value.slice(2))) {
+        (value.startsWith('--') && REPIN_VALUE_FLAGS.includes(value.slice(2)))) {
       const next = argv[index + 1];
       const field = value.slice(2);
       if (options[field] !== null || !next || next.startsWith('-')) return null;
@@ -9016,9 +9153,13 @@ function parseArguments(argv) {
  * @returns {number} Exit code.
  */
 function main(argv) {
+  // Only status and repin have a JSON mode, so a caller that named --json beside
+  // either one parses stdout; anywhere else the usage block is the whole answer.
+  const wantsJson = argv.includes('--json') && argv.some((value) => value === 'status' || value === 'repin');
   const options = parseArguments(argv);
   if (!options) {
-    console.log(USAGE);
+    if (wantsJson) console.log(JSON.stringify({ result: 'ERROR', error: 'invalid arguments', usage: USAGE }, null, 2));
+    else console.log(USAGE);
     return EXIT_ERROR;
   }
   if (options.command === 'help') {
@@ -9027,7 +9168,8 @@ function main(argv) {
   }
   const root = path.resolve(options.root || DEFAULT_ROOT);
   if (!isDirectory(root)) {
-    console.log('root is not a directory: ' + root);
+    if (options.isJson) console.log(JSON.stringify({ result: 'ERROR', error: 'root is not a directory: ' + root }, null, 2));
+    else console.log('root is not a directory: ' + root);
     return EXIT_ERROR;
   }
   try {

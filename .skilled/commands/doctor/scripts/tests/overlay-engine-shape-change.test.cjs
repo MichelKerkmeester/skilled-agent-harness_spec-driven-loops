@@ -170,6 +170,55 @@ test('a file the engine wrote becomes a layout link spelled with other case on a
   assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Tool')), 'target');
 });
 
+// The fold that joins two spellings runs only where the volume ignores case,
+// and it can join two names the volume keeps apart: a dotless i folds to a
+// plain i. A user's own file at the plain spelling is not the engine's output,
+// so the link must not take its place.
+test('a user file whose bytes match a record spelled with a dotless i is not replaced by a layout link', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'sıb' }]);
+  const probe = path.join(fixture.workspace, 'fold-probe');
+  fs.mkdirSync(probe);
+  fs.writeFileSync(path.join(probe, 'sıb'), 'a');
+  const isSplit = !fs.existsSync(path.join(probe, 'sib'));
+  fs.rmSync(probe, { recursive: true });
+  if (!isCaseInsensitive(fixture.workspace) || !isSplit) {
+    t.skip('the volume does not fold case while keeping a dotless i apart from a plain one');
+    return;
+  }
+  applyOk(fixture);
+  writeFile(fixture.tree, 'sib', 'tool file\n');
+  fixture.setManifest([], [{ path: 'sib', target: 'target' }]);
+  const apply = fixture.run(['apply']);
+  assert.notEqual(apply.code, 0, apply.output);
+  assert.match(apply.output, /sib exists but is not the link to target/, apply.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'sib'), 'utf8'), 'tool file\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'sıb'), 'utf8'), 'tool file\n');
+});
+
+// The same fold reaches the record of a link the engine made, so a user's own
+// link at the plain spelling is not retargeted as if the engine had made it.
+test('a user link whose target matches a record spelled with a dotless i is not retargeted', (t) => {
+  const fixture = createShapeFixture(t, [], [{ path: 'sıb', target: 'target' }]);
+  const probe = path.join(fixture.workspace, 'fold-probe');
+  fs.mkdirSync(probe);
+  fs.writeFileSync(path.join(probe, 'sıb'), 'a');
+  const isSplit = !fs.existsSync(path.join(probe, 'sib'));
+  fs.rmSync(probe, { recursive: true });
+  if (!isCaseInsensitive(fixture.workspace) || !isSplit) {
+    t.skip('the volume does not fold case while keeping a dotless i apart from a plain one');
+    return;
+  }
+  writeFile(fixture.tree, 'other/inside.md', 'other target\n');
+  applyOk(fixture);
+  fs.symlinkSync('target', path.join(fixture.tree, 'sib'));
+  fixture.setManifest([], [{ path: 'sib', target: 'other' }]);
+  const apply = fixture.run(['apply']);
+  assert.notEqual(apply.code, 0, apply.output);
+  assert.match(apply.output, /sib exists but is not the link to other/, apply.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'sib')), 'target');
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'sıb')), 'target');
+});
+
 test('a layout link the engine made becomes the file an entry now names, and its target is untouched', (t) => {
   const fixture = createShapeFixture(t, [], [LINK]);
   applyOk(fixture);
@@ -1034,6 +1083,84 @@ for (const [label, links, landing] of [
     assert.equal(kindOf(path.join(fixture.tree, landing, 'a.md')), 'missing');
   });
 }
+
+// On a volume that ignores case, a destination the engine wrote as Tool and a
+// destination the manifest now spells tool are one path, so a shape change and
+// a case change land in the same apply.
+function caseShapeFixture(t, first) {
+  const fixture = createShapeFixture(t, [first]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so Tool and tool are two paths');
+    return null;
+  }
+  applyOk(fixture);
+  return fixture;
+}
+
+test('a file the engine wrote as Tool becomes the folder the manifest now spells tool, in one apply', (t) => {
+  const fixture = caseShapeFixture(t, { ...FILE_ENTRY, destination: 'Tool' });
+  if (!fixture) return;
+  fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'tool' }]);
+  const apply = applyOk(fixture);
+  assert.doesNotMatch(apply.output, /BLOCKED/, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'tool')), 'folder');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'deep', 'b.md'), 'utf8'), 'bundle b\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a folder the engine wrote as Tool becomes the file the manifest now spells tool, in one apply', (t) => {
+  const fixture = caseShapeFixture(t, { ...DIRECTORY_ENTRY, destination: 'Tool' });
+  if (!fixture) return;
+  fixture.setManifest([{ ...FILE_ENTRY, destination: 'tool' }]);
+  const apply = applyOk(fixture);
+  assert.doesNotMatch(apply.output, /BLOCKED/, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'tool')), 'file');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool'), 'utf8'), 'tool file\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+// A skill-root replace path carries the same rule: the file the engine wrote as
+// Tool is the folder the source now ships as tool, so it goes in the same apply
+// rather than standing in the way of the folder's first write.
+test('a skill-root replace file the engine wrote as Tool becomes the folder the source now spells tool, in one apply', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['Tool'])]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so Tool and tool are two paths');
+    return;
+  }
+  writeFile(fixture.overlayDir, 'vendor/Tool', 'tool file\n');
+  applyOk(fixture);
+  fs.rmSync(path.join(fixture.overlayDir, 'vendor', 'Tool'));
+  writeFile(fixture.overlayDir, 'vendor/tool/x.md', 'x\n');
+  fixture.setManifest([skillRootEntry(['tool'])]);
+  const apply = applyOk(fixture);
+  assert.doesNotMatch(apply.output, /BLOCKED/, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'vendor', 'tool')), 'folder');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'vendor', 'tool', 'x.md'), 'utf8'), 'x\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+// The reverse direction carries the same rule: the folder the engine wrote as
+// Tool is the file the source now ships as tool, so the files inside it are
+// this apply's deletes and the write finds the folder empty.
+test('a skill-root replace folder the engine wrote as Tool becomes the file the source now spells tool, in one apply', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['Tool'])]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so Tool and tool are two paths');
+    return;
+  }
+  writeFile(fixture.overlayDir, 'vendor/Tool/x.md', 'x\n');
+  applyOk(fixture);
+  fs.rmSync(path.join(fixture.overlayDir, 'vendor', 'Tool'), { recursive: true });
+  writeFile(fixture.overlayDir, 'vendor/tool', 'tool file\n');
+  fixture.setManifest([skillRootEntry(['tool'])]);
+  const apply = applyOk(fixture);
+  assert.doesNotMatch(apply.output, /BLOCKED/, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'vendor', 'tool')), 'file');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'vendor', 'tool'), 'utf8'), 'tool file\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
 
 // The engine folds a dotless i to a plain one, where a volume that ignores
 // case keeps sıb and sib as two files. A recorded sıb is then a
