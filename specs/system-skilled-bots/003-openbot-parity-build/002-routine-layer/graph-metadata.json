@@ -47,6 +47,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "design/records.md",
+      "design/state-machines.md",
+      "design/refusals.md",
+      "design/fixtures.md",
+      "design/mockups.md",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
@@ -55,12 +60,7 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
-      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
-      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-      ".skilled/skills/system-skilled-bots/bots-status/SKILL.md"
+      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts"
     ],
     "entities": [
       {
@@ -97,6 +97,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-machines.md",
+        "kind": "doc",
+        "path": "design/state-machines.md",
+        "source": "derived"
+      },
+      {
+        "name": "refusals.md",
+        "kind": "doc",
+        "path": "design/refusals.md",
+        "source": "derived"
+      },
+      {
+        "name": "fixtures.md",
+        "kind": "doc",
+        "path": "design/fixtures.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
         "source": "derived"
       },
       {
@@ -154,36 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "bot-check.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "bot-template.txt",
-        "kind": "file",
-        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
-        "source": "derived"
-      },
-      {
-        "name": "bot-definition.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-status/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger and a body, so it says when a bot runs and nothing about what the run is for, whether it acts or only tells, or when it is done",
     "created_at": "2026-11-25T07:13:38Z",
-    "last_save_at": "2026-11-25T22:43:29.885Z",
+    "last_save_at": "2026-11-25T23:19:48.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14dd35890d57b2af56d99ac4cf9bd1fb7c9acf1d771273e49d4433a2a3d40d80",
+    "source_fingerprint": "sha256:00a07e62c4d828e11df4808cf7bcb35fc14b258aabfb970a748beb8edb971f1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e7785ef534ab44e7fb8fe40f7c2806d9826e4e3d59fb603ca0663851570a437e",
-      "plan.md": "95fa10895038a68b40d179e084f47e4202def6dc5d16fbbe2a381e9bb916edd4",
-      "tasks.md": "caa2329a5395293d63399ee6cb21752b88ef47a1de87937fa3b09e7f8c86e9ee",
+      "spec.md": "46817a41b47938bf37c38b0186ce20a6749fe993e6095b0858873f5d4be13f6b",
+      "plan.md": "f18c595b42f3fbd47ca5d536b4fb9012fec213d56becab6c597e34357062db2f",
+      "tasks.md": "cfd3b8d972983e3b84d08b56d91660026ecb0a510995e4771ddeb6966f955bd4",
       "implementation-summary.md": "0d7f921d1001c8f065113d46e668e1fcaf25dadaf4218e7c56971b76197947b8"
     },
     "last_active_at": null

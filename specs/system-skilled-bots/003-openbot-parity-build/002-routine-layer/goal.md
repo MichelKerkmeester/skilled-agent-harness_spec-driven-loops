@@ -58,11 +58,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `for d in .skilled/skills/system-skilled-bots/scripts/fixtures/routine-*; do node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs "$d" >/dev/null 2>&1; rc=$?; echo "${d##*/} $rc"; done` prints ten lines: `routine-clean 0`, and `1` for each of the nine defect fixtures.
-- [ ] `node .skilled/bin/bots.cjs routines --repo .skilled/skills/system-skilled-bots/scripts/fixtures/routine-clean` exits 0 and prints two rows, and `T=$(mktemp -d) && cp -R .skilled/skills/system-skilled-bots/scripts/fixtures/routine-clean "$T/checkout" && XDG_STATE_HOME="$T/state" node .skilled/bin/bots.cjs routines --json --repo "$T/checkout" | jq -e 'length == 2 and (.[0].botId != null)'` exits 0.
+- [ ] `node .skilled/bin/bots.cjs routines --repo .skilled/skills/system-skilled-bots/scripts/fixtures/routine-clean` exits 0 and prints two rows, and `T=$(mktemp -d) && cp -R .skilled/skills/system-skilled-bots/scripts/fixtures/routine-clean "$T/checkout" && XDG_STATE_HOME="$T/state" node .skilled/bin/bots.cjs routines --json --repo "$T/checkout" | jq -e '.version == 1 and (.routines | length == 2) and (.routines[0].botId != null)'` exits 0.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/routine.vitest.ts tests/routine-state.vitest.ts tests/runner.vitest.ts tests/installer.vitest.ts tests/cli-run.vitest.ts tests/answer.vitest.ts` exits 0.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and `npm run typecheck` exits 0.
 - [ ] `rg -c 'routine' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints 1, `rg -c 'routine' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints at least 1, and `rg -c 'bots routines' .skilled/skills/system-skilled-bots/bots-status/SKILL.md` prints at least 1.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer --strict` prints `RESULT: PASSED`, and `rg -c '\| Unmet \|' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md` prints 0.
+- [ ] The five `design/` documents agree with the code: `rg -c '^(sequenceDiagram|stateDiagram-v2)$' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/state-machines.md` prints 5, `rg -c '^\| [0-9]+ \| `routine-' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/refusals.md` prints 11, and `rg -c '^\| `routine-[a-z-]+` \| `digest/BOT\.md`' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/fixtures.md` prints 9.
 
 <!-- /ANCHOR:completion -->
 
@@ -82,12 +83,16 @@ and findings belong here.
 | Bound to the parent goal | Done | `specs/system-skilled-bots/003-openbot-parity-build/goal.md` §2 BINDING names `002-routine-layer/goal.md` as this phase's authoritative goal |
 | Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer` printed `RESULT: PASSED (5/5 checks)` |
 | External orchestration | Done | `plan.md` §8 names the roster, the eight waves W0-W7 and the fallback ladder |
-| Tasks T001-T033 | Pending | `rg -c '^- \[ \] T[0-9]' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/tasks.md` prints 33 |
+| Design artifacts | Done | `design/records.md`, `design/state-machines.md`, `design/refusals.md`, `design/fixtures.md` and `design/mockups.md` hold every shape, transition, refusal, fixture and printed line the phase ships |
+| Tasks T001-T035 | Pending | `rg -c '^- \[ \] T[0-9]' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/tasks.md` prints 35 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Waves live in `plan.md`, not `tasks.md` | The sibling phases 012, 013 and 014 keep their wave table in `tasks.md` §Waves. This run's write scope is `goal.md` and `plan.md` only, so the wave table sits in `plan.md` §8 and `tasks.md` is unchanged. |
+| The routine state file is 0600 | `contracts/records.md` section 6 calls it owner-only and `writeStateAtomic` sets no mode, so the writer chmods after every write. `contracts/runtime-architecture.md` section 2.1 still marks the node `umask`, and `design/records.md` section 7 names that line as the one the operator changes, because this phase cannot edit the contract folder. |
+| The enable's answer text is `enabled` | `contracts/answer-seam.md` leaves the text to this phase. `enabled` is not in the NO set, so the answer records the scope `once` and the grant is written with it. |
+| The fatigue and enable write orders are fixed here | The work order asks for a transition contract and the packet contracts state none. `design/state-machines.md` sections 2 to 4 fix the order, what each stop leaves and the one repair. |
 | Test files no task line names | T005-T010, T013-T019 verify against `tests/routine.vitest.ts`, `tests/routine-state.vitest.ts`, `tests/definition.vitest.ts`, `tests/run-record.vitest.ts`, `tests/runner.vitest.ts`, `tests/installer.vitest.ts` and `tests/status.vitest.ts`, and no task line names any of them as a file to write. The wave table counts them as write targets, because a worker that must make a `-t` filter pass writes that file. |
 <!-- /ANCHOR:log -->

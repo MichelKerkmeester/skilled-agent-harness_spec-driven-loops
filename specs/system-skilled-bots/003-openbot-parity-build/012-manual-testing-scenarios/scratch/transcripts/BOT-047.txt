@@ -1,0 +1,10 @@
+BOT-047 -- Status prints the branch and the worktree the last run recorded
+phase 004-computer-exposure, REQ-002
+
+$ rg -n 'branch|worktree' .skilled/skills/system-skilled-bots/runtime/lib/status.ts
+(no output)
+exit=1
+
+Blocker: the status row carries no branch and no worktree field.
+
+The scenario block was not run past its first turn, because the verb or the field it needs is absent. The verdict is SKIP with the blocker above, per the corpus rule that a scenario which cannot run records SKIP rather than a silent pass.

@@ -33,7 +33,7 @@ Two shell variables this list uses: `RT` is `.skilled/skills/system-skilled-bots
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the item's key list (`$RT/lib/needs-you.ts`). Verify: `rg -n "ITEM_KEYS" $RT/lib/needs-you.ts` prints the declaration and no `'grants'` entry
+- [ ] T001 Read the four design files, then record the item's key list (`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/design/`, `$RT/lib/needs-you.ts`). Verify: `ls specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/design/` lists `README.md`, `records.md`, `state-machines.md`, `refusals.md`, `mockups.md` and `fixtures`, and `rg -n "ITEM_KEYS" $RT/lib/needs-you.ts` prints the declaration and no `'grants'` entry
 - [ ] T002 Record the gate's item write (`$RT/lib/runner.ts`). Verify: `rg -n "const item: NeedsYouItem" $RT/lib/runner.ts` prints one line
 - [ ] T003 Record the answer's two item writes and its read-check-write order (`$RT/lib/answer.ts`). Verify: `rg -n "writeNeedsYouItem|needsYouState" $RT/lib/answer.ts` prints the state check and two writes
 - [ ] T004 Record the answer verb spec, the inbox branch and the inbox `--json` branch (`.skilled/bin/bots.cjs`). Verify: `rg -n "answer: \{ ids: 2|inbox: \{ ids: 0" .skilled/bin/bots.cjs` prints both specs, `answer` carrying `as` and `scope` and `inbox` carrying `json` and `all`, which is the 001 surface this phase extends [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/tasks.md:62-63]
@@ -59,7 +59,7 @@ Two shell variables this list uses: `RT` is `.skilled/skills/system-skilled-bots
 - [ ] T017 Carry the grant forward in every item writer, including the memory-proposal branch 005 lands and the fatigue item 002 raises in `routine-state.ts` (`$RT/lib/runner.ts`, `$RT/lib/routine-state.ts`, `$RT/lib/answer.ts`, `.skilled/bin/bots.cjs`). Verify: `rg -n "writeNeedsYouItem" $RT/lib/` prints every writer, each passing the grant it read, `rg -n "memory-proposals" $RT/lib/runner.ts` prints the branch that fills it, and `rg -n "classifyAction|decideApproval" $RT/lib/routine-state.ts` prints both calls on the fatigue item's write
 - [ ] T018 Record 001's scope on the grant and keep the refusal of `always` and `conversation` (`$RT/lib/answer.ts`). Verify: `rg -n "grant-scope-unsupported" $RT/lib/answer.ts` prints the refusal
 - [ ] T019 Compare the answer's text and its scope as one identity (`$RT/lib/answer.ts`). Verify: `rg -n "item-answered-differently" $RT/lib/answer.ts` prints the check over both fields
-- [ ] T020 Guard the item write with an exclusive lock file beside the item (`$RT/lib/answer.ts`). Verify: `rg -n "lock" $RT/lib/answer.ts` prints the lock taken before the write and released after it
+- [ ] T020 Guard the item write with an exclusive lock file beside the item, holding the writer's `pid`, a `nonce` and the instant it was created (`$RT/lib/answer.ts`). Verify: `rg -n "lock" $RT/lib/answer.ts` prints the lock taken before the write and released after it, and `rg -n "pid|nonce" $RT/lib/answer.ts` prints the three keys the lock file holds
 - [ ] T021 Write the scope, `grantedBy` and `grantedAt` on the grant, and derive `deny` from a NO, `no` or `n` (`$RT/lib/answer.ts`). Verify: `rg -n "grantedBy|grantedAt" $RT/lib/answer.ts` prints both fields and the write, and `cd $RT && npx vitest run tests/answer.vitest.ts -t "scope"` prints no `failed`
 - [ ] T022 Carry one line per grant on the resumed run's record (`$RT/lib/run-record.ts`). Verify: `rg -n "grant" $RT/lib/run-record.ts` prints the optional field on the request join
 - [ ] T023 Carry the grant on the `answer` path 001's `--scope` reaches (`.skilled/bin/bots.cjs`). Verify: `$BOTS answer item-1 yes --scope once` prints `bots: item-unknown: item-1`
@@ -82,6 +82,7 @@ Two shell variables this list uses: `RT` is `.skilled/skills/system-skilled-bots
 - [ ] T040 Append the MIT notice for the lifted classifier (`.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md`). Verify: `rg -n "tool-name.ts" .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints the entry under a `## 006-approval-grants` heading
 - [ ] T041 Add the `grants` key to the screen's fake CLI (`crates/bots-tui/tests/fixtures/bots`). Verify: `rg -n "grants" crates/bots-tui/tests/fixtures/bots` prints the key on the `inbox --json` payload
 - [ ] T042 Drop a resume still queued for the item when the no-resume option is passed, so `bots enable` cannot leave one behind that dispatches the tenth failed run once it clears the switch (`$RT/lib/answer.ts`). Verify: `rg -n "queueFolders|listInbox" $RT/lib/answer.ts` prints the queue read the drop uses, and `cd $RT && npx vitest run tests/answer.vitest.ts -t "drops a queued resume"` prints one passing test
+- [ ] T054 Reclaim a lock left by a killed process, so a lock whose owner pid is gone or whose `createdAt` is more than 60 seconds before now is renamed away before the acquisition is retried, and a lock whose owner is alive is waited on for up to 2,000 ms and then refused `item-busy` (`$RT/lib/answer.ts`). Verify: `rg -n "stale|pid" $RT/lib/answer.ts` prints the reclaim by owner pid and by age, and `cd $RT && npx vitest run tests/answer.vitest.ts -t "stale lock"` prints one passing test, which seeds a lock file naming a dead pid and proves the next answer lands rather than being refused `item-busy`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -158,6 +159,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the phase d
 - [ ] CHK-011 [P0] The two new modules print nothing. Verify: `rg -n 'console\.(log|error)' $RT/lib/action-kind.ts $RT/lib/approval-ladder.ts` prints nothing
 - [ ] CHK-012 [P1] Error handling implemented. Verify: `rg -n 'grant-scope-unsupported' $RT/lib/answer.ts` prints the refusal
 - [ ] CHK-013 [P1] Code follows project patterns. Verify: `rg -n '^export (function|type|interface)' $RT/lib/action-kind.ts $RT/lib/approval-ladder.ts` prints the exports
+- [ ] CHK-014 [P0] A lock left by a dead pid does not block the next answer. Verify: `cd $RT && npx vitest run tests/answer.vitest.ts -t "stale lock"` prints one passing test, and `rg -n "stale|pid" $RT/lib/answer.ts` prints the reclaim by owner pid and by age
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -223,7 +225,7 @@ The plan's affected-surfaces addendum is active because this phase changes a sto
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
+| P0 Items | 13 | [ ]/13 |
 | P1 Items | 13 | [ ]/13 |
 | P2 Items | 1 | [ ]/1 |
 

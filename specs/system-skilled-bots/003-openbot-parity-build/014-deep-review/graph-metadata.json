@@ -47,13 +47,19 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "design/records.md",
       ".skilled/bin/bots.cjs",
+      "design/refusals.md",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
       "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/implementation-summary.md",
+      "design/state-machines.md",
+      "design/mockups.md",
       ".skilled/commands/deep/review.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "design/fixtures/README.md",
       ".skilled/skills/system-skilled-bots/runtime/package.json",
-      ".skilled/commands/assets/local-skilled-alignment/executors.json"
+      ".skilled/commands/assets/local-skilled-alignment/executors.json",
+      "design/fixtures/preflight.json"
     ],
     "entities": [
       {
@@ -93,15 +99,39 @@
         "source": "derived"
       },
       {
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
+        "source": "derived"
+      },
+      {
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
+        "name": "refusals.md",
+        "kind": "doc",
+        "path": "design/refusals.md",
+        "source": "derived"
+      },
+      {
         "name": "bot-check.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "state-machines.md",
+        "kind": "doc",
+        "path": "design/state-machines.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
         "source": "derived"
       },
       {
@@ -117,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "design/fixtures/README.md",
+        "source": "derived"
+      },
+      {
         "name": "package.json",
         "kind": "config",
         "path": ".skilled/skills/system-skilled-bots/runtime/package.json",
@@ -126,6 +162,12 @@
         "name": "executors.json",
         "kind": "config",
         "path": ".skilled/commands/assets/local-skilled-alignment/executors.json",
+        "source": "derived"
+      },
+      {
+        "name": "preflight.json",
+        "kind": "config",
+        "path": "design/fixtures/preflight.json",
         "source": "derived"
       },
       {
@@ -163,47 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Run",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Thirteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
     "created_at": "2026-11-25T19:32:30Z",
-    "last_save_at": "2026-11-25T22:43:29.889Z",
+    "last_save_at": "2026-11-25T23:22:26.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +220,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38ac00eb580a8adf52258134f8bd2840bd4c1f580695048fc489c87fdbd6dbb0",
+    "source_fingerprint": "sha256:01e70bf6866b240764e3141e635f1434dae6ff61ae16684c316154b1b93ffaa8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0856b1fc2788a5f4004ac9dc36faffd1206d58957602f938c17fc32798c97b83",
-      "plan.md": "3ef1fb87fb83ec974ee1ba947bfabe83adb725cf3f23f214593c088f3212f246",
-      "tasks.md": "3a58ef8449799fe6635cbda25db57559540ffe220696bf4cc5974b67f63af7cb",
+      "spec.md": "366e5f05c403e5ce40734ef2c118cdaf31dca8c9d10423efe809f807b610d328",
+      "plan.md": "3230ee61615185b3ab9d424a63e092801eed543bcf0d2d79c5e913349ab10619",
+      "tasks.md": "c1be34c4ce8249624740e85fcc1e2c854a0747f1b258b7e03a1e34cc666bb9fc",
       "implementation-summary.md": "04417aeaae86ae895456f3ac9983e2556685981dc6a6c5ca571272e96b471aad"
     },
     "last_active_at": null

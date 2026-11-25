@@ -1,0 +1,19 @@
+{
+  "runId": "20261125T211204Z-7c1e9a40",
+  "botId": "hello",
+  "identity": "skilled-scratch/hello",
+  "repositoryPath": "/Users/ada/code/hello",
+  "definitionDigest": "9f2c1a7b4e8d3c6a0b5f9e2d7c4a1b8e6f3d0c9a2b7e4f1d8c5a3b0e9f6d2c4a",
+  "source": "manual",
+  "scheduledAt": null,
+  "dispatchedAt": "2026-11-25T21:12:04.000Z",
+  "latenessClass": null,
+  "skippedSlots": null,
+  "heldSlot": null,
+  "exitReason": "completed",
+  "exitClass": null,
+  "needsYouItemId": null,
+  "refusalCause": null,
+  "runFolder": "/Users/ada/code/hello/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fhello/runs/20261125T211204Z-7c1e9a40",
+  "requestId": null
+}

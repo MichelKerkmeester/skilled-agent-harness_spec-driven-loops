@@ -61,12 +61,12 @@ Layered module set with a pure core. The parser stays shape-only, a loader owns 
 
 ### Key Components
 - **`skills.ts`**: `SKILL_NAME_PATTERN` reuses the bot-id grammar, because a skill folder is named the same way [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88]; `parseSkillList` validates the list shape and refuses `skills-name-invalid` and `skills-duplicate`; `loadSkills` reads `<skilledTree>/.skilled/skills/<name>/SKILL.md`, computes each body's SHA-256 digest, and refuses `skill-unknown`, `skill-unreadable`, `skill-too-large`, `skills-over-budget` and `skill-changed`; `renderSkillsPrompt` returns one `<skill_content name="<name>">` block per skill, the wrapper OpenGhost uses [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/skills.js:6-7]. The caps are `SKILL_MAX_BYTES = 16_384` and `SKILLS_TOTAL_MAX_BYTES = 24_576`, both under the 32,000-character composed-prompt bound 005's REQ-015 fixes and both measured against today's tree in `spec.md`, so the loader refuses by name before the prompt bound has to [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:165]. A body is trusted repository content and not a security boundary, so the digest is what makes a body a bot wrote visible: `bots install` records the digest of every body the definition names, and a body that differs refuses `skill-changed` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:1-30].
-- **`skill-proposal.ts`**: `proposalFolder` and `proposalFile` name `<stateRoot>/<identity>/proposals/<run-id>/`; `writeProposal` reads one run record [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:377], builds the draft, checks it for secret literals through `findSecretLiteral` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:287], writes both files and returns the review item; `proposalReviewItem` builds that item with the reserved `skill-proposals` bot id, `kind` `skill-proposal` and a `grants` object filled through 006's `classifyAction` and `decideApproval` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:155], so every item writer fills the field 006 owns; `settleProposalAnswer` is the one seam `answer.ts` calls, and it returns "not a proposal", a `proposal-stale` refusal, or "recorded".
+- **`skill-proposal.ts`**: `proposalFolder` and `proposalFile` name `<stateRoot>/<identity>/proposals/<run-id>/`; `writeProposal` reads one run record [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:377], builds the draft from the literal template section 9 fixes, checks it for secret literals through `findSecretLiteral` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:287], writes the draft, then `proposal.json`, then the review item last, and returns that item; `proposalReviewItem` builds it with the reserved `skill-proposals` bot id, `kind` `skill-proposal` and a `grants` object filled through 006's `classifyAction` and `decideApproval` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:155], so every item writer fills the field 006 owns; `claimProposalAnswer` is the claim half `answer.ts` calls before the write, and it returns "not a proposal", a `proposal-stale` refusal, or the decision word; `settleProposalAnswer` is the settle half, which writes `answer.json` beside `proposal.json` and returns "recorded".
 - **`definition.ts`**: gains `skills` in `FRONTMATTER_KEYS` and `skills: string[]` on `BotDefinition`, filled by `parseSkillList` and defaulting to `[]` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:60-73].
 - **`dispatch.ts`**: `buildBotPrompt` takes an optional `skills` list and inserts each rendered block at the skills position 005's Prompt Section Order fixes, after the memory block and before the decision marker and the standing body, so the standing instructions stay last [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315-332] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71]. The 32,000-character bound and its `prompt-over-budget` refusal stay 005's, and this phase only makes the skills block one term in that sum and the block the refusal names when the skills are what crossed the line [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:165].
 - **`runner.ts`**: calls `loadSkills` with `context.skilledTree` before the prompt is built, records each loaded body's name and digest as `HonoredPosture.skills`, and turns each refusal into a refused run record, so no child starts with a partial list [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1043-1049] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-128].
 - **`installer.ts`**: records the digest of every body the definition names in the bot's install record, so the loader has the installed bytes to compare against.
-- **`answer.ts`**: calls `settleProposalAnswer` through the one review seam 005's REQ-013 fixes, which runs after the answer and the scope are written and before the resume request is built; a recorded review returns without a request, and a stale pin returns `proposal-stale` with nothing written [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:88-89] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:163].
+- **`answer.ts`**: calls `claimProposalAnswer` in the claim half of the one review seam 005's REQ-013 fixes, before the answer and the scope are written, so a stale pin refuses `proposal-stale` with nothing written and the item stays open; a claimed item then writes the answer and the grant, stamps the run record, calls `settleProposalAnswer` to write `answer.json`, and returns without a request [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:88-89] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:38].
 - **`label.ts`**: `RESERVED_BOT_IDS` gains `skill-proposals`, so no definition may take that id and `holdForBot` never matches a real bot [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/label.ts:28]. The list is shared: 005 reserves `memory-proposals` in the same list, and the hold is kept off by 005's `kind` filter rather than by the sentinel, so a later review kind adds its own `kind` value and no third id [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:65].
 - **`bots.cjs`**: gains `skill` with `ids: 2`, parsed the way `schedule` already is, so `skill propose <run-id>` reads as one action and one id [SOURCE: .skilled/bin/bots.cjs:63-77].
 
@@ -80,7 +80,7 @@ This phase adds one block to the one prompt builder and cites 005's order rather
 3. A run reaches the prompt build. The runner calls `loadSkills`, which reads each body once, measures it, computes its digest, compares it against the digest `bots install` recorded, and either returns the blocks or refuses. A refusal becomes a refused run record with the reason named, and no child starts.
 4. `buildBotPrompt` inserts the blocks at the skills position 005's Prompt Section Order fixes, after the memory block and before the decision marker and the standing body, and the child sees each skill inside its own `<skill_content>` element labelled untrusted. The composed prompt is then measured against 005's 32,000-character bound: the conversation gives way first, the skills block never does, and a prompt still over the bound refuses `prompt-over-budget` naming the skills block when the skills are what crossed the line.
 5. `bots skill propose <run-id> --name <skill-name>` reads the run record, builds a draft from the record's identity, exit and run folder, checks it for secret literals, writes the draft and `proposal.json`, and writes one review item under the reserved `skill-proposals` id with `kind` `skill-proposal` and `grants` filled through 006's `classifyAction` and `decideApproval`.
-6. `bots answer <run-id> accept` reaches `settleProposalAnswer` through the one review seam, which runs after the answer and the scope are written and before the resume request is built. It recomputes the target's digest. A match records the answer and returns with no request; a difference refuses `proposal-stale` and leaves the item open.
+6. `bots answer <run-id> confirm` reaches `claimProposalAnswer` in the claim half of the one review seam, before the answer and the scope are written. It recomputes the target's digest. A difference refuses `proposal-stale` with nothing written and the item stays open. A match lets the write land, and `settleProposalAnswer` then writes `answer.json` beside `proposal.json` and returns with no request queued.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -196,12 +196,12 @@ This phase's build is dispatched, not hand-run. The hub owns the routing and eac
 |------|----------|-------|----------|-------|--------|---------------------|--------|
 | 0 | T001–T004 | `scratch/setup-notes.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1, because all four tasks write the one setup note and three of them only read | V0 |
 | 1 | T005–T008, T014, T015 | `lib/skills.ts`, `lib/definition.ts`, `lib/state-root.ts`, `lib/label.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: `skills.ts`, `definition.ts`, and `state-root.ts` with `label.ts` | V1 |
-| 2 | T009, T010, T016–T018 | `lib/dispatch.ts`, `lib/runner.ts`, `lib/skill-proposal.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: `dispatch.ts`, `runner.ts`, `skill-proposal.ts` | V2 |
+| 2 | T009, T010, T016–T018, T035 | `lib/dispatch.ts`, `lib/runner.ts`, `lib/skill-proposal.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: `dispatch.ts`, `runner.ts`, `skill-proposal.ts` | V2 |
 | 3 | T011, T012, T019 | `lib/run-record.ts` with `lib/runner.ts`, `lib/installer.ts`, `lib/answer.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: the record pair, `installer.ts`, `answer.ts` | V3 |
 | 4 | T013, T020, T021 | `lib/skills.ts`, `bin/bots.cjs`, `scripts/bot-check.cjs` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: `skills.ts`, `bots.cjs`, `bot-check.cjs` | V4 |
 | 5 | T022–T025 | `assets/bot-template.txt` with `bots-author/references/bot-definition.md`, `bots-run/SKILL.md`, `lib/README.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3, the file-overlap bound: the template with the author reference, the run mode, the runtime README | V5 |
 | 6 | T026, T028 | `scripts/fixtures/`, `tests/cli-run.vitest.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 2, the file-overlap bound: the fixtures folder, the CLI test | V6 |
-| 7 | T027, T029 | `tests/bot-check.vitest.ts`, `tests/dispatch.vitest.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2, the file-overlap bound: the checker test, the injection test | V7 |
+| 7 | T027, T029, T036, T037 | `tests/bot-check.vitest.ts`, `tests/dispatch.vitest.ts`, `tests/skill-proposal.vitest.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound: the checker test, the injection test, the proposal test | V7 |
 | 8 | T030–T034 | none; the suite, the checker, the CLI loop, the criteria rows and the validator | the orchestrator, no external executor | none | none | 1 | V8 |
 
 - **V0**: `rg -c 'buildBotPrompt' $R/lib/runner.ts` prints 2; `rg -n 'export function findSecretLiteral|export function readRunRecord' $R/lib/dispatch.ts $R/lib/run-record.ts | wc -l` prints 2; `wc -c .skilled/skills/*/SKILL.md | grep -v total | sort -rn | head -1` prints `32362 .skilled/skills/sk-git/SKILL.md`; `cd $R && npm test` exits 0.
@@ -212,7 +212,7 @@ This phase's build is dispatched, not hand-run. The hub owns the routing and eac
 - **V5**: `rg -c 'skills' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints 1; `rg -n 'skills' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints one line; `rg -n 'bots skill propose' .skilled/skills/system-skilled-bots/bots-run/SKILL.md` prints one line; `rg -c 'skills.ts|skill-proposal.ts' $R/lib/README.md` prints 2.
 - **V6**: `ls $F | rg -c '^skills-'` prints 4; `cd $R && npx vitest run tests/cli-run.vitest.ts` exits 0.
 - **V7**: `cd $R && npx vitest run tests/bot-check.vitest.ts` exits 0; `cd $R && npx vitest run tests/dispatch.vitest.ts -t 'injection'` prints one passing test.
-- **V8**: `cd $R && npm test` exits 0; `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/skills-clean` exits 0; `node .skilled/bin/bots.cjs inbox --repo $F/skills-clean` lists one item under `skill-proposals`; `rg -c '\| Met \|' specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md` prints 12; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/009-skills --strict` prints `RESULT: PASSED`.
+- **V8**: `cd $R && npm test` exits 0; `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/skills-clean` exits 0; `node .skilled/bin/bots.cjs inbox --repo $F/skills-clean` lists one item under `skill-proposals`; `rg -c '\| Met \|' specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md` prints 15; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/009-skills --strict` prints `RESULT: PASSED`.
 
 Wave 8 runs in the orchestrator because each of its tasks reads the finished tree, so a dispatch would add a hop without adding evidence. `$R` is `.skilled/skills/system-skilled-bots/runtime` and `$F` is `.skilled/skills/system-skilled-bots/scripts/fixtures`, the same two variables `tasks.md` uses.
 
@@ -266,3 +266,91 @@ Setup ──► Implementation ──► Verification
 <!-- /ANCHOR:phase-deps -->
 
 ---
+
+<!-- ANCHOR:draft-template -->
+## 9. THE DRAFT TEMPLATE AND THE WRITE ORDER
+
+`bots skill propose` builds the draft with no model call, so the draft is a template filled from one run record. The literal text, the slot table and the validator proof are `design/draft-template.md`. This section fixes what a builder needs in the plan itself.
+
+### The literal template
+
+```text
+---
+name: <name>
+description: "<description>"
+allowed-tools: ["Read"]
+version: 1.0.0.0
+---
+
+# <name>
+
+## WHEN TO USE
+
+Use this skill when a run has to repeat what run <runId> did.
+
+## SMART ROUTING
+
+| Request | Route |
+|---------|-------|
+| A run of <botId> that repeats this work | This file |
+
+## HOW IT WORKS
+
+1. Read the run folder at <runFolder>.
+2. Follow the steps the run's ledger records.
+
+## RULES
+
+- The run this skill came from exited <exitReason>.
+
+## REFERENCES
+
+- Run folder: <runFolder>
+```
+
+The four frontmatter keys and the five section headings are the validator's requirement, not a style choice. [SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:58] [SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:68-74]
+
+### Which run-record field fills each slot
+
+| Slot | Source | Literal when no field fills it |
+|------|--------|--------------------------------|
+| `<name>` | the `--name` value, else the record's `identity.botId` | none, the slot is always filled |
+| `<description>` | none | `Proposed from run <runId> of bot <botId>. Rewrite this line before the skill goes live.` |
+| `allowed-tools` | none | `["Read"]` |
+| `version` | none | `1.0.0.0` |
+| the `# <name>` heading | the same value as `name` | none |
+| `<runId>` | `identity.runId` | none |
+| `<botId>` | `identity.botId` | none |
+| `<runFolder>` | `evidence.runFolder` | none |
+| `<exitReason>` | `exit.reason` | none |
+
+The record's field names are `contracts/records.md` section 4 and the reader's own type. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:196-206] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:130-139] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:149-159]
+
+### The validator gate
+
+The draft must pass `validate_skill_package.py`, which runs `package_skill.py --check` over the folder. [SOURCE: .skilled/skills/sk-doc/scripts/validate_skill_package.py:258-272] The check requires the four frontmatter fields, the five section headings and a frontmatter `name` equal to the folder name. [SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:1658-1664] The template above is proven to pass it, and `tests/skill-proposal.vitest.ts` runs the same check over a built draft, so a template edit that breaks the validator fails the suite rather than shipping. No runtime refusal is added for it, because the template is fixed text and a check at propose time would only re-test the same bytes.
+
+### The write order
+
+Three writes, in this order, and the order is the repair rule:
+
+1. `SKILL.md`, the draft.
+2. `proposal.json`, what the draft was built from.
+3. The review item, last.
+
+The secret check runs before the first write, so a draft holding a known secret literal refuses `proposal-secret` with neither file written. The item check runs before the first write too, so a re-run with an item present refuses `review-already-exists` and overwrites nothing.
+
+### The re-run rule
+
+| On disk when the verb runs | What happens |
+|----------------------------|--------------|
+| No folder, or a folder with no files | All three writes land |
+| Both files, no item | Both files are overwritten and the item is written, so an interrupted proposal is repaired by the same command with no flag |
+| An item for that run id | `review-already-exists`, exit 4, nothing overwritten |
+
+The repair path adds no verb and no flag, because the run id and the name already identify everything the re-run needs. The files are overwritten rather than kept, because the second build produces the same draft unless the record changed, and overwriting is the only way to be sure the item names a draft that matches the `proposal.json` beside it.
+
+### The operator steps after a confirmed proposal
+
+The runtime writes no file inside a checkout, so the operator moves the draft. The steps are in `bots-run/references/run-queue-and-answer.md`, which this phase adds to the Files to Change: move the draft into `.skilled/skills/<name>/`, commit, run `bots install`, check the pinned digest.
+<!-- /ANCHOR:draft-template -->

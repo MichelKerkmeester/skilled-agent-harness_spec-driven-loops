@@ -1,0 +1,32 @@
+{
+  "title": "The bots skill: the bots CLI, its runtime modules, the hub and mode docs, the feature catalog and the manual testing playbook",
+  "terms": [
+    "system-skilled-bots",
+    "bots\\.cjs",
+    "needs-you",
+    "BOT\\.md"
+  ],
+  "codeRoots": [
+    ".skilled/bin/bots.cjs",
+    ".skilled/skills/system-skilled-bots/runtime/lib",
+    ".skilled/skills/system-skilled-bots/scripts"
+  ],
+  "lanes": 4,
+  "checks": [
+    {
+      "id": "skill-package",
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/system-skilled-bots",
+      "severity": "P1"
+    },
+    {
+      "id": "feature-catalog",
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      "severity": "P1"
+    },
+    {
+      "id": "manual-testing-playbook",
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-skilled-bots/manual-testing-playbook",
+      "severity": "P1"
+    }
+  ]
+}

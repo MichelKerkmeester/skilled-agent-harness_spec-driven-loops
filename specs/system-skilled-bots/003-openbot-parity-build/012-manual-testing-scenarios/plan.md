@@ -45,12 +45,12 @@ The corpus gains 33 scenario files in ten new category folders, `BOT-026` to `BO
 - [ ] Phases 001 to 011 are closed, so every verb a scenario names exists
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS ... scenarios=58 categories=17 ... violations=0 warnings=0`
-- [ ] `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, and that file holds 33 data rows
-- [ ] `rg -c '^(PASS|FAIL),' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 33
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios --strict` prints `RESULT: PASSED`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS ... scenarios=58 categories=17 ... violations=0 warnings=0`
+- [x] `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, and that file holds 33 data rows
+- [x] `rg -c '^BOT-0' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 33, `rg -c ',(PASS|FAIL|SKIP),' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 33, and `rg -c '^# recorded by record-playbook-run.cjs' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 1
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios --strict` prints `RESULT: PASSED`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -216,7 +216,7 @@ Parallelism follows file overlap: no two workers touch one file, so a wave's wor
 - **V4**: `find .skilled/skills/system-skilled-bots/manual-testing-playbook/memory .skilled/skills/system-skilled-bots/manual-testing-playbook/apps .skilled/skills/system-skilled-bots/manual-testing-playbook/vault .skilled/skills/system-skilled-bots/manual-testing-playbook/skills -name '*.md' | wc -l` prints 10, and the validator prints `PASS`.
 - **V5**: `find .skilled/skills/system-skilled-bots/manual-testing-playbook/channels -name '*.md' | wc -l` prints 1, and the validator prints `PASS ... scenarios=58 categories=17 ... violations=0`.
 - **V6**: `cat scratch/verdicts-*.csv | rg -c '^(PASS|FAIL|SKIP),'` prints 33.
-- **V7**: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, and `rg -c '^(PASS|FAIL|SKIP),' <that path>` prints 33.
+- **V7**: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, `rg -c '^BOT-0' <that path>` prints 33, `rg -c ',(PASS|FAIL|SKIP),' <that path>` prints 33, and `rg -c '^# recorded by record-playbook-run.cjs' <that path>` prints 1.
 - **V8**: `validate-playbook-package.cjs --package system-skilled-bots` prints `PASS`, and `validate.sh --strict` prints `RESULT: PASSED`.
 
 ### Fallback Order

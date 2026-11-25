@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "botId": null,
+  "path": "/Users/ada/.local/state/system-skilled-bots/memory/shared.md",
+  "entries": [
+    {
+      "index": 1,
+      "type": "general",
+      "date": "2026-11-25",
+      "actor": "ada",
+      "source": "bots remember",
+      "text": "the sales sheet is Q3 | not Q2"
+    },
+    {
+      "index": 2,
+      "type": "user",
+      "date": "2026-11-25",
+      "actor": "ada",
+      "source": "bot:hello (run 20261125T210204Z-0b6e5f72)",
+      "text": "Prefers ISO dates."
+    }
+  ],
+  "entryCount": 2,
+  "byteCount": 239,
+  "skippedLines": 2
+}

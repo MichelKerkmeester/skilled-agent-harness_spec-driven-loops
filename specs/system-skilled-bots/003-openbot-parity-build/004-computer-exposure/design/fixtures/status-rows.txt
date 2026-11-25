@@ -1,0 +1,7 @@
+ok	skilled-scratch/hello	hello	/Users/ada/code/hello	last 20261125T211204Z-7c1e9a40 completed
+ok	skilled-scratch/hello	hello	/Users/ada/code/hello	last 20261125T211204Z-7c1e9a40 completed	branch main
+ok	skilled-scratch/hello	hello	/Users/ada/code/hello	last 20261125T211204Z-7c1e9a40 completed	branch worktrees/004-bot-hello	worktree /Users/ada/worktrees/004-bot-hello
+ok	skilled-scratch/hello	hello	/Users/ada/code/hello	last 20261125T211204Z-7c1e9a40 completed
+ok	skilled-scratch/hello	digest	/Users/ada/code/hello	no run
+needs-reinstall	skilled-scratch/hello	hello	/Users/ada/code/hello	previous /Users/ada/code/hello-old	last 20261125T211204Z-7c1e9a40 completed	delivery local-only:not-attempted	flags needs-reinstall,held	held by hello	needs-reinstall (com.skilled.bots.skilled-scratch_2fhello.hello.0): the definition changed	branch worktrees/004-bot-hello	worktree /Users/ada/worktrees/004-bot-hello
+open	skilled-scratch/hello	hello	item 20261125T211204Z-7c1e9a40	run 20261125T211204Z-7c1e9a40	expires 2026-11-26T21:12:04.000Z	see bots inbox

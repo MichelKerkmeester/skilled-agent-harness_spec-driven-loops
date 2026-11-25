@@ -33,7 +33,7 @@ Two shell variables keep the paths short. `R` is `.skilled/skills/system-skilled
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the five files this phase edits and record the server count (`$R/definition.ts`, `$R/run-record.ts`, `$R/runner.ts`, `$C`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `python3 -c "import json;d=json.load(open('.utcp_config.json'));print(len(d['manual_call_templates']),'servers')"` prints `14 servers`.
+- [ ] T001 Read the five files this phase edits, the five design documents and the server count (`$R/definition.ts`, `$R/run-record.ts`, `$R/runner.ts`, `$C`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, `design/records.md`, `design/state-machines.md`, `design/refusals.md`, `design/fixtures.md`, `design/mockups.md`). Verify: `python3 -c "import json;d=json.load(open('.utcp_config.json'));print(len(d['manual_call_templates']),'servers')"` prints `14 servers` and `ls specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design` prints `fixtures`, `fixtures.md`, `mockups.md`, `records.md`, `refusals.md` and `state-machines.md`.
 - [ ] T002 Confirm the checker refuses the key today, so the change has a baseline (`$C`). Verify: `T=$(mktemp -d) && cp -R .skilled/skills/system-skilled-bots/scripts/fixtures/clean "$T/r" && awk '{print} /^isolation: shared$/{print "apps: [github]"}' "$T/r/bots/nightly-digest/BOT.md" > "$T/b" && mv "$T/b" "$T/r/bots/nightly-digest/BOT.md" && node $C "$T/r"` prints `FAIL: definition.unknown-key:` and exits 1.
 - [ ] T003 [P] Confirm the executor admits no caller-named key beyond its per-kind list, so the child key needs a new seam (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `grep -c 'dispatchEnvKeys' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 0 and `grep -c 'UTCP_CONFIG_FILE' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 0.
 - [ ] T004 [P] Confirm no runtime module or checker line mentions the field yet (`$R`, `$C`). Verify: `grep -rc 'apps' $R/*.ts $C | grep -v ':0'` prints nothing and exits 1.
@@ -55,7 +55,8 @@ Two shell variables keep the paths short. `R` is `.skilled/skills/system-skilled
 - [ ] T013 Carry `apps: null` with its default named in a comment (`.skilled/skills/system-skilled-bots/assets/bot-template.txt`). Verify: `grep -n 'apps: null' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints one line.
 - [ ] T014 Name the field and the invariant in the author reference and the two feature-catalog files, and name the shared-run limit in the author reference: `apps` narrows a worktree run, a shared run reads the repository config, and a shared bot declaring `apps` is refused `apps-unenforceable` (`.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md`, `.skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md`, `.skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md`). Verify: `grep -l 'apps' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md .skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md .skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md` prints all three paths and `grep -c 'apps-unenforceable' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints at least 1.
 - [ ] T021 Refuse `apps-unenforceable` with class `author` when the definition declares `apps` and `isolation` is not `worktree`, before any config is written (`$R/runner.ts`). Verify: `grep -c 'apps-unenforceable' $R/runner.ts` prints 1.
-- [ ] T022 Restore the worktree's own `.utcp_config.json` after the child exits, so the working tree the operator commits holds the repository config; a commit the child made during the run is left alone, which the risk table names (`$R/runner.ts`). Verify: `grep -c 'utcp_config.json' $R/runner.ts` prints 1.
+- [ ] T022 Restore the worktree's own `.utcp_config.json` after the child exits, so the working tree the operator commits holds the repository config; a commit the child made during the run is left alone, which the risk table names (`$R/runner.ts`). Verify: `grep -c 'utcp_config.json' $R/runner.ts` prints 2, one for each restore.
+- [ ] T023 Restore a tree found holding the filtered file at the next open, before anything else is written: compare the tree's `.utcp_config.json` with the checkout's, and when the two differ restore the tree's file from the tree's own git index, so a run killed between the write and the restore cannot leave the filtered copy as the base a later run copies from (`$R/runner.ts`). Verify: `grep -c 'utcp_config.json' $R/runner.ts` prints 2 and `grep -c 'apps-unenforceable' $R/runner.ts` prints 1, and the `apps.vitest.ts` killed-run case passes.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -63,7 +64,7 @@ Two shell variables keep the paths short. `R` is `.skilled/skills/system-skilled
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T015 Write the unit and integration suite over the declaration and config matrix, including the worktree write, the `apps-unenforceable` refusal, the unlisted-key refusal and the absent-declaration case under both isolations (`$R/../tests/apps.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/apps.vitest.ts` exits 0.
+- [ ] T015 Write the unit and integration suite over the declaration and config matrix `design/fixtures.md` section 1 fixes, including the worktree write, the `apps-unenforceable` refusal, the unlisted-key refusal, the absent-declaration case under both isolations and the killed-run restore, reading the five goldens in `design/fixtures/` (`$R/../tests/apps.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/apps.vitest.ts` exits 0.
 - [ ] T016 Add the defect row to the checker suite (`.skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/bot-check.vitest.ts` exits 0.
 - [ ] T017 Run the whole runtime suite. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints no `FAIL` line.
 - [ ] T018 Run the runtime typecheck. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
@@ -113,7 +114,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the packet 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `grep -c '^| REQ-0' specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md` prints 9.
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `grep -c '^| REQ-0' specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md` prints 10.
 - [ ] CHK-002 [P0] Technical approach defined in plan.md. Verify: `grep -c '^## 4. IMPLEMENTATION PHASES' specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md` prints 1.
 - [ ] CHK-003 [P1] Dependencies identified and available. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm ls yaml vitest` exits 0.
 <!-- /ANCHOR:pre-impl -->
@@ -175,13 +176,26 @@ A blocked task is marked `[B]` with the reason on the same line, and the packet 
 
 ---
 
+<!-- ANCHOR:design -->
+## Design Documents
+
+- [ ] CHK-060 [P0] The five design documents exist. Verify: `ls specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design` prints `fixtures`, `fixtures.md`, `mockups.md`, `records.md`, `refusals.md` and `state-machines.md`.
+- [ ] CHK-061 [P0] The five goldens parse. Verify: `cd specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/fixtures && for f in *.json; do node -e 'JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))' "$f" || echo "BAD $f"; done` prints no `BAD` line.
+- [ ] CHK-062 [P0] The filtered goldens carry the source's four top-level keys, one template and none and an absolute dotenv path. Verify: the second command in `design/fixtures.md` section 5 prints `4 top-level keys, 1 template and 0 templates, absolute dotenv path`.
+- [ ] CHK-063 [P0] The two posture goldens carry the field this phase adds. Verify: the third command in `design/fixtures.md` section 5 prints `worktree apps github, shared apps empty`.
+- [ ] CHK-064 [P1] The design documents carry the diagrams and the tables a builder reads. Verify: `grep -c '```mermaid' specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md` prints 6 and `grep -c '^| ' specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/records.md` prints at least 20.
+- [ ] CHK-065 [P1] Every refusal name the design catalogue lists is the name the packet contract lists. Verify: `grep -c 'apps-invalid\|apps-unknown-server\|apps-refused\|apps-unenforceable\|utcp-config-missing\|utcp-config-invalid' specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/refusals.md` prints at least 6.
+<!-- /ANCHOR:design -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 0/8 |
-| P1 Items | 14 | 0/14 |
+| P0 Items | 12 | 0/12 |
+| P1 Items | 16 | 0/16 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: 2026-11-25

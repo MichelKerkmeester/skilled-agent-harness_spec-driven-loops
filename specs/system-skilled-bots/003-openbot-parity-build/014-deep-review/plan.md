@@ -38,10 +38,12 @@ Run one `/deep:review:auto` with `--depth-mode=expansive` over everything phases
 ### Definition of Ready
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment --strict` prints `RESULT: PASSED`
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints `Tests  381 passed (381)`
-- [ ] `command -v vibe pi opencode devin codex` prints five paths, and each binary's version probe exits 0
+- [ ] `command -v vibe pi opencode devin codex` prints at least one path, and each present binary's version probe exits 0. `review/preflight.json` records which are present, with the shape `design/records.md` section 11 fixes. An absent binary, or one outside the pin its mode names, is replaced in the fallback order in §8.3, so the fan-out keeps five lineages
+- [ ] The three review inputs were read, and `review/seeded-findings.json` records each row or each absent path with its reason
 
 ### Definition of Done
-- [ ] `node -e "const r=require('./specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/deep-review-findings-registry.json'); console.log(r.findings.filter(f=>f.status==='active'&&(f.severity==='P0'||f.severity==='P1')).length)"` prints `0`
+- [ ] `node -e "const r=require('./specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/deep-review-findings-registry.json'); console.log(r.openFindings.filter(f=>f.status==='active'&&(f.severity==='P0'||f.severity==='P1')).length)"` prints `0`
+- [ ] `node -e "const j=require('./specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun.json'); console.log(j.rerunCount, j.failedCount)"` prints the re-run count and `0`
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints at least `Tests  381 passed`
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/014-deep-review --strict` prints `RESULT: PASSED`
 - [ ] Docs updated (spec/plan/tasks/acceptance-criteria and `implementation-summary.md`)
@@ -58,12 +60,13 @@ Fan-out review, then serialized fix waves. The review is one loop with five inde
 ### Key Components
 - **The review loop** (`.skilled/commands/deep/review.md`): owns setup, the fan-out spawn, the reducer, convergence and synthesis. It dispatches the `deep-review` leaf once per iteration and never edits the target.
 - **The fan-out runner** (`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`): builds each lineage's command, gives it its own packet under `review/lineages/<label>/`, and merges the results.
-- **The review packet** (`review/`): `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `iterations/iteration-NNN.md`, `frontier-nodes.jsonl`, and the synthesized `review-report.md`.
+- **The review packet** (`review/`): `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `iterations/iteration-NNN.md`, `frontier-nodes.jsonl`, and the synthesized `review-report.md`. This phase adds `preflight.json`, `seeded-findings.json`, `fix-ledger.md` and `scenario-rerun.json`.
+- **The design artifacts** (`design/`): the record shapes, the four state machines and five sequences, the refusal catalogue, the goldens and the operator-facing frames. They are written before the run, so the run copies a shape rather than choosing one.
 - **The fix waves** (`tasks.md`): one worker per file, each fix carrying the finding id and the command that proved it.
 - **The gates**: `npm test` for the runtime, `validate.sh --strict` for the packet, and `git status --porcelain` for the diff boundary.
 
 ### Data Flow
-`/deep:review:auto` resolves setup, discovers the review scope once at the fan-out root, seeds the depth-1 frontier, then spawns five lineages. Each lineage runs the full loop in its own packet and reviews the canonical four dimensions. The merge consolidates the registries and applies strongest-restriction to the verdict. Synthesis writes `review-report.md`. The orchestrator then reads the registry, groups the P0 and P1 findings by file, and dispatches one fix worker per file group. Each fix re-runs its own suite; the last wave runs the whole suite and the validator.
+`/deep:review:auto` resolves setup, probes the five binaries and writes `preflight.json`, reads the three review inputs and writes `seeded-findings.json`, discovers the review scope once at the fan-out root, seeds the depth-1 frontier, then spawns five lineages. Each lineage runs the full loop in its own packet and reviews the canonical four dimensions. The merge consolidates the registries and applies strongest-restriction to the verdict. Synthesis writes `review-report.md` and the orchestrator writes `fix-ledger.md`, one row per finding. The orchestrator then reads the registry, groups the P0 and P1 findings by file, and dispatches one fix worker per file group. Each fix re-runs its own suite. After the last wave the orchestrator re-runs every 012 scenario whose owning phase a fix touched and writes `scenario-rerun.json`, then runs the whole suite and the validator, then rewrites the report so its verdict describes the final state.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -80,7 +83,8 @@ This phase exists to fix what a review finds, so the addendum applies.
 | `.skilled/bin/bots.cjs` | The CLI front door | Update only when a finding names a verb or a flag | `node .skilled/bin/bots.cjs --help` lists the verb, and `cli-run.vitest.ts` passes |
 | `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` | The definition checker | Update only when a finding names an invariant | `bot-check.vitest.ts` passes |
 | `specs/system-skilled-bots/003-openbot-parity-build/0[01][0-9]-*/` | Describes the built behavior | Update only the line a docs-truth finding names | `rg -n '<corrected term>' <doc>` finds the corrected line |
-| `specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/` | Does not exist yet | Create | `review/review-report.md` carries nine sections and one verdict line |
+| `specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/` | Does not exist yet | Create | `review/review-report.md` carries nine sections and one verdict line, and `review/preflight.json`, `review/seeded-findings.json`, `review/fix-ledger.md` and `review/scenario-rerun.json` exist |
+| `specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/` | Does not exist yet | Create | `design/records.md`, `design/state-machines.md`, `design/refusals.md`, `design/mockups.md` and `design/fixtures/` exist, and every command in `design/fixtures/README.md` prints what that file says |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' .skilled/skills/system-skilled-bots/runtime/lib`.
@@ -97,7 +101,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes, the task state and the wave grouping.
 
-Setup reads phase 013's validator line, the runtime suite baseline and the five executor probes, and previews the fan-out with `--dry-run`. Implementation runs the five-lineage review, synthesizes the report, and fixes every P0 and P1 one worker per file. Verification re-runs the affected suites, the whole runtime suite and `validate.sh --strict`, and confirms the diff stayed inside the surfaces the review named.
+Setup reads phase 013's validator line, the runtime suite baseline and the five executor probes, writes `preflight.json` with which are present, reads the three review inputs and writes `seeded-findings.json`, and previews the fan-out with `--dry-run`. Implementation runs the five-lineage review, synthesizes the report, writes the ledger, and fixes every P0 and P1 one worker per file. Verification re-runs the affected suites, re-runs every 012 scenario whose owning phase a fix touched, runs the whole runtime suite and `validate.sh --strict`, and confirms the diff stayed inside the surfaces the review named.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -110,9 +114,12 @@ Setup reads phase 013's validator line, the runtime suite baseline and the five 
 | Unit | The module a fix changes, plus one regression test per fixed defect | Vitest, `npm test` in `.skilled/skills/system-skilled-bots/runtime` |
 | Integration | The request pipeline and the CLI when a finding names a verb or a record | `cli-run.vitest.ts`, `queued-run.vitest.ts`, `resume.vitest.ts` |
 | Contract | The packet's own docs and the review artifacts | `validate.sh --strict`, and the review's own quality gates |
+| Scenario | Every 012 scenario whose owning phase a fix touched, re-run from its own bash block | The playbook corpus under `.skilled/skills/system-skilled-bots/manual-testing-playbook/`, recorded in `review/scenario-rerun.json` |
 | Manual | None. Every check in this packet runs without a tty | - |
 
 The one command that decides the phase is `cd .skilled/skills/system-skilled-bots/runtime && npm test`, which must exit 0 with at least 381 tests passing. The baseline it must not regress is in `spec.md` §2 Measured Behavior.
+
+The scenario re-run is the second proof. A unit suite proves the module, and a scenario proves the operator flow the module sits in. The owning phase of a scenario is read from `012-manual-testing-scenarios/scratch/failures.md` first and from the scenario's category folder second, per `design/records.md` section 8.3, so no builder chooses which scenarios to re-run.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -123,7 +130,7 @@ The one command that decides the phase is `cd .skilled/skills/system-skilled-bot
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 013 clean | Internal | Yellow | The review reads a moving surface; REQ-001 blocks the start |
-| `vibe`, `pi`, `opencode`, `devin`, `codex` on PATH | External | Yellow | A missing binary drops its lineage; the fallback order in §8 replaces it |
+| `vibe`, `pi`, `opencode`, `devin`, `codex` on PATH | External | Yellow | At least one must be present. A missing binary drops its lineage and the fallback order in §8 replaces it, so the count stays five |
 | Provider credentials for each of the five | External | Yellow | A lineage with no credential fails its probe and is dropped before spawn |
 | `vitest` in the runtime folder | Internal | Green | No test run, so no fix can be proven |
 | `validate.sh` and the SpecKit validator | Internal | Green | No packet gate |
@@ -209,14 +216,14 @@ The review is one command. The caps stay at their defaults, because a fan-out ru
 
 ### 8.6 The preflight
 
-Before any lineage spawns, the orchestrator runs five probes and records each result beside the run; the runner's `review/orchestration-summary.json` then records which lineages actually spawned:
+Before any lineage spawns, the orchestrator probes the five binaries and records which are present in `review/preflight.json`, whose shape is `design/records.md` section 11; the runner's `review/orchestration-summary.json` then records which lineages actually spawned:
 
 ```bash
 command -v vibe pi opencode devin codex
 vibe --version </dev/null; pi --version; opencode --version; devin --version; codex --version
 ```
 
-A binary that is absent, or a version outside the pin its mode names, drops that lineage before spawn. The run then re-runs the matrix with `--count=2` on the next executor in §8.3. A run that loses every lineage exits non-zero and writes no verdict line, because a review with no reader is not a clean review.
+At least one binary must be present. A binary that is absent, or a version outside the pin its mode names, drops that lineage before spawn, and the run re-runs the matrix with `--count=2` on the next executor in §8.3. The fan-out therefore keeps five lineages on a host with fewer than five binaries, and the label set records which executor ran twice. A run that loses every lineage exits non-zero and writes no verdict line, because a review with no reader is not a clean review. That is D3: the fallback wins over a setup that demands all five. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:26]
 
 ---
 
@@ -224,17 +231,21 @@ A binary that is absent, or a version outside the pin its mode names, drops that
 ## L2: PHASE DEPENDENCIES
 
 ```
-Setup ──► Review fan-out ──► Synthesis ──► P0 fixes ──► P1 fixes ──► Verification
+Setup ──► Seeded intake ──► Review fan-out ──► Synthesis ──► P0 fixes ──► P1 fixes ──► Verification ──► Scenario re-run
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | Phase 013 clean, five binaries on PATH | Review fan-out |
-| Review fan-out | Setup | Synthesis |
+| Setup | Phase 013 clean, at least one of the five binaries on PATH | Seeded intake |
+| Seeded intake | Setup, the three handoff inputs readable | Review fan-out |
+| Review fan-out | Seeded intake | Synthesis |
 | Synthesis | Review fan-out | P0 fixes |
 | P0 fixes | Synthesis | P1 fixes |
 | P1 fixes | P0 fixes | Verification |
-| Verification | P1 fixes | Packet close |
+| Verification | P1 fixes | Scenario re-run |
+| Scenario re-run | Verification, the fix ledger's touched phases | Packet close |
+
+Seeded intake runs before the fan-out because a seeded finding is a finding the lineages must not re-derive from scratch: the intake writes `review/seeded-findings.json` and the fan-out prompt names it. Scenario re-run runs after Verification because it re-runs only the scenarios whose owning phase a fix touched, so it needs the finished ledger. A fix pass that touches no phase owning a scenario records an empty `review/scenario-rerun.json` with `rerunCount: 0` and still closes, because the requirement is to record the result, not to manufacture one.
 <!-- /ANCHOR:phase-deps -->
 
 ---

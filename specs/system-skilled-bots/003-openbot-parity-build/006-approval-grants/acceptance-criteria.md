@@ -67,6 +67,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-014 | REQ-014 | Given one open item and two answers that both read `open`, When both write, Then one lands, the other is refused `item-answered-differently`, and the item holds the first answer's text and scope | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/answer.vitest.ts -t "concurrent"` prints one passing test | Unmet | - |
 | AC-015 | REQ-005 | Given an answered item whose grant names a scope and an actor, When the resumed run's record is read, Then it carries one line naming the item id, the kind, the scope and the actor, and a run with no grant carries none | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/runner.vitest.ts -t "grant line"` prints one passing test | Unmet | - |
 | AC-016 | REQ-004 | Given 002's fatigue item open on a bot, When `bots enable <bot-id>` runs, Then the item is answered through `answerItem` with its no-resume option, its `grants` carries the kind, the rung, the scope and the actor, and no resume request is queued; and When `bots answer <item-id> enabled` answers the same item instead, Then the grant is recorded and a resume request is queued, and When `bots enable <bot-id>` then runs before the next drain, Then that queued resume is dropped and the tenth failed run is never dispatched, while a drain that runs before `bots enable` refuses the run `routine-fatigued` because the switch is still set | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-run.vitest.ts -t "fatigue"` prints three passing tests | Unmet | - |
+| AC-017 | REQ-014 | Given an open item and a lock file beside it naming a pid that is no longer alive, When `bots answer <item-id> yes --scope once` runs, Then the lock is reclaimed by rename, the answer lands and the item's `grants.scope` reads `once`, and the answer is not refused `item-busy`; and Given a lock file whose owner pid is alive and whose `createdAt` is under 60 seconds old, When the wait runs past 2,000 ms, Then the answer is refused `item-busy` with the holder's pid and the lock's instant | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/answer.vitest.ts -t "stale lock"` prints one passing test | Unmet | - |
 
 ### Status values
 
@@ -93,5 +94,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-AC-001 is unmet, and no code has been written yet, so every criterion is open.
+AC-001 is unmet, and no code has been written yet, so every criterion is open. The design a builder reads is on disk at `design/`, so no criterion waits on a design decision.
 <!-- /ANCHOR:closure -->

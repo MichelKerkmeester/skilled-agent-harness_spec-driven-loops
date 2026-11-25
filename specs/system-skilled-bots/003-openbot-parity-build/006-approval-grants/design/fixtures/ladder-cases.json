@@ -1,0 +1,119 @@
+{
+  "rungs": ["kind", "rule", "auto-review", "extra-vigilant"],
+  "fallback": "bot",
+  "implemented": ["kind", "bot"],
+  "notImplemented": ["rule", "auto-review", "extra-vigilant"],
+  "scopes": ["once", "deny", null],
+  "rungCases": [
+    {
+      "name": "rung 1 decides when a kind asks",
+      "kind": "delete",
+      "expected": { "asks": true, "rung": "kind" }
+    },
+    {
+      "name": "the bot fallback names the bot when no kind matches",
+      "kind": "other",
+      "expected": { "asks": true, "rung": "bot" }
+    },
+    {
+      "name": "no input returns rung 2",
+      "kind": "pay",
+      "forbidden": "rule"
+    },
+    {
+      "name": "no input returns rung 3",
+      "kind": "pay",
+      "forbidden": "auto-review"
+    },
+    {
+      "name": "no input returns rung 4",
+      "kind": "pay",
+      "forbidden": "extra-vigilant"
+    }
+  ],
+  "scopeCases": [
+    {
+      "name": "an explicit once is recorded",
+      "given": "once",
+      "text": "yes",
+      "expected": "once"
+    },
+    {
+      "name": "an explicit deny is recorded",
+      "given": "deny",
+      "text": "yes",
+      "expected": "deny"
+    },
+    {
+      "name": "no scope and a plain yes records once",
+      "given": null,
+      "text": "yes",
+      "expected": "once"
+    },
+    {
+      "name": "no scope and deny records deny",
+      "given": null,
+      "text": "deny",
+      "expected": "deny"
+    },
+    {
+      "name": "no scope and no records deny",
+      "given": null,
+      "text": "no",
+      "expected": "deny"
+    },
+    {
+      "name": "no scope and n records deny",
+      "given": null,
+      "text": "n",
+      "expected": "deny"
+    },
+    {
+      "name": "the NO set is trimmed and case-insensitive",
+      "given": null,
+      "text": "  NO  ",
+      "expected": "deny"
+    },
+    {
+      "name": "always is refused",
+      "given": "always",
+      "text": "yes",
+      "expected": "grant-scope-unsupported"
+    },
+    {
+      "name": "conversation is refused",
+      "given": "conversation",
+      "text": "yes",
+      "expected": "grant-scope-unsupported"
+    },
+    {
+      "name": "any other value is a parse refusal",
+      "given": "sometimes",
+      "text": "yes",
+      "expected": "--scope takes once or deny"
+    }
+  ],
+  "matrix": [
+    { "kind": "pay", "scope": "once", "grant": { "kind": "pay", "scope": "once" } },
+    { "kind": "pay", "scope": "deny", "grant": { "kind": "pay", "scope": "deny" } },
+    { "kind": "pay", "scope": null, "grant": { "kind": "pay", "scope": null } },
+    { "kind": "credentials", "scope": "once", "grant": { "kind": "credentials", "scope": "once" } },
+    { "kind": "credentials", "scope": "deny", "grant": { "kind": "credentials", "scope": "deny" } },
+    { "kind": "credentials", "scope": null, "grant": { "kind": "credentials", "scope": null } },
+    { "kind": "delete", "scope": "once", "grant": { "kind": "delete", "scope": "once" } },
+    { "kind": "delete", "scope": "deny", "grant": { "kind": "delete", "scope": "deny" } },
+    { "kind": "delete", "scope": null, "grant": { "kind": "delete", "scope": null } },
+    { "kind": "send", "scope": "once", "grant": { "kind": "send", "scope": "once" } },
+    { "kind": "send", "scope": "deny", "grant": { "kind": "send", "scope": "deny" } },
+    { "kind": "send", "scope": null, "grant": { "kind": "send", "scope": null } },
+    { "kind": "share", "scope": "once", "grant": { "kind": "share", "scope": "once" } },
+    { "kind": "share", "scope": "deny", "grant": { "kind": "share", "scope": "deny" } },
+    { "kind": "share", "scope": null, "grant": { "kind": "share", "scope": null } },
+    { "kind": "post", "scope": "once", "grant": { "kind": "post", "scope": "once" } },
+    { "kind": "post", "scope": "deny", "grant": { "kind": "post", "scope": "deny" } },
+    { "kind": "post", "scope": null, "grant": { "kind": "post", "scope": null } },
+    { "kind": "other", "scope": "once", "grant": { "kind": "other", "scope": "once" } },
+    { "kind": "other", "scope": "deny", "grant": { "kind": "other", "scope": "deny" } },
+    { "kind": "other", "scope": null, "grant": { "kind": "other", "scope": null } }
+  ]
+}

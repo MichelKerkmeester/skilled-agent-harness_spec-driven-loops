@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "createdAt": "2026-11-25T23:41:12Z",
+  "touchedPhases": ["006", "010"],
+  "scenarios": [
+    {
+      "scenarioId": "BOT-030",
+      "category": "conversations",
+      "phase": "006",
+      "fixIds": ["F001"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/grants-on-the-item.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-030.txt"
+    },
+    {
+      "scenarioId": "BOT-026",
+      "category": "conversations",
+      "phase": "010",
+      "fixIds": ["F002"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/chat-appends-one-message.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-026.txt"
+    },
+    {
+      "scenarioId": "BOT-027",
+      "category": "conversations",
+      "phase": "010",
+      "fixIds": ["F002"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/at-bot-routing.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-027.txt"
+    },
+    {
+      "scenarioId": "BOT-028",
+      "category": "conversations",
+      "phase": "010",
+      "fixIds": ["F002"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/park-answer-scope-once.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-028.txt"
+    },
+    {
+      "scenarioId": "BOT-029",
+      "category": "conversations",
+      "phase": "006",
+      "fixIds": ["F001"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/scope-deny-and-unsupported.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-029.txt"
+    },
+    {
+      "scenarioId": "BOT-031",
+      "category": "conversations",
+      "phase": "005",
+      "fixIds": ["F001"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/memory-proposal-confirm.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-031.txt"
+    },
+    {
+      "scenarioId": "BOT-032",
+      "category": "conversations",
+      "phase": "009",
+      "fixIds": ["F001"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/skill-proposal-review.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-032.txt"
+    },
+    {
+      "scenarioId": "BOT-033",
+      "category": "conversations",
+      "phase": "011",
+      "fixIds": ["F001"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/channel-link-and-reply.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-033.txt"
+    },
+    {
+      "scenarioId": "BOT-034",
+      "category": "conversations",
+      "phase": "011",
+      "fixIds": ["F001"],
+      "command": "bash .skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/channel-non-approver.md",
+      "result": "PASS",
+      "reason": null,
+      "evidencePath": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/scenario-rerun/BOT-034.txt"
+    }
+  ],
+  "rerunCount": 9,
+  "failedCount": 0
+}

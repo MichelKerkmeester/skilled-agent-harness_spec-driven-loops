@@ -1,0 +1,8 @@
+{
+  "kind": "send",
+  "action": "Ship the release?",
+  "rung": "kind",
+  "scope": "deny",
+  "grantedBy": "ada",
+  "grantedAt": "2026-11-25T21:13:10.000Z"
+}

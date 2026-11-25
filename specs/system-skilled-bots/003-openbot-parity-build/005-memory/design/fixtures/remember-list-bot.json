@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "botId": "hello",
+  "path": "/Users/ada/.local/state/system-skilled-bots/skilled-scratch%2Fhello/memory/hello.md",
+  "entries": [
+    {
+      "index": 1,
+      "type": "feedback",
+      "date": "2026-11-25",
+      "actor": "ada",
+      "source": "bots remember",
+      "text": "Keep replies short."
+    }
+  ],
+  "entryCount": 1,
+  "byteCount": 68,
+  "skippedLines": 0
+}

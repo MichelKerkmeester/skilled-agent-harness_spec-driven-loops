@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "createdAt": "2026-11-25T20:58:31Z",
+  "binaries": [
+    {
+      "label": "cli-mistral-vibe",
+      "binary": "vibe",
+      "present": true,
+      "path": "/Users/operator/.local/bin/vibe",
+      "version": "vibe 3.1.2",
+      "pin": "3.1.2",
+      "pinOk": true
+    },
+    {
+      "label": "cli-pi",
+      "binary": "pi",
+      "present": true,
+      "path": "/Users/operator/.local/bin/pi",
+      "version": "1.6.0",
+      "pin": "1.6.0",
+      "pinOk": true
+    },
+    {
+      "label": "cli-opencode",
+      "binary": "opencode",
+      "present": true,
+      "path": "/Users/operator/.local/bin/opencode",
+      "version": "opencode v2.3.2",
+      "pin": "2.3.2",
+      "pinOk": true
+    },
+    {
+      "label": "cli-devin",
+      "binary": "devin",
+      "present": false,
+      "path": null,
+      "version": null,
+      "pin": "3000.14.30821",
+      "pinOk": false
+    },
+    {
+      "label": "cli-codex",
+      "binary": "codex",
+      "present": true,
+      "path": "/opt/homebrew/bin/codex",
+      "version": "codex-cli 0.170.0",
+      "pin": "0.170.0",
+      "pinOk": true
+    }
+  ],
+  "presentCount": 4,
+  "fallbackUsed": true,
+  "fallbackOrder": ["pi", "opencode", "vibe", "devin", "codex"]
+}

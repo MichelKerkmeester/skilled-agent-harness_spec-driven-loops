@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Phase** | 4 of 10 |
 | **Predecessor** | 003-terminal-screen |
 | **Successor** | 005-memory |
-| **Handoff Criteria** | `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed` and `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0; a worktree run's prompt names its tree and its record carries that branch; `bots status` prints `branch <name>` on that run's row; an index built before the change still opens without `--rebuild` |
+| **Handoff Criteria** | `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed` and `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0. A worktree run's prompt names its tree and its record carries that branch. `bots status` prints `branch <name>` on that run's row. An index built before the change still opens without `--rebuild` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -47,7 +47,7 @@ This is **Phase 4** of the Build OpenBot parity for skilled bots from the 002 re
 - `isolation.ts`, which already creates the tree and knows its branch. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:3-30]
 - `state-root.ts`, which already names the run folder. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:366]
 - `posture.ts`, which already decides whether a run gets a tree at all. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/posture.ts:3-14]
-- The `buildBotPrompt` section order, a shared record owned by 005 and fixed in the parent's table and in 005's Prompt Section Order paragraph, so the line has one slot rather than one per phase. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:130] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71]
+- The `buildBotPrompt` section order, a shared record owned by 005 and fixed in [`contracts/prompt-sections.md`](../contracts/prompt-sections.md) section 1 and in 005's Prompt Section Order paragraph, so the line has one slot rather than one per phase. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:19] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71]
 
 **Deliverables**:
 - One working-place line in `buildBotPrompt`, naming the directory the child starts in, its branch and the run folder.
@@ -77,7 +77,6 @@ EXIT=0
 
 $ node .skilled/bin/bots.cjs status --json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const r=JSON.parse(s);console.log(JSON.stringify(r.rows[0].lastRun));})'
 {"runId":"20261122T230742Z-513cb828","dispatchedAt":"2026-11-22T23:07:43.026Z","exitReason":"converged","exitClass":null,"needsYouItemId":null,"delivery":[{"channel":"local-only","state":"not-attempted"}]}
-
 $ node -e 'const r=require(process.argv[1]);console.log(JSON.stringify(r.evidence))' /Users/michelkerkmeester/.local/state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/records/20261122T230742Z-513cb828.json
 {"runFolder":"/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/runs/20261122T230742Z-513cb828","ledgerDir":"/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/runs/20261122T230742Z-513cb828/ledger","receiptDir":"/Users/michelkerkmeester/.local/state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/receipts/20261122T230742Z-513cb828","observabilityStream":"/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fbots-live-consumer/runs/20261122T230742Z-513cb828/observability.jsonl","worktreePath":null,"branch":null}
 
@@ -128,6 +127,7 @@ The first block is the measured gap: the row carries the checkout path and no br
 | `.skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts` | Modify | The row text and the JSON carry both fields |
 | `.skilled/skills/system-skilled-bots/runtime/lib/README.md` | Modify | The `dispatch.ts`, `isolation.ts` and `status.ts` rows |
 | `.skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md` | Modify | What a row shows |
+| `design/` | Create | Six documents and twelve goldens, listed in section 4's design artifacts table |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -140,20 +140,21 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `buildBotPrompt` emits one working-place line naming the directory the child starts in, its branch and the run folder: `Your working place is <path> on branch <branch>. This run's folder is <runFolder>.` When the branch is null the line reads `Your working place is <path>. This run's folder is <runFolder>.` One exported `workingPlaceLine` builds it, so a resumed run can find it by exact text and never by a pattern. The line takes the working-place slot in the shared section order, after the spec-folder line and before the checkout line, so the four phases that edit `buildBotPrompt` produce one prompt; the checkout line is emitted only for a child that starts outside the checkout, and 005's memory block and 009's skills block land after it and before the decision-marker line, so the assertion holds before and after them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:130] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:326] |
+| REQ-001 | `buildBotPrompt` emits one working-place line naming the directory the child starts in, its branch and the run folder: `Your working place is <path> on branch <branch>. This run's folder is <runFolder>.` When the branch is null the line reads `Your working place is <path>. This run's folder is <runFolder>.` One exported `workingPlaceLine` builds it and one exported prefix constant holds `Your working place is `, so a resumed run can find the line by exact text and never by a pattern. The line takes the working-place slot in the shared section order, after the spec-folder line and before the checkout line, so the four phases that edit `buildBotPrompt` produce one prompt. The checkout line is emitted only for a child that starts outside the checkout, and 005's memory block and 009's skills block land after it and before the decision-marker line, so the assertion holds before and after them. The slot is asserted by four index comparisons rather than by a fixed number, and [`design/prompt-line.md`](design/prompt-line.md) section 2.1 fixes them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:19] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:326] |
 | REQ-002 | The working place is the tree for a worktree run and the checkout for a shared run. `runner.ts` passes the directory it dispatches into and the branch it resolved, so the line and the child's `cwd` can never disagree. |
-| REQ-003 | `evidence.branch` is a string for every dispatched run whose working place is on a branch, and null only when git reports a detached HEAD or does not answer. A shared run reads the checkout's branch once through `checkoutBranch` in `isolation.ts`; a worktree run uses the branch the tree was made on. The record is the file `recordFile(stateRoot, identity, runId)` returns, `<stateRoot>/<identityKey>/records/<runId>.json`, so a proof reads that path and never a copy inside the run folder. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:176-178] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:362-369] |
+| REQ-003 | `evidence.branch` is a string for every dispatched run whose working place is on a branch, and null only when git reports a detached HEAD or does not answer. A shared run reads the checkout's branch once through `checkoutBranch` in `isolation.ts`, which runs `git -C <root> rev-parse --abbrev-ref HEAD` through the module's existing helper and returns null for the literal `HEAD`, a non-zero status, a null status and empty stdout, and never returns a refusal. A worktree run uses the branch the tree was made on and makes no git call. The record is the file `recordFile(stateRoot, identity, runId)` returns, `<stateRoot>/<identityKey>/records/<runId>.json`, so a proof reads that path and never a copy inside the run folder. [`design/prompt-line.md`](design/prompt-line.md) section 3 fixes the five git answers. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:176-178] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:362-369] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:171-181] |
 | REQ-004 | `bots status` prints `branch <name>` when the last run recorded a branch and `worktree <path>` when it recorded a tree, both appended after every part the row already prints, so no existing part moves. A row whose last run recorded neither prints neither. |
 | REQ-005 | `bots status --json` carries `lastRun.branch` and `lastRun.worktreePath`, each a string or null, and adds no other key to a row. |
-| REQ-006 | The status index carries both fields in `RunSummary`, filled by `summarizeRecord` from the record's evidence, and `SCHEMA_VERSION` stays `'2'`, so an index built before this phase still opens. |
-| REQ-007 | A resumed run's prompt names the parked tree. When the parked prompt carries no working-place line, the runner adds the current one before dispatch, by exact-text check, so a prompt parked before this phase still names its working place. |
+| REQ-006 | The status index carries both fields in `RunSummary`, filled by `summarizeRecord` from the record's evidence, and `SCHEMA_VERSION` stays `'2'`, so an index built before this phase still opens. The reader coalesces: `lastRunOf` reads each field as the summary's value when it is a string and as null otherwise, because a summary written before this phase has neither key and `JSON.parse` yields `undefined` for an absent key, which would drop the key from the payload. [`design/records.md`](design/records.md) section 2.1 fixes the rule. |
+| REQ-007 | A resumed run's prompt names the parked tree. The runner inspects the parked prompt for the first line that starts with the prefix constant and takes one of three outcomes: absent, so the current line is inserted after the spec-folder line, or after the first line when no spec-folder line exists. Present and equal to the current line, so nothing changes. Present and different, so the run is refused `resume-item-invalid` with the detail `the parked prompt names another working place` and no child starts. The insertion is a position and never a string replacement, and it runs before the budget check. [`design/prompt-line.md`](design/prompt-line.md) section 4 fixes the three outcomes. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:135] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-008 | A run refused before dispatch records neither a branch nor a tree, so a refusal record reads exactly as it does today. |
+| REQ-008 | A run refused before the isolation step records neither a branch nor a tree, so its record reads exactly as it does today. A run refused at the isolation step keeps today's behavior and records the half-provisioned tree it kept, because `worktree-setup-failed` and `worktree-refused` write that tree into the seed before they refuse. [`design/records.md`](design/records.md) section 1.1 fixes the five run shapes. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1017-1030] |
 | REQ-009 | The two docs name the fields: `runtime/lib/README.md` for the `dispatch.ts`, `isolation.ts` and `status.ts` rows, and `bots-status/references/status-and-inbox.md` for what a row shows. |
+| REQ-010 | The phase's own design folder is the authority for every shape it writes, and the goldens in `design/fixtures/` are read by the five suites, so a shape change edits the golden in the same change. [`design/fixtures/README.md`](design/fixtures/README.md) names the test that reads each file. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -165,12 +166,33 @@ Each requirement follows one existing shape in this tree rather than inventing o
 | Requirement | Reference | What it fixes |
 |-------------|-----------|---------------|
 | REQ-001 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:301-308] | One exported line builder, so a resumed run swaps it by exact text |
-| REQ-001 | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:130] | The section order is a shared record owned by 005, so the line has one slot rather than one per phase |
+| REQ-001 | [`contracts/prompt-sections.md`](../contracts/prompt-sections.md) section 1.3 | The section order is a shared record owned by 005, so the line has one slot rather than one per phase |
 | REQ-002 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1038] | The directory the child starts in is already one value, `workDir` |
 | REQ-003 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1033] | A worktree run already records the tree's branch |
 | REQ-004 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:479-486] | The row is a list of named parts, so a new part is appended |
-| REQ-006 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:266-292] | The summary is stored as JSON, so a field needs no column |
+| REQ-006 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:266-295] | The summary is stored as JSON, so a field needs no column |
 | REQ-007 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:994-1000] | The resume path already checks a parked prompt by exact text |
+| REQ-001, REQ-007 | [`design/prompt-line.md`](design/prompt-line.md) | The line's two shapes, its slot assertions and the three resumed-prompt outcomes |
+| REQ-003, REQ-006 | [`design/records.md`](design/records.md) | Every field, the read coalescing rule and the version rule for all three surfaces |
+| REQ-001 to REQ-007 | [`design/state-machines.md`](design/state-machines.md) | The four machines, with every edge and guard |
+| REQ-002, REQ-003 | [`design/sequences.md`](design/sequences.md) | The four sequences, from the caller to the file on disk |
+| REQ-004, REQ-005 | [`design/status-row.md`](design/status-row.md) | The row grammar and the seven row mockups |
+| REQ-007, REQ-008 | [`design/refusals.md`](design/refusals.md) | The one reused cause and the four refusals this phase must not add |
+| REQ-010 | [`design/fixtures/README.md`](design/fixtures/README.md) | The twelve goldens and the test that reads each |
+
+### Design artifacts to create
+
+The phase's own design folder is the authority for every shape it writes, so a builder reads these before the first edit and decides no shape of its own. Each is created by this phase and none is a copy of a contract.
+
+| Path | Holds | Read by |
+|------|-------|---------|
+| [`design/prompt-line.md`](design/prompt-line.md) | The line's two shapes, the prefix constant, the four slot assertions, the five git answers and the three resumed-prompt outcomes | REQ-001, REQ-003, REQ-007 |
+| [`design/records.md`](design/records.md) | Every field on the record, the summary and the payload, the read coalescing rule and the version rule | REQ-003, REQ-005, REQ-006 |
+| [`design/state-machines.md`](design/state-machines.md) | The branch resolution, fresh prompt, resumed prompt, status row and index summary machines in Mermaid | REQ-001 to REQ-007 |
+| [`design/sequences.md`](design/sequences.md) | The worktree run, shared run, resumed run and status read sequences in Mermaid | REQ-002, REQ-003 |
+| [`design/status-row.md`](design/status-row.md) | The part order, the two appended parts and seven row mockups | REQ-004, REQ-005 |
+| [`design/refusals.md`](design/refusals.md) | The one reused cause, the four refusals this phase must not add and the exit codes it leaves alone | REQ-007, REQ-008 |
+| [`design/fixtures/`](design/fixtures/README.md) | Twelve goldens and the README naming the test that reads each | REQ-010 |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -183,6 +205,7 @@ Each requirement follows one existing shape in this tree rather than inventing o
 - **SC-003**: `bots status --json` carries `lastRun.branch` and `lastRun.worktreePath` and no other new key.
 - **SC-004**: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`, and `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0.
 - **SC-005**: An index built before the change still opens: `node .skilled/bin/bots.cjs status` exits 0 without `--rebuild`.
+- **SC-006**: The design folder holds six documents and twelve goldens, every golden parses, and each one names the test that reads it.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -194,7 +217,7 @@ Each requirement follows one existing shape in this tree rather than inventing o
 |------|------|--------|------------|
 | Dependency | `isolation.ts`'s git read of a checkout's branch | A shared run records a null branch and its row omits the part | Null is a legal value for `evidence.branch`, so a failed read never refuses a run |
 | Dependency | `posture.ts`'s isolation answer | The line names the wrong directory if the runner and the posture disagree | The line is built from `workDir`, the same value the child's `cwd` uses |
-| Risk | A prompt line that names an absolute path reaches a receipt | Low | The receipt already holds the prompt, and a lineage kind's prompt already names the checkout path; the line adds no new class of path |
+| Risk | A prompt line that names an absolute path reaches a receipt | Low | The receipt already holds the prompt, and a lineage kind's prompt already names the checkout path, and the line adds no new class of path |
 | Risk | A prompt parked before this phase resumes without the line | Medium | REQ-007 adds it by exact-text check, and a test drives a parked prompt that lacks it |
 | Risk | A consumer parses the status row by position | Low | Both parts are appended after every existing part, so no existing position moves, and `--json` is the documented machine surface |
 <!-- /ANCHOR:risks -->
@@ -209,12 +232,12 @@ Each requirement follows one existing shape in this tree rather than inventing o
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: A shared run adds one `git rev-parse` call, under 20 ms on this repository; a worktree run adds none, because the tree's branch is already known.
+- **NFR-P01**: A shared run adds one `git rev-parse` call, measured at 0.00 to 0.01 s real on this repository. A worktree run adds none, because the tree's branch is already known.
 - **NFR-P02**: A status row gains at most two parts, so `bots status` over 200 bots stays under the time it takes today plus one string join.
 
 ### Security
 - **NFR-S01**: The line names a path the record already holds and adds no credential, no environment value and no token.
-- **NFR-S02**: The line is added after the secret-literal check runs, so a path the runner produced can never be the reason a run is refused.
+- **NFR-S02**: The secret-literal check runs over the bot body, the resume question, the resume answer and the request prompt, and never over the composed prompt, so the working-place line is outside it by construction and a path the runner produced can never be the reason a run is refused. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:941-953]
 
 ### Reliability
 - **NFR-R01**: A git read that fails records null and never refuses a run, so a detached or unreadable checkout still dispatches.
@@ -226,11 +249,14 @@ Each requirement follows one existing shape in this tree rather than inventing o
 ## L2: EDGE CASES
 
 - Empty input: a run on a detached HEAD records `branch: null`, the prompt line omits the branch clause, and the row omits `branch`.
-- Maximum input: a working-place path of 4,096 characters is carried verbatim; the line stays one line and the prompt is not wrapped.
+- Maximum input: a working-place path of 4,096 characters is carried verbatim. The line stays one line and the prompt is not wrapped.
 - Failure path: `git rev-parse` exits non-zero - `checkoutBranch` returns null, the run dispatches, and the record's `branch` is null.
+- Failure path: `git rev-parse` exits 0 and prints nothing - `checkoutBranch` returns null, so no row prints `branch ` with an empty name.
 - Old index: an index built before this phase opens, and its rows print neither `branch` nor `worktree`.
 - Old parked prompt: a prompt parked before this phase gains the working-place line before dispatch, and its record names the parked tree.
-- Refused run: a run refused before dispatch records neither a branch nor a tree, so its record is byte-identical to today's.
+- Parked prompt naming another place: the run is refused `resume-item-invalid` and no child starts.
+- Refused run before the isolation step: the record carries neither a branch nor a tree, so it is byte-identical to today's.
+- Refused run at the isolation step: the record carries the kept tree's path and branch, which is today's behavior and stays.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -241,7 +267,7 @@ Each requirement follows one existing shape in this tree rather than inventing o
 | Dimension | Score | Notes |
 |-----------|-------|-------|
 | Scope | 8/25 | Five modules and about 60 lines, four test files and two docs |
-| Risk | 6/25 | No auth, no migration, no new dependency and no index schema change; one output shape gains two appended parts |
+| Risk | 6/25 | No auth, no migration, no new dependency and no index schema change. One output shape gains two appended parts |
 | Research | 4/20 | The research names the change and the five modules are read once |
 | **Total** | **18/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
@@ -255,6 +281,11 @@ Each requirement follows one existing shape in this tree rather than inventing o
 - Should `bots status` print the run folder too? Decision: no. The row already carries the checkout path, and the run folder is evidence, not a working place.
 - Does the terminal screen need an edit? Decision: no. It reads `bots status --json` and gains both fields without a change.
 - Does the `.opencode/` tree need a copy? Decision: no. `skills` and `bin` there are relative symlinks to `.skilled/`, so one edit reaches both paths.
+- Where is the working-place line inserted in a parked prompt? Decision: after the first line that starts with `Bound spec folder: `, and after the first line when no such line exists. A position, never a string replacement, because the body after it may hold anything.
+- What happens when a parked prompt names another working place? Decision: the run is refused `resume-item-invalid` with the detail `the parked prompt names another working place`. The existing checkout check refuses the same class of fault for the same reason.
+- How does a summary written before this phase read back? Decision: both fields coalesce to null, because `JSON.parse` yields `undefined` for an absent key and `JSON.stringify` would drop it from the payload.
+- Does a refusal at the isolation step carry a branch? Decision: yes, it keeps today's behavior and records the half-provisioned tree it kept. Only a refusal before the isolation step carries neither.
+- Does the validator change? Decision: no. Its string requirement for both keys sits inside the `evidence.worktree` block, which a shared run does not have.
 <!-- /ANCHOR:questions -->
 
 ---

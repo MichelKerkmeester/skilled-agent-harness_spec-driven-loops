@@ -1,0 +1,8 @@
+{
+  "runFolder": "/Users/ada/code/hello/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fhello/runs/20261125T211204Z-7c1e9a40",
+  "ledgerDir": "/Users/ada/code/hello/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fhello/runs/20261125T211204Z-7c1e9a40/ledger",
+  "receiptDir": "/Users/ada/.local/state/system-skilled-bots/skilled-scratch%2Fhello/receipts/20261125T211204Z-7c1e9a40",
+  "observabilityStream": "/Users/ada/code/hello/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fhello/runs/20261125T211204Z-7c1e9a40/observability.jsonl",
+  "worktreePath": null,
+  "branch": "main"
+}

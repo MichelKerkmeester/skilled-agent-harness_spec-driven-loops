@@ -1,0 +1,7 @@
+Ship the release when the checks pass.
+
+An earlier run of this bot stopped to ask the operator a question. The operator has answered it.
+Question: Ship the release?
+Answer: no
+Granted scope: deny
+Continue the work from where that run stopped, following the answer.

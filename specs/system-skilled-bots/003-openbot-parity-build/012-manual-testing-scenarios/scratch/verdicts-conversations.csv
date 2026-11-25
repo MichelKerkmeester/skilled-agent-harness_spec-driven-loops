@@ -1,0 +1,10 @@
+scenario_id,runtime,verdict,reason,evidence
+BOT-026,,SKIP,"the chat verb is absent from the CLI verb table, so the block cannot append a message",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-026.txt
+BOT-027,,SKIP,"the chat verb is absent from the CLI verb table, so the block cannot route a message",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-027.txt
+BOT-028,,SKIP,"the chat verb is absent from the CLI verb table, so the block cannot park a run",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-028.txt
+BOT-029,,SKIP,"the chat verb is absent from the CLI verb table, so the block cannot reach the scope refusal",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-029.txt
+BOT-030,,SKIP,"the chat verb is absent from the CLI verb table, so the block cannot park the item it reads",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-030.txt
+BOT-031,,SKIP,"the remember verb is absent from the CLI verb table, so the block cannot write the fact it proposes",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-031.txt
+BOT-032,,SKIP,"the skill verb is absent from the CLI verb table, so the block cannot draft the proposal",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-032.txt
+BOT-033,,SKIP,"the channel verb is absent from the CLI verb table, so the block cannot link a chat",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-033.txt
+BOT-034,,SKIP,"the channel verb is absent from the CLI verb table, so the block cannot read the roster",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-034.txt

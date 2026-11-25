@@ -1,0 +1,13 @@
+{
+  "requestId": "rq-aafe0522ffd550ba61ea1d9bb914aea0",
+  "leaseNonce": null,
+  "resultEventId": null,
+  "firedSlot": null,
+  "resumedItemId": "20261125T211204Z-7c1e9a40",
+  "grant": {
+    "itemId": "20261125T211204Z-7c1e9a40",
+    "kind": "send",
+    "scope": "deny",
+    "by": "ada"
+  }
+}

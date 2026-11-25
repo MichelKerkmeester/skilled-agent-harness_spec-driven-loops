@@ -1,0 +1,10 @@
+BOT-046 -- The prompt names the working place, its branch and the run folder
+phase 004-computer-exposure, REQ-001
+
+$ rg -n 'working place|workingPlace|Working place' .skilled/skills/system-skilled-bots/runtime/lib/prompt.ts
+rg: .skilled/skills/system-skilled-bots/runtime/lib/prompt.ts: IO error for operation on .skilled/skills/system-skilled-bots/runtime/lib/prompt.ts: No such file or directory (os error 2)
+exit=2
+
+Blocker: the prompt builder module is absent, so no working-place line reaches a prompt.
+
+The scenario block was not run past its first turn, because the verb or the field it needs is absent. The verdict is SKIP with the blocker above, per the corpus rule that a scenario which cannot run records SKIP rather than a silent pass.

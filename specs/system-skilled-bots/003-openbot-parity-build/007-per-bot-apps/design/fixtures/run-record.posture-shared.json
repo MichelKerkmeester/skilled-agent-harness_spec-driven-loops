@@ -1,0 +1,9 @@
+{
+  "posture": {
+    "isolation": "shared",
+    "sandbox": "read-only",
+    "executorKind": "cli-opencode",
+    "model": null,
+    "apps": []
+  }
+}

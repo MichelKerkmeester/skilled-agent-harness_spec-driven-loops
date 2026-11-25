@@ -1,0 +1,32 @@
+{
+  "load_variables_from": [
+    {
+      "variable_loader_type": "dotenv",
+      "env_file_path": "/repo/.env"
+    }
+  ],
+  "tool_repository": {
+    "tool_repository_type": "in_memory"
+  },
+  "tool_search_strategy": {
+    "tool_search_strategy_type": "tag_and_description_word_match"
+  },
+  "manual_call_templates": [
+    {
+      "name": "github",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "github": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-github@latest"],
+            "env": {
+              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

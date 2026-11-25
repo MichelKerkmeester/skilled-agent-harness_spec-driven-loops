@@ -47,16 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "design/records.md",
+      "design/state-machines.md",
+      "design/sequences.md",
+      "design/refusals.md",
+      "design/mockups.md",
+      "evidence/README.md",
+      "design/fixtures/README.md",
       ".skilled/bin/bots.cjs",
       ".skilled/commands/assets/local-doc-alignment/topics.json",
       ".skilled/skills/system-skilled-bots/SKILL.md",
       ".skilled/skills/system-skilled-bots/ROUTER.md",
       ".skilled/skills/system-skilled-bots/README.md",
       "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/implementation-summary.md",
-      ".skilled/commands/assets/local-skilled-alignment/surface-map.yaml",
-      ".skilled/commands/local-skilled-alignment.md",
-      ".skilled/commands/local-doc-alignment.md",
-      ".skilled/commands/assets/local-skilled-alignment/executors.json"
+      ".skilled/commands/assets/local-skilled-alignment/surface-map.yaml"
     ],
     "entities": [
       {
@@ -96,6 +100,42 @@
         "source": "derived"
       },
       {
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-machines.md",
+        "kind": "doc",
+        "path": "design/state-machines.md",
+        "source": "derived"
+      },
+      {
+        "name": "sequences.md",
+        "kind": "doc",
+        "path": "design/sequences.md",
+        "source": "derived"
+      },
+      {
+        "name": "refusals.md",
+        "kind": "doc",
+        "path": "design/refusals.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "evidence/README.md",
+        "source": "derived"
+      },
+      {
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
@@ -120,33 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/README.md",
-        "source": "derived"
-      },
-      {
         "name": "surface-map.yaml",
         "kind": "config",
         "path": ".skilled/commands/assets/local-skilled-alignment/surface-map.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "local-skilled-alignment.md",
-        "kind": "doc",
-        "path": ".skilled/commands/local-skilled-alignment.md",
-        "source": "derived"
-      },
-      {
-        "name": "local-doc-alignment.md",
-        "kind": "doc",
-        "path": ".skilled/commands/local-doc-alignment.md",
-        "source": "derived"
-      },
-      {
-        "name": "executors.json",
-        "kind": "config",
-        "path": ".skilled/commands/assets/local-skilled-alignment/executors.json",
         "source": "derived"
       },
       {
@@ -190,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001 to 012 change the bots CLI, the runtime modules and the skill's own docs, and nothing in the packet checks either against the standard it is held to",
     "created_at": "2026-11-25T19:32:29Z",
-    "last_save_at": "2026-11-25T20:04:34.046Z",
+    "last_save_at": "2026-11-25T23:33:03.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08cb44840eae52392508ba928f06bc72dda395207587a261b2668e64911fc8c3",
+    "source_fingerprint": "sha256:22931fc5f67da868f3f72b4c233d0845983a61d370891774925866a402734b14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20d4c04dc6657f5d93bc0e20db08ecb58427783999391642ad45635164015e74",
-      "plan.md": "fb7aebf2e4f6d47385bffd971b762ab0d8c3e5146d6767ada36a40f8cd6a7b48",
-      "tasks.md": "e5b900bce9b67211cfe89b131974cff9ba86903b60fef5fb49c68c233ffde521",
-      "implementation-summary.md": "b6f86eeeccae68d3df221e0192c1b8fb87b51576b3bc6200df14b4e7b2945ff5"
+      "spec.md": "364d802dc875af2987bf5c961f19ff235e5c60c5131770cffc18a520d57b9f69",
+      "plan.md": "e37c6396c106b86ffed37051922015cb2e88ebdc0955e8d0f114a66641a20cad",
+      "tasks.md": "09f3ebf869a2f85e9d9f7ff1b532b0b70f5f7f6cfbd795b19513801e18c49f48",
+      "implementation-summary.md": "1d9b45e38b1190203c3731afb5a02bc8316abd9facd5b39e28522f9cec85349c"
     },
     "last_active_at": null
   }

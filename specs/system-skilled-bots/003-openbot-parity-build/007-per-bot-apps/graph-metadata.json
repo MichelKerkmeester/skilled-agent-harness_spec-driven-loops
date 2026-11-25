@@ -58,7 +58,7 @@
       ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
       ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
       ".skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md",
-      ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js"
+      "design/records.md"
     ],
     "entities": [
       {
@@ -170,9 +170,9 @@
         "source": "derived"
       },
       {
-        "name": "index.js",
-        "kind": "code",
-        "path": ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js",
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-25T22:43:29.895Z",
+    "last_save_at": "2026-11-25T23:34:55.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dad3c472c85ffc921244117aa7c53804df8eb8ee7f2cb5bfa1267e825e9753a9",
+    "source_fingerprint": "sha256:466f1601b602a876db5979f77eea32b4896eecf313aaefc444f92967062c644d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72b1a1cf7ba9c4891c4276afd93fe911f4f1a434eb81b30d421637ce95a3e6a5",
-      "plan.md": "56f4e66f927d939ccc2d7b7491568709f66d29764490b07ec6866b210b3895eb",
-      "tasks.md": "15c72c7efab65a6246e2487d42910ccec2a63a9a0af0827b5d18cc1d8363ef85",
+      "spec.md": "e6ff0e9213410ff8c26f75181130605c7d238430e33bb14c87395ac4a557362a",
+      "plan.md": "00a1903595dc5e61b49610465ca2db7d7c90d8fae4e83d29d7ef817447ea3c90",
+      "tasks.md": "174c37f810b87dee7cc84d9e5ed2fa77d289f81d829616a6ae5cecfda5d12c69",
       "implementation-summary.md": "a0fd7249b82ee831aad2f9882229e895e8d780423528094c00a46c93b1543d59"
     },
     "last_active_at": null

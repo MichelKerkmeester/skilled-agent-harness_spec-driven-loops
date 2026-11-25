@@ -47,9 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "benchmark/reports/README.md",
+      ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/bin/bots.cjs"
+      ".skilled/skills/system-skilled-bots/benchmark/reports/README.md",
+      "benchmark/reports/README.md",
+      "scratch/results.csv",
+      "scratch/verb-and-record-map.md",
+      "scratch/playbook-contract.md",
+      "scratch/baseline-corpus.md",
+      "scratch/baseline-verbs.txt",
+      "scratch/scenario-inventory.md",
+      "scratch/verdicts-conversations.csv",
+      "scratch/verdicts-routines.csv",
+      "scratch/verdicts-activity-screen.csv",
+      "scratch/verdicts-rest.csv"
     ],
     "entities": [
       {
@@ -89,9 +100,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "benchmark/reports/README.md",
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
@@ -101,9 +112,69 @@
         "source": "derived"
       },
       {
-        "name": "bots.cjs",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "results.csv",
         "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
+        "path": "scratch/results.csv",
+        "source": "derived"
+      },
+      {
+        "name": "verb-and-record-map.md",
+        "kind": "doc",
+        "path": "scratch/verb-and-record-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-contract.md",
+        "kind": "doc",
+        "path": "scratch/playbook-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-corpus.md",
+        "kind": "doc",
+        "path": "scratch/baseline-corpus.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-verbs.txt",
+        "kind": "file",
+        "path": "scratch/baseline-verbs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scenario-inventory.md",
+        "kind": "doc",
+        "path": "scratch/scenario-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts-conversations.csv",
+        "kind": "file",
+        "path": "scratch/verdicts-conversations.csv",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts-routines.csv",
+        "kind": "file",
+        "path": "scratch/verdicts-routines.csv",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts-activity-screen.csv",
+        "kind": "file",
+        "path": "scratch/verdicts-activity-screen.csv",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts-rest.csv",
+        "kind": "file",
+        "path": "scratch/verdicts-rest.csv",
         "source": "derived"
       },
       {
@@ -135,71 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Every",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Corpus",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow An",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Wave Plan Nine",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every parity slice closes on an automated suite that calls its modules directly",
     "created_at": "2026-11-25T19:32:28Z",
-    "last_save_at": "2026-11-25T20:05:37.260Z",
+    "last_save_at": "2026-11-25T23:39:46.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57467f9543275bff86598df6dd6e1ebf684881f2eda60f8a238c4544f4b5a188",
+    "source_fingerprint": "sha256:3cf3e2d5bf6d9fc3717bf35448c6a1a27d2b6d5f72e2b6432191670500647981",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "36c5c662e8a51937136cfa3aa6e872c9cbb49fbc38c72df552e6078746135bd5",
-      "plan.md": "a9245ef05dde9edc6328b5c0f70ff503c5dc86dc56bbe08e5a37da05f2e22ac8",
-      "tasks.md": "11b1a1d2877f43f6dc3bb16929800abb12a44d00dc1d04cea6708853997ff40d",
-      "implementation-summary.md": "47498bbc744d38ba4870dbb67623337de0992618c006c59d7ac5dd5f3d446cee"
+      "spec.md": "7b5930ff938e36876eab1bb3b2262734146713025c180b40163eb3bda93c90fd",
+      "plan.md": "5c6ee09e81354ed4b55bf1ce18085e8a20946b439e63961302eae3d4d453f0d9",
+      "tasks.md": "3403661ecaa12e21a9281df1074e1f5dcd4f3150ce5d1ca431137532d71ef1e4",
+      "implementation-summary.md": "ee62dd0a768f87a71ef19ca3de2bc25239a838dd7f458c93a5571e4557e0ffcf"
     },
     "last_active_at": null
   }

@@ -1,0 +1,25 @@
+{
+  "id": "20261125T211204Z-7c1e9a40",
+  "runId": "20261125T211204Z-7c1e9a40",
+  "botId": "hello",
+  "identity": "skilled-scratch/hello",
+  "question": "Ship the release?",
+  "options": null,
+  "createdAt": "2026-11-25T21:12:04.000Z",
+  "expiresAt": "2026-11-26T21:12:04.000Z",
+  "evidence": [
+    "/Users/ada/code/hello/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fhello/runs/20261125T211204Z-7c1e9a40"
+  ],
+  "prompt": "Ship the release when the checks pass.",
+  "specFolder": null,
+  "answer": null,
+  "resumeRequestId": null,
+  "grants": {
+    "kind": "send",
+    "action": "Ship the release?",
+    "rung": "kind",
+    "scope": null,
+    "grantedBy": null,
+    "grantedAt": null
+  }
+}

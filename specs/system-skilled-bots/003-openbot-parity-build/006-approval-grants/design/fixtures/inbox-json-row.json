@@ -1,0 +1,20 @@
+{
+  "id": "20261125T211204Z-7c1e9a40",
+  "botId": "hello",
+  "kind": "decision",
+  "question": "Ship the release?",
+  "state": "open",
+  "at": "2026-11-25T21:12:04.000Z",
+  "options": null,
+  "createdAt": "2026-11-25T21:12:04.000Z",
+  "expiresAt": "2026-11-26T21:12:04.000Z",
+  "answer": null,
+  "grants": {
+    "kind": "send",
+    "action": "Ship the release?",
+    "rung": "kind",
+    "scope": null,
+    "grantedBy": null,
+    "grantedAt": null
+  }
+}

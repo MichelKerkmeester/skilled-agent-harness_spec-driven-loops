@@ -1,0 +1,45 @@
+BOT-027 -- An at-bot address routes the message and an unknown bot is refused
+phase 010-conversations, REQ-002
+
+$ node .skilled/bin/bots.cjs chat
+bots: unknown verb: chat
+usage: bots <verb> [id] [--repo <path>] [--skilled-tree <path>]
+
+verbs:
+  run <id> [--schedule-index <n>]
+                 run one bot now, in the shared checkout or, for a worktree
+                 bot, in its own worktree; only the installed schedule passes
+                 --schedule-index, so the run records the slot it fired for
+  disable <id>   stop every run of a bot until enabled, and its installed schedule
+  enable <id>    lift a disable; for an installed schedule, recheck it and let it fire
+  pause <id>     hold a bot's runs after the lease until resumed
+  resume <id>    lift a pause (not the resume of a parked run)
+  inbox          list open and expired needs-you items
+  enqueue <id> --source <name> (--event-id <id> | --key <key>)
+                 [--prompt <text>] [--origin <text>] [--fired-slot <slot>]
+                 queue one run request; an event sent twice is a duplicate
+  enqueue --git-commit <sha>
+                 queue one request per bot with a git-hook trigger, when
+                 bots/config.json sets gitHookTrigger (the post-commit hook)
+  drain [--scheduled]
+                 claim every queued request once, run it, and route the outcome;
+                 --scheduled backs off after a setup fault (the drain job uses it)
+  schedule install <id>
+                 install a cron bot's schedule, held disabled until bots enable;
+                 the id drain installs this repository's queue-drain job
+  schedule uninstall <id>
+                 remove a schedule and sweep this repository's orphaned ones
+  answer <item-id> <text>
+                 answer a needs-you item and queue the run that continues it
+  status [--json] [--rebuild] [--all] [--unregister <owner/name>]
+                 show every installed bot, its last run and delivery, and open
+                 needs-you items, from the status index; --rebuild rebuilds the
+                 index from run records, --unregister hides an identity's rows
+                 and deletes nothing, --all shows hidden identities too
+
+exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision
+exit=2
+
+Blocker: the chat verb is absent from the CLI verb table, so the block cannot route a message.
+
+The scenario block was not run past its first turn, because the verb or the field it needs is absent. The verdict is SKIP with the blocker above, per the corpus rule that a scenario which cannot run records SKIP rather than a silent pass.

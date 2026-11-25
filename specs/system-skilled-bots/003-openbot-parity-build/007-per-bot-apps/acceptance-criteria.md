@@ -65,6 +65,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-012 | REQ-002 | Given a bot declaring `apps` and a checkout with no `.utcp_config.json`, When `resolveApps` runs, Then it refuses as `utcp-config-missing` rather than passing | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/apps.vitest.ts` passes the missing-config case | Unmet | - |
 | AC-013 | REQ-003 | Given a worktree run of a bot declaring `apps: [github]`, When the run reaches dispatch, Then `<worktree>/.utcp_config.json` exists and its `manual_call_templates` holds exactly one entry named `github`, and the working tree's own file is back once the run ends | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/apps.vitest.ts` passes the worktree-write case | Unmet | - |
 | AC-014 | REQ-005 | Given a bot declaring `apps` with `isolation: shared`, When the run starts, Then it is refused before dispatch as `apps-unenforceable` with failure class `author`, exits 4, and writes no filtered config | `grep -c 'apps-unenforceable' .skilled/skills/system-skilled-bots/runtime/lib/runner.ts` prints 1, and the `apps.vitest.ts` no-worktree case passes | Unmet | - |
+| AC-015 | REQ-003 | Given a worktree run killed between the filtered write and the restore, When the next run opens that tree, Then the tree's own `.utcp_config.json` is back before anything else is written, and the filtered copy is not the base the next run copies from | `grep -c 'utcp_config.json' .skilled/skills/system-skilled-bots/runtime/lib/runner.ts` prints 2, and the `apps.vitest.ts` killed-run case passes | Unmet | - |
+| AC-016 | REQ-010 | Given the five documents under `design/`, When each verify command in them runs with no tty, Then it prints what the document says, and the documents fix every field, the gate order, the file's four states, the six refusal names, the fixture matrix and the text an operator reads | `ls specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design` prints `fixtures`, `fixtures.md`, `mockups.md`, `records.md`, `refusals.md` and `state-machines.md`, and the three commands in `design/fixtures.md` section 5 print their stated lines | Unmet | - |
 
 ### Status values
 
@@ -91,5 +93,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-AC-001 is unmet: the `apps` key does not parse yet, so no other criterion can be reached.
+AC-001 is unmet: the `apps` key does not parse yet, so no other criterion can be reached. AC-016 is the one row that can be met before the build starts, because the five design documents exist and their verify commands run today.
 <!-- /ANCHOR:closure -->

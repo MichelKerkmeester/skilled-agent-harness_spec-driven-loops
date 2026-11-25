@@ -42,12 +42,14 @@ _memory:
 
 Frozen choices. Changing one is an amendment.
 
+These five are this phase's own decisions. They are not the packet's D1 to D9, which are frozen in `contracts/decisions.md` and bind every phase. Where the two meet, the packet's decision wins and this phase's row only says how it lands here.
+
 | ID | Decision |
 |----|----------|
 | D1 | The working-place line takes the shared section order's working-place slot, after the spec-folder line and before the checkout line, so 005's memory block and 009's skills block land after it without moving it. |
-| D2 | `evidence.branch` is a string for every dispatched run and null only when git reports a detached HEAD or does not answer; a failed read never refuses a run. |
+| D2 | `evidence.branch` is a string for every dispatched run and null only when git reports a detached HEAD or does not answer. A failed read never refuses a run. |
 | D3 | Both status parts are appended after every part the row already prints, so no existing position moves and no consumer parses a new one. |
-| D4 | `SCHEMA_VERSION` stays `'2'`; the two fields ride in the run summary's JSON column, so an index built before this phase opens without `--rebuild`. |
+| D4 | `SCHEMA_VERSION` stays `'2'`. The two fields ride in the run summary's JSON column, so an index built before this phase opens without `--rebuild`. |
 | D5 | This phase adds no isolation surface: no container, no per-bot token and no vault login, and `posture.ts` keeps deciding which runs get a tree. |
 
 <!-- /ANCHOR:directive -->
@@ -62,7 +64,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner` prints no `failed`, and covers a shared run's branch, a refusal's two nulls and a parked prompt that gains the line.
 - [ ] `node .skilled/bin/bots.cjs status` prints `branch <name>` on a row whose last run recorded a branch, and `node .skilled/bin/bots.cjs status --json` carries `lastRun.branch` and `lastRun.worktreePath`.
 - [ ] `node .skilled/bin/bots.cjs status` exits 0 against an index built before this phase, without `--rebuild`, and `rg -n "SCHEMA_VERSION = '2'" .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts` prints one line.
-- [ ] `rg -n 'working place' .skilled/skills/system-skilled-bots/runtime/lib/README.md` prints one line and `rg -n 'branch <name>' .skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md` prints one line.
+- [ ] `rg -n 'working place' .skilled/skills/system-skilled-bots/runtime/lib/README.md` prints one line, `rg -n 'branch <name>' .skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md` prints one line, and `ls specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/design` prints six documents and `fixtures` with every golden in `design/fixtures/` parsing.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`, `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -81,23 +83,27 @@ and findings belong here.
 |------|-------|----------|
 | Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure` prints `RESULT: PASSED (5/5 checks)` |
 | Parent binding row | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build --strict` no longer lists `004-computer-exposure/goal.md` among its `SPECDOC_SUFFICIENCY_006` errors |
-| Working-place line | Pending | T008 and T009; `rg -n 'workingPlaceLine' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` prints no line today |
-| Branch on every record | Pending | T010 to T013; the measured record holds `"branch":null` for a shared run |
-| Status row parts | Pending | T014 to T016; `node .skilled/bin/bots.cjs status` prints no `branch` part today |
-| Docs | Pending | T022 and T023; neither file names the working place yet |
-| Packet validation | Pending | T031; the packet prints `RESULT: PASSED` before the edits and must still print it after them |
+| Design folder | Done | `ls specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/design` prints six documents and `fixtures`, and `ls .../design/fixtures` prints twelve goldens and `README.md` |
+| Working-place line | Pending | T009 and T010. `rg -n 'workingPlaceLine' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` prints no line today |
+| Branch on every record | Pending | T011 to T014. The measured record holds `"branch":null` for a shared run |
+| Status row parts | Pending | T015 to T017. `node .skilled/bin/bots.cjs status` prints no `branch` part today |
+| Docs | Pending | T023 and T024. Neither file names the working place yet |
+| Packet validation | Pending | T032. The packet prints `RESULT: PASSED` before the edits and must still print it after them |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| The parent row's single `#high` effort cell | Two of the three implementation workers carry `#max` in `plan.md` under the parent's tier rule, because the prompt slot and the resume seam are the seam case that rule names. The row's `#high` stays the phase default. |
-| `spec.md` and `plan.md` cite `specs/system-skilled-bots/003-openbot-parity-build/spec.md:130` for the shared prompt order | Line 130 is the `bots inbox --json` row; the order is at line 134. This goal cites 134. The two existing citations are left alone because this goal's write scope is `goal.md`. |
+| The design folder is authored in the planning pass, not the build | `spec.md` section 4 lists six documents and twelve goldens under `design/`, and REQ-010 makes the folder the authority for every shape the phase writes. The build waves read it rather than deciding a shape, which is why T008 sits in Setup and every implementation task names the document it needs. |
+| The parent row's single `#high` effort cell | All three implementation workers carry `#high` in `plan.md`, which is the parent row's cell and its note that the work is edits to settled modules only. The tier rule would put two of them at `#max`, and the frozen row wins. The difference costs nothing on this route, because `opencode-go/deepseek-v4.1-flash` is pinned to max by policy. |
+| `spec.md` and `plan.md` cite `specs/system-skilled-bots/003-openbot-parity-build/spec.md:130` for the shared prompt order | Line 130 is the `bots inbox --json` row. The order is at line 134. This goal cites 134. The two existing citations are left alone because this goal's write scope is `goal.md`. |
+| The verify commands name the two multi-word commands in full | `npm --prefix .skilled/skills/system-skilled-bots/runtime` and `node .skilled/bin/bots.cjs` are written out at every use in `tasks.md` and `plan.md`. A variable holding either one would need word splitting, and the shell this packet is verified in is zsh, which does not split. |
 
 ### Sources
 
 - Parent goal, whose decisions bind this phase and are not restated here: `../goal.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/goal.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/goal.md:69]
 - Phase outcome and scope: `spec.md` sections 2 and 3. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:63] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:66]
-- Success criteria SC-001 to SC-005: `spec.md` section 5. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:181] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:185]
-- Criteria AC-001 to AC-009: `acceptance-criteria.md` section 2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:47]
+- Success criteria SC-001 to SC-006: `spec.md` section 5. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:203] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:208]
+- Criteria AC-001 to AC-010: `acceptance-criteria.md` section 2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:48]
+- The packet's frozen decisions D1 to D9, which outrank this phase's own: `contracts/decisions.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:1]
 <!-- /ANCHOR:log -->

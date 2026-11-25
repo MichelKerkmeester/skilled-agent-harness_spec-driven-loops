@@ -40,8 +40,9 @@ P=specs/system-skilled-bots/003-openbot-parity-build; R=$P/014-deep-review/revie
 
 - [ ] T001 Confirm phase 013 is clean before the review reads anything (`$P/013-skilled-and-doc-alignment/acceptance-criteria.md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P/013-skilled-and-doc-alignment --strict` prints `RESULT: PASSED`.
 - [ ] T002 Capture the runtime suite baseline the fix pass must not regress (`.skilled/skills/system-skilled-bots/runtime/package.json`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints `Tests  381 passed (381)`.
-- [ ] T003 Probe the five executor binaries and their versions before any lineage spawns (`.skilled/commands/assets/local-skilled-alignment/executors.json`). Verify: `command -v vibe pi opencode devin codex | wc -l` prints `5`.
+- [ ] T003 Probe the five executor binaries and their versions before any lineage spawns, and record which are present in `$R/preflight.json` with the shape `design/records.md` section 11 fixes (`.skilled/commands/assets/local-skilled-alignment/executors.json`). Verify: `node -e "const p=require('./$R/preflight.json'); console.log(p.binaries.length, p.presentCount, p.fallbackUsed)"` prints `5 4 true` on the golden and `5 5 false` on a host with all five, and `node -e "const p=require('./$R/preflight.json'); console.log(p.binaries.filter(b=>b.present).length >= 1)"` prints `true`. At least one binary must be present. An absent one, or one outside the pin its mode names, drops that lineage before spawn and the run re-runs the matrix with `--count=2` on the next executor in `plan.md` §8.3, so T005 still reads five lineages. A host with none refuses `review-no-executor` and writes no lineage folder.
 - [ ] T004 Preview the fan-out matrix without spawning a lineage (`$R`). Verify: the `--dry-run` run prints five lineage lines and one `dry_run_halt` line naming `step_fanout_spawn`, and `ls $R 2>/dev/null | wc -l` prints `0`.
+- [ ] T017 Read the three review inputs and write one seeded finding per row before any lineage spawns, at the severity `design/records.md` section 7.4 assigns, recording each source with its row count and each missing source with its reason (`$R/seeded-findings.json`). Verify: `node -e "const s=require('./$R/seeded-findings.json'); console.log(s.sources.length, s.seededCount, s.rows.length)"` prints `3 2 2` on the golden, and `node -e "const s=require('./$R/seeded-findings.json'); console.log(s.rows.every(r=>r.source&&r.phase&&r.severity))"` prints `true`. The three inputs are `012-manual-testing-scenarios/scratch/failures.md`, `013-skilled-and-doc-alignment/scratch/rebuttals.md` and `013-skilled-and-doc-alignment/evidence/`. A missing input is recorded in `missingSources` and does not stop the run. A row that exists and cannot be read refuses `review-seed-unreadable`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,6 +66,7 @@ P=specs/system-skilled-bots/003-openbot-parity-build; R=$P/014-deep-review/revie
 ## Phase 3: Verification
 
 - [ ] T013 Run the whole runtime suite once, from the final state (`.skilled/skills/system-skilled-bots/runtime/package.json`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints at least `Tests  381 passed`.
+- [ ] T018 Re-run every 012 scenario whose owning phase a fix touched, resolving the owning phase from the failure row first and from the category folder second per `design/records.md` section 8.3, and record each result with its evidence path (`$R/scenario-rerun.json`). Verify: `node -e "const s=require('./$R/scenario-rerun.json'); console.log(s.rerunCount, s.failedCount)"` prints `9 0` on the golden, and `node -e "const s=require('./$R/scenario-rerun.json'); console.log(s.scenarios.every(x=>x.result&&x.evidencePath))"` prints `true`. A `FAIL` becomes a new finding with `source` `review` and blocks the close. A fix pass that touches no phase owning a scenario records `rerunCount` `0` and still closes.
 - [ ] T014 Confirm the fix pass changed no file outside the surfaces the review named (`$R/fix-ledger.md`). Verify: `git status --porcelain | rg -v '^.. (\.skilled/(bin/bots\.cjs|skills/system-skilled-bots/(runtime/(lib|tests)/|scripts/bot-check\.cjs))|specs/system-skilled-bots/003-openbot-parity-build/)' | wc -l` prints `0`.
 - [ ] T015 Validate this packet from its final state (`$P/014-deep-review/spec.md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P/014-deep-review --strict` prints `RESULT: PASSED`.
 - [ ] T016 Record the review outcome, the finding count by severity and the fix list (`$P/014-deep-review/implementation-summary.md`). Verify: `rg -c 'P0|P1' $P/014-deep-review/implementation-summary.md` prints at least `1`.
@@ -92,13 +94,13 @@ The file groups the fix waves partition by:
 
 | Field | Value |
 |---|---|
-| Task ids | T001, T002, T003, T004 |
-| Executor | None. The orchestrator runs the probes and the preview itself |
+| Task ids | T001, T002, T003, T004, T017 |
+| Executor | None. The orchestrator runs the probes, the seeded intake and the preview itself |
 | Model | Not applicable |
 | Effort | Not applicable |
 | Parallel workers | 0 |
-| Orchestrator verify | `command -v vibe pi opencode devin codex` prints five paths, the `--dry-run` preview prints five lineage commands and halts at `step_fanout_spawn`, and `ls $R 2>/dev/null \| wc -l` prints `0` |
-| Fallback order | None needed. A binary that fails its probe drops its lineage before spawn, and Wave 1 re-runs the matrix with `--count=2` on the next executor in the order Wave 1 names |
+| Orchestrator verify | `node -e "const p=require('./$R/preflight.json'); console.log(p.binaries.length, p.presentCount)"` prints `5` and at least `1`, `node -e "const s=require('./$R/seeded-findings.json'); console.log(s.sources.length, s.seededCount)"` prints `3` and the number of rows the three inputs hold, the `--dry-run` preview prints five lineage commands and halts at `step_fanout_spawn`, and `ls $R/lineages 2>/dev/null \| wc -l` prints `0` |
+| Fallback order | None needed. A binary that fails its probe drops its lineage before spawn, and Wave 1 re-runs the matrix with `--count=2` on the next executor in the order Wave 1 names. A host with no binary at all refuses `review-no-executor` and stops here |
 
 ### Wave 1 - Review fan-out
 
@@ -152,12 +154,12 @@ The file groups the fix waves partition by:
 
 | Field | Value |
 |---|---|
-| Task ids | T013, T014, T015, T016 |
+| Task ids | T013, T014, T015, T016, T018 |
 | Executor | None for the gates. One `cli-codex` worker only if a residual finding needs the hardest tier |
 | Model | `gpt-6-luna` for that one worker, and no model for the gates |
 | Effort | `xhigh` with `service_tier="fast"` for that one worker |
-| Parallel workers | 0 for the gates, 1 for a residual fix. The gates run in sequence because each reads the state the one before it left |
-| Orchestrator verify | `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 with at least 381 tests, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P/014-deep-review --strict` prints `RESULT: PASSED`, and the scoped-diff check in T014 prints `0` |
+| Parallel workers | 0 for the gates, 1 for a residual fix. The gates run in sequence because each reads the state the one before it left, and T018 runs after T013 because a scenario re-run on a suite that does not pass proves nothing |
+| Orchestrator verify | `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 with at least 381 tests, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P/014-deep-review --strict` prints `RESULT: PASSED`, the scoped-diff check in T014 prints `0`, and `node -e "const s=require('./$R/scenario-rerun.json'); console.log(s.failedCount)"` prints `0` |
 | Fallback order | `codex` is already last, so a residual finding it cannot fix is recorded as deferred with the reason, and the packet closes on a CONDITIONAL verdict rather than a false PASS |
 
 ---
@@ -202,9 +204,9 @@ A blocked task is marked `[B]` with the finding id that blocks it. A P0 blocks t
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' $P/014-deep-review/spec.md` prints `10`.
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' $P/014-deep-review/spec.md` prints `12`.
 - [ ] CHK-002 [P0] Technical approach defined in plan.md. Verify: `rg -c '^## 8\. External orchestration' $P/014-deep-review/plan.md` prints `1`.
-- [ ] CHK-003 [P1] Dependencies identified and available. Verify: `command -v vibe pi opencode devin codex | wc -l` prints `5`.
+- [ ] CHK-003 [P1] Dependencies identified and available. Verify: `node -e "const p=require('./$R/preflight.json'); console.log(p.binaries.length, p.binaries.filter(b=>b.present).length >= 1)"` prints `5 true`, because at least one of the five binaries must be present and the fallback covers the rest.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -223,10 +225,10 @@ A blocked task is marked `[B]` with the finding id that blocks it. A P0 blocks t
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' $P/014-deep-review/acceptance-criteria.md` prints `10`.
+- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \| - \|$' $P/014-deep-review/acceptance-criteria.md` prints `12`, which is one `Met` row per criterion. It prints `1` today, because AC-001 is the only row observed passing.
 - [ ] CHK-021 [P0] The whole runtime suite passes from the final state. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints at least `Tests  381 passed`.
 - [ ] CHK-022 [P1] The post-commit hook harness still passes. Verify: `bash .skilled/skills/system-skilled-bots/runtime/tests/post-commit-leg.test.sh` exits 0.
-- [ ] CHK-023 [P1] Every deferred finding names its reason. Verify: `rg -c 'deferred' $R/fix-ledger.md` prints the same number as the registry's deferred count.
+- [ ] CHK-023 [P1] Every deferred finding names its reason. Verify: `rg -c '\| deferred \|$' $R/fix-ledger.md` prints the same number as `node -e "const r=require('./$R/deep-review-findings-registry.json'); console.log(r.openFindings.filter(f=>f.status==='deferred').length)"`. The pattern anchors on the Status cell, because the word also appears in the ledger's own intro and in a `Fix` cell that carries a reason.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -258,7 +260,7 @@ A blocked task is marked `[B]` with the finding id that blocks it. A P0 blocks t
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan, tasks and acceptance criteria agree on the requirement ids. Verify: `rg -o 'REQ-0[0-9][0-9]' $P/014-deep-review/spec.md $P/014-deep-review/acceptance-criteria.md | sort -u | wc -l` prints `20`.
+- [ ] CHK-040 [P1] Spec, plan, tasks and acceptance criteria agree on the requirement ids. Verify: `rg -o 'REQ-0[0-9][0-9]' $P/014-deep-review/spec.md $P/014-deep-review/acceptance-criteria.md | sort -u | wc -l` prints `24`, which is twelve requirement ids named in each of the two files.
 - [ ] CHK-041 [P1] Every doc line a docs-truth finding named is corrected. Verify: `rg -c 'docs-truth' $R/fix-ledger.md` prints at least `1`.
 - [ ] CHK-042 [P2] The skill README and the runtime README still describe the modules a fix changed. Verify: `rg -n '<changedModule>' .skilled/skills/system-skilled-bots/runtime/lib/README.md` prints one line per changed module.
 <!-- /ANCHOR:docs -->

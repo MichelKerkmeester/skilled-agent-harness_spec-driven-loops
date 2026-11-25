@@ -59,8 +59,8 @@
       ".skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
       ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
-      "runtime/lib/README.md",
-      ".skilled/bin/bots.cjs"
+      "design/prompt-line.md",
+      "design/records.md"
     ],
     "entities": [
       {
@@ -172,9 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "bots.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
+        "name": "prompt-line.md",
+        "kind": "doc",
+        "path": "design/prompt-line.md",
+        "source": "derived"
+      },
+      {
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A bot run starts in a directory its prompt never names",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T22:43:29.897Z",
+    "last_save_at": "2026-11-25T23:32:38.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9caec684ecd2c8da249279ec07b746207e302c581c155e8e3bbf9e1e4438fa4f",
+    "source_fingerprint": "sha256:d1430a5f6745adb202f3bfa2a20845bf9f1ff861ecf5fd0f986b374bc2abedb4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45d3443b248f7ca61fc44c1e69e659c67d05fe41c2faf55536d15f039eb814a8",
-      "plan.md": "7b464221f36cf5c06ce0124ee5328c2b86bf6fd87ed791907e6dc5d7002ed63c",
-      "tasks.md": "37b2f85597c989394c14aeadb7179f0ffe7de150effc2ea6a717b9eb13218eeb",
+      "spec.md": "ff32ef10d3fc2cae9ae4e11d8186e8309fb173a30215d57318cd1171756bd3c3",
+      "plan.md": "891a5eb7b7e0c7fed930ec5fdcc706c5c9be34a6c2bdf031f93e119ee1243544",
+      "tasks.md": "edc677298175addc3b89ddf8421380b5bf5b158499fbccfe2323f54cda304e46",
       "implementation-summary.md": "c527b9a6057fbb3a88200339287e92ce9f9e5894837567d128e8b3a8b9b5989b"
     },
     "last_active_at": null

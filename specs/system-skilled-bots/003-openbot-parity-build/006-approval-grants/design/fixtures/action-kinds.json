@@ -1,0 +1,93 @@
+{
+  "order": ["pay", "credentials", "delete", "send", "share", "post"],
+  "fallback": "other",
+  "kinds": [
+    {
+      "kind": "pay",
+      "words": ["pay", "payment", "buy", "purchase", "checkout", "refund", "transfer", "payout", "withdraw", "withdrawal", "charge", "order", "invoice", "payroll", "subscribe", "subscription", "upgrade", "downgrade", "plan change"],
+      "sample": "Pay the invoice for the paid plan",
+      "expected": "pay"
+    },
+    {
+      "kind": "credentials",
+      "words": ["password", "passphrase", "credential", "credentials", "two-factor", "2fa", "api key", "secret key", "access token", "security setting", "sign in as"],
+      "sample": "Change the password on the staging account",
+      "expected": "credentials"
+    },
+    {
+      "kind": "delete",
+      "words": ["delete", "trash", "destroy", "erase", "purge", "wipe", "discard", "remove", "archive"],
+      "sample": "Delete the stale branch",
+      "expected": "delete"
+    },
+    {
+      "kind": "send",
+      "words": ["send", "reply", "forward", "respond", "notify", "broadcast", "invite", "comment", "message", "email"],
+      "sample": "Send the summary to the team",
+      "expected": "send"
+    },
+    {
+      "kind": "share",
+      "words": ["share", "sharing", "shared link", "permission", "permissions", "collaborator", "collaborators", "grant access", "add people"],
+      "sample": "Share the folder with the contractor",
+      "expected": "share"
+    },
+    {
+      "kind": "post",
+      "words": ["post", "publish", "tweet", "repost", "release", "go live"],
+      "sample": "Publish the changelog entry",
+      "expected": "post"
+    }
+  ],
+  "cases": [
+    {
+      "name": "two kinds, the earlier wins",
+      "question": "pay the invoice and delete the receipt",
+      "expected": "pay"
+    },
+    {
+      "name": "a benign first sentence cannot hide a delete",
+      "question": "I will tidy the notes. Delete the production database?",
+      "expected": "delete"
+    },
+    {
+      "name": "no kind at all",
+      "question": "Which branch should I start from?",
+      "expected": "other"
+    },
+    {
+      "name": "an empty question",
+      "question": "",
+      "expected": "other"
+    },
+    {
+      "name": "a kind named only in a quoted example",
+      "question": "The docs say \"delete the row\" as an example. Shall I update the docs?",
+      "expected": "delete"
+    },
+    {
+      "name": "a declaration raises a kind",
+      "question": "[ACTION: pay] Settle the account",
+      "declared": "pay",
+      "expected": "pay"
+    },
+    {
+      "name": "a declaration cannot lower a kind",
+      "question": "[ACTION: other] Delete the production database?",
+      "declared": "other",
+      "expected": "delete"
+    },
+    {
+      "name": "a declaration outside the six",
+      "question": "[ACTION: transfer] Move the balance",
+      "declared": "transfer",
+      "expected": "action-kind-invalid"
+    },
+    {
+      "name": "two declarations, the first wins",
+      "question": "[ACTION: send] [ACTION: pay] Notify the buyer",
+      "declared": "send",
+      "expected": "send"
+    }
+  ]
+}

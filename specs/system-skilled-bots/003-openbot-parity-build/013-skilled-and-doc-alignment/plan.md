@@ -52,8 +52,11 @@ The doc run cannot start until a topic exists, so the first change is one entry 
 - [ ] The skilled-alignment run folder holds `report.md`, `findings.json` and `fix-plan.md`, and `rg -n '^- Open findings: 0' <run>/report.md` prints one line
 - [ ] The doc-alignment run folder holds the same three files, and `rg -n '^- Open findings: 0' <run>/report.md` prints one line
 - [ ] `rg -n '^\| still_open \| 0 \|' <recheck>/recheck.md` prints one line
+- [ ] `rg -n '^- Open findings: 0' evidence/*/report.md` prints two lines, one per evidence folder, so the clean close is checkable from the packet and not only from the operator's state root
+- [ ] `evidence/skilled-alignment/` and `evidence/doc-alignment/` each hold `report.md`, `findings.json` and `recheck.md`, copied from the last run of each command, and `evidence/README.md` names the source run folder of each
+- [ ] `rg -c '^## ' scratch/rebuttals.md` prints the number of settled findings, and every heading names an id a run's `findings.json` carries
 - [ ] `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/system-skilled-bots` exits 0
-- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-skilled-bots/manual-testing-playbook` prints `violations=0`
+- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-skilled-bots/manual-testing-playbook` prints `violations=17 warnings=30`, the baseline the fix pass closes. All 17 are `INDEX_ORPHAN_FILE`, so the root `manual-testing-playbook.md` links none of the 17 per-feature files under `activity/`, `conversations/` and `routines/`
 - [ ] `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` exits 0
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment --strict` prints `RESULT: PASSED`
 - [ ] Docs updated (spec/plan/tasks)
@@ -65,7 +68,22 @@ The doc run cannot start until a topic exists, so the first change is one entry 
 ## 3. ARCHITECTURE
 
 ### Pattern
-Two report-only passes, one fix pass, two re-runs.
+Two report-only passes, one fix pass, two re-runs, one evidence copy.
+
+### Design artifacts
+
+The builder reads these instead of deciding. Each one is the only place its subject is fixed, and `spec.md` §5b is the index.
+
+| Artifact | What it fixes |
+|----------|---------------|
+| `design/records.md` | Every field of the topic entry, `scope.json`, `battery.json`, `findings.json`, `dispositions.json`, `report.md`, `fix-plan.md`, `recheck.json`, `recheck.md`, `applied.json`, `scratch/rebuttals.md` and `evidence/`. Section 2.1 pastes the `overlay-layout` topic as the model shape and section 2.2 fixes the decided entry |
+| `design/state-machines.md` | Six Mermaid state machines: the skilled run, the doc run, the finding, the recheck bucket, the topic and this phase's own clean-criterion loop |
+| `design/sequences.md` | Five Mermaid sequence diagrams, each naming the script, the file it writes and the line it prints |
+| `design/refusals.md` | Every way either command stops, with the line it prints and its exit status, plus the aggregator's six problems and the five recheck buckets |
+| `design/mockups.md` | Every screen a person sees, including the no-topic display, the unknown-topic display, both result blocks and the bots help block |
+| `design/fixtures/` | One golden per record, each produced by the script that writes it, with the seven checks `design/fixtures/README.md` names |
+
+The packet's own contracts are cited by file and section and never copied. `contracts/records.md`'s opening paragraph says why a run folder is not a runtime record, `contracts/cli-json.md` section 1 rule 1 says why `findings.json` is a bare array, and `contracts/refusals.md` section 3.11 says why this phase adds no refusal.
 
 ### Key Components
 - **The topic entry**: one object in `topics.json` under the key `system-skilled-bots`. Its `terms` are regular expressions matched case-insensitively, its `codeRoots` are the source of truth the lanes read, and its `checks` are the three package validators that already exist for the skill, the playbook and the catalog [SOURCE: .skilled/commands/local-doc-alignment.md:90]. Without it the scope step has no topic and the command stops, which is why it is the first change and not a later one.
@@ -75,7 +93,7 @@ Two report-only passes, one fix pass, two re-runs.
 - **The re-runs**: `--recheck RUN_DIR` replaces steps 1 to 6 with a re-run of that run's failing battery rows and a test of its literal findings, writing `recheck.md` with the resolved, still open, new and needs-review buckets [SOURCE: .skilled/commands/local-skilled-alignment.md:101]. The doc run has no recheck mode, so it is re-run whole and its `report.md` is the record.
 
 ### Data Flow
-`topics.json` gains the topic. `/local-skilled-alignment :auto` reads the git range, fires the surfaces the scope matches, runs their checks, sends four lanes and a critic, and writes a run folder. `/local-doc-alignment system-skilled-bots :auto` reads the topic, scopes the docs, runs the topic's three checks, sends its lanes and a critic, and writes a second run folder. The fix pass reads both `fix-plan.md` files, edits the docs and the CLI help, and writes `scratch/rebuttals.md` for what it declines. The re-runs read the same inputs again and write `recheck.md` and a second `report.md`. The clean criterion is read from the last run of each command only.
+`topics.json` gains the topic. `/local-skilled-alignment :auto` reads the git range, fires the surfaces the scope matches, runs their checks, sends four lanes and a critic, and writes a run folder. `/local-doc-alignment system-skilled-bots :auto` reads the topic, scopes the docs, runs the topic's three checks, sends its lanes and a critic, and writes a second run folder. The fix pass reads both `fix-plan.md` files, edits the docs and the CLI help, and writes `scratch/rebuttals.md` for what it declines. The re-runs read the same inputs again and write `recheck.md` and a second `report.md`. The clean criterion is read from the last run of each command only. The last step copies the last run of each command into `evidence/skilled-alignment/` and `evidence/doc-alignment/`, so the clean close survives `prune-runs.cjs` and 014 reads a checked surface rather than the operator's state root. The copy manifest is `evidence/README.md` and the record shape is `design/records.md` section 12.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -125,7 +143,7 @@ Setup reads both command contracts, the topic shape, the lane presets, the surfa
 | Integration | Both alignment commands end to end, including their batteries, lanes and critic | `/local-skilled-alignment`, `/local-doc-alignment` |
 | Manual | None: every check this phase relies on is a command with an exit status, so no step needs a person to look at a screen | None |
 
-The one command that decides the phase is the re-run: `rg -n '^- Open findings: 0' <run>/report.md` prints one line for each command, and `rg -n '^\| still_open \| 0 \|' <recheck>/recheck.md` prints one line for the skilled-alignment recheck.
+The one command that decides the phase is the re-run: `rg -n '^- Open findings: 0' evidence/*/report.md` prints two lines, one per evidence folder, and `rg -n '^\| still_open \| 0 \|' <recheck>/recheck.md` prints one line for the skilled-alignment recheck. The pattern is a prefix and not the whole line, because the line reads `- Open findings: 0 (0 handed off, 0 rebutted)` and a `$`-anchored pattern never matches it. The line's grammar is `design/records.md` section 7.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -226,7 +244,7 @@ Setup ──► Implementation ──► Verification
 |-------|------------|--------|
 | Setup | Phases 001 to 012 closed, and both interpreters on PATH | Implementation, because the topic shape and the two baselines are what the first run is read against |
 | Implementation | Setup, and the topic entry, because the doc run has no topic without it | Verification, because a re-run needs a first run to recheck |
-| Verification | Implementation, and the fix pass, because a recheck of an unfixed run reports the same findings | Closure, because the clean criterion is read from the last run of each command |
+| Verification | Implementation, and the fix pass, because a recheck of an unfixed run reports the same findings | Closure, because the clean criterion is read from the last run of each command, and the evidence copy is what makes that reading survive the prune |
 <!-- /ANCHOR:phase-deps -->
 
 ---

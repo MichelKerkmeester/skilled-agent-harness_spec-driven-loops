@@ -1,0 +1,9 @@
+{
+  "posture": {
+    "isolation": "worktree",
+    "sandbox": "workspace-write",
+    "executorKind": "cli-codex",
+    "model": null,
+    "apps": ["github"]
+  }
+}
