@@ -35,6 +35,9 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | Recorded automatically: Auto, 10 iters each (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q002 | Recorded automatically: Ship on (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q003 | Recorded automatically: Hand-edit it (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q004 | Recorded automatically: Two commits (Recommended) | Not stated. | None | Not linked to a requirement yet. |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -63,6 +66,64 @@ No loop
 Answer:
 ```text
 Auto, 10 iters each (Recommended)
+```
+
+### Q002
+<!-- source: claude:d46cd0dc-b63f-443e-8e44-4ae03af818a5:toolu_01FuiZ8rvF33xzEYKXKcyNdN:0 -->
+
+Question:
+```text
+Stop records Claude Code question-tool answers into decision-record.md automatically, and that is on by default. Its own packet (decision-capture/001) still reads In Progress. How should v4.2.0.0 ship it?
+```
+
+Options:
+```text
+Ship on (Recommended)
+Ship off
+```
+
+Answer:
+```text
+Ship on (Recommended)
+```
+
+### Q003
+<!-- source: claude:d46cd0dc-b63f-443e-8e44-4ae03af818a5:toolu_01FuiZ8rvF33xzEYKXKcyNdN:1 -->
+
+Question:
+```text
+The generated findings block in spec.md §7 still lists the component-list question as open, though the 12 components were added. What should happen to it?
+```
+
+Options:
+```text
+Hand-edit it (Recommended)
+Leave it
+```
+
+Answer:
+```text
+Hand-edit it (Recommended)
+```
+
+### Q004
+<!-- source: claude:d46cd0dc-b63f-443e-8e44-4ae03af818a5:toolu_01FuiZ8rvF33xzEYKXKcyNdN:2 -->
+
+Question:
+```text
+Nothing is committed on main yet. How should it be committed?
+```
+
+Options:
+```text
+Two commits (Recommended)
+One commit
+Don't commit
+```
+
+Answer:
+```text
+Two commits (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
