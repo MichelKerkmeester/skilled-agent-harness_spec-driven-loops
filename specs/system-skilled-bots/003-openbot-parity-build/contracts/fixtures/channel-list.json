@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "channels": [
+    {
+      "name": "slack",
+      "enabled": false,
+      "secret": "slack-app-token",
+      "linkedChats": 0,
+      "queueDepth": 0
+    },
+    {
+      "name": "telegram",
+      "enabled": true,
+      "secret": "telegram",
+      "linkedChats": 1,
+      "queueDepth": 0
+    }
+  ]
+}

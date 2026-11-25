@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "idempotencyKey": "notice-20261125T210504Z-3f9d2b11-telegram",
+  "channel": "telegram",
+  "conversationId": "81234567",
+  "text": "digest needs you: Which channel?\n1  email\n2  chat",
+  "itemId": "20261125T210504Z-3f9d2b11",
+  "runId": "20261125T210504Z-3f9d2b11",
+  "state": "delivered",
+  "attempts": 1,
+  "nextAttemptAt": null,
+  "enqueuedAt": "2026-11-25T21:05:04.500Z",
+  "updatedAt": "2026-11-25T21:05:05.000Z",
+  "error": null
+}

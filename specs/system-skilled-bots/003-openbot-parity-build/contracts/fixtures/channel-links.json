@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "links": {
+    "telegram:81234567": {
+      "channel": "telegram",
+      "chatId": "81234567",
+      "senderId": "81234567",
+      "actor": "ada",
+      "linkedAt": "2026-11-25T20:05:00.000Z"
+    }
+  },
+  "codes": {},
+  "lockouts": {
+    "telegram:99887766": {
+      "failures": 5,
+      "lockedUntil": "2026-11-25T21:18:00.000Z"
+    }
+  }
+}

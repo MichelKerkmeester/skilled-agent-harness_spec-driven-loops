@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "prompts": {
+    "20261125T210504Z-3f9d2b11": {
+      "channel": "telegram",
+      "conversation": "81234567",
+      "choices": [
+        "email",
+        "chat"
+      ],
+      "expiresAt": "2026-11-26T21:05:04.000Z",
+      "sentAt": "2026-11-25T21:05:05.000Z"
+    }
+  },
+  "notApprover": {}
+}

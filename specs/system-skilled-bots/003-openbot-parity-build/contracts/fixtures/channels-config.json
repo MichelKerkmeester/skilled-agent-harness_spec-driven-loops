@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "channels": {
+    "slack": {
+      "secret": "slack-app-token",
+      "enabled": false
+    },
+    "telegram": {
+      "secret": "telegram",
+      "enabled": true
+    }
+  }
+}

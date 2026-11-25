@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "rq-aafe0522ffd550ba61ea1d9bb914aea0",
+  "kind": "resume",
+  "workflowId": "hello",
+  "prompt": "",
+  "source": "answer",
+  "origin": "needs-you item 20261125T211204Z-7c1e9a40",
+  "enqueuedAt": "2026-11-25T21:13:10.000Z",
+  "target": {
+    "identity": "skilled-scratch/hello",
+    "path": "/Users/ada/code/hello"
+  },
+  "firedSlot": null,
+  "idempotencyKey": "20261125T211204Z-7c1e9a40",
+  "delivery": null,
+  "attempts": 0,
+  "conversationId": "hello"
+}

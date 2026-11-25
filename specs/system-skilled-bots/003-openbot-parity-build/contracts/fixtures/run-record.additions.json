@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "identity": {
+    "repository": "skilled-scratch/hello",
+    "repositoryPath": "/Users/ada/code/hello",
+    "botId": "hello",
+    "runId": "20261125T211310Z-2d4f6a8c",
+    "definitionDigest": "9c2e4a6b8d0f1e3c5a7b9d1f3e5c7a9b"
+  },
+  "request": {
+    "requestId": "rq-aafe0522ffd550ba61ea1d9bb914aea0",
+    "leaseNonce": "5b7d9f1a",
+    "resultEventId": null,
+    "firedSlot": null,
+    "resumedItemId": "20261125T211204Z-7c1e9a40",
+    "grant": {
+      "itemId": "20261125T211204Z-7c1e9a40",
+      "kind": "send",
+      "scope": "deny",
+      "by": "ada"
+    }
+  },
+  "dispatch": {
+    "source": "answer",
+    "scheduledAt": null,
+    "dispatchedAt": "2026-11-25T21:13:10.000Z",
+    "latenessSeconds": null,
+    "latenessClass": null,
+    "skippedSlots": null
+  },
+  "budget": {
+    "declared": {
+      "maxIterations": 1,
+      "maxDurationMinutes": 30,
+      "timeoutSeconds": 1800
+    },
+    "measured": {
+      "iterations": 1,
+      "elapsedMinutes": 1,
+      "costUsd": null,
+      "costSource": null
+    }
+  },
+  "posture": {
+    "isolation": "shared",
+    "sandbox": "workspace-write",
+    "executorKind": "cli-codex",
+    "model": null,
+    "apps": [],
+    "secretsUsed": [
+      "demo"
+    ],
+    "skills": [
+      {
+        "name": "sk-doc",
+        "digest": "3b1f0c4e9a2d7b6e5f8c1a0d9e4b7c2f6a3d8e1b0c5f9a2e7d4b6c1f8a3e0d5b"
+      }
+    ]
+  },
+  "exit": {
+    "reason": "completed",
+    "class": null,
+    "needsYouItemId": null,
+    "refusal": null
+  },
+  "evidence": {
+    "runFolder": "/Users/ada/code/hello/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fhello/runs/20261125T211310Z-2d4f6a8c",
+    "ledgerDir": null,
+    "receiptDir": null,
+    "observabilityStream": null,
+    "worktreePath": null,
+    "branch": "main"
+  },
+  "delivery": [
+    {
+      "channel": "telegram",
+      "target": "ada",
+      "state": "unknown",
+      "evidence": null
+    }
+  ],
+  "actor": "ada",
+  "answeredBy": "ada",
+  "until": {
+    "met": false
+  },
+  "postRunCauses": []
+}
