@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/002-openbot-parity-research/003-plan-depth-research",
+  "spec_folder": "system-skilled-bots/002-openbot-parity-research/003-plan-depth-research",
+  "parent_id": "system-skilled-bots/002-openbot-parity-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plan depth research",
+      "phase 3 plan depth research",
+      "plan depth research plan",
+      "plan depth research tasks",
+      "plan depth research implementation summary"
+    ],
+    "key_topics": [
+      "plan",
+      "depth",
+      "research",
+      "phase",
+      "tasks",
+      "implementation",
+      "summary",
+      "yourvaluehere",
+      "broken",
+      "missing",
+      "inefficient",
+      "sentences"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/needs-you-park-and-hold.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you-park-and-hold.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/needs-you-park-and-hold.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-11-25T21:22:05Z",
+    "last_save_at": "2026-11-25T22:35:22.952Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:c9ebb59848a791c053f7020b2254251249ea1960bb52176aec40b718d979b0fc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "69de316f0e4b9ff0fdf5be68b7f075c2d588ef7e4d2eda244ebebfc2e6f69719",
+      "plan.md": "a763e9f13ed2fc38c9040f4144c7c336a6a61fe93f5b877be714127c597d3176",
+      "tasks.md": "1b2664e671fd60609688327da1d6451e90a6c67d5a9198a54f5bf5537c812adb",
+      "implementation-summary.md": "aa5d1330358ed64a9bdebb02f446507ad944eb4a8754992318c017dabd940e54",
+      "research/research.md": "14c8ac382fa9e50e1d500d6767e94b98528672ecf65d150359bbcac819593b43"
+    },
+    "last_active_at": null
+  }
+}

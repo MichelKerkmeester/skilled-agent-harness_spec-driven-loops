@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-codex","model":"gpt-6-luna","reasoningEffort":"xhigh","serviceTier":"fast","label":"codex","count":2,"iterations":5}],"concurrency":2}

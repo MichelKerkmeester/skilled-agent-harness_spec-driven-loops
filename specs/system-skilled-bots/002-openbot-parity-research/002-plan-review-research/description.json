@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-bots/002-openbot-parity-research/002-plan-review-research",
+  "description": "Phase 2: plan-review-research",
+  "keywords": [
+    "phase",
+    "plan-review-research"
+  ],
+  "lastUpdated": "2026-11-25T21:22:05.424Z",
+  "specId": "002",
+  "folderSlug": "plan-review-research",
+  "parentChain": [
+    "system-skilled-bots",
+    "002-openbot-parity-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

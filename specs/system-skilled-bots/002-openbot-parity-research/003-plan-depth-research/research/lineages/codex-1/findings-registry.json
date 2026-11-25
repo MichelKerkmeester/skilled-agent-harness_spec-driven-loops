@@ -1,0 +1,641 @@
+{
+  "sessionId": "fanout-codex-1-1795642794796-3326pw",
+  "parentSessionId": "fanout-codex-1-1795642794796-3326pw",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-data-and-contracts-for-phases-001-002-005-006-and-010-are-every-record-schema-fi",
+      "inboxId": "F-1-001",
+      "text": "Data and contracts: for phases 001, 002, 005, 006 and 010, are every record schema, field, state machine and bots --json payload specified completely enough to build without a decision? What schema files or contract docs are missing?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-2-phase-011-messaging-channels-is-the-adapter-architecture-per-channel-transport-i",
+      "inboxId": "F-1-003",
+      "text": "Phase 011-messaging-channels: is the adapter architecture, per-channel transport, identity linking, durable queue, approval rendering and conformance test design deep enough to one-shot, and how should it split into children (shared adapter, Telegram, Slack, Signal, WhatsApp)?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-3-small-phases-004-computer-exposure-and-002-routine-layer-and-cross-cutting-desig",
+      "inboxId": "F-1-005",
+      "text": "Small phases 004-computer-exposure and 002-routine-layer, and cross-cutting design: is there a shared architecture doc (module map, file ownership, prompt builder order, answer seam, state-root layout) that every phase builds against, or must one be added before building?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered",
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-data-and-contracts-for-phases-001-002-005-006-and-010-are-every-record-schema-fi",
+      "inboxId": "F-1-001",
+      "text": "Data and contracts: for phases 001, 002, 005, 006 and 010, are every record schema, field, state machine and bots --json payload specified completely enough to build without a decision? What schema files or contract docs are missing?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-2-phase-011-messaging-channels-is-the-adapter-architecture-per-channel-transport-i",
+      "inboxId": "F-1-003",
+      "text": "Phase 011-messaging-channels: is the adapter architecture, per-channel transport, identity linking, durable queue, approval rendering and conformance test design deep enough to one-shot, and how should it split into children (shared adapter, Telegram, Slack, Signal, WhatsApp)?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-3-small-phases-004-computer-exposure-and-002-routine-layer-and-cross-cutting-desig",
+      "inboxId": "F-1-005",
+      "text": "Small phases 004-computer-exposure and 002-routine-layer, and cross-cutting design: is there a shared architecture doc (module map, file ownership, prompt builder order, answer seam, state-root layout) that every phase builds against, or must one be added before building?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered"
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-phase-002-routine-layer-p1-the-plan-names-untilmetat-fatiguedat-and-fatigueitemi",
+      "text": "**Phase 002-routine-layer — P1:** The plan names `untilMetAt`, `fatiguedAt`, and `fatigueItemId`, and defines when completion and ten consecutive failures change switches, but does not settle the persisted record schema/version, malformed-state recovery, or atomic/concurrent update behavior; add child `002-routine-state-and-recovery` with the state schema, transition table, restart/corruption policy, and time/failure fixtures. The phase spans routine parsing, runner, installer, state, CLI, docs, and tests, so promote it to a phase parent with children for routine grammar/triggers/floor, completion lifecycle, fatigue/answer lifecycle, and CLI/status integration plus hardening. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:121-145,165-167] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:71-73,123-126]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151-156`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:121-145,165-167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:71-73,123-126`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:146-151`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60,108`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:144-149`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:153-157,167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:100,196`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-65,95-99`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:80-94,188-192`",
+        "`deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, and `steer.md` (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-1-3-phase-005-memory-p1-entry-fields-bounds-and-the-append-forget-owner-are-named-bu",
+      "text": "**Phase 005-memory — P1:** Entry fields, bounds, and the append/forget owner are named, but the durable line grammar still needs an explicit escaping rule for delimiter characters and a concurrent append-versus-forget protocol; add child `005-memory-file-format-and-write-protocol` with a schema/grammar, malformed-line policy, atomic rewrite/locking behavior, and `|`/crash/concurrency fixtures. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:146-151] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60,108]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151-156`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:121-145,165-167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:71-73,123-126`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:146-151`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60,108`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:144-149`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:153-157,167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:100,196`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-65,95-99`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:80-94,188-192`",
+        "`deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, and `steer.md` (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-1-4-phase-006-approval-grants-p1-the-grant-object-and-concurrent-answer-loser-are-sp",
+      "text": "**Phase 006-approval-grants — P1:** The grant object and concurrent-answer loser are specified, but rollback says to revert and then manually remove or strip `grants` from item files; it does not give a tested downgrade path that preserves open approvals for the older closed-key reader. Add child `006-grant-schema-rollout-and-rollback` with a compatibility strategy, reversible migration/downgrade procedure, backup/restore steps, and mixed-version fixtures. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:144-149] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:95-99]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151-156`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:121-145,165-167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:71-73,123-126`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:146-151`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60,108`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:144-149`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:153-157,167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:100,196`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-65,95-99`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:80-94,188-192`",
+        "`deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, and `steer.md` (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-1-1-phases-001-005-006-010-p1-their-additions-evolve-the-same-closed-needsyouitem-sh",
+      "text": "**Phases 001/005/006/010 — P1:** Their additions evolve the same closed `NeedsYouItem` shape, but the packet has no shared, versioned schema and writer-ownership contract for staged fields (`kind`, `grants`, and `conversationId`), null/default behavior, old-reader compatibility, and cross-phase rollout order; add `specs/system-skilled-bots/003-openbot-parity-build/shared-record-contracts.md` with JSON Schemas, field ownership, compatibility fixtures, and the migration sequence. Phase 001 does specify its own activity/inbox rows and answer fields, and 010 specifies the chat message record; the gap is their shared evolution contract. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151-156] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-157] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:153-157] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-65,95-99] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:80-94,188-192]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151-156`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:121-145,165-167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:71-73,123-126`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:146-151`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60,108`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:144-149`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:153-157,167`",
+        "`specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:100,196`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-65,95-99`",
+        "`.skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:80-94,188-192`",
+        "`deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, and `steer.md` (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-2-5-phase-011-messaging-channels-p1-external-prerequisites-are-named-but-the-operato",
+      "text": "**Phase 011-messaging-channels — P1:** External prerequisites are named, but the operator path is not yet executable: the docs do not pin Telegram/Slack credential setup and validation, Signal daemon pairing/start/health checks, or WhatsApp webhook verification/subscription, tunnel, and recovery steps. Add child 011-provider-setup-and-operations with a provider-by-provider setup, preflight, health, restart, and credential-rotation runbook. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:122,239-241,265-271] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:138-157,165]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:45-70,117-124,183-210,239-248,264-295,301-308",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:60-80,115-140,145-167",
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-68",
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:58-70",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs:11-28",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-inbound.ts:417-425,1081-1115",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-runtime.ts:148-165",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14-24",
+        ".skilled/commands/deep/assets/deep-research.yaml:1766-1784",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, and steer.md (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-2-4-phase-011-messaging-channels-p1-telegram-inline-keyboards-slack-block-kit-and-nu",
+      "text": "**Phase 011-messaging-channels — P1:** Telegram inline keyboards, Slack Block Kit, and numbered/YES/NO replies are described as behaviors, but builders still have to design approval copy and layout for the user-facing messages. Add 011-approval-message-design/design/ with Telegram and Slack mockups plus golden text fixtures for Signal, WhatsApp, and terminal, including long-question and expiry states. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:189-190] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:125-140,165] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:24]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:45-70,117-124,183-210,239-248,264-295,301-308",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:60-80,115-140,145-167",
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-68",
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:58-70",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs:11-28",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-inbound.ts:417-425,1081-1115",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-runtime.ts:148-165",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14-24",
+        ".skilled/commands/deep/assets/deep-research.yaml:1766-1784",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, and steer.md (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-2-3-phase-011-messaging-channels-p1-the-roster-and-channel-config-have-explicit-shap",
+      "text": "**Phase 011-messaging-channels — P1:** The roster and channel config have explicit shapes, but the link record and durable queue record still lack a complete persisted field schema, and bots channel list --json is only described as “the same as an object” without field names or a fixture contract. Add 011-channel-file-and-cli-schemas with JSON Schemas for link, approval, queue, and list --json records, including idempotency, expiry, retry, and unknown-send states. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:61-66,185-195,206-210]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:45-70,117-124,183-210,239-248,264-295,301-308",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:60-80,115-140,145-167",
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-68",
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:58-70",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs:11-28",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-inbound.ts:417-425,1081-1115",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-runtime.ts:148-165",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14-24",
+        ".skilled/commands/deep/assets/deep-research.yaml:1766-1784",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, and steer.md (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-2-2-phase-011-messaging-channels-p1-the-send-queue-and-provider-redelivery-are-plann",
+      "text": "**Phase 011-messaging-channels — P1:** The send queue and provider redelivery are planned, but the inbound commit/ack boundary is not: define when Telegram offsets, Slack event acknowledgements, Signal SSE events, and WhatsApp webhook responses are acknowledged relative to durable bots enqueue, and what survives a crash between receipt and enqueue. Add child 011-inbound-ack-and-dedupe with per-provider cursor/ack state, duplicate rules, and crash-boundary fixtures; tinychannels exposes a receive-ack policy explicitly, a useful model to adapt. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:183-195] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:80] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:55-68]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:45-70,117-124,183-210,239-248,264-295,301-308",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:60-80,115-140,145-167",
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-68",
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:58-70",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs:11-28",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-inbound.ts:417-425,1081-1115",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-runtime.ts:148-165",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14-24",
+        ".skilled/commands/deep/assets/deep-research.yaml:1766-1784",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, and steer.md (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-2-1-phase-011-messaging-channels-p1-the-shared-adapter-has-message-error-fields-and-",
+      "text": "**Phase 011-messaging-channels — P1:** The shared adapter has message/error fields and a declaredCapabilities member, but the capability vocabulary and per-transport capability matrix are not enumerated; REQ-017 promises five conformance rules while naming only the unsupported-operation and declared-send checks. Add child 011-shared-adapter-contracts with capability enums, each transport's supported/unsupported matrix, all five conformance assertions, and fixture inputs/results. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:183-184,204-205] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:63-66,77]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:45-70,117-124,183-210,239-248,264-295,301-308",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:60-80,115-140,145-167",
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-68",
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:58-70",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs:11-28",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-inbound.ts:417-425,1081-1115",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-runtime.ts:148-165",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14-24",
+        ".skilled/commands/deep/assets/deep-research.yaml:1766-1784",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, and steer.md (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-2-6-phase-011-messaging-channels-p1-this-is-a-broad-integration-phase-despite-its-le",
+      "text": "**Phase 011-messaging-channels — P1:** This is a broad integration phase despite its Level 2 designation: the packet counts nine modules, five transports, seven test files, and a 32/70 complexity score. Promote it to a Level 3 phase parent after expanding its depth, with six children: shared adapter/link/roster contracts; approval index and queue; Telegram; Slack; Signal; WhatsApp plus provider operations, UX fixtures, conformance, and final integration. This matches the decomposition gate's independent phase-score and Level 3 requirements. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:292-295] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:115-140] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:45-70,117-124,183-210,239-248,264-295,301-308",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:60-80,115-140,145-167",
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-68",
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:58-70",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs:11-28",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-inbound.ts:417-425,1081-1115",
+        "specs/system-skilled-bots/context/rakazo-main/apps/api/src/messaging/messaging-runtime.ts:148-165",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14-24",
+        ".skilled/commands/deep/assets/deep-research.yaml:1766-1784",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, and steer.md (absent at iteration start) in this lineage"
+      ]
+    },
+    {
+      "id": "finding-3-2-cross-phase-architecture-p1-the-build-packet-maps-file-changes-shared-record-own",
+      "text": "**Cross-phase architecture — P1:** The build packet maps file changes, shared record owners, and phase dependencies, and phase 005 owns prompt-section order, but no reviewed artifact ties these into the target runtime module/import map, complete state-root tree, file ownership matrix, and end-to-end prompt/answer sequence that all phases can implement against. Add `contracts/runtime-architecture.md` with those maps and sequence diagrams, including the exact prompt-order and answer-stage handoffs; cite the existing per-phase contracts instead of duplicating their field definitions. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:102-139,144-165] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:21-39,43-75] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:69-74] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:42-52,115-120,121-149,162-167",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:54-75,146-150",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:107-123",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:42-55,98-113,143-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md:58-70,170-180,203-207",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:102-139,144-165",
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:21-39,43-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:69-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-003.md:13-19",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14,16,20,24",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    },
+    {
+      "id": "finding-3-1-phase-002-routine-layer-p1-the-packet-s-purpose-is-one-authored-routine-sentence",
+      "text": "**Phase 002-routine-layer — P1:** The packet's purpose is one authored routine sentence that stops after its outcome or ten consecutive failures, and its spec/plan cover the completion and fatigue lifecycle; however, the OpenBot reference also sets a cap of twenty enabled routines and calls for a notice on the first failure, while the phase requirements do not include or explicitly defer either behavior. Add `002-routine-parity-decisions.md` (or equivalent requirements) with a decision and acceptance fixtures for both behaviors; retain phase-parent status as a candidate because the broader phase spans parsing, execution, install, persisted state, CLI, docs, and tests, subject to the separate phase-score and Level 3 documentation thresholds. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:42-52,115-120,162-167] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:54-75,146-150] [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:107-123] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:42-52,115-120,121-149,162-167",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:54-75,146-150",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:107-123",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:42-55,98-113,143-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md:58-70,170-180,203-207",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:102-139,144-165",
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:21-39,43-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:69-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153-171",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-003.md:13-19",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-010.md:14,16,20,24",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    },
+    {
+      "id": "finding-4-1-phase-007-per-bot-apps-p1-the-filter-contract-writes-a-temporary-utcp-config-jso",
+      "text": "**Phase 007-per-bot-apps — P1:** The filter contract writes a temporary `.utcp_config.json` into the shared worktree and restores the original after the child exits, but it gives no per-worktree serialization rule for two concurrent runs; one run can replace the other run's active filter or restore the original while the other child is still using the path. Add child `007-worktree-config-serialization` with a per-worktree lease or isolated config handoff, kill/restart recovery, and a two-run overlapping fixture. Do not make 007 a phase parent: its filter, record field, refusal catalogue, and test matrix are otherwise one bounded change. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:142,186] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:60-68,115-118,141-143] [INFERENCE: the shared path is written and restored per run, with no lock or overlapping-run rule in the cited lifecycle.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:104-108,110-126,140-153,181-187,232",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:57-69,73-95,110-143",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:94-118,147-165,183-193,230-247",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:62-73,118-156",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161-176,228-240,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:60-70,73-83,123-139",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/src/host_access.rs:752-765",
+        "specs/system-skilled-bots/context/rakazo-main/packages/adapters/src/secrets/secret-migration.ts:6-24,35-79",
+        "specs/system-skilled-bots/context/OpenGhost-main/settings.js:306-314",
+        "specs/system-skilled-bots/context/OpenGhost-main/skills.js:4-13",
+        "specs/system-skilled-bots/context/hermes-muse-main/skills/companion/references/memory.md:18-21",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-006.md:15-37",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:15-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-009.md:15-29",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    },
+    {
+      "id": "finding-4-2-phase-008-vault-p0-storage-and-injection-are-detailed-but-a-builder-still-lacks-",
+      "text": "**Phase 008-vault — P0:** Storage and injection are detailed, but a builder still lacks the exact secret-name grammar and environment-name mapping, a complete versioned index schema, a migration/rollback path for existing `secrets:` declarations, and a consistent refusal/acceptance table; the keychain/file override also needs explicit semantics for replacing or forgetting an entry stored by the other backend. Consolidate these into `008-secret-store-contract-and-upgrade.md`, including index versions, backend transitions, orphan cleanup, upgrade preflight, and failure fixtures. Keep 008 as one security-store phase rather than a parent: the reviewed design is one store with one injection path. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:96-99,147-165,237,245-247] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:65-73,122-130,151-155] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-006.md:15-27]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:104-108,110-126,140-153,181-187,232",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:57-69,73-95,110-143",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:94-118,147-165,183-193,230-247",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:62-73,118-156",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161-176,228-240,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:60-70,73-83,123-139",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/src/host_access.rs:752-765",
+        "specs/system-skilled-bots/context/rakazo-main/packages/adapters/src/secrets/secret-migration.ts:6-24,35-79",
+        "specs/system-skilled-bots/context/OpenGhost-main/settings.js:306-314",
+        "specs/system-skilled-bots/context/OpenGhost-main/skills.js:4-13",
+        "specs/system-skilled-bots/context/hermes-muse-main/skills/companion/references/memory.md:18-21",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-006.md:15-37",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:15-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-009.md:15-29",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    },
+    {
+      "id": "finding-4-3-phase-009-skills-p1-loader-caps-digest-checks-prompt-order-and-the-stale-proposa",
+      "text": "**Phase 009-skills — P1:** Loader caps, digest checks, prompt order, and the stale proposal pin have specific modules and fixtures, but proposal creation publishes `SKILL.md`, `proposal.json`, and a needs-you item as separate writes without a crash-safe commit or concurrent compare-and-create rule; the existing refusal only covers an item already present. Add `009-proposal-persistence-and-recovery.md` with exact proposal fields/revision semantics, the omitted `--name` behavior, atomic publication/idempotent retry, crash recovery, and parallel-proposal fixtures. Keep 009 as one phase with a local lifecycle addendum; its loader and proposal path are related skill authoring flows, and the current plan already gives their modules and tests. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161-176,228-231] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:64-70,82-83,135-139] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:15-23] [INFERENCE: the contract lists separate proposal files and review-item creation but no shared publication transaction.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:104-108,110-126,140-153,181-187,232",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:57-69,73-95,110-143",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:94-118,147-165,183-193,230-247",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:62-73,118-156",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161-176,228-240,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:60-70,73-83,123-139",
+        "specs/system-skilled-bots/context/OpenBot-main/desktop/src-tauri/src/host_access.rs:752-765",
+        "specs/system-skilled-bots/context/rakazo-main/packages/adapters/src/secrets/secret-migration.ts:6-24,35-79",
+        "specs/system-skilled-bots/context/OpenGhost-main/settings.js:306-314",
+        "specs/system-skilled-bots/context/OpenGhost-main/skills.js:4-13",
+        "specs/system-skilled-bots/context/hermes-muse-main/skills/companion/references/memory.md:18-21",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-006.md:15-37",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:15-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-009.md:15-29",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    },
+    {
+      "id": "finding-5-1-phase-012-manual-testing-scenarios-p1-its-corpus-has-a-useful-validator-isolated",
+      "text": "**Phase 012-manual-testing-scenarios — P1:** Its corpus has a useful validator, isolated scenario fixtures, and a recorder, but REQ-006 lets a run close after each FAIL is merely named as a defect; AC-006 likewise passes when a FAIL is listed in `scratch/failures.md`. This can mark every acceptance row Met while the manual corpus still documents a broken phase. Add `012-fail-close-and-post-fix-replay.md` and make closure require zero unresolved FAILs, with evidence that each fixed scenario was rerun. Keep 012 as one corpus-and-recorder phase rather than a parent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:32,186-192] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/acceptance-criteria.md:60-62]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:28-42,177-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/acceptance-criteria.md:54-64",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/plan.md:67-74,103-126,136-141",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:28-36,105-116,145-156",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/acceptance-criteria.md:57-62",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:39-55,98-104,136-166",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:57-67,95-100,134-139",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md:131-161",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:25-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-008.md:15-19,31-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    },
+    {
+      "id": "finding-5-2-phase-013-skilled-and-doc-alignment-p1-phase-013-says-it-hands-runtime-findings-",
+      "text": "**Phase 013-skilled-and-doc-alignment — P1:** Phase 013 says it hands runtime findings to 014 and passes two external report folders plus a clean criterion, but Phase 014 depends only on 013's acceptance rows and strict validator; it never requires reading those folders or the findings they contain. Add `013-to-014-evidence-handoff.md` with a packet-local evidence index, report paths and stable copies or digests, the fixed/rebutted finding ledger, and an explicit 014 intake check. Keep 013 as one two-command alignment/fix workflow, not a parent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33,108-115,145-148] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:43-55]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:28-42,177-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/acceptance-criteria.md:54-64",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/plan.md:67-74,103-126,136-141",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:28-36,105-116,145-156",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/acceptance-criteria.md:57-62",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:39-55,98-104,136-166",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:57-67,95-100,134-139",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md:131-161",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:25-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-008.md:15-19,31-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    },
+    {
+      "id": "finding-5-3-phase-014-deep-review-p1-its-fix-pass-reruns-affected-unit-suites-and-the-full-r",
+      "text": "**Phase 014-deep-review — P1:** Its fix pass reruns affected unit suites and the full runtime suite but explicitly excludes a second review, and it does not require rerunning Phase 012's end-to-end corpus after those fixes; the review verdict can therefore describe a pre-fix surface beside unverified post-fix changes. Add `014-final-verification-loop.md` to require the affected 012 scenarios and a final review of changed files after the fix waves, or record an explicit conditional close when either cannot run. Keep 014 as the final review workflow, not a parent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:41,51-55,98-104,152-157] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/acceptance-criteria.md:60-62] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-008.md:17-19]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:28-42,177-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/acceptance-criteria.md:54-64",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/plan.md:67-74,103-126,136-141",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:28-36,105-116,145-156",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/acceptance-criteria.md:57-62",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:39-55,98-104,136-166",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:57-67,95-100,134-139",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md:131-161",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:25-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-008.md:15-19,31-33",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, findings-registry.json; steer.md was absent at iteration start"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-73bda026f049",
+      "text": "Phase 010's `--transcript --json` payload is not an open design decision in this focus: the packet says it returns a JSON array, enumerates the message fields, and defines append/duplicate/torn-line behavior. Keep an executable fixture, but no additional payload-schema child is required for this gap. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:153-157,167] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:100,196]",
+      "contentHash": "73bda026f049",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f5f8c4306452",
+      "text": "The first runtime search used presumed module paths that are not present; narrowing to the current `needs-you.ts` and `request-record.ts` validators produced direct evidence for the closed-key compatibility risk.",
+      "contentHash": "f5f8c4306452",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-08f9084bd381",
+      "text": "Treating the chat JSON array shape itself as missing was disproved by phase 010 REQ-006 and its CLI fixture; the remaining shared-contract gap concerns cross-phase record evolution.",
+      "contentHash": "08f9084bd381",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e3315f5a97ec",
+      "text": "Do not copy tinychannels' in-memory approval reply index: phase 011 requires the approval index to survive restart. Use tinychannels first for the adapter/capability model and queue policy, and rakazo for sender linking and bounded polling startup. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:58-70] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:120,188]",
+      "contentHash": "e3315f5a97ec",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-20f1cdd652e8",
+      "text": "No live external provider was needed to answer the planning-depth question: phase 011 deliberately tests transports with a fake and does not open sockets. The remaining gap is the operator runbook and acknowledgement contract, not a need to make credentials a unit-test prerequisite. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:135-140]",
+      "contentHash": "20f1cdd652e8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-65129a496ce7",
+      "text": "The phase already covers the main refusal, security, and outbound-reliability rules: default-deny linking, approver checks, secret redaction, signature validation, restart-safe approval prompts, unknown-after-send, and bounded retries. Keep these as shared child invariants rather than reopening their policy decisions. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:185-195,201-210,239-248,264-271]",
+      "contentHash": "65129a496ce7",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a65b335c9481",
+      "text": "A blanket claim that phases have no shared contracts is not supported: the build spec has a shared-record ownership table. The gap is a consolidated target architecture and sequence map across those contracts. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:122-139]",
+      "contentHash": "a65b335c9481",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-895d76a7ebf9",
+      "text": "Phase 004-computer-exposure does not need a new child on current evidence: its scope is one prompt line over existing record fields with no new state, CLI, or schema, and its plan names implementation modules, tests, dependencies, and rollback. The phase already specifies matching workDir/cwd, branch/null handling, exact prompt text, status row, and JSON output. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:42-55,98-113,143-149] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/plan.md:58-70,170-180,203-207]",
+      "contentHash": "895d76a7ebf9",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-349eca281520",
+      "text": "The current runtime README documents existing package topology, not the planned parity target architecture; do not treat it as a substitute for the target module and state-root maps. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:21-39,43-75]",
+      "contentHash": "349eca281520",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-05cb865c4152",
+      "text": "Do not promote these phases to parents on their `/70` complexity totals alone. The decomposition gate requires the separate phase-score threshold and Level 3 documentation threshold; all three reviewed specs currently identify as Level 2. [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:59-66] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:232] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:237] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:255]",
+      "contentHash": "05cb865c4152",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1671005fa4cb",
+      "text": "No named frontier node remained after iteration 3, so the expansive frontier block returned empty. The user-requested phase breadth focus was used; no frontier proposals were emitted.",
+      "contentHash": "1671005fa4cb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3797b2c2a533",
+      "text": "The prior security and skill reviews already identified 008's grammar/mapping/index/migration/lock gaps and 009's grammar/default/sentinel/schema gaps; this pass rechecked those against the current requirements and did not count them as separate new findings. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-006.md:15-27] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-007.md:15-23]",
+      "contentHash": "3797b2c2a533",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d85246dccc6d",
+      "text": "No child decomposition is needed for phases 012–014 from this pass. Each is a single operational workflow: scenario corpus and recorder; two alignment runs and a fix pass; or one review/fix/retest loop. Their gaps are handoff and closure rules.",
+      "contentHash": "d85246dccc6d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-0206dc1ebe6c",
+      "text": "No repository from the nine context references is the first source for these closing phases. Use the in-repository playbook contract/recorder for 012, the local-alignment commands and report schemas for 013, and the deep-review command/fan-out runner for 014.",
+      "contentHash": "0206dc1ebe6c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6222f04a04bc",
+      "text": "The completeness of the 58-scenario inventory does not prove its verdicts are clean: its recorded-result acceptance row expressly permits FAIL rows when defects are named. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/acceptance-criteria.md:60-62]",
+      "contentHash": "6222f04a04bc",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 18,
+    "sourceFindings": 18,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.5,
+    "coverageBySources": {
+      "code": 70,
+      "other": 11
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-001",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor, specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer, specs/system-skilled-bots/003-openbot-parity-build/005-memory, specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants, specs/system-skilled-bots/003-openbot-parity-build/010-conversations, .skilled/skills/system-skilled-bots/runtime/lib",
+        "question": "Data and contracts: for phases 001, 002, 005, 006 and 010, are every record schema, field, state machine and bots --json payload specified completely enough to build without a decision? What schema files or contract docs are missing?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-1-003",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels, specs/system-skilled-bots/context/tinychannels-main, specs/system-skilled-bots/context/rakazo-main",
+        "question": "Phase 011-messaging-channels: is the adapter architecture, per-channel transport, identity linking, durable queue, approval rendering and conformance test design deep enough to one-shot, and how should it split into children (shared adapter, Telegram, Slack, Signal, WhatsApp)?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 2
+      },
+      {
+        "nodeId": "F-1-005",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/spec.md, specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer, specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure, .skilled/skills/system-skilled-bots/runtime/lib",
+        "question": "Small phases 004-computer-exposure and 002-routine-layer, and cross-cutting design: is there a shared architecture doc (module map, file ownership, prompt builder order, answer seam, state-root layout) that every phase builds against, or must one be added before building?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 3
+      }
+    ],
+    "stats": {
+      "total": 3,
+      "open": 0,
+      "active": 0,
+      "answered": 3,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "activeNodeId": null,
+    "budget": {
+      "depth1": {
+        "allotted": 2.5,
+        "spent": 3
+      },
+      "depth2": {
+        "allotted": 1.75,
+        "spent": 0
+      },
+      "depth3": {
+        "allotted": 2.5,
+        "spent": 0
+      }
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-1/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

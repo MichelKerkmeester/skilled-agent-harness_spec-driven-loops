@@ -40,12 +40,12 @@ _memory:
 | Q004 | Run the review as 4 lineages of 13 iterations, two Devin and two Vibe, all DeepSeek flash max. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research |
 | Q005 | After the review, verify the findings, show a ranked list, and on a yes apply the fixes to the phase specs with Vibe writers. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research |
 | Q006 | Fix all 98 review findings, P0 through P2, in the review gate order. | Not stated. | None | the eleven 003 phase folders and the parent spec |
-| Q007 | Phase 001 adds the --scope once\|deny flag on bots answer so the terminal screen can use it, 006 extends it with grants, and the order stays 001 to 011. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research/review-2-findings.md |
-| Q008 | Apply the second review findings with Vibe writers four at a time, then run a fresh Opus high review before commit. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research/review-2-findings.md |
-| Q009 | Run a third Vibe fix pass on the re-review findings, then one more fresh Opus high review before commit. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research/review-3-findings.md |
-| Q010 | Run a targeted fourth fix pass on phases 002, 003, 006, 011 and the lineage map, then a fresh Opus high re-review before commit. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research/review-4-findings.md |
-| Q011 | Run a targeted fifth fix pass on phases 003, 006 and 011, then a fresh Opus high re-review before commit. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research/review-5-findings.md |
-| Q012 | Run a final targeted fix pass on 003, 006 and 011, then commit and push without a sixth review or the Vibe logs. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research/review-6-findings.md |
+| Q007 | Phase 001 adds the --scope once\|deny flag on bots answer so the terminal screen can use it, 006 extends it with grants, and the order stays 001 to 011. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-2-findings.md |
+| Q008 | Apply the second review findings with Vibe writers four at a time, then run a fresh Opus high review before commit. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-2-findings.md |
+| Q009 | Run a third Vibe fix pass on the re-review findings, then one more fresh Opus high review before commit. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-3-findings.md |
+| Q010 | Run a targeted fourth fix pass on phases 002, 003, 006, 011 and the lineage map, then a fresh Opus high re-review before commit. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-4-findings.md |
+| Q011 | Run a targeted fifth fix pass on phases 003, 006 and 011, then a fresh Opus high re-review before commit. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-5-findings.md |
+| Q012 | Run a final targeted fix pass on 003, 006 and 011, then commit and push without a sixth review or the Vibe logs. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-6-findings.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

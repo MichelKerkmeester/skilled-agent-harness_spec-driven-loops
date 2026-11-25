@@ -1,0 +1,112 @@
+{
+  "topic": "Planning-depth review of packet specs/system-skilled-bots/003-openbot-parity-build, the OpenBot parity build for skilled bots: fourteen phases (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 012-manual-testing-scenarios, 013-skilled-and-doc-alignment, 014-deep-review). The operator wants to build all of it in one shot to perfection, so every phase must be planned and architected deeply enough that a builder needs no design decision while building. Phase 003-terminal-screen was just expanded into a Level 3 phase parent with six children (UX and component map with a design/ folder of mockups, key map, glyph table and component inventory; architecture and contracts; shell and navigation; panes; answer flow; hardening). Use it as the benchmark for depth. Do not review 003's children themselves. For every other phase answer: is it planned deeply enough to one-shot? What is missing: module and file design, data contracts and record schemas with every field, state machines and lifecycles, error and refusal catalogue, concurrency and restart behavior, migration and rollback, test strategy with fixtures, the interfaces it offers to and takes from other phases, security boundaries, operator prerequisites, and design artifacts (diagrams, schema files, sequence flows, mockups for anything user-facing such as chat and channel messages)? Should it become a phase parent with children like 003, and which children? What reference code in specs/system-skilled-bots/context/ (OpenBot-main, OpenMausBot-main, rakazo-main, openhuman-main, OpenGhost-main, hermes-muse-main, turnstone-main, buzz-main, tinychannels-main) should it study first? Evidence (read-only): the phase docs; the built runtime under .skilled/skills/system-skilled-bots/runtime/lib/ and .skilled/bin/bots.cjs; the earlier research in specs/system-skilled-bots/002-openbot-parity-research/. Every finding names the phase, the gap, the evidence as [SOURCE: path:line], a severity (P0 the build cannot be one-shot without it, P1 a builder would have to decide, P2 polish) and the exact planning artifact or child phase that closes it. End with a ranked per-phase expansion plan.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "depthMode": "expansive",
+    "stopPolicy": "fail-closed"
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research",
+  "createdAt": "2026-11-25T21:47:18Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-codex-2-1795642794796-3326pw",
+    "parentSessionId": "2026-11-25T21:22:47.916Z",
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart",
+      "completed-continue"
+    ],
+    "deferredModes": [
+      "fork"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.depthMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  }
+}

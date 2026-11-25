@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A bot's only way to reach a person is a macOS desktop notice, and its only way to ask a question is `bots inbox` on the host, so a small team that works in a chat client walks to the machine to answer",
     "created_at": "2026-11-25T07:51:30Z",
-    "last_save_at": "2026-11-25T20:09:58.277Z",
+    "last_save_at": "2026-11-25T22:43:29.933Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:961a9f55574a729821b71f71a93a120b393c7c28bbf224025723c9200d4441d5",
+    "source_fingerprint": "sha256:a1b86fe386ca328c2461d66fdc8eaa300a03a4287a3484f17afa3356bfb6de10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4499fd43711cb0232675d323eb15acd7a767aad37c469e21c455be26dbbc747c",
+      "spec.md": "eb527d8a9480854c2b716c648d8eaaf8c468e86b1a6be69e29c57a877c96c1be",
       "plan.md": "0fd9bbef465a92cf025168af7c5c357402d8e40a12421485ceedc65edce1d0cb",
       "tasks.md": "56d9759d99efef8d8685cf253cab3204674e61e3670985fb407f5563188676e3",
-      "decision-record.md": "e9544f1dfcd0fa976675d49e3e400f3971f08c2911a1670d07b9c36d7b72dcbd",
+      "decision-record.md": "4c83a69572ed645785f1854ac28077ca9baccba294e9677932209b8daa24787c",
       "implementation-summary.md": "a89f8ae6a175044e5a56dccfa6740a18675d49c5837357d41c34eb8fdc757c98"
     },
     "last_active_at": null

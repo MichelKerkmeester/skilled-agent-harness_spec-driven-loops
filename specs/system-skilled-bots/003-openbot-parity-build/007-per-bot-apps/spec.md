@@ -56,7 +56,7 @@ This is **Phase 7** of the Build OpenBot parity for skilled bots from the 002 re
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads. A bot that only needs to file an issue can also reach the browser drivers, the design tools and the project tracker, and nothing in the definition, the run record or the checker says which servers a bot was meant to use. The research names the gap as the missing per-bot grant: "Today every bot can reach every configured server." [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2/research.md:131]
+Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads. A bot that only needs to file an issue can also reach the browser drivers, the design tools and the project tracker, and nothing in the definition, the run record or the checker says which servers a bot was meant to use. The research names the gap as the missing per-bot grant: "Today every bot can reach every configured server." [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/research.md:131]
 
 ### Purpose
 A bot declares the servers it may reach, each run gets a config holding only those, and the run record says which ones were honored.
@@ -102,9 +102,9 @@ The same fixture without the key passes every invariant and exits 0, so the refu
 
 ### Out of Scope
 - **Removing the five project MCP config pins.** `.mcp.json`, `.claude/mcp.json`, `.codex/config.toml`, `opencode.json` and `.cursor/mcp.json` each set `UTCP_CONFIG_FILE` to `.utcp_config.json` explicitly, and an explicit value in an MCP server block overrides the inherited one. [SOURCE: .mcp.json:9] [SOURCE: .claude/mcp.json:9] [SOURCE: .codex/config.toml:17] [SOURCE: opencode.json:29] [SOURCE: .cursor/mcp.json:9] The pins stay, and the `/doctor:mcp` wiring check that asserts them stays with them. [SOURCE: .skilled/commands/doctor/scripts/mcp-doctor-lib.sh:291] What makes a pin resolve to the filtered file is the worktree write REQ-003 adds: the child's working directory is the run's worktree, so `<worktree>/.utcp_config.json` is the file the pin already names. A run with no worktree has nowhere to place that file without dirtying the checkout, so REQ-005 refuses it. A shared run that declares no `apps` is the limit the risk table names: its pin resolves against the checkout, so its child reads the repository config and reaches every server. `apps` stays a filter, not a sandbox: a child that reads a config from another path is not confined by this phase.
-- **The vault.** `bots secret set`, a keychain or 0600 store, child-environment injection and `HonoredPosture.secretsUsed` are phase 8, which the research lands after this slice because it is the one that can leak. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:77]
-- **A connector registry or catalogue.** The UTCP config already names the servers this team has, so a second registry would restate it. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2/research.md:324]
-- **Per-action grants.** OpenBot grants per action per bot; this phase grants per server per bot. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2/research.md:115-116]
+- **The vault.** `bots secret set`, a keychain or 0600 store, child-environment injection and `HonoredPosture.secretsUsed` are phase 8, which the research lands after this slice because it is the one that can leak. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:77]
+- **A connector registry or catalogue.** The UTCP config already names the servers this team has, so a second registry would restate it. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/research.md:324]
+- **Per-action grants.** OpenBot grants per action per bot; this phase grants per server per bot. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/research.md:115-116]
 - **A migration for existing bots.** `apps:` absent means no servers, which is the fail-closed default for a run with its own worktree. This repository has no `bots/` folder, so no definition changes meaning. A shared run is the exception the risk table names: its child reads the repository config through the project pin, so `apps` narrows a worktree run only.
 
 ### Files to Change
@@ -237,7 +237,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Does an absent `apps:` mean no servers or all servers? Decision: no servers, because the research calls the mechanism a whitelist that fails closed. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-2/research.md:289]
+- Does an absent `apps:` mean no servers or all servers? Decision: no servers, because the research calls the mechanism a whitelist that fails closed. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/research.md:289]
 - Should the five project MCP configs stop pinning `UTCP_CONFIG_FILE` in this phase? Decision: no. The pins stay, and the worktree write REQ-003 adds is what makes a pin resolve to the filtered file, so removing them is neither needed nor in scope.
 - Should the filtered config keep the repository config's `load_variables_from` block? Decision: yes, with each `env_file_path` made absolute. The block names a dotenv file and holds no value, and dropping it would change how a server resolves its own variables. A relative path's base is the config file's own folder, and the copy sits in the run folder, so the path is written absolute to keep it pointing at the same file.
 <!-- /ANCHOR:questions -->

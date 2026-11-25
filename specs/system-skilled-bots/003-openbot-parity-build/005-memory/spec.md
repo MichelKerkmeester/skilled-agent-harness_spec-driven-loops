@@ -59,7 +59,7 @@ This is **Phase 5** of the Build OpenBot parity for skilled bots from the 002 re
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A bot starts every run with its BOT.md body, the bound spec folder and the decision rule, and nothing else [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315]. So a fact the operator told it last week is gone by the next run: the runtime has no memory module and BOT.md has no memory field [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92]. OpenBot splits memory by origin, where facts a person adds are shared with all their bots and facts a bot picks up stay with that bot [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:59-63], and skilled bots has neither half [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:55].
+A bot starts every run with its BOT.md body, the bound spec folder and the decision rule, and nothing else [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315]. So a fact the operator told it last week is gone by the next run: the runtime has no memory module and BOT.md has no memory field [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92]. OpenBot splits memory by origin, where facts a person adds are shared with all their bots and facts a bot picks up stay with that bot [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:59-63], and skilled bots has neither half [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:55].
 
 ### Purpose
 Give a bot two bounded memory files, one shared and one its own, prepended to its prompt, with a verb to add a fact and a needs-you item to confirm one a bot proposes.
@@ -98,10 +98,10 @@ The first two commands are the verb: the CLI has no `remember` and refuses it as
 ### Out of Scope
 - The tidy rewrite, where a model rewrites a crowded file shorter - OpenGhost's `tidy` needs a model call inside a verb, and this phase refuses an append at the bound instead [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/memory.js:11]
 - A memory service, embeddings or ranked recall - OpenBot's content and recall live in CopilotKit Intelligence, and a small team reads two files [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/architecture.md:370-383]
-- An import or a source sync - the lineage that ranked the store first puts the source sync fourth, and no source is named for this phase [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-1/research.md:308]
-- A per-person memory file - the state root is already per OS user, so a second level buys nothing until a shared host lands [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/devin-2/research.md:95]
+- An import or a source sync - the lineage that ranked the store first puts the source sync fourth, and no source is named for this phase [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-1/research.md:308]
+- A per-person memory file - the state root is already per OS user, so a second level buys nothing until a shared host lands [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/devin-2/research.md:95]
 - The spec-kit's continuity writer - it writes session context into a packet's own documents, not into a per-bot memory [SOURCE: .skilled/skills/system-spec-kit/references/memory/memory-system.md:17]
-- A `bots memory` verb beside `bots remember` - `--list` covers the read, and a second verb is a second parser for one file shape [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/devin-1/research.md:51]
+- A `bots memory` verb beside `bots remember` - `--list` covers the read, and a second verb is a second parser for one file shape [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/devin-1/research.md:51]
 - The terminal screen's memory pane - phase 003 draws activity, inbox and routine panes, and no memory pane is among them [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:148]
 - A `THIRD_PARTY_NOTICES.md` entry for the bound - three numbers are not a lifted file, and the parent's notices table does not name this phase [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:114]
 

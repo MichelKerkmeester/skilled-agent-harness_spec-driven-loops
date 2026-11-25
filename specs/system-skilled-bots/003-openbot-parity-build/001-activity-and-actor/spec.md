@@ -101,11 +101,11 @@ The four refusals are the measured behavior the Problem Statement rests on: the 
 - Carry the actor inside the status index's run summary JSON, so the activity read needs no second pass over run records and the DDL does not move
 
 ### Out of Scope
-- The `grants` object on a needs-you item and the approval precedence ladder - phase 006-approval-grants owns both and extends this phase's answer `scope` with them, and the research ranks them item 5 [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:145]
-- Per-action policy inside the executor (send, delete, pay) - the research defers it to a later packet with OpenGhost's rules engine as the liftable layer [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:93]
-- The two-role `operators.json` roster and the shared-host 0770 mode - 011 lands the roster its channel approver check needs, and no phase builds the shared-host mode; neither is needed to record an actor [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:103-104]
-- A `by:` on secret records - the vault is phase 008, and no secret record exists yet [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:147]
-- The terminal screen's activity pane - phase 003-terminal-screen draws it over this verb, and the research moves that screen up to follow items 1 and 2 [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:155]
+- The `grants` object on a needs-you item and the approval precedence ladder - phase 006-approval-grants owns both and extends this phase's answer `scope` with them, and the research ranks them item 5 [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:145]
+- Per-action policy inside the executor (send, delete, pay) - the research defers it to a later packet with OpenGhost's rules engine as the liftable layer [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:93]
+- The two-role `operators.json` roster and the shared-host 0770 mode - 011 lands the roster its channel approver check needs, and no phase builds the shared-host mode; neither is needed to record an actor [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:103-104]
+- A `by:` on secret records - the vault is phase 008, and no secret record exists yet [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:147]
+- The terminal screen's activity pane - phase 003-terminal-screen draws it over this verb, and the research moves that screen up to follow items 1 and 2 [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:155]
 - The routine layer's `recurring` rows - phase 002-routine-layer writes them; this phase groups whatever the index holds, and an empty `recurring` group is left out
 
 ### Files to Change

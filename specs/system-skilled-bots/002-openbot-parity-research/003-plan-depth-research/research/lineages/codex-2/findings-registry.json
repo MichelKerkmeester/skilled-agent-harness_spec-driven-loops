@@ -1,0 +1,471 @@
+{
+  "sessionId": "fanout-codex-2-1795642794796-3326pw",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 3,
+    "totalQuestions": 3,
+    "timestamp": "2026-11-25T22:18:35.438Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-security-heavy-phases-007-per-bot-apps-and-008-vault-are-threat-model-secret-lif",
+      "inboxId": "F-1-002",
+      "text": "Security-heavy phases 007-per-bot-apps and 008-vault: are threat model, secret lifecycle, storage, injection and leak checks architected deeply enough, and should either become a phase parent with children?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-2-conversations-and-skills-010-009-and-memory-005-are-the-user-facing-flows-design",
+      "inboxId": "F-1-004",
+      "text": "Conversations and skills (010, 009) and memory (005): are the user-facing flows designed (chat transcript format, @bot routing, mockups of terminal and chat messages, prompt assembly order and budgets, injection boundaries) deeply enough to one-shot?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-3-verification-phases-012-manual-testing-scenarios-013-skilled-and-doc-alignment-a",
+      "inboxId": "F-1-006",
+      "text": "Verification phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review: are their scenario lists, alignment targets, review dimensions, executor waves and stop rules concrete enough to run without decisions, and do the build phases leave them the hooks they need?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered",
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-security-heavy-phases-007-per-bot-apps-and-008-vault-are-threat-model-secret-lif",
+      "inboxId": "F-1-002",
+      "text": "Security-heavy phases 007-per-bot-apps and 008-vault: are threat model, secret lifecycle, storage, injection and leak checks architected deeply enough, and should either become a phase parent with children?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-2-conversations-and-skills-010-009-and-memory-005-are-the-user-facing-flows-design",
+      "inboxId": "F-1-004",
+      "text": "Conversations and skills (010, 009) and memory (005): are the user-facing flows designed (chat transcript format, @bot routing, mockups of terminal and chat messages, prompt assembly order and budgets, injection boundaries) deeply enough to one-shot?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-3-verification-phases-012-manual-testing-scenarios-013-skilled-and-doc-alignment-a",
+      "inboxId": "F-1-006",
+      "text": "Verification phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review: are their scenario lists, alignment targets, review dimensions, executor waves and stop rules concrete enough to run without decisions, and do the build phases leave them the hooks they need?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered"
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-phase-007-per-bot-apps-p0-shared-isolation-can-still-expose-every-configured-app",
+      "text": "**Phase 007-per-bot-apps — P0: shared isolation can still expose every configured app.** The plan refuses a shared run only when the bot explicitly declares apps, but its data-flow note says a shared run resolves the pinned config from the checkout; the planned absent-declaration shared-run test explicitly accepts that the child reads the repository-wide config while the record says []. That leaves the core least-privilege policy undecided and prevents a one-shot build from guaranteeing each run sees only its honored apps. Close this in 007's spec/plan/acceptance criteria with an explicit default-deny rule and an absolute per-run UTCP_CONFIG_FILE for shared runs, or refuse connector-capable shared runs; add the corresponding absent/empty/explicit declaration matrix. Phase 007 already has a detailed module map, schema delta, adversarial matrix, integration tests and rollback, so it does not need a phase parent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:62] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:68] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:116]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:60-68, 115-118",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:188-212",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:64-73, 98-102",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:53-57, 89-91",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:74",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:242-295",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/iterations/iteration-007.md:17-38",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/iterations/iteration-012.md:17-35",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-1-2-phase-008-vault-p0-the-declared-secret-grant-is-not-a-per-bot-access-boundary-th",
+      "text": "**Phase 008-vault — P0: the declared secret grant is not a per-bot access boundary.** The plan and acceptance criteria explicitly allow a same-user child with no secrets grant to read another bot's value file, and the spec accepts the OS user as the boundary; the stdout scan also leaves values written to files or commits outside its reach. This is clearly documented as a residual, but it conflicts with treating secrets: as an authorization grant and leaves the one-shot threat model unresolved. Close with a 008 child phase for access boundary and threat model that chooses enforceable isolation or explicitly narrows the promise, and acceptance fixtures for cross-bot reads plus file/commit exfiltration. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:190] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:191] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:74]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:60-68, 115-118",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:188-212",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:64-73, 98-102",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:53-57, 89-91",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:74",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:242-295",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/iterations/iteration-007.md:17-38",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/iterations/iteration-012.md:17-35",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-1-3-phase-008-vault-p1-secret-store-concurrency-and-crash-recovery-are-unspecified-t",
+      "text": "**Phase 008-vault — P1: secret-store concurrency and crash recovery are unspecified.** The plan specifies backend choice, write-readback, metadata, and a matrix for backend/value/store/bot states, but the task and acceptance coverage shown does not define atomic index/value updates, concurrent set/forget behavior, interruption between writing the value and index, or recovery after a killed update. A builder would have to choose ordering and conflict semantics. Close with an 008 child phase for store lifecycle and recovery, including an index/value schema, atomic write protocol, lock or serialization rule, restart matrix, and fault-injection fixtures. [INFERENCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:72 and specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:101-102 specify the data flow and input matrix, while specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:53-57 and 89-91 cover writes and selected kill behavior without defining concurrent store updates or index recovery]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:60-68, 115-118",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:188-212",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:64-73, 98-102",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:53-57, 89-91",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:74",
+        ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:242-295",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/iterations/iteration-007.md:17-38",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-2/iterations/iteration-012.md:17-35",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-2-1-phase-005-memory-p1-shared-memory-updates-lack-concurrency-and-crash-semantics-t",
+      "text": "**Phase 005-memory — P1: shared memory updates lack concurrency and crash semantics.** The plan assigns append and forget to one module and puts shared memory beside per-bot memory, but its test matrix covers file/entry/bot state and its tests cover append/forget as isolated operations. It does not specify two bots appending at once, forget racing with append, or recovery from a partially written line. A one-shot builder would choose the write protocol and conflict behavior. Close this in 005's plan, tasks and acceptance criteria with a multi-writer/restart matrix and fixtures for append/forget races and interrupted writes. Keep 005 as a single phase; its storage, prompt block and reviewed proposal form one coherent flow. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-66] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:104-108] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:125-133]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:59-74, 104-108, 125-133",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:101-115",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:62-83, 131-139",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md:60-67",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:41-55, 105-112, 192-203",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:62-74, 117-129",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/memory/memories.tsx:48-62, 132-151",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/skills/proposal.ts:73-103",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/skills/proposed-skill.tsx:48-70",
+        "specs/system-skilled-bots/context/OpenBot-main/agent-ag2/tests/test_conversation_contract.py:52-73",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:176-181, 1276-1305",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-2-2-phase-009-skills-p1-accepted-proposals-stop-before-an-installable-skill-is-verif",
+      "text": "**Phase 009-skills — P1: accepted proposals stop before an installable skill is verified.** The spec intentionally excludes `bots skill accept` and says the operator moves the draft into the checkout; the answer path records approval and returns without a resume request. The plan says `bots install` pins skill digests, but the operator handoff does not spell out the move, reinstall/pin refresh and verification sequence. Add an operator-prerequisite and acceptance row to 009's proposal handoff, including the exact checkout path, `bots install` step, stale-pin check and git review boundary. The loader, digest pin, prompt order, refusal set, proposal records and adversarial tests are otherwise sufficiently detailed; 009 does not need a phase parent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:104-115] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:63-83] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-openbot-parity-build/009-skills/acceptance-criteria.md:60-67]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:59-74, 104-108, 125-133",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:101-115",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:62-83, 131-139",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md:60-67",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:41-55, 105-112, 192-203",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:62-74, 117-129",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/memory/memories.tsx:48-62, 132-151",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/skills/proposal.ts:73-103",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/skills/proposed-skill.tsx:48-70",
+        "specs/system-skilled-bots/context/OpenBot-main/agent-ag2/tests/test_conversation_contract.py:52-73",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:176-181, 1276-1305",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-2-4-phase-010-conversations-p1-the-chat-pane-lacks-an-explicit-design-handoff-and-vi",
+      "text": "**Phase 010-conversations — P1: the chat pane lacks an explicit design handoff and visual acceptance artifact.** The plan names Rust chat state, transcript drawing and key labels, while its render test checks only that the transcript and footer draw. The phase depends on phase 003's placeholder but does not name a UX artifact or states the pane must render. Since 003 now owns terminal mockups, make 010 consume the designated 003 UX/component artifact and list empty, composing, running, completed, parked/resumed, refused/error and redacted-reply states in a pane contract with render fixtures. Expand 010 as a phase parent with children for transcript storage/lifecycle, routing and resume flow, TUI integration/design handoff, and hardening. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:41-55] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:62-74] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:117-129] [INFERENCE: the phase directory contains only the spec, plan, tasks and acceptance criteria artifacts and no design/ mockups; the render acceptance checks output behavior but no visual states]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:59-74, 104-108, 125-133",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:101-115",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:62-83, 131-139",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md:60-67",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:41-55, 105-112, 192-203",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:62-74, 117-129",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/memory/memories.tsx:48-62, 132-151",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/skills/proposal.ts:73-103",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/skills/proposed-skill.tsx:48-70",
+        "specs/system-skilled-bots/context/OpenBot-main/agent-ag2/tests/test_conversation_contract.py:52-73",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:176-181, 1276-1305",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-2-3-phase-010-conversations-p1-transcript-retention-and-migration-are-explicitly-def",
+      "text": "**Phase 010-conversations — P1: transcript retention and migration are explicitly deferred.** The conversation file is append-only, is read whole, and can grow without bound; rotation is assigned to a later packet. That leaves an operational decision for long-lived bots and no migration path if the format or retention policy changes. Close this in an 010 child phase for transcript storage and lifecycle with retention/rotation thresholds, archival behavior, schema-version/migration rules, and restart/backup fixtures. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:105-112] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:192-203]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:59-74, 104-108, 125-133",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:101-115",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:62-83, 131-139",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md:60-67",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:41-55, 105-112, 192-203",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:62-74, 117-129",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/memory/memories.tsx:48-62, 132-151",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/skills/proposal.ts:73-103",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/components/skills/proposed-skill.tsx:48-70",
+        "specs/system-skilled-bots/context/OpenBot-main/agent-ag2/tests/test_conversation_contract.py:52-73",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:176-181, 1276-1305",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-3-1-cross-phase-handoff-012-manual-testing-scenarios-014-deep-review-p1-manual-test-",
+      "text": "**Cross-phase handoff 012-manual-testing-scenarios → 014-deep-review — P1: manual test failures can be recorded without entering the final review.** Phase 012 permits an observed FAIL to remain in results when its scenario id appears in `scratch/failures.md`; phase 014 says it reviews the code and docs built by phases 001-013 and its workflow consumes the deep-review registry/report, but does not list the manual results or failure file as review inputs. That leaves a path for a reproducible manual defect to be filed and then omitted from the final P0/P1 decision. Add the 012 run folder, `results.csv` and `failures.md` to 014's required inputs; require each failure to map to scenario, phase, requirement and evidence, and block closure on any unresolved P0/P1 or explicitly carry it as a named deferral. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:142-146] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:29-30] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:58-66]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/plan.md:39-53, 62-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:138-147",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/plan.md:70-78, 120-128",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:128-146",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:29-30, 58-66, 121-128, 173-183",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md:39-47, 91-113",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/acceptance-criteria.md:48-54",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-3-2-phase-014-deep-review-p1-missing-executor-prerequisites-conflict-with-the-fallba",
+      "text": "**Phase 014-deep-review — P1: missing-executor prerequisites conflict with the fallback contract.** The preflight task requires all five binaries on PATH, while the dependency table says a missing binary drops its lineage and the fallback replaces it; the plan also promises five independent reads. A builder cannot tell whether an absent CLI blocks the phase before spawn or is expected to be absorbed by the fallback. Align 014's Definition of Ready, task T003, dependency table and acceptance criteria: either require all five executors and remove the missing-binary fallback, or permit a smaller available roster and state how fallback scaling still preserves five independent lineages and the no-partition-gap check. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md:39-44] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:121-128] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:173-183]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/plan.md:39-53, 62-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:138-147",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/plan.md:70-78, 120-128",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:128-146",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:29-30, 58-66, 121-128, 173-183",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md:39-47, 91-113",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/acceptance-criteria.md:48-54",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md (checked; absent)"
+      ]
+    },
+    {
+      "id": "finding-4-1-phase-002-routine-layer-p1-state-transition-race-routine-state-ts-reads-writes-r",
+      "text": "**Phase 002-routine-layer — P1 state-transition race.** `routine-state.ts` reads/writes routine state and `evaluateFatigue` updates the disabled switch, fatigue record and needs-you item; `bots enable` clears the switch and fatigue record through another surface. The implementation sequence and test matrix do not define which operation wins if enable races an in-flight failed run, or how to recover if the process stops between the switch, state and item writes. Add a serialized/idempotent transition contract and race/restart fault fixtures to `002-routine-layer/plan.md`, `tasks.md` and `acceptance-criteria.md`; keep this a targeted Level 2 amendment, not a phase parent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:62-66] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:71-73] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:101-102] [INFERENCE: the plan names both writers and a state matrix, but no race ordering or partial-write recovery fixture]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/deep-research-config.json`",
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/deep-research-state.jsonl`",
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/deep-research-strategy.md`",
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md` (checked; absent)",
+        "Phase docs for 001, 002, 004, 006 and 011 listed in the citations above",
+        "`specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-103`",
+        "`specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-bus/src/channel/envelope.rs:37-59`",
+        "`specs/system-skilled-bots/context/OpenGhost-main/routines.js:41-72` (first reference for visible routine lifecycle)",
+        "`specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:4-6,59-89` (first reference for user-facing approval-card hierarchy)"
+      ]
+    },
+    {
+      "id": "finding-4-2-phase-011-messaging-channels-p1-user-facing-design-gap-and-scope-split-the-plan-",
+      "text": "**Phase 011-messaging-channels — P1 user-facing design gap and scope split.** The plan pins the adapter, queue, approval grammar, five transport files and per-platform button/text surfaces, but it does not assign a design artifact with literal message examples or mockups for prompt, answer choices, expiry, refusal, redaction and uncertain delivery. The phase file inventory also contains no design folder. Create a Level 3 phase parent with children for (a) UX/message catalog and component map, (b) shared contract/config/pairing/roster, (c) approval and queue persistence/recovery, (d) Telegram and Slack adapters, (e) Signal and WhatsApp adapters, and (f) terminal/chat integration and conformance hardening. The UX child should own `design/` mockups and fixture snapshots for all five surfaces; it should also make the documented fatigue-notice limitation explicit or decide its channel behavior. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:31-32] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:67-80] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:101-108] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:140-149] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:68]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/deep-research-config.json`",
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/deep-research-state.jsonl`",
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/deep-research-strategy.md`",
+        "`specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/steer.md` (checked; absent)",
+        "Phase docs for 001, 002, 004, 006 and 011 listed in the citations above",
+        "`specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:43-103`",
+        "`specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-bus/src/channel/envelope.rs:37-59`",
+        "`specs/system-skilled-bots/context/OpenGhost-main/routines.js:41-72` (first reference for visible routine lifecycle)",
+        "`specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:4-6,59-89` (first reference for user-facing approval-card hierarchy)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-0d3b80f92462",
+      "text": "Do not assume a worktree alone enforces least privilege: 007's plan documents that config resolution differs for shared runs.",
+      "contentHash": "0d3b80f92462",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c1a53e9c7532",
+      "text": "Do not treat 0600/0700 ownership as per-bot isolation: 008's test explicitly verifies same-user cross-read succeeds.",
+      "contentHash": "c1a53e9c7532",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-de29da93cc64",
+      "text": "No reference modules were copied or modified; the incorrect assumed rakazo integrations/ paths were replaced with the actual packages/core/src/node and packages/core/src/messages paths found by file search.",
+      "contentHash": "de29da93cc64",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-73329a8cd332",
+      "text": "None. The source-path correction was a local lookup adjustment, not an exhausted research approach.",
+      "contentHash": "73329a8cd332",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e21c231501ab",
+      "text": "Do not infer chat-pane visual completeness from a render test that checks only transcript and footer drawing.",
+      "contentHash": "e21c231501ab",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-858fe8a21cd9",
+      "text": "Do not treat the 009 proposal's manual checkout move as automatic skill installation; the spec explicitly excludes a runtime copy into the checkout.",
+      "contentHash": "858fe8a21cd9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c8a66016380f",
+      "text": "No skills, memory entries or conversation data were written; reference repositories were read only.",
+      "contentHash": "c8a66016380f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-535e146619cb",
+      "text": "None. The user-facing design gap is an unowned artifact interface, not a failed search path.",
+      "contentHash": "535e146619cb",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fec9c5fa944f",
+      "text": "Do not assume 014's fallback removes its preflight gate: T003 separately requires all five executables.",
+      "contentHash": "fec9c5fa944f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-05ae37d5bd77",
+      "text": "Do not infer that a FAIL is necessarily blocking or resolved: 012 explicitly allows it to be filed as a defect.",
+      "contentHash": "05ae37d5bd77",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-501bfb015841",
+      "text": "No phase 003 children were inspected; 010's design handoff remains assigned to that phase's UX artifact owner.",
+      "contentHash": "501bfb015841",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a0c26db7614f",
+      "text": "None. The validation plans contain useful handoff evidence; the only contradictions are specific and repairable in 012/014's phase contracts.",
+      "contentHash": "a0c26db7614f",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 11,
+    "sourceFindings": 11,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {
+      "code": 44,
+      "other": 48
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-002",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps, specs/system-skilled-bots/003-openbot-parity-build/008-vault, .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "question": "Security-heavy phases 007-per-bot-apps and 008-vault: are threat model, secret lifecycle, storage, injection and leak checks architected deeply enough, and should either become a phase parent with children?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-1-004",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/005-memory, specs/system-skilled-bots/003-openbot-parity-build/009-skills, specs/system-skilled-bots/003-openbot-parity-build/010-conversations",
+        "question": "Conversations and skills (010, 009) and memory (005): are the user-facing flows designed (chat transcript format, @bot routing, mockups of terminal and chat messages, prompt assembly order and budgets, injection boundaries) deeply enough to one-shot?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 2
+      },
+      {
+        "nodeId": "F-1-006",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review",
+        "question": "Verification phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review: are their scenario lists, alignment targets, review dimensions, executor waves and stop rules concrete enough to run without decisions, and do the build phases leave them the hooks they need?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 3
+      }
+    ],
+    "stats": {
+      "total": 3,
+      "open": 0,
+      "active": 0,
+      "answered": 3,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "activeNodeId": null,
+    "budget": {
+      "depth1": {
+        "allotted": 2.5,
+        "spent": 3
+      },
+      "depth2": {
+        "allotted": 1.75,
+        "spent": 0
+      },
+      "depth3": {
+        "allotted": 2.5,
+        "spent": 0
+      }
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/codex-2/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

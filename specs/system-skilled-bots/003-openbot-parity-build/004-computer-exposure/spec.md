@@ -41,7 +41,7 @@ This is **Phase 4** of the Build OpenBot parity for skilled bots from the 002 re
 
 **Scope Boundary**: One prompt line, one record field that already exists and is filled for every dispatched run, and two parts on a status row. It adds no module, no state file, no CLI verb, no dependency and no index schema change. The browser computer OpenBot ships stays out.
 
-**Size**: S, risk low, as the research ranks computer exposure. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:143]
+**Size**: S, risk low, as the research ranks computer exposure. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:143]
 
 **Dependencies**:
 - `isolation.ts`, which already creates the tree and knows its branch. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:3-30]
@@ -103,7 +103,7 @@ The first block is the measured gap: the row carries the checkout path and no br
 - Prove each with a vitest case in the suite that already owns the module.
 
 ### Out of Scope
-- A browser computer, a container, a per-bot token and a vault login - OpenBot's largest surface, and the research keeps it out because a small team uses its own logged-in browser for the steps that need one. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:85]
+- A browser computer, a container, a per-bot token and a vault login - OpenBot's largest surface, and the research keeps it out because a small team uses its own logged-in browser for the steps that need one. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:85]
 - A new CLI verb or flag - `bots status` already prints the row and already has `--json`. [SOURCE: .skilled/bin/bots.cjs:48]
 - A new run-record field - `evidence.worktreePath` and `evidence.branch` already exist, so this phase fills the second for every run rather than adding a third. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:151-157]
 - A status-index schema bump - the run summary is stored as JSON, so the two fields ride in it and an existing index keeps opening. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:55]

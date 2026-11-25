@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/002-openbot-parity-research/002-plan-review-research",
+  "spec_folder": "system-skilled-bots/002-openbot-parity-research/002-plan-review-research",
+  "parent_id": "system-skilled-bots/002-openbot-parity-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plan review research",
+      "phase 2 plan review research",
+      "build readiness review",
+      "plan review research plan",
+      "build readiness review plan",
+      "plan review research tasks",
+      "build readiness review tasks",
+      "plan review research goal",
+      "build readiness review goal",
+      "plan review research implementation summary",
+      "build readiness review implementation summary"
+    ],
+    "key_topics": [
+      "plan",
+      "review",
+      "research",
+      "phase",
+      "readiness",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "eleven",
+      "phases",
+      "003-openbot-parity-build"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/review-2-findings.md",
+      "research/review-6-findings.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      ".skilled/bin/bots.cjs",
+      "research/fanout-config.json",
+      "research/orchestration-summary.json",
+      ".github/workflows/bots-runtime.yml",
+      ".opencode/bin/bots.cjs",
+      ".opencode/skills/system-skilled-bots/SKILL.md",
+      "research/lineages/devin-2/research.md",
+      "research/lineages/vibe-1/research.md",
+      "research/lineages/vibe-2/research.md",
+      "research/lineages/devin-1/iterations/iteration-001.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-2-findings.md",
+        "kind": "doc",
+        "path": "research/review-2-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-6-findings.md",
+        "kind": "doc",
+        "path": "research/review-6-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-config.json",
+        "kind": "config",
+        "path": "research/fanout-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skilled-bots/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/devin-1/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The eleven phases of `003-openbot-parity-build` were written in parallel, each alone, and nobody had checked them against the built runtime or against each other",
+    "created_at": "2026-11-25T21:22:04Z",
+    "last_save_at": "2026-11-25T22:42:05.308Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:cbb8d8bac7e5fa1fe3ec55e5e70d286a626cf261f181c8c7b2defef83b546647",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d295cc07970965466d5d7953323199230a6e7113848c394c259634041e774a4",
+      "plan.md": "4a138fc6b93828eba815819f3c956fcdf06440517a79bb89f8c58a9aade61b6b",
+      "tasks.md": "197fbf85ca45d9982908dfc6f6efc1474018830a8adcc0b309eb9285aa74829d",
+      "implementation-summary.md": "fdd72e302228d9d0510a62edc3b3edca2d814a74ccb959d5d93e7ae1dd5afc06",
+      "research/research.md": "482e46b40e683b12fc1e3d2b88d2bb2bb35be0cbd9a1306c92cf85ba869833f0"
+    },
+    "last_active_at": null
+  }
+}

@@ -95,7 +95,7 @@ The first two are measured before 001 lands. 001 adds `--scope` and `--as` to `a
 
 ### In Scope
 - Add `grants` to a needs-you item, holding the action kind, the action in the bot's own words, the rung of the ladder that made it ask, and the scope the answer granted
-- Add `action-kind.ts`, which reads the whole question and returns the strictest of OpenBot's six kinds found anywhere in it, or `other`, testing them in OpenBot's order so a payment that also deletes reads as `pay` [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:125]
+- Add `action-kind.ts`, which reads the whole question and returns the strictest of OpenBot's six kinds found anywhere in it, or `other`, testing them in OpenBot's order so a payment that also deletes reads as `pay` [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:125]
 - Add `approval-ladder.ts`, which implements rung 1 (kinds) and the `bot` fallback, and names rungs 2 to 4 in the ladder doc and the help text as not implemented in this phase because no store supplies them
 - Apply the ladder at the needs-you gate: classify the parked question and write the grant on the item the gate already writes, and fill it on the memory-proposal branch 005 lands, which writes no `grants` field of its own [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/tasks.md:63]
 - Extend 001's `bots answer --scope once|deny` with the grant: record the scope and its actor on it, and keep 001's refusal of `always` and `conversation` as `grant-scope-unsupported` because no rule store lands in this phase [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:156]
@@ -104,13 +104,13 @@ The first two are measured before 001 lands. 001 adds `--scope` and `--as` to `a
 - Write the ladder as a doc at `bots-run/references/approval-ladder.md`, name the granted scope in the resumed run's prompt, and carry one line per grant on the resumed run's record
 
 ### Out of Scope
-- Per-action policy inside the executor (send, delete, pay) - the research defers it to a later packet, with OpenGhost's MIT rules engine as the liftable layer [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:93]
-- A rules store, an auto-review switch and an extra-vigilant switch - no store supplies them, so rungs 2 to 4 are named in the ladder doc and the help text as not implemented in this phase, and the research sizes this slice as a doc plus one check [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/lineages/vibe-1/research.md:166]
+- Per-action policy inside the executor (send, delete, pay) - the research defers it to a later packet, with OpenGhost's MIT rules engine as the liftable layer [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:93]
+- A rules store, an auto-review switch and an extra-vigilant switch - no store supplies them, so rungs 2 to 4 are named in the ladder doc and the help text as not implemented in this phase, and the research sizes this slice as a doc plus one check [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages/vibe-1/research.md:166]
 - A saved rule that outlives its item - rung 2 has no store in this phase, so 001's refusal of `always` and `conversation` as `grant-scope-unsupported` stands and only `once` and `deny` are recorded
 - `bots activity`, the `bots inbox --json` row shape and the seven activity groups - phase 001-activity-and-actor owns all three, and this phase adds the `grants` key to the row it reads [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:125] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:126]
 - The status index's `items` row - it keeps ids and times and never the question or answer text, so the kind is read from the item file rather than stored twice [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:319]
 - The shared-host 0770 mode - no child builds it, and phase 011 lands the `operators.json` roster its channel check needs [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:95]
-- A team rule that closes a kind for everybody - the research puts the admin tier on the skip list, and there is no sign-in to govern [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:110]
+- A team rule that closes a kind for everybody - the research puts the admin tier on the skip list, and there is no sign-in to govern [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:110]
 
 ### Files to Change
 

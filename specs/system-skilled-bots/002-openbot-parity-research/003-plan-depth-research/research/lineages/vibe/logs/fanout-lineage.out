@@ -1,0 +1,15 @@
+Lineage complete. All ten iterations, the synthesis and the terminal record are on disk.
+
+**What the review found** — 73 findings (13 P0, 46 P1, 14 P2) across the fourteen phases:
+
+- **Only 011-messaging-channels must become a phase parent** (29 files, 23 requirements, nine modules, five transports) with six children: shared adapter and contract, identity link and roster, approval index and queue, Telegram and Slack, Signal and WhatsApp, conformance and hardening. Every other phase is one module family plus a seam; splitting them would damage them.
+- **One packet-level contract document closes fifteen findings.** The vocabulary already exists in code — `REFUSAL_CAUSES` (25 typed entries with an author/operator/environment class), `EXIT_CODES` (six frozen values), the parent spec's 11-row Shared Records table — and no phase cites any of it. The document would also carry the schema-version rule (none exists anywhere), the single-writer map, and the target-state module map.
+- **008-vault has two P0s and a migration gap**: the `secrets` name grammar is referenced six times and defined nowhere, the `SKILLED_BOT_SECRET_<NAME>` mapping is unstated, and the phase changes an existing field's meaning so every bot with a `secrets:` line stops on upgrade with no runbook.
+- **The packet cannot prove itself.** 012 can close with 33 recorded FAILs, 013's evidence lives outside the checkout and its handoff to 014 has no receiver, and 014 forbids a second review after its own fixes and never reads the corpus.
+- **Design artifacts exist only for 003.** 010 (chat) and 011 (channel messages) are user-facing and have no mockup.
+
+Ranked order: 011 → contract document → 008 → six addenda (001, 002, 005, 006, 009, 010) → three closing rules → 007 and 004 need nothing.
+
+Two notes on the working tree: the stray `specs/` directory inside the lineage is from an early `write_file` path mistake and cannot be removed under the no-delete constraint; the deletions and the `graph-metadata.json` modification under `002-openbot-parity-research/` predate this lineage's writes and were not made by it.
+
+FANOUT_LINEAGE_COMPLETE:vibe

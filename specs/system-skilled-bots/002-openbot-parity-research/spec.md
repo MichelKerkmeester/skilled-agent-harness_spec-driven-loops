@@ -1,134 +1,152 @@
 ---
 title: "Feature Specification: OpenBot parity research for skilled bots"
-description: "Skilled bots run headless jobs but lack most of what OpenBot gives a small team. This research finds the smallest set of OpenBot parts worth building, and which of eight reference repos to borrow from."
+description: "Three research runs that answer what skilled bots must build for OpenBot parity and how deeply the build plan must be specified: the original parity research, the review of the 003 build plan, and the planning-depth check of each 003 phase."
 trigger_phrases:
   - "openbot parity research"
   - "research how close skilled bots can get"
 importance_tier: "normal"
 contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "system-skilled-bots/002-openbot-parity-research"
+    last_updated_at: "2026-11-25T22:45:00Z"
+    last_updated_by: "template-author"
+    recent_action: "Phase parent created, child phases own continuity"
+    next_safe_action: "Plan or resume a child phase folder"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
-# Feature Specification: OpenBot parity research for skilled bots
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.3 -->
 
-<!-- SPECKIT_LEVEL: 1 -->
----
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, decision-record.md, implementation-summary.md. These belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: OpenBot parity research for skilled bots
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-24 |
 | **Branch** | `system-skilled-bots` |
+| **Parent Spec** | None |
+| **Parent Packet** | system-skilled-bots/002-openbot-parity-research |
+| **Predecessor** | None |
+| **Successor** | `003-openbot-parity-build` |
+| **Handoff Criteria** | Every 003 build phase is either planned deeply enough to build in one shot or carries the child phases it needs, and each child passes `validate.sh --strict` for its own folder |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-Skilled bots can run a `BOT.md` by hand, from a queue or on a launchd schedule, park a question for an answer and report what ran. OpenBot gives a team far more: conversations with a bot, routines, memory, skills, connected apps, a computer, approvals and an activity feed, plus a desktop app. Nobody has yet worked out which of those parts a small team using skilled bots needs, or what the eight reference repos already solve that we could reuse.
+Skilled bots can run a `BOT.md` by hand, from a queue or on a launchd schedule, park a question for an answer and report what ran. OpenBot gives a team far more: conversations with a bot, routines, memory, skills, connected apps, a computer, approvals and an activity feed, plus a desktop app. The research that answers which of those parts a small team needs outgrew one run. The first run ranked the gaps and named the reference repo to borrow from for each one. The second reviewed the build plan those gaps produced and found what a single-phase reading cannot see. The third checks whether each build phase is planned deeply enough that a builder needs no design decision while building. Three runs whose evidence arrives at different times do not fit one packet.
 
 ### Purpose
-A ranked, sourced build recommendation that names, for each of OpenBot's eight bot parts, what we have, what we lack, the smallest change that closes the gap and the reference repo to borrow from, plus a verdict on a terminal-first experience against a desktop app.
-<!-- /ANCHOR:problem -->
+Answer what skilled bots must build for OpenBot parity, and how deeply the build plan must be specified, through one research run per child, so the build packet starts from a ranked, reviewed and depth-checked plan.
 
-<!-- ANCHOR:measured-behavior -->
-### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
-```text
-$ ls specs/system-skilled-bots/context/ | wc -l
-       8
-$ node .skilled/bin/bots.cjs 2>&1 | grep -E '^  [a-z]' | awk '{print $1}' | sort -u | tr '\n' ' '
-answer disable drain enable enqueue inbox pause resume run schedule status
-```
-<!-- /ANCHOR:measured-behavior -->
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+<!-- /ANCHOR:problem -->
 
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- Run one `/deep:research` loop in expansive depth mode over the eight repos in `specs/system-skilled-bots/context/` and the built bots runtime, with four lineages of 13 iterations each.
-- Compare each of OpenBot's eight bot parts (conversations, routines, memory, skills, apps, computer, approvals, activity) against skilled bots today and against the seven other repos.
-- Decide whether a terminal or TUI experience can match the OpenBot desktop app for our use, and what a desktop shell would add.
-- Scope the result to a small team: who can talk to, approve for and change a bot, and shared versus per-person memory.
-- Write a skip list of OpenBot parts we do not need, each with its reason, and note reusable code with its license.
+- The three research runs, one child each: the original parity research, the review of the 003 build plan, and the planning-depth check of each 003 phase.
+- The eight-part comparison the first run produced, with OpenBot's behavior, our current state, the best reference repo, the smallest change, its size and its risk for each part.
+- The terminal verdict, the small-team model, the skip list with a reason per skipped part, and the reuse and licensing rule.
+- The ranked build order the build packet reads, including the two operator decisions that moved the terminal screen up and fixed it as a new MIT Rust app.
+- The review rounds 2 to 6 over the 003 build plan, the merged findings registry, and the repair order.
+- The planning-depth verdict per 003 phase, with the child phases and planning artifacts each phase needs.
 
 ### Out of Scope
-- Building any of the recommended changes - this packet ends at a recommendation, and the build gets its own packet.
-- Enterprise, multi-tenant, Kubernetes, managed-upgrade and mobile parts of OpenBot - a small team on one machine or a shared host does not need them. The research confirms each skip with a reason.
-- Changing the reference repos - they are read-only inputs and stay gitignored.
+- Building any recommended change. The build lives in `../003-openbot-parity-build/`.
+- Rewriting the 003 phase documents. The review reports findings and the build packet applies them.
+- Reviewing the six children of `003-terminal-screen`. The depth run uses them as the benchmark for depth and does not review them.
+- Changing the reference repos under `specs/system-skilled-bots/context/`. They are read-only inputs and stay gitignored.
+- Enterprise, multi-tenant, Kubernetes, managed-upgrade and mobile parts of OpenBot. The first run puts each on the skip list with its reason.
 
 ### Files to Change
+Per-phase detail lives in each child's `plan.md`. This table is the audit trail of the surfaces the three runs write.
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `specs/system-skilled-bots/002-openbot-parity-research/research/` | Create | The loop's state, iterations, `research.md` synthesis and `resource-map.md` |
-| `specs/system-skilled-bots/002-openbot-parity-research/*.md` | Modify | Packet docs and continuity |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `001-openbot-parity-research/research/` | Create | 001 | The loop state, 52 iteration records, four lineage syntheses, `research.md` and `resource-map.md` |
+| `002-plan-review-research/research/` | Create | 002 | The review rounds 2 to 6, the merged findings registry and the synthesis |
+| `003-plan-depth-research/research/` | Create | 003 | The fan-out state, the lineage records and the per-phase depth findings |
+| `*/spec.md`, `*/plan.md`, `*/tasks.md` | Modify | 001, 002, 003 | Each child's own packet docs and continuity |
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
-REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | The loop runs at least 50 iterations across Devin `deepseek-v4-1-flash-max` and Vibe `deepseek-flash` lineages, with Codex `gpt-6-luna` at `xhigh` and the `fast` tier covering any lineage that runs out of usage. | Each iteration record in `research/` carries `target_agent: "deep-research"` and `agent_definition_loaded: true`, and the records number at least 50 |
-| REQ-002 | `research/research.md` covers all eight OpenBot bot parts with OpenBot's behavior, our current state, the best reference repo, the proposed change, its size and its risk. | Each of the eight parts has a row, and every row cites a `[SOURCE: path:line]` that resolves |
+The packet has three phases. Each is one research run over the OpenBot parity question, and each answers a different part of it.
 
-### P1 - Required (complete OR user-approved deferral)
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | `001-openbot-parity-research/` | The eight OpenBot bot parts compared against skilled bots and seven reference repos, the terminal verdict, the small-team model, the skip list, reuse and licensing, and the ranked build order | Complete |
+| 2 | `002-plan-review-research/` | The build-readiness review of the 003 build plan, review rounds 2 to 6, with the merged findings registry and the repair order | Complete |
+| 3 | `003-plan-depth-research/` | Whether each 003 build phase is planned deeply enough to build in one shot, with the child phases and planning artifacts each one needs | In Progress |
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-003 | The synthesis gives a terminal-versus-desktop verdict, a small-team section and a skip list with a reason for each skipped part. | `research/research.md` holds all three sections |
-| REQ-004 | Reusable code is named with its repo, path and license. | Each reuse candidate in `research/research.md` names its license file |
-<!-- /ANCHOR:requirements -->
+### Phase Transition Rules
 
----
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
+### Phase Handoff Criteria
 
-- **SC-001**: `research/research.md` ranks the gaps so the first build packet can start from its top rows without more research.
-- **SC-002**: At least 50 iteration records exist under `research/`, spread over four lineages.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | Devin and Vibe daily usage | A lineage stops short of 13 iterations | Resume the shortfall on Codex `gpt-6-luna` xhigh fast, checked first with `--dry-run` |
-| Risk | The workflow does not switch executors on its own | Med | Watch the run and count iterations per lineage before synthesis |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-openbot-parity-research | 002-plan-review-research | The ranked build order exists and the 003 build plan is written from it | `001-openbot-parity-research/research/research.md` §15 names the order, and the 003 parent's phase map carries one row per ranked slice |
+| 002-plan-review-research | 003-plan-depth-research | Every P0 and P1 the review raised is fixed in the 003 docs or recorded as a decision | The merged findings registry holds no open P0, and each P1 names its fix |
+| 003-plan-depth-research | `../003-openbot-parity-build/` | Every 003 phase is deep enough to build in one shot or carries the child phases it needs | The depth synthesis names a verdict per phase and ranks the expansion plan |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
+## 4. OPEN QUESTIONS
 
-- Can a resumed fan-out lineage run on a different executor? UNKNOWN until a `--dry-run` shows it.
+- **Can a resumed fan-out lineage run on a different executor?** UNKNOWN until a `--dry-run` shows it.
+- **Does the depth run's expansion plan get applied inside 003, or does each expansion become a new child of 003?** 003 owns that decision, and the depth run only names the children each phase needs.
+- **Is the review's finding count stable once rounds 2 to 6 are merged?** The merged registry is the count of record, and the synthesis dedupes it.
 <!-- /ANCHOR:questions -->
 
 ---
 
+## RELATED DOCUMENTS
 
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Research source**: `001-openbot-parity-research/research/research.md` §15 for the ranked build order, and §12 to §14 for the small-team model, the skip list and reuse
+- **Build packet**: `../003-openbot-parity-build/spec.md` and its `research/research.md` for the plan the second and third runs read
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

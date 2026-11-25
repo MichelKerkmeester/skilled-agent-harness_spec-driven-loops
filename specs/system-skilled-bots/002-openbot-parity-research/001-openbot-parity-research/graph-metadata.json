@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research",
+  "spec_folder": "system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research",
+  "parent_id": "system-skilled-bots/002-openbot-parity-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "openbot parity research",
+      "research how close skilled bots can get",
+      "openbot parity research plan",
+      "openbot parity research tasks",
+      "openbot parity research goal",
+      "002-openbot-parity-research operator decisions",
+      "openbot parity research implementation summary"
+    ],
+    "key_topics": [
+      "openbot",
+      "parity",
+      "research",
+      "close",
+      "skilled",
+      "bots",
+      "get",
+      "plan",
+      "tasks",
+      "goal",
+      "002-openbot-parity-research",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      "research/lineages/devin-1/research.md",
+      "research/lineages/devin-2/research.md",
+      "research/lineages/vibe-1/research.md",
+      "research/lineages/vibe-2/research.md",
+      "research/fanout-attribution.md",
+      ".skilled/bin/bots.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skilled bots can run a `BOT.md` by hand, from a queue or on a launchd schedule, park a question for an answer and report what ran",
+    "created_at": "2026-11-24T19:02:43Z",
+    "last_save_at": "2026-11-25T22:35:22.061Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:962f358514a203ec7506bfd012bc2fac4a1a06fab245ec27443250a855a93e25",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e05edd278fdfc6219c5c373b765c3409590e27fa8c874570e64ffe4b5bbd639d",
+      "plan.md": "8923f227425fc8e06ba453e115c5e88bbccbf002349466efc40b96d24e05b688",
+      "tasks.md": "b24c19cd30c8bc40d014ef69e9a789da10e9f26f278f9d8b06707aa919a8bff8",
+      "decision-record.md": "6919c43546ad1b0fca8197cfb77d2fc453015fc5f36574b2486800d087148f0f",
+      "implementation-summary.md": "e17daa812e737abc3c60f5227d578f9c07e76f6b521e64b3c0f866d859bcdd88",
+      "research/research.md": "b8f03fb3a301c8d00fbb79cf86daaa2d36902e09250d374c772f0c721dba4fdc"
+    },
+    "last_active_at": null
+  }
+}

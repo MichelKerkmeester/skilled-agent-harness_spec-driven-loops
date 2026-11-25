@@ -1,0 +1,5 @@
+Status: **failed, not complete**. The resource-map command exited 0 and created `specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/resource-map.md` outside the authorized lineage. The task instructions say that any out-of-scope write fails this lineage.
+
+Five iterations were recorded and reduced. I stopped before final synthesis, the `maxIterationsReached` terminal record, the final reducer run and lock release. I did not print the completion line.
+
+Operator action: remove the out-of-scope resource map and restart or recover this lineage from a clean state.

@@ -101,12 +101,12 @@ The first two commands are the measured gap: the CLI has no `chat` verb, and the
 - Replace the phase 003 chat placeholder with a pane that draws the transcript and sends a typed line
 
 ### Out of Scope
-- A server, a database or a transcript shared across machines - the research eliminates a server for conversations, and the file is per identity under the state root [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:164]
+- A server, a database or a transcript shared across machines - the research eliminates a server for conversations, and the file is per identity under the state root [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:164]
 - Streaming a run's output into the conversation as it arrives - one message is one run, and the reply is appended when the run ends; a stream needs a second writer and a partial-message state
 - Attachments, files and voice - OpenBot's composer takes all three, and a small team's bot reads the checkout instead [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:28-30]
 - A bot naming a peer `@Name` to hand off - OpenBot allows it under the same grants and caps; this phase routes a human message only [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/architecture.md:189]
-- A conversation-scoped approval grant - phase 006 owns the `grants` field and the precedence ladder [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:145]
-- The desktop shell - the research ranks it last and justifies it only by an embedded browser or a no-terminal install [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/research/research.md:151]
+- A conversation-scoped approval grant - phase 006 owns the `grants` field and the precedence ladder [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:145]
+- The desktop shell - the research ranks it last and justifies it only by an embedded browser or a no-terminal install [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:151]
 - A fifth hub mode - `bots chat` dispatches runs, so it belongs to the run mode beside `bots answer` [SOURCE: .skilled/skills/system-skilled-bots/SKILL.md:31]
 - Rotating or compacting a conversation file - the file is append-only here, and a rotation is a later packet
 

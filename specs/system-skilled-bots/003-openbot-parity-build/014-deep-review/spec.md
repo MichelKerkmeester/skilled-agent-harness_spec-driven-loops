@@ -61,7 +61,7 @@ This is **Phase 14** of the OpenBot parity build. Phases 001 to 013 change `.ski
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Thirteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone. A defect that only appears when two phases meet has no owner: a shared record one phase writes and another reads, a doc that names a verb the CLI does not have, a test that asserts a shape a later phase changed. The parity research already found two P0s of exactly that kind in the plans, and it reviewed plans, not built code [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/research/research.md:9]. Nothing yet reads the built surface as one artifact.
+Thirteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone. A defect that only appears when two phases meet has no owner: a shared record one phase writes and another reads, a doc that names a verb the CLI does not have, a test that asserts a shape a later phase changed. The parity research already found two P0s of exactly that kind in the plans, and it reviewed plans, not built code [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/research.md:9]. Nothing yet reads the built surface as one artifact.
 
 ### Purpose
 Run one expanded deep review over everything phases 001 to 013 built, fix every P0 and P1 it reports, and re-run the affected tests, so the program closes on a reviewed surface rather than thirteen separately validated ones.

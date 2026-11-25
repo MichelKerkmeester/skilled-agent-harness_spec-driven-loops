@@ -1,35 +1,28 @@
 {
-  "level": "1",
   "specFolder": "system-skilled-bots/002-openbot-parity-research",
-  "description": "Research how close skilled bots can get to OpenBot for a small team, using eight reference repos, with only the parts we need and a terminal-first exp",
+  "description": "Skilled bots can run a `BOT.md` by hand, from a queue or on a launchd schedule, park a question for an answer and report what ran",
   "keywords": [
-    "research",
-    "close",
     "skilled",
     "bots",
-    "get",
-    "openbot",
-    "small",
-    "team",
-    "eight",
-    "reference",
-    "repos",
-    "only",
-    "parts",
-    "need",
-    "terminal-first",
-    "experience"
+    "run",
+    "bot",
+    "hand",
+    "queue",
+    "launchd",
+    "schedule",
+    "park",
+    "question",
+    "answer",
+    "report",
+    "ran"
   ],
-  "lastUpdated": "2026-11-24T23:13:37.615Z",
+  "lastUpdated": "2026-11-25T21:45:11.499Z",
   "specId": "002",
   "folderSlug": "openbot-parity-research",
   "parentChain": [
     "system-skilled-bots"
   ],
-  "memorySequence": 3,
-  "memoryNameHistory": [
-    "24-11-26_20-25__ran-a-52-iteration-expansive-deep-research-fan.md",
-    "24-11-26_23-40__operator-chose-an-early-terminal-screen-it.md",
-    "25-11-26_00-13__operator-chose-a-fresh-mit-rust-ratatui-screen.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
 }

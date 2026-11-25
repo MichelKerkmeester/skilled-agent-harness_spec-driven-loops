@@ -1,0 +1,1741 @@
+{
+  "sessionId": "fanout-vibe-1795641770973-zif3qt",
+  "parentSessionId": "2026-11-25T21:22:47.916Z",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-25T21:32:34.168Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-data-and-contracts-for-phases-001-002-005-006-and-010-are-every-record-schema-fi",
+      "inboxId": "F-1-001",
+      "text": "Data and contracts: for phases 001, 002, 005, 006 and 010, are every record schema, field, state machine and bots --json payload specified completely enough to build without a decision? What schema files or contract docs are missing?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-2-phase-011-messaging-channels-is-the-adapter-architecture-per-channel-transport-i",
+      "inboxId": "F-1-003",
+      "text": "Phase 011-messaging-channels: is the adapter architecture, per-channel transport, identity linking, durable queue, approval rendering and conformance test design deep enough to one-shot, and how should it split into children (shared adapter, Telegram, Slack, Signal, WhatsApp)?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-3-small-phases-004-computer-exposure-and-002-routine-layer-and-cross-cutting-desig",
+      "inboxId": "F-1-005",
+      "text": "Small phases 004-computer-exposure and 002-routine-layer, and cross-cutting design: is there a shared architecture doc (module map, file ownership, prompt builder order, answer seam, state-root layout) that every phase builds against, or must one be added before building?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-is-the-exact-json-envelope-convention-every-bots-json-verb-must-follow-and-",
+      "inboxId": "F-2-006",
+      "text": "What is the exact JSON envelope convention every bots ... --json verb must follow, and which existing verb sets the precedent?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 4,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-phases-must-change-when-the-needs-you-item-gains-grants-kind-conversationi",
+      "inboxId": "F-2-007",
+      "text": "Which phases must change when the needs-you item gains grants, kind, conversationId and proposal fields, and is the closed ITEM_KEYS list a single-writer contract or a per-phase one?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "answered",
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-data-and-contracts-for-phases-001-002-005-006-and-010-are-every-record-schema-fi",
+      "inboxId": "F-1-001",
+      "text": "Data and contracts: for phases 001, 002, 005, 006 and 010, are every record schema, field, state machine and bots --json payload specified completely enough to build without a decision? What schema files or contract docs are missing?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-2-phase-011-messaging-channels-is-the-adapter-architecture-per-channel-transport-i",
+      "inboxId": "F-1-003",
+      "text": "Phase 011-messaging-channels: is the adapter architecture, per-channel transport, identity linking, durable queue, approval rendering and conformance test design deep enough to one-shot, and how should it split into children (shared adapter, Telegram, Slack, Signal, WhatsApp)?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-3-small-phases-004-computer-exposure-and-002-routine-layer-and-cross-cutting-desig",
+      "inboxId": "F-1-005",
+      "text": "Small phases 004-computer-exposure and 002-routine-layer, and cross-cutting design: is there a shared architecture doc (module map, file ownership, prompt builder order, answer seam, state-root layout) that every phase builds against, or must one be added before building?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-4-what-is-the-exact-json-envelope-convention-every-bots-json-verb-must-follow-and-",
+      "inboxId": "F-2-006",
+      "text": "What is the exact JSON envelope convention every bots ... --json verb must follow, and which existing verb sets the precedent?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 4,
+      "frontierStatus": "answered"
+    },
+    {
+      "id": "question-5-which-phases-must-change-when-the-needs-you-item-gains-grants-kind-conversationi",
+      "inboxId": "F-2-007",
+      "text": "Which phases must change when the needs-you item gains grants, kind, conversationId and proposal fields, and is the closed ITEM_KEYS list a single-writer contract or a per-phase one?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 5,
+      "frontierStatus": "answered"
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What envelope rule should every `bots ... --json` verb follow, and does `status --json` already set the precedent?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the `until` observation belong on the run record at all, given the state file already carries `untilMetAt`?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which phase owns the `contracts/` folder, and does it land as a new phase 015 or as a child of 013-skilled-and-doc-alignment?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which capability names belong in `declaredCapabilities`, and does the terminal transport declare the same set as Telegram?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the three unstated conformance rules match the reference's own suite, or does the packet need a fourth fixture class for the queue's `unknown` state?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the roster check belong in `answer.ts` at all, or should the caller pass an `isApprover` predicate so the contracts group keeps its import boundary?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the contracts phase be a new phase 015 or a child of 013-skilled-and-doc-alignment, given that 013 already owns doc alignment?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the activity row's `state` be renamed `group` before 001 lands, or is the collision acceptable because the two payloads never mix?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does 010 accept the `{messages: []}` change, or does the chat pane's fixture absorb the bare array as a documented exception?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does 006 accept `grants.actionKind`, or does the item's top-level `kind` get renamed instead?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the final key list live in the Shared Records table or in `contracts/needs-you-item.schema.json`?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-p0-005-s-memory-entry-line-format-is-unspecified-five-fields-are-named-the-seria",
+      "text": "**P0 — 005's memory entry line format is unspecified: five fields are named, the serialization is not.** The plan says `memory.ts` \"owns the entry line, its five fields, the four types, the three bounds, the parser, the renderer\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60], and REQ-001 names type, date, actor, source and text [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:157], but no literal example line, delimiter, escaping rule for a `|` or a newline, or `--forget` index rule appears in spec, plan or tasks. Two builders produce two incompatible files, and the acceptance criteria only test round-trip, so both pass. Closing artifact: `contracts/memory-entry.md` with one literal example line, the delimiter, the escaping rule, the index rule, and the 60-entry/3,600-byte/400-character bound restated as a table.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143-169, 185-234",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:56-99, 148-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:101-192",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:87-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:144-174",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28, 47, 90-120",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:68-86",
+        "find over specs/system-skilled-bots/003-openbot-parity-build for `*.schema.json` (no matches)"
+      ]
+    },
+    {
+      "id": "finding-1-1-p0-no-schema-file-or-contract-document-exists-anywhere-in-the-packet-so-every-re",
+      "text": "**P0 — No schema file or contract document exists anywhere in the packet, so every record shape is prose in a REQ table and no builder can check a field name against a single source.** The packet holds fourteen phase folders and zero `*.schema.json` files; the only JSON under `specs/system-skilled-bots/003-openbot-parity-build/` is research state (`deep-research-config.json`, `findings-registry.json`, `frontier-nodes.jsonl`). The nearest thing to a contract is 003's fixture, described as \"the copy of every `--json` contract the screen reads\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122]. Closing artifact: a packet-level `contracts/` folder with one JSON Schema per record (needs-you item, answer, run record, run summary, activity payload, inbox payload, routines payload, conversation message, grant, memory entry, routine state) plus a `contracts/README.md` index naming the owning phase per file. Because 001, 002, 005, 006, 009 and 010 all add fields to the same three records, the folder belongs to a new cross-cutting phase (`015-contracts-and-schemas`) that lands before 001, not to any one child.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143-169, 185-234",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:56-99, 148-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:101-192",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:87-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:144-174",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28, 47, 90-120",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:68-86",
+        "find over specs/system-skilled-bots/003-openbot-parity-build for `*.schema.json` (no matches)"
+      ]
+    },
+    {
+      "id": "finding-1-3-p1-001-adds-by-and-scope-to-the-answer-object-but-never-states-what-an-answer-wr",
+      "text": "**P1 — 001 adds `by` and `scope` to the answer object but never states what an answer written before the phase reads as, while the run record's null rule is stated twice.** `NeedsYouAnswer` is `{text, answeredAt}` today [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28] and `validateNeedsYouItem` requires `answer.text` and `answer.answeredAt` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:117-120]. 001 states the null rule for `actor` and `answeredBy` on the run record [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:193] and for the index summary [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:192], but REQ-004 and REQ-010 say only that the answer \"records\" `by` and `scope` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:158] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:166]. A builder must decide whether a required `by` refuses every existing item file. Closing artifact: one nullability sentence in 001 REQ-004 plus a `needs-you.vitest.ts` row for a pre-phase answer, and the answer schema in `contracts/`.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143-169, 185-234",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:56-99, 148-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:101-192",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:87-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:144-174",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28, 47, 90-120",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:68-86",
+        "find over specs/system-skilled-bots/003-openbot-parity-build for `*.schema.json` (no matches)"
+      ]
+    },
+    {
+      "id": "finding-1-6-p1-002-s-until-observation-on-the-run-record-is-named-but-not-shaped-the-files-t",
+      "text": "**P1 — 002's `until` observation on the run record is named but not shaped.** The Files to Change row says only \"Carry the optional `until` observation on the record\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:135], while the same phase specifies the `until_check` exit semantics in REQ-004 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:161]. The record field list (`met`, `at`, `exitClass`, `command`?) is left to the builder, and `bots routines` reads `untilMetAt` from the state file rather than the record, so the record field has no reader and no shape. Closing artifact: the run-record schema in `contracts/` with the `until` object's fields, or a decision to drop the field because the state file already carries the outcome.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143-169, 185-234",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:56-99, 148-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:101-192",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:87-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:144-174",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28, 47, 90-120",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:68-86",
+        "find over specs/system-skilled-bots/003-openbot-parity-build for `*.schema.json` (no matches)"
+      ]
+    },
+    {
+      "id": "finding-1-4-p1-002-s-routine-state-file-has-three-named-fields-and-no-schema-recorduntiloutc",
+      "text": "**P1 — 002's routine state file has three named fields and no schema.** `recordUntilOutcome` writes `untilMetAt`, `evaluateFatigue` records `fatiguedAt` and the item id [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:62], but the file's version key, its `botId`, the failure-streak field name, the absent-file default and the write atomicity are all unstated. `bots routines` reads \"the identity's routine state files\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:73], so the reader and the writer must agree on a shape nobody wrote down. Closing artifact: `contracts/routine-state.schema.json` plus a `routine-state.vitest.ts` row for an absent file and a file written by an older shape.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143-169, 185-234",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:56-99, 148-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:101-192",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:87-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:144-174",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28, 47, 90-120",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:68-86",
+        "find over specs/system-skilled-bots/003-openbot-parity-build for `*.schema.json` (no matches)"
+      ]
+    },
+    {
+      "id": "finding-1-5-p1-three-json-verbs-use-three-envelope-conventions-and-no-rule-picks-one-bots-ac",
+      "text": "**P1 — Three `--json` verbs use three envelope conventions and no rule picks one.** `bots activity --json` prints `{\"groups\":[]}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:229], `bots chat --json` prints \"the messages as a JSON array\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158], and `bots routines --json` names its row fields but never says whether the payload is an array or an object [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:178]. A builder of 002 must guess, and 003's fixture then encodes the guess. Closing artifact: `contracts/json-envelope.md` with one rule (object with a named collection key, or array) applied to every verb, and the three payload schemas beside it.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143-169, 185-234",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:56-99, 148-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:101-192",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:87-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:144-174",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28, 47, 90-120",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:68-86",
+        "find over specs/system-skilled-bots/003-openbot-parity-build for `*.schema.json` (no matches)"
+      ]
+    },
+    {
+      "id": "finding-1-7-p2-the-needs-you-item-lifecycle-is-a-derived-state-with-no-transition-table-need",
+      "text": "**P2 — The needs-you item lifecycle is a derived state with no transition table.** `NeedsYouState` is `open | answered | expired` and is never stored [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:47] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:90-92]; 001 prints it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153], 006 adds the second-answer refusal `item-answered-differently` and the guarded write [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:170] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:171], and 005 adds a review seam that settles an item without a resume [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:167]. The transition table is split across three phases and no doc states who writes `answeredAt`, when `expired` is computed, or what a second answer does on each kind. Closing artifact: `contracts/item-lifecycle.md` with the transition table and the writer per transition.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:143-169, 185-234",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:56-99, 148-149",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:101-192",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:87-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60-74",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:145-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:144-174",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:25-28, 47, 90-120",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:68-86",
+        "find over specs/system-skilled-bots/003-openbot-parity-build for `*.schema.json` (no matches)"
+      ]
+    },
+    {
+      "id": "finding-2-1-p0-011-is-the-packet-s-largest-phase-and-has-no-children-so-one-builder-must-des",
+      "text": "**P0 — 011 is the packet's largest phase and has no children, so one builder must design the adapter contract, the link and roster, the approval index, the durable queue and five wire protocols in a single pass.** It lists 27 files to change, nine new runtime modules, five transports and seven new test files [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:140-170], and its spec is 311 lines against 003's 279 — yet 003 is a phase parent with six children and 011 is a leaf [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:157]. Closing artifact: make 011 a phase parent with six children — `001-shared-adapter-and-contract` (`channel.ts`, the message model, the capability table, the unsupported rule, `channels/config.json`), `002-identity-link-and-roster` (`channel-link.ts`, the pairing code, the lockout, `operators.json`, the roster check in `answer.ts`), `003-approval-index-and-queue` (`channel-approval.ts`, `channel-queue.ts`, the reply grammar, the backoff table), `004-telegram-and-slack` (the two no-public-URL transports with native buttons), `005-signal-and-whatsapp` (the local daemon and the signed webhook, both on the numbered grammar), `006-conformance-and-hardening` (the five conformance rules, the fake transport, the notices, the operator runbook).",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:92-242",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:56-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md (line count comparison)",
+        "specs/system-skilled-bots/context/tinychannels-main/ (tree listing)",
+        "specs/system-skilled-bots/context/rakazo-main/ (tree listing)"
+      ]
+    },
+    {
+      "id": "finding-2-2-p1-declaredcapabilities-has-no-vocabulary-the-contract-names-the-member-but-neve",
+      "text": "**P1 — `declaredCapabilities` has no vocabulary: the contract names the member but never the capability names a transport declares, so the `unsupported` rule has nothing to test against.** REQ-001 fixes the six contract members and the `unsupported` result shape [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:183], and the plan says the table is what the conformance suite checks [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:66], but no list of capability keys (`send`, `edit`, `react`, `buttons`, `attachments`, `threads`, `typing`?) appears anywhere. Closing artifact: a capability table in `contracts/channel-adapter.md` with one row per capability and one column per transport, which is also the conformance fixture's input.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:92-242",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:56-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md (line count comparison)",
+        "specs/system-skilled-bots/context/tinychannels-main/ (tree listing)",
+        "specs/system-skilled-bots/context/rakazo-main/ (tree listing)"
+      ]
+    },
+    {
+      "id": "finding-2-5-p1-req-017-promises-five-conformance-rules-and-enumerates-two-so-a-builder-inven",
+      "text": "**P1 — REQ-017 promises five conformance rules and enumerates two, so a builder invents three of five.** The requirement reads \"Five conformance rules run as fixture tests on a fake transport: an undeclared operation returns `unsupported` and reaches no platform; a declared one returns no provider error and produces one matching wire observation with a receipt\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:204], and the test file is described only as \"the five conformance rules on a fake transport\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:159]. Closing artifact: the five rules enumerated in `contracts/channel-adapter.md` (the two stated plus, by the reference's own shape, an idempotency-key replay rule, a chunk-limit rule and a token-redaction rule), each with its fixture.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:92-242",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:56-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md (line count comparison)",
+        "specs/system-skilled-bots/context/tinychannels-main/ (tree listing)",
+        "specs/system-skilled-bots/context/rakazo-main/ (tree listing)"
+      ]
+    },
+    {
+      "id": "finding-2-4-p1-the-durable-queue-entry-has-no-field-list-req-013-fixes-the-semantics-write-b",
+      "text": "**P1 — The durable queue entry has no field list.** REQ-013 fixes the semantics (write before I/O, `unknown` never retried, backoff 0/5/25/120/600 s) [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:195] and the plan names the reference's queue and policy files [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:70], but the entry's fields (`id`, `channel`, `conversation`, `body`, `attempts`, `nextAttemptAt`, `state`, `createdAt`?) are unstated, and `bots channel list` prints \"queue depth from `queue/`\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:206], so the reader depends on a shape nobody wrote. Closing artifact: `contracts/channel-queue.schema.json` with the state enum and the backoff table as data.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:92-242",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:56-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md (line count comparison)",
+        "specs/system-skilled-bots/context/tinychannels-main/ (tree listing)",
+        "specs/system-skilled-bots/context/rakazo-main/ (tree listing)"
+      ]
+    },
+    {
+      "id": "finding-2-3-p1-the-link-record-has-no-field-list-and-no-file-name-in-files-to-change-req-003",
+      "text": "**P1 — The link record has no field list and no file name in Files to Change.** REQ-003 says the link \"records both that actor and the provider-asserted sender id\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:185], and `links.json` appears only in the Data Flow and in REQ-019/REQ-023 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:206], never in the Files to Change table, which names only `channel-link.ts`. A builder must invent the file name, the key (chat id? channel plus chat id?), the field names and the unlink removal rule. Closing artifact: `contracts/channel-link.schema.json` plus one Files to Change row for `links.json` under `state-root.ts`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:92-242",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:56-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md (line count comparison)",
+        "specs/system-skilled-bots/context/tinychannels-main/ (tree listing)",
+        "specs/system-skilled-bots/context/rakazo-main/ (tree listing)"
+      ]
+    },
+    {
+      "id": "finding-2-7-p1-the-per-transport-operator-prerequisites-are-a-dependency-table-not-a-runbook",
+      "text": "**P1 — The per-transport operator prerequisites are a dependency table, not a runbook.** The table names the four prerequisites (a bot token, a Slack app-level token with Socket Mode, a registered Signal number with a local daemon, a public HTTPS URL plus a Meta business account) [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:236-242], but no artifact gives the exact scopes, events and webhook fields an operator must set. `bots-run/references/messaging-channels.md` is already in Files to Change [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:167], so the closing artifact is a per-channel setup checklist in that file: Telegram `allowed_updates` of `message` and `callback_query`, Slack `connections:write` plus `chat:write` and the `block_actions` interaction, Signal `signal-cli daemon --http` on localhost, WhatsApp `messages` webhook field plus the app secret for `X-Hub-Signature-256`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:92-242",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:56-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md (line count comparison)",
+        "specs/system-skilled-bots/context/tinychannels-main/ (tree listing)",
+        "specs/system-skilled-bots/context/rakazo-main/ (tree listing)"
+      ]
+    },
+    {
+      "id": "finding-2-6-p2-the-approval-index-file-s-key-structure-is-unstated-while-its-fields-are-list",
+      "text": "**P2 — The approval index file's key structure is unstated while its fields are listed.** REQ-006 lists the entry's fields (action id, item id, channel, conversation, choices, `expiresAt`) and the expiry removal rule [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:188], but not whether the file is a map keyed by action id or an array, which decides the lookup cost and the concurrent-write rule. Closing artifact: one line in `contracts/channel-approval.schema.json`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:92-242",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:56-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:143-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md (line count comparison)",
+        "specs/system-skilled-bots/context/tinychannels-main/ (tree listing)",
+        "specs/system-skilled-bots/context/rakazo-main/ (tree listing)"
+      ]
+    },
+    {
+      "id": "finding-3-2-p0-the-readme-s-allowed-direction-rule-is-already-false-in-the-code-it-governs-a",
+      "text": "**P0 — The README's allowed-direction rule is already false in the code it governs, and 011 adds a fourth violation, so a builder cannot tell whether to follow the rule or the code.** The rule reads \"a contracts module imports no `lib/` module outside its own group\" [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:39], but `answer.ts` — a contracts-and-state module — imports `dispatch.js`, `request-queue.js` and `runner.js` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27], three modules outside its group. 011 REQ-021 then adds a roster check to `answer.ts` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208], which would import `channel-link.ts` as a fourth. Closing artifact: restate the rule as the layering the code actually has (or invert the roster check behind an injected predicate passed by the caller), and add a `rg` check to the phase's verification so the rule cannot drift again.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:92-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146, 150",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151, 208",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166",
+        "grep for mermaid/sequenceDiagram/graph TD/.svg/.puml across the packet (no matches)"
+      ]
+    },
+    {
+      "id": "finding-3-1-p0-there-is-no-target-state-architecture-document-the-only-architecture-doc-desc",
+      "text": "**P0 — There is no target-state architecture document: the only architecture doc describes the 28 modules that exist today, while the packet adds roughly fifteen modules across fourteen phases and no artifact lists the post-build module map, the group each new module joins, or the new import edges.** The README's topology and module table cover `repo-config` through `status-index` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60], and the phases add `activity.ts`, `actor.ts`, `routine.ts`, `routine-state.ts`, `memory.ts`, `channel.ts`, `channel-link.ts`, `channel-approval.ts`, `channel-queue.ts`, five `channel-*` transports, plus the vault, skills and chat modules — none of which appears in the table. Closing artifact: `contracts/architecture.md` with the target module map, the group per module, the allowed edges, and a per-phase \"modules added\" row; it belongs to the same new cross-cutting phase that owns `contracts/`.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:92-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146, 150",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151, 208",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166",
+        "grep for mermaid/sequenceDiagram/graph TD/.svg/.puml across the packet (no matches)"
+      ]
+    },
+    {
+      "id": "finding-3-4-p1-the-answer-seam-s-stage-order-is-stated-in-three-requirements-and-drawn-nowhe",
+      "text": "**P1 — The answer seam's stage order is stated in three requirements and drawn nowhere.** 005 fixes the seam after the answer and the scope and before the resume request [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:167], 006 fixes the scope write before the seam [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156], and 011 fixes the roster check before the write [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208]. A builder must assemble the five-stage order from three documents. Closing artifact: `contracts/sequences/answer.md` with one sequence diagram and the stage list, which is also the test's assertion order.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:92-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146, 150",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151, 208",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166",
+        "grep for mermaid/sequenceDiagram/graph TD/.svg/.puml across the packet (no matches)"
+      ]
+    },
+    {
+      "id": "finding-3-6-p1-the-packet-contains-zero-diagrams-while-three-of-its-flows-have-ten-five-and-",
+      "text": "**P1 — The packet contains zero diagrams, while three of its flows have ten, five and eight ordered stages.** A grep for `mermaid`, `sequenceDiagram`, `graph TD`, `.svg` and `.puml` across all fourteen phases returns no match, and the flows that need one are the runner's ten-step order [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:58], the answer seam's five stages and the channel inbound-to-answer path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76]. Closing artifact: `contracts/sequences/` with four mermaid diagrams (run, answer, channel inbound, chat turn), each cited by the phase that owns the flow.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:92-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146, 150",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151, 208",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166",
+        "grep for mermaid/sequenceDiagram/graph TD/.svg/.puml across the packet (no matches)"
+      ]
+    },
+    {
+      "id": "finding-3-3-p1-the-prompt-section-order-lives-in-one-phase-s-plan-paragraph-and-is-cited-by-",
+      "text": "**P1 — The prompt section order lives in one phase's plan paragraph and is cited by three other phases, so the shared contract is a citation rather than a document.** 005's plan fixes the order as \"exemption, spec folder, working place, checkout, memory, skills, decision marker, body, conversation\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71], and 004 cites it for its slot [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:158], 009 and 010 cite it for theirs [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:150]. Four phases edit one function and the order is owned by a plan that a later phase may rewrite. Closing artifact: `contracts/prompt-sections.md` with the ordered list, the exact line text per block, and the absent-block rule.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:92-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146, 150",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151, 208",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166",
+        "grep for mermaid/sequenceDiagram/graph TD/.svg/.puml across the packet (no matches)"
+      ]
+    },
+    {
+      "id": "finding-3-5-p1-the-state-root-layout-has-no-target-tree-while-six-phases-add-a-folder-to-it-",
+      "text": "**P1 — The state-root layout has no target tree, while six phases add a folder to it.** 002 adds `routines/` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:62], 005 adds `memory/` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90], 009 adds a skills folder, 010 adds `conversations/` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146], and 011 adds `channels/` with `queue/` and `seen/` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151]. `state-root.ts` names today's folders only [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131]. Closing artifact: `contracts/state-root.md` with the final tree, the mode per node (0700 folder, 0600 file) and the owning phase per node.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:92-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146, 150",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151, 208",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166",
+        "grep for mermaid/sequenceDiagram/graph TD/.svg/.puml across the packet (no matches)"
+      ]
+    },
+    {
+      "id": "finding-3-7-p2-the-depth-devices-are-unevenly-distributed-004-carries-a-design-references-ta",
+      "text": "**P2 — The depth devices are unevenly distributed: 004 carries a \"Design references\" table mapping every requirement to the existing shape it follows, and 002, 005, 006 and 010 carry none.** 004's table names one reference per requirement [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:169-180]; a grep for \"Design references\" across the packet returns 004 and two 003 children only. Closing artifact: add the table to every phase, or move it into `contracts/architecture.md` as one shared reference index keyed by requirement.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/README.md:20-60",
+        ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts:22-27",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:92-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:58-73",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:90, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:156",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:146, 150",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151, 208",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166",
+        "grep for mermaid/sequenceDiagram/graph TD/.svg/.puml across the packet (no matches)"
+      ]
+    },
+    {
+      "id": "finding-4-3-p1-bots-chat-json-as-a-bare-array-is-the-one-verb-that-breaks-the-precedent-and-",
+      "text": "**P1 — `bots chat --json` as a bare array is the one verb that breaks the precedent, and 003's chat pane reads it, so changing it later breaks the screen.** 010 REQ-006 fixes the array [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158] and REQ-008 makes the chat pane read that payload [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:160], while 003's fixture is the copy of every `--json` contract the screen reads [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122]. Closing artifact: change 010 REQ-006 to `{\"messages\": [...]}` before 003's fixture is written, and record the change in 010's decision record.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/bin/bots.cjs:59-62, 376-388",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152-153, 229",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:178",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158-160",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166"
+      ]
+    },
+    {
+      "id": "finding-4-4-p1-no-phase-states-the-stdout-stderr-split-for-a-json-verb-though-the-existing-v",
+      "text": "**P1 — No phase states the stdout/stderr split for a `--json` verb, though the existing verb already implements it.** `bots status --json` sends rebuild progress to stderr and the document to stdout, so a caller can parse stdout unconditionally [SOURCE: .skilled/bin/bots.cjs:376-388]. The new verbs (`activity`, `inbox`, `routines`, `chat`, `channel list`) state no such rule, so a builder may print a warning to stdout and break every parser. Closing artifact: one rule in `contracts/json-envelope.md` — \"with `--json`, stdout carries only the JSON document and every human line goes to stderr\" — plus one test per verb.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/bin/bots.cjs:59-62, 376-388",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152-153, 229",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:178",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158-160",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166"
+      ]
+    },
+    {
+      "id": "finding-4-1-p1-the-packet-has-no-envelope-rule-and-the-three-new-verbs-disagree-activity-pri",
+      "text": "**P1 — The packet has no envelope rule, and the three new verbs disagree: `activity` prints an object, `chat` prints a bare array, and `routines` prints neither by name.** `bots activity --json` prints `{\"groups\":[]}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:229], `bots chat --json` prints \"the messages as a JSON array\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158], and `bots routines --json` names its row fields without an envelope [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:178]. Closing artifact: `contracts/json-envelope.md` with one rule and one schema per verb.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/bin/bots.cjs:59-62, 376-388",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152-153, 229",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:178",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158-160",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166"
+      ]
+    },
+    {
+      "id": "finding-4-2-p1-the-precedent-is-unambiguous-and-it-is-the-object-envelope-bots-status-json-p",
+      "text": "**P1 — The precedent is unambiguous and it is the object envelope: `bots status --json` prints the whole `StatusReport` object with named keys, never a bare array.** The verb writes `JSON.stringify(report.value, null, 2)` [SOURCE: .skilled/bin/bots.cjs:386-388], and `StatusReport` is `{indexPath, builtAt, stale, staleIdentities, rows, duplicateRoots, notes}` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114]. So the rule the packet should adopt is \"one object with named keys; a collection is a named key\", which makes `activity`'s `{groups: []}` correct and `chat`'s bare array the one violation. Closing artifact: the rule stated in `contracts/json-envelope.md` with `status` cited as the precedent.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/bin/bots.cjs:59-62, 376-388",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152-153, 229",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:178",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158-160",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166"
+      ]
+    },
+    {
+      "id": "finding-4-5-p2-two-different-state-vocabularies-ship-in-one-packet-an-item-s-state-is-open-a",
+      "text": "**P2 — Two different `state` vocabularies ship in one packet: an item's `state` is `open|answered|expired` and an activity row's `state` is one of the seven group ids.** 001 REQ-003 fixes the item vocabulary [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] and REQ-002 fixes the row vocabulary as \"one of the seven group ids\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152], so a reader that handles both payloads sees one key name with two meanings. Closing artifact: rename the activity row field to `group` in 001 REQ-002, or state both vocabularies side by side in `contracts/json-envelope.md`.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/bin/bots.cjs:59-62, 376-388",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152-153, 229",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:178",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158-160",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166"
+      ]
+    },
+    {
+      "id": "finding-5-4-p1-conversationid-is-added-to-two-closed-key-lists-in-one-change-and-only-one-of",
+      "text": "**P1 — `conversationId` is added to two closed key lists in one change and only one of them has an owner row.** 010 REQ-012 says it adds `conversationId` to `ITEM_KEYS` and to `RECORD_KEYS` and to the two validators in the same change [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170], and `RECORD_KEYS` is the request record's closed list [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190], which the Shared Records table never mentions. Closing artifact: a Shared Records row for the request record's key set, owned by 010, with the final list.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64, 97-98",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:100-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112, 158, 166",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94, 149",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170",
+        "specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577, 589"
+      ]
+    },
+    {
+      "id": "finding-5-2-p1-item-keys-is-a-single-writer-contract-in-code-and-a-five-writer-contract-in-t",
+      "text": "**P1 — `ITEM_KEYS` is a single-writer contract in code and a five-writer contract in the packet, and no artifact says which.** The array is closed and `validateNeedsYouItem` refuses any unknown key with `unknown-key` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:97-98], while 001 adds `kind` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112], 005 adds three proposal fields and the `kind` values [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116], 006 adds `grants` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94], 009 adds the `skill-proposal` value [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123] and 010 adds `conversationId` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170]. Closing artifact: a Phase Transition Rule naming `needs-you.ts` as a serial merge point beside `definition.ts` and `state-root.ts`, and the final key list in the Shared Records table.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64, 97-98",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:100-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112, 158, 166",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94, 149",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170",
+        "specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577, 589"
+      ]
+    },
+    {
+      "id": "finding-5-3-p1-the-kind-collision-is-only-half-closed-the-table-gives-the-item-s-kind-values",
+      "text": "**P1 — The `kind` collision is only half-closed: the table gives the item's `kind` values to 005, but 006's `grants` object carries its own `kind` with a different vocabulary.** The item's `kind` is `decision`, `memory-proposal` or `skill-proposal` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:127], while `grants.kind` is `pay`, `credentials`, `delete`, `send`, `share`, `post` or `other` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:149]. A reader of one JSON payload sees two `kind` keys with disjoint vocabularies and no rule to tell them apart. Closing artifact: rename the nested one to `grants.actionKind` in 006 REQ-001, or state both vocabularies in the contracts file.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64, 97-98",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:100-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112, 158, 166",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94, 149",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170",
+        "specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577, 589"
+      ]
+    },
+    {
+      "id": "finding-5-1-p1-the-shared-records-table-assigns-kind-to-005-and-grants-to-006-but-never-list",
+      "text": "**P1 — The Shared Records table assigns `kind` to 005 and `grants` to 006 but never lists the final `ITEM_KEYS` set, so four of the six additions have no owner row.** The table's rows cover the item's `kind` and `grants` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:127-128] and the inbox item's ten printed fields [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:126], but not `conversationId` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170], not `proposalType`, `proposalFact` and `proposalBotId` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:167], and not `by` and `scope` on the answer [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:158]. Closing artifact: one row in the Shared Records table titled \"needs-you item key set\" listing all eighteen keys with the owning phase per key, plus the same for the answer object.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64, 97-98",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:100-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112, 158, 166",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94, 149",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170",
+        "specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577, 589"
+      ]
+    },
+    {
+      "id": "finding-5-6-p1-the-table-s-ownership-rule-is-contradicted-by-its-own-kind-row-001-lands-the-",
+      "text": "**P1 — The table's ownership rule is contradicted by its own `kind` row: 001 lands the key while 005 owns the values, so a non-owner writes the shape decision.** The rule reads \"The owner fixes the shape; every other phase reads it\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:122], and the `kind` row then says \"001 lands the key in `ITEM_KEYS` and 009 adds its value\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:127]. A builder of 001 must decide whether to write the validator branch for a key whose values it does not own, and a builder of 005 must decide whether to re-write the key. Closing artifact: state that the owner writes both the key and its validator branch, and the landing phase only reads it — or move the key into 005's change.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64, 97-98",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:100-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112, 158, 166",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94, 149",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170",
+        "specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577, 589"
+      ]
+    },
+    {
+      "id": "finding-5-7-p2-correction-to-iteration-3-the-packet-does-have-a-shared-ownership-document-so",
+      "text": "**P2 — Correction to iteration 3: the packet does have a shared ownership document, so that finding was too broad.** The Shared Records table exists and assigns eleven records to owners [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140]; iteration 3's finding 1 said no shared architecture doc exists, which is true for the module map and the import edges but false for record ownership. The narrower gap is that the table names owners and not final contents, which is what findings 1, 4 and 5 close.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64, 97-98",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:100-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112, 158, 166",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94, 149",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170",
+        "specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577, 589"
+      ]
+    },
+    {
+      "id": "finding-5-5-p2-the-answer-object-s-key-set-is-not-in-the-table-either-though-001-changes-it-",
+      "text": "**P2 — The answer object's key set is not in the table either, though 001 changes it.** The table's inbox row lists `answer` as one field [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:126], and 001 adds `by` and `scope` inside it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:158] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:166], so the object's four keys (`text`, `answeredAt`, `by`, `scope`) appear in no single place. Closing artifact: one row for the answer object, which also closes iteration 1's nullability finding.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51-64, 97-98",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts:190",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:100-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:112, 158, 166",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:116, 167",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:94, 149",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:123",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170",
+        "specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577, 589"
+      ]
+    },
+    {
+      "id": "finding-6-1-p0-the-secrets-name-grammar-is-referenced-six-times-and-defined-nowhere-spec-md-",
+      "text": "**P0 — the `secrets` name grammar is referenced six times and defined nowhere.** `spec.md:99` (\"the `secrets` name grammar is parsed once, in `definition.ts`\"), `spec.md:114` (\"the store: name grammar\"), `spec.md:117`, `spec.md:150` (REQ-005 refuses \"a value outside the name grammar\"), `plan.md:65` (\"owns the name grammar\"), `plan.md:122` (a unit test for \"the name grammar\"), and `goal.md:49`. No file in the phase states the allowed characters, the length bound, the leading-character rule or the case rule. The only concrete datum is the negative case in AC-005, `secrets: ../etc/passwd` → `definition.secret-name-invalid`. A builder must invent the regex, and that regex decides the environment key in finding 2, so the invention propagates. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:65] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:64]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-6-2-p0-the-skilled-bot-secret-name-mapping-rule-is-unstated-req-007-fixes-the-prefix",
+      "text": "**P0 — the `SKILLED_BOT_SECRET_<NAME>` mapping rule is unstated.** REQ-007 fixes the prefix and the one-key admission (`dispatchEnvKeys`), and AC-007 pins exactly one instance, `demo` → `SKILLED_BOT_SECRET_DEMO`. Nothing states how a name that is not already upper-case-and-underscore becomes a key: whether `-` and `.` are translated to `_`, whether the name is upper-cased, or whether the grammar is instead restricted so that the mapping is the identity. The three answers are not equivalent — the first two admit names that collide (`my-key` and `my_key` both map to `MY_KEY`), and the third silently narrows REQ-005. `assertDispatchEnvAllowed` would admit whatever string it is handed, so nothing downstream catches a malformed key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:152] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:66]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-6-5-p0-the-phase-changes-the-meaning-of-an-existing-field-with-no-migration-and-no-r",
+      "text": "**P0 — the phase changes the meaning of an existing field with no migration and no rollback.** `bot-template.txt:21` ships `secrets: null`, and the comment the phase itself replaces says the field is not enforced (`spec.md:135`, T025). After 008, a bot that declares a name the store does not hold is refused `secret-unknown` with exit 4 before dispatch (REQ-006). So every bot already carrying a `secrets:` line stops running on upgrade, and the packet contains no operator step for it: no \"before upgrading, run `bots secret set` for every name your bots declare\", no audit verb to list declared-but-unstored names, and no rollback note (forgetting a name stops every bot that names it). This is the one place in the packet where a phase silently invalidates existing operator state. [SOURCE: .skilled/skills/system-skilled-bots/assets/bot-template.txt:21] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:151] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:99]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-6-6-p1-the-index-has-no-concurrency-rule-set-forget-and-the-write-back-verification-",
+      "text": "**P1 — the index has no concurrency rule.** `set`, `forget` and the write-back verification all read-modify-write one `index.json`. Two `bots secret set` processes, or a `set` racing a `forget`, lose an entry. The runtime already carries the temp-write-then-rename convention this needs (`request-queue.ts:93`, `status-index.ts:712`), but 008 never names it, and no lock or last-writer rule is stated. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-6-7-p1-the-keychain-backend-names-one-command-of-the-three-it-needs-req-002-and-t009",
+      "text": "**P1 — the keychain backend names one command of the three it needs.** REQ-002 and T009 name `add-generic-password -a <name> -s skilled-bots -U -w <value>` on `security -i`'s stdin. `forget` (REQ-004) must remove the value from its backend, which for the keychain means `delete-generic-password` with the same account and service, and that command is never named; `list` reads the index, so it is fine. Relatedly, `--store file|keychain` is defined as overriding \"the choice\" for `set`, but its meaning on `forget` and `list` is undefined when the entry's recorded backend differs from the flag — a `forget --store file` on a keychain entry either misses or lies. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:147] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:55]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-6-4-p1-the-store-s-on-disk-shapes-are-pinned-only-inside-acceptance-criteria-command",
+      "text": "**P1 — the store's on-disk shapes are pinned only inside acceptance-criteria commands, never in a schema section.** AC-002 supplies `$STATE/secrets/index.json` with `.entries.demo.backend` and `$STATE/secrets/demo.value`; `plan.md:73` supplies the entry as `{backend, createdAt, updatedAt}`. That is enough to reconstruct the file, but it is scattered across a test command and a prose sentence: no `name` field, no version field, no statement that `entries` is keyed by name rather than an array, no fingerprint or length field for `list` to print, and no statement of what `list` prints beyond \"names and metadata only\" (REQ-003). A builder reading spec and plan alone invents a different file than the one the AC reads. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:61] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:73]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-6-3-p1-two-refusal-names-live-only-in-edge-case-prose-with-no-req-id-and-no-ac-row-s",
+      "text": "**P1 — two refusal names live only in edge-case prose, with no REQ id and no AC row.** `secret-too-long` appears at `spec.md:222` (\"a value of 16,384 characters is accepted, matching rakazo's vault bound, and a longer one is refused `secret-too-long`\") and `secret-store-unreadable` at `spec.md:223` (\"a store folder that cannot be read refuses `secret-store-unreadable` with exit 4\"). Neither has a REQ, and neither has an acceptance criterion. `goal.md:63` nevertheless verifies `secret-too-long` in the test run, so a builder who implements the REQ table exactly produces a phase whose own goal check fails. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:222] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:63]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-6-8-p2-the-redaction-form-and-the-withheld-run-s-outcome-are-unspecified-req-014-say",
+      "text": "**P2 — the redaction form and the withheld run's outcome are unspecified.** REQ-014 says a matching line \"is redacted in place\" and \"the run is not delivered\", but not what replaces the value (a fixed token, the name, an empty string), not whether the run record's status changes, and not what `bots run` exits with. AC-014 only asserts the value is absent from the run folder, which every one of those choices satisfies. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:164]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:92-185, :218-226",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:27, :46, :65-73, :83-86, :122-130, :196",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:39-91, :199",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:54-75",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/goal.md:49, :52, :63",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        ".skilled/skills/system-skilled-bots/assets/bot-template.txt:21",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:57, :101, :263, :281",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no `secrets` entry)",
+        ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:93",
+        ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:712"
+      ]
+    },
+    {
+      "id": "finding-7-2-p1-bots-skill-propose-run-id-with-no-name-has-no-stated-default-req-004-writes-t",
+      "text": "**P1 — `bots skill propose <run-id>` with no `--name` has no stated default.** REQ-004 writes the flag as optional and never says what the target skill name is when it is absent: the bot id, a name derived from the run, or a refusal. The target path recorded in `proposal.json` and the review item's question both depend on the answer, so the omission propagates into two artifacts. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:163]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-7-4-p1-proposal-json-s-five-fields-are-prose-not-keys-and-revisionread-is-ambiguous-",
+      "text": "**P1 — `proposal.json`'s five fields are prose, not keys, and `revisionRead` is ambiguous.** REQ-004 names \"the target path, the revision read, the run id, the bot id and the creation instant\" with no key names, no version field and no statement of what the revision holds. REQ-006 then compares \"a target whose current digest differs from `revisionRead`\", which implies the field holds a digest, while its name says revision — a git revision and a body digest are different values and only one makes the stale check work. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:163] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:165]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-7-3-p1-005-and-009-contradict-each-other-on-whether-009-reserves-a-second-sentinel-0",
+      "text": "**P1 — 005 and 009 contradict each other on whether 009 reserves a second sentinel.** 005's recorded decision says \"009 sets `kind` to `skill-proposal` and adds no id of its own\" (`005-memory/spec.md:265`), while 009's REQ-005 sets the item's `botId` to \"the reserved `skill-proposals`\" and 009's files table adds `skill-proposals` to `RESERVED_BOT_IDS` (`009/spec.md:130`). Both cannot hold. A builder who follows 009 contradicts the packet's own decision record; a builder who follows 005 leaves the item's `botId` naming a sentinel no definition is barred from taking. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:265] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:164] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:130]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-7-6-p1-012-can-close-with-33-recorded-fails-req-006-requires-every-fail-to-be-fixed-",
+      "text": "**P1 — 012 can close with 33 recorded FAILs.** REQ-006 requires every `FAIL` to be \"fixed in the scenario or filed as a defect naming the phase, the requirement and the observed line, and no `FAIL` is left unnamed\" — naming is the whole obligation. The phase's handoff criteria are \"every row in `acceptance-criteria.md` is Met\", and those rows assert that scenarios were written and executed, not that they passed. So the packet's only end-to-end proof can record that the build is broken and still close. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:181] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-7-8-p1-012-s-recorded-results-go-stale-before-the-packet-closes-and-nothing-requires",
+      "text": "**P1 — 012's recorded results go stale before the packet closes, and nothing requires a re-run.** 012 runs after 011 and before 013 and 014; 014 is defined as \"an expanded deep review over every code and doc phase 001 to 013 built ... with every P0 and P1 fixed and the affected tests re-run\" (`014/spec.md:3`, `:41`, `:53`). So the corpus executes against a build that 014 then changes, and no requirement in 012 or 014 says the corpus is re-executed after a fix. The packet's end-to-end evidence is therefore a snapshot of a superseded build. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:41] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-7-1-p1-the-skill-name-grammar-is-referenced-three-times-and-defined-nowhere-009-spec",
+      "text": "**P1 — the skill-name grammar is referenced three times and defined nowhere.** `009/spec.md:122` (\"the name grammar\" as `skills.ts`'s first responsibility), `:138` (a unit test for \"the name grammar\"), and `:172` (REQ-008 refuses \"a name outside the skill-name grammar\" as `skills-name-invalid`). No allowed characters, length bound or leading-character rule is stated. Lower severity than 008's equivalent because a skill name is also a folder name under `.skilled/skills/`, so the existing tree supplies examples a builder can imitate — but the loader joins the name onto a path, so the grammar is also the traversal guard, and `skills-name-invalid` cannot be implemented without it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:172] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:122]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-7-5-p2-the-draft-skill-md-s-own-shape-is-unstated-proposal-json-is-specified-field-b",
+      "text": "**P2 — the draft `SKILL.md`'s own shape is unstated.** `proposal.json` is specified field by field; the draft beside it is not. Nothing says the draft carries frontmatter, satisfies the skill package validator, or follows a template, so a builder writes free prose and the operator receives a file that may not load as a skill at all. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:163]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-7-7-p2-the-scenario-inventory-names-the-phase-and-the-requirement-per-scenario-but-n",
+      "text": "**P2 — the scenario inventory names the phase and the requirement per scenario but no fixture or precondition.** The 33-row table at `012/spec.md:140-170` is the packet's best traceability artifact — id, category, owning phase, the requirement line it proves — but a scenario file read alone does not say which bot, state root or stub executor it needs; REQ-007 puts preconditions in the root index instead. That is a defensible split, and it means the per-scenario file is not self-contained. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:140] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:186]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
+        ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
+      ]
+    },
+    {
+      "id": "finding-8-2-p1-013-s-evidence-lives-outside-the-checkout-so-its-close-cannot-be-re-verified-",
+      "text": "**P1 — 013's evidence lives outside the checkout, so its close cannot be re-verified.** REQ-002 and REQ-003 write `report.md`, `findings.json` and `fix-plan.md` under `<state>/local-skilled-alignment/system-skilled-bots/<UTC timestamp>/` and `<state>/local-doc-alignment/...`, and REQ-005's clean criterion is a line inside those reports. Nothing copies them into the packet; `implementation-summary.md` records only the folder paths. A later reader, or 014, cannot check that the reports held zero open findings. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:158]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-8-1-p1-013-s-handoff-has-no-receiver-013-s-handoff-criteria-say-what-passes-to-014-i",
+      "text": "**P1 — 013's handoff has no receiver.** 013's handoff criteria say \"What passes to 014 is the two report folders and the clean criterion\" (`013/spec.md:33`), and its scope says a finding that needs a runtime change \"is recorded and handed to 014 rather than fixed here\" (`:112`, restated at `:183` and `:235`). 014's dependency list names only \"Phase 013 is clean first: every row in its `acceptance-criteria.md` is `Met`\" (`014/spec.md:44`) and never the report folders or the handed-over findings. So a runtime finding 013 deliberately refuses to fix is dropped at the boundary, and 014's fresh review may or may not rediscover it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:112] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:44]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-8-5-p1-014-s-five-lineage-fan-out-has-no-rule-for-a-host-with-fewer-than-five-execut",
+      "text": "**P1 — 014's five-lineage fan-out has no rule for a host with fewer than five executors.** REQ-003 requires five lineages \"one per roster executor\" and `review/orchestration-summary.json` to list all five labels \"with no partition gap\" (`014/spec.md:161`). The plan names the roster, each kind's effort, the enforced allowlists and a fallback order that starts at `pi` (`plan.md:149-177`), but nothing says what happens when a kind is not installed on the host: the phase either cannot start, or must record a gap that REQ-003 forbids. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:161] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:177]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-8-4-p1-014-s-verdict-can-read-pass-while-012-s-corpus-recorded-fails-014-s-verdict-i",
+      "text": "**P1 — 014's verdict can read PASS while 012's corpus recorded FAILs.** 014's verdict is strongest-restriction over the review's own findings, and the review reads code and docs against the docs that describe them; it never reads `benchmark/reports/<run>/results.csv`. 012's handoff criteria are satisfied by executing the scenarios and naming every FAIL (iteration 7, finding 6). So the packet can close on a PASS verdict beside a corpus that recorded the build broken. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:181]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-8-3-p1-the-packet-closes-without-a-re-review-or-a-corpus-re-run-014-s-out-of-scope-f",
+      "text": "**P1 — the packet closes without a re-review or a corpus re-run.** 014's out-of-scope forbids \"a second review run after the fixes\" (`014/spec.md:104`), and 012's 33-scenario corpus is never re-executed after 014's fixes (iteration 7, finding 8). The final state is therefore: fixes applied, `npm test` green, `validate.sh --strict` green, and no evidence that the fixes did not break the surface the review just read or the scenarios the corpus just ran. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:104] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-8-6-p2-013-and-014-disagree-on-what-a-p2-finding-is-worth-013-fixes-every-finding-ei",
+      "text": "**P2 — 013 and 014 disagree on what a P2 finding is worth.** 013 fixes \"every finding either report names\" with no severity filter (`013/spec.md:110`), while 014 explicitly excludes \"fixing a P2 finding\" and leaves it open because \"the verdict reads PASS with advisories\" (`014/spec.md:103`). A P2 that 013 would have fixed is left open by 014, and the two phases' fix passes are not comparable. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:110] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:103]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-8-7-p2-013-s-topics-json-topic-is-named-by-field-but-not-by-schema-the-files-table-s",
+      "text": "**P2 — 013's `topics.json` topic is named by field but not by schema.** The files table says the topic carries \"title, `terms`, three `codeRoots`, `lanes`, three `checks`\" (`013/spec.md:126`) without key names or value shapes. The existing file is a usable precedent, so this is polish rather than a blocker. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:126]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-8-8-p2-014-s-git-status-porcelain-scope-check-includes-the-review-s-own-writes-req-0",
+      "text": "**P2 — 014's `git status --porcelain` scope check includes the review's own writes.** REQ-009 requires the fix pass to change no file outside the surfaces the review named and `git status --porcelain` to list only those surfaces (`014/spec.md:169`), while the same phase writes `review/` and `implementation-summary.md`, both listed in its own files-to-change table. The check needs the review's own outputs to count as named surfaces, which the requirement does not say. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:169]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+      ]
+    },
+    {
+      "id": "finding-9-4-p0-the-packet-has-no-schema-version-concept-so-every-record-change-is-undetectab",
+      "text": "**P0 — the packet has no schema-version concept, so every record change is undetectable.** `state-root.ts` carries no version marker and `run-record.ts` no version field, and no phase spec owns \"state-root version\", \"schema version\" or \"record version\". Meanwhile five phases edit closed-key lists (`ITEM_KEYS`, `RECORD_KEYS`, `FRONTMATTER_KEYS`) and the packet's only compatibility rule is \"read a missing field as a default\" (008 REQ-008, 006's risk row). That rule covers an additive change and fails a changed meaning, which is exactly 008's `secrets:` case (iteration 6, finding 5): an old record and a new one are indistinguishable except by which keys happen to be present. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:155]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-9-1-p0-the-refusal-catalogue-exists-in-code-and-no-phase-cites-it-refusal-causes-at-",
+      "text": "**P0 — the refusal catalogue exists in code and no phase cites it.** `REFUSAL_CAUSES` at `runner.ts:123-151` is a frozen 25-entry registry, each entry `{reason, class}` where `class` is `author`, `operator`, `environment` or `null`, and `RefusalCause` is `keyof typeof REFUSAL_CAUSES`. Across 007 to 011 the phases mint roughly 36 new names — 007 four (`apps-invalid`, `apps-refused`, `apps-unenforceable`, `apps-unknown-server`), 008 nine, 009 thirteen, 011 ten — and not one phase document mentions `REFUSAL_CAUSES`, `RefusalCause` or `FailureClass`. A builder who adds a name without registering it fails typecheck; one who casts defeats the taxonomy; and the `class` value is what `RunExit.class` carries into the run record, so a wrong class mislabels a refusal as an author, operator or environment fault. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:151] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:130]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-9-2-p1-refusaldetail-cause-is-a-free-string-so-the-typed-registry-is-not-enforced-at",
+      "text": "**P1 — `RefusalDetail.cause` is a free string, so the typed registry is not enforced at the record boundary.** `run-record.ts:142-143` declares `cause: string`, not `RefusalCause`, so a record can carry a name the registry does not hold and nothing rejects it. The registry is therefore advisory at exactly the point where a later reader would rely on it. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:142]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-9-6-p1-concurrency-is-handled-per-phase-but-never-as-one-rule-counting-concurren-loc",
+      "text": "**P1 — concurrency is handled per phase but never as one rule.** Counting `concurren|lock|restart|crash|interrupt|resume` per phase spec: 002 twenty-six, 005 thirty-four, 006 seventeen, 010 twenty-five, 011 twenty-nine — high exactly where a queue or a lease exists — against 001 two, 003 seven and 008 two. So the phases that own a queue state their rules and the phases that write a shared file do not: 008's index is read-modify-written with no lock (iteration 6, finding 6). Nothing in the packet says which files are single-writer and which need a lock. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-9-5-p1-migration-and-rollback-are-mentioned-about-ten-times-across-fourteen-phases-a",
+      "text": "**P1 — migration and rollback are mentioned about ten times across fourteen phases and owned by none.** Counting `migrat|rollback|backward|older record|upgrade` per phase spec: 001 one, 002 two, 003 zero, 004 one, 005 one, 006 zero, 007 one, 008 two, 009 one, 010 one, 011 zero, 012 zero, 013 zero, 014 zero. No phase has a migration section, a rollback step or an operator upgrade runbook; the closest is 006's risk row about an older runtime refusing a newer grant. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-9-3-p1-no-phase-owns-the-exit-code-convention-exit-codes-at-runner-ts-113-120-is-a-f",
+      "text": "**P1 — no phase owns the exit-code convention.** `EXIT_CODES` at `runner.ts:113-120` is a frozen six-value object — `completed` 0, `runFailure` 1, `usage` 2, `recursionGuard` 3, `refused` 4, `awaitingDecision` 5 — and `bots-run/references/run-queue-and-answer.md:15` names it as the table a reader checks. Zero of the 14 phase specs cite `EXIT_CODES`; each restates a bare number. The numbers agree today, but nothing makes a new phase agree tomorrow: 008's `secret-no-input` exit 2 is a `usage` code chosen by restatement rather than by citation, and a builder adding a refusal has no rule telling them which of the six to pick. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-9-7-p1-no-phase-states-which-of-its-refusals-are-pre-dispatch-and-which-are-post-dis",
+      "text": "**P1 — no phase states which of its refusals are pre-dispatch and which are post-dispatch.** `RunExit.refusal` is documented as \"Present when the run was refused before dispatch, so a refusal never reads as a failure\" (`run-record.ts:137-138`), and `REFUSAL_CAUSES` mixes both kinds — `body-secret` is pre-dispatch, `resume-posture-changed` happens at resume. No phase says which of its new names is pre-dispatch, so a builder cannot tell whether to write `refusal` or `reason`, and the record's own distinction between a refusal and a failure is left to guesswork. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:137] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-9-8-p2-the-refusal-names-are-minted-in-three-document-layers-with-no-single-list-008",
+      "text": "**P2 — the refusal names are minted in three document layers with no single list.** 008 shows the pattern: a name can appear in a REQ, in edge-case prose, in an acceptance-criteria row or in a goal verification line, and the four do not agree — `secret-too-long` and `secret-store-unreadable` are prose-only (iteration 6, finding 3). A packet-level catalogue would make that impossible, and it is the same artifact that would carry the `class` and the pre-dispatch flag findings 1 and 7 need. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:222]",
+      "addedAtIteration": 9,
+      "sources": [
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:113-151",
+        ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123-143",
+        ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts (no version marker)",
+        ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md:15",
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md (all 14, grepped for exit codes, concurrency, migration and refusal names)",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:194",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146, :155, :222"
+      ]
+    },
+    {
+      "id": "finding-10-3-p0-008-vault-needs-a-contract-addendum-not-children-four-artifacts-close-it-the-",
+      "text": "**P0 — 008-vault needs a contract addendum, not children.** Four artifacts close it: the `secrets` name grammar (referenced six times, defined nowhere), the `SKILLED_BOT_SECRET_<NAME>` mapping table (translation versus grammar restriction, and the collision rule), the store's index schema (`{entries: {<name>: {backend, createdAt, updatedAt}}}`, currently reconstructable only from an acceptance-criteria command), and the migration runbook (populate the store before upgrading, or every bot with a `secrets:` line stops with `secret-unknown` exit 4). Iteration 6 ruled out a parent for it: its 19 files are one store plus one injection path. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-006.md]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    },
+    {
+      "id": "finding-10-1-p0-011-messaging-channels-is-the-only-phase-that-must-become-a-parent-and-it-nee",
+      "text": "**P0 — 011-messaging-channels is the only phase that must become a parent, and it needs six children.** It is the packet's largest phase by both measures: 29 files to change and 23 requirements, at Level 2, with nine modules and five transports. The six children are (1) shared adapter and contract, (2) identity link and roster, (3) approval index and queue, (4) Telegram and Slack, (5) Signal and WhatsApp, (6) conformance and hardening. Iteration 2 also found that its `declaredCapabilities` vocabulary is missing, its link record and queue entry are unshaped, REQ-017 promises five conformance rules and enumerates two, and its operator prerequisites are a table rather than a runbook — all four are child-1 and child-6 work. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-002.md]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    },
+    {
+      "id": "finding-10-2-p0-one-packet-level-contract-document-closes-more-findings-than-any-child-phase-",
+      "text": "**P0 — one packet-level contract document closes more findings than any child phase.** It would carry six things the packet now scatters: the refusal catalogue (`REFUSAL_CAUSES`'s 25 entries plus each new name's `class` and its pre- or post-dispatch kind), the exit-code table (`EXIT_CODES`'s six values and which refusal takes which), the schema-version rule (a version field on the state root and on each closed-key record), the single-writer map (which files need a lock and which are last-writer-wins), the shared-record ownership table (the parent spec already has an 11-row one at `spec.md:120-140`), and the target-state module map with the state-root tree. That single artifact closes iteration 9's eight findings, iteration 1's three schema findings, iteration 3's two architecture findings and iteration 5's two ownership findings — fifteen findings for one document. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:120]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    },
+    {
+      "id": "finding-10-6-p1-only-003-has-design-artifacts-the-two-other-user-facing-surfaces-have-none-00",
+      "text": "**P1 — only 003 has design artifacts; the two other user-facing surfaces have none.** 003 carries `001-ux-and-component-map/design/` and `context/screenshots/{products,web,openhuman-demo}`, and it is the only phase whose spec or plan matches any design-artifact vocabulary. 010 draws a chat surface and 011 draws channel messages — both are read by a person, both are specified only in prose, and neither has a mockup, a wireframe or a message-shape diagram. The operator asked for mockups for anything user-facing, so these two are the packet's remaining design gap. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    },
+    {
+      "id": "finding-10-4-p1-six-phases-need-exactly-one-addendum-artifact-each-001-the-needs-you-item-lif",
+      "text": "**P1 — six phases need exactly one addendum artifact each.** 001: the needs-you item lifecycle transition table and the answer record's `by`/`scope` nullability. 002: the routine state file schema and the `until` observation shape. 005: the memory entry line grammar and the prompt section order promoted from `005/plan.md:71` into a contract. 006: the item and grant key ownership table, which resolves the `kind` versus `grants.kind` collision and gives `RECORD_KEYS` an owner row. 009: the skill-name grammar, the `--name` default, `proposal.json`'s key names and the 005-versus-009 sentinel contradiction. 010: `--json` envelope conformance against the `bots status --json` precedent and a chat-surface mockup set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-001.md]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    },
+    {
+      "id": "finding-10-8-p1-the-ranked-order-is-011-then-the-contract-document-then-008-then-the-six-adde",
+      "text": "**P1 — the ranked order is 011, then the contract document, then 008, then the six addenda, then the three closing rules, then nothing for 007 and 004.** 011 first because it is the largest and its six children can be built in parallel once child 1 lands. The contract document second because it changes what every later addendum says — writing 001's lifecycle table before the version rule exists means writing it twice. 008 third because its P0s are the only ones that break existing operator state on upgrade. The six addenda next, in dependency order 001, 002, 005, 006, 009, 010. The three closing rules last, because they only bind once the build exists. [INFERENCE: based on the file and requirement counts in Actions Taken 1, the P0/P1 distribution across iterations 1 to 9, and the dependency edges in the parent spec's phase table]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    },
+    {
+      "id": "finding-10-5-p1-the-three-closing-phases-need-one-rule-each-not-an-addendum-012-a-recorded-fa",
+      "text": "**P1 — the three closing phases need one rule each, not an addendum.** 012: a recorded `FAIL` blocks the phase's close, and the corpus is re-executed after 014's fix pass. 013: copy the two alignment reports into the packet so the zero-open-findings close is re-verifiable, and name 014 as the receiver of the runtime findings it hands over. 014: a rule for a host with fewer than five roster executors, and 012's `results.csv` as a review input so a PASS verdict cannot sit beside a recorded FAIL. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-008.md]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    },
+    {
+      "id": "finding-10-7-p2-007-and-004-are-ready-and-need-nothing-004-is-the-best-one-shot-ready-small-p",
+      "text": "**P2 — 007 and 004 are ready and need nothing.** 004 is the best one-shot-ready small phase in the packet: 12 files, 16 requirements, every refusal named, no open design decision. 007 has only P2 findings: its refusals, its `UTCP_CONFIG_FILE` handoff through `dispatchEnvKeys`, its filtered-config write and its worktree-restore rule are all pinned. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-003.md] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/iterations/iteration-006.md]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/0*/spec.md and plan.md (all 14 phases, counted and grepped)",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/ (child structure, `design/`, `context/screenshots/`)",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:120-140",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:71",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150",
+        ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts:123",
+        "iterations/iteration-001.md through iteration-009.md (this lineage)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-fb5a18aaf388",
+      "text": "Looking for a migration section: every phase's complexity table asserts \"no migration\" or \"no data migration\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:244] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:250], so the packet has no migration artifact to extend; the nullability rules are the migration story and they are incomplete for the answer object.",
+      "contentHash": "fb5a18aaf388",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-541402c60ad5",
+      "text": "Reading the phase `tasks.md` files for the missing shapes: they carry verify commands (`rg -n 'MEMORY_LIMITS|parseMemory|renderMemory'`) rather than field lists, so they confirm a symbol exists and never its shape. Checked 005's tasks T007-T010 and 002's T001-T006.",
+      "contentHash": "541402c60ad5",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3be36e46f592",
+      "text": "Searching for a `contracts/` or `schemas/` folder under the packet root returns nothing, so there is no partial artifact to extend.",
+      "contentHash": "3be36e46f592",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-7f8d71fc2575",
+      "text": "The `crates/bots-tui/tests/fixtures/bots` contract gap is already closed in the packet: 001's affected-surfaces table marks the fixture \"not this phase's\" and asserts payloads through `bots ... --json` instead [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:92], and 003's child 006 enumerates the four payloads the fixture carries [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/plan.md:122]. Do not re-raise it as a missing Modify row; the remaining gap is that the payload shapes themselves have no schema file (finding 1).",
+      "contentHash": "7f8d71fc2575",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-2a62c2103d17",
+      "text": "Treating the parent phase map's \"Depends on\" column as the interface contract: it names one dependency per phase in prose (\"001, whose run records carry the fields\") and no field, so it cannot close a schema gap [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166].",
+      "contentHash": "2a62c2103d17",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-56d63dc2c9b3",
+      "text": "Looking for a conformance fixture list in `tasks.md`: the tasks name the test files and their verify commands, not the rules.",
+      "contentHash": "56d63dc2c9b3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fbfcd9100fbf",
+      "text": "Reading the acceptance-criteria file for the missing shapes: it asserts behavior per requirement and names no field, so it cannot close a schema gap. Checked 011's AC rows for REQ-001, REQ-006 and REQ-017.",
+      "contentHash": "fbfcd9100fbf",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-96dd552463a7",
+      "text": "The adapter contract itself is not a gap: REQ-001 and REQ-002 give the six members and the four message shapes with every field [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:183-184], so the contract is deeper than 001's or 005's. Do not re-raise it; the gap is the capability vocabulary and the conformance rules, not the interface.",
+      "contentHash": "96dd552463a7",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-eec965fcc215",
+      "text": "The reference-code question is already answered inside the phase: the plan cites `tinychannels-main`'s `adapter.rs`, `envelope.rs`, `intent.rs`, `receipt.rs`, `error.rs`, `delivery/queue.rs`, `delivery/policy.rs`, `security/mod.rs` and `bus/config.rs`, and states the reference is GPL-3.0 so it is design only [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:66-72]. A child split should keep those citations per child rather than re-deriving them.",
+      "contentHash": "eec965fcc215",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-524375f24858",
+      "text": "Treating the plan's Data Flow as the contract: it names `links.json`, `approvals.json` and `queue/` in passing [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:76] but gives no field, so it locates the files without specifying them.",
+      "contentHash": "524375f24858",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-67035677c2ed",
+      "text": "002's own depth is not the gap here: its block rules, floor, fatigue count and refusal names are specified to the field level [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:153-181]; the gaps iteration 1 found (state file, `until` observation) are the only ones, so 002 needs no child either.",
+      "contentHash": "67035677c2ed",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6b11c080a849",
+      "text": "Concluding that 004 needs a child: it lists 12 files, nine requirements, the exact prompt line text, the null-branch variant and a design-reference per requirement [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:150-180], so it is the packet's best example of a one-shot-ready small phase. It needs the shared contracts, not children.",
+      "contentHash": "6b11c080a849",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-858d1c5366ea",
+      "text": "Looking for a per-phase \"Interfaces\" section: the Level 2 template has no such anchor, so the offered and consumed interfaces are only ever prose inside Scope and Requirements.",
+      "contentHash": "858d1c5366ea",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-74de25b38dc7",
+      "text": "The README is not useless: its package topology and module table are the right shape for the target-state doc, so the closing artifact is an extension of that file plus a `contracts/` copy, not a new invention.",
+      "contentHash": "74de25b38dc7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a4bd4f3f6c47",
+      "text": "Treating the parent spec's phase map as the architecture doc: it names one dependency per phase and no module, group or edge [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166].",
+      "contentHash": "a4bd4f3f6c47",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-376c83949c62",
+      "text": "Assuming the pretty-print indentation is part of the contract: `status` uses `null, 2` [SOURCE: .skilled/bin/bots.cjs:387], but no test compares exact whitespace, so indentation is a style choice rather than a contract and is not raised as a gap.",
+      "contentHash": "376c83949c62",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f8f9ee971a57",
+      "text": "Looking for an envelope rule in the parent spec: the phase map names no payload and no verb [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:151-166].",
+      "contentHash": "f8f9ee971a57",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ac921b105228",
+      "text": "The `--json` flag parsing itself is not a gap: `json` is already in `FLAG_OPTIONS` and `STATUS_OPTIONS` [SOURCE: .skilled/bin/bots.cjs:59-62], so a new verb inherits the flag with no parser change. The gap is the payload, not the flag.",
+      "contentHash": "ac921b105228",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-98b5149584b7",
+      "text": "Treating `bots status --json` as a special case because it prints a report rather than a list: the report is the only precedent the packet has, and its shape (object with a named collection key) is exactly what `activity` already follows, so it generalizes.",
+      "contentHash": "98b5149584b7",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-06be6aa5cccc",
+      "text": "009's addition is a value rather than a key, so it does not widen the array; only 001, 005, 006 and 010 do.",
+      "contentHash": "06be6aa5cccc",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-28c1cda03bd8",
+      "text": "Looking for a generated schema of the item: no schema file exists (iteration 1), so the table is the only ownership artifact.",
+      "contentHash": "28c1cda03bd8",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e54f607f7ac5",
+      "text": "Re-raising the `kind` collision as an unknown: the prior research already found it and the parent's Shared Records table already assigns the values to 005 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/research/research.md:577], so the open part is the nested `grants.kind`, not the top-level one.",
+      "contentHash": "e54f607f7ac5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3ddd7364bde1",
+      "text": "The `unknown-key` refusal is not the problem: it is the mechanism that makes the closed list safe, and it works. The problem is that five phases edit the list without one target.",
+      "contentHash": "3ddd7364bde1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7134c5ccb5e6",
+      "text": "Treating the landing order as the fix: the phases land 001, 005, 006, 009, 010 in numeric order, but order cannot reconcile two vocabularies or supply a missing key list.",
+      "contentHash": "7134c5ccb5e6",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-05f032325c46",
+      "text": "Looking for an existing lock helper to cite: the runtime has the atomic-rename convention but no exported lock, so 008 would have to introduce one or state that last-writer-wins is accepted.",
+      "contentHash": "05f032325c46",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3557da8c6079",
+      "text": "Reading 007 as under-planned. It names its refusals (`apps-unknown-server`, `apps-unenforceable`), its env key (`UTCP_CONFIG_FILE` through `dispatchEnvKeys`), its filtered-config write and its worktree-restore-after-exit rule. It is the second-best-planned phase in the packet after 004, and needs no child.",
+      "contentHash": "3557da8c6079",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-69359de7b4f1",
+      "text": "Searching for a name grammar in the reference code to adopt by citation: rakazo's `bot-secrets.md:35` is cited for the 16,384 bound only, and the packet never cites it for the grammar. Adopting one would be a design decision the phase does not authorize.",
+      "contentHash": "69359de7b4f1",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-28357999d1b7",
+      "text": "Treating 008 as needing a phase parent. Its 19 files and 15 requirements are one coherent store plus one injection path; the gaps above are additions to the existing documents, not a split.",
+      "contentHash": "28357999d1b7",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-c0757d1d17a4",
+      "text": "Looking for a `kind` field on `NeedsYouItem` today: `needs-you.ts:29-48` has no such field and `ITEM_KEYS` does not list it, so 005's REQ-009 is what introduces it. That confirms the field is 005's to define and makes finding 3 a contradiction between two phases rather than a missing field.",
+      "contentHash": "c0757d1d17a4",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-00c6cdd5cbc6",
+      "text": "Looking for a skill-name grammar in `bot-check.cjs` to cite: the checker has no name-grammar helper, so 009 has nothing to reuse.",
+      "contentHash": "00c6cdd5cbc6",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-94d9b7a48a44",
+      "text": "Reading 009 as needing a phase parent. Its 25 files are one loader plus one proposal path, and its caps, overflow rule, wrapper format and digest chain are all pinned. The gaps are four additions to the existing documents.",
+      "contentHash": "94d9b7a48a44",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-56fc6813d688",
+      "text": "Reading 012 as under-planned. It has a 33-row inventory with a requirement citation per row, a package validator as its gate, a single writer for the run folder (`record-playbook-run.cjs`), a FAIL-handling requirement, a SKIP rule for a missing channel account, and a wave plan. It needs no child phase; it needs two rules added (findings 6 and 8).",
+      "contentHash": "56fc6813d688",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-a6e7f0f2753e",
+      "text": "Looking for 013's report folders in 014's inputs: 014's dependency list is five bullets and none names them, which is what makes finding 1 a boundary gap rather than a wording quibble.",
+      "contentHash": "a6e7f0f2753e",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-bf56002eff79",
+      "text": "Looking for a host-capacity rule in the fan-out contract: the plan's fallback order covers which executor to prefer, not what to do when one is absent.",
+      "contentHash": "bf56002eff79",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-0e87b53a6d08",
+      "text": "Reading 013 as needing a child phase. It is two command runs plus a fix pass; its problem is where the evidence lands, not how much design it needs.",
+      "contentHash": "0e87b53a6d08",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-7197ca1171d0",
+      "text": "Reading 014 as under-planned. It is the deepest plan in the packet: five named dimensions mapped onto four canonical ids, a five-part stop rule with the frontier veto and the strongest-restriction verdict, a roster with per-kind effort and enforced allowlists, a fallback order, a file-partitioned fix pass, and a measured test floor. Its gaps are boundary rules, not design.",
+      "contentHash": "7197ca1171d0",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-77077423f4df",
+      "text": "Treating 014's \"at least 381 tests\" as a gap. The number is a floor measured before the build, so a larger suite still passes.",
+      "contentHash": "77077423f4df",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-a8fc83045368",
+      "text": "Looking for a packet-level catalogue file: `grep -rln \"refusal catalogue|error catalogue|refusal table|exit-code table\"` over the packet returns nothing, so the vocabulary lives only in `runner.ts` and in each phase's prose.",
+      "contentHash": "a8fc83045368",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-588bf51673c1",
+      "text": "Looking for a state-root or record version field: neither `state-root.ts` nor `run-record.ts` has one, and only 001 mentions \"record version\" at all, in an unrelated sense.",
+      "contentHash": "588bf51673c1",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c8481429a14b",
+      "text": "Reading the packet as having no refusal discipline. It has a typed registry, a frozen exit-code object and a documented table; the gap is that no phase document points at any of them.",
+      "contentHash": "c8481429a14b",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-5f3d6b607efc",
+      "text": "Treating concurrency as unowned. 002, 005, 006, 010 and 011 each state their queue and lease rules in detail; the gap is the shared-file writers, not the queue owners.",
+      "contentHash": "5f3d6b607efc",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-692e7e72b012",
+      "text": "Treating migration as entirely absent. 006's risk row and 008's \"read a missing field as a default\" are real compatibility rules; they are just not a migration story.",
+      "contentHash": "692e7e72b012",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-28f53b0dc6c0",
+      "text": "Looking for a phase whose size alone justifies a split: 009 at 25 files and 001 and 002 at 24 are large but each is one module family, and iteration 7 already ruled out a parent for 009.",
+      "contentHash": "28f53b0dc6c0",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-0301ed3e174b",
+      "text": "Looking for design artifacts outside 003: the grep over all 28 spec and plan files returns one match, so there is nothing to consolidate — the gap is total for 010 and 011.",
+      "contentHash": "0301ed3e174b",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-889aceef66e6",
+      "text": "Making 003's six-child shape the template for every phase. 003 is a Level 3 phase with a screen to draw; 004, 007, 013 and 014 are smaller than 003's first child and would be damaged by a split.",
+      "contentHash": "889aceef66e6",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-b05a59ba2666",
+      "text": "Making 008, 009 or 010 a parent. Each is one coherent module plus one seam; their gaps are missing contract text, not missing decomposition.",
+      "contentHash": "b05a59ba2666",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a4a469490bf4",
+      "text": "Treating the contract document as a fifteenth phase. It is an artifact the existing phases cite, not a build step, and giving it a phase would put a document in the build order.",
+      "contentHash": "a4a469490bf4",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 11,
+    "keyFindings": 73,
+    "sourceFindings": 73,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {
+      "code": 94,
+      "other": 20
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-001",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor, specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer, specs/system-skilled-bots/003-openbot-parity-build/005-memory, specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants, specs/system-skilled-bots/003-openbot-parity-build/010-conversations, .skilled/skills/system-skilled-bots/runtime/lib",
+        "question": "Data and contracts: for phases 001, 002, 005, 006 and 010, are every record schema, field, state machine and bots --json payload specified completely enough to build without a decision? What schema files or contract docs are missing?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-1-003",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels, specs/system-skilled-bots/context/tinychannels-main, specs/system-skilled-bots/context/rakazo-main",
+        "question": "Phase 011-messaging-channels: is the adapter architecture, per-channel transport, identity linking, durable queue, approval rendering and conformance test design deep enough to one-shot, and how should it split into children (shared adapter, Telegram, Slack, Signal, WhatsApp)?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 2
+      },
+      {
+        "nodeId": "F-1-005",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/spec.md, specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer, specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure, .skilled/skills/system-skilled-bots/runtime/lib",
+        "question": "Small phases 004-computer-exposure and 002-routine-layer, and cross-cutting design: is there a shared architecture doc (module map, file ownership, prompt builder order, answer seam, state-root layout) that every phase builds against, or must one be added before building?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 3
+      },
+      {
+        "nodeId": "F-2-006",
+        "parentId": "F-1-001",
+        "depth": 2,
+        "scope": ".skilled/bin/bots.cjs, .skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "question": "What is the exact JSON envelope convention every bots ... --json verb must follow, and which existing verb sets the precedent?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 4
+      },
+      {
+        "nodeId": "F-2-007",
+        "parentId": "F-1-001",
+        "depth": 2,
+        "scope": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts, phases 001/005/006/009/010",
+        "question": "Which phases must change when the needs-you item gains grants, kind, conversationId and proposal fields, and is the closed ITEM_KEYS list a single-writer contract or a per-phase one?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 5
+      }
+    ],
+    "stats": {
+      "total": 5,
+      "open": 0,
+      "active": 0,
+      "answered": 5,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "activeNodeId": null,
+    "budget": {
+      "depth1": {
+        "allotted": 5,
+        "spent": 3
+      },
+      "depth2": {
+        "allotted": 5.5,
+        "spent": 2
+      },
+      "depth3": {
+        "allotted": 5,
+        "spent": 0
+      }
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/system-skilled-bots/specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages/vibe/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

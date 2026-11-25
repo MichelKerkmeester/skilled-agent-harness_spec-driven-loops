@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A bot run starts in a directory its prompt never names",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T19:55:26.619Z",
+    "last_save_at": "2026-11-25T22:43:29.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ad1484963a1cafe1bd00a54b56e1f51361f6efd09f9b4a929f797c60a725dc9",
+    "source_fingerprint": "sha256:9caec684ecd2c8da249279ec07b746207e302c581c155e8e3bbf9e1e4438fa4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef943b0cf813673a0933d40254b2a5c600957df53247e4b7edbb94ca77d89a2e",
+      "spec.md": "45d3443b248f7ca61fc44c1e69e659c67d05fe41c2faf55536d15f039eb814a8",
       "plan.md": "7b464221f36cf5c06ce0124ee5328c2b86bf6fd87ed791907e6dc5d7002ed63c",
       "tasks.md": "37b2f85597c989394c14aeadb7179f0ffe7de150effc2ea6a717b9eb13218eeb",
       "implementation-summary.md": "c527b9a6057fbb3a88200339287e92ce9f9e5894837567d128e8b3a8b9b5989b"

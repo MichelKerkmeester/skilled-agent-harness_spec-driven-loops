@@ -1,0 +1,1 @@
+Cross-phase contract audit: trace producers and consumers across phases 001-014, excluding the 003 terminal-screen children, for shared run/item schemas, answer and resume flows, delivery channels, routine state, review inputs and operator prerequisites; identify any remaining interface mismatch and rank the expansions for a one-shot build.

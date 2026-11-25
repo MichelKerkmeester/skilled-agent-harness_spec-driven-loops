@@ -75,7 +75,7 @@ Close each gap the 002 research ranked, one child phase per gap, so a small team
 ## 3. SCOPE
 
 ### In Scope
-- The ten ranked slices of `../002-openbot-parity-research/research/research.md` §15, one child phase each: activity and actor, routines, terminal screen, computer exposure, memory, approval grants, per-bot apps, vault, skills, conversations, plus the messaging-channels extension.
+- The ten ranked slices of `../002-openbot-parity-research/001-openbot-parity-research/research/research.md` §15, one child phase each: activity and actor, routines, terminal screen, computer exposure, memory, approval grants, per-bot apps, vault, skills, conversations, plus the messaging-channels extension.
 - The three closing phases the operator added on 2026-11-25: 012 writes and then runs the operator scenario corpus for everything 001 to 011 deliver, 013 aligns the `.skilled` change set and the docs that describe it, and 014 runs one expanded deep review over the built surface and fixes every P0 and P1 it reports.
 - The operator decision of 2026-11-24: the terminal screen moves up to third, after activity and routines, and draws its panes over the data those two write, so it needs no backend of its own.
 - The operator decision of 2026-11-25: the screen is a new MIT Rust ratatui app that follows openhuman-tui's layout, tabs, approval banner, overlay and command palette, reads and writes through `bots ... --json`, and copies none of its GPL-3.0 code.
@@ -225,5 +225,5 @@ Every phase's build is dispatched, not hand-run. The hub owns the routing and ea
 ## RELATED DOCUMENTS
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
-- **Research source**: `../002-openbot-parity-research/research/research.md` §12-15 for the small-team model, the skip list, reuse and licensing, and the ranked build order
+- **Research source**: `../002-openbot-parity-research/001-openbot-parity-research/research/research.md` §12-15 for the small-team model, the skip list, reuse and licensing, and the ranked build order
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

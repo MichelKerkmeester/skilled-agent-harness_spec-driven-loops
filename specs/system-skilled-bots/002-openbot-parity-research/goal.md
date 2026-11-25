@@ -3,12 +3,15 @@ title: "Goal: OpenBot parity research for skilled bots"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "openbot parity research goal"
+  - "packet goal"
+  - "durable directive"
+  - "completion criteria"
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/002-openbot-parity-research"
-    last_updated_at: "2026-11-24T19:02:43Z"
+    last_updated_at: "2026-11-25T22:45:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
@@ -16,15 +19,15 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "w2-002-goals-parent"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: OpenBot parity research for skilled bots
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -32,9 +35,8 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
-<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** Find the smallest set of OpenBot parts a small team needs from skilled bots, and where to borrow each one, so a build packet can start from a ranked list.
+**Objective:** Answer what skilled bots must build for OpenBot parity, and how deeply the build plan must be specified, through one research run per child.
 
 ### Decisions
 
@@ -42,31 +44,49 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | One `/deep:research` run in expansive depth mode, four lineages of 13 iterations: two on Devin `deepseek-v4-1-flash-max`, two on Vibe `deepseek-flash`, with the stop policy set to max iterations |
-| D2 | A lineage that runs out of usage is topped up on Codex `gpt-6-luna` at `xhigh` with the `fast` tier, never on DevPass |
-| D3 | The use case is a small team. Enterprise, multi-tenant, Kubernetes, managed-upgrade and mobile parts go on a skip list with reasons |
-| D4 | A terminal experience is preferred over a desktop app when it can match OpenBot's |
-| D5 | The packet ends at a recommendation. Nothing is built here |
+| D1 | One research run per child. The parent holds no research of its own. |
+| D2 | The first run ranks the gaps. The second reviews the build plan those gaps produced. The third checks whether each build phase is planned deeply enough to build in one shot. |
+| D3 | The packet ends at a recommendation and a depth verdict. Nothing is built here. |
+| D4 | The reference repos under `specs/system-skilled-bots/context/` are read-only inputs. |
+| D5 | A child passes `validate.sh --strict` for its own folder before the next child starts. |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase.** Each is authoritative for its
+phase and binds as if written here.
+
+| Phase | Goal document |
+|-------|---------------|
+| 001-openbot-parity-research | `001-openbot-parity-research/goal.md` |
+
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
+summary of it. Name a conflict rather than resolving it silently.
+
+**Stop.** Only the criteria below decide done. An evaluator sees the objective
+string, not these files.
+<!-- /ANCHOR:binding -->
+
+---
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
-<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [x] At least 50 iteration records under `research/`, each with `target_agent: "deep-research"` and `agent_definition_loaded: true`
-- [x] `research/research.md` names all eight OpenBot bot parts with a resolving `[SOURCE: path:line]` each, plus a terminal verdict, a small-team section and a skip list
-- [ ] `validate.sh --strict` on this packet prints `RESULT: PASSED`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research --recursive --strict` prints `RESULT: PASSED` for the parent and all three children.
+- [ ] `find specs/system-skilled-bots/002-openbot-parity-research -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 3, and `rg -c '^\| [0-9]+ \|' specs/system-skilled-bots/002-openbot-parity-research/spec.md` prints 3.
+- [ ] `rg -c '^## 15\. Ranked Build Order' specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md` prints 1.
+- [ ] `test -f specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/research.md` exits 0, and that file names review rounds 2 to 6.
+- [ ] `test -f specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md` exits 0, and that file names a verdict per 003 phase.
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:log -->
 ## 4. LOG
-<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `ls logs/archive | wc -l` printed 3. WEAK: Progress is good. -->
 
 Everything below is VOLATILE. It is not part of the directive, it is not copied
 into the objective, and it is expected to grow. Progress, evidence, deviations
@@ -76,14 +96,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| T001 context link | Done | `ls specs/system-skilled-bots/context \| wc -l` printed 8 |
-| T002 executor probes | Done | Devin and Codex each printed `PONG`, exit 0. Vibe `3.1.2` with its keychain key |
-| T004 fan-out run | Done | 4 lineages x 13 iterations = 52, each lineage exit 0, no fallback needed |
-| T006 synthesis | Done | `research/research.md`, 69 of 69 citations resolve |
+| Parent spec rewritten as a lean phase parent | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research --strict` reports 2 errors, both generated metadata: `description.json` is missing and the graph metadata fingerprint is stale after the spec rewrite. Every other parent rule passes |
+| Parent goal authored | Done | `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-skilled-bots/002-openbot-parity-research --workspace "$PWD"` reports `packet_budget=ok` |
+| Three child folders present | Done | `find specs/system-skilled-bots/002-openbot-parity-research -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 3 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Level 1, not Level 2 | `recommend-level.sh` printed Level 0, and the authoring card says to use Level 1 and not raise it |
+| Two child goals absent | The binding table names only `001-openbot-parity-research/goal.md` because 002 and 003 hold no goal yet. Their rows arrive with `/create:goal specs/system-skilled-bots/002-openbot-parity-research <child> child`. |
+| Parent `description.json` missing | The parent carries `graph-metadata.json` and no `description.json`, so `validate.sh --strict` reports `FILE_EXISTS` and `GENERATED_METADATA_INTEGRITY`. `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-skilled-bots/002-openbot-parity-research --apply` re-derives the graph metadata and reports the missing description as not repairable. `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js specs/system-skilled-bots/002-openbot-parity-research specs` writes it. |
+| 001 identity drift | The moved child still carries the parent's identity in `description.json`, `graph-metadata.json` and `implementation-summary.md`, so its own validation reports `METADATA_DISK_PATH_CONSISTENCY` and `SPEC_DOC_INTEGRITY`. |
 <!-- /ANCHOR:log -->

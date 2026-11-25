@@ -53,7 +53,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 Four names keep the checks concrete. `skilled-test-value-7f3a` is the value the tests plant. `RUN` is the run folder the fixture prints. `STATE` is the identity's state root, so the store is `$STATE/secrets`. `FIXTURE` is the throwaway checkout the test builds under `scratch/`.
 
-A scan that must find nothing is stated as `exits 1`, never as `prints 0`: `rg -c` prints nothing and exits 1 when it matches nothing, so a count of zero is never observed. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/research/review-3-findings.md:20]
+A scan that must find nothing is stated as `exits 1`, never as `prints 0`: `rg -c` prints nothing and exits 1 when it matches nothing, so a count of zero is never observed. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-3-findings.md:20]
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|

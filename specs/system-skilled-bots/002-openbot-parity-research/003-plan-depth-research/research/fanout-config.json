@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-mistral-vibe","model":"deepseek-flash","label":"vibe","count":1,"iterations":10},{"kind":"cli-opencode","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","label":"opencode","count":1,"iterations":10}],"concurrency":2}
