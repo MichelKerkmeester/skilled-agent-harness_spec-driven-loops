@@ -7,7 +7,7 @@ trigger_phrases:
   - "doctor commands manual testing playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -118,7 +118,7 @@ Save each verdict into the skill's `benchmark/reports/` with `record-playbook-ru
 | 1 | Routing | `SKD-001`, `SKD-002` | Confirm integration requests route here and the owned commands kept their behavior. |
 | 2 | Overlays | `SKD-003`, `SKD-004` | Confirm the overlay check names a missing manifest and writes nothing, and that a directory entry refuses an unprotected token-named file. |
 | 3 | Overlays | `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009` | Confirm the guard refuses an unowned write and allows a generated or excluded path, that adopt and the commit check close the gap, that a stale lock is taken over, and that an off-layout source moves. |
-| 4 | Overlays | `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013` | Confirm the audit lists the drift no overlay owns and fails while its README check stays advisory, that an owned root file upstream changed after the pin fails status, that a dropped appended item leaves the live file while a hand-edited one is refused, and that a sibling overlay folder's old-layout sources stop at 20 layout lines, list whole in `offLayout` and move in one run. |
+| 4 | Overlays | `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013`, `SKD-014` | Confirm the audit lists the drift no overlay owns and fails while its README check stays advisory, that an owned root file upstream changed after the pin fails status, that a dropped appended item leaves the live file while a hand-edited one is refused, that a sibling overlay folder's old-layout sources stop at 20 layout lines, list whole in `offLayout` and move in one run, and that a removed upstream item leaves the file in its own layout. |
 | 5 | Doctor commands | the `DOC` rows in section 10 | Confirm every doctor command's plan, report, refusal and restored tree. |
 
 Waves 1 to 4 write only in temporary trees. Wave 5 follows these rules:
@@ -240,6 +240,14 @@ Verify `status` on a tree whose overlay folder sits beside it prints 20 `LAYOUT`
 Prompt: `move the sources in the overlay folder beside my tree onto the layout paths`
 
 > **Feature File:** [SKD-013](overlays/sibling-folder-relayout.md)
+
+### SKD-014 | Apply removes the upstream array items a removeItems names
+
+Verify `apply` deletes the items a `removeItems` names from an upstream array while the rest of the file keeps its bytes, a second `apply` changes nothing, and `status` reads the file as in sync and notes a name the pinned copy never held.
+
+Prompt: `my vendored utcp config still lists manuals we do not use and i do not want to carry the whole file`
+
+> **Feature File:** [SKD-014](overlays/removed-items-leave-the-file.md)
 
 ---
 
@@ -399,7 +407,7 @@ Installs or debugs Code Mode, its UTCP configuration and runtime registration. T
 
 ### 10.9 `/doctor:overlay`
 
-Checks whether a vendored Skilled tree still carries its overlays, puts them back, or re-pins the tree to a newer upstream commit, after one yes. Its scenarios are `SKD-003` to `SKD-013`, indexed once in section 8, so no `DOC` row repeats them here.
+Checks whether a vendored Skilled tree still carries its overlays, puts them back, or re-pins the tree to a newer upstream commit, after one yes. Its scenarios are `SKD-003` to `SKD-014`, indexed once in section 8, so no `DOC` row repeats them here.
 
 ### 10.10 `/doctor:runtime-mirrors`
 
@@ -501,7 +509,7 @@ The script tests cover the engine contracts. A scenario covers what the operator
 |---|---|---|
 | Advisor routing | [Skill graph metadata](../graph-metadata.json) | `SKD-001` |
 | Doctor command contracts | `.skilled/commands/doctor/scripts/tests/` | `SKD-002` |
-| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004`, `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009`, `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013` |
+| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004`, `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009`, `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013`, `SKD-014` |
 | Route manifest against the on-disk YAML assets and each router's tool list | `.skilled/commands/doctor/scripts/route-validate.sh` | Every route row |
 | CI route contract | `.skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs` | DOC-392 to DOC-394 |
 | Workflow report JSON | `.skilled/commands/doctor/scripts/tests/ci-report.test.cjs` | DOC-392 |

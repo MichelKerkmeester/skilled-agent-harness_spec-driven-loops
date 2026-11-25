@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "sk-code compiled routing"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -27,7 +27,7 @@ By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells 
 
 ### Tri-State Flag
 
-`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Each side owns its own per-hub default-on cohort: `sk-code` (like all seven eligible hubs) is now a member of the resolver's cohort, so `sk-code`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort is tracked separately in `system-skill-advisor/runtime/lib/compiled-routing-flag.ts` and is unaffected by this cutover; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
+`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Both sides read one per-hub default-on cohort: `sk-code` (like all seven eligible hubs) is now a member of the resolver's cohort, so `sk-code`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort, read in `system-skill-advisor/runtime/lib/compiled-routing-flag.ts`, comes from the same hub registry as the resolver's, `.skilled/bin/lib/compiled-routing/hub-registry.json`; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
 
 ### Outcome Handling
 

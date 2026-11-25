@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9ade1f8dc22b7874f484b12a7c09530d8cd1066f2d5e1f5bb13a7beeffc7cb9b",
+  "manifestHash": "5b53b0ea2fe4370bf1c7fb0319350e825a1b556226e77f90d290b636ce74a1a5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -65458,6 +65458,18 @@
     "json conversation placeholder block": [
       "json conversation placeholder block"
     ],
+    "json entry remove items": [
+      "json entry remove items"
+    ],
+    "json entry remove items implementation summary": [
+      "json entry remove items implementation summary"
+    ],
+    "json entry remove items plan": [
+      "json entry remove items plan"
+    ],
+    "json entry remove items tasks": [
+      "json entry remove items tasks"
+    ],
     "json entry restore item identity check": [
       "json entry restore item identity check"
     ],
@@ -82409,6 +82421,9 @@
     "overlay relayout migration step consumers": [
       "overlay relayout migration step consumers"
     ],
+    "overlay remove array item": [
+      "overlay remove array item"
+    ],
     "overlay repin": [
       "overlay repin"
     ],
@@ -85887,6 +85902,9 @@
     ],
     "phase 18 host trigger index and repin generated": [
       "phase 18 host trigger index and repin generated"
+    ],
+    "phase 18 json entry remove items": [
+      "phase 18 json entry remove items"
     ],
     "phase 18 ollama lane off and daemon liveness": [
       "phase 18 ollama lane off and daemon liveness"
@@ -99253,6 +99271,9 @@
     ],
     "removed template reality sweep tasks": [
       "removed template reality sweep tasks"
+    ],
+    "removeitems overlay operation": [
+      "removeItems overlay operation"
     ],
     "rename a vault note": [
       "rename a vault note"

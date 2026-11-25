@@ -222,6 +222,11 @@ function jsonEntryRemedy(entry, ctx, message) {
     return '\n  an anchor has to name exactly one item, or the insert has no single place to go' +
       `\n  Next: edit the match in ${source} so it names one item of ${entry.destination}, then ${status}`;
   }
+  if (/^removeItems and \w+ at .* both name /.test(message)) {
+    return '\n  an item an entry set both removes and writes, adds or anchors on has no one state the file can hold' +
+      `\n  Next: point the before anchor at an item the entry set keeps, or drop the item from one of the two ` +
+      `operations in ${source}, then ${status}`;
+  }
   if (/^an item list without an identity key cannot hold objects/.test(message)) {
     return '\n  without an identityKey the engine cannot tell one object item from another' +
       `\n  Next: add an "identityKey" to that operation in ${source}, then ${status}`;
@@ -1391,13 +1396,15 @@ function isKeyRecordFor(record, operation) {
  * @param {object[]} edits Collects the text edits.
  * @param {{canReplaceExisting: boolean, recordedItems?: object[],
  *   onListed?: function, recordedSets?: object[], onSet?: function,
- *   recordedKeys?: object[], onKey?: function, onWarning?: function}} options
+ *   recordedKeys?: object[], onKey?: function, onWarning?: function,
+ *   readUpstreamText?: () => (string|null)}} options
  *   Whether a differing entry may be rewritten, the items this overlay already
  *   added to the array, where each listed item is reported so a later pass can
  *   recognise it as the engine's own work, the sets this overlay applied last
  *   time, where each `set` or inserted object key is reported so a later pass
- *   can take it back, the same two for the keys a `setKeyOnItem` wrote, and
- *   where a warning about an anchor that matched nothing is reported.
+ *   can take it back, the same two for the keys a `setKeyOnItem` wrote, where a
+ *   warning about an anchor or a removed name that matched nothing is reported,
+ *   and how the destination reads at the pin, which a `removeItems` name is judged by.
  * @returns {string} 'changed' or 'unchanged'.
  */
 function planOperation(operation, root, text, style, edits, options) {
@@ -1647,8 +1654,122 @@ function planOperation(operation, root, text, style, edits, options) {
     return 'changed';
   }
 
-  throw new Error(`unknown operation "${operation.op}"\n  the operations are set, setKeyOnItem, insertItems, appendItems ` +
-    'and insertObjectKeys');
+  if (operation.op === 'removeItems') return planRemoveItems(operation, root, text, edits, options);
+
+  throw new Error(`unknown operation "${operation.op}"\n  the operations are set, setKeyOnItem, insertItems, appendItems, ` +
+    'insertObjectKeys and removeItems');
+}
+
+/**
+ * The indexes of the items a `removeItems` names, matched by the identity key's
+ * value, or by the value itself when the operation names no identity key.
+ * @param {object} arrayNode Parsed array node.
+ * @param {*} wanted The identity the operation lists.
+ * @param {string} [identityKey] Key naming an object item.
+ * @returns {number[]} Every index that carries the identity.
+ */
+function removalMatches(arrayNode, wanted, identityKey) {
+  const found = [];
+  arrayNode.items.forEach((node, index) => {
+    if (identityKey) {
+      // Only an object has keys to carry the identity. The live array is refused
+      // above when it holds anything else, but the pinned copy is read as found.
+      if (node.type !== 'object') return;
+      const member = findMember(node, identityKey);
+      if (member && isPrimitive(member.value.value) && member.value.value === wanted) found.push(index);
+    } else if (node.type !== 'object' && node.type !== 'array' && node.value === wanted) {
+      found.push(index);
+    }
+  });
+  return found;
+}
+
+/**
+ * Delete each item a `removeItems` names from the live array, one at a time so
+ * every removal is cut from a fresh parse and two neighbours never claim the
+ * same comma. An array left empty is written `[]`, the way JSON.stringify
+ * writes one, rather than keeping the blank lines its items stood on. A name
+ * the array no longer holds is the operation already done when the pinned copy
+ * holds it, and a note when the pin lacks it too, because then nothing upstream
+ * ever shipped matches the name. Without a readable pinned copy the absence is
+ * not judged at all, since the live file alone cannot tell the two apart.
+ * @param {object} operation One `removeItems` operation.
+ * @param {object} root Root node of the parsed document.
+ * @param {string} text Document text the nodes point into.
+ * @param {object[]} edits Collects the text edit.
+ * @param {{onWarning?: function, readUpstreamText?: () => (string|null)}} options
+ *   Where a name the pin lacks is reported, and how the destination reads at the pin.
+ * @returns {string} 'changed' or 'unchanged'.
+ */
+function planRemoveItems(operation, root, text, edits, options) {
+  const label = pathLabel(operation.path);
+  const identityKey = operation.identityKey;
+  const arrayNode = nodeAtPath(root, operation.path);
+  if (arrayNode.type !== 'array') {
+    const article = /^[aeiou]/.test(arrayNode.type) ? 'an' : 'a';
+    throw new Error(`removeItems at ${label} needs an array there, and the file holds ${article} ${arrayNode.type}`);
+  }
+  if (!Array.isArray(operation.items) || operation.items.length === 0) {
+    throw new Error(`removeItems at ${label} lists no items; name each item to remove in its items`);
+  }
+  for (const item of operation.items) {
+    if (!isPrimitive(item)) {
+      throw new Error(`removeItems at ${label} lists ${describe(item)}; its items are the ` +
+        `${identityKey ? identityKey + ' values' : 'values'} to remove, each a string, number, boolean or null`);
+    }
+  }
+  if (identityKey) {
+    // An item without keys cannot carry the identity, so an array that holds one
+    // is not the keyed list the operation describes.
+    const keyless = arrayNode.items.find((node) => node.type !== 'object');
+    if (keyless) {
+      throw new Error(`removeItems at ${label} matches by ${identityKey}, but the array holds a ${keyless.type} item, ` +
+        'which has no keys');
+    }
+  }
+  // The pinned copy is read only once a name is missing from the live file, and
+  // at most once per operation. A copy that cannot be read or parsed leaves the
+  // absence unjudged; one whose path holds no array lacks every name.
+  let pinnedArray;
+  const pinLacks = (item) => {
+    if (pinnedArray === undefined) {
+      const upstreamText = options.readUpstreamText ? options.readUpstreamText() : null;
+      try {
+        pinnedArray = upstreamText === null ? null
+          : recordedArrayAt(parseJsonSource(upstreamText), operation.path) || { items: [] };
+      } catch (error) {
+        pinnedArray = null;
+      }
+    }
+    return pinnedArray !== null && removalMatches(pinnedArray, item, identityKey).length === 0;
+  };
+  let output = text;
+  for (const item of operation.items) {
+    const live = recordedArrayAt(parseJsonSource(output), operation.path);
+    const found = removalMatches(live, item, identityKey);
+    // Two items with one identity leave no single item to remove, the same way
+    // a duplicated anchor leaves an insert no single place to go.
+    if (found.length > 1) {
+      throw new Error(`removeItems of ${describe(item)} at ${label} matches ${found.length} items; ` +
+        'it removes only an item the array holds once');
+    }
+    if (found.length === 0) {
+      if (options.onWarning && pinLacks(item)) {
+        options.onWarning(`removeItems of ${describe(item)} at ${label} finds no such item in the pinned copy, ` +
+          "so it removes nothing; drop it from the operation's items");
+      }
+      continue;
+    }
+    const edit = live.items.length === 1
+      ? { start: live.start, end: live.end, text: '[]' }
+      : removalEdit(live.items, found[0]);
+    output = applyEdits(output, [edit]);
+  }
+  if (output === text) return 'unchanged';
+  // The removals were cut one by one above, so they reach the caller as one
+  // replacement of the whole document.
+  edits.push({ start: 0, end: text.length, text: output });
+  return 'changed';
 }
 
 function applyEdits(text, edits) {
@@ -1658,6 +1779,49 @@ function applyEdits(text, edits) {
     output = output.slice(0, edit.start) + edit.text + output.slice(edit.end);
   }
   return output;
+}
+
+/**
+ * Refuse an entry set in which one operation adds or writes into an item and a
+ * `removeItems` removes it. Run in order, the pair would add the item and take
+ * it out again on every apply, so no order of the two says what the file should
+ * hold; a `setKeyOnItem` on a removed item would find no item on the next apply,
+ * and an insert anchored `before` a removed item would have no place to go.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @returns {void}
+ */
+function assertNoAddedItemRemoved(operations) {
+  for (const removal of operations) {
+    if (!removal || removal.op !== 'removeItems' || !Array.isArray(removal.items)) continue;
+    const identityKey = removal.identityKey === undefined ? null : removal.identityKey;
+    for (const writer of operations) {
+      if (!writer || writer.op !== 'setKeyOnItem' || writer.identityKey !== identityKey || identityKey === null) continue;
+      if (!Array.isArray(writer.path) || !Array.isArray(removal.path) || !samePath(writer.path, removal.path)) continue;
+      const identity = writer.match && typeof writer.match === 'object' ? writer.match[identityKey] : undefined;
+      if (!removal.items.includes(identity)) continue;
+      throw new Error(`removeItems and setKeyOnItem at ${pathLabel(removal.path)} both name ${describe(identity)}; ` +
+        'one entry set cannot write a key on an item and remove it, so drop it from one of them');
+    }
+    for (const adder of operations) {
+      if (!adder || (adder.op !== 'insertItems' && adder.op !== 'appendItems') || !Array.isArray(adder.items)) continue;
+      if ((adder.identityKey === undefined ? null : adder.identityKey) !== identityKey) continue;
+      if (!Array.isArray(adder.path) || !Array.isArray(removal.path) || !samePath(adder.path, removal.path)) continue;
+      const identityOf = (item) => (identityKey === null ? item
+        : item && typeof item === 'object' ? item[identityKey] : undefined);
+      // An anchor on a removed item names a place the same apply takes away, so
+      // the insert lands at the end on one pass and the position is never held.
+      const anchor = identityKey !== null && adder.before && typeof adder.before === 'object'
+        ? adder.before[identityKey] : undefined;
+      if (anchor !== undefined && removal.items.includes(anchor)) {
+        throw new Error(`removeItems and ${adder.op} at ${pathLabel(removal.path)} both name ${describe(anchor)}; ` +
+          'one entry set cannot anchor an item before one it removes, so anchor on another item');
+      }
+      const shared = removal.items.find((name) => adder.items.some((item) => identityOf(item) === name));
+      if (shared === undefined) continue;
+      throw new Error(`removeItems and ${adder.op} at ${pathLabel(removal.path)} both name ${describe(shared)}; ` +
+        'one entry set cannot add an item and remove it, so drop it from one of them');
+    }
+  }
 }
 
 /**
@@ -1958,7 +2122,8 @@ function indexesMatchPin(liveDocument, pinnedDocument, path, operations, recorde
         locations.push([operation.key]);
       } else if (operation.op === 'insertObjectKeys' && inside(operation.path)) {
         for (const entry of operation.entries || []) locations.push([...relative(operation.path), entry.key]);
-      } else if ((operation.op === 'insertItems' || operation.op === 'appendItems') && isInsidePath(operation.path, itemPath)) {
+      } else if ((operation.op === 'insertItems' || operation.op === 'appendItems' || operation.op === 'removeItems') &&
+        isInsidePath(operation.path, itemPath)) {
         locations.push(relative(operation.path));
       }
     }
@@ -1975,9 +2140,12 @@ function indexesMatchPin(liveDocument, pinnedDocument, path, operations, recorde
     if (!liveIsArray || !pinnedIsArray) return false;
     if (live.items.length !== pinned.items.length) return false;
     if (recordedItems.some((item) => item && samePath(item.path, container))) return false;
-    const addsItems = operations.some((operation) =>
-      (operation.op === 'insertItems' || operation.op === 'appendItems') && samePath(operation.path, container));
-    if (addsItems) return false;
+    // An item added or removed moves every index after it, so a position read
+    // against the pin no longer names the same item.
+    const movesItems = operations.some((operation) =>
+      (operation.op === 'insertItems' || operation.op === 'appendItems' || operation.op === 'removeItems') &&
+      samePath(operation.path, container));
+    if (movesItems) return false;
     const maskedItems = (index) => {
       const written = writtenInside([...container, index]);
       return [
@@ -2226,6 +2394,7 @@ function restoreDroppedKeys(text, operations, recordedKeys, readUpstreamText = (
 function applyJsonOperations(text, spec, options) {
   const declared = spec.style || { indent: 2, primitiveArrays: 'inline' };
   const style = { ...declared, ...documentLayout(text, declared) };
+  assertNoAddedItemRemoved(spec.operations);
   const operations = withLaterKeysMerged(spec.operations);
   // A dropped entry is retracted before the entry set runs, so every operation
   // addresses the array the set describes rather than the one it left behind.

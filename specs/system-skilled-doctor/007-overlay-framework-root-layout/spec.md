@@ -132,6 +132,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 15 | 015-alignment-command-overlay-targets/ | Runs in Skilled on the same branch. Gives `/local-doc-alignment` an `overlay-layout` topic and `/local-skilled-alignment` an `overlays` target, both found through `.skilled-overlays.json`. Both commands are gitignored private files, so the change landed by copy into the Skilled checkout | Complete |
 | 16 | 016-upstream-code-alignment/ | Runs in Skilled on the same branch. Fixes, at source, the sk-code Skilled-mode flaws that Barter's overlaid code files share with the Skilled files they copy | Complete |
 | 17 | 017-overlay-alignment-follow-ups/ | Runs in Skilled on `worktrees/500-overlay-alignment-follow-ups`. Fixes the two flaws the alignment work found in code Barter shares with Skilled: the router-sync guard reading a folder README as an orphan, and the engine shipping Python bytecode caches from a directory entry. Ends with a review of phases 014 to 017 that approves with no P0 or P1. Merged on local main as `b4e147b3622` | Complete |
+| 18 | 018-json-entry-remove-items/ | Runs in Skilled on `worktrees/544-upstream-overlay-mechanisms`. Adds a `removeItems` json-entry operation, so Barter can delete four manuals from `.utcp_config.json` without carrying the whole file. Removals are byte-stable and idempotent, a missing name is judged against the pin, and conflicting operations are refused. The `@review` verdict is APPROVED with no P0 or P1. Committed as `85e9f28d788` and `7ce755013bb`, not yet merged | Complete |
 
 ### Phase Transition Rules
 
@@ -165,6 +166,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 014-overlay-folder-readmes | 015-alignment-command-overlay-targets | The README contract is written, so the `overlay-layout` topic knows which READMEs an overlay folder carries | `test -f 014-overlay-folder-readmes/scratch/overlay-readme-contract.md` exits 0 |
 | 015-alignment-command-overlay-targets | 016-upstream-code-alignment | Phases 014 and 015 pass their gates on the branch, so phase 016's suite runs start from a green tree | the engine suite and `route-validate.sh` exit 0 on the branch |
 | 016-upstream-code-alignment | 017-overlay-alignment-follow-ups | Phases 014 to 016 are merged on local Skilled main, so the follow-ups and the review start from their code | `git merge-base --is-ancestor 7153a45a8b9 main` exits 0 in Skilled |
+| 017-overlay-alignment-follow-ups | 018-json-entry-remove-items | Phase 017's fixes are merged on Skilled main, so the new operation lands on an engine that already skips Python caches | `git merge-base --is-ancestor b4e147b3622 worktrees/544-upstream-overlay-mechanisms` exits 0 in Skilled |
 <!-- /ANCHOR:phase-map -->
 
 ---

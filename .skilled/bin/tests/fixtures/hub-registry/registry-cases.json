@@ -1,0 +1,153 @@
+{
+  "valid": {
+    "registry": {
+      "schemaVersion": "V1",
+      "hubs": [
+        {
+          "id": "sk-code",
+          "rolloutChild": "009-parent-hub-rollout/001-sk-code",
+          "defaultOn": true
+        },
+        {
+          "id": "sk-git",
+          "rolloutChild": "009-parent-hub-rollout/011-sk-git",
+          "defaultOn": false
+        }
+      ]
+    },
+    "eligible": [
+      "sk-code",
+      "sk-git"
+    ],
+    "defaultOn": [
+      "sk-code"
+    ]
+  },
+  "invalid": [
+    {
+      "name": "text that is not JSON",
+      "text": "{ not json",
+      "error": "is not valid JSON"
+    },
+    {
+      "name": "a top level that is not an object",
+      "registry": [],
+      "error": "must be a JSON object"
+    },
+    {
+      "name": "an unknown schema version",
+      "registry": {
+        "schemaVersion": "V2",
+        "hubs": []
+      },
+      "error": "schemaVersion must be \"V1\""
+    },
+    {
+      "name": "hubs that is not an array",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": {}
+      },
+      "error": "hubs must be an array"
+    },
+    {
+      "name": "a hub entry that is not an object",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": [
+          "sk-code"
+        ]
+      },
+      "error": "hub entry 0 must be an object"
+    },
+    {
+      "name": "a hub id that is not canonical hyphen-case",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": [
+          {
+            "id": "Sk_Code",
+            "rolloutChild": "009-parent-hub-rollout/001-Sk_Code",
+            "defaultOn": true
+          }
+        ]
+      },
+      "error": "is not canonical hyphen-case"
+    },
+    {
+      "name": "a duplicate hub id",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": [
+          {
+            "id": "sk-code",
+            "rolloutChild": "009-parent-hub-rollout/001-sk-code",
+            "defaultOn": true
+          },
+          {
+            "id": "sk-code",
+            "rolloutChild": "009-parent-hub-rollout/002-sk-code",
+            "defaultOn": true
+          }
+        ]
+      },
+      "error": "duplicate hub id \"sk-code\""
+    },
+    {
+      "name": "a rolloutChild outside the rollout folder",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": [
+          {
+            "id": "sk-code",
+            "rolloutChild": "013-live-activation/001-sk-code",
+            "defaultOn": true
+          }
+        ]
+      },
+      "error": "rolloutChild for \"sk-code\" must be 009-parent-hub-rollout/<NNN>-sk-code"
+    },
+    {
+      "name": "a rolloutChild that climbs out with ..",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": [
+          {
+            "id": "sk-code",
+            "rolloutChild": "009-parent-hub-rollout/../001-sk-code",
+            "defaultOn": true
+          }
+        ]
+      },
+      "error": "rolloutChild for \"sk-code\" must be 009-parent-hub-rollout/<NNN>-sk-code"
+    },
+    {
+      "name": "a rolloutChild named for another hub",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": [
+          {
+            "id": "sk-code",
+            "rolloutChild": "009-parent-hub-rollout/001-sk-doc",
+            "defaultOn": true
+          }
+        ]
+      },
+      "error": "rolloutChild for \"sk-code\" must be 009-parent-hub-rollout/<NNN>-sk-code"
+    },
+    {
+      "name": "a defaultOn that is not a boolean",
+      "registry": {
+        "schemaVersion": "V1",
+        "hubs": [
+          {
+            "id": "sk-code",
+            "rolloutChild": "009-parent-hub-rollout/001-sk-code",
+            "defaultOn": "yes"
+          }
+        ]
+      },
+      "error": "defaultOn for \"sk-code\" must be a boolean"
+    }
+  ]
+}
