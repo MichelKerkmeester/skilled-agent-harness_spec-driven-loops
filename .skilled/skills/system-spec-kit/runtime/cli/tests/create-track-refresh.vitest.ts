@@ -272,6 +272,18 @@ describe('create.sh --track refreshes a declared sub-track and its track', () =>
     expect(fs.readFileSync(trackMetadata, 'utf8')).toBe(trackMetadataBefore);
   });
 
+  it('names a missing sub-track folder and still prints the declaration remedy', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const missing = path.join(specs, 'demo', 'sub', 'missing');
+
+    const result = create(['--track', 'demo/sub/missing', '--short-name', 'missing-probe', 'Missing probe']);
+
+    expect(result.status, result.stderr).toBe(1);
+    expect(result.stderr).toContain('demo/sub/missing: no such folder');
+    expect(result.stderr).toContain('Declare its description.json');
+    expect(fs.existsSync(missing)).toBe(false);
+  });
+
   it('refreshes a flat track when --track has a trailing slash', () => {
     const { specs } = buildSubtrackTree(workspace);
     const trackMetadata = path.join(specs, 'demo', 'graph-metadata.json');

@@ -8,7 +8,7 @@ import { dirname, join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { pathToFileURL } from 'node:url';
 import { ensureStateDir, loadState, updateState, type PersistedHookState } from '../hooks/claude/hook-state.js';
-import { autoRecordDecisions, decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
+import { autoRecordDecisions, composeStopMessage, decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
 
 function loadPersistedState(sessionId: string): PersistedHookState | null {
   const result = loadState(sessionId);
@@ -76,6 +76,28 @@ describe('Claude session-stop spec folder detection', () => {
     expect(detectSpecFolder(transcriptPath)).toBe(
       'specs/system-spec-kit/024-compact-code-graph/029-review-remediation',
     );
+  });
+
+  it('stops a detected path at a JSON newline escape instead of falling back to the parent packet', () => {
+    tempDir = mkdtempSync(join(tmpdir(), 'speckit-stop-hook-'));
+    const transcriptPath = join(tempDir, 'transcript.jsonl');
+    writeFileSync(
+      transcriptPath,
+      JSON.stringify({
+        type: 'assistant',
+        message: {
+          content: [
+            {
+              type: 'text',
+              text: 'see specs/system-speckit/007-parent/001-child\nnext line',
+            },
+          ],
+        },
+      }),
+      'utf-8',
+    );
+
+    expect(detectSpecFolder(transcriptPath)).toBe('specs/system-speckit/007-parent/001-child');
   });
 
   it('retargets to a new unambiguous spec folder when the current one is absent from the transcript tail', () => {
@@ -807,6 +829,17 @@ describe('Claude session-stop auto-record of queued answers', () => {
     '../../../../hooks/decision-capture/lib/capture-core.mjs',
   );
   const coreTargetRelative = join('.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
+  // The save lock lives in the CLI build, which the hook loads from the project's
+  // own `.skilled` tree. That build is a bundle with relative and package imports,
+  // so it cannot be copied into a temp project; a re-export keeps its own
+  // resolution intact while the hook still finds it at the expected path.
+  const realLockModulePath = resolve(
+    import.meta.dirname,
+    '../cli/dist/continuity/generate-context.js',
+  );
+  const lockModuleRelative = join(
+    '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist', 'continuity', 'generate-context.js',
+  );
   const packet = 'specs/demo-track/001-demo-packet';
   let projectDir: string | null = null;
 
@@ -839,6 +872,13 @@ describe('Claude session-stop auto-record of queued answers', () => {
     const coreTarget = join(root, coreTargetRelative);
     mkdirSync(dirname(coreTarget), { recursive: true });
     fs.copyFileSync(realCorePath, coreTarget);
+    const lockTarget = join(root, lockModuleRelative);
+    mkdirSync(dirname(lockTarget), { recursive: true });
+    writeFileSync(
+      lockTarget,
+      `export { acquireCanonicalSaveLock, releaseCanonicalSaveLock } from '${pathToFileURL(realLockModulePath).href}';\n`,
+      'utf-8',
+    );
     for (const folder of packets) {
       mkdirSync(join(root, folder), { recursive: true });
       writeFileSync(
@@ -898,6 +938,40 @@ describe('Claude session-stop auto-record of queued answers', () => {
     const core = await loadCore();
     expect(core.pendingRecords(projectDir, 'bound')).toHaveLength(0);
     expect(await decisionCaptureNudge(projectDir, 'bound')).toBeNull();
+  });
+
+  it('reports the rows it wrote when the consumed log cannot be appended', async () => {
+    projectDir = await makeProject([packet], 'unconsumed', ['Alpha', 'Beta']);
+    const transcriptPath = writeTranscript(projectDir, [packet]);
+    const core = await loadCore();
+    mkdirSync(join(core.queueDir(projectDir), 'consumed.jsonl'), { recursive: true });
+
+    const result = await autoRecordDecisions(projectDir, 'unconsumed', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({
+      status: 'failed',
+      count: 2,
+      folder: packet,
+      reason: 'consumed_not_recorded',
+    });
+    const text = recordText(projectDir, packet) ?? '';
+    expect(text).toContain('<!-- source: claude:unconsumed:toolu_demo:0 -->');
+    expect(text).toContain('Recorded automatically: Beta');
+  });
+
+  it('leaves the answers pending while a save holds the packet lock', async () => {
+    projectDir = await makeProject([packet], 'locked', ['Alpha']);
+    const transcriptPath = writeTranscript(projectDir, [packet]);
+    const lockDir = join(projectDir, packet, '.canonical-save.lock');
+    mkdirSync(lockDir, { recursive: true });
+    writeFileSync(join(lockDir, 'owner'), `${process.pid}\n${new Date().toISOString()}\n`, 'utf-8');
+
+    const result = await autoRecordDecisions(projectDir, 'locked', transcriptPath, { env: {} });
+
+    expect(result).toMatchObject({ status: 'skipped', reason: 'save_in_progress' });
+    expect(recordText(projectDir, packet)).toBeNull();
+    const core = await loadCore();
+    expect(core.pendingRecords(projectDir, 'locked')).toHaveLength(1);
   });
 
   it('writes nothing and leaves the nudge when the transcript names two packets', async () => {
@@ -981,5 +1055,20 @@ describe('Claude session-stop auto-record of queued answers', () => {
     const core = await loadCore();
     expect(core.pendingRecords(projectDir, 'broken')).toHaveLength(2);
     expect(await decisionCaptureNudge(projectDir, 'broken')).toMatch(/^2 operator answer\(s\)/);
+  });
+});
+
+describe('Claude session-stop outcome message', () => {
+  it('tells the operator what the automatic record wrote, and stays quiet when nothing happened', () => {
+    const message = composeStopMessage(
+      { status: 'recorded', count: 2, folder: 'specs/demo-track/001-demo-packet' },
+      null,
+    );
+
+    expect(message).toContain(
+      'Recorded 2 answer(s) automatically in specs/demo-track/001-demo-packet/decision-record.md.',
+    );
+    expect(message).toContain('Add a reason to each "Recorded automatically" row.');
+    expect(composeStopMessage({ status: 'skipped', count: 0, reason: 'nothing_pending' }, null)).toBeNull();
   });
 });

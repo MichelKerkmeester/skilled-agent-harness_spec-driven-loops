@@ -261,7 +261,7 @@ describe('packet tools with two sub-track levels', () => {
 
     const undeclared = run('bash', [create, '--skip-branch', '--track', 'mcp/tooling/missing', '--short-name', 'missing-probe', 'Missing probe']);
     expect(undeclared.status).toBe(1);
-    expect(undeclared.stderr).toContain('mcp/tooling/missing: undeclared folder ignored');
+    expect(undeclared.stderr).toContain('mcp/tooling/missing: no such folder');
     expect(fs.existsSync(path.join(specs, 'mcp', 'tooling', 'missing'))).toBe(false);
   });
 
