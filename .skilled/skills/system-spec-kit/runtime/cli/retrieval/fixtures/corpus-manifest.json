@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8a5244e994efa1fc9041438ba0096ceedb37686c2781215835c0b1e41a66cec7",
+  "corpusHash": "8dd29f37934f13befd76fa96b276d45227de0d124f25786f5b5129f795cc285b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29612,
+  "includedPathCount": 29617,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8604,6 +8604,7 @@
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/dropped-item-is-removed.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/relayout-moves-sources.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/removed-items-leave-the-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/sibling-folder-relayout.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/stale-lock-takeover.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/stale-root-file-fails-status.md",
@@ -20986,6 +20987,10 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/018-json-entry-remove-items/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/018-json-entry-remove-items/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/018-json-entry-remove-items/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/018-json-entry-remove-items/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
@@ -29644,7 +29649,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9ade1f8dc22b7874f484b12a7c09530d8cd1066f2d5e1f5bb13a7beeffc7cb9b",
+  "manifestHash": "5b53b0ea2fe4370bf1c7fb0319350e825a1b556226e77f90d290b636ce74a1a5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -39136,6 +39141,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/018-json-entry-remove-items/scratch",
       "reason": "excluded directory"
     },
     {
