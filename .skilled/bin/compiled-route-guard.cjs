@@ -42,6 +42,7 @@ const path = require('path');
 
 const layout = require('./lib/compiled-route-layout.cjs');
 const { checkCanonicalManifestFreshness } = require('./lib/compiled-route-manifest.cjs');
+const { loadHubRegistry } = require('./lib/compiled-routing/014-runtime-engine/lib/hub-registry.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -52,16 +53,9 @@ const RUNTIME_ROOT = path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-ro
 const AUTHORED_ROOT = path.join(REPO_ROOT, layout.AUTHORED_PROGRAM_DIR);
 const SKILLS_ROOT = path.join(REPO_ROOT, '.skilled', 'skills');
 
-const HUBS = [
-  'cli-classifier',
-  'cli-external-orchestration',
-  'mcp-browser-use',
-  'mcp-tooling',
-  'sk-code',
-  'sk-design',
-  'sk-doc',
-  'system-deep-loop',
-];
+// Every hub the promoted runtime registers, sorted so the report reads the same
+// whatever order the registry lists them in.
+const HUBS = loadHubRegistry().map((hub) => hub.id).sort();
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
