@@ -1,0 +1,552 @@
+{
+  "sessionId": "fanout-codex-1795593886068-na5znl",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-commits-in-the-window-change-user-visible-behavior-with-no-entry-in-the-no",
+      "inboxId": null,
+      "text": "Which commits in the window change user-visible behavior with no entry in the notes? Check each notes section in turn: Deep Loop, Fan-Out Runs, Dispatch and Safety, Skill Advisor, Installs and Overlays, OpenCode, Browser Use, Skills and Worktrees, How It Was Checked, Upgrade Notes.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-of-the-21-recent-packets-shipped-work-the-notes-do-not-cover-or-describe-t",
+      "inboxId": null,
+      "text": "Which of the 21 recent packets shipped work the notes do not cover, or describe the shipped work differently from the notes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-concrete-claims-in-the-notes-flags-paths-counts-test-results-removed-items",
+      "inboxId": null,
+      "text": "Which concrete claims in the notes (flags, paths, counts, test results, removed items) no longer match HEAD, including work that landed after a section was written?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-which-changes-in-the-window-introduced-a-bug-a-dead-reference-or-a-broken-cross-",
+      "inboxId": null,
+      "text": "Which changes in the window introduced a bug, a dead reference or a broken cross-link?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-which-commits-in-the-window-change-user-visible-behavior-with-no-entry-in-the-no",
+      "inboxId": null,
+      "text": "Which commits in the window change user-visible behavior with no entry in the notes? Check each notes section in turn: Deep Loop, Fan-Out Runs, Dispatch and Safety, Skill Advisor, Installs and Overlays, OpenCode, Browser Use, Skills and Worktrees, How It Was Checked, Upgrade Notes.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-of-the-21-recent-packets-shipped-work-the-notes-do-not-cover-or-describe-t",
+      "inboxId": null,
+      "text": "Which of the 21 recent packets shipped work the notes do not cover, or describe the shipped work differently from the notes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-concrete-claims-in-the-notes-flags-paths-counts-test-results-removed-items",
+      "inboxId": null,
+      "text": "Which concrete claims in the notes (flags, paths, counts, test results, removed items) no longer match HEAD, including work that landed after a section was written?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-which-changes-in-the-window-introduced-a-bug-a-dead-reference-or-a-broken-cross-",
+      "inboxId": null,
+      "text": "Which changes in the window introduced a bug, a dead reference or a broken cross-link?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "Which commits in the window change user-visible behavior with no entry in the notes? Check each notes section in turn: Deep Loop, Fan-Out Runs, Dispatch and Safety, Skill Advisor, Installs and Overlays, OpenCode, Browser Use, Skills and Worktrees, How It Was Checked, Upgrade Notes.",
+    "Which of the 21 recent packets shipped work the notes do not cover, or describe the shipped work differently from the notes?",
+    "Which concrete claims in the notes (flags, paths, counts, test results, removed items) no longer match HEAD, including work that landed after a section was written?",
+    "Which changes in the window introduced a bug, a dead reference or a broken cross-link?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-missing-p2-expansive-research-fan-out-lineages-now-form-a-hard-frontier-drained-",
+      "text": "**MISSING | P2** Expansive research fan-out lineages now form a hard `frontier_drained` stop when their assigned frontier has at least one answered node and none open or active. The release notes mention this stop for review only, so they omit the research behavior. Commit `b3fea67595ede5d47ce0d9ef57629bd46aedda8f` changed the workflow and convergence algorithm. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1132] [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130] The related release-note entry is line 179. [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:179]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.2.0.0.md:179, 210-214`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1132`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:390-397`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1599-1620`",
+        "Commits `b3fea67595ede5d47ce0d9ef57629bd46aedda8f` and `1b7fe3e1a26ff0b808b5d78bb17bb032caa46ead`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt`",
+        "The lineage config, projection, strategy and checked steering file"
+      ]
+    },
+    {
+      "id": "finding-1-2-missing-p2-single-executor-cli-iterations-persist-masked-child-stdout-at-iterati",
+      "text": "**MISSING | P2** Single-executor CLI iterations persist masked child stdout at `iterations/iteration-NNN.out`. Commit `1b7fe3e1a26ff0b808b5d78bb17bb032caa46ead` introduced this per-iteration artifact after long provider streams exceeded the old in-memory buffer. The current dispatcher creates and masks the file. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:390] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:396] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1599] The weak-pass notes list tool and source metrics but do not name the stdout artifact. [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:210]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.2.0.0.md:179, 210-214`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1132`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:390-397`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1599-1620`",
+        "Commits `b3fea67595ede5d47ce0d9ef57629bd46aedda8f` and `1b7fe3e1a26ff0b808b5d78bb17bb032caa46ead`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt`",
+        "The lineage config, projection, strategy and checked steering file"
+      ]
+    },
+    {
+      "id": "finding-2-1-missing-p2-when-the-first-runnable-path-match-cannot-be-read-fanout-run-now-reco",
+      "text": "**MISSING | P2** When the first runnable PATH match cannot be read, fanout-run now records the executable version as unknown instead of hashing a later binary. This keeps finished-lineage executor identity from being inferred from a different executable. Commit 15fe7306bca6e92332b827d129cdc799b74efeae changed this behavior. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3506-3517] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3676] The related finished-lineage mismatch note is line 294, but it does not mention the unknown-version safeguard. [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:294]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/changelog/skilled/v4.2.0.0.md:261-357",
+        "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3484-3523, 3676",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:520-532",
+        "Commits 15fe7306bca6e92332b827d129cdc799b74efeae, 0fde65e7b6989905abfc4498319d33058e62aad6, and 978b74e8df739105e59e8be611a19b8b79bb89db"
+      ]
+    },
+    {
+      "id": "finding-4-1-drift-p2-the-notes-say-a-turned-down-loop-gets-no-run-including-when-a-refusal-f",
+      "text": "**DRIFT | P2** The notes say a turned-down loop gets no run, including when a refusal follows the command, but the Python fallback now retains a typed deep-loop command row as an ask even when surrounding text refuses it. Commit 73d98332fff08fc272162e870897ffc568d5325f changed the fallback to filter only on whether the command was typed; the implementation summary confirms this exception. This applies when the native advisor is unavailable. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4602-4625] [SOURCE: specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:298] The contradicted release-note claim is line 506. [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:506]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/changelog/skilled/v4.2.0.0.md:489-513",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4602-4626",
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+        "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md:294-298",
+        "Commit 73d98332fff08fc272162e870897ffc568d5325f"
+      ]
+    },
+    {
+      "id": "finding-5-2-bug-p2-the-new-reserved-path-guard-normalizes-root-skilled-but-compares-it-case-",
+      "text": "**BUG — P2:** The new reserved-path guard normalizes `root/skilled` but compares it case-sensitively, so `root/Skilled/...` passes `isUnderRootSkilled`; on a case-insensitive filesystem it aliases the reserved `root/skilled` path and can collide with framework content. The source-root feature introduced the check in commit `5913aebc267b50c4cdb1ccc0ddf6441ae3e53639`; current guard and caller are `.skilled/commands/doctor/scripts/overlay-engine.cjs:4160-4164,4533-4535`. The phase summary independently records this case-variant limitation at `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/implementation-summary.md:126`; related note is `.skilled/changelog/skilled/v4.2.0.0.md:546` [SOURCE: `.skilled/commands/doctor/scripts/overlay-engine.cjs:4160-4164,4533-4535`; `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/implementation-summary.md:126`; `.skilled/changelog/skilled/v4.2.0.0.md:546`; `5913aebc267b50c4cdb1ccc0ddf6441ae3e53639`].",
+      "addedAtIteration": 5,
+      "sources": [
+        "`steer.md` (checked before iteration and before classifying findings; absent)",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-config.json`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-state.jsonl`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-strategy.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt`",
+        "`.skilled/changelog/skilled/v4.2.0.0.md:533-599`",
+        "`.skilled/commands/doctor/scripts/overlay-engine.cjs:1220-1251,1426-1633,2226-2228,4160-4164,4533-4535`",
+        "`specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md:64-80`",
+        "`specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/implementation-summary.md:126`",
+        "Commits `512be46971ab0b86fe3ca45850ff9f488d3aa3bb` and `5913aebc267b50c4cdb1ccc0ddf6441ae3e53639`"
+      ]
+    },
+    {
+      "id": "finding-5-1-missing-p2-the-notes-cover-apply-changing-an-entry-between-file-folder-and-layou",
+      "text": "**MISSING — P2:** The notes cover apply changing an entry between file, folder, and layout-link shapes, but omit the Nov 23 JSON-entry writer change that preserves the destination document's indentation depth, detected indent unit, and prevailing CRLF line endings when it serializes values. The change is user-visible in the resulting JSON. Commit `512be46971ab0b86fe3ca45850ff9f488d3aa3bb`; current layout detection and JSON operation application are at `.skilled/commands/doctor/scripts/overlay-engine.cjs:1220-1251,1426-1633,2226-2228`; related notes are `.skilled/changelog/skilled/v4.2.0.0.md:594-599` [SOURCE: `.skilled/commands/doctor/scripts/overlay-engine.cjs:1220-1251,1426-1633,2226-2228`; `.skilled/changelog/skilled/v4.2.0.0.md:594-599`; `512be46971ab0b86fe3ca45850ff9f488d3aa3bb`].",
+      "addedAtIteration": 5,
+      "sources": [
+        "`steer.md` (checked before iteration and before classifying findings; absent)",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-config.json`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-state.jsonl`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-strategy.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt`",
+        "`.skilled/changelog/skilled/v4.2.0.0.md:533-599`",
+        "`.skilled/commands/doctor/scripts/overlay-engine.cjs:1220-1251,1426-1633,2226-2228,4160-4164,4533-4535`",
+        "`specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md:64-80`",
+        "`specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/implementation-summary.md:126`",
+        "Commits `512be46971ab0b86fe3ca45850ff9f488d3aa3bb` and `5913aebc267b50c4cdb1ccc0ddf6441ae3e53639`"
+      ]
+    },
+    {
+      "id": "finding-6-1-missing-p2-session-handover-now-resolves-a-goal-packet-that-exists-only-in-a-lin",
+      "text": "**MISSING — P2:** Session handover now resolves a goal packet that exists only in a linked worktree, records its `goal_root`, carries it to a Claude receiver from that worktree, and leaves it out for other runtimes with a warning to avoid binding a stale copy. This user-visible cross-runtime behavior is absent from the release notes' OpenCode and Skills and Worktrees sections. Commit `12fe3abc66b48bab326a08b08accbc3c2c00f8ef`; current resolver/recorder/receiver paths are `.skilled/hooks/session-handover/lib/relaunch-core.cjs:584-591`, `.skilled/hooks/session-handover/bin/session-handover.cjs:419-421,897`, and `.skilled/bin/skilled-loop:483-487,1460-1477`; related release-note sections are `.skilled/changelog/skilled/v4.2.0.0.md:635-681,727-748` [SOURCE: `.skilled/hooks/session-handover/lib/relaunch-core.cjs:584-591`; `.skilled/hooks/session-handover/bin/session-handover.cjs:419-421,897`; `.skilled/bin/skilled-loop:483-487,1460-1477`; `.skilled/changelog/skilled/v4.2.0.0.md:635-681,727-748`; `12fe3abc66b48bab326a08b08accbc3c2c00f8ef`].",
+      "addedAtIteration": 6,
+      "sources": [
+        "`steer.md` (checked before iteration; absent)",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-config.json`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-state.jsonl`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-strategy.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt`",
+        "`.skilled/changelog/skilled/v4.2.0.0.md:635-681,727-748`",
+        "`.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:28,301-329`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:119-125,184-208`",
+        "`.skilled/hooks/cli-dispatch/lib/opencode-version.mjs:17-23,223-251`",
+        "`.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:49-53,1101-1124`",
+        "`.opencode/plugins/lib/v2-bridge.js:327`",
+        "`.skilled/bin/skilled-loop-shell.sh:127-138,189-192`",
+        "`.github/workflows/opencode-v2-battery.yml:79,123-144`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:584-591`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:419-421,897`",
+        "`.skilled/bin/skilled-loop:483-487,1460-1477`",
+        "Commit `12fe3abc66b48bab326a08b08accbc3c2c00f8ef`"
+      ]
+    },
+    {
+      "id": "finding-7-2-missing-p2-a-prompt-that-mentions-403-forbidden-now-routes-to-chrome-devtools-in",
+      "text": "**MISSING — P2: A prompt that mentions “403 Forbidden” now routes to Chrome DevTools instead of being rejected, but this correction is not described.** Commit `a9a8a878daddcc7f0030ee81dc58c3dd81e82ca5` moved rejection to caller constraints; the current compiled router checks only the constraints at `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:113-120`. Its canary expects “debug the 403 Forbidden network requests in chrome devtools” to route to Chrome DevTools at `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:263-274`. The Browser Use notes cover general hub routing at `.skilled/changelog/skilled/v4.2.0.0.md:697-700` but omit the change from prompt-text rejection to constraint-only rejection.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.2.0.0.md:686-724`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:680-691`",
+        "`.skilled/skills/mcp-browser-use/SKILL.md:60`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:113-120`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:263-274`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/implementation-summary.md:48-77`",
+        "Commits `1a350b1512bdabbf861d63fe5c1ca2bf343c8522` and `a9a8a878daddcc7f0030ee81dc58c3dd81e82ca5`",
+        "State, config and strategy read before this iteration; `steer.md` checked and absent."
+      ]
+    },
+    {
+      "id": "finding-7-1-missing-p2-own-chrome-attach-requests-now-pass-the-advisor-s-read-only-floor-but",
+      "text": "**MISSING — P2: Own-Chrome attach requests now pass the advisor's read-only floor, but this exception is not described.** Commit `1a350b1512bdabbf861d63fe5c1ca2bf343c8522` added matching for attach/connect requests to the user's own, signed-in, or logged-in Chrome and Chrome DevTools Live. Current advisor logic lifts those requests at `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:680-691`; the browser hub skill describes own-Chrome attachment at `.skilled/skills/mcp-browser-use/SKILL.md:60`. The release note only says the advisor sends browser requests to the hub at `.skilled/changelog/skilled/v4.2.0.0.md:697`, without documenting this read-only-floor exception.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.2.0.0.md:686-724`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:680-691`",
+        "`.skilled/skills/mcp-browser-use/SKILL.md:60`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs:113-120`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json:263-274`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/018-triage-gen4-p2-findings/implementation-summary.md:48-77`",
+        "Commits `1a350b1512bdabbf861d63fe5c1ca2bf343c8522` and `a9a8a878daddcc7f0030ee81dc58c3dd81e82ca5`",
+        "State, config and strategy read before this iteration; `steer.md` checked and absent."
+      ]
+    },
+    {
+      "id": "finding-8-1-missing-p2-new-worktree-provisioning-builds-the-advisor-skill-graph-database-but",
+      "text": "**MISSING — P2: New worktree provisioning builds the advisor skill-graph database, but the Skilled release notes only describe dependency installation.** Commit `957f47570f381cfc42c2d90d151771dfe695647e` added a post-install/build scan when the gitignored database is missing; provisioning now fails if the scan fails or leaves no database, and it does not rescan an existing database. Current behavior is at `.skilled/skills/sk-git/scripts/worktree-naming.sh:796-818`; the sk-git skill and v1.11.15.0 entry describe the behavior at `.skilled/skills/sk-git/SKILL.md:157` and `.skilled/skills/sk-git/changelog/v1.11.15.0.md:15-24`. The recent packet confirms it and explicitly leaves a changelog entry for a release pass at `specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/implementation-summary.md:59-72,109-114`. Skilled's section instead describes only the nearest-lockfile dependency fix at `.skilled/changelog/skilled/v4.2.0.0.md:742-748`.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.2.0.0.md:727-750`",
+        "`.skilled/skills/sk-git/scripts/worktree-naming.sh:796-818`",
+        "`.skilled/skills/sk-git/SKILL.md:155-160`",
+        "`.skilled/skills/sk-git/changelog/v1.11.15.0.md:13-37`",
+        "`specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies/implementation-summary.md:56-70`",
+        "`specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database/implementation-summary.md:59-72,109-114`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt`",
+        "Commit `957f47570f381cfc42c2d90d151771dfe695647e`",
+        "State, config and strategy read before this iteration; `steer.md` checked and absent."
+      ]
+    },
+    {
+      "id": "finding-9-2-bug-p2-the-worktree-naming-script-lost-its-executable-bit-commit-957f47570f381cf",
+      "text": "**BUG — P2: The worktree naming script lost its executable bit.** Commit `957f47570f381cfc42c2d90d151771dfe695647e` changed its Git mode from 100755 to 100644; `git ls-files -s` shows 100644 and `test -x` is false. The script has a Bash shebang at `.skilled/skills/sk-git/scripts/worktree-naming.sh:1`, while the scripts README calls this the executable core at `.skilled/skills/sk-git/scripts/README.md:17` and the skill directs allocation through that script path at `.skilled/skills/sk-git/SKILL.md:146`. A direct execution of the script path now fails; the explicit `bash .../worktree-naming.sh` examples remain usable. The related upgrade instruction is `.skilled/changelog/skilled/v4.2.0.0.md:915`. I could not confirm how often users execute the shorthand directly, so the impact is limited to direct invocation.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.2.0.0.md:752-926`",
+        "`.skilled/skills/mcp-browser-use/mcp-bladebro/mcp-servers/bladebro-cli/README.md:24-58`",
+        "`.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:147-173`",
+        "`.skilled/skills/sk-git/scripts/worktree-naming.sh:1` and Git mode 100644 (`test -x` false)",
+        "`.skilled/skills/sk-git/scripts/README.md:17,73-78`",
+        "`.skilled/skills/sk-git/SKILL.md:146,155-160`",
+        "`.skilled/skills/sk-git/changelog/v1.11.15.0.md:15-24`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh:6`",
+        "Commits `c7f38f295d282f34efc292a7bc611c2019fb489e`, `ec3ed74ad01edad7311aadfe7a117d4010b10919`, and `957f47570f381cfc42c2d90d151771dfe695647e`",
+        "State, config and strategy read before this iteration; `steer.md` checked before iteration and again before resolving the install-command contradiction; absent."
+      ]
+    },
+    {
+      "id": "finding-9-1-drift-p2-the-bladebro-upgrade-command-bypasses-the-current-verified-install-proc",
+      "text": "**DRIFT — P2: The Bladebro upgrade command bypasses the current verified install procedure.** Release-note line 906 directs users to run `npm install -g bladebro@4.8.2` (introduced by commit `c7f38f295d282f34efc292a7bc611c2019fb489e`). The current Bladebro install guide instead specifies `npm install -g --ignore-scripts bladebro@4.8.2` and a digest check before the installed binary first runs at `.skilled/skills/mcp-browser-use/mcp-bladebro/mcp-servers/bladebro-cli/README.md:24-27,50-58`; its wrapper enforces lifecycle scripts off and checks the launcher and native binary digests at `.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:147-173`. Commit `ec3ed74ad01edad7311aadfe7a117d4010b10919` added this installer posture. The release-note command omits both script suppression and verification, so it contradicts the current install contract. This confirms a lower-assurance command is published; it does not establish that the pinned package contains a malicious payload.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.2.0.0.md:752-926`",
+        "`.skilled/skills/mcp-browser-use/mcp-bladebro/mcp-servers/bladebro-cli/README.md:24-58`",
+        "`.skilled/skills/mcp-browser-use/mcp-bladebro/scripts/install.sh:147-173`",
+        "`.skilled/skills/sk-git/scripts/worktree-naming.sh:1` and Git mode 100644 (`test -x` false)",
+        "`.skilled/skills/sk-git/scripts/README.md:17,73-78`",
+        "`.skilled/skills/sk-git/SKILL.md:146,155-160`",
+        "`.skilled/skills/sk-git/changelog/v1.11.15.0.md:15-24`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh:6`",
+        "Commits `c7f38f295d282f34efc292a7bc611c2019fb489e`, `ec3ed74ad01edad7311aadfe7a117d4010b10919`, and `957f47570f381cfc42c2d90d151771dfe695647e`",
+        "State, config and strategy read before this iteration; `steer.md` checked before iteration and again before resolving the install-command contradiction; absent."
+      ]
+    },
+    {
+      "id": "finding-10-3-missing-p2-advisor-lexical-matching-now-needs-a-distinctive-prompt-word-to-lift-",
+      "text": "**MISSING | P2 — Advisor lexical matching now needs a distinctive prompt word to lift a weak direct score to the task-intent confidence floor.** Commit `527fc5f9d434dac875527da753f52af49acdf638` adds a shared-skill vocabulary threshold; the current predicate limits anchor words to those listed by at most 25% of skills. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:108-118] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:197] The release notes list the lexical lane and its weight, but omit this anchor rule and the packet's remaining known false lifts. [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:435-438] [SOURCE: specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/implementation-summary.md:49-75]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`steer.md` checked before iteration 10; absent.",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-config.json`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-state.jsonl`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-strategy.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:195-217`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs:62-63`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:214-235,253-255`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:108-118`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:197`",
+        "`.skilled/changelog/skilled/v4.2.0.0.md:435-438,823`",
+        "`specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/implementation-summary.md:49-75`",
+        "Local Markdown link scan over `.skilled/changelog/skilled/v4.2.0.0.md` (0 missing targets)",
+        "Commits `d57563b175a34e8e4e4f9e3f697adb1922cfb001`, `c06a73d348ec85d3603fe7420dca1a56f2f3b6b1`, and `527fc5f9d434dac875527da753f52af49acdf638`"
+      ]
+    },
+    {
+      "id": "finding-10-1-missing-p2-claude-stop-now-records-queued-tool-answers-automatically-when-the-tr",
+      "text": "**MISSING | P2 — Claude Stop now records queued tool answers automatically when the transcript tail identifies exactly one packet.** Commit `d57563b175a34e8e4e4f9e3f697adb1922cfb001` adds the one-packet check, writes the queued answers to `decision-record.md`, and marks their keys consumed. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:195-217] The aggregate note names `system-spec-kit` among components with release entries but does not describe this Stop behavior. [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:823]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`steer.md` checked before iteration 10; absent.",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-config.json`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-state.jsonl`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-strategy.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:195-217`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs:62-63`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:214-235,253-255`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:108-118`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:197`",
+        "`.skilled/changelog/skilled/v4.2.0.0.md:435-438,823`",
+        "`specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/implementation-summary.md:49-75`",
+        "Local Markdown link scan over `.skilled/changelog/skilled/v4.2.0.0.md` (0 missing targets)",
+        "Commits `d57563b175a34e8e4e4f9e3f697adb1922cfb001`, `c06a73d348ec85d3603fe7420dca1a56f2f3b6b1`, and `527fc5f9d434dac875527da753f52af49acdf638`"
+      ]
+    },
+    {
+      "id": "finding-10-2-missing-p2-the-manual-testing-playbook-gained-a-run-recorder-conversation-runner",
+      "text": "**MISSING | P2 — The manual-testing playbook gained a run recorder, conversation-runner handoff, results-marker validation, and a `--coverage` report.** Commit `c06a73d348ec85d3603fe7420dca1a56f2f3b6b1` adds the recorder and results contract; the shipped command accepts either CSV results or runner output. [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs:62-63] The skill documents the recorder and coverage behavior. [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:214-235,253-255] The aggregate note names the mode at line 823, but does not explain these user-visible changes. [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:823]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`steer.md` checked before iteration 10; absent.",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-config.json`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-state.jsonl`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/deep-research-strategy.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:195-217`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs:62-63`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:214-235,253-255`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:108-118`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:197`",
+        "`.skilled/changelog/skilled/v4.2.0.0.md:435-438,823`",
+        "`specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing/implementation-summary.md:49-75`",
+        "Local Markdown link scan over `.skilled/changelog/skilled/v4.2.0.0.md` (0 missing targets)",
+        "Commits `d57563b175a34e8e4e4f9e3f697adb1922cfb001`, `c06a73d348ec85d3603fe7420dca1a56f2f3b6b1`, and `527fc5f9d434dac875527da753f52af49acdf638`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8d7f59f29ce7",
+      "text": "None. The initial path mismatch was corrected with the commit's complete relevant file set.",
+      "contentHash": "8d7f59f29ce7",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-7c063b5079bd",
+      "text": "The first path-scoped commit read looked only under the mode packet. The relevant change was in the workflow and runtime files, which the full commit diff confirmed.",
+      "contentHash": "7c063b5079bd",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bfece4d3b3cc",
+      "text": "The release-note statement that a review stops on `frontier_drained` is true for review. It is not a contradiction; the omitted research fan-out case is classified MISSING.",
+      "contentHash": "bfece4d3b3cc",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c0f80d73eed9",
+      "text": "Commit 0fde65e7b6989905abfc4498319d33058e62aad6 refines timestamp and retry evidence used by the flagged-pass feature already named in the notes at line 281; no separate contradiction was confirmed.",
+      "contentHash": "c0f80d73eed9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8fd99120c3ac",
+      "text": "None. The fan-out commit scan produced a current executable-identity behavior change that can be tied to the existing finished-lineage note.",
+      "contentHash": "8fd99120c3ac",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ab9dfa3f0836",
+      "text": "The direct salvage-event JSONL append was excluded: blame attributes it to a June 2026 change, before this release window.",
+      "contentHash": "ab9dfa3f0836",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e80c048007e8",
+      "text": "The release-note claim that a finished lineage from another topic or executor refuses the whole run is consistent with current code; the narrower unreadable-executable identity safeguard is omitted, not contradictory.",
+      "contentHash": "e80c048007e8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-17af79af9288",
+      "text": "No current BUG was confirmed in the added graph-scan path during this read-only pass.",
+      "contentHash": "17af79af9288",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-2a85f3d3083d",
+      "text": "The existing note's claim that Skilled ships 14 skills still matches the 14 top-level skill manifests.",
+      "contentHash": "2a85f3d3083d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-b119e8b72259",
+      "text": "The nearest-lockfile dependency walk described at release-note lines 744-748 matches the current provisioning code; no separate DRIFT was confirmed.",
+      "contentHash": "b119e8b72259",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-34887c807d83",
+      "text": "The documented 14 top-level skill count and the worktree dependency-walk behavior match current files. The suite totals in How It Was Checked are recorded as historical run results; this read-only pass did not establish a contradiction with those past runs.",
+      "contentHash": "34887c807d83",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-a83a1ba2e3d7",
+      "text": "The package-lockfile counts still match the notes: 111 advisor dependencies and 313 system-spec-kit dependencies, excluding each lockfile's root package.",
+      "contentHash": "a83a1ba2e3d7",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-16ed484f009d",
+      "text": "The upgraded script paths for residue cleanup, OpenCode setup, Bladebro installation, and native-module rebuild exist at their current documented owners.",
+      "contentHash": "16ed484f009d",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-30a7f28dadbe",
+      "text": "A full claim that all 1,084 commits and every feature in the 21 recent packets were compared line by line is not supported by the bounded section and packet checks completed here.",
+      "contentHash": "30a7f28dadbe",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-d9f92fea98d5",
+      "text": "No evidence from this pass changes the classifications of findings recorded in iterations 1-9.",
+      "contentHash": "d9f92fea98d5",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-c3026e55fd79",
+      "text": "The static scan found no missing local Markdown files or anchors in the release-note document. This scan does not verify arbitrary command or filesystem paths.",
+      "contentHash": "c3026e55fd79",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 4,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 15,
+    "sourceFindings": 15,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 104,
+      "other": 68
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/lineages/codex/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 10,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-11-25T09:11:21.312Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 10,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-11-25T09:11:21.312Z"
+    }
+  ],
+  "strategyWarnings": []
+}

@@ -1,0 +1,23 @@
+{
+  "executors": [
+    {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "label": "codex",
+      "count": 1,
+      "iterations": 10,
+      "timeoutSeconds": 1800
+    },
+    {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "label": "devin",
+      "count": 1,
+      "iterations": 10,
+      "timeoutSeconds": 1800
+    }
+  ],
+  "concurrency": 2
+}
