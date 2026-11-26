@@ -289,10 +289,10 @@ Order: 001 and 002 side by side, then 003, then 004 once 003's first wave lands,
 ## 7. OPEN QUESTIONS
 
 - **Does a chat see the bot's reply?** REQ-014 sends only `deliveryMessage()` output, which holds the outcome and a record pointer. The pre-expansion out-of-scope list promised the reply. This split follows REQ-014. Reversal condition: the operator accepts sending the run's final answer text through the same secret-literal check, and child 001 adds a reply row to the catalog.
-- **Are the derived secret names acceptable, or should `contracts/records.md` section 11 gain keys?** The suffix rule works inside the frozen contract. Fixed addresses for the Signal daemon and the WhatsApp listener follow from the same gap.
+- **Are the derived secret names acceptable, or should `contracts/records.md` section 11 gain keys?** Settled by `contracts/records.md` section 11, "Derived secret names" and "Fixed addresses": the suffix names of `002-adapter-and-record-contracts/design/records.md` section 1.1 stand, `channels/config.json` gains no key, a `whatsapp` entry's `secret` is at most 48 characters and the Signal daemon and the WhatsApp listener keep fixed loopback addresses.
 - **Does signal-cli keep events for a client that was disconnected?** UNKNOWN. `002-adapter-and-record-contracts/design/inbound-sequence.md` section 4 names the manual run that would confirm it.
-- **Should the terminal transport answer on the `terminal` surface?** It answers on `channel` today, as the contract says for every transport, so an absent roster refuses it. The contract owner decides.
-- **Which refusal name covers a credential the provider rejects at start?** `contracts/refusals.md` has none. Children 005 and 006 print the send-error kind and exit 1 until the contract owner names one.
+- **Should the terminal transport answer on the `terminal` surface?** Settled by `contracts/answer-seam.md` section 1, step 1 "Surface", and its decisions table: the terminal transport answers on the surface `channel` with the OS user as the actor, so an absent roster refuses it `channel-roster-missing` while `bots answer` refuses nothing. Changing it is a change to that row and to child 005 REQ-015 together.
+- **Which refusal name covers a credential the provider rejects at start?** Settled by `contracts/refusals.md` section 3.10, the rejected credential row: no refusal name. `channel listen` prints `bots: <channel> rejected the credential`, releases the lease and exits 1, which is what children 005 and 006 specify. A later name would be a new row there and a new exit here.
 <!-- /ANCHOR:questions -->
 
 ---

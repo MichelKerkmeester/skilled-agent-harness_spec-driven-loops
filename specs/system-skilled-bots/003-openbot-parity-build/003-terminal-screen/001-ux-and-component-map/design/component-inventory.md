@@ -58,9 +58,9 @@ In the `stale` state the pane's own title carries `stale <n>m` from the failed r
 
 A failed read never blanks a pane that has rows. The rows from the last successful read stay until a later read succeeds, because a screen that empties itself on a transient failure tells the operator their bots vanished. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:40]
 
-The first stderr line goes to the status row and the rest is dropped, so a stack trace cannot push the footer off the screen. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208]
+The first stderr line goes to the status row and the rest is dropped, so a stack trace cannot push the footer off the screen. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-021]
 
-The inbox's rows carry one more state, `answered`, and it is a row state rather than a pane state. The pane is in `rows`, and the row that was just answered draws its outcome word, `approved`, `denied` or `answered`, until the next successful inbox read. The row is not counted as open, so the banner count drops at once. The screen issues no read of its own after an answer, because the inbox read filters answered items out and an immediate read would drop the row before the word could be read. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:253]
+The inbox's rows carry one more state, `answered`, and it is a row state rather than a pane state. The pane is in `rows`, and the row that was just answered draws its outcome word, `approved`, `denied` or `answered`, until the next successful inbox read. The row is not counted as open, so the banner count drops at once. The screen issues no read of its own after an answer, because the inbox read filters answered items out and an immediate read would drop the row before the word could be read. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md, section "3. THE ANSWER-FLOW SEQUENCE"]
 
 ---
 
@@ -74,7 +74,7 @@ The inbox's rows carry one more state, `answered`, and it is a row state rather 
 | A key with no binding does nothing | Never a default deny, and never a default approve |
 | Every bound key is drawn in the frame that binds it | A key the operator cannot see is a key they cannot use |
 | The overlay captures the item id when it opens | A refresh that closes the item under the overlay is detected, and the overlay says so instead of writing, except while sending, where the answer's own result decides |
-| A grant is drawn only when the item carries it | Packet phase 006 lands `grants` and the ladder, so a screen that required them would not build before it. The overlay and the detail column draw a grant's kind and rung when the item carries them and draw nothing where they are absent, so one frame builds now and lights up after 006. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
+| A grant is drawn only when the item carries it | Packet phase 006 lands `grants` and the ladder, so a screen that required them would not build before it. The overlay and the detail column draw a grant's kind and rung when the item carries them and draw nothing where they are absent, so one frame builds now and lights up after 006. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
 
 The sanitize rule is the one with a reference implementation to follow: replace each control character, line breaks included, with `?`, and keep ordinary Unicode. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:4-6]
 
@@ -122,9 +122,9 @@ The overlay panel is capped at 100 columns and centred, so a wide terminal does 
 | The overlay panel's cap and centring | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs:2-12] |
 | The minimum-size screen | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:26-35] |
 | Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
-| The activity row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152] |
-| The inbox item shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] |
-| The routine row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] |
-| The grant the overlay shows when the item carries one | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
-| The chat verb the placeholder names | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152] |
-| The refusal line in the status row | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208] |
+| The activity row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] |
+| The inbox item shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] |
+| The routine row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] |
+| The grant the overlay shows when the item carries one | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
+| The chat verb the placeholder names | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-001] |
+| The refusal line in the status row | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-021] |

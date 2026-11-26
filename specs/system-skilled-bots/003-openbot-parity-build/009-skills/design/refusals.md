@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The refusal catalogue for phase 9
 
-`contracts/refusals.md` section 3.8 holds this phase's rows and the packet's exit rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:145-162] This note adds the three things that section leaves to the phase: the exact message each refusal prints, the trigger that raises it and the state it leaves on disk. The exit codes and the failure classes are the contract's and are not restated as a choice.
+`contracts/refusals.md` section 3.8 holds this phase's rows and the packet's exit rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.8 Phase 009, skills"] This note adds the three things that section leaves to the phase: the exact message each refusal prints, the trigger that raises it and the state it leaves on disk. The exit codes and the failure classes are the contract's and are not restated as a choice.
 
 Paths are relative to the repository root. `$R` is `.skilled/skills/system-skilled-bots/runtime` and `$F` is `.skilled/skills/system-skilled-bots/scripts/fixtures`.
 
@@ -20,7 +20,7 @@ Paths are relative to the repository root. `$R` is `.skilled/skills/system-skill
 
 ## 1. THE CATALOGUE
 
-`Registry` says whether the name enters the runner's typed `REFUSAL_CAUSES` map. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:42-50] A dash in `Class` means the layer carries no failure class.
+`Registry` says whether the name enters the runner's typed `REFUSAL_CAUSES` map. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "2. LAYERS AND THE EXIT RULE"] A dash in `Class` means the layer carries no failure class.
 
 | Name | Layer | Class | Exit | Registry | Message | Trigger | On disk |
 |------|-------|-------|------|----------|---------|---------|---------|
@@ -43,8 +43,8 @@ Three names are the contract's and this phase only reaches them:
 
 | Name | Owner | How this phase reaches it |
 |------|-------|---------------------------|
-| `review-answer-invalid` | 005 | the claim refuses an answer that is not `confirm`, `reject` or a NO, with the item still open [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:102] |
-| `prompt-over-budget` | 005 | the composed prompt is over 32,000 characters and the skills block is the block that crossed the line, so the detail reads `prompt-over-budget: skills at <n> of 32000 characters` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:222] |
+| `review-answer-invalid` | 005 | the claim refuses an answer that is not `confirm`, `reject` or a NO, with the item still open [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.4 Phase 005, memory", row `review-answer-invalid`] |
+| `prompt-over-budget` | 005 | the composed prompt is over 32,000 characters and the skills block is the block that crossed the line, so the detail reads `prompt-over-budget: skills at <n> of 32000 characters` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.3 The overflow rule"] |
 | `checker-failed` | today | `bots install` runs the checker, so a bad `skills` list refuses the install with the checker's own `FAIL:` line as the detail [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:569-572] |
 
 ---
@@ -63,7 +63,7 @@ Three messages exit 2 and print the usage text after the message, the way `bots:
 
 ## 3. WHAT THE VERB PRINTS
 
-`contracts/cli-json.md` fixes the rule: a non-zero exit prints nothing on stdout and its reason is the first stderr line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:20]
+`contracts/cli-json.md` fixes the rule: a non-zero exit prints nothing on stdout and its reason is the first stderr line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "1. THE RULE"]
 
 | Outcome | stdout | stderr | Exit |
 |---------|--------|--------|------|
@@ -71,7 +71,7 @@ Three messages exit 2 and print the usage text after the message, the way `bots:
 | A refusal | nothing | `bots: <reason>` or `bots: <reason>: <detail>` | 4 |
 | A usage error | nothing | `bots: <message>` then the usage text | 2 |
 
-`bots skill propose` takes no `--json`, so this phase adds no row to `contracts/cli-json.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:40]
+`bots skill propose` takes no `--json`, so this phase adds no row to `contracts/cli-json.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "2. ONE ROW PER VERB"]
 
 ---
 
@@ -94,7 +94,7 @@ The three names are added to `HARD_INVARIANTS`, so a fixture that breaks one can
 
 | Decision | Why |
 |----------|-----|
-| The checker names are plural and the run names singular | The checker audits the list and the runner names the one skill, and both spellings are already in the contract. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:164] |
+| The checker names are plural and the run names singular | The checker audits the list and the runner names the one skill, and both spellings are already in the contract. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.8 Phase 009, skills"] |
 | `run-record-missing` is the verb's own name, not the reader's `record-missing` | The reader's name is about a file and the verb's is about the command's argument. The verb maps `record-missing` to `run-record-missing` and passes every other reader reason through unchanged, so no second vocabulary is invented |
 | An invalid `--name` is a usage error with no reason name | The command line is wrong before any file is read, which is the usage layer, and 001's `bots: --as takes a name` is the same shape |
 | `proposal-secret` names the key and never the value | A refusal that printed the value would put the secret in the terminal and in the shell history |

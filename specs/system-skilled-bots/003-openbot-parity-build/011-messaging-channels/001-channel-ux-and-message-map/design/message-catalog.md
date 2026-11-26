@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 No message a person reads in a chat was designed. Three research lineages agree. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:205] This file is every one of them, as literal text. `mockups.md` draws how each surface shows them, `reply-grammar.md` fixes what a person may send back and `golden/` holds one text file per row, which `tests/channel-transports.vitest.ts` compares byte for byte after removing the file's one final newline.
 
-The samples use the screen's data set: identity `skilled-scratch/hello`, operator `ada`, member `grace`, bots `digest`, `hello` and `nightly-report`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:30] The two items are the contract's: `20261125T210504Z-3f9d2b11` asks `Which channel?` with options `email` and `chat`, and `20261125T211204Z-7c1e9a40` asks `Ship the release?` with no options. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/channel-approvals.json:1-16] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/needs-you-item.final.json:1-8]
+The samples use the screen's data set: identity `skilled-scratch/hello`, operator `ada`, member `grace`, bots `digest`, `hello` and `nightly-report`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Durable records of the OpenBot parity build"] The two items are the contract's: `20261125T210504Z-3f9d2b11` asks `Which channel?` with options `email` and `chat`, and `20261125T211204Z-7c1e9a40` asks `Ship the release?` with no options. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/channel-approvals.json:1-16] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/needs-you-item.final.json:1-8]
 
 ---
 
@@ -30,7 +30,7 @@ The samples use the screen's data set: identity `skilled-scratch/hello`, operato
 
 **The run's reply text is not sent.** A run a chat message starts ends with M05 or M06, the outcome and a record pointer. `deliveryMessage()` carries no reply text, and the pre-expansion out-of-scope list promised that "the reply is sent when the run ends" (pre-expansion `spec.md` line 132 at commit `de601a1b444`). The two cannot both hold. This catalog follows REQ-014, the security rule and the parent spec records the conflict for the operator. The terminal transport is the exception: it goes through the 010 chat path, which appends the redacted reply to the conversation file. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md:265]
 
-**The fatigue notice never reaches a chat.** Phase 002's fatigue item is answered by `bots enable` on the host and has no parked run, so no approval index entry and no channel message is ever written for it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:167]
+**The fatigue notice never reaches a chat.** Phase 002's fatigue item is answered by `bots enable` on the host and has no parked run, so no approval index entry and no channel message is ever written for it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006]
 
 ---
 

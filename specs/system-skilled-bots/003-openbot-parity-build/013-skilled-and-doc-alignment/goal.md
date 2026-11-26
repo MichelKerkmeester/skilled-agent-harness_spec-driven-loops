@@ -47,8 +47,8 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | The `system-skilled-bots` topic lands before the doc run, because `/local-doc-alignment` shows its no-topic display and stops when no topic matches, so no doc run can happen until the entry exists [SOURCE: .skilled/commands/local-doc-alignment.md:41]. |
-| D2 | The fix pass is a hand edit, not `--fix literal`, because the literal applier reaches only the exact literal findings the critic did not overturn, and 36 of the 40 findings the last full run reported were `judgment` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:119]. |
-| D3 | A finding whose code root is wrong is recorded and handed to 014, never fixed by editing the doc to agree with the runtime [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:213]. |
+| D2 | The fix pass is a hand edit, not `--fix literal`, because the literal applier reaches only the exact literal findings the critic did not overturn, and 36 of the 40 findings the last full run reported were `judgment` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md, section "Out of Scope"]. |
+| D3 | A finding whose code root is wrong is recorded and handed to 014, never fixed by editing the doc to agree with the runtime [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md, section "10. OPEN QUESTIONS"]. |
 | D4 | The clean criterion is read from the last run of each command only, and a `new` bucket above `0` reopens the fix pass [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:216]. |
 | D5 | No new surface in `surface-map.yaml` and no new alignment command, because S1 to S16 already fire for a `.skilled` scope [SOURCE: .skilled/commands/assets/local-skilled-alignment/surface-map.yaml:103]. |
 | D6 | The `specs/` tree stays out of the doc run's scope, so this packet's own docs are checked by `validate.sh` and not by the doc run [SOURCE: .skilled/commands/local-doc-alignment.md:82]. |

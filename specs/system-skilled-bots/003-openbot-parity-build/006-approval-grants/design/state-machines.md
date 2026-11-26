@@ -15,13 +15,13 @@ version: 1.0.0.0
 
 Six diagrams. The first two are state machines, the next two are sequences and the last two are decision flows. Each one closes a question the phase documents leave open: what a grant's states are, what the lock does to the item's states, which write happens in which order, and which of the six kinds wins when a question names more than one.
 
-The step numbers in the answer sequence are `contracts/answer-seam.md` section 1's and are not renumbered here. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:23] The item's own transitions are `contracts/answer-seam.md` section 2's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:61]
+The step numbers in the answer sequence are `contracts/answer-seam.md` section 1's and are not renumbered here. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"] The item's own transitions are `contracts/answer-seam.md` section 2's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "2. ITEM STATE TRANSITIONS"]
 
 ---
 
 ## 1. THE GRANT LIFECYCLE
 
-Four states and no fifth. A grant is never a standing allow in this packet, so there is no `allowed-always` state and no transition to one. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:83]
+Four states and no fifth. A grant is never a standing allow in this packet, so there is no `allowed-always` state and no transition to one. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "3. GRANT LIFECYCLE"]
 
 ```mermaid
 stateDiagram-v2
@@ -106,7 +106,7 @@ stateDiagram-v2
 
 Rules the diagram fixes:
 
-- The lock is taken at step 6 and released at step 18, so it spans the read at step 7, the judgement at step 8 and the write at step 11. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:23]
+- The lock is taken at step 6 and released at step 18, so it spans the read at step 7, the judgement at step 8 and the write at step 11. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
 - A stale lock never blocks the next answer. The reclaim in `design/records.md` section 3.2 is the only edge out of `Stale`.
 - The item's three states are derived on every read and never stored, so a lock cannot leave an item in a fourth state.
 - `item-busy` is the only refusal the lock itself raises, and a retry with the same text and scope is safe because the answer is idempotent for one text and one scope.
@@ -297,7 +297,7 @@ Rules the flow fixes:
 
 | Decision | Why |
 |----------|-----|
-| The grant's lifecycle is four states with no `Revoked` | The packet records no standing allow, so there is nothing to revoke [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:83] |
+| The grant's lifecycle is four states with no `Revoked` | The packet records no standing allow, so there is nothing to revoke [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "3. GRANT LIFECYCLE"] |
 | The lock is drawn as its own machine rather than as a fourth item state | The item's state is derived and the lock is stored, so one machine cannot hold both without storing a derived value |
 | The answer sequence draws the lock before the read | Two answers that both read `open` before either locks would both write, which is the race this phase closes |
 | The gate sequence reads the declaration after the classification | Reading it first would make it an override rather than a floor |

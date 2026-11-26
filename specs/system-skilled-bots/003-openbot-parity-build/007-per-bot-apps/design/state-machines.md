@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The apps gate, the worktree file lifecycle and three sequences
 
-The runner's fixed order is approval, disable switch, needs-you hold, lease, pause switch, precheck, posture, secret check, dispatch, result. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:5] This phase inserts its checks inside that order and adds none before approval. The packet's run sequence draws the whole order and this file draws only the part this phase owns. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:186]
+The runner's fixed order is approval, disable switch, needs-you hold, lease, pause switch, precheck, posture, secret check, dispatch, result. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:5] This phase inserts its checks inside that order and adds none before approval. The packet's run sequence draws the whole order and this file draws only the part this phase owns. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "3.1 A run"]
 
 ---
 
@@ -47,7 +47,7 @@ stateDiagram-v2
 | `Honored` | the list as written | writes the filtered config and records the resolved names |
 | `Refused` | the list as written | nothing, the run is refused `apps-refused` |
 
-`Malformed` is a parse refusal, so the runner folds it into `definition-malformed` and the checker prints it as `definition.apps-invalid`. That is the packet's rule for every parse name and this phase adds no exception. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:44]
+`Malformed` is a parse refusal, so the runner folds it into `definition-malformed` and the checker prints it as `definition.apps-invalid`. That is the packet's rule for every parse name and this phase adds no exception. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "2. LAYERS AND THE EXIT RULE"]
 
 ---
 
@@ -92,7 +92,7 @@ flowchart TD
 
 Step D comes before step E on purpose. A shared run that declares `apps` is refused without reading the config, so the refusal names the reason the operator can act on, which is the isolation, and not a config problem the operator cannot see.
 
-Step G runs for every run, including a shared run that declares nothing. That is this phase's decision D16 in `../goal.md`.
+Step G runs for every run, including a shared run that declares nothing. That is this phase's decision G7 in `../goal.md`.
 
 ---
 

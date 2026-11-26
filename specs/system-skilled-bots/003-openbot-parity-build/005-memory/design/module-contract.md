@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 One module owns the entry line, so no caller can write an entry the reader cannot read. This note fixes its exports, its two writes and the one prompt input it feeds. A builder implements this note and makes no choice of its own.
 
-The module's place in the runtime is fixed by the packet: `memory.ts` sits in the contracts and state group and imports `state-root` and nothing else from `lib/`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:48] `dispatch.ts` does not import it, because the runner reads and renders and the builder joins and bounds. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:319]
+The module's place in the runtime is fixed by the packet: `memory.ts` sits in the contracts and state group and imports `state-root` and nothing else from `lib/`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "1.2 New modules", row `memory.ts`] `dispatch.ts` does not import it, because the runner reads and renders and the builder joins and bounds. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "4. DECISIONS TAKEN"]
 
 ---
 
@@ -120,7 +120,7 @@ A skipped line is never printed and never repaired. The file is the operator's, 
 
 ## 6. THE RENDERER
 
-`renderMemoryBlock` returns `null` for an empty entry list, which is the absent-block rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:228] Otherwise it returns the block the contract fixes, with one entry line per entry in file order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:71]
+`renderMemoryBlock` returns `null` for an empty entry list, which is the absent-block rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "5. THE ABSENT-BLOCK RULE"] Otherwise it returns the block the contract fixes, with one entry line per entry in file order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "1.5 Memory"]
 
 | Part | Text |
 |------|------|
@@ -129,7 +129,7 @@ A skipped line is never printed and never repaired. The file is the operator's, 
 | Entries | One serialized line per entry, escaped by the contract's rule |
 | Closing tag | `</memory>` |
 
-The escape is applied at render time and never to the stored file, so `--list` prints the text verbatim. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:166] The block is one element of the builder's line list, so it adds no blank line around itself.
+The escape is applied at render time and never to the stored file, so `--list` prints the text verbatim. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "3. THE ESCAPE FORM"] The block is one element of the builder's line list, so it adds no blank line around itself.
 
 ---
 
@@ -150,7 +150,7 @@ The block check runs on the rendered block, so it covers the label and the tags 
 
 ## 8. THE `buildBotPrompt` INPUT
 
-The builder gains the rendered blocks and the request prompt as inputs and does the header join itself, so the budget check sees the conversation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:243]
+The builder gains the rendered blocks and the request prompt as inputs and does the header join itself, so the budget check sees the conversation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "6. DECISIONS TAKEN"]
 
 | Input | Type | Required | Meaning |
 |-------|------|----------|---------|
@@ -162,9 +162,9 @@ The builder gains the rendered blocks and the request prompt as inputs and does 
 | `skillBlocks` | string array | no | The rendered `<skill_content>` blocks, in the order the `skills` list names them |
 | `requestPrompt` | string or null | no | The request prompt, which the builder wraps in the header |
 
-The return type becomes `Result<string>`. The success value is the joined prompt. The refusal is `prompt-over-budget` with the detail `<block> at <n> of 32000 characters`, where the block is the first one whose running total exceeds the bound. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:214]
+The return type becomes `Result<string>`. The success value is the joined prompt. The refusal is `prompt-over-budget` with the detail `<block> at <n> of 32000 characters`, where the block is the first one whose running total exceeds the bound. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.3 The overflow rule"]
 
-The join order is the contract's nine blocks. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:71] The builder adds no line of its own, so a bot with no memory, no skills and no request prompt gets the string it gets today, byte for byte.
+The join order is the contract's nine blocks. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "1.5 Memory"] The builder adds no line of its own, so a bot with no memory, no skills and no request prompt gets the string it gets today, byte for byte.
 
 ---
 
@@ -194,7 +194,7 @@ The join order is the contract's nine blocks. [SOURCE: specs/system-skilled-bots
 | `--json` without `--list` | `bots: --json needs --list` | 2 |
 | Two positionals | `bots: unexpected argument: <second>` | 2 |
 
-The verb lives in the run mode, because it writes state. The status mode keeps its two read commands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:24]
+The verb lives in the run mode, because it writes state. The status mode keeps its two read commands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D1]
 
 ---
 

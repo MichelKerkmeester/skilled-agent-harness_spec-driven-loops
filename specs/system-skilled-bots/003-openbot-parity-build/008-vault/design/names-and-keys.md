@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Secret name grammar, environment key and keychain account
 
-This note closes gaps 1, 2 and 6 of the plan-depth research for this phase. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:154-159] The grammar and the environment key are already fixed by the packet contract, and this phase adopts them as written: see `contracts/records.md` section 8, "Name grammar" and "Environment key". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:291] Nothing below changes them. What this note adds is where the grammar is checked, the exact accept and refuse sets, the keychain account and the upgrade path.
+This note closes gaps 1, 2 and 6 of the plan-depth research for this phase. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:154-159] The grammar and the environment key are already fixed by the packet contract, and this phase adopts them as written: see `contracts/records.md` section 8, "Name grammar" and "Environment key". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "8. SECRETS INDEX", row `entries.<name>.updatedAt`] Nothing below changes them. What this note adds is where the grammar is checked, the exact accept and refuse sets, the keychain account and the upgrade path.
 
 Paths are repository-relative. `L/` means `.skilled/skills/system-skilled-bots/runtime/lib/`.
 
@@ -25,7 +25,7 @@ Paths are repository-relative. `L/` means `.skilled/skills/system-skilled-bots/r
 |------|-------|--------|
 | Pattern | `^[a-z0-9][a-z0-9-]*$`, the bot id pattern | `contracts/records.md` section 8. The pattern is `BOT_ID_PATTERN` today [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88] |
 | Length | 1 to 64 characters | `contracts/records.md` section 8 |
-| One constant | `secrets.ts` exports `SECRET_NAME_PATTERN` as the same regex object `BOT_ID_PATTERN` and `SECRET_NAME_MAX = 64`. `definition.ts` imports neither: it keeps its own `BOT_ID_PATTERN` and adds the length check beside it, because `definition.ts` may import only its own group and `secrets.ts` imports `state-root.ts` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:52] | decided here |
+| One constant | `secrets.ts` exports `SECRET_NAME_PATTERN` as the same regex object `BOT_ID_PATTERN` and `SECRET_NAME_MAX = 64`. `definition.ts` imports neither: it keeps its own `BOT_ID_PATTERN` and adds the length check beside it, because `definition.ts` may import only its own group and `secrets.ts` imports `state-root.ts` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "1.2 New modules", row `secrets.ts`] | decided here |
 
 **Where it is checked.** Two places, one rule.
 
@@ -41,7 +41,7 @@ The tests use exactly these rows. `tests/secrets.vitest.ts` feeds each one to `p
 | `demo` | accept | the planted name |
 | `a` | accept | one character |
 | `0` | accept | a digit may start |
-| `slack-app-token` | accept | 011 uses it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/acceptance-criteria.md:76] |
+| `slack-app-token` | accept | 011 uses it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/acceptance-criteria.md, AC-023] |
 | `a--b` | accept | the pattern allows a run of hyphens |
 | `demo-` | accept | the pattern allows a trailing hyphen |
 | 64 times `a` | accept | the bound |
@@ -100,7 +100,7 @@ The note, verbatim, that the builder adds to `.skilled/skills/system-skilled-bot
 
 > **Upgrading to the vault.** `secrets` now names one entry in the vault, and the child reads its value from `SKILLED_BOT_SECRET_<NAME>`. Before you upgrade, for every `BOT.md` that sets `secrets`: rename the value to lowercase letters, digits and hyphens if it is not already (`GITHUB_TOKEN` becomes `github-token`), run `bots secret set <name>` once, and change the bot body to read `SKILLED_BOT_SECRET_<NAME>` instead of the old variable. A bot whose name is not stored is refused `secret-unknown` and starts no child.
 
-**Revert.** `contracts/versioning.md` section 2 lists no closed-list key for 008, because the run record keeps keys it does not know. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:23-36] A reverted runtime ignores `posture.secretsUsed` and the `secrets/` folder, and reads `secrets` as a policy again. The store stays under the state root, and the operator removes it with `bots secret forget` before the revert, or by removing `<identity>/secrets/` and the keychain items with service `skilled-bots` by hand after it.
+**Revert.** `contracts/versioning.md` section 2 lists no closed-list key for 008, because the run record keeps keys it does not know. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "2. AN OLDER RUNTIME MEETS A NEWER RECORD"] A reverted runtime ignores `posture.secretsUsed` and the `secrets/` folder, and reads `secrets` as a policy again. The store stays under the state root, and the operator removes it with `bots secret forget` before the revert, or by removing `<identity>/secrets/` and the keychain items with service `skilled-bots` by hand after it.
 
 ---
 

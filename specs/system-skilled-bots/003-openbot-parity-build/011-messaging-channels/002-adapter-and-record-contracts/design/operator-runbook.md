@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 The operator prerequisites were a risk table, not a runbook. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:206] This file is the runbook. `../../007-conformance-hardening-and-proof/` copies it into `bots-run/references/messaging-channels.md` when the transports ship, so a person setting up a channel reads one page.
 
-Every command below runs on the host as the operator. `bots` is `node .skilled/bin/bots.cjs`. A secret value is never an argument: `bots secret set <name>` reads one line from stdin when stdin is not a terminal and prompts with echo off when it is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150] Secret names and the suffixes each transport derives are `records.md` section 1.1.
+Every command below runs on the host as the operator. `bots` is `node .skilled/bin/bots.cjs`. A secret value is never an argument: `bots secret set <name>` reads one line from stdin when stdin is not a terminal and prompts with echo off when it is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-001] Secret names and the suffixes each transport derives are `records.md` section 1.1.
 
 ---
 

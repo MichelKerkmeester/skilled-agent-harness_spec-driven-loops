@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The `@<bot-id>` routing grammar
 
-`@<bot-id>` at the start of a human message routes that message to that bot, and a message with no address goes to the conversation's bot (`../../002-conversation-runtime-and-chat-verb/spec.md` REQ-004). The requirement left four things open: whether the prefix is stored, what follows it, what an invalid id does and which conversation `bots chat <id>` opens. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:191] This file closes them. The record keeps the question open for this file to answer. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:368]
+`@<bot-id>` at the start of a human message routes that message to that bot, and a message with no address goes to the conversation's bot (`../../002-conversation-runtime-and-chat-verb/spec.md` REQ-004). The requirement left four things open: whether the prefix is stored, what follows it, what an invalid id does and which conversation `bots chat <id>` opens. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:191] This file closes them. The record keeps the question open for this file to answer. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "10. CONVERSATION MESSAGE"]
 
 One parser in `conversation.ts` applies this grammar to every human message, from the loop, from `--message` and from the pane, so one line routes one way everywhere.
 
@@ -39,7 +39,7 @@ token    = one or more characters that are not whitespace
 | 7 | An address with nothing after it is an empty message | `@digest` | Refused, usage | Nothing |
 | 8 | No address | `is the release ready?` | The default bot | The same |
 
-The stored `text` is the text as typed after that drop, the prefix included. The routing result is the message's `botId`, so the prefix is never the only record of where a message went. Keeping it means the bot reads `<human> @digest summarize the threads` in its block (`prompt-boundary.md` section 1) and so knows the message was addressed to it by name. This matches the record's sample line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:364]
+The stored `text` is the text as typed after that drop, the prefix included. The routing result is the message's `botId`, so the prefix is never the only record of where a message went. Keeping it means the bot reads `<human> @digest summarize the threads` in its block (`prompt-boundary.md` section 1) and so knows the message was addressed to it by name. This matches the record's sample line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "10. CONVERSATION MESSAGE"]
 
 ---
 
@@ -91,6 +91,6 @@ The token is printed after control characters are stripped, so a refusal line ca
 | The gap this file closes | [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:191] |
 | The bot id pattern | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88] |
 | The safe segment check | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:166-168] |
-| The record's sample, prefix kept | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:364] |
+| The record's sample, prefix kept | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "10. CONVERSATION MESSAGE"] |
 | The one refusal name for an unroutable id | `contracts/refusals.md` section 3.9 |
 | The usage layer and its exit | `contracts/refusals.md` section 2 |

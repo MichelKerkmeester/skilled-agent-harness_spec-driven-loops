@@ -230,7 +230,7 @@ verbs:
 exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision
 ```
 
-Phases 001 to 011 add eight verb groups to `VERB_SPECS` and none of them to this block today. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:106] The eight are `activity`, `routines`, `ui`, `remember`, `secret`, `skill`, `chat` and `channel`. Each one needs a line in the same shape as the eleven above: the verb and its arguments on one line, then an indented description.
+Phases 001 to 011 add eight verb groups to `VERB_SPECS` and none of them to this block today. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Files to Change", row `.skilled/bin/bots.cjs`] The eight are `activity`, `routines`, `ui`, `remember`, `secret`, `skill`, `chat` and `channel`. Each one needs a line in the same shape as the eleven above: the verb and its arguments on one line, then an indented description.
 
 The rule the phase enforces is a set equality and not a count: the distinct verbs the block lists and the keys of `VERB_SPECS` are the same set. A count alone would pass on a block that lists `activity` twice and omits `channel`.
 

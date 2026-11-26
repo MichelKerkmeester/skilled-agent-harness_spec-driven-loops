@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 # Golden records for the review packet
 
-Each file is the literal sample of one section of `../records.md`, on one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, operator `ada`, reviewed commit `79519553b62`. The packet-level goldens for the runtime's own records are in `../../../contracts/fixtures/` and this folder copies none of them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/README.md:13]
+Each file is the literal sample of one section of `../records.md`, on one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, operator `ada`, reviewed commit `79519553b62`. The packet-level goldens for the runtime's own records are in `../../../contracts/fixtures/` and this folder copies none of them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/README.md, section "Golden records and payloads"]
 
 A golden here is a **shape** sample, not a run's output. The run writes its own files under `review/`, and a test compares the run's file against the golden key by key and type by type.
 
@@ -26,7 +26,7 @@ A golden here is a **shape** sample, not a run's output. The run writes its own 
 | `fix-ledger.md` | records 6 | T009, T012, AC-004, AC-005 | `4` rows, all reading `pass` or `deferred` |
 | `review-report.md` | records 9 | T008, and AC-008 | `9` sections and `1` verdict line |
 
-`preflight.json` is the one golden that shows a degraded host rather than a clean one: `devin` is absent, so `presentCount` reads `4` and `fallbackUsed` reads `true`. That is the case D3 makes normal, and a golden that showed five present binaries would leave the fallback unproven. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:26]
+`preflight.json` is the one golden that shows a degraded host rather than a clean one: `devin` is absent, so `presentCount` reads `4` and `fallbackUsed` reads `true`. That is the case D3 makes normal, and a golden that showed five present binaries would leave the fallback unproven. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
 
 Check every file parses and every count holds:
 

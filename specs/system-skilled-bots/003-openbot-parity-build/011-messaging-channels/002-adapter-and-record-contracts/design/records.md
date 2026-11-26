@@ -53,7 +53,9 @@ The contract gives each channel one `secret`. Slack needs an app-level token and
 
 With the contract's sample, Slack reads `slack-app-token` and `slack-app-token-bot`. The phone number id and the account number are not credentials, and they sit in the vault because the config has no other place for them and the vault already keeps them off every log. A missing derived name refuses `secret-unknown` before any I/O, the same as a missing primary name.
 
-Two addresses are fixed rather than configured, for the same reason: the Signal daemon at `http://127.0.0.1:8080` and the WhatsApp webhook listener at `127.0.0.1:8787`. `operator-runbook.md` tells the operator to start the daemon and the tunnel on those addresses. Both are named in the parent spec's cross-file fixes as keys `contracts/records.md` section 11 could gain.
+**The length bound.** A derived name must also stay within the 64 characters of the `contracts/records.md` section 8 grammar. The longest suffix is `-phone-number-id`, 16 characters, so a `whatsapp` entry's `secret` is at most 48 characters. A longer one derives a name the vault cannot hold: `bots secret set` refuses it `secret-name-invalid`, and `bots channel listen whatsapp` then refuses `secret-unknown`. No check at `channel link` enforces the bound. `contracts/records.md` section 11, "Derived secret names", states the same rule.
+
+Two addresses are fixed rather than configured, for the same reason: the Signal daemon at `http://127.0.0.1:8080` and the WhatsApp webhook listener at `127.0.0.1:8787`. `operator-runbook.md` tells the operator to start the daemon and the tunnel on those addresses. `contracts/records.md` section 11, "Fixed addresses", adopts both as fixed, so `channels/config.json` gains no key for them. A later key for either is an added key under `contracts/versioning.md` rule 1.
 
 ---
 

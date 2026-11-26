@@ -231,8 +231,8 @@ REQ ids keep their pre-expansion numbers and are unique across children 003 to 0
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which surface does the terminal transport answer on? Decision: `channel`, with the OS user as actor, because `contracts/answer-seam.md` step 1 names every transport the `channel` surface. Reversal condition: the contract owner gives the terminal transport the `terminal` surface.
-- What does a rejected credential refuse? Decision: exit 1 with a plain line, because `contracts/refusals.md` section 3.10 has no name for it. The parent spec section 8 asks for one.
+- Which surface does the terminal transport answer on? Settled: `channel`, with the OS user as actor, as `contracts/answer-seam.md` section 1, step 1 "Surface", and its decisions table now state for the terminal transport by name. Reversal condition: the contract owner gives the terminal transport the `terminal` surface in that row and in REQ-015 together.
+- What does a rejected credential refuse? Settled: no refusal name. `contracts/refusals.md` section 3.10, the rejected credential row, fixes the line `bots: <channel> rejected the credential`, the released lease and exit 1, which REQ-024 and REQ-025 specify.
 - Does a chat see the bot's reply text? No, the parent spec section 5.
 <!-- /ANCHOR:questions -->
 

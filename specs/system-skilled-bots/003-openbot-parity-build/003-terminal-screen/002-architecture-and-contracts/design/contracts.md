@@ -74,7 +74,7 @@ Where a frame draws an instant itself (the detail column's `at` and `expiresAt`)
 
 ### The age formatter
 
-One formatter, `stale_label` in `view/header.rs`, turns an instant into an age for the header and for every pane. [SOURCE: 003-shell-and-navigation/spec.md:136] With `d = now - at`:
+One formatter, `stale_label` in `view/header.rs`, turns an instant into an age for the header and for every pane. [SOURCE: 003-shell-and-navigation/spec.md, REQ-013] With `d = now - at`:
 
 | Magnitude of `d` | Unit drawn | Example |
 |------------------|------------|---------|
@@ -461,7 +461,7 @@ The empty payload is `{"version": 1, "groups": []}`, which draws frame 6.
 | Key | Type | Null | Format | Producer | Drawn by |
 |-----|------|------|--------|----------|----------|
 | `version` | integer | no | `1` | packet 001 | checked on read |
-| `groups` | array | no | in the fixed order `needs_you`, `working`, `scheduled`, `done`, `stopped`, `failed`, `recurring`, an empty group left out | packet 001 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151] | pane title count `7 groups` |
+| `groups` | array | no | in the fixed order `needs_you`, `working`, `scheduled`, `done`, `stopped`, `failed`, `recurring`, an empty group left out | packet 001 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-001] | pane title count `7 groups` |
 | `groups[].id` | string | no | one of the seven ids | packet 001 | not drawn, selects the glyph with `state` |
 | `groups[].title` | string | no | `Needs you`, `Working`, `Scheduled`, `Done`, `Stopped`, `Failed`, `Recurring` | packet 001, from OpenBot's titles | group heading line, frames 1, 7, 17 |
 | `groups[].rows` | array | no, never empty | newest `at` first, and soonest first in `scheduled` and `recurring` | packet 001. `needs_you`, `done`, `stopped` and `failed` rows come from the index. `working`, `scheduled` and `recurring` rows have no index source today and need the sources in section 13.1 item 4 | pane title count `8 rows` |
@@ -544,7 +544,7 @@ The empty payload is `{"version": 1, "items": []}`, which draws frame 10.
 
 ### Fields
 
-The ten item keys are packet 001's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] The item file holds more (`runId`, `identity`, `evidence`, `prompt`, `specFolder`, `resumeRequestId`), and the inbox prints none of them. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]
+The ten item keys are packet 001's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] The item file holds more (`runId`, `identity`, `evidence`, `prompt`, `specFolder`, `resumeRequestId`), and the inbox prints none of them. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]
 
 | Key | Type | Null | Format | Producer | Drawn by |
 |-----|------|------|--------|----------|----------|
@@ -552,7 +552,7 @@ The ten item keys are packet 001's. [SOURCE: specs/system-skilled-bots/003-openb
 | `items` | array | no | open items newest first, then expired items newest first. The screen never asks for `--all` | packet 001 | pane title counts, banner |
 | `id` | string | no | equal to the parked run's id | packet 001 | detail `id`, the overlay's captured id, the answer argv |
 | `botId` | string | no | bot id, or a reserved sentinel such as `memory-proposals` after packet 005 | packet 001 | row column 1, detail `botId`, overlay title line |
-| `kind` | string | yes, until packet 005 | `decision`, `memory-proposal`, `skill-proposal` | key packet 001, values packet 005 and 009 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:265] | detail `kind`, null drawn as `decision`, the absent-means-decision default |
+| `kind` | string | yes, until packet 005 | `decision`, `memory-proposal`, `skill-proposal` | key packet 001, values packet 005 and 009 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, section "10. OPEN QUESTIONS"] | detail `kind`, null drawn as `decision`, the absent-means-decision default |
 | `question` | string | no | free text, sanitized | packet 001 | row column 4, overlay question line |
 | `state` | string | no | `open`, `expired`, and `answered` only under `--all` | packet 001 | row glyph `!` when `open`, none when `expired`, row column 2, detail `state` |
 | `at` | string | no | ISO 8601 UTC, equal to `createdAt` | packet 001 | row column 3 on an open item, detail `at`, overlay age |
@@ -560,7 +560,7 @@ The ten item keys are packet 001's. [SOURCE: specs/system-skilled-bots/003-openb
 | `createdAt` | string | no | ISO 8601 UTC | today in the item file | not drawn, `at` is drawn instead |
 | `expiresAt` | string | no | ISO 8601 UTC, `createdAt` plus `expiryDays` days | today [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:145-147] | row column 3 on an expired item, detail `expiresAt` |
 | `answer` | object | yes, until answered | `{text, answeredAt, by, scope}`, `scope` is `once` or `deny` | today `text` and `answeredAt`, packet 001 adds `by` and `scope` | not drawn, the screen lists no answered item |
-| `grants` | object | absent until packet 006 | `{kind, action, rung, scope, grantedBy, grantedAt}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:152] | packet 006 | the overlay's `grant kind <kind> · rung <rung>` line, frame 23, and the same line in the detail column, only when present |
+| `grants` | object | absent until packet 006 | `{kind, action, rung, scope, grantedBy, grantedAt}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] | packet 006 | the overlay's `grant kind <kind> · rung <rung>` line, frame 23, and the same line in the detail column, only when present |
 
 ### Derived strings
 
@@ -622,7 +622,7 @@ The empty payload is `{"version": 1, "routines": []}`, which draws frame 14.
 
 ### Fields
 
-Packet 002 names seven parts and gives three of them no key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] The keys below fix them.
+Packet 002 names seven parts and gives three of them no key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] The keys below fix them.
 
 | Key | Type | Null | Format | Producer | Drawn by |
 |-----|------|------|--------|----------|----------|
@@ -635,10 +635,10 @@ Packet 002 names seven parts and gives three of them no key. [SOURCE: specs/syst
 | `does` | string | no | `act` or `tell` | packet 002 | row `does tell`, detail `does` |
 | `until` | string | yes, for a routine with no outcome | free text, never executed | packet 002 | row `until "…"` in quotes, detail `until` bare, `-` when null |
 | `untilMetAt` | string | yes, until `until_check` exits 0 | ISO 8601 UTC | packet 002 | detail `untilMetAt`, `-` when null |
-| `failureStreak` | integer | no | 0 or more, counted from the newest record back to the first that is not a failed run | packet 002 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:167] | row `streak 0`, detail `streak` |
+| `failureStreak` | integer | no | 0 or more, counted from the newest record back to the first that is not a failed run | packet 002 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006] | row `streak 0`, detail `streak` |
 | `switch` | string | no | `enabled`, `paused`, `completed`, `disabled` or `fatigued`, the first that applies in the order `fatigued`, `disabled`, `completed`, `paused`, else `enabled` | packet 002 | row `state enabled`, detail `switch` |
 
-`fatigued` is the `disabled` switch set by the ten-failure rule with `fatiguedAt` recorded, so the operator can tell a bot the runtime stopped from one they stopped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:167]
+`fatigued` is the `disabled` switch set by the ten-failure rule with `fatiguedAt` recorded, so the operator can tell a bot the runtime stopped from one they stopped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006]
 
 ### Derived strings
 
@@ -667,7 +667,7 @@ Selection key: `botId`.
 
 ## 9. A FAILED READ
 
-What each exit means, from the code for `status` and `inbox`, and from packet 001's edge cases for `activity`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:229]
+What each exit means, from the code for `status` and `inbox`, and from packet 001's edge cases for `activity`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "L2: EDGE CASES"]
 
 | Exit | When | Stderr shape | Source |
 |------|------|--------------|--------|
@@ -686,7 +686,7 @@ How the screen draws them:
 - **Exit 0 with stdout that does not parse.** A failed read with the line `bots-ui: <verb> --json printed no payload: <parser message>`.
 - **Any non-zero exit.** A failed read. The status row line is `bots: <verb> --json exited <code>: <first stderr line with a leading "bots: " removed>`, which is the line frame 8 draws. [SOURCE: 001-ux-and-component-map/design/mockups.md:625] Only the first line is kept, so the usage text after a usage error never reaches the screen. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:61]
 - **A child killed by the read timeout.** A failed read with the line `bots-ui: <verb> timed out after 10s`. The timeout and the kill are the architecture file's (R5).
-- **A failed read on a pane with rows** keeps the rows and draws `stale <n>m` in the pane title. **A failed read with no rows** draws the line in the body. [SOURCE: 001-ux-and-component-map/design/component-inventory.md:51-57]
+- **A failed read on a pane with rows** keeps the rows and draws `stale <n>m` in the pane title. **A failed read with no rows** draws the line in the body. [SOURCE: 001-ux-and-component-map/design/component-inventory.md, section "2. THE FIVE STATES EVERY DATA PANE SHARES"]
 
 The frames' `index locked` line is the fixture's `fail-<verb>` text for every verb, not a runtime message for `inbox` or `routines`.
 
@@ -703,9 +703,9 @@ Decision A2: the runtime brings the status index up to date on every read the sc
 | Verb | Reads the index | What fresh means |
 |------|-----------------|------------------|
 | `status --json` | yes | the refresh below runs before the report is built |
-| `activity --json` | yes [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151] | the same refresh runs before the groups are built |
+| `activity --json` | yes [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-001] | the same refresh runs before the groups are built |
 | `inbox --json` | no, it lists the item files on every call [SOURCE: .skilled/bin/bots.cjs:458-459] | fresh by construction, A2 holds with no change |
-| `routines --json` | no, and must not, because it opens no SQLite index [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:216] | fresh by construction, it reads BOT.md, the routine state file and at most ten run records per bot |
+| `routines --json` | no, and must not, because it opens no SQLite index [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, NFR-P02] | fresh by construction, it reads BOT.md, the routine state file and at most ten run records per bot |
 
 **Why not a full rebuild per read.** Every build applies retention, which deletes run folders and closed needs-you item files past their bounds. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:16-20] A rebuild on each poll would make a read verb delete files every 5 seconds, from two verbs at once. That is a correctness objection, so it needs no timing to settle it. I did not time a rebuild, because running one against the live state root would apply that retention.
 
@@ -746,11 +746,11 @@ Two rules belong here because they decide what the screen reads next.
 | Packet 001 names a source for `working`, `scheduled` and `recurring` rows, and computes a next fire | The runner writes a record only at its terminal write and the installer never computes a next fire, so the index cannot hold an in-flight run or a future fire [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:409-412] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:93-94] |
 | `schedule` on every activity row, a string or null | `every 6h` on a `recurring` row had no source key. The six row keys carry no period [SOURCE: research/fable-review-1.md:37]. A phrase rendered by the runtime keeps cron parsing out of the screen (A6) |
 | A future `at` on `scheduled` and `recurring` rows, and no new key for `in 3h` | `at` already exists, and a row that has not run has no past event to report |
-| A null `runId` on `scheduled` and `recurring` rows, a nullable `actor` on every row | A lined-up row has no run yet, and a record written before packet 001 has no actor [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:193] |
+| A null `runId` on `scheduled` and `recurring` rows, a nullable `actor` on every row | A lined-up row has no run yet, and a record written before packet 001 has no actor [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "6. RISKS & DEPENDENCIES"] |
 | `starts[]` is the parsed trigger plus `summary` | Packet 002 renders `starts[0]` into a trigger, so the trigger is the rendered start. `summary` is the one phrase the frames draw |
 | `failureStreak`, an integer | Packet 002 says "failure streak" and names no key. The frame draws `streak` |
 | `switch`, five values in a fixed precedence | Packet 002 says "switch state" and names no key or values. `fatigued` is its own value because a stopped-by-the-runtime bot needs a different action from a stopped-by-you bot |
-| `kind` null draws `decision` | Packet 005 reads an absent `kind` as `decision` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:196] |
+| `kind` null draws `decision` | Packet 005 reads an absent `kind` as `decision` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, section "6. RISKS & DEPENDENCIES"] |
 | An expired inbox row ages `expiresAt`, an open one ages `at` | The repository's expiry is whole days, so an expired item's `at` is at least a day old and frame 2's `1h ago` can only be the expiry. `at` stays `createdAt` as packet 001 defines it |
 | A working row draws `now` | The run is in flight, and an age of its dispatch would contradict the header's own seconds |
 | One age formatter, rounded down, `s`, `m`, `h`, `d` | The header draws `12s ago` and the rows draw minutes and hours, so one unit ladder serves both |

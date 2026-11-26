@@ -96,13 +96,13 @@ stateDiagram-v2
 
 **Why a re-run overwrites.** The one existing guard covers an item that already exists. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:231] A re-run with files present and no item is the repair path, and it must overwrite rather than refuse, because the files it finds are the interrupted run's own output for the same run id and the same target name. A re-run with an item present refuses as today, so an open question is never erased.
 
-**Why a stale answer leaves the item open.** The pin is checked in the claim half of the review seam, before the answer and the scope are written. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:41] A refusal there writes nothing, so the item is still `open` and a fresh proposal can be reviewed against the new revision.
+**Why a stale answer leaves the item open.** The pin is checked in the claim half of the review seam, before the answer and the scope are written. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 13] A refusal there writes nothing, so the item is still `open` and a fresh proposal can be reviewed against the new revision.
 
 ---
 
 ## 3. THE REVIEW ANSWER PATH
 
-The seam has two halves. The claim runs before the write and may refuse with the item untouched. The settle runs after the write and applies the effect. `contracts/answer-seam.md` owns the numbered sequence and this machine draws only the branch this phase adds. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:23-46]
+The seam has two halves. The claim runs before the write and may refuse with the item untouched. The settle runs after the write and applies the effect. `contracts/answer-seam.md` owns the numbered sequence and this machine draws only the branch this phase adds. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
 
 ```mermaid
 stateDiagram-v2
@@ -128,7 +128,7 @@ stateDiagram-v2
   SettleInterrupted --> Settled: the same answer is sent again and the settle finds answer.json absent, so it writes it
 ```
 
-**Why the NO set reads as `reject`.** `contracts/answer-seam.md` fixes it, so a channel answer that sends `no` records a denial rather than an approval. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:109] The scope is `deny` and the decision word is `reject`.
+**Why the NO set reads as `reject`.** `contracts/answer-seam.md` fixes it, so a channel answer that sends `no` records a denial rather than an approval. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"] The scope is `deny` and the decision word is `reject`.
 
 **Why a damaged `proposal.json` is not a refusal.** `spec.md` NFR-R02 requires it to read as not a proposal review, so the answer path falls back to its existing behaviour rather than refusing every answer on the item. A damaged file is the operator's to repair, and refusing the answer would leave the item open with no way to close it.
 

@@ -223,7 +223,7 @@ command -v vibe pi opencode devin codex
 vibe --version </dev/null; pi --version; opencode --version; devin --version; codex --version
 ```
 
-At least one binary must be present. A binary that is absent, or a version outside the pin its mode names, drops that lineage before spawn, and the run re-runs the matrix with `--count=2` on the next executor in §8.3. The fan-out therefore keeps five lineages on a host with fewer than five binaries, and the label set records which executor ran twice. A run that loses every lineage exits non-zero and writes no verdict line, because a review with no reader is not a clean review. That is D3: the fallback wins over a setup that demands all five. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:26]
+At least one binary must be present. A binary that is absent, or a version outside the pin its mode names, drops that lineage before spawn, and the run re-runs the matrix with `--count=2` on the next executor in §8.3. The fan-out therefore keeps five lineages on a host with fewer than five binaries, and the label set records which executor ran twice. A run that loses every lineage exits non-zero and writes no verdict line, because a review with no reader is not a clean review. That is D3: the fallback wins over a setup that demands all five. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
 
 ---
 

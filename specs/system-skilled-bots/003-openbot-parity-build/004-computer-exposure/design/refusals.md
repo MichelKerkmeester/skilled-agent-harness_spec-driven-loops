@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The refusal catalogue
 
-This phase adds no refusal. That is a decision and not an omission, so this note writes down what the phase reuses, what it must not add and what it leaves untouched. The packet's table is [`contracts/refusals.md`](../../contracts/refusals.md) and its section 3.3 already records this phase as adding none. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:105]
+This phase adds no refusal. That is a decision and not an omission, so this note writes down what the phase reuses, what it must not add and what it leaves untouched. The packet's table is [`contracts/refusals.md`](../../contracts/refusals.md) and its section 3.3 already records this phase as adding none. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.3 Phase 004, computer exposure"]
 
 ---
 
@@ -20,7 +20,7 @@ This phase adds no refusal. That is a decision and not an omission, so this note
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| none | - | - | - | - | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:105] |
+| none | - | - | - | - | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.3 Phase 004, computer exposure"] |
 
 The registry holds 25 causes today and this phase changes neither the count nor an entry. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:122-149]
 
@@ -70,13 +70,13 @@ Each of these is a plausible thing for a builder to write and each one is wrong.
 | 4 | `refused` | The reused `resume-item-invalid` exits 4, which is what it already does |
 | 5 | `awaitingDecision` | Unchanged |
 
-The six codes are the runner's own and the CLI returns them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:22-30]
+The six codes are the runner's own and the CLI returns them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "1. EXIT CODES THAT EXIST TODAY"]
 
 ---
 
 ## 5. THE POST-RUN CAUSES IT LEAVES UNTOUCHED
 
-This phase records no post-run cause. `postRunCauses` stays `[]` on every run it touches, because the child already ran and nothing this phase writes is a finding about the child. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:200]
+This phase records no post-run cause. `postRunCauses` stays `[]` on every run it touches, because the child already ran and nothing this phase writes is a finding about the child. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS", row `postRunCauses`]
 
 ---
 

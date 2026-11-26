@@ -41,8 +41,8 @@ This is **Phase 14** of the OpenBot parity build. Phases 001 to 013 change `.ski
 **Scope Boundary**: One expanded `/deep:review` run over the code and docs phases 001 to 013 built, the synthesis of its findings, the fix for every P0 and P1 it reports, and the re-run of the affected tests. New feature work, a change to the parity research, a rewrite of a phase document's scope, and any fix to a P2 finding are out of scope.
 
 **Dependencies**:
-- Phase 013 is clean first: every row in its `acceptance-criteria.md` is `Met` and `validate.sh --strict` prints `RESULT: PASSED` for its folder, so the review reads a checked surface rather than an assumed one [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33]
-- The parent map fixes this phase last and names 013 as its predecessor, so no later phase can move the surface under the review [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:165]
+- Phase 013 is clean first: every row in its `acceptance-criteria.md` is `Met` and `validate.sh --strict` prints `RESULT: PASSED` for its folder, so the review reads a checked surface rather than an assumed one [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md, section "1. METADATA"]
+- The parent map fixes this phase last and names 013 as its predecessor, so no later phase can move the surface under the review [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "PHASE DOCUMENTATION MAP", row 14]
 - The review loop is `/deep:review`, whose `--depth-mode=expansive` seeds depth-1 sub-target nodes and vetoes a stop while any node stays open [SOURCE: .skilled/commands/deep/review.md:101]
 - The fan-out matrix names only `cli-*` executors, because a native lineage is refused before any lineage spawns [SOURCE: .skilled/commands/deep/assets/deep-review-presentation.txt:146]
 - The five executors this packet's build may use are the roster in `executors.json`, so a review lineage and a build worker share one roster [SOURCE: .skilled/commands/assets/local-skilled-alignment/executors.json:9]
@@ -52,7 +52,7 @@ This is **Phase 14** of the OpenBot parity build. Phases 001 to 013 change `.ski
 | Input | What one row is | What this phase does with it |
 |-------|-----------------|------------------------------|
 | `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/failures.md` | one filed product failure, carrying the scenario id, the phase, the requirement, the observed line and the evidence path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:144] | seeds one finding, at the severity `design/records.md` section 7.4 assigns |
-| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | one `## <finding-id>` heading and the reason under it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/tasks.md:65] | seeds one finding when the reason is `handed to 014`, and nothing when it is not |
+| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | one `## <finding-id>` heading and the reason under it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/tasks.md, T016] | seeds one finding when the reason is `handed to 014`, and nothing when it is not |
 | `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/evidence/` | one finding in `skilled-alignment/findings.json` or `doc-alignment/findings.json` | seeds one finding per finding that is not fixed |
 
 A missing input is recorded in `review/seeded-findings.json` with its reason and does not stop the run, because a phase that filed nothing has nothing to hand over. An input that exists and holds a row this phase cannot read is refused `review-seed-unreadable`, per `design/refusals.md` section 2.1.
@@ -203,7 +203,7 @@ The verdict is strongest restriction over the lineages, then narrowed by the fix
 | `CONDITIONAL` | no active P0, and a P1 is deferred, or a filed product failure from 012 is not fixed, or a frontier node closed short, or a `blocked_stop` event is in the state log | closes the packet and names what blocks a PASS in the report's Deferred Items section |
 | `PASS` | none of the above. A deferred P2 is allowed and sets `hasAdvisories` true | closes the packet |
 
-The verdict cannot read `PASS` while a filed product failure from `012-manual-testing-scenarios/scratch/failures.md` is open. That is D4: the failure does not block 012's close once it is filed, and it does block this phase's PASS. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:27]
+The verdict cannot read `PASS` while a filed product failure from `012-manual-testing-scenarios/scratch/failures.md` is open. That is D4: the failure does not block 012's close once it is filed, and it does block this phase's PASS. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D4]
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

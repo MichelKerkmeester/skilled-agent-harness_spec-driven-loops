@@ -15,13 +15,13 @@ version: 1.0.0.0
 
 Six shapes carry this phase's work: the grant object on the item, the answer's `scope` and `by`, the lock file beside the item, the grant line on the run record, the `[ACTION: <kind>]` line in a question and the scope line in the resumed prompt. The first two are shared shapes and their field tables are `contracts/records.md` sections 2 and 3. This file adds what those tables leave to the builder: the validation order, the exact refusal detail, the lock file's contents and lifetime, the line grammar and the prompt text.
 
-Every sample here is a golden in [`fixtures/`](fixtures/README.md). The clock, the identity, the operator and the bot are the packet's one data set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:30]
+Every sample here is a golden in [`fixtures/`](fixtures/README.md). The clock, the identity, the operator and the bot are the packet's one data set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Durable records of the OpenBot parity build"]
 
 ---
 
 ## 1. THE GRANT OBJECT
 
-The shape is `contracts/records.md` section 3. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:117] It is the value of the item's `grants` key, and the item's key list is closed, so `grants` joins `ITEM_KEYS` in the same commit as its writer. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51]
+The shape is `contracts/records.md` section 3. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "3. GRANT OBJECT"] It is the value of the item's `grants` key, and the item's key list is closed, so `grants` joins `ITEM_KEYS` in the same commit as its writer. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:51]
 
 | Key | Type | Null | Written by | Validation |
 |-----|------|------|------------|------------|
@@ -47,11 +47,11 @@ The shape is `contracts/records.md` section 3. [SOURCE: specs/system-skilled-bot
 9. The three answer-derived keys agree: all three are `null`, or all three are set. A grant with a scope and no actor is a torn record and is refused.
 10. When the item also carries an answer, `grants.scope` equals `answer.scope`. The two are written in one write, so a stored disagreement means a writer bypassed step 11.
 
-Check 10 is the one that makes the contract's "written in the same write, so the two cannot disagree" a property a test can read rather than a promise. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:126]
+Check 10 is the one that makes the contract's "written in the same write, so the two cannot disagree" a property a test can read rather than a promise. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "3. GRANT OBJECT", row `scope`]
 
 ### 1.2 The two `kind` vocabularies
 
-The item carries two keys named `kind` and they do not share a vocabulary. The item's `kind` is the review kind, one of `decision`, `memory-proposal` or `skill-proposal`. `grants.kind` is the action kind, one of the seven above. A reader that means the action says `grants.kind`. The status report's row `kind` and the request record's `kind` are a third and a fourth vocabulary in other records. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:64]
+The item carries two keys named `kind` and they do not share a vocabulary. The item's `kind` is the review kind, one of `decision`, `memory-proposal` or `skill-proposal`. `grants.kind` is the action kind, one of the seven above. A reader that means the action says `grants.kind`. The status report's row `kind` and the request record's `kind` are a third and a fourth vocabulary in other records. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
 
 ### 1.3 The three samples
 
@@ -61,13 +61,13 @@ The item carries two keys named `kind` and they do not share a vocabulary. The i
 | Granted | `once` | `ada` | `2026-11-25T21:13:10.000Z` | `fixtures/grant.granted.json` |
 | Denied | `deny` | `ada` | `2026-11-25T21:13:10.000Z` | `fixtures/grant.denied.json` |
 
-The fourth lifecycle row, expired with its item, writes nothing. The grant stays born open and is never written again. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:83]
+The fourth lifecycle row, expired with its item, writes nothing. The grant stays born open and is never written again. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "3. GRANT LIFECYCLE"]
 
 ---
 
 ## 2. THE ANSWER'S SCOPE AND ACTOR
 
-The shape is `contracts/records.md` section 2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:94] This phase adds the derivation rule and the write.
+The shape is `contracts/records.md` section 2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "2. ANSWER OBJECT"] This phase adds the derivation rule and the write.
 
 ### 2.1 The derivation, in order
 
@@ -77,11 +77,11 @@ The shape is `contracts/records.md` section 2. [SOURCE: specs/system-skilled-bot
 2. Otherwise, a text that is `deny`, `no` or `n` after trim and in any case is `deny`. The set is closed and holds three spellings.
 3. Otherwise the scope is `once`.
 
-The rule lives in `answerItem` and not in `bots.cjs`, so a channel transport that calls `answerItem` directly with the text `no` records `deny` too. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:23]
+The rule lives in `answerItem` and not in `bots.cjs`, so a channel transport that calls `answerItem` directly with the text `no` records `deny` too. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
 
 ### 2.2 The write
 
-Step 11 writes the answer and the grant in one atomic write. The answer gains `by` and `scope`, and the grant gains `scope`, `grantedBy` and `grantedAt`. `grantedBy` is the answer's `by` and `grantedAt` is the answer's `answeredAt`, so the two objects cannot disagree. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:96]
+Step 11 writes the answer and the grant in one atomic write. The answer gains `by` and `scope`, and the grant gains `scope`, `grantedBy` and `grantedAt`. `grantedBy` is the answer's `by` and `grantedAt` is the answer's `answeredAt`, so the two objects cannot disagree. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"]
 
 The write is the one `writeNeedsYouItem` already makes, by temp file and rename. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:159] This phase adds the lock in front of it and no second write path.
 
@@ -112,7 +112,7 @@ A lock is reclaimed when either condition holds.
 - Its `pid` names no live process. The check is a signal 0 probe, which answers whether the process exists without touching it.
 - Its `createdAt` is more than 60 seconds before now. The bound is 60 s because an answer holds the lock for milliseconds and a clock that jumped must not hold an item forever.
 
-A lock whose owner is alive and whose age is under 60 s is waited on for up to 2,000 ms, polled every 50 ms. When the wait runs out the answer is refused `item-busy`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:96]
+A lock whose owner is alive and whose age is under 60 s is waited on for up to 2,000 ms, polled every 50 ms. When the wait runs out the answer is refused `item-busy`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"]
 
 The model is the run lease's, which reclaims by owner pid and nonce rather than by age alone. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:12]
 
@@ -122,13 +122,13 @@ A reclaimer renames the lock to `<item-id>.lock.<nonce>.stale` and then unlinks 
 
 ### 3.4 The release
 
-Step 18 removes the lock on every exit path after step 6, including a refusal and a throw. A process killed outright leaves the file, and the next answer reclaims it by section 3.2. The inbox ignores it, because the listing reads `.json` files only. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:23]
+Step 18 removes the lock on every exit path after step 6, including a refusal and a throw. A process killed outright leaves the file, and the next answer reclaims it by section 3.2. The inbox ignores it, because the listing reads `.json` files only. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
 
 ---
 
 ## 4. THE RUN RECORD'S GRANT LINE
 
-The key is `request.grant`, one object, and its name is `contracts/records.md` section 17's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:487] It sits beside `resumedItemId` on the request join. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:73]
+The key is `request.grant`, one object, and its name is `contracts/records.md` section 17's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "17. DECISIONS TAKEN"] It sits beside `resumedItemId` on the request join. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:73]
 
 | Key | Type | Null | Source |
 |-----|------|------|--------|
@@ -189,12 +189,12 @@ Sample: `fixtures/resumed-prompt.txt`.
 
 None of the six shapes moves a version.
 
-- The item gains no version key, and `grants` is an added key, so `contracts/versioning.md` rule 4 and rule 1 apply. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:15]
-- The run record keeps `schemaVersion` at `1`, because its validator checks named fields and keeps an unknown key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:140]
+- The item gains no version key, and `grants` is an added key, so `contracts/versioning.md` rule 4 and rule 1 apply. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]
+- The run record keeps `schemaVersion` at `1`, because its validator checks named fields and keeps an unknown key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS"]
 - The lock file is not a record and carries no version.
 - The `[ACTION: <kind>]` line and the prompt line are text, not records.
 
-What an older runtime does with an item that carries `grants`, and the manual step a revert needs, are `contracts/versioning.md` section 2's row for this phase. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:23]
+What an older runtime does with an item that carries `grants`, and the manual step a revert needs, are `contracts/versioning.md` section 2's row for this phase. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "2. AN OLDER RUNTIME MEETS A NEWER RECORD"]
 
 ---
 
@@ -203,10 +203,10 @@ What an older runtime does with an item that carries `grants`, and the manual st
 | Decision | Why |
 |----------|-----|
 | The grant's validation runs ten checks in the order of section 1.1, and every failure is `item-field-invalid: grants` | The item's validator already names the first bad field and no more, so one detail for the whole object keeps the refusal vocabulary closed [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:95] |
-| The validator refuses a grant whose `scope` disagrees with `answer.scope` | The contract's "one write, so the two cannot disagree" is otherwise a promise no test can read [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:126] |
+| The validator refuses a grant whose `scope` disagrees with `answer.scope` | The contract's "one write, so the two cannot disagree" is otherwise a promise no test can read [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "3. GRANT OBJECT", row `scope`] |
 | The lock holds `pid`, `nonce` and `createdAt` and is reclaimed by pid or by a 60 s age | The run lease already reclaims by owner pid and nonce, and an answer holds the lock for milliseconds [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:12] |
 | The reclaim renames before it unlinks | A rename is atomic, so two reclaimers cannot both proceed and the loser retries the acquisition |
-| The wait is 2,000 ms polled every 50 ms, then `item-busy` | The bound is the contract's, and a poll interval short enough to feel instant keeps a contended answer under a second in practice [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:96] |
+| The wait is 2,000 ms polled every 50 ms, then `item-busy` | The bound is the contract's, and a poll interval short enough to feel instant keeps a contended answer under a second in practice [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"] |
 | `action` keeps the `[ACTION: <kind>]` line | The contract says the question, and stripping it would make `action` disagree with the stored `question` |
 | The resumed prompt line is `Granted scope: <scope>` and is absent when no scope was granted | An item written before this phase must produce today's prompt unchanged, so the line cannot be unconditional |
-| The run record's key is `by` and not `grantedBy` | The contract fixed the shorter name for this join, and the two values are equal by construction [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:487] |
+| The run record's key is `by` and not `grantedBy` | The contract fixed the shorter name for this join, and the two values are equal by construction [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "17. DECISIONS TAKEN"] |

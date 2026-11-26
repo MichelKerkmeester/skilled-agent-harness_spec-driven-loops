@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The apps refusals, their detail text and their precedence
 
-The packet's refusal contract owns the layer, the failure class, the exit code and the registry entry for every name the packet adds, and its section 3.6 is this phase's row set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:119] This file owns what that contract does not: the exact detail string, the order the checks run in and which name wins when two could apply.
+The packet's refusal contract owns the layer, the failure class, the exit code and the registry entry for every name the packet adds, and its section 3.6 is this phase's row set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.6 Phase 007, per-bot apps"] This file owns what that contract does not: the exact detail string, the order the checks run in and which name wins when two could apply.
 
 Six names are in play. Two are run refusals that enter the registry, one is a checker invariant, one is a parse name and two are details of a run refusal.
 
@@ -25,7 +25,7 @@ Six names are in play. Two are run refusals that enter the registry, one is a ch
 | `utcp-config-missing` | detail of `apps-refused` | `author` | 4 | no | 5 |
 | `utcp-config-invalid` | detail of `apps-refused` | `author` | 4 | no | 5 |
 
-The registry ends at 37 causes and this phase adds two of them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:198]
+The registry ends at 37 causes and this phase adds two of them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "4. THE REGISTRY AFTER THE PACKET"]
 
 ---
 

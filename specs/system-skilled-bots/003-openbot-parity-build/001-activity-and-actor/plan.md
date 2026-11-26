@@ -191,7 +191,7 @@ Each row's own `SKILL.md` owns its flags, its stdin redirect and its outcome rec
 - **`gpt-6-luna` at `xhigh` on the `fast` service tier** for the hardest task in the build, and as the last fallback when every other row is out of usage.
 - **GPT models only through `cli-codex`.** No other row in this roster reaches a GPT model, so a task that needs one is a `cli-codex` task by definition.
 
-The parent's phase row fixes this phase at `cli-pi` and `--thinking max` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:197]. That `max` is the phase's primary effort and its ceiling. The parent's tier rule is what sets a mechanical wave below it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:191], so W0, W6, W8, W9 and W10 run at `high` and the design waves run at `max`.
+The parent's phase row fixes this phase at `cli-pi` and `--thinking max` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION", row 001]. That `max` is the phase's primary effort and its ceiling. The parent's tier rule is what sets a mechanical wave below it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"], so W0, W6, W8, W9 and W10 run at `high` and the design waves run at `max`.
 
 ### Dispatch rules every worker carries
 
@@ -215,7 +215,7 @@ A running CLI skill never dispatches itself, so the orchestrator removes its own
 
 ### Fallback ladder
 
-Every wave walks this ladder from its own entry point, and a wave names only that entry point. A row is skipped, not retried, when its guard refuses or its usage is exhausted. The order is the parent's [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:212].
+Every wave walks this ladder from its own entry point, and a wave names only that entry point. A row is skipped, not retried, when its guard refuses or its usage is exhausted. The order is the parent's [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
 1. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`.
 2. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
@@ -227,7 +227,7 @@ A wave that reaches the end of the ladder without a working executor stops and r
 
 ### Waves
 
-The parent's worker rule sets the bound: no two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into, and this phase's row caps it at 3 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:193] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:197]. A wave runs at one effort, so a wave holds only tasks of one tier.
+The parent's worker rule sets the bound: no two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into, and this phase's row caps it at 3 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION", row 001]. A wave runs at one effort, so a wave holds only tasks of one tier.
 
 | Wave | Task ids | Executor | Model | Effort | Workers | File groups |
 |------|----------|----------|-------|--------|---------|-------------|

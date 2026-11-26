@@ -63,7 +63,7 @@ pub enum PaneState { Loading, Empty, Rows, Stale, Error }   // derived by Remote
 
 The first four fields are the ones 002 already names. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:198] `generation` is added because the review asks for one generation per surface. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/fable-review-1.md:56]
 
-`pane_state` derives the inventory's five states from the four values, in this order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:49-55]
+`pane_state` derives the inventory's five states from the four values, in this order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md, section "2. THE FIVE STATES EVERY DATA PANE SHARES"]
 
 | Derived state | Condition |
 |---------------|-----------|
@@ -73,7 +73,7 @@ The first four fields are the ones 002 already names. [SOURCE: specs/system-skil
 | `Empty` | `last_ok_at` is `Some`, `error` is `None` and the rows are empty |
 | `Rows` | `last_ok_at` is `Some`, `error` is `None` and at least one row exists |
 
-`in_flight` never changes the derived state, so a pane that is polled every 5 seconds never flickers back to `Loading`. The `stale <n>m` age in a pane title is `now - last_ok_at`, formatted by `stale_label`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md:136]
+`in_flight` never changes the derived state, so a pane that is polled every 5 seconds never flickers back to `Loading`. The `stale <n>m` age in a pane title is `now - last_ok_at`, formatted by `stale_label`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md, REQ-013]
 
 ### 1.4 The per-pane view (`state.rs`)
 
@@ -153,11 +153,11 @@ pub enum Outcome { Approved, Denied, Answered }           // the word drawn on a
 pub struct AnsweredRow { pub id: ItemId, pub outcome: Outcome, pub inbox_generation: u64 }   // one mark, and the inbox generation it was set at
 ```
 
-The shell reads `active_tab`, `status`, `last_error` and `now`, the four fields 003 names. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/plan.md:81]
+The shell reads `active_tab`, `status`, `last_error` and `now`, the four fields 003 names. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/plan.md, section "AFFECTED SURFACES", row `crates/bots-tui/src/state.rs`]
 
 `last_error` follows one rule: a failed call, or a call that exits 0 and writes stderr, sets the line with its own source. A later call from the same source that exits 0 with empty stderr clears the line, and only when the line still carries that source. A clean read of the activity surface therefore never wipes a refusal from `bots answer`.
 
-A successful answer issues no read of its own. The row keeps its outcome word and the answered item stays drawn until the next 5-second poll's successful inbox read, because an immediate read would drop the item at once and the word would only flash. `inbox_generation` is the inbox surface's generation when the mark was set, so a read issued before the answer cannot clear it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:253] An inbox read that lands after `Answered` and carries the mark's own generation keeps the answered item in `inbox.rows` until the next poll's read.
+A successful answer issues no read of its own. The row keeps its outcome word and the answered item stays drawn until the next 5-second poll's successful inbox read, because an immediate read would drop the item at once and the word would only flash. `inbox_generation` is the inbox surface's generation when the mark was set, so a read issued before the answer cannot clear it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md, section "3. THE ANSWER-FLOW SEQUENCE"] An inbox read that lands after `Answered` and carries the mark's own generation keeps the answered item in `inbox.rows` until the next poll's read.
 
 Four derived helpers sit beside the struct, owned by 002, so the reducer and the view do the same size arithmetic without the reducer importing the view.
 
@@ -359,7 +359,7 @@ The rules 005 must hold in its arms, fixed here because they shape the state:
 
 - An answer key sets `Sending` and returns the `Answer` effect in the same call, and pushes the id onto `pending_answers`. Any answer key while `Sending` returns nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/plan.md:73]
 - `SendText` on a line that is empty after trimming returns nothing and stays in `Typing`.
-- `Close` while `Sending` closes the overlay and the answer still completes. Its result reaches the status row through `last_error`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md:154]
+- `Close` while `Sending` closes the overlay and the answer still completes. Its result reaches the status row through `last_error`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md, REQ-015]
 - `OpenItem` on an expired item, or on an item with a mark in `answered`, opens in `Gone`. On an item in `pending_answers` it opens in `Sending`.
 - From `Refused`, `t` returns to `Typing` with `buffer` kept, and `n`, `y` or a digit act as in `Idle`.
 - An `AnswerError` whose kind is `Timeout` moves to `Refused`, never to closed, because the write may have landed. The latest inbox rows decide whether the item is still open, and no read is issued to find out.
@@ -430,7 +430,7 @@ The panic hook restores the terminal once, through the same idempotent restore `
 | 101 | A panic on the UI thread, the Rust default, after the hook has restored the terminal |
 | 128 plus N | Signal N: 129 for `SIGHUP`, 130 for `SIGINT`, 143 for `SIGTERM` |
 
-The `ui` verb passes the code through unchanged. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:187]
+The `ui` verb passes the code through unchanged. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001]
 
 ---
 
@@ -476,14 +476,14 @@ The `ui` verb passes the code through unchanged. [SOURCE: specs/system-skilled-b
 | Work | Claimed by | Keeps it | Why |
 |------|------------|----------|-----|
 | The answer call in `cli.rs` | 002 and 005 | 002 | 002 already tests `answer_argv_carries_scope`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/tasks.md:59] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md:128] |
-| The fixture's answer branch, argv log and refusal switch | 002 and 005 | 002 | 002's client test already reads two answers from the log. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/tasks.md:61] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md:131] |
+| The fixture's answer branch, argv log and refusal switch | 002 and 005 | 002 | 002's client test already reads two answers from the log. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/tasks.md, T011] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md:131] |
 | `options` on the inbox item | 004 by use, 005 by claim | 002 | 004 runs first and draws the options. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md:129] |
 | The closed-input exit in `app.rs` | 002 and 005 | 002 | REQ-011 is 002's, and 005 keeps its own closed-input test with an overlay open. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md:130] |
 | The lock and the refusal path | 005 in `app.rs` | 005 in `state.rs` | A lock in the loop is outside the reducer, and the reducer must move the phase in the same step. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/plan.md:69] |
 | `--mono` and `--ascii` parsing | 002 and 003 | 002 | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:158] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/tasks.md:62] |
 | The `pub mod` lines for `keys`, `theme` and `view` | 003 | 002 | 002's plan already writes every `pub mod` line so no later task edits `lib.rs`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/plan.md:145] |
 | The header's status read | 003 through `cli.rs` | the worker | The header reads `state.status`. Only `cli.rs` starts a process. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/plan.md:64] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/goal.md:48] |
-| The palette's filter and selection | 003 in `view/mod.rs` and `keys.rs` | 003 in `state.rs` | Palette state lives in the reducer. `view/mod.rs` only draws it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/tasks.md:60] |
+| The palette's filter and selection | 003 in `view/mod.rs` and `keys.rs` | 003 in `state.rs` | Palette state lives in the reducer. `view/mod.rs` only draws it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/tasks.md, T010] |
 
 ---
 
@@ -730,7 +730,7 @@ Each row names the file, the line as read on 2026-11-25, and the replacement. Pa
 | `002-architecture-and-contracts/plan.md:72` | Replace `and the loop drops a result whose generation is not current` with `and the reducer drops a read whose generation is older than its surface's newest, and never drops an answer result` |
 | `002-architecture-and-contracts/plan.md:80` | Replace the sentence that starts `The loop drops a stale generation` with `The reducer drops a read older than its surface's newest generation, stores a current one, and the loop redraws.` |
 | `002-architecture-and-contracts/plan.md:145` | Append: `T006 also writes keys.rs, theme.rs and view/mod.rs as compiling stubs, so 003 never edits lib.rs.` |
-| `002-architecture-and-contracts/tasks.md:49` | Add `$CRATE/src/keys.rs`, `$CRATE/src/theme.rs` and `$CRATE/src/view/mod.rs` to T006's file list |
+| `002-architecture-and-contracts/tasks.md, T006` | Add `$CRATE/src/keys.rs`, `$CRATE/src/theme.rs` and `$CRATE/src/view/mod.rs` to T006's file list |
 | `002-architecture-and-contracts/tasks.md:62` | Replace `selection_is_an_item_id` with `selection_is_a_row_key_per_pane`, and add the test `stale_generation_is_dropped` here |
 | `002-architecture-and-contracts/tasks.md:64` | Replace `names stale_generation_is_dropped and loop_thread_spawns_nothing` with `names answer_jumps_queued_reads, child_past_timeout_is_killed and loop_thread_spawns_nothing` |
 | `002-architecture-and-contracts/tasks.md:71` | T028 copies 001's four files plus `architecture.md` and `contracts.md` |
@@ -752,7 +752,7 @@ Each row names the file, the line as read on 2026-11-25, and the replacement. Pa
 | `003-shell-and-navigation/plan.md:80` | Delete the `lib.rs` row |
 | `003-shell-and-navigation/plan.md:81` | `` update - `on_shell_action` only. The shell reads `active_tab`, `status`, `last_error`, `now` and `palette`, and adds no field `` |
 | `003-shell-and-navigation/tasks.md:54` | Drop `the three pub mod lines` and `$CRATE/src/lib.rs` from T004 |
-| `003-shell-and-navigation/tasks.md:60` | T010 files: `$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/keys.rs`, `$CRATE/src/view/mod.rs` |
+| `003-shell-and-navigation/tasks.md, T010` | T010 files: `$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/keys.rs`, `$CRATE/src/view/mod.rs` |
 | `003-shell-and-navigation/tasks.md:62` | Delete T012. 002 owns the flags and their `args` tests |
 
 ### 6.4 004 panes

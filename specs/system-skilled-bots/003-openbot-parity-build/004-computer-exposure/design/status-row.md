@@ -199,7 +199,7 @@ If you reach a decision only a person can make, print one line that starts with 
 <the BOT.md body>
 ```
 
-The checkout line's semicolon is the runtime's own text and is quoted exactly, as [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 1 requires. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:21]
+The checkout line's semicolon is the runtime's own text and is quoted exactly, as [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 1 requires. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "1. THE BLOCKS IN ORDER"]
 
 ### 5.3 A detached HEAD
 

@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # The records phase 9 writes and adds
 
-This note fixes every field of every record this phase writes, so a builder copies a table rather than choosing a key name. The packet-level shapes live in `contracts/records.md` and are cited, never copied. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:309-337] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:34-92] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:140-186]
+This note fixes every field of every record this phase writes, so a builder copies a table rather than choosing a key name. The packet-level shapes live in `contracts/records.md` and are cited, never copied. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "9. `proposal.json`"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS", section "Install record addition"]
 
 Paths are relative to the repository root. `$R` is `.skilled/skills/system-skilled-bots/runtime` and `$F` is `.skilled/skills/system-skilled-bots/scripts/fixtures`, the two variables `tasks.md` uses.
 
@@ -21,7 +21,7 @@ Paths are relative to the repository root. `$R` is `.skilled/skills/system-skill
 
 ## 1. THE PROPOSALS FOLDER
 
-`<stateRoot>/<identityKey>/proposals/<runId>/` holds three files at most. The folder is created on the first proposal for that run and never removed by this phase. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:132-134]
+`<stateRoot>/<identityKey>/proposals/<runId>/` holds three files at most. The folder is created on the first proposal for that run and never removed by this phase. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "2.1 The user state root"]
 
 ```text
 <stateRoot>/<identityKey>/proposals/<runId>/     0700   009
@@ -38,7 +38,7 @@ The folder is never inside a checkout. A worktree run's tree is thrown away, and
 
 ## 2. `proposal.json`
 
-The five keys and `schemaVersion` are `contracts/records.md` section 9. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:309-337] This table adds the value rule each key carries, which that section leaves to this phase.
+The five keys and `schemaVersion` are `contracts/records.md` section 9. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "9. `proposal.json`"] This table adds the value rule each key carries, which that section leaves to this phase.
 
 | Key | Type | Null | Value rule | Written by |
 |-----|------|------|------------|------------|
@@ -49,7 +49,7 @@ The five keys and `schemaVersion` are `contracts/records.md` section 9. [SOURCE:
 | `botId` | string | no | the record's `identity.botId`, the proposing bot | `writeProposal` |
 | `createdAt` | string | no | ISO 8601 UTC with a `Z`, the instant the draft was written | `writeProposal` |
 
-`<name>` is the `--name` value when given and the record's `identity.botId` when not. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:322]
+`<name>` is the `--name` value when given and the record's `identity.botId` when not. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "9. `proposal.json`"]
 
 Sample, a new skill (`$F/proposal.json`):
 
@@ -77,13 +77,13 @@ Sample, a target that already existed:
 }
 ```
 
-**Version rule.** `schemaVersion` is `1` and moves only when a key is removed, renamed or retyped, or when a non-null key becomes nullable. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:18] A reader that meets a higher `schemaVersion` refuses the file and the review reads as not a proposal, which is the fallback `spec.md` NFR-R02 requires.
+**Version rule.** `schemaVersion` is `1` and moves only when a key is removed, renamed or retyped, or when a non-null key becomes nullable. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"] A reader that meets a higher `schemaVersion` refuses the file and the review reads as not a proposal, which is the fallback `spec.md` NFR-R02 requires.
 
 ---
 
 ## 3. `answer.json`
 
-The settle's effect. `contracts/answer-seam.md` step 13 requires a skill decision to be recorded beside `proposal.json` and names no file. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:41] This section fixes the file and its keys.
+The settle's effect. `contracts/answer-seam.md` step 13 requires a skill decision to be recorded beside `proposal.json` and names no file. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 13] This section fixes the file and its keys.
 
 | Key | Type | Null | Value rule |
 |-----|------|------|------------|
@@ -111,13 +111,13 @@ Sample:
 
 **Why a third file.** The item's `answer` object records the answer, and the item is the review's own record. `answer.json` records the decision beside the draft, so a reader of the proposals folder sees what was decided without reading the state root's item folder, and the settle's idempotence check is one file read. A settle that runs twice writes the same bytes, because every value is copied from the answer and the proposal.
 
-**Contract gap this phase leaves.** `contracts/records.md` section 9 holds `proposal.json` and not this file. The contract's own rule says the contract file is edited first. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md:19] This phase cannot edit a frozen contract, so the shape is fixed here and the amendment is named in `goal.md` section 4: a section 9.1 holding this table, added in the same change that lands the code.
+**Contract gap this phase leaves.** `contracts/records.md` section 9 holds `proposal.json` and not this file. The contract's own rule says the contract file is edited first. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md, section "The rule"] This phase cannot edit a frozen contract, so the shape is fixed here and the amendment is named in `goal.md` section 4: a section 9.1 holding this table, added in the same change that lands the code.
 
 ---
 
 ## 4. THE REVIEW ITEM
 
-The item's key list is closed and `contracts/records.md` section 1 holds every key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:34-92] This table gives the value a `skill-proposal` item carries for each key, so the writer fills nineteen keys and chooses none.
+The item's key list is closed and `contracts/records.md` section 1 holds every key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"] This table gives the value a `skill-proposal` item carries for each key, so the writer fills nineteen keys and chooses none.
 
 | Key | Value on a `skill-proposal` item |
 |-----|----------------------------------|
@@ -126,7 +126,7 @@ The item's key list is closed and `contracts/records.md` section 1 holds every k
 | `botId` | the literal `skill-proposals`, the reserved sentinel |
 | `identity` | the record's `identity.repository`, an `owner/name` identity |
 | `question` | `Propose skill <name>?` |
-| `options` | `["confirm", "reject"]` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:109] |
+| `options` | `["confirm", "reject"]` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"] |
 | `createdAt` | the instant the item is written, ISO 8601 UTC |
 | `expiresAt` | `createdAt` plus the repository's `needsYou.expiryDays` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:145-147] |
 | `evidence` | three absolute paths in this order: the draft, the `proposal.json`, the run folder from the record's `evidence.runFolder` |
@@ -138,10 +138,10 @@ The item's key list is closed and `contracts/records.md` section 1 holds every k
 | `proposalType` | `null` |
 | `proposalFact` | `null` |
 | `proposalBotId` | `null` |
-| `grants` | `{kind, action, rung, scope: null, grantedBy: null, grantedAt: null}` where `kind` is `classifyAction(question)`, `action` is `question` clipped to 120 characters and `rung` is the `rung` `decideApproval` returns [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:117-138] |
+| `grants` | `{kind, action, rung, scope: null, grantedBy: null, grantedAt: null}` where `kind` is `classifyAction(question)`, `action` is `question` clipped to 120 characters and `rung` is the `rung` `decideApproval` returns [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "3. GRANT OBJECT"] |
 | `conversationId` | `null` |
 
-The three proposal keys are `null` on this item, as `contracts/records.md` section 1 requires, and the draft is named in `evidence` instead. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:66]
+The three proposal keys are `null` on this item, as `contracts/records.md` section 1 requires, and the draft is named in `evidence` instead. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
 
 Sample (`$F/needs-you-item.skill-proposal.json`):
 
@@ -180,15 +180,15 @@ Sample (`$F/needs-you-item.skill-proposal.json`):
 }
 ```
 
-**Why `other` and `bot`.** The question names no pay, credentials, delete, send, share or post word, so `classifyAction` returns `other`, and `decideApproval` falls through to the `bot` rung. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:154-155] A proposal is a repository change, and the ladder has no rung for one, so the fallback is the honest answer and this phase adds no rung of its own.
+**Why `other` and `bot`.** The question names no pay, credentials, delete, send, share or post word, so `classifyAction` returns `other`, and `decideApproval` falls through to the `bot` rung. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-002 to REQ-003] A proposal is a repository change, and the ladder has no rung for one, so the fallback is the honest answer and this phase adds no rung of its own.
 
-**Version rule.** The item carries no version key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:20] A runtime built before 001 refuses this item for its `kind` key, and the item holds no real bot, so the revert step is to remove the item file and leave the proposals folder. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:37]
+**Version rule.** The item carries no version key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"] A runtime built before 001 refuses this item for its `kind` key, and the item holds no real bot, so the revert step is to remove the item file and leave the proposals folder. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "2. AN OLDER RUNTIME MEETS A NEWER RECORD", row 009]
 
 ---
 
 ## 5. `posture.skills` ON THE RUN RECORD
 
-`contracts/records.md` section 4 fixes the key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:153] This table fixes the entry.
+`contracts/records.md` section 4 fixes the key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS", row `posture.skills`] This table fixes the entry.
 
 | Field | Type | Null | Value rule |
 |-------|------|------|------------|
@@ -203,20 +203,20 @@ Sample, one loaded body:
 { "posture": { "skills": [{ "name": "sk-doc", "digest": "3b1f0c4e9a2d7b6e5f8c1a0d9e4b7c2f6a3d8e1b0c5f9a2e7d4b6c1f8a3e0d5b" }] } }
 ```
 
-**Version rule.** `schemaVersion` stays `1`, because the run record's validator checks its eight field groups and named fields and keeps any other key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:140-145]
+**Version rule.** `schemaVersion` stays `1`, because the run record's validator checks its eight field groups and named fields and keeps any other key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS"]
 
 ---
 
 ## 6. `skillDigests` ON THE INSTALL RECORD
 
-`contracts/records.md` section 4's install-record addition fixes the key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:176-184] This table fixes the value.
+`contracts/records.md` section 4's install-record addition fixes the key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Install record addition", row `skillDigests`] This table fixes the value.
 
 | Field | Type | Null | Value rule |
 |-------|------|------|------------|
 | `skillDigests` | object | no | keyed by skill name, each value the SHA-256 hex of the body `bots install` read |
 | `skillDigests.<name>` | string | no | lower case, 64 characters |
 
-The object is `{}` on a bot installed before this phase, and the loader then refuses `skill-changed` for every name the definition carries until the bot is reinstalled. That is the intended upgrade step and it is named in the author reference. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:182]
+The object is `{}` on a bot installed before this phase, and the loader then refuses `skill-changed` for every name the definition carries until the bot is reinstalled. That is the intended upgrade step and it is named in the author reference. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Install record addition", row `skillDigests`]
 
 Sample:
 

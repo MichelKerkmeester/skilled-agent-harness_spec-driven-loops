@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 # The alignment run records
 
-This file fixes every record the two alignment commands write and the two records this phase adds. A change to a shape here is a change to this file first, then to the golden in `design/fixtures/`, then to the phase documents, the same order `contracts/README.md` sets for the packet's own contracts. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md:19]
+This file fixes every record the two alignment commands write and the two records this phase adds. A change to a shape here is a change to this file first, then to the golden in `design/fixtures/`, then to the phase documents, the same order `contracts/README.md` sets for the packet's own contracts. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md, section "The rule"]
 
 Every field below was read in the script that writes it, and every sample was produced by running that script. The measured numbers come from a scope run over this checkout at `79519553b62e41c7a018f4e3fde04f1d2f7f30ff`, made with a temporary topics file so the repository's `topics.json` stayed untouched.
 
@@ -31,13 +31,13 @@ The two run roots sit outside the checkout, under the operator's state root:
 
 Three consequences follow, and each one is a decision a builder would otherwise have to make.
 
-**These are not runtime records.** `contracts/records.md` owns the records under `${XDG_STATE_HOME:-$HOME/.local/state}/system-skilled-bots`, in the identity folder. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:17] A run folder is not under that root and no runtime module reads it, so `contracts/records.md` neither owns these shapes nor needs an edit when one changes.
+**These are not runtime records.** `contracts/records.md` owns the records under `${XDG_STATE_HOME:-$HOME/.local/state}/system-skilled-bots`, in the identity folder. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Durable records of the OpenBot parity build"] A run folder is not under that root and no runtime module reads it, so `contracts/records.md` neither owns these shapes nor needs an edit when one changes.
 
-**These are not `--json` payloads.** `contracts/cli-json.md` rule 1 makes every `--json` verb print one object with a top-level `version`, and its section 2 closes the verb list. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:18] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:40] No alignment record is printed by a `bots` verb, so that rule does not reach them.
+**These are not `--json` payloads.** `contracts/cli-json.md` rule 1 makes every `--json` verb print one object with a top-level `version`, and its section 2 closes the verb list. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "1. THE RULE"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "2. ONE ROW PER VERB"] No alignment record is printed by a `bots` verb, so that rule does not reach them.
 
 **`findings.json` is a bare array and must stay one.** `recheck.cjs` reads the file and throws `findings.json must contain an array` on anything else. [SOURCE: .skilled/commands/assets/local-skilled-alignment/recheck.cjs:144] So the envelope rule cannot be applied here even by analogy: an object with a `findings` key would break the recheck. This is the one place in the packet where a bare array is correct, and the reason is the reader, not a preference.
 
-`contracts/versioning.md` rule 3 lists the state files that carry `schemaVersion: 1` and a run folder is not among them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:19] No record below carries a version key. A shape change is made by editing this file and the golden together, and the two commands are operator-local so no older reader has to survive it.
+`contracts/versioning.md` rule 3 lists the state files that carry `schemaVersion: 1` and a run folder is not among them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"] No record below carries a version key. A shape change is made by editing this file and the golden together, and the two commands are operator-local so no older reader has to survive it.
 
 ---
 

@@ -13,9 +13,9 @@ version: 1.0.0.0
 
 # The memory refusal catalogue
 
-The packet's table owns the names, the layers, the classes and the exits. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:91] This note adds the three things a builder needs and the table does not carry: the exact stderr text, the trigger that produces each one and the test that proves it.
+The packet's table owns the names, the layers, the classes and the exits. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.4 Phase 005, memory"] This note adds the three things a builder needs and the table does not carry: the exact stderr text, the trigger that produces each one and the test that proves it.
 
-The exit rule is the CLI's own. A check `bots.cjs` makes on its own input exits 2. A refusal that comes back from a runtime call exits 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:40]
+The exit rule is the CLI's own. A check `bots.cjs` makes on its own input exits 2. A refusal that comes back from a runtime call exits 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "2. LAYERS AND THE EXIT RULE"]
 
 ---
 
@@ -29,9 +29,9 @@ The exit rule is the CLI's own. A check `bots.cjs` makes on its own input exits 
 | `memory-secret` | A fact `bots remember` or `bots answer confirm` would append holds a known secret literal | `bots: memory-secret: <key>` | `memory.vitest.ts` `secret` and `answer.vitest.ts` `proposal secret` |
 | `review-answer-invalid` | `bots answer` on a `memory-proposal` item with a text other than `confirm` or `reject` | `bots: review-answer-invalid: <text>` | `answer.vitest.ts`, `proposal answer invalid` |
 
-`memory-full` exits 4 and not 1 because exit 1 means a run failure or a caught throw, and a full file is a runtime refusal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:221]
+`memory-full` exits 4 and not 1 because exit 1 means a run failure or a caught throw, and a full file is a runtime refusal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"]
 
-`review-answer-invalid` exits 4 because every `answerItem` refusal exits 4 and the screen depends on it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:221]
+`review-answer-invalid` exits 4 because every `answerItem` refusal exits 4 and the screen depends on it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"]
 
 ### 1.2 Verb refusals, exit 2
 
@@ -41,7 +41,7 @@ The exit rule is the CLI's own. A check `bots.cjs` makes on its own input exits 
 | `memory-entry-unknown` | `--forget <n>` names an index below 1 or above the entry count | `bots: memory-entry-unknown: <n>` | `memory.vitest.ts`, `forget` |
 | `bot-id-invalid` | `--bot <id>` is not a safe segment | `bots: bot-id-invalid: <id>` | `cli-run.vitest.ts`, `remember bot id` |
 
-`memory-entry-too-long` exits 2 because the length is checked on the argument before any file is read, which is the usage layer. `memory-entry-unknown` keeps exit 2 because a new verb may treat an index that names nothing as a bad argument. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:221]
+`memory-entry-too-long` exits 2 because the length is checked on the argument before any file is read, which is the usage layer. `memory-entry-unknown` keeps exit 2 because a new verb may treat an index that names nothing as a bad argument. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"]
 
 ### 1.3 The definition parse
 
@@ -49,7 +49,7 @@ The exit rule is the CLI's own. A check `bots.cjs` makes on its own input exits 
 |------|---------|--------------|------|------|
 | `memory-invalid` | The `memory` key holds a value that is not a boolean | `bots: definition-malformed: memory-invalid` at run time, `FAIL: definition.memory-invalid` in the checker | 4 at run time, 1 in the checker | `definition.vitest.ts`, `memory` |
 
-The parse reason is a detail of `definition-malformed` and never a registry entry, which is the packet's rule for every parse refusal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:198]
+The parse reason is a detail of `definition-malformed` and never a registry entry, which is the packet's rule for every parse refusal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "4. THE REGISTRY AFTER THE PACKET"]
 
 ### 1.4 Post-run causes
 
@@ -58,7 +58,7 @@ The parse reason is a detail of `definition-malformed` and never a registry entr
 | `memory-proposal-secret` | A `[REMEMBER]` fact holds a known secret literal | The run stays `completed`, no item is written, the cause is recorded on the run record | `runner.vitest.ts`, `proposal secret` |
 | `remember-type-invalid` | A `[REMEMBER]` line names no type, or a type outside the four | The run stays `completed`, no item is written, the cause is recorded | `runner.vitest.ts`, `remember type` |
 
-Both are post-run causes because the child already ran and this phase ends a proposing run `completed`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:221] Neither enters `REFUSAL_CAUSES`, because neither refuses a run.
+Both are post-run causes because the child already ran and this phase ends a proposing run `completed`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"] Neither enters `REFUSAL_CAUSES`, because neither refuses a run.
 
 ### 1.5 The run refusals
 
@@ -67,7 +67,7 @@ Both are post-run causes because the child already ran and this phase ends a pro
 | `prompt-over-budget` | `author` | 4 | Yes, one of the packet's twelve | The composed prompt is over 32,000 characters after the conversation gave way | `bots: prompt-over-budget: <block> at <n> of 32000 characters` | `dispatch.vitest.ts`, `over budget` |
 | `body-secret` | `author` | 4 | Already there | A rendered memory block holds a known secret literal | `bots: body-secret: memory <path> holds a literal of <kind> <name>` | `runner.vitest.ts`, `memory secret` |
 
-`prompt-over-budget` is the only registry entry this phase adds, and the registry ends at 37 causes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:198] The block names are `exemption`, `spec-folder`, `working-place`, `checkout`, `memory`, `skills`, `decision-marker`, `body`, `request-prompt` and `resume`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:214]
+`prompt-over-budget` is the only registry entry this phase adds, and the registry ends at 37 causes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "4. THE REGISTRY AFTER THE PACKET"] The block names are `exemption`, `spec-folder`, `working-place`, `checkout`, `memory`, `skills`, `decision-marker`, `body`, `request-prompt` and `resume`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.3 The overflow rule"]
 
 ---
 
@@ -139,13 +139,13 @@ A builder must not invent a new name where one of these already fits.
 | The item is expired | 4 | nothing | `bots: item-expired: expired at <instant>` |
 | The item was answered differently | 4 | nothing | `bots: item-answered-differently: answered at <instant>` |
 
-The `reviewed` status and the `<kind> review recorded` line are the packet's, and this phase supplies the kind's name. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:41]
+The `reviewed` status and the `<kind> review recorded` line are the packet's, and this phase supplies the kind's name. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 13]
 
 ---
 
 ## 5. WHAT THE SCREEN SEES
 
-The screen classes every answer refusal as `gone` or `refused`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:38]
+The screen classes every answer refusal as `gone` or `refused`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 10]
 
 | Refusal | Screen class |
 |---------|--------------|

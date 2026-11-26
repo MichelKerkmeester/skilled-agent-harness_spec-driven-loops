@@ -3,7 +3,7 @@ title: "Design: the working-place prompt line"
 description: "The one prompt line this phase adds: its two literal shapes, the exported builder and prefix constant, its exact slot in the shared section order with the assertion a test makes, the three outcomes of the resumed-prompt check and the insertion point it uses."
 trigger_phrases:
   - "working place prompt line"
-  - "workingPlaceLine"
+  - "workingPlaceLine builder export"
   - "resumed prompt working place"
 importance_tier: "important"
 contextType: "implementation"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The working-place prompt line
 
-This note fixes everything a builder needs to write the line, so no decision is left to the builder. The block's place in the shared order, its literal text and its budget row are owned by [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 1.3 and section 4.2, and this note cites them rather than copying them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:63-77]
+This note fixes everything a builder needs to write the line, so no decision is left to the builder. The block's place in the shared order, its literal text and its budget row are owned by [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 1.3 and section 4.2, and this note cites them rather than copying them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "1.3 Working place", section "4.2 The table"]
 
 Paths are repository-relative. `L/` means `.skilled/skills/system-skilled-bots/runtime/lib/`.
 
@@ -47,7 +47,7 @@ The second shape is the first with the clause ` on branch <branch>` removed and 
 
 ## 2. THE SLOT
 
-The order is exemption, spec folder, working place, checkout, memory, skills, decision marker, body, conversation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:19] The line is the third element of the list `buildBotPrompt` joins with one newline, so it is the third line of every prompt this phase produces. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:321-331]
+The order is exemption, spec folder, working place, checkout, memory, skills, decision marker, body, conversation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "The nine prompt sections"] The line is the third element of the list `buildBotPrompt` joins with one newline, so it is the third line of every prompt this phase produces. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:321-331]
 
 ### 2.1 The assertion a test makes
 
@@ -77,7 +77,7 @@ The request prompt is joined by the builder itself, per [`contracts/prompt-secti
 
 ### 2.3 The absent-block rule
 
-The working-place block is never absent once this phase lands, so the prompt a run gets is never byte-identical to today's. That is the one place this phase departs from the absent-block rule in [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 5, and the contract says so in its own row. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:213]
+The working-place block is never absent once this phase lands, so the prompt a run gets is never byte-identical to today's. That is the one place this phase departs from the absent-block rule in [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 5, and the contract says so in its own row. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "5. THE ABSENT-BLOCK RULE", row Working place]
 
 ---
 
@@ -100,7 +100,7 @@ The line's branch clause and the record's `evidence.branch` are one value, resol
 | A null status, meaning the spawn failed or the 30 s timeout fired | null | Same rule |
 | Empty stdout with a zero status | null | Defensive, and it keeps the return type honest |
 
-The function never throws and never returns a refusal. A null branch is a legal record value, so a failed read costs the operator one missing row part and never a run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:196]
+The function never throws and never returns a refusal. A null branch is a legal record value, so a failed read costs the operator one missing row part and never a run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS", row `evidence.branch`]
 
 **Where the runner calls it.** Three steps, in this order, immediately after `workDir` is computed and before the record is written:
 
@@ -116,7 +116,7 @@ For a worktree run step 1 is the tree's own branch and the git call never happen
 
 ## 4. THE RESUMED PROMPT
 
-A resumed run is dispatched with the parked prompt, not a recomposed one, so a prompt parked before this phase carries no working-place line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:139-141] The runner therefore inspects the parked prompt before dispatch and takes one of three outcomes.
+A resumed run is dispatched with the parked prompt, not a recomposed one, so a prompt parked before this phase carries no working-place line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "1.3 Working place"] The runner therefore inspects the parked prompt before dispatch and takes one of three outcomes.
 
 | Outcome | Test | Action |
 |---------|------|--------|

@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # The secrets index, its write rule and the orphan rule
 
-This note closes gaps 4 and 5 of the plan-depth research: the index shape and its write rule. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:157-158] The shape is the contract's and is not restated here: keys, types, null rules and the sample are `contracts/records.md` section 8, and the golden file is `contracts/fixtures/secrets-index.json`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:279-305] This note adds how the index is read, written and kept true.
+This note closes gaps 4 and 5 of the plan-depth research: the index shape and its write rule. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:157-158] The shape is the contract's and is not restated here: keys, types, null rules and the sample are `contracts/records.md` section 8, and the golden file is `contracts/fixtures/secrets-index.json`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "8. SECRETS INDEX"] This note adds how the index is read, written and kept true.
 
 ---
 
@@ -43,7 +43,7 @@ This note closes gaps 4 and 5 of the plan-depth research: the index shape and it
 
 ### 2.1 One lock for every change
 
-`set` and `forget` hold `secrets/index.lock` from before they read the index until after their last backend call. It has the same form as the item lock in `contracts/answer-seam.md` step 6: created exclusively (`flag: 'wx'`, mode 0600), holding the pid, a nonce and the instant, and reclaimed by rename when its owner is gone or it is older than 60 s. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:34]
+`set` and `forget` hold `secrets/index.lock` from before they read the index until after their last backend call. It has the same form as the item lock in `contracts/answer-seam.md` step 6: created exclusively (`flag: 'wx'`, mode 0600), holding the pid, a nonce and the instant, and reclaimed by rename when its owner is gone or it is older than 60 s. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 6]
 
 One rule differs. The item lock waits 2,000 ms for a live owner and then refuses `item-busy`. The index lock has no refusal of its own in `contracts/refusals.md` section 3.7, so it waits, polling every 25 ms, until the owner is gone or the lock is 60 s old. A holder makes at most three backend calls (write, read-back and the old backend's delete), each capped at 10 s by `backends.md` section 2.4, so a holder that is alive finishes inside the 60 s and is never reclaimed from under itself. The lock is removed in a `finally` on every exit after it is taken.
 

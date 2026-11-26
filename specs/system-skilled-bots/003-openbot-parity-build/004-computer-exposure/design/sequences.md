@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 Each diagram covers one path this phase touches, from the caller to the file on disk. The participants are the real modules. The order is the order the code runs in, and where this phase inserts a step the diagram says so.
 
-The run's own fixed order is [`contracts/runtime-architecture.md`](../../contracts/runtime-architecture.md) section 3.1 and these diagrams are the same run with this phase's two steps marked. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:196-227]
+The run's own fixed order is [`contracts/runtime-architecture.md`](../../contracts/runtime-architecture.md) section 3.1 and these diagrams are the same run with this phase's two steps marked. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "3.1 A run"]
 
 ---
 

@@ -171,7 +171,7 @@ Requirement ids are unique across the three children. Child 002 holds REQ-001 to
 |-----------------------------------|----------|
 | REQ-006, AC-003 and AC-006 printed a bare JSON array | 002: the three-key object, and the `jq` checks read `.messages` |
 | The plan joined the transcript in `runner.ts` after the builder, so the 32,000 check never saw it | 002: the join moves into `buildBotPrompt`, phase 005's change (`contracts/prompt-sections.md` section 6) |
-| "Control characters" did not name the newline | 002 REQ-003: the newline is one, and a stored reply loses its paragraph breaks |
+| "Control characters" did not say whether the newline is one, and stripping it would cost every stored reply its paragraph breaks | 002 REQ-003: a stored message keeps each line feed and drops every other control character, the chat pane draws each line and the prompt renderer writes each line feed as one space (D10 in `contracts/decisions.md`) |
 | The redaction token was spelled `[redacted: <key>]` | 002: `[redacted: <name>]` and `secret-in-output` in `postRunCauses` (`contracts/records.md` sections 4 and 17) |
 | The block opened `<conversation>` with no id | 002: `<conversation id="...">` with the label line |
 | A secret in a human message exited 2 | 002: `body-secret` exits 4 |

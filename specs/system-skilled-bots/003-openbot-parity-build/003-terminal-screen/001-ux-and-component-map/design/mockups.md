@@ -2083,7 +2083,7 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 | A 2,000-row list | The frame shows 15 list lines at 80x24 and 31 at 120x40. The list scrolls, and the selection stays visible; the frame is the window, not the list. |
 | The too-small screen at 20 columns | The message is drawn truncated to the frame width, so at 20 columns it reads `Too small · Ctrl+D e`. It fits whole from 23 columns up. |
 | The overlay over a scrolled list | The panel clears its own area, so the rows behind it are not drawn. The header, the tabs and the footer stay visible, which is how the operator keeps their place. |
-| A grant the item does not carry | The overlay and the detail column draw a grant's kind and rung only when the item carries them. Frame 18's item carries none, so no grant line is drawn; frame 23's item carries one, so the line is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
+| A grant the item does not carry | The overlay and the detail column draw a grant's kind and rung only when the item carries them. Frame 18's item carries none, so no grant line is drawn; frame 23's item carries one, so the line is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
 | The detail column's grant lines | Frame 2's item carries no grant, so the detail column draws none. When an item carries one, the detail column draws the same grant line frame 23 draws in the overlay. |
 
 ---
@@ -2131,9 +2131,9 @@ Every pointer below resolves in a checkout that has the gitignored `specs/system
 | The `y`/`n` prompt and the closed input that answers nothing | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:431-447] |
 | The default deny this screen does not copy | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:476-487] |
 | Control characters stripped before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:4-6] |
-| The activity row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152] |
-| The routine row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] |
-| The inbox item shape, and the grant the overlay shows | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
-| The chat verb the placeholder names | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152] |
+| The activity row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] |
+| The routine row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] |
+| The inbox item shape, and the grant the overlay shows | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
+| The chat verb the placeholder names | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-001] |
 | The banner's key, corrected from `Ctrl+P` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:250] |
 | The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249] |

@@ -12,9 +12,9 @@ version: 1.0.0.0
 
 # Goldens for the approval grant
 
-Each file is the literal sample of one shape in [`../records.md`](../records.md) or one surface in [`../mockups.md`](../mockups.md). The clock, the identity, the operator and the bot are the packet's one data set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:30]
+Each file is the literal sample of one shape in [`../records.md`](../records.md) or one surface in [`../mockups.md`](../mockups.md). The clock, the identity, the operator and the bot are the packet's one data set. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Durable records of the OpenBot parity build"]
 
-The item goldens the packet already holds are not copied here. `contracts/fixtures/needs-you-item.today.json` is the thirteen-key item with no `grants`, and `contracts/fixtures/needs-you-item.final.json` is the nineteen-key item with a denied grant. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/README.md:22]
+The item goldens the packet already holds are not copied here. `contracts/fixtures/needs-you-item.today.json` is the thirteen-key item with no `grants`, and `contracts/fixtures/needs-you-item.final.json` is the nineteen-key item with a denied grant. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/README.md, section "Golden records and payloads", row `needs-you-item.today.json`]
 
 ## 1. THE FILES
 

@@ -49,6 +49,7 @@
       "implementation-summary.md",
       "design/records.md",
       ".skilled/bin/bots.cjs",
+      "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/failures.md",
       "design/refusals.md",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
       "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/implementation-summary.md",
@@ -108,6 +109,12 @@
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "failures.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/failures.md",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Thirteen",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Thirteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
     "created_at": "2026-11-25T19:32:30Z",
-    "last_save_at": "2026-11-25T23:22:26.056Z",
+    "last_save_at": "2026-11-26T05:55:07.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +221,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01e70bf6866b240764e3141e635f1434dae6ff61ae16684c316154b1b93ffaa8",
+    "source_fingerprint": "sha256:0716eaf5ee8b25486648286692a592e252004c62132fe4dccc9e1268d3a13f4b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "366e5f05c403e5ce40734ef2c118cdaf31dca8c9d10423efe809f807b610d328",
-      "plan.md": "3230ee61615185b3ab9d424a63e092801eed543bcf0d2d79c5e913349ab10619",
+      "spec.md": "b3133ee48d9d7bb4e5cf3f3810f766e8459cce7a042e10b558fd7cfe731dc2a8",
+      "plan.md": "1ff22712f45dd27229871909ef2b658474c19bbafa975004a2a2342310307054",
       "tasks.md": "c1be34c4ce8249624740e85fcc1e2c854a0747f1b258b7e03a1e34cc666bb9fc",
       "implementation-summary.md": "04417aeaae86ae895456f3ac9983e2556685981dc6a6c5ca571272e96b471aad"
     },

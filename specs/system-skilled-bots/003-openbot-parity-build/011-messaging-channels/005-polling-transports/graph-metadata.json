@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The contract, the index and the queue exist after children 003 and 004 and nothing speaks to a real provider",
     "created_at": "2026-11-26T00:00:20Z",
-    "last_save_at": "2026-11-26T00:48:03.225Z",
+    "last_save_at": "2026-11-26T05:26:23.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77fda52b69a41eb2b415bb92b51c721955097c87457a4ceea03f855b40dea6a0",
+    "source_fingerprint": "sha256:6ccd015e5170f14a1aa8ec694779319a153ad263cf25c4c285b58f1ef19a1516",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f501a7876531d7d238f14e6f0248682320f6b07f24c817a724ea99b2ac125544",
+      "spec.md": "ab2eddde252f955aae74883b6e20881ade408f1615a440a5853e898463d349ed",
       "plan.md": "cb908ffcb571474c7c7d784c8f099603be2524b3822a66d5dba3d0a1ae923a70",
       "tasks.md": "8faa9e4db46bc284f9c8b9e76262766c3cb68b460645073d218863913bd09e91",
       "implementation-summary.md": "d9a02390124e43dee70ac18746f550bc94eba25aeb3c30e811fd65434ff27bd9"

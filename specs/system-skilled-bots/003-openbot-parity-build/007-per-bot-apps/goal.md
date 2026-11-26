@@ -42,18 +42,18 @@ _memory:
 
 Frozen choices. Changing one is an amendment.
 
-The packet's nine decisions are D1 to D9 in [`../contracts/decisions.md`](../contracts/decisions.md), and D5 there is the one that lands in this phase: a shared run that declares no `apps` records `posture.apps: []` while its child reads the full repository config, and a shared run that declares `apps` is refused `apps-unenforceable`. This phase's own decisions start at D10, so a bare `D5` in this packet always means the packet's.
+The packet's ten decisions are D1 to D10 in [`../contracts/decisions.md`](../contracts/decisions.md), and D5 there is the one that lands in this phase: a shared run that declares no `apps` records `posture.apps: []` while its child reads the full repository config, and a shared run that declares `apps` is refused `apps-unenforceable`. This phase's own decisions are G1 to G8, so a bare `D` number in this packet always means the packet's.
 
 | ID | Decision |
 |----|----------|
-| D10 | `apps` is a filter, not a sandbox. It narrows the server list the run's config names, and it confines no child that reads a config from another path. |
-| D11 | An absent `apps:` means no servers, not all servers, because the research calls the mechanism a whitelist that fails closed. |
-| D12 | A declared name the config does not hold is refused, never dropped, so a typo cannot silently widen or narrow reach. |
-| D13 | The five project MCP config pins stay, and the worktree write is what makes a pin resolve to the filtered file. A shared run's child reads the repository config, which is a named limit rather than a silent one. |
-| D14 | The child key is admitted per dispatch through `dispatchEnvKeys`, never by a prefix rule or a widened kind list, because a prefix would admit any future caller's key built from a bot-controlled name. |
-| D15 | The filtered config copies every top-level key verbatim and filters only `manual_call_templates`. The one rewrite is `load_variables_from`'s `env_file_path`, made absolute against the source config's folder. |
-| D16 | The run-folder copy is written for every run, including a shared run that declares no `apps`, because it is the run's evidence and the file `UTCP_CONFIG_FILE` names. |
-| D17 | A tree found holding the filtered file at the next open is restored before anything else is written. The next open compares the tree's `.utcp_config.json` with the checkout's and restores from the tree's own git index when the two differ, so a run killed between the write and the restore cannot leave the filtered copy as the base a later run copies from. |
+| G1 | `apps` is a filter, not a sandbox. It narrows the server list the run's config names, and it confines no child that reads a config from another path. |
+| G2 | An absent `apps:` means no servers, not all servers, because the research calls the mechanism a whitelist that fails closed. |
+| G3 | A declared name the config does not hold is refused, never dropped, so a typo cannot silently widen or narrow reach. |
+| G4 | The five project MCP config pins stay, and the worktree write is what makes a pin resolve to the filtered file. A shared run's child reads the repository config, which is a named limit rather than a silent one. |
+| G5 | The child key is admitted per dispatch through `dispatchEnvKeys`, never by a prefix rule or a widened kind list, because a prefix would admit any future caller's key built from a bot-controlled name. |
+| G6 | The filtered config copies every top-level key verbatim and filters only `manual_call_templates`. The one rewrite is `load_variables_from`'s `env_file_path`, made absolute against the source config's folder. |
+| G7 | The run-folder copy is written for every run, including a shared run that declares no `apps`, because it is the run's evidence and the file `UTCP_CONFIG_FILE` names. |
+| G8 | A tree found holding the filtered file at the next open is restored before anything else is written. The next open compares the tree's `.utcp_config.json` with the checkout's and restores from the tree's own git index when the two differ, so a run killed between the write and the restore cannot leave the filtered copy as the base a later run copies from. |
 
 <!-- /ANCHOR:directive -->
 
@@ -104,8 +104,8 @@ and findings belong here.
 | The parent row's `#high` effort cell | `opencode-go/deepseek-v4.1-flash` is pinned to the max tier by policy and the fan-out builder upgrades a lower request, so the `#high` cells in `plan.md` §8 name the tier each task earns under the parent's tier rule and run at max on this route. The row's `#high` stays the phase default. |
 | Scaffold tokens outside this goal's write scope | `implementation-summary.md` still carries six unfilled value tokens, which the implementation run fills when it writes that file. `validate.sh --strict` reports them as a warning on a Draft packet, not as an error. |
 | Derived metadata re-derived | Adding `goal.md` and the `plan.md` §8 section changed the source-doc fingerprint, so `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps --apply` re-derived `graph-metadata.json`. |
-| Phase decisions renumbered | The phase's own decisions were D1 to D7, which collided with the packet's D1 to D9 in `../contracts/decisions.md`. They are now D10 to D17 and the table says so, so a bare `D5` in this packet always means the packet's shared-run decision. No choice changed, only its label. |
-| The next-open restore added | Work order WO-14 in the plan-depth research adds one sentence to REQ-003 and one test row for a run killed before the restore. The rule is D17, the mechanism is `design/state-machines.md` section 3 and the case is row 21 of `design/fixtures.md` section 1. |
+| Phase decisions renumbered | The phase's own decisions were D1 to D7, which collided with the packet's D1 to D9 in `../contracts/decisions.md`. They were renumbered D10 to D17, and on 2026-11-26 the contract reconciliation pass renamed them G1 to G8, because the packet's own D10 (the conversation line break) now exists in `../contracts/decisions.md`. A bare `D` number in this packet always means the packet's decision. No choice changed, only its label. |
+| The next-open restore added | Work order WO-14 in the plan-depth research adds one sentence to REQ-003 and one test row for a run killed before the restore. The rule is G8, the mechanism is `design/state-machines.md` section 3 and the case is row 21 of `design/fixtures.md` section 1. |
 | The design documents added | Five documents under `design/` and five goldens under `design/fixtures/`, so a builder reads a field table, a gate order, a refusal catalogue, a fixture matrix and a literal text sample rather than deciding any of them. REQ-010 and AC-016 carry them. |
 | Contract citations into this phase's files | Adding the design section and the two-restore paragraphs moved the lines the packet's contracts cite. In `spec.md` the shift is 21 lines from the top, so `contracts/refusals.md` lines 123 to 127, `contracts/records.md` lines 151 and 500 and `contracts/decisions.md` line 28 now land 21 lines early. In `plan.md` the shift is 2 lines before the module list and 14 lines after it, so `contracts/runtime-architecture.md` lines 51, 178 and 180 land early by that much. The same drift already affects `001-activity-and-actor/spec.md` line 156, which three contracts cite and which now holds a heading. The durable fix is for a contract to cite a REQ id or a section name rather than a line, and that edit is the contract owner's, not this phase's. |
 

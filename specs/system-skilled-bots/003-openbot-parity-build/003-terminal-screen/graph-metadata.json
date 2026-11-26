@@ -215,7 +215,7 @@
     ],
     "causal_summary": "The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-25T23:43:54.207Z",
+    "last_save_at": "2026-11-26T05:55:12.915Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,10 +223,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:4702f5693a2b471472c061a9d037ff9fba49481bf0eae8043a9298e2c009e91e",
+    "source_fingerprint": "sha256:8204546e7214992714d42a1245523c36950053d3a962eece9cbb79f01ca8ab4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3c8d4d5e4a012f24c377d0932f00688d2b7a0604b5bd6c8bcecf1c7d4fdc63de",
+      "spec.md": "95ad84659ada2a09cceee1fad52e8316386ad2aa587e66dc5b631134524467e0",
       "decision-record.md": "ace2fa52c1688edd56531b888f647d75af1f4a3804ec060cc5205858d1547df9"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map",

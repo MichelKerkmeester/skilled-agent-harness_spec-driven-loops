@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 Four records carry this phase's work: the routine state file, the run record's `until` object, the fatigue needs-you item and the `routines --json` row. This file fixes every field of each one, so a builder writes a shape rather than choosing one.
 
-The packet-level contracts own the shapes more than one phase writes. This file cites them and copies nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md:19]
+The packet-level contracts own the shapes more than one phase writes. This file cites them and copies nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md, section "The rule"]
 
 | Record | Owner | Where its shape is fixed |
 |--------|-------|--------------------------|
@@ -67,7 +67,7 @@ The five keys are the whole file. An unknown key is refused as damaged rather th
 
 ## 2. THE RUN RECORD'S `until` OBJECT
 
-The run record gains one optional key, `until`. Its value is an object with exactly one key, `met`, a boolean. Nothing else goes in it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:140]
+The run record gains one optional key, `until`. Its value is an object with exactly one key, `met`, a boolean. Nothing else goes in it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS"]
 
 | Key | Type | Null | Absent reads as | Written when |
 |-----|------|------|-----------------|--------------|
@@ -84,7 +84,7 @@ The run record gains one optional key, `until`. Its value is an object with exac
 
 ## 3. THE FATIGUE NEEDS-YOU ITEM
 
-The item is a needs-you item like any other, so its key set is `contracts/records.md` section 1 and this phase adds no key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:34] What this phase fixes is the value of each key it writes.
+The item is a needs-you item like any other, so its key set is `contracts/records.md` section 1 and this phase adds no key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"] What this phase fixes is the value of each key it writes.
 
 | Key | Value 002 writes | Why |
 |-----|------------------|-----|
@@ -128,7 +128,7 @@ The field table is `003-terminal-screen/002-architecture-and-contracts/design/co
 
 **The empty shape.** `{"version": 1, "routines": []}`. A checkout with no routine bot prints it and exits 0.
 
-**What the verb reads.** One BOT.md per bot, one state file per routine bot, the three switch files per routine bot and at most ten run records per routine bot. It opens no run folder and no SQLite index, so it is fresh by construction and needs no refresh rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:705]
+**What the verb reads.** One BOT.md per bot, one state file per routine bot, the three switch files per routine bot and at most ten run records per routine bot. It opens no run folder and no SQLite index, so it is fresh by construction and needs no refresh rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "10. REFRESH ON READ", row `routines --json`]
 
 ---
 
@@ -167,16 +167,16 @@ The block is optional. A BOT.md without one behaves exactly as it does today.
 | The fatigue item's `kind` is `decision` | A review kind would be claimed by 005's or 009's seam and settled, and the item is a notice the operator acts on with `bots enable` |
 | The fatigue item's `options` is `null` | The item offers no choice. `bots enable` is the action, and an option list would invite an answer text that `answerItem` would then have to judge |
 | The fatigue item's `prompt` is the tenth failed run's prompt | The runner holds it at the point it evaluates the fatigue rule, so no new field is needed and the item records what failed |
-| `describeStart` lives in `routine.ts` | The screen contract's section 13.2 item 2 puts it there, and the phrase is the same one `bots routines --json` prints [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:851] |
-| `checkRoutineFloor` takes the period as an argument | `routine.ts` is a contracts module and may import nothing outside its group, and `slot-accounting.ts` already imports `definition.ts`, so a direct import would close a cycle [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:40] |
+| `describeStart` lives in `routine.ts` | The screen contract's section 13.2 item 2 puts it there, and the phrase is the same one `bots routines --json` prints [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "13.2 `002-routine-layer/` (the producer of `routines` and the start summary)"] |
+| `checkRoutineFloor` takes the period as an argument | `routine.ts` is a contracts module and may import nothing outside its group, and `slot-accounting.ts` already imports `definition.ts`, so a direct import would close a cycle [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "1.2 New modules"] |
 
 ---
 
 ## 7. EDITS THE OTHER DOCS NEED
 
-**1. `contracts/runtime-architecture.md` section 2.1, the `routines/<botId>.json` line.** It reads `umask`. It must read `0600`, because `contracts/records.md` section 6 calls the file owner-only and this phase writes it at 0600. The line is at [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:127]. This phase cannot edit the contract folder, so the operator makes this one-line change, per the same-change rule in `contracts/README.md`.
+**1. `contracts/runtime-architecture.md` section 2.1, the `routines/<botId>.json` line.** It reads `umask`. It must read `0600`, because `contracts/records.md` section 6 calls the file owner-only and this phase writes it at 0600. The line is at [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "2.1 The user state root"]. This phase cannot edit the contract folder, so the operator makes this one-line change, per the same-change rule in `contracts/README.md`.
 
-**2. `001-activity-and-actor`, the `activity` row's `schedule`.** The screen contract says an activity `recurring` or `scheduled` row carries `describeStart`'s phrase as `schedule`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:851] `routine.ts` exports the function. Whether 001's `activity.ts` imports it or receives the phrase another way is 001's row, because `contracts/runtime-architecture.md` section 1.2 lists `status-index` as that module's only import. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:38] This phase ships the function and decides nothing about 001's import.
+**2. `001-activity-and-actor`, the `activity` row's `schedule`.** The screen contract says an activity `recurring` or `scheduled` row carries `describeStart`'s phrase as `schedule`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "13.2 `002-routine-layer/` (the producer of `routines` and the start summary)"] `routine.ts` exports the function. Whether 001's `activity.ts` imports it or receives the phrase another way is 001's row, because `contracts/runtime-architecture.md` section 1.2 lists `status-index` as that module's only import. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "1.2 New modules"] This phase ships the function and decides nothing about 001's import.
 
 ---
 

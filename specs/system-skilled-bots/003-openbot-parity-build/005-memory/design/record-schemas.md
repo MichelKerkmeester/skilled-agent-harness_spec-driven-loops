@@ -17,11 +17,11 @@ This note writes down every field this phase owns or extends, so a builder reads
 
 | Shape | Owner file | Section |
 |-------|------------|---------|
-| The memory entry line | [`../contracts/records.md`](../../contracts/records.md) | 7 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:248] |
-| The `remember --list --json` payload | [`../contracts/cli-json.md`](../../contracts/cli-json.md) | 3.2 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:58] |
-| The needs-you item and its closed key list | [`../contracts/records.md`](../../contracts/records.md) | 1 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:34] |
-| The memory prompt block | [`../contracts/prompt-sections.md`](../../contracts/prompt-sections.md) | 1.5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:71] |
-| The refusal names and their exits | [`../contracts/refusals.md`](../../contracts/refusals.md) | 3.4 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:91] |
+| The memory entry line | [`../contracts/records.md`](../../contracts/records.md) | 7 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "7. MEMORY ENTRY LINE"] |
+| The `remember --list --json` payload | [`../contracts/cli-json.md`](../../contracts/cli-json.md) | 3.2 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "3.2 `bots remember --list [--bot <id>] --json`"] |
+| The needs-you item and its closed key list | [`../contracts/records.md`](../../contracts/records.md) | 1 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"] |
+| The memory prompt block | [`../contracts/prompt-sections.md`](../../contracts/prompt-sections.md) | 1.5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "1.5 Memory"] |
+| The refusal names and their exits | [`../contracts/refusals.md`](../../contracts/refusals.md) | 3.4 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.4 Phase 005, memory"] |
 
 What this note adds is the part the contracts leave to the phase: the exact values this phase writes into those shapes, the grammar of the line a bot prints to propose a fact, and the version rule for each.
 
@@ -39,9 +39,9 @@ What this note adds is the part the contracts leave to the phase: the exact valu
 | Written by | `bots remember`, and `bots answer confirm` when `proposalBotId` is the shared scope | `bots remember --bot <id>`, and `bots answer confirm` for that bot |
 | `schemaVersion` | None | None |
 
-The folder modes and the file modes are the ones the state root already gives its own folders and the ones the packet's tree records. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:102] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:128] The state root's folder mode is 0700 [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:46].
+The folder modes and the file modes are the ones the state root already gives its own folders and the ones the packet's tree records. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "2.1 The user state root"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "2.1 The user state root"] The state root's folder mode is 0700 [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:46].
 
-**Why no `schemaVersion`.** The packet's rule is that every new state file carries `schemaVersion: 1`, and the memory files are its one stated exception. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:19] A version line would either reach the prompt as a fact or need a second parser rule, and a later grammar change ships a new delimiter instead. A line in the old form then reads as skipped and counted, never as a wrong fact.
+**Why no `schemaVersion`.** The packet's rule is that every new state file carries `schemaVersion: 1`, and the memory files are its one stated exception. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"] A version line would either reach the prompt as a fact or need a second parser rule, and a later grammar change ships a new delimiter instead. A line in the old form then reads as skipped and counted, never as a wrong fact.
 
 **The identity key.** `<identityKey>` is `encodeURIComponent(identity.toLowerCase())`, the folder the state root already uses for every per-identity file. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117]
 
@@ -49,7 +49,7 @@ The folder modes and the file modes are the ones the state root already gives it
 
 ## 2. THE ENTRY LINE
 
-One entry is one line with five fields. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:248]
+One entry is one line with five fields. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "7. MEMORY ENTRY LINE"]
 
 ```text
 - <type> | <YYYY-MM-DD> | <actor> | <source> | <text>
@@ -65,7 +65,7 @@ One entry is one line with five fields. [SOURCE: specs/system-skilled-bots/003-o
 
 ### 2.1 The split rule
 
-The parser splits the line on the first four occurrences of the three-character delimiter ` | `, a space, a pipe and a space. Everything after the fourth delimiter is the text, so a `|` inside the text needs no escape and no quoting rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:248]
+The parser splits the line on the first four occurrences of the three-character delimiter ` | `, a space, a pipe and a space. Everything after the fourth delimiter is the text, so a `|` inside the text needs no escape and no quoting rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "7. MEMORY ENTRY LINE"]
 
 | Input line | Fields the parser reads |
 |------------|-------------------------|
@@ -73,7 +73,7 @@ The parser splits the line on the first four occurrences of the three-character 
 | `- general \| 2026-11-25 \| ada \| bots remember \| the sales sheet is Q3 \| not Q2` | the same five, text `the sales sheet is Q3 \| not Q2` |
 | `- user \| 2026-11-25 \| ada \| bot:hello (run 20261125T210204Z-0b6e5f72) \| Prefers ISO dates.` | type `user`, source `bot:hello (run 20261125T210204Z-0b6e5f72)`, text `Prefers ISO dates.` |
 
-A line that does not begin with `- ` is skipped. A line that splits into fewer than five fields is skipped. A line whose `type` is not one of the four is skipped. A line whose `date` is not `YYYY-MM-DD` is skipped. A skipped line is counted and never printed, and the count is the payload's `skippedLines`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:58]
+A line that does not begin with `- ` is skipped. A line that splits into fewer than five fields is skipped. A line whose `type` is not one of the four is skipped. A line whose `date` is not `YYYY-MM-DD` is skipped. A skipped line is counted and never printed, and the count is the payload's `skippedLines`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "3.2 `bots remember --list [--bot <id>] --json`"]
 
 ### 2.2 The collapse rule
 
@@ -87,7 +87,7 @@ Every whitespace run in the text becomes one space before the line is written, s
 
 ### 2.3 The index rule
 
-An entry's index is its 1-based position in file order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:248] A forget removes one line and every later entry's index shifts down by one, so an index names an entry only for the read that produced it. `--forget` therefore takes the index the operator just saw in `--list`, and a second `--forget` in the same breath names a different entry.
+An entry's index is its 1-based position in file order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "7. MEMORY ENTRY LINE"] A forget removes one line and every later entry's index shifts down by one, so an index names an entry only for the read that produced it. `--forget` therefore takes the index the operator just saw in `--list`, and a second `--forget` in the same breath names a different entry.
 
 ### 2.4 The bounds
 
@@ -97,13 +97,13 @@ An entry's index is its 1-based position in file order. [SOURCE: specs/system-sk
 | Bytes per file | 3,600 | UTF-8 bytes of the whole file | The append, before the write | `memory-full`, exit 4 |
 | Characters per text | 400 | UTF-16 code units | `bots.cjs` on the argument, and the review claim on a fact | `memory-entry-too-long`, exit 2, or `review-answer-invalid` |
 
-The three numbers are the phase's own and the packet's budget table repeats them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:195] The byte bound is measured on the file as it would be after the append, so a file at 3,599 bytes refuses a 40-byte line and accepts a 1-byte one. A refused append leaves the file byte for byte unchanged.
+The three numbers are the phase's own and the packet's budget table repeats them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.2 The table"] The byte bound is measured on the file as it would be after the append, so a file at 3,599 bytes refuses a 40-byte line and accepts a 1-byte one. A refused append leaves the file byte for byte unchanged.
 
 ---
 
 ## 3. THE `remember --list --json` PAYLOAD
 
-The payload is one object with seven keys. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:58]
+The payload is one object with seven keys. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "3.2 `bots remember --list [--bot <id>] --json`"]
 
 | Key | Type | Null | Format | Source |
 |-----|------|------|--------|--------|
@@ -121,9 +121,9 @@ The payload is one object with seven keys. [SOURCE: specs/system-skilled-bots/00
 | `byteCount` | integer | no | The file's size in bytes, `0` for an absent file | `statSync` |
 | `skippedLines` | integer | no | Lines that did not parse | The parser |
 
-The empty shape is `{"version": 1, "botId": null, "path": "<path>", "entries": [], "entryCount": 0, "byteCount": 0, "skippedLines": 0}`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:58]
+The empty shape is `{"version": 1, "botId": null, "path": "<path>", "entries": [], "entryCount": 0, "byteCount": 0, "skippedLines": 0}`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "3.2 `bots remember --list [--bot <id>] --json`"]
 
-Two rules a builder must not improvise. The text is printed as stored, so the escape form of the prompt block never reaches this payload. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:166] And `byteCount` is the file's real size, not the sum of the entry lengths, so a torn line counts toward it.
+Two rules a builder must not improvise. The text is printed as stored, so the escape form of the prompt block never reaches this payload. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "3. THE ESCAPE FORM"] And `byteCount` is the file's real size, not the sum of the entry lengths, so a torn line counts toward it.
 
 Golden: [`fixtures/remember-list.json`](fixtures/remember-list.json) for the shared file and [`fixtures/remember-list-bot.json`](fixtures/remember-list-bot.json) for a per-bot file.
 
@@ -131,7 +131,7 @@ Golden: [`fixtures/remember-list.json`](fixtures/remember-list.json) for the sha
 
 ## 4. THE NEEDS-YOU ITEM KEYS THIS PHASE ADDS
 
-The item's key list is closed, so every key below enters `ITEM_KEYS` and `validateNeedsYouItem` in the same change as its writer. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:34] 001 lands `kind` as a key with no value rule. This phase gives `kind` its values and adds three keys.
+The item's key list is closed, so every key below enters `ITEM_KEYS` and `validateNeedsYouItem` in the same change as its writer. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"] 001 lands `kind` as a key with no value rule. This phase gives `kind` its values and adds three keys.
 
 | Key | Type | Null | Absent reads as | Written by |
 |-----|------|------|-----------------|------------|
@@ -168,13 +168,13 @@ The question repeats the fact on purpose. `bots inbox`, the delivery notice and 
 
 ### 4.2 The two reading rules for `kind`
 
-`bots inbox --json` prints the stored value, so a stored `null` or an absent key prints `null` and the screen draws it as `decision`. Every runtime filter reads `null` and absent as `decision`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:34]
+`bots inbox --json` prints the stored value, so a stored `null` or an absent key prints `null` and the screen draws it as `decision`. Every runtime filter reads `null` and absent as `decision`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
 
-The two filters this phase changes are `holdForBot` and `itemAwaitingResume`. Both skip every item whose `kind` is not `decision`, so a review item holds no bot and a later review kind needs no second filter. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:38]
+The two filters this phase changes are `holdForBot` and `itemAwaitingResume`. Both skip every item whose `kind` is not `decision`, so a review item holds no bot and a later review kind needs no second filter. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 10]
 
 ### 4.3 The sentinel
 
-`memory-proposals` enters `RESERVED_BOT_IDS`, so no definition can take it. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/label.ts:28] The sentinel is not what keeps the hold off, the `kind` filter is. 009 keeps `skill-proposals` beside it, which is the packet's decision D1. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:24]
+`memory-proposals` enters `RESERVED_BOT_IDS`, so no definition can take it. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/label.ts:28] The sentinel is not what keeps the hold off, the `kind` filter is. 009 keeps `skill-proposals` beside it, which is the packet's decision D1. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D1]
 
 ---
 
@@ -215,7 +215,7 @@ A bot proposes a fact by printing one line. The line is the phase's own grammar 
 | `[REMEMBER] user ` | No item. The run records `remember-type-invalid` |
 | `[REMEMBER] user Prefers ISO dates.` twice | One item, from the first line. A second line is ignored |
 
-The type is never guessed. A line that names no type, or names one outside the four, is refused `remember-type-invalid` rather than defaulted to `general`, because a guessed type is a wrong fact about where the fact came from. The refusal is a post-run cause: the child already ran, so the run stays `completed` and no item is written. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:91]
+The type is never guessed. A line that names no type, or names one outside the four, is refused `remember-type-invalid` rather than defaulted to `general`, because a guessed type is a wrong fact about where the fact came from. The refusal is a post-run cause: the child already ran, so the run stays `completed` and no item is written. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.4 Phase 005, memory"]
 
 **Precedence.** A `[NEEDS-DECISION]` line in the same answer outranks a `[REMEMBER]` line. The run parks and no proposal item is written, because a parked run has not finished and its fact may be about work it did not do. A `[REMEMBER]` line in a failed run writes no item for the same reason.
 
@@ -230,7 +230,7 @@ The type is never guessed. A line that names no type, or names one outside the f
 | The needs-you item | None, its key list is the version | A new key is a new shape | A runtime before this phase refuses an item carrying `proposalType`, `proposalFact` or `proposalBotId` as `unknown-key` |
 | The `memory` definition key | None | Not applicable | An older runtime refuses the definition as `unknown-key` |
 
-The item's revert step is the packet's: remove each `memory-proposal` item file after appending any fact still wanted by hand, then strip the three keys from every other item. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:19]
+The item's revert step is the packet's: remove each `memory-proposal` item file after appending any fact still wanted by hand, then strip the three keys from every other item. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]
 
 ---
 

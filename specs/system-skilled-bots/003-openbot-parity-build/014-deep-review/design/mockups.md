@@ -93,7 +93,7 @@ bots-review: fan-out
   merge            5 of 5 complete, 0 orphaned, merged verdict FAIL
 ```
 
-The label set reads `cli-mistral-vibe`, `cli-pi-1`, `cli-pi-2`, `cli-opencode` and `cli-codex`, so a reader sees which executor ran twice. `total_cli_lineages` still reads five, which is what AC-003 checks. That is the case D3 makes normal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:26]
+The label set reads `cli-mistral-vibe`, `cli-pi-1`, `cli-pi-2`, `cli-opencode` and `cli-codex`, so a reader sees which executor ran twice. `total_cli_lineages` still reads five, which is what AC-003 checks. That is the case D3 makes normal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
 
 ### 1.4 A run that closes CONDITIONAL
 

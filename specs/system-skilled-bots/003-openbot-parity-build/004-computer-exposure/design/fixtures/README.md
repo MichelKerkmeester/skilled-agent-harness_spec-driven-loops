@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 # Goldens of computer exposure
 
-Each file is the literal sample of one section of [`../records.md`](../records.md) or [`../status-row.md`](../status-row.md), on the contracts' one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, checkout `/Users/ada/code/hello`, operator `ada`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:33-35]
+Each file is the literal sample of one section of [`../records.md`](../records.md) or [`../status-row.md`](../status-row.md), on the contracts' one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, checkout `/Users/ada/code/hello`, operator `ada`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
 
 These are this phase's own goldens. The packet's shared set is [`contracts/fixtures/`](../../../contracts/fixtures/README.md), and the full run record lives there as `run-record.additions.json`. This folder holds the twelve goldens for the shapes this phase owns and does not duplicate that record.
 

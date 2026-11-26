@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 This file fixes the shape of every record phase 014 writes. It does not restate the loop's own records, which `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` owns. It fixes the four records the loop does not write, the three keys this phase adds to the merged registry, and the two handoff files it reads.
 
-The packet-level contracts are frozen and this file agrees with them. Where a shape is a shared record, this file cites the contract section instead of copying it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md:17]
+The packet-level contracts are frozen and this file agrees with them. Where a shape is a shared record, this file cites the contract section instead of copying it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md, section "The rule"]
 
 ---
 
@@ -256,7 +256,7 @@ The three paths are fixed by the plan-depth research, so this phase does not cho
 | Path | Kind | What one row is |
 |------|------|-----------------|
 | `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/failures.md` | `failures-table` | one table row carrying the scenario id, the phase, the requirement, the observed line and the evidence path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:144] |
-| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | `rebuttals-headings` | one `## <finding-id>` heading and the reason under it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/tasks.md:65] |
+| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | `rebuttals-headings` | one `## <finding-id>` heading and the reason under it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/tasks.md, T016] |
 | `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/evidence/` | `evidence-findings` | one finding in `skilled-alignment/findings.json` or `doc-alignment/findings.json` |
 
 A missing source is not a refusal. It is recorded in `missingSources` with the reason, and the run continues, because a phase that filed nothing has nothing to hand over. A source that exists and holds a row this phase cannot read is a refusal, `review-seed-unreadable`, in `design/refusals.md`.
@@ -393,7 +393,7 @@ The summary's other sections are the template's and this file does not change th
 
 ## 11. `preflight.json`
 
-The probe record. It is written at setup, before the seeded intake, and it is what makes D3 checkable: the run records which of the five binaries it found rather than assuming all five. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:26]
+The probe record. It is written at setup, before the seeded intake, and it is what makes D3 checkable: the run records which of the five binaries it found rather than assuming all five. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
 
 ### 11.1 The document
 
@@ -434,4 +434,4 @@ A binary whose `pinOk` is `false` is treated as absent, because a lineage on an 
 | The owning phase of a scenario comes from the failure row first and the folder second | The failure row is precise and the folder is conservative. Reading the folder first would re-run nine conversation scenarios for a fix in 001 |
 | The report is rewritten once after the last fix wave | The verdict has to describe the final state, and a report written at synthesis describes the state before the fixes. The rewrite is the same file, so the nine headings stay in one place |
 | `seededFindings` is the one key this phase adds to the registry document | Every other key is the merge's or the reducer's, and a second added key would be a second place to read the same count |
-| The probe result is a file and not a log line | D3 makes the fallback the normal path, so a reader has to see which five were tried and which one ran twice. A log line is read once and a file is read by the check that proves the fallback happened [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:26] |
+| The probe result is a file and not a log line | D3 makes the fallback the normal path, so a reader has to see which five were tried and which one ran twice. A log line is read once and a file is read by the check that proves the fallback happened [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3] |

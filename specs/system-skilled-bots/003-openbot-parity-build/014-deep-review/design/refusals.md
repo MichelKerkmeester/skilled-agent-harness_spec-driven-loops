@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The review's refusals and stop conditions
 
-This phase adds no runtime refusal. It changes no module under `.skilled/skills/system-skilled-bots/runtime/lib/` unless a finding names one, and a finding that names one is fixed under the runtime's own refusal table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:1]
+This phase adds no runtime refusal. It changes no module under `.skilled/skills/system-skilled-bots/runtime/lib/` unless a finding names one, and a finding that names one is fixed under the runtime's own refusal table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.11 Phases 012 to 014"]
 
 What this file fixes is the other set: the ways the review run itself stops. A review that cannot read its surface, cannot spawn a reader or cannot prove its own close must not write a verdict, because a verdict is a claim about a surface someone read.
 
@@ -27,7 +27,7 @@ What this file fixes is the other set: the ways the review run itself stops. A r
 | Runner refusal | `fanout-run.cjs` refuses the run or loses every lineage | the runner's own stderr and its exit | 3 when every lineage failed, 2 when the matrix is refused |
 | Record refusal | a record this phase reads is missing, unreadable or incomplete | one `bots-review: <reason>: <path>` line | 1 |
 
-The exit codes follow the runtime's own table, so a reader who knows `bots` knows this run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:24] Exit 1 is a check that ran and said no, exit 2 is a command line or a path that is wrong, and exit 3 is a run that lost every reader.
+The exit codes follow the runtime's own table, so a reader who knows `bots` knows this run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "1. EXIT CODES THAT EXIST TODAY"] Exit 1 is a check that ran and said no, exit 2 is a command line or a path that is wrong, and exit 3 is a run that lost every reader.
 
 The `bots-review:` prefix is this phase's own. It is not a `bots:` line, because the review is not a `bots` verb and a reader must not confuse the two.
 
@@ -46,7 +46,7 @@ The `bots-review:` prefix is this phase's own. It is not a `bots:` line, because
 | `review-seed-unreadable` | Record | 1 | a handoff path exists and a row in it cannot be read | `seeded-findings.json` with the rows read so far and the failing path in `missingSources` |
 | `review-dry-run-missing` | Orchestrator | 1 | the dry run does not print five lineage lines and one `dry_run_halt` line naming `step_fanout_spawn` | the dry run's own output, and no lineage folder |
 
-`review-no-executor` is the one D3 settles. Setup probes the five binaries and records which are present. At least one must be. An absent one is replaced in the fallback order, so a host with three binaries runs five lineages on three executors. A host with none cannot run a review at all. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:26]
+`review-no-executor` is the one D3 settles. Setup probes the five binaries and records which are present. At least one must be. An absent one is replaced in the fallback order, so a host with three binaries runs five lineages on three executors. A host with none cannot run a review at all. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
 
 ### 2.2 During the fan-out
 

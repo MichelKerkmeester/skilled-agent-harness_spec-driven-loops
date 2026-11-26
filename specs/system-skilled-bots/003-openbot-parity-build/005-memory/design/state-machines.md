@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Memory state machines and sequences
 
-Three machines and four sequences. Each one is drawn from the contracts rather than invented here, and each one names the test that proves it. The item's own transitions are the packet's, so this note draws only the part this phase adds and cites the rest. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:38]
+Three machines and four sequences. Each one is drawn from the contracts rather than invented here, and each one names the test that proves it. The item's own transitions are the packet's, so this note draws only the part this phase adds and cites the rest. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 10]
 
 ---
 
@@ -67,7 +67,7 @@ The over-bound state is the one the protocol accepts rather than prevents. Secti
 
 ## 2. THE PROPOSAL ITEM STATE MACHINE
 
-The item's states are the packet's three, derived on every read and never stored. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:38] This machine draws the `memory-proposal` kind only.
+The item's states are the packet's three, derived on every read and never stored. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 10] This machine draws the `memory-proposal` kind only.
 
 ```mermaid
 stateDiagram-v2
@@ -111,7 +111,7 @@ stateDiagram-v2
 | Answered | Another text or scope | Answered | none, refused `item-answered-differently` | No |
 | Expired | Any answer | Expired | none, refused `item-expired` | No |
 
-The two filters are what keep the bot free. `holdForBot` and `itemAwaitingResume` both skip every item whose `kind` is not `decision`, so the sentinel never has to be special-cased and a later review kind inherits the same rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:38]
+The two filters are what keep the bot free. `holdForBot` and `itemAwaitingResume` both skip every item whose `kind` is not `decision`, so the sentinel never has to be special-cased and a later review kind inherits the same rule. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 10]
 
 ---
 

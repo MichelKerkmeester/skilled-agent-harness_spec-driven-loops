@@ -79,7 +79,7 @@ stateDiagram-v2
 | Is the subject present? | the verb is absent from the verb table | the verb and the phase that adds it |
 | Do the signals agree? | no, one disagrees | the line that disagreed, quoted |
 
-A real channel account is a fourth preflight answer for the two channel scenarios that name one. Those two run on the fake transport, so the account is never required, and a scenario that names a real account records `SKIP` with the account as its blocker. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:204]
+A real channel account is a fourth preflight answer for the two channel scenarios that name one. Those two run on the fake transport, so the account is never required, and a scenario that names a real account records `SKIP` with the account as its blocker. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md, REQ-017]
 
 ---
 
@@ -137,7 +137,7 @@ stateDiagram-v2
 | `ReRun` | a second run folder | 014-deep-review |
 | `Closed` | the second run's `results.csv` | 014-deep-review |
 
-The re-run is decision D7: after the last fix, each scenario whose owning phase a fix touched is run again and its result recorded. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:30]
+The re-run is decision D7: after the last fix, each scenario whose owning phase a fix touched is run again and its result recorded. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D7]
 
 ---
 

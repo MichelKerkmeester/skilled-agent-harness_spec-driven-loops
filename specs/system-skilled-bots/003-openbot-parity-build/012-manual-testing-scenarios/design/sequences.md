@@ -156,4 +156,4 @@ sequenceDiagram
 | Observed line | the deep review | the finding's evidence |
 | Evidence path | the deep review | the transcript a reader opens |
 
-The deep review's verdict cannot read PASS while a filed product failure is open, which is what makes the row binding rather than advisory. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:27]
+The deep review's verdict cannot read PASS while a filed product failure is open, which is what makes the row binding rather than advisory. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D4]

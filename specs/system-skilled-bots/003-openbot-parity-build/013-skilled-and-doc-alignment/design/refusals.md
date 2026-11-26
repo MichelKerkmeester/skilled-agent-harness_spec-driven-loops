@@ -19,7 +19,7 @@ Every way either command stops, in one table per layer, with the line it prints 
 
 ## 1. THE LAYER RULE
 
-**These are not `bots` refusals.** `contracts/refusals.md` section 3.11 says phases 012 to 014 add no refusal, and this phase adds none. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:194] Nothing below enters `REFUSAL_CAUSES`, nothing below is a run refusal, and no row here needs an edit to `contracts/refusals.md`.
+**These are not `bots` refusals.** `contracts/refusals.md` section 3.11 says phases 012 to 014 add no refusal, and this phase adds none. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.11 Phases 012 to 014"] Nothing below enters `REFUSAL_CAUSES`, nothing below is a run refusal, and no row here needs an edit to `contracts/refusals.md`.
 
 The two commands are operator-local tooling that runs outside the runtime. Their errors are the commands' own, and they fall into four layers.
 

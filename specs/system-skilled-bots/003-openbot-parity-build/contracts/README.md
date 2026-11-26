@@ -38,4 +38,8 @@ The four payloads the terminal screen reads keep their own contract, `003-termin
 
 ## Phase document lines that contradict a contract
 
-None is open. The reconciliation pass of 2026-11-26 checked each line the first pass listed here against its phase document and found every one fixed by its work order (WO-02, WO-03, WO-04, WO-07, WO-08, WO-09 and WO-10). The 005 line cited a sentence that D1 removed, and the 010 lines moved into `010-conversations/002-conversation-runtime-and-chat-verb/`. A new disagreement is listed here as a row naming the phase document, what it says and the contract it contradicts, until it is fixed.
+One is open, the row below. The reconciliation pass of 2026-11-26 checked each line the first pass listed here against its phase document and found every one fixed by its work order (WO-02, WO-03, WO-04, WO-07, WO-08, WO-09 and WO-10). The 005 line cited a sentence that D1 removed, and the 010 lines moved into `010-conversations/002-conversation-runtime-and-chat-verb/`. A new disagreement is listed here as a row naming the phase document, what it says and the contract it contradicts, until it is fixed.
+
+| Phase document | What it says | Contract it contradicts |
+|----------------|--------------|-------------------------|
+| `008-vault/design/backends.md` section 6, the paragraph after the outcome map | `refusals.md` lists `secret-store-unreadable` as a run refusal only, so the verb use is a widening the contract does not yet name | `refusals.md` section 3.7, which now names the verb refusal on `secret set`, `secret list`, `secret forget` and `answer` |

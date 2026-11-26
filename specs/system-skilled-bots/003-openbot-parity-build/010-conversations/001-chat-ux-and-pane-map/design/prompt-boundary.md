@@ -136,7 +136,7 @@ The body and the protocol lines are trusted and outrank every non-authored block
 | Holds `<div>` or `a < b` | Unchanged | Only the reserved tokens are escaped, so ordinary text and code survive |
 | Holds a stored secret value | Nothing. The message is refused `body-secret` and never appended | The literal check runs before the append (`../../002-conversation-runtime-and-chat-verb/spec.md` REQ-014) |
 
-The escape pattern is the contract's, matched without regard to case. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md:171-172]
+The escape pattern is the contract's, matched without regard to case. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "3. THE ESCAPE FORM"]
 
 ### 4.3 Where an attempt is recorded
 

@@ -20,7 +20,7 @@ The pane is a client of two `bots chat` calls and of nothing else, which is the 
 
 | Call | Argv | When | Runs on | Deadline |
 |------|------|------|---------|----------|
-| Read | `<program> chat --transcript --json --repo <repo> -- <bot>` | On the first draw of the Chat tab, on choosing a bot, on every 5-second poll while the Chat tab is active, and once after each `ChatSent` | The screen's worker, as one `Fetch` for the new surface `Chat` | 10 seconds, the screen's read deadline [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:396] |
+| Read | `<program> chat --transcript --json --repo <repo> -- <bot>` | On the first draw of the Chat tab, on choosing a bot, on every 5-second poll while the Chat tab is active, and once after each `ChatSent` | The screen's worker, as one `Fetch` for the new surface `Chat` | 10 seconds, the screen's read deadline [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "2.3 The worker rules"] |
 | Send | `<program> chat --message <text> --repo <repo> -- <bot>` | `Enter` in typing mode with a non-blank draft and no send in flight | The chat worker, section 4 | None of its own. The run's own bound applies |
 
 `<program>` is the screen's caller-supplied program, and `<repo>` its `--repo`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:204] The `--` ends the options, so a bot id is never read as a flag. [SOURCE: .skilled/bin/bots.cjs:118-121] The text follows `--message` as one argv element and is never passed through a shell. A text that starts with `-` is accepted because `--message` joins the CLI's free-text options (`../../002-conversation-runtime-and-chat-verb/spec.md` REQ-005).
@@ -50,7 +50,7 @@ The read prints the envelope that `contracts/cli-json.md` section 3.1 fixes and 
 
 The record behind each message is `contracts/records.md` section 10. The golden the runtime's tests read is `contracts/fixtures/chat-transcript.json`. The sample the frames draw is `chat-transcript.sample.json` beside this file, and it is the file the crate's fixture copies to `tests/fixtures/payloads/chat-transcript.json`.
 
-A missing conversation file prints the empty shape and creates nothing (`contracts/cli-json.md` section 3.1), which draws frame C2. A torn last line goes to stderr and the read still exits 0, so the pane draws the whole messages and puts that stderr line in the status row, as the screen does for a read that exits 0 and writes stderr. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:399]
+A missing conversation file prints the empty shape and creates nothing (`contracts/cli-json.md` section 3.1), which draws frame C2. A torn last line goes to stderr and the read still exits 0, so the pane draws the whole messages and puts that stderr line in the status row, as the screen does for a read that exits 0 and writes stderr. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "1.6 State (`state.rs`)"]
 
 ---
 
@@ -67,7 +67,7 @@ A missing conversation file prints the empty shape and creates nothing (`contrac
 
 The two text forms are fixed by `contracts/records.md` section 17, so the pane reads them from `text` and the record needs no tenth key. The unanswered state is derived by the reader and never printed as a key (`contracts/cli-json.md` section 3.1).
 
-A resumed run's answer arrives as one more bot message after the parked one, in the same conversation, so an answered question draws `!` then `✓` and the pane needs no rule for it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:42]
+A resumed run's answer arrives as one more bot message after the parked one, in the same conversation, so an answered question draws `!` then `✓` and the pane needs no rule for it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 14]
 
 ---
 
@@ -87,7 +87,7 @@ One `bots chat --message` blocks for a whole bot run. A run is bounded by the sm
 | One send at a time | The pane binds `Enter` only when no send is in flight, so the chat worker never holds two jobs |
 | Reads go on | The transcript read stays a `Fetch` on the screen's worker. The 5-second poll keeps reading while the send runs, so the human message, appended before the run starts, is drawn at the first poll after `Enter` |
 | No deadline | The chat worker waits for the child however long the run takes. The run's own bound ends it |
-| The result is never dropped | `Msg::ChatSent` carries no generation, as `Answered` carries none [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:394] |
+| The result is never dropped | `Msg::ChatSent` carries no generation, as `Answered` carries none [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "2.3 The worker rules"] |
 | A read follows | `ChatSent` makes the reducer issue one `Fetch` for `Chat` at once, unlike an answer, because the reply is a new line the person is waiting for |
 | Its own process group | The send's child starts in a process group of its own, so a signal sent to the screen's group does not stop the run |
 | No stdout pipe | The child's stdout goes to null, because the pane reads the reply from the transcript, not from the send. Its stderr goes to a temporary file the worker reads after the child exits and then removes, so no pipe reader has to outlive the screen |
@@ -164,7 +164,7 @@ The screen's owner map closes most of its files to later edits inside phase 003.
 | `src/model.rs` | `Transcript`, `Message`, `Role` | Section 6 |
 | `src/view/panes.rs` | The chat body replaces the placeholder body: title, window, composer, the detail column at 120 | `mockups.md` |
 | `tests/fixtures/bots` | A `chat` branch: `--transcript --json` prints `tests/fixtures/payloads/chat-transcript.json`, and `--message` records its argv and exits as the scenario says | The screen's fixture rule [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:212] |
-| `tests/fixtures/payloads/chat-transcript.json` | A new scenario file copied from `chat-transcript.sample.json` | The screen lets a later child add a payload file and never edit one [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:458] |
+| `tests/fixtures/payloads/chat-transcript.json` | A new scenario file copied from `chat-transcript.sample.json` | The screen lets a later child add a payload file and never edit one [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "3. THE OWNER MAP", row `tests/fixtures/payloads/*.json`] |
 | `README.md` | The chat tab's keys and the two calls | The pre-expansion phase listed it |
 
 `src/view/footer.rs` needs no edit, because the footer is generated from the key table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:35]

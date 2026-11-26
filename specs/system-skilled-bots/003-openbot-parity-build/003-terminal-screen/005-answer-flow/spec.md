@@ -46,7 +46,7 @@ This is **Phase 5** of the Terminal screen children: UX, architecture, shell, pa
 - 002-architecture-and-contracts, which creates `state.rs`, `keys.rs`, `cli.rs`, `app.rs`, `model.rs` and `tests/fixtures/bots`. This child extends `state.rs` and `keys.rs` in the sections the owner map gives it and reads the other four.
 - 004-panes, which creates the inbox pane, the `PaneView<ItemId>` selection and the `Remote<T>` surface this child's overlay reads. The overlay captures the item id, never the row index, because the 5-second poll reorders rows.
 - 003-shell-and-navigation, which owns the status row this child writes a refusal into, the `keys.rs` label the banner draws, the `view/mod.rs` root this child declares its two modules in, and the one sanitizer the typed line passes through.
-- Phase 001's `bots inbox --json` and `bots answer --scope once|deny --repo <repo> -- <item-id> <text>`, which are the read and the write this child consumes unchanged. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:156]
+- Phase 001's `bots inbox --json` and `bots answer --scope once|deny --repo <repo> -- <item-id> <text>`, which are the read and the write this child consumes unchanged. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-010]
 
 **Deliverables**:
 - `crates/bots-tui/src/view/overlay.rs`, the decision and choice overlays, the free-text line, the in-flight lock, the refusal state and the grant row drawn only when the item carries one.
@@ -113,8 +113,8 @@ The first two blocks are the gap as it stood when this phase was measured: `answ
 - The `always` and `conversation` scopes - a standing grant needs a rule store no phase lands, so the overlay offers `once` and `deny` only. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:206]
 - The inbox pane's rows, its loading and error states, and the selection - 004-panes owns them, and this child reads the selected item id.
 - The status row's own layout and the footer's key line - 003-shell-and-navigation owns both, and this child writes one message into the row and one label into the table.
-- The `grants` object and the precedence ladder - 006-approval-grants owns them. The overlay reads a grant only to draw its kind and rung when the item carries them, and draws nothing where they are absent, so it never waits for 006. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:101] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:230]
-- The roster check that refuses `answer-not-approver` - 011-messaging-channels owns it, and this child only displays the refusal it produces. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208]
+- The `grants` object and the precedence ladder - 006-approval-grants owns them. The overlay reads a grant only to draw its kind and rung when the item carries them, and draws nothing where they are absent, so it never waits for 006. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, section "In Scope"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:230]
+- The roster check that refuses `answer-not-approver` - 011-messaging-channels owns it, and this child only displays the refusal it produces. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-021]
 - `insta` - snapshot tests assert the ratatui `TestBackend` buffer directly.
 
 ### Files to Change

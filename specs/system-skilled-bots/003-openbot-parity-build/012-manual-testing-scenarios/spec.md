@@ -42,7 +42,7 @@ This is **Phase 12** of the OpenBot parity build. Phases 001 to 011 each land a 
 **Scope Boundary**: The manual testing playbook under `.skilled/skills/system-skilled-bots/manual-testing-playbook/`, its root index, and the run folder the recorder writes under `benchmark/reports/`. The eleven phase specs are read and never edited. No runtime module, CLI verb, test or crate changes.
 
 **Dependencies**:
-- The eleven phase specs, which name every verb and record a scenario asserts [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:140]
+- The eleven phase specs, which name every verb and record a scenario asserts [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "PHASE DOCUMENTATION MAP"]
 - The playbook package contract, which fixes the folder shape, the five-section file order and the result-persistence rule [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:67] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:158] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:215]
 - The `/create:manual-testing-playbook` command, whose router binds the presentation contract and the workflow YAML [SOURCE: .skilled/commands/create/manual-testing-playbook.md:11]
 - The existing 25-scenario corpus, whose category folders, `BOT-NNN` ids and one-bash-block execution form this phase extends [SOURCE: .skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md:1]
@@ -108,7 +108,7 @@ The corpus holds 25 scenario files in 7 category folders, and the package valida
 
 ### Out of Scope
 - A scenario for a behavior no phase delivers - the corpus proves what 001 to 011 built, and a scenario for a later packet would assert a verb that does not exist
-- A real Telegram, Slack, Signal or WhatsApp account as a requirement - the channel scenarios run on the fake transport the phase 011 conformance rules already use [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:204], and a real account is an optional operator prerequisite that records `SKIP` when absent
+- A real Telegram, Slack, Signal or WhatsApp account as a requirement - the channel scenarios run on the fake transport the phase 011 conformance rules already use [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md, REQ-017], and a real account is an optional operator prerequisite that records `SKIP` when absent
 - The `json conversation` runner style - the shared runner plays turns into an AI runtime session, and the subject here is the bots CLI, so the multi-turn form is one bash block with numbered turns, which the existing corpus already uses [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:306]
 - Editing the eleven phase specs, the runtime, the CLI, the tests or the Rust crate - this phase reads them and writes documentation only
 - A new automated test - the phases own their suites, and this phase's proof is the recorded manual verdict
@@ -137,39 +137,39 @@ One row per new scenario. The phase column names the spec whose requirement the 
 
 | ID | Category | Phase | What it proves |
 |----|----------|-------|----------------|
-| BOT-026 | conversations | 010 | `bots chat` appends one human and one bot message and dispatches one run [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152] |
-| BOT-027 | conversations | 010 | `@bot` routes a message to the named bot, and a bot with no `BOT.md` is refused `bot-unknown` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:155] |
-| BOT-028 | conversations | 010, 001 | a parked chat run is answered with `--scope once` and the resume appends its bot message [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:168] |
-| BOT-029 | conversations | 001, 006 | `--scope deny` records `deny`, and `--scope always` is refused `grant-scope-unsupported` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:156] |
-| BOT-030 | conversations | 006 | the item carries `grants` and the inbox line prints its kind, rung and scope [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:153] |
-| BOT-031 | conversations | 005 | a `[REMEMBER]` line becomes a `memory-proposal`, `confirm` appends the fact and `reject` appends nothing [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152] |
-| BOT-032 | conversations | 009 | `bots skill propose` writes the draft and one `skill-proposal` item, and the answer records the decision with no resume [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:163] |
-| BOT-033 | conversations | 011 | a link and a numbered reply answer an item through the fake transport [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:190] |
-| BOT-034 | conversations | 011 | a channel answer from a non-approver is refused `answer-not-approver` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:187] |
-| BOT-035 | routines | 002 | the routine block renders and `bots routines` lists it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173] |
-| BOT-036 | routines | 002 | a routine's cron start installs and fires at the slot computed at run time [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:162] |
-| BOT-037 | routines | 002 | the `until` outcome sets `completed` and records `untilMetAt` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:165] |
-| BOT-038 | routines | 002 | a cron start under 900 seconds is refused `routine-floor-15-minutes` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:166] |
-| BOT-039 | routines | 002 | ten consecutive failures disable the bot and raise one item [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:167] |
-| BOT-040 | activity | 001 | `bots activity` groups rows under the seven ids in order [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151] |
-| BOT-041 | activity | 001 | `bots inbox --json` carries the item fields [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] |
-| BOT-042 | activity | 001 | the actor is recorded on the answer and on the run record [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:155] |
-| BOT-043 | terminal-screen | 003 | the screen refuses without the binary and exits 4 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:162] |
-| BOT-044 | terminal-screen | 003 | the inbox pane answers with `y` and `n` through `bots answer --scope` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:167] |
-| BOT-045 | terminal-screen | 003 | the banner and the overlay draw every key they bind [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:169] |
-| BOT-046 | working-place | 004 | the prompt names the working place and the record carries the branch [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:143] |
+| BOT-026 | conversations | 010 | `bots chat` appends one human and one bot message and dispatches one run [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-001] |
+| BOT-027 | conversations | 010 | `@bot` routes a message to the named bot, and a bot with no `BOT.md` is refused `bot-unknown` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-004] |
+| BOT-028 | conversations | 010, 001 | a parked chat run is answered with `--scope once` and the resume appends its bot message [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-012] |
+| BOT-029 | conversations | 001, 006 | `--scope deny` records `deny`, and `--scope always` is refused `grant-scope-unsupported` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-010] |
+| BOT-030 | conversations | 006 | the item carries `grants` and the inbox line prints its kind, rung and scope [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
+| BOT-031 | conversations | 005 | a `[REMEMBER]` line becomes a `memory-proposal`, `confirm` appends the fact and `reject` appends nothing [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-007] |
+| BOT-032 | conversations | 009 | `bots skill propose` writes the draft and one `skill-proposal` item, and the answer records the decision with no resume [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-004] |
+| BOT-033 | conversations | 011 | a link and a numbered reply answer an item through the fake transport [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-008] |
+| BOT-034 | conversations | 011 | a channel answer from a non-approver is refused `answer-not-approver` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-005] |
+| BOT-035 | routines | 002 | the routine block renders and `bots routines` lists it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] |
+| BOT-036 | routines | 002 | a routine's cron start installs and fires at the slot computed at run time [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-001] |
+| BOT-037 | routines | 002 | the `until` outcome sets `completed` and records `untilMetAt` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-004] |
+| BOT-038 | routines | 002 | a cron start under 900 seconds is refused `routine-floor-15-minutes` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-005] |
+| BOT-039 | routines | 002 | ten consecutive failures disable the bot and raise one item [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006] |
+| BOT-040 | activity | 001 | `bots activity` groups rows under the seven ids in order [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-001] |
+| BOT-041 | activity | 001 | `bots inbox --json` carries the item fields [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] |
+| BOT-042 | activity | 001 | the actor is recorded on the answer and on the run record [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-005] |
+| BOT-043 | terminal-screen | 003 | the screen refuses without the binary and exits 4 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
+| BOT-044 | terminal-screen | 003 | the inbox pane answers with `y` and `n` through `bots answer --scope` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md, REQ-006] |
+| BOT-045 | terminal-screen | 003 | the banner and the overlay draw every key they bind [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/spec.md, REQ-012] |
+| BOT-046 | working-place | 004 | the prompt names the working place and the record carries the branch [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md, REQ-001] |
 | BOT-047 | working-place | 004 | `bots status` prints `branch` and `worktree` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:146] |
-| BOT-048 | memory | 005 | `bots remember` appends and `--list` prints the entry [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:146] |
-| BOT-049 | memory | 005 | the memory block is injected and an empty file injects nothing [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:151] |
-| BOT-050 | memory | 005 | the 60-entry and 3,600-byte bound refuses the next append [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148] |
-| BOT-051 | apps | 007 | `apps:` filters `utcp.json` and records `posture.apps` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:142] |
-| BOT-052 | apps | 007 | `apps-unknown-server` fails the checker [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:141] |
-| BOT-053 | vault | 008 | `bots secret set` stores a value and `list` prints no value [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146] |
-| BOT-054 | vault | 008 | the secret reaches the child and `secretsUsed` records the name [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:152] |
-| BOT-055 | vault | 008 | a printed secret is redacted and records `secret-in-output` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:164] |
+| BOT-048 | memory | 005 | `bots remember` appends and `--list` prints the entry [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-001] |
+| BOT-049 | memory | 005 | the memory block is injected and an empty file injects nothing [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-006] |
+| BOT-050 | memory | 005 | the 60-entry and 3,600-byte bound refuses the next append [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-003] |
+| BOT-051 | apps | 007 | `apps:` filters `utcp.json` and records `posture.apps` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, REQ-003] |
+| BOT-052 | apps | 007 | `apps-unknown-server` fails the checker [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, REQ-002] |
+| BOT-053 | vault | 008 | `bots secret set` stores a value and `list` prints no value [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-001] |
+| BOT-054 | vault | 008 | the secret reaches the child and `secretsUsed` records the name [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-007] |
+| BOT-055 | vault | 008 | a printed secret is redacted and records `secret-in-output` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-014] |
 | BOT-056 | skills | 009 | a `skills:` list injects the body at the skills position [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161] |
-| BOT-057 | skills | 009 | `skills-over-budget` refuses a list whose bodies cross the cap [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:162] |
-| BOT-058 | channels | 011 | the send queue records `unknown` and never retries [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:195] |
+| BOT-057 | skills | 009 | `skills-over-budget` refuses a list whose bodies cross the cap [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-003] |
+| BOT-058 | channels | 011 | the send queue records `unknown` and never retries [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-013] |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -282,7 +282,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 
 - Does the corpus use the `json conversation` runner style? Decision: no. The runner plays turns into an AI runtime session, and the subject here is the bots CLI, so the multi-turn form is one bash block with numbered turns, which the existing corpus already uses [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:306]. Reversal condition: if a scenario must prove how an AI runtime answers a bot's question, that scenario takes the runner style and records `SKIP` when tmux or the runtime is absent
-- Does a real channel account gate the channel scenarios? Decision: no. The fake transport proves the contract, and a real account is an optional operator prerequisite that records `SKIP` with the missing account as its blocker [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:204]
+- Does a real channel account gate the channel scenarios? Decision: no. The fake transport proves the contract, and a real account is an optional operator prerequisite that records `SKIP` with the missing account as its blocker [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md, REQ-017]
 - How many scenarios does the corpus gain? Decision: 33, one per requirement cluster rather than one per requirement, because a scenario that asserts one field of one record costs a full bash block and proves less than a scenario that drives the verb end to end
 - Does this phase edit the eleven phase specs? Decision: no. A scenario that finds a phase's behavior wrong files a defect against that phase, and the phase's own packet carries the fix
 <!-- /ANCHOR:questions -->

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger, a runtime, a budget, a posture and a body, and the parser's key set holds twelve keys with no `skills` among them [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107]",
     "created_at": "2026-11-25T07:13:43Z",
-    "last_save_at": "2026-11-25T23:21:17.723Z",
+    "last_save_at": "2026-11-26T05:54:57.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,11 +221,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce05178818cc32e901babeada97c11d103e88e40c6a968fe305a0b712c6d942b",
+    "source_fingerprint": "sha256:04ffa0275abef927f4b7414f712fc1679230938200f6d732cc2f8067bab4e1a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9fc3cd5fc9d9befedaacc2df802d51d78bc7d093e8d24382f3276d3fe26e0094",
-      "plan.md": "e036554c378691905cad054b017f8503450053dfbea9c5ac9c159e862b370895",
+      "spec.md": "1bcddeec0c5eda541140cbebcad75285ef83bd15e05b7038ed53f12e06472b73",
+      "plan.md": "2339f54d66d878bf423f76af5c5d9a84ddd204ef493839c554506305f02cc964",
       "tasks.md": "1e1d3260b24ea7db76e210fe83fca0e41be054379f591bde1bfd1bcd0845acd4",
       "implementation-summary.md": "cec38933010bc45b8f9398a06f20471c06d6726b9b8da186416d4e9abea996d5"
     },

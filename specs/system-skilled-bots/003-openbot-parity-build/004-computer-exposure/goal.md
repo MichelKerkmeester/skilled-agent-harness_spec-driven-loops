@@ -104,6 +104,6 @@ and findings belong here.
 - Parent goal, whose decisions bind this phase and are not restated here: `../goal.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/goal.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/goal.md:69]
 - Phase outcome and scope: `spec.md` sections 2 and 3. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:63] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:66]
 - Success criteria SC-001 to SC-006: `spec.md` section 5. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:203] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:208]
-- Criteria AC-001 to AC-010: `acceptance-criteria.md` section 2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:48]
-- The packet's frozen decisions D1 to D9, which outrank this phase's own: `contracts/decisions.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:1]
+- Criteria AC-001 to AC-010: `acceptance-criteria.md` section 2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md, AC-001] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/acceptance-criteria.md:48]
+- The packet's frozen decisions D1 to D9, which outrank this phase's own: `contracts/decisions.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D1 to D9]
 <!-- /ANCHOR:log -->

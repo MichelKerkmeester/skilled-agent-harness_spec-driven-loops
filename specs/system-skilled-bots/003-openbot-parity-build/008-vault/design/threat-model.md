@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 **The asset.** A stored secret value. Its name, its backend and its timestamps are not secret: `bots secret list` prints them and the run record carries the name.
 
-**The boundary.** The OS user. Every bot child runs as the operator's own user, so the vault separates bots by not injecting a name and never by file permissions. This is decision D6, confirmed as designed. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:29] Inside that boundary the vault's job is narrower: keep each value out of every surface the runtime itself writes or sends, and catch a child that prints one.
+**The boundary.** The OS user. Every bot child runs as the operator's own user, so the vault separates bots by not injecting a name and never by file permissions. This is decision D6, confirmed as designed. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D6] Inside that boundary the vault's job is narrower: keep each value out of every surface the runtime itself writes or sends, and catch a child that prints one.
 
 **Actors.**
 

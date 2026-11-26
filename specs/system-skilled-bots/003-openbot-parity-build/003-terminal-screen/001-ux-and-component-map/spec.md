@@ -44,8 +44,8 @@ This is **Phase 1** of the Terminal screen children: UX, architecture, shell, pa
 
 **Dependencies**:
 - The parent's operator decisions Q002 to Q009, which fix the six children, the free-text answer, the fallback tab keys, the three new glyphs, the refusal of `insta`, the screenshot set, the grant drawn only when the item carries it, and the `NO_COLOR` route. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:224-231]
-- Phase 001's `bots activity --json` and `bots inbox --json` shapes, which the activity and inbox frames draw. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152]
-- Phase 002's `bots routines --json` shape, which the routines frame draws. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:173]
+- Phase 001's `bots activity --json` and `bots inbox --json` shapes, which the activity and inbox frames draw. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002]
+- Phase 002's `bots routines --json` shape, which the routines frame draws. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007]
 - `bots status --json`, which exists today and which the header frame draws. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:103-114]
 
 **Deliverables**:

@@ -12,9 +12,9 @@ version: 1.0.0.0
 
 # The refusals and exit codes of phase 2
 
-Eleven refusals, nine of them definition parse names the checker also audits, one checker invariant that is also an install refusal, and two run refusals that enter the runner's typed registry. The packet table is `contracts/refusals.md` section 3.2 and this file adds the columns a builder needs: the checker invariant id, the fixture that trips it and the exact stderr line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:71]
+Eleven refusals, nine of them definition parse names the checker also audits, one checker invariant that is also an install refusal, and two run refusals that enter the runner's typed registry. The packet table is `contracts/refusals.md` section 3.2 and this file adds the columns a builder needs: the checker invariant id, the fixture that trips it and the exact stderr line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.2 Phase 002, routine layer"]
 
-The exit rule is the packet's. A definition parse refusal exits 4 at run time as the detail of `definition-malformed` and 1 in the checker. A checker invariant exits 1. A run refusal exits 4 and enters `REFUSAL_CAUSES`. A verb refusal exits 2 when `bots.cjs` refuses before any runtime call and 4 when a runtime `Result` refused. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:40]
+The exit rule is the packet's. A definition parse refusal exits 4 at run time as the detail of `definition-malformed` and 1 in the checker. A checker invariant exits 1. A run refusal exits 4 and enters `REFUSAL_CAUSES`. A verb refusal exits 2 when `bots.cjs` refuses before any runtime call and 4 when a runtime `Result` refused. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "2. LAYERS AND THE EXIT RULE"]
 
 ---
 
@@ -57,9 +57,9 @@ The checker's message for each invariant names the file and the field, in the sh
 
 ## 3. THE TWO RUN REFUSALS, DECIDED
 
-**`routine-fatigued` is decided at the `disabled` check.** The runner reads the `disabled` switch before the lease. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:822-823] When that switch is set and the routine state file records `fatiguedAt`, the refusal is `routine-fatigued` rather than `disabled`. Without this the name the phase requires could never be recorded, because the `disabled` check refuses before anything else could name fatigue. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:225]
+**`routine-fatigued` is decided at the `disabled` check.** The runner reads the `disabled` switch before the lease. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:822-823] When that switch is set and the routine state file records `fatiguedAt`, the refusal is `routine-fatigued` rather than `disabled`. Without this the name the phase requires could never be recorded, because the `disabled` check refuses before anything else could name fatigue. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"]
 
-**`routine-completed` is checked beside `disabled`.** The `completed` switch is read in the same place, before the lease, and refuses `routine-completed` with class `null`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:226] The order between the two checks is fixed: `disabled` first, so a bot that is both fatigued and completed reports the fatigue, which is the state the operator has to act on.
+**`routine-completed` is checked beside `disabled`.** The `completed` switch is read in the same place, before the lease, and refuses `routine-completed` with class `null`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"] The order between the two checks is fixed: `disabled` first, so a bot that is both fatigued and completed reports the fatigue, which is the state the operator has to act on.
 
 **Neither refusal is a failure.** Both carry class `null`, so neither counts toward the streak. A run refused before dispatch carries `exit.refusal` and is never counted as a failed run. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:415-434]
 
@@ -77,7 +77,7 @@ The checker's message for each invariant names the file and the field, in the sh
 | `bots routines` | `bots: <message>` | 1 | an uncaught throw [SOURCE: .skilled/bin/bots.cjs:542-545] |
 | `bots enable` | `identity-unknown`, `config-unreadable`, `config-invalid` | 4 | the same three |
 | `bots enable` | `item-expired` | none, it is a warning | the fatigue item has expired. The enable still clears the switch and the record, and prints `bots: item <id> expired; not answered` on stderr |
-| `bots enable` | `answer-not-approver` | 4 | 011's roster names the actor and does not admit it. The enable stops before the switch is cleared, because the answer is step 1 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:113] |
+| `bots enable` | `answer-not-approver` | 4 | 011's roster names the actor and does not admit it. The enable stops before the switch is cleared, because the answer is step 1 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.5 Phase 006, approval grants", row `answer-not-approver`] |
 
 **The `item-expired` warning is not a refusal.** It is one stderr line and the verb exits 0, because the operator asked for the bot to be enabled and the item is a notice rather than a gate. `design/state-machines.md` section 3 fixes the three item outcomes.
 
@@ -85,7 +85,7 @@ The checker's message for each invariant names the file and the field, in the sh
 
 ## 5. THE `bots routines` FAILED READ
 
-The screen contract's section 9 fixes how the screen draws a failed read of the four payloads. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:671-680] This verb's own exits are the ones below, and they are the ones the screen's table already expects.
+The screen contract's section 9 fixes how the screen draws a failed read of the four payloads. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "9. A FAILED READ"] This verb's own exits are the ones below, and they are the ones the screen's table already expects.
 
 | Exit | When | Stderr |
 |------|------|--------|

@@ -26,7 +26,7 @@ The screen's rule holds here: a key that is not in a table is not bound, and a k
 
 The context is exclusive, like the other six. While it is active no `main` key is bound, so `Alt+2` and `[` do nothing in it. The two modes follow the overlay's pattern of one context with a typing mode inside it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:34]
 
-The screen's `context_stack` for the Chat tab changes from `[Main]` to `[Main]` before `Enter` and `[Chat]` after it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:345] `Context` gains the variant `Chat` beside the six. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:212]
+The screen's `context_stack` for the Chat tab changes from `[Main]` to `[Main]` before `Enter` and `[Chat]` after it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "1.12 The reducer layout", row `context_stack`] `Context` gains the variant `Chat` beside the six. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:212]
 
 ---
 
@@ -130,6 +130,6 @@ The screen's key map is the operator's to approve, and its approval names the ke
 | The six contexts and the exclusive rule | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:21-34] |
 | The footer line rule and the 67-column floor | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:74] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:207] |
 | The macOS Option key behaviour | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:88] |
-| The `Context` type and the context stack | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:212] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:345] |
+| The `Context` type and the context stack | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:212] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "1.12 The reducer layout", row `context_stack`] |
 | The draft history | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/composer.rs:157-196] |
 | The bot count the picker reads | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:126] |

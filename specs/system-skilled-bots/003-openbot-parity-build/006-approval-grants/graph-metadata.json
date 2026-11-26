@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A needs-you item names a question, its options, its evidence and the parked prompt, and nothing else, so an approval cannot say what kind of action it approves [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-25T23:16:11.349Z",
+    "last_save_at": "2026-11-26T05:59:42.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abc3327b46f2907f4f2b6522948d193d9044cda00cd42c3bc7c49379b229dc2b",
+    "source_fingerprint": "sha256:c1a30641bbd586ed76093ccf35a981df98ebec40907abe3f32a9480af1f86a9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d70b4513f2e2311eab093091d32f5463f49ef24d8db72a5ff25b4927850a3ac4",
-      "plan.md": "6f7e0d7e8a2d4484b1005e3814e4de665f35773c2ab69ee89c3db2e1a8ab7398",
-      "tasks.md": "fcf2c43f93a3495ed328ae603bd3c3395ae4e2e06951f0d29ed279b5e79321b4",
+      "spec.md": "cd30e52d0c4258d826bc197ab91f566250b789f737dc3d572b031b776370bbf8",
+      "plan.md": "dc9c8dc764cc186f4a418a7ff77f644f7784e727bf51d4edba9bad0ea98a0204",
+      "tasks.md": "d7a31ffec4d4f4ac152ddf0c7c75d958b6396874771e13d6d3adc72caa346757",
       "implementation-summary.md": "827c22e6f0fa67c6b208dfeec3f667ff9b351cc6c588395c8dd44e544aad0486"
     },
     "last_active_at": null

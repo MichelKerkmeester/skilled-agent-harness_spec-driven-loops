@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 Three surfaces gain the same two facts. The run record already has both keys and this phase fills one of them for every dispatched run. The status index's run summary gains both inside its JSON column. The `bots status --json` payload gains both under `lastRun`. This note fixes every field, so a builder writes no shape of its own.
 
-The record's own field table is [`contracts/records.md`](../../contracts/records.md) section 4 and the payload's is the screen contract's section 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:186-200] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:315] This note adds the columns those two leave to the builder: what an absent key reads as on each surface, and what the reader does about it.
+The record's own field table is [`contracts/records.md`](../../contracts/records.md) section 4 and the payload's is the screen contract's section 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:315] This note adds the columns those two leave to the builder: what an absent key reads as on each surface, and what the reader does about it.
 
 ---
 
@@ -27,7 +27,7 @@ File: `<stateRoot>/<identityKey>/records/<runId>.json`, the path `recordFile(sta
 | `evidence.branch` | string, the branch name git prints, or the tree's branch | yes, only on a detached HEAD or when git does not answer | 004 | today as a key, 004 widens the fill from worktree runs to every dispatched run | `null` |
 | `evidence.worktreePath` | string, absolute | yes, a shared run | today | today, unchanged | `null` |
 
-Both keys already exist on `EvidenceLocations` and both are already nullable. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:151-157] This phase adds no key to the record, so the record's `schemaVersion` stays `1` and no reader changes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:15]
+Both keys already exist on `EvidenceLocations` and both are already nullable. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:151-157] This phase adds no key to the record, so the record's `schemaVersion` stays `1` and no reader changes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]
 
 ### 1.1 The fill rule
 
@@ -88,7 +88,7 @@ A test writes a summary object with neither key into a fixture index and asserts
 | `lastRun.branch` | string | yes | 004 | 004 | `null` |
 | `lastRun.worktreePath` | string, absolute | yes | 004 | 004 | `null` |
 
-The payload's own `version` stays `1`, because adding a key is not a change under [`contracts/cli-json.md`](../../contracts/cli-json.md) section 1 rule 5 and [`contracts/versioning.md`](../../contracts/versioning.md) rule 5. The screen ignores a key it does not know, so it gains both without an edit. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:661]
+The payload's own `version` stays `1`, because adding a key is not a change under [`contracts/cli-json.md`](../../contracts/cli-json.md) section 1 rule 5 and [`contracts/versioning.md`](../../contracts/versioning.md) rule 5. The screen ignores a key it does not know, so it gains both without an edit. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "8. VERSIONING AND UNKNOWN FIELDS"]
 
 The two keys are appended after `delivery`, which keeps the existing key order and adds no reordering. Key order is not a contract, so a test compares the key set and the types and never the order.
 
@@ -108,7 +108,7 @@ No revert step is needed for this phase, because no closed key list gains a key.
 
 ## 5. SAMPLES
 
-Each sample is a golden file in [`fixtures/`](fixtures/README.md), on the contracts' one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, checkout `/Users/ada/code/hello`, operator `ada`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:33-35]
+Each sample is a golden file in [`fixtures/`](fixtures/README.md), on the contracts' one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, checkout `/Users/ada/code/hello`, operator `ada`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
 
 ### 5.1 A shared run's evidence
 
@@ -177,4 +177,4 @@ Each sample is a golden file in [`fixtures/`](fixtures/README.md), on the contra
 }
 ```
 
-The `definitionDigest` value is illustrative and a test compares its type only, as the contracts' fixture README already rules for a digest. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/README.md:44]
+The `definitionDigest` value is illustrative and a test compares its type only, as the contracts' fixture README already rules for a digest. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/fixtures/README.md, section "Golden records and payloads"]

@@ -28,7 +28,7 @@ A scenario that asserts a refusal asserts three things: the name, the exit code 
 | 4 | `refused` | a run refused before dispatch, or a verb whose runtime call returned a refusal | `contracts/refusals.md` section 1 |
 | 5 | `awaitingDecision` | the run parked a needs-you item and exited | `contracts/refusals.md` section 1 |
 
-The rule a scenario relies on: a refusal `bots.cjs` decides on its own input exits 2, and a refusal that comes back from a runtime call exits 4. Every `answerItem` refusal exits 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:50]
+The rule a scenario relies on: a refusal `bots.cjs` decides on its own input exits 2, and a refusal that comes back from a runtime call exits 4. Every `answerItem` refusal exits 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "2. LAYERS AND THE EXIT RULE"]
 
 ---
 

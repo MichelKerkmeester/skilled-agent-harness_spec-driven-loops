@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 # Design folder of 006-approval-grants
 
-This folder holds the design a builder needs and the phase documents do not carry. The shared shapes live in the packet's `contracts/` folder and are cited here by file and section, never copied. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md:19]
+This folder holds the design a builder needs and the phase documents do not carry. The shared shapes live in the packet's `contracts/` folder and are cited here by file and section, never copied. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md, section "The rule"]
 
 ## 1. THE FILES
 
@@ -33,6 +33,6 @@ This folder holds the design a builder needs and the phase documents do not carr
 
 ## 3. WHAT THIS FOLDER DOES NOT OWN
 
-The grant object's shape is `contracts/records.md` section 3. The item's key list is `contracts/records.md` section 1. The answer seam's step order is `contracts/answer-seam.md` section 1. The grant's four lifecycle rows are `contracts/answer-seam.md` section 3. The refusal table's rows are `contracts/refusals.md` section 3.5. A change to any of those is a change to that file first, per the rule in `contracts/README.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md:21]
+The grant object's shape is `contracts/records.md` section 3. The item's key list is `contracts/records.md` section 1. The answer seam's step order is `contracts/answer-seam.md` section 1. The grant's four lifecycle rows are `contracts/answer-seam.md` section 3. The refusal table's rows are `contracts/refusals.md` section 3.5. A change to any of those is a change to that file first, per the rule in `contracts/README.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md, section "The rule"]
 
 This folder adds what those files leave to the builder: the validation order, the exact text of every line, the lock file's contents and lifetime, the classifier's word lists as data and the case matrix a test walks.

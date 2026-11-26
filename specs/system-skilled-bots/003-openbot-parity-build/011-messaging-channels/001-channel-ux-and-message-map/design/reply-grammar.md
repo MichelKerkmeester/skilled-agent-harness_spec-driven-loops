@@ -40,7 +40,7 @@ Rows 2 and 4 send M20, `Reply with a number from 1 to n, or NO.` and the prompt 
 
 ## 3. WHAT A LINE THAT MATCHES NONE BECOMES
 
-Row 5 is a chat message. On `signal` and `whatsapp` it becomes one request through `bots enqueue` with the provider message id as its event id and the `<conversation channel="...">` block as its prompt (`contracts/prompt-sections.md` section 1.9). On the terminal it goes through the 010 chat path. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md:253-269] The open prompt stays open either way.
+Row 5 is a chat message. On `signal` and `whatsapp` it becomes one request through `bots enqueue` with the provider message id as its event id and the `<conversation channel="...">` block as its prompt (`contracts/prompt-sections.md` section 1.9). On the terminal it goes through the 010 chat path. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, section "9. THE CHAT PATH PHASE 011 REUSES"] The open prompt stays open either way.
 
 ## 4. WHO MAY REPLY
 

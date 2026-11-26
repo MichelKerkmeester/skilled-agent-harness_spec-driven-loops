@@ -102,7 +102,7 @@ The `report-clean.md` check is the one that matters most, because it is the same
 
 ## 4. WHAT A BUILDER DOES WITH THEM
 
-- **A shape change.** Edit `design/records.md` first, then regenerate the golden with the script, then the phase documents. The order is the one `contracts/README.md` sets for the packet's own contracts. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md:19]
+- **A shape change.** Edit `design/records.md` first, then regenerate the golden with the script, then the phase documents. The order is the one `contracts/README.md` sets for the packet's own contracts. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/README.md, section "The rule"]
 - **A new field.** Add it to the field table, add it to the golden, and add a check above that reads it. A field with no check is a field nobody will notice going missing.
 - **A new bucket or a new disposition.** The golden is the place to show it, because the two scripts that write these files are shared by both commands and a change to one reaches both.
 

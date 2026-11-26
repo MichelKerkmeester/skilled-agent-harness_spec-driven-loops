@@ -13,9 +13,9 @@ version: 1.0.0.0
 
 # The refusal catalogue
 
-Nine refusals reach an operator from this phase's work. Three are new here, four are reused from 001 and 005, one is reserved for a later packet and one is the item validator's. The table's rows are `contracts/refusals.md` section 3.5's and are not repeated. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:109] What this file adds is the trigger, the exact text, the state on disk, the recovery and the test, which the contract's table has no column for.
+Nine refusals reach an operator from this phase's work. Three are new here, four are reused from 001 and 005, one is reserved for a later packet and one is the item validator's. The table's rows are `contracts/refusals.md` section 3.5's and are not repeated. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.5 Phase 006, approval grants"] What this file adds is the trigger, the exact text, the state on disk, the recovery and the test, which the contract's table has no column for.
 
-The exit rule is `contracts/refusals.md` section 2's: a check `bots.cjs` makes on its own input exits 2, and a refusal that comes back from a runtime call exits 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:40]
+The exit rule is `contracts/refusals.md` section 2's: a check `bots.cjs` makes on its own input exits 2, and a refusal that comes back from a runtime call exits 4. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "2. LAYERS AND THE EXIT RULE"]
 
 ---
 
@@ -49,7 +49,7 @@ The exit rule is `contracts/refusals.md` section 2's: a check `bots.cjs` makes o
 
 ### 1.2 The one refusal this phase does not raise
 
-`unknown-key: grants` is what a runtime built before this phase says when it meets an item that carries the key. It is not this phase's refusal and no code here raises it. It is the revert cost `contracts/versioning.md` section 2 records, and the manual step is to strip `grants` from each item. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:23]
+`unknown-key: grants` is what a runtime built before this phase says when it meets an item that carries the key. It is not this phase's refusal and no code here raises it. It is the revert cost `contracts/versioning.md` section 2 records, and the manual step is to strip `grants` from each item. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "2. AN OLDER RUNTIME MEETS A NEWER RECORD"]
 
 ---
 
@@ -113,6 +113,6 @@ The test files sit under `.skilled/skills/system-skilled-bots/runtime/tests/`.
 |----------|-----|
 | `item-busy` carries the holder's pid and the lock's instant | An operator who sees a pid can tell a live answer from a lock left by a killed process, and the second case needs no action |
 | `grant-scope-unsupported` carries a fixed detail naming the missing store | The refusal is a limitation rather than a mistake, and the operator learns it at the answer rather than after believing a standing allow took effect |
-| `action-kind-invalid` is a run failure and not a refusal before dispatch | The child already ran and printed the bad line, so the run cannot park and the failure is the run's own [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:221] |
+| `action-kind-invalid` is a run failure and not a refusal before dispatch | The child already ran and printed the bad line, so the run cannot park and the failure is the run's own [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"] |
 | `grant-kind-unknown` ships with no test | No rule store lands, so no input reaches the branch and a test would assert a line no caller can produce |
 | No refusal detail ever carries the answer's text | A secret the operator typed would otherwise reach stderr, which a log keeps |

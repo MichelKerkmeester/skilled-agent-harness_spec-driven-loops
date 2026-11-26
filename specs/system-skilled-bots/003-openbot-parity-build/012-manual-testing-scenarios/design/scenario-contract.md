@@ -135,7 +135,7 @@ Path: `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-sce
 | Observed line | string | the line the run printed, quoted, with its exit status |
 | Evidence path | string, repository-relative | the transcript that holds the line |
 
-A scenario defect is not filed here. It is fixed in the scenario and its row is re-run, so the recorded run matches the corpus. The distinction is the one decision D4 draws: a product failure does not block this phase once it is filed, and it does block the deep review's PASS. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:27]
+A scenario defect is not filed here. It is fixed in the scenario and its row is re-run, so the recorded run matches the corpus. The distinction is the one decision D4 draws: a product failure does not block this phase once it is filed, and it does block the deep review's PASS. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D4]
 
 Sample, one row:
 
@@ -165,39 +165,39 @@ One row per scenario. The line resolves to the requirement row the scenario prov
 
 | Scenario | Phase | Requirement line | What the line fixes |
 |----------|-------|------------------|---------------------|
-| BOT-026 | 010 | `010-conversations/spec.md:152` | `bots chat <id> --message <text>` appends one human message and dispatches one run |
-| BOT-027 | 010 | `010-conversations/spec.md:155` | `@<bot-id>` routing, and `bot-unknown` for a bot with no `BOT.md` |
-| BOT-028 | 010 | `010-conversations/spec.md:168` | a resumed run appends one bot message to the conversation it came from |
-| BOT-029 | 001 | `001-activity-and-actor/spec.md:156` | `--scope once\|deny`, and `grant-scope-unsupported` for any other value |
-| BOT-030 | 006 | `006-approval-grants/spec.md:170` | the inbox prints each item's grant kind, rung and scope |
-| BOT-031 | 005 | `005-memory/spec.md:152` | a `[REMEMBER]` line becomes a `memory-proposal` item |
-| BOT-032 | 009 | `009-skills/spec.md:165` | a proposal review records the decision and enqueues no resume |
-| BOT-033 | 011 | `011-messaging-channels/spec.md:190` | a numbered reply answers an open prompt through the transport |
-| BOT-034 | 011 | `011-messaging-channels/spec.md:187` | only an owner or a member may answer from a channel |
-| BOT-035 | 002 | `002-routine-layer/spec.md:176` | `bots routines [--json]` lists every bot carrying a routine block |
-| BOT-036 | 002 | `002-routine-layer/spec.md:165` | `starts[0]` renders into the trigger the installer reads |
-| BOT-037 | 002 | `002-routine-layer/spec.md:168` | `until_check` runs after a completed run and sets `completed` |
-| BOT-038 | 002 | `002-routine-layer/spec.md:169` | a cron start under 900 seconds is refused `routine-floor-15-minutes` |
-| BOT-039 | 002 | `002-routine-layer/spec.md:170` | ten consecutive failures disable the bot and raise one item |
-| BOT-040 | 001 | `001-activity-and-actor/spec.md:151` | `bots activity` groups rows under the seven ids in order |
-| BOT-041 | 001 | `001-activity-and-actor/spec.md:153` | `bots inbox --json` carries the ten item fields |
-| BOT-042 | 001 | `001-activity-and-actor/spec.md:155` | every run record carries `actor`, and an answered run carries `answeredBy` |
+| BOT-026 | 010 | `010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-001` | `bots chat <id> --message <text>` appends one human message and dispatches one run |
+| BOT-027 | 010 | `010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-004` | `@<bot-id>` routing, and `bot-unknown` for a bot with no `BOT.md` |
+| BOT-028 | 010 | `010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-012` | a resumed run appends one bot message to the conversation it came from |
+| BOT-029 | 001 | `001-activity-and-actor/spec.md, REQ-010` | `--scope once\|deny`, and `grant-scope-unsupported` for any other value |
+| BOT-030 | 006 | `006-approval-grants/spec.md, REQ-007` | the inbox prints each item's grant kind, rung and scope |
+| BOT-031 | 005 | `005-memory/spec.md, REQ-007` | a `[REMEMBER]` line becomes a `memory-proposal` item |
+| BOT-032 | 009 | `009-skills/spec.md, REQ-006` | a proposal review records the decision and enqueues no resume |
+| BOT-033 | 011 | `011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-008` | a numbered reply answers an open prompt through the transport |
+| BOT-034 | 011 | `011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-005` | only an owner or a member may answer from a channel |
+| BOT-035 | 002 | `002-routine-layer/spec.md, REQ-007` | `bots routines [--json]` lists every bot carrying a routine block |
+| BOT-036 | 002 | `002-routine-layer/spec.md, REQ-001` | `starts[0]` renders into the trigger the installer reads |
+| BOT-037 | 002 | `002-routine-layer/spec.md, REQ-004` | `until_check` runs after a completed run and sets `completed` |
+| BOT-038 | 002 | `002-routine-layer/spec.md, REQ-005` | a cron start under 900 seconds is refused `routine-floor-15-minutes` |
+| BOT-039 | 002 | `002-routine-layer/spec.md, REQ-006` | ten consecutive failures disable the bot and raise one item |
+| BOT-040 | 001 | `001-activity-and-actor/spec.md, REQ-001` | `bots activity` groups rows under the seven ids in order |
+| BOT-041 | 001 | `001-activity-and-actor/spec.md, REQ-003` | `bots inbox --json` carries the ten item fields |
+| BOT-042 | 001 | `001-activity-and-actor/spec.md, REQ-005` | every run record carries `actor`, and an answered run carries `answeredBy` |
 | BOT-043 | 003 | `003-terminal-screen/spec.md:105` | the `ui` verb refuses `ui-unavailable` when the crate is absent |
-| BOT-044 | 003 | `003-terminal-screen/spec.md:206` | the inbox pane answers with `y` and `n` through `bots answer --scope` |
-| BOT-045 | 003 | `003-terminal-screen/spec.md:207` | every bound key is drawn in the frame that binds it |
-| BOT-046 | 004 | `004-computer-exposure/spec.md:143` | `buildBotPrompt` emits one working-place line |
-| BOT-047 | 004 | `004-computer-exposure/spec.md:146` | `bots status` prints `branch` and `worktree` |
-| BOT-048 | 005 | `005-memory/spec.md:146` | `bots remember <text>` appends one five-field line |
-| BOT-049 | 005 | `005-memory/spec.md:151` | `buildBotPrompt` inserts the memory blocks at the memory position |
-| BOT-050 | 005 | `005-memory/spec.md:148` | the 60-entry and 3,600-byte bound refuses with `memory-full` and exit 4 |
-| BOT-051 | 007 | `007-per-bot-apps/spec.md:142` | every run writes a filtered `utcp.json` before dispatch |
-| BOT-052 | 007 | `007-per-bot-apps/spec.md:141` | an unknown server name is refused `apps-unknown-server` |
-| BOT-053 | 008 | `008-vault/spec.md:148` | `bots secret list` prints names and metadata only |
-| BOT-054 | 008 | `008-vault/spec.md:152` | the value reaches the child under `SKILLED_BOT_SECRET_<NAME>` |
-| BOT-055 | 008 | `008-vault/spec.md:164` | a printed value is redacted and records `secret-in-output` |
-| BOT-056 | 009 | `009-skills/spec.md:161` | each named skill's body is inserted at the skills position |
-| BOT-057 | 009 | `009-skills/spec.md:162` | a list whose bodies sum over 24,576 bytes refuses `skills-over-budget` |
-| BOT-058 | 011 | `011-messaging-channels/spec.md:195` | an uncertain send is recorded `unknown` and never retried |
+| BOT-044 | 003 | `003-terminal-screen/spec.md, REQ-006` | the inbox pane answers with `y` and `n` through `bots answer --scope` |
+| BOT-045 | 003 | `003-terminal-screen/spec.md, REQ-010` | every bound key is drawn in the frame that binds it |
+| BOT-046 | 004 | `004-computer-exposure/spec.md, REQ-001` | `buildBotPrompt` emits one working-place line |
+| BOT-047 | 004 | `004-computer-exposure/spec.md, REQ-004` | `bots status` prints `branch` and `worktree` |
+| BOT-048 | 005 | `005-memory/spec.md, REQ-001` | `bots remember <text>` appends one five-field line |
+| BOT-049 | 005 | `005-memory/spec.md, REQ-006` | `buildBotPrompt` inserts the memory blocks at the memory position |
+| BOT-050 | 005 | `005-memory/spec.md, REQ-003` | the 60-entry and 3,600-byte bound refuses with `memory-full` and exit 4 |
+| BOT-051 | 007 | `007-per-bot-apps/spec.md, REQ-003` | every run writes a filtered `utcp.json` before dispatch |
+| BOT-052 | 007 | `007-per-bot-apps/spec.md, REQ-002` | an unknown server name is refused `apps-unknown-server` |
+| BOT-053 | 008 | `008-vault/spec.md, REQ-003` | `bots secret list` prints names and metadata only |
+| BOT-054 | 008 | `008-vault/spec.md, REQ-007` | the value reaches the child under `SKILLED_BOT_SECRET_<NAME>` |
+| BOT-055 | 008 | `008-vault/spec.md, REQ-014` | a printed value is redacted and records `secret-in-output` |
+| BOT-056 | 009 | `009-skills/spec.md, REQ-002` | each named skill's body is inserted at the skills position |
+| BOT-057 | 009 | `009-skills/spec.md, REQ-003` | a list whose bodies sum over 24,576 bytes refuses `skills-over-budget` |
+| BOT-058 | 011 | `011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-013` | an uncertain send is recorded `unknown` and never retried |
 
 ---
 

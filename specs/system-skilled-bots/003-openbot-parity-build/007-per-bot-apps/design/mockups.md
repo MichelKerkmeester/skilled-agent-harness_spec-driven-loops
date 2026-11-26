@@ -123,7 +123,7 @@ $ jq '.posture' ~/.local/state/system-skilled-bots/local%2Ftool/records/20261125
 }
 ```
 
-The second block is the limit the packet decision D5 confirms. The record says `[]` and the child read the repository config, because a shared run's working directory is the checkout. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:28]
+The second block is the limit the packet decision D5 confirms. The record says `[]` and the child read the repository config, because a shared run's working directory is the checkout. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D5]
 
 A record written before this phase prints the same block with no `apps` key, and a reader takes it as `[]`.
 

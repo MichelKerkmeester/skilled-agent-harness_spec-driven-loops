@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 Five surfaces change and one is new. The inbox line gains three columns, the inbox `--json` row gains one key, `bots answer` gains no line but its existing lines gain a meaning, the usage text gains one note, the resumed prompt gains one line and the ladder doc is written from nothing.
 
-Every sample uses the packet's one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, operator `ada`, bot `hello`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:30]
+Every sample uses the packet's one data set: clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, operator `ada`, bot `hello`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Durable records of the OpenBot parity build"]
 
 ---
 
@@ -67,7 +67,7 @@ The second line of each item is unchanged: a tab, then the question. The option 
 
 ## 2. THE `bots inbox --json` ROW
 
-The row is 001's ten keys plus `grants`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:26]
+The row is 001's ten keys plus `grants`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "2. ONE ROW PER VERB"]
 
 ```json
 {
@@ -92,11 +92,11 @@ The row is 001's ten keys plus `grants`. [SOURCE: specs/system-skilled-bots/003-
 }
 ```
 
-The envelope is `{"version": 1, "items": [...]}` and the empty shape is `{"version": 1, "items": []}`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:26]
+The envelope is `{"version": 1, "items": [...]}` and the empty shape is `{"version": 1, "items": []}`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "2. ONE ROW PER VERB"]
 
 ### 2.1 The two `kind` keys on one row
 
-The row carries `kind` and `grants.kind` and they do not share a vocabulary. `kind` is the review kind, `decision` here. `grants.kind` is the action kind, `send` here. A reader that means the action says `grants.kind`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:64]
+The row carries `kind` and `grants.kind` and they do not share a vocabulary. `kind` is the review kind, `decision` here. `grants.kind` is the action kind, `send` here. A reader that means the action says `grants.kind`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
 
 ### 2.2 An item written before this phase
 
@@ -106,7 +106,7 @@ The row carries `"grants": null` and every other key is unchanged, so a reader t
 
 ## 3. THE `bots answer` STDOUT LINES
 
-No line changes. What changes is that the grant is written before the line is printed, so a line that says the answer landed means the grant landed too. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:48]
+No line changes. What changes is that the grant is written before the line is printed, so a line that says the answer landed means the grant landed too. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1.1 What the caller sees"]
 
 | Path | stdout | Exit |
 |------|--------|------|
@@ -213,7 +213,7 @@ The doc names no file path and no function name, because a bot author reads it r
 |----------|-----|
 | The three grant columns sit after `botId` and before the timestamps | `grep` on the third field still finds a bot's items and `grep` on the fourth finds a kind's, and the timestamps stay at the tail where a reader skims |
 | An absent grant prints `-` in all three columns rather than an empty field | A tab-separated line with two adjacent tabs is unreadable and a `cut` on the field returns nothing either way |
-| The `--json` row carries `grants` as an object or `null` and never as an empty object | `null` is the contract's absent value, and an empty object would fail the grant's own validation [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:117] |
+| The `--json` row carries `grants` as an object or `null` and never as an empty object | `null` is the contract's absent value, and an empty object would fail the grant's own validation [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "3. GRANT OBJECT"] |
 | The usage note names the three unimplemented rungs | An operator who expects a standing allow learns at the help text rather than at the refusal |
 | The ladder doc names no path and no function | A bot author reads it, and a path in it would go stale the first time a module moves |
 | The resumed prompt line is the last line before the closing instruction | The closing instruction is the sentence a run acts on, so nothing sits after it |

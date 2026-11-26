@@ -140,10 +140,12 @@ The prompt budget and its overflow rule are in [prompt-sections.md](prompt-secti
 | `secret-write-dropped` | Verb refusal (`secret set`), the read-back found no value | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-011] |
 | `secret-name-invalid` | Definition parse, and a verb refusal on `secret set` | - | 4 run, 1 checker, 2 verb | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-005] |
 | `secret-unknown` | Run refusal | `operator` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-006] |
-| `secret-store-unreadable` | Run refusal | `environment` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, section "8. EDGE CASES"] |
+| `secret-store-unreadable` | Run refusal, and a verb refusal on `secret set`, `secret list`, `secret forget` and `answer`, each printing `bots: secret-store-unreadable: <detail>` | `environment` on a run | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-017] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md, section "2. THE KNOWN-SECRET MAP"] |
 | `secret-in-output` | Post-run cause. The line is redacted and the delivery withheld | - | The run's own | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-014] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] |
 
 `secret-in-output` is one cause name for the `stdout.log` scan and for 010's reply scan. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] It is not a refusal, because the child already ran, so it stays out of `REFUSAL_CAUSES` and the run keeps the exit its outcome gives. Its field on the run record is in [records.md](records.md).
+
+No refusal names a short value. A value under 8 characters is stored, but no literal check matches it, and 008 accepts that residual because a real key is longer [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/threat-model.md, T9]. A later `secret-too-short` would be a new row here and a new check in 008.
 
 ### 3.8 Phase 009, skills
 

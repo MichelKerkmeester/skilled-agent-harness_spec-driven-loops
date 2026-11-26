@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Run-time injection sequence
 
-The packet's run sequence places the secret resolve after posture and before the prompt, and the post-run scan after the child. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:186-216] This note zooms in on the vault's part of that sequence and does not redraw the rest. The fixed order today is approval, disable switch, needs-you hold, lease, pause switch, precheck, posture, secret check, dispatch, result. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:5-6] The vault adds no step before the precheck, so a precheck never sees a value.
+The packet's run sequence places the secret resolve after posture and before the prompt, and the post-run scan after the child. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "3. SEQUENCES", section "3.1 A run"] This note zooms in on the vault's part of that sequence and does not redraw the rest. The fixed order today is approval, disable switch, needs-you hold, lease, pause switch, precheck, posture, secret check, dispatch, result. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:5-6] The vault adds no step before the precheck, so a precheck never sees a value.
 
 ---
 

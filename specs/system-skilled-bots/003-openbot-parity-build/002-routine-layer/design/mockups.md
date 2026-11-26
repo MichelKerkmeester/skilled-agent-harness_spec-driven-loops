@@ -122,7 +122,7 @@ $ echo $?
 0
 ```
 
-**stdout carries the document and nothing else.** A warning or a progress note goes to stderr, the rule every `--json` verb follows. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md:16]
+**stdout carries the document and nothing else.** A warning or a progress note goes to stderr, the rule every `--json` verb follows. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "1. THE RULE"]
 
 ---
 

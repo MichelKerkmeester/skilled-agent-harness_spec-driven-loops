@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The apps declaration, the run record field and the filtered UTCP config
 
-This file fixes every shape this phase adds or writes. The packet-level record contract owns the run record's field table and the version rules, so this file cites it and does not copy it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:140] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:15]
+This file fixes every shape this phase adds or writes. The packet-level record contract owns the run record's field table and the version rules, so this file cites it and does not copy it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]
 
 Six shapes are in play. Three are new keys, one is a new file, one is a copy of that file in a second place and one is an environment variable.
 
@@ -82,7 +82,7 @@ The parser's posture block gains one field. The block is the author's declaratio
 
 ## 3. `posture.apps` ON THE RUN RECORD
 
-The run record's posture block is the honored posture, so its field is not nullable. The packet's run record table owns the row and this section states the same row with the detail a builder needs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:140]
+The run record's posture block is the honored posture, so its field is not nullable. The packet's run record table owns the row and this section states the same row with the detail a builder needs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS"]
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
@@ -93,7 +93,7 @@ The four rules that decide the value:
 1. The value is the resolved list, in the source config's `manual_call_templates` order and never in declaration order, so two bots that declare the same names in a different order record the same list.
 2. A bot that declares no `apps` records `[]`. A bot that declares `apps: []` records `[]`. The record cannot tell the two apart, and nothing needs it to.
 3. A run refused before dispatch writes no record with a posture block, so `posture.apps` is never a partial list.
-4. A record written before this phase has no `posture.apps` and reads as `[]`. The record validator checks the posture block's shape and its named fields and keeps any other key, so no validator change is needed and `schemaVersion` stays `1`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:17]
+4. A record written before this phase has no `posture.apps` and reads as `[]`. The record validator checks the posture block's shape and its named fields and keeps any other key, so no validator change is needed and `schemaVersion` stays `1`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]
 
 Sample posture block on a run of a bot declaring `apps: [github]`:
 
@@ -123,7 +123,7 @@ Sample posture block on a shared run of a bot declaring nothing:
 }
 ```
 
-The second sample is the limit the packet decision D5 confirms. The record says `[]` and the child reads the repository config, because a shared run's working directory is the checkout and the project pin resolves there. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:28]
+The second sample is the limit the packet decision D5 confirms. The record says `[]` and the child reads the repository config, because a shared run's working directory is the checkout and the project pin resolves there. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D5]
 
 ---
 
@@ -131,7 +131,7 @@ The second sample is the limit the packet decision D5 confirms. The record says 
 
 One file per run, written before dispatch and never rewritten during the run. Its path is `<runFolder>/utcp.json`, where `<runFolder>` is the run folder the runner already resolves. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:365]
 
-The file is the source config with one list filtered. Every top-level key is copied verbatim, and the only rewrite is one path inside `load_variables_from`. That is this phase's decision D15 in `../goal.md`, and it is why the file carries no key of its own.
+The file is the source config with one list filtered. Every top-level key is copied verbatim, and the only rewrite is one path inside `load_variables_from`. That is this phase's decision G6 in `../goal.md`, and it is why the file carries no key of its own.
 
 | Key | Type | Rule |
 |-----|------|------|
@@ -214,7 +214,7 @@ Both samples are golden files beside this one: `fixtures/utcp-filtered-one.json`
 
 ### 4.5 The file mode
 
-The run folder is 0700 and the file is written through the runtime's atomic write, so it carries the process umask inside that folder. The packet's run root tree records the same mode. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:165] The file holds no credential, so it needs no narrower mode than its folder.
+The run folder is 0700 and the file is written through the runtime's atomic write, so it carries the process umask inside that folder. The packet's run root tree records the same mode. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "2.2 The run root in the Skilled tree"] The file holds no credential, so it needs no narrower mode than its folder.
 
 ---
 
@@ -248,7 +248,7 @@ One variable, set on every dispatched run.
 | Admitted by | the per-dispatch key list `dispatchEnvKeys`, never a prefix rule and never a widened kind list |
 | Inherited | yes, by every run, and the project pin overrides it |
 
-The key is admitted per dispatch because the executor's per-kind list is the only place that says which keys a caller may name. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1498] A prefix rule would admit any future caller's key built from a bot-controlled name, which is this phase's decision D14 in `../goal.md`.
+The key is admitted per dispatch because the executor's per-kind list is the only place that says which keys a caller may name. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1498] A prefix rule would admit any future caller's key built from a bot-controlled name, which is this phase's decision G5 in `../goal.md`.
 
 The variable is set on every run, including a shared run that declares no `apps`. On a shared run the project pin overrides it, so the child reads the checkout's config. The variable still names the run's evidence, which is why it is set rather than omitted.
 
@@ -276,7 +276,7 @@ The id joins the hard invariant list, so the checker's own audit reports it like
 |-------|---------|-----|
 | `apps:` in `BOT.md` | none | a definition carries no version of its own, and the document `version` key describes the file |
 | `Posture.apps` | none | in memory only |
-| `posture.apps` on the run record | `schemaVersion` stays `1` | an added key keeps the version, and a reader takes the absent key as `[]` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:17] |
+| `posture.apps` on the run record | `schemaVersion` stays `1` | an added key keeps the version, and a reader takes the absent key as `[]` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"] |
 | `<runFolder>/utcp.json` | none | the copy carries the source config's keys verbatim, so a version key would be a key the source does not hold |
 | `<worktree>/.utcp_config.json` | none | the same bytes as the run-folder copy |
 | `UTCP_CONFIG_FILE` | none | an environment variable |

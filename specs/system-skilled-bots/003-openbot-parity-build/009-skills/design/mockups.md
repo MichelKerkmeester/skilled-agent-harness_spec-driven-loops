@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 Two surfaces show a proposal: the `bots` command line and the terminal screen. The command line is this phase's, and the screen is phase 003's, which reads only what `bots ... --json` prints. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:41] This note draws both, so a builder of either surface has the text in front of it.
 
-The frames follow the grammar of `003-terminal-screen/001-ux-and-component-map/design/mockups.md`: 80 columns by 24 rows and 120 columns by 40 rows, the header line, the tab line, the separator, the pane title, the rows, the banner and the two key lines. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:21-42] The row columns are the same widths that file uses: a six-character prefix, a seventeen-character `botId`, a nine-character `state` and a nine-character age.
+The frames follow the grammar of `003-terminal-screen/001-ux-and-component-map/design/mockups.md`: 80 columns by 24 rows and 120 columns by 40 rows, the header line, the tab line, the separator, the pane title, the rows, the banner and the two key lines. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md, section "1. THE FRAME GRAMMAR"] The row columns are the same widths that file uses: a six-character prefix, a seventeen-character `botId`, a nine-character `state` and a nine-character age.
 
 ---
 
@@ -252,7 +252,7 @@ bots · 4 bots · index 12s ago
 Ctrl+C close · Ctrl+D exit
 ```
 
-The overlay's first line is `botId · state · age`, the second block is the question, and the numbered rows are the item's `options` in order. Pressing `1` sends the literal `confirm` and pressing `2` sends `reject`, because the screen sends the option's own text. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:264-269] `n` sends `deny`, which the claim reads as `reject` with the scope `deny`.
+The overlay's first line is `botId · state · age`, the second block is the question, and the numbered rows are the item's `options` in order. Pressing `1` sends the literal `confirm` and pressing `2` sends `reject`, because the screen sends the option's own text. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md, section "4.1 The argv per answer kind"] `n` sends `deny`, which the claim reads as `reject` with the scope `deny`.
 
 ---
 
@@ -265,7 +265,7 @@ $ bots answer 20261125T210204Z-0b6e5f72 confirm
 bots: item 20261125T210204Z-0b6e5f72 answered; skill-proposal review recorded
 ```
 
-The line is 77 columns. It is the text `contracts/answer-seam.md` fixes for a settled review, with the kind filled in. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:54]
+The line is 77 columns. It is the text `contracts/answer-seam.md` fixes for a settled review, with the kind filled in. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1.1 What the caller sees"]
 
 **120x40**
 

@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The four sequences phase 9 adds
 
-Each diagram names the module that owns each step, so a builder reads the call order rather than inferring it. The packet's own run and answer sequences are `contracts/runtime-architecture.md` section 3 and are cited, never copied. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:186-247]
+Each diagram names the module that owns each step, so a builder reads the call order rather than inferring it. The packet's own run and answer sequences are `contracts/runtime-architecture.md` section 3 and are cited, never copied. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "3. SEQUENCES"]
 
 Paths are relative to the repository root. `$R` is `.skilled/skills/system-skilled-bots/runtime`.
 
@@ -20,7 +20,7 @@ Paths are relative to the repository root. `$R` is `.skilled/skills/system-skill
 
 ## 1. A RUN THAT LOADS SKILL BODIES
 
-The loader runs inside the runner's existing order, after the posture and the secret resolve and before the prompt is built. It adds no check before approval. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:188]
+The loader runs inside the runner's existing order, after the posture and the secret resolve and before the prompt is built. It adds no check before approval. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "3.1 A run"]
 
 ```mermaid
 sequenceDiagram
@@ -65,7 +65,7 @@ sequenceDiagram
   end
 ```
 
-**Why the install record is read before the loader.** The digest comparison is the loader's fifth check and it needs the installed value in hand. A bot installed before this phase has no `skillDigests`, so the object reads as `{}` and every name refuses `skill-changed` until the bot is reinstalled. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:182]
+**Why the install record is read before the loader.** The digest comparison is the loader's fifth check and it needs the installed value in hand. A bot installed before this phase has no `skillDigests`, so the object reads as `{}` and every name refuses `skill-changed` until the bot is reinstalled. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Install record addition", row `skillDigests`]
 
 **Why a refusal writes a record.** A refused run is a run the operator can see in `bots status`, and the record's `exit.refusal` names the cause. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:142-148]
 
@@ -133,7 +133,7 @@ sequenceDiagram
 
 ## 3. AN ANSWER TO THE REVIEW
 
-The claim runs before the write and the settle after it. `contracts/answer-seam.md` owns the whole numbered sequence, and this diagram draws only the steps this phase fills. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:23-46]
+The claim runs before the write and the settle after it. `contracts/answer-seam.md` owns the whole numbered sequence, and this diagram draws only the steps this phase fills. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
 
 ```mermaid
 sequenceDiagram
@@ -171,7 +171,7 @@ sequenceDiagram
   end
 ```
 
-**Why no resume is queued.** A review is a repository change awaiting a decision, not a decision the bot needs to continue. The item's `resumeRequestId` is written as the id the resume would have had, so `itemAwaitingResume` does not treat the item as waiting. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md:106]
+**Why no resume is queued.** A review is a repository change awaiting a decision, not a decision the bot needs to continue. The item's `resumeRequestId` is written as the id the resume would have had, so `itemAwaitingResume` does not treat the item as waiting. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"]
 
 **Why the settle is a second call.** A stop between the write and the settle must not lose the decision, and a second send of the same answer re-runs the settle, which finds `answer.json` absent and writes it.
 
@@ -213,7 +213,7 @@ sequenceDiagram
 
 | Decision | Why |
 |----------|-----|
-| The loader is called from the runner, not from `dispatch.ts` | `dispatch.ts` composes rendered blocks and imports neither `memory.ts` nor `skills.ts`, which keeps the budget check in one function. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:319] |
+| The loader is called from the runner, not from `dispatch.ts` | `dispatch.ts` composes rendered blocks and imports neither `memory.ts` nor `skills.ts`, which keeps the budget check in one function. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "4. DECISIONS TAKEN"] |
 | The verb reads the install record through the runner's existing path, not a second reader | One reader for one file, and the loader takes the digests as an argument so it stays pure apart from the body reads |
 | The claim and the settle are two exported functions, not one | The seam calls them at two different steps with a write between them, and one function could not refuse after the write. They are `claimProposalAnswer` and `settleProposalAnswer` |
 | The repair path is the same command with no flag | The run id and the name already identify the proposal, so a second command would be a second thing to remember |
