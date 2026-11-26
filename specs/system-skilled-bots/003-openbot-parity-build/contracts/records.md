@@ -57,7 +57,7 @@ Thirteen keys ship today. Four phases add six more: 001 lands `kind` as a key, 0
 | `proposalFact` | string, at most 400 characters | yes, as `proposalType` | 005 | 005 | `null` |
 | `proposalBotId` | string, the bot the fact is for | yes, as `proposalType` | 005 | 005 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-009] | `null` |
 | `grants` | object, section 3 | yes, an item written before 006 | 006 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] | 006 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] | `null` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-008] |
-| `conversationId` | string, a safe segment | yes, a run that came from no conversation | 010 | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:121] | `null` |
+| `conversationId` | string, a safe segment | yes, a run that came from no conversation | 010 | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, section "Files to Change", row `.skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts`] | `null` |
 
 Two reading rules for `kind`, both binding. `bots inbox --json` prints the stored value, so a stored `null` or an absent key prints `null` and the screen draws it as `decision`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] Every runtime filter (`holdForBot`, `itemAwaitingResume`, the review seam) reads `null` and absent as `decision`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-009]
 
@@ -152,9 +152,9 @@ File: `<identity>/records/<runId>.json`. [SOURCE: .skilled/skills/system-skilled
 | `posture.secretsUsed` | string array, secret names, never values | no | 008 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-008] | 008 | `[]` |
 | `posture.skills` | array of `{name, digest}`, `digest` the SHA-256 hex of the loaded body | no | 009 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-011] | 009 | `[]` |
 | `request.grant` | object `{itemId, kind, scope, by}` | absent or `null` on every run that is not a resume of a granted item | 006 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-005] | 006 | `null`. Name decided below |
-| `postRunCauses` | array of `{cause, names, detail}`. `cause` is a post-run cause name from `refusals.md` (`secret-in-output`, `memory-proposal-secret`, `remember-type-invalid`), `names` lists secret names, or the known-secret map key for an environment or dotenv value, and never values, `detail` is a string or `null` | no, `[]` when nothing was found | 008 for `secret-in-output` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-014], reused by 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170], 005 for its two causes | 005 or 008, whichever lands first | `[]`. Name decided below |
-| `delivery[].state` value `unknown` | existing enum value | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:195] | today, `unknown` is already in `DELIVERY_STATES` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:55] | not applicable |
-| `delivery[].channel` values `telegram`, `slack`, `signal`, `whatsapp` | string | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:203] | 011, on `DELIVERY_CHANNELS` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45] | not applicable |
+| `postRunCauses` | array of `{cause, names, detail}`. `cause` is a post-run cause name from `refusals.md` (`secret-in-output`, `memory-proposal-secret`, `remember-type-invalid`), `names` lists secret names, or the known-secret map key for an environment or dotenv value, and never values, `detail` is a string or `null` | no, `[]` when nothing was found | 008 for `secret-in-output` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-014], reused by 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-014], 005 for its two causes | 005 or 008, whichever lands first | `[]`. Name decided below |
+| `delivery[].state` value `unknown` | existing enum value | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-013] | today, `unknown` is already in `DELIVERY_STATES` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:55] | not applicable |
+| `delivery[].channel` values `telegram`, `slack`, `signal`, `whatsapp` | string | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-016] | 011, on `DELIVERY_CHANNELS` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45] | not applicable |
 
 011 adds no state value: an uncertain send writes the `unknown` that already exists. The status index carries `actor`, `branch` and `worktreePath` inside each run row's `summary` JSON, so `SCHEMA_VERSION` stays `'2'`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:55] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-007] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md, REQ-006]
 
@@ -194,9 +194,9 @@ File: one JSON file per request under `<identity>/requests/<folder>/`. [SOURCE: 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
 | the thirteen keys of `RECORD_KEYS` | unchanged | unchanged | today | today | required |
-| `conversationId` | string, a safe segment | yes, a request from no conversation | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:168] | 010, stamped by `answerItem` after the review seam | `null` |
+| `conversationId` | string, a safe segment | yes, a request from no conversation | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-012] | 010, stamped by `answerItem` after the review seam | `null` |
 
-A chat request carries `source: "chat"` and its message `id` as the event id, so a re-sent message is a queue duplicate. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:167]
+A chat request carries `source: "chat"` and its message `id` as the event id, so a re-sent message is a queue duplicate. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-011]
 
 Sample (`fixtures/request-record.json`):
 
@@ -290,7 +290,7 @@ Files: `<identity>/secrets/index.json` (0600) and, for the file backend, `<ident
 | `entries.<name>.createdAt` | string, ISO 8601 UTC | no | 008 | 008 | required |
 | `entries.<name>.updatedAt` | string, ISO 8601 UTC | no | 008 | 008 | required |
 
-**Name grammar.** `^[a-z0-9][a-z0-9-]*$`, the bot id pattern, at most 64 characters. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88] **Environment key.** `SKILLED_BOT_SECRET_` plus the name upper-cased with each hyphen turned into an underscore: `demo` becomes `SKILLED_BOT_SECRET_DEMO` and `slack-app-token` becomes `SKILLED_BOT_SECRET_SLACK_APP_TOKEN`. The map cannot collide, because the grammar admits no underscore. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-007] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/acceptance-criteria.md:76]
+**Name grammar.** `^[a-z0-9][a-z0-9-]*$`, the bot id pattern, at most 64 characters. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88] **Environment key.** `SKILLED_BOT_SECRET_` plus the name upper-cased with each hyphen turned into an underscore: `demo` becomes `SKILLED_BOT_SECRET_DEMO` and `slack-app-token` becomes `SKILLED_BOT_SECRET_SLACK_APP_TOKEN`. The map cannot collide, because the grammar admits no underscore. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-007] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/records.md, section "1.1 Secret names a transport derives"]
 
 Sample (`fixtures/secrets-index.json`):
 
@@ -340,16 +340,16 @@ Sample (`fixtures/proposal.json`):
 
 ## 10. CONVERSATION MESSAGE
 
-File: `<identity>/conversations/<conversationId>.jsonl`, append-only, one JSON object per line, a torn last line skipped on read and reported on stderr. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152-153] Each line carries exactly nine keys. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:154]
+File: `<identity>/conversations/<conversationId>.jsonl`, append-only, one JSON object per line, a torn last line skipped on read and reported on stderr. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-001 and REQ-002] Each line carries exactly nine keys. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-003]
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
 | `schemaVersion` | integer `1` | no | 010 | 010 | `1` |
-| `id` | string, the client message id, which is the request's event id | no | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:167] | 010 | required |
+| `id` | string, the client message id, which is the request's event id | no | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-011] | 010 | required |
 | `conversationId` | string, equal to the file name | no | 010 | 010 | required |
 | `botId` | string, the addressed bot on a human message, the replying bot on a bot message | no | 010 | 010 | required |
 | `role` | string: `human`, `bot` | no | 010 | 010 | required |
-| `text` | string. Every control character but the line feed is dropped, the carriage return included, so a CRLF is stored as LF (D10 in `decisions.md`). A secret literal is replaced by `[redacted: <name>]` | no | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170] | 010 | required |
+| `text` | string. Every control character but the line feed is dropped, the carriage return included, so a CRLF is stored as LF (D10 in `decisions.md`). A secret literal is replaced by `[redacted: <name>]` | no | 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-014] | 010 | required |
 | `at` | string, ISO 8601 UTC | no | 010 | 010 | required |
 | `runId` | string | yes, every human message | 010 | 010 | required |
 | `by` | string, the actor on a human message, the literal `bot` on a bot message | no | 010 | 010 | required |
@@ -371,7 +371,7 @@ Whether the `@<bot-id>` prefix stays in `text`, and the default conversation id 
 
 ## 11. `channels/config.json`
 
-File: `<identity>/channels/config.json`, read and written only by `channel.ts`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:210]
+File: `<identity>/channels/config.json`, read and written only by `channel.ts`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-023]
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
@@ -403,7 +403,7 @@ Sample (`fixtures/channels-config.json`):
 
 ## 12. LINK RECORD
 
-File: `<identity>/channels/links.json`, written only by `channel-link.ts`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md:62] A link records the actor who ran `bots channel link` and the provider-asserted sender id. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:185] Pending codes and lockouts live in the same file, so one writer owns every pairing fact.
+File: `<identity>/channels/links.json`, written only by `channel-link.ts`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/tasks.md, T009] A link records the actor who ran `bots channel link` and the provider-asserted sender id. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-003] Pending codes and lockouts live in the same file, so one writer owns every pairing fact.
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
@@ -412,7 +412,7 @@ File: `<identity>/channels/links.json`, written only by `channel-link.ts`. [SOUR
 | `links.<key>.channel`, `.chatId`, `.senderId`, `.actor` | string | no | 011 | 011 | required |
 | `links.<key>.linkedAt` | string, ISO 8601 UTC | no | 011 | 011 | required |
 | `codes` | object keyed by channel name, each `{code, actor, expiresAt}`, `code` six digits | no | 011 | 011 | `{}` |
-| `lockouts` | object keyed `<channel>:<chatId>`, each `{failures, lockedUntil}` | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:186] | 011 | `{}` |
+| `lockouts` | object keyed `<channel>:<chatId>`, each `{failures, lockedUntil}` | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-004] | 011 | `{}` |
 
 A code expires five minutes after it is issued and is removed on first use. Five failures from one chat set `lockedUntil` to 300 s ahead. Failures counted per actor after a link (`answer-not-approver`) live in the approval index, not here.
 
@@ -422,17 +422,17 @@ Sample: `fixtures/channel-links.json`.
 
 ## 13. APPROVAL INDEX
 
-File: `<identity>/channels/approvals.json`, written only by `channel-approval.ts` before the prompt is sent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:188] It is not the definition-approval folder `<identity>/approvals/<botId>.json`, which hashes BOT.md for unattended runs. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:207-208]
+File: `<identity>/channels/approvals.json`, written only by `channel-approval.ts` before the prompt is sent. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-006] It is not the definition-approval folder `<identity>/approvals/<botId>.json`, which hashes BOT.md for unattended runs. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:207-208]
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
 | `schemaVersion` | integer `1` | no | 011 | 011 | `1` |
 | `prompts` | object keyed by item id, one entry per prompt sent | no | 011 | 011 | `{}` |
 | `prompts.<itemId>.channel`, `.conversation` | string | no | 011 | 011 | required |
-| `prompts.<itemId>.choices` | string array, the item's `options`, or `["YES", "NO"]` for an item with none | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:189] | 011 | required |
+| `prompts.<itemId>.choices` | string array, the item's `options`, or `["YES", "NO"]` for an item with none | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-007] | 011 | required |
 | `prompts.<itemId>.expiresAt` | string, the item's `expiresAt` | no | 011 | 011 | required |
 | `prompts.<itemId>.sentAt` | string, ISO 8601 UTC | no | 011 | 011 | required |
-| `notApprover` | object keyed by actor, each `{failures, lastAt}` | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:186] | 011 | `{}` |
+| `notApprover` | object keyed by actor, each `{failures, lastAt}` | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-004] | 011 | `{}` |
 
 The action id is derived, never stored: `approval-v1:<itemId>:<index>`, where `index` is the 1-based position in `choices`, the same number a numbered reply sends. An entry past `expiresAt` is removed on the next read.
 
@@ -442,21 +442,21 @@ Sample: `fixtures/channel-approvals.json`.
 
 ## 14. QUEUE ENTRY
 
-File: one JSON file per outbound message under `<identity>/channels/queue/`, written before the I/O. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:145] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:195]
+File: one JSON file per outbound message under `<identity>/channels/queue/`, written before the I/O. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, section "Files to Change", row `.skilled/skills/system-skilled-bots/runtime/lib/channel-queue.ts`] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-013]
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
 | `schemaVersion` | integer `1` | no | 011 | 011 | `1` |
-| `idempotencyKey` | string, also the file name | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:184] | 011 | required |
+| `idempotencyKey` | string, also the file name | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-002] | 011 | required |
 | `channel`, `conversationId`, `text` | string. `text` is the `deliveryMessage()` output after the literal check | no | 011 | 011 | required |
 | `itemId`, `runId` | string | yes, a message for no item or no run | 011 | 011 | `null` |
 | `state` | string: `queued`, `sending`, `delivered`, `failed`, `unknown` | no | 011 | 011 | required |
 | `attempts` | integer | no | 011 | 011 | `0` |
 | `nextAttemptAt` | string, ISO 8601 UTC | yes, a terminal state | 011 | 011 | `null` |
 | `enqueuedAt`, `updatedAt` | string, ISO 8601 UTC | no | 011 | 011 | required |
-| `error` | object `{kind, message, unsupported, retryable, sentBeforeError}`, the send-error shape [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:184] | yes, no failure yet | 011 | 011 | `null` |
+| `error` | object `{kind, message, unsupported, retryable, sentBeforeError}`, the send-error shape [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-002] | yes, no failure yet | 011 | 011 | `null` |
 
-`unknown` and `failed` with `retryable: false` are terminal and never retried. A retryable failure waits by attempt from `BACKOFF_MS = [0, 5000, 25000, 120000, 600000]`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/tasks.md:67] No token appears in `text` or `error.message`, and every URL renders the token as `bot<redacted>`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:201]
+`unknown` and `failed` with `retryable: false` are terminal and never retried. A retryable failure waits by attempt from `BACKOFF_MS = [0, 5000, 25000, 120000, 600000]`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/tasks.md, T008] No token appears in `text` or `error.message`, and every URL renders the token as `bot<redacted>`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-014]
 
 Sample: `fixtures/channel-queue-entry.json`. Its `text` is the M02 golden of `011-messaging-channels/001-channel-ux-and-message-map/design/golden/M02-prompt-options-buttons.txt` without the file's final line feed.
 
@@ -464,7 +464,7 @@ Sample: `fixtures/channel-queue-entry.json`. Its `text` is the M02 golden of `01
 
 ## 15. SEEN RECORD
 
-File: one JSON file per inbound provider message under `<identity>/channels/seen/<channel>/`, named by the SHA-256 hex of the provider message id. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:151] It is not the request queue's `requests/seen/` folder. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:51]
+File: one JSON file per inbound provider message under `<identity>/channels/seen/<channel>/`, named by the SHA-256 hex of the provider message id. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, section "Files to Change", row `.skilled/skills/system-skilled-bots/runtime/lib/state-root.ts`] It is not the request queue's `requests/seen/` folder. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:51]
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
@@ -481,7 +481,7 @@ Sample: `fixtures/channel-seen.json`.
 
 ## 16. `operators.json`
 
-File: `<identity>/operators.json`, written only by `bots channel roster add|remove`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:187] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:207]
+File: `<identity>/operators.json`, written only by `bots channel roster add|remove`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-005] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-020]
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
@@ -489,7 +489,7 @@ File: `<identity>/operators.json`, written only by `bots channel roster add|remo
 | `owner` | string, an actor name | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] | 011 | the roster is missing |
 | `members` | string array of actor names | no | 011 | 011 | `[]` |
 
-An absent, unreadable or empty roster refuses every channel answer `channel-roster-missing` and refuses nothing on the terminal surface. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208]
+An absent, unreadable or empty roster refuses every channel answer `channel-roster-missing` and refuses nothing on the terminal surface. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-021]
 
 Sample (`fixtures/operators.json`):
 
@@ -510,20 +510,20 @@ Keys the phase documents leave open, the choice made here and why. Each is open 
 | Which run-record field holds a post-run cause | A new top-level `postRunCauses` array of `{cause, names, detail}` | The run is dispatched and finished, so `exit.refusal` (refused before dispatch) is the wrong place [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:137-138] and `exit.reason` keeps the stop reason verbatim [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:131-132]. `refusals.md` records three post-run causes on the run record beside each other, so one array holds all three and one run can carry more than one |
 | `skillDigests` on a record installed before 009 | `{}`, so a named skill refuses `skill-changed` until reinstall | A missing digest cannot prove the body unchanged, and 009 makes a differing body refuse before dispatch [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-011] |
 | Extra credentials and the Signal and WhatsApp addresses | Derived secret names by suffix and two fixed loopback addresses, with no new key in `channels/config.json` | 011 chose the suffix rule inside the frozen shape [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/records.md, section "1.1 Secret names a transport derives"]. One `secret` per channel keeps the config free of credentials, and the vault already resolves and redacts every name |
-| `channels.terminal` | Not a key of `channels/config.json` | The terminal transport reads stdin and needs no token, while `secret` is required on every entry [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:202] |
-| Redaction token wording | `[redacted: <name>]`, where the name is the secret's name for a vault value, or the known-secret map key for an environment or dotenv value | 010 writes `[redacted: <key>]` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170]. The key a detector names is the secret's name for a vault row and the map key otherwise [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md, section "3. AFTER THE CHILD: THE POST-RUN SCAN"], so the two spellings are one token |
-| 010's item id and failure reason on a bot message | Inside `text`, as `needs you: <question> (item <itemId>)` and `failed: <exit reason>`, with no tenth key | 010 fixes nine keys and its AC-003 counts them [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/acceptance-criteria.md:56], while REQ-007 asks for the item id and the reason [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:158]. A new key would contradict AC-003, a fixed text form does not |
+| `channels.terminal` | Not a key of `channels/config.json` | The terminal transport reads stdin and needs no token, while `secret` is required on every entry [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-015] |
+| Redaction token wording | `[redacted: <name>]`, where the name is the secret's name for a vault value, or the known-secret map key for an environment or dotenv value | 010 writes `[redacted: <key>]` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-014]. The key a detector names is the secret's name for a vault row and the map key otherwise [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md, section "3. AFTER THE CHILD: THE POST-RUN SCAN"], so the two spellings are one token |
+| 010's item id and failure reason on a bot message | Inside `text`, as `needs you: <question> (item <itemId>)` and `failed: <exit reason>`, with no tenth key | 010 fixes nine keys and its AC-003 counts them [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/acceptance-criteria.md, AC-003], while REQ-007 asks for the item id and the reason [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-007]. A new key would contradict AC-003, a fixed text form does not |
 | `posture.apps` on a record written before 007 | `[]` | A bot before 007 declared no app, which is what `[]` means [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, REQ-004] |
 | `posture.skills` key shape | `{name, digest}` with `digest` the full SHA-256 hex | 009 says "each loaded body's name and digest". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, section "Files to Change"] The install record's `skillDigests` uses the same digest, so the two compare by string |
 | `enabledAt` in the routine state file | An ISO instant written by `bots enable`, the streak counts runs after it | D9 in `decisions.md`, from OpenBot's restart of the count at re-enable [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:118-123] |
 | Memory line grammar | `- <type> \| <YYYY-MM-DD> \| <actor> \| <source> \| <text>`, split on the first four delimiters, whitespace collapsed | WO-04's recommended default. A pipe in the text is the adversarial case 005 lists [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md, section "FIX ADDENDUM: AFFECTED SURFACES"] |
 | The memory files carry no version | No version line | A version line would reach the prompt or need a second parser rule. A changed grammar reads as skipped lines, never as wrong facts |
-| Secret name grammar and environment key | `^[a-z0-9][a-z0-9-]*$` up to 64 characters, upper-case and hyphen to underscore | WO-06's recommended default. 011 already uses `slack-app-token` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/acceptance-criteria.md:76] |
+| Secret name grammar and environment key | `^[a-z0-9][a-z0-9-]*$` up to 64 characters, upper-case and hyphen to underscore | WO-06's recommended default. 011 already uses `slack-app-token` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/records.md, section "1.1 Secret names a transport derives"] |
 | `proposal.json` `targetPath` form | Checkout-relative path | The proposal lives in the state root and the checkout path can move. `revisionRead` is the digest or `null`, per WO-07 |
 | The default proposal name | The proposing bot's id | WO-07's recommended default. 009 leaves `--name` optional with no default [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-004] |
 | `schemaVersion` on `channels/config.json` and `operators.json` | Present, `1` | `versioning.md` rule 3. 011 writes both literals without it, which is listed as a contradiction in `README.md` |
 | Link codes and lockouts | In `links.json` beside the links | One writer, `channel-link.ts`, owns every pairing fact, so no second file is added |
 | Approval index key structure | Keyed by item id, the action id derived from the choice's 1-based index | 011 gap 9 asks for the key structure. One item has one prompt, and a 1-based index makes the button and the numbered reply send the same number |
-| Per-actor `answer-not-approver` counter | `notApprover` in the approval index | 011 counts it per actor after a link and names no file [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:186] |
+| Per-actor `answer-not-approver` counter | `notApprover` in the approval index | 011 counts it per actor after a link and names no file [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-004] |
 | Queue entry `state` enum | `queued`, `sending`, `delivered`, `failed`, `unknown` | 011 names `unknown` and enqueue before I/O. `sending` marks a send in flight so a restart turns it into `unknown`, never a resend |
 | Seen record placement | Per channel, file named by the SHA-256 of the provider message id | 011 names `seen/` once with no content. A hash keeps any provider id a safe segment |

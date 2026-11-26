@@ -239,7 +239,7 @@ Requirement ids of the build children are unique across 003 to 007 and keep thei
 | REQ-017 said five rules in one sentence | 002: `design/conformance-rules.md` numbers them R1 to R5 |
 | No message text existed | 001: `design/message-catalog.md` and 21 goldens |
 | The phase called itself 11 of 11 with no successor | This spec: 11 of 14, successor `012-manual-testing-scenarios` |
-| The chat path was cited as `010-conversations/spec.md:96` | Every child cites `../010-conversations/002-conversation-runtime-and-chat-verb/spec.md` section 9, anchor `chat-path` |
+| The chat path was cited by a line number of the pre-expansion `010-conversations/spec.md` | Every child cites `../010-conversations/002-conversation-runtime-and-chat-verb/spec.md` section 9, anchor `chat-path` |
 | REQ-004 counted a failed code attempt for any message from an unlinked chat | 003: only a six-digit attempt counts (`002-adapter-and-record-contracts/design/records.md` section 2) |
 | T060 put the untrusted wrap in `channel.ts`, which imports `state-root.ts` alone | 005: the transports render the block through `conversation.ts`, as `contracts/runtime-architecture.md` section 4 decides |
 <!-- /ANCHOR:defects -->
@@ -306,10 +306,10 @@ This phase edits nothing outside its folder. Each row is for the owner of the fi
 |------|------|--------|
 | `contracts/README.md` | 51, the `011-messaging-channels` row | Remove the row: the `schemaVersion` literals are fixed in child 003 |
 | `contracts/fixtures/channel-queue-entry.json` | 6, `text` | The text is not what `deliveryMessage()` builds. Replace it with the M02 text of `001-channel-ux-and-message-map/design/golden/M02-prompt-options-buttons.txt`, the one `records.md` section 14 says it is |
-| `contracts/records.md` | 446, the queue entry sample line and section 11 | Name the derived secret names of `002-adapter-and-record-contracts/design/records.md` section 1.1, or add keys for the extra credentials and the two addresses |
-| `contracts/refusals.md` | section 3.10 | A name for a credential the provider rejects at `listen` start |
+| `contracts/records.md` | 446, the queue entry sample line and section 11 | Done. Section 11 names the derived secret names of `002-adapter-and-record-contracts/design/records.md` section 1.1 under "Derived secret names" and the two addresses under "Fixed addresses" |
+| `contracts/refusals.md` | section 3.10 | Done. The rejected credential row prints `bots: <channel> rejected the credential` with exit 1 and no refusal name |
 | `../010-conversations/002-conversation-runtime-and-chat-verb/spec.md` | 268 | "drawn in `contracts/runtime-architecture.md` section 3.3" should read section 3.4, the channel inbound sequence |
-| `../003-terminal-screen/005-answer-flow/design/state-machines.md` | 294 and 308 | The cites of `011-messaging-channels/spec.md:119` and `:153` move to `003-link-roster-and-answer-gate/spec.md` REQ-005 and REQ-021 |
+| `../003-terminal-screen/005-answer-flow/design/state-machines.md` | 294 and 308 | Done. Both cites name `003-link-roster-and-answer-gate/spec.md` REQ-005 and REQ-021 |
 | `../spec.md` | the phase map row for 011 | Mark 011 a phase parent with seven children |
 | `contracts/answer-seam.md`, `records.md`, `refusals.md`, `runtime-architecture.md`, `cli-json.md`, `prompt-sections.md`, `fixtures/README.md` | every `011-messaging-channels/spec.md:<n>`, `plan.md:<n>` and `tasks.md:<n>` cite | Repoint by the map below |
 | `../003-terminal-screen/`, `../006-approval-grants/`, `../008-vault/design/names-and-keys.md`, `../012-manual-testing-scenarios/`, `../014-deep-review/design/fixtures/deep-review-config.json`, `../goal.md` and three playbook files under `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | the same cites | Repoint by the map below |

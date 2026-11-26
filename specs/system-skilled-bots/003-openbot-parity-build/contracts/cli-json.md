@@ -43,7 +43,7 @@ No other verb takes `--json` in any phase. `bots secret list` prints names and m
 
 ### 3.1 `bots chat <id> --transcript --json`
 
-The messages in file order, each one line of the conversation file printed as stored. The torn-line report goes to stderr. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:153] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:157]
+The messages in file order, each one line of the conversation file printed as stored. The torn-line report goes to stderr. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-006]
 
 | Key | Type | Null | Format |
 |-----|------|------|--------|
@@ -73,7 +73,7 @@ Golden: `fixtures/remember-list.json`.
 
 ### 3.3 `bots channel list --json`
 
-Every channel `channels/config.json` names, sorted by name. A channel the file does not name is not printed. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:206] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:210]
+Every channel `channels/config.json` names, sorted by name. A channel the file does not name is not printed. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-019] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-023]
 
 | Key | Type | Null | Format |
 |-----|------|------|--------|

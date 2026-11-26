@@ -140,7 +140,7 @@ What each backend result becomes. Every reason is a row of `contracts/refusals.m
 
 **One timeout per read of the map.** `knownSecretValues` reads the entries in name order and stops at the first keychain entry that fails or times out, returning `secret-store-unreadable` for the whole map. A locked keychain therefore costs one 10 s timeout per run, not one per entry. The map is read for every bot, a bot whose `BOT.md` names no secret included, so a vault that cannot be read refuses every run of every bot in that identity. That is the fail-closed rule of `leak-checks.md` section 2, stated here so its cost is plain.
 
-An index that cannot be read on `set`, `list` or `forget` prints `bots: secret-store-unreadable: <detail>` with exit 4, the exit the layer rule gives a refusal that comes back from a runtime call (`contracts/refusals.md` section 2). `refusals.md` lists `secret-store-unreadable` as a run refusal only, so this verb use is a widening the contract does not yet name. It is listed in `goal.md`'s log as a proposed one-line contract amendment.
+An index that cannot be read on `set`, `list` or `forget` prints `bots: secret-store-unreadable: <detail>` with exit 4, the exit the layer rule gives a refusal that comes back from a runtime call (`contracts/refusals.md` section 2). `refusals.md` section 3.7 names `secret-store-unreadable` as a run refusal and as a verb refusal on `secret set`, `secret list`, `secret forget` and `answer`, so this verb use is the contract's own.
 
 ---
 

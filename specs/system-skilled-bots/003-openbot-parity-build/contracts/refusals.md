@@ -172,30 +172,30 @@ The checker names are plural (`skills-unknown`) and the run names singular (`ski
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `bot-unknown` | Verb refusal (`chat`), nothing is appended | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:155] |
-| `body-secret` for a human message | Run refusal with the existing cause. Nothing is appended | `author` | 4 | Already there | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170] |
-| `prompt-over-budget` | Run refusal, 005's cause | `author` | 4 | Yes, one entry | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:165] |
-| `secret-in-output` on the reply | Post-run cause, 008's name | - | The run's own | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:170] |
+| `bot-unknown` | Verb refusal (`chat`), nothing is appended | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-004] |
+| `body-secret` for a human message | Run refusal with the existing cause. Nothing is appended | `author` | 4 | Already there | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-014] |
+| `prompt-over-budget` | Run refusal, 005's cause | `author` | 4 | Yes, one entry | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-009] |
+| `secret-in-output` on the reply | Post-run cause, 008's name | - | The run's own | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-014] |
 
 ### 3.10 Phase 011, messaging channels
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `channel-unlinked` | Inbound refusal. The message reaches no bot. From the CLI it is reachable only in tests | - | 4 where a verb returns it | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:185] |
-| `channel-locked` | Inbound refusal, with the seconds remaining | - | 4 where a verb returns it | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:186] |
-| `channel-roster-missing` | Verb refusal (`channel link`, `channel roster add --role member`) and an answer refusal on the `channel` surface | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:185] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:187] |
-| `channel-roster-owner` | Verb refusal (`channel roster remove`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:207] |
-| `channel-group-approval` | Inbound answer refusal for a group chat | - | 4 where a verb returns it | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:187] |
-| `channel-signature` | Inbound refusal on the WhatsApp webhook before any parse | - | None, the webhook answers the HTTP request | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:194] |
-| `channel-daemon-unreachable` | Send refusal on the Signal transport. The queue keeps the entry | - | 4 on `channel send` or `channel drain` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:240] |
-| `channel-listening` | Verb refusal (`channel listen`), the per-channel lease is held | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:248] |
+| `channel-unlinked` | Inbound refusal. The message reaches no bot. From the CLI it is reachable only in tests | - | 4 where a verb returns it | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-003] |
+| `channel-locked` | Inbound refusal, with the seconds remaining | - | 4 where a verb returns it | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-004] |
+| `channel-roster-missing` | Verb refusal (`channel link`, `channel roster add --role member`) and an answer refusal on the `channel` surface | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-005] |
+| `channel-roster-owner` | Verb refusal (`channel roster remove`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-020] |
+| `channel-group-approval` | Inbound answer refusal for a group chat | - | 4 where a verb returns it | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-006] |
+| `channel-signature` | Inbound refusal on the WhatsApp webhook before any parse | - | None, the webhook answers the HTTP request | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md, REQ-012] |
+| `channel-daemon-unreachable` | Send refusal on the Signal transport. The queue keeps the entry | - | 4 on `channel send` or `channel drain` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md, section "6. RISKS & DEPENDENCIES"] |
+| `channel-listening` | Verb refusal (`channel listen`), the per-channel lease is held | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-024] |
 | `bots: <channel> rejected the credential`, no refusal name | Failure line of `channel listen` when the provider rejects the credential on the start probe, as a `401` from Telegram's `getMe`. The lease is released | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-024 and REQ-025] |
-| `unsupported` | The adapter result for an undeclared operation, `retryable: false` | - | Not a CLI exit | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:183] |
-| `answer-not-approver`, `item-expired` on a press | Answer refusals, existing names | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:187-188] |
+| `unsupported` | The adapter result for an undeclared operation, `retryable: false` | - | Not a CLI exit | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-001] |
+| `answer-not-approver`, `item-expired` on a press | Answer refusals, existing names | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-005] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-006] |
 
 A rejected credential exits 1 and carries no name, as 011 chose. The secret resolved, so it is not `secret-unknown`, and the provider's answer is a runtime failure the operator fixes by storing a new value, not a refusal the runtime decides. Exit 1 is also what 011's transport children specify, so the contract and 011 agree. A later name would be a new row here and a new exit for 011.
 
-`channel-unsupported` is not new. It is the evidence a delivery entry on an unknown channel already records today, and it returns for a channel target if 011 is reverted. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:142] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:166]
+`channel-unsupported` is not new. It is the evidence a delivery entry on an unknown channel already records today, and it returns for a channel target if 011 is reverted. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:142] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/plan.md, section "7. ROLLBACK PLAN"]
 
 ### 3.11 Phases 012 to 014
 

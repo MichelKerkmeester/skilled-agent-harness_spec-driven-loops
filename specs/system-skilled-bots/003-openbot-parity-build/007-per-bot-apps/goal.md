@@ -112,13 +112,13 @@ and findings belong here.
 ### Sources
 
 - Parent goal, whose decisions bind this phase and are not restated here: `../goal.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/goal.md:39] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/goal.md:72]
-- Phase outcome and scope: `spec.md` sections 2 and 3. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:58] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:93]
+- Phase outcome and scope: `spec.md` sections 2 and 3. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, section "Problem Statement"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, section "3. SCOPE"]
 - Requirements REQ-001 to REQ-010: `spec.md` section 4.
 - Success criteria SC-001 to SC-010: `spec.md` section 5.
 - Criteria AC-001 to AC-016: `acceptance-criteria.md` section 2.
-- The packet's decisions D1 to D9, of which D5 lands here: `../contracts/decisions.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md:28]
-- The refusal columns this phase's catalogue cites: `../contracts/refusals.md` section 3.6. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:119]
-- The run record's field table and the version rule: `../contracts/records.md` section 4 and `../contracts/versioning.md` section 1. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md:140] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md:17]
-- The module's group and imports: `../contracts/runtime-architecture.md` section 1.2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md:51]
+- The packet's decisions D1 to D9, of which D5 lands here: `../contracts/decisions.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D5]
+- The refusal columns this phase's catalogue cites: `../contracts/refusals.md` section 3.6. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.6 Phase 007, per-bot apps"]
+- The run record's field table and the version rule: `../contracts/records.md` section 4 and `../contracts/versioning.md` section 1. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]
+- The module's group and imports: `../contracts/runtime-architecture.md` section 1.2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "1.2 New modules", row `apps.ts`]
 - The work order this phase executes: the plan-depth research section 6, WO-14. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:539]
 <!-- /ANCHOR:log -->

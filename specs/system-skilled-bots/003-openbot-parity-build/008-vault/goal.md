@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Each criterion traces to a row in `acceptance-criteria.md` or a line in the plan's Definition of Done [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md:60] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:50].
+Each criterion traces to a row in `acceptance-criteria.md` or a line in the plan's Definition of Done [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md, AC-001] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md, section "Definition of Done"].
 
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/secrets.vitest.ts tests/secret-matcher.vitest.ts` prints a `Test Files` line with no `failed` count, so the store sets, lists, forgets and resolves over the file backend and the fake keychain programs, refuses `secret-empty`, `secret-placeholder`, `secret-no-input`, `secret-too-long`, `secret-write-dropped` and `secret-store-unreadable`, keeps the index true under racing and stopped writers, the matcher matches a per-value scan, and a run declaring `secrets: demo` injects `SKILLED_BOT_SECRET_DEMO`, records `secretsUsed: ["demo"]`, redacts a printed value to `[redacted: demo]` as `secret-in-output` and withholds the delivery.
 - [ ] After the `FIXTURE` recipe in `tasks.md` Task Notation, `printf 'skilled-test-value-7f3a\n' | node .skilled/bin/bots.cjs secret set demo --store file --repo "$FIXTURE" && node .skilled/bin/bots.cjs secret list --repo "$FIXTURE" && node .skilled/bin/bots.cjs secret forget demo --repo "$FIXTURE"` exits 0 and prints `demo` with no `skilled-test-value-7f3a`.
