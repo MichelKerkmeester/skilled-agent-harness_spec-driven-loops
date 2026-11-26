@@ -16,7 +16,7 @@ export type CompatibilityLike = {
 
 const OPEN_CODE_ROOT = resolve(
   dirname(fileURLToPath(import.meta.url)),
-  '../../../../../',
+  '../../../../../../',
 );
 
 // These are real captured logs, read in place on purpose: a copied fixture would freeze a snapshot

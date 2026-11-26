@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh launcher patch flag"
 importance_tier: important
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # DeepSeek Harness CLI - Headless Command Reference
@@ -86,7 +86,7 @@ The composed config lists three presets (`dump-config-llmgateway.txt`, row `perm
 | `workspace-write` | `workspace-write` | `ask` |
 | `danger-full-access` | `danger-full-access` | `never` |
 
-Never dispatch `danger-full-access`. The 2026-11-06 LLM Gateway probe showed that `workspace-write` lets a file tool write inside the cwd, denies a write under `$HOME` outside it with a `tool_result` error and allows a sibling path under the OS temp directory. A `bash` `echo ok` call completed. These probes do not establish shell write limits, MCP behavior or plugin effects. The source says the sandbox fails with `SANDBOX_UNAVAILABLE` rather than running unconfined, which the saved run did not test. See [confinement evidence](../../../../specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/confinement.md).
+Never dispatch `danger-full-access`. The 2026-11-06 LLM Gateway probe showed that `workspace-write` lets a file tool write inside the cwd, denies a write under `$HOME` outside it with a `tool_result` error and allows a sibling path under the OS temp directory. A `bash` `echo ok` call completed. These probes do not establish shell write limits, MCP behavior or plugin effects. The source says the sandbox fails with `SANDBOX_UNAVAILABLE` rather than running unconfined, which the saved run did not test. See [confinement evidence](../../../../../specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/confinement.md).
 
 ---
 

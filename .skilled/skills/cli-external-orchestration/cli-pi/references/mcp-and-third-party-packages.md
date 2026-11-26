@@ -9,14 +9,14 @@ trigger_phrases:
   - "pi stdio"
 importance_tier: important
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Pi MCP and Third-Party Packages
 
 This reference separates Pi's first-party CLI from community packages that extend it.
 
-Phase 007 confirmed pi-mcp-extension's stdio transport live. It did not live-verify a full successful provider-backed dispatch through the package. Source: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+Phase 007 confirmed pi-mcp-extension's stdio transport live. It did not live-verify a full successful provider-backed dispatch through the package. Source: [Pi contract pin](../../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
 ## 1. OVERVIEW
 

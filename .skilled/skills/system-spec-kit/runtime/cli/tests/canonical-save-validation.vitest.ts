@@ -17,6 +17,7 @@ const ROOT_026 = path.join(
   SKILL_ROOT,
   '..',
   '..',
+  '..',
   'specs',
   'system-speckit',
   'memory-search-and-knowledge',
