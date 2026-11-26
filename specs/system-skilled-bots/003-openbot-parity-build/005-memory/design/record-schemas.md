@@ -145,7 +145,7 @@ The item's key list is closed, so every key below enters `ITEM_KEYS` and `valida
 
 | Key | Value |
 |-----|-------|
-| `id` | The proposing run's id, because the item's id equals its `runId` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:103-104] |
+| `id` | The proposing run's id, because the item's id equals its `runId` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:103-104]. No other item can already hold that id when this branch writes. Every run, a resumed one included, takes a fresh id from `newRunId` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:719], and a run that parks a question writes no proposal item, by the precedence rule in section 6. So this branch reads no existing item's `kind` before it writes. 009's `bots skill propose` verb writes an item for a run that has already finished, so that verb does read the existing item's `kind` first and refuses `review-already-exists` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-005] |
 | `runId` | The proposing run's id |
 | `botId` | The reserved sentinel `memory-proposals` |
 | `identity` | The proposing run's identity |

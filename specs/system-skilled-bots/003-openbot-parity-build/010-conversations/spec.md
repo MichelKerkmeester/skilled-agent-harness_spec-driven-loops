@@ -2,7 +2,7 @@
 title: "Feature Specification: Phase 10: conversations"
 description: "A Level 3 phase parent for bots chat: a conversation file under the state root, one headless run per human message, @bot routing across several bots and a chat pane in bots ui, split into a design child, a runtime child and a pane child."
 trigger_phrases:
-  - "conversations"
+  - "bot conversation file"
   - "phase 10 conversations"
   - "bots chat"
   - "conversations phase parent"

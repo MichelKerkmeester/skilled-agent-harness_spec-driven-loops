@@ -15,7 +15,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "conversations",
+      "bot conversation file",
       "phase 10 conversations",
       "bots chat",
       "conversations phase parent",
@@ -23,18 +23,18 @@
       "phase 10 goal binding"
     ],
     "key_topics": [
-      "conversations",
+      "bot",
+      "conversation",
+      "file",
       "phase",
+      "conversations",
       "bots",
       "chat",
       "parent",
       "goal",
       "binding",
       "skilled",
-      "headless",
-      "contract",
-      "feature",
-      "specification"
+      "headless"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -156,17 +156,17 @@
     ],
     "causal_summary": "Skilled bots is headless by contract",
     "created_at": "2026-11-25T07:13:44Z",
-    "last_save_at": "2026-11-26T06:42:13.011Z",
+    "last_save_at": "2026-11-26T08:23:40.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2a3c1e5abb22a1a0ad65f7a3f4391da821de629bf4b979330d0f200bf5ce4d29",
+    "source_fingerprint": "sha256:a8a09c7bdc7a7f458426c104ba31d514f40571fb8afbad9123324f8de0a3d240",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "845375b24666ffd077754404fbfea5cce0cf54c414fe45db912748761d14bd41"
+      "spec.md": "51b2d3ccbc725814150bec86e2ca62d0caa19fdb9572d50b45905f71caa1c2c4"
     },
     "last_active_at": null
   }
