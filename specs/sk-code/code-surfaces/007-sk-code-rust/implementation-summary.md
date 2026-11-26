@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/code-surfaces/007-sk-code-rust"
-    last_updated_at: "2026-11-26T19:40:01Z"
+    last_updated_at: "2026-11-26T19:46:27Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed every alignment finding and reran the gates"
-    next_safe_action: "Commit the fix pass on worktrees/546-sk-code-rust, staging by name, no push"
+    recent_action: "Moved LS-006 to the state sandbox and reran stage one"
+    next_safe_action: "Review the merged main and approve the push"
     packet_purpose: "Purpose: The Rust set covers a Rust app as well as a Rust binding, with every new rule traced to a line of the rust-anything repository or to an existing sk-code rule."
     blockers: []
     key_files:
@@ -20,14 +20,14 @@ _memory:
       - ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md"
       - ".skilled/skills/sk-code/shared/references/stack-detection.md"
     session_dedup:
-      fingerprint: "sha256:ba00becf02e908ab3ce40d1c45c8ec65b5dfaf6d516571c0c013ed32ab27608e"
+      fingerprint: "sha256:da2743d519a3e05100cfa63758663c66fc0b267178d3d81b518dd8f0cc030b28"
       session_id: "scaffold-007-sk-code-rust"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "18b5b122-c5b4-40c0-ac3e-13860897d68b"
       workspace: "/Users/michelkerkmeester/worktrees/public/546-sk-code-rust"
-      savedAt: "2026-11-26T19:40:01Z"
+      savedAt: "2026-11-26T19:46:27Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -137,6 +137,9 @@ Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, 
 | Fix pass gates | `verify-router-sync.cjs` 5/5. sk-code-skilled node tests 65/65, the new Rust vocabulary test 9/9 and 7/9 with the old library. shared node tests 33/33. Both playbook validators `--strict` PASS with violations=0. `validate_skill_package.py` PASS for sk-code, compiled-ready included. `skill-graph-freshness.cjs --strict` exit 0. `check-release-coverage.cjs` required=3 missing=0 |
 | Alignment recheck of the first run | 3 resolved, 0 new, 4 still open. The 4 are the skill-root metadata, system-spec-kit playbook, markdown-link and all-package playbook rows, and each passes on main, whose newer commits this branch's base lacks |
 | LS-006 run 4, reread | Its PASS counted the shared folder as loaded, but the hub route never selects it for that prompt. The worker opened it on its own, so that part of the PASS rested on a load the router did not ask for. The scenario now expects the folder absent |
+| Routing-accuracy CI gate after the recompile | `score-routing-corpus.py` with the CI floors: overall_pass true, no threshold failures, joint TT 116, FT 3, FF 1 |
+| Advisor stage one for the new LS-007 prompt | sk-code first at 0.8892, passes_threshold true at 0.8 |
+| LS-006 after the sandbox move | Replay SKILLED with RUST and TYPESCRIPT, 17 Rust and 7 TypeScript parts. The quality selector reports SKILLED for `lib.rs` and `client.ts` and lists `universal-checklist.md` |
 | Advisor stage one after the rebuild | sk-code first at 0.8682 for the LS-006 prompt and 0.8706 for the LS-007 prompt, 14 of 14 source files fresh |
 <!-- /ANCHOR:verification -->
 
@@ -148,8 +151,8 @@ Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, 
 
 1. **No terminal screen rules.** A ratatui or crossterm app, such as restoring raw mode on every exit path, gets no rule yet, because the source repository has none. A later packet can source them from ratatui's own documentation.
 2. **LS-006 passed once after the loading fix.** Runs 1 and 2 skipped the TypeScript quick-reference parts and run 4 opened them. A single passing run cannot show whether the fix or worker variance made the difference, so a later replay is the check.
-3. **LS-006 still uses a /tmp fixture.** LS-007 moved to the gitignored `.skilled/skills/.state/` path. LS-006 keeps /tmp, where the text route says SKILLED from its `.rs` and `.ts` file names, but the quality selector resolves the real path and reports UNKNOWN. Moving LS-006 the same way would close that gap.
-4. **The branch base is older than main.** Four battery rows fail here and pass on main. `skill-graph.json`, the root v4.2.0.0 release notes and the sk-code routing manifest also changed on main, so a rebase should regenerate the graph and manifest rather than hand-merge them.
+3. **Neither Rust scenario has had a live worker run since the sandbox move.** LS-006 and LS-007 now use the gitignored `.skilled/skills/.state/` path, where the route replay and the quality selector both report SKILLED. A fresh Vibe replay of each is the remaining live check.
+4. **The branch base is older than main.** Four battery rows fail here and pass on main. `skill-graph.json`, the root v4.2.0.0 release notes, the sk-code routing manifest, `trigger-index.json` and the three retrieval fixtures also changed on main, so a merge should regenerate the graph, manifest, trigger index and fixtures rather than hand-merge them.
 5. **The v4.2.0.0 notes name unreleased work.** At the operator's direction the Rust entries went into v4.2.0.0, which is already tagged and published without this branch.
 <!-- /ANCHOR:limitations -->
 

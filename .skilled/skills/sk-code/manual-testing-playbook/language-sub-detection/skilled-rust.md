@@ -1,7 +1,7 @@
 ---
 title: "LS-006: SKILLED Rust Sub-Detection"
 description: "Verify that within SKILLED surface, Rust evidence (.rs, then the Cargo markers and napi-rs or wasm-bindgen vocabulary) loads the rust/* references, and that Rust never displaces the TypeScript trio on a parity task that touches both languages."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # LS-006: SKILLED Rust Sub-Detection
@@ -20,10 +20,10 @@ This repository ships no `.rs` source and no `Cargo.toml`, so the language evide
 
 **Exact prompt**:
 ```
-In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.
+In .skilled/skills/.state/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.
 ```
 
-Prompt: `In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.`
+Prompt: `In .skilled/skills/.state/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.`
 
 **Expected detection**:
 - Surface: `SKILLED`
@@ -54,7 +54,7 @@ The language-shared folder `sk-code-skilled/references/shared/` is not expected.
 
 1. The sandbox fixture exists:
    ```
-   bash: mkdir -p /tmp/skc-LS006-sandbox && printf 'pub fn normalize(input: &str) -> String { input.trim().to_string() }\n' > /tmp/skc-LS006-sandbox/lib.rs && printf 'export function normalize(input: string): string { return input.trim(); }\n' > /tmp/skc-LS006-sandbox/client.ts
+   bash: mkdir -p .skilled/skills/.state/skc-LS006-sandbox && printf 'pub fn normalize(input: &str) -> String { input.trim().to_string() }\n' > .skilled/skills/.state/skc-LS006-sandbox/lib.rs && printf 'export function normalize(input: string): string { return input.trim(); }\n' > .skilled/skills/.state/skc-LS006-sandbox/client.ts
    ```
 2. The Rust and TypeScript reference sets are intact: `bash: ls .skilled/skills/sk-code/sk-code-skilled/references/rust/` and `bash: ls .skilled/skills/sk-code/sk-code-skilled/references/typescript/` each list `quality-standards`, `quick-reference` and `style-guide`.
 3. Skill advisor callable.
@@ -63,13 +63,13 @@ The language-shared folder `sk-code-skilled/references/shared/` is not expected.
 
 1. **Advisor probe**:
    ```
-   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each." --threshold 0.8 > /tmp/skc-LS006-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "In .skilled/skills/.state/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each." --threshold 0.8 > /tmp/skc-LS006-advisor.txt
    ```
 2. **Verify**: sk-code is the top-1 candidate and its `passes_threshold` is true.
 3. **Invoke sk-code** with the exact prompt.
 4. **Capture loaded refs** to `/tmp/skc-LS006-loaded-refs.txt`.
 5. **Verify**: all three rust folders and all three typescript folders loaded; 0 python/shell/config paths loaded.
-6. **Remove the fixture**: `bash: rm -rf /tmp/skc-LS006-sandbox`.
+6. **Remove the fixture**: `bash: rm -rf .skilled/skills/.state/skc-LS006-sandbox`.
 
 ### Expected Signals
 
@@ -110,7 +110,7 @@ Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-dri
 - Playbook ID: LS-006
 - **Created**: 2026-10-28
 - **Critical path**: No
-- **Destructive**: No (the only writes are two fixture files under `/tmp/skc-LS006-sandbox/`, removed in step 6)
-- **Sandbox**: the language evidence lives in `/tmp/skc-LS006-sandbox/`, because the repository ships no `.rs` source and no Cargo markers.
+- **Destructive**: No (the only writes are two gitignored fixture files under `.skilled/skills/.state/skc-LS006-sandbox/`, removed in step 6)
+- **Sandbox**: the language evidence lives in `.skilled/skills/.state/skc-LS006-sandbox/`, which git ignores, because the repository ships no `.rs` source and no Cargo markers. A `/tmp` path would leave the quality selector reporting `UNKNOWN`, so it could not select `universal-checklist.md`.
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

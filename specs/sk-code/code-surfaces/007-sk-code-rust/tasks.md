@@ -96,6 +96,8 @@ The operator ordered every finding fixed after a `/local-skilled-alignment` run 
 - [x] T036 Name Rust in the hub description, its JSON mirror, the feature catalog and the root README, and add the Rust entries to the root v4.2.0.0 release notes (`.skilled/skills/sk-code/SKILL.md`, `description.json`, `feature-catalog/`, `README.md`, `.skilled/changelog/skilled/v4.2.0.0.md`). Verify: `check-release-coverage.cjs` prints `required=3 missing=0`.
 - [x] T037 Bump the hub to 3.12.7.0 and sk-code-skilled to 2.3.1.0 with changelog entries, re-mint the sk-code compiled-routing manifest and recompile the skill graph. Verify: `skill-graph-freshness.cjs --strict` and `compiled-route-guard.cjs` both exit 0.
 - [x] T038 Rerun the first alignment run with `--recheck` (`~/.local/state/local-skilled-alignment/546-sk-code-rust/20261126T193633Z/recheck.md`). Verify: 3 resolved, 0 new, and 4 still open, each of them a row main already passes.
+- [x] T039 Rerun the routing-accuracy CI gate and probe the new LS-007 prompt at stage one. Verify: `score-routing-corpus.py` prints `overall_pass: true`, and `skill_advisor.py --threshold 0.8` puts sk-code first at 0.8892.
+- [x] T040 Move LS-006 to the gitignored `.skilled/skills/.state/skc-LS006-sandbox/` path (`skilled-rust.md`). Verify: `quality-gate.cjs --explain` on its fixture files reports SKILLED and lists `universal-checklist.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
