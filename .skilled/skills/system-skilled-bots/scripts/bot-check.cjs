@@ -71,22 +71,35 @@ const RUNTIME_DIR = resolve(__dirname, '..', 'runtime');
 // 2. LOADING
 // ───────────────────────────────────────────────────────────────────
 
-/** Load the runtime's TypeScript modules through the runtime's own tsx. */
+/**
+ * Load the runtime's TypeScript modules through the runtime's own tsx.
+ *
+ * Every module loads through one registered tsx namespace. A separate
+ * `tsImport` per module registers a loader per call, and on Node 22 those
+ * loaders collide over the modules the libraries share: the load fails with a
+ * syntax error on TypeScript source and the process never exits. The loader is
+ * unregistered once the modules are in, so it cannot hold the process open.
+ */
 async function loadRuntime() {
   const runtimeRequire = createRequire(join(RUNTIME_DIR, 'package.json'));
-  const { tsImport } = runtimeRequire('tsx/esm/api');
-  const lib = (name) => tsImport(join(RUNTIME_DIR, 'lib', `${name}.ts`), __filename);
-  const [definition, repoConfig, identity, translator, label, isolation, delivery, posture] = await Promise.all([
-    lib('definition'),
-    lib('repo-config'),
-    lib('identity'),
-    lib('cron-translator'),
-    lib('label'),
-    lib('isolation'),
-    lib('delivery'),
-    lib('posture'),
-  ]);
-  return { definition, repoConfig, identity, translator, label, isolation, delivery, posture };
+  const { register } = runtimeRequire('tsx/esm/api');
+  const loader = register({ namespace: 'bot-check' });
+  const lib = (name) => loader.import(join(RUNTIME_DIR, 'lib', `${name}.ts`), __filename);
+  try {
+    const [definition, repoConfig, identity, translator, label, isolation, delivery, posture] = await Promise.all([
+      lib('definition'),
+      lib('repo-config'),
+      lib('identity'),
+      lib('cron-translator'),
+      lib('label'),
+      lib('isolation'),
+      lib('delivery'),
+      lib('posture'),
+    ]);
+    return { definition, repoConfig, identity, translator, label, isolation, delivery, posture };
+  } finally {
+    await loader.unregister();
+  }
 }
 
 // ───────────────────────────────────────────────────────────────────
