@@ -20,7 +20,7 @@ The parent's Shared Records table names an owner for each shape more than one ph
 
 The four payloads the terminal screen reads keep their own contract, `003-terminal-screen/002-architecture-and-contracts/design/contracts.md`, and the same rule applies to it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, the opening paragraph] Nothing here copies it.
 
-## The nine entries
+## The ten entries
 
 | File | Holds | Owner | Cited by |
 |------|-------|-------|----------|
@@ -32,6 +32,7 @@ The four payloads the terminal screen reads keep their own contract, `003-termin
 | [`prompt-sections.md`](prompt-sections.md) | The nine prompt blocks in order, their literal delimiters and untrusted labels, the escape form and the budget table | 005, which owns `buildBotPrompt`'s section order [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] | 004, 005, 009, 010, 011 |
 | [`answer-seam.md`](answer-seam.md) | The numbered `answerItem` sequence, the item state transitions and the grant lifecycle | 005 for the review seam, 006 for the guarded write [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] | 001, 002, 005, 006, 009, 010, 011 |
 | [`runtime-architecture.md`](runtime-architecture.md) | The target module list and import edges, the final state-root tree and four sequence diagrams | The packet | 001 to 011 |
+| [`verification.md`](verification.md) | Rules V1 to V13 for writing a verify command: anchored vitest filters with a stated pass count, whole-file runs, exact counts, scratch state and baselines | The packet | Every phase with a tasks.md or acceptance-criteria.md |
 | [`fixtures/`](fixtures/README.md) | One golden per record and per `--json` verb the screen's samples do not hold, with the vitest file that reads each | Each golden belongs to its record's owner phase | 002, 005, 008, 009, 010, 011, and 001, 006 and 010 for the item |
 
 "Cited by" lists the phases whose work orders or documents read the file. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:280-296]
