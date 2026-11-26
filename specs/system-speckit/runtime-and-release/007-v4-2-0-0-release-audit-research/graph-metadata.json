@@ -54,12 +54,12 @@
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
       ".skilled/changelog/skilled/v4.2.0.0.md",
+      ".github/workflows/routing-registry-drift.yml",
       ".skilled/bin/compiled-route.cjs",
       ".skilled/skills/sk-git/scripts/worktree-naming.sh",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs"
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
     ],
     "entities": [
       {
@@ -141,6 +141,12 @@
         "source": "derived"
       },
       {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".skilled/bin/compiled-route.cjs",
@@ -168,12 +174,6 @@
         "name": "fanout-merge.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "workflow-steps.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The v4.2.0.0 release notes at `.skilled/changelog/skilled/v4.2.0.0.md` describe a release that is not tagged yet, while work kept landing after the notes were drafted",
     "created_at": "2026-11-25T07:59:08Z",
-    "last_save_at": "2026-11-26T17:01:46.989Z",
+    "last_save_at": "2026-11-26T17:19:01.081Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:737b773a7b269e443c17bc444333aee73db15ae366a4ea61e391422842a343b4",
+    "source_fingerprint": "sha256:f96941ef47e311490c5a02bfdc20c35167034f08f624e90e56acbc5ffd0aba1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1175d19e7e1250afede0c011622ae14ecd490be164d98ccab14d702f61f009c",
       "plan.md": "f9cbb06ccdacf61d0d03174e012ed05f29c6020da573461779e6e422441b9fef",
       "tasks.md": "a23ea458f827cada39b30cc9d10e0a153d3b53d983aead00cea4d4503ded28a2",
       "decision-record.md": "c84529cc3a885079c5374255ee4950404292800b72057b6e3bbeb9704df00c2c",
-      "implementation-summary.md": "9c774072217b2373b6c87548328b730a19bf56d987c3dd6a231c06a9f7d97b65",
+      "implementation-summary.md": "28e7268f233a5d83fc8680f1ab643fc7114676656eedd5e33a6523ca2e2cf435",
       "research/research.md": "0e85dde35ec7c432850535cafba932f43314931585c4b2fb2700ecc71ced73d6"
     },
     "last_active_at": null

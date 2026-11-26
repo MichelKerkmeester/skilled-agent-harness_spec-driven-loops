@@ -229,6 +229,8 @@ Commit `035c9dd6bdd` removed the `.skilled/specs` alias, and three workflows on 
 | Compiled routing | `cli-external-orchestration` stale after the edit | All eight hubs `compiled-serving`, and a cli-pi request routes to `cli-pi` |
 
 One CLI run listed packet docs under its guard for changed paths. Those were edits made while it ran, and the rerun on a still tree passed. A frozen benchmark report still holds a `.skilled/specs` path inside captured command output, and it stays as recorded.
+
+CI on the pushed merge found one more reader the scan of `.skilled/` could not see. A step in `.github/workflows/routing-registry-drift.yml` runs under `.opencode/skills/system-skill-advisor/runtime`, where `.opencode/skills` links to `.skilled/skills`, so its `../../../specs/` landed on the removed alias. It now climbs four levels. Run locally, the old path raises the same FileNotFoundError as CI, and the new one reaches the file and stops at the corpus pin check that already failed on `31821cee5d7`.
 <!-- /ANCHOR:verification -->
 
 ---
