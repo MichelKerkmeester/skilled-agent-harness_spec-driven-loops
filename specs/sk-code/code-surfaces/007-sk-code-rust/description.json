@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/code-surfaces/007-sk-code-rust",
+  "description": "Research the rust-anything repository and update the sk-code Rust references and checklist with what it teaches",
+  "keywords": [
+    "research",
+    "rust-anything",
+    "repository",
+    "sk-code",
+    "rust",
+    "references",
+    "checklist",
+    "teaches"
+  ],
+  "lastUpdated": "2026-11-26T13:08:00.617Z",
+  "specId": "007",
+  "folderSlug": "sk-code-rust",
+  "parentChain": [
+    "sk-code",
+    "code-surfaces"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "26-11-26_13-36__ran-the-three-lineage-vibe-deep-research-over.md",
+    "26-11-26_13-52__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_13-54__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_14-05__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_14-08__applied-research-md-ranked-edits-6-to-18-to-sk.md"
+  ]
+}

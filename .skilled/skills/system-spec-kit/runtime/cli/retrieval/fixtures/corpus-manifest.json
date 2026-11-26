@@ -1,5 +1,5 @@
 {
-  "corpusHash": "af043b9deef5cef69b3c28a56d20c2cc0e318faa2f6520161b8df8e195c0cea2",
+  "corpusHash": "bc5aef3867ed7f355007781126a88e0b8f384f819cf6f53f020a9a63c1d76edf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29621,
+  "includedPathCount": 29630,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3549,6 +3549,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.3.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -13755,6 +13756,14 @@
     "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/decision-record.md",
     "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/goal.md",
     "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/spec.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/decision-record.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/goal.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/implementation-summary.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/plan.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/research/research.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/spec.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/tasks.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/plan.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/research/research.md",
@@ -29653,7 +29662,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7a88fab45fcffcb364a1c6764984a288b551c04ef51a054dd260460f48a2ec18",
+  "manifestHash": "54111cf235daf259282241cc73e991106141e33270b4173410739171d0040b71",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34429,6 +34438,14 @@
     },
     {
       "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/code-surfaces/007-sk-code-rust/scratch",
       "reason": "excluded directory"
     },
     {

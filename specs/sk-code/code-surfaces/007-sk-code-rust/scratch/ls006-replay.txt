@@ -1,0 +1,63 @@
+LS-006 replay, 2026-11-26, one cli-mistral-vibe run on deepseek-flash. export.json: exit_code 0, outcome finished.
+Advisor probe: sk-code top-1, confidence 0.8538, passes_threshold true.
+
+Grade against the scenario's pass criteria:
+- RUST detected for lib.rs: yes
+- TYPESCRIPT detected for client.ts: yes
+- Rust trio in the load set: yes, all 21 Rust parts and the four rust-checklist parts
+- TypeScript trio in the load set: partial. The worker opened style-guide and quality-standards files but no typescript/quick-reference file, although its own routing evidence cites RESOURCE_MAP["TYPESCRIPT"] at ROUTER.md:340, which lists both quick-reference files.
+- shared/references in the load set: yes
+- python, shell or config references loaded: none
+- The quality-gate tool reported surface UNKNOWN for the /tmp paths, and the worker still applied the SKILLED references.
+
+Verdict: FAIL on the literal criterion that both trios load, because one TypeScript folder was not opened. The routing selected it, so the gap is in the worker's reading, not in routing, and this packet changed no routing or TypeScript file.
+
+Worker handback:
+DETECTION:
+SURFACE: UNKNOWN — `quality-gate.cjs --explain` returned `surfaces: ["UNKNOWN"]` for both files. They sit outside the hub's `.skilled/` checkout, so the SKILLED fallback does not hold on real paths (`stack-detection.md` §2, "The Fallback and the Symlink Guard"). The language sub-detection still resolved both languages by extension.
+LANGUAGE: rust — `lib.rs`, by `.rs` extension
+LANGUAGE: typescript — `client.ts`, by `.ts` extension
+
+LOADED REFS:
+SKILL.md
+ROUTER.md
+sk-code-review/SKILL.md
+sk-code-review/references/review-core.md
+shared/references/stack-detection.md
+shared/references/universal/code-quality-standards.md
+sk-code-skilled/references/rust/style-guide/overview-and-file-header.md
+sk-code-skilled/references/rust/style-guide/naming-conventions.md
+sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md
+sk-code-skilled/references/rust/style-guide/interop-model.md
+sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md
+sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md
+sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md
+sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md
+sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md
+sk-code-skilled/references/rust/quality-standards/build-and-organization.md
+sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md
+sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md
+sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md
+sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md
+sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md
+sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md
+sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md
+sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md
+sk-code-skilled/assets/checklists/universal-checklist.md
+sk-code-skilled/assets/checklists/typescript-checklist.md
+sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md
+sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
+sk-code-skilled/assets/checklists/rust-checklist/p1-required.md
+sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
+
+ROUTING EVIDENCE:
+rust — `ROUTER.md:134` selects the reference folders: `| RUST | sk-code-skilled/references/rust/{style-guide,quality-standards,quick-reference}/ (each split into topic parts) |`
+rust — `ROUTER.md:266` matches the intent: `INTENT_SIGNALS["RUST"]` keywords `"rust"`, `".rs"`, `"napi-rs"`, `"#[napi]"`, hit by the task's "napi-rs binding" and the `.rs` file
+rust — `ROUTER.md:362` is the leaf set: `RESOURCE_MAP["RUST"]`, 17 files
+rust — `shared/references/stack-detection.md:157` is the extension row: `| RUST | .rs, then the Cargo.toml or Cargo.lock markers and napi-rs or wasm-bindgen vocabulary | sk-code-skilled/references/rust/ |`
+rust — `shared/references/stack-detection.md:162` is the rule that selects both trios: "A napi-rs or WASM parity task that touches `.rs` and `.ts` loads both trios plus the shared guidance, because the Rust module must match its TypeScript oracle byte for byte."
+typescript — `ROUTER.md:131` selects the reference folders: `| TYPESCRIPT | sk-code-skilled/references/typescript/{style-guide,quality-standards,quick-reference}/ (each split into topic parts) |`
+typescript — `ROUTER.md:263` matches the intent: `INTENT_SIGNALS["TYPESCRIPT"]` keywords `"typescript"`, `".ts"`, `".tsx"`
+typescript — `ROUTER.md:340` is the leaf set: `RESOURCE_MAP["TYPESCRIPT"]`, 7 files
+typescript — `shared/references/stack-detection.md:154` is the extension row: `| TYPESCRIPT | .ts, .tsx, .mts, .d.ts | sk-code-skilled/references/typescript/ |`
+gate that did not open — `ROUTER.md:93`: `| LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching sk-code-skilled/references/<lang>/ resources |`

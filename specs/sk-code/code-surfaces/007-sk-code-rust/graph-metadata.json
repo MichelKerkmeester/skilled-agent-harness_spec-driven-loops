@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/code-surfaces/007-sk-code-rust",
+  "spec_folder": "sk-code/code-surfaces/007-sk-code-rust",
+  "parent_id": "sk-code/code-surfaces",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code rust standards",
+      "rust anything research",
+      "rust references update",
+      "rust checklist update",
+      "sk code rust plan",
+      "sk code rust tasks",
+      "sk code rust acceptance criteria",
+      "sk code rust goal",
+      "007-sk-code-rust operator decisions",
+      "sk code rust implementation summary",
+      "rust anything research synthesis",
+      "sk code rust ranked edits"
+    ],
+    "key_topics": [
+      "code",
+      "rust",
+      "standards",
+      "anything",
+      "research",
+      "references",
+      "checklist",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.3.0.0.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+      "scratch/cite-check.txt",
+      "scratch/binding-check.txt",
+      "scratch/ls006-replay.txt",
+      ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "overview-and-p0-parity.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "p1-required.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md",
+        "source": "derived"
+      },
+      {
+        "name": "docs-errors-and-async.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-and-organization.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        "source": "derived"
+      },
+      {
+        "name": "determinism-and-parity.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "modeling-collections-and-api.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-check.txt",
+        "kind": "file",
+        "path": "scratch/cite-check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "binding-check.txt",
+        "kind": "file",
+        "path": "scratch/binding-check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ls006-replay.txt",
+        "kind": "file",
+        "path": "scratch/ls006-replay.txt",
+        "source": "derived"
+      },
+      {
+        "name": "toolchain-and-project-structure.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Rust references and checklist under `.skilled/skills/sk-code/sk-code-skilled/` are written for one job: a napi-rs or WASM binding whose output must match a TypeScript oracle byte for byte",
+    "created_at": "2026-11-26T11:53:48Z",
+    "last_save_at": "2026-11-26T13:08:00.617Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:fea0c44877c66262dd309ccd84ded5bab3440b409e5dc70335db8398634b5e2b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "da6b1f4315a0717f38f36286241defa6adc2bb7166b02cef4da7148c88657574",
+      "plan.md": "b03b4cc2f1e81e3260f85422b393e4b5b958d8a0a197e4bfe58d1a8c159ffe10",
+      "tasks.md": "37281366c2c30db4915570f2d7490a08c5dad0b5e7b64b8df7a52c69d41fafec",
+      "decision-record.md": "a4949781e18691b13c1e22a4d7493af009d63e8a60c99a0f5f285fbe2c2eb652",
+      "implementation-summary.md": "e3dd556dc4e806eabca544fad12224ee75684b05eb28d3ff2843746f179fcaad",
+      "research/research.md": "9f92420f7d4bd38608744197c9187ea2b0b10df26619339af9fbcb2feed16eb9"
+    },
+    "last_active_at": null
+  }
+}

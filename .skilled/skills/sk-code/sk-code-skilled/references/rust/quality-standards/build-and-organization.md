@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Cargo/Build Baseline & Module Organization
@@ -99,22 +99,41 @@ indexing_slicing = "deny"
 | `as_conversions` | P1 | Range and ABI correctness |
 | `indexing_slicing` | P1 | Caller-controlled bounds safety |
 
+A single-crate application with no workspace sets the same lints in its own `Cargo.toml`, under `[lints.clippy]`, with compiler lints under `[lints.rust]` (rust-anything, `Cargo.toml:42-46`). A lint group such as `all` takes `priority = -1`, so the single lints, at the default priority 0, override the group.
+
+```toml
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+float_cmp = "deny"
+as_conversions = "deny"
+indexing_slicing = "deny"
+```
+
 - **[P1]** Use `deny`, not `forbid`, so a narrow reviewed local exception remains possible.
-- **[P1]** Every `#[allow(...)]` must include a durable `reason`.
+- **[P1]** Every lint suppression must include a durable `reason`.
+- **[P1]** Suppress with `#[expect(lint, reason = "...")]`, not `#[allow]`, so the compiler reports the suppression once the code no longer triggers the lint (rust-anything, `skills/rust-anything/SKILL.md:151-152`). `#[expect]` needs Rust 1.81, below the 1.85 floor above.
 - **[P1]** Keep suppressions local to the smallest applicable item.
 - **[P1]** Do not add crate-wide `#![deny(warnings)]`; CI owns the zero-warning policy.
 - **[P2]** Review `clippy::pedantic` and `clippy::nursery`.
 - **[P2]** Promote individually useful stable lints rather than denying those groups wholesale.
 
 ```rust
-#[allow(
+#[expect(
     clippy::float_cmp,
-    reason = "signed zero is part of the serialized-number parity contract"
+    reason = "exact equality is part of the serialized-number parity contract"
 )]
-fn is_negative_zero(value: f64) -> bool {
-    value == 0.0 && value.is_sign_negative()
+fn same_serialized_number(left: f64, right: f64) -> bool {
+    left == right
 }
 ```
+
+An expectation that never fires fails `-D warnings` as `unfulfilled_lint_expectations`. Clippy's `float_cmp` does not fire on a comparison with zero, so a signed-zero check such as `value == 0.0 && value.is_sign_negative()` needs no suppression at all.
 
 ### Required Verification
 
@@ -162,10 +181,32 @@ crates/wasm/
 - **[P1]** Unit-test private invariants under `#[cfg(test)]`.
 - **[P1]** Put public-contract tests in `tests/*.rs`.
 - **[P1]** Put shared integration helpers in `tests/common/mod.rs`.
-- **[P0]** Generate expected outputs only from the pinned TypeScript oracle.
+- **[P0]** Where TypeScript is the oracle, generate expected outputs only from the pinned TypeScript oracle. A port of another program takes its expected outputs from the original's recorded cases, per `determinism-and-parity.md` §Porting Against a Recorded Original.
 - **[P0]** Never automatically accept changed goldens or snapshots in CI.
 - **[P1]** Commit minimized property-test regressions.
 - **[P1]** Promote every minimized parity failure into the concrete golden corpus.
+
+**[P1] A binary's tests run the built executable and assert on its process contract.** Cargo sets `CARGO_BIN_EXE_<name>` to the built binary's path, and the test runs it with `std::process::Command` (rust-anything, `tests/rules.rs:11`).
+
+```rust
+use std::process::Command;
+
+const APP: &str = env!("CARGO_BIN_EXE_app");
+
+#[test]
+fn version_prints_to_stdout_and_exits_zero() -> Result<(), Box<dyn std::error::Error>> {
+    let output = Command::new(APP).arg("--version").output()?;
+    assert_eq!(output.status.code(), Some(0));
+    assert!(output.stderr.is_empty());
+    assert!(!output.stdout.is_empty());
+    Ok(())
+}
+```
+
+- **[P1]** Put these tests in `tests/*.rs`. Cargo sets `CARGO_BIN_EXE_<name>` only for integration tests and benchmarks, not for unit tests under `#[cfg(test)]`.
+- **[P1]** Assert on stdout, stderr and the exit status together, because together they are the process contract.
+- **[P2]** Recorded CLI cases may be trycmd files: a `<case>.toml` holding the arguments, environment and exit code, beside `.stdin`, `.stdout` and `.stderr` files, which a Rust test runs once the binary exists (rust-anything, `docs/whole-apps.md:97-99`).
+- **[P0]** A child process that the binary or a test starts sends its stdout to stderr or a pipe, never to a stream whose protocol the parent owns, such as an MCP server's stdout (rust-anything, `docs/pitfalls.md:65-66`).
 
 ### Property and Golden Testing
 
@@ -275,6 +316,47 @@ members = [
 edition = "2024"
 rust-version = "1.85"
 ```
+
+**[P1] An app-style binary keeps its logic in a library and its process surface in the binary.** One package can hold both. `src/lib.rs` declares the modules that do the work, and `src/main.rs` holds the clap derive parser, the match that sends each subcommand to a library function and the printing (rust-anything, `src/lib.rs:10-40`, `src/main.rs:19-35`, `src/main.rs:834-836`).
+
+```text
+Cargo.toml
+Cargo.lock
+src/
+  lib.rs
+  report.rs
+  main.rs
+tests/
+  cli.rs
+```
+
+```rust
+use clap::{Parser, Subcommand};
+use std::path::PathBuf;
+
+#[derive(Parser)]
+#[command(name = "app", version, about = "Report on a folder")]
+struct Cli {
+    #[command(subcommand)]
+    command: Cmd,
+}
+
+#[derive(Subcommand)]
+enum Cmd {
+    /// Print a report for one folder.
+    Report {
+        /// Folder to read.
+        #[arg(default_value = ".")]
+        root: PathBuf,
+    },
+}
+```
+
+- **[P1]** Derive the parser with clap's `derive` feature, so each subcommand and flag is a typed field and its doc comment is its help text (rust-anything, `Cargo.toml:16`, `src/main.rs:52-62`).
+- **[P1]** Keep each command's work in the library, so integration tests and other binaries call it without starting the process (rust-anything, `tests/rules.rs:7-9`).
+- **[P1]** Map the outcome to an exit code in one place, per `docs-errors-and-async.md` §Application Entry Point.
+
+A terminal screen built on ratatui and crossterm follows the same split. This set holds no rendering or terminal-state rules for it, because rust-anything, the source the app rules here rest on, has no terminal UI.
 
 ### Responsibility Matrix
 

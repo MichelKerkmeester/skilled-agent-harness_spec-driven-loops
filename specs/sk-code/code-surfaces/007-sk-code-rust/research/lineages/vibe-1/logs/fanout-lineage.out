@@ -1,0 +1,11 @@
+Lineage `vibe-1` is complete and verified on disk.
+
+**Run shape.** Six iterations of a maximum of eight, terminated by legal convergence at iteration 6: `STOP` / `converged` / `all_questions_answered`, all five key questions answered, quality guards passed, graph at 117 nodes and 204 edges with no blockers.
+
+**What the research found.** rust-anything's 41 distinct rules measured against the sk-code Rust set: 0 covered, 6 partial, 3 contradictions, 32 lacks. The three contradictions are the highest-value output — the P0 `anyhow` ban, the typed-`thiserror` requirement, and the typed-error rule's missing scope clause — each of which would flag a correct app-shaped port as a violation. The most portable rule in the source is not about Rust: a documented mapping table must be executable (`docs/types.md:16`, `tests/types_doc.rs:1-5`). Four app-style needs (ratatui, crossterm, signals, `is_terminal`/`NO_COLOR`, progress) are absent from both surfaces and are named as out-of-source rather than given a fabricated citation.
+
+**Artifacts.** `research.md` carries the 17-section synthesis with the 25-row ranked edit list, `## Eliminated Alternatives` after Section 11 and `## Divergence Map` before Open Questions. Six iteration files, six deltas whose finding counts match the state records exactly, and a state log of 8 rows (1 config, 6 iterations, 1 `synthesis_complete` at ledger sequence 8). Config status is `complete`; registry and dashboard both report COMPLETE.
+
+**Two things to flag.** The topic's source path `specs/z_external-repo-library/rust-anything-main` does not exist in this worktree, so every citation uses `/Users/michelkerkmeester/.Trash/rust-anything-main` — a Trash copy that may not survive, so the parent run should re-verify a sample of line numbers before applying edits. And the workflow's own `iteration-graph-upsert.cjs` registered the packet in `specs/sk-code/code-surfaces/graph-metadata.json`, which is outside the lineage directory; I left it in place because reverting it needs a git write, which this run is barred from.
+
+FANOUT_LINEAGE_COMPLETE:vibe-1

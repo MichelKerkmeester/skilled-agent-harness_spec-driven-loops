@@ -1,0 +1,1850 @@
+{
+  "sessionId": "fanout-vibe-1-1795694320828-so5yva",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 6,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-26T12:11:34.609Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-how-is-its-own-rust-written-cargo-toml-lints-edition-and-rust-version-module-lay",
+      "inboxId": null,
+      "text": "How is its own Rust written: Cargo.toml lints, edition and rust-version, module layout across src/, error handling, the clap CLI, serde settings, test layout and fixtures under tests/, and the cargo fmt, clippy and test finish gate in its CLAUDE.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-are-its-record-bridge-diff-bench-shadow-and-gate-method-docs-how-it-works-m",
+      "inboxId": null,
+      "text": "What are its record, bridge, diff, bench, shadow and gate method (docs/how-it-works.md), docs/pitfalls.md and DECISIONS.md, and which of them apply to any Rust port checked against an original?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-does-docs-types-md-map-values-across-napi-rs-pyo3-the-c-abi-and-the-other-br",
+      "inboxId": null,
+      "text": "How does docs/types.md map values across napi-rs, PyO3, the C ABI and the other bridges?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-do-skills-rust-anything-skill-md-and-whole-app-md-steer-a-coding-agent-throu",
+      "inboxId": null,
+      "text": "How do skills/rust-anything/SKILL.md and whole-app.md steer a coding agent through a port?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-for-each-finding-does-the-existing-sk-code-rust-set-under-skilled-skills-sk-code",
+      "inboxId": null,
+      "text": "For each finding, does the existing sk-code Rust set under .skilled/skills/sk-code/sk-code-skilled/references/rust/ and assets/checklists/rust-checklist/ cover it, contradict it or lack it, by file and section, and what does an app-style Rust project such as a CLI or a ratatui terminal screen need that the set lacks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-how-is-its-own-rust-written-cargo-toml-lints-edition-and-rust-version-module-lay",
+      "inboxId": null,
+      "text": "How is its own Rust written: Cargo.toml lints, edition and rust-version, module layout across src/, error handling, the clap CLI, serde settings, test layout and fixtures under tests/, and the cargo fmt, clippy and test finish gate in its CLAUDE.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-are-its-record-bridge-diff-bench-shadow-and-gate-method-docs-how-it-works-m",
+      "inboxId": null,
+      "text": "What are its record, bridge, diff, bench, shadow and gate method (docs/how-it-works.md), docs/pitfalls.md and DECISIONS.md, and which of them apply to any Rust port checked against an original?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-how-does-docs-types-md-map-values-across-napi-rs-pyo3-the-c-abi-and-the-other-br",
+      "inboxId": null,
+      "text": "How does docs/types.md map values across napi-rs, PyO3, the C ABI and the other bridges?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-how-do-skills-rust-anything-skill-md-and-whole-app-md-steer-a-coding-agent-throu",
+      "inboxId": null,
+      "text": "How do skills/rust-anything/SKILL.md and whole-app.md steer a coding agent through a port?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-for-each-finding-does-the-existing-sk-code-rust-set-under-skilled-skills-sk-code",
+      "inboxId": null,
+      "text": "For each finding, does the existing sk-code Rust set under .skilled/skills/sk-code/sk-code-skilled/references/rust/ and assets/checklists/rust-checklist/ cover it, contradict it or lack it, by file and section, and what does an app-style Rust project such as a CLI or a ratatui terminal screen need that the set lacks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-serde-json-is-configured-for-bit-exact-float-parity-serde-json-version-1-feature",
+      "text": "**`serde_json` is configured for bit-exact float parity.** `serde_json = { version = \"1\", features = [\"float_roundtrip\", \"preserve_order\", \"unbounded_depth\"] }` with the inline comment \"float_roundtrip: recorded floats must survive parsing bit for bit.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:28-29] The sk-code set warns that `serde_json` does not match JavaScript number spelling [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:65] but never names the `float_roundtrip` feature, `preserve_order` or `unbounded_depth`. **LACKS** the feature-flag remedy for the hazard it already names.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-a-single-crate-with-a-lib-bin-split-not-a-workspace-src-lib-rs-declares-69-pub-m",
+      "text": "**A single crate with a lib+bin split, not a workspace.** `src/lib.rs` declares 69 `pub mod` items plus two private modules (`mime`, and `js_number` behind `#[cfg(test)]`) [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs:10-78], and `src/main.rs` is a thin front end that imports `rust_anything::{analyze, app, app_shadow, bridge, drift, front_door, gate, harness, lift, mcp, report, shadow}` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:21-23]. The sk-code set's only layout is a five-crate workspace whose binary lives in a separate `sidecar` crate [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:235-262]. **LACKS** a single-crate lib+bin layout, which is what a CLI app actually is.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-2-edition-2024-and-rust-version-1-97-with-the-msrv-read-back-as-a-compile-time-con",
+      "text": "**Edition 2024 and `rust-version = \"1.97\"`, with the MSRV read back as a compile-time constant.** `pub(crate) const MIN_RUST: &str = env!(\"CARGO_PKG_RUST_VERSION\");` makes the declared MSRV the single source of truth instead of a duplicated string. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:4] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:8] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs:8] The sk-code set requires edition 2024 and a declared `rust-version` with a 1.85 example [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:40-46], so the declaration is **COVERED**; the `env!(\"CARGO_PKG_RUST_VERSION\")` single-source pattern is **LACKED**.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-4-error-handling-is-anyhow-at-every-layer-not-only-at-main-anyhow-1-is-a-direct-de",
+      "text": "**Error handling is `anyhow` at every layer, not only at `main`.** `anyhow = \"1\"` is a direct dependency [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:15]; 54 of the 74 files in `src/` import it, and `src/*.rs` carries 462 `bail!` / `.context(` / `with_context(` call sites. `thiserror` is not a dependency at all — it appears only as a string in the crate-recommendation table [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs:227]. The sk-code set makes this a **P0 violation**: \"Do not use `anyhow` in pure-core public APIs or exported functions\" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md:147], and the P1 checklist requires \"Core errors use typed `thiserror` enums\" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md:109]. **CONTRADICTS** for an app-shaped crate: the sk-code rule is written for a binding whose core is consumed by adapters, and applied literally it flags rust-anything's own `src/` as a P0 failure.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-1-rust-anything-pins-its-lint-policy-inside-the-single-crate-s-own-manifest-not-a-",
+      "text": "**rust-anything pins its lint policy inside the single crate's own manifest, not a workspace.** `[lints.rust] unsafe_code = \"forbid\"` and `[lints.clippy] all = { level = \"warn\", priority = -1 }` sit in the package manifest itself. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:42-46] The sk-code set shows only the workspace form `[workspace.lints.rust]` [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md:119] and never shows a single-crate `[lints.*]` block. **LACKS** for an app-style crate.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-6-serde-struct-conventions-are-explicit-and-uniform-report-enums-carry-serde-renam",
+      "text": "**serde struct conventions are explicit and uniform.** Report enums carry `#[serde(rename_all = \"kebab-case\")]` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs:25] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs:49]; optional and empty fields carry `skip_serializing_if` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs:123] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs:126]; input fields carry `#[serde(default)]` for forward compatibility [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs:89-116]; and the config struct carries `#[serde(deny_unknown_fields)]` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs:152]. The sk-code set has zero hits for `deny_unknown_fields`, `skip_serializing_if` or `rename_all`. **LACKS** the whole serde-attribute convention.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-8-test-layout-is-46-top-level-integration-files-one-shared-helper-module-and-30-fi",
+      "text": "**Test layout is 46 top-level integration files, one shared helper module, and 30 fixture directories.** `tests/` holds 46 entries including `common/mod.rs` and `fixtures/` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/tests/common/mod.rs:1], and `tests/fixtures/` holds 30 language-named fixture trees. The sk-code set covers `tests/*.rs` and `tests/common/mod.rs` [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:163-164] — **COVERED** — but has zero hits for `tests/fixtures`, so the fixture-tree convention is **LACKED**.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-clap-cli-is-derive-first-with-doc-comments-as-help-text-derive-parser-plus-c",
+      "text": "**The clap CLI is derive-first with doc comments as help text.** `#[derive(Parser)]` plus `#[command(name, version, about, after_help)]` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:25-31]; a `#[derive(Subcommand)]` enum whose variant doc comments become the subcommand help [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:52-54]; `ValueEnum` for closed sets [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:37-50]; and `#[arg(default_value = \".\")]` on the root positional [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:57-58]. The sk-code set has zero hits for `clap`. **LACKS** CLI argument design entirely.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-finish-gate-is-four-commands-and-one-of-them-is-a-doc-update-claude-md-says-",
+      "text": "**The finish gate is four commands, and one of them is a doc update.** `CLAUDE.md` says: \"Before finishing a change: `cargo fmt`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, and update `docs/STATUS.md` when what works changed.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md:6-7] The sk-code set carries the clippy form with `--workspace --all-targets --locked -- -D warnings` [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:78] — **COVERED** — but has no rule that a change which alters observable behaviour must update a status document. **LACKS** the documentation half of the gate.",
+      "addedAtIteration": 1,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/crates.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/ (listing)",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-10-keep-the-original-s-shape-is-an-explicit-port-rule-a-port-keeps-the-original-s-u",
+      "text": "**\"Keep the original's shape\" is an explicit port rule.** \"A port keeps the original's units, names and public API: one crate per unit, the same exported functions and classes, the same arguments and errors. The front door keeps the original's commands and flags. … Change the design after the port matches, not during it.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:310-316] The sk-code naming reference never mentions the original at all. **LACKS** the shape-preservation rule.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-7-bench-is-deliberately-outside-gate-because-speed-decides-shipping-but-is-not-cor",
+      "text": "**`bench` is deliberately outside `gate`, because speed decides shipping but is not correctness.** The decision reads: \"`bench` is a separate step, not part of `gate`. Speed is not correctness, but it decides whether a port should ship: every x18n core port was correct and slower.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md:60] The sk-code set mentions benchmarks only as build hygiene — \"Run `cargo test --benches` on pull requests to verify benchmark compilation\" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:218] — and as a precondition for Rayon [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md:287]. **LACKS** the rule that a port must be timed against the original before it ships.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-diff-reports-where-the-first-difference-is-not-just-that-one-exists-each-mismatc",
+      "text": "**`diff` reports where the first difference is, not just that one exists.** Each mismatch carries `return`, `throw` or `call N`, the JSON path such as `$.items[2].name`, the kind of difference, and for text the character with context; distinct differences are grouped under a short stable id \"so 40 failing cases from one bug read as one line\", and `--redact` prints shapes only. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:40] The sk-code set has no mismatch-reporting rule. **LACKS**.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-4-gate-is-a-composite-pass-fail-and-two-of-its-clauses-have-no-sk-code-equivalent-",
+      "text": "**`gate` is a composite pass/fail, and two of its clauses have no sk-code equivalent.** The gate covers fmt, clippy `-D warnings`, tests, an `unsafe` audit, nothing unported, a recorded failing case for every error path of the original, no `unwrap`/`expect`/`panic!` where the original returns an error unless marked `// INFALLIBLE: <why>`, build, API, behavior, recording freshness, size (\"no more than 3x the original's lines plus 50\"), and the cheat guard. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:42] The sk-code set covers fmt, clippy and tests [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:78] and denies `unwrap_used`/`expect_used`/`panic` through clippy [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md:171] — **COVERED** — but has zero hits for `INFALLIBLE`, so the marked escape and the \"where the original returns an error\" scoping are **LACKED**, as is the 3x-plus-50 size budget.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-record-generates-deterministic-edge-case-inputs-from-parameter-types-plus-per-pa",
+      "text": "**`record` generates deterministic edge-case inputs from parameter types plus per-parameter semantic traps, and can also record the original's own test suite.** The traps named are \"string length and case, signed division, overflow edges, float printing, map and sort order\", saved to `cases.jsonl`, with `--from-tests -- npx jest` to capture every call the original's suite makes and `--float-tolerance` for numeric code. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:38] The sk-code set requires golden fixtures and forbids auto-accepting changed goldens [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:236] but never says what inputs the recording must contain. **LACKS** the input-generation rule.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-6-shadow-runs-both-implementations-in-production-returns-the-original-s-result-and",
+      "text": "**`shadow` runs both implementations in production, returns the original's result, and never lets a Rust error reach a caller.** `RUST_ANYTHING_MODE=old|shadow|new` selects the mode, and the decision records the reason: \"Shipping shadow code must not change behavior; only the report sees Rust.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:44] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md:44] The sk-code set has zero hits for `shadow`. **LACKS** the staged-rollout method entirely.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-11-a-pitfall-records-that-a-broken-port-passed-because-its-case-was-never-recorded-",
+      "text": "**A pitfall records that a broken port passed because its case was never recorded, and the remedy is to prove the test can fail.** Recording silently drops a case whose result JSON cannot hold; the only input exercising `&#39;` also decoded `&nbsp;`, so a port that wrongly decoded `&#39;` passed. The remedy: \"After writing inputs for a behavior, check that `cases.jsonl` holds them, and break the port once to see `diff` fail.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md:112-117] The sk-code set has no \"prove the check can fail\" rule. **LACKS**.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-12-a-pitfall-records-that-a-cli-s-recorded-writes-were-invisible-because-the-fixtur",
+      "text": "**A pitfall records that a CLI's recorded writes were invisible because the fixture already held them.** \"A CLI that regenerates project files was recorded on a project it had just generated, so every case rewrote files with the bytes they already had, and a front door that wrote nothing passed. Record such CLIs from a fixture whose generated files are stale (overwrite them with a marker first), and check that the `*.out` folders are not empty.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md:88-93] The sk-code set has no fixture-staleness rule. **LACKS** — and this is the one finding that speaks directly to a CLI-shaped app, which is what the topic asks about.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-8-a-stale-recording-fails-the-gate-so-an-upstream-change-cannot-pass-silently-reco",
+      "text": "**A stale recording fails the gate, so an upstream change cannot pass silently.** `record` saves a fingerprint of the unit's files in `recorded-from.json`; when the original changes, `diff` reports a stale recording and exits non-zero, and `gate` fails until the unit is recorded again. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:318-322] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:262-264] The sk-code set has zero hits for `stale` or `fingerprint`. **LACKS** recording freshness.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-9-corrections-the-user-makes-during-a-port-are-committed-as-port-rules-and-injecte",
+      "text": "**Corrections the user makes during a port are committed as port rules and injected into every later prompt.** They live in `rust/RULES.md`, one bullet each, added with `rules --add`, and \"`go` puts them in `TASK.md`, and the MCP server's prompts and instructions carry them, so every later unit and every agent keeps them.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:244-248] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md:49] The sk-code set has zero hits for `RULES.md`. **LACKS** the durable-correction mechanism.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-cheat-guard-is-the-most-transferable-rule-in-the-repository-three-named-chec",
+      "text": "**The cheat guard is the most transferable rule in the repository: three named checks that stop a port passing without porting.** `literals` fails a port whose own files carry three or more string literals of 8+ characters or numbers of 5+ significant digits that equal a recorded argument or result while the original never spells them out, with `// recorded-literal: <reason>` as the escape; `tests` fails when `#[test]` functions, assertions or `#[ignore]`s drop below the last passing gate; `recording` fails when a recorded line was edited or removed. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:225-241] The reason is stated as a decision: \"Agents told to make every case pass sometimes hard-code results, delete failing tests or edit the recording; `diff` alone cannot tell.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md:49] The sk-code set has zero hits for `cheat`, `recorded-literal` or `known-diffs`. **LACKS** — and this is the gap with the highest value for an agent-driven port.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-method-is-a-nine-stage-pipeline-with-the-original-as-the-source-of-truth-pro",
+      "text": "**The method is a nine-stage pipeline with the original as the source of truth.** `profile → analyze → bridge → record → port.rs → diff → bench → shadow → gate`, and the doc states the invariant plainly: \"The original stays the source of truth: `record` runs it on edge cases (and your own inputs) and saves what it returns or throws; `diff` replays every case against the Rust; nothing ships until they all match and `gate` passes.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:7-14] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:16-18] The sk-code set states the parity *standard* — \"Rust output must be byte-for-byte identical to the pinned TypeScript oracle\" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:38] — but has no ordered stage sequence that produces the evidence. **LACKS** the pipeline.",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-4-refused-is-a-first-class-outcome-not-a-failure-refused-means-the-function-stays-",
+      "text": "**\"refused\" is a first-class outcome, not a failure.** \"`refused` means the function stays in its language. The note is the reason `bridge` prints, where it names the type.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:13] TypeScript refuses `(x: number) => number`/`Function`, `RegExp` and `Iterator`/`Generator` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:44-46]; Python refuses `Callable`, `Iterator`, `Generator`, `*args`, `**kwargs` and decorators other than `@cache` and `@lru_cache` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:88-90]. The sk-code set has zero hits for `refused`. **LACKS** the \"keep it in the original language\" verdict, which is the decision that stops a port from silently changing a public API.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-10-docs-types-md-has-no-pyo3-section-so-the-topic-s-premise-overstates-the-source-t",
+      "text": "**`docs/types.md` has no PyO3 section, so the topic's premise overstates the source.** The Python section maps Python source types to Rust port types and never names PyO3 [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:64-91]; PyO3 appears only as the Python bridge in the website docs — \"Python | PyO3 (abi3), direct conversion, typed exceptions\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md:27]. The sk-code set also has zero hits for `PyO3`. **CONTRADICTS** the topic's framing: there is no PyO3 value-class mapping to import, only a bridge name. The honest edit is to add a PyO3 bridge row to sk-code's interop model, not a value table.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-docs-types-md-is-a-per-language-source-type-port-type-table-and-the-contract-is-",
+      "text": "**`docs/types.md` is a per-language source-type → port-type table, and the contract is stated up front.** \"`bridge` reads each exported function's types from the source and writes the port's signature in `port.rs` from them. This page lists, per language, what a source type becomes there, and which types keep a function in its language, with the reason `bridge` gives.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:3-5] The sk-code Rust set has no source-type → Rust-type mapping table at all. **LACKS**.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-3-serde-json-value-is-the-explicit-escape-hatch-for-anything-the-mapping-does-not-",
+      "text": "**`serde_json::Value` is the explicit escape hatch for anything the mapping does not know.** \"`serde_json::Value` means the value crosses as JSON as it is: objects, maps, unions of different types and anything the mapping does not know.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:12] The sk-code set has zero hits for `serde_json::Value`. **LACKS** the named fallback type.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-5-a-defaulted-parameter-becomes-option-t-with-one-per-language-exception-a-paramet",
+      "text": "**A defaulted parameter becomes `Option<T>`, with one per-language exception.** \"A parameter with a default becomes `Option<T>`, unless the default is a literal Rust can write (a number, `true`/`false` or a plain string), in Python, Ruby, PHP and C#. In TypeScript and JavaScript every parameter with a default is `Option<T>`.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:14] The sk-code set has no default-parameter rule. **LACKS**.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-8-c-pointers-are-mapped-by-their-neighbouring-parameter-and-every-other-pointer-is",
+      "text": "**C pointers are mapped by their neighbouring parameter, and every other pointer is refused with a named design question.** `const char *` → `Option<&[u8]>`; a const byte pointer followed by an integer length → `&[u8]` with the length left out of the port; a writable byte pointer with a size → `&mut [u8]`; a pointer to a scalar the function writes → `Option<&mut T>`; `char **` pointing into a string parameter → `Option<&mut Option<usize>>`; a by-value all-scalar struct → a `#[repr(C)]` struct. \"Any other pointer, array or function pointer parameter is refused ('ownership must be designed'), and so are any other returned pointer ('who frees it must be designed') and variadic functions.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:154-168] The sk-code set has zero hits for `repr(C)`. **LACKS** — and the refusal wording is the valuable part, because it turns pointer ownership into a design decision instead of a guess.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-c-abi-keeps-width-and-sign-through-std-ffi-int-std-ffi-c-int-long-std-ffi-c-",
+      "text": "**The C ABI keeps width and sign through `std::ffi`.** `int` → `std::ffi::c_int`, `long` → `std::ffi::c_long` with the note \"32 bits on Windows\", `size_t`/`uintptr_t` → `usize`, `ssize_t`/`ptrdiff_t`/`intptr_t` → `isize`, `float` → `f32`, `double` → `f64`, `bool`/`_Bool` → `bool`, and `long double`/`wchar_t` refused as \"not a C scalar the bridge knows\". Specifiers may come in any order, `const` and `volatile` are ignored, an `enum` is `std::ffi::c_int`, and a project `typedef` of a scalar is that scalar. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:123-152] The sk-code set has zero hits for `std::ffi`, `c_int` or `c_char`. **LACKS** the C ABI entirely.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-9-the-integer-mapping-is-per-source-language-not-global-typescript-number-f64-sour",
+      "text": "**The integer mapping is per source language, not global.** TypeScript `number` → `f64` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:28] while Python `int` → `i64` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:68]. The sk-code set mentions `f64` in 18 files and `i64` in 3, but never frames the choice as a per-source-language decision. **PARTIAL** — the JavaScript case is covered implicitly by the TypeScript-oracle framing; the Python case is absent.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-mapping-table-is-executable-so-it-cannot-drift-from-the-code-cargo-test-test",
+      "text": "**The mapping table is executable, so it cannot drift from the code.** \"`cargo test --test types_doc` checks every row against the mapping, so a row that no longer matches the code fails the build.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:16] The test does it by `include_str!(\"../docs/types.md\")` and iterating the documented rows against `bridge::param_type` and the per-language modules [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs:1-5] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs:16]. The sk-code set has no rule that a documented mapping table must be tested against the implementation. **LACKS** — and this is the most portable single rule in the file, because it applies to any standards document that carries a table.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-port-error-contract-is-uniform-and-untyped-result-t-string-a-port-function-r",
+      "text": "**The port error contract is uniform and untyped: `Result<T, String>`.** \"A port function returns `Result<T, String>` and the table gives the `T`; in C it returns `T`, as the C function does.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:10] The sk-code set requires typed `thiserror` enums in the core [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md:109] and forbids `anyhow` in pure-core public APIs [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md:147]. **CONTRADICTS** on the surface, but the scopes differ: rust-anything's `port.rs` is a generated scaffold whose error text is deliberately not compared (see iteration 2, finding on `L7`), while sk-code's rule governs a shipped public API. Recorded as a scope conflict, not a sk-code error.",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/website/pages/en/docs/concepts/bridge.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-4-9-whole-app-md-is-a-session-spanning-protocol-built-on-a-claimable-map-a-whole-app",
+      "text": "**`whole-app.md` is a session-spanning protocol built on a claimable map.** \"A whole-app port outlasts one session, so `rust/MAP.md` carries it between sessions: the goal, an index of the ADRs in `DECISIONS.md`, every unit of the plan with its state (`open`, `claimed by <session> <date>`, `done`), open questions, and what is out of scope. … A session **claims** one unit in the map before it starts, ports that unit, and marks it `done` with its gate and replay results. A claimed unit belongs to its session: pick another. A new session starts by reading `MAP.md`, then `HANDOFF.md` when there is one.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md:17-25] The sk-code set has no multi-session protocol. **LACKS**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-10-whole-app-md-opens-with-a-structured-interview-whose-shape-is-a-design-tree-aske",
+      "text": "**`whole-app.md` opens with a structured interview whose shape is a design tree asked in rounds.** \"Interview the user until every decision the port depends on is settled. Map them as a **design tree**: each decision branches into the ones that hang off it. Ask in **rounds**: a round is the whole **frontier**, every decision whose prerequisites are already settled. Number each question, give your recommended answer, and word it so \\\"yes\\\" accepts the recommendation.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md:37-46] The seed branches are shape, scope, equivalence bar, compatibility, dependencies, targets, checkpoints and cutover [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md:58-66]. The sk-code set has no interview protocol. **LACKS**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-4-port-rules-are-read-before-writing-and-appended-the-moment-the-user-corrects-beh",
+      "text": "**Port rules are read before writing and appended the moment the user corrects behaviour.** \"Before writing code, run `rust-anything rules <repo>` and follow every rule it lists: behavior the user already corrected in an earlier unit. Each time the user corrects how the port behaves, add it right away with `rust-anything rules <repo> --add \\\"<the rule, in one sentence>\\\"`, so the next unit and the next agent keep it.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:110-113] The sk-code set has zero hits for `RULES.md`. **LACKS** — this is the agent-facing half of iteration 2's finding 9.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-skill-carries-a-per-source-language-trap-list-that-a-general-rust-standard-w",
+      "text": "**The skill carries a per-source-language trap list that a general Rust standard would never contain.** UTF-16 vs UTF-8 string offsets (\"JS and Java index UTF-16 code units, Rust UTF-8 bytes: use `src/utf16.rs`\"); `char::is_alphanumeric` taking more than Java's `Character.isLetterOrDigit` or Python's `str.isalpha`; Python and Ruby ints that must come back as ints, with `crate::pynum::Num` rather than `serde_json::Value`; C `crash:` inputs as undefined behaviour; C pointer shapes; `indexmap` where order reaches output; `fancy-regex` for lookaround; and `unicode(false)` where the original's `\\w` is ASCII-only. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:115-140] The sk-code set covers `-0.0` and sort order [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:66] but has no per-source-language trap list. **PARTIAL**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-skill-forbids-widening-a-tolerance-to-make-a-mismatch-disappear-never-widen-",
+      "text": "**The skill forbids widening a tolerance to make a mismatch disappear.** \"Never widen a tolerance to make a mismatch go away: a difference beyond it is a bug in the port.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:214] The sk-code set has no float-tolerance rule at all. **LACKS**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-skill-has-a-stall-detector-and-a-prescribed-response-when-diff-says-the-port",
+      "text": "**The skill has a stall detector and a prescribed response.** \"When `diff` says the port is stalled (its `trend.stalled`: three changes to `port.rs` in a row gained no matching case), stop editing. Show the user the remaining mismatches and ask: they may know the rule you are missing, or decide to keep those functions in the original for now.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:205-208] The sk-code set has no stall rule. **LACKS**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-skill-is-a-numbered-procedure-with-explicit-stop-gates-step-1-ends-wait-for-",
+      "text": "**The skill is a numbered procedure with explicit stop gates.** Step 1 ends \"**Wait for the user's approval of the plan and of the first unit.**\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:88] and step 5 ends \"**wait for their go-ahead before the next unit**\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:250]. The sk-code Rust set has zero hits for `ask the user`, `wait for`, `approval` or `go-ahead` outside the checklist's P1 \"must fix or get explicit approval\" severity legend [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md:62]. **LACKS** the stop gates.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-skill-names-the-one-file-the-agent-may-write-and-the-command-that-regenerate",
+      "text": "**The skill names the one file the agent may write, and the command that regenerates the rest.** \"Write the port in `src/port.rs` only; `src/lib.rs` and the wrappers are generated. After changing a signature in `port.rs`, run `rust-anything refresh <crate>`.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:107-108] The sk-code set has no write-surface rule that separates generated from hand-written files. **LACKS**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-skill-names-the-two-agent-failure-modes-and-forbids-them-in-one-line-each-ad",
+      "text": "**The skill names the two agent failure modes and forbids them in one line each.** \"Add Rust unit tests in `port.rs` for the cases you reason about. `cargo test` passing with no tests proves nothing: the recorded cases are the proof.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:141-142] and \"A mismatch is a behavior difference: fix the port, never the recording.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:196] The sk-code set has no equivalent. **LACKS**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-skill-opens-with-an-operating-contract-in-two-sentences-and-it-names-the-com",
+      "text": "**The skill opens with an operating contract in two sentences, and it names the completion test.** \"rust-anything gives you ground truth; you write the Rust. Port one unit at a time, even when the goal is the whole app, and call a port done only when `gate` passes.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:9-11] The sk-code `SKILL.md` is a reference map — its six sections are WHEN THE HUB BUNDLES THIS, SMART ROUTING, REFERENCE MAP, SURFACE STANDARDS, SUPPORTING ASSETS and QUALITY CHECKLIST MAP [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:29-164] — with no operating contract and no completion test. **LACKS**.",
+      "addedAtIteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-sk-code-rust-set-has-no-is-terminal-or-no-color-rule-and-rust-anything-does-",
+      "text": "**The sk-code Rust set has no `is_terminal` or `NO_COLOR` rule, and rust-anything does not supply it either.** Zero hits for both. **LACKS** in both.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-sk-code-rust-set-has-no-cli-argument-design-at-all-zero-hits-for-clap-across",
+      "text": "**The sk-code Rust set has no CLI argument design at all.** Zero hits for `clap` across `references/rust/` and `assets/checklists/rust-checklist/`. rust-anything supplies both halves: its own CLI is derive-first with `#[derive(Parser)]`, `#[command(name, version, about, after_help)]`, a `Subcommand` enum whose variant doc comments are the help text, and `ValueEnum` for closed sets [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:25-107], and `app front-door` scaffolds \"a clap parser for the commands and flags in the recorded cases\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:134-136]. **LACKS** — the single largest app-style gap.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-10-the-sk-code-rust-set-has-no-cli-golden-case-format-and-rust-anything-s-is-direct",
+      "text": "**The sk-code Rust set has no CLI golden-case format, and rust-anything's is directly reusable.** rust-anything's app cases are trycmd files in `rust/app-cases/`: \"`<case>.toml` (argv, env, exit code), `.stdin`, `.stdout`, `.stderr`, `.in/` (files in) and `.out/` (files written). Read and edit them by hand; a Rust test can run them with `trycmd` once the port has a binary.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:98-100] The sk-code set has zero hits for `tests/fixtures` and no CLI case format. **LACKS**.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-sk-code-rust-set-has-no-exit-code-contract-for-a-binary-its-only-mention-is-",
+      "text": "**The sk-code Rust set has no exit-code contract for a binary.** Its only mention is inside a sidecar-protocol rule: \"Sidecar protocols must define framing, encoding, field order, newline behavior, exit codes, and stderr behavior.\" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md:363] rust-anything treats the exit code as part of the recorded contract: the front door \"passes its output and exit code through\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:136] and `app replay` \"exits non-zero on any mismatch\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:108-109]. **LACKS** for a CLI; **COVERED** only for a sidecar.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-12-the-sk-code-rust-set-has-no-fallback-rate-metric-which-is-the-only-progress-sign",
+      "text": "**The sk-code Rust set has no fallback-rate metric, which is the only progress signal a half-ported app has.** rust-anything's front door counts each fallback to the original and reports the rate, and `app replay` reports it for any build that appends to `RUST_ANYTHING_FALLBACK_LOG` [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:110-112] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:136-138]. **LACKS**.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-8-the-sk-code-rust-set-has-no-progress-reporting-rule-and-rust-anything-does-not-s",
+      "text": "**The sk-code Rust set has no progress-reporting rule, and rust-anything does not supply it either.** Zero hits for `progress`. **LACKS** in both.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-11-the-sk-code-rust-set-has-no-rule-that-a-replay-report-is-a-committed-ci-artifact",
+      "text": "**The sk-code Rust set has no rule that a replay report is a committed CI artifact.** rust-anything commits `replay-report.md` and runs `git diff --exit-code rust/app-cases/replay-report.md` in CI, so \"a half-ported app fails CI on any change in what passes, better or worse, until the report is updated with it\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:120-123]. **LACKS** — and this is the app-scale version of the cheat guard, because it makes a silent regression impossible to merge.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-sk-code-rust-set-has-no-signal-handling-and-rust-anything-does-not-supply-it",
+      "text": "**The sk-code Rust set has no signal handling, and rust-anything does not supply it either.** Zero hits for `signal`, `SIGINT` or `Ctrl-C`. rust-anything's nearest rule is about child processes, not signals: \"Run every outside program through `crate::process`, which closes stdin and stops it at a time limit\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md:77-79]. **LACKS** in both, so the edit must be sourced elsewhere.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-9-the-sk-code-rust-set-has-no-size-budget-for-a-port-which-matters-more-for-an-app",
+      "text": "**The sk-code Rust set has no size budget for a port, which matters more for an app than for a binding.** rust-anything's gate fails a port \"at most 3x the original's lines plus 50 for imports and signatures (over that, use the crates `analyze` lists and fold repeated code)\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:243-245]. **LACKS**.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-sk-code-rust-set-has-no-stdout-stderr-split-rule-zero-hits-for-stdout-or-std",
+      "text": "**The sk-code Rust set has no stdout/stderr split rule.** Zero hits for `stdout` or `stderr` outside the sidecar line. rust-anything has a hard-won rule: \"A test command's output corrupted the MCP stream. The child wrote to the server's stdout. Send every child's stdout to stderr or a pipe, never to the MCP server's stdout.\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md:65-67] **LACKS** — and the rule generalises to any program that owns a protocol stream.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-sk-code-rust-set-has-no-terminal-rendering-and-rust-anything-does-not-supply",
+      "text": "**The sk-code Rust set has no terminal rendering, and rust-anything does not supply it either.** Zero hits for `ratatui` and `crossterm` in the sk-code set; the only `terminal` matches are \"terminal key\" in sort-comparator prose [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md:253]. rust-anything's own output is plain `writeln!` through a `say!` macro whose comment reads \"`println!` that stops quietly when stdout is closed (`rust-anything ... | head`)\" [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:6-11]. **LACKS** — and this is the one app-style gap rust-anything cannot fill, so the edit must be sourced from the ratatui/crossterm documentation rather than from a rust-anything line.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-verdict-table-across-iterations-1-4-is-41-findings-0-covered-6-partial-3-con",
+      "text": "**The verdict table across iterations 1-4 is 41 findings: 0 covered, 6 partial, 3 contradictions, 32 lacks.** Per iteration: iteration 1 gave 9 findings (0 covered, 3 partial, 1 contradiction, 5 lacks), iteration 2 gave 12 (0, 1, 0, 11), iteration 3 gave 10 (0, 1, 2, 7), iteration 4 gave 10 (0, 1, 0, 9). [INFERENCE: derived by re-reading the verdict sentence of each finding in `iterations/iteration-001.md` through `iteration-004.md` and summing] The shape of the result is the finding: the sk-code Rust set is not wrong about ports, it is silent about them. **LACKS** dominates 32 to 6.",
+      "addedAtIteration": 5,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/iterations/iteration-001.md through iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-6-1-rank-1-scope-the-typed-error-rule-target-skilled-skills-sk-code-sk-code-skilled-",
+      "text": "**Rank 1 — scope the typed-error rule.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md` §Typed Core Errors (line 126). Change: add a scope clause saying the typed-error rule governs a shipped public API consumed by adapters, and that a generated or scaffolded port module may use `anyhow` or `Result<T, String>` internally provided the exported function maps to the typed error. Source: `docs/types.md:10` (\"A port function returns `Result<T, String>`\") and `Cargo.toml:15` (`anyhow = \"1\"`). [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:10] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:15] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md:126]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-10-rank-10-add-the-fixture-tree-and-the-cli-case-format-target-skilled-skills-sk-co",
+      "text": "**Rank 10 — add the fixture tree and the CLI case format.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Testing Layout (line 136). Change: add `tests/fixtures/` as the fixture-tree convention and the trycmd case format (`<case>.toml` with argv, env and exit code, plus `.stdin`, `.stdout`, `.stderr`, `.in/`, `.out/`). Source: the `tests/` listing and `docs/whole-apps.md:98-100`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:98] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:136]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-11-rank-11-add-a-cli-and-app-shape-reference-target-a-new-file-skilled-skills-sk-co",
+      "text": "**Rank 11 — add a CLI and app-shape reference.** Target: a new file `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/cli-and-app-shape.md`. Change: cover clap derive conventions, the exit-code contract, the stdout/stderr split, `is_terminal`/`NO_COLOR`, and progress reporting. Source: `src/main.rs:25-107`, `docs/whole-apps.md:134-136`, `docs/pitfalls.md:65-67`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:25] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:134] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md:65]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-12-rank-12-add-the-infallible-escape-and-the-size-budget-target-skilled-skills-sk-c",
+      "text": "**Rank 12 — add the `INFALLIBLE` escape and the size budget.** Target: `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md` §Complete Rust Quality Gate (line 158). Change: scope the `unwrap`/`expect`/`panic!` denial to \"where the original returns an error\" and add the `// INFALLIBLE: <why>` marker, plus the 3x-plus-50 line budget. Source: `docs/how-it-works.md:42` and `skills/rust-anything/SKILL.md:243-245`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:42] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:243] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md:158]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-13-rank-13-add-recording-freshness-and-the-replay-report-artifact-target-skilled-sk",
+      "text": "**Rank 13 — add recording freshness and the replay-report artifact.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` §Required Parity Test Inventory (line 238). Change: add the recording fingerprint that fails the gate when the original changed, and the committed replay report checked with `git diff --exit-code` in CI. Source: `docs/how-it-works.md:318-322` and `docs/whole-apps.md:120-123`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:318] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md:120] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:238]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-14-rank-14-add-the-bench-before-ship-rule-target-skilled-skills-sk-code-sk-code-ski",
+      "text": "**Rank 14 — add the bench-before-ship rule.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Benchmarking (line 214). Change: add that a port is timed against the original before it ships, and that speed is not correctness so the timing is a separate gate. Source: `DECISIONS.md:60`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md:60] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:214]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-15-rank-15-add-keep-the-original-s-shape-target-skilled-skills-sk-code-sk-code-skil",
+      "text": "**Rank 15 — add \"keep the original's shape\".** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md`. Change: add that a port keeps the original's units, names and public API, and that design changes wait until after the port matches. Source: `docs/how-it-works.md:310-316`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:310] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md:1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-16-rank-16-add-the-status-doc-update-to-the-finish-gate-target-skilled-skills-sk-co",
+      "text": "**Rank 16 — add the status-doc update to the finish gate.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Required Verification (line 119). Change: add that a change which alters observable behaviour must update the status document in the same change. Source: `CLAUDE.md:6-7`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md:6] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:119]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-17-rank-17-add-the-float-tolerance-rule-target-skilled-skills-sk-code-sk-code-skill",
+      "text": "**Rank 17 — add the float-tolerance rule.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` §Numeric Contracts (line 51). Change: add that a tolerance forgives rounding only, never formatting, and that widening it to make a mismatch disappear is a bug in the port. Source: `skills/rust-anything/SKILL.md:214`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:214] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:51]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-18-rank-18-add-prove-the-check-can-fail-and-the-fixture-staleness-rule-target-skill",
+      "text": "**Rank 18 — add \"prove the check can fail\" and the fixture-staleness rule.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` §Required Parity Test Inventory (line 238). Change: add that a new fixture is verified by breaking the port once to see the check fail, and that a CLI fixture must hold stale generated files so a port that writes nothing cannot pass. Source: `docs/pitfalls.md:112-117` and `docs/pitfalls.md:88-93`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md:112] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md:88] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:238]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-19-rank-19-add-the-shadow-mode-staged-rollout-target-skilled-skills-sk-code-sk-code",
+      "text": "**Rank 19 — add the shadow-mode staged rollout.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` §Acceptance Standard (line 36). Change: add that a port may ship in shadow mode, returning the original's result and never letting a Rust error reach a caller, before it is switched on. Source: `docs/how-it-works.md:44` and `DECISIONS.md:44`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:44] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md:44] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:36]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-2-rank-2-add-the-cheat-guard-target-skilled-skills-sk-code-sk-code-skilled-assets-",
+      "text": "**Rank 2 — add the cheat guard.** Target: `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md` §Complete Rust Quality Gate (line 158). Change: add three named checks — `literals` (three or more 8+ character strings or 5+ significant-digit numbers equal to a recorded value the original never spells out, with `// recorded-literal: <reason>` as the escape), `tests` (fewer `#[test]` functions or assertions, or more `#[ignore]`s, than at the last passing gate), and `recording` (a recorded line edited or removed). Source: `docs/how-it-works.md:225-241` and `DECISIONS.md:49`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:225] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md:49] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md:158]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-20-rank-20-add-the-per-source-language-trap-list-target-skilled-skills-sk-code-sk-c",
+      "text": "**Rank 20 — add the per-source-language trap list.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` §Numeric Contracts (line 51). Change: add the UTF-16 vs UTF-8 offset trap, the `is_alphanumeric` vs `isLetterOrDigit` vs `isalpha` trap, the int-vs-float round-trip trap, and the regex `\\w` ASCII trap. Source: `skills/rust-anything/SKILL.md:115-140`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:115] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:51]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-21-rank-21-add-the-stall-detector-target-skilled-skills-sk-code-sk-code-skilled-ref",
+      "text": "**Rank 21 — add the stall detector.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Testing Layout (line 136). Change: add that three consecutive edits to the port with no newly matching case means stop editing and surface the remaining mismatches. Source: `skills/rust-anything/SKILL.md:205-208`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:205] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:136]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-22-rank-22-add-the-port-rules-file-target-skilled-skills-sk-code-sk-code-skilled-re",
+      "text": "**Rank 22 — add the port-rules file.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Testing Layout (line 136). Change: add that a correction the user makes during a port is committed as one bullet in a port-rules file and read before the next unit. Source: `docs/how-it-works.md:244-248` and `skills/rust-anything/SKILL.md:110-113`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md:244] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:110] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:136]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-23-rank-23-add-the-session-map-and-claim-protocol-target-skilled-skills-sk-code-sk-",
+      "text": "**Rank 23 — add the session map and claim protocol.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Testing Layout (line 136). Change: add that a multi-session port carries a map with per-unit state (`open`, `claimed by <session> <date>`, `done`) and that a session claims a unit before starting it. Source: `skills/rust-anything/whole-app.md:17-25`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md:17] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:136]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-24-rank-24-add-the-design-tree-interview-target-skilled-skills-sk-code-sk-code-skil",
+      "text": "**Rank 24 — add the design-tree interview.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Testing Layout (line 136). Change: add that a whole-app port opens with a design-tree interview asked in rounds, each question numbered with a recommended answer. Source: `skills/rust-anything/whole-app.md:37-46`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md:37] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:136]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-25-rank-25-the-out-of-source-gaps-which-no-rust-anything-line-can-fill-terminal-ren",
+      "text": "**Rank 25 — the out-of-source gaps, which no rust-anything line can fill.** Terminal rendering (ratatui, crossterm), signal handling, `is_terminal`/`NO_COLOR`, and progress reporting are absent from both surfaces. The edit must be sourced from the ratatui and crossterm documentation, and the research must say so rather than inventing a rust-anything citation. [INFERENCE: derived from the zero-hit greps in iteration 5 findings 3, 5, 7 and 8, and from rust-anything's own `say!` macro being plain `writeln!`]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-3-rank-3-add-the-refused-verdict-target-skilled-skills-sk-code-sk-code-skilled-ref",
+      "text": "**Rank 3 — add the \"refused\" verdict.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` §Acceptance Standard (line 36). Change: add that a function whose types cannot be faithfully bridged stays in the original language, with the reason recorded, and list the refusal classes (functions, `RegExp`, iterators, `*args`/`**kwargs`, decorators). Source: `docs/types.md:13` and `docs/types.md:44-46`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:13] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:44] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:36]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-4-rank-4-add-an-executable-source-type-mapping-table-target-skilled-skills-sk-code",
+      "text": "**Rank 4 — add an executable source-type mapping table.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md` §2 (line 59). Change: add a source-type → Rust-type table with the `serde_json::Value` fallback and the `Option<T>` default rule, and require a test that reads the document and checks every row against the implementation. Source: `docs/types.md:3-5`, `docs/types.md:12`, `docs/types.md:16`, and `tests/types_doc.rs:1-5`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:16] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs:1] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md:59]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-5-rank-5-add-the-c-abi-value-mapping-target-skilled-skills-sk-code-sk-code-skilled",
+      "text": "**Rank 5 — add the C ABI value mapping.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md` §2 (line 35). Change: add the `std::ffi` width-and-sign table, the pointer-by-neighbour rule, and the two refusal wordings (\"ownership must be designed\", \"who frees it must be designed\"). Source: `docs/types.md:123-152` and `docs/types.md:154-168`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:123] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md:154] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md:35]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-6-rank-6-add-the-operating-contract-and-stop-gates-target-skilled-skills-sk-code-s",
+      "text": "**Rank 6 — add the operating contract and stop gates.** Target: `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` §4 SURFACE STANDARDS (line 125). Change: add a two-sentence operating contract naming the completion test, and the two stop gates (approve the plan and the first unit; wait for the go-ahead before the next unit). Source: `skills/rust-anything/SKILL.md:9-11`, `:88`, `:250`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:9] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md:88] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:125]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-7-rank-7-add-the-single-crate-lint-block-and-the-msrv-single-source-pattern-target",
+      "text": "**Rank 7 — add the single-crate lint block and the MSRV single-source pattern.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Edition, Toolchain, and MSRV (line 36). Change: add the `[lints.rust] unsafe_code = \"forbid\"` and `[lints.clippy] all = { level = \"warn\", priority = -1 }` block for a single crate, and the `env!(\"CARGO_PKG_RUST_VERSION\")` constant so the declared MSRV is the only copy. Source: `Cargo.toml:42-46` and `src/lib.rs:8`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:42] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs:8] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:36]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-8-rank-8-add-a-single-crate-lib-bin-layout-target-skilled-skills-sk-code-sk-code-s",
+      "text": "**Rank 8 — add a single-crate lib+bin layout.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` §Workspace Layout (line 228). Change: add a single-crate layout with `src/lib.rs` as the library and `src/main.rs` as a thin front end, beside the existing five-crate workspace. Source: `src/lib.rs:10-78` and `src/main.rs:21-23`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs:10] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs:21] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:228]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    },
+    {
+      "id": "finding-6-9-rank-9-add-the-serde-parity-settings-and-attribute-convention-target-skilled-ski",
+      "text": "**Rank 9 — add the serde parity settings and attribute convention.** Target: `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` §Serialized Output (line 190). Change: add `serde_json` with `float_roundtrip`, `preserve_order` and `unbounded_depth`, plus `rename_all = \"kebab-case\"`, `skip_serializing_if`, `serde(default)` and `deny_unknown_fields`. Source: `Cargo.toml:28-29`, `src/analyze.rs:25`, `src/app.rs:152`. [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml:28] [SOURCE: /Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs:152] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:190]",
+      "addedAtIteration": 6,
+      "sources": [
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/types.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/how-it-works.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/whole-apps.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/docs/pitfalls.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/DECISIONS.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/CLAUDE.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/Cargo.toml",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/lib.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/main.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/app.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/src/analyze.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/tests/types_doc.rs",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/SKILL.md",
+        "/Users/michelkerkmeester/.Trash/rust-anything-main/skills/rust-anything/whole-app.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-247d4cc87fd2",
+      "text": "Reading `specs/z_external-repo-library/rust-anything-main` directly: the path does not exist in this worktree (`ls` returned \"No such file or directory\"). Fell back to the Trash copy rather than reporting the question unanswered.",
+      "contentHash": "247d4cc87fd2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1aaf4c2a9e2f",
+      "text": "Searching the sk-code Rust set for `clap`, `ratatui`, `crossterm`, `float_roundtrip`, `preserve_order`, `deny_unknown_fields`, `tests/fixtures` and `integration test`: all returned zero files. These are confirmed absences, not search misses, so later iterations need not re-run them.",
+      "contentHash": "1aaf4c2a9e2f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b1fbf9773c74",
+      "text": "Treating rust-anything's `anyhow` usage as a sk-code contradiction to be resolved by weakening the sk-code rule: the sk-code rule is correct for a binding core, so the finding is recorded as a scope gap (app-shaped crates need a different default), not as a sk-code error.",
+      "contentHash": "b1fbf9773c74",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-dacfc86f2a91",
+      "text": "Grepping the sk-code Rust set for `shadow`, `stale`, `RULES.md`, `known-diffs`, `recorded-literal` and `fingerprint`: all zero. Confirmed absences; later iterations need not re-run them.",
+      "contentHash": "dacfc86f2a91",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3ef7c8a061f9",
+      "text": "Reading `docs/whole-apps.md` in this iteration: it is the whole-app frame, which belongs to key question 4's steering question and to the app-style gap in key question 5. Deferred rather than read shallowly here.",
+      "contentHash": "3ef7c8a061f9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-829ef21c6077",
+      "text": "Treating the `// INFALLIBLE:` marker as a contradiction of sk-code's clippy denial: the two are compatible (deny by default, mark the exception), so it is recorded as a missing escape hatch, not a conflict.",
+      "contentHash": "829ef21c6077",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-31d238608505",
+      "text": "Grepping the sk-code Rust set for `std::ffi`, `c_int`, `c_char`, `repr(C)`, `PyO3`, `serde_json::Value` and `refused`: all zero. Confirmed absences; later iterations need not re-run them.",
+      "contentHash": "31d238608505",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9cced5146174",
+      "text": "Reading the Go, Java, Kotlin, C#, Ruby, PHP and PowerShell sections in full: their headings confirm the same table shape, and the C section already supplies the ABI-width lesson the topic asks about. Reading seven more tables would have spent the budget without changing a verdict.",
+      "contentHash": "9cced5146174",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9e729960bd3a",
+      "text": "Searching `docs/types.md` for PyO3: zero hits. The bridge name lives in the website docs only.",
+      "contentHash": "9e729960bd3a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-988eac5c8bfa",
+      "text": "Treating `Result<T, String>` as a rule to copy into sk-code: it is a scaffold convention for generated code whose error text is deliberately not compared, so copying it would weaken sk-code's typed-error rule.",
+      "contentHash": "988eac5c8bfa",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ff8145126d6f",
+      "text": "Grepping the sk-code Rust set for `ask the user`, `wait for`, `approval` and `go-ahead`: only the checklist severity legend matched. Confirmed absence of stop gates; later iterations need not re-run it.",
+      "contentHash": "ff8145126d6f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0e29335d6d10",
+      "text": "Reading `docs/whole-apps.md` (347 lines) in this iteration: `skills/rust-anything/whole-app.md` is the agent-facing steering document the question names, and it already carries the map, the claim protocol and the interview. The longer doc is the human-facing frame and belongs to key question 5's app-style gap.",
+      "contentHash": "0e29335d6d10",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9bb434ec92f6",
+      "text": "Treating the stop gates as a conflict with sk-code's autonomous workflow doctrine: sk-code's doctrine governs its own implement/debug/verify loop, not a port against an external original, so the gates are recorded as a missing construct rather than a contradiction.",
+      "contentHash": "9bb434ec92f6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-48c335a3334d",
+      "text": "Claiming rust-anything supplies a ratatui or signal standard: it does not, and saying so would have produced a false edit target. Both are recorded as gaps in both surfaces.",
+      "contentHash": "48c335a3334d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c9bb2ffec423",
+      "text": "Grepping the sk-code Rust set for `ratatui`, `crossterm`, `clap`, `signal`, `SIGINT`, `Ctrl-C`, `is_terminal`, `NO_COLOR`, `progress`: all zero. Confirmed absences.",
+      "contentHash": "c9bb2ffec423",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3969377575ae",
+      "text": "Grepping the sk-code Rust set for `tty`: 21 files matched, but every hit is the substring inside \"pretty\". Recorded so a later iteration does not mistake it for terminal coverage.",
+      "contentHash": "3969377575ae",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8e5de550f0f6",
+      "text": "Reading `docs/whole-apps.md` §Servers and §Libraries in full: the CLI frame in §Port a whole app already supplies the app-style findings, and the server and library frames repeat the same replay and fallback machinery.",
+      "contentHash": "8e5de550f0f6",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7c875ae6128e",
+      "text": "Inventing a rust-anything source line for ratatui, signals, `is_terminal` or progress: none exists, so rank 25 names them as out-of-source instead.",
+      "contentHash": "7c875ae6128e",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e04743ec151e",
+      "text": "None this iteration. Every row resolves to a section that exists in the target file, checked against the heading listing.",
+      "contentHash": "e04743ec151e",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e12c5143b36e",
+      "text": "Ranking by file instead of by verdict: the topic asks for a ranked list, and a file-ordered list would bury the three contradictions under the 32 lacks.",
+      "contentHash": "e12c5143b36e",
+      "addedAtIteration": 6
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 78,
+    "sourceFindings": 78,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.5,
+    "coverageBySources": {
+      "other": 37
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/546-sk-code-rust/specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages/vibe-1/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7344,
-    "ok": 20649,
+    "ok": 20658,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29621,
+  "documentsScanned": 29630,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7a88fab45fcffcb364a1c6764984a288b551c04ef51a054dd260460f48a2ec18",
+  "manifestHash": "54111cf235daf259282241cc73e991106141e33270b4173410739171d0040b71",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46365,
+      "ok": 46381,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -60281,6 +60281,14 @@
     },
     {
       "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/code-surfaces/007-sk-code-rust/scratch",
       "reason": "excluded directory"
     },
     {

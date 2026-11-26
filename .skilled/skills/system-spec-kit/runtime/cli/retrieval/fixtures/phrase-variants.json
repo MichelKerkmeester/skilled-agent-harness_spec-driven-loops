@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7a88fab45fcffcb364a1c6764984a288b551c04ef51a054dd260460f48a2ec18",
+  "manifestHash": "54111cf235daf259282241cc73e991106141e33270b4173410739171d0040b71",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2061,6 +2061,9 @@
     ],
     "007 shared blocks and retired mechanisms operator decisions": [
       "007-shared-blocks-and-retired-mechanisms operator decisions"
+    ],
+    "007 sk code rust operator decisions": [
+      "007-sk-code-rust operator decisions"
     ],
     "007 sk prompt parent": [
       "007-sk-prompt-parent"
@@ -106645,6 +106648,15 @@
     "rust adapter boundary review": [
       "rust adapter boundary review"
     ],
+    "rust anything research": [
+      "rust anything research"
+    ],
+    "rust anything research synthesis": [
+      "rust anything research synthesis"
+    ],
+    "rust app standards": [
+      "rust app standards"
+    ],
     "rust best practices deep research": [
       "rust best practices deep research"
     ],
@@ -106662,6 +106674,12 @@
     ],
     "rust checklist and playbook authoring": [
       "rust checklist and playbook authoring"
+    ],
+    "rust checklist update": [
+      "rust checklist update"
+    ],
+    "rust cli standards": [
+      "rust cli standards"
     ],
     "rust collections imports and errors": [
       "rust collections imports and errors"
@@ -106743,6 +106761,9 @@
     ],
     "rust reference purpose": [
       "Rust reference purpose"
+    ],
+    "rust references update": [
+      "rust references update"
     ],
     "rust registration touchpoints outcome": [
       "rust registration touchpoints outcome"
@@ -113464,8 +113485,29 @@
     "sk code routing vocabulary plan": [
       "sk-code routing vocabulary plan"
     ],
+    "sk code rust acceptance criteria": [
+      "sk code rust acceptance criteria"
+    ],
+    "sk code rust goal": [
+      "sk code rust goal"
+    ],
+    "sk code rust implementation summary": [
+      "sk code rust implementation summary"
+    ],
     "sk code rust language support": [
       "sk-code rust language support"
+    ],
+    "sk code rust plan": [
+      "sk code rust plan"
+    ],
+    "sk code rust ranked edits": [
+      "sk code rust ranked edits"
+    ],
+    "sk code rust standards": [
+      "sk code rust standards"
+    ],
+    "sk code rust tasks": [
+      "sk code rust tasks"
     ],
     "sk code scaffold hub": [
       "sk-code scaffold hub"
@@ -113637,6 +113679,9 @@
     ],
     "sk code skilled 2 2 3 0": [
       "sk-code-skilled 2.2.3.0"
+    ],
+    "sk code skilled 2 3 0 0": [
+      "sk-code-skilled 2.3.0.0"
     ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
@@ -113829,6 +113874,9 @@
     ],
     "sk code skilled v2 2 3 0": [
       "sk-code-skilled v2.2.3.0"
+    ],
+    "sk code skilled v2 3 0 0": [
+      "sk-code-skilled v2.3.0.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
