@@ -329,7 +329,9 @@ tmp/
 # exists on exactly one machine.
 /specs/*-wt[0-9]*
 # The operator's private spec tree, kept local by choice.
-/specs/other/
+/specs/z_other/
+# Third-party repositories the operator keeps as local context for later work.
+/specs/z_external-repo-library/
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Archive & testing fixtures
