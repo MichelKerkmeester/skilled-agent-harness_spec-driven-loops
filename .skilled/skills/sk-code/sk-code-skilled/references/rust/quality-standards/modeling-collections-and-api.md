@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Domain Modeling, Collections & Public API/ABI Contracts
@@ -155,7 +155,7 @@ pub fn connection_summary(state: &ConnectionState) -> String {
 **[P1] Match the original's regex engine, not only its pattern.**
 
 - **[P1]** Use `fancy-regex` when a pattern needs lookaround or backreferences, which the `regex` crate does not support (rust-anything, `skills/rust-anything/SKILL.md:142`).
-- **[P1]** `\w`, `\b`, `\d` and case-insensitive matching treat non-ASCII text differently from engine to engine, so passing the recorded cases is not enough. Where the original's classes are ASCII-only, as in JavaScript without the `u` flag or in Java, build the pattern with `unicode(false)` or spell the class out as `[A-Za-z0-9_]` (rust-anything, `skills/rust-anything/SKILL.md:142-147`).
+- **[P1]** `\w`, `\b`, `\d` and case-insensitive matching treat non-ASCII text differently from engine to engine, so passing the recorded cases is not enough. Where the original's classes are ASCII-only, as in JavaScript without the `u` flag or in Java, scope Unicode off for that class, as in `(?-u:\w)`, or spell the class out as `[A-Za-z0-9_]`. With `regex::Regex`, a whole-pattern `unicode(false)` rejects `.`, `\W` and negated classes such as `[^a]`, because they could match invalid UTF-8 (rust-anything, `skills/rust-anything/SKILL.md:142-147`).
 
 ### Observable Hash Iteration
 

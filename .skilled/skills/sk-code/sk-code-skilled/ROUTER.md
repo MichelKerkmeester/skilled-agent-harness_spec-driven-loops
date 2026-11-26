@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-skilled routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -78,7 +78,7 @@ INTENT_SIGNALS = {
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
-    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
+    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "clap cli", "clap crate", "clap derive", "clap::", "ratatui", "crossterm", "#[napi]", "#[wasm_bindgen]"]},
 }
 
 RESOURCE_MAP = {

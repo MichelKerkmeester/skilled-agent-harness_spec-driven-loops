@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust interop quality gate"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # P1 — Required
@@ -187,7 +187,7 @@ indexing_slicing = "deny"
 
 Use `deny`, not `forbid`, so an exceptional local suppression remains possible after review.
 
-A state the original also treats as impossible is the one reviewed exception. Keep the call and suppress the lint on the smallest item with `#[expect(clippy::expect_used, reason = "infallible: <why>")]`, so the reason sits where a reviewer reads it (rust-anything marks the same case with a `// INFALLIBLE: <why>` comment, `skills/rust-anything/SKILL.md:245-246`).
+A state the original also treats as impossible is reviewed the same way. Keep the call and suppress the lint on the smallest item with `#[expect(clippy::expect_used, reason = "infallible: <why>")]`, so the reason sits where a reviewer reads it (rust-anything marks the same case with a `// INFALLIBLE: <why>` comment, `skills/rust-anything/SKILL.md:245-246`).
 
 ### Narrow Lint Suppressions
 

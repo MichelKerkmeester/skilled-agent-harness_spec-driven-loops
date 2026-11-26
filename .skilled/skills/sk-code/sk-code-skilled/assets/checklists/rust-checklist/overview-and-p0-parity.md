@@ -8,7 +8,7 @@ trigger_phrases:
   - "napi wasm rust review"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rust Code Quality Checklist
@@ -40,7 +40,7 @@ Apply this checklist to:
 - Rust serialization, ranking, hashing, graph, search, or numeric code whose output is observable from TypeScript.
 - App-style Rust: a binary that owns its own entry point and argument parser, such as a CLI or a terminal screen, with no TypeScript oracle. Its contract is the process's observable surface, its output and its exit code for each outcome (rust-anything, `skills/rust-anything/whole-app.md:136-143`). The parity rows below apply to it only where it is checked against an original.
 
-Where a TypeScript backend owns the process, TypeScript retains ownership of MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection. Rust adapters stay narrow and expose measured compute kernels rather than duplicating orchestration.
+Where a TypeScript backend owns the process, TypeScript retains ownership of MCP transport, public tool schemas, daemon and CLI wiring, feature flags and fallback selection. Rust adapters stay narrow and expose measured compute kernels rather than duplicating orchestration.
 
 ### Protected Contracts
 

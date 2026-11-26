@@ -668,7 +668,7 @@ function detectSkilledLanguages(taskLower) {
   if (/\.sh\b|set -euo|shellcheck/.test(taskLower)) langs.add('shell');
   if (/\.jsonc?\b|graph-metadata|descriptor|spec-folder/.test(taskLower)) langs.add('config');
   if (/\.cjs\b|\.mjs\b/.test(taskLower)) langs.add('javascript');
-  if (/\.rs\b|cargo\.toml|cargo\.lock|napi[-_]rs|wasm[-_]bindgen|\bwasi\b|\bcdylib\b/.test(taskLower)) langs.add('rust');
+  if (/\.rs\b|cargo\.toml|cargo\.lock|napi[-_]rs|wasm[-_]bindgen|\bwasi\b|\bcdylib\b|\bclap (?:cli|crate|derive)\b|\bclap::|\bratatui\b|\bcrossterm\b/.test(taskLower)) langs.add('rust');
   return langs;
 }
 

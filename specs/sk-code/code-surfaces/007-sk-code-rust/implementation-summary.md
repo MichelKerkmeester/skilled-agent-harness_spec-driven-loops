@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "sk-code's Rust set now covers an app-style Rust binary and a port proved against a recorded original, with every new rule traced to rust-anything."
 trigger_phrases:
   - "sk code rust implementation summary"
 importance_tier: "normal"
@@ -8,29 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/code-surfaces/007-sk-code-rust"
-    last_updated_at: "2026-11-26T13:08:00Z"
+    last_updated_at: "2026-11-26T15:20:39Z"
     last_updated_by: "generate-context"
-    recent_action: "Replayed LS-006 through a Vibe worker and recorded all operator answers"
-    next_safe_action: "Rerun LS-006 so both trios load, then close the packet"
+    recent_action: "Closed packet docs after the LS-006 and LS-007 replays"
+    next_safe_action: "Commit the follow-up on worktrees/546-sk-code-rust, no push"
     packet_purpose: "Purpose: The Rust set covers a Rust app as well as a Rust binding, with every new rule traced to a line of the rust-anything repository or to an existing sk-code rule."
     blockers: []
     key_files:
-      - "specs/sk-code/code-surfaces/007-sk-code-rust/research/research.md"
-      - "specs/sk-code/code-surfaces/007-sk-code-rust/scratch/binding-check.txt"
-      - ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md"
-      - ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md"
+      - ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md"
+      - ".skilled/skills/sk-code/changelog/v3.12.6.0.md"
+      - "specs/sk-code/code-surfaces/007-sk-code-rust/scratch/ls006-replay.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3725ead087b4569e66b20291cdba151857227b12e115768a5cac1f0177d2b565"
       session_id: "scaffold-007-sk-code-rust"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "9214d15c-f092-4715-b003-a7d2c9126ab8"
+      sessionId: "34326d99-91b3-4b13-9128-71ec0666d036"
       workspace: "/Users/michelkerkmeester/worktrees/public/546-sk-code-rust"
-      savedAt: "2026-11-26T13:08:00Z"
+      savedAt: "2026-11-26T15:20:39Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,7 +75,13 @@ A reviewer working on a Rust CLI now finds rules that apply to it. The checklist
 | `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md` | Modified | `anyhow` in a crate with no ABI boundary and §Application Entry Point |
 | `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` | Modified | App layout with clap, single-crate lints, binary tests, child stdout, ratatui and crossterm named |
 | `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` | Modified | §Porting Against a Recorded Original and the `serde_json` features |
-| `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md` | Modified | Regex engine choice and the Java `char` refusal |
+| `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md` | Modified | Regex engine choice and the Java `char` refusal, then the ASCII rule stated per class |
+| `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md`, `quick-reference/overview-and-boundary-template.md`, `style-guide/interop-model.md`, `style-guide/overview-and-file-header.md` | Modified | TypeScript ownership scoped to a project where a TypeScript backend owns the process |
+| `.skilled/skills/sk-code/sk-code-skilled/ROUTER.md`, `assets/scripts/router-replay-lib.cjs` | Modified | App-crate RUST keywords, bracketed keywords moved last so the replay parser reads them all |
+| `.skilled/skills/sk-code/ROUTER.md`, `hub-router.json`, `shared/references/stack-detection.md` | Modified | App-crate RUST keywords and the rule to open every file the route selects |
+| `.skilled/skills/sk-code/sk-code-review/SKILL.md`, `changelog/v1.9.19.0.md` | Modified, Created | The open-every-file rule, version 1.9.19.0 |
+| `.skilled/skills/sk-code/SKILL.md`, `mode-registry.json`, `description.json`, `graph-metadata.json`, `changelog/v3.12.6.0.md` | Modified, Created | Hub version 3.12.6.0 and the advisor vocabulary |
+| `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md`, `language-sub-detection/skilled-rust-app.md` | Modified, Created | LS-007, a Rust-only clap CLI scenario |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,7 +90,7 @@ A reviewer working on a Rust CLI now finds rules that apply to it. The checklist
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, and the orchestrator merged them into `research/research.md` with 18 ranked edit rows, opening every cited line. A review before writing found four rows that would give wrong guidance as worded, and research.md section 5 records how each was changed or dropped. The Rust examples were checked with a scratch crate: `cargo clippy --all-targets -- -D warnings` exited 0 on the new examples, and it failed with `unfulfilled_lint_expectations` on the old zero comparison, which is why that example changed. The integration test example passed under `cargo test`. Then the router sync check, the package validator, the copy check, the anchor check, the binding comparison and the packet validator ran in that order. Nothing is committed.
+Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, and the orchestrator merged them into `research/research.md` with 18 ranked edit rows, opening every cited line. A review before writing found four rows that would give wrong guidance as worded, and research.md section 5 records how each was changed or dropped. The Rust examples were checked with a scratch crate: `cargo clippy --all-targets -- -D warnings` exited 0 on the new examples, and it failed with `unfulfilled_lint_expectations` on the old zero comparison, which is why that example changed. The integration test example passed under `cargo test`. Then the router sync check, the package validator, the copy check, the anchor check, the binding comparison and the packet validator ran in that order. The work was committed as `066a16af103` on `worktrees/546-sk-code-rust`. A fresh Opus review of that commit then found that four unchanged Rust docs still made TypeScript the owner of CLI wiring, and that a whole-pattern `unicode(false)` fails on common patterns. Both findings were checked by hand, the regex one with a `cargo run`, and fixed with three wording fixes. Two LS-006 replays had skipped the TypeScript quick-reference parts, so the operator chose to fix the load inside this packet. The hub router, the review packet and `stack-detection.md` now tell a reader to open every file the route selects. The operator also chose to add the clap, ratatui and crossterm keywords and the LS-007 scenario, which amends decision D1. The router sync check, the node suites, the advisor regression set and the playbook validator ran after those edits, the advisor graph was rebuilt with the operator's approval, and fresh Vibe workers replayed LS-006 and LS-007. The follow-up is committed on `worktrees/546-sk-code-rust`. Nothing is pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -118,7 +123,11 @@ Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, 
 | Binding comparison, `scratch/binding-check.txt` | PASS, 517 rule lines, 513 verbatim, 4 changed with meaning kept, 0 missing |
 | Coverage grep for clap, ratatui and crossterm | PASS, 1 file each |
 | Example check in a scratch crate | PASS, clippy exit 0 and the binary test passed |
-| LS-006 scenario replay, one Vibe worker | FAIL on one point. Rust and TypeScript were both detected, every Rust part and shared reference loaded and no python, shell or config reference loaded. The worker skipped `typescript/quick-reference/`, which the router selects. Evidence in `scratch/ls006-replay.txt` |
+| LS-006 scenario replay, before the loading fix | FAIL on the TypeScript side in runs 1 and 2. Both workers skipped `typescript/quick-reference/`, which the router selects. Run 3 is void, because it ran without `--auto-approve` and every read was denied |
+| LS-006 scenario replay, run 4 after the fix | PASS. Both trios and the shared folder loaded, 7 of 7 TypeScript parts including both quick-reference parts, and no python, shell or config reference. One run cannot separate the fix from worker variance. Evidence in `scratch/ls006-replay.txt` |
+| LS-007 scenario replay, run 3 | Pass criteria hold: RUST alone, 17 of 17 Rust parts, 4 of 4 checklist parts, no other language. Two expected signals are unmet, the SKILLED surface label and the universal checklist, because `stack-detection.md` section 2 counts the /tmp fixture path as not SKILLED |
+| Follow-up gates | `verify-router-sync.cjs` 5/5. sk-code-skilled node tests 56/56. shared node tests 33/33. Advisor regression 84/84. `validate-playbook-package.cjs` PASS with violations=0. `validate_skill_package.py` PASS for sk-code-skilled and sk-code-review |
+| Advisor stage one after the rebuild | sk-code first at 0.8682 for the LS-006 prompt and 0.8706 for the LS-007 prompt, 14 of 14 source files fresh |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -128,7 +137,8 @@ Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, 
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
 1. **No terminal screen rules.** A ratatui or crossterm app, such as restoring raw mode on every exit path, gets no rule yet, because the source repository has none. A later packet can source them from ratatui's own documentation.
-2. **LS-006 failed on the TypeScript side.** The worker opened no `typescript/quick-reference/` file, though `ROUTER.md` selects it. This packet changed no routing or TypeScript file, so the cause sits outside it, but the P0 stays open until a replay loads both trios.
+2. **LS-006 passed once after the loading fix.** Runs 1 and 2 skipped the TypeScript quick-reference parts and run 4 opened them. A single passing run cannot show whether the fix or worker variance made the difference, so a later replay is the check.
+3. **A fixture outside the hub reads as UNKNOWN.** LS-006 and LS-007 both put their fixture under /tmp. `stack-detection.md` section 2 counts a path as SKILLED only inside the hub's `.skilled/` folder, so a reader that resolves the path reports UNKNOWN and skips the universal checklist, while the text route says SKILLED. That rule is outside this packet.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "3.12.5.0",
+  "version": "3.12.6.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -74,7 +74,7 @@
       "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
     },
     "code-skilled-runtime": {
-      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "vitest", "argparse", "console.error", "tiny script", "bash", ".ts", "bug", "stable jsonl keys", "add set -euo pipefail", "alignment verifier"]
+      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "clap cli", "clap crate", "clap derive", "clap::", "ratatui", "crossterm", "vitest", "argparse", "console.error", "tiny script", "bash", ".ts", "bug", "stable jsonl keys", "add set -euo pipefail", "alignment verifier"]
     },
     "code-skilled-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]

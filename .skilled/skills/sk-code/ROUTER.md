@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.25.0
+version: 2.3.26.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -222,6 +222,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 ### DO
 
 - Load only references needed for current intent + surface
+- Open every file the route selects before naming the standards you applied. "Needed" decides what the route selects, never which selected files you skip. A task that touches two languages opens every routed part of both sets, each `quick-reference` part included
 - Use exact canonical file paths in playbook result YAML (never directory placeholders)
 - Cite surface + top-1 intent + loaded resource paths + verification command in your final answer
 
@@ -263,7 +264,7 @@ INTENT_SIGNALS = {
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
-    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
+    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "clap cli", "clap crate", "clap derive", "clap::", "ratatui", "crossterm", "#[napi]", "#[wasm_bindgen]"]},
     "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "github actions release workflow", "github actions deploy workflow", "release workflow yaml", "deploy workflow yaml", "github actions minutes", "actions minutes", "actions runner minutes", "runner minutes", "ci workflow cost", "ci cost", "reduce ci costs", "lower ci costs", "cut ci costs", "reduce our ci costs", "lower our ci costs", "ci spend", "ci bill", "ci minutes cost", "cut the ci minutes", "cut ci minutes", "reduce ci minutes", "ci pipeline cost", "ci pipeline cheaper", "ci pipelines cheaper", "cheaper ci pipeline", "ci runs cheaper", "failing ci", "failing ci pipeline", "ci failure", "ci failures", "ci is failing", "broken ci", "debug the ci", "debug ci", "cost of our ci", "make ci cheaper", "github actions bill", "github actions cost", "turn off the ci", "turn on the ci", "ci review workflow", "runner-minutes", "timeout-minutes", "paths-ignore", "pull_request_target", "permissions: contents: read", "actions/cache", "setup-bun", "fail-fast: false", "strategy matrix", "ruleset context", "trigger-index rebuild", "workflow_dispatch", "actions concurrency group", "actions cache key", "ci job", "action to a sha", "sha-pinned action"]},
     "FRONTEND_WEB":        {"weight": 4, "keywords": ["semantic html markup", "with css", "the stylesheet", "css file", "ui component", "frontend component", "form inputs", "form styling", "style the form"]},
     "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute", "modal dialog"]},

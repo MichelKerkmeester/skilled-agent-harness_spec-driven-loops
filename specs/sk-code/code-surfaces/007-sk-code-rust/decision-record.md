@@ -41,6 +41,10 @@ _memory:
 | Q005 | Delete scratch/before/ and the two stray lineage specs/ folders, since the copies match HEAD and the configs are stale initialization copies. | Not stated. | None | tasks.md CHK-051, scratch/ |
 | Q006 | Run LS-006 steps 3 to 5 through one cli-mistral-vibe worker on deepseek-flash. | Not stated. | None | tasks.md CHK-021, scratch/ls006-replay.txt |
 | Q007 | Write the sending session's 13 queued answers into decision records: the Rust ones in this packet and the bots ones in the bots parity packet, at the operator's direction against the save rule that skips another session's answers. | Not stated. | None | decision-record.md Q001 to Q004 |
+| Q008 | Rerun LS-006 with a fresh Vibe worker rather than accept the first result. | Not stated. | None | tasks.md CHK-021, scratch/ls006-replay.txt |
+| Q009 | Fix the LS-006 TypeScript-side load gap inside this packet rather than hand it off. | Not stated. | None | tasks.md CHK-021, sk-code ROUTER.md section 7, sk-code-review/SKILL.md |
+| Q010 | Add an app-style Rust playbook scenario and the clap, ratatui and crossterm routing keywords, amending decision D1. | Not stated. | None | goal.md D1, sk-code ROUTER.md, hub-router.json, manual-testing-playbook |
+| Q011 | Back up and rebuild the worktree's skill-graph.sqlite with /doctor:skill-advisor rebuild, then probe the LS-006 and LS-007 prompts. | Not stated. | None | tasks.md T028, implementation-summary.md Verification |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -187,6 +191,84 @@ Leave all queued
 Answer:
 ```text
 Write them, both packets (Recommended)
+```
+
+### Q008
+<!-- source: claude:9214d15c-f092-4715-b003-a7d2c9126ab8:toolu_01LpoXfMRWoAD9itKHR4eimL:0 -->
+
+Question:
+```text
+LS-006 is the last open P0 in the Rust packet. One Vibe worker replayed it: Rust and TypeScript were both detected, every Rust part and the shared guidance loaded, and nothing from Python, shell or config loaded. But it opened no typescript/quick-reference/ file, though the router selects that folder. This packet changed no routing or TypeScript file. How should LS-006 be settled?
+```
+
+Options:
+```text
+Rerun with a new worker (Recommended)
+Accept and close
+Leave it open
+```
+
+Answer:
+```text
+Rerun with a new worker (Recommended)
+```
+
+### Q009
+<!-- source: claude:9214d15c-f092-4715-b003-a7d2c9126ab8:toolu_01C8sWnid2VCSnLeasvBFcM6:0 -->
+
+Question:
+```text
+LS-006 failed the same way twice. Both Vibe workers loaded the whole Rust set but skipped typescript/quick-reference/, which the router selects for a napi-rs plus TypeScript task, and the second also skipped the TypeScript and universal checklists. This packet changed no routing or TypeScript file. How should the Rust packet handle it?
+```
+
+Options:
+```text
+Hand off and close (Recommended)
+Fix it in this packet
+Keep it open
+```
+
+Answer:
+```text
+Fix it in this packet
+```
+
+### Q010
+<!-- source: claude:9214d15c-f092-4715-b003-a7d2c9126ab8:toolu_01C8sWnid2VCSnLeasvBFcM6:1 -->
+
+Question:
+```text
+The review raised two coverage gaps for app-style Rust. A playbook scenario: no scenario checks that a Rust-only clap CLI loads the Rust set and no TypeScript set. Router keywords: clap, ratatui and crossterm are not RUST keywords, so a prompt like 'review my clap CLI' with no .rs file or 'rust' word would miss the Rust set. Adding keywords changes detection, which the packet's frozen decision D1 rules out, so it would be an amendment. Which should be added?
+```
+
+Options:
+```text
+App-style Rust playbook scenario
+clap, ratatui, crossterm keywords
+```
+
+Answer:
+```text
+App-style Rust playbook scenario, "clap, ratatui, crossterm keywords"
+```
+
+### Q011
+<!-- source: claude:7b89ca45-b5de-48e9-8686-d21baf947716:toolu_01XSxTFDSkFXDfwsfbjBL1nM:0 -->
+
+Question:
+```text
+The skill advisor in the Rust worktree reports its index is stale for one skill (sk-code, whose graph-metadata.json gained rust, napi-rs, ratatui, crossterm and clap cli). May I run /doctor:skill-advisor rebuild there? It copies the gitignored skill-graph.sqlite to a .bak first, rebuilds it from the checked-in metadata, and restores the backup on any failure. Undo is copying the .bak back.
+```
+
+Options:
+```text
+Rebuild (Recommended)
+Skip rebuild
+```
+
+Answer:
+```text
+Rebuild (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

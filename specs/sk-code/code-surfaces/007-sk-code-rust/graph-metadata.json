@@ -39,7 +39,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -57,10 +57,10 @@
       ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
       ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
       ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
-      "scratch/cite-check.txt",
-      "scratch/binding-check.txt",
-      "scratch/ls006-replay.txt",
-      ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md"
+      ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+      ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md"
     ],
     "entities": [
       {
@@ -160,37 +160,19 @@
         "source": "derived"
       },
       {
-        "name": "cite-check.txt",
-        "kind": "file",
-        "path": "scratch/cite-check.txt",
-        "source": "derived"
-      },
-      {
-        "name": "binding-check.txt",
-        "kind": "file",
-        "path": "scratch/binding-check.txt",
-        "source": "derived"
-      },
-      {
-        "name": "ls006-replay.txt",
-        "kind": "file",
-        "path": "scratch/ls006-replay.txt",
-        "source": "derived"
-      },
-      {
-        "name": "toolchain-and-project-structure.md",
+        "name": "overview-and-data-ownership.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,11 +188,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Rust references and checklist under `.skilled/skills/sk-code/sk-code-skilled/` are written for one job: a napi-rs or WASM binding whose output must match a TypeScript oracle byte for byte",
     "created_at": "2026-11-26T11:53:48Z",
-    "last_save_at": "2026-11-26T13:08:00.617Z",
+    "last_save_at": "2026-11-26T15:22:08.069Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fea0c44877c66262dd309ccd84ded5bab3440b409e5dc70335db8398634b5e2b",
+    "source_fingerprint": "sha256:bffdbec12b5bb63ca0d28ae3b42686c8ac7ecec73cb2609635917a733f677d76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da6b1f4315a0717f38f36286241defa6adc2bb7166b02cef4da7148c88657574",
-      "plan.md": "b03b4cc2f1e81e3260f85422b393e4b5b958d8a0a197e4bfe58d1a8c159ffe10",
-      "tasks.md": "37281366c2c30db4915570f2d7490a08c5dad0b5e7b64b8df7a52c69d41fafec",
-      "decision-record.md": "a4949781e18691b13c1e22a4d7493af009d63e8a60c99a0f5f285fbe2c2eb652",
-      "implementation-summary.md": "e3dd556dc4e806eabca544fad12224ee75684b05eb28d3ff2843746f179fcaad",
+      "spec.md": "8ddab78519efc7750bd61fd362475f5cd7271fbff260bdd48aa41e4f2df9da35",
+      "plan.md": "b96606a5ae3dc35034eea3f7d57b34e8c4822a8f63a944d49a5f4c631f38a566",
+      "tasks.md": "6c97897e73c7d42cb2153f8c3f736546696b1801fe6d2b05c913c1ecd69f98a8",
+      "decision-record.md": "e68047f914e4dadb3b84c6e1137fee1604e420294759b5e176d045be4622300e",
+      "implementation-summary.md": "1d0b429552b5be13c1c1360241162d77ec71b26ebf8a90fbf16d3d80084ed42b",
       "research/research.md": "9f92420f7d4bd38608744197c9187ea2b0b10df26619339af9fbcb2feed16eb9"
     },
     "last_active_at": null

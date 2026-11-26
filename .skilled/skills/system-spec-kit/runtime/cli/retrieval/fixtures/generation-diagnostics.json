@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7344,
-    "ok": 20658,
+    "missing-frontmatter": 7345,
+    "ok": 20660,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29630,
+  "documentsScanned": 29633,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "54111cf235daf259282241cc73e991106141e33270b4173410739171d0040b71",
+  "manifestHash": "8915c05cf46d25a7bc0a9a4169748a025489294eaa03ae78a2d7aefc33f47bf3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46381,
+      "ok": 46388,
       "prose-sentence": 23,
       "single-token": 152,
       "stop-word-only": 1,
@@ -11336,6 +11336,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-python.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

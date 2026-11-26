@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.25.0
+version: 1.5.26.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -39,7 +39,7 @@ This playbook provides deterministic operator scenarios validating the `sk-code`
 Coverage note (2026-05-04, with the CI bullet added 2026-10-25): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at ROUTER.md head-of-main. It exercises:
 - SKILLED surface detection (CWD or target path under `.skilled/`).
 - UNKNOWN fallback (Go / Swift markers: disambiguation expected).
-- SKILLED language sub-detection (JavaScript, TypeScript, Python, Shell, Rust, Config) with correct sub-language reference loading, LS-005 and LS-006 covering the JavaScript and Rust rows.
+- SKILLED language sub-detection (JavaScript, TypeScript, Python, Shell, Rust, Config) with correct sub-language reference loading, LS-005 covering the JavaScript row and LS-006 and LS-007 covering the Rust row for a binding and for an app.
 - Routing disambiguation and the sk-code vs sk-doc anti-pattern.
 - Skill advisor integration: a top-1 win that passes the probe's own threshold for positive controls, no false positives on doc-edit prompts.
 - Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
@@ -201,7 +201,7 @@ Per-feature files: see `surface-detection/`.
 
 ---
 
-## 8. LANGUAGE SUB-DETECTION (`LS-001..LS-006`)
+## 8. LANGUAGE SUB-DETECTION (`LS-001..LS-007`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -211,6 +211,7 @@ Per-feature files: see `surface-detection/`.
 | `LS-004` | SKILLED/Config | Verify JSON/JSONC sub-language detection within SKILLED | `Add a derived.last_active_child_id field to the graph-metadata.json file with value "001-spec".` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: SKILLED; sub-language: CONFIG; refs: `sk-code-skilled/references/config/{style-guide,quality-standards,quick-reference}.md` + `sk-code-skilled/references/shared/` | `/tmp/skc-LS004-loaded-refs.txt` | PASS iff sub-language == CONFIG AND all three config refs loaded | Verify the CONFIG row in `shared/references/stack-detection.md` section 3 and that no over-broad TS marker claims `.json` |
 | `LS-005` | SKILLED/JavaScript | Verify JavaScript sub-language detection within SKILLED | `Add a guard to main in .skilled/skills/sk-code/benchmark/scripts/render-report.cjs so an argv with neither --check nor a source path prints the usage line instead of throwing.` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: SKILLED; sub-language: JAVASCRIPT; refs: `sk-code-skilled/references/javascript/{style-guide.md,quick-reference.md,quality-standards/}` + `sk-code-skilled/references/shared/`; asset `sk-code-skilled/assets/checklists/javascript-checklist.md` | `/tmp/skc-LS005-loaded-refs.txt` | PASS iff sub-language == JAVASCRIPT AND the three javascript refs loaded AND no typescript/python/shell/rust/config refs loaded | Verify the JAVASCRIPT row in `shared/references/stack-detection.md` section 3 covers `.js`, `.mjs` and `.cjs` |
 | `LS-006` | SKILLED/Rust | Verify Rust sub-language detection within SKILLED, including the never-overrides rule | `In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: SKILLED; sub-language: RUST plus TYPESCRIPT, because the task names both languages and Rust never overrides another language; refs: `sk-code-skilled/references/rust/{style-guide,quality-standards,quick-reference}/` + `sk-code-skilled/references/typescript/{style-guide,quality-standards,quick-reference}/` + `sk-code-skilled/references/shared/` | `/tmp/skc-LS006-loaded-refs.txt` | PASS iff RUST is detected for the `.rs`/Cargo evidence AND TYPESCRIPT stays detected for the `.ts` side AND neither set displaces the other AND `sk-code-skilled/assets/checklists/rust-checklist/` loads | Verify the RUST row and the never-overrides paragraph in `shared/references/stack-detection.md` section 3 |
+| `LS-007` | SKILLED/Rust app | Verify Rust sub-language detection within SKILLED for an app-style binary with no TypeScript side | `In /tmp/skc-LS007-sandbox I have src/main.rs, a clap CLI that prints a report and exits with code 2 on error. Review it and tell me which standards you applied.` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: SKILLED; sub-language: RUST only; refs: `sk-code-skilled/references/rust/{style-guide,quality-standards,quick-reference}/` + `shared/references/stack-detection.md`, and no `sk-code-skilled/references/shared/` because one language is touched; assets `sk-code-skilled/assets/checklists/rust-checklist/` + `sk-code-skilled/assets/checklists/universal-checklist.md` | `/tmp/skc-LS007-loaded-refs.txt` | PASS iff RUST is detected AND all three rust folders loaded AND `rust-checklist/` loads AND no typescript/python/shell/config refs loaded | Verify the RUST row in `shared/references/stack-detection.md` section 3 lists the app-crate vocabulary, and that TypeScript ownership in the Rust checklist scope applies only where a TypeScript backend owns the process |
 
 Per-feature files: see `language-sub-detection/`.
 
@@ -311,9 +312,9 @@ The sk-code skill, plus the doctor scripts its scenarios drive, ship these autom
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_stack_folders.py` | pytest | Every known language resolving to an on-disk references folder, and an orphan folder being flagged | DR-004 |
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | pytest | The SKILLED alignment verifier | none |
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/run-all-drift-guards.test.cjs` | `node --test` | The drift-guard runner and its per-guard exit handling | none |
-| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/router-stage-two-quality.test.cjs` | `node --test` | The stage-two resource map the language rows come from | LS-001..LS-006, which additionally grade a live route |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/router-stage-two-quality.test.cjs` | `node --test` | The stage-two resource map the language rows come from | LS-001..LS-007, which additionally grade a live route |
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/declared-surfaces-parity.test.cjs` | `node --test` | `mode-registry.json` `surfaceDetection` blocks against the detection order | SD-002, SD-003 |
-| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/quality-checklist-map.test.cjs` | `node --test` | The checklist each language folder maps to | LS-005, LS-006 |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/quality-checklist-map.test.cjs` | `node --test` | The checklist each language folder maps to | LS-005, LS-006, LS-007 |
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs` | `node --test` | Documented claims in the packet against the tree | none |
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` | `node --test` | Served router copies matching their authored closure | none |
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync-git-timeout.test.cjs` | `node --test` | The same sync check's git timeout path | none |
@@ -329,7 +330,7 @@ The sk-code skill, plus the doctor scripts its scenarios drive, ship these autom
 
 Behavior the manual playbook alone covers:
 - Surface detection routing decisions (SD-002, SD-003, SD-004): the automation proves the declared blocks against the detection order, not what a live route resolves for a given prompt.
-- Language sub-detection within SKILLED (LS-001..LS-006): the automation proves the maps, not the load set a live route produces.
+- Language sub-detection within SKILLED (LS-001..LS-007): the automation proves the maps, not the load set a live route produces.
 - Advisor anti-pattern routing (RD-002) and end-to-end advisor probe accuracy (SA-001).
 - Design restraint behaviors: ladder rung selection, the anti-stall response shape and the `ceiling:` convention's live pass through the hygiene gate (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check, which also has its own pytest suite.
 - The warn-only banner reaching stdout through the full hook on a genuinely stale or genuinely dirty file (TH-001, TH-002). The hook suites prove the branch logic with fixtures; the scenarios prove the shipped checker, the executable bit and the banner on the real path.
@@ -351,6 +352,7 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Language Sub-Detection | LS-004 | [language-sub-detection/skilled-config.md](language-sub-detection/skilled-config.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Language Sub-Detection | LS-005 | [language-sub-detection/skilled-javascript.md](language-sub-detection/skilled-javascript.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Language Sub-Detection | LS-006 | [language-sub-detection/skilled-rust.md](language-sub-detection/skilled-rust.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
+| Language Sub-Detection | LS-007 | [language-sub-detection/skilled-rust-app.md](language-sub-detection/skilled-rust-app.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Routing Disambiguation | RD-002 | [routing-disambiguation/skcode-vs-skdoc.md](routing-disambiguation/skcode-vs-skdoc.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | Yes |
 | Routing Disambiguation | RD-003 | [routing-disambiguation/frontend-reach.md](routing-disambiguation/frontend-reach.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Routing Disambiguation | RD-004 | [routing-disambiguation/frontend-review-bundle.md](routing-disambiguation/frontend-review-bundle.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
@@ -365,4 +367,4 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | `feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md` | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | none | No |
 
-**Operator scenarios**: 22, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 9 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 31 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.
+**Operator scenarios**: 23, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 9 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 32 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.

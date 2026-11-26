@@ -1,5 +1,5 @@
 {
-  "manifestHash": "54111cf235daf259282241cc73e991106141e33270b4173410739171d0040b71",
+  "manifestHash": "8915c05cf46d25a7bc0a9a4169748a025489294eaa03ae78a2d7aefc33f47bf3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -80255,6 +80255,9 @@
     "open ends research phase parent spec": [
       "open ends research phase parent spec"
     ],
+    "open every routed file": [
+      "open every routed file"
+    ],
     "open findings follow up": [
       "open findings follow up"
     ],
@@ -103309,6 +103312,9 @@
     "review next focus hijack": [
       "review next focus hijack"
     ],
+    "review opens every routed file": [
+      "review opens every routed file"
+    ],
     "review output additions": [
       "review output additions"
     ],
@@ -106653,6 +106659,9 @@
     ],
     "rust anything research synthesis": [
       "rust anything research synthesis"
+    ],
+    "rust app routing keywords": [
+      "rust app routing keywords"
     ],
     "rust app standards": [
       "rust app standards"
@@ -111814,6 +111823,9 @@
     "sk code 3 12 5 0": [
       "sk-code 3.12.5.0"
     ],
+    "sk code 3 12 6 0": [
+      "sk-code 3.12.6.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -113272,6 +113284,9 @@
     "sk code review 1 9 18 0": [
       "sk-code-review 1.9.18.0"
     ],
+    "sk code review 1 9 19 0": [
+      "sk-code-review 1.9.19.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -113424,6 +113439,9 @@
     ],
     "sk code review v1 9 18 0": [
       "sk-code-review v1.9.18.0"
+    ],
+    "sk code review v1 9 19 0": [
+      "sk-code-review v1.9.19.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -114093,6 +114111,9 @@
     ],
     "sk code v3 12 5 0": [
       "sk-code v3.12.5.0"
+    ],
+    "sk code v3 12 6 0": [
+      "sk-code v3.12.6.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"

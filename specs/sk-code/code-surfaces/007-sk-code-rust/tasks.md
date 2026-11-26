@@ -54,7 +54,7 @@ Rewritten after the research to match the rows of `research/research.md` section
 - [x] T010 Name ratatui and crossterm as the terminal screen case with no rendering rules, part of row 6 (`$S/references/rust/quality-standards/build-and-organization.md`). Verify: `rg -l 'ratatui' $S/references/rust | wc -l` prints 1.
 - [x] T011 Add the regex engine rule and the Java `char` refusal, rows 14 and 15 (`$S/references/rust/quality-standards/modeling-collections-and-api.md`). Verify: `rg -n 'fancy-regex|UTF-16 code unit' $S/references/rust/quality-standards/modeling-collections-and-api.md` prints two lines. Row 16, the C ABI contract, is dropped per research section 5.
 - [x] T012 Prefer `#[expect]` over `#[allow]` and name the infallible exception, rows 17 and 18 (`$S/assets/checklists/rust-checklist/p1-required.md`, `$S/references/rust/quality-standards/build-and-organization.md`). Verify: `rg -n '#\[expect' $S/assets/checklists/rust-checklist/p1-required.md` prints at least two lines.
-- [x] T013 Confirm no part was added, so the hub router and registry stay unchanged (`.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/sk-code/mode-registry.json`). Verify: `node $S/assets/scripts/verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`.
+- [x] T013 Confirm no part was added, so the hub router and registry stay unchanged (`.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/sk-code/mode-registry.json`). Verify: `node $S/assets/scripts/verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`. This held for the first commit. T023, T024 and T027 later changed the hub router and registry.
 - [x] T014 Bump the version and write the changelog entry (`$S/SKILL.md`, `$S/changelog/v2.3.0.0.md`). Verify: `rg -n '^version:' $S/SKILL.md` prints `version: 2.3.0.0`, and the changelog names all seven changed parts.
 - [x] T015 Leave the LS-006 scenario unchanged, because it names the Rust folders and no folder changed (`.skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust.md`). Verify: `ls` on the three `references/rust/` folders and `assets/checklists/rust-checklist/` lists each one.
 <!-- /ANCHOR:phase-2 -->
@@ -70,6 +70,19 @@ Rewritten after the research to match the rows of `research/research.md` section
 - [x] T019 Compare each binding section with its pre-change copy (`$P/scratch/binding-check.txt`). Verify: it reports 517 rule lines, 513 verbatim, 4 changed with meaning kept and 0 missing.
 - [x] T020 Rerun the coverage grep from `spec.md` Measured Behavior (`$S/references/rust/`). Verify: `clap`, `ratatui` and `crossterm` each print 1 file, `build-and-organization.md`.
 - [x] T021 Validate the packet (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
+
+### Follow-up after the review of the first commit
+
+The operator ordered this follow-up after a fresh Opus review of the first commit and two LS-006 replays. Decision record rows Q009, Q010 and Q011 record the choices.
+
+- [x] T022 Fix review findings 1 to 5 and 7: scope TypeScript ownership to a TypeScript backend in four Rust docs, state the ASCII regex rule per class, and fix the lint anchor and comma wording (`$S/references/rust/`, `$S/assets/checklists/rust-checklist/`, `$S/SKILL.md`). Verify: `rg -n 'Where a TypeScript backend owns the process' $S/assets/checklists/rust-checklist/overview-and-p0-parity.md` prints a line.
+- [x] T023 Tell a reader to open every routed file, `quick-reference` parts included (`.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/sk-code/sk-code-review/SKILL.md`, `.skilled/skills/sk-code/shared/references/stack-detection.md`). Verify: `rg -n 'Open every file the route selects' .skilled/skills/sk-code/ROUTER.md` prints a line.
+- [x] T024 Add the app-crate keywords `clap cli`, `clap crate`, `clap derive`, `clap::`, `ratatui` and `crossterm` to RUST, and move the bracketed keywords last (`.skilled/skills/sk-code/ROUTER.md`, `$S/ROUTER.md`, `.skilled/skills/sk-code/hub-router.json`, `.skilled/skills/sk-code/graph-metadata.json`, `$S/assets/scripts/router-replay-lib.cjs`, `stack-detection.md`). Verify: `routeSkillResources` on the LS-007 prompt returns surface SKILLED with 17 Rust parts and 0 TypeScript parts, and "clap animation" routes nowhere.
+- [x] T025 Write LS-007, a Rust-only clap CLI scenario, and wire it into the playbook (`.skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md`). Verify: `validate-playbook-package.cjs --package .skilled/skills/sk-code/manual-testing-playbook` prints `operator=23` and `violations=0`.
+- [x] T026 Amend goal.md D1 for the new detection vocabulary (`$P/goal.md`). Verify: `goal.cjs packet $P` prints `packet_budget=ok`.
+- [x] T027 Bump the hub to 3.12.6.0 and sk-code-review to 1.9.19.0 with changelog entries, and extend the sk-code-skilled v2.3.0.0 entry (`.skilled/skills/sk-code/changelog/v3.12.6.0.md`, `.skilled/skills/sk-code/sk-code-review/changelog/v1.9.19.0.md`, `$S/changelog/v2.3.0.0.md`). Verify: `rg -n '^version:' .skilled/skills/sk-code/SKILL.md` prints `version: 3.12.6.0`.
+- [x] T028 Rebuild the worktree's skill graph with `/doctor:skill-advisor rebuild` and probe stage one (`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`). Verify: `advisor_status` reports 14 of 14 source files fresh, and `skill_advisor.py --threshold 0.8` puts sk-code first for the LS-006 and LS-007 prompts.
+- [x] T029 Replay LS-006 and LS-007 through fresh cli-mistral-vibe workers on deepseek-flash with `--auto-approve`, and grade each against the tool calls in its session journal (`$P/scratch/ls006-replay.txt`). Verify: the file records LS-006 run 4 as PASS and LS-007 run 3 as meeting its pass criteria. Run 3 of LS-006 is void, because it ran without `--auto-approve` and every read was denied.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,7 +92,7 @@ Rewritten after the research to match the rows of `research/research.md` section
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] The LS-006 scenario was replayed by hand and loaded both trios
+- [x] The LS-006 scenario was replayed by hand and loaded both trios. Run 4 did, per `$P/scratch/ls006-replay.txt`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -133,7 +146,7 @@ Rewritten after the research to match the rows of `research/research.md` section
 ## Testing Checklist
 
 - [x] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] The LS-006 scenario replayed by hand. Steps 1 and 2 passed on 2026-11-26: the advisor put sk-code first at confidence 0.8538 with `passes_threshold` true. Steps 3 to 5 ran in one cli-mistral-vibe worker and fail on one point: the worker opened no `typescript/quick-reference/` file, although the routing it cited selects both. Every Rust part loaded, and no python, shell or config reference loaded. Evidence: `$P/scratch/ls006-replay.txt`.
+- [x] CHK-021 [P0] The LS-006 scenario replayed by hand. Steps 1 and 2 passed on 2026-11-26: the advisor put sk-code first at confidence 0.8538 with `passes_threshold` true, and 0.8682 after the rebuild. Runs 1 and 2 failed on the TypeScript side: both workers skipped `typescript/quick-reference/`, which the route selects. Run 3 is void. Run 4, after the loading fix, passed: both trios and the shared folder loaded, 7 of 7 TypeScript parts, the TypeScript, universal and Rust checklists, and no python, shell or config reference. One pass cannot separate the fix from worker variance. LS-007 run 3 meets its pass criteria with two expected signals unmet, the SKILLED surface label and the universal checklist. Both come from `stack-detection.md` section 2, which counts a /tmp fixture path as not SKILLED. Evidence: `$P/scratch/ls006-replay.txt`.
 - [x] CHK-022 [P1] The copy check prints nothing
 - [x] CHK-023 [P1] The binding comparison lists no missing rule
 <!-- /ANCHOR:testing -->
@@ -162,7 +175,7 @@ Rewritten after the research to match the rows of `research/research.md` section
 ## File Organization
 
 - [x] CHK-050 [P1] Working files live in `$P/scratch/` only
-- [ ] CHK-051 [P1] `$P/scratch/before/` is removed before completion
+- [x] CHK-051 [P1] `$P/scratch/before/` is removed before completion. `test -d $P/scratch/before` exits 1, and `git ls-files` never listed it.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -172,8 +185,8 @@ Rewritten after the research to match the rows of `research/research.md` section
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 6/7 |
-| P1 Items | 10 | 9/10 |
+| P0 Items | 7 | 7/7 |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-26

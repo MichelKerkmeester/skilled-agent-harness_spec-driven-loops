@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-26 |
 | **Branch** | `worktrees/546-sk-code-rust` |
 <!-- /ANCHOR:metadata -->
@@ -74,7 +74,7 @@ wasm-bindgen: 14
 
 ### Out of Scope
 - A new `sk-code-rust` surface packet - the operator chose to update in place on 2026-11-26, so Rust stays inside sk-code-skilled.
-- A change to surface or language detection in `shared/references/stack-detection.md` - Rust inside Skilled is already detected, and the research only reopens this if it finds a gap inside SKILLED.
+- A change to surface or language detection in `shared/references/stack-detection.md` - Rust inside Skilled is already detected, and the research only reopens this if it finds a gap inside SKILLED. Amended 2026-11-26 by decision Q010: the RUST row gains the app-crate keywords, recorded as goal.md D1.
 - Writing any Rust code - this packet changes standards documents only.
 - Copying rust-anything files - its MIT or Apache-2.0 licence allows reuse, but the references state rules in sk-code's own words with a source line.
 
@@ -94,6 +94,8 @@ wasm-bindgen: 14
 | `.skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust.md` | Modify | Only when the reference list changes |
 
 The final list comes from the research synthesis, and `plan.md` names it before the first edit. The list as applied is in `plan.md` §Final File List.
+
+After the first commit, the operator widened the scope twice. Decision Q009 brought the LS-006 TypeScript-side load fix into this packet, which touches the hub `ROUTER.md`, `sk-code-review/SKILL.md` and `stack-detection.md`. Decision Q010 added the app-crate routing keywords and the LS-007 playbook scenario, which touch the hub routers, registry, metadata and playbook. `plan.md` §Final File List names every file the follow-up changed.
 <!-- /ANCHOR:scope -->
 
 ---

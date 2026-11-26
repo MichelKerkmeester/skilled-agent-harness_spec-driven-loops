@@ -8,7 +8,7 @@ trigger_phrases:
   - "cargo verification baseline"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rust Quality Standards
@@ -23,7 +23,7 @@ Open this when you are writing a Rust core module or adapter and need the owned-
 
 Establishes the quality standards that all Rust code in the OpenCode development environment must follow.
 
-Rust in this repository is a compatibility implementation for measured compute kernels behind an existing TypeScript/Node MCP backend. napi-rs, WASM/WASI, and sidecar boundaries must preserve the established JavaScript contract rather than introduce independent behavior.
+Where Rust sits behind an existing TypeScript/Node MCP backend, it is a compatibility implementation for measured compute kernels. napi-rs, WASM/WASI and sidecar boundaries must preserve the established JavaScript contract rather than introduce independent behavior. An app-style Rust binary with no TypeScript oracle, such as a CLI or a terminal screen, owns its own entry point and process contract, per the Rust checklist scope in `assets/checklists/rust-checklist/overview-and-p0-parity.md`.
 
 The release-level parity assertion is:
 
@@ -61,7 +61,7 @@ Semantic JSON equality is diagnostic only. Acceptance requires byte-for-byte equ
 - **[P0] Determinism means byte-for-byte TypeScript parity.** Preserve numeric operations, comparator chains, identifier preimages, UTF-8 encoding, delimiters, key order, omission behavior, and serialized number spelling. This protects **six-decimal score parity, stable sort parity, deterministic-ID parity, deterministic iteration order, and serialized-output parity**.
 - **[P0] No `unsafe` is permitted without a documented invariant and tests.** The pure core forbids unsafe code. Every permitted boundary unsafe block requires an adjacent `// SAFETY:` explanation, an exercising test, and a precondition-challenge test. This protects **FFI memory safety and boundary integrity**.
 - **[P0] Panics are not boundary errors.** JavaScript-controlled input must not reach `unwrap`, `expect`, unchecked indexing, explicit `panic!`, or assertion-dependent validation. This protects **Node process survival, WASM trap avoidance, and JavaScript error-shape parity**.
-- **[P0] TypeScript remains the behavior authority.** MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection remain in TypeScript. Rust adapters expose only narrow, measured kernels. This protects **transport compatibility and fallback behavior**.
+- **[P0] Where a TypeScript backend owns the process, TypeScript remains the behavior authority.** MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection remain in TypeScript. Rust adapters expose only narrow, measured kernels. This protects **transport compatibility and fallback behavior**.
 
 ---
 

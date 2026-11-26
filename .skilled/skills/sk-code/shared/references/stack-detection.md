@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.17.0
+version: 2.2.18.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -154,12 +154,12 @@ Whenever SKILLED is detected, as the leading surface or as second evidence, sele
 | TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `sk-code-skilled/references/typescript/` |
 | PYTHON | `.py` | `sk-code-skilled/references/python/` |
 | SHELL | `.sh`, `.bash` | `sk-code-skilled/references/shell/` |
-| RUST | `.rs`, then the `Cargo.toml` or `Cargo.lock` markers and napi-rs or wasm-bindgen vocabulary | `sk-code-skilled/references/rust/` |
+| RUST | `.rs`, then the `Cargo.toml` or `Cargo.lock` markers, napi-rs or wasm-bindgen vocabulary and app-crate vocabulary (`clap cli`, `clap crate`, `clap derive`, `clap::`, `ratatui`, `crossterm`) | `sk-code-skilled/references/rust/` |
 | CONFIG | `.json`, `.jsonc`, `.yaml`, `.yml` | `sk-code-skilled/references/config/` |
 
 When a task touches more than one language, load the shared guidance in `sk-code-skilled/references/shared/` plus the quick reference and checklist of each touched language.
 
-Rust never overrides another language. A napi-rs or WASM parity task that touches `.rs` and `.ts` loads both trios plus the shared guidance, because the Rust module must match its TypeScript oracle byte for byte. The Cargo markers count only after SKILLED is detected, never as a signal for another project's surface.
+Rust never overrides another language. A napi-rs or WASM parity task that touches `.rs` and `.ts` loads both trios plus the shared guidance, every routed part of each, `quick-reference` included, because the Rust module must match its TypeScript oracle byte for byte. The Cargo markers count only after SKILLED is detected, never as a signal for another project's surface.
 
 YAML is live hub config: command routers, workflow contracts and each command's auto and confirm assets.
 

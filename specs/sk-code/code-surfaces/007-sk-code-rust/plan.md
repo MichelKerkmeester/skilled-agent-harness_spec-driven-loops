@@ -84,6 +84,14 @@ Set by `research/research.md` section 4 and changed in place. No part was added,
 - `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md`: regex engines and Java `char`.
 
 The spec's expected targets `toolchain-and-project-structure.md`, `interop-model.md`, the quick reference and `p2-evidence-validation-and-resources.md` are not edited. The research found the finish gate already covered, placed the value mapping in `modeling-collections-and-api.md` and took no agent recipe.
+
+The follow-up after the first commit, set by decisions Q009 and Q010, changed these files as well. The sentence above about the hub router and registry held for the first commit only.
+
+- `.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/sk-code/sk-code-skilled/ROUTER.md`, `.skilled/skills/sk-code/hub-router.json` and `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs`: the app-crate RUST keywords, the bracketed keywords moved last, and the rule to open every routed file.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` and `.skilled/skills/sk-code/sk-code-review/SKILL.md`: the same keywords and the open-every-file rule. sk-code-review moves to 1.9.19.0 with `changelog/v1.9.19.0.md` created.
+- `.skilled/skills/sk-code/SKILL.md`, `mode-registry.json`, `description.json` and `graph-metadata.json`: the hub moves to 3.12.6.0 with `changelog/v3.12.6.0.md` created, and the advisor metadata gains the vocabulary.
+- `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md` and `language-sub-detection/skilled-rust-app.md`: LS-007 created and wired in.
+- The Rust parts `overview-and-p0-parity.md`, `p1-required.md`, `build-and-organization.md`, `modeling-collections-and-api.md`, `overview-and-data-ownership.md`, `overview-and-boundary-template.md`, `interop-model.md`, `overview-and-file-header.md`, plus `sk-code-skilled/SKILL.md` and `changelog/v2.3.0.0.md`: the review fixes that scope TypeScript ownership and state the ASCII regex rule per class.
 <!-- /ANCHOR:phases -->
 
 ---

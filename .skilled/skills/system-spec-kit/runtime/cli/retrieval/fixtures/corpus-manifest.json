@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bc5aef3867ed7f355007781126a88e0b8f384f819cf6f53f020a9a63c1d76edf",
+  "corpusHash": "9529ade3e040bc38cd431ca158cd5c6831f5eb5ccf95b1e5561ffe0cc298d0e5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29630,
+  "includedPathCount": 29633,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3124,6 +3124,7 @@
     ".skilled/skills/sk-code/changelog/v3.12.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.5.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.6.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3183,6 +3184,7 @@
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-config.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-javascript.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-python.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-shell.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
@@ -3416,6 +3418,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.16.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.17.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.18.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.19.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
@@ -29662,7 +29665,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "54111cf235daf259282241cc73e991106141e33270b4173410739171d0040b71",
+  "manifestHash": "8915c05cf46d25a7bc0a9a4169748a025489294eaa03ae78a2d7aefc33f47bf3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

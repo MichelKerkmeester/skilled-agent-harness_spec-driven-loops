@@ -42,7 +42,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Rust stays inside the sk-code-skilled surface. No new surface packet, and detection in `stack-detection.md` is unchanged. |
+| D1 | Rust stays inside the sk-code-skilled surface, with no new surface packet. Amended 2026-11-26 by operator decision: the RUST detection row in `stack-detection.md` and the sk-code routers gain the app-crate vocabulary `clap cli`, `clap crate`, `clap derive`, `clap::`, `ratatui` and `crossterm`. |
 | D2 | The research is one `/deep:research` fan-out of three `cli-mistral-vibe` lineages on `deepseek-flash` at max thinking, up to eight iterations each. No Fable or Opus agent runs. |
 | D3 | rust-anything is read-only. Its rules are restated in sk-code's own words with a source line, and no file is copied. |
 | D4 | The napi-rs and WASM parity rules keep their meaning. |
@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `specs/sk-code/code-surfaces/007-sk-code-rust/research/research.md` exists and ranks edits, each naming a target Rust part and a rust-anything `file:line`
-- [ ] `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`
-- [ ] `grep -rl` over `.skilled/skills/sk-code/sk-code-skilled/references/rust` finds `clap`, `ratatui` and `crossterm` at least once each, or research.md names why one is absent
-- [ ] `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` carries a version above 2.2.3.0 and its changelog folder holds the matching entry
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/code-surfaces/007-sk-code-rust --strict` prints `RESULT: PASSED`
+- [x] `specs/sk-code/code-surfaces/007-sk-code-rust/research/research.md` exists and ranks edits, each naming a target Rust part and a rust-anything `file:line`
+- [x] `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`
+- [x] `grep -rl` over `.skilled/skills/sk-code/sk-code-skilled/references/rust` finds `clap`, `ratatui` and `crossterm` at least once each, or research.md names why one is absent
+- [x] `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` carries a version above 2.2.3.0 and its changelog folder holds the matching entry
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/code-surfaces/007-sk-code-rust --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -86,6 +86,8 @@ and findings belong here.
 | Packet validation | Done | `validate.sh --strict` printed `RESULT: PASSED`, 0 errors, 1 warning on Trash paths in a raw lineage file |
 | Continuity save | Done | generate-context.js --full-auto exited 0, trigger index regenerated |
 | LS-006 replay | Partial | Vibe worker exit 0 finished, Rust loaded in full, typescript/quick-reference not opened |
+| LS-006 replay rerun | Done | Run 4 after the loading fix loaded both trios and 7 of 7 TypeScript parts, scratch/ls006-replay.txt |
+| Follow-up after the first commit | Done | Review fixes, open-every-file rule, app-crate keywords, LS-007 run 3 meets its criteria, packet docs closed |
 
 ### Deviations and findings
 

@@ -54,3 +54,7 @@ Non-rule changes in binding sections:
 - determinism-and-parity.md §Porting Against a Recorded Original: the float tolerance rule says no tolerance applies at a napi-rs, WASM or sidecar boundary held to the TypeScript oracle.
 
 Result: 517 rule lines, 513 verbatim, 4 changed with meaning kept, 0 missing.
+
+Review-fix pass after commit 066a16af103:
+5. overview-and-data-ownership.md, "[P0] TypeScript remains the behavior authority" became "[P0] Where a TypeScript backend owns the process, TypeScript remains the behavior authority". Every napi-rs, WASM and sidecar module sits behind a TypeScript backend, so the P0 binds them exactly as before. Meaning kept.
+6. The same scoping clause was added to the overview paragraph of that file, to quick-reference/overview-and-boundary-template.md, to style-guide/interop-model.md and to style-guide/overview-and-file-header.md. The ownership list and the Responsibility Split table are unchanged. Meaning kept.

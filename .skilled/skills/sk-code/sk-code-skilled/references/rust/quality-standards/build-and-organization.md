@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Cargo/Build Baseline & Module Organization
@@ -99,7 +99,7 @@ indexing_slicing = "deny"
 | `as_conversions` | P1 | Range and ABI correctness |
 | `indexing_slicing` | P1 | Caller-controlled bounds safety |
 
-A single-crate application with no workspace sets the same lints in its own `Cargo.toml`, under `[lints.clippy]`, with compiler lints under `[lints.rust]` (rust-anything, `Cargo.toml:42-46`). A lint group such as `all` takes `priority = -1`, so the single lints, at the default priority 0, override the group.
+A single-crate application with no workspace sets these lints in its own `Cargo.toml`, in the `[lints.clippy]` and `[lints.rust]` tables (rust-anything uses that form, `Cargo.toml:42-46`). The deny list is this set's own. A lint group such as `all` takes `priority = -1`, so the single lints, at the default priority 0, override the group.
 
 ```toml
 [lints.rust]
