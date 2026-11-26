@@ -1,21 +1,16 @@
 ---
-title: Deep Research Strategy Template
-description: Runtime template copied to research/ during initialization to track research progress, focus decisions, and outcomes across iterations.
+title: Deep Research Strategy
+description: Session tracking for the post-v4.1.0.0 bug, drift and issue hunt across logic, skills and work changed in v4.1.0.0..HEAD.
 trigger_phrases:
-  - "deep research strategy"
-  - "research strategy template"
-  - "research session tracking"
-  - "exhausted research approaches"
-  - "research stop conditions"
-  - "ruled out research directions"
+  - "post v4.1.0.0 drift research"
+  - "v4.1.0.0 bug hunt"
 importance_tier: normal
-contextType: planning
-version: 1.14.3.0
+contextType: research
 ---
 
-# Deep Research Strategy - Session Tracking Template
+# Deep Research Strategy - Session Tracking
 
-Runtime template copied to `specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/` during initialization. Tracks research progress across iterations.
+Tracks research progress across iterations for this run.
 
 ## 1. OVERVIEW
 
@@ -25,14 +20,14 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 
 ### Usage
 
-- **Init:** Orchestrator copies this template to `specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md` and populates Topic, Key Questions, Known Context, and Research Boundaries from config and memory context.
+- **Init:** Orchestrator copies this template to `{spec_folder}/research/deep-research-strategy.md` and populates Topic, Key Questions, Known Context, and Research Boundaries from config and memory context.
 - **Per iteration:** Agent reads Next Focus, writes iteration evidence, and the reducer refreshes What Worked/Failed, answered questions, carried-forward questions, ruled-out directions, and Next Focus.
 - **Mutability:** Mutable — analyst-owned sections remain stable, while machine-owned sections are rewritten by the reducer after each iteration. Section 3 is a generated projection from the reducer registry.
 - **Protection:** Shared state with explicit ownership boundaries. Orchestrator validates consistency on resume.
 
 ### Question Injection Surface
 
-Use `specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/inbox.jsonl` to append external questions during an active run. Each line is one JSON object with:
+Use `{spec_folder}/research/inbox.jsonl` to append external questions during an active run. Each line is one JSON object with:
 
 - `id`: stable inbox record identifier
 - `text`: question text to promote
@@ -54,42 +49,40 @@ When an inbox row targets an existing registry question but carries different te
 ---
 
 ## 2. TOPIC
-v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0 (window `v4.1.0.0..v4.2.0.0`, tag at `4be93f7ba19`).
+Find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD)
 
 ---
 
 <!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
-- [x] Does the overlay engine and its doctor commands (relayout, rollback, repin, json-entry merge, path and case handling) carry logic bugs in v4.2.0.0?
-- [x] Do the deep-loop runtime changes (fan-out, expansive frontier, frontier_drained, --extend, convergence and the append gateway) carry logic bugs or drift from their docs?
-- [x] Does the skill advisor (loop offers, the typed-only Python fallback, the common-words floor, native versus Python parity) misroute or drift from its docs?
-- [x] Do the session hooks and spec tooling (Stop decision auto-record, tail packet detection, nested sub-tracks in create, validate and relocate) carry bugs or UX friction?
-- [x] Where do the new v4.2.0.0 commands and hooks give operators bad UX: silent failures, misleading messages, unsafe defaults or dead ends?
+- [x] Q1: Does the changed system-deep-loop runtime (dispatch, fan-out, convergence, append gateway, lock, reducer) hold logic bugs, or disagree with its workflow YAML and reference docs?
+- [x] Q2: Does the changed system-skill-advisor (scorer, hooks, brief policy, embedding-lane removal) hold routing bugs or drift between code, hook docs and AGENTS.md Gate 2?
+- [x] Q3: Do the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes hold broken paths, registry or hub-router drift, or executor builder bugs?
+- [ ] Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?
+- [ ] Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?
 
 <!-- /ANCHOR:key-questions -->
 
 ---
 
 ## 4. NON-GOALS
-- Changelog prose and voice, already audited and fixed in the archived run.
-- Fixing anything: this run reports findings only.
-- Code that did not change in the window, unless a changed caller breaks it.
+- No fixes in this run: findings only, each with file:line evidence.
+- Not re-reporting issues already fixed on main (commits 4868ed36a21, 20af8368832, 6be8dac6251, 035c9dd6bdd) unless the fix is incomplete.
+- Spec-folder content under specs/ is evidence only, never a target.
 
 ---
 
 ## 5. STOP CONDITIONS
-- Every key question has a confirmed answer with `file:line` evidence, or is marked unresolved with what would settle it.
-- Ten iterations reached.
+- Stop policy max-iterations: run all 10 iterations; convergence is telemetry only.
+- Duration budget: 120 minutes from createdAt.
 
 ---
 
 <!-- ANCHOR:answered-questions -->
 ## 6. ANSWERED QUESTIONS
-- Does the overlay engine and its doctor commands (relayout, rollback, repin, json-entry merge, path and case handling) carry logic bugs in v4.2.0.0?
-- Do the deep-loop runtime changes (fan-out, expansive frontier, frontier_drained, --extend, convergence and the append gateway) carry logic bugs or drift from their docs?
-- Does the skill advisor (loop offers, the typed-only Python fallback, the common-words floor, native versus Python parity) misroute or drift from its docs?
-- Do the session hooks and spec tooling (Stop decision auto-record, tail packet detection, nested sub-tracks in create, validate and relocate) carry bugs or UX friction?
-- Where do the new v4.2.0.0 commands and hooks give operators bad UX: silent failures, misleading messages, unsafe defaults or dead ends?
+- Q1: Does the changed system-deep-loop runtime (dispatch, fan-out, convergence, append gateway, lock, reducer) hold logic bugs, or disagree with its workflow YAML and reference docs?
+- Q2: Does the changed system-skill-advisor (scorer, hooks, brief policy, embedding-lane removal) hold routing bugs or drift between code, hook docs and AGENTS.md Gate 2?
+- Q3: Do the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes hold broken paths, registry or hub-router drift, or executor builder bugs?
 
 <!-- /ANCHOR:answered-questions -->
 
@@ -98,16 +91,16 @@ v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, an
 <!-- MACHINE-OWNED: START -->
 <!-- ANCHOR:what-worked -->
 ## 7. WHAT WORKED
-- blaming each cited line against `v4.1.0.0` before writing. It moved four plausible issues out of the window and kept the findings honest about NON-GOALS. (iteration 1)
-- reading each fix as a rule, then grepping for every call site that rule should cover. Both findings came from a fix that guarded one site while a sibling kept the old pattern. Running the engine's own fixtures turned both into reproduced results instead of inference. (iteration 2)
-- picking the smallest in-window script first paid off. `workflow-steps.cjs` is new in the window and short, so one reproduction proved the bug without a live run. (iteration 3)
-- reading the current code around each in-window hunk, not just the hunk, is what surfaced the regression. It sits in `a20a1d96a05`, a sibling commit outside the five named. A cheap scratch reproduction closed the lineageId lead in one call, where reading alone kept it suspicious. (iteration 4)
-- probing the same refusal prompt on both paths exposed the parity gap faster than reading the 60-commit gate history. (iteration 5)
-- the probe through the compiled exported detector, fed transcripts built with `JSON.stringify`, exposed a gap the unit tests miss. The tests feed raw text, not JSON-escaped lines. (iteration 6)
-- running `create.sh` from a scratch git repository was cheap and safe, because the script takes its root from `git rev-parse --show-toplevel`. That made the exact refusal text quotable. (iteration 7)
-- a copied script, an empty provision list and a mode-switched stub isolated the new step in a few seconds. That made the exists-equals-done flaw reproducible without the real advisor or repository state. (iteration 8)
-- runtime probes through the DB-dir override settled the self-heal question in one run. Source reading could not have done that, because the heal goes through the daemon rather than through `initDb` alone. (iteration 9)
-- following each post-merge step in YAML order, and checking each step's skip condition, settled the question without running a fan-out. The data flow is declared in the YAML. (iteration 10)
+- Following the unreadable-identity branch through classification, fallback signaling, survivor detection, and ledger closure exposed a gap across three stages. (iteration 1)
+- comparing the registry, strategy, iteration record, and narrative exposed a status mismatch that was not visible in the code-only trace. (iteration 2)
+- following the Pi adapter's concrete call into the shared handler exposed a missing identity field that makes both receipt paths unreachable. (iteration 3)
+- comparing the canonical answer text with the reducer's exact normalized comparison identified why a previously answered question stayed open. (iteration 4)
+- resolving every declared resource against its owning hub root gave a direct answer to the remaining broken-path question; reading the consumer alongside the current registry confirmed the active field contract. (iteration 5)
+- comparing the hook's own recovery instructions with the installer and canonical README exposed a concrete failure for global `core.hooksPath` users. (iteration 6)
+- reading the validator predicate alongside its rejection test exposed a lower-case sentence boundary that neither condition catches. (iteration 7)
+- tracing the pre-push return-code branch into the sweep command exposed the concrete exit-2 path that the README summary omits. (iteration 8)
+- reading the mirror crosswalk beside all three relevant workflows showed which CI job owns each generated mirror family. (iteration 9)
+- comparing the route example with the actual stdin reader and a harmless shell probe exposed a delimiter edge case that prose about quoting did not cover. (iteration 10)
 
 <!-- /ANCHOR:what-worked -->
 
@@ -115,16 +108,16 @@ v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, an
 
 <!-- ANCHOR:what-failed -->
 ## 8. WHAT FAILED
-- reading the largest functions first, which spent budget on code mostly older than the window. The 76 in-window commits are the better map. (iteration 1)
-- the first `grep -v "^#"` filter also hid the repro's own `###` result lines, which cost a rerun. (iteration 2)
-- the commit list is too large to triage by subject line. The fan-out scripts alone carry 80 in-window commits, so they need an iteration of their own. (iteration 3)
-- the reducer could not be run on the scratch copy because it refuses artifact roots outside the approved specs roots. So the typed-reducer half of the lead stays open. (iteration 4)
-- the degraded CLI path cannot be forced without stopping the daemon, so its render step stayed inferred. (iteration 5)
-- the race could not be shown without running the writer against real state, so it stays an inference. (iteration 6)
-- the budget went to the Stop hook and `create.sh` first, so `worktree-naming.sh` was never reached. (iteration 7)
-- the first scratch run cleaned up with `rm`, which the prompt bans. A fresh directory per case is the right pattern. (iteration 8)
-- the planned processStartOf stub, because the stop functions are module-private. (iteration 9)
-- trusting the inherited :1732 citation. A citation reused across iterations needs a reread before it carries a conclusion. (iteration 10)
+- The question-field review did not yield a defect because the prompt and reducer agree on exact matching. (iteration 1)
+- the current packet does not identify which imported event established Q1's resolved state; tracing the legacy-import source is still needed. (iteration 2)
+- dynamic Pi behavior was not exercised; static control flow was sufficient to confirm the missing session identity. (iteration 3)
+- static hub files did not establish runtime route reachability or cover a shared executor builder outside the changed paths. (iteration 4)
+- no compiled route invocation was made, so this pass establishes path existence and static consumer alignment, not an end-to-end routing result. (iteration 5)
+- Q4 spans more changed runtime and hook code than this focused pass could fully inspect. (iteration 6)
+- Q4 spans more runtime adapters and Git hook gates than this pass sampled. (iteration 7)
+- an initial malformed search expression and an incorrect candidate file path produced no usable evidence; direct reads of the actual source files resolved both. (iteration 8)
+- this bounded pass did not reach the sk-doc and sk-code implementation paths, so it cannot close the broad Q5 question. (iteration 9)
+- this bounded pass did not inspect every doctor command or every runtime-mirror and CI gate, so Q5 cannot close. (iteration 10)
 
 <!-- /ANCHOR:what-failed -->
 
@@ -132,300 +125,175 @@ v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, an
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### (a) `parseArguments` treats any token whose text after its first two characters is `upstream`, `to`, `stage` or `rollback` as that flag [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8975], from commit `0bfe4d6e929`. So `auto`, `onto` and `xxto` act as `--to`. Reproduced: `repin --upstream /tmp xxto deadbeef --root /nonexistent-zz` gets past parsing to `root is not a directory` (exit 2) instead of printing usage. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: (a) `parseArguments` treats any token whose text after its first two characters is `upstream`, `to`, `stage` or `rollback` as that flag [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8975], from commit `0bfe4d6e929`. So `auto`, `onto` and `xxto` act as `--to`. Reproduced: `repin --upstream /tmp xxto deadbeef --root /nonexistent-zz` gets past parsing to `root is not a directory` (exit 2) instead of printing usage.
+### A first read-only helper assumed the relocation ledger had an applied array and exited 1. The table was re-read using its actual schema; no artifact was changed. -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: A first read-only helper assumed the relocation ledger had an applied array and exited 1. The table was re-read using its actual schema; no artifact was changed.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: (a) `parseArguments` treats any token whose text after its first two characters is `upstream`, `to`, `stage` or `rollback` as that flag [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8975], from commit `0bfe4d6e929`. So `auto`, `onto` and `xxto` act as `--to`. Reproduced: `repin --upstream /tmp xxto deadbeef --root /nonexistent-zz` gets past parsing to `root is not a directory` (exit 2) instead of printing usage.
+- Do NOT retry: A first read-only helper assumed the relocation ledger had an applied array and exited 1. The table was re-read using its actual schema; no artifact was changed.
 
-### (b) `status --json` prints plain text, not JSON, for a usage error and for a root that is not a directory [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9020] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9030]. That contradicts the catch block's own comment [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9044], from commit `f965c658d49`. Reproduced with `status --json --root /nonexistent-zz`. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: (b) `status --json` prints plain text, not JSON, for a usage error and for a root that is not a directory [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9020] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9030]. That contradicts the catch block's own comment [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9044], from commit `f965c658d49`. Reproduced with `status --json --root /nonexistent-zz`.
+### A suspected gap caused by treating `agent-mirror-sync.yml` as the only CI mirror gate was not confirmed; the other reviewed workflows run the generated/runtime mirror checks. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: A suspected gap caused by treating `agent-mirror-sync.yml` as the only CI mirror gate was not confirmed; the other reviewed workflows run the generated/runtime mirror checks.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: (b) `status --json` prints plain text, not JSON, for a usage error and for a root that is not a directory [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9020] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9030]. That contradicts the catch block's own comment [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9044], from commit `f965c658d49`. Reproduced with `status --json --root /nonexistent-zz`.
+- Do NOT retry: A suspected gap caused by treating `agent-mirror-sync.yml` as the only CI mirror gate was not confirmed; the other reviewed workflows run the generated/runtime mirror checks.
 
-### (c) `repin --rollback` has no staleness guard. `backup.json` records only the bytes from before the run [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:6641]. `rollbackUnderLock` checks only that the backup itself is intact [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7323]. It never checks that the live tree still holds what the run wrote. So rolling back an older run after later re-pins, applies or hand edits overwrites them and removes the paths that run created. The route's plan is only a `find` listing of the run folder [SOURCE: .skilled/commands/doctor/assets/doctor-overlay-repin.yaml:76]. This is inference and was not executed. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: (c) `repin --rollback` has no staleness guard. `backup.json` records only the bytes from before the run [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:6641]. `rollbackUnderLock` checks only that the backup itself is intact [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7323]. It never checks that the live tree still holds what the run wrote. So rolling back an older run after later re-pins, applies or hand edits overwrites them and removes the paths that run created. The route's plan is only a `find` listing of the run folder [SOURCE: .skilled/commands/doctor/assets/doctor-overlay-repin.yaml:76]. This is inference and was not executed.
+### No additional defect was confirmed in the sampled handover prepare/arm/relaunch/claim transitions. This is limited to those paths, not a full review of every runtime adapter. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1594] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1648] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1909] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1998] -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: No additional defect was confirmed in the sampled handover prepare/arm/relaunch/claim transitions. This is limited to those paths, not a full review of every runtime adapter. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1594] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1648] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1909] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1998]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: (c) `repin --rollback` has no staleness guard. `backup.json` records only the bytes from before the run [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:6641]. `rollbackUnderLock` checks only that the backup itself is intact [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7323]. It never checks that the live tree still holds what the run wrote. So rolling back an older run after later re-pins, applies or hand edits overwrites them and removes the paths that run created. The route's plan is only a `find` listing of the run folder [SOURCE: .skilled/commands/doctor/assets/doctor-overlay-repin.yaml:76]. This is inference and was not executed.
+- Do NOT retry: No additional defect was confirmed in the sampled handover prepare/arm/relaunch/claim transitions. This is limited to those paths, not a full review of every runtime adapter. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1594] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1648] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1909] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1998]
 
-### (d) The relayout's final `run node ... apply` line lacks the `from <root>:` prefix [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8939], from commit `3d39e6a488b`. The in-window sweep `e7244e53648` left it as it was. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: (d) The relayout's final `run node ... apply` line lacks the `from <root>:` prefix [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8939], from commit `3d39e6a488b`. The in-window sweep `e7244e53648` left it as it was.
+### No additional defect was confirmed in the sampled pre-commit trust and comment-hygiene gate paths. This is not a conclusion about every Git hook or gate. [SOURCE: .skilled/scripts/git-hooks/pre-commit:36] [SOURCE: .skilled/scripts/git-hooks/pre-commit:63] [SOURCE: .skilled/scripts/git-hooks/pre-commit:199] [SOURCE: .skilled/scripts/git-hooks/pre-commit:209] -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: No additional defect was confirmed in the sampled pre-commit trust and comment-hygiene gate paths. This is not a conclusion about every Git hook or gate. [SOURCE: .skilled/scripts/git-hooks/pre-commit:36] [SOURCE: .skilled/scripts/git-hooks/pre-commit:63] [SOURCE: .skilled/scripts/git-hooks/pre-commit:199] [SOURCE: .skilled/scripts/git-hooks/pre-commit:209]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: (d) The relayout's final `run node ... apply` line lacks the `from <root>:` prefix [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8939], from commit `3d39e6a488b`. The in-window sweep `e7244e53648` left it as it was.
+- Do NOT retry: No additional defect was confirmed in the sampled pre-commit trust and comment-hygiene gate paths. This is not a conclusion about every Git hook or gate. [SOURCE: .skilled/scripts/git-hooks/pre-commit:36] [SOURCE: .skilled/scripts/git-hooks/pre-commit:63] [SOURCE: .skilled/scripts/git-hooks/pre-commit:199] [SOURCE: .skilled/scripts/git-hooks/pre-commit:209]
 
-### **`documentLayout` misreads the indent unit or line ending.** None found on a read of the opener-step logic. The function had six in-window fixes, and the archived run already holds M7 for it [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220]. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **`documentLayout` misreads the indent unit or line ending.** None found on a read of the opener-step logic. The function had six in-window fixes, and the archived run already holds M7 for it [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220].
+### No additional defect was confirmed in the sampled validator, rename, quality-router or sk-git paths. -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: No additional defect was confirmed in the sampled validator, rename, quality-router or sk-git paths.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`documentLayout` misreads the indent unit or line ending.** None found on a read of the opener-step logic. The function had six in-window fixes, and the archived run already holds M7 for it [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220].
+- Do NOT retry: No additional defect was confirmed in the sampled validator, rename, quality-router or sk-git paths.
 
-### **`frontier_drained` drifts from its docs.** It does not. The research candidate needs `depthMode == expansive`, `fanoutLineage`, at least one frontier node, none open or active, and at least one answered [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1243]. `fanoutLineage` is set only when the config carries `fanout_lineage_artifact_dir` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1673], and "open" counts both `open` and `active` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1667]. That matches [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:191] and [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130]. The node-status vocabulary has no extra in-flight status that the open count would miss [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:79]. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **`frontier_drained` drifts from its docs.** It does not. The research candidate needs `depthMode == expansive`, `fanoutLineage`, at least one frontier node, none open or active, and at least one answered [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1243]. `fanoutLineage` is set only when the config carries `fanout_lineage_artifact_dir` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1673], and "open" counts both `open` and `active` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1667]. That matches [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:191] and [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130]. The node-status vocabulary has no extra in-flight status that the open count would miss [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:79].
+### No conflict was found between the reviewed hook mechanics and AGENTS.md Gate 2 policy. Gate 2 gives the surfaced hook brief priority and names the direct advisor call as the fallback; the hook reference describes how the brief is produced and delivered. [SOURCE: AGENTS.md:63] [SOURCE: AGENTS.md:68] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:59] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: No conflict was found between the reviewed hook mechanics and AGENTS.md Gate 2 policy. Gate 2 gives the surfaced hook brief priority and names the direct advisor call as the fallback; the hook reference describes how the brief is produced and delivered. [SOURCE: AGENTS.md:63] [SOURCE: AGENTS.md:68] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:59]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`frontier_drained` drifts from its docs.** It does not. The research candidate needs `depthMode == expansive`, `fanoutLineage`, at least one frontier node, none open or active, and at least one answered [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1243]. `fanoutLineage` is set only when the config carries `fanout_lineage_artifact_dir` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1673], and "open" counts both `open` and `active` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1667]. That matches [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:191] and [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130]. The node-status vocabulary has no extra in-flight status that the open count would miss [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:79].
+- Do NOT retry: No conflict was found between the reviewed hook mechanics and AGENTS.md Gate 2 policy. Gate 2 gives the surfaced hook brief priority and names the direct advisor call as the fallback; the hook reference describes how the brief is produced and delivered. [SOURCE: AGENTS.md:63] [SOURCE: AGENTS.md:68] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:59]
 
-### **A second signal re-enters the runner's stop.** It cannot. `writeStoppedSummary` returns early once it has written [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5255]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **A second signal re-enters the runner's stop.** It cannot. `writeStoppedSummary` returns early once it has written [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5255].
+### No duplicate append or stale-head retry defect was confirmed in the inspected append-gateway path. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: No duplicate append or stale-head retry defect was confirmed in the inspected append-gateway path.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A second signal re-enters the runner's stop.** It cannot. `writeStoppedSummary` returns early once it has written [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5255].
+- Do NOT retry: No duplicate append or stale-head retry defect was confirmed in the inspected append-gateway path.
 
-### **overlay.md omits `--stage` and `repin --json`.** Not drift. overlay.md documents the `/doctor:overlay` route, which uses `--stage` internally [SOURCE: .skilled/commands/doctor/overlay.md:110]. The engine's USAGE lists both flags [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:133]. A route narrower than its engine is not a contradiction. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **overlay.md omits `--stage` and `repin --json`.** Not drift. overlay.md documents the `/doctor:overlay` route, which uses `--stage` internally [SOURCE: .skilled/commands/doctor/overlay.md:110]. The engine's USAGE lists both flags [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:133]. A route narrower than its engine is not a contradiction.
+### No field-shape mismatch was found between the current CLI mode registry and the executor consumer. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: No field-shape mismatch was found between the current CLI mode registry and the executor consumer.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **overlay.md omits `--stage` and `repin --json`.** Not drift. overlay.md documents the `/doctor:overlay` route, which uses `--stage` internally [SOURCE: .skilled/commands/doctor/overlay.md:110]. The engine's USAGE lists both flags [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:133]. A route narrower than its engine is not a contradiction.
+- Do NOT retry: No field-shape mismatch was found between the current CLI mode registry and the executor consumer.
 
-### **Pre-existing, out of window by NON-GOALS.** Each of these was blamed to a commit that `git merge-base --is-ancestor` puts before `v4.1.0.0`. They are recorded as observations, not findings: -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **Pre-existing, out of window by NON-GOALS.** Each of these was blamed to a commit that `git merge-base --is-ancestor` puts before `v4.1.0.0`. They are recorded as observations, not findings:
+### No independent retry-budget defect was confirmed in the inspected path: orphan requeues consume retry credit, and stopped lineages are terminal. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: No independent retry-budget defect was confirmed in the inspected path: orphan requeues consume retry credit, and stopped lineages are terminal.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Pre-existing, out of window by NON-GOALS.** Each of these was blamed to a commit that `git merge-base --is-ancestor` puts before `v4.1.0.0`. They are recorded as observations, not findings:
+- Do NOT retry: No independent retry-budget defect was confirmed in the inspected path: orphan requeues consume retry credit, and stopped lineages are terminal.
 
-### **Restored dropped values keep upstream's layout, not the live file's.** This is deliberate and the same on both restore paths. `restoreDroppedSets` writes the pin's own slice back ("so the file returns to upstream's bytes") [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2112]. `restoreDroppedKeys` does the same with `pinnedValueText` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2199]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **Restored dropped values keep upstream's layout, not the live file's.** This is deliberate and the same on both restore paths. `restoreDroppedSets` writes the pin's own slice back ("so the file returns to upstream's bytes") [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2112]. `restoreDroppedKeys` does the same with `pinnedValueText` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2199].
+### No missing or broken resource path was found among the 23 declarations checked. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: No missing or broken resource path was found among the 23 declarations checked.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Restored dropped values keep upstream's layout, not the live file's.** This is deliberate and the same on both restore paths. `restoreDroppedSets` writes the pin's own slice back ("so the file returns to upstream's bytes") [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2112]. `restoreDroppedKeys` does the same with `pinnedValueText` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2199].
+- Do NOT retry: No missing or broken resource path was found among the 23 declarations checked.
 
-### **Rollback writes through a linked ancestor.** It does not. `isDirectory` uses `lstat`, so a link standing where a folder was is unlinked rather than followed [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:273] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7381]. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **Rollback writes through a linked ancestor.** It does not. `isDirectory` uses `lstat`, so a link standing where a folder was is unlinked rather than followed [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:273] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7381].
+### No new dispatch-wrapper defect was confirmed in the inspected CLI path. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: No new dispatch-wrapper defect was confirmed in the inspected CLI path.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Rollback writes through a linked ancestor.** It does not. `isDirectory` uses `lstat`, so a link standing where a folder was is unlinked rather than followed [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:273] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7381].
+- Do NOT retry: No new dispatch-wrapper defect was confirmed in the inspected CLI path.
 
-### **The `--extend-minutes` arithmetic is off.** It is not. The code computes `max(prior, elapsed) + M`, defaults M to the prior budget, and keeps no budget when the prior was 0 [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:157]. That matches [SOURCE: .skilled/commands/deep/research.md:119]. The reproduction gave 1062 = 1002 elapsed minutes + 60. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The `--extend-minutes` arithmetic is off.** It is not. The code computes `max(prior, elapsed) + M`, defaults M to the prior budget, and keeps no budget when the prior was 0 [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:157]. That matches [SOURCE: .skilled/commands/deep/research.md:119]. The reproduction gave 1062 = 1002 elapsed minutes + 60.
+### No separate issue was confirmed in the sampled OpenCode plugin entrypoint or shared session reader. This is a bounded sample, not a clean bill of health for every session-handover adapter. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: No separate issue was confirmed in the sampled OpenCode plugin entrypoint or shared session reader. This is a bounded sample, not a clean bill of health for every session-handover adapter.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The `--extend-minutes` arithmetic is off.** It is not. The code computes `max(prior, elapsed) + M`, defaults M to the prior budget, and keeps no budget when the prior was 0 [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:157]. That matches [SOURCE: .skilled/commands/deep/research.md:119]. The reproduction gave 1062 = 1002 elapsed minutes + 60.
+- Do NOT retry: No separate issue was confirmed in the sampled OpenCode plugin entrypoint or shared session reader. This is a bounded sample, not a clean bill of health for every session-handover adapter.
 
-### **The `documentLayout` chain `2b9a2328922`..`5f1af6159d0` has a reader bug.** None found by reading. The reader does the following: -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The `documentLayout` chain `2b9a2328922`..`5f1af6159d0` has a reader bug.** None found by reading. The reader does the following:
+### No version or mode-key mismatch was found between the current registry and hub-router manifests for `mcp-browser-use`, `mcp-tooling` and `cli-external-orchestration`. The moved Chrome DevTools and Aside modes are listed under `mcp-browser-use`, and absent from `mcp-tooling`'s current registry/router. [SOURCE: .skilled/skills/mcp-browser-use/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:3] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:3] -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: No version or mode-key mismatch was found between the current registry and hub-router manifests for `mcp-browser-use`, `mcp-tooling` and `cli-external-orchestration`. The moved Chrome DevTools and Aside modes are listed under `mcp-browser-use`, and absent from `mcp-tooling`'s current registry/router. [SOURCE: .skilled/skills/mcp-browser-use/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:3] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:3]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The `documentLayout` chain `2b9a2328922`..`5f1af6159d0` has a reader bug.** None found by reading. The reader does the following:
+- Do NOT retry: No version or mode-key mismatch was found between the current registry and hub-router manifests for `mcp-browser-use`, `mcp-tooling` and `cli-external-orchestration`. The moved Chrome DevTools and Aside modes are listed under `mcp-browser-use`, and absent from `mcp-tooling`'s current registry/router. [SOURCE: .skilled/skills/mcp-browser-use/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:3] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:3]
 
-### **The `run_extended` lineageId breaks a restarted run (iteration 3 lead).** It does not, on the live path, and the line is out of window anyway. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The `run_extended` lineageId breaks a restarted run (iteration 3 lead).** It does not, on the live path, and the line is out of window anyway.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The `run_extended` lineageId breaks a restarted run (iteration 3 lead).** It does not, on the live path, and the line is out of window anyway.
-
-### **The exited-leader member split reads start times in the wrong zone.** It does not. Both sides are rendered under `TZ=UTC` and parsed field by field with `Date.UTC` (commit `4fc94bae0d3`) [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1282]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The exited-leader member split reads start times in the wrong zone.** It does not. Both sides are rendered under `TZ=UTC` and parsed field by field with `Date.UTC` (commit `4fc94bae0d3`) [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1282].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The exited-leader member split reads start times in the wrong zone.** It does not. Both sides are rendered under `TZ=UTC` and parsed field by field with `Date.UTC` (commit `4fc94bae0d3`) [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1282].
-
-### **The gateway's legacy research branch mis-mints identity.** No defect was found. It drops caller-keyed fields before the builder mints them, and it uses the gateway clock for completed iterations [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:452]. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The gateway's legacy research branch mis-mints identity.** No defect was found. It drops caller-keyed fields before the builder mints them, and it uses the gateway clock for completed iterations [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:452].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The gateway's legacy research branch mis-mints identity.** No defect was found. It drops caller-keyed fields before the builder mints them, and it uses the gateway clock for completed iterations [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:452].
-
-### **The json-entry layout fixes missed an emitter.** They did not. After `512be46971a`, every value writer passes the document's `unit` and `eol`, and none uses a hard-coded `\n` or two spaces: -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The json-entry layout fixes missed an emitter.** They did not. After `512be46971a`, every value writer passes the document's `unit` and `eol`, and none uses a hard-coded `\n` or two spaces:
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The json-entry layout fixes missed an emitter.** They did not. After `512be46971a`, every value writer passes the document's `unit` and `eol`, and none uses a hard-coded `\n` or two spaces:
-
-### **The legacy flush-left rewrite skips `insertObjectKeys`.** Not a miss. Before `512be46971a`, that rewrite took its indent from `existing.keyStart`, which sits at the start of a line, so it never wrote flush-left. Only `set` and `setKeyOnItem` read the indent at the value's start, and both got the `isLegacyFlushLeft` path [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1304]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The legacy flush-left rewrite skips `insertObjectKeys`.** Not a miss. Before `512be46971a`, that rewrite took its indent from `existing.keyStart`, which sits at the start of a line, so it never wrote flush-left. Only `set` and `setKeyOnItem` read the indent at the value's start, and both got the `isLegacyFlushLeft` path [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1304].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The legacy flush-left rewrite skips `insertObjectKeys`.** Not a miss. Before `512be46971a`, that rewrite took its indent from `existing.keyStart`, which sits at the start of a line, so it never wrote flush-left. Only `set` and `setKeyOnItem` read the indent at the value's start, and both got the `isLegacyFlushLeft` path [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1304].
-
-### **The relayout backup skips files silently.** It does not. `copyForBackup` prints a `skipped` line for each protected path it leaves out, and the failure message names them [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8580]. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **The relayout backup skips files silently.** It does not. `copyForBackup` prints a `skipped` line for each protected path it leaves out, and the failure message names them [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8580].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The relayout backup skips files silently.** It does not. `copyForBackup` prints a `skipped` line for each protected path it leaves out, and the failure message names them [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8580].
-
-### **The removal edits mangle CRLF files.** They do not. They delete from the previous item's end or to the next item's start, so they insert no line ending [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1732] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1833]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The removal edits mangle CRLF files.** They do not. They delete from the previous item's end or to the next item's start, so they insert no line ending [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1732] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1833].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The removal edits mangle CRLF files.** They do not. They delete from the previous item's end or to the next item's start, so they insert no line ending [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1732] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1833].
-
-### **The research `--extend` warning should name `frontier_drained` as the review twin does.** It should not. `--extend` refuses fan-out [SOURCE: .skilled/commands/deep/research.md:118], and only a fan-out lineage forms the research candidate [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1244]. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The research `--extend` warning should name `frontier_drained` as the review twin does.** It should not. `--extend` refuses fan-out [SOURCE: .skilled/commands/deep/research.md:118], and only a fan-out lineage forms the research candidate [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1244].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The research `--extend` warning should name `frontier_drained` as the review twin does.** It should not. `--extend` refuses fan-out [SOURCE: .skilled/commands/deep/research.md:118], and only a fan-out lineage forms the research candidate [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1244].
-
-### **The research trust merge keys untrust on the wrong iteration field.** It does not. `findingUntrustReason` is passed `finding.addedAtIteration` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:841], and the reducer writes key findings with `addedAtIteration: iteration.run` [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2818]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The research trust merge keys untrust on the wrong iteration field.** It does not. `findingUntrustReason` is passed `finding.addedAtIteration` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:841], and the reducer writes key findings with `addedAtIteration: iteration.run` [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2818].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The research trust merge keys untrust on the wrong iteration field.** It does not. `findingUntrustReason` is passed `finding.addedAtIteration` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:841], and the reducer writes key findings with `addedAtIteration: iteration.run` [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2818].
-
-### `--extend`, `step_frontier_*` and the frontier caps as post-merge readers. The first two are refused on a fan-out config, and the seed steps run before spawn, not after the merge. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: `--extend`, `step_frontier_*` and the frontier caps as post-merge readers. The first two are refused on a fan-out config, and the seed steps run before spawn, not after the merge.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `--extend`, `step_frontier_*` and the frontier caps as post-merge readers. The first two are refused on a fan-out config, and the seed steps run before spawn, not after the merge.
-
-### `[speckit] This packet fits no existing sub-track of demo. Consider proposing a new sub-track.` printed on a level-2 create in scratch. The scratch sub-track descriptions held no keywords, so the advice is a fixture artifact and is not counted. The "fits no" branch is also unchanged in the window. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: `[speckit] This packet fits no existing sub-track of demo. Consider proposing a new sub-track.` printed on a level-2 create in scratch. The scratch sub-track descriptions held no keywords, so the advice is a fixture artifact and is not counted. The "fits no" branch is also unchanged in the window.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `[speckit] This packet fits no existing sub-track of demo. Consider proposing a new sub-track.` printed on a level-2 create in scratch. The scratch sub-track descriptions held no keywords, so the advice is a fixture artifact and is not counted. The "fits no" branch is also unchanged in the window.
-
-### `documentLayout` has a single caller [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2228]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `documentLayout` has a single caller [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2228].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `documentLayout` has a single caller [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2228].
-
-### `insertItems` and `appendItems` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1561] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1581] -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `insertItems` and `appendItems` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1561] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1581]
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `insertItems` and `appendItems` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1561] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1581]
-
-### `insertObjectKeys` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1620] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1638] -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `insertObjectKeys` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1620] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1638]
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `insertObjectKeys` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1620] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1638]
-
-### `process.on` (from `978b74e8df7`) keeps libuv catching the repeat, so the repeat no longer kills the process with the default disposition. This matches [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:183]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: `process.on` (from `978b74e8df7`) keeps libuv catching the repeat, so the repeat no longer kills the process with the default disposition. This matches [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:183].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `process.on` (from `978b74e8df7`) keeps libuv catching the repeat, so the repeat no longer kills the process with the default disposition. This matches [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:183].
-
-### `set` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1426] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1445] -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `set` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1426] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1445]
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `set` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1426] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1445]
-
-### `setKeyOnItem` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1483] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1492] -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `setKeyOnItem` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1483] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1492]
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `setKeyOnItem` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1483] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1492]
-
-### A scan exit code that reads success when the scan's own status is `failed`. The CLI returns `invoked.isError ? EXIT_RUNTIME : EXIT_SUCCESS` [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1702], and whether a failed scan sets `isError` was not traced. This is left as a lead, not counted. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: A scan exit code that reads success when the scan's own status is `failed`. The CLI returns `invoked.isError ? EXIT_RUNTIME : EXIT_SUCCESS` [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1702], and whether a failed scan sets `isError` was not traced. This is left as a lead, not counted.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A scan exit code that reads success when the scan's own status is `failed`. The CLI returns `invoked.isError ? EXIT_RUNTIME : EXIT_SUCCESS` [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1702], and whether a failed scan sets `isError` was not traced. This is left as a lead, not counted.
-
-### A unit stub of `processStartOf`: `classifyLineagesForStop`, `lineageIdentityRefusal` and `processStartOf` are not in `module.exports`. The pinned vitest case covers the same row shape. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: A unit stub of `processStartOf`: `classifyLineagesForStop`, `lineageIdentityRefusal` and `processStartOf` are not in `module.exports`. The pinned vitest case covers the same row shape.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A unit stub of `processStartOf`: `classifyLineagesForStop`, `lineageIdentityRefusal` and `processStartOf` are not in `module.exports`. The pinned vitest case covers the same row shape.
-
-### Duplicate rows when the consumed write fails. The writer keys rows by source key [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:806], and `recordConsumedKeys` skips keys already logged [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:936]. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Duplicate rows when the consumed write fails. The writer keys rows by source key [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:806], and `recordConsumedKeys` skips keys already logged [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:936].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Duplicate rows when the consumed write fails. The writer keys rows by source key [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:806], and `recordConsumedKeys` skips keys already logged [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:936].
-
-### Forcing the CLI degraded path: no env switch exists. It runs only when the daemon is unreachable [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1636], so finding 1's render step stays inferred. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Forcing the CLI degraded path: no env switch exists. It runs only when the daemon is unreachable [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1636], so finding 1's render step stays inferred.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Forcing the CLI degraded path: no env switch exists. It runs only when the daemon is unreachable [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1636], so finding 1's render step stays inferred.
-
-### It breaks ties toward the shorter step, and otherwise falls back to the shallowest indent [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: It breaks ties toward the shorter step, and otherwise falls back to the shallowest indent [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220].
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: It breaks ties toward the shorter step, and otherwise falls back to the shallowest indent [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220].
-
-### It counts steps only from a line that opens one container, with strings stripped first. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: It counts steps only from a line that opens one container, with strings stripped first.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: It counts steps only from a line that opens one container, with strings stripped first.
-
-### It requires the next line's indent to extend the opener's. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: It requires the next line's indent to extend the opener's.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: It requires the next line's indent to extend the opener's.
-
-### It takes the majority line ending. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: It takes the majority line ending.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: It takes the majority line ending.
-
-### None new. -- BLOCKED (iteration 10, 2 attempts)
-- What was tried: None new.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: None new.
-
-### None that the reducer should treat as exhausted. The json-entry layout chain is closed for sibling sites, and a further pass on it is unlikely to pay. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: None that the reducer should treat as exhausted. The json-entry layout chain is closed for sibling sites, and a further pass on it is unlikely to pay.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: None that the reducer should treat as exhausted. The json-entry layout chain is closed for sibling sites, and a further pass on it is unlikely to pay.
-
-### None this iteration. The `frontier_drained` stop logic and the `--extend-minutes` arithmetic are candidates for the reducer to mark exhausted. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: None this iteration. The `frontier_drained` stop logic and the `--extend-minutes` arithmetic are candidates for the reducer to mark exhausted.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: None this iteration. The `frontier_drained` stop logic and the `--extend-minutes` arithmetic are candidates for the reducer to mark exhausted.
-
-### None to promote. -- BLOCKED (iteration 8, 2 attempts)
-- What was tried: None to promote.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: None to promote.
-
-### None to promote. The relocate two-level rewrite (`relocate.mjs`) was only grep-read for depth logic and is not exhausted. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: None to promote. The relocate two-level rewrite (`relocate.mjs`) was only grep-read for depth logic and is not exhausted.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: None to promote. The relocate two-level rewrite (`relocate.mjs`) was only grep-read for depth logic and is not exhausted.
-
-### None. -- BLOCKED (iteration 5, 1 attempts)
+### None. -- BLOCKED (iteration 7, 2 attempts)
 - What was tried: None.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: None.
 
-### Proving (c) by execution needs a live re-pin with a later edit, which writes outside this packet. It is left as inference. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Proving (c) by execution needs a live re-pin with a later edit, which writes outside this packet. It is left as inference.
+### None. The sk-doc implementation, sk-code routing and quality surfaces, and the remaining sk-git paths still offer productive follow-up work. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: None. The sk-doc implementation, sk-code routing and quality surfaces, and the remaining sk-git paths still offer productive follow-up work.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Proving (c) by execution needs a live re-pin with a later edit, which writes outside this packet. It is left as inference.
+- Do NOT retry: None. The sk-doc implementation, sk-code routing and quality surfaces, and the remaining sk-git paths still offer productive follow-up work.
 
-### Reproduced on a scratch copy of this packet, which is itself a restart (generation 2, `parentSessionId` set). `extend-research` exited 0 and staged `scope.lineageId = 2026-11-25T08:04:38Z`. The gateway accepted it (exit 0, receipt sequence 8, `projectionRefreshed: true`), and a later iteration record with `lineageId = sessionId` was accepted too (exit 0, sequence 9). -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Reproduced on a scratch copy of this packet, which is itself a restart (generation 2, `parentSessionId` set). `extend-research` exited 0 and staged `scope.lineageId = 2026-11-25T08:04:38Z`. The gateway accepted it (exit 0, receipt sequence 8, `projectionRefreshed: true`), and a later iteration record with `lineageId = sessionId` was accepted too (exit 0, sequence 9).
+### The changed sk-doc validator’s required result marker is present in all 57 discovered playbook roots; no uncovered package was found in this scan. -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: The changed sk-doc validator’s required result marker is present in all 57 discovered playbook roots; no uncovered package was found in this scan.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Reproduced on a scratch copy of this packet, which is itself a restart (generation 2, `parentSessionId` set). `extend-research` exited 0 and staged `scope.lineageId = 2026-11-25T08:04:38Z`. The gateway accepted it (exit 0, receipt sequence 8, `projectionRefreshed: true`), and a later iteration record with `lineageId = sessionId` was accepted too (exit 0, sequence 9).
+- Do NOT retry: The changed sk-doc validator’s required result marker is present in all 57 discovered playbook roots; no uncovered package was found in this scan.
 
-### Residual: the typed reducer's `assertRunIdentity` refuses a lineageId that differs from `run_initialized`'s [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:465]. Its callers were not traced, so a typed full-ledger fold of a restarted and extended run is unverified. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Residual: the typed reducer's `assertRunIdentity` refuses a lineageId that differs from `run_initialized`'s [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:465]. Its callers were not traced, so a typed full-ledger fold of a restarted and extended run is unverified.
+### The current `keyQuestions` and `answeredQuestions` wording is consistent with the reducer's exact question matching; no defect confirmed in that contract. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: The current `keyQuestions` and `answeredQuestions` wording is consistent with the reducer's exact question matching; no defect confirmed in that contract.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Residual: the typed reducer's `assertRunIdentity` refuses a lineageId that differs from `run_initialized`'s [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:465]. Its callers were not traced, so a typed full-ledger fold of a restarted and extended run is unverified.
+- Do NOT retry: The current `keyQuestions` and `answeredQuestions` wording is consistent with the reducer's exact question matching; no defect confirmed in that contract.
 
-### The `run_extended` lineageId lead is closed for the live gateway path. The reducer can mark it exhausted. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The `run_extended` lineageId lead is closed for the live gateway path. The reducer can mark it exhausted.
+### The current CLI registry/router manifests list eight CLI modes and do not retain `cli-orca`. The changed OpenCode setup helper is an installer/checker, not a dispatch-command builder. Static review found no executor-builder defect; runtime reachability remains unchecked. [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:19] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:241] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:34] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:104] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:8] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:28] -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: The current CLI registry/router manifests list eight CLI modes and do not retain `cli-orca`. The changed OpenCode setup helper is an installer/checker, not a dispatch-command builder. Static review found no executor-builder defect; runtime reachability remains unchecked. [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:19] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:241] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:34] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:104] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:8] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:28]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The `run_extended` lineageId lead is closed for the live gateway path. The reducer can mark it exhausted.
+- Do NOT retry: The current CLI registry/router manifests list eight CLI modes and do not retain `cli-orca`. The changed OpenCode setup helper is an installer/checker, not a dispatch-command builder. Static review found no executor-builder defect; runtime reachability remains unchecked. [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:19] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:241] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:34] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:104] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:8] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:28]
 
-### The doc states the same rule [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:65], so there is no drift. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: The doc states the same rule [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:65], so there is no drift.
+### The iteration 4 registry/version comparison was not repeated because strategy marks it exhausted. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: The iteration 4 registry/version comparison was not repeated because strategy marks it exhausted.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The doc states the same rule [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:65], so there is no drift.
+- Do NOT retry: The iteration 4 registry/version comparison was not repeated because strategy marks it exhausted.
 
-### The file-mode regression in `957f47570f3` was restored before the tag, as noted under Checked clean. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: The file-mode regression in `957f47570f3` was restored before the tag, as noted under Checked clean.
+### The overlay guard's suggested `status` command is accepted by the overlay engine CLI; no command-shape drift was confirmed. [SOURCE: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:59-63] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:23-26] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9267-9316] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9344-9348] -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: The overlay guard's suggested `status` command is accepted by the overlay engine CLI; no command-shape drift was confirmed. [SOURCE: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:59-63] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:23-26] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9267-9316] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9344-9348]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The file-mode regression in `957f47570f3` was restored before the tag, as noted under Checked clean.
+- Do NOT retry: The overlay guard's suggested `status` command is accepted by the overlay engine CLI; no command-shape drift was confirmed. [SOURCE: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:59-63] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:23-26] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9267-9316] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9344-9348]
 
-### The grace wait blocks synchronously on `Atomics.wait`, so a queued handler runs only after `process.exit` has already been called in `finally` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:714]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The grace wait blocks synchronously on `Atomics.wait`, so a queued handler runs only after `process.exit` has already been called in `finally` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:714].
+### The previously reviewed handover transition sequence was marked exhausted in the prior iteration and was not repeated. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: The previously reviewed handover transition sequence was marked exhausted in the prior iteration and was not repeated.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The grace wait blocks synchronously on `Atomics.wait`, so a queued handler runs only after `process.exit` has already been called in `finally` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:714].
+- Do NOT retry: The previously reviewed handover transition sequence was marked exhausted in the prior iteration and was not repeated.
 
-### The live record in this packet holds rows Q001 to Q007, all `Recorded automatically:`, one source comment each, and no duplicates [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:37] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:43]. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: The live record in this packet holds rows Q001 to Q007, all `Recorded automatically:`, one source comment each, and no duplicates [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:37] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:43].
+### The removed semantic lane did not leave a mismatch in the live lane registry, active README or architecture description. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: The removed semantic lane did not leave a mismatch in the live lane registry, active README or architecture description.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The live record in this packet holds rows Q001 to Q007, all `Recorded automatically:`, one source comment each, and no duplicates [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:37] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:43].
+- Do NOT retry: The removed semantic lane did not leave a mismatch in the live lane registry, active README or architecture description.
 
-### The reducer as a reader of the merged frontier. It rebuilds the frontier from the node store. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: The reducer as a reader of the merged frontier. It rebuilds the frontier from the node store.
+### The reviewed changed CLI helper did not contain executor construction logic, so it yielded no executor-builder defect. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: The reviewed changed CLI helper did not contain executor construction logic, so it yielded no executor-builder defect.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The reducer as a reader of the merged frontier. It rebuilds the frontier from the node store.
+- Do NOT retry: The reviewed changed CLI helper did not contain executor construction logic, so it yielded no executor-builder defect.
 
-### The research trust merge's labelling and question reopening read clean. A further pass on it is unlikely to pay, except for the frontier lead below. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The research trust merge's labelling and question reopening read clean. A further pass on it is unlikely to pay, except for the frontier lead below.
+### The reviewed CLI dispatch path applies every rule to an unresolved OpenCode version, matching the release description; no version-gate drift was confirmed. [SOURCE: .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1119-1145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:516-522] -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: The reviewed CLI dispatch path applies every rule to an unresolved OpenCode version, matching the release description; no version-gate drift was confirmed. [SOURCE: .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1119-1145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:516-522]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The research trust merge's labelling and question reopening read clean. A further pass on it is unlikely to pay, except for the frontier lead below.
+- Do NOT retry: The reviewed CLI dispatch path applies every rule to an unresolved OpenCode version, matching the release description; no version-gate drift was confirmed. [SOURCE: .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1119-1145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:516-522]
 
-### The same `lineageId = lineage.parentSessionId || sessionId` was already in the v4.1.0.0 YAML at line 594 (`git show v4.1.0.0:.skilled/commands/deep/assets/deep-research.yaml`). `d239dd6d2ae` only moved it into [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:166]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The same `lineageId = lineage.parentSessionId || sessionId` was already in the v4.1.0.0 YAML at line 594 (`git show v4.1.0.0:.skilled/commands/deep/assets/deep-research.yaml`). `d239dd6d2ae` only moved it into [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:166].
+### The reviewed OpenCode decision-capture sweep reads `session_v2` and `session_message`, consistent with the release's OpenCode 2-only support claim; no version-layout mismatch was confirmed. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:40-43] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:128-145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:509-522] -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: The reviewed OpenCode decision-capture sweep reads `session_v2` and `session_message`, consistent with the release's OpenCode 2-only support claim; no version-layout mismatch was confirmed. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:40-43] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:128-145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:509-522]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The same `lineageId = lineage.parentSessionId || sessionId` was already in the v4.1.0.0 YAML at line 594 (`git show v4.1.0.0:.skilled/commands/deep/assets/deep-research.yaml`). `d239dd6d2ae` only moved it into [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:166].
+- Do NOT retry: The reviewed OpenCode decision-capture sweep reads `session_v2` and `session_message`, consistent with the release's OpenCode 2-only support claim; no version-layout mismatch was confirmed. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:40-43] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:128-145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:509-522]
 
-### The stuck-close gate at yaml:1388 on merged data, because the merged frontier has no `activeNodeId`. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: The stuck-close gate at yaml:1388 on merged data, because the merged frontier has no `activeNodeId`.
+### The sampled adapter entrypoint/storage path exposed no new discrepancy requiring another pass in this iteration. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: The sampled adapter entrypoint/storage path exposed no new discrepancy requiring another pass in this iteration.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The stuck-close gate at yaml:1388 on merged data, because the merged frontier has no `activeNodeId`.
+- Do NOT retry: The sampled adapter entrypoint/storage path exposed no new discrepancy requiring another pass in this iteration.
 
-### Two sub-track levels in the track reader: the depth guard reports a declared folder past level 2 and never reads it [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:41] (`MAX_SUB_TRACK_DEPTH = 2`, added in `b0b3c8d9bf1`). In `validate.sh`, sub-track detection recognizes a level-2 sub-track only directly inside a level-1 one [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:222], and the recursive walk descends exactly one more level [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:453]. `create.sh` refuses a `--track` with four or more segments and prints an actionable message (`b0b3c8d9bf1` hunk). No two-level path break was found in what was read. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Two sub-track levels in the track reader: the depth guard reports a declared folder past level 2 and never reads it [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:41] (`MAX_SUB_TRACK_DEPTH = 2`, added in `b0b3c8d9bf1`). In `validate.sh`, sub-track detection recognizes a level-2 sub-track only directly inside a level-1 one [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:222], and the recursive walk descends exactly one more level [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:453]. `create.sh` refuses a `--track` with four or more segments and prints an actionable message (`b0b3c8d9bf1` hunk). No two-level path break was found in what was read.
+### The sampled citation-rename redirect chain reaches a tracked path; no stale target was confirmed in that chain. [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:349-361] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:5] -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: The sampled citation-rename redirect chain reaches a tracked path; no stale target was confirmed in that chain. [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:349-361] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:5]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Two sub-track levels in the track reader: the depth guard reports a declared folder past level 2 and never reads it [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:41] (`MAX_SUB_TRACK_DEPTH = 2`, added in `b0b3c8d9bf1`). In `validate.sh`, sub-track detection recognizes a level-2 sub-track only directly inside a level-1 one [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:222], and the recursive walk descends exactly one more level [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:453]. `create.sh` refuses a `--track` with four or more segments and prints an actionable message (`b0b3c8d9bf1` hunk). No two-level path break was found in what was read.
+- Do NOT retry: The sampled citation-rename redirect chain reaches a tracked path; no stale target was confirmed in that chain. [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:349-361] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:5]
 
-### Untrusted-only answers go back to open, and the doc states the same rule [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-merge.md:50]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Untrusted-only answers go back to open, and the doc states the same rule [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-merge.md:50].
+### The sampled sk-git gate refusal and provisioning behavior matched the inspected contracts. [SOURCE: .skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md:31-46] [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:796-815] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:829-833] -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: The sampled sk-git gate refusal and provisioning behavior matched the inspected contracts. [SOURCE: .skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md:31-46] [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:796-815] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:829-833]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Untrusted-only answers go back to open, and the doc states the same rule [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-merge.md:50].
+- Do NOT retry: The sampled sk-git gate refusal and provisioning behavior matched the inspected contracts. [SOURCE: .skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md:31-46] [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:796-815] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:829-833]
 
-### Using the parent as the lineage id is the packet's convention, not a slip. The legacy deltas contract reads `scope.lineageId` back as `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts:96], and `run_restarted` takes its archived lineage from `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:654]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Using the parent as the lineage id is the packet's convention, not a slip. The legacy deltas contract reads `scope.lineageId` back as `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts:96], and `run_restarted` takes its archived lineage from `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:654].
+### The semantic embedding-lane removal does not show active scorer or documentation drift in the inspected surface. The live registry lists four active lanes, and the README and architecture describe the same four. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8] [SOURCE: .skilled/skills/system-skill-advisor/README.md:38] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:110] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:126] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: The semantic embedding-lane removal does not show active scorer or documentation drift in the inspected surface. The live registry lists four active lanes, and the README and architecture describe the same four. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8] [SOURCE: .skilled/skills/system-skill-advisor/README.md:38] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:110] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:126]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Using the parent as the lineage id is the packet's convention, not a slip. The legacy deltas contract reads `scope.lineageId` back as `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts:96], and `run_restarted` takes its archived lineage from `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:654].
+- Do NOT retry: The semantic embedding-lane removal does not show active scorer or documentation drift in the inspected surface. The live registry lists four active lanes, and the README and architecture describe the same four. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8] [SOURCE: .skilled/skills/system-skill-advisor/README.md:38] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:110] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:126]
+
+### The six-command move described in the release changelog does not conflict with the current skill's claim to own every doctor command. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: The six-command move described in the release changelog does not conflict with the current skill's claim to own every doctor command.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The six-command move described in the release changelog does not conflict with the current skill's claim to own every doctor command.
+
+### The sk-code compiled-route CLI supports the documented stdin option; the shell wrapper is where the delimiter issue sits. [SOURCE: .skilled/bin/compiled-route.cjs:34-59] -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: The sk-code compiled-route CLI supports the documented stdin option; the shell wrapper is where the delimiter issue sits. [SOURCE: .skilled/bin/compiled-route.cjs:34-59]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The sk-code compiled-route CLI supports the documented stdin option; the shell wrapper is where the delimiter issue sits. [SOURCE: .skilled/bin/compiled-route.cjs:34-59]
+
+### The static manifests did not reveal a registry/router key or version drift. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: The static manifests did not reveal a registry/router key or version drift.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The static manifests did not reveal a registry/router key or version drift.
+
+### The two-level working-tree sub-track reader and validator use matching depth bounds in the inspected functions. No mismatch was confirmed in those excerpts. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:122] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:241] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:248] -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: The two-level working-tree sub-track reader and validator use matching depth bounds in the inspected functions. No mismatch was confirmed in those excerpts. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:122] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:241] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:248]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The two-level working-tree sub-track reader and validator use matching depth bounds in the inspected functions. No mismatch was confirmed in those excerpts. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:122] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:241] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:248]
+
+### The user-supplied Gate 2 policy is not contradicted by the hook behavior description reviewed here. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: The user-supplied Gate 2 policy is not contradicted by the hook behavior description reviewed here.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The user-supplied Gate 2 policy is not contradicted by the hook behavior description reviewed here.
 
 <!-- /ANCHOR:exhausted-approaches -->
 
@@ -433,65 +301,40 @@ v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, an
 
 <!-- ANCHOR:ruled-out-directions -->
 ## 10. RULED OUT DIRECTIONS
-- (a) `parseArguments` treats any token whose text after its first two characters is `upstream`, `to`, `stage` or `rollback` as that flag [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8975], from commit `0bfe4d6e929`. So `auto`, `onto` and `xxto` act as `--to`. Reproduced: `repin --upstream /tmp xxto deadbeef --root /nonexistent-zz` gets past parsing to `root is not a directory` (exit 2) instead of printing usage. (iteration 1)
-- (b) `status --json` prints plain text, not JSON, for a usage error and for a root that is not a directory [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9020] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9030]. That contradicts the catch block's own comment [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9044], from commit `f965c658d49`. Reproduced with `status --json --root /nonexistent-zz`. (iteration 1)
-- (c) `repin --rollback` has no staleness guard. `backup.json` records only the bytes from before the run [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:6641]. `rollbackUnderLock` checks only that the backup itself is intact [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7323]. It never checks that the live tree still holds what the run wrote. So rolling back an older run after later re-pins, applies or hand edits overwrites them and removes the paths that run created. The route's plan is only a `find` listing of the run folder [SOURCE: .skilled/commands/doctor/assets/doctor-overlay-repin.yaml:76]. This is inference and was not executed. (iteration 1)
-- (d) The relayout's final `run node ... apply` line lacks the `from <root>:` prefix [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8939], from commit `3d39e6a488b`. The in-window sweep `e7244e53648` left it as it was. (iteration 1)
-- **`documentLayout` misreads the indent unit or line ending.** None found on a read of the opener-step logic. The function had six in-window fixes, and the archived run already holds M7 for it [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220]. (iteration 1)
-- **overlay.md omits `--stage` and `repin --json`.** Not drift. overlay.md documents the `/doctor:overlay` route, which uses `--stage` internally [SOURCE: .skilled/commands/doctor/overlay.md:110]. The engine's USAGE lists both flags [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:133]. A route narrower than its engine is not a contradiction. (iteration 1)
-- **Pre-existing, out of window by NON-GOALS.** Each of these was blamed to a commit that `git merge-base --is-ancestor` puts before `v4.1.0.0`. They are recorded as observations, not findings: (iteration 1)
-- **Rollback writes through a linked ancestor.** It does not. `isDirectory` uses `lstat`, so a link standing where a folder was is unlinked rather than followed [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:273] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:7381]. (iteration 1)
-- **The relayout backup skips files silently.** It does not. `copyForBackup` prints a `skipped` line for each protected path it leaves out, and the failure message names them [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:8580]. (iteration 1)
-- Proving (c) by execution needs a live re-pin with a later edit, which writes outside this packet. It is left as inference. (iteration 1)
-- **Restored dropped values keep upstream's layout, not the live file's.** This is deliberate and the same on both restore paths. `restoreDroppedSets` writes the pin's own slice back ("so the file returns to upstream's bytes") [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2112]. `restoreDroppedKeys` does the same with `pinnedValueText` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2199]. (iteration 2)
-- **The `documentLayout` chain `2b9a2328922`..`5f1af6159d0` has a reader bug.** None found by reading. The reader does the following: (iteration 2)
-- **The json-entry layout fixes missed an emitter.** They did not. After `512be46971a`, every value writer passes the document's `unit` and `eol`, and none uses a hard-coded `\n` or two spaces: (iteration 2)
-- **The legacy flush-left rewrite skips `insertObjectKeys`.** Not a miss. Before `512be46971a`, that rewrite took its indent from `existing.keyStart`, which sits at the start of a line, so it never wrote flush-left. Only `set` and `setKeyOnItem` read the indent at the value's start, and both got the `isLegacyFlushLeft` path [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1304]. (iteration 2)
-- **The removal edits mangle CRLF files.** They do not. They delete from the previous item's end or to the next item's start, so they insert no line ending [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1732] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1833]. (iteration 2)
-- `documentLayout` has a single caller [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2228]. (iteration 2)
-- `insertItems` and `appendItems` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1561] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1581] (iteration 2)
-- `insertObjectKeys` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1620] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1638] (iteration 2)
-- `set` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1426] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1445] (iteration 2)
-- `setKeyOnItem` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1483] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1492] (iteration 2)
-- It breaks ties toward the shorter step, and otherwise falls back to the shallowest indent [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1220]. (iteration 2)
-- It counts steps only from a line that opens one container, with strings stripped first. (iteration 2)
-- It requires the next line's indent to extend the opener's. (iteration 2)
-- It takes the majority line ending. (iteration 2)
-- None that the reducer should treat as exhausted. The json-entry layout chain is closed for sibling sites, and a further pass on it is unlikely to pay. (iteration 2)
-- The doc states the same rule [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:65], so there is no drift. (iteration 2)
-- **`frontier_drained` drifts from its docs.** It does not. The research candidate needs `depthMode == expansive`, `fanoutLineage`, at least one frontier node, none open or active, and at least one answered [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1243]. `fanoutLineage` is set only when the config carries `fanout_lineage_artifact_dir` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1673], and "open" counts both `open` and `active` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1667]. That matches [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:191] and [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130]. The node-status vocabulary has no extra in-flight status that the open count would miss [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:79]. (iteration 3)
-- **The `--extend-minutes` arithmetic is off.** It is not. The code computes `max(prior, elapsed) + M`, defaults M to the prior budget, and keeps no budget when the prior was 0 [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:157]. That matches [SOURCE: .skilled/commands/deep/research.md:119]. The reproduction gave 1062 = 1002 elapsed minutes + 60. (iteration 3)
-- **The gateway's legacy research branch mis-mints identity.** No defect was found. It drops caller-keyed fields before the builder mints them, and it uses the gateway clock for completed iterations [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:452]. (iteration 3)
-- **The research `--extend` warning should name `frontier_drained` as the review twin does.** It should not. `--extend` refuses fan-out [SOURCE: .skilled/commands/deep/research.md:118], and only a fan-out lineage forms the research candidate [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1244]. (iteration 3)
-- None this iteration. The `frontier_drained` stop logic and the `--extend-minutes` arithmetic are candidates for the reducer to mark exhausted. (iteration 3)
-- **A second signal re-enters the runner's stop.** It cannot. `writeStoppedSummary` returns early once it has written [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5255]. (iteration 4)
-- **The `run_extended` lineageId breaks a restarted run (iteration 3 lead).** It does not, on the live path, and the line is out of window anyway. (iteration 4)
-- **The exited-leader member split reads start times in the wrong zone.** It does not. Both sides are rendered under `TZ=UTC` and parsed field by field with `Date.UTC` (commit `4fc94bae0d3`) [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1282]. (iteration 4)
-- **The research trust merge keys untrust on the wrong iteration field.** It does not. `findingUntrustReason` is passed `finding.addedAtIteration` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:841], and the reducer writes key findings with `addedAtIteration: iteration.run` [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2818]. (iteration 4)
-- `process.on` (from `978b74e8df7`) keeps libuv catching the repeat, so the repeat no longer kills the process with the default disposition. This matches [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:183]. (iteration 4)
-- Reproduced on a scratch copy of this packet, which is itself a restart (generation 2, `parentSessionId` set). `extend-research` exited 0 and staged `scope.lineageId = 2026-11-25T08:04:38Z`. The gateway accepted it (exit 0, receipt sequence 8, `projectionRefreshed: true`), and a later iteration record with `lineageId = sessionId` was accepted too (exit 0, sequence 9). (iteration 4)
-- Residual: the typed reducer's `assertRunIdentity` refuses a lineageId that differs from `run_initialized`'s [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:465]. Its callers were not traced, so a typed full-ledger fold of a restarted and extended run is unverified. (iteration 4)
-- The `run_extended` lineageId lead is closed for the live gateway path. The reducer can mark it exhausted. (iteration 4)
-- The grace wait blocks synchronously on `Atomics.wait`, so a queued handler runs only after `process.exit` has already been called in `finally` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:714]. (iteration 4)
-- The research trust merge's labelling and question reopening read clean. A further pass on it is unlikely to pay, except for the frontier lead below. (iteration 4)
-- The same `lineageId = lineage.parentSessionId || sessionId` was already in the v4.1.0.0 YAML at line 594 (`git show v4.1.0.0:.skilled/commands/deep/assets/deep-research.yaml`). `d239dd6d2ae` only moved it into [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:166]. (iteration 4)
-- Untrusted-only answers go back to open, and the doc states the same rule [SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-merge.md:50]. (iteration 4)
-- Using the parent as the lineage id is the packet's convention, not a slip. The legacy deltas contract reads `scope.lineageId` back as `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts:96], and `run_restarted` takes its archived lineage from `parentSessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:654]. (iteration 4)
-- Forcing the CLI degraded path: no env switch exists. It runs only when the daemon is unreachable [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1636], so finding 1's render step stays inferred. (iteration 5)
+- The current `keyQuestions` and `answeredQuestions` wording is consistent with the reducer's exact question matching; no defect confirmed in that contract. (iteration 1)
+- No duplicate append or stale-head retry defect was confirmed in the inspected append-gateway path. (iteration 2)
+- No independent retry-budget defect was confirmed in the inspected path: orphan requeues consume retry credit, and stopped lineages are terminal. (iteration 2)
+- No new dispatch-wrapper defect was confirmed in the inspected CLI path. (iteration 2)
+- No conflict was found between the reviewed hook mechanics and AGENTS.md Gate 2 policy. Gate 2 gives the surfaced hook brief priority and names the direct advisor call as the fallback; the hook reference describes how the brief is produced and delivered. [SOURCE: AGENTS.md:63] [SOURCE: AGENTS.md:68] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:59] (iteration 3)
+- The removed semantic lane did not leave a mismatch in the live lane registry, active README or architecture description. (iteration 3)
+- The semantic embedding-lane removal does not show active scorer or documentation drift in the inspected surface. The live registry lists four active lanes, and the README and architecture describe the same four. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8] [SOURCE: .skilled/skills/system-skill-advisor/README.md:38] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:110] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:126] (iteration 3)
+- The user-supplied Gate 2 policy is not contradicted by the hook behavior description reviewed here. (iteration 3)
+- No version or mode-key mismatch was found between the current registry and hub-router manifests for `mcp-browser-use`, `mcp-tooling` and `cli-external-orchestration`. The moved Chrome DevTools and Aside modes are listed under `mcp-browser-use`, and absent from `mcp-tooling`'s current registry/router. [SOURCE: .skilled/skills/mcp-browser-use/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:3] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:3] (iteration 4)
+- The current CLI registry/router manifests list eight CLI modes and do not retain `cli-orca`. The changed OpenCode setup helper is an installer/checker, not a dispatch-command builder. Static review found no executor-builder defect; runtime reachability remains unchecked. [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:19] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:241] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:34] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:104] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:8] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:28] (iteration 4)
+- The reviewed changed CLI helper did not contain executor construction logic, so it yielded no executor-builder defect. (iteration 4)
+- The static manifests did not reveal a registry/router key or version drift. (iteration 4)
+- No field-shape mismatch was found between the current CLI mode registry and the executor consumer. (iteration 5)
+- No missing or broken resource path was found among the 23 declarations checked. (iteration 5)
 - None. (iteration 5)
-- Duplicate rows when the consumed write fails. The writer keys rows by source key [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:806], and `recordConsumedKeys` skips keys already logged [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:936]. (iteration 6)
-- None to promote. The relocate two-level rewrite (`relocate.mjs`) was only grep-read for depth logic and is not exhausted. (iteration 6)
-- The live record in this packet holds rows Q001 to Q007, all `Recorded automatically:`, one source comment each, and no duplicates [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:37] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/decision-record.md:43]. (iteration 6)
-- Two sub-track levels in the track reader: the depth guard reports a declared folder past level 2 and never reads it [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:41] (`MAX_SUB_TRACK_DEPTH = 2`, added in `b0b3c8d9bf1`). In `validate.sh`, sub-track detection recognizes a level-2 sub-track only directly inside a level-1 one [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:222], and the recursive walk descends exactly one more level [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:453]. `create.sh` refuses a `--track` with four or more segments and prints an actionable message (`b0b3c8d9bf1` hunk). No two-level path break was found in what was read. (iteration 6)
-- `[speckit] This packet fits no existing sub-track of demo. Consider proposing a new sub-track.` printed on a level-2 create in scratch. The scratch sub-track descriptions held no keywords, so the advice is a fixture artifact and is not counted. The "fits no" branch is also unchanged in the window. (iteration 7)
-- None to promote. (iteration 7)
-- A scan exit code that reads success when the scan's own status is `failed`. The CLI returns `invoked.isError ? EXIT_RUNTIME : EXIT_SUCCESS` [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1702], and whether a failed scan sets `isError` was not traced. This is left as a lead, not counted. (iteration 8)
-- The file-mode regression in `957f47570f3` was restored before the tag, as noted under Checked clean. (iteration 8)
-- A unit stub of `processStartOf`: `classifyLineagesForStop`, `lineageIdentityRefusal` and `processStartOf` are not in `module.exports`. The pinned vitest case covers the same row shape. (iteration 9)
-- None new. (iteration 9)
-- `--extend`, `step_frontier_*` and the frontier caps as post-merge readers. The first two are refused on a fan-out config, and the seed steps run before spawn, not after the merge. (iteration 10)
-- The reducer as a reader of the merged frontier. It rebuilds the frontier from the node store. (iteration 10)
-- The stuck-close gate at yaml:1388 on merged data, because the merged frontier has no `activeNodeId`. (iteration 10)
+- The iteration 4 registry/version comparison was not repeated because strategy marks it exhausted. (iteration 5)
+- The overlay guard's suggested `status` command is accepted by the overlay engine CLI; no command-shape drift was confirmed. [SOURCE: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:59-63] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:23-26] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9267-9316] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9344-9348] (iteration 6)
+- The reviewed CLI dispatch path applies every rule to an unresolved OpenCode version, matching the release description; no version-gate drift was confirmed. [SOURCE: .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1119-1145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:516-522] (iteration 6)
+- The reviewed OpenCode decision-capture sweep reads `session_v2` and `session_message`, consistent with the release's OpenCode 2-only support claim; no version-layout mismatch was confirmed. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:40-43] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:128-145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:509-522] (iteration 6)
+- No additional defect was confirmed in the sampled handover prepare/arm/relaunch/claim transitions. This is limited to those paths, not a full review of every runtime adapter. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1594] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1648] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1909] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1998] (iteration 7)
+- No additional defect was confirmed in the sampled pre-commit trust and comment-hygiene gate paths. This is not a conclusion about every Git hook or gate. [SOURCE: .skilled/scripts/git-hooks/pre-commit:36] [SOURCE: .skilled/scripts/git-hooks/pre-commit:63] [SOURCE: .skilled/scripts/git-hooks/pre-commit:199] [SOURCE: .skilled/scripts/git-hooks/pre-commit:209] (iteration 7)
+- The two-level working-tree sub-track reader and validator use matching depth bounds in the inspected functions. No mismatch was confirmed in those excerpts. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:122] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:241] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:248] (iteration 7)
+- No separate issue was confirmed in the sampled OpenCode plugin entrypoint or shared session reader. This is a bounded sample, not a clean bill of health for every session-handover adapter. (iteration 8)
+- The previously reviewed handover transition sequence was marked exhausted in the prior iteration and was not repeated. (iteration 8)
+- The sampled adapter entrypoint/storage path exposed no new discrepancy requiring another pass in this iteration. (iteration 8)
+- A suspected gap caused by treating `agent-mirror-sync.yml` as the only CI mirror gate was not confirmed; the other reviewed workflows run the generated/runtime mirror checks. (iteration 9)
+- None. The sk-doc implementation, sk-code routing and quality surfaces, and the remaining sk-git paths still offer productive follow-up work. (iteration 9)
+- The six-command move described in the release changelog does not conflict with the current skill's claim to own every doctor command. (iteration 9)
+- A first read-only helper assumed the relocation ledger had an applied array and exited 1. The table was re-read using its actual schema; no artifact was changed. (iteration 10)
+- No additional defect was confirmed in the sampled validator, rename, quality-router or sk-git paths. (iteration 10)
+- The changed sk-doc validator’s required result marker is present in all 57 discovered playbook roots; no uncovered package was found in this scan. (iteration 10)
+- The sampled citation-rename redirect chain reaches a tracked path; no stale target was confirmed in that chain. [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:349-361] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:5] (iteration 10)
+- The sampled sk-git gate refusal and provisioning behavior matched the inspected contracts. [SOURCE: .skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md:31-46] [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:796-815] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:829-833] (iteration 10)
+- The sk-code compiled-route CLI supports the documented stdin option; the shell wrapper is where the delimiter issue sits. [SOURCE: .skilled/bin/compiled-route.cjs:34-59] (iteration 10)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -512,8 +355,8 @@ v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, an
 
 <!-- ANCHOR:carried-forward-open-questions -->
 ## 11A. CARRIED-FORWARD OPEN QUESTIONS
-- Can a lineage dealt zero frontier nodes seed its own `F-1-*` ids? (iteration 9)
-- Does any base-directory step after a fan-out merge read `registry.frontier` from the merged `findings-registry.json`? (iteration 9)
+- Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe? (iteration 10)
+- Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims? (iteration 10)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -521,7 +364,7 @@ v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, an
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-[All tracked questions are resolved]
+If the packet is extended, trace the remaining changed doctor commands and runtime-mirror/CI gates end to end, and verify a delimiter-safe transport for compiled routing.
 
 <!-- /ANCHOR:next-focus -->
 
@@ -529,20 +372,16 @@ v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, an
 
 <!-- MACHINE-OWNED: END -->
 ## 12. KNOWN CONTEXT
-The archived run at `research_archive/20261125T162358Z/research.md` audited the release notes against the window. It confirmed 16 findings (9 missing, 5 drift, 2 bug) and rejected 10. Both bugs are fixed: the case-insensitive `root/skilled` overlay guard (`.skilled/commands/doctor/scripts/overlay-engine.cjs`) and the lost executable bits on `worktree-naming.sh`, its test and `skill_advisor.py`. Do not report those again. The Stop decision auto-record limits (Claude only, exactly one tail packet, misfiling on a late packet switch) are already documented in the notes.
-
-resource-map.md not present; skipping coverage gate
+Known context: a prior 10-iteration native run on this packet audited the v4.2.0.0 release and its fixes have landed. Its synthesis is archived at research_archive/20261126T112816Z/research.md; read it first so this run hunts net-new issues or incomplete fixes.
 
 ### Bounded Context Snapshot
 
-Populate during initialization when the target is codebase-scoped. Keep this pointer-based and small:
+- Source pointers: `git diff --name-only v4.1.0.0..HEAD -- . ':!specs'` (2289 files). Largest areas: .skilled/skills/system-deep-loop (601), system-skill-advisor (330), mcp-browser-use (322), system-spec-kit (165), cli-external-orchestration (122), commands/doctor (111), system-skilled-doctor (91), sk-doc (73), cli-orca (58), mcp-tooling (55), .opencode/plugins (55).
+- Reuse candidates: .skilled/changelog/skilled/v4.2.0.0.md states what changed; each skill's SKILL.md, mode-registry.json and hub-router.json state the contract.
+- Integration points: workflow YAML under .skilled/commands/*/assets, runtime mirrors under .claude/.codex/.vibe/.pi/.dsh, CI under .github/workflows.
+- Constraints and risks: the range is large, so each iteration should pick one area and verify claims against code with file:line evidence.
 
-- Source pointers: paths, symbols, or resource-map entries relevant to the topic.
-- Reuse candidates: existing utilities, patterns, docs, or agents worth extending.
-- Integration points: files or contracts the research is likely to touch.
-- Constraints and risks: scope limits, stale graph or memory gaps, and known non-goals.
-
-Do not inline full source bodies. Do not dispatch the retired standalone context loop. Use `@context` for one-shot retrieval, and use this snapshot only to seed the research loop.
+resource-map.md not present; skipping coverage gate
 
 ---
 
@@ -555,11 +394,11 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 - Lifecycle branches: `new`, `resume`, `restart`, `completed-continue` through `--extend=N` and `--extend-minutes=M` (live)
 - Deferred lifecycle branch: `fork` (not runtime-wired)
 - Machine-owned sections: reducer controls Sections 3, 6, 7-11A, including Section 10A pivot lineage
-- Question injection surface: `specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/inbox.jsonl`
+- Question injection surface: `{spec_folder}/research/inbox.jsonl`
 - Question conflict owner: reducer registry; `question_conflict` events surface inbox/registry disagreements for operator decision
 - Canonical pause sentinel: `research/.deep-research-pause`
 - Capability matrix: `.skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
 - Capability matrix doc: `.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md`
 - Capability resolver: `.skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs`
-- Current generation: 2
-- Started: 2026-11-25T16:24:14Z
+- Current generation: 3
+- Started: 2026-11-26T11:28:30Z

@@ -1,0 +1,15 @@
+## Iteration 8 Complete
+
+**Focus:** Remaining session-handover adapters and commit-msg/pre-push hook gates.
+
+**Findings:** 2 new findings: stale install guidance in `commit-msg`, and a pre-push path where sweep exit 2 warns and continues, bypassing the track-root verdict. Q4 is answerable **yes** in the existential sense; this was a targeted review, not an exhaustive audit. Q5 remains open.
+
+**Status:** `complete` · **newInfoRatio:** 1.0 · **Edge cases:** none
+
+**Artifacts:** [iteration-008.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-008.md), [iter-008.jsonl](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas/iter-008.jsonl), and the progressive update in [research.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md).
+
+**Verification:** Gateway succeeded with receipt sequence 22. The projection contains 8 iteration records, including exactly one for iteration 8. The delta matches the gateway event, required narrative sections and finding citations are present, and the packet-local scope was respected. No tests or builds were run.
+
+`COMMAND: [/deep:research] → started` · `SKILL ROUTING: User directed → deep-research; ARTIFACT: system-spec-kit → spec-folder research artifacts` · `REPO RULES: loaded for research and artifact work`
+
+**Next focus:** Q5. Nothing is needed from the operator.

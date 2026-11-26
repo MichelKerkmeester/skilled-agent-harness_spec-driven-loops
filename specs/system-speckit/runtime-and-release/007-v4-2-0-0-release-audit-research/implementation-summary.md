@@ -8,26 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-26T07:21:48Z"
+    last_updated_at: "2026-11-26T14:49:39Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed Dependabot alerts and main CI"
-    next_safe_action: "Verify green CI, then move the v4.2.0.0 tag"
+    recent_action: "Recorded the fix-all decisions and handed off"
+    next_safe_action: "Create the worktree and amend spec.md scope for the fixes"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/tests/helpers/upgrade-legacy-harness.ts"
-      - ".skilled/scripts/git-hooks/tests/pre-push.test.sh"
-      - ".skilled/skills/system-spec-kit/package-lock.json"
-      - "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/acceptance-criteria.md"
+      - "research/research.md"
+      - "spec.md"
     session_dedup:
-      fingerprint: "sha256:c7c16c56526e8f8b61900bced8a8b4f42d0d8fbad9122aab9f21ae1f7e1f9094"
+      fingerprint: "sha256:e807d048f73878d398fc994ade5851e085035134424b2eba4b54a58aa733e05e"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "1cf09172-5a54-4491-b11f-0d1deee0fd05"
+      sessionId: "012507d7-ddbb-4b4f-9a7c-222cd8523a30"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-26T07:21:48Z"
+      savedAt: "2026-11-26T14:49:39Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 95
@@ -51,7 +49,7 @@ _memory:
 | **Spec Folder** | 007-v4-2-0-0-release-audit-research |
 | **Completed** | 2026-11-25 |
 | **Level** | 1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -68,7 +66,7 @@ Two lineages, cli-codex and cli-devin, read the same window and packet list and 
 
 ### The fixes
 
-The second audit, `research/research.md`, found 3 P2 and 14 P3 defects in the v4.2.0.0 logic, four more from its independent verifier and six older ones. On the operator's "fix all", every one of them except the two REQ-004 names was fixed in worktree `545-v4-2-audit-fixes`, along with three nearby defects the operator chose. `acceptance-criteria.md` maps each finding to its regression test. Workers ran on cli-mistral-vibe with `deepseek-flash`, three at a time. The orchestrator reviewed each diff and reran each suite.
+The second audit, `research_archive/20261126T112816Z/research.md`, found 3 P2 and 14 P3 defects in the v4.2.0.0 logic, four more from its independent verifier and six older ones. On the operator's "fix all", every one of them except the two REQ-004 names was fixed in worktree `545-v4-2-audit-fixes`, along with three nearby defects the operator chose. `acceptance-criteria.md` maps each finding to its regression test. Workers ran on cli-mistral-vibe with `deepseek-flash`, three at a time. The orchestrator reviewed each diff and reran each suite.
 
 - **Deep-loop runtime:** a runner stopped by a signal now ends a child whose row has no start time, and `--stop` on win32 names its remedy. An untrusted lineage's frontier nodes claim no coverage, in the merge and in the stop decision. The `--extend` warning counts only open questions. Option B of the pre-synthesis gate ends a fan-out run in both `deep-research.yaml` and `deep-review.yaml`.
 - **Claude Stop hook:** a path that ends at a JSON escape resolves to the child packet. The write takes the canonical save lock and leaves answers pending while a save holds it. A written row is never reported as skipped, a hand-edited row survives a later Stop, and one `systemMessage` line tells the operator the outcome.

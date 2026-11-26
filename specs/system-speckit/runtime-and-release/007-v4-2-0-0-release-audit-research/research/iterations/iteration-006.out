@@ -1,0 +1,15 @@
+## Iteration 6 — recorded; packet gate failed
+
+**Finding:** One P3 documentation mismatch. The pre-commit header says to remove `.git/hooks/pre-commit`, but the installer uses Git’s resolved hooks directory and supports `--uninstall`. With a custom `core.hooksPath`, the header’s command can leave the active hook installed. The [installer](/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/scripts/install-git-hooks.sh:50) and [Git Hooks README](/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/scripts/git-hooks/README.md:131) describe the active-path behavior.
+
+**Questions:** Q4 remains open because this pass did not cover its full scope; Q5 remains open. Recommended next focus: continue Q4’s review of the remaining handover, runtime, and Git hook paths.
+
+**Artifacts:** [iteration-006.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-006.md), [iter-006.jsonl](/Users/michelkerkme/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas/iter-006.jsonl), and the progressive update in [research.md](/Users/michelkerkme/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md).
+
+**Verification:** The gateway accepted the event and refreshed the state projection with exactly one iteration-6 record. The delta has five valid JSONL rows; its first row matches the gateway event. Citation paths resolved, and the final artifact check passed. No tests or builds were run.
+
+The packet’s strict validator returned `RESULT: FAILED` (exit 2). It reported three enforced failures: generated metadata integrity, generated description drift, and a scaffold marker in `implementation-summary.md`. It also reported AC evidence below its advisory floor. These files are outside this iteration’s allowed write scope. The source-fingerprint mismatch may relate to the authorized synthesis update; without a pre-write validator run, its cause is unknown.
+
+**Status: error for packet-level verification.** The gateway event was accepted, but packet closure is not verified. The required gateway input remains at `/private/tmp/deep-research-iter006.Nd2AEp`; the dispatch forbids deleting files outside its allowed write targets.
+
+**SKILL ROUTING:** User directed → deep-research. **REPO RULES:** prevent-overengineering, evidence-and-proof, delegation-and-orchestration, uncertainty-and-honesty, communication, communication-handoff.

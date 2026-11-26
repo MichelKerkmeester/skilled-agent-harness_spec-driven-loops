@@ -93,6 +93,14 @@ Where a row names a regression test for a behavior change, that test failed with
 | AC-035 | REQ-006 | Given PR 108, When it is merged into current `main`, Then its build failures are gone | `gh pr view 108` prints MERGED. The provisioning walk prints `0 failed`, where the PR's CI had 4. On `0d91e57d9aa`, OpenCode Plugin Tests, OpenCode v2 Battery and Pi Entry Checks conclude `success` | Met | - |
 | AC-036 | REQ-006 | Given the 12 pip alerts on untracked `uv.lock` files, When they are dismissed, Then none of them is open | The alerts API returns `dismissed not_used` for each of 1448 to 1459, and GitHub returns 404 for all three manifest paths on `main` | Met | - |
 | AC-037 | REQ-006 | Given the three checks that failed on `main`, When their tests run, Then they pass | `pre-push.test.sh` passes 59 of 59 with `init.defaultBranch=master`, where it failed 57/2. Both sk-doc walk tests pass. The spec-kit CLI project passes 2725 with 0 failed. The upgrade-legacy stamp passes 20000 of 20000 trials, where a whole-millisecond stamp read stale 19850 times | Met | - |
+| AC-038 | REQ-007 | F2: Given a task with a line that is exactly `TASK`, When a hub front door runs it, Then no task line reaches the shell | Pending | Unmet | - |
+| AC-039 | REQ-007 | F1: Given a held child whose start time `ps` cannot read, When the runner stops, Then the child is signalled and kept as a survivor until it exits | Pending | Unmet | - |
+| AC-040 | REQ-007 | F3: Given a Pi prompt with a session id in its context, When the advisor hook runs, Then the route receipt is written for that session | Pending | Unmet | - |
+| AC-041 | REQ-007 | F4: Given `Ready. fine.` in `recent_action`, When the compact check runs, Then it is rejected | Pending | Unmet | - |
+| AC-042 | REQ-007 | P1-pre: Given a default-depth iteration whose focus equals a question but whose `answeredQuestions` is empty, When the reducer runs, Then the question stays open | Pending | Unmet | - |
+| AC-043 | REQ-007 | P2-pre: Given the git-hooks README, When the pre-push gate is read, Then it says a sweep error warns and lets the push through | Pending | Unmet | - |
+| AC-044 | REQ-007 | P3-pre: Given the pre-commit header, When its uninstall line is followed, Then it runs the installer's `--uninstall` | Pending | Unmet | - |
+| AC-045 | REQ-005 | Given every suite the generation-3 fixes touch, When it reruns from the final state, Then it passes in full | Pending | Unmet | - |
 
 ### Status values
 
@@ -115,7 +123,7 @@ Write `-` when the row is `Met` or `Unmet`. Write `ADR-NNN` when the row is
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** Yes
+**Closeable:** No
 
-Every criterion is met. f-iter005-003 and f-iter009-003 have no row because REQ-004 leaves them out by name: the first is pinned by design and the second has no shown consequence.
+Rows AC-038 to AC-045 are open until the generation-3 fixes land. Every earlier criterion is met. f-iter005-003 and f-iter009-003 have no row because REQ-004 leaves them out by name: the first is pinned by design and the second has no shown consequence.
 <!-- /ANCHOR:closure -->

@@ -62,7 +62,7 @@ Five parallel fix groups, one owner each, with disjoint files.
 - **Group E, operator UX:** the `create.sh` sub-track remedy, the `skilled-loop` goal-hop warning and the `worktree-naming.sh` skill-graph checks.
 
 ### Data Flow
-Each group reads its finding ids from `research/research.md` sections 2, 4 and 12, confirms them in the code, fixes them with a regression test and reports. The orchestrator reviews each diff, reruns the suites and records the evidence here.
+Each group reads its finding ids from `research_archive/20261126T112816Z/research.md` sections 2, 4 and 12, confirms them in the code, fixes them with a regression test and reports. The orchestrator reviews each diff, reruns the suites and records the evidence here.
 <!-- /ANCHOR:architecture -->
 
 ---

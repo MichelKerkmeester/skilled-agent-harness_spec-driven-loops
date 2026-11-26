@@ -1,81 +1,76 @@
-# Iteration 3: Q2, the deep-loop runtime, diff-driven (extend, frontier_drained, append gateway)
+# Iteration 3: System Skill Advisor Routing
 
 ## Focus
-This iteration worked on Q2, whether the deep-loop runtime changes carry logic bugs or drift from their docs, plus the UX question (Q4). `git log v4.1.0.0..v4.2.0.0` lists 438 commits over `.skilled/skills/system-deep-loop/` and `.skilled/commands/deep/`, so the focus was narrowed to the smallest in-window surfaces named in the dispatch:
-- `workflow-steps.cjs extend-research`: 464 lines, 4 in-window commits.
-- the `frontier_drained` candidate in `convergence.cjs`: commit `b3fea67595e`.
-- the append gateway's identity minting in `append-mode-event.cjs`: commits `1e2add8bab3` and `6ec426de2db`.
 
-`fanout-run.cjs` (6266 lines, 66 in-window commits) and `fanout-merge.cjs` (1949 lines, 14 commits) were deferred to the next iteration.
+Audited the system-skill-advisor scorer, hook behavior, brief policy, embedding-lane removal and the relationship between the active hook reference and AGENTS.md Gate 2. Also traced the Q1 legacy-import source because its checked status determines why Q2 was selected.
 
 ## Actions Taken
-1. Listed the window's commits and the per-file commit counts for the six named scripts, plus the `-G'frontier_drained|extend-research|--extend'` subset.
-2. Read `extendResearch` and `extendReview` in `workflow-steps.cjs`, and the YAML step that calls them.
-3. Read the `frontier_drained` candidate and the research and review frontier facts in `convergence.cjs`, the node-status sets in `frontier-admit.cjs`, and both docs that describe the candidate.
-4. Read the gateway's legacy research branch and the `stable-identity-missing` decision in `legacy-compatibility.ts`.
-5. Traced who reads and writes `inbox.jsonl`: `reduce-state.cjs`, `frontier-admit.cjs` and `fanout-run.cjs`. Ran a two-case reproduction of `extend-research` on scratch fixtures under the session scratchpad.
-6. Ran `git show v4.1.0.0:.skilled/commands/deep/assets/deep-research.yaml`. It has no `pendingInbox` or "no pending inbox" text, so the logic is new in the window and is not code moved from v4.1.0.0.
+
+1. Read the run config, state log, strategy and registry before selecting the focus. Two canonical iteration records existed, and strategy Section 3 names Q2 as the next unchecked question.
+2. Traced the Q1 registry row. It has origin legacy-import and source key-questions; the strategy's Section 3 row has Q1 checked. That explains why the registry presents Q1 as resolved and why Q2 is next. The current iteration-1 state record still has an empty answeredQuestions array, so the historical decision behind that imported checkbox remains unknown.
+3. Compared the live scorer lane registry with the active README and architecture descriptions. The current registry and both active docs describe four scoring lanes after the semantic embedding lane removal.
+4. Followed the Pi input adapter into the shared prompt handler and route-receipt guard, then compared that path with the hook reference's per-session receipt description.
+5. Read the relevant hook and route-receipt tests as source evidence. No tests or runtime commands were run.
 
 ## Findings
-1. **P3 (UX, doc drift): the research `--extend` re-stop warning goes silent once the inbox has ever held a line.**
-   - `extendResearch` counts every non-empty line of `research/inbox.jsonl` as a pending question [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:195]. It shows the warning only when that count is zero [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:206], and the warning text says "has no pending inbox question" [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:207].
-   - Nothing ever removes a consumed line. The reducer only reads the inbox [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:3431] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:3454]. It merges each line into the registry by `inboxId` [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1163]. The only other writers append [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:871] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:638].
-   - So a question the run already answered still counts as pending, and the operator gets no warning before an extension that re-stops on `all_questions_answered` at once.
-   - Under `depth_mode == expansive` the inbox always holds the frontier rows [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:800], so the warning can never fire for that whole class of run.
-   - The flag table tells operators to "add questions to `research/inbox.jsonl` before you extend" [SOURCE: .skilled/commands/deep/research.md:118]. It does not say that old lines already silence the warning.
-   - Reproduced: a `complete` config with 3 iteration rows and one stale inbox line returned `"warning":null`. The same config with no inbox file returned the warning. Both runs exited 0.
-   - Introduced by `2c80c64f391` (2026-11-17, inside the window: v4.1.0.0 is its ancestor). Moved into the script unchanged by `d239dd6d2ae`.
-   - The fix is to count only inbox ids that the registry does not yet hold as answered, or to word the warning on coverage instead of the inbox [INFERENCE: based on the reducer's inboxId merge at reduce-state.cjs:1278 and the warning gate at workflow-steps.cjs:206].
+
+1. **P3: Pi omits the session ID needed by the shared route-receipt guard.** Pi obtains its session ID from the host context, but the input object passed to the shared handler contains only the prompt, working directory and event name. The shared handler derives receipt identity only from input.session_id. Without it, both the weak-follow-up guard and the route-receipt writer return before reading or writing a receipt. A weak follow-up in Pi is therefore scored without the prior route receipt, even though the hook reference describes per-session receipts and lists Pi as a shared-handler adapter. [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:57] [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:290] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:339] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:370] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:407] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:164] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:57] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:74]
 
 ## Ruled Out
-- **`frontier_drained` drifts from its docs.** It does not. The research candidate needs `depthMode == expansive`, `fanoutLineage`, at least one frontier node, none open or active, and at least one answered [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1243]. `fanoutLineage` is set only when the config carries `fanout_lineage_artifact_dir` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1673], and "open" counts both `open` and `active` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1667]. That matches [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:191] and [SOURCE: .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130]. The node-status vocabulary has no extra in-flight status that the open count would miss [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:79].
-- **The research `--extend` warning should name `frontier_drained` as the review twin does.** It should not. `--extend` refuses fan-out [SOURCE: .skilled/commands/deep/research.md:118], and only a fan-out lineage forms the research candidate [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1244].
-- **The `--extend-minutes` arithmetic is off.** It is not. The code computes `max(prior, elapsed) + M`, defaults M to the prior budget, and keeps no budget when the prior was 0 [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:157]. That matches [SOURCE: .skilled/commands/deep/research.md:119]. The reproduction gave 1062 = 1002 elapsed minutes + 60.
-- **The gateway's legacy research branch mis-mints identity.** No defect was found. It drops caller-keyed fields before the builder mints them, and it uses the gateway clock for completed iterations [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:452].
+
+- The semantic embedding-lane removal does not show active scorer or documentation drift in the inspected surface. The live registry lists four active lanes, and the README and architecture describe the same four. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8] [SOURCE: .skilled/skills/system-skill-advisor/README.md:38] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:110] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:126]
+- No conflict was found between the reviewed hook mechanics and AGENTS.md Gate 2 policy. Gate 2 gives the surfaced hook brief priority and names the direct advisor call as the fallback; the hook reference describes how the brief is produced and delivered. [SOURCE: AGENTS.md:63] [SOURCE: AGENTS.md:68] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:59]
 
 ## Dead Ends
-- None this iteration. The `frontier_drained` stop logic and the `--extend-minutes` arithmetic are candidates for the reducer to mark exhausted.
+
+- The removed semantic lane did not leave a mismatch in the live lane registry, active README or architecture description.
+- The user-supplied Gate 2 policy is not contradicted by the hook behavior description reviewed here.
 
 ## Edge Cases
-- Ambiguous input: the dispatch named six surfaces across 438 commits, more than one iteration can read. The three smallest were taken, and fan-out was deferred.
-- Contradictory evidence: none.
+
+- Ambiguous input: none.
+- Contradictory evidence: Q1 is checked in the strategy and imported into the registry as resolved from key-questions, while the current iteration-1 record has no answered questions and the prior narrative says Q1 remains open. The import source that affects focus selection is identified; the decision or event that justified the checked state remains unknown. This is the previously recorded packet-status conflict, not a new Q2 finding.
 - Missing dependencies: none.
-- Partial success: Q2 is only partly covered. `fanout-run.cjs` and `fanout-merge.cjs` were not read, so Q2 stays open.
+- Partial success: none. The Pi route-receipt gap is confirmed by the source path; the broader Q2 question can be answered yes on this routing defect.
 
 ## Sources Consulted
-- .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:119-300
-- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1195-1280, 1650-1676, 1850-1870
-- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:70-135, 871
-- .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:395-520
-- .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:530-565
-- .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1163, 3431, 3454
-- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:638
-- .skilled/commands/deep/research.md:118-119
-- .skilled/commands/deep/assets/deep-research.yaml:560, 800
-- .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:191
-- .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md:130
-- git show 2c80c64f391, b3fea67595e, 1e2add8bab3; git show v4.1.0.0:.skilled/commands/deep/assets/deep-research.yaml
+
+- .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:57, 290-300, 336
+- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:339-345, 363-391, 397-432
+- .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:148-185
+- .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55-59, 69-76
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8-18
+- .skilled/skills/system-skill-advisor/README.md:38
+- .skilled/skills/system-skill-advisor/ARCHITECTURE.md:110, 126
+- AGENTS.md:63-70
+- specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md:56-59, 81-84
+- specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:10-19
+- specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-state.jsonl:6
 
 ## Assessment
-- New information ratio: 1.0 (1 of 1 finding is new and reproduced; the clean surfaces are recorded as ruled out, not as findings).
-- Questions addressed: Q2 (the deep-loop runtime), Q4 (UX).
-- Questions answered: none.
+
+- New information ratio: 1.0
+- Questions addressed: Q2; Q1 import provenance for focus selection
+- Questions answered: Q2, the system-skill-advisor audit question
+- Questions remaining: Q3, Q4 and Q5; the historical reason for Q1's imported checked state remains unknown
 
 ## Reflection
-- What worked and why: picking the smallest in-window script first paid off. `workflow-steps.cjs` is new in the window and short, so one reproduction proved the bug without a live run.
-- What did not work and why: the commit list is too large to triage by subject line. The fan-out scripts alone carry 80 in-window commits, so they need an iteration of their own.
-- What I would do differently: start from the fix commits whose subjects name trust or stop semantics, and read only their hunks.
+
+- What worked and why: following the Pi adapter's concrete call into the shared handler exposed a missing identity field that makes both receipt paths unreachable.
+- What did not work and why: dynamic Pi behavior was not exercised; static control flow was sufficient to confirm the missing session identity.
+- What I would do differently: continue with Q3 and reserve another pass for any additional Q2 surfaces only if later evidence opens a specific question.
 
 ## Questions Answered
-- None. Q2 stays open until the fan-out scripts are read.
+
+- Q2: Does the changed system-skill-advisor (scorer, hooks, brief policy, embedding-lane removal) hold routing bugs or drift between code, hook docs and AGENTS.md Gate 2? Yes. The Pi adapter omits the session ID required for its shared route-receipt guard.
 
 ## Questions Remaining
-- Q2: the deep-loop runtime (fan-out still open).
-- Q3: the session hooks and spec tooling.
-- Q4: operator UX (one more defect found here).
-- The skill advisor question.
+
+- Q3: Do the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes hold broken paths, registry or hub-router drift, or executor builder bugs?
+- Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?
+- Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?
+- Q1's imported checked state still lacks a recorded decision or event explaining its semantic closure.
 
 ## Recommended Next Focus
-Q2 fan-out, diff-driven:
-- Read the in-window trust and stop hunks of `fanout-run.cjs` and `fanout-merge.cjs`: `2bfee12379d` (lineage trust on the research merge), `86f6c584b1b` (untrusted lineages and review coverage), `4fc94bae0d3` and `e111720dc88` (`--stop` and runner signals), and `978b74e8df7` (survivors).
-- Check one lead along the way. `extendResearch` scopes `run_extended` to `lineageId = lineage.parentSessionId || sessionId` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs:166], while the iteration rows use `sessionId`, and on a restarted run those differ. Verify whether any ledger or projection reader filters on `scope.lineageId`, and blame the line, before calling it a finding.
+
+Proceed to Q3: inspect the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes for broken paths, registry or hub-router drift and executor-builder bugs.

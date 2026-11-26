@@ -1,0 +1,22 @@
+## Iteration 7 report
+
+The iteration was recorded with status `complete`, and the gateway refreshed the state log. Packet-level closeout remains blocked: the strict validator returned `RESULT: FAILED`.
+
+**Finding:** P3 — A lowercase-start second sentence, such as `Ready. fine.`, can pass the thin-continuity validator’s compact, non-narrative check. The rejection test only covers a capitalized second sentence. Details are in [iteration-007.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-007.md).
+
+**Questions answered:** None at the full-question level. Q4 remains open, and Q5 remains open.
+
+**Recommended next focus:** Review the remaining session-handover adapters and changed commit-msg, pre-push, and supporting Git hook gates.
+
+**Files written:**
+
+- [iteration-007.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-007.md)
+- [iter-007.jsonl](/Users/michelkerkme/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas/iter-007.jsonl)
+- [research.md](/Users/michelkerkme/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md), updated under progressive synthesis
+- Packet-local gateway payload; the gateway refreshed `deep-research-state.jsonl`
+
+**Verification:** Gateway exit 0, receipt sequence 20, and exactly one iteration 7 row in the projection. The narrative and delta exist, required headings are present, and all 19 checked source citations resolve. No tests were run. The strict validator reported generated metadata integrity and description drift, plus a scaffold marker in `implementation-summary.md`; the files named by those errors are outside this iteration’s write authority. The `AC_COVERAGE` check also reported 32/37 with an evidence advisory. I did not directly edit reducer-owned files; their working-tree timestamps predate the gateway receipt, and the workflow reducer refresh remains pending.
+
+**Status:** Iteration recorded as `complete`; packet-level validation failed, so packet closeout is not verified.
+
+SKILL ROUTING: User directed → deep-research. ARTIFACT: spec-folder research output; sk-doc exemption applies. COMMAND: `/deep:research` single-iteration dispatch started. REPO RULES loaded: prevent-overengineering, scope-discipline, evidence-and-proof, delegation-and-orchestration, uncertainty-and-honesty, communication, communication-handoff.

@@ -48,6 +48,13 @@ _memory:
 | Q012 | Make Dependabot PR 108 pass and merge it into `main` before the tag moves. | Not stated. | None | REQ-006, T023 |
 | Q013 | Dismiss the 12 pip alerts as not used, since their `uv.lock` files are no longer tracked and no commit can fix them. | Not stated. | Q011, for the aiohttp and vendored snapshot groups | REQ-006, T024 |
 | Q014 | Fix the three CI checks already failing on `main`, then move the tag. | Not stated. | None | REQ-006, T025 |
+| Q015 | Recorded automatically: Delete and update docs | Not stated. | None | Not linked to a requirement yet. |
+| Q016 | Recorded automatically: Yes, delete it | Not stated. | None | Not linked to a requirement yet. |
+| Q017 | Recorded automatically: A) Run it (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q018 | Recorded automatically: Raise to 180 min (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q019 | Replace the fixed TASK heredoc in every hub front-door example with a task file argument to compiled-route.cjs. | Not stated. | none | Remaining work F2, research/research.md section 8 |
+| Q020 | Require answeredQuestions evidence to resolve a question in default depth mode, dropping the focus-equality rule there. | Not stated. | none | Remaining work P1-pre, reduce-state.cjs |
+| Q021 | Keep the pre-push track-root fail-open on sweep errors and document it in the git-hooks README. | Not stated. | none | Remaining work P2-pre, git-hooks README |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -332,6 +339,140 @@ Fix all three, then re-tag
 Answer:
 ```text
 Fix all three, then re-tag
+```
+
+### Q015
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01TqRnTndtYfb1nHMdwYsRN1:1 -->
+
+Question:
+```text
+INSTALL-SKILLED.md (:145, :167) and .skilled/commands/doctor/symlink.md (:60) describe the .skilled/specs link and how the doctor's auto mode treats it. Without the link, auto links .skilled as one folder in a project that has none. Should those docs change along with the deletion?
+```
+
+Options:
+```text
+Delete the link only (Recommended)
+Delete and update docs
+```
+
+Answer:
+```text
+Delete and update docs
+```
+
+### Q016
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_017YST9DW2Rmy75Ny2JtYFiZ:0 -->
+
+Question:
+```text
+specs/mcp-tooling is not on the remote (GitHub returns 404; its packets moved to specs/mcp in 614858c884c). Locally it holds only 4 ignored leftovers: three website-link.md files and one fanout.log under z_archive. Git cannot restore them once deleted. Delete the folder?
+```
+
+Options:
+```text
+Yes, delete it
+No, keep it
+```
+
+Answer:
+```text
+Yes, delete it
+```
+
+### Q017
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01ASn1nNxD6Ygr4B39ZMeL5x:1 -->
+
+Question:
+```text
+Run a deep research loop on bugs, drift and issues in everything changed since v4.1.0.0 (1239 commits)?
+```
+
+Options:
+```text
+A) Run it (Recommended)
+B) Step through setup
+C) No loop
+```
+
+Answer:
+```text
+A) Run it (Recommended)
+```
+
+### Q018
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_019FCupFaSkNheMYh1g4CyRA:0 -->
+
+Question:
+```text
+Deep-research iteration 1 took about 15 minutes, not the 3 to 10 I estimated earlier. At that pace the run's 120-minute budget (the YAML default; your invocation didn't set it) stops the loop after about 8 of the 10 iterations you asked for. Iterations 2 onward are already running in the background. Should I raise the duration budget so all 10 iterations start? (Separately: the per-iteration timeout is already 1,800 s instead of 900 s, a change the previous session made for xhigh.)
+```
+
+Options:
+```text
+Raise to 180 min (Recommended)
+Keep 120 min
+```
+
+Answer:
+```text
+Raise to 180 min (Recommended)
+```
+
+### Q019
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_01HCoX4b7JxXDXJySRcM3UJ8:1 -->
+
+Question:
+```text
+How should the heredoc fix stop task text from escaping into the shell? Right now every hub's compiled-route example closes stdin at a fixed `TASK` line.
+```
+
+Options:
+```text
+Task file argument (Recommended)
+Per-call random delimiter
+```
+
+Answer:
+```text
+Task file argument (Recommended)
+```
+
+### Q020
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_01HCoX4b7JxXDXJySRcM3UJ8:2 -->
+
+Question:
+```text
+The reducer marks a research question resolved when an iteration's focus text equals it, even when that iteration's answeredQuestions is empty. The rule is documented on purpose at reduce-state.cjs:2580, and it closed Q1 after iteration 1 in this run. What should change?
+```
+
+Options:
+```text
+Require answer evidence (Recommended)
+Keep the rule, document it
+```
+
+Answer:
+```text
+Require answer evidence (Recommended)
+```
+
+### Q021
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_01HCoX4b7JxXDXJySRcM3UJ8:3 -->
+
+Question:
+```text
+Pre-push lets the push through, with a warning, when the track-root sweep itself errors (exit 2), but the README calls the gate blocking. How should that be resolved?
+```
+
+Options:
+```text
+Document fail-open (Recommended)
+Fail closed with bypass
+```
+
+Answer:
+```text
+Document fail-open (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
